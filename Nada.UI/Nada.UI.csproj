@@ -51,11 +51,18 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Solution Items\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectListView">
+      <HintPath>..\Solution Items\ObjectListView.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -63,15 +70,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppLogic\MembershipManager.cs" />
+    <Compile Include="AppLogic\ApplicationData.cs" />
     <Compile Include="Translations.Designer.cs">
       <DependentUpon>Translations.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Model\Language.cs" />
     <Compile Include="AppLogic\Localizer.cs" />
-    <Compile Include="Model\Util.cs" />
     <Compile Include="Shell.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,11 +95,41 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Translations.fr-FR.resx</DependentUpon>
     </Compile>
+    <Compile Include="View\Modals\AdminLevelModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Modals\AdminLevelModal.Designer.cs">
+      <DependentUpon>AdminLevelModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Modals\PopGroupModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Modals\PopGroupModal.Designer.cs">
+      <DependentUpon>PopGroupModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Modals\DiseaseModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Modals\DiseaseModal.Designer.cs">
+      <DependentUpon>DiseaseModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\SettingsView.Designer.cs">
+      <DependentUpon>SettingsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Modals\TranslationModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Modals\TranslationModal.Designer.cs">
+      <DependentUpon>TranslationModal.cs</DependentUpon>
     </Compile>
     <Compile Include="View\WelcomeView.cs">
       <SubType>UserControl</SubType>
@@ -127,12 +162,32 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Modals\AdminLevelModal.resx">
+      <DependentUpon>AdminLevelModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Modals\PopGroupModal.resx">
+      <DependentUpon>PopGroupModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Modals\DiseaseModal.resx">
+      <DependentUpon>DiseaseModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SettingsView.resx">
+      <DependentUpon>SettingsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Modals\TranslationModal.resx">
+      <DependentUpon>TranslationModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\WelcomeView.resx">
       <DependentUpon>WelcomeView.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Nada.Model.AdminLevel.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Disease.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Language.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.PopGroup.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.TranslatedValue.datasource" />
     <None Include="Properties\DataSources\Nada.UI.Model.Language.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -147,9 +202,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
@@ -161,6 +214,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nada.DA\Nada.DA.csproj">
+      <Project>{4b602617-32b5-492a-8d10-653f1c509075}</Project>
+      <Name>Nada.DA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nada.Model\Nada.Model.csproj">
+      <Project>{9887365d-56c1-4344-9753-91a5d0bf656c}</Project>
+      <Name>Nada.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

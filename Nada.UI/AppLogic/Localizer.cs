@@ -5,7 +5,8 @@ using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Threading;
-using Nada.UI.Model;
+using Nada.Model;
+using Nada.Model.Repositories;
 using Nada.UI.Properties;
 
 namespace Nada.UI.AppLogic
@@ -18,17 +19,19 @@ namespace Nada.UI.AppLogic
         public static void Initialize()
         {
             rm = new ResourceManager("Nada.UI.Translations", typeof(Localizer).Assembly);
-            SupportedLanguages = new List<Language>
-            {
-                new Language { Name = "English", IsoCode = "en-US" },
-                new Language { Name = "français", IsoCode = "fr-FR" }
-            };
+            SettingsRepository repo = new SettingsRepository();
+            SupportedLanguages = repo.GetSupportedLanguages();
         }
 
         public static void SetCulture(CultureInfo cultureInfo)
         {
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
+        }
+
+        public static string GetCultureName()
+        {
+            return Thread.CurrentThread.CurrentUICulture.Name;
         }
 
         public static string GetValue(string key)

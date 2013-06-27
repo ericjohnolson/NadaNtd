@@ -20,8 +20,14 @@ namespace Nada.UI.View
 
         private void DoTranslate()
         {
-            lblHeader.Text = Localizer.GetValue("WelcomeTitle") + " " + "User First Name!";
+            lblHeader.Text = Localizer.GetValue("WelcomeTitle") + " " + ApplicationData.Instance.CurrentUser.UserName + ".";
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

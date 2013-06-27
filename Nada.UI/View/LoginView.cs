@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Nada.UI.AppLogic;
 using System.Threading;
 using System.Globalization;
+using System.Web.Security;
 
 namespace Nada.UI.View
 {
@@ -19,6 +20,17 @@ namespace Nada.UI.View
         public LoginView()
         {
             InitializeComponent();
+        }
+
+        public void DoLogin(string uid, string pwd)
+        {
+            if (Membership.ValidateUser(uid, pwd))
+            {
+                ApplicationData.Instance.CurrentUser = Membership.GetUser(uid);
+                CultureInfo ci = new CultureInfo(cbLanguages.SelectedValue.ToString());
+                Localizer.SetCulture(ci);
+                OnLogin();
+            }
         }
 
         private void LoginView_Load(object sender, EventArgs e)
@@ -42,12 +54,7 @@ namespace Nada.UI.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (true)
-            {
-                CultureInfo ci = new CultureInfo(cbLanguages.SelectedValue.ToString());
-                Localizer.SetCulture(ci);
-                OnLogin();
-            }
+            DoLogin(tbUid.Text, tbPwd.Text);
         }
 
     }

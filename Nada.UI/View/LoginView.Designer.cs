@@ -36,8 +36,8 @@
             this.lblLang = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbUid = new System.Windows.Forms.TextBox();
+            this.tbPwd = new System.Windows.Forms.TextBox();
             this.lblPwd = new System.Windows.Forms.Label();
             this.lblUid = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
@@ -68,8 +68,8 @@
             this.panel1.Controls.Add(this.lblLang);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.lblHeader);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.tbUid);
+            this.panel1.Controls.Add(this.tbPwd);
             this.panel1.Controls.Add(this.lblPwd);
             this.panel1.Controls.Add(this.lblUid);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -86,12 +86,12 @@
             this.cbLanguages.Location = new System.Drawing.Point(46, 157);
             this.cbLanguages.Name = "cbLanguages";
             this.cbLanguages.Size = new System.Drawing.Size(177, 21);
-            this.cbLanguages.TabIndex = 7;
+            this.cbLanguages.TabIndex = 2;
             this.cbLanguages.ValueMember = "IsoCode";
             // 
             // bsLanguages
             // 
-            this.bsLanguages.DataSource = typeof(Nada.UI.Model.Language);
+            this.bsLanguages.DataSource = typeof(Nada.Model.Language);
             // 
             // lblLang
             // 
@@ -100,7 +100,7 @@
             this.lblLang.Location = new System.Drawing.Point(43, 139);
             this.lblLang.Name = "lblLang";
             this.lblLang.Size = new System.Drawing.Size(64, 14);
-            this.lblLang.TabIndex = 6;
+            this.lblLang.TabIndex = 7;
             this.lblLang.Text = "Language";
             // 
             // button1
@@ -108,7 +108,7 @@
             this.button1.Location = new System.Drawing.Point(46, 191);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
+            this.button1.TabIndex = 3;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -123,19 +123,20 @@
             this.lblHeader.TabIndex = 4;
             this.lblHeader.Text = "Log in.";
             // 
-            // textBox2
+            // tbUid
             // 
-            this.textBox2.Location = new System.Drawing.Point(46, 76);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(177, 20);
-            this.textBox2.TabIndex = 3;
+            this.tbUid.Location = new System.Drawing.Point(46, 76);
+            this.tbUid.Name = "tbUid";
+            this.tbUid.Size = new System.Drawing.Size(177, 20);
+            this.tbUid.TabIndex = 0;
             // 
-            // textBox1
+            // tbPwd
             // 
-            this.textBox1.Location = new System.Drawing.Point(46, 116);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(177, 20);
-            this.textBox1.TabIndex = 2;
+            this.tbPwd.Location = new System.Drawing.Point(46, 116);
+            this.tbPwd.Name = "tbPwd";
+            this.tbPwd.PasswordChar = '*';
+            this.tbPwd.Size = new System.Drawing.Size(177, 20);
+            this.tbPwd.TabIndex = 1;
             // 
             // lblPwd
             // 
@@ -144,7 +145,7 @@
             this.lblPwd.Location = new System.Drawing.Point(43, 99);
             this.lblPwd.Name = "lblPwd";
             this.lblPwd.Size = new System.Drawing.Size(60, 14);
-            this.lblPwd.TabIndex = 1;
+            this.lblPwd.TabIndex = 6;
             this.lblPwd.Text = "Password";
             // 
             // lblUid
@@ -154,7 +155,7 @@
             this.lblUid.Location = new System.Drawing.Point(43, 60);
             this.lblUid.Name = "lblUid";
             this.lblUid.Size = new System.Drawing.Size(66, 14);
-            this.lblUid.TabIndex = 0;
+            this.lblUid.TabIndex = 5;
             this.lblUid.Text = "Username";
             // 
             // LoginView
@@ -180,8 +181,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblHeader;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbUid;
+        private System.Windows.Forms.TextBox tbPwd;
         private System.Windows.Forms.Label lblPwd;
         private System.Windows.Forms.Label lblUid;
         private System.Windows.Forms.ComboBox cbLanguages;
