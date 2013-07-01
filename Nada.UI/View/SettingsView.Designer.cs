@@ -37,23 +37,23 @@
             this.lvDiseases = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.btnAddDisease = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnSaveAdminLevels = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.grdAdminLevels = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.levelNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.displayNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adminLevelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAdminLevel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnSavePops = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.grdPopGroups = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.btnPopGroup = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.levelNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.displayNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adminLevelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.abbreviationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.displayNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.popGroupBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnPopGroup = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -61,9 +61,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lvDiseases)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAdminLevels)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adminLevelBindingSource)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPopGroups)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.adminLevelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popGroupBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,6 +165,22 @@
             this.olvColumn2.IsEditable = false;
             this.olvColumn2.Text = "Code";
             // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "IsEnabledText";
+            this.olvColumn3.CellPadding = null;
+            this.olvColumn3.IsEditable = false;
+            this.olvColumn3.Text = "Show";
+            // 
+            // olvColumn4
+            // 
+            this.olvColumn4.AspectName = "EditText";
+            this.olvColumn4.CellPadding = null;
+            this.olvColumn4.Hideable = false;
+            this.olvColumn4.Hyperlink = true;
+            this.olvColumn4.IsEditable = false;
+            this.olvColumn4.Text = "Edit";
+            // 
             // btnAddDisease
             // 
             this.btnAddDisease.Location = new System.Drawing.Point(536, 137);
@@ -191,7 +207,6 @@
             // 
             this.btnSaveAdminLevels.Location = new System.Drawing.Point(490, 137);
             this.btnSaveAdminLevels.Name = "btnSaveAdminLevels";
-            this.btnSaveAdminLevels.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue;
             this.btnSaveAdminLevels.Size = new System.Drawing.Size(108, 25);
             this.btnSaveAdminLevels.TabIndex = 7;
             this.btnSaveAdminLevels.Values.Text = "Save Changes";
@@ -212,11 +227,27 @@
             this.grdAdminLevels.Size = new System.Drawing.Size(592, 125);
             this.grdAdminLevels.TabIndex = 6;
             // 
+            // levelNumberDataGridViewTextBoxColumn
+            // 
+            this.levelNumberDataGridViewTextBoxColumn.DataPropertyName = "LevelNumber";
+            this.levelNumberDataGridViewTextBoxColumn.HeaderText = "Admin Level";
+            this.levelNumberDataGridViewTextBoxColumn.Name = "levelNumberDataGridViewTextBoxColumn";
+            // 
+            // displayNameDataGridViewTextBoxColumn1
+            // 
+            this.displayNameDataGridViewTextBoxColumn1.DataPropertyName = "DisplayName";
+            this.displayNameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.displayNameDataGridViewTextBoxColumn1.Name = "displayNameDataGridViewTextBoxColumn1";
+            // 
+            // adminLevelBindingSource
+            // 
+            this.adminLevelBindingSource.DataSource = typeof(Nada.Model.AdminLevelType);
+            // 
             // btnAdminLevel
             // 
             this.btnAdminLevel.Location = new System.Drawing.Point(422, 137);
             this.btnAdminLevel.Name = "btnAdminLevel";
-            this.btnAdminLevel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver;
+            this.btnAdminLevel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.btnAdminLevel.Size = new System.Drawing.Size(62, 25);
             this.btnAdminLevel.TabIndex = 3;
             this.btnAdminLevel.Values.Text = "Add";
@@ -239,7 +270,6 @@
             // 
             this.btnSavePops.Location = new System.Drawing.Point(490, 137);
             this.btnSavePops.Name = "btnSavePops";
-            this.btnSavePops.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue;
             this.btnSavePops.Size = new System.Drawing.Size(108, 25);
             this.btnSavePops.TabIndex = 8;
             this.btnSavePops.Values.Text = "Save Changes";
@@ -260,48 +290,6 @@
             this.grdPopGroups.Size = new System.Drawing.Size(595, 125);
             this.grdPopGroups.TabIndex = 6;
             // 
-            // btnPopGroup
-            // 
-            this.btnPopGroup.Location = new System.Drawing.Point(422, 137);
-            this.btnPopGroup.Name = "btnPopGroup";
-            this.btnPopGroup.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Silver;
-            this.btnPopGroup.Size = new System.Drawing.Size(62, 25);
-            this.btnPopGroup.TabIndex = 3;
-            this.btnPopGroup.Values.Text = "Add";
-            this.btnPopGroup.Click += new System.EventHandler(this.btnPopGroup_Click);
-            // 
-            // olvColumn3
-            // 
-            this.olvColumn3.AspectName = "IsEnabledText";
-            this.olvColumn3.CellPadding = null;
-            this.olvColumn3.IsEditable = false;
-            this.olvColumn3.Text = "Show";
-            // 
-            // olvColumn4
-            // 
-            this.olvColumn4.AspectName = "EditText";
-            this.olvColumn4.CellPadding = null;
-            this.olvColumn4.Hideable = false;
-            this.olvColumn4.Hyperlink = true;
-            this.olvColumn4.IsEditable = false;
-            this.olvColumn4.Text = "Edit";
-            // 
-            // levelNumberDataGridViewTextBoxColumn
-            // 
-            this.levelNumberDataGridViewTextBoxColumn.DataPropertyName = "LevelNumber";
-            this.levelNumberDataGridViewTextBoxColumn.HeaderText = "Admin Level";
-            this.levelNumberDataGridViewTextBoxColumn.Name = "levelNumberDataGridViewTextBoxColumn";
-            // 
-            // displayNameDataGridViewTextBoxColumn1
-            // 
-            this.displayNameDataGridViewTextBoxColumn1.DataPropertyName = "DisplayName";
-            this.displayNameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.displayNameDataGridViewTextBoxColumn1.Name = "displayNameDataGridViewTextBoxColumn1";
-            // 
-            // adminLevelBindingSource
-            // 
-            this.adminLevelBindingSource.DataSource = typeof(Nada.Model.AdminLevel);
-            // 
             // abbreviationDataGridViewTextBoxColumn
             // 
             this.abbreviationDataGridViewTextBoxColumn.DataPropertyName = "Abbreviation";
@@ -317,6 +305,16 @@
             // popGroupBindingSource
             // 
             this.popGroupBindingSource.DataSource = typeof(Nada.Model.PopGroup);
+            // 
+            // btnPopGroup
+            // 
+            this.btnPopGroup.Location = new System.Drawing.Point(422, 137);
+            this.btnPopGroup.Name = "btnPopGroup";
+            this.btnPopGroup.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.btnPopGroup.Size = new System.Drawing.Size(62, 25);
+            this.btnPopGroup.TabIndex = 3;
+            this.btnPopGroup.Values.Text = "Add";
+            this.btnPopGroup.Click += new System.EventHandler(this.btnPopGroup_Click);
             // 
             // SettingsView
             // 
@@ -335,9 +333,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lvDiseases)).EndInit();
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdAdminLevels)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adminLevelBindingSource)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPopGroups)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.adminLevelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popGroupBindingSource)).EndInit();
             this.ResumeLayout(false);
 

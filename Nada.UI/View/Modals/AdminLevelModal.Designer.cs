@@ -41,7 +41,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(23, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -50,7 +50,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 62);
+            this.label2.Location = new System.Drawing.Point(23, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 1;
@@ -59,18 +59,18 @@
             // tbName
             // 
             this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAdminLevel, "DisplayName", true));
-            this.tbName.Location = new System.Drawing.Point(16, 29);
+            this.tbName.Location = new System.Drawing.Point(26, 41);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(158, 20);
             this.tbName.TabIndex = 3;
             // 
             // bsAdminLevel
             // 
-            this.bsAdminLevel.DataSource = typeof(Nada.Model.AdminLevel);
+            this.bsAdminLevel.DataSource = typeof(Nada.Model.AdminLevelType);
             // 
             // kryptonButton1
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(97, 114);
+            this.kryptonButton1.Location = new System.Drawing.Point(107, 126);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(77, 25);
             this.kryptonButton1.TabIndex = 5;
@@ -81,7 +81,7 @@
             // 
             this.tbLevel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAdminLevel, "LevelNumber", true));
             this.tbLevel.Enabled = false;
-            this.tbLevel.Location = new System.Drawing.Point(16, 78);
+            this.tbLevel.Location = new System.Drawing.Point(26, 90);
             this.tbLevel.Name = "tbLevel";
             this.tbLevel.ReadOnly = true;
             this.tbLevel.Size = new System.Drawing.Size(158, 20);
@@ -92,7 +92,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(195, 151);
+            this.ClientSize = new System.Drawing.Size(217, 179);
             this.Controls.Add(this.tbLevel);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.tbName);

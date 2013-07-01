@@ -9,6 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nada.Tests", "Nada.Tests\Na
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nada.Model", "Nada.Model\Nada.Model.csproj", "{9887365D-56C1-4344-9753-91A5D0BF656C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B976F2F-1723-4C7D-92BD-5A0211F14FF8}"
+	ProjectSection(SolutionItems) = preProject
+		Solution Items\AccessDatabaseEngine.exe = Solution Items\AccessDatabaseEngine.exe
+		Solution Items\ComponentFactory.Krypton.Toolkit.dll = Solution Items\ComponentFactory.Krypton.Toolkit.dll
+		Solution Items\LINQtoCSV.dll = Solution Items\LINQtoCSV.dll
+		Solution Items\ObjectListView.dll = Solution Items\ObjectListView.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

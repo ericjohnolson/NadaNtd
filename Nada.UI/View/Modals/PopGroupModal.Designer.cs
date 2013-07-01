@@ -41,7 +41,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(27, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -50,7 +50,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 62);
+            this.label2.Location = new System.Drawing.Point(27, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             // kryptonButton1
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(97, 114);
+            this.kryptonButton1.Location = new System.Drawing.Point(111, 127);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(77, 25);
             this.kryptonButton1.TabIndex = 5;
@@ -68,7 +68,7 @@
             // tbName
             // 
             this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsPopGroup, "DisplayName", true));
-            this.tbName.Location = new System.Drawing.Point(16, 30);
+            this.tbName.Location = new System.Drawing.Point(30, 43);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(158, 20);
             this.tbName.TabIndex = 6;
@@ -80,7 +80,7 @@
             // tbAbbreviation
             // 
             this.tbAbbreviation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsPopGroup, "Abbreviation", true));
-            this.tbAbbreviation.Location = new System.Drawing.Point(16, 78);
+            this.tbAbbreviation.Location = new System.Drawing.Point(30, 91);
             this.tbAbbreviation.Name = "tbAbbreviation";
             this.tbAbbreviation.Size = new System.Drawing.Size(158, 20);
             this.tbAbbreviation.TabIndex = 7;
@@ -90,7 +90,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(195, 151);
+            this.ClientSize = new System.Drawing.Size(223, 179);
             this.Controls.Add(this.tbAbbreviation);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.kryptonButton1);

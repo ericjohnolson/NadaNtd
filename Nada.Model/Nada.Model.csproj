@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LINQtoCSV">
+      <HintPath>..\Solution Items\LINQtoCSV.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -40,6 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminLevel.cs" />
+    <Compile Include="AdminLevelType.cs" />
+    <Compile Include="AdminLevelDemography.cs" />
+    <Compile Include="Country.cs" />
+    <Compile Include="CountryDemography.cs" />
+    <Compile Include="Csv\AdminLevelDemoRow.cs" />
+    <Compile Include="Csv\AdminLevelRow.cs" />
+    <Compile Include="Csv\CsvItem.cs" />
     <Compile Include="Disease.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Language.cs" />

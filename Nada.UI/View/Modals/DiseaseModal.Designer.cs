@@ -31,18 +31,18 @@
             this.components = new System.ComponentModel.Container();
             this.lblCode = new System.Windows.Forms.Label();
             this.tbCode = new System.Windows.Forms.TextBox();
+            this.bsDisease = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonDataGridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.languageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.translatedNamesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lnkAdd = new System.Windows.Forms.LinkLabel();
             this.cbShow = new System.Windows.Forms.CheckBox();
-            this.languageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsDisease = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.bsDisease)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.translatedNamesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDisease)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCode
@@ -62,6 +62,10 @@
             this.tbCode.Size = new System.Drawing.Size(103, 20);
             this.tbCode.TabIndex = 1;
             // 
+            // bsDisease
+            // 
+            this.bsDisease.DataSource = typeof(Nada.Model.Disease);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -75,7 +79,6 @@
             // 
             this.btnSave.Location = new System.Drawing.Point(247, 239);
             this.btnSave.Name = "btnSave";
-            this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue;
             this.btnSave.Size = new System.Drawing.Size(56, 25);
             this.btnSave.TabIndex = 4;
             this.btnSave.Values.Text = "Save";
@@ -95,6 +98,19 @@
             this.kryptonDataGridView1.Name = "kryptonDataGridView1";
             this.kryptonDataGridView1.Size = new System.Drawing.Size(291, 135);
             this.kryptonDataGridView1.TabIndex = 5;
+            // 
+            // languageDataGridViewTextBoxColumn
+            // 
+            this.languageDataGridViewTextBoxColumn.DataPropertyName = "Language";
+            this.languageDataGridViewTextBoxColumn.HeaderText = "Language";
+            this.languageDataGridViewTextBoxColumn.Name = "languageDataGridViewTextBoxColumn";
+            this.languageDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             // 
             // translatedNamesBindingSource
             // 
@@ -123,23 +139,6 @@
             this.cbShow.Text = "Show?";
             this.cbShow.UseVisualStyleBackColor = true;
             // 
-            // languageDataGridViewTextBoxColumn
-            // 
-            this.languageDataGridViewTextBoxColumn.DataPropertyName = "Language";
-            this.languageDataGridViewTextBoxColumn.HeaderText = "Language";
-            this.languageDataGridViewTextBoxColumn.Name = "languageDataGridViewTextBoxColumn";
-            this.languageDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // valueDataGridViewTextBoxColumn
-            // 
-            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
-            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
-            // 
-            // bsDisease
-            // 
-            this.bsDisease.DataSource = typeof(Nada.Model.Disease);
-            // 
             // DiseaseModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -157,9 +156,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit Disease";
             this.Load += new System.EventHandler(this.DiseaseModal_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.bsDisease)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.translatedNamesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDisease)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

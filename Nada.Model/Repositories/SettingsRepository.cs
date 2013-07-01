@@ -54,19 +54,19 @@ namespace Nada.Model.Repositories
         #endregion
 
         #region Admin Levels
-        public List<AdminLevel> GetAllAdminLevels()
+        public List<AdminLevelType> GetAllAdminLevels()
         {
-            List<AdminLevel> lvls = new List<AdminLevel>();
+            List<AdminLevelType> lvls = new List<AdminLevelType>();
             OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
             using (connection)
             {
                 connection.Open();
-                string sql = @"Select ID, DisplayName, AdminLevel from AdminLevels";
+                string sql = @"Select ID, DisplayName, AdminLevel from AdminLevelTypes WHERE AdminLevel > 0";
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
-                        lvls.Add(new AdminLevel
+                        lvls.Add(new AdminLevelType
                         {
                             Id = reader.GetValueOrDefault<int>("ID"),
                             DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
@@ -78,7 +78,7 @@ namespace Nada.Model.Repositories
             return lvls;
         }
 
-        public void InsertAdminLevel(AdminLevel adminLevel, int byUserId)
+        public void InsertAdminLevel(AdminLevelType adminLevel, int byUserId)
         {
             bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
@@ -93,7 +93,7 @@ namespace Nada.Model.Repositories
                     transWasStarted = true;
 
                     // INSERT 
-                    command = new OleDbCommand(@"INSERT INTO AdminLevels (DisplayName, AdminLevel, UpdatedBy, UpdatedAt) VALUES
+                    command = new OleDbCommand(@"INSERT INTO AdminLevelTypes (DisplayName, AdminLevel, UpdatedBy, UpdatedAt) VALUES
                     (@DisplayName, @AdminLevel, @UpdatedBy, @UpdatedAt)", connection);
                     command.Parameters.Add(new OleDbParameter("@DisplayName", adminLevel.DisplayName));
                     command.Parameters.Add(new OleDbParameter("@AdminLevel", adminLevel.LevelNumber));
@@ -122,7 +122,7 @@ namespace Nada.Model.Repositories
             }
         }
 
-        public void UpdateAdminLevel(AdminLevel adminLevel, int byUserId)
+        public void UpdateAdminLevel(AdminLevelType adminLevel, int byUserId)
         {
             OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
             using (connection)
@@ -130,7 +130,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Update AdminLevels set DisplayName=@name, AdminLevel=@AdminLevel, UpdatedBy=@updatedby, 
+                    OleDbCommand command = new OleDbCommand(@"Update AdminLevelTypes set DisplayName=@name, AdminLevel=@AdminLevel, UpdatedBy=@updatedby, 
                         UpdatedAt=@updatedat WHERE ID = @id", connection);
                     command.Parameters.Add(new OleDbParameter("@name", adminLevel.DisplayName));
                     command.Parameters.Add(new OleDbParameter("@AdminLevel", adminLevel.LevelNumber));

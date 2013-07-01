@@ -17,7 +17,7 @@ namespace Nada.UI.View
         private DiseaseRepository diseases = null;
         private SettingsRepository settings = null;
         private List<PopGroup> popGroups = null;
-        private List<AdminLevel> adminLevels = null;
+        private List<AdminLevelType> adminLevels = null;
 
         public SettingsView()
         {
@@ -98,7 +98,7 @@ namespace Nada.UI.View
             form.ShowDialog();
         }
 
-        private void adminLevel_OnSave(AdminLevel obj)
+        private void adminLevel_OnSave(AdminLevelType obj)
         {
             adminLevels.Add(obj);
             adminLevelBindingSource.ResetBindings(false);

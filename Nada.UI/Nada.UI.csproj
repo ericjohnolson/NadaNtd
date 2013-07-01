@@ -55,11 +55,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Solution Items\ComponentFactory.Krypton.Toolkit.dll</HintPath>
     </Reference>
+    <Reference Include="LINQtoCSV">
+      <HintPath>..\Solution Items\LINQtoCSV.dll</HintPath>
+    </Reference>
     <Reference Include="ObjectListView">
       <HintPath>..\Solution Items\ObjectListView.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -95,11 +99,65 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Translations.fr-FR.resx</DependentUpon>
     </Compile>
+    <Compile Include="View\Demography\CountryView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Demography\CountryView.Designer.cs">
+      <DependentUpon>CountryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Demography\AdminLevelView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Demography\AdminLevelView.Designer.cs">
+      <DependentUpon>AdminLevelView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Demography\CountryDemoEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Demography\CountryDemoEdit.Designer.cs">
+      <DependentUpon>CountryDemoEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Demography\DemographyTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Demography\DemographyTree.Designer.cs">
+      <DependentUpon>DemographyTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Demography\DemographyView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Demography\DemographyView.Designer.cs">
+      <DependentUpon>DemographyView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Demography\ImportAdminLevelsModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Demography\ImportAdminLevelsModal.Designer.cs">
+      <DependentUpon>ImportAdminLevelsModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Demography\ImportDemographyModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Demography\ImportDemographyModal.Designer.cs">
+      <DependentUpon>ImportDemographyModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Modals\AdminLevelModal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\Modals\AdminLevelModal.Designer.cs">
       <DependentUpon>AdminLevelModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Modals\CountryModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Modals\CountryModal.Designer.cs">
+      <DependentUpon>CountryModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Modals\ErrorModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Modals\ErrorModal.Designer.cs">
+      <DependentUpon>ErrorModal.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Modals\PopGroupModal.cs">
       <SubType>Form</SubType>
@@ -118,6 +176,12 @@
     </Compile>
     <Compile Include="View\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Modals\SampleModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Modals\SampleModal.Designer.cs">
+      <DependentUpon>SampleModal.cs</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsView.cs">
       <SubType>UserControl</SubType>
@@ -162,8 +226,35 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\CountryView.resx">
+      <DependentUpon>CountryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\AdminLevelView.resx">
+      <DependentUpon>AdminLevelView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\CountryDemoEdit.resx">
+      <DependentUpon>CountryDemoEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\DemographyTree.resx">
+      <DependentUpon>DemographyTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\DemographyView.resx">
+      <DependentUpon>DemographyView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\ImportAdminLevelsModal.resx">
+      <DependentUpon>ImportAdminLevelsModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\ImportDemographyModal.resx">
+      <DependentUpon>ImportDemographyModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Modals\AdminLevelModal.resx">
       <DependentUpon>AdminLevelModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Modals\CountryModal.resx">
+      <DependentUpon>CountryModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Modals\ErrorModal.resx">
+      <DependentUpon>ErrorModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Modals\PopGroupModal.resx">
       <DependentUpon>PopGroupModal.cs</DependentUpon>
@@ -173,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Modals\SampleModal.resx">
+      <DependentUpon>SampleModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SettingsView.resx">
       <DependentUpon>SettingsView.cs</DependentUpon>
@@ -184,6 +278,8 @@
       <DependentUpon>WelcomeView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\Nada.Model.AdminLevel.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Country.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.CountryDemography.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Disease.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Language.datasource" />
     <None Include="Properties\DataSources\Nada.Model.PopGroup.datasource" />

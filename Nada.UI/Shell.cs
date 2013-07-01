@@ -6,8 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
 using Nada.UI.View;
+using Nada.UI.View.Demography;
+using Nada.UI.View.Modals;
 
 namespace Nada.UI
 {
@@ -25,13 +28,11 @@ namespace Nada.UI
         {
             if (!DesignMode)
             {
-
                 pnlLeft.Visible = false;
                 menuMain.Visible = false;
                 LoginView loginView = new LoginView();
-                loginView.Dock = DockStyle.Fill;
-                pnlMain.Controls.Add(loginView);
                 loginView.OnLogin += loginView1_OnLogin;
+                LoadView(loginView);
                 DoTranslate();
                 // COMMENT OUT WHEN NOT DEVELOPING!
                 LoadDeveloperMode(loginView);
@@ -53,35 +54,50 @@ namespace Nada.UI
         {
             Shell sh = new Shell();
             var lang = Localizer.SupportedLanguages;
-            pnlMain.Controls.Clear();
             menuMain.Visible = true;
             pnlLeft.Visible = true;
-            currentView = new View.WelcomeView();
+            LoadView(new View.WelcomeView());
+            DoTranslate();
+        }
+
+        private void LoadView(UserControl view)
+        {
+            pnlMain.Controls.Clear();
+            currentView = view;
             currentView.Dock = DockStyle.Fill;
             pnlMain.Controls.Add(currentView);
-            DoTranslate();
         }
         #endregion
 
         #region Menu
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pnlMain.Controls.Clear();
-            currentView = new SettingsView();
-            currentView.Dock = DockStyle.Fill;
-            pnlMain.Controls.Add(currentView);
+            LoadView(new SettingsView());
+        }
+
+        private void countryInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DemoRepository r = new DemoRepository();
+            CountryModal form = new CountryModal(r.GetCountry());
+            form.ShowDialog();
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            LoadView(new DemographyView());
+        }
+
+        private void demographyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadView(new DemographyView());
+        }
         #endregion
+
 
 
     }

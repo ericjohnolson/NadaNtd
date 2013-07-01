@@ -5,10 +5,11 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Nada.UI.AppLogic;
+using Nada.UI.View.Modals;
 
 namespace Nada.UI
 {
-    
+
     static class Program
     {
         /// <summary>
@@ -17,6 +18,7 @@ namespace Nada.UI
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Thread.CurrentThread.CurrentCulture.ClearCachedData();
             var thread = new Thread(
                 s => ((CultureState)s).Result = Thread.CurrentThread.CurrentCulture);
@@ -30,6 +32,21 @@ namespace Nada.UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Shell());
+        }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            try
+            {
+                Exception ex = (Exception)e.ExceptionObject;
+                Console.WriteLine("MyHandler caught : " + ex.Message);
+                Console.WriteLine("Runtime terminating: {0}", e.IsTerminating);
+                ErrorModal form = new ErrorModal(ex.Message);
+                form.ShowDialog();
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

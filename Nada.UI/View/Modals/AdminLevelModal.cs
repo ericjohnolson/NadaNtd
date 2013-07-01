@@ -14,9 +14,9 @@ namespace Nada.UI.View
 {
     public partial class AdminLevelModal : Form
     {
-        private AdminLevel model = null;
+        private AdminLevelType model = null;
         private int level = 1;
-        public event Action<AdminLevel> OnSave = (e) => { };
+        public event Action<AdminLevelType> OnSave = (e) => { };
 
         public AdminLevelModal()
         {
@@ -33,7 +33,7 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
-                model = new AdminLevel { LevelNumber = level };
+                model = new AdminLevelType { LevelNumber = level };
                 bsAdminLevel.DataSource = model;
             }
         }
