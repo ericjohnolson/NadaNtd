@@ -201,11 +201,12 @@
             // 
             // btnAddDemo
             // 
-            this.btnAddDemo.Location = new System.Drawing.Point(677, 4);
+            this.btnAddDemo.Enabled = false;
+            this.btnAddDemo.Location = new System.Drawing.Point(733, 4);
             this.btnAddDemo.Name = "btnAddDemo";
-            this.btnAddDemo.Size = new System.Drawing.Size(125, 25);
+            this.btnAddDemo.Size = new System.Drawing.Size(69, 25);
             this.btnAddDemo.TabIndex = 4;
-            this.btnAddDemo.Values.Text = "Add Demo Survey";
+            this.btnAddDemo.Values.Text = "Add";
             this.btnAddDemo.Click += new System.EventHandler(this.btnAddDemo_Click);
             // 
             // label4
@@ -323,12 +324,12 @@
             // 
             // btnImportChildDemos
             // 
-            this.btnImportChildDemos.Location = new System.Drawing.Point(436, 4);
+            this.btnImportChildDemos.Location = new System.Drawing.Point(443, 4);
             this.btnImportChildDemos.Name = "btnImportChildDemos";
             this.btnImportChildDemos.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnImportChildDemos.Size = new System.Drawing.Size(150, 25);
+            this.btnImportChildDemos.Size = new System.Drawing.Size(143, 25);
             this.btnImportChildDemos.TabIndex = 6;
-            this.btnImportChildDemos.Values.Text = "Import Demo Surveys";
+            this.btnImportChildDemos.Values.Text = "Import Demography";
             this.btnImportChildDemos.Click += new System.EventHandler(this.btnImportChildDemos_Click);
             // 
             // lvChildren

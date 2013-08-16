@@ -11,6 +11,8 @@ using Nada.UI.AppLogic;
 using Nada.UI.View;
 using Nada.UI.View.Demography;
 using Nada.UI.View.Modals;
+using Nada.UI.View.Reports;
+using Nada.UI.View.Survey;
 
 namespace Nada.UI
 {
@@ -35,7 +37,7 @@ namespace Nada.UI
                 LoadView(loginView);
                 DoTranslate();
                 // COMMENT OUT WHEN NOT DEVELOPING!
-                LoadDeveloperMode(loginView);
+                //LoadDeveloperMode(loginView);
             }
         }
 
@@ -96,9 +98,34 @@ namespace Nada.UI
         {
             LoadView(new DemographyView());
         }
+
+        private void lFPrevalenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadLfMfSurvey();
+        }
+
+        private void LoadLfMfSurvey()
+        {
+            var view = new LfMfPrevalenceView();
+            view.OnSave += LfMfPrevalenceView_OnSave;
+            LoadView(view);
+        }
+
+        void LfMfPrevalenceView_OnSave(bool doRefresh)
+        {
+                LoadView(new View.WelcomeView());
+        }
+        
+        private void createCustomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadView(new ReportCreatorView());
+        }
+
+        private void configureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadView(new SurveyView());
+        }
         #endregion
-
-
 
     }
 }

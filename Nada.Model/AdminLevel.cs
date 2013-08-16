@@ -18,7 +18,7 @@ namespace Nada.Model
         public string Name { get; set; }
         public Nullable<int> ParentId { get; set; }
         public List<AdminLevel> Children { get; set; }
-        public string ViewText { get { return "View"; } }
+        public string ViewText { get { return "Select"; } }
         public int LevelNumber { get; set; }
         public bool IsUrban { get; set; }
         public double LatWho { get; set; }

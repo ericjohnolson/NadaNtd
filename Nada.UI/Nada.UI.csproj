@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nada.UI</RootNamespace>
-    <AssemblyName>Nada.UI</AssemblyName>
+    <AssemblyName>NationalDatabaseTemplate</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -39,7 +39,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -51,9 +51,16 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>..\Solution Items\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Solution Items\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\Solution Items\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="LINQtoCSV">
       <HintPath>..\Solution Items\LINQtoCSV.dll</HintPath>
@@ -65,6 +72,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -75,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppLogic\ApplicationData.cs" />
+    <Compile Include="AppLogic\IndicatorHelper.cs" />
     <Compile Include="Translations.Designer.cs">
       <DependentUpon>Translations.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -98,6 +112,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Translations.fr-FR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\AdminLevelPickerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\AdminLevelPickerControl.Designer.cs">
+      <DependentUpon>AdminLevelPickerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomIndicatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CustomIndicatorControl.Designer.cs">
+      <DependentUpon>CustomIndicatorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Demography\CountryView.cs">
       <SubType>UserControl</SubType>
@@ -147,6 +173,12 @@
     <Compile Include="View\Modals\AdminLevelModal.Designer.cs">
       <DependentUpon>AdminLevelModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Modals\AdminLevelPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Modals\AdminLevelPicker.Designer.cs">
+      <DependentUpon>AdminLevelPicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Modals\CountryModal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +215,18 @@
     <Compile Include="View\Modals\SampleModal.Designer.cs">
       <DependentUpon>SampleModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Reports\ReportCreatorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ReportCreatorView.Designer.cs">
+      <DependentUpon>ReportCreatorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\ReportView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ReportView.Designer.cs">
+      <DependentUpon>ReportView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\SettingsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -194,6 +238,54 @@
     </Compile>
     <Compile Include="View\Modals\TranslationModal.Designer.cs">
       <DependentUpon>TranslationModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Survey\IndicatorAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Survey\IndicatorAdd.Designer.cs">
+      <DependentUpon>IndicatorAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Survey\SurveyBaseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Survey\SurveyBaseView.Designer.cs">
+      <DependentUpon>SurveyBaseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Survey\SentinelSiteAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Survey\SentinelSiteAdd.Designer.cs">
+      <DependentUpon>SentinelSiteAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Survey\SentinelSitePicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Survey\SentinelSitePicker.Designer.cs">
+      <DependentUpon>SentinelSitePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Survey\LF\LfMfPrevalenceView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Survey\LF\LfMfPrevalenceView.Designer.cs">
+      <DependentUpon>LfMfPrevalenceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Survey\SurveyTypeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Survey\SurveyTypeEdit.Designer.cs">
+      <DependentUpon>SurveyTypeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Survey\SurveyTypeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Survey\SurveyTypeView.Designer.cs">
+      <DependentUpon>SurveyTypeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Survey\SurveyView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Survey\SurveyView.Designer.cs">
+      <DependentUpon>SurveyView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\WelcomeView.cs">
       <SubType>UserControl</SubType>
@@ -226,6 +318,12 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\AdminLevelPickerControl.resx">
+      <DependentUpon>AdminLevelPickerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CustomIndicatorControl.resx">
+      <DependentUpon>CustomIndicatorControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\CountryView.resx">
       <DependentUpon>CountryView.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +348,9 @@
     <EmbeddedResource Include="View\Modals\AdminLevelModal.resx">
       <DependentUpon>AdminLevelModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Modals\AdminLevelPicker.resx">
+      <DependentUpon>AdminLevelPicker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Modals\CountryModal.resx">
       <DependentUpon>CountryModal.cs</DependentUpon>
     </EmbeddedResource>
@@ -268,11 +369,41 @@
     <EmbeddedResource Include="View\Modals\SampleModal.resx">
       <DependentUpon>SampleModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ReportCreatorView.resx">
+      <DependentUpon>ReportCreatorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ReportView.resx">
+      <DependentUpon>ReportView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\SettingsView.resx">
       <DependentUpon>SettingsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Modals\TranslationModal.resx">
       <DependentUpon>TranslationModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Survey\IndicatorAdd.resx">
+      <DependentUpon>IndicatorAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Survey\SurveyBaseView.resx">
+      <DependentUpon>SurveyBaseView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Survey\SentinelSiteAdd.resx">
+      <DependentUpon>SentinelSiteAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Survey\SentinelSitePicker.resx">
+      <DependentUpon>SentinelSitePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Survey\LF\LfMfPrevalenceView.resx">
+      <DependentUpon>LfMfPrevalenceView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Survey\SurveyTypeEdit.resx">
+      <DependentUpon>SurveyTypeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Survey\SurveyTypeView.resx">
+      <DependentUpon>SurveyTypeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Survey\SurveyView.resx">
+      <DependentUpon>SurveyView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\WelcomeView.resx">
       <DependentUpon>WelcomeView.cs</DependentUpon>
@@ -283,6 +414,11 @@
     <None Include="Properties\DataSources\Nada.Model.Disease.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Language.datasource" />
     <None Include="Properties\DataSources\Nada.Model.PopGroup.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicators.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Survey.LfMfPrevalence.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Survey.SentinelSite.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Survey.SurveyIndicator.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Survey.SurveyType.datasource" />
     <None Include="Properties\DataSources\Nada.Model.TranslatedValue.datasource" />
     <None Include="Properties\DataSources\Nada.UI.Model.Language.datasource" />
     <None Include="Properties\Settings.settings">

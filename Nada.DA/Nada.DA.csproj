@@ -41,7 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ASPNetDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ASPNetDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="OleDbUtil.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Samples\AccessProviders\AccessConnectionHelper.cs" />
     <Compile Include="Samples\AccessProviders\AccessMembershipProvider.cs" />
     <Compile Include="Samples\AccessProviders\AccessPersonalizationProvider.cs" />
@@ -51,16 +61,30 @@
     <Compile Include="Samples\AccessProviders\SecUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ASPNetDB.mdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="ASPNetDB.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="ASPNetDBDataSet.xsc">
+      <DependentUpon>ASPNetDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ASPNetDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ASPNetDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ASPNetDBDataSet.xss">
+      <DependentUpon>ASPNetDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

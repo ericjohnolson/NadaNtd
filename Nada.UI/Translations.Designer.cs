@@ -88,7 +88,7 @@ namespace Nada.UI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NTD National Database (NaDa NTD).
+        ///   Looks up a localized string similar to NTD National Database.
         /// </summary>
         internal static string Title {
             get {

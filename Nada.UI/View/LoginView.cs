@@ -46,7 +46,6 @@ namespace Nada.UI.View
 
         private void TranslatePage()
         {
-            lblHeader.Text = Localizer.GetValue("LoginTitle");
             lblLang.Text = Localizer.GetValue("Language");
             lblPwd.Text = Localizer.GetValue("Password");
             lblUid.Text = Localizer.GetValue("Username");

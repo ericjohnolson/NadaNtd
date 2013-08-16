@@ -131,7 +131,6 @@ namespace Nada.Model.Repositories
                     command.Parameters.Add(new OleDbParameter("@AdultsPercent", demo.AdultsPercent));
                     command.Parameters.Add(new OleDbParameter("@updatedby", byUserId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
-                    command.Parameters.Add(new OleDbParameter("@id", demo.Id));
                     command.ExecuteNonQuery();
                 }
                 catch (Exception)
@@ -218,7 +217,8 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, IsUrban, LatWho, LngWho, Latitude, Longitude,
                     AdminLevelTypes.AdminLevel
-                    FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID", connection);
+                    FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
+                    WHERE ParentId > 0", connection);
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     while(reader.Read())
@@ -248,7 +248,7 @@ namespace Nada.Model.Repositories
             var rootNodes = new List<AdminLevel>();
             foreach (var node in flatList)
             {
-                if (node.ParentId.HasValue)
+                if (node.ParentId.Value > 1)
                 {
                     AdminLevel parent = dic[node.ParentId.Value];
                     parent.Children.Add(node);

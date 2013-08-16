@@ -45,6 +45,8 @@
     <Compile Include="AdminLevel.cs" />
     <Compile Include="AdminLevelType.cs" />
     <Compile Include="AdminLevelDemography.cs" />
+    <Compile Include="Base\NadaClass.cs" />
+    <Compile Include="Survey\SurveyBase.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="CountryDemography.cs" />
     <Compile Include="Csv\AdminLevelDemoRow.cs" />
@@ -52,16 +54,27 @@
     <Compile Include="Csv\CsvItem.cs" />
     <Compile Include="Disease.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="IDynamicIndicator.cs" />
+    <Compile Include="IDynamicIndicatorValue.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="PopGroup.cs" />
+    <Compile Include="Reports\ReportGenerator.cs" />
+    <Compile Include="Reports\ReportIndicators.cs" />
+    <Compile Include="Reports\ReportResult.cs" />
     <Compile Include="Repositories\ReportRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DemoRepository.cs" />
     <Compile Include="Repositories\SettingsRepository.cs" />
     <Compile Include="Repositories\SurveyRepository.cs" />
     <Compile Include="Repositories\DiseaseRepository.cs" />
+    <Compile Include="Survey\LfMfPrevalence.cs" />
+    <Compile Include="Survey\SentinelSite.cs" />
+    <Compile Include="Survey\SurveyIndicator.cs" />
+    <Compile Include="Survey\SurveyIndicatorValue.cs" />
+    <Compile Include="Survey\SurveyType.cs" />
     <Compile Include="TranslatedValue.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nada.DA\Nada.DA.csproj">

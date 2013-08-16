@@ -69,7 +69,7 @@
             this.olvColumn2.AspectName = "ViewText";
             this.olvColumn2.CellPadding = null;
             this.olvColumn2.Hyperlink = true;
-            this.olvColumn2.Text = "View";
+            this.olvColumn2.Text = "";
             // 
             // DemographyTree
             // 

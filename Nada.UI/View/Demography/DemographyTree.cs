@@ -29,17 +29,22 @@ namespace Nada.UI.View.Demography
 
         private void DemographyTree_Load(object sender, EventArgs e)
         {
-            if (!DesignMode)
+            if (!DesignMode && tree != null)
             {
-                treeListView1.CanExpandGetter = model => ((AdminLevel)model).
-                                                              Children.Count > 0;
-                treeListView1.ChildrenGetter = delegate(object model)
-                {
-                    return ((AdminLevel)model).
-                            Children;
-                };
-                treeListView1.SetObjects(tree);
+                LoadTree(tree);
             }
+        }
+
+        public void LoadTree(List<AdminLevel> t)
+        {
+            treeListView1.CanExpandGetter = model => ((AdminLevel)model).
+                                                          Children.Count > 0;
+            treeListView1.ChildrenGetter = delegate(object model)
+            {
+                return ((AdminLevel)model).
+                        Children;
+            };
+            treeListView1.SetObjects(t);
         }
 
         private void treeListView1_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)

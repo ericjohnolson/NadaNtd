@@ -29,30 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeView));
-            this.lblHeader = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblHeader
-            // 
-            this.lblHeader.AutoSize = true;
-            this.lblHeader.Font = new System.Drawing.Font("Georgia", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(3, 0);
-            this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(55, 39);
-            this.lblHeader.TabIndex = 5;
-            this.lblHeader.Text = "Hi";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 53);
+            this.label1.Location = new System.Drawing.Point(7, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(565, 13);
             this.label1.TabIndex = 6;
@@ -61,7 +50,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(7, 128);
+            this.label2.Location = new System.Drawing.Point(7, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(565, 51);
             this.label2.TabIndex = 7;
@@ -69,7 +58,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(7, 239);
+            this.label3.Location = new System.Drawing.Point(7, 189);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(565, 118);
             this.label3.TabIndex = 8;
@@ -81,7 +70,6 @@
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.lblHeader);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
@@ -91,25 +79,25 @@
             this.panel1.Size = new System.Drawing.Size(680, 572);
             this.panel1.TabIndex = 9;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Georgia", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 83);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(256, 39);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Getting Started.";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Georgia", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 189);
+            this.label5.Location = new System.Drawing.Point(3, 139);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(575, 39);
             this.label5.TabIndex = 10;
             this.label5.Text = "Dashboard w/ Links progress reports";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Georgia", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(256, 39);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Getting Started.";
             // 
             // WelcomeView
             // 
@@ -127,7 +115,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

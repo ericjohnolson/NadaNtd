@@ -239,11 +239,11 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(663, 4);
+            this.btnAdd.Location = new System.Drawing.Point(676, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(138, 25);
+            this.btnAdd.Size = new System.Drawing.Size(125, 25);
             this.btnAdd.TabIndex = 1;
-            this.btnAdd.Values.Text = "Add Demo Survey";
+            this.btnAdd.Values.Text = "Add Demography";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label3
@@ -296,12 +296,12 @@
             // 
             // btnImportChildDemos
             // 
-            this.btnImportChildDemos.Location = new System.Drawing.Point(436, 4);
+            this.btnImportChildDemos.Location = new System.Drawing.Point(448, 4);
             this.btnImportChildDemos.Name = "btnImportChildDemos";
             this.btnImportChildDemos.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnImportChildDemos.Size = new System.Drawing.Size(150, 25);
+            this.btnImportChildDemos.Size = new System.Drawing.Size(138, 25);
             this.btnImportChildDemos.TabIndex = 6;
-            this.btnImportChildDemos.Values.Text = "Import Demo Surveys";
+            this.btnImportChildDemos.Values.Text = "Import Demography";
             this.btnImportChildDemos.Click += new System.EventHandler(this.btnImportChildDemos_Click);
             // 
             // lvChildren
