@@ -142,7 +142,7 @@
             this.lvDiseases.Location = new System.Drawing.Point(6, 6);
             this.lvDiseases.Name = "lvDiseases";
             this.lvDiseases.ShowGroups = false;
-            this.lvDiseases.ShowHeaderInAllViews = false;
+            this.lvDiseases.ShowHeaderInAllViews = true;
             this.lvDiseases.Size = new System.Drawing.Size(592, 125);
             this.lvDiseases.TabIndex = 2;
             this.lvDiseases.UseCompatibleStateImageBehavior = false;

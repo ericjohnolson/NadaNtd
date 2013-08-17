@@ -138,7 +138,7 @@
             this.lvDemos.Location = new System.Drawing.Point(3, 35);
             this.lvDemos.Name = "lvDemos";
             this.lvDemos.ShowGroups = false;
-            this.lvDemos.ShowHeaderInAllViews = false;
+            this.lvDemos.ShowHeaderInAllViews = true;
             this.lvDemos.Size = new System.Drawing.Size(799, 144);
             this.lvDemos.TabIndex = 5;
             this.lvDemos.UseCompatibleStateImageBehavior = false;
@@ -343,7 +343,7 @@
             this.lvChildren.Location = new System.Drawing.Point(3, 35);
             this.lvChildren.Name = "lvChildren";
             this.lvChildren.ShowGroups = false;
-            this.lvChildren.ShowHeaderInAllViews = false;
+            this.lvChildren.ShowHeaderInAllViews = true;
             this.lvChildren.Size = new System.Drawing.Size(799, 144);
             this.lvChildren.TabIndex = 5;
             this.lvChildren.UseCompatibleStateImageBehavior = false;

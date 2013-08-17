@@ -63,7 +63,7 @@
             this.lvChildren.Location = new System.Drawing.Point(15, 58);
             this.lvChildren.Name = "lvChildren";
             this.lvChildren.ShowGroups = false;
-            this.lvChildren.ShowHeaderInAllViews = false;
+            this.lvChildren.ShowHeaderInAllViews = true;
             this.lvChildren.Size = new System.Drawing.Size(380, 144);
             this.lvChildren.TabIndex = 18;
             this.lvChildren.UseCompatibleStateImageBehavior = false;
