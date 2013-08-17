@@ -36,12 +36,20 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.surveyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lFPrevalenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createNewSurveyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.sentinelSitesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.interventionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.diseaseDistributionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.createCustomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -58,14 +66,8 @@
             this.kryptonBorderEdge1 = new ComponentFactory.Krypton.Toolkit.KryptonBorderEdge();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.kryptonBorderEdge2 = new ComponentFactory.Krypton.Toolkit.KryptonBorderEdge();
-            this.interventionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.diseaseDistributionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.createNewSurveyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.lFMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lFTASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tsQuickLinks.SuspendLayout();
@@ -126,6 +128,12 @@
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
             // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(77, 22);
+            this.toolStripMenuItem5.Text = " ";
+            // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -133,6 +141,12 @@
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "View";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(77, 22);
+            this.toolStripMenuItem4.Text = " ";
             // 
             // surveyToolStripMenuItem1
             // 
@@ -149,7 +163,9 @@
             // addNewToolStripMenuItem
             // 
             this.addNewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lFPrevalenceToolStripMenuItem});
+            this.lFPrevalenceToolStripMenuItem,
+            this.lFTASToolStripMenuItem,
+            this.lFMToolStripMenuItem});
             this.addNewToolStripMenuItem.Name = "addNewToolStripMenuItem";
             this.addNewToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.addNewToolStripMenuItem.Text = "Enter new survey data";
@@ -157,8 +173,8 @@
             // lFPrevalenceToolStripMenuItem
             // 
             this.lFPrevalenceToolStripMenuItem.Name = "lFPrevalenceToolStripMenuItem";
-            this.lFPrevalenceToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.lFPrevalenceToolStripMenuItem.Text = "LF Prevalence Survey (MF)";
+            this.lFPrevalenceToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.lFPrevalenceToolStripMenuItem.Text = "LF Prevalence Survey";
             this.lFPrevalenceToolStripMenuItem.Click += new System.EventHandler(this.lFPrevalenceToolStripMenuItem_Click);
             // 
             // configureToolStripMenuItem
@@ -168,11 +184,51 @@
             this.configureToolStripMenuItem.Text = "View existing surveys";
             this.configureToolStripMenuItem.Click += new System.EventHandler(this.configureToolStripMenuItem_Click);
             // 
+            // createNewSurveyToolStripMenuItem
+            // 
+            this.createNewSurveyToolStripMenuItem.Enabled = false;
+            this.createNewSurveyToolStripMenuItem.Name = "createNewSurveyToolStripMenuItem";
+            this.createNewSurveyToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.createNewSurveyToolStripMenuItem.Text = "Create new survey";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
+            // 
             // sentinelSitesToolStripMenuItem
             // 
             this.sentinelSitesToolStripMenuItem.Name = "sentinelSitesToolStripMenuItem";
             this.sentinelSitesToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.sentinelSitesToolStripMenuItem.Text = "Sentinel sites";
+            // 
+            // interventionsToolStripMenuItem
+            // 
+            this.interventionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3});
+            this.interventionsToolStripMenuItem.Name = "interventionsToolStripMenuItem";
+            this.interventionsToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.interventionsToolStripMenuItem.Text = "Interventions";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(77, 22);
+            this.toolStripMenuItem3.Text = " ";
+            // 
+            // diseaseDistributionToolStripMenuItem
+            // 
+            this.diseaseDistributionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2});
+            this.diseaseDistributionToolStripMenuItem.Name = "diseaseDistributionToolStripMenuItem";
+            this.diseaseDistributionToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+            this.diseaseDistributionToolStripMenuItem.Text = "Disease Distribution";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(77, 22);
+            this.toolStripMenuItem2.Text = " ";
             // 
             // reportsToolStripMenuItem1
             // 
@@ -185,7 +241,7 @@
             // createCustomToolStripMenuItem
             // 
             this.createCustomToolStripMenuItem.Name = "createCustomToolStripMenuItem";
-            this.createCustomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createCustomToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.createCustomToolStripMenuItem.Text = "View reports";
             this.createCustomToolStripMenuItem.Click += new System.EventHandler(this.createCustomToolStripMenuItem_Click);
             // 
@@ -333,57 +389,19 @@
             this.kryptonBorderEdge2.Size = new System.Drawing.Size(0, 1);
             this.kryptonBorderEdge2.Text = "kryptonBorderEdge2";
             // 
-            // interventionsToolStripMenuItem
+            // lFMToolStripMenuItem
             // 
-            this.interventionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem3});
-            this.interventionsToolStripMenuItem.Name = "interventionsToolStripMenuItem";
-            this.interventionsToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-            this.interventionsToolStripMenuItem.Text = "Interventions";
+            this.lFMToolStripMenuItem.Name = "lFMToolStripMenuItem";
+            this.lFMToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.lFMToolStripMenuItem.Text = "LF Mapping";
+            this.lFMToolStripMenuItem.Click += new System.EventHandler(this.lFMToolStripMenuItem_Click);
             // 
-            // diseaseDistributionToolStripMenuItem
+            // lFTASToolStripMenuItem
             // 
-            this.diseaseDistributionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2});
-            this.diseaseDistributionToolStripMenuItem.Name = "diseaseDistributionToolStripMenuItem";
-            this.diseaseDistributionToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
-            this.diseaseDistributionToolStripMenuItem.Text = "Disease Distribution";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem2.Text = " ";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem3.Text = " ";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem4.Text = " ";
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem5.Text = " ";
-            // 
-            // createNewSurveyToolStripMenuItem
-            // 
-            this.createNewSurveyToolStripMenuItem.Enabled = false;
-            this.createNewSurveyToolStripMenuItem.Name = "createNewSurveyToolStripMenuItem";
-            this.createNewSurveyToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.createNewSurveyToolStripMenuItem.Text = "Create new survey";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
+            this.lFTASToolStripMenuItem.Name = "lFTASToolStripMenuItem";
+            this.lFTASToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.lFTASToolStripMenuItem.Text = "LF TAS";
+            this.lFTASToolStripMenuItem.Click += new System.EventHandler(this.lFTASToolStripMenuItem_Click);
             // 
             // Shell
             // 
@@ -451,6 +469,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem createNewSurveyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem lFTASToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lFMToolStripMenuItem;
     }
 }
 

@@ -116,7 +116,6 @@
             this.lvIndicators.Location = new System.Drawing.Point(4, 25);
             this.lvIndicators.Name = "lvIndicators";
             this.lvIndicators.ShowGroups = false;
-            this.lvIndicators.ShowHeaderInAllViews = false;
             this.lvIndicators.Size = new System.Drawing.Size(576, 144);
             this.lvIndicators.TabIndex = 5;
             this.lvIndicators.UseCompatibleStateImageBehavior = false;

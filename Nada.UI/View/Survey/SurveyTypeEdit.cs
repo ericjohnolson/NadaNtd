@@ -35,7 +35,7 @@ namespace Nada.UI.View.Survey
             {
                 repo = new SurveyRepository();
                 bsSurveyType.DataSource = model;
-                lvIndicators.SetObjects(model.Indicators);
+                lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
             }
         }
 
@@ -49,9 +49,6 @@ namespace Nada.UI.View.Survey
 
         private void edit_OnSave(SurveyIndicator obj)
         {
-            SurveyIndicator old = model.Indicators.FirstOrDefault(i => i.Id == obj.Id);
-            model.Indicators.Remove(old);
-            model.Indicators.Add(obj);
             lvIndicators.SetObjects(model.Indicators);
         }
 

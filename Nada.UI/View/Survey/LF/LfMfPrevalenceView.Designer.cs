@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label3 = new System.Windows.Forms.Label();
+            this.bsType = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.bsSurvey = new System.Windows.Forms.BindingSource(this.components);
             this.cbSiteType = new System.Windows.Forms.ComboBox();
@@ -81,7 +82,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.bsType = new System.Windows.Forms.BindingSource(this.components);
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.bsType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurvey)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.pnlSpotCheck.SuspendLayout();
@@ -91,7 +94,6 @@
             this.tblNotes.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsType)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -104,6 +106,10 @@
             this.label3.Size = new System.Drawing.Size(424, 39);
             this.label3.TabIndex = 0;
             this.label3.Text = "LF Prevalence Survey (MF)";
+            // 
+            // bsType
+            // 
+            this.bsType.DataSource = typeof(Nada.Model.Survey.SurveyType);
             // 
             // label1
             // 
@@ -125,7 +131,7 @@
             this.cbSiteType.Items.AddRange(new object[] {
             "Sentinel",
             "Spot Check"});
-            this.cbSiteType.Location = new System.Drawing.Point(10, 164);
+            this.cbSiteType.Location = new System.Drawing.Point(10, 204);
             this.cbSiteType.Name = "cbSiteType";
             this.cbSiteType.Size = new System.Drawing.Size(166, 21);
             this.cbSiteType.TabIndex = 2;
@@ -134,7 +140,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 147);
+            this.label4.Location = new System.Drawing.Point(7, 187);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 13);
             this.label4.TabIndex = 15;
@@ -509,7 +515,7 @@
             this.tblNotes.Controls.Add(this.customIndicatorControl1, 0, 2);
             this.tblNotes.Controls.Add(this.panel2, 0, 1);
             this.tblNotes.Controls.Add(this.tableLayoutPanel1, 0, 0);
-            this.tblNotes.Location = new System.Drawing.Point(1, 191);
+            this.tblNotes.Location = new System.Drawing.Point(1, 231);
             this.tblNotes.Name = "tblNotes";
             this.tblNotes.RowCount = 4;
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -539,7 +545,7 @@
             this.customIndicatorControl1.Location = new System.Drawing.Point(0, 532);
             this.customIndicatorControl1.Margin = new System.Windows.Forms.Padding(0);
             this.customIndicatorControl1.Name = "customIndicatorControl1";
-            this.customIndicatorControl1.Size = new System.Drawing.Size(97, 23);
+            this.customIndicatorControl1.Size = new System.Drawing.Size(506, 23);
             this.customIndicatorControl1.TabIndex = 0;
             // 
             // panel2
@@ -627,9 +633,26 @@
             this.linkLabel1.Text = "Add/remove indicators";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // bsType
+            // comboBox2
             // 
-            this.bsType.DataSource = typeof(Nada.Model.Survey.SurveyType);
+            this.comboBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSurvey, "TestType", true));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "MF",
+            "ICT"});
+            this.comboBox2.Location = new System.Drawing.Point(13, 163);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(166, 21);
+            this.comboBox2.TabIndex = 43;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(7, 147);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(51, 13);
+            this.label20.TabIndex = 42;
+            this.label20.Text = "Test type";
             // 
             // LfMfPrevalenceView
             // 
@@ -639,6 +662,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.tblNotes);
@@ -649,8 +674,9 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "LfMfPrevalenceView";
-            this.Size = new System.Drawing.Size(597, 935);
+            this.Size = new System.Drawing.Size(597, 975);
             this.Load += new System.EventHandler(this.LfPrevalence_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.bsType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurvey)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -667,7 +693,6 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsType)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -728,5 +753,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.BindingSource bsType;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label20;
     }
 }

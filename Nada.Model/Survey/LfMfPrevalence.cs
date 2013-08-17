@@ -10,11 +10,13 @@ namespace Nada.Model.Survey
     {
         public LfMfPrevalence()
         {
-            TimingType = "Midterm";
+            TimingType = "Baseline";
             SiteType = "Sentinel";
+            TestType = "MF";
         }
 
         public string TimingType { get; set; }
+        public string TestType { get; set; }
         public string SiteType { get; set; }
         public string SpotCheckName { get; set; }
         public Nullable<double> Lat { get; set; }

@@ -37,12 +37,12 @@
             this.tblIndicators.AutoSize = true;
             this.tblIndicators.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tblIndicators.ColumnCount = 1;
-            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 500F));
             this.tblIndicators.Location = new System.Drawing.Point(3, 20);
             this.tblIndicators.Name = "tblIndicators";
             this.tblIndicators.RowCount = 1;
             this.tblIndicators.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblIndicators.Size = new System.Drawing.Size(0, 0);
+            this.tblIndicators.Size = new System.Drawing.Size(500, 0);
             this.tblIndicators.TabIndex = 0;
             // 
             // lblPlaceholder
@@ -65,7 +65,7 @@
             this.Controls.Add(this.tblIndicators);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "CustomIndicatorControl";
-            this.Size = new System.Drawing.Size(162, 23);
+            this.Size = new System.Drawing.Size(506, 23);
             this.ResumeLayout(false);
             this.PerformLayout();
 

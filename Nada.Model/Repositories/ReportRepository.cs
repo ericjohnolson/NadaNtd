@@ -37,7 +37,7 @@ namespace Nada.Model.Repositories
         private string CreateReportSql(ReportIndicators settings)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("Select AdminLevels.DisplayName as AdminLevel, SurveyLfMf.TimingType, SurveyLfMf.SiteType, SurveyLfMf.SurveyDate ");
+            sb.Append("Select AdminLevels.DisplayName as AdminLevel, SurveyLfMf.TimingType, SurveyLfMf.TestType, SurveyLfMf.SiteType, SurveyLfMf.SurveyDate ");
             if (settings.ShowRoundsMda)
                 sb.Append(", SurveyLfMf.RoundsMda");
             if (settings.ShowExamined)

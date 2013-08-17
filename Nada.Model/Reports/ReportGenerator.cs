@@ -47,15 +47,15 @@ namespace Nada.Model.Reports
             foreach (DataRow dr in resultsTable.Rows)
             {
                 List<string> surveyType = new List<string>();
+                surveyType.Add(dr["TestType"].ToString());
                 surveyType.Add(dr["TimingType"].ToString());
                 surveyType.Add(dr["SiteType"].ToString());
-                surveyType.Add("MF");
                 surveyType.Add(Convert.ToDateTime(dr["SurveyDate"]).ToString("MM/yyyy"));
                 dr["TimingType"] = string.Join(", ", surveyType.Where(t => !string.IsNullOrEmpty(t)).ToArray());
             }
-
-            resultsTable.Columns.RemoveAt(3); // Remove SurveyDate
-            resultsTable.Columns.RemoveAt(2); // Remove SiteType
+            resultsTable.Columns.Remove(resultsTable.Columns["TestType"]);
+            resultsTable.Columns.Remove(resultsTable.Columns["SurveyDate"]);
+            resultsTable.Columns.Remove(resultsTable.Columns["SiteType"]);
             resultsTable.Columns[1].ColumnName = "Survey Type";
             return resultsTable;
         }

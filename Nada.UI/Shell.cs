@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
 using Nada.UI.View;
@@ -104,17 +105,6 @@ namespace Nada.UI
             LoadLfMfSurvey();
         }
 
-        private void LoadLfMfSurvey()
-        {
-            var view = new LfMfPrevalenceView();
-            view.OnSave += LfMfPrevalenceView_OnSave;
-            LoadView(view);
-        }
-
-        void LfMfPrevalenceView_OnSave(bool doRefresh)
-        {
-                LoadView(new View.WelcomeView());
-        }
         
         private void createCustomToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -125,7 +115,34 @@ namespace Nada.UI
         {
             LoadView(new SurveyView());
         }
+
+        private void lFTASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = new SurveyBaseView(StaticSurveyType.LfTas);
+            view.OnSave += Survey_OnSave;
+            LoadView(view);
+        }
+
+        private void lFMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = new SurveyBaseView(StaticSurveyType.LfMapping);
+            view.OnSave += Survey_OnSave;
+            LoadView(view);
+        }
+
+        private void LoadLfMfSurvey()
+        {
+            var view = new LfMfPrevalenceView();
+            view.OnSave += Survey_OnSave;
+            LoadView(view);
+        }
+
+        void Survey_OnSave(bool doRefresh)
+        {
+            LoadView(new View.WelcomeView());
+        }
         #endregion
+
 
     }
 }

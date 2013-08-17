@@ -25,7 +25,7 @@ namespace Nada.UI.View
 
         public IndicatorAdd(SurveyIndicator m)
         {
-            model = Util.DeepClone(m);
+            model = m;
             InitializeComponent();
         }
 
@@ -41,7 +41,7 @@ namespace Nada.UI.View
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             SetDataType(model);
-            model.IsEditted = true;
+            model.IsEdited = true;
             bsIndicator.EndEdit();
             OnSave(model);
             this.Close();
