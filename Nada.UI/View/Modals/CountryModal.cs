@@ -41,5 +41,10 @@ namespace Nada.UI.View.Modals
             OnSave();
             this.Close();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

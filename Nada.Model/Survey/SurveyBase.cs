@@ -13,6 +13,6 @@ namespace Nada.Model.Base
         public DateTime SurveyDate { get; set; }
         public SurveyType TypeOfSurvey { get; set; }
         public string Notes { get; set; }
-        public List<SurveyIndicatorValue> CustomIndicatorValues { get; set; }
+        public List<IndicatorValue> CustomIndicatorValues { get; set; }
     }
 }

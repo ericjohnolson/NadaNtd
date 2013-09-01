@@ -14,7 +14,7 @@ namespace Nada.Model.Repositories
         public List<Disease> GetAllDiseases(string lang)
         {
             List<Disease> diseases = new List<Disease>();
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -42,7 +42,7 @@ namespace Nada.Model.Repositories
         public Disease GetDiseaseById(int id, string lang)
         {
             Disease disease = new Disease();
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -91,7 +91,7 @@ namespace Nada.Model.Repositories
         public void Insert(Disease disease, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -139,7 +139,7 @@ namespace Nada.Model.Repositories
         public void Update(Disease disease, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();

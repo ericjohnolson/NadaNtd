@@ -98,7 +98,7 @@
             this.lblLang.Location = new System.Drawing.Point(12, 91);
             this.lblLang.Name = "lblLang";
             this.lblLang.Size = new System.Drawing.Size(64, 14);
-            this.lblLang.TabIndex = 7;
+            this.lblLang.TabIndex = 6;
             this.lblLang.Text = "Language";
             // 
             // button1
@@ -135,7 +135,7 @@
             this.lblPwd.Location = new System.Drawing.Point(12, 51);
             this.lblPwd.Name = "lblPwd";
             this.lblPwd.Size = new System.Drawing.Size(60, 14);
-            this.lblPwd.TabIndex = 6;
+            this.lblPwd.TabIndex = 5;
             this.lblPwd.Text = "Password";
             // 
             // lblUid
@@ -145,7 +145,7 @@
             this.lblUid.Location = new System.Drawing.Point(12, 12);
             this.lblUid.Name = "lblUid";
             this.lblUid.Size = new System.Drawing.Size(66, 14);
-            this.lblUid.TabIndex = 5;
+            this.lblUid.TabIndex = 4;
             this.lblUid.Text = "Username";
             // 
             // LoginView

@@ -31,17 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.bsReportSettings = new System.Windows.Forms.BindingSource(this.components);
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.btnGenerate = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.surveyIndicators = new Nada.UI.View.ReportIndicatorControl();
+            this.intvIndicators = new Nada.UI.View.ReportIndicatorControl();
+            this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -55,13 +50,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnExportChart = new System.Windows.Forms.Button();
             this.cbChartType = new System.Windows.Forms.ComboBox();
+            this.reportIndicatorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlChartContainer = new System.Windows.Forms.Panel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.saveChart = new System.Windows.Forms.SaveFileDialog();
+            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsReportSettings)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -69,6 +66,7 @@
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reportIndicatorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -86,16 +84,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.checkBox8);
-            this.tabPage1.Controls.Add(this.checkBox7);
-            this.tabPage1.Controls.Add(this.checkBox6);
-            this.tabPage1.Controls.Add(this.checkBox5);
-            this.tabPage1.Controls.Add(this.checkBox4);
-            this.tabPage1.Controls.Add(this.checkBox3);
-            this.tabPage1.Controls.Add(this.btnGenerate);
-            this.tabPage1.Controls.Add(this.checkBox2);
-            this.tabPage1.Controls.Add(this.checkBox1);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.AutoScroll = true;
+            this.tabPage1.Controls.Add(this.tableLayoutPanel3);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -104,116 +94,75 @@
             this.tabPage1.Text = "Indicator(s)";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // checkBox8
+            // tableLayoutPanel3
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsReportSettings, "ShowMfLoad", true));
-            this.checkBox8.Location = new System.Drawing.Point(19, 160);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(68, 17);
-            this.checkBox8.TabIndex = 9;
-            this.checkBox8.Text = "MF Load";
-            this.checkBox8.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel3.AutoSize = true;
+            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.Controls.Add(this.label3, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label1, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.surveyIndicators, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.intvIndicators, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnSave, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.kryptonButton1, 0, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(6, 6);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 4;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(612, 103);
+            this.tableLayoutPanel3.TabIndex = 4;
             // 
-            // bsReportSettings
+            // label3
             // 
-            this.bsReportSettings.DataSource = typeof(Nada.Model.Reports.ReportIndicators);
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsReportSettings, "ShowSampleSize", true));
-            this.checkBox7.Location = new System.Drawing.Point(19, 183);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(84, 17);
-            this.checkBox7.TabIndex = 8;
-            this.checkBox7.Text = "Sample Size";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsReportSettings, "ShowAgeRange", true));
-            this.checkBox6.Location = new System.Drawing.Point(19, 206);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(80, 17);
-            this.checkBox6.TabIndex = 7;
-            this.checkBox6.Text = "Age Range";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsReportSettings, "ShowMfCount", true));
-            this.checkBox5.Location = new System.Drawing.Point(19, 137);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(72, 17);
-            this.checkBox5.TabIndex = 6;
-            this.checkBox5.Text = "MF Count";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsReportSettings, "ShowMeanDensity", true));
-            this.checkBox4.Location = new System.Drawing.Point(19, 114);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(91, 17);
-            this.checkBox4.TabIndex = 5;
-            this.checkBox4.Text = "Mean Density";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsReportSettings, "ShowPositive", true));
-            this.checkBox3.Location = new System.Drawing.Point(19, 91);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(63, 17);
-            this.checkBox3.TabIndex = 4;
-            this.checkBox3.Text = "Positive";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // btnGenerate
-            // 
-            this.btnGenerate.Location = new System.Drawing.Point(19, 239);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(75, 23);
-            this.btnGenerate.TabIndex = 3;
-            this.btnGenerate.Text = "Generate";
-            this.btnGenerate.UseVisualStyleBackColor = true;
-            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsReportSettings, "ShowExamined", true));
-            this.checkBox2.Location = new System.Drawing.Point(19, 68);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(72, 17);
-            this.checkBox2.TabIndex = 2;
-            this.checkBox2.Text = "Examined";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsReportSettings, "ShowRoundsMda", true));
-            this.checkBox1.Location = new System.Drawing.Point(19, 44);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(90, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "Rounds MDA";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(309, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Intervention Indicators";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 17);
+            this.label1.Location = new System.Drawing.Point(3, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 13);
+            this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "LF Survey Indicators";
+            this.label1.Text = "Survey Indicators";
+            // 
+            // surveyIndicators
+            // 
+            this.surveyIndicators.AutoSize = true;
+            this.surveyIndicators.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.surveyIndicators.Location = new System.Drawing.Point(0, 46);
+            this.surveyIndicators.Margin = new System.Windows.Forms.Padding(0);
+            this.surveyIndicators.Name = "surveyIndicators";
+            this.surveyIndicators.Size = new System.Drawing.Size(306, 23);
+            this.surveyIndicators.TabIndex = 5;
+            // 
+            // intvIndicators
+            // 
+            this.intvIndicators.AutoSize = true;
+            this.intvIndicators.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.intvIndicators.Location = new System.Drawing.Point(306, 46);
+            this.intvIndicators.Margin = new System.Windows.Forms.Padding(0);
+            this.intvIndicators.Name = "intvIndicators";
+            this.intvIndicators.Size = new System.Drawing.Size(306, 23);
+            this.intvIndicators.TabIndex = 6;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(3, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(131, 27);
+            this.btnSave.TabIndex = 21;
+            this.btnSave.Values.Text = "Generate";
+            this.btnSave.Click += new System.EventHandler(this.btnGen2_Click);
             // 
             // tabPage4
             // 
@@ -350,15 +299,18 @@
             // 
             // cbChartType
             // 
+            this.cbChartType.DataSource = this.reportIndicatorBindingSource;
+            this.cbChartType.DisplayMember = "Name";
             this.cbChartType.FormattingEnabled = true;
-            this.cbChartType.Items.AddRange(new object[] {
-            "Bar",
-            "Line"});
             this.cbChartType.Location = new System.Drawing.Point(81, 9);
             this.cbChartType.Name = "cbChartType";
             this.cbChartType.Size = new System.Drawing.Size(121, 21);
             this.cbChartType.TabIndex = 0;
             this.cbChartType.SelectedIndexChanged += new System.EventHandler(this.cbChartType_SelectedIndexChanged);
+            // 
+            // reportIndicatorBindingSource
+            // 
+            this.reportIndicatorBindingSource.DataSource = typeof(Nada.Model.Reports.ReportIndicator);
             // 
             // pnlChartContainer
             // 
@@ -388,6 +340,15 @@
             // 
             this.saveChart.Filter = "PNG Image (.png)|*.png";
             // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.Location = new System.Drawing.Point(3, 72);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.Size = new System.Drawing.Size(131, 28);
+            this.kryptonButton1.TabIndex = 22;
+            this.kryptonButton1.Values.Text = "Generate";
+            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
+            // 
             // ReportCreatorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,7 +360,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsReportSettings)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -410,6 +372,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reportIndicatorBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -419,15 +382,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Button btnGenerate;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExportChart;
         private System.Windows.Forms.Label label2;
@@ -438,7 +392,6 @@
         private System.Windows.Forms.ComboBox cbGroupGrid;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.BindingSource bsReportSettings;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
@@ -447,5 +400,12 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnlChartContainer;
         private System.Windows.Forms.SaveFileDialog saveChart;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label label3;
+        private ReportIndicatorControl surveyIndicators;
+        private ReportIndicatorControl intvIndicators;
+        private System.Windows.Forms.BindingSource reportIndicatorBindingSource;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
     }
 }

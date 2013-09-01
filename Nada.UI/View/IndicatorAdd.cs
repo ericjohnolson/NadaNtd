@@ -15,15 +15,15 @@ namespace Nada.UI.View
 {
     public partial class IndicatorAdd : Form
     {
-        public event Action<SurveyIndicator> OnSave = (e) => { };
-        private SurveyIndicator model = new SurveyIndicator();
+        public event Action<Indicator> OnSave = (e) => { };
+        private Indicator model = new Indicator();
 
         public IndicatorAdd()
         {
             InitializeComponent();
         }
 
-        public IndicatorAdd(SurveyIndicator m)
+        public IndicatorAdd(Indicator m)
         {
             model = m;
             InitializeComponent();
@@ -47,12 +47,17 @@ namespace Nada.UI.View
             this.Close();
         }
 
-        private void SetDataType(SurveyIndicator model)
+        private void SetDataType(Indicator model)
         {
             if (model.DataType == "Yes/No")
                 model.DataTypeId = (int)IndicatorDataType.YesNo;
             else
                 model.DataTypeId = (int)Enum.Parse(typeof(IndicatorDataType), model.DataType);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
   
     }

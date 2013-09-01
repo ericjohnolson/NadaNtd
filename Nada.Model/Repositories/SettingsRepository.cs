@@ -14,7 +14,7 @@ namespace Nada.Model.Repositories
         public List<Language> GetSupportedLanguages()
         {
             List<Language> languages = new List<Language>();
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 string sql = @"Select IsoCode, DisplayName from Languages order by DisplayName";
@@ -57,7 +57,7 @@ namespace Nada.Model.Repositories
         public List<AdminLevelType> GetAllAdminLevels()
         {
             List<AdminLevelType> lvls = new List<AdminLevelType>();
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -81,7 +81,7 @@ namespace Nada.Model.Repositories
         public void InsertAdminLevel(AdminLevelType adminLevel, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -124,7 +124,7 @@ namespace Nada.Model.Repositories
 
         public void UpdateAdminLevel(AdminLevelType adminLevel, int byUserId)
         {
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -151,7 +151,7 @@ namespace Nada.Model.Repositories
         public List<PopGroup> GetAllPopGroups()
         {
             List<PopGroup> pops = new List<PopGroup>();
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -175,7 +175,7 @@ namespace Nada.Model.Repositories
         public void InsertPopGroup(PopGroup popGroup, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -218,7 +218,7 @@ namespace Nada.Model.Repositories
 
         public void UpdatePopGroup(PopGroup popGroup, int byUserId)
         {
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();

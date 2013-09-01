@@ -11,6 +11,7 @@ using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
 using Nada.UI.View;
 using Nada.UI.View.Demography;
+using Nada.UI.View.Intervention;
 using Nada.UI.View.Modals;
 using Nada.UI.View.Reports;
 using Nada.UI.View.Survey;
@@ -100,39 +101,29 @@ namespace Nada.UI
             LoadView(new DemographyView());
         }
 
-        private void lFPrevalenceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadLfMfSurvey();
-        }
-
-        
         private void createCustomToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadView(new ReportCreatorView());
         }
-
-        private void configureToolStripMenuItem_Click(object sender, EventArgs e)
+        
+        private void mappingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadView(new SurveyView());
-        }
 
-        private void lFTASToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var view = new SurveyBaseView(StaticSurveyType.LfTas);
-            view.OnSave += Survey_OnSave;
-            LoadView(view);
-        }
-
-        private void lFMToolStripMenuItem_Click(object sender, EventArgs e)
-        {
             var view = new SurveyBaseView(StaticSurveyType.LfMapping);
             view.OnSave += Survey_OnSave;
             LoadView(view);
         }
 
-        private void LoadLfMfSurvey()
+        private void prevalenceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var view = new LfMfPrevalenceView();
+            view.OnSave += Survey_OnSave;
+            LoadView(view);
+        }
+
+        private void tASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = new SurveyBaseView(StaticSurveyType.LfTas);
             view.OnSave += Survey_OnSave;
             LoadView(view);
         }
@@ -141,8 +132,40 @@ namespace Nada.UI
         {
             LoadView(new View.WelcomeView());
         }
-        #endregion
 
+        private void lFMDAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = new LfMdaView();
+            view.OnSave += Survey_OnSave;
+            LoadView(view);
+        }
+
+        private void lFLymphedemaMorbidityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = new IntvBaseView(StaticIntvType.LfLymphedemaMorbidity);
+            view.OnSave += Survey_OnSave;
+            LoadView(view);
+        }
+
+        private void lFHydroceleMorbidityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = new IntvBaseView(StaticIntvType.LfHydroceleMorbidity);
+            view.OnSave += Survey_OnSave;
+            LoadView(view);
+        }
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var updates = new Updates();
+            updates.ShowDialog();
+        }
+
+        private void aboutNationalDatabaseTemplateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var about = new About();
+            about.ShowDialog();
+        }
+        #endregion
 
     }
 }

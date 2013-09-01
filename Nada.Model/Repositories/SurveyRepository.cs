@@ -15,7 +15,7 @@ namespace Nada.Model.Repositories
         #region LF
         public void Insert(LfMfPrevalence survey, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -62,7 +62,7 @@ namespace Nada.Model.Repositories
 
         public void Update(LfMfPrevalence survey, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -109,7 +109,7 @@ namespace Nada.Model.Repositories
         public LfMfPrevalence GetLfMfPrevalenceSurvey(int id)
         {
             var survey = CreateSurvey<LfMfPrevalence>(StaticSurveyType.LfPrevalence);
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -192,11 +192,12 @@ namespace Nada.Model.Repositories
             command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
             command.ExecuteNonQuery();
 
-            foreach (SurveyIndicatorValue val in survey.CustomIndicatorValues)
+            foreach (IndicatorValue val in survey.CustomIndicatorValues)
             {
-                command = new OleDbCommand(@"Insert Into SurveyIndicatorValues (IndicatorId, DynamicValue, UpdatedById, UpdatedAt) VALUES
-                        (@IndicatorId, @DynamicValue, @UpdatedById, @UpdatedAt)", connection);
+                command = new OleDbCommand(@"Insert Into SurveyIndicatorValues (IndicatorId, SurveyId, DynamicValue, UpdatedById, UpdatedAt) VALUES
+                        (@IndicatorId, @SurveyId, @DynamicValue, @UpdatedById, @UpdatedAt)", connection);
                 command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
+                command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
                 command.Parameters.Add(new OleDbParameter("@DynamicValue", val.DynamicValue));
                 command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                 command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
@@ -217,7 +218,7 @@ namespace Nada.Model.Repositories
             {
                 while (reader.Read())
                 {
-                    survey.CustomIndicatorValues.Add(new SurveyIndicatorValue
+                    survey.CustomIndicatorValues.Add(new IndicatorValue
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
@@ -232,7 +233,7 @@ namespace Nada.Model.Repositories
         {
             SurveyType survey = new SurveyType();
 
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -277,7 +278,7 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            survey.Indicators.Add(new SurveyIndicator
+                            survey.Indicators.Add(new Indicator
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
@@ -304,7 +305,7 @@ namespace Nada.Model.Repositories
         public void SaveSurvey(SurveyBase survey, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -320,7 +321,7 @@ namespace Nada.Model.Repositories
                            Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
                     else
                         command = new OleDbCommand(@"INSERT INTO Surveys (SurveyTypeId, AdminLevelId, SurveyDate, Notes, UpdatedById, 
-                            UpdatedAt) values (@SurveyTypeId, @AdminLevelId, @SurveyDate, Notes=@Notes, @UpdatedById, @UpdatedAt)", connection); command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", survey.AdminLevelId));
+                            UpdatedAt) values (@SurveyTypeId, @AdminLevelId, @SurveyDate, @Notes, @UpdatedById, @UpdatedAt)", connection); command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", survey.AdminLevelId));
                     command.Parameters.Add(new OleDbParameter("@SurveyTypeId", survey.TypeOfSurvey.Id));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@SurveyDate", survey.SurveyDate));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", survey.Notes));
@@ -331,7 +332,7 @@ namespace Nada.Model.Repositories
 
                     if (survey.Id <= 0)
                     {
-                        command = new OleDbCommand(@"SELECT Max(ID) FROM SurveyTypes", connection);
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM Surveys", connection);
                         survey.Id = (int)command.ExecuteScalar();
                     }
                     
@@ -361,7 +362,7 @@ namespace Nada.Model.Repositories
         public void Save(SurveyType model, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -450,7 +451,7 @@ namespace Nada.Model.Repositories
         #region Misc
         public SentinelSite Insert(SentinelSite site, int updatedById)
         {
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -481,7 +482,7 @@ namespace Nada.Model.Repositories
 
         public SentinelSite Update(SentinelSite site, int updatedById)
         {
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -510,7 +511,7 @@ namespace Nada.Model.Repositories
         public List<SentinelSite> GetSitesForAdminLevel(int adminLevelId)
         {
             List<SentinelSite> sites = new List<SentinelSite>();
-            OleDbConnection connection = new OleDbConnection(ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -533,7 +534,8 @@ namespace Nada.Model.Repositories
                                 SiteName = reader.GetValueOrDefault<string>("SiteName"),
                                 Lat = reader.GetNullableDouble("Lat"),
                                 Lng = reader.GetNullableDouble("Lng"),
-                                Notes = reader.GetValueOrDefault<string>("Notes")
+                                Notes = reader.GetValueOrDefault<string>("Notes"),
+                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
                             });
                         }
                         reader.Close();

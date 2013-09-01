@@ -21,6 +21,9 @@ namespace Nada.UI.View
 
         public void LoadIndicators(IEnumerable<IDynamicIndicator> indicators)
         {
+            controlList = new List<DynamicContainer>();
+            tblIndicators.Controls.Clear();
+
             foreach (var indicator in indicators.OrderBy(i => i.SortOrder).ToList())
             {
                 // Add label

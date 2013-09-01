@@ -30,12 +30,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>..\Solution Items\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\Solution Items\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="LINQtoCSV">
       <HintPath>..\Solution Items\LINQtoCSV.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -45,7 +52,19 @@
     <Compile Include="AdminLevel.cs" />
     <Compile Include="AdminLevelType.cs" />
     <Compile Include="AdminLevelDemography.cs" />
+    <Compile Include="ModelData.cs" />
     <Compile Include="Base\NadaClass.cs" />
+    <Compile Include="IHaveDynamicIndicators.cs" />
+    <Compile Include="IImporter.cs" />
+    <Compile Include="Intervention\IntvImporter.cs" />
+    <Compile Include="ImporterBase.cs" />
+    <Compile Include="Medicine.cs" />
+    <Compile Include="Partner.cs" />
+    <Compile Include="Intervention\DistributionMethod.cs" />
+    <Compile Include="Intervention\IntvBase.cs" />
+    <Compile Include="Intervention\IntvType.cs" />
+    <Compile Include="Intervention\LfMda.cs" />
+    <Compile Include="Repositories\IntvRepository.cs" />
     <Compile Include="Survey\SurveyBase.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="CountryDemography.cs" />
@@ -70,8 +89,8 @@
     <Compile Include="Repositories\DiseaseRepository.cs" />
     <Compile Include="Survey\LfMfPrevalence.cs" />
     <Compile Include="Survey\SentinelSite.cs" />
-    <Compile Include="Survey\SurveyIndicator.cs" />
-    <Compile Include="Survey\SurveyIndicatorValue.cs" />
+    <Compile Include="Indicator.cs" />
+    <Compile Include="IndicatorValue.cs" />
     <Compile Include="Survey\SurveyType.cs" />
     <Compile Include="TranslatedValue.cs" />
     <Compile Include="Util.cs" />

@@ -14,84 +14,43 @@ namespace Nada.Model.Reports
         public ReportResult Run(ReportIndicators settings)
         {
             ReportResult result = new ReportResult();
-            DataTable data = repo.GetReportData(settings);
-            result.DataTableResults = FormatResultData(data);
-            result.ChartData = GenerateChartData(data);
+            result.DataTableResults = CreateTable(settings);
+            result.ChartData = CreateChart();
+            repo.GetReportData(settings, result.DataTableResults, result.ChartData);
             result.ChartIndicators = GetChartIndicators(settings);
             return result;
         }
 
-        private List<string> GetChartIndicators(ReportIndicators settings)
+        private List<ReportIndicator> GetChartIndicators(ReportIndicators settings)
         {
-            List<string> inds = new List<string>();
-            if (settings.ShowRoundsMda)
-                inds.Add("RoundsMda");
-            if (settings.ShowExamined)
-                inds.Add("Examined");
-            if (settings.ShowPositive)
-                inds.Add("Positive");
-            if (settings.ShowMeanDensity)
-                inds.Add("MeanDensity");
-            if (settings.ShowMfCount)
-                inds.Add("MfCount");
-            if (settings.ShowMfLoad)
-                inds.Add("MfLoad");
-            if (settings.ShowSampleSize)
-                inds.Add("SampleSize");
-            return inds;
+            List<ReportIndicator> chartIndicators = new List<ReportIndicator>();
+            chartIndicators.AddRange(settings.SurveyIndicators.Where(s => s.Selected && s.DataTypeId == 2));
+            chartIndicators.AddRange(settings.InterventionIndicators.Where(s => s.Selected && s.DataTypeId == 2));
+            return chartIndicators;
         }
 
-        private DataTable FormatResultData(DataTable data)
-        {
-            DataTable resultsTable = data.Copy();
-            foreach (DataRow dr in resultsTable.Rows)
-            {
-                List<string> surveyType = new List<string>();
-                surveyType.Add(dr["TestType"].ToString());
-                surveyType.Add(dr["TimingType"].ToString());
-                surveyType.Add(dr["SiteType"].ToString());
-                surveyType.Add(Convert.ToDateTime(dr["SurveyDate"]).ToString("MM/yyyy"));
-                dr["TimingType"] = string.Join(", ", surveyType.Where(t => !string.IsNullOrEmpty(t)).ToArray());
-            }
-            resultsTable.Columns.Remove(resultsTable.Columns["TestType"]);
-            resultsTable.Columns.Remove(resultsTable.Columns["SurveyDate"]);
-            resultsTable.Columns.Remove(resultsTable.Columns["SiteType"]);
-            resultsTable.Columns[1].ColumnName = "Survey Type";
-            return resultsTable;
-        }
-
-        private DataTable GenerateChartData(DataTable data)
+        private DataTable CreateChart()
         {
             DataTable chartData = new DataTable();
-            chartData.Columns.Add(new DataColumn("AdminLevel"));
+            chartData.Columns.Add(new DataColumn("Location"));
             chartData.Columns.Add(new DataColumn("IndicatorName"));
-            chartData.Columns.Add(new DataColumn("Year", typeof(int)));
-            chartData.Columns.Add(new DataColumn("Value", typeof(double)));
-            foreach (DataRow dr in data.Rows)
-            {
-                CreateRowForIndicator("RoundsMda", chartData, dr);
-                CreateRowForIndicator("Examined", chartData, dr);
-                CreateRowForIndicator("Positive", chartData, dr);
-                CreateRowForIndicator("MeanDensity", chartData, dr);
-                CreateRowForIndicator("MfCount", chartData, dr);
-                CreateRowForIndicator("MfLoad", chartData, dr);
-                CreateRowForIndicator("SampleSize", chartData, dr);
-            }
+            chartData.Columns.Add(new DataColumn("IndicatorId"));
+            chartData.Columns.Add(new DataColumn("Year"));
+            chartData.Columns.Add(new DataColumn("Value"));
             return chartData;
         }
 
-        private void CreateRowForIndicator(string name, DataTable chartData, DataRow dr)
+        private DataTable CreateTable(ReportIndicators settings)
         {
-            if (dr.Table.Columns.Contains(name) && !string.IsNullOrEmpty(dr[name].ToString()))
-            {
-                var newRow = chartData.NewRow();
-                newRow["AdminLevel"] = dr["AdminLevel"];
-                newRow["Year"] = Convert.ToDateTime(dr["SurveyDate"]).Year;
-                newRow["IndicatorName"] = name;
-                newRow["Value"] = Convert.ToDouble(dr[name]);
-                chartData.Rows.Add(newRow);
-
-            }
+            DataTable dt = new DataTable();
+            dt.Columns.Add(new DataColumn("Location"));
+            dt.Columns.Add(new DataColumn("Type"));
+            dt.Columns.Add(new DataColumn("Year"));
+            foreach (var i in settings.SurveyIndicators.Where(s => s.Selected))
+                dt.Columns.Add(new DataColumn(i.Name));
+            foreach (var i in settings.InterventionIndicators.Where(s => s.Selected))
+                dt.Columns.Add(new DataColumn(i.Name));
+            return dt;
         }
     }
 }

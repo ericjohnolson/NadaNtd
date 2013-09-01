@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
@@ -21,12 +22,14 @@ namespace Nada.UI.View.Survey
         public SurveyTypeEdit()
         {
             InitializeComponent();
+            this.Text = "New Survey Type";
         }
 
         public SurveyTypeEdit(SurveyType t)
         {
             model = t;
             InitializeComponent();
+            this.Text = "Edit " + t.SurveyTypeName;
         }
 
         private void SurveyTypeView_Load(object sender, EventArgs e)
@@ -42,14 +45,14 @@ namespace Nada.UI.View.Survey
         private void lvIndicators_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
         {
             e.Handled = true;
-            IndicatorAdd modal = new IndicatorAdd((SurveyIndicator)e.Model);
+            IndicatorAdd modal = new IndicatorAdd((Indicator)e.Model);
             modal.OnSave += edit_OnSave;
             modal.ShowDialog();
         }
 
-        private void edit_OnSave(SurveyIndicator obj)
+        private void edit_OnSave(Indicator obj)
         {
-            lvIndicators.SetObjects(model.Indicators);
+            lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -73,10 +76,10 @@ namespace Nada.UI.View.Survey
             modal.ShowDialog();
         }
 
-        void add_OnSave(SurveyIndicator obj)
+        void add_OnSave(Indicator obj)
         {
             model.Indicators.Add(obj);
-            lvIndicators.SetObjects(model.Indicators);
+            lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
         }
     }
 }

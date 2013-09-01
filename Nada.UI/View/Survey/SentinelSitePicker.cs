@@ -57,5 +57,10 @@ namespace Nada.UI.View
             DoSelect((SentinelSite)e.Model);
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

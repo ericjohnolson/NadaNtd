@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Solution Items\ClosedXML.XML = Solution Items\ClosedXML.XML
 		Solution Items\ComponentFactory.Krypton.Toolkit.dll = Solution Items\ComponentFactory.Krypton.Toolkit.dll
 		Solution Items\DocumentFormat.OpenXml.dll = Solution Items\DocumentFormat.OpenXml.dll
+		Solution Items\EPPlus.dll = Solution Items\EPPlus.dll
+		Solution Items\Excel.dll = Solution Items\Excel.dll
+		Solution Items\Excel.pdb = Solution Items\Excel.pdb
+		Solution Items\ICSharpCode.SharpZipLib.dll = Solution Items\ICSharpCode.SharpZipLib.dll
 		Solution Items\LINQtoCSV.dll = Solution Items\LINQtoCSV.dll
 		Solution Items\ObjectListView.dll = Solution Items\ObjectListView.dll
 	EndProjectSection

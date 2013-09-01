@@ -35,6 +35,7 @@
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn14 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.adminLevelPickerControl1 = new Nada.UI.View.AdminLevelPickerControl();
+            this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvChildren)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +49,7 @@
             this.btnAddNew.Location = new System.Drawing.Point(305, 215);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(90, 25);
-            this.btnAddNew.TabIndex = 4;
+            this.btnAddNew.TabIndex = 3;
             this.btnAddNew.Values.Text = "Add New...";
             this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
@@ -63,9 +64,8 @@
             this.lvChildren.Location = new System.Drawing.Point(15, 58);
             this.lvChildren.Name = "lvChildren";
             this.lvChildren.ShowGroups = false;
-            this.lvChildren.ShowHeaderInAllViews = true;
             this.lvChildren.Size = new System.Drawing.Size(380, 144);
-            this.lvChildren.TabIndex = 18;
+            this.lvChildren.TabIndex = 1;
             this.lvChildren.UseCompatibleStateImageBehavior = false;
             this.lvChildren.UseHyperlinks = true;
             this.lvChildren.View = System.Windows.Forms.View.Details;
@@ -95,7 +95,17 @@
             this.adminLevelPickerControl1.Location = new System.Drawing.Point(10, 12);
             this.adminLevelPickerControl1.Name = "adminLevelPickerControl1";
             this.adminLevelPickerControl1.Size = new System.Drawing.Size(123, 37);
-            this.adminLevelPickerControl1.TabIndex = 19;
+            this.adminLevelPickerControl1.TabIndex = 0;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(223, 215);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.btnCancel.Size = new System.Drawing.Size(76, 25);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Values.Text = "Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // SentinelSitePicker
             // 
@@ -103,6 +113,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(407, 252);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.adminLevelPickerControl1);
             this.Controls.Add(this.lvChildren);
             this.Controls.Add(this.btnAddNew);
@@ -125,5 +136,6 @@
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvColumn14;
         private AdminLevelPickerControl adminLevelPickerControl1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
     }
 }

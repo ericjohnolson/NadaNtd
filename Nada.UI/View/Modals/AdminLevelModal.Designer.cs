@@ -35,6 +35,7 @@
             this.bsAdminLevel = new System.Windows.Forms.BindingSource(this.components);
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tbLevel = new System.Windows.Forms.TextBox();
+            this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             this.label1.Location = new System.Drawing.Point(23, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 3;
             this.label1.Text = "Name";
             // 
             // label2
@@ -53,7 +54,7 @@
             this.label2.Location = new System.Drawing.Point(23, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 4;
             this.label2.Text = "Level";
             // 
             // tbName
@@ -62,7 +63,7 @@
             this.tbName.Location = new System.Drawing.Point(26, 41);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(158, 20);
-            this.tbName.TabIndex = 3;
+            this.tbName.TabIndex = 0;
             // 
             // bsAdminLevel
             // 
@@ -73,7 +74,7 @@
             this.kryptonButton1.Location = new System.Drawing.Point(107, 126);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(77, 25);
-            this.kryptonButton1.TabIndex = 5;
+            this.kryptonButton1.TabIndex = 2;
             this.kryptonButton1.Values.Text = "Add";
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
@@ -85,7 +86,17 @@
             this.tbLevel.Name = "tbLevel";
             this.tbLevel.ReadOnly = true;
             this.tbLevel.Size = new System.Drawing.Size(158, 20);
-            this.tbLevel.TabIndex = 6;
+            this.tbLevel.TabIndex = 1;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(25, 126);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.btnCancel.Size = new System.Drawing.Size(76, 25);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Values.Text = "Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // AdminLevelModal
             // 
@@ -93,6 +104,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(217, 179);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.tbLevel);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.tbName);
@@ -116,5 +128,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private System.Windows.Forms.TextBox tbLevel;
         private System.Windows.Forms.BindingSource bsAdminLevel;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
     }
 }

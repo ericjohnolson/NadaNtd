@@ -58,7 +58,7 @@
             this.btnSave.Location = new System.Drawing.Point(547, 352);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(69, 25);
-            this.btnSave.TabIndex = 25;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Values.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
@@ -73,7 +73,7 @@
             // 
             this.kryptonGroupBox2.Panel.Controls.Add(this.panel2);
             this.kryptonGroupBox2.Size = new System.Drawing.Size(587, 195);
-            this.kryptonGroupBox2.TabIndex = 29;
+            this.kryptonGroupBox2.TabIndex = 1;
             this.kryptonGroupBox2.Text = "Custom Indicators";
             this.kryptonGroupBox2.Values.Heading = "Custom Indicators";
             // 
@@ -85,7 +85,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(585, 174);
-            this.panel2.TabIndex = 1;
+            this.panel2.TabIndex = 0;
             // 
             // lnkNewIndicator
             // 
@@ -94,7 +94,7 @@
             this.lnkNewIndicator.Name = "lnkNewIndicator";
             this.lnkNewIndicator.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.lnkNewIndicator.Size = new System.Drawing.Size(60, 18);
-            this.lnkNewIndicator.TabIndex = 9;
+            this.lnkNewIndicator.TabIndex = 1;
             this.lnkNewIndicator.TabStop = true;
             this.lnkNewIndicator.Text = "Add New...";
             this.lnkNewIndicator.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkNewIndicator_LinkClicked);
@@ -117,7 +117,7 @@
             this.lvIndicators.Name = "lvIndicators";
             this.lvIndicators.ShowGroups = false;
             this.lvIndicators.Size = new System.Drawing.Size(576, 144);
-            this.lvIndicators.TabIndex = 5;
+            this.lvIndicators.TabIndex = 1;
             this.lvIndicators.UseCompatibleStateImageBehavior = false;
             this.lvIndicators.UseHyperlinks = true;
             this.lvIndicators.View = System.Windows.Forms.View.Details;
@@ -164,10 +164,11 @@
             // textBox3
             // 
             this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSurveyType, "SurveyTypeName", true));
+            this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(19, 75);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(158, 20);
-            this.textBox3.TabIndex = 28;
+            this.textBox3.TabIndex = 0;
             // 
             // bsSurveyType
             // 
@@ -179,7 +180,7 @@
             this.label10.Location = new System.Drawing.Point(16, 59);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(35, 13);
-            this.label10.TabIndex = 27;
+            this.label10.TabIndex = 5;
             this.label10.Text = "Name";
             // 
             // label3
@@ -189,7 +190,7 @@
             this.label3.Location = new System.Drawing.Point(12, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(200, 39);
-            this.label3.TabIndex = 26;
+            this.label3.TabIndex = 4;
             this.label3.Text = "Survey Type";
             // 
             // btnCancel
@@ -198,7 +199,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.btnCancel.Size = new System.Drawing.Size(69, 25);
-            this.btnCancel.TabIndex = 30;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Values.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 

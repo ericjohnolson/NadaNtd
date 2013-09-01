@@ -7,13 +7,22 @@ namespace Nada.Model.Reports
 {
     public class ReportIndicators
     {
-        public bool ShowRoundsMda { get; set; }
-        public bool ShowExamined { get; set; }
-        public bool ShowPositive { get; set; }
-        public bool ShowMeanDensity { get; set; }
-        public bool ShowMfCount { get; set; }
-        public bool ShowMfLoad { get; set; }
-        public bool ShowSampleSize { get; set; }
-        public bool ShowAgeRange { get; set; }
+        public ReportIndicators()
+        {
+            SurveyIndicators = new List<ReportIndicator>();
+            InterventionIndicators = new List<ReportIndicator>();
+        }
+        public List<ReportIndicator> SurveyIndicators { get; set; }
+        public List<ReportIndicator> InterventionIndicators { get; set; }
+    }
+
+    public class ReportIndicator
+    {
+        public string Name { get; set; }
+        public string Key { get; set; }
+        public int ID { get; set; }
+        public bool Selected { get; set; }
+        public bool IsStatic { get; set; }
+        public int DataTypeId { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using Nada.Model.Repositories;
 namespace Nada.Tests
 {
     [TestClass]
-    public class CrudTests
+    public class CrudTests : BaseTest
     {
         [TestMethod]
         public void CanUpdate()

@@ -19,4 +19,11 @@ namespace Nada.Model
         LfTas = 2,
         LfMapping = 3
     }
+
+    public enum StaticIntvType
+    {
+        LfMda = 1,
+        LfLymphedemaMorbidity = 2,
+        LfHydroceleMorbidity = 3
+    }
 }

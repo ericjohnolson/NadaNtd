@@ -134,7 +134,7 @@
             this.cbSiteType.Location = new System.Drawing.Point(10, 204);
             this.cbSiteType.Name = "cbSiteType";
             this.cbSiteType.Size = new System.Drawing.Size(166, 21);
-            this.cbSiteType.TabIndex = 2;
+            this.cbSiteType.TabIndex = 3;
             this.cbSiteType.SelectedIndexChanged += new System.EventHandler(this.cbSiteType_SelectedIndexChanged);
             // 
             // label4
@@ -160,7 +160,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(340, 166);
-            this.tableLayoutPanel1.TabIndex = 17;
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
             // pnlSpotCheck
             // 
@@ -332,7 +332,7 @@
             this.dateTimePicker1.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dateTimePicker1.TabIndex = 0;
             this.dateTimePicker1.Value = new System.DateTime(2013, 8, 15, 0, 0, 0, 0);
             // 
             // tbExamined
@@ -341,7 +341,7 @@
             this.tbExamined.Location = new System.Drawing.Point(6, 58);
             this.tbExamined.Name = "tbExamined";
             this.tbExamined.Size = new System.Drawing.Size(158, 20);
-            this.tbExamined.TabIndex = 2;
+            this.tbExamined.TabIndex = 1;
             this.tbExamined.Validated += new System.EventHandler(this.tbExamined_Validated);
             // 
             // label12
@@ -359,7 +359,7 @@
             this.tbPositive.Location = new System.Drawing.Point(6, 97);
             this.tbPositive.Name = "tbPositive";
             this.tbPositive.Size = new System.Drawing.Size(158, 20);
-            this.tbPositive.TabIndex = 3;
+            this.tbPositive.TabIndex = 2;
             this.tbPositive.Validated += new System.EventHandler(this.tbPositive_Validated);
             // 
             // label13
@@ -377,7 +377,7 @@
             this.tbPercentPositive.Location = new System.Drawing.Point(6, 136);
             this.tbPercentPositive.Name = "tbPercentPositive";
             this.tbPercentPositive.Size = new System.Drawing.Size(158, 20);
-            this.tbPercentPositive.TabIndex = 4;
+            this.tbPercentPositive.TabIndex = 3;
             // 
             // label14
             // 
@@ -394,7 +394,7 @@
             this.textBox7.Location = new System.Drawing.Point(6, 175);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(158, 20);
-            this.textBox7.TabIndex = 5;
+            this.textBox7.TabIndex = 4;
             // 
             // label15
             // 
@@ -411,7 +411,7 @@
             this.textBox8.Location = new System.Drawing.Point(6, 214);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(158, 20);
-            this.textBox8.TabIndex = 6;
+            this.textBox8.TabIndex = 5;
             // 
             // label16
             // 
@@ -428,7 +428,7 @@
             this.textBox9.Location = new System.Drawing.Point(6, 253);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(158, 20);
-            this.textBox9.TabIndex = 7;
+            this.textBox9.TabIndex = 6;
             // 
             // label17
             // 
@@ -523,7 +523,7 @@
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblNotes.Size = new System.Drawing.Size(593, 741);
-            this.tblNotes.TabIndex = 40;
+            this.tblNotes.TabIndex = 4;
             // 
             // panel1
             // 
@@ -573,7 +573,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 175);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(167, 354);
-            this.panel2.TabIndex = 2;
+            this.panel2.TabIndex = 0;
             // 
             // textBox2
             // 
@@ -581,7 +581,7 @@
             this.textBox2.Location = new System.Drawing.Point(6, 331);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(158, 20);
-            this.textBox2.TabIndex = 9;
+            this.textBox2.TabIndex = 8;
             // 
             // label9
             // 
@@ -598,7 +598,7 @@
             this.textBox1.Location = new System.Drawing.Point(6, 292);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(158, 20);
-            this.textBox1.TabIndex = 8;
+            this.textBox1.TabIndex = 7;
             // 
             // label2
             // 
@@ -620,7 +620,7 @@
             this.comboBox1.Location = new System.Drawing.Point(13, 123);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(166, 21);
-            this.comboBox1.TabIndex = 41;
+            this.comboBox1.TabIndex = 1;
             // 
             // linkLabel1
             // 
@@ -628,7 +628,7 @@
             this.linkLabel1.Location = new System.Drawing.Point(9, 39);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(114, 13);
-            this.linkLabel1.TabIndex = 25;
+            this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Add/remove indicators";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -643,7 +643,7 @@
             this.comboBox2.Location = new System.Drawing.Point(13, 163);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(166, 21);
-            this.comboBox2.TabIndex = 43;
+            this.comboBox2.TabIndex = 2;
             // 
             // label20
             // 

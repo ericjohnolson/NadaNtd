@@ -12,24 +12,35 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <InstallUrl>http://nada.ericdidit.com/</InstallUrl>
+    <SupportUrl>http://supporturl.com</SupportUrl>
+    <ErrorReportUrl>http://errorurl.com</ErrorReportUrl>
+    <ProductName>National Database Template</ProductName>
+    <PublisherName>Iota Ink</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>default.htm</WebPage>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -47,20 +58,33 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>547A8437E7D5DC81A701FB83F50C3A7852292A86</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Nada.UI_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClosedXML">
-      <HintPath>..\Solution Items\ClosedXML.dll</HintPath>
-    </Reference>
     <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Solution Items\ComponentFactory.Krypton.Toolkit.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DocumentFormat.OpenXml">
-      <HintPath>..\Solution Items\DocumentFormat.OpenXml.dll</HintPath>
+    <Reference Include="EPPlus">
+      <HintPath>..\Solution Items\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="LINQtoCSV">
       <HintPath>..\Solution Items\LINQtoCSV.dll</HintPath>
@@ -69,14 +93,16 @@
       <HintPath>..\Solution Items\ObjectListView.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -87,8 +113,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppLogic\ApplicationData.cs" />
     <Compile Include="AppLogic\IndicatorHelper.cs" />
+    <Compile Include="NationalDatabaseTemplateDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NationalDatabaseTemplateDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Translations.Designer.cs">
       <DependentUpon>Translations.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -113,11 +150,65 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Translations.fr-FR.resx</DependentUpon>
     </Compile>
+    <Compile Include="Updates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Updates.Designer.cs">
+      <DependentUpon>Updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AdminLevelMultiselect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\AdminLevelMultiselect.Designer.cs">
+      <DependentUpon>AdminLevelMultiselect.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AdminLevelPickerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\AdminLevelPickerControl.Designer.cs">
       <DependentUpon>AdminLevelPickerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\ReportIndicatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ReportIndicatorControl.Designer.cs">
+      <DependentUpon>ReportIndicatorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ImportDownload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ImportDownload.Designer.cs">
+      <DependentUpon>ImportDownload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MedicineAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MedicineAdd.Designer.cs">
+      <DependentUpon>MedicineAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MedicineList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MedicineList.Designer.cs">
+      <DependentUpon>MedicineList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PartnerAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PartnerAdd.Designer.cs">
+      <DependentUpon>PartnerAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PartnerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PartnerList.Designer.cs">
+      <DependentUpon>PartnerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\IndicatorAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\IndicatorAdd.Designer.cs">
+      <DependentUpon>IndicatorAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CustomIndicatorControl.cs">
       <SubType>UserControl</SubType>
@@ -166,6 +257,36 @@
     </Compile>
     <Compile Include="View\Demography\ImportDemographyModal.Designer.cs">
       <DependentUpon>ImportDemographyModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Intervention\DistributionMethodAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Intervention\DistributionMethodAdd.Designer.cs">
+      <DependentUpon>DistributionMethodAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Intervention\DistributionMethodList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Intervention\DistributionMethodList.Designer.cs">
+      <DependentUpon>DistributionMethodList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Intervention\LfMdaView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Intervention\LfMdaView.Designer.cs">
+      <DependentUpon>LfMdaView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Intervention\IntvBaseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Intervention\IntvBaseView.Designer.cs">
+      <DependentUpon>IntvBaseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Intervention\IntvTypeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Intervention\IntvTypeEdit.Designer.cs">
+      <DependentUpon>IntvTypeEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Modals\AdminLevelModal.cs">
       <SubType>Form</SubType>
@@ -239,12 +360,6 @@
     <Compile Include="View\Modals\TranslationModal.Designer.cs">
       <DependentUpon>TranslationModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Survey\IndicatorAdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Survey\IndicatorAdd.Designer.cs">
-      <DependentUpon>IndicatorAdd.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Survey\SurveyBaseView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -263,10 +378,10 @@
     <Compile Include="View\Survey\SentinelSitePicker.Designer.cs">
       <DependentUpon>SentinelSitePicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Survey\LF\LfMfPrevalenceView.cs">
+    <Compile Include="View\Survey\LfMfPrevalenceView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Survey\LF\LfMfPrevalenceView.Designer.cs">
+    <Compile Include="View\Survey\LfMfPrevalenceView.Designer.cs">
       <DependentUpon>LfMfPrevalenceView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Survey\SurveyTypeEdit.cs">
@@ -281,18 +396,15 @@
     <Compile Include="View\Survey\SurveyTypeView.Designer.cs">
       <DependentUpon>SurveyTypeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Survey\SurveyView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Survey\SurveyView.Designer.cs">
-      <DependentUpon>SurveyView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\WelcomeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\WelcomeView.Designer.cs">
       <DependentUpon>WelcomeView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Translations.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Translations.Designer.cs</LastGenOutput>
@@ -318,8 +430,35 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Updates.resx">
+      <DependentUpon>Updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AdminLevelMultiselect.resx">
+      <DependentUpon>AdminLevelMultiselect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AdminLevelPickerControl.resx">
       <DependentUpon>AdminLevelPickerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ReportIndicatorControl.resx">
+      <DependentUpon>ReportIndicatorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ImportDownload.resx">
+      <DependentUpon>ImportDownload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MedicineAdd.resx">
+      <DependentUpon>MedicineAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MedicineList.resx">
+      <DependentUpon>MedicineList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PartnerAdd.resx">
+      <DependentUpon>PartnerAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PartnerList.resx">
+      <DependentUpon>PartnerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\IndicatorAdd.resx">
+      <DependentUpon>IndicatorAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\CustomIndicatorControl.resx">
       <DependentUpon>CustomIndicatorControl.cs</DependentUpon>
@@ -344,6 +483,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\ImportDemographyModal.resx">
       <DependentUpon>ImportDemographyModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Intervention\DistributionMethodAdd.resx">
+      <DependentUpon>DistributionMethodAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Intervention\DistributionMethodList.resx">
+      <DependentUpon>DistributionMethodList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Intervention\LfMdaView.resx">
+      <DependentUpon>LfMdaView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Intervention\IntvBaseView.resx">
+      <DependentUpon>IntvBaseView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Intervention\IntvTypeEdit.resx">
+      <DependentUpon>IntvTypeEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Modals\AdminLevelModal.resx">
       <DependentUpon>AdminLevelModal.cs</DependentUpon>
@@ -381,9 +535,6 @@
     <EmbeddedResource Include="View\Modals\TranslationModal.resx">
       <DependentUpon>TranslationModal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Survey\IndicatorAdd.resx">
-      <DependentUpon>IndicatorAdd.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Survey\SurveyBaseView.resx">
       <DependentUpon>SurveyBaseView.cs</DependentUpon>
     </EmbeddedResource>
@@ -393,7 +544,7 @@
     <EmbeddedResource Include="View\Survey\SentinelSitePicker.resx">
       <DependentUpon>SentinelSitePicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Survey\LF\LfMfPrevalenceView.resx">
+    <EmbeddedResource Include="View\Survey\LfMfPrevalenceView.resx">
       <DependentUpon>LfMfPrevalenceView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Survey\SurveyTypeEdit.resx">
@@ -402,18 +553,36 @@
     <EmbeddedResource Include="View\Survey\SurveyTypeView.resx">
       <DependentUpon>SurveyTypeView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Survey\SurveyView.resx">
-      <DependentUpon>SurveyView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\WelcomeView.resx">
       <DependentUpon>WelcomeView.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Nada.UI_TemporaryKey.pfx" />
+    <None Include="NationalDatabaseTemplateDataSet.xsc">
+      <DependentUpon>NationalDatabaseTemplateDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="NationalDatabaseTemplateDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NationalDatabaseTemplateDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NationalDatabaseTemplateDataSet.xss">
+      <DependentUpon>NationalDatabaseTemplateDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\Nada.Model.AdminLevel.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.AdminLevelType.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Country.datasource" />
     <None Include="Properties\DataSources\Nada.Model.CountryDemography.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Disease.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Intervention.DistributionMethod.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Intervention.IntvBase.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Intervention.IntvType.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Intervention.LfMda.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Intervention.Medicine.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Intervention.Partner.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Language.datasource" />
     <None Include="Properties\DataSources\Nada.Model.PopGroup.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicator.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicators.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Survey.LfMfPrevalence.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Survey.SentinelSite.datasource" />
@@ -434,7 +603,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="NationalDatabaseTemplate.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.Windows.Forms.DataVisualization.Design.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.Windows.Forms.DataVisualization.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

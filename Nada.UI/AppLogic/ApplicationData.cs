@@ -13,7 +13,7 @@ namespace Nada.UI.AppLogic
         private ApplicationData() { }
 
         public MembershipUser CurrentUser { get; set; }
-
+        
         public int GetUserId()
         {
             return (int)ApplicationData.Instance.CurrentUser.ProviderUserKey;

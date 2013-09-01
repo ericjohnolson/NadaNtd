@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using Nada.Model.Base;
 
-namespace Nada.Model.Survey
+namespace Nada.Model
 {
     [Serializable]
-    public class SurveyIndicator : NadaClass, IDynamicIndicator
+    public class Indicator : NadaClass, IDynamicIndicator
     {
-        public SurveyIndicator()
+        public Indicator()
         {
             DataType = "Text";
             IsEditable = true;
         }
-        public int SurveyTypeId { get; set; }
         public int DataTypeId { get; set; }
         public string DisplayName { get; set; }
         public int SortOrder { get; set; }

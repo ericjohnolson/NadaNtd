@@ -18,6 +18,7 @@ namespace Nada.UI.View.Survey
         public event Action<bool> OnSave = (b) => { };
         private LfMfPrevalence model = null;
         private SurveyRepository r = null;
+        private DemoRepository demo = null;
 
         public LfMfPrevalenceView()
         {
@@ -37,6 +38,7 @@ namespace Nada.UI.View.Survey
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
                 adminLevelPickerControl2.OnSelect += adminLevelPickerControl2_OnSelect;
                 r = new SurveyRepository();
+                demo = new DemoRepository();
                 if (model == null) model = r.CreateSurvey<LfMfPrevalence>(StaticSurveyType.LfPrevalence);
                 bsSurvey.DataSource = model;
                 bsType.DataSource = model.TypeOfSurvey;
@@ -79,18 +81,22 @@ namespace Nada.UI.View.Survey
         private void lnkAddSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             SentinelSiteAdd modal = new SentinelSiteAdd();
+
+            if (model.AdminLevelId.HasValue && model.AdminLevelId > 0)
+                modal = new SentinelSiteAdd(demo.GetAdminLevelById(model.AdminLevelId.Value));
             modal.OnSave += sites_OnAdd;
             modal.ShowDialog();
         }
 
         void sites_OnAdd(SentinelSite obj)
         {
-            List<SentinelSite> sites = r.GetSitesForAdminLevel(obj.Id);
+            List<SentinelSite> sites = r.GetSitesForAdminLevel(obj.AdminLevel.Id);
             sites.Insert(0, new SentinelSite { SiteName = "Please Select", Id = -1 });
             sentinelSiteBindingSource.DataSource = sites;
             adminLevelPickerControl2.Select(obj.AdminLevel);
             model.AdminLevelId = obj.AdminLevel.Id; // TODO manage changing admin levels
             model.SentinelSiteId = obj.Id;
+            bsSurvey.ResetBindings(false);
         }
 
         private void UpdatePercentage()
@@ -119,7 +125,7 @@ namespace Nada.UI.View.Survey
         {
             bsSurvey.EndEdit();
             if (model.SentinelSiteId == -1) model.SentinelSiteId = null;
-            model.CustomIndicatorValues = customIndicatorControl1.GetValues<SurveyIndicatorValue>();
+            model.CustomIndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
             int userId = ApplicationData.Instance.GetUserId();
             if (model.Id > 0)
                 r.Update(model, userId);
@@ -132,11 +138,11 @@ namespace Nada.UI.View.Survey
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             SurveyTypeEdit editor = new SurveyTypeEdit(model.TypeOfSurvey);
-            editor.OnSave += editor_OnSave;
+            editor.OnSave += editType_OnSave;
             editor.ShowDialog();
         }
 
-        void editor_OnSave()
+        void editType_OnSave()
         {
             customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators.Cast<IDynamicIndicator>());
             bsType.ResetBindings(false);

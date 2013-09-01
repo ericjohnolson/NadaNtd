@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.bsIndicator)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -49,8 +50,8 @@
             this.btnAddNew.Location = new System.Drawing.Point(150, 169);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(75, 25);
-            this.btnAddNew.TabIndex = 4;
-            this.btnAddNew.Values.Text = "Done";
+            this.btnAddNew.TabIndex = 5;
+            this.btnAddNew.Values.Text = "Save";
             this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // tb3
@@ -59,11 +60,11 @@
             this.tb3.Location = new System.Drawing.Point(15, 105);
             this.tb3.Name = "tb3";
             this.tb3.Size = new System.Drawing.Size(158, 20);
-            this.tb3.TabIndex = 27;
+            this.tb3.TabIndex = 2;
             // 
             // bsIndicator
             // 
-            this.bsIndicator.DataSource = typeof(Nada.Model.Survey.SurveyIndicator);
+            this.bsIndicator.DataSource = typeof(Nada.Model.Indicator);
             // 
             // label6
             // 
@@ -71,7 +72,7 @@
             this.label6.Location = new System.Drawing.Point(12, 89);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 13);
-            this.label6.TabIndex = 26;
+            this.label6.TabIndex = 8;
             this.label6.Text = "Sort Order";
             // 
             // tb1
@@ -80,7 +81,7 @@
             this.tb1.Location = new System.Drawing.Point(15, 25);
             this.tb1.Name = "tb1";
             this.tb1.Size = new System.Drawing.Size(158, 20);
-            this.tb1.TabIndex = 25;
+            this.tb1.TabIndex = 0;
             // 
             // label5
             // 
@@ -88,7 +89,7 @@
             this.label5.Location = new System.Drawing.Point(12, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 24;
+            this.label5.TabIndex = 6;
             this.label5.Text = "Name";
             // 
             // statusStrip1
@@ -98,7 +99,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 214);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(237, 22);
-            this.statusStrip1.TabIndex = 40;
+            this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // lblLastUpdated
@@ -113,7 +114,7 @@
             this.label1.Location = new System.Drawing.Point(12, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 41;
+            this.label1.TabIndex = 7;
             this.label1.Text = "Data Type";
             // 
             // checkBox1
@@ -124,7 +125,7 @@
             this.checkBox1.Location = new System.Drawing.Point(15, 131);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(78, 17);
-            this.checkBox1.TabIndex = 43;
+            this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "Is Disabled";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -140,7 +141,17 @@
             this.comboBox1.Location = new System.Drawing.Point(15, 65);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(158, 21);
-            this.comboBox1.TabIndex = 44;
+            this.comboBox1.TabIndex = 1;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(68, 169);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.btnCancel.Size = new System.Drawing.Size(76, 25);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Values.Text = "Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // IndicatorAdd
             // 
@@ -148,6 +159,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(237, 236);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
@@ -159,7 +171,7 @@
             this.Controls.Add(this.btnAddNew);
             this.Name = "IndicatorAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Survey Indicator";
+            this.Text = "Indicator";
             this.Load += new System.EventHandler(this.Modal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsIndicator)).EndInit();
             this.statusStrip1.ResumeLayout(false);
@@ -182,5 +194,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.BindingSource bsIndicator;
         private System.Windows.Forms.ComboBox comboBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
     }
 }

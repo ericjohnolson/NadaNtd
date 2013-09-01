@@ -5,7 +5,7 @@ using Nada.Model.Repositories;
 namespace Nada.Tests
 {
     [TestClass]
-    public class CanCreateSurveys
+    public class CanCreateSurveys : BaseTest
     {
         [TestMethod]
         public void CanFetchLfMfPrevalence()

@@ -35,6 +35,7 @@
             this.tbName = new System.Windows.Forms.TextBox();
             this.bsPopGroup = new System.Windows.Forms.BindingSource(this.components);
             this.tbAbbreviation = new System.Windows.Forms.TextBox();
+            this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.bsPopGroup)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             this.label1.Location = new System.Drawing.Point(27, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 4;
             this.label1.Text = "Name";
             // 
             // label2
@@ -53,7 +54,7 @@
             this.label2.Location = new System.Drawing.Point(27, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 5;
             this.label2.Text = "Abbreviation";
             // 
             // kryptonButton1
@@ -61,7 +62,7 @@
             this.kryptonButton1.Location = new System.Drawing.Point(111, 127);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(77, 25);
-            this.kryptonButton1.TabIndex = 5;
+            this.kryptonButton1.TabIndex = 3;
             this.kryptonButton1.Values.Text = "Add";
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
@@ -71,7 +72,7 @@
             this.tbName.Location = new System.Drawing.Point(30, 43);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(158, 20);
-            this.tbName.TabIndex = 6;
+            this.tbName.TabIndex = 0;
             // 
             // bsPopGroup
             // 
@@ -83,7 +84,17 @@
             this.tbAbbreviation.Location = new System.Drawing.Point(30, 91);
             this.tbAbbreviation.Name = "tbAbbreviation";
             this.tbAbbreviation.Size = new System.Drawing.Size(158, 20);
-            this.tbAbbreviation.TabIndex = 7;
+            this.tbAbbreviation.TabIndex = 1;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(29, 127);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.btnCancel.Size = new System.Drawing.Size(76, 25);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Values.Text = "Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // PopGroupModal
             // 
@@ -91,6 +102,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(223, 179);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.tbAbbreviation);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.kryptonButton1);
@@ -115,5 +127,6 @@
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbAbbreviation;
         private System.Windows.Forms.BindingSource bsPopGroup;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
     }
 }

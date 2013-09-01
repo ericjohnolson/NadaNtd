@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Nada.Model.Base;
 
-namespace Nada.Model.Survey
+namespace Nada.Model
 {
-    public class SurveyIndicatorValue : NadaClass, IDynamicIndicatorValue
+    public class IndicatorValue : NadaClass, IDynamicIndicatorValue
     {
         public int IndicatorId { get; set; }
         public string DynamicValue { get; set; }
