@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonGroupBox2 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lnkNewIndicator = new System.Windows.Forms.LinkLabel();
             this.lvIndicators = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn8 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn9 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -41,63 +38,30 @@
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.bsSurveyType = new System.Windows.Forms.BindingSource(this.components);
-            this.label10 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).BeginInit();
-            this.kryptonGroupBox2.Panel.SuspendLayout();
-            this.kryptonGroupBox2.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.label3 = new System.Windows.Forms.Label();
+            this.hr1 = new Nada.UI.Controls.HR();
+            this.h3Label1 = new Nada.UI.Controls.H3Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlName = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.fieldLink1 = new Nada.UI.Controls.FieldLink();
+            this.lblCustomIndicators = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.lvIndicators)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurveyType)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.pnlName.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(547, 352);
+            this.btnSave.Location = new System.Drawing.Point(523, 315);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(69, 25);
             this.btnSave.TabIndex = 3;
             this.btnSave.Values.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
-            // 
-            // kryptonGroupBox2
-            // 
-            this.kryptonGroupBox2.CaptionStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonGroupBox2.GroupBorderStyle = ComponentFactory.Krypton.Toolkit.PaletteBorderStyle.HeaderPrimary;
-            this.kryptonGroupBox2.Location = new System.Drawing.Point(19, 101);
-            this.kryptonGroupBox2.Name = "kryptonGroupBox2";
-            // 
-            // kryptonGroupBox2.Panel
-            // 
-            this.kryptonGroupBox2.Panel.Controls.Add(this.panel2);
-            this.kryptonGroupBox2.Size = new System.Drawing.Size(587, 195);
-            this.kryptonGroupBox2.TabIndex = 1;
-            this.kryptonGroupBox2.Text = "Custom Indicators";
-            this.kryptonGroupBox2.Values.Heading = "Custom Indicators";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.lnkNewIndicator);
-            this.panel2.Controls.Add(this.lvIndicators);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(585, 174);
-            this.panel2.TabIndex = 0;
-            // 
-            // lnkNewIndicator
-            // 
-            this.lnkNewIndicator.AutoSize = true;
-            this.lnkNewIndicator.Location = new System.Drawing.Point(3, 4);
-            this.lnkNewIndicator.Name = "lnkNewIndicator";
-            this.lnkNewIndicator.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.lnkNewIndicator.Size = new System.Drawing.Size(60, 18);
-            this.lnkNewIndicator.TabIndex = 1;
-            this.lnkNewIndicator.TabStop = true;
-            this.lnkNewIndicator.Text = "Add New...";
-            this.lnkNewIndicator.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkNewIndicator_LinkClicked);
             // 
             // lvIndicators
             // 
@@ -113,10 +77,10 @@
             this.olvColumn2,
             this.olvColumn1});
             this.lvIndicators.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvIndicators.Location = new System.Drawing.Point(4, 25);
+            this.lvIndicators.Location = new System.Drawing.Point(2, 37);
             this.lvIndicators.Name = "lvIndicators";
             this.lvIndicators.ShowGroups = false;
-            this.lvIndicators.Size = new System.Drawing.Size(576, 144);
+            this.lvIndicators.Size = new System.Drawing.Size(554, 144);
             this.lvIndicators.TabIndex = 1;
             this.lvIndicators.UseCompatibleStateImageBehavior = false;
             this.lvIndicators.UseHyperlinks = true;
@@ -165,7 +129,7 @@
             // 
             this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSurveyType, "SurveyTypeName", true));
             this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(19, 75);
+            this.textBox3.Location = new System.Drawing.Point(0, 19);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(158, 20);
             this.textBox3.TabIndex = 0;
@@ -174,28 +138,9 @@
             // 
             this.bsSurveyType.DataSource = typeof(Nada.Model.Survey.SurveyType);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 59);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(35, 13);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "Name";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Georgia", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(200, 39);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Survey Type";
-            // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(462, 352);
+            this.btnCancel.Location = new System.Drawing.Point(437, 315);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.btnCancel.Size = new System.Drawing.Size(69, 25);
@@ -203,29 +148,140 @@
             this.btnCancel.Values.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.label3.Location = new System.Drawing.Point(22, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(171, 28);
+            this.label3.TabIndex = 17;
+            this.label3.Tag = "SurveyInformation";
+            this.label3.Text = "Survey Information";
+            // 
+            // hr1
+            // 
+            this.hr1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hr1.ForeColor = System.Drawing.Color.Gray;
+            this.hr1.Location = new System.Drawing.Point(0, 0);
+            this.hr1.Margin = new System.Windows.Forms.Padding(5);
+            this.hr1.Name = "hr1";
+            this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.hr1.Size = new System.Drawing.Size(619, 5);
+            this.hr1.TabIndex = 16;
+            // 
+            // h3Label1
+            // 
+            this.h3Label1.AutoSize = true;
+            this.h3Label1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Label1.Location = new System.Drawing.Point(0, 0);
+            this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label1.Name = "h3Label1";
+            this.h3Label1.Size = new System.Drawing.Size(87, 16);
+            this.h3Label1.TabIndex = 15;
+            this.h3Label1.Tag = "SurveyName";
+            this.h3Label1.Text = "Survey name";
+            this.h3Label1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.pnlName, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(27, 51);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(565, 252);
+            this.tableLayoutPanel1.TabIndex = 18;
+            // 
+            // pnlName
+            // 
+            this.pnlName.AutoSize = true;
+            this.pnlName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlName.Controls.Add(this.h3Label1);
+            this.pnlName.Controls.Add(this.textBox3);
+            this.pnlName.Location = new System.Drawing.Point(0, 0);
+            this.pnlName.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlName.Name = "pnlName";
+            this.pnlName.Size = new System.Drawing.Size(161, 42);
+            this.pnlName.TabIndex = 0;
+            this.pnlName.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoSize = true;
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(this.fieldLink1);
+            this.panel1.Controls.Add(this.lvIndicators);
+            this.panel1.Controls.Add(this.lblCustomIndicators);
+            this.panel1.Location = new System.Drawing.Point(3, 65);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(559, 184);
+            this.panel1.TabIndex = 2;
+            // 
+            // fieldLink1
+            // 
+            this.fieldLink1.AutoSize = true;
+            this.fieldLink1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.fieldLink1.BackColor = System.Drawing.Color.Transparent;
+            this.fieldLink1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fieldLink1.Location = new System.Drawing.Point(2, 22);
+            this.fieldLink1.Margin = new System.Windows.Forms.Padding(0);
+            this.fieldLink1.Name = "fieldLink1";
+            this.fieldLink1.Size = new System.Drawing.Size(106, 12);
+            this.fieldLink1.TabIndex = 22;
+            this.fieldLink1.Tag = "AddIndicatorLink";
+            this.fieldLink1.Text = "Add/remove indicators >";
+            this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);
+            // 
+            // lblCustomIndicators
+            // 
+            this.lblCustomIndicators.AutoSize = true;
+            this.lblCustomIndicators.BackColor = System.Drawing.Color.Transparent;
+            this.lblCustomIndicators.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomIndicators.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.lblCustomIndicators.Location = new System.Drawing.Point(-2, 1);
+            this.lblCustomIndicators.Margin = new System.Windows.Forms.Padding(0);
+            this.lblCustomIndicators.Name = "lblCustomIndicators";
+            this.lblCustomIndicators.Size = new System.Drawing.Size(143, 21);
+            this.lblCustomIndicators.TabIndex = 21;
+            this.lblCustomIndicators.Text = "Custom Indicators";
+            // 
             // SurveyTypeEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(628, 389);
+            this.ClientSize = new System.Drawing.Size(619, 361);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.hr1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.kryptonGroupBox2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label3);
             this.Name = "SurveyTypeEdit";
-            this.Text = "Edit Survey Type";
+            this.Tag = "SurveyInformation";
+            this.Text = "Survey Information";
             this.Load += new System.EventHandler(this.SurveyTypeView_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).EndInit();
-            this.kryptonGroupBox2.Panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).EndInit();
-            this.kryptonGroupBox2.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lvIndicators)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurveyType)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.pnlName.ResumeLayout(false);
+            this.pnlName.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,9 +290,6 @@
         #endregion
 
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
-        private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.LinkLabel lnkNewIndicator;
         private BrightIdeasSoftware.ObjectListView lvIndicators;
         private BrightIdeasSoftware.OLVColumn olvColumn8;
         private BrightIdeasSoftware.OLVColumn olvColumn9;
@@ -244,10 +297,16 @@
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label3;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
         private System.Windows.Forms.BindingSource bsSurveyType;
+        private System.Windows.Forms.Label label3;
+        private Controls.HR hr1;
+        private Controls.H3Label h3Label1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel pnlName;
+        private System.Windows.Forms.Panel panel1;
+        private Controls.FieldLink fieldLink1;
+        private System.Windows.Forms.Label lblCustomIndicators;
 
     }
 }

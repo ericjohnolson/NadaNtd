@@ -34,7 +34,6 @@ namespace Nada.UI.View
             if (!DesignMode)
             {
                 bsIndicator.DataSource = model;
-                lblLastUpdated.Text += model.UpdatedBy;
             }
         }
 

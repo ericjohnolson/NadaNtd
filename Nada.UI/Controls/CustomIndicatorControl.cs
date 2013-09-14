@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
+using Nada.UI.Controls;
 
 namespace Nada.UI.View
 {
     public partial class CustomIndicatorControl : UserControl
     {
+        public event Action OnAddRemove = () => { };
         private List<DynamicContainer> controlList = new List<DynamicContainer>();
 
         public CustomIndicatorControl()
@@ -21,21 +23,34 @@ namespace Nada.UI.View
 
         public void LoadIndicators(IEnumerable<IDynamicIndicator> indicators)
         {
+            this.SuspendLayout();
             controlList = new List<DynamicContainer>();
             tblIndicators.Controls.Clear();
-
+            int count = 0;
+            int labelRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize }); 
+            int controlRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize }); 
+            int columnCount = 0;
             foreach (var indicator in indicators.OrderBy(i => i.SortOrder).ToList())
             {
-                // Add label
-                int i = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
-                tblIndicators.Controls.Add(new Label { Text = indicator.DisplayName, Name = "ciLabel_" + indicator.Id, AutoSize = true, }, 0, i);
-            
-                // Add field
-                int index = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
-                tblIndicators.Controls.Add(CreateControl(indicator), 0, index);
-           }
+                if (count % 4 == 0)
+                {
+                    labelRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
+                    controlRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
+                    columnCount = 0;
+                }
 
-            lblPlaceholder.Visible = false;
+                // Add label
+                tblIndicators.Controls.Add(
+                    new H3Label { Text = indicator.DisplayName, Name = "ciLabel_" + indicator.Id, AutoSize = true, },
+                    columnCount, labelRowIndex);
+
+                // Add field
+                tblIndicators.Controls.Add(CreateControl(indicator), columnCount, controlRowIndex);
+
+                count++;
+                columnCount = columnCount + 2;
+            }
+            this.ResumeLayout();
         }
 
         public List<T> GetValues<T>() where T : IDynamicIndicatorValue
@@ -106,6 +121,20 @@ namespace Nada.UI.View
             public delegate string GetValueDelegate();
             public GetValueDelegate GetValue { get; set; }
         }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Color TextColor
+        {
+            get { return lblCustomIndicators.ForeColor; }
+            set { lblCustomIndicators.ForeColor = value; }
+        }
+
+        private void fieldLink1_OnClick()
+        {
+            OnAddRemove();
+        }
+
 
     }
 }

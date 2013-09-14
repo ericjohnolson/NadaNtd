@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Csv;
 using Nada.Model.Repositories;
@@ -38,6 +39,7 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
+                openFileDialog1.Filter = "Excel files|*.xlsx;*.xls";
                 saveFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveFileDialog1.FileName = importer.ImportName;
                 saveFileDialog1.DefaultExt = ".xlsx";
@@ -72,6 +74,20 @@ namespace Nada.UI.View
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                int userId = ApplicationData.Instance.GetUserId();
+                var result = importer.ImportData(openFileDialog1.FileName, userId);
+                if (!result.WasSuccess)
+                    MessageBox.Show(result.ErrorMessage);
+                else
+                    MessageBox.Show(string.Format(Translations.ImportSuccess, result.Count));
+            }
         }
 
     }

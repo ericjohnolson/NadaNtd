@@ -13,6 +13,7 @@ namespace Nada.Model
             TranslatedNames = new List<TranslatedValue>();
             EditText = "Edit";
         }
+
         public string DisplayName { get; set; }
         public int Id { get; set; }
         public string Code { get; set; }

@@ -18,8 +18,21 @@ namespace Nada.UI.View
         {
             InitializeComponent();
         }
+        
+        public void Select(AdminLevel obj)
+        {
+            lblAdminLevel.Text = obj.Name;
+        }
 
-        private void lnkChooseAdminLevel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Color TextColor
+        {
+            get { return lblLocation.ForeColor; }
+            set { lblLocation.ForeColor = value; }
+        }
+
+        private void fieldLink1_OnClick()
         {
             AdminLevelPicker picker = new AdminLevelPicker();
             picker.OnSelect += picker_OnSelect;
@@ -30,11 +43,6 @@ namespace Nada.UI.View
         {
             lblAdminLevel.Text = obj.Name;
             OnSelect(obj);
-        }
-
-        public void Select(AdminLevel obj)
-        {
-            lblAdminLevel.Text = obj.Name;
         }
     }
 }

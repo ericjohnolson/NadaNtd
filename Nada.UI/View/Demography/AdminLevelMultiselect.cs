@@ -56,12 +56,12 @@ namespace Nada.UI.View
             {
                 AddNodeRecursive(a, list);
             }
-                return list;
+            return list;
         }
 
         private void AddNodeRecursive(AdminLevel adminLevel, List<AdminLevel> list)
         {
-            if(adminLevel.LevelNumber == ((AdminLevelType)cbLevels.SelectedItem).LevelNumber)
+            if (adminLevel.LevelNumber == ((AdminLevelType)cbLevels.SelectedItem).LevelNumber)
                 list.Add(adminLevel);
             foreach (AdminLevel child in adminLevel.Children)
             {
@@ -79,7 +79,8 @@ namespace Nada.UI.View
             var level = (AdminLevelType)cbLevels.SelectedItem;
             available = demography.GetAdminLevelTree(level.Id);
             selected = new List<AdminLevel>();
-            ReloadLists();
+            treeAvailable.SetObjects(available.OrderBy(i => i.Name).ToList());
+            treeSelected.SetObjects(selected.OrderBy(i => i.Name).ToList());
         }
 
         private void btnSelectAll_Click(object sender, EventArgs e)
@@ -98,12 +99,15 @@ namespace Nada.UI.View
         {
             SelectItems();
         }
+
         private void SelectItems()
         {
-            foreach (var item in treeAvailable.SelectedObjects)
+            foreach (var item in treeAvailable.SelectedObjects.Cast<AdminLevel>())
             {
-                selected.Add((AdminLevel)item);
-                available.Remove((AdminLevel)item);
+                var parent = GetParent(item, available, selected);
+                if (parent != null)
+                    MergeNodes(selected, parent);
+                DeleteNode(item, available);
             }
             ReloadLists();
         }
@@ -120,10 +124,13 @@ namespace Nada.UI.View
 
         private void DeselectItems()
         {
-            foreach (var item in treeSelected.SelectedObjects)
+            foreach (var item in treeSelected.SelectedObjects.Cast<AdminLevel>())
             {
-                selected.Remove((AdminLevel)item);
-                available.Add((AdminLevel)item);
+                var parent = GetParent(item, selected, available);
+                if (parent != null)
+                    MergeNodes(available, parent);
+
+                DeleteNode(item, selected);
             }
             ReloadLists();
         }
@@ -138,8 +145,52 @@ namespace Nada.UI.View
 
         private void ReloadLists()
         {
-            treeAvailable.SetObjects(available.OrderBy(i => i.Name));
-            treeSelected.SetObjects(selected.OrderBy(i => i.Name));
+            treeAvailable.ClearObjects();
+            treeAvailable.SetObjects(available.OrderBy(i => i.Name).ToList());
+            treeSelected.ClearObjects();
+            treeSelected.SetObjects(selected.OrderBy(i => i.Name).ToList());
+        }
+
+        private AdminLevel GetParent(AdminLevel item, List<AdminLevel> oldList, List<AdminLevel> newList)
+        {
+            // if it is parent add it
+            if (item.LevelNumber == 1)
+                return item;
+
+            AdminLevel oldParent = oldList.FirstOrDefault(p => p.Id == item.ParentId);
+            AdminLevel newParent = newList.FirstOrDefault(p => p.Id == item.ParentId);
+            if (newParent == null)
+            {
+                newParent = oldParent.CopyTreeNode();
+                newParent.Children.Add(item);
+                return GetParent(newParent, oldList, newList);
+            }
+            else
+            {
+                MergeNodes(newParent.Children, item);
+                return null;
+            }
+        }
+
+        private void MergeNodes(List<AdminLevel> list, AdminLevel item)
+        {
+            var existing = list.FirstOrDefault(i => i.Id == item.Id);
+            if (existing == null)
+                list.Add(item);
+            else
+                foreach (var i in item.Children)
+                    MergeNodes(existing.Children, i);
+        }
+
+        private void DeleteNode(AdminLevel item, List<AdminLevel> oldList)
+        {
+            if (item.LevelNumber == 1)
+                oldList.Remove(item);
+            else
+            {
+                AdminLevel parent = oldList.FirstOrDefault(p => p.Id == item.ParentId);
+                parent.Children.Remove(item);
+            }
         }
 
     }

@@ -32,22 +32,21 @@
             this.btnAddNew = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tb3 = new System.Windows.Forms.TextBox();
             this.bsIndicator = new System.Windows.Forms.BindingSource(this.components);
-            this.label6 = new System.Windows.Forms.Label();
             this.tb1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblLastUpdated = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.h3Label1 = new Nada.UI.Controls.H3Label();
+            this.h3Label2 = new Nada.UI.Controls.H3Label();
+            this.h3Label3 = new Nada.UI.Controls.H3Label();
+            this.hr1 = new Nada.UI.Controls.HR();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsIndicator)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddNew
             // 
-            this.btnAddNew.Location = new System.Drawing.Point(150, 169);
+            this.btnAddNew.Location = new System.Drawing.Point(159, 231);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(75, 25);
             this.btnAddNew.TabIndex = 5;
@@ -57,74 +56,32 @@
             // tb3
             // 
             this.tb3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsIndicator, "SortOrder", true));
-            this.tb3.Location = new System.Drawing.Point(15, 105);
+            this.tb3.Location = new System.Drawing.Point(27, 162);
             this.tb3.Name = "tb3";
-            this.tb3.Size = new System.Drawing.Size(158, 20);
+            this.tb3.Size = new System.Drawing.Size(78, 20);
             this.tb3.TabIndex = 2;
             // 
             // bsIndicator
             // 
             this.bsIndicator.DataSource = typeof(Nada.Model.Indicator);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 89);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Sort Order";
-            // 
             // tb1
             // 
             this.tb1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsIndicator, "DisplayName", true));
-            this.tb1.Location = new System.Drawing.Point(15, 25);
+            this.tb1.Location = new System.Drawing.Point(27, 71);
             this.tb1.Name = "tb1";
-            this.tb1.Size = new System.Drawing.Size(158, 20);
+            this.tb1.Size = new System.Drawing.Size(207, 20);
             this.tb1.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Name";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblLastUpdated});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 214);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(237, 22);
-            this.statusStrip1.TabIndex = 9;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // lblLastUpdated
-            // 
-            this.lblLastUpdated.Name = "lblLastUpdated";
-            this.lblLastUpdated.Size = new System.Drawing.Size(82, 17);
-            this.lblLastUpdated.Text = "Last Updated: ";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Data Type";
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsIndicator, "IsDisabled", true));
-            this.checkBox1.Location = new System.Drawing.Point(15, 131);
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.checkBox1.Location = new System.Drawing.Point(27, 192);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(78, 17);
+            this.checkBox1.Size = new System.Drawing.Size(95, 20);
             this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "Is Disabled";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -138,14 +95,14 @@
             "Number",
             "Yes/No",
             "Date"});
-            this.comboBox1.Location = new System.Drawing.Point(15, 65);
+            this.comboBox1.Location = new System.Drawing.Point(27, 116);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(158, 21);
+            this.comboBox1.Size = new System.Drawing.Size(207, 21);
             this.comboBox1.TabIndex = 1;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(68, 169);
+            this.btnCancel.Location = new System.Drawing.Point(68, 231);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.btnCancel.Size = new System.Drawing.Size(76, 25);
@@ -153,29 +110,96 @@
             this.btnCancel.Values.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // h3Label1
+            // 
+            this.h3Label1.AutoSize = true;
+            this.h3Label1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Label1.Location = new System.Drawing.Point(27, 52);
+            this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label1.Name = "h3Label1";
+            this.h3Label1.Size = new System.Drawing.Size(144, 16);
+            this.h3Label1.TabIndex = 10;
+            this.h3Label1.Tag = "CustomIndicatorName";
+            this.h3Label1.Text = "Custom indicator name";
+            this.h3Label1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3Label2
+            // 
+            this.h3Label2.AutoSize = true;
+            this.h3Label2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Label2.Location = new System.Drawing.Point(27, 94);
+            this.h3Label2.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label2.Name = "h3Label2";
+            this.h3Label2.Size = new System.Drawing.Size(66, 16);
+            this.h3Label2.TabIndex = 11;
+            this.h3Label2.Tag = "DataType";
+            this.h3Label2.Text = "Data type";
+            this.h3Label2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3Label3
+            // 
+            this.h3Label3.AutoSize = true;
+            this.h3Label3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Label3.Location = new System.Drawing.Point(27, 140);
+            this.h3Label3.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label3.Name = "h3Label3";
+            this.h3Label3.Size = new System.Drawing.Size(67, 16);
+            this.h3Label3.TabIndex = 12;
+            this.h3Label3.Tag = "SortOrder";
+            this.h3Label3.Text = "Sort order";
+            this.h3Label3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // hr1
+            // 
+            this.hr1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hr1.ForeColor = System.Drawing.Color.Gray;
+            this.hr1.Location = new System.Drawing.Point(0, 0);
+            this.hr1.Margin = new System.Windows.Forms.Padding(5);
+            this.hr1.Name = "hr1";
+            this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.hr1.Size = new System.Drawing.Size(264, 5);
+            this.hr1.TabIndex = 13;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.label3.Location = new System.Drawing.Point(22, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(155, 28);
+            this.label3.TabIndex = 14;
+            this.label3.Tag = "CustomIndicator";
+            this.label3.Text = "Custom Indicator";
+            // 
             // IndicatorAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(237, 236);
+            this.ClientSize = new System.Drawing.Size(264, 284);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.hr1);
+            this.Controls.Add(this.h3Label3);
+            this.Controls.Add(this.h3Label2);
+            this.Controls.Add(this.h3Label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tb3);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.tb1);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnAddNew);
             this.Name = "IndicatorAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Indicator";
+            this.Tag = "CustomIndicator";
+            this.Text = "Custom Indicator";
             this.Load += new System.EventHandler(this.Modal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsIndicator)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,15 +209,15 @@
 
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddNew;
         private System.Windows.Forms.TextBox tb3;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tb1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel lblLastUpdated;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.BindingSource bsIndicator;
         private System.Windows.Forms.ComboBox comboBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
+        private Controls.H3Label h3Label1;
+        private Controls.H3Label h3Label2;
+        private Controls.H3Label h3Label3;
+        private Controls.HR hr1;
+        private System.Windows.Forms.Label label3;
     }
 }

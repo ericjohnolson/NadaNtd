@@ -5,6 +5,7 @@ using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Threading;
+using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.UI.Properties;
@@ -18,7 +19,7 @@ namespace Nada.UI.AppLogic
 
         public static void Initialize()
         {
-            rm = new ResourceManager("Nada.UI.Translations", typeof(Localizer).Assembly);
+            rm = new ResourceManager("Nada.Globalization.Translations", typeof(GlobalizationUtil).Assembly);
             SettingsRepository repo = new SettingsRepository();
             SupportedLanguages = repo.GetSupportedLanguages();
         }

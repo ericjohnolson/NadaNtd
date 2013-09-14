@@ -26,4 +26,9 @@ namespace Nada.Model
         LfLymphedemaMorbidity = 2,
         LfHydroceleMorbidity = 3
     }
+
+    public enum DiseaseType
+    {
+        Lf = 3
+    }
 }

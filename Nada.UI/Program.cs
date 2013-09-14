@@ -23,7 +23,8 @@ namespace Nada.UI
         static void Main()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            SetUpDatabase();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             Thread.CurrentThread.CurrentCulture.ClearCachedData();
             var thread = new Thread(
                 s => ((CultureState)s).Result = Thread.CurrentThread.CurrentCulture);
@@ -31,11 +32,11 @@ namespace Nada.UI
             thread.Start(state);
             thread.Join();
             CultureInfo culture = state.Result;
+
+            SetUpDatabase();
             Localizer.SetCulture(culture);
             Localizer.Initialize();
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Shell());
         }
 
@@ -54,8 +55,12 @@ namespace Nada.UI
             string sourceFilePath = Path.Combine(
               System.Windows.Forms.Application.StartupPath, "NationalDatabaseTemplate.accdb");
             string destFilePath = Path.Combine(userFilePath, "NationalDatabaseTemplate.accdb");
-            if (!File.Exists(destFilePath))
-                File.Copy(sourceFilePath, destFilePath);
+
+            UpdateDatabase dialog = new UpdateDatabase();
+            if (!File.Exists(destFilePath) || ApplicationDeployment.IsNetworkDeployed && dialog.ShowDialog() == DialogResult.OK)
+            {
+                File.Copy(sourceFilePath, destFilePath, true);
+            }
 
             // Set runtime connection string
             string connection = ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString;

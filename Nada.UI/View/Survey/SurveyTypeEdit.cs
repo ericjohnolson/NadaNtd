@@ -69,17 +69,18 @@ namespace Nada.UI.View.Survey
             this.Close();
         }
 
-        private void lnkNewIndicator_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            IndicatorAdd modal = new IndicatorAdd();
-            modal.OnSave += add_OnSave;
-            modal.ShowDialog();
-        }
-
         void add_OnSave(Indicator obj)
         {
             model.Indicators.Add(obj);
             lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
+        }
+
+        private void fieldLink1_OnClick()
+        {
+            IndicatorAdd modal = new IndicatorAdd();
+            modal.OnSave += add_OnSave;
+            modal.ShowDialog();
+
         }
     }
 }

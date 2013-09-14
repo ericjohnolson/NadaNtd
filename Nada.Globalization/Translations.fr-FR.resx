@@ -118,21 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Langue</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
-    <value>Log in.</value>
+    <value>Connexion.</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Mot de passe</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>NTD National Database</value>
+    <value>Nada Mucho NTD en Francios</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="ValidLatitude" xml:space="preserve">
+    <value>Latitude must be between -90° and 90°</value>
+  </data>
+  <data name="ValidLongitude" xml:space="preserve">
+    <value>Longitude must be between -180° and 180°</value>
+  </data>
+  <data name="ValidRoundsMda" xml:space="preserve">
+    <value>Must be between 0 and 20</value>
+  </data>
+  <data name="ValidYear" xml:space="preserve">
+    <value>Must be a valid year (1900-2050)</value>
   </data>
   <data name="WelcomeTitle" xml:space="preserve">
-    <value>Hello</value>
+    <value>Bonjour</value>
+  </data>
+  <data name="ValidationError" xml:space="preserve">
+    <value>Please fix the errors before continuing.</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last Updated:</value>
   </data>
 </root>

@@ -37,5 +37,21 @@ namespace Nada.Model
             ms.Close();
             return obj;
         }
+
+        public AdminLevel CopyTreeNode()
+        {
+            return new AdminLevel
+            {
+                Id = this.Id,
+                Name = this.Name,
+                ParentId = this.ParentId,
+                LevelNumber = this.LevelNumber,
+                IsUrban = this.IsUrban,
+                LatWho = this.LatWho,
+                LatOther = this.LatOther,
+                LngOther = this.LngOther,
+                LngWho = this.LngWho
+            };
+        }
     }
 }

@@ -39,9 +39,9 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
-
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
-                adminLevelPickerControl1.Select(model.AdminLevel);
+                if(model.AdminLevel != null)
+                    adminLevelPickerControl1.Select(model.AdminLevel);
                 bsSentinelSite.DataSource = model;
                 lblLastUpdated.Text += model.UpdatedBy;
             }

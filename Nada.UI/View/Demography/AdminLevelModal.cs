@@ -42,8 +42,8 @@ namespace Nada.UI.View
         {
             SettingsRepository repo = new SettingsRepository();
             repo.InsertAdminLevel(model, ApplicationData.Instance.GetUserId());
-            OnSave(model);
             this.Close();
+            OnSave(model);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

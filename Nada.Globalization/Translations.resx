@@ -118,21 +118,105 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Language" xml:space="preserve">
-    <value>Langue</value>
+    <value>Language</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
-    <value>Connexion.</value>
+    <value>Log in.</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Mot de passe</value>
+    <value>Password</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Nada Mucho NTD en Francios</value>
+    <value>NTD National Database</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Nom d'utilisateur</value>
+    <value>Username</value>
+  </data>
+  <data name="ValidationError" xml:space="preserve">
+    <value>Please fix the errors before continuing.</value>
+  </data>
+  <data name="ValidLatitude" xml:space="preserve">
+    <value>Latitude must be between -90° and 90°</value>
+  </data>
+  <data name="ValidLongitude" xml:space="preserve">
+    <value>Longitude must be between -180° and 180°</value>
+  </data>
+  <data name="ValidRoundsMda" xml:space="preserve">
+    <value>Must be between 0 and 20</value>
+  </data>
+  <data name="ValidYear" xml:space="preserve">
+    <value>Must be a valid year (1900-2050)</value>
   </data>
   <data name="WelcomeTitle" xml:space="preserve">
-    <value>Bonjour</value>
+    <value>Hello</value>
+  </data>
+  <data name="AddIndicatorLink" xml:space="preserve">
+    <value>Add/remove indicators &gt;</value>
+  </data>
+  <data name="CustomIndicator" xml:space="preserve">
+    <value>Custom Indicator</value>
+  </data>
+  <data name="CustomIndicatorName" xml:space="preserve">
+    <value>Custom indicator name</value>
+  </data>
+  <data name="DataType" xml:space="preserve">
+    <value>Data type</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last Updated:</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="SentinelSite" xml:space="preserve">
+    <value>Sentinel Site</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Site name</value>
+  </data>
+  <data name="SortOrder" xml:space="preserve">
+    <value>Sort order</value>
+  </data>
+  <data name="SurveyInformation" xml:space="preserve">
+    <value>Survey Information</value>
+  </data>
+  <data name="SurveyName" xml:space="preserve">
+    <value>Survey name</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="CreateImportFile" xml:space="preserve">
+    <value>Create Import File</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="ImportNoDataError" xml:space="preserve">
+    <value>The file was an incorrect format or had no data</value>
+  </data>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>Successfully added {0} new records!</value>
+  </data>
+  <data name="LevelImplementation" xml:space="preserve">
+    <value>Level of implementation</value>
+  </data>
+  <data name="LfSentinelImport" xml:space="preserve">
+    <value>LF Sentinel-Spot Check Survey Import</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Upload File</value>
   </data>
 </root>

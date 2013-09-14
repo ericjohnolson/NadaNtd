@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
 using Nada.Model.Repositories;
+using Nada.Model.Survey;
 using Nada.UI.AppLogic;
 using Nada.UI.View;
 using Nada.UI.View.Demography;
@@ -71,9 +72,15 @@ namespace Nada.UI
             currentView.Dock = DockStyle.Fill;
             pnlMain.Controls.Add(currentView);
         }
+
+        private void view_StatusChanged(string status)
+        {
+            tsLastUpdated.Text = status;
+        }
         #endregion
 
         #region Menu
+
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadView(new SettingsView());
@@ -117,6 +124,7 @@ namespace Nada.UI
         private void prevalenceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var view = new LfMfPrevalenceView();
+            view.StatusChanged += view_StatusChanged;
             view.OnSave += Survey_OnSave;
             LoadView(view);
         }
@@ -165,7 +173,44 @@ namespace Nada.UI
             var about = new About();
             about.ShowDialog();
         }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lFDiseaseDistributionToolStripMenuItem_Click(object sender, EventArgs e)
+        {        
+            AdminLevelPicker picker = new AdminLevelPicker();
+            picker.OnSelect += diseaseDistroAdminLevel_OnSelect;
+            picker.ShowDialog();
+        }
+
+        void diseaseDistroAdminLevel_OnSelect(Model.AdminLevel obj)
+        {
+            DiseaseRepository r = new DiseaseRepository();
+            DiseaseDistribution dd = r.GetDiseaseDistribution(obj.Id, DiseaseType.Lf);
+            DiseaseDistributionEdit modal = new DiseaseDistributionEdit(dd);
+            modal.ShowDialog();
+        }
+
+        private void lFPopulationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = new DiseasePopulationEdit(DiseaseType.Lf);
+            view.OnSave += Survey_OnSave;
+            LoadView(view);
+        }
         #endregion
+
+        private void lFSentinelSpotCheckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SurveyRepository r = new SurveyRepository();
+            ImportDownload form = new ImportDownload(new LfSentinelImporter(r.GetSurveyType((int)StaticSurveyType.LfPrevalence)));
+            form.ShowDialog();
+
+        }
+
+
 
     }
 }

@@ -32,7 +32,7 @@
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -93,6 +93,7 @@
       <HintPath>..\Solution Items\ObjectListView.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
@@ -121,15 +122,40 @@
     </Compile>
     <Compile Include="AppLogic\ApplicationData.cs" />
     <Compile Include="AppLogic\IndicatorHelper.cs" />
+    <Compile Include="Controls\FundersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FundersControl.Designer.cs">
+      <DependentUpon>FundersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\H3Required.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\H3Required.Designer.cs">
+      <DependentUpon>H3Required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FieldLink.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FieldLink.Designer.cs">
+      <DependentUpon>FieldLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\H3Label.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\H3Label.Designer.cs">
+      <DependentUpon>H3Label.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\HR.Designer.cs">
+      <DependentUpon>HR.cs</DependentUpon>
+    </Compile>
     <Compile Include="NationalDatabaseTemplateDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NationalDatabaseTemplateDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Translations.Designer.cs">
-      <DependentUpon>Translations.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="AppLogic\Localizer.cs" />
     <Compile Include="Shell.cs">
@@ -140,15 +166,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Translations.en-US.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Translations.en-US.resx</DependentUpon>
+    <Compile Include="UpdateDatabase.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Translations.fr-FR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Translations.fr-FR.resx</DependentUpon>
+    <Compile Include="UpdateDatabase.Designer.cs">
+      <DependentUpon>UpdateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Updates.cs">
       <SubType>Form</SubType>
@@ -156,17 +178,35 @@
     <Compile Include="Updates.Designer.cs">
       <DependentUpon>Updates.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AdminLevelMultiselect.cs">
+    <Compile Include="View\Demography\AdminLevelMultiselect.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\AdminLevelMultiselect.Designer.cs">
+    <Compile Include="View\Demography\AdminLevelMultiselect.Designer.cs">
       <DependentUpon>AdminLevelMultiselect.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AdminLevelPickerControl.cs">
+    <Compile Include="Controls\AdminLevelPickerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\AdminLevelPickerControl.Designer.cs">
+    <Compile Include="Controls\AdminLevelPickerControl.Designer.cs">
       <DependentUpon>AdminLevelPickerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseDistributionEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseDistributionEdit.Designer.cs">
+      <DependentUpon>DiseaseDistributionEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseDistributionIndicators.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseDistributionIndicators.Designer.cs">
+      <DependentUpon>DiseaseDistributionIndicators.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseasePopulationEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseasePopulationEdit.Designer.cs">
+      <DependentUpon>DiseasePopulationEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Reports\ReportIndicatorControl.cs">
       <SubType>UserControl</SubType>
@@ -210,10 +250,10 @@
     <Compile Include="View\IndicatorAdd.Designer.cs">
       <DependentUpon>IndicatorAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\CustomIndicatorControl.cs">
+    <Compile Include="Controls\CustomIndicatorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\CustomIndicatorControl.Designer.cs">
+    <Compile Include="Controls\CustomIndicatorControl.Designer.cs">
       <DependentUpon>CustomIndicatorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Demography\CountryView.cs">
@@ -288,40 +328,40 @@
     <Compile Include="View\Intervention\IntvTypeEdit.Designer.cs">
       <DependentUpon>IntvTypeEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Modals\AdminLevelModal.cs">
+    <Compile Include="View\Demography\AdminLevelModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Modals\AdminLevelModal.Designer.cs">
+    <Compile Include="View\Demography\AdminLevelModal.Designer.cs">
       <DependentUpon>AdminLevelModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Modals\AdminLevelPicker.cs">
+    <Compile Include="View\Demography\AdminLevelPicker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Modals\AdminLevelPicker.Designer.cs">
+    <Compile Include="View\Demography\AdminLevelPicker.Designer.cs">
       <DependentUpon>AdminLevelPicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Modals\CountryModal.cs">
+    <Compile Include="View\Demography\CountryModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Modals\CountryModal.Designer.cs">
+    <Compile Include="View\Demography\CountryModal.Designer.cs">
       <DependentUpon>CountryModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Modals\ErrorModal.cs">
+    <Compile Include="View\ErrorModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Modals\ErrorModal.Designer.cs">
+    <Compile Include="View\ErrorModal.Designer.cs">
       <DependentUpon>ErrorModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Modals\PopGroupModal.cs">
+    <Compile Include="View\PopGroupModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Modals\PopGroupModal.Designer.cs">
+    <Compile Include="View\PopGroupModal.Designer.cs">
       <DependentUpon>PopGroupModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Modals\DiseaseModal.cs">
+    <Compile Include="View\DiseaseDistribution\DiseaseModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Modals\DiseaseModal.Designer.cs">
+    <Compile Include="View\DiseaseDistribution\DiseaseModal.Designer.cs">
       <DependentUpon>DiseaseModal.cs</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.cs">
@@ -330,10 +370,10 @@
     <Compile Include="View\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Modals\SampleModal.cs">
+    <Compile Include="View\SampleModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Modals\SampleModal.Designer.cs">
+    <Compile Include="View\SampleModal.Designer.cs">
       <DependentUpon>SampleModal.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Reports\ReportCreatorView.cs">
@@ -354,10 +394,10 @@
     <Compile Include="View\SettingsView.Designer.cs">
       <DependentUpon>SettingsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Modals\TranslationModal.cs">
+    <Compile Include="View\TranslationModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Modals\TranslationModal.Designer.cs">
+    <Compile Include="View\TranslationModal.Designer.cs">
       <DependentUpon>TranslationModal.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Survey\SurveyBaseView.cs">
@@ -405,9 +445,20 @@
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Translations.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Translations.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Controls\FundersControl.resx">
+      <DependentUpon>FundersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\H3Required.resx">
+      <DependentUpon>H3Required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FieldLink.resx">
+      <DependentUpon>FieldLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\H3Label.resx">
+      <DependentUpon>H3Label.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\HR.resx">
+      <DependentUpon>HR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -419,25 +470,29 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Translations.en-US.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Translations.en-US.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Translations.fr-FR.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Translations.fr-FR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateDatabase.resx">
+      <DependentUpon>UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Updates.resx">
       <DependentUpon>Updates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\AdminLevelMultiselect.resx">
+    <EmbeddedResource Include="View\Demography\AdminLevelMultiselect.resx">
       <DependentUpon>AdminLevelMultiselect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\AdminLevelPickerControl.resx">
+    <EmbeddedResource Include="Controls\AdminLevelPickerControl.resx">
       <DependentUpon>AdminLevelPickerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistributionEdit.resx">
+      <DependentUpon>DiseaseDistributionEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistributionIndicators.resx">
+      <DependentUpon>DiseaseDistributionIndicators.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DiseaseDistribution\DiseasePopulationEdit.resx">
+      <DependentUpon>DiseasePopulationEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ReportIndicatorControl.resx">
       <DependentUpon>ReportIndicatorControl.cs</DependentUpon>
@@ -460,7 +515,7 @@
     <EmbeddedResource Include="View\IndicatorAdd.resx">
       <DependentUpon>IndicatorAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\CustomIndicatorControl.resx">
+    <EmbeddedResource Include="Controls\CustomIndicatorControl.resx">
       <DependentUpon>CustomIndicatorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\CountryView.resx">
@@ -499,28 +554,28 @@
     <EmbeddedResource Include="View\Intervention\IntvTypeEdit.resx">
       <DependentUpon>IntvTypeEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Modals\AdminLevelModal.resx">
+    <EmbeddedResource Include="View\Demography\AdminLevelModal.resx">
       <DependentUpon>AdminLevelModal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Modals\AdminLevelPicker.resx">
+    <EmbeddedResource Include="View\Demography\AdminLevelPicker.resx">
       <DependentUpon>AdminLevelPicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Modals\CountryModal.resx">
+    <EmbeddedResource Include="View\Demography\CountryModal.resx">
       <DependentUpon>CountryModal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Modals\ErrorModal.resx">
+    <EmbeddedResource Include="View\ErrorModal.resx">
       <DependentUpon>ErrorModal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Modals\PopGroupModal.resx">
+    <EmbeddedResource Include="View\PopGroupModal.resx">
       <DependentUpon>PopGroupModal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Modals\DiseaseModal.resx">
+    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseModal.resx">
       <DependentUpon>DiseaseModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Modals\SampleModal.resx">
+    <EmbeddedResource Include="View\SampleModal.resx">
       <DependentUpon>SampleModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ReportCreatorView.resx">
@@ -532,7 +587,7 @@
     <EmbeddedResource Include="View\SettingsView.resx">
       <DependentUpon>SettingsView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Modals\TranslationModal.resx">
+    <EmbeddedResource Include="View\TranslationModal.resx">
       <DependentUpon>TranslationModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Survey\SurveyBaseView.resx">
@@ -574,6 +629,8 @@
     <None Include="Properties\DataSources\Nada.Model.Country.datasource" />
     <None Include="Properties\DataSources\Nada.Model.CountryDemography.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Disease.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.DiseaseDistribution.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.DiseasePopulation.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.DistributionMethod.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.IntvBase.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.IntvType.datasource" />
@@ -589,6 +646,7 @@
     <None Include="Properties\DataSources\Nada.Model.Survey.SurveyIndicator.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Survey.SurveyType.datasource" />
     <None Include="Properties\DataSources\Nada.Model.TranslatedValue.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Vector.datasource" />
     <None Include="Properties\DataSources\Nada.UI.Model.Language.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -604,6 +662,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\button-dashboard.png" />
+    <Content Include="Images\button-help.png" />
+    <Content Include="Images\header-survey.png" />
     <Content Include="NationalDatabaseTemplate.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -630,6 +691,10 @@
     <ProjectReference Include="..\Nada.DA\Nada.DA.csproj">
       <Project>{4b602617-32b5-492a-8d10-653f1c509075}</Project>
       <Name>Nada.DA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nada.Globalization\Nada.Globalization.csproj">
+      <Project>{14b15d94-7af4-43ff-aa5b-178a7edc8abb}</Project>
+      <Name>Nada.Globalization</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nada.Model\Nada.Model.csproj">
       <Project>{9887365d-56c1-4344-9753-91a5d0bf656c}</Project>

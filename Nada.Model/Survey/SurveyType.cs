@@ -6,7 +6,7 @@ using Nada.Model.Base;
 
 namespace Nada.Model.Survey
 {
-    public class SurveyType : NadaClass
+    public class SurveyType : NadaClass, IHaveDynamicIndicators
     {
         public SurveyType()
         {
