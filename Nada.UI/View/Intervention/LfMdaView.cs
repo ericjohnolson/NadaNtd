@@ -48,7 +48,7 @@ namespace Nada.UI.View.Intervention
                     lbMeds.SelectedItem = m;
                 bsIntv.DataSource = model;
                 bsType.DataSource = model.IntvType;
-                customIndicatorControl1.LoadIndicators(model.IntvType.Indicators.Cast<IDynamicIndicator>());
+                customIndicatorControl1.LoadIndicators(model.IntvType.Indicators);
             }
         }
 
@@ -108,7 +108,7 @@ namespace Nada.UI.View.Intervention
 
         void editor_OnSave()
         {
-            customIndicatorControl1.LoadIndicators(model.IntvType.Indicators.Cast<IDynamicIndicator>());
+            customIndicatorControl1.LoadIndicators(model.IntvType.Indicators);
             bsType.ResetBindings(false);
         }
 

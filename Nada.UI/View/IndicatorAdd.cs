@@ -33,6 +33,7 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 bsIndicator.DataSource = model;
             }
         }

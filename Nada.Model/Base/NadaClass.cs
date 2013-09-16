@@ -52,6 +52,18 @@ namespace Nada.Model.Base
             return isValid;
         }
 
+        public string GetAllErrors()
+        {
+            string allErrors = string.Empty;
+            foreach (string prop in propertyNames)
+            {
+                if (!string.IsNullOrEmpty(this[prop]))
+                {
+                    allErrors += this[prop] + Environment.NewLine;
+                }
+            }
+            return allErrors;
+        }
 
         protected string _lastError = "";
 

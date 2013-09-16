@@ -37,7 +37,7 @@ namespace Nada.UI.View
                 repo = new DiseaseRepository();
                 openFileDialog1.Filter = "Excel files|*.xlsx;*.xls";
                 bsDiseaseDistribution.DataSource = model;
-                customIndicatorControl1.LoadIndicators(model.Indicators.Cast<IDynamicIndicator>());
+                customIndicatorControl1.LoadIndicators(model.Indicators);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Nada.UI.View
 
         void editor_OnSave()
         {
-            customIndicatorControl1.LoadIndicators(model.Indicators.Cast<IDynamicIndicator>());
+            customIndicatorControl1.LoadIndicators(model.Indicators);
         }
 
         private void lnkCreateImport_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)

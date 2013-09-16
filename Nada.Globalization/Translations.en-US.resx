@@ -117,23 +117,221 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutMenu" xml:space="preserve">
+    <value>About National Database Template</value>
+  </data>
+  <data name="AddIndicatorLink" xml:space="preserve">
+    <value>Add/remove indicators &gt;</value>
+  </data>
+  <data name="AgeRange" xml:space="preserve">
+    <value>Age range</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>NTD National Database</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CasualAgent" xml:space="preserve">
+    <value>Casual agent</value>
+  </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="CreateImportFile" xml:space="preserve">
+    <value>Create Import File</value>
+  </data>
+  <data name="CustomIndicator" xml:space="preserve">
+    <value>Custom Indicator</value>
+  </data>
+  <data name="CustomIndicatorName" xml:space="preserve">
+    <value>Custom indicator name</value>
+  </data>
+  <data name="DashboardPlaceholder" xml:space="preserve">
+    <value>Dashboard/Getting Stared Placeholder</value>
+  </data>
+  <data name="DataType" xml:space="preserve">
+    <value>Data type</value>
+  </data>
+  <data name="Demography" xml:space="preserve">
+    <value>Demography</value>
+  </data>
+  <data name="DiseaseDistribution" xml:space="preserve">
+    <value>Disease Distribution</value>
+  </data>
+  <data name="Examined" xml:space="preserve">
+    <value>Number examined</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="ImportData" xml:space="preserve">
+    <value>Import new data</value>
+  </data>
+  <data name="ImportNoDataError" xml:space="preserve">
+    <value>The file was an incorrect format or had no data</value>
+  </data>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>Successfully added {0} new records!</value>
+  </data>
+  <data name="Interventions" xml:space="preserve">
+    <value>Interventions</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last Updated:</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="LevelImplementation" xml:space="preserve">
+    <value>Level of implementation</value>
+  </data>
+  <data name="LF" xml:space="preserve">
+    <value>LF</value>
+  </data>
+  <data name="LFDiseaseDistribution" xml:space="preserve">
+    <value>LF Disease Distribution...</value>
+  </data>
+  <data name="LFHydroceleMorbidity" xml:space="preserve">
+    <value>LF Hydrocele Morbidity</value>
+  </data>
+  <data name="LFLymphedemaMorbidity" xml:space="preserve">
+    <value>LF Lymphedema Morbidity</value>
+  </data>
+  <data name="LFMDA" xml:space="preserve">
+    <value>LF MDA</value>
+  </data>
+  <data name="LFPopulationInformation" xml:space="preserve">
+    <value>LF Population Information</value>
+  </data>
+  <data name="LfSentinelImport" xml:space="preserve">
+    <value>LF Sentinel-Spot Check Survey Import</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location:</value>
+  </data>
+  <data name="LocationSelectLink" xml:space="preserve">
+    <value>Select location &gt;</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Log in.</value>
   </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="Mapping" xml:space="preserve">
+    <value>Mapping</value>
+  </data>
+  <data name="MeanDensity" xml:space="preserve">
+    <value>Mean density</value>
+  </data>
+  <data name="MfCount" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="MfLoad" xml:space="preserve">
+    <value>Community Mf Load</value>
+  </data>
+  <data name="MonitoringTraining" xml:space="preserve">
+    <value>Monitoring and Training</value>
+  </data>
+  <data name="NewData" xml:space="preserve">
+    <value>Enter new data</value>
+  </data>
+  <data name="Nonresponsive" xml:space="preserve">
+    <value>Number with nonresponse</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Partners" xml:space="preserve">
+    <value>Funders/Partners</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="PercentPositive" xml:space="preserve">
+    <value>% positive</value>
+  </data>
+  <data name="Positive" xml:space="preserve">
+    <value>Number positive</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>Required</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>NTD National Database</value>
+  <data name="RoundsMda" xml:space="preserve">
+    <value>Number of rounds of PC  completed prior to survey implementation</value>
+  </data>
+  <data name="Sampled" xml:space="preserve">
+    <value>Number sampled</value>
+  </data>
+  <data name="SampleSize" xml:space="preserve">
+    <value>Target sample size</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
+  <data name="SentinelSite" xml:space="preserve">
+    <value>Sentinel Site</value>
+  </data>
+  <data name="SentinelSites" xml:space="preserve">
+    <value>Sentinel sites</value>
+  </data>
+  <data name="SentinelSpotSurvey" xml:space="preserve">
+    <value>Sentinel/Spot Check Site Survey</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Site name</value>
+  </data>
+  <data name="SiteType" xml:space="preserve">
+    <value>Type of site</value>
+  </data>
+  <data name="SortOrder" xml:space="preserve">
+    <value>Sort order</value>
+  </data>
+  <data name="SurveyInformation" xml:space="preserve">
+    <value>Survey Information</value>
+  </data>
+  <data name="SurveyName" xml:space="preserve">
+    <value>Survey name</value>
+  </data>
+  <data name="Surveys" xml:space="preserve">
+    <value>Surveys</value>
+  </data>
+  <data name="TAS" xml:space="preserve">
+    <value>TAS</value>
+  </data>
+  <data name="TestType" xml:space="preserve">
+    <value>Test type</value>
+  </data>
+  <data name="TimingType" xml:space="preserve">
+    <value>Survey timing</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Upload File</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="ValidationError" xml:space="preserve">
+    <value>Please fix the errors before continuing.</value>
   </data>
   <data name="ValidLatitude" xml:space="preserve">
     <value>Latitude must be between -90° and 90°</value>
@@ -147,13 +345,19 @@
   <data name="ValidYear" xml:space="preserve">
     <value>Must be a valid year (1900-2050)</value>
   </data>
+  <data name="Vectors" xml:space="preserve">
+    <value>Vectors</value>
+  </data>
+  <data name="ViewHelp" xml:space="preserve">
+    <value>View Help</value>
+  </data>
+  <data name="Viewreports" xml:space="preserve">
+    <value>View reports</value>
+  </data>
   <data name="WelcomeTitle" xml:space="preserve">
-    <value>Hi</value>
+    <value>Hello</value>
   </data>
-  <data name="ValidationError" xml:space="preserve">
-    <value>Please fix the errors before continuing.</value>
-  </data>
-  <data name="LastUpdated" xml:space="preserve">
-    <value>Last Updated:</value>
+  <data name="YearFirstRoundPc" xml:space="preserve">
+    <value>Date of first round of MDA (Year)</value>
   </data>
 </root>

@@ -36,6 +36,7 @@ namespace Nada.UI.View.Survey
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 repo = new SurveyRepository();
                 bsSurveyType.DataSource = model;
                 lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));

@@ -9,4 +9,9 @@ namespace Nada.Model
     {
         List<Indicator> Indicators { get; set; }
     }
+
+    public interface IHaveDynamicIndicatorValues
+    {
+        List<IndicatorValue> IndicatorValues { get; set; }
+    }
 }

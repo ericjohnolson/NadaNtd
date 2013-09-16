@@ -52,9 +52,43 @@ namespace Nada.Model.Survey
         public string SpotCheckAdminLevel { get; set; }
         public string SentinelSiteName { get; set; }
 
+        public void MapPropertiesToIndicators()
+        {
+            Dictionary<string, Indicator> inds = Util.CreateIndicatorDictionary(TypeOfSurvey);
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["CasualAgent"].Id, DynamicValue = CasualAgent });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["YearFirstRoundPc"].Id, DynamicValue = YearFirstRoundPc.HasValue ? YearFirstRoundPc.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["RoundsMda"].Id, DynamicValue = RoundsMda.HasValue ? RoundsMda.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["Examined"].Id, DynamicValue = Examined.HasValue ? Examined.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["Positive"].Id, DynamicValue = Positive.HasValue ? Positive.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["PercentPositive"].Id, DynamicValue = PercentPositive.HasValue ? PercentPositive.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["MeanDensity"].Id, DynamicValue = MeanDensity.HasValue ? MeanDensity.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["MfCount"].Id, DynamicValue = MfCount.HasValue ? MfCount.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["MfLoad"].Id, DynamicValue = MfLoad.HasValue ? MfLoad.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["SampleSize"].Id, DynamicValue = SampleSize.HasValue ? SampleSize.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["Sampled"].Id, DynamicValue = Sampled.HasValue ? Sampled.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["Nonresponsive"].Id, DynamicValue = Nonresponsive.HasValue ? Nonresponsive.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["AgeRange"].Id, DynamicValue = AgeRange }); 
+        }
+
+        public void MapIndicatorsToProperties()
+        {
+            Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
+            CasualAgent = inds["CasualAgent"].DynamicValue;
+            AgeRange = inds["AgeRange"].DynamicValue;
+            YearFirstRoundPc = inds["YearFirstRoundPc"].DynamicValue.ToNullable<int>();
+            RoundsMda = inds["RoundsMda"].DynamicValue.ToNullable<int>();
+            Examined = inds["Examined"].DynamicValue.ToNullable<int>();
+            Positive = inds["Positive"].DynamicValue.ToNullable<int>();
+            PercentPositive = inds["PercentPositive"].DynamicValue.ToNullable<double>();
+            MeanDensity = inds["MeanDensity"].DynamicValue.ToNullable<double>();
+            MfCount = inds["MfCount"].DynamicValue.ToNullable<int>();
+            MfLoad = inds["MfLoad"].DynamicValue.ToNullable<double>();
+            SampleSize = inds["SampleSize"].DynamicValue.ToNullable<int>();
+            Sampled = inds["Sampled"].DynamicValue.ToNullable<int>();
+            Nonresponsive = inds["Nonresponsive"].DynamicValue.ToNullable<int>();
+        }
 
         #region IDataErrorInfo Members
-
         public override string this[string columnName]
         {
             get
@@ -113,5 +147,6 @@ namespace Nada.Model.Survey
         }
 
         #endregion
+
     }
 }

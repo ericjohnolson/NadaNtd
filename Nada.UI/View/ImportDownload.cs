@@ -39,6 +39,7 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 openFileDialog1.Filter = "Excel files|*.xlsx;*.xls";
                 saveFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveFileDialog1.FileName = importer.ImportName;

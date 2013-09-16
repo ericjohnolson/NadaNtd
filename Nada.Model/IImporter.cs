@@ -10,6 +10,7 @@ namespace Nada.Model
     {
         string ImportName { get; }
         System.Data.DataTable GetDataTable();
+
         ImportResult ImportData(string filePath, int userId);
     }
 

@@ -117,10 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Steps to get stared, manuals.  Links to country set up information.  Links to importing demography? we should have the steps necessary to start documented with check boxes and we can force them to finish each one before we change their welcome page to the dashboard and quick links for progress reports.</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu justo ac ligula iaculis rutrum nec ac mi. Praesent tortor sapien, malesuada nec mattis vitae, tempor quis arcu. Sed et diam ut turpis dictum condimentum. Sed dapibus velit felis, in volutpat nulla feugiat porta. Curabitur urna felis, ornare quis quam vel, bibendum sollicitudin tellus. Fusce iaculis augue metus. Fusce accumsan ipsum sem, rhoncus tempus tellus cursus id. Praesent volutpat consequat felis vitae sagittis. Mauris eu sem vel purus laoreet vulputate. Integer ac ultricies lectus. Etiam magna lectus, condimentum et erat nec, tincidunt pulvinar sem. Duis tincidunt, est accumsan feugiat commodo, neque dui cursus nisi, sed tincidunt ipsum orci vitae dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras vel sem tortor. Duis luctus faucibus luctus. Quisque eget orci et mi imperdiet fermentum sit amet blandit augue. </value>
-  </data>
 </root>

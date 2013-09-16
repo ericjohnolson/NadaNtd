@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.h3Label3 = new Nada.UI.Controls.H3Label();
+            this.h3Label2 = new Nada.UI.Controls.H3Label();
+            this.h3Label1 = new Nada.UI.Controls.H3Label();
+            this.btnAddNew = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cbLanguages = new System.Windows.Forms.ComboBox();
             this.bsLanguages = new System.Windows.Forms.BindingSource(this.components);
-            this.lblLang = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tbUid = new System.Windows.Forms.TextBox();
             this.tbPwd = new System.Windows.Forms.TextBox();
-            this.lblPwd = new System.Windows.Forms.Label();
-            this.lblUid = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).BeginInit();
@@ -63,57 +63,90 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.h3Label3);
+            this.panel1.Controls.Add(this.h3Label2);
+            this.panel1.Controls.Add(this.h3Label1);
+            this.panel1.Controls.Add(this.btnAddNew);
             this.panel1.Controls.Add(this.cbLanguages);
-            this.panel1.Controls.Add(this.lblLang);
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.tbUid);
             this.panel1.Controls.Add(this.tbPwd);
-            this.panel1.Controls.Add(this.lblPwd);
-            this.panel1.Controls.Add(this.lblUid);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(253, 153);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(294, 246);
             this.panel1.TabIndex = 0;
             // 
+            // h3Label3
+            // 
+            this.h3Label3.AutoSize = true;
+            this.h3Label3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Label3.Location = new System.Drawing.Point(61, 137);
+            this.h3Label3.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label3.Name = "h3Label3";
+            this.h3Label3.Size = new System.Drawing.Size(69, 16);
+            this.h3Label3.TabIndex = 10;
+            this.h3Label3.Tag = "Language";
+            this.h3Label3.Text = "Language";
+            this.h3Label3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3Label2
+            // 
+            this.h3Label2.AutoSize = true;
+            this.h3Label2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Label2.Location = new System.Drawing.Point(61, 95);
+            this.h3Label2.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label2.Name = "h3Label2";
+            this.h3Label2.Size = new System.Drawing.Size(68, 16);
+            this.h3Label2.TabIndex = 9;
+            this.h3Label2.Tag = "Password";
+            this.h3Label2.Text = "Password";
+            this.h3Label2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3Label1
+            // 
+            this.h3Label1.AutoSize = true;
+            this.h3Label1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Label1.Location = new System.Drawing.Point(61, 53);
+            this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label1.Name = "h3Label1";
+            this.h3Label1.Size = new System.Drawing.Size(71, 16);
+            this.h3Label1.TabIndex = 8;
+            this.h3Label1.Tag = "Username";
+            this.h3Label1.Text = "Username";
+            this.h3Label1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // btnAddNew
+            // 
+            this.btnAddNew.Location = new System.Drawing.Point(163, 193);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(75, 25);
+            this.btnAddNew.TabIndex = 7;
+            this.btnAddNew.Tag = "SignIn";
+            this.btnAddNew.Values.Text = "Sign In";
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
+            // 
             // cbLanguages
             // 
             this.cbLanguages.DataSource = this.bsLanguages;
             this.cbLanguages.DisplayMember = "Name";
             this.cbLanguages.FormattingEnabled = true;
-            this.cbLanguages.Location = new System.Drawing.Point(15, 109);
+            this.cbLanguages.Location = new System.Drawing.Point(61, 156);
             this.cbLanguages.Name = "cbLanguages";
             this.cbLanguages.Size = new System.Drawing.Size(177, 21);
             this.cbLanguages.TabIndex = 2;
             this.cbLanguages.ValueMember = "IsoCode";
+            this.cbLanguages.SelectedIndexChanged += new System.EventHandler(this.cbLanguages_SelectedIndexChanged);
             // 
             // bsLanguages
             // 
             this.bsLanguages.DataSource = typeof(Nada.Model.Language);
             // 
-            // lblLang
-            // 
-            this.lblLang.AutoSize = true;
-            this.lblLang.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLang.Location = new System.Drawing.Point(12, 91);
-            this.lblLang.Name = "lblLang";
-            this.lblLang.Size = new System.Drawing.Size(64, 14);
-            this.lblLang.TabIndex = 6;
-            this.lblLang.Text = "Language";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(15, 145);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // tbUid
             // 
-            this.tbUid.Location = new System.Drawing.Point(15, 28);
+            this.tbUid.Location = new System.Drawing.Point(61, 72);
             this.tbUid.Name = "tbUid";
             this.tbUid.Size = new System.Drawing.Size(177, 20);
             this.tbUid.TabIndex = 0;
@@ -121,32 +154,12 @@
             // 
             // tbPwd
             // 
-            this.tbPwd.Location = new System.Drawing.Point(15, 68);
+            this.tbPwd.Location = new System.Drawing.Point(61, 114);
             this.tbPwd.Name = "tbPwd";
             this.tbPwd.PasswordChar = '*';
             this.tbPwd.Size = new System.Drawing.Size(177, 20);
             this.tbPwd.TabIndex = 1;
             this.tbPwd.Text = "@ntd1one!";
-            // 
-            // lblPwd
-            // 
-            this.lblPwd.AutoSize = true;
-            this.lblPwd.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPwd.Location = new System.Drawing.Point(12, 51);
-            this.lblPwd.Name = "lblPwd";
-            this.lblPwd.Size = new System.Drawing.Size(60, 14);
-            this.lblPwd.TabIndex = 5;
-            this.lblPwd.Text = "Password";
-            // 
-            // lblUid
-            // 
-            this.lblUid.AutoSize = true;
-            this.lblUid.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUid.Location = new System.Drawing.Point(12, 12);
-            this.lblUid.Name = "lblUid";
-            this.lblUid.Size = new System.Drawing.Size(66, 14);
-            this.lblUid.TabIndex = 4;
-            this.lblUid.Text = "Username";
             // 
             // LoginView
             // 
@@ -169,13 +182,13 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox tbUid;
         private System.Windows.Forms.TextBox tbPwd;
-        private System.Windows.Forms.Label lblPwd;
-        private System.Windows.Forms.Label lblUid;
         private System.Windows.Forms.ComboBox cbLanguages;
-        private System.Windows.Forms.Label lblLang;
         private System.Windows.Forms.BindingSource bsLanguages;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddNew;
+        private Controls.H3Label h3Label3;
+        private Controls.H3Label h3Label2;
+        private Controls.H3Label h3Label1;
     }
 }

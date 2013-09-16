@@ -7,7 +7,7 @@ using Nada.Model.Base;
 namespace Nada.Model
 {
     [Serializable]
-    public class Indicator : NadaClass, IDynamicIndicator
+    public class Indicator : NadaClass
     {
         public Indicator()
         {
@@ -19,6 +19,7 @@ namespace Nada.Model
         public int SortOrder { get; set; }
         public bool IsDisabled { get; set; }
         public bool IsEditable { get; set; }
+        public bool IsDisplayed { get; set; }
 
         // Display only props
         public string DataType { get; set; }

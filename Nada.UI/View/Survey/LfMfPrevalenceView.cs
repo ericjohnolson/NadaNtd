@@ -37,6 +37,7 @@ namespace Nada.UI.View.Survey
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
                 adminLevelPickerControl2.OnSelect += adminLevelPickerControl2_OnSelect;
                 r = new SurveyRepository();
@@ -44,7 +45,9 @@ namespace Nada.UI.View.Survey
                 vectorBindingSource.DataSource = r.GetVectors();
                 if (model == null) model = r.CreateSurvey<LfMfPrevalence>(StaticSurveyType.LfPrevalence);
                 bsSurvey.DataSource = model;
-                customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators.Cast<IDynamicIndicator>());
+                var custIndicators = model.TypeOfSurvey.Indicators.Where(i => i.IsDisplayed);
+                if(custIndicators != null && custIndicators.Count() > 0)
+                    customIndicatorControl1.LoadIndicators(custIndicators);
                 customIndicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
                 fundersControl1.LoadItems(model.Partners);
                 foreach (var vector in model.Vectors)
@@ -109,7 +112,7 @@ namespace Nada.UI.View.Survey
         {
             int p, x;
             if (int.TryParse(tbExamined.Text, out x) && int.TryParse(tbPositive.Text, out p))
-                tbPercentPositive.Text = Math.Round(p / Convert.ToDouble(x) * 100.0, 2).ToString();
+                model.PercentPositive = Math.Round(p / Convert.ToDouble(x) * 100.0, 2);
         }
 
         private void tbExamined_Validated(object sender, EventArgs e)
@@ -142,7 +145,8 @@ namespace Nada.UI.View.Survey
                 model.Vectors.Add(vector as Vector);
             //When getting the value back out, use something like the following:
             if (model.SentinelSiteId == -1) model.SentinelSiteId = null;
-            model.CustomIndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
+            model.IndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
+            model.MapPropertiesToIndicators();
             int userId = ApplicationData.Instance.GetUserId();
                 r.Save(model, userId);
             MessageBox.Show("Survey was saved!");
@@ -158,7 +162,7 @@ namespace Nada.UI.View.Survey
 
         void editType_OnSave()
         {
-            customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators.Cast<IDynamicIndicator>());
+            customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators);
         }
         
         private void cancel_Click(object sender, EventArgs e)

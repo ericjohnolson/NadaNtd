@@ -45,6 +45,7 @@
             this.lblLocation.Name = "lblLocation";
             this.lblLocation.Size = new System.Drawing.Size(77, 21);
             this.lblLocation.TabIndex = 16;
+            this.lblLocation.Tag = "Location";
             this.lblLocation.Text = "Location:";
             // 
             // tableLayoutPanel2
@@ -84,8 +85,9 @@
             this.fieldLink1.Location = new System.Drawing.Point(6, 27);
             this.fieldLink1.Margin = new System.Windows.Forms.Padding(0);
             this.fieldLink1.Name = "fieldLink1";
-            this.fieldLink1.Size = new System.Drawing.Size(78, 12);
+            this.fieldLink1.Size = new System.Drawing.Size(72, 12);
             this.fieldLink1.TabIndex = 18;
+            this.fieldLink1.Tag = "LocationSelectLink";
             this.fieldLink1.Text = "Select location >";
             this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);
             // 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
 using System.Data;
+using System.ComponentModel;
 
 namespace Nada.Model
 {
@@ -33,5 +34,19 @@ namespace Nada.Model
             return listToClone.Select(item => (T)item.Clone()).ToList();
         }
 
+        public static Nullable<T> ToNullable<T>(this string s) where T : struct
+        {
+            Nullable<T> result = new Nullable<T>();
+            try
+            {
+                if (!string.IsNullOrEmpty(s) && s.Trim().Length > 0)
+                {
+                    TypeConverter conv = TypeDescriptor.GetConverter(typeof(T));
+                    result = (T)conv.ConvertFrom(s);
+                }
+            }
+            catch { }
+            return result;
+        }
     }
 }

@@ -129,7 +129,7 @@
   <data name="Required" xml:space="preserve">
     <value>Required</value>
   </data>
-  <data name="Title" xml:space="preserve">
+  <data name="ApplicationTitle" xml:space="preserve">
     <value>NTD National Database</value>
   </data>
   <data name="Username" xml:space="preserve">
@@ -218,5 +218,146 @@
   </data>
   <data name="UploadFile" xml:space="preserve">
     <value>Upload File</value>
+  </data>
+  <data name="AgeRange" xml:space="preserve">
+    <value>Age range</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CasualAgent" xml:space="preserve">
+    <value>Casual agent</value>
+  </data>
+  <data name="DashboardPlaceholder" xml:space="preserve">
+    <value>Dashboard/Getting Stared Placeholder</value>
+  </data>
+  <data name="Examined" xml:space="preserve">
+    <value>Number examined</value>
+  </data>
+  <data name="MeanDensity" xml:space="preserve">
+    <value>Mean density</value>
+  </data>
+  <data name="MfCount" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="MfLoad" xml:space="preserve">
+    <value>Community Mf Load</value>
+  </data>
+  <data name="Nonresponsive" xml:space="preserve">
+    <value>Number with nonresponse</value>
+  </data>
+  <data name="Partners" xml:space="preserve">
+    <value>Funders/Partners</value>
+  </data>
+  <data name="PercentPositive" xml:space="preserve">
+    <value>% positive</value>
+  </data>
+  <data name="Positive" xml:space="preserve">
+    <value>Number positive</value>
+  </data>
+  <data name="RoundsMda" xml:space="preserve">
+    <value>Number of rounds of PC  completed prior to survey implementation</value>
+  </data>
+  <data name="Sampled" xml:space="preserve">
+    <value>Number sampled</value>
+  </data>
+  <data name="SampleSize" xml:space="preserve">
+    <value>Target sample size</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="SiteType" xml:space="preserve">
+    <value>Type of site</value>
+  </data>
+  <data name="TestType" xml:space="preserve">
+    <value>Test type</value>
+  </data>
+  <data name="TimingType" xml:space="preserve">
+    <value>Survey timing</value>
+  </data>
+  <data name="Vectors" xml:space="preserve">
+    <value>Vectors</value>
+  </data>
+  <data name="YearFirstRoundPc" xml:space="preserve">
+    <value>Date of first round of MDA (Year)</value>
+  </data>
+  <data name="AboutMenu" xml:space="preserve">
+    <value>About National Database Template</value>
+  </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="Demography" xml:space="preserve">
+    <value>Demography</value>
+  </data>
+  <data name="DiseaseDistribution" xml:space="preserve">
+    <value>Disease Distribution</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="ImportData" xml:space="preserve">
+    <value>Import new data</value>
+  </data>
+  <data name="Interventions" xml:space="preserve">
+    <value>Interventions</value>
+  </data>
+  <data name="LF" xml:space="preserve">
+    <value>LF</value>
+  </data>
+  <data name="LFDiseaseDistribution" xml:space="preserve">
+    <value>LF Disease Distribution...</value>
+  </data>
+  <data name="LFHydroceleMorbidity" xml:space="preserve">
+    <value>LF Hydrocele Morbidity</value>
+  </data>
+  <data name="LFLymphedemaMorbidity" xml:space="preserve">
+    <value>LF Lymphedema Morbidity</value>
+  </data>
+  <data name="LFMDA" xml:space="preserve">
+    <value>LF MDA</value>
+  </data>
+  <data name="LFPopulationInformation" xml:space="preserve">
+    <value>LF Population Information</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location:</value>
+  </data>
+  <data name="LocationSelectLink" xml:space="preserve">
+    <value>Select location &gt;</value>
+  </data>
+  <data name="Mapping" xml:space="preserve">
+    <value>Mapping</value>
+  </data>
+  <data name="MonitoringTraining" xml:space="preserve">
+    <value>Monitoring and Training</value>
+  </data>
+  <data name="NewData" xml:space="preserve">
+    <value>Enter new data</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="SentinelSites" xml:space="preserve">
+    <value>Sentinel sites</value>
+  </data>
+  <data name="SentinelSpotSurvey" xml:space="preserve">
+    <value>Sentinel/Spot Check Site Survey</value>
+  </data>
+  <data name="Surveys" xml:space="preserve">
+    <value>Surveys</value>
+  </data>
+  <data name="TAS" xml:space="preserve">
+    <value>TAS</value>
+  </data>
+  <data name="ViewHelp" xml:space="preserve">
+    <value>View Help</value>
+  </data>
+  <data name="Viewreports" xml:space="preserve">
+    <value>View reports</value>
   </data>
 </root>

@@ -20,7 +20,7 @@ namespace Nada.Model
 
         public ImporterBase(IHaveDynamicIndicators i)
         {
-            dynamicIndicators = CreateIndicatorDictionary(i);
+            dynamicIndicators = Util.CreateIndicatorDictionary(i);
         }
 
         public virtual DataTable GetDataTable()
@@ -33,15 +33,6 @@ namespace Nada.Model
             return data;
         }
 
-        private Dictionary<string, Indicator> CreateIndicatorDictionary(IHaveDynamicIndicators i)
-        {
-            Dictionary<string, Indicator> indicators = new Dictionary<string, Indicator>();
-            foreach (var indicator in i.Indicators)
-            {
-                indicators.Add(indicator.DisplayName, indicator);
-            }
-            return indicators;
-        }
 
         protected void AddDynamicIndicators(DataTable dataTable)
         {
@@ -94,7 +85,8 @@ namespace Nada.Model
                     inds.Add(new IndicatorValue
                     {
                         IndicatorId = dynamicIndicators[col.ColumnName].Id,
-                        DynamicValue = val
+                        DynamicValue = val,
+                        Indicator = dynamicIndicators[col.ColumnName]
                     });
                 }
             }

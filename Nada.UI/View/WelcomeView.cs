@@ -15,17 +15,14 @@ namespace Nada.UI.View
         public WelcomeView()
         {
             InitializeComponent();
-            DoTranslate();
         }
 
-        private void DoTranslate()
+        private void WelcomeView_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
+            if (!DesignMode)
+            {
+                Localizer.TranslateControl(this);
+            }
         }
 
 

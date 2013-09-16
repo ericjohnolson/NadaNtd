@@ -41,7 +41,7 @@ namespace Nada.UI.View
                 r = new DiseaseRepository();
                 if (model == null) model = r.CreatePop(creationType);
                 bsPop.DataSource = model;
-                customIndicatorControl1.LoadIndicators(model.Indicators.Cast<IDynamicIndicator>());
+                customIndicatorControl1.LoadIndicators(model.Indicators);
             }
         }
 
@@ -59,7 +59,7 @@ namespace Nada.UI.View
 
         void editor_OnSave()
         {
-            customIndicatorControl1.LoadIndicators(model.Indicators.Cast<IDynamicIndicator>());
+            customIndicatorControl1.LoadIndicators(model.Indicators);
         }
 
         /// <summary>

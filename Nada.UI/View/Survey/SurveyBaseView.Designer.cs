@@ -42,10 +42,10 @@
             this.lblLastUpdate = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.tblNotes = new System.Windows.Forms.TableLayoutPanel();
+            this.customIndicatorControl1 = new Nada.UI.View.CustomIndicatorControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.adminLevelPickerControl1 = new Nada.UI.View.AdminLevelPickerControl();
-            this.customIndicatorControl1 = new Nada.UI.View.CustomIndicatorControl();
             ((System.ComponentModel.ISupportInitialize)(this.bsType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurvey)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sentinelSiteBindingSource)).BeginInit();
@@ -82,14 +82,14 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(7, 109);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(76, 13);
+            this.label11.Size = new System.Drawing.Size(53, 13);
             this.label11.TabIndex = 22;
-            this.label11.Text = "Date of survey";
+            this.label11.Text = "Start date";
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "MM/dd/yyyy";
-            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsSurvey, "SurveyDate", true));
+            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsSurvey, "StartDate", true));
             this.dateTimePicker1.Location = new System.Drawing.Point(10, 126);
             this.dateTimePicker1.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -178,8 +178,19 @@
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblNotes.Size = new System.Drawing.Size(593, 209);
+            this.tblNotes.Size = new System.Drawing.Size(593, 227);
             this.tblNotes.TabIndex = 40;
+            // 
+            // customIndicatorControl1
+            // 
+            this.customIndicatorControl1.AutoSize = true;
+            this.customIndicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.customIndicatorControl1.Location = new System.Drawing.Point(0, 0);
+            this.customIndicatorControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.customIndicatorControl1.Name = "customIndicatorControl1";
+            this.customIndicatorControl1.Size = new System.Drawing.Size(146, 41);
+            this.customIndicatorControl1.TabIndex = 42;
+            this.customIndicatorControl1.TextColor = System.Drawing.SystemColors.ControlText;
             // 
             // panel1
             // 
@@ -189,7 +200,7 @@
             this.panel1.Controls.Add(this.tableLayoutPanel4);
             this.panel1.Controls.Add(this.textBox10);
             this.panel1.Controls.Add(this.kryptonButton1);
-            this.panel1.Location = new System.Drawing.Point(3, 26);
+            this.panel1.Location = new System.Drawing.Point(3, 44);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(587, 180);
             this.panel1.TabIndex = 0;
@@ -210,19 +221,11 @@
             this.adminLevelPickerControl1.AutoSize = true;
             this.adminLevelPickerControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.adminLevelPickerControl1.Location = new System.Drawing.Point(4, 69);
+            this.adminLevelPickerControl1.Margin = new System.Windows.Forms.Padding(0);
             this.adminLevelPickerControl1.Name = "adminLevelPickerControl1";
-            this.adminLevelPickerControl1.Size = new System.Drawing.Size(123, 37);
+            this.adminLevelPickerControl1.Size = new System.Drawing.Size(187, 39);
             this.adminLevelPickerControl1.TabIndex = 41;
-            // 
-            // customIndicatorControl1
-            // 
-            this.customIndicatorControl1.AutoSize = true;
-            this.customIndicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.customIndicatorControl1.Location = new System.Drawing.Point(0, 0);
-            this.customIndicatorControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.customIndicatorControl1.Name = "customIndicatorControl1";
-            this.customIndicatorControl1.Size = new System.Drawing.Size(162, 23);
-            this.customIndicatorControl1.TabIndex = 42;
+            this.adminLevelPickerControl1.TextColor = System.Drawing.SystemColors.ControlText;
             // 
             // SurveyBaseView
             // 
@@ -239,7 +242,7 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "SurveyBaseView";
-            this.Size = new System.Drawing.Size(597, 364);
+            this.Size = new System.Drawing.Size(597, 382);
             this.Load += new System.EventHandler(this.LfPrevalence_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurvey)).EndInit();

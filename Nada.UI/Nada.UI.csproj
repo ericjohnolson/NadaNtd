@@ -32,7 +32,7 @@
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>16</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -88,6 +88,9 @@
     </Reference>
     <Reference Include="LINQtoCSV">
       <HintPath>..\Solution Items\LINQtoCSV.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="ObjectListView">
       <HintPath>..\Solution Items\ObjectListView.dll</HintPath>
@@ -412,12 +415,6 @@
     <Compile Include="View\Survey\SentinelSiteAdd.Designer.cs">
       <DependentUpon>SentinelSiteAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Survey\SentinelSitePicker.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Survey\SentinelSitePicker.Designer.cs">
-      <DependentUpon>SentinelSitePicker.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Survey\LfMfPrevalenceView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -595,9 +592,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Survey\SentinelSiteAdd.resx">
       <DependentUpon>SentinelSiteAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Survey\SentinelSitePicker.resx">
-      <DependentUpon>SentinelSitePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Survey\LfMfPrevalenceView.resx">
       <DependentUpon>LfMfPrevalenceView.cs</DependentUpon>

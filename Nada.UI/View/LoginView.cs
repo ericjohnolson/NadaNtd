@@ -39,22 +39,25 @@ namespace Nada.UI.View
             {
                 bsLanguages.DataSource = Localizer.SupportedLanguages;
                 cbLanguages.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;
-                TranslatePage();
+                Localizer.TranslateControl(this);
             }
 
         }
-
-        private void TranslatePage()
+        
+        private void cbLanguages_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblLang.Text = Localizer.GetValue("Language");
-            lblPwd.Text = Localizer.GetValue("Password");
-            lblUid.Text = Localizer.GetValue("Username");
+            if (cbLanguages.SelectedValue == null)
+                return;
+
+            CultureInfo ci = new CultureInfo(cbLanguages.SelectedValue.ToString());
+            Localizer.SetCulture(ci);
+            Localizer.TranslateControl(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnAddNew_Click(object sender, EventArgs e)
         {
             DoLogin(tbUid.Text, tbPwd.Text);
-        }
 
+        }
     }
 }

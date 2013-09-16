@@ -39,6 +39,7 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
                 if(model.AdminLevel != null)
                     adminLevelPickerControl1.Select(model.AdminLevel);

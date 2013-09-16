@@ -52,7 +52,8 @@ namespace Nada.UI
 
         private void DoTranslate()
         {
-            this.Text = Localizer.GetValue("Title");
+            this.Text = Localizer.GetValue("ApplicationTitle");
+            Localizer.TranslateControl(this);
         }
 
         public void loginView1_OnLogin()
@@ -61,8 +62,8 @@ namespace Nada.UI
             var lang = Localizer.SupportedLanguages;
             menuMain.Visible = true;
             pnlLeft.Visible = true;
-            LoadView(new View.WelcomeView());
             DoTranslate();
+            LoadView(new View.WelcomeView());
         }
 
         private void LoadView(UserControl view)

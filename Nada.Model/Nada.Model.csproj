@@ -39,6 +39,9 @@
     <Reference Include="LINQtoCSV">
       <HintPath>..\Solution Items\LINQtoCSV.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -80,8 +83,6 @@
     <Compile Include="Csv\CsvItem.cs" />
     <Compile Include="Disease\Disease.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="IDynamicIndicator.cs" />
-    <Compile Include="IDynamicIndicatorValue.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="PopGroup.cs" />

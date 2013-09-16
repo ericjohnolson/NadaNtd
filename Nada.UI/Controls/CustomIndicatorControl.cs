@@ -21,7 +21,7 @@ namespace Nada.UI.View
             InitializeComponent();
         }
 
-        public void LoadIndicators(IEnumerable<IDynamicIndicator> indicators)
+        public void LoadIndicators(IEnumerable<Indicator> indicators)
         {
             this.SuspendLayout();
             controlList = new List<DynamicContainer>();
@@ -53,7 +53,7 @@ namespace Nada.UI.View
             this.ResumeLayout();
         }
 
-        public List<T> GetValues<T>() where T : IDynamicIndicatorValue
+        public List<T> GetValues<T>() where T : IndicatorValue
         {
             var listType = typeof(List<>);
             var constructedListType = listType.MakeGenericType(typeof(T));
@@ -63,20 +63,35 @@ namespace Nada.UI.View
             {
                 T val = (T)Activator.CreateInstance(typeof(T));
                 val.DynamicValue = cnt.GetValue();
-                val.IndicatorId = cnt.IndicatorTypeId;
+                val.Indicator = cnt.Indicator;
                 valList.Add(val);
             }
             return valList;
         }
 
-        private Control CreateControl(IDynamicIndicator indicator)
+        public List<IndicatorValue> GetValues() 
+        {
+            var valList = new List<IndicatorValue>();
+
+            foreach (DynamicContainer cnt in controlList)
+            {
+                IndicatorValue val = new IndicatorValue();
+                val.DynamicValue = cnt.GetValue();
+                val.Indicator = cnt.Indicator;
+                val.IndicatorId = cnt.Indicator.Id;
+                valList.Add(val);
+            }
+            return valList;
+        }
+
+        private Control CreateControl(Indicator indicator)
         {
             if (indicator.DataTypeId == (int)IndicatorDataType.Date)
             {
                 var cntrl = new DateTimePicker { Name = "dynamicDt" + indicator.Id.ToString() };
                 controlList.Add(new DynamicContainer
                 {
-                    IndicatorTypeId = indicator.Id,
+                    Indicator = indicator,
                     GetValue = () => { return cntrl.Value.ToString("MM/dd/yyyy"); }
                 });
                 return cntrl;
@@ -86,7 +101,7 @@ namespace Nada.UI.View
                 var cntrl = new TextBox { Name = "dynamicNum" + indicator.Id.ToString() };
                 controlList.Add(new DynamicContainer
                 {
-                    IndicatorTypeId = indicator.Id,
+                    Indicator = indicator,
                     GetValue = () => { return cntrl.Text; }
                 });
                 return cntrl;
@@ -97,7 +112,7 @@ namespace Nada.UI.View
                 var cntrl = new CheckBox { Name = "dynamicChk" + indicator.Id.ToString() };
                 controlList.Add(new DynamicContainer
                 {
-                    IndicatorTypeId = indicator.Id,
+                    Indicator = indicator,
                     GetValue = () => { return Convert.ToInt32(cntrl.Checked).ToString(); }
                 });
                 return cntrl;
@@ -108,7 +123,7 @@ namespace Nada.UI.View
                 var cntrl = new TextBox { Name = "dynamicTxt" + indicator.Id.ToString() };
                 controlList.Add(new DynamicContainer
                 {
-                    IndicatorTypeId = indicator.Id,
+                    Indicator = indicator,
                     GetValue = () => { return cntrl.Text; }
                 });
                 return cntrl;
@@ -117,7 +132,7 @@ namespace Nada.UI.View
 
         public class DynamicContainer
         {
-            public int IndicatorTypeId { get; set; }
+            public Indicator Indicator { get; set; }
             public delegate string GetValueDelegate();
             public GetValueDelegate GetValue { get; set; }
         }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LfMfPrevalenceView));
             this.label3 = new System.Windows.Forms.Label();
             this.bsSurvey = new System.Windows.Forms.BindingSource(this.components);
             this.cbSiteType = new System.Windows.Forms.ComboBox();
@@ -46,11 +45,8 @@
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.lblLastUpdate = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.tblNotes = new System.Windows.Forms.TableLayoutPanel();
             this.customIndicatorControl1 = new Nada.UI.View.CustomIndicatorControl();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label21 = new System.Windows.Forms.Label();
             this.nadaLabel1 = new Nada.UI.Controls.H3Label();
             this.nadaLabel2 = new Nada.UI.Controls.H3Label();
@@ -99,6 +95,7 @@
             this.hr3 = new Nada.UI.Controls.HR();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lbVectors = new System.Windows.Forms.ListBox();
+            this.vectorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.h3Label16 = new Nada.UI.Controls.H3Label();
             this.fundersControl1 = new Nada.UI.Controls.FundersControl();
             this.h3Label17 = new Nada.UI.Controls.H3Label();
@@ -107,21 +104,23 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.vectorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.hr4 = new Nada.UI.Controls.HR();
+            this.hr5 = new Nada.UI.Controls.HR();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurvey)).BeginInit();
             this.tblSiteName.SuspendLayout();
             this.pnlSentinel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sentinelSiteBindingSource)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.tblNotes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vectorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.vectorBindingSource)).BeginInit();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
@@ -130,11 +129,13 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.label3.Location = new System.Drawing.Point(40, 6);
+            this.label3.Location = new System.Drawing.Point(34, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(298, 30);
+            this.label3.Size = new System.Drawing.Size(290, 30);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Sentinel/Spot Check Site Surveys";
+            this.label3.Tag = "SentinelSpotSurvey";
+            this.label3.Text = "Sentinel/Spot Check Site Survey";
             // 
             // bsSurvey
             // 
@@ -266,6 +267,7 @@
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.kryptonButton1.Size = new System.Drawing.Size(77, 25);
             this.kryptonButton1.TabIndex = 1;
+            this.kryptonButton1.Tag = "Save";
             this.kryptonButton1.Values.Text = "Save";
             this.kryptonButton1.Click += new System.EventHandler(this.save_Click);
             // 
@@ -281,15 +283,13 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.Controls.Add(this.kryptonButton2, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.lblLastUpdate, 5, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label19, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.kryptonButton1, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 50);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(350, 71);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(206, 71);
             this.tableLayoutPanel4.TabIndex = 39;
             // 
             // kryptonButton2
@@ -302,31 +302,6 @@
             this.kryptonButton2.Values.Text = "Cancel";
             this.kryptonButton2.Click += new System.EventHandler(this.cancel_Click);
             // 
-            // lblLastUpdate
-            // 
-            this.lblLastUpdate.AutoSize = true;
-            this.lblLastUpdate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSurvey, "UpdatedBy", true));
-            this.lblLastUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastUpdate.ForeColor = System.Drawing.Color.Gray;
-            this.lblLastUpdate.Location = new System.Drawing.Point(289, 9);
-            this.lblLastUpdate.Margin = new System.Windows.Forms.Padding(3, 9, 3, 0);
-            this.lblLastUpdate.Name = "lblLastUpdate";
-            this.lblLastUpdate.Size = new System.Drawing.Size(58, 13);
-            this.lblLastUpdate.TabIndex = 40;
-            this.lblLastUpdate.Text = "Not Saved";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Gray;
-            this.label19.Location = new System.Drawing.Point(209, 9);
-            this.label19.Margin = new System.Windows.Forms.Padding(3, 9, 3, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(74, 13);
-            this.label19.TabIndex = 4;
-            this.label19.Text = "Last Updated:";
-            // 
             // tblNotes
             // 
             this.tblNotes.AutoSize = true;
@@ -334,37 +309,26 @@
             this.tblNotes.ColumnCount = 1;
             this.tblNotes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblNotes.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tblNotes.Controls.Add(this.customIndicatorControl1, 0, 0);
-            this.tblNotes.Location = new System.Drawing.Point(3, 586);
+            this.tblNotes.Location = new System.Drawing.Point(3, 646);
             this.tblNotes.Name = "tblNotes";
             this.tblNotes.RowCount = 2;
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblNotes.Size = new System.Drawing.Size(356, 124);
+            this.tblNotes.Size = new System.Drawing.Size(212, 77);
             this.tblNotes.TabIndex = 4;
             // 
             // customIndicatorControl1
             // 
             this.customIndicatorControl1.AutoSize = true;
             this.customIndicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.customIndicatorControl1.Location = new System.Drawing.Point(0, 0);
+            this.customIndicatorControl1.Location = new System.Drawing.Point(0, 583);
             this.customIndicatorControl1.Margin = new System.Windows.Forms.Padding(0);
             this.customIndicatorControl1.Name = "customIndicatorControl1";
-            this.customIndicatorControl1.Size = new System.Drawing.Size(152, 47);
+            this.customIndicatorControl1.Size = new System.Drawing.Size(146, 41);
             this.customIndicatorControl1.TabIndex = 0;
             this.customIndicatorControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, -4);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(812, 59);
-            this.pictureBox1.TabIndex = 43;
-            this.pictureBox1.TabStop = false;
             // 
             // label21
             // 
@@ -372,10 +336,12 @@
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.label21.Location = new System.Drawing.Point(13, 6);
+            this.label21.Location = new System.Drawing.Point(0, 0);
+            this.label21.Margin = new System.Windows.Forms.Padding(0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(34, 30);
             this.label21.TabIndex = 44;
+            this.label21.Tag = "LF";
             this.label21.Text = "LF";
             // 
             // nadaLabel1
@@ -468,8 +434,9 @@
             this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSurvey, "TimingType", true));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Mf",
-            "ICT"});
+            "Baseline ",
+            "Mid-term",
+            "TAS eligibility (Pre-TAS)"});
             this.comboBox1.Location = new System.Drawing.Point(3, 84);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(166, 21);
@@ -498,6 +465,7 @@
             this.h3Required1.Name = "h3Required1";
             this.h3Required1.Size = new System.Drawing.Size(91, 16);
             this.h3Required1.TabIndex = 0;
+            this.h3Required1.Tag = "SiteType";
             this.h3Required1.Text = "Type of site";
             this.h3Required1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -512,6 +480,7 @@
             this.h3Required2.Name = "h3Required2";
             this.h3Required2.Size = new System.Drawing.Size(101, 16);
             this.h3Required2.TabIndex = 1;
+            this.h3Required2.Tag = "TimingType";
             this.h3Required2.Text = "Survey timing";
             this.h3Required2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -526,6 +495,7 @@
             this.h3Label1.Name = "h3Label1";
             this.h3Label1.Size = new System.Drawing.Size(68, 16);
             this.h3Label1.TabIndex = 2;
+            this.h3Label1.Tag = "SiteName";
             this.h3Label1.Text = "Site name";
             this.h3Label1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -554,6 +524,7 @@
             this.lblLat.Name = "lblLat";
             this.lblLat.Size = new System.Drawing.Size(55, 16);
             this.lblLat.TabIndex = 4;
+            this.lblLat.Tag = "Latitude";
             this.lblLat.Text = "Latitude";
             this.lblLat.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -568,6 +539,7 @@
             this.lblLng.Name = "lblLng";
             this.lblLng.Size = new System.Drawing.Size(67, 16);
             this.lblLng.TabIndex = 5;
+            this.lblLng.Tag = "Longitude";
             this.lblLng.Text = "Longitude";
             this.lblLng.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -604,6 +576,7 @@
             this.h3Label6.Name = "h3Label6";
             this.h3Label6.Size = new System.Drawing.Size(162, 48);
             this.h3Label6.TabIndex = 7;
+            this.h3Label6.Tag = "RoundsMda";
             this.h3Label6.Text = "Number of rounds of PC  completed prior to survey implementation";
             this.h3Label6.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -618,6 +591,7 @@
             this.h3Required4.Name = "h3Required4";
             this.h3Required4.Size = new System.Drawing.Size(77, 16);
             this.h3Required4.TabIndex = 45;
+            this.h3Required4.Tag = "TestType";
             this.h3Required4.Text = "Test type";
             this.h3Required4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -632,6 +606,7 @@
             this.h3Label8.Name = "h3Label8";
             this.h3Label8.Size = new System.Drawing.Size(87, 16);
             this.h3Label8.TabIndex = 47;
+            this.h3Label8.Tag = "CasualAgent";
             this.h3Label8.Text = "Casual agent";
             this.h3Label8.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -659,6 +634,7 @@
             this.h3Required3.Name = "h3Required3";
             this.h3Required3.Size = new System.Drawing.Size(174, 32);
             this.h3Required3.TabIndex = 10;
+            this.h3Required3.Tag = "YearFirstRoundPc";
             this.h3Required3.Text = "Date of first round of MDA (Year)";
             this.h3Required3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -835,6 +811,7 @@
             this.h3Label9.Name = "h3Label9";
             this.h3Label9.Size = new System.Drawing.Size(123, 16);
             this.h3Label9.TabIndex = 0;
+            this.h3Label9.Tag = "SampleSize";
             this.h3Label9.Text = "Target sample size";
             this.h3Label9.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -849,6 +826,7 @@
             this.h3Required5.Name = "h3Required5";
             this.h3Required5.Size = new System.Drawing.Size(84, 16);
             this.h3Required5.TabIndex = 1;
+            this.h3Required5.Tag = "AgeRange";
             this.h3Required5.Text = "Age range";
             this.h3Required5.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -863,6 +841,7 @@
             this.h3Label10.Name = "h3Label10";
             this.h3Label10.Size = new System.Drawing.Size(112, 16);
             this.h3Label10.TabIndex = 2;
+            this.h3Label10.Tag = "Sampled";
             this.h3Label10.Text = "Number sampled";
             this.h3Label10.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -877,6 +856,7 @@
             this.h3Label11.Name = "h3Label11";
             this.h3Label11.Size = new System.Drawing.Size(163, 16);
             this.h3Label11.TabIndex = 3;
+            this.h3Label11.Tag = "Nonresponsive";
             this.h3Label11.Text = "Number with nonresponse";
             this.h3Label11.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -891,6 +871,7 @@
             this.h3Label12.Name = "h3Label12";
             this.h3Label12.Size = new System.Drawing.Size(125, 16);
             this.h3Label12.TabIndex = 4;
+            this.h3Label12.Tag = "MfLoad";
             this.h3Label12.Text = "Community Mf Load";
             this.h3Label12.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -905,6 +886,7 @@
             this.h3Label13.Name = "h3Label13";
             this.h3Label13.Size = new System.Drawing.Size(70, 16);
             this.h3Label13.TabIndex = 63;
+            this.h3Label13.Tag = "PercentPositive";
             this.h3Label13.Text = "% positive";
             this.h3Label13.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -919,6 +901,7 @@
             this.h3Label14.Name = "h3Label14";
             this.h3Label14.Size = new System.Drawing.Size(88, 16);
             this.h3Label14.TabIndex = 64;
+            this.h3Label14.Tag = "MeanDensity";
             this.h3Label14.Text = "Mean density";
             this.h3Label14.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -933,6 +916,7 @@
             this.h3Label15.Name = "h3Label15";
             this.h3Label15.Size = new System.Drawing.Size(42, 16);
             this.h3Label15.TabIndex = 65;
+            this.h3Label15.Tag = "MfCount";
             this.h3Label15.Text = "Count";
             this.h3Label15.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -947,6 +931,7 @@
             this.h3Required6.Name = "h3Required6";
             this.h3Required6.Size = new System.Drawing.Size(131, 16);
             this.h3Required6.TabIndex = 66;
+            this.h3Required6.Tag = "Examined";
             this.h3Required6.Text = "Number examined";
             this.h3Required6.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -1007,6 +992,10 @@
             this.lbVectors.Size = new System.Drawing.Size(198, 95);
             this.lbVectors.TabIndex = 54;
             // 
+            // vectorBindingSource
+            // 
+            this.vectorBindingSource.DataSource = typeof(Nada.Model.Vector);
+            // 
             // h3Label16
             // 
             this.h3Label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1018,6 +1007,7 @@
             this.h3Label16.Name = "h3Label16";
             this.h3Label16.Size = new System.Drawing.Size(54, 16);
             this.h3Label16.TabIndex = 1;
+            this.h3Label16.Tag = "Vectors";
             this.h3Label16.Text = "Vectors";
             this.h3Label16.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -1041,6 +1031,7 @@
             this.h3Label17.Name = "h3Label17";
             this.h3Label17.Size = new System.Drawing.Size(111, 16);
             this.h3Label17.TabIndex = 2;
+            this.h3Label17.Tag = "Partners";
             this.h3Label17.Text = "Funders/Partners";
             this.h3Label17.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -1064,6 +1055,7 @@
             this.h3Label3.Name = "h3Label3";
             this.h3Label3.Size = new System.Drawing.Size(44, 16);
             this.h3Label3.TabIndex = 5;
+            this.h3Label3.Tag = "Notes";
             this.h3Label3.Text = "Notes";
             this.h3Label3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -1079,17 +1071,19 @@
             this.tableLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.Controls.Add(this.hr5, 0, 12);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.customIndicatorControl1, 0, 10);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.hr1, 0, 9);
             this.tableLayoutPanel5.Controls.Add(this.hr2, 0, 3);
             this.tableLayoutPanel5.Controls.Add(this.hr3, 0, 6);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel1, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.panel1, 0, 7);
-            this.tableLayoutPanel5.Controls.Add(this.tblNotes, 0, 10);
+            this.tableLayoutPanel5.Controls.Add(this.tblNotes, 0, 13);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(10, 100);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 11;
+            this.tableLayoutPanel5.RowCount = 14;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
@@ -1101,7 +1095,10 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(900, 713);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(900, 726);
             this.tableLayoutPanel5.TabIndex = 54;
             // 
             // panel1
@@ -1115,9 +1112,46 @@
             this.panel1.Size = new System.Drawing.Size(676, 86);
             this.panel1.TabIndex = 54;
             // 
-            // vectorBindingSource
+            // tableLayoutPanel6
             // 
-            this.vectorBindingSource.DataSource = typeof(Nada.Model.Vector);
+            this.tableLayoutPanel6.AutoSize = true;
+            this.tableLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel6.Controls.Add(this.label21, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(11, 7);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(324, 30);
+            this.tableLayoutPanel6.TabIndex = 55;
+            // 
+            // hr4
+            // 
+            this.hr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.hr4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hr4.ForeColor = System.Drawing.Color.Gray;
+            this.hr4.Location = new System.Drawing.Point(0, 0);
+            this.hr4.Margin = new System.Windows.Forms.Padding(5);
+            this.hr4.Name = "hr4";
+            this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.hr4.Size = new System.Drawing.Size(913, 5);
+            this.hr4.TabIndex = 56;
+            // 
+            // hr5
+            // 
+            this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.hr5.ForeColor = System.Drawing.Color.Gray;
+            this.hr5.Location = new System.Drawing.Point(0, 633);
+            this.hr5.Margin = new System.Windows.Forms.Padding(0);
+            this.hr5.Name = "hr5";
+            this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.hr5.Size = new System.Drawing.Size(800, 1);
+            this.hr5.TabIndex = 57;
             // 
             // LfMfPrevalenceView
             // 
@@ -1127,16 +1161,15 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.hr4);
+            this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.adminLevelPickerControl1);
             this.Controls.Add(this.nadaLabel2);
             this.Controls.Add(this.nadaLabel1);
-            this.Controls.Add(this.label21);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "LfMfPrevalenceView";
-            this.Size = new System.Drawing.Size(913, 816);
+            this.Size = new System.Drawing.Size(913, 829);
             this.Load += new System.EventHandler(this.LfPrevalence_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsSurvey)).EndInit();
             this.tblSiteName.ResumeLayout(false);
@@ -1145,22 +1178,22 @@
             this.pnlSentinel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sentinelSiteBindingSource)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.tblNotes.ResumeLayout(false);
             this.tblNotes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vectorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.vectorBindingSource)).EndInit();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1177,8 +1210,6 @@
         private System.Windows.Forms.TextBox tbSiteName;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label lblLastUpdate;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.BindingSource bsSurvey;
         private AdminLevelPickerControl adminLevelPickerControl1;
         private System.Windows.Forms.TableLayoutPanel tblNotes;
@@ -1186,7 +1217,6 @@
         private AdminLevelPickerControl adminLevelPickerControl2;
         private System.Windows.Forms.ComboBox cbSites;
         private System.Windows.Forms.BindingSource sentinelSiteBindingSource;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label21;
         private Controls.H3Label nadaLabel1;
         private Controls.H3Label nadaLabel2;
@@ -1246,5 +1276,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.BindingSource vectorBindingSource;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private Controls.HR hr4;
+        private Controls.HR hr5;
     }
 }

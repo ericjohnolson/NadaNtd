@@ -47,7 +47,7 @@ namespace Nada.UI.View.Survey
                 if (model == null) model = r.CreateSurvey(creationType);
                 bsSurvey.DataSource = model;
                 bsType.DataSource = model.TypeOfSurvey;
-                customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators.Cast<IDynamicIndicator>());
+                customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Nada.UI.View.Survey
 
         void editor_OnSave()
         {
-            customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators.Cast<IDynamicIndicator>());
+            customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators);
             bsType.ResetBindings(false);
         }
 
@@ -77,7 +77,7 @@ namespace Nada.UI.View.Survey
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             bsSurvey.EndEdit();
-            model.CustomIndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
+            model.IndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
             int userId = ApplicationData.Instance.GetUserId();
             r.SaveSurvey(model, userId);
             MessageBox.Show("Survey was saved!");

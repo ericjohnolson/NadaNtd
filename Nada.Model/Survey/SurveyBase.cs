@@ -8,7 +8,7 @@ using Nada.Model.Survey;
 namespace Nada.Model.Base
 {
     [Serializable]
-    public class SurveyBase : NadaClass
+    public class SurveyBase : NadaClass, IHaveDynamicIndicatorValues
     {
         public SurveyBase()
         {
@@ -22,6 +22,6 @@ namespace Nada.Model.Base
         public DateTime EndDate { get; set; }
         public SurveyType TypeOfSurvey { get; set; }
         public string Notes { get; set; }
-        public List<IndicatorValue> CustomIndicatorValues { get; set; }
+        public List<IndicatorValue> IndicatorValues { get; set; }
     }
 }

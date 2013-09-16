@@ -19,6 +19,27 @@ namespace Nada.Model
 
                 return (T)formatter.Deserialize(ms);
             }
+
+        }
+
+        public static Dictionary<string, Indicator> CreateIndicatorDictionary(IHaveDynamicIndicators i)
+        {
+            Dictionary<string, Indicator> indicators = new Dictionary<string, Indicator>();
+            foreach (var indicator in i.Indicators)
+            {
+                indicators.Add(indicator.DisplayName, indicator);
+            }
+            return indicators;
+        }
+
+        public static Dictionary<string, IndicatorValue> CreateIndicatorValueDictionary(IHaveDynamicIndicatorValues i)
+        {
+            Dictionary<string, IndicatorValue> indicators = new Dictionary<string, IndicatorValue>();
+            foreach (var val in i.IndicatorValues)
+            {
+                indicators.Add(val.Indicator.DisplayName, val);
+            }
+            return indicators;
         }
     }
 }

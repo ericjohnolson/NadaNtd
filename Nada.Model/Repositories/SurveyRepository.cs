@@ -71,19 +71,19 @@ namespace Nada.Model.Repositories
                     command.ExecuteNonQuery();
                     foreach (var vector in survey.Vectors)
                     {
-                        command = new OleDbCommand(@"INSERT INTO Surveys_to_Vectors (SurveyId, MedicineId) values (@id, @MedicineId)", connection);
+                        command = new OleDbCommand(@"INSERT INTO Surveys_to_Vectors (SurveyId, VectorId) values (@id, @VectorId)", connection);
                         command.Parameters.Add(new OleDbParameter("@id", survey.Id));
-                        command.Parameters.Add(new OleDbParameter("@MedicineId", vector.Id));
+                        command.Parameters.Add(new OleDbParameter("@VectorId", vector.Id));
                         command.ExecuteNonQuery();
                     }
 
-                    command = new OleDbCommand(@"DELETE FROM Surveys_to_Partners WHERE InterventionId=@IntvId", connection);
-                    command.Parameters.Add(new OleDbParameter("@IntvId", survey.Id));
+                    command = new OleDbCommand(@"DELETE FROM Surveys_to_Partners WHERE SurveyId=@SurveyId", connection);
+                    command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
                     command.ExecuteNonQuery();
                     foreach (var partner in survey.Partners)
                     {
-                        command = new OleDbCommand(@"INSERT INTO Surveys_to_Partners (InterventionId, PartnerId) values (@id, @PartnerId)", connection);
-                        command.Parameters.Add(new OleDbParameter("@id", survey.Id));
+                        command = new OleDbCommand(@"INSERT INTO Surveys_to_Partners (SurveyId, PartnerId) values (@SurveyId, @PartnerId)", connection);
+                        command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
                         command.Parameters.Add(new OleDbParameter("@PartnerId", partner.Id));
                         command.ExecuteNonQuery();
                     }
@@ -187,13 +187,13 @@ namespace Nada.Model.Repositories
             command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
             command.ExecuteNonQuery();
 
-            foreach (IndicatorValue val in survey.CustomIndicatorValues)
+            foreach (IndicatorValue val in survey.IndicatorValues)
             {
                 command = new OleDbCommand(@"Insert Into SurveyIndicatorValues (IndicatorId, SurveyId, DynamicValue, UpdatedById, UpdatedAt) VALUES
                         (@IndicatorId, @SurveyId, @DynamicValue, @UpdatedById, @UpdatedAt)", connection);
                 command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
                 command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
-                command.Parameters.Add(new OleDbParameter("@DynamicValue", val.DynamicValue));
+                command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
                 command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                 command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                 command.ExecuteNonQuery();
@@ -213,7 +213,7 @@ namespace Nada.Model.Repositories
             {
                 while (reader.Read())
                 {
-                    survey.CustomIndicatorValues.Add(new IndicatorValue
+                    survey.IndicatorValues.Add(new IndicatorValue
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
@@ -261,6 +261,7 @@ namespace Nada.Model.Repositories
                         SurveyIndicators.SortOrder,
                         SurveyIndicators.IsDisabled,
                         SurveyIndicators.IsEditable,
+                        SurveyIndicators.IsDisplayed,
                         SurveyIndicators.UpdatedAt, 
                         aspnet_users.UserName,
                         IndicatorDataTypes.DataType
@@ -283,6 +284,7 @@ namespace Nada.Model.Repositories
                                 SortOrder = reader.GetValueOrDefault<int>("SortOrder"),
                                 IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
                                 IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
+                                IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
                                 DataType = reader.GetValueOrDefault<string>("DataType")
                             });
                         }
