@@ -202,7 +202,7 @@
             // 
             // bsDiseaseDistribution
             // 
-            this.bsDiseaseDistribution.DataSource = typeof(Nada.Model.DiseaseDistribution);
+            this.bsDiseaseDistribution.DataSource = typeof(Nada.Model.Diseases.DiseaseDistribution);
             // 
             // customIndicatorControl1
             // 

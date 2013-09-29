@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
+using Nada.Model.Diseases;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
@@ -63,10 +64,23 @@ namespace Nada.UI
             menuMain.Visible = true;
             pnlLeft.Visible = true;
             DoTranslate();
-            LoadView(new View.WelcomeView());
+            var dashboard = new DemographyView();
+            LoadDashboard(dashboard);
         }
 
-        private void LoadView(UserControl view)
+        private void LoadDashboard(DemographyView dashboard)
+        {
+            dashboard.StatusChanged += view_StatusChanged;
+            dashboard.LoadView = (v) => { LoadView(v); };
+            dashboard.LoadDashForAdminLevel = (a) => 
+            { 
+                var d = new DemographyView(a);
+                LoadDashboard(d);
+            };
+            LoadView(dashboard);
+        }
+ 
+        void LoadView(UserControl view)
         {
             pnlMain.Controls.Clear();
             currentView = view;
@@ -126,7 +140,7 @@ namespace Nada.UI
         {
             var view = new LfMfPrevalenceView();
             view.StatusChanged += view_StatusChanged;
-            view.OnSave += Survey_OnSave;
+            view.OnClose = Dash_Load;
             LoadView(view);
         }
 
@@ -139,7 +153,12 @@ namespace Nada.UI
 
         void Survey_OnSave(bool doRefresh)
         {
-            LoadView(new View.WelcomeView());
+            LoadView(new DemographyView());
+        }
+
+        void Dash_Load()
+        {
+            LoadView(new DemographyView());
         }
 
         private void lFMDAToolStripMenuItem_Click(object sender, EventArgs e)
@@ -208,7 +227,6 @@ namespace Nada.UI
             SurveyRepository r = new SurveyRepository();
             ImportDownload form = new ImportDownload(new LfSentinelImporter(r.GetSurveyType((int)StaticSurveyType.LfPrevalence)));
             form.ShowDialog();
-
         }
 
 

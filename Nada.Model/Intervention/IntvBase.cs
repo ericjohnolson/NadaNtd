@@ -12,12 +12,15 @@ namespace Nada.Model.Intervention
     {
         public IntvBase()
         {
-            CustomIndicatorValues = new List<IndicatorValue>();
+            IndicatorValues = new List<IndicatorValue>();
         }
         public Nullable<int> AdminLevelId { get; set; }
-        public DateTime IntvDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public IntvType IntvType { get; set; }
         public string Notes { get; set; }
-        public List<IndicatorValue> CustomIndicatorValues { get; set; }
+        public List<IndicatorValue> IndicatorValues { get; set; }
+        public virtual void MapIndicatorsToProperties() { }
+        public virtual void MapPropertiesToIndicators() { }
     }
 }

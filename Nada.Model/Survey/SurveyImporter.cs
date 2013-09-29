@@ -88,13 +88,13 @@ namespace Nada.Model.Survey
                 }
 
                 // HAS ERRORS, report them back?
-                if (errors.Keys.Count > 0)
-                    return new ImportResult
-                    {
-                        WasSuccess = false,
-                        Count = 0,
-                        ErrorMessage = string.Empty
-                    };
+                //if (errors.Keys.Count > 0)
+                //    return new ImportResult
+                //    {
+                //        WasSuccess = false,
+                //        Count = 0,
+                //        ErrorMessage = string.Empty
+                //    };
 
                 // NO ERRORS, do save.
                 foreach (var survey in surveysToSave)

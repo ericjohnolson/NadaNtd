@@ -61,9 +61,7 @@
     <Compile Include="Samples\AccessProviders\SecUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ASPNetDB.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ASPNetDB.accdb" />
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>

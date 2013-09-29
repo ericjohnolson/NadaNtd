@@ -47,19 +47,23 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.lblCustomIndicators = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.lvIndicators)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurveyType)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.pnlName.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(523, 315);
+            this.btnSave.Location = new System.Drawing.Point(106, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(69, 25);
+            this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnSave.Size = new System.Drawing.Size(77, 25);
             this.btnSave.TabIndex = 3;
+            this.btnSave.Tag = "Save";
             this.btnSave.Values.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
@@ -140,11 +144,12 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(437, 315);
+            this.btnCancel.Location = new System.Drawing.Point(3, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnCancel.Size = new System.Drawing.Size(69, 25);
+            this.btnCancel.Size = new System.Drawing.Size(77, 25);
             this.btnCancel.TabIndex = 2;
+            this.btnCancel.Tag = "Cancel";
             this.btnCancel.Values.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -259,17 +264,35 @@
             this.lblCustomIndicators.TabIndex = 21;
             this.lblCustomIndicators.Text = "Custom Indicators";
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.AutoSize = true;
+            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.Controls.Add(this.btnCancel, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnSave, 2, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(406, 318);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(186, 31);
+            this.tableLayoutPanel4.TabIndex = 40;
+            // 
             // SurveyTypeEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(619, 361);
+            this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.hr1);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSave);
             this.Name = "SurveyTypeEdit";
             this.Tag = "SurveyInformation";
             this.Text = "Survey Information";
@@ -282,6 +305,7 @@
             this.pnlName.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,6 +331,7 @@
         private System.Windows.Forms.Panel panel1;
         private Controls.FieldLink fieldLink1;
         private System.Windows.Forms.Label lblCustomIndicators;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
 
     }
 }

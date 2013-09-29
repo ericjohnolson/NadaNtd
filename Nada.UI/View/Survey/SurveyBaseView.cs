@@ -77,7 +77,7 @@ namespace Nada.UI.View.Survey
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             bsSurvey.EndEdit();
-            model.IndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
+            model.IndicatorValues = customIndicatorControl1.GetValues();
             int userId = ApplicationData.Instance.GetUserId();
             r.SaveSurvey(model, userId);
             MessageBox.Show("Survey was saved!");

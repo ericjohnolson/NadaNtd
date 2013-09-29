@@ -14,6 +14,7 @@ namespace Nada.UI.Controls
 {
     public partial class FundersControl : UserControl
     {
+        private List<Partner> partners = null;
         private IntvRepository r = null;
         public FundersControl()
         {
@@ -25,7 +26,8 @@ namespace Nada.UI.Controls
             if (!DesignMode)
             {
                 r = new IntvRepository();
-                partnerBindingSource.DataSource = r.GetPartners();
+                partners = r.GetPartners();
+                partnerBindingSource.DataSource = partners;
             }
         }
 
@@ -34,7 +36,6 @@ namespace Nada.UI.Controls
             PartnerList list = new PartnerList();
             list.OnSave += () => { partnerBindingSource.DataSource = r.GetPartners(); };
             list.ShowDialog();
-
         }
 
         public List<Partner> GetSelected()
@@ -45,10 +46,11 @@ namespace Nada.UI.Controls
             return partners;
         }
 
-        public void LoadItems(List<Partner> partners)
+        public void LoadItems(List<Partner> selected)
         {
-            foreach (var p in partners)
-                lbPartners.SelectedItem = p;
+            lbPartners.ClearSelected();
+            foreach (var p in partners.Where(v => selected.Select(i => i.Id).Contains(v.Id)))
+                lbPartners.SelectedItems.Add(p);
         }
     }
 }

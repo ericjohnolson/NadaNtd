@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Nada.UI.View.Modals
+namespace Nada.UI.Controls
 {
-    public partial class SampleModal : Form
+    public partial class Loading : UserControl
     {
-        public SampleModal()
+        public Loading()
         {
             InitializeComponent();
         }

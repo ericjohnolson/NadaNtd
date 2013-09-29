@@ -70,11 +70,47 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add/remove indicators &gt;.
         /// </summary>
         public static string AddIndicatorLink {
             get {
                 return ResourceManager.GetString("AddIndicatorLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new disease &gt;.
+        /// </summary>
+        public static string AddNewDiseaseLink {
+            get {
+                return ResourceManager.GetString("AddNewDiseaseLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new survey type....
+        /// </summary>
+        public static string AddNewSurveyTypeLink {
+            get {
+                return ResourceManager.GetString("AddNewSurveyTypeLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new Funder/Partner &gt;.
+        /// </summary>
+        public static string AddPartnerLink {
+            get {
+                return ResourceManager.GetString("AddPartnerLink", resourceCulture);
             }
         }
         
@@ -133,6 +169,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Import File.
         /// </summary>
         public static string CreateImportFile {
@@ -178,6 +223,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete?.
+        /// </summary>
+        public static string DeleteConfirmMessage {
+            get {
+                return ResourceManager.GetString("DeleteConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Demography.
         /// </summary>
         public static string Demography {
@@ -196,11 +259,83 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diseases.
+        /// </summary>
+        public static string Diseases {
+            get {
+                return ResourceManager.GetString("Diseases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select diseases targeted..
+        /// </summary>
+        public static string DiseasesRequired {
+            get {
+                return ResourceManager.GetString("DiseasesRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Eligible females targeted.
+        /// </summary>
+        public static string EligibleFemalesTargeted {
+            get {
+                return ResourceManager.GetString("EligibleFemalesTargeted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Eligible males targeted.
+        /// </summary>
+        public static string EligibleMalesTargeted {
+            get {
+                return ResourceManager.GetString("EligibleMalesTargeted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date of MDA.
+        /// </summary>
+        public static string EndDateMda {
+            get {
+                return ResourceManager.GetString("EndDateMda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Epi coverage.
+        /// </summary>
+        public static string EpiCoverage {
+            get {
+                return ResourceManager.GetString("EpiCoverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number examined.
         /// </summary>
         public static string Examined {
             get {
                 return ResourceManager.GetString("Examined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Females treated proportion.
+        /// </summary>
+        public static string FemalesCoverage {
+            get {
+                return ResourceManager.GetString("FemalesCoverage", resourceCulture);
             }
         }
         
@@ -286,6 +421,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leporsy.
+        /// </summary>
+        public static string Leporsy {
+            get {
+                return ResourceManager.GetString("Leporsy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level of implementation.
         /// </summary>
         public static string LevelImplementation {
@@ -358,11 +502,29 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        public static string LoadingMessage {
+            get {
+                return ResourceManager.GetString("LoadingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Location:.
         /// </summary>
         public static string Location {
             get {
                 return ResourceManager.GetString("Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose a location..
+        /// </summary>
+        public static string LocationRequired {
+            get {
+                return ResourceManager.GetString("LocationRequired", resourceCulture);
             }
         }
         
@@ -390,6 +552,15 @@ namespace Nada.Globalization {
         public static string Longitude {
             get {
                 return ResourceManager.GetString("Longitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Males treated proportion.
+        /// </summary>
+        public static string MalesCoverage {
+            get {
+                return ResourceManager.GetString("MalesCoverage", resourceCulture);
             }
         }
         
@@ -466,6 +637,159 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to # Adults targeted.
+        /// </summary>
+        public static string NumAdultsTargeted {
+            get {
+                return ResourceManager.GetString("NumAdultsTargeted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Adults treated.
+        /// </summary>
+        public static string NumAdultsTreated {
+            get {
+                return ResourceManager.GetString("NumAdultsTreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Individuals at risk.
+        /// </summary>
+        public static string NumAtRisk {
+            get {
+                return ResourceManager.GetString("NumAtRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Eligible females treated.
+        /// </summary>
+        public static string NumEligibleFemalesTreated {
+            get {
+                return ResourceManager.GetString("NumEligibleFemalesTreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Eligible males treated.
+        /// </summary>
+        public static string NumEligibleMalesTreated {
+            get {
+                return ResourceManager.GetString("NumEligibleMalesTreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Eligible individuals treated.
+        /// </summary>
+        public static string NumEligibleTreated {
+            get {
+                return ResourceManager.GetString("NumEligibleTreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # PSAC targeted.
+        /// </summary>
+        public static string NumPsacTargeted {
+            get {
+                return ResourceManager.GetString("NumPsacTargeted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # PSAC treated.
+        /// </summary>
+        public static string NumPsacTreated {
+            get {
+                return ResourceManager.GetString("NumPsacTreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Serious adverse events reported.
+        /// </summary>
+        public static string NumSacReported {
+            get {
+                return ResourceManager.GetString("NumSacReported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # SAC targeted.
+        /// </summary>
+        public static string NumSacTargeted {
+            get {
+                return ResourceManager.GetString("NumSacTargeted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # SAC treated.
+        /// </summary>
+        public static string NumSacTreated {
+            get {
+                return ResourceManager.GetString("NumSacTreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Of total, targeted for oncho.
+        /// </summary>
+        public static string NumTargetedOncho {
+            get {
+                return ResourceManager.GetString("NumTargetedOncho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Of total, treated for oncho.
+        /// </summary>
+        public static string NumTreatedOncho {
+            get {
+                return ResourceManager.GetString("NumTreatedOncho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Persons treated with TEO.
+        /// </summary>
+        public static string NumTreatedTeo {
+            get {
+                return ResourceManager.GetString("NumTreatedTeo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Persons treated with Zx tablets.
+        /// </summary>
+        public static string NumTreatedZx {
+            get {
+                return ResourceManager.GetString("NumTreatedZx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Persons treated with Zx POS.
+        /// </summary>
+        public static string NumTreatedZxPos {
+            get {
+                return ResourceManager.GetString("NumTreatedZxPos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overview.
+        /// </summary>
+        public static string Overview {
+            get {
+                return ResourceManager.GetString("Overview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Funders/Partners.
         /// </summary>
         public static string Partners {
@@ -484,6 +808,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PCs targeted.
+        /// </summary>
+        public static string PcsTargeted {
+            get {
+                return ResourceManager.GetString("PcsTargeted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to % positive.
         /// </summary>
         public static string PercentPositive {
@@ -493,11 +826,38 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select....
+        /// </summary>
+        public static string PleaseSelect {
+            get {
+                return ResourceManager.GetString("PleaseSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number positive.
         /// </summary>
         public static string Positive {
             get {
                 return ResourceManager.GetString("Positive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program coverage.
+        /// </summary>
+        public static string ProgramCoverage {
+            get {
+                return ResourceManager.GetString("ProgramCoverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PSAC coverage.
+        /// </summary>
+        public static string PsacCoverage {
+            get {
+                return ResourceManager.GetString("PsacCoverage", resourceCulture);
             }
         }
         
@@ -520,11 +880,38 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Round number.
+        /// </summary>
+        public static string RoundNumber {
+            get {
+                return ResourceManager.GetString("RoundNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of rounds of PC  completed prior to survey implementation.
         /// </summary>
         public static string RoundsMda {
             get {
                 return ResourceManager.GetString("RoundsMda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of treatment rounds planned for the year.
+        /// </summary>
+        public static string RoundsPlannedYear {
+            get {
+                return ResourceManager.GetString("RoundsPlannedYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SAC coverage.
+        /// </summary>
+        public static string SacCoverage {
+            get {
+                return ResourceManager.GetString("SacCoverage", resourceCulture);
             }
         }
         
@@ -624,6 +1011,42 @@ namespace Nada.Globalization {
         public static string SortOrder {
             get {
                 return ResourceManager.GetString("SortOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date of MDA.
+        /// </summary>
+        public static string StartDateMda {
+            get {
+                return ResourceManager.GetString("StartDateMda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stock out during MDA?.
+        /// </summary>
+        public static string StockOut {
+            get {
+                return ResourceManager.GetString("StockOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stock out drug.
+        /// </summary>
+        public static string StockOutDrug {
+            get {
+                return ResourceManager.GetString("StockOutDrug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length of stock out.
+        /// </summary>
+        public static string StockOutLength {
+            get {
+                return ResourceManager.GetString("StockOutLength", resourceCulture);
             }
         }
         
@@ -750,6 +1173,15 @@ namespace Nada.Globalization {
         public static string Vectors {
             get {
                 return ResourceManager.GetString("Vectors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string View {
+            get {
+                return ResourceManager.GetString("View", resourceCulture);
             }
         }
         

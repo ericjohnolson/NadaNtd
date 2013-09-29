@@ -38,7 +38,7 @@ namespace Nada.UI.View.Intervention
             {
                 repo = new IntvRepository();
                 bsIntvType.DataSource = model;
-                lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
+                lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
             }
         }
 
@@ -52,7 +52,7 @@ namespace Nada.UI.View.Intervention
 
         private void edit_OnSave(Indicator obj)
         {
-            lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
+            lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -78,8 +78,8 @@ namespace Nada.UI.View.Intervention
 
         void add_OnSave(Indicator obj)
         {
-            model.Indicators.Add(obj);
-            lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
+            model.Indicators.Add(obj.DisplayName, obj);
+            lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
         }
     }
 }

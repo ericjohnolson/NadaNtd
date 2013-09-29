@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Excel;
+using Nada.Model.Diseases;
 using Nada.Model.Repositories;
 
 namespace Nada.Model

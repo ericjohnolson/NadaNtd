@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
@@ -55,6 +56,17 @@ namespace Nada.UI.View
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
+            if (!model.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError);
+                return;
+            }
+            if (model.AdminLevel == null || model.AdminLevel.Id < 1)
+            {
+                MessageBox.Show(Translations.LocationRequired);
+                return;
+            }
+
             bsSentinelSite.EndEdit();
             SurveyRepository r = new SurveyRepository();
             int userid = ApplicationData.Instance.GetUserId();

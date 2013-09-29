@@ -42,6 +42,7 @@ namespace Nada.UI.View
         {
             SetDataType(model);
             model.IsEdited = true;
+            model.IsDisplayed = true;
             bsIndicator.EndEdit();
             OnSave(model);
             this.Close();

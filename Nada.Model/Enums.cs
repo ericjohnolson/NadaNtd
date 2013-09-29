@@ -22,7 +22,7 @@ namespace Nada.Model
 
     public enum StaticIntvType
     {
-        LfMda = 1,
+        IvmAlbMda = 1,
         LfLymphedemaMorbidity = 2,
         LfHydroceleMorbidity = 3
     }

@@ -78,7 +78,7 @@ namespace Nada.UI.View.Intervention
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             bsIntv.EndEdit();
-            model.CustomIndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
+            model.IndicatorValues = customIndicatorControl1.GetValues();
             int userId = ApplicationData.Instance.GetUserId();
             r.SaveBase(model, userId);
             MessageBox.Show("Intervention was saved!");

@@ -59,9 +59,10 @@
             this.fieldLink1.Location = new System.Drawing.Point(3, 101);
             this.fieldLink1.Margin = new System.Windows.Forms.Padding(0);
             this.fieldLink1.Name = "fieldLink1";
-            this.fieldLink1.Size = new System.Drawing.Size(113, 12);
+            this.fieldLink1.Size = new System.Drawing.Size(69, 12);
             this.fieldLink1.TabIndex = 5;
-            this.fieldLink1.Text = "Add new Funder/Partner >";
+            this.fieldLink1.Tag = "AddPartnerLink";
+            this.fieldLink1.Text = "AddPartnerLink";
             this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);
             // 
             // FundersControl

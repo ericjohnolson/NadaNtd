@@ -12,7 +12,82 @@ namespace Nada.Model.Repositories
 {
     public class SurveyRepository
     {
-        #region LF
+        #region Surveys
+        public List<SurveyDetails> GetAllForAdminLevel(int adminLevel)
+        {
+            List<SurveyDetails> surveys = new List<SurveyDetails>();
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select 
+                        Surveys.ID, 
+                        SurveyTypes.SurveyTypeName, 
+                        Surveys.SurveyTypeId, 
+                        Surveys.StartDate, 
+                        Surveys.EndDate, 
+                        Surveys.UpdatedAt, 
+                        aspnet_Users.UserName, AdminLevels.DisplayName
+                        FROM (((Surveys INNER JOIN SurveyTypes on Surveys.SurveyTypeId = SurveyTypes.ID)
+                            INNER JOIN aspnet_Users on Surveys.UpdatedById = aspnet_Users.UserId)
+                            INNER JOIN AdminLevels on Surveys.AdminLevelId = AdminLevels.ID) 
+                        WHERE Surveys.AdminLevelId=@AdminLevelId and Surveys.IsDeleted = 0 
+                        ORDER BY Surveys.EndDate DESC", connection);
+                    command.Parameters.Add(new OleDbParameter("@AdminLevelId", adminLevel));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            surveys.Add(new SurveyDetails
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                TypeName = reader.GetValueOrDefault<string>("SurveyTypeName"),
+                                TypeId = reader.GetValueOrDefault<int>("SurveyTypeId"),
+                                AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
+                                StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
+                                EndDate = reader.GetValueOrDefault<DateTime>("EndDate"),
+                                UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
+                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+
+                            });
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return surveys;
+        }
+
+        public void Delete(SurveyDetails survey, int userId)
+        {
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"UPDATE Surveys SET IsDeleted=@IsDeleted,
+                           UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+
+                    command.Parameters.Add(new OleDbParameter("@IsDeleted", true));
+                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    command.Parameters.Add(new OleDbParameter("@id", survey.Id));
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
         public void Save(LfMfPrevalence survey, int userId)
         {
             bool transWasStarted = false;
@@ -27,44 +102,28 @@ namespace Nada.Model.Repositories
                     command.ExecuteNonQuery();
                     transWasStarted = true;
 
-                    if (survey.Id < 1)
-                    {
-                        command = new OleDbCommand(@"Insert Into SurveyLfMf (TimingType, TestType, SiteType, 
-                        AdminLevelId, SpotCheckName, SpotCheckLat, SpotCheckLng, SentinelSiteId, StartDate, 
-                        EndDate, Notes, UpdatedBy, UpdatedAt) VALUES
-                        (@TimingType, @TestType, @SiteType, @AdminLevelId, @SpotCheckName, @SpotCheckLat, @SpotCheckLng, @SentinelSiteId, @StartDate, 
-                        @EndDate, @Notes, @UpdatedBy, @UpdatedAt)", connection);
-                    }
-                    else
-                    {
-                        command = new OleDbCommand(@"UPDATE SurveyLfMf SET TimingType=@TimingType, TestType=@TestType,
-                        SiteType=@SiteType, AdminLevelId=@AdminLevelId, SpotCheckName=@SpotCheckName, 
-                        SpotCheckLat=@SpotCheckLat, SpotCheckLng=@SpotCheckLng, SentinelSiteId=@SentinelSiteId, 
-                        EndDate=@EndDate, StartDate=@StartDate, Notes=@Notes, UpdatedBy=@UpdatedBy, 
-                        UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
-                    }
+                    SaveSurveyBase(command, connection, survey, userId);
 
+                    // Add non dynamic Lf Mda specific fields
+                    command = new OleDbCommand(@"DELETE FROM SurveyLfMf WHERE SurveyId=@SurveyId", connection);
+                    command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
+                    command.ExecuteNonQuery();
+
+                    command = new OleDbCommand(@"Insert Into SurveyLfMf (SurveyId, TimingType, TestType, SiteType, 
+                        SpotCheckName, SpotCheckLat, SpotCheckLng, SentinelSiteId) VALUES
+                        (@SurveyId, @TimingType, @TestType, @SiteType,  @SpotCheckName, @SpotCheckLat, @SpotCheckLng, 
+                        @SentinelSiteId)", connection);
+
+                    command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
                     command.Parameters.Add(new OleDbParameter("@TimingType", survey.TimingType));
                     command.Parameters.Add(new OleDbParameter("@TestType", survey.TestType));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@SiteType", survey.SiteType));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", survey.AdminLevelId));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@SpotCheckName", survey.SpotCheckName));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@SpotCheckLat", survey.Lat));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@SpotCheckLng", survey.Lng));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@SentinelSiteId", survey.SentinelSiteId));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@EndDate", survey.EndDate));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", survey.StartDate));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", survey.Notes));
-                    command.Parameters.Add(new OleDbParameter("@UpdatedBy", userId));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                    if (survey.Id > 0) command.Parameters.Add(new OleDbParameter("@id", survey.Id));
                     command.ExecuteNonQuery();
 
-                    command = new OleDbCommand(@"SELECT Max(ID) FROM SurveyLfMf", connection);
-                    survey.Id = (int)command.ExecuteScalar();
-
-                    AddSurveyIndicatorValues(connection, survey, userId);
-                    
                     // Save related lists
                     command = new OleDbCommand(@"DELETE FROM Surveys_to_Vectors WHERE SurveyId=@SurveyId", connection);
                     command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
@@ -111,49 +170,73 @@ namespace Nada.Model.Repositories
 
         public LfMfPrevalence GetLfMfPrevalenceSurvey(int id)
         {
-            var survey = CreateSurvey<LfMfPrevalence>(StaticSurveyType.LfPrevalence);
+            LfMfPrevalence survey = null;
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select SurveyLfMf.TimingType, SurveyLfMf.TestType, SurveyLfMf.SiteType, 
-                        SurveyLfMf.AdminLevelId, SurveyLfMf.SpotCheckName, SurveyLfMf.SpotCheckLat, SurveyLfMf.SpotCheckLng, 
-                        SurveyLfMf.SentinelSiteId, SurveyLfMf.StartDate, SurveyLfMf.EndDate, 
-                        SurveyLfMf.Notes, SurveyLfMf.UpdatedBy, SurveyLfMf.UpdatedAt, aspnet_Users.UserName, AdminLevels.DisplayName, 
-                        SentinelSites.SiteName
-                        FROM (((SurveyLfMf INNER JOIN aspnet_Users on SurveyLfMf.UpdatedBy = aspnet_Users.UserId)
-                            LEFT OUTER JOIN AdminLevels on SurveyLfMf.AdminLevelId = AdminLevels.ID) 
-                            LEFT OUTER JOIN SentinelSites  on SurveyLfMf.SentinelSiteId = SentinelSites.ID) 
-                        WHERE SurveyLfMf.ID=@id", connection);
+                    OleDbCommand command = null;
+
+                    survey = GetSurvey<LfMfPrevalence>(command, connection, id);
+
+                    command = new OleDbCommand(@"Select SurveyLfMf.TimingType, SurveyLfMf.TestType, SurveyLfMf.SiteType, 
+                        SurveyLfMf.SpotCheckName, SurveyLfMf.SpotCheckLat, SurveyLfMf.SpotCheckLng, 
+                        SurveyLfMf.SentinelSiteId
+                        FROM SurveyLfMf 
+                        WHERE SurveyLfMf.SurveyId=@id", connection);
                     command.Parameters.Add(new OleDbParameter("@id", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
                             reader.Read();
-                            survey.Id = id;
                             survey.TimingType = reader.GetValueOrDefault<string>("TimingType");
                             survey.TestType = reader.GetValueOrDefault<string>("TestType");
                             survey.SiteType = reader.GetValueOrDefault<string>("SiteType");
-                            survey.AdminLevelId = reader.GetValueOrDefault<Nullable<int>>("AdminLevelId");
                             survey.SpotCheckName = reader.GetValueOrDefault<string>("SpotCheckName");
                             survey.Lat = reader.GetNullableDouble("SpotCheckLat");
                             survey.Lng = reader.GetNullableDouble("SpotCheckLng");
                             survey.SentinelSiteId = reader.GetValueOrDefault<Nullable<int>>("SentinelSiteId");
-                            survey.StartDate = reader.GetValueOrDefault<DateTime>("StartDate");
-                            survey.EndDate = reader.GetValueOrDefault<DateTime>("EndDate");
-                            survey.Notes = reader.GetValueOrDefault<string>("Notes");
-                            survey.SpotCheckAdminLevel = reader.GetValueOrDefault<string>("DisplayName");
-                            survey.SentinelSiteName = reader.GetValueOrDefault<string>("SiteName");
-                            survey.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
-                            survey.UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
                         }
                         reader.Close();
                     }
 
-                    GetSurveyIndicatorValues(connection, survey);
+                    command = new OleDbCommand(@"Select Vectors.ID, Vectors.DisplayName
+                        FROM Vectors INNER JOIN Surveys_to_Vectors on Vectors.ID = Surveys_to_Vectors.VectorId
+                        WHERE Surveys_to_Vectors.SurveyId=@id", connection);
+                    command.Parameters.Add(new OleDbParameter("@id", id));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            survey.Vectors.Add(new Vector
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                DisplayName = reader.GetValueOrDefault<string>("DisplayName")
+                            });
+                        }
+                        reader.Close();
+                    }
+
+                    command = new OleDbCommand(@"Select Partners.ID, Partners.DisplayName
+                        FROM Partners INNER JOIN Surveys_to_Partners on Partners.ID = Surveys_to_Partners.PartnerId
+                        WHERE Surveys_to_Partners.SurveyId=@id", connection);
+                    command.Parameters.Add(new OleDbParameter("@id", id));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            survey.Partners.Add(new Partner
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                DisplayName = reader.GetValueOrDefault<string>("DisplayName")
+                            });
+                        }
+                        reader.Close();
+                    }
+
                 }
                 catch (Exception)
                 {
@@ -163,9 +246,89 @@ namespace Nada.Model.Repositories
             return survey;
         }
 
+        public T GetSurvey<T>(OleDbCommand command, OleDbConnection connection, int surveyId) where T : SurveyBase
+        {
+            var survey = (T)Activator.CreateInstance(typeof(T));
+            int surveyTypeId = 0;
+
+            try
+            {
+                command = new OleDbCommand(@"Select Surveys.AdminLevelId, Surveys.StartDate, Surveys.EndDate, 
+                        Surveys.Notes, Surveys.UpdatedById, Surveys.UpdatedAt, aspnet_Users.UserName, AdminLevels.DisplayName, Surveys.SurveyTypeId
+                        FROM ((Surveys INNER JOIN aspnet_Users on Surveys.UpdatedById = aspnet_Users.UserId)
+                            LEFT OUTER JOIN AdminLevels on Surveys.AdminLevelId = AdminLevels.ID)
+                        WHERE Surveys.ID=@id", connection);
+                command.Parameters.Add(new OleDbParameter("@id", surveyId));
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        survey.Id = surveyId;
+                        survey.AdminLevelId = reader.GetValueOrDefault<Nullable<int>>("AdminLevelId");
+                        survey.StartDate = reader.GetValueOrDefault<DateTime>("StartDate");
+                        survey.EndDate = reader.GetValueOrDefault<DateTime>("EndDate");
+                        survey.Notes = reader.GetValueOrDefault<string>("Notes");
+                        survey.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
+                        survey.UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
+                        surveyTypeId = reader.GetValueOrDefault<int>("SurveyTypeId");
+                    }
+                    reader.Close();
+                }
+
+                survey.TypeOfSurvey = GetSurveyType(surveyTypeId);
+                GetSurveyIndicatorValues(connection, survey);
+                survey.MapIndicatorsToProperties();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return survey;
+        }
+
+        public void SaveSurvey(SurveyBase survey, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    SaveSurveyBase(command, connection, survey, userId);
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+
+
         #endregion
 
-        #region Survey Base
+        #region Survey Type
         public T CreateSurvey<T>(StaticSurveyType typeOfSurvey) where T : SurveyBase
         {
             var survey = (T)Activator.CreateInstance(typeof(T));
@@ -181,47 +344,37 @@ namespace Nada.Model.Repositories
             return survey;
         }
 
-        private void AddSurveyIndicatorValues(OleDbConnection connection, SurveyBase survey, int userId)
+        public List<SurveyType> GetSurveyTypes()
         {
-            OleDbCommand command = new OleDbCommand(@"DELETE FROM SurveyIndicatorValues WHERE SurveyId=@SurveyId", connection);
-            command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
-            command.ExecuteNonQuery();
+            List<SurveyType> types = new List<SurveyType>();
 
-            foreach (IndicatorValue val in survey.IndicatorValues)
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
             {
-                command = new OleDbCommand(@"Insert Into SurveyIndicatorValues (IndicatorId, SurveyId, DynamicValue, UpdatedById, UpdatedAt) VALUES
-                        (@IndicatorId, @SurveyId, @DynamicValue, @UpdatedById, @UpdatedAt)", connection);
-                command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
-                command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
-                command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
-                command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
-                command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                command.ExecuteNonQuery();
-            }
-        }
-
-        private void GetSurveyIndicatorValues(OleDbConnection connection, SurveyBase survey)
-        {
-            OleDbCommand command = new OleDbCommand(@"Select 
-                        SurveyIndicatorValues.ID,   
-                        SurveyIndicatorValues.IndicatorId,
-                        SurveyIndicatorValues.DynamicValue
-                        FROM SurveyIndicatorValues
-                        WHERE SurveyIndicatorValues.SurveyId = @SurveyId", connection);
-            command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
-            using (OleDbDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
+                connection.Open();
+                try
                 {
-                    survey.IndicatorValues.Add(new IndicatorValue
+                    OleDbCommand command = new OleDbCommand(@"Select SurveyTypes.ID, SurveyTypes.SurveyTypeName
+                        FROM SurveyTypes", connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
                     {
-                        Id = reader.GetValueOrDefault<int>("ID"),
-                        IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
-                        DynamicValue = reader.GetValueOrDefault<string>("DynamicValue")
-                    });
+                        while (reader.Read())
+                        {
+                            types.Add(new SurveyType
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                SurveyTypeName = reader.GetValueOrDefault<string>("SurveyTypeName")
+                            });
+                        }
+                        reader.Close();
+                    }
                 }
-                reader.Close();
+                catch (Exception)
+                {
+                    throw;
+                }
             }
+            return types;
         }
 
         public SurveyType GetSurveyType(int id)
@@ -274,7 +427,8 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            survey.Indicators.Add(new Indicator
+                            survey.Indicators.Add(reader.GetValueOrDefault<string>("DisplayName"),
+                                new Indicator
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
@@ -297,63 +451,6 @@ namespace Nada.Model.Repositories
                 }
             }
             return survey;
-        }
-
-        public void SaveSurvey(SurveyBase survey, int userId)
-        {
-            bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    // START TRANS
-                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
-                    command.ExecuteNonQuery();
-                    transWasStarted = true;
-
-                    if (survey.Id > 0)
-                        command = new OleDbCommand(@"UPDATE Surveys SET SurveyTypeId=@SurveyTypeId, AdminLevelId=@AdminLevelId, SurveyDate=@SurveyDate,
-                           Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
-                    else
-                        command = new OleDbCommand(@"INSERT INTO Surveys (SurveyTypeId, AdminLevelId, SurveyDate, Notes, UpdatedById, 
-                            UpdatedAt) values (@SurveyTypeId, @AdminLevelId, @SurveyDate, @Notes, @UpdatedById, @UpdatedAt)", connection); command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", survey.AdminLevelId));
-                    command.Parameters.Add(new OleDbParameter("@SurveyTypeId", survey.TypeOfSurvey.Id));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@SurveyDate", survey.StartDate));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", survey.Notes));
-                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                    if (survey.Id > 0) command.Parameters.Add(new OleDbParameter("@id", survey.Id));
-                    command.ExecuteNonQuery();
-
-                    if (survey.Id <= 0)
-                    {
-                        command = new OleDbCommand(@"SELECT Max(ID) FROM Surveys", connection);
-                        survey.Id = (int)command.ExecuteScalar();
-                    }
-
-                    AddSurveyIndicatorValues(connection, survey, userId);
-
-                    // COMMIT TRANS
-                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
-                    command.ExecuteNonQuery();
-                    transWasStarted = false;
-                }
-                catch (Exception)
-                {
-                    if (transWasStarted)
-                    {
-                        try
-                        {
-                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch { }
-                    }
-                    throw;
-                }
-            }
         }
 
         public void Save(SurveyType model, int userId)
@@ -388,7 +485,7 @@ namespace Nada.Model.Repositories
                         model.Id = (int)command.ExecuteScalar();
                     }
 
-                    foreach (var indicator in model.Indicators.Where(i => i.Id > 0 && i.IsEdited))
+                    foreach (var indicator in model.Indicators.Values.Where(i => i.Id > 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"UPDATE SurveyIndicators SET SurveyTypeId=@SurveyTypeId, DataTypeId=@DataTypeId,
                         DisplayName=@DisplayName, SortOrder=@SortOrder, IsDisabled=@IsDisabled, 
@@ -406,7 +503,7 @@ namespace Nada.Model.Repositories
                         command.ExecuteNonQuery();
                     }
 
-                    foreach (var indicator in model.Indicators.Where(i => i.Id <= 0 && i.IsEdited))
+                    foreach (var indicator in model.Indicators.Values.Where(i => i.Id <= 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, 
                         DisplayName, SortOrder, IsDisabled, IsEditable, UpdatedById, UpdatedAt) VALUES
@@ -421,6 +518,9 @@ namespace Nada.Model.Repositories
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                         command.ExecuteNonQuery();
+
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM SurveyIndicators", connection);
+                        indicator.Id = (int)command.ExecuteScalar();
                     }
 
                     // COMMIT TRANS
@@ -580,6 +680,82 @@ namespace Nada.Model.Repositories
             return list;
         }
         #endregion
+
+        #region Private Methods
+        private void SaveSurveyBase(OleDbCommand command, OleDbConnection connection, SurveyBase survey, int userId)
+        {
+            if (survey.Id > 0)
+                command = new OleDbCommand(@"UPDATE Surveys SET SurveyTypeId=@SurveyTypeId, AdminLevelId=@AdminLevelId, StartDate=@StartDate,
+                           EndDate=@EndDate, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+            else
+                command = new OleDbCommand(@"INSERT INTO Surveys (SurveyTypeId, AdminLevelId, StartDate, EndDate, Notes, UpdatedById, 
+                            UpdatedAt) values (@SurveyTypeId, @AdminLevelId, @StartDate, @EndDate, @Notes, @UpdatedById, @UpdatedAt)", connection);
+            command.Parameters.Add(new OleDbParameter("@SurveyTypeId", survey.TypeOfSurvey.Id));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", survey.AdminLevelId));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", survey.StartDate));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@EndDate", survey.EndDate));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", survey.Notes));
+            command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+            if (survey.Id > 0) command.Parameters.Add(new OleDbParameter("@id", survey.Id));
+            command.ExecuteNonQuery();
+
+            if (survey.Id <= 0)
+            {
+                command = new OleDbCommand(@"SELECT Max(ID) FROM Surveys", connection);
+                survey.Id = (int)command.ExecuteScalar();
+            }
+
+            AddSurveyIndicatorValues(connection, survey, userId);
+        }
+
+        private void AddSurveyIndicatorValues(OleDbConnection connection, SurveyBase survey, int userId)
+        {
+            OleDbCommand command = new OleDbCommand(@"DELETE FROM SurveyIndicatorValues WHERE SurveyId=@SurveyId", connection);
+            command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
+            command.ExecuteNonQuery();
+
+            foreach (IndicatorValue val in survey.IndicatorValues)
+            {
+                command = new OleDbCommand(@"Insert Into SurveyIndicatorValues (IndicatorId, SurveyId, DynamicValue, UpdatedById, UpdatedAt) VALUES
+                        (@IndicatorId, @SurveyId, @DynamicValue, @UpdatedById, @UpdatedAt)", connection);
+                command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
+                command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
+                command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
+                command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                command.ExecuteNonQuery();
+            }
+        }
+
+        private void GetSurveyIndicatorValues(OleDbConnection connection, SurveyBase survey)
+        {
+            OleDbCommand command = new OleDbCommand(@"Select 
+                        SurveyIndicatorValues.ID,   
+                        SurveyIndicatorValues.IndicatorId,
+                        SurveyIndicatorValues.DynamicValue,
+                        SurveyIndicators.DisplayName
+                        FROM SurveyIndicatorValues INNER JOIN SurveyIndicators on SurveyIndicatorValues.IndicatorId = SurveyIndicators.ID
+                        WHERE SurveyIndicatorValues.SurveyId = @SurveyId", connection);
+            command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
+            using (OleDbDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    survey.IndicatorValues.Add(new IndicatorValue
+                    {
+                        Id = reader.GetValueOrDefault<int>("ID"),
+                        IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
+                        DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"), 
+                        Indicator = survey.TypeOfSurvey.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
+                    });
+                }
+                reader.Close();
+            }
+        }
+        #endregion
+
+
 
 
     }

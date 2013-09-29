@@ -253,7 +253,7 @@ namespace Nada.Model.Repositories
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, IsUrban, LatWho, LngWho, Latitude, Longitude,
                     AdminLevelTypes.AdminLevel
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE ParentId > 0", connection);
+                    ", connection); // WHERE ParentId > 0
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     while(reader.Read())
@@ -318,7 +318,7 @@ namespace Nada.Model.Repositories
             var rootNodes = new List<AdminLevel>();
             foreach (var node in flatList)
             {
-                if (node.ParentId.Value > 1)
+                if (node.ParentId.HasValue && node.ParentId.Value > 0)
                 {
                     AdminLevel parent = dic[node.ParentId.Value];
                     parent.Children.Add(node);

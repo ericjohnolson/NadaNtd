@@ -120,8 +120,20 @@
   <data name="AboutMenu" xml:space="preserve">
     <value>About National Database Template</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="AddIndicatorLink" xml:space="preserve">
     <value>Add/remove indicators &gt;</value>
+  </data>
+  <data name="AddNewDiseaseLink" xml:space="preserve">
+    <value>Add new disease &gt;</value>
+  </data>
+  <data name="AddNewSurveyTypeLink" xml:space="preserve">
+    <value>Add new survey type...</value>
+  </data>
+  <data name="AddPartnerLink" xml:space="preserve">
+    <value>Add new Funder/Partner &gt;</value>
   </data>
   <data name="AgeRange" xml:space="preserve">
     <value>Age range</value>
@@ -141,6 +153,9 @@
   <data name="CheckUpdates" xml:space="preserve">
     <value>Check for updates</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
   <data name="CreateImportFile" xml:space="preserve">
     <value>Create Import File</value>
   </data>
@@ -156,14 +171,41 @@
   <data name="DataType" xml:space="preserve">
     <value>Data type</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteConfirmMessage" xml:space="preserve">
+    <value>Are you sure you want to delete?</value>
+  </data>
   <data name="Demography" xml:space="preserve">
     <value>Demography</value>
   </data>
   <data name="DiseaseDistribution" xml:space="preserve">
     <value>Disease Distribution</value>
   </data>
+  <data name="Diseases" xml:space="preserve">
+    <value>Diseases</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EligibleFemalesTargeted" xml:space="preserve">
+    <value># Eligible females targeted</value>
+  </data>
+  <data name="EligibleMalesTargeted" xml:space="preserve">
+    <value># Eligible males targeted</value>
+  </data>
+  <data name="EndDateMda" xml:space="preserve">
+    <value>End date of MDA</value>
+  </data>
+  <data name="EpiCoverage" xml:space="preserve">
+    <value>Epi coverage</value>
+  </data>
   <data name="Examined" xml:space="preserve">
     <value>Number examined</value>
+  </data>
+  <data name="FemalesCoverage" xml:space="preserve">
+    <value>Females treated proportion</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
@@ -192,6 +234,9 @@
   <data name="Latitude" xml:space="preserve">
     <value>Latitude</value>
   </data>
+  <data name="Leporsy" xml:space="preserve">
+    <value>Leporsy</value>
+  </data>
   <data name="LevelImplementation" xml:space="preserve">
     <value>Level of implementation</value>
   </data>
@@ -216,8 +261,14 @@
   <data name="LfSentinelImport" xml:space="preserve">
     <value>LF Sentinel-Spot Check Survey Import</value>
   </data>
+  <data name="LoadingMessage" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
   <data name="Location" xml:space="preserve">
     <value>Location:</value>
+  </data>
+  <data name="LocationRequired" xml:space="preserve">
+    <value>Please choose a location.</value>
   </data>
   <data name="LocationSelectLink" xml:space="preserve">
     <value>Select location &gt;</value>
@@ -227,6 +278,9 @@
   </data>
   <data name="Longitude" xml:space="preserve">
     <value>Longitude</value>
+  </data>
+  <data name="MalesCoverage" xml:space="preserve">
+    <value>Males treated proportion</value>
   </data>
   <data name="Mapping" xml:space="preserve">
     <value>Mapping</value>
@@ -252,17 +306,80 @@
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="NumAdultsTargeted" xml:space="preserve">
+    <value># Adults targeted</value>
+  </data>
+  <data name="NumAdultsTreated" xml:space="preserve">
+    <value># Adults treated</value>
+  </data>
+  <data name="NumAtRisk" xml:space="preserve">
+    <value># Individuals at risk</value>
+  </data>
+  <data name="NumEligibleFemalesTreated" xml:space="preserve">
+    <value># Eligible females treated</value>
+  </data>
+  <data name="NumEligibleMalesTreated" xml:space="preserve">
+    <value># Eligible males treated</value>
+  </data>
+  <data name="NumEligibleTreated" xml:space="preserve">
+    <value># Eligible individuals treated</value>
+  </data>
+  <data name="NumPsacTargeted" xml:space="preserve">
+    <value># PSAC targeted</value>
+  </data>
+  <data name="NumPsacTreated" xml:space="preserve">
+    <value># PSAC treated</value>
+  </data>
+  <data name="NumSacReported" xml:space="preserve">
+    <value># Serious adverse events reported</value>
+  </data>
+  <data name="NumSacTargeted" xml:space="preserve">
+    <value># SAC targeted</value>
+  </data>
+  <data name="NumSacTreated" xml:space="preserve">
+    <value># SAC treated</value>
+  </data>
+  <data name="NumTargetedOncho" xml:space="preserve">
+    <value>Of total, targeted for oncho</value>
+  </data>
+  <data name="NumTreatedOncho" xml:space="preserve">
+    <value>Of total, treated for oncho</value>
+  </data>
+  <data name="NumTreatedTeo" xml:space="preserve">
+    <value># Persons treated with TEO</value>
+  </data>
+  <data name="NumTreatedZx" xml:space="preserve">
+    <value># Persons treated with Zx tablets</value>
+  </data>
+  <data name="NumTreatedZxPos" xml:space="preserve">
+    <value># Persons treated with Zx POS</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
   <data name="Partners" xml:space="preserve">
     <value>Funders/Partners</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PcsTargeted" xml:space="preserve">
+    <value>PCs targeted</value>
+  </data>
   <data name="PercentPositive" xml:space="preserve">
     <value>% positive</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Please select...</value>
+  </data>
   <data name="Positive" xml:space="preserve">
     <value>Number positive</value>
+  </data>
+  <data name="ProgramCoverage" xml:space="preserve">
+    <value>Program coverage</value>
+  </data>
+  <data name="PsacCoverage" xml:space="preserve">
+    <value>PSAC coverage</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>Reports</value>
@@ -270,8 +387,17 @@
   <data name="Required" xml:space="preserve">
     <value>Required</value>
   </data>
+  <data name="RoundNumber" xml:space="preserve">
+    <value>Round number</value>
+  </data>
   <data name="RoundsMda" xml:space="preserve">
     <value>Number of rounds of PC  completed prior to survey implementation</value>
+  </data>
+  <data name="RoundsPlannedYear" xml:space="preserve">
+    <value>Number of treatment rounds planned for the year</value>
+  </data>
+  <data name="SacCoverage" xml:space="preserve">
+    <value>SAC coverage</value>
   </data>
   <data name="Sampled" xml:space="preserve">
     <value>Number sampled</value>
@@ -305,6 +431,18 @@
   </data>
   <data name="SortOrder" xml:space="preserve">
     <value>Sort order</value>
+  </data>
+  <data name="StartDateMda" xml:space="preserve">
+    <value>Start date of MDA</value>
+  </data>
+  <data name="StockOut" xml:space="preserve">
+    <value>Stock out during MDA?</value>
+  </data>
+  <data name="StockOutDrug" xml:space="preserve">
+    <value>Stock out drug</value>
+  </data>
+  <data name="StockOutLength" xml:space="preserve">
+    <value>Length of stock out</value>
   </data>
   <data name="SurveyInformation" xml:space="preserve">
     <value>Survey Information</value>
@@ -347,6 +485,9 @@
   </data>
   <data name="Vectors" xml:space="preserve">
     <value>Vectors</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
   </data>
   <data name="ViewHelp" xml:space="preserve">
     <value>View Help</value>

@@ -13,13 +13,23 @@ namespace Nada.UI.View.Demography
 {
     public partial class DemographyView : UserControl
     {
+        public Action<UserControl> LoadView = (i) => { };
+        public Action<AdminLevel> LoadDashForAdminLevel = (i) => { };
+        public Action<string> StatusChanged { get; set; }
         private DemographyTree treeView = null;
         private UserControl divisionView = null;
         private Dictionary<int, AdminLevelType> adminLevelTypes = null;
+        private AdminLevel preloadedLevel = null;
 
         public DemographyView()
         {
             InitializeComponent();
+        }
+
+        public DemographyView(AdminLevel a)
+        {
+            InitializeComponent();
+            preloadedLevel = a;
         }
 
         private void DemographyView_Load(object sender, EventArgs e)
@@ -34,8 +44,11 @@ namespace Nada.UI.View.Demography
                 treeView.OnSelect += t_OnSelect;
                 treeView.Dock = DockStyle.Fill;
                 splitContainer.Panel1.Controls.Add(treeView);
-                if(tree.Count > 0)
-                   t_OnSelect(tree.FirstOrDefault());
+
+                if (preloadedLevel != null)
+                    t_OnSelect(preloadedLevel);
+                else if (tree.Count > 0)
+                    t_OnSelect(tree.FirstOrDefault());
             }
         }
 
@@ -51,21 +64,15 @@ namespace Nada.UI.View.Demography
         void t_OnSelect(AdminLevel obj)
         {
             AdminLevelType adminLevelType = null;
-            if(adminLevelTypes.ContainsKey(obj.LevelNumber + 1))
+            if (adminLevelTypes.ContainsKey(obj.LevelNumber + 1))
                 adminLevelType = adminLevelTypes[obj.LevelNumber + 1];
 
-            if (obj.ParentId.HasValue && obj.ParentId.Value > 0)
-            {
-                var view = new AdminLevelView((AdminLevel)obj, adminLevelType);
-                view.OnSelect += t_OnSelect;
-                divisionView = view;
-            }
-            else
-            {
-                var view = new CountryView((AdminLevel)obj, adminLevelType);
-                view.OnSelect += t_OnSelect;
-                divisionView = view;
-            }
+            var view = new AdminLevelView((AdminLevel)obj, adminLevelType);
+            view.StatusChanged = (s) => { StatusChanged(s); };
+            view.ReloadView = (a) => { LoadDashForAdminLevel(a); };
+            view.LoadView = (v) => { LoadView(v); };
+            view.OnSelect += t_OnSelect;
+            divisionView = view;
 
             divisionView.Dock = DockStyle.Fill;
             splitContainer.Panel2.Controls.Clear();

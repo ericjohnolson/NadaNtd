@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
+using Nada.Model.Repositories;
 
 namespace Nada.UI.View
 {
@@ -18,12 +19,18 @@ namespace Nada.UI.View
         {
             InitializeComponent();
         }
-        
+
         public void Select(AdminLevel obj)
         {
             lblAdminLevel.Text = obj.Name;
         }
 
+        public void Select(int id)
+        {
+            DemoRepository repo = new DemoRepository();
+            AdminLevel level = repo.GetAdminLevelById(id);
+            Select(level);
+        }
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color TextColor

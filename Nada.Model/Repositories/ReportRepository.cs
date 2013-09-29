@@ -143,24 +143,8 @@ namespace Nada.Model.Repositories
         private void QueryLfMfSurvey(Dictionary<string, int> selected, OleDbCommand command, OleDbConnection connection, DataTable table, DataTable chart)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("Select AdminLevels.DisplayName as Location, SurveyLfMf.TimingType, SurveyLfMf.TestType, SurveyLfMf.SiteType, SurveyLfMf.SurveyDate ");
+            sb.Append("Select AdminLevels.DisplayName as Location, SurveyLfMf.TimingType, SurveyLfMf.TestType, SurveyLfMf.SiteType, SurveyLfMf.StartDate ");
             
-            if (selected.ContainsKey("static1"))
-                sb.Append(", SurveyLfMf.RoundsMda");
-            if (selected.ContainsKey("static2"))
-                sb.Append(", SurveyLfMf.Examined");
-            if (selected.ContainsKey("static3"))
-                sb.Append(", SurveyLfMf.Positive");
-            if (selected.ContainsKey("static4"))
-                sb.Append(", SurveyLfMf.MeanDensity");
-            if (selected.ContainsKey("static5"))
-                sb.Append(", SurveyLfMf.MfCount");
-            if (selected.ContainsKey("static6"))
-                sb.Append(", SurveyLfMf.MfLoad");
-            if (selected.ContainsKey("static7"))
-                sb.Append(", SurveyLfMf.SampleSize");
-            if (selected.ContainsKey("static8"))
-                sb.Append(", SurveyLfMf.AgeRange");
             sb.Append(" FROM (SurveyLfMf INNER JOIN AdminLevels ON SurveyLfMf.AdminLevelId = AdminLevels.ID) ");
             
             command = new OleDbCommand(sb.ToString(), connection);
@@ -172,7 +156,7 @@ namespace Nada.Model.Repositories
                     dr["Location"] = reader.GetValueOrDefault<string>("Location");
                     dr["Type"] = reader.GetValueOrDefault<string>("TimingType") + ", " + 
                         reader.GetValueOrDefault<string>("TestType") + ", " + reader.GetValueOrDefault<string>("SiteType");
-                    dr["Year"] = reader.GetValueOrDefault<DateTime>("SurveyDate").ToString("yyyy");
+                    dr["Year"] = reader.GetValueOrDefault<DateTime>("StartDate").ToString("yyyy");
                     if (selected.ContainsKey("static1"))
                     {
                         dr["Rounds MDA"] = reader.GetValueOrDefault<Nullable<int>>("RoundsMda");

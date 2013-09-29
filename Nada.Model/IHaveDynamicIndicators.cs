@@ -7,7 +7,7 @@ namespace Nada.Model
 {
     public interface IHaveDynamicIndicators
     {
-        List<Indicator> Indicators { get; set; }
+        Dictionary<string, Indicator> Indicators { get; set; }
     }
 
     public interface IHaveDynamicIndicatorValues

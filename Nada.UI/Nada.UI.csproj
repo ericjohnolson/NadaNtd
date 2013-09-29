@@ -32,7 +32,7 @@
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>16</ApplicationRevision>
+    <ApplicationRevision>18</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -78,6 +78,12 @@
     <ManifestKeyFile>Nada.UI_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C1.Win.C1DynamicHelp.2, Version=2.0.20132.64, Culture=neutral, PublicKeyToken=f95c5890a3995862, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Input.2, Version=2.0.20132.33305, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1InputPanel.2, Version=2.0.20132.166, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Sizer.2, Version=2.1.20132.78, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1SplitContainer.2, Version=2.0.20132.46, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1TileControl.2, Version=2.0.20132.76, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Solution Items\ComponentFactory.Krypton.Toolkit.dll</HintPath>
@@ -99,6 +105,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -117,14 +124,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.cs">
+    <Compile Include="View\About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="About.Designer.cs">
+    <Compile Include="View\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="AppLogic\ApplicationData.cs" />
+    <Compile Include="AppLogic\DiseaseActivitiesFactory.cs" />
     <Compile Include="AppLogic\IndicatorHelper.cs" />
+    <Compile Include="AppLogic\IView.cs" />
+    <Compile Include="Controls\CollapsiblePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CollapsiblePanel.Designer.cs">
+      <DependentUpon>CollapsiblePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DiseasesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DiseasesControl.Designer.cs">
+      <DependentUpon>DiseasesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FundersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +176,12 @@
     <Compile Include="Controls\HR.Designer.cs">
       <DependentUpon>HR.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Loading.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Loading.Designer.cs">
+      <DependentUpon>Loading.cs</DependentUpon>
+    </Compile>
     <Compile Include="NationalDatabaseTemplateDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -169,17 +196,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UpdateDatabase.cs">
+    <Compile Include="View\Help\HelpView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdateDatabase.Designer.cs">
+    <Compile Include="View\Help\HelpView.Designer.cs">
+      <DependentUpon>HelpView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpdateDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UpdateDatabase.Designer.cs">
       <DependentUpon>UpdateDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Updates.cs">
+    <Compile Include="View\Updates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Updates.Designer.cs">
+    <Compile Include="View\Updates.Designer.cs">
       <DependentUpon>Updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeleteConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DeleteConfirm.Designer.cs">
+      <DependentUpon>DeleteConfirm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Demography\AdminLevelMultiselect.cs">
       <SubType>UserControl</SubType>
@@ -192,6 +231,12 @@
     </Compile>
     <Compile Include="Controls\AdminLevelPickerControl.Designer.cs">
       <DependentUpon>AdminLevelPickerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseDashboard.Designer.cs">
+      <DependentUpon>DiseaseDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DiseaseDistribution\DiseaseDistributionEdit.cs">
       <SubType>Form</SubType>
@@ -210,6 +255,24 @@
     </Compile>
     <Compile Include="View\DiseaseDistribution\DiseasePopulationEdit.Designer.cs">
       <DependentUpon>DiseasePopulationEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseAdd.Designer.cs">
+      <DependentUpon>DiseaseAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseList.Designer.cs">
+      <DependentUpon>DiseaseList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Intervention\PcMdaView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Intervention\PcMdaView.Designer.cs">
+      <DependentUpon>PcMdaView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Reports\ReportIndicatorControl.cs">
       <SubType>UserControl</SubType>
@@ -361,23 +424,11 @@
     <Compile Include="View\PopGroupModal.Designer.cs">
       <DependentUpon>PopGroupModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseModal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseModal.Designer.cs">
-      <DependentUpon>DiseaseModal.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\LoginView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\SampleModal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\SampleModal.Designer.cs">
-      <DependentUpon>SampleModal.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Reports\ReportCreatorView.cs">
       <SubType>UserControl</SubType>
@@ -439,8 +490,14 @@
     <Compile Include="View\WelcomeView.Designer.cs">
       <DependentUpon>WelcomeView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="About.resx">
+    <EmbeddedResource Include="View\About.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CollapsiblePanel.resx">
+      <DependentUpon>CollapsiblePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DiseasesControl.resx">
+      <DependentUpon>DiseasesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FundersControl.resx">
       <DependentUpon>FundersControl.cs</DependentUpon>
@@ -457,6 +514,10 @@
     <EmbeddedResource Include="Controls\HR.resx">
       <DependentUpon>HR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Loading.resx">
+      <DependentUpon>Loading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -470,17 +531,26 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdateDatabase.resx">
+    <EmbeddedResource Include="View\Help\HelpView.resx">
+      <DependentUpon>HelpView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UpdateDatabase.resx">
       <DependentUpon>UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Updates.resx">
+    <EmbeddedResource Include="View\Updates.resx">
       <DependentUpon>Updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DeleteConfirm.resx">
+      <DependentUpon>DeleteConfirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\AdminLevelMultiselect.resx">
       <DependentUpon>AdminLevelMultiselect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AdminLevelPickerControl.resx">
       <DependentUpon>AdminLevelPickerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDashboard.resx">
+      <DependentUpon>DiseaseDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistributionEdit.resx">
       <DependentUpon>DiseaseDistributionEdit.cs</DependentUpon>
@@ -490,6 +560,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseasePopulationEdit.resx">
       <DependentUpon>DiseasePopulationEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseAdd.resx">
+      <DependentUpon>DiseaseAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseList.resx">
+      <DependentUpon>DiseaseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Intervention\PcMdaView.resx">
+      <DependentUpon>PcMdaView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ReportIndicatorControl.resx">
       <DependentUpon>ReportIndicatorControl.cs</DependentUpon>
@@ -566,14 +645,8 @@
     <EmbeddedResource Include="View\PopGroupModal.resx">
       <DependentUpon>PopGroupModal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseModal.resx">
-      <DependentUpon>DiseaseModal.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\SampleModal.resx">
-      <DependentUpon>SampleModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ReportCreatorView.resx">
       <DependentUpon>ReportCreatorView.cs</DependentUpon>
@@ -625,12 +698,14 @@
     <None Include="Properties\DataSources\Nada.Model.Disease.datasource" />
     <None Include="Properties\DataSources\Nada.Model.DiseaseDistribution.datasource" />
     <None Include="Properties\DataSources\Nada.Model.DiseasePopulation.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Diseases.Disease.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.DistributionMethod.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.IntvBase.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.IntvType.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.LfMda.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.Medicine.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.Partner.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Intervention.PcMda.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Language.datasource" />
     <None Include="Properties\DataSources\Nada.Model.PopGroup.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicator.datasource" />
@@ -656,9 +731,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="View\Help\SampleHelp.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Images\700x250.gif" />
+    <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\button-dashboard.png" />
     <Content Include="Images\button-help.png" />
+    <Content Include="Images\ExpanderMinusIcon16x16.png" />
+    <Content Include="Images\ExpanderPlusIcon16x16.png" />
     <Content Include="Images\header-survey.png" />
+    <Content Include="Images\large-working.gif" />
     <Content Include="NationalDatabaseTemplate.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

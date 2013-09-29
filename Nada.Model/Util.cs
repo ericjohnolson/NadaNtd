@@ -21,17 +21,7 @@ namespace Nada.Model
             }
 
         }
-
-        public static Dictionary<string, Indicator> CreateIndicatorDictionary(IHaveDynamicIndicators i)
-        {
-            Dictionary<string, Indicator> indicators = new Dictionary<string, Indicator>();
-            foreach (var indicator in i.Indicators)
-            {
-                indicators.Add(indicator.DisplayName, indicator);
-            }
-            return indicators;
-        }
-
+        
         public static Dictionary<string, IndicatorValue> CreateIndicatorValueDictionary(IHaveDynamicIndicatorValues i)
         {
             Dictionary<string, IndicatorValue> indicators = new Dictionary<string, IndicatorValue>();

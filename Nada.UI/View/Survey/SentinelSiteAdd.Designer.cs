@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnAddNew = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tbLng = new System.Windows.Forms.TextBox();
             this.bsSentinelSite = new System.Windows.Forms.BindingSource(this.components);
             this.tbLat = new System.Windows.Forms.TextBox();
@@ -38,25 +37,21 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblLastUpdated = new System.Windows.Forms.ToolStripStatusLabel();
             this.adminLevelPickerControl1 = new Nada.UI.View.AdminLevelPickerControl();
-            this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.h3Label1 = new Nada.UI.Controls.H3Label();
             this.label3 = new System.Windows.Forms.Label();
             this.hr1 = new Nada.UI.Controls.HR();
             this.h3Label2 = new Nada.UI.Controls.H3Label();
             this.h3Label3 = new Nada.UI.Controls.H3Label();
             this.h3Label4 = new Nada.UI.Controls.H3Label();
+            this.h3Required1 = new Nada.UI.Controls.H3Required();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.bsSentinelSite)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnAddNew
-            // 
-            this.btnAddNew.Location = new System.Drawing.Point(284, 325);
-            this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(75, 25);
-            this.btnAddNew.TabIndex = 6;
-            this.btnAddNew.Values.Text = "Save";
-            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // tbLng
             // 
@@ -102,7 +97,7 @@
             this.lblLastUpdated});
             this.statusStrip1.Location = new System.Drawing.Point(0, 378);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(392, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(387, 22);
             this.statusStrip1.TabIndex = 11;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -119,33 +114,9 @@
             this.adminLevelPickerControl1.Location = new System.Drawing.Point(22, 50);
             this.adminLevelPickerControl1.Margin = new System.Windows.Forms.Padding(0);
             this.adminLevelPickerControl1.Name = "adminLevelPickerControl1";
-            this.adminLevelPickerControl1.Size = new System.Drawing.Size(187, 39);
+            this.adminLevelPickerControl1.Size = new System.Drawing.Size(200, 39);
             this.adminLevelPickerControl1.TabIndex = 1;
             this.adminLevelPickerControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(188, 325);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnCancel.Size = new System.Drawing.Size(76, 25);
-            this.btnCancel.TabIndex = 5;
-            this.btnCancel.Values.Text = "Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // h3Label1
-            // 
-            this.h3Label1.AutoSize = true;
-            this.h3Label1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label1.Location = new System.Drawing.Point(27, 98);
-            this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
-            this.h3Label1.Name = "h3Label1";
-            this.h3Label1.Size = new System.Drawing.Size(68, 16);
-            this.h3Label1.TabIndex = 18;
-            this.h3Label1.Tag = "SiteName";
-            this.h3Label1.Text = "Site name";
-            this.h3Label1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
             // label3
             // 
@@ -169,7 +140,7 @@
             this.hr1.Margin = new System.Windows.Forms.Padding(5);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.hr1.Size = new System.Drawing.Size(392, 5);
+            this.hr1.Size = new System.Drawing.Size(387, 5);
             this.hr1.TabIndex = 19;
             // 
             // h3Label2
@@ -214,26 +185,86 @@
             this.h3Label4.Text = "Notes";
             this.h3Label4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
+            // h3Required1
+            // 
+            this.h3Required1.AutoSize = true;
+            this.h3Required1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Required1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Required1.Location = new System.Drawing.Point(27, 98);
+            this.h3Required1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Required1.Name = "h3Required1";
+            this.h3Required1.Size = new System.Drawing.Size(81, 16);
+            this.h3Required1.TabIndex = 24;
+            this.h3Required1.Tag = "SiteName";
+            this.h3Required1.Text = "Site name";
+            this.h3Required1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            this.errorProvider1.DataSource = this.bsSentinelSite;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.AutoSize = true;
+            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.Controls.Add(this.kryptonButton1, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnSave, 2, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(173, 327);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(186, 31);
+            this.tableLayoutPanel4.TabIndex = 42;
+            // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.Location = new System.Drawing.Point(3, 3);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.kryptonButton1.Size = new System.Drawing.Size(77, 25);
+            this.kryptonButton1.TabIndex = 2;
+            this.kryptonButton1.Tag = "Cancel";
+            this.kryptonButton1.Values.Text = "Cancel";
+            this.kryptonButton1.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(106, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnSave.Size = new System.Drawing.Size(77, 25);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Tag = "Save";
+            this.btnSave.Values.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnAddNew_Click);
+            // 
             // SentinelSiteAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(392, 400);
+            this.ClientSize = new System.Drawing.Size(387, 400);
+            this.Controls.Add(this.tableLayoutPanel4);
+            this.Controls.Add(this.h3Required1);
             this.Controls.Add(this.h3Label4);
             this.Controls.Add(this.h3Label3);
             this.Controls.Add(this.h3Label2);
-            this.Controls.Add(this.h3Label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.hr1);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.adminLevelPickerControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.tbLng);
             this.Controls.Add(this.tbLat);
             this.Controls.Add(this.tbSiteName);
-            this.Controls.Add(this.btnAddNew);
             this.Name = "SentinelSiteAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "SentinelSite";
@@ -242,6 +273,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsSentinelSite)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,7 +282,6 @@
 
         #endregion
 
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddNew;
         private System.Windows.Forms.TextBox tbLng;
         private System.Windows.Forms.TextBox tbLat;
         private System.Windows.Forms.TextBox tbSiteName;
@@ -258,12 +290,15 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblLastUpdated;
         private AdminLevelPickerControl adminLevelPickerControl1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
-        private Controls.H3Label h3Label1;
         private System.Windows.Forms.Label label3;
         private Controls.HR hr1;
         private Controls.H3Label h3Label2;
         private Controls.H3Label h3Label3;
         private Controls.H3Label h3Label4;
+        private Controls.H3Required h3Required1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
     }
 }

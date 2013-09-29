@@ -10,9 +10,9 @@ namespace Nada.Model.Survey
     {
         public SurveyType()
         {
-            Indicators = new List<Indicator>();
+            Indicators = new Dictionary<string, Indicator>();
         }
         public string SurveyTypeName { get; set; }
-        public List<Indicator> Indicators { get; set; }
+        public Dictionary<string, Indicator> Indicators { get; set; }
     }
 }

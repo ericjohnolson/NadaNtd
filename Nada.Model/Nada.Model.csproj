@@ -53,15 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\NadaListItem.cs" />
+    <Compile Include="Intervention\IntvDetails.cs" />
+    <Compile Include="Survey\SurveyDetails.cs" />
     <Compile Include="Survey\SurveyImporter.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Demography\AdminLevel.cs" />
     <Compile Include="Demography\AdminLevelType.cs" />
     <Compile Include="Demography\AdminLevelDemography.cs" />
-    <Compile Include="Disease\DiseasePopImporter.cs" />
-    <Compile Include="Disease\DiseasePopulation.cs" />
-    <Compile Include="Disease\DiseaseDistribution.cs" />
-    <Compile Include="Disease\DiseaseDistributionImporter.cs" />
+    <Compile Include="Diseases\DiseasePopImporter.cs" />
+    <Compile Include="Diseases\DiseasePopulation.cs" />
+    <Compile Include="Diseases\DiseaseDistribution.cs" />
+    <Compile Include="Diseases\DiseaseDistributionImporter.cs" />
     <Compile Include="ModelData.cs" />
     <Compile Include="Base\NadaClass.cs" />
     <Compile Include="IHaveDynamicIndicators.cs" />
@@ -73,7 +76,7 @@
     <Compile Include="Intervention\DistributionMethod.cs" />
     <Compile Include="Intervention\IntvBase.cs" />
     <Compile Include="Intervention\IntvType.cs" />
-    <Compile Include="Intervention\LfMda.cs" />
+    <Compile Include="Intervention\PcMda.cs" />
     <Compile Include="Repositories\IntvRepository.cs" />
     <Compile Include="Survey\SurveyBase.cs" />
     <Compile Include="Demography\Country.cs" />
@@ -81,7 +84,7 @@
     <Compile Include="Csv\AdminLevelDemoRow.cs" />
     <Compile Include="Csv\AdminLevelRow.cs" />
     <Compile Include="Csv\CsvItem.cs" />
-    <Compile Include="Disease\Disease.cs" />
+    <Compile Include="Diseases\Disease.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="LinqExtensions.cs" />

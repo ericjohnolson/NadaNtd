@@ -70,7 +70,7 @@ namespace Nada.UI.View
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             bsPop.EndEdit();
-            model.CustomIndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
+            model.CustomIndicatorValues = customIndicatorControl1.GetValues();
             int userId = ApplicationData.Instance.GetUserId();
             r.Save(model, userId);
             OnSave(false);

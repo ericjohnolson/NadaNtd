@@ -39,7 +39,7 @@ namespace Nada.UI.View.Survey
                 Localizer.TranslateControl(this);
                 repo = new SurveyRepository();
                 bsSurveyType.DataSource = model;
-                lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
+                lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
             }
         }
 
@@ -53,7 +53,7 @@ namespace Nada.UI.View.Survey
 
         private void edit_OnSave(Indicator obj)
         {
-            lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
+            lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -72,8 +72,8 @@ namespace Nada.UI.View.Survey
 
         void add_OnSave(Indicator obj)
         {
-            model.Indicators.Add(obj);
-            lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
+            model.Indicators.Add(obj.DisplayName, obj);
+            lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
         }
 
         private void fieldLink1_OnClick()
@@ -81,7 +81,6 @@ namespace Nada.UI.View.Survey
             IndicatorAdd modal = new IndicatorAdd();
             modal.OnSave += add_OnSave;
             modal.ShowDialog();
-
         }
     }
 }

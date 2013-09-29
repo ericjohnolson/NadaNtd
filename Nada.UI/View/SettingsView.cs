@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Nada.Model.Repositories;
 using Nada.Model;
 using Nada.UI.AppLogic;
+using Nada.Model.Diseases;
 
 namespace Nada.UI.View
 {
@@ -32,7 +33,7 @@ namespace Nada.UI.View
                 settings = new SettingsRepository();
                 popGroups = settings.GetAllPopGroups();
                 adminLevels = settings.GetAllAdminLevels();
-                lvDiseases.SetObjects(diseases.GetAllDiseases(Localizer.GetCultureName()));
+                lvDiseases.SetObjects(diseases.GetAllDiseases());
                 popGroupBindingSource.DataSource = popGroups;
                 adminLevelBindingSource.DataSource = adminLevels;
             }
@@ -41,23 +42,18 @@ namespace Nada.UI.View
         #region Diseases
         private void btnAddDisease_Click(object sender, EventArgs e)
         {
-            DiseaseModal form = new DiseaseModal(new Disease());
-            form.OnSave += disease_OnSave;
-            form.ShowDialog();
+            
         }
 
         private void lvDiseases_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
         {
             e.Handled = true;
-            Disease selected = (Disease)e.Model;
-            DiseaseModal form = new DiseaseModal(selected.Id);
-            form.OnSave += disease_OnSave;
-            form.ShowDialog();
+            
         }
 
         private void disease_OnSave()
         {
-            lvDiseases.SetObjects(diseases.GetAllDiseases(Localizer.GetCultureName()));
+            lvDiseases.SetObjects(diseases.GetAllDiseases());
         }
         #endregion
 

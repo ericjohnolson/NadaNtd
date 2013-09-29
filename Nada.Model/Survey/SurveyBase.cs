@@ -14,6 +14,7 @@ namespace Nada.Model.Base
         {
             StartDate = DateTime.Now;
             EndDate = DateTime.Now;
+            IndicatorValues = new List<IndicatorValue>();
         }
         public Nullable<int> AdminLevelId { get; set; }
         [Required]
@@ -23,5 +24,7 @@ namespace Nada.Model.Base
         public SurveyType TypeOfSurvey { get; set; }
         public string Notes { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
+        public virtual void MapIndicatorsToProperties() { }
+        public virtual void MapPropertiesToIndicators() { }
     }
 }

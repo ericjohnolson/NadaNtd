@@ -8,12 +8,17 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
 using Nada.Model.Repositories;
+using Nada.Model.Diseases;
+using Nada.UI.AppLogic;
 
 namespace Nada.UI.View.Demography
 {
     public partial class AdminLevelView : UserControl
     {
+        public Action<UserControl> LoadView = (i) => { };
         public event Action<AdminLevel> OnSelect = (e) => { };
+        public Action<string> StatusChanged = (e) => { };
+        public Action<AdminLevel> ReloadView = (i) => { };
         private AdminLevel adminLevel;
         private AdminLevelType childType;
         private DemoRepository r = null;
@@ -36,56 +41,23 @@ namespace Nada.UI.View.Demography
             {
                 r = new DemoRepository();
                 bsAdminLevel.DataSource = adminLevel;
-
-                lvDemos.SetObjects(r.GetAdminLevelDemography(adminLevel.Id));
-
-                if (childType == null)
-                    grpChildren.Visible = false;
-                else
-                {
-                    grpChildren.Visible = true;
-                    grpChildren.Values.Heading = childType.DisplayName;
-                    btnImportChildren.Text = childType.DisplayName + " Import";
-                    btnAddChild.Text = "Add " + childType.DisplayName;
-                    lvChildren.SetObjects(adminLevel.Children);
-                }
+                // Foreach type of disease load the dashboard, add tabs, 
+                LoadDisease(DiseaseType.Lf, adminLevel);
             }
         }
 
-        private void btnImportChildDemos_Click(object sender, EventArgs e)
+        private void LoadDisease(DiseaseType diseaseType, AdminLevel adminLevel)
         {
-            ImportDemographyModal dialog = new ImportDemographyModal(adminLevel);
-            dialog.ShowDialog();
+            IFetchDiseaseActivities fetcher = DiseaseActivitiesFactory.GetForDisease(diseaseType, adminLevel);
+            DiseaseDashboard dash = new DiseaseDashboard(fetcher, adminLevel);
+            dash.ReloadView = (v) => { ReloadView(v); };
+            dash.LoadView = (v) => { LoadView(v); };
+            dash.StatusChanged = (s) => { StatusChanged(s); };
+
+            dash.LoadContent();
+            dash.Dock = DockStyle.Fill;
+            pnlLf.Controls.Add(dash);
         }
-
-        private void btnImportChildren_Click(object sender, EventArgs e)
-        {
-            ImportAdminLevelsModal dialog = new ImportAdminLevelsModal(adminLevel, childType);
-            dialog.OnSuccess += importChildren_OnSuccess;
-            dialog.ShowDialog();
-        }
-
-        private void importChildren_OnSuccess()
-        {
-            lvChildren.SetObjects(r.GetAdminLevelChildren(adminLevel.Id));
-        }
-
-        private void btnAddChild_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAddDemo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lvChildren_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
-        {
-            e.Handled = true;
-            OnSelect((AdminLevel)e.Model);
-        }
-
 
     }
 }

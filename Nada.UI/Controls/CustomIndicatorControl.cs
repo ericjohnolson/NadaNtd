@@ -20,8 +20,13 @@ namespace Nada.UI.View
         {
             InitializeComponent();
         }
+        
+        public void LoadIndicators(Dictionary<string, Indicator> indicators)
+        {
+            LoadIndicators(indicators, new List<IndicatorValue>());
+        }
 
-        public void LoadIndicators(IEnumerable<Indicator> indicators)
+        public void LoadIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
         {
             this.SuspendLayout();
             controlList = new List<DynamicContainer>();
@@ -30,7 +35,7 @@ namespace Nada.UI.View
             int labelRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize }); 
             int controlRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize }); 
             int columnCount = 0;
-            foreach (var indicator in indicators.OrderBy(i => i.SortOrder).ToList())
+            foreach (var indicator in indicators.Values.Where(i => i.IsDisplayed).OrderBy(i => i.SortOrder).ToList())
             {
                 if (count % 4 == 0)
                 {
@@ -45,28 +50,17 @@ namespace Nada.UI.View
                     columnCount, labelRowIndex);
 
                 // Add field
-                tblIndicators.Controls.Add(CreateControl(indicator), columnCount, controlRowIndex);
+                string val = "";
+                IndicatorValue iv = values.FirstOrDefault(i => i.IndicatorId == indicator.Id);
+                if (iv != null)
+                    val = iv.DynamicValue;
+
+                tblIndicators.Controls.Add(CreateControl(indicator, val), columnCount, controlRowIndex);
 
                 count++;
                 columnCount = columnCount + 2;
             }
             this.ResumeLayout();
-        }
-
-        public List<T> GetValues<T>() where T : IndicatorValue
-        {
-            var listType = typeof(List<>);
-            var constructedListType = listType.MakeGenericType(typeof(T));
-            var valList = (List<T>)Activator.CreateInstance(constructedListType);
-
-            foreach (DynamicContainer cnt in controlList)
-            {
-                T val = (T)Activator.CreateInstance(typeof(T));
-                val.DynamicValue = cnt.GetValue();
-                val.Indicator = cnt.Indicator;
-                valList.Add(val);
-            }
-            return valList;
         }
 
         public List<IndicatorValue> GetValues() 
@@ -84,11 +78,15 @@ namespace Nada.UI.View
             return valList;
         }
 
-        private Control CreateControl(Indicator indicator)
+        private Control CreateControl(Indicator indicator, string val)
         {
             if (indicator.DataTypeId == (int)IndicatorDataType.Date)
             {
                 var cntrl = new DateTimePicker { Name = "dynamicDt" + indicator.Id.ToString() };
+                DateTime dt = new DateTime();
+                if (DateTime.TryParse(val, out dt))
+                    cntrl.Value = dt;
+
                 controlList.Add(new DynamicContainer
                 {
                     Indicator = indicator,
@@ -98,7 +96,8 @@ namespace Nada.UI.View
             }
             else if (indicator.DataTypeId == (int)IndicatorDataType.Number)
             {
-                var cntrl = new TextBox { Name = "dynamicNum" + indicator.Id.ToString() };
+                var cntrl = new TextBox { Name = "dynamicNum" + indicator.Id.ToString(), Text = val };
+
                 controlList.Add(new DynamicContainer
                 {
                     Indicator = indicator,
@@ -110,6 +109,10 @@ namespace Nada.UI.View
             else if (indicator.DataTypeId == (int)IndicatorDataType.YesNo)
             {
                 var cntrl = new CheckBox { Name = "dynamicChk" + indicator.Id.ToString() };
+                bool isChecked = false;
+                if (Boolean.TryParse(val, out isChecked))
+                    cntrl.Checked = isChecked;
+
                 controlList.Add(new DynamicContainer
                 {
                     Indicator = indicator,
@@ -120,7 +123,7 @@ namespace Nada.UI.View
             }
             else
             {
-                var cntrl = new TextBox { Name = "dynamicTxt" + indicator.Id.ToString() };
+                var cntrl = new TextBox { Name = "dynamicTxt" + indicator.Id.ToString(), Text = val };
                 controlList.Add(new DynamicContainer
                 {
                     Indicator = indicator,

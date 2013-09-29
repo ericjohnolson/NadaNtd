@@ -51,7 +51,7 @@ namespace Nada.UI.View
             else if (e.Column.AspectName == "DeleteText")
             {
                 repo.Delete((Partner)e.Model, ApplicationData.Instance.GetUserId());
-                lvDistros.SetObjects(repo.GetMedicines());
+                lvDistros.SetObjects(repo.GetPartners());
                 OnSave();
             }
         }

@@ -10,6 +10,7 @@ using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Intervention;
 using Nada.UI.AppLogic;
+using Nada.Model.Diseases;
 
 namespace Nada.UI.View
 {
@@ -49,7 +50,7 @@ namespace Nada.UI.View
         private void btnSave_Click_1(object sender, EventArgs e)
         {
             bsDiseaseDistribution.EndEdit();
-            model.CustomIndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
+            model.CustomIndicatorValues = customIndicatorControl1.GetValues();
             int currentUser = ApplicationData.Instance.GetUserId();
             repo.Save(model, currentUser);
             OnSave();

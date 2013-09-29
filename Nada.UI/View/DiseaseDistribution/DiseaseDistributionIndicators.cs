@@ -10,6 +10,7 @@ using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Intervention;
 using Nada.UI.AppLogic;
+using Nada.Model.Diseases;
 
 namespace Nada.UI.View
 {
@@ -35,7 +36,7 @@ namespace Nada.UI.View
             if (!DesignMode)
             {
                 repo = new DiseaseRepository();
-                lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
+                lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
             }
         }
 
@@ -49,7 +50,7 @@ namespace Nada.UI.View
 
         private void edit_OnSave(Indicator obj)
         {
-            lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
+            lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -77,8 +78,8 @@ namespace Nada.UI.View
 
         void add_OnSave(Indicator obj)
         {
-            model.Indicators.Add(obj);
-            lvIndicators.SetObjects(model.Indicators.Where(i => i.IsEditable));
+            model.Indicators.Add(obj.DisplayName, obj);
+            lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
         }
     }
 }

@@ -11,19 +11,28 @@ using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
 using Nada.Model;
 using Nada.Globalization;
+using Nada.UI.View.Help;
 
 namespace Nada.UI.View.Survey
 {
-    public partial class LfMfPrevalenceView : UserControl
+    public partial class LfMfPrevalenceView : UserControl, IView
     {
-        public event Action<bool> OnSave = (b) => { };
-        public event Action<string> StatusChanged = (s) => { };
+        private AdminLevel adminLevel = null;
         private LfMfPrevalence model = null;
         private SurveyRepository r = null;
         private DemoRepository demo = null;
+        private List<Vector> vectors = null;
+        public Action OnClose { get; set; }
+        public Action<string> StatusChanged { get; set; }
 
         public LfMfPrevalenceView()
         {
+            InitializeComponent();
+        }
+
+        public LfMfPrevalenceView(AdminLevel a)
+        {
+            adminLevel = a;
             InitializeComponent();
         }
 
@@ -39,19 +48,29 @@ namespace Nada.UI.View.Survey
             {
                 Localizer.TranslateControl(this);
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
-                adminLevelPickerControl2.OnSelect += adminLevelPickerControl2_OnSelect;
                 r = new SurveyRepository();
                 demo = new DemoRepository();
-                vectorBindingSource.DataSource = r.GetVectors();
-                if (model == null) model = r.CreateSurvey<LfMfPrevalence>(StaticSurveyType.LfPrevalence);
+                if (model == null) 
+                {
+                    model = r.CreateSurvey<LfMfPrevalence>(StaticSurveyType.LfPrevalence);
+                    adminLevelPickerControl1.Select(adminLevel);
+                    model.AdminLevelId = adminLevel.Id;
+                }
+                else
+                    adminLevelPickerControl1.Select(model.AdminLevelId.Value);
+
                 bsSurvey.DataSource = model;
-                var custIndicators = model.TypeOfSurvey.Indicators.Where(i => i.IsDisplayed);
-                if(custIndicators != null && custIndicators.Count() > 0)
-                    customIndicatorControl1.LoadIndicators(custIndicators);
+                if (model.TypeOfSurvey.Indicators != null && model.TypeOfSurvey.Indicators.Count() > 0)
+                    customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators, model.IndicatorValues);
+
                 customIndicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
                 fundersControl1.LoadItems(model.Partners);
-                foreach (var vector in model.Vectors)
-                    lbVectors.SelectedItem = vector;
+
+                vectors = r.GetVectors();
+                vectorBindingSource.DataSource = vectors;
+                lbVectors.ClearSelected();
+                foreach (var vector in vectors.Where(v => model.Vectors.Select(i => i.Id).Contains(v.Id)))
+                    lbVectors.SelectedItems.Add(vector);
                 StatusChanged(Translations.LastUpdated + model.UpdatedBy);
             }
         }
@@ -66,8 +85,11 @@ namespace Nada.UI.View.Survey
             if (cbSiteType.SelectedIndex == 0)
             {
                 pnlSentinel.Visible = true;
-                tbSiteName.Visible = false;
-                model.AdminLevelId = null;
+                pnlSpotCheckName.Visible = false;
+                lblLat.Visible = false;
+                lblLng.Visible = false;
+                tbLat.Visible = false;
+                tbLng.Visible = false;
                 model.SpotCheckName = null;
                 model.Lat = null;
                 model.Lng = null;
@@ -75,19 +97,15 @@ namespace Nada.UI.View.Survey
             else if (cbSiteType.SelectedIndex == 1)
             {
                 pnlSentinel.Visible = false;
-                tbSiteName.Visible = true;
+                pnlSpotCheckName.Visible = true;
+                lblLat.Visible = true;
+                lblLng.Visible = true;
+                tbLat.Visible = true;
+                tbLng.Visible = true;
                 model.SentinelSiteId = null;
             }
         }
 
-        void adminLevelPickerControl2_OnSelect(AdminLevel obj)
-        {
-            model.AdminLevelId = obj.Id;
-            List<SentinelSite> sites = r.GetSitesForAdminLevel(obj.Id);
-            sites.Insert(0, new SentinelSite { SiteName = "Please Select", Id = -1 });
-            sentinelSiteBindingSource.DataSource = sites;
-        }
-        
         private void sentinelSiteAdd_OnClick()
         {
             SentinelSiteAdd modal = new SentinelSiteAdd();
@@ -137,6 +155,11 @@ namespace Nada.UI.View.Survey
                 MessageBox.Show(Translations.ValidationError);
                 return;
             }
+            if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
+            {
+                MessageBox.Show(Translations.LocationRequired);
+                return;
+            }
 
             bsSurvey.EndEdit();
             model.Partners = fundersControl1.GetSelected();
@@ -145,12 +168,11 @@ namespace Nada.UI.View.Survey
                 model.Vectors.Add(vector as Vector);
             //When getting the value back out, use something like the following:
             if (model.SentinelSiteId == -1) model.SentinelSiteId = null;
-            model.IndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
+            model.IndicatorValues = customIndicatorControl1.GetValues();
             model.MapPropertiesToIndicators();
             int userId = ApplicationData.Instance.GetUserId();
                 r.Save(model, userId);
-            MessageBox.Show("Survey was saved!");
-            OnSave(false);
+            OnClose();
         }
 
         void customIndicatorControl1_OnAddRemove()
@@ -167,8 +189,18 @@ namespace Nada.UI.View.Survey
         
         private void cancel_Click(object sender, EventArgs e)
         {
-            OnSave(false);
+            OnClose();
         }
 
+        private void btnDash_Click(object sender, EventArgs e)
+        {
+            OnClose();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            HelpView help = new HelpView();
+            help.Show();
+        }
     }
 }

@@ -87,7 +87,7 @@
             // 
             // bsIntv
             // 
-            this.bsIntv.DataSource = typeof(Nada.Model.Intervention.LfMda);
+            this.bsIntv.DataSource = typeof(Nada.Model.Intervention.PcMda);
             // 
             // dateTimePicker1
             // 

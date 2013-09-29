@@ -20,7 +20,7 @@ namespace Nada.Model
 
         public ImporterBase(IHaveDynamicIndicators i)
         {
-            dynamicIndicators = Util.CreateIndicatorDictionary(i);
+            dynamicIndicators = i.Indicators;
         }
 
         public virtual DataTable GetDataTable()

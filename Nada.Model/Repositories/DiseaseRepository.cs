@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using Nada.DA;
+using Nada.Model.Diseases;
 
 namespace Nada.Model.Repositories
 {
@@ -14,7 +15,7 @@ namespace Nada.Model.Repositories
         public DiseasePopulation CreatePop(DiseaseType disease)
         {
             DiseasePopulation dd = new DiseasePopulation();
-            dd.Disease = GetDiseaseById((int)disease, "en-US");
+            dd.Disease = GetDiseaseById((int)disease);
             dd.Indicators = GetIndicatorsForDisease(dd.Disease.Id, "DiseasePopulationIndicators");
             return dd;
         }
@@ -91,7 +92,7 @@ namespace Nada.Model.Repositories
                     command.ExecuteNonQuery();
                     transWasStarted = true;
 
-                    foreach (var indicator in model.Indicators.Where(i => i.Id > 0 && i.IsEdited))
+                    foreach (var indicator in model.Indicators.Values.Where(i => i.Id > 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"UPDATE DiseasePopulationIndicators SET DiseaseId=@DiseaseId, DataTypeId=@DataTypeId,
                         DisplayName=@DisplayName, SortOrder=@SortOrder, IsDisabled=@IsDisabled, 
@@ -109,7 +110,7 @@ namespace Nada.Model.Repositories
                         command.ExecuteNonQuery();
                     }
 
-                    foreach (var indicator in model.Indicators.Where(i => i.Id <= 0 && i.IsEdited))
+                    foreach (var indicator in model.Indicators.Values.Where(i => i.Id <= 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"INSERT INTO DiseasePopulationIndicators (DiseaseId, DataTypeId, 
                         DisplayName, SortOrder, IsDisabled, IsEditable, UpdatedById, UpdatedAt) VALUES
@@ -171,7 +172,7 @@ namespace Nada.Model.Repositories
         public DiseaseDistribution Create(DiseaseType disease)
         {
             DiseaseDistribution dd = new DiseaseDistribution();
-            dd.Disease = GetDiseaseById((int)disease, "en-US");
+            dd.Disease = GetDiseaseById((int)disease);
             dd.Indicators = GetIndicatorsForDisease(dd.Disease.Id, "DiseaseDistributionIndicators");
             return dd;
         }
@@ -308,7 +309,7 @@ namespace Nada.Model.Repositories
                     command.ExecuteNonQuery();
                     transWasStarted = true;
 
-                    foreach (var indicator in model.Indicators.Where(i => i.Id > 0 && i.IsEdited))
+                    foreach (var indicator in model.Indicators.Values.Where(i => i.Id > 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"UPDATE DiseaseDistributionIndicators SET DiseaseId=@DiseaseId, DataTypeId=@DataTypeId,
                         DisplayName=@DisplayName, SortOrder=@SortOrder, IsDisabled=@IsDisabled, 
@@ -326,7 +327,7 @@ namespace Nada.Model.Repositories
                         command.ExecuteNonQuery();
                     }
 
-                    foreach (var indicator in model.Indicators.Where(i => i.Id <= 0 && i.IsEdited))
+                    foreach (var indicator in model.Indicators.Values.Where(i => i.Id <= 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"INSERT INTO DiseaseDistributionIndicators (DiseaseId, DataTypeId, 
                         DisplayName, SortOrder, IsDisabled, IsEditable, UpdatedById, UpdatedAt) VALUES
@@ -385,9 +386,9 @@ namespace Nada.Model.Repositories
         #endregion
 
         #region Disease
-        private List<Indicator> GetIndicatorsForDisease(int diseaseId, string table)
+        private Dictionary<string, Indicator> GetIndicatorsForDisease(int diseaseId, string table)
         {
-            List<Indicator> indicators = new List<Indicator>();
+            Dictionary<string, Indicator> indicators = new Dictionary<string, Indicator>();
 
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
@@ -414,7 +415,8 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            indicators.Add(new Indicator
+                            indicators.Add(reader.GetValueOrDefault<string>("DisplayName"),
+                                new Indicator
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
@@ -438,27 +440,24 @@ namespace Nada.Model.Repositories
             return indicators;
         }
 
-        public List<Disease> GetAllDiseases(string lang)
+        public List<Disease> GetAllDiseases()
         {
             List<Disease> diseases = new List<Disease>();
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
-                string sql = @"Select Diseases.ID, TranslationText, Code, IsEnabled 
-                    from Diseases inner join Translations on (Diseases.TranslationId = Translations.TranslationId) 
-                    where IsoCode = @lang order by Code";
+                string sql = @"Select Diseases.ID, DisplayName 
+                    from Diseases
+                    where isdeleted = 0";
                 OleDbCommand command = new OleDbCommand(sql, connection);
-                command.Parameters.Add(new OleDbParameter("@lang", lang));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                         diseases.Add(new Disease
                         {
-                            Code = reader.GetValueOrDefault<string>("Code"),
-                            DisplayName = reader.GetValueOrDefault<string>("TranslationText"),
-                            Id = reader.GetValueOrDefault<int>("ID"),
-                            IsEnabled = reader.GetValueOrDefault<bool>("IsEnabled")
+                            DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+                            Id = reader.GetValueOrDefault<int>("ID")
                         });
                     reader.Close();
                 }
@@ -466,19 +465,19 @@ namespace Nada.Model.Repositories
             return diseases;
         }
 
-        public Disease GetDiseaseById(int id, string lang)
+        public Disease GetDiseaseById(int id)
         {
             Disease disease = new Disease();
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
-                string sql = @"Select Diseases.ID, TranslationText, Code, Diseases.TranslationId, IsEnabled  
-                    from Diseases inner join Translations on (Diseases.TranslationId = Translations.TranslationId) 
-                    where (Diseases.ID = @did AND IsoCode = @lang)";
+                string sql = @"Select Diseases.ID, DisplayName, UpdatedAt, 
+                    aspnet_Users.UserName
+                    from (Diseases INNER JOIN aspnet_Users on Diseases.UpdatedById = aspnet_Users.UserId)
+                    where Diseases.ID = @did";
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 command.Parameters.Add(new OleDbParameter("@did", id));
-                command.Parameters.Add(new OleDbParameter("@lang", lang));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)
@@ -486,38 +485,20 @@ namespace Nada.Model.Repositories
                         reader.Read();
                         disease = new Disease
                         {
-                            Code = reader.GetValueOrDefault<string>("Code"),
-                            DisplayName = reader.GetValueOrDefault<string>("TranslationText"),
+                            DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
                             Id = reader.GetValueOrDefault<int>("ID"),
-                            TranslationId = reader.GetValueOrDefault<string>("TranslationId"),
-                            IsEnabled = reader.GetValueOrDefault<bool>("IsEnabled")
+                            UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+
                         };
                     }
-                    reader.Close();
-                }
-
-                command = new OleDbCommand(@"Select Translations.IsoCode, TranslationText, DisplayName from Translations 
-                    inner join Languages on (Languages.IsoCode = Translations.IsoCode) 
-                    where TranslationId = @translationId", connection);
-                command.Parameters.Add(new OleDbParameter("@translationId", disease.TranslationId));
-                using (OleDbDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                        disease.TranslatedNames.Add(new TranslatedValue
-                        {
-                            IsoCode = reader.GetValueOrDefault<string>("IsoCode"),
-                            Value = reader.GetValueOrDefault<string>("TranslationText"),
-                            Language = reader.GetValueOrDefault<string>("DisplayName")
-                        });
                     reader.Close();
                 }
             }
             return disease;
         }
 
-        public void Insert(Disease disease, int byUserId)
+        public void Delete(Disease disease, int byUserId)
         {
-            bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
@@ -525,76 +506,48 @@ namespace Nada.Model.Repositories
                 try
                 {
                     // START TRANS
-                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
-                    command.ExecuteNonQuery();
-                    transWasStarted = true;
-
-                    // INSERT DISEASE
-                    command = new OleDbCommand(@"INSERT INTO diseases (Code, TranslationId, IsEnabled, UpdatedBy, UpdatedAt) VALUES
-                    (@code, @guid, @IsEnabled, @updatedby, @updatedat)", connection);
-                    command.Parameters.Add(new OleDbParameter("@code", disease.Code));
-                    command.Parameters.Add(new OleDbParameter("@guid", disease.TranslationId));
-                    command.Parameters.Add(new OleDbParameter("@IsEnabled", disease.IsEnabled));
-                    command.Parameters.Add(new OleDbParameter("@updatedby", byUserId));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
-                    command.ExecuteNonQuery();
-
-                    // INSERT translations
-                    SettingsRepository.InsertTranslations(disease.TranslatedNames, byUserId, disease.TranslationId, command, connection);
-
-                    // COMMIT TRANS
-                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
-                    command.ExecuteNonQuery();
-                    transWasStarted = false;
-                }
-                catch (Exception)
-                {
-                    if (transWasStarted)
-                    {
-                        try
-                        {
-                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch { }
-                    }
-                    throw;
-                }
-            }
-        }
-
-        public void Update(Disease disease, int byUserId)
-        {
-            bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    // START TRANS
-                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
-                    command.ExecuteNonQuery();
-                    transWasStarted = true;
-
-                    // Update DISEASE
-                    command = new OleDbCommand(@"UPDATE Diseases SET Code=@code, TranslationId=@guid, IsEnabled=@IsEnabled, UpdatedBy=@updatedby, 
-                        UpdatedAt=@updatedat WHERE ID = @id", connection);
-                    command.Parameters.Add(new OleDbParameter("@code", disease.Code));
-                    command.Parameters.Add(new OleDbParameter("@guid", disease.TranslationId));
-                    command.Parameters.Add(new OleDbParameter("@IsEnabled", disease.IsEnabled));
-                    command.Parameters.Add(new OleDbParameter("@updatedby", byUserId));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
+                    OleDbCommand command = new OleDbCommand(@"UPDATE Diseases SET IsDeleted=1 WHERE ID = @id", connection);
                     command.Parameters.Add(new OleDbParameter("@id", disease.Id));
                     command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
 
-                    // Update DISEASE NAMES
-                    command = new OleDbCommand(@"DELETE FROM translations WHERE TranslationId = @TranslationId", connection);
-                    command.Parameters.Add(new OleDbParameter("@TranslationId", disease.TranslationId));
+        public void Save(Disease disease, int byUserId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    if (disease.Id > 0)
+                        command = new OleDbCommand(@"UPDATE Diseases SET DisplayName=@DisplayName, UpdatedById=@UpdatedById, 
+                            UpdatedAt=@UpdatedAt WHERE ID = @id", connection);
+                    else
+                        command = new OleDbCommand(@"INSERT INTO diseases (DisplayName, UpdatedById, UpdatedAt) VALUES
+                            (@DisplayName, @UpdatedById, @UpdatedAt)", connection);
+                    command.Parameters.Add(new OleDbParameter("@DisplayName", disease.DisplayName));
+                    command.Parameters.Add(new OleDbParameter("@UpdatedById", byUserId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    if (disease.Id > 0) command.Parameters.Add(new OleDbParameter("@id", disease.Id));
                     command.ExecuteNonQuery();
 
-                    // INSERT translations
-                    SettingsRepository.InsertTranslations(disease.TranslatedNames, byUserId, disease.TranslationId, command, connection);
+                    if (disease.Id <= 0)
+                    {
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM Diseases", connection);
+                        disease.Id = (int)command.ExecuteScalar();
+                    }
 
                     // COMMIT TRANS
                     command = new OleDbCommand("COMMIT TRANSACTION", connection);
@@ -616,7 +569,6 @@ namespace Nada.Model.Repositories
                 }
             }
         }
-
         #endregion
 
     }

@@ -108,6 +108,7 @@
             this.surveyToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
             this.surveyToolStripMenuItem1.Tag = "Surveys";
             this.surveyToolStripMenuItem1.Text = "Surveys";
+            this.surveyToolStripMenuItem1.Visible = false;
             // 
             // addNewToolStripMenuItem
             // 
@@ -125,7 +126,7 @@
             this.prevalenceToolStripMenuItem,
             this.tASToolStripMenuItem});
             this.lToolStripMenuItem.Name = "lToolStripMenuItem";
-            this.lToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lToolStripMenuItem.Size = new System.Drawing.Size(86, 22);
             this.lToolStripMenuItem.Tag = "LF";
             this.lToolStripMenuItem.Text = "LF";
             // 
@@ -172,13 +173,13 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(195, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
             // 
             // sentinelSitesToolStripMenuItem
             // 
             this.sentinelSitesToolStripMenuItem.Enabled = false;
             this.sentinelSitesToolStripMenuItem.Name = "sentinelSitesToolStripMenuItem";
-            this.sentinelSitesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.sentinelSitesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.sentinelSitesToolStripMenuItem.Tag = "SentineSites";
             this.sentinelSitesToolStripMenuItem.Text = "Sentinel sites";
             // 
@@ -191,6 +192,7 @@
             this.diseaseDistributionToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
             this.diseaseDistributionToolStripMenuItem.Tag = "DiseaseDistribution";
             this.diseaseDistributionToolStripMenuItem.Text = "Disease Distribution";
+            this.diseaseDistributionToolStripMenuItem.Visible = false;
             // 
             // toolStripMenuItem6
             // 
@@ -235,6 +237,7 @@
             this.interventionsToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.interventionsToolStripMenuItem.Tag = "Interventions";
             this.interventionsToolStripMenuItem.Text = "Interventions";
+            this.interventionsToolStripMenuItem.Visible = false;
             // 
             // toolStripMenuItem3
             // 
@@ -279,12 +282,13 @@
             this.monitoringTrainingToolStripMenuItem.Size = new System.Drawing.Size(149, 20);
             this.monitoringTrainingToolStripMenuItem.Tag = "MonitoringTraining";
             this.monitoringTrainingToolStripMenuItem.Text = "Monitoring and Training";
+            this.monitoringTrainingToolStripMenuItem.Visible = false;
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Enabled = false;
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(83, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem7.Text = "...";
             // 
             // reportsToolStripMenuItem1
@@ -295,6 +299,7 @@
             this.reportsToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem1.Tag = "Reports";
             this.reportsToolStripMenuItem1.Text = "Reports";
+            this.reportsToolStripMenuItem1.Visible = false;
             // 
             // createCustomToolStripMenuItem
             // 

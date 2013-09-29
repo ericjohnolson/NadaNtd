@@ -52,25 +52,24 @@ namespace Nada.Model.Survey
         public string SpotCheckAdminLevel { get; set; }
         public string SentinelSiteName { get; set; }
 
-        public void MapPropertiesToIndicators()
+        public override void MapPropertiesToIndicators()
         {
-            Dictionary<string, Indicator> inds = Util.CreateIndicatorDictionary(TypeOfSurvey);
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["CasualAgent"].Id, DynamicValue = CasualAgent });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["YearFirstRoundPc"].Id, DynamicValue = YearFirstRoundPc.HasValue ? YearFirstRoundPc.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["RoundsMda"].Id, DynamicValue = RoundsMda.HasValue ? RoundsMda.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["Examined"].Id, DynamicValue = Examined.HasValue ? Examined.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["Positive"].Id, DynamicValue = Positive.HasValue ? Positive.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["PercentPositive"].Id, DynamicValue = PercentPositive.HasValue ? PercentPositive.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["MeanDensity"].Id, DynamicValue = MeanDensity.HasValue ? MeanDensity.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["MfCount"].Id, DynamicValue = MfCount.HasValue ? MfCount.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["MfLoad"].Id, DynamicValue = MfLoad.HasValue ? MfLoad.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["SampleSize"].Id, DynamicValue = SampleSize.HasValue ? SampleSize.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["Sampled"].Id, DynamicValue = Sampled.HasValue ? Sampled.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["Nonresponsive"].Id, DynamicValue = Nonresponsive.HasValue ? Nonresponsive.Value.ToString() : null });
-            IndicatorValues.Add(new IndicatorValue { IndicatorId = inds["AgeRange"].Id, DynamicValue = AgeRange }); 
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["CasualAgent"].Id, DynamicValue = CasualAgent });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["YearFirstRoundPc"].Id, DynamicValue = YearFirstRoundPc.HasValue ? YearFirstRoundPc.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["RoundsMda"].Id, DynamicValue = RoundsMda.HasValue ? RoundsMda.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["Examined"].Id, DynamicValue = Examined.HasValue ? Examined.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["Positive"].Id, DynamicValue = Positive.HasValue ? Positive.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["PercentPositive"].Id, DynamicValue = PercentPositive.HasValue ? PercentPositive.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["MeanDensity"].Id, DynamicValue = MeanDensity.HasValue ? MeanDensity.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["MfCount"].Id, DynamicValue = MfCount.HasValue ? MfCount.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["MfLoad"].Id, DynamicValue = MfLoad.HasValue ? MfLoad.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["SampleSize"].Id, DynamicValue = SampleSize.HasValue ? SampleSize.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["Sampled"].Id, DynamicValue = Sampled.HasValue ? Sampled.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["Nonresponsive"].Id, DynamicValue = Nonresponsive.HasValue ? Nonresponsive.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["AgeRange"].Id, DynamicValue = AgeRange }); 
         }
 
-        public void MapIndicatorsToProperties()
+        public override void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
             CasualAgent = inds["CasualAgent"].DynamicValue;
@@ -93,56 +92,65 @@ namespace Nada.Model.Survey
         {
             get
             {
+                string error = "";
                 switch (columnName)
                 {
                     case "TimingType":
                         if (String.IsNullOrEmpty(TimingType))
-                            _lastError = Translations.Required;
+                            error = Translations.Required;
                         break;
                     case "TestType":
                         if (String.IsNullOrEmpty(TestType))
-                            _lastError = Translations.Required;
+                            error = Translations.Required;
                         break;
                     case "SiteType":
                         if (String.IsNullOrEmpty(SiteType))
-                            _lastError = Translations.Required;
+                            error = Translations.Required;
+                        break;
+                    case "SpotCheckName":
+                        if (SiteType != "Sentinel" && String.IsNullOrEmpty(SpotCheckName))
+                            error = Translations.Required;
+                        break;
+                    case "SentinelSiteId":
+                        if (SiteType == "Sentinel" && (!SentinelSiteId.HasValue || SentinelSiteId.Value < 1))
+                            error = Translations.Required;
                         break;
                     case "YearFirstRoundPc":
                         if (!YearFirstRoundPc.HasValue)
-                            _lastError = Translations.Required;
+                            error = Translations.Required;
                         else if (YearFirstRoundPc.Value > 2050 || YearFirstRoundPc.Value < 1900)
-                            _lastError = Translations.ValidYear;
+                            error = Translations.ValidYear;
                         break;
                     case "AgeRange":
                         if (String.IsNullOrEmpty(AgeRange))
-                            _lastError = Translations.Required;
+                            error = Translations.Required;
                         break;
                     case "Positive":
                         if (!Positive.HasValue)
-                            _lastError = Translations.Required;
+                            error = Translations.Required;
                         break;
                     case "Examined":
                         if (!Examined.HasValue)
-                            _lastError = Translations.Required;
+                            error = Translations.Required;
                         break;
                     case "Lat":
                         if (Lat.HasValue && (Lat > 90 || Lat < -90))
-                            _lastError = Translations.ValidLatitude;
+                            error = Translations.ValidLatitude;
                         break;
                     case "Lng":
                         if (Lng.HasValue && (Lng > 180 || Lng < -180))
-                            _lastError = Translations.ValidLatitude;
+                            error = Translations.ValidLongitude;
                         break;
                     case "RoundsMda":
                         if (RoundsMda.HasValue && (RoundsMda > 20 || RoundsMda < 1))
-                            _lastError = Translations.ValidRoundsMda;
+                            error = Translations.ValidRoundsMda;
                         break;
 
-                    default: _lastError = "";
+                    default: error = "";
                         break;
 
                 }
-                return _lastError;
+                return error;
             }
         }
 

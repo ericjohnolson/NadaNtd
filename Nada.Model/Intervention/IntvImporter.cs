@@ -32,14 +32,14 @@ namespace Nada.Model.Intervention
                 IntvRepository repo = new IntvRepository();
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    LfMda intv = repo.CreateIntv<LfMda>(StaticIntvType.LfMda);
+                    PcMda intv = repo.CreateIntv<PcMda>(StaticIntvType.IvmAlbMda);
                     intv.AdminLevelId = Convert.ToInt32(row["Location Id"]);
                     intv.Notes = row["notes"].ToString();
                     double d = 0;
                     if (double.TryParse(row["Date of Intervention"].ToString(), out d))
-                        intv.IntvDate = DateTime.FromOADate(d);
+                        intv.StartDate = DateTime.FromOADate(d);
                     // HOW TO IMPORT Distros, funders, partners?
-                    intv.CustomIndicatorValues = GetDynamicIndicatorValues(ds, row);
+                    intv.IndicatorValues = GetDynamicIndicatorValues(ds, row);
                     repo.Save(intv, userId);
                 }
 
@@ -98,9 +98,9 @@ namespace Nada.Model.Intervention
 
                     double d = 0;
                     if (double.TryParse(row["Date of Intervention"].ToString(), out d))
-                        intv.IntvDate = DateTime.FromOADate(d);
+                        intv.StartDate = DateTime.FromOADate(d);
 
-                    intv.CustomIndicatorValues = GetDynamicIndicatorValues(ds, row);
+                    intv.IndicatorValues = GetDynamicIndicatorValues(ds, row);
                     repo.SaveBase(intv, userId);
                 }
 

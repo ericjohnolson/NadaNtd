@@ -17,7 +17,7 @@ namespace Nada.UI.View.Intervention
     public partial class LfMdaView : UserControl
     {
         public event Action<bool> OnSave = (b) => { };
-        private LfMda model = null;
+        private PcMda model = null;
         private IntvRepository r = null;
 
         public LfMdaView()
@@ -25,7 +25,7 @@ namespace Nada.UI.View.Intervention
             InitializeComponent();
         }
 
-        public LfMdaView(LfMda Intv)
+        public LfMdaView(PcMda Intv)
         {
             this.model = Intv;
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace Nada.UI.View.Intervention
                 openFileDialog1.Filter = "Excel files|*.xlsx;*.xls";
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
                 r = new IntvRepository();
-                if (model == null) model = r.CreateIntv<LfMda>(StaticIntvType.LfMda);
+                if (model == null) model = r.CreateIntv<PcMda>(StaticIntvType.IvmAlbMda);
                 LoadDistributionList();
                 partnerBindingSource.DataSource = r.GetPartners();
                 foreach (var p in model.Partners)
@@ -78,7 +78,7 @@ namespace Nada.UI.View.Intervention
             model.Medicines.Clear();
             foreach (var m in lbMeds.SelectedItems)
                 model.Medicines.Add(m as Medicine);
-            model.CustomIndicatorValues = customIndicatorControl1.GetValues<IndicatorValue>();
+            model.IndicatorValues = customIndicatorControl1.GetValues();
             int userId = ApplicationData.Instance.GetUserId();
             r.Save(model, userId);
             MessageBox.Show("Intervention was saved!");

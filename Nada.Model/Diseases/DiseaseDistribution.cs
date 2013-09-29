@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using Nada.Model.Base;
 
-namespace Nada.Model
+namespace Nada.Model.Diseases
 {
     [Serializable]
-    public class DiseasePopulation : NadaClass, IHaveDynamicIndicators
+    public class DiseaseDistribution : NadaClass, IHaveDynamicIndicators
     {
-        public DiseasePopulation()
+        public DiseaseDistribution()
         {
             CustomIndicatorValues = new List<IndicatorValue>();
+
         }
 
-        public int Year { get; set; }
         public Nullable<int> AdminLevelId { get; set; }
         public Disease Disease { get; set; }
         public string Notes { get; set; }
-        public List<Indicator> Indicators { get; set; }
+        public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorValue> CustomIndicatorValues { get; set; }
     }
 }

@@ -14,7 +14,13 @@ namespace Nada.UI.Controls
         public H3Label()
         {
             InitializeComponent();
-            label1.MaximumSize = new Size(190, 0);
+            label1.MaximumSize = new Size(180, 0);
+            label1.AutoSize = true;
+        }
+
+        public void SetMaxWidth(int maxWidth)
+        {
+            label1.MaximumSize = new Size(maxWidth, 0);
             label1.AutoSize = true;
         }
 
