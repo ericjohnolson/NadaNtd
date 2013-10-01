@@ -174,7 +174,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(155, 21);
             this.label4.TabIndex = 17;
-            this.label4.Tag = "";
+            this.label4.Tag = "DiseaseDistribution";
             this.label4.Text = "Disease Distribution";
             // 
             // btnDisease
@@ -561,7 +561,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 21);
             this.label2.TabIndex = 17;
-            this.label2.Tag = "";
+            this.label2.Tag = "Interventions";
             this.label2.Text = "Interventions";
             // 
             // btnIntervention
@@ -813,7 +813,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 21);
             this.label1.TabIndex = 17;
-            this.label1.Tag = "";
+            this.label1.Tag = "Surveys";
             this.label1.Text = "Surveys";
             // 
             // btnSurvey

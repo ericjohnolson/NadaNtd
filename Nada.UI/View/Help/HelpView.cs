@@ -22,7 +22,7 @@ namespace Nada.UI.View.Help
             if (!DesignMode)
             {
                 string curDir = Directory.GetCurrentDirectory();
-                string url = String.Format("file:///{0}/View/Help/SampleHelp.html", curDir);
+                string url = String.Format("file:///{0}/View/Help/NaDa_help_screen_text.htm", curDir);
                 this.webBrowser1.Url = new Uri(url);
             }
         }

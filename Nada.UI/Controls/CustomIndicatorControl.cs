@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
 using Nada.UI.Controls;
+using Nada.UI.AppLogic;
 
 namespace Nada.UI.View
 {
@@ -23,6 +24,7 @@ namespace Nada.UI.View
         
         public void LoadIndicators(Dictionary<string, Indicator> indicators)
         {
+            Localizer.TranslateControl(this);
             LoadIndicators(indicators, new List<IndicatorValue>());
         }
 

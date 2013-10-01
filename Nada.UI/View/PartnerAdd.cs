@@ -33,6 +33,7 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 bsDistributionMethod.DataSource = model;
                 lblLastUpdated.Text += model.UpdatedBy;
             }

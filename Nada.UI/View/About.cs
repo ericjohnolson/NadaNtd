@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.UI.AppLogic;
 
 namespace Nada.UI
 {
@@ -25,6 +26,9 @@ namespace Nada.UI
 
         private void About_Load(object sender, EventArgs e)
         {
+            if(!DesignMode)
+                Localizer.TranslateControl(this);
+
             if (ApplicationDeployment.IsNetworkDeployed)
             {
                 var myVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion;

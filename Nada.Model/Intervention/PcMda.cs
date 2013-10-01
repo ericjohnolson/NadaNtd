@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -9,12 +10,13 @@ using Nada.Model.Diseases;
 
 namespace Nada.Model.Intervention
 {
-    public class PcMda : IntvBase
+    public class PcMda : IntvBase, IDataErrorInfo
     {
         public PcMda() : base()
         {
             Medicines = new List<Medicine>();
             Partners = new List<Partner>();
+            DiseasesTargeted = new List<Disease>();
         }
 
         // List fields
@@ -57,37 +59,72 @@ namespace Nada.Model.Intervention
 
         public override void MapPropertiesToIndicators()
         {
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["CasualAgent"].Id, DynamicValue = CasualAgent });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["YearFirstRoundPc"].Id, DynamicValue = YearFirstRoundPc.HasValue ? YearFirstRoundPc.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["RoundsMda"].Id, DynamicValue = RoundsMda.HasValue ? RoundsMda.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["Examined"].Id, DynamicValue = Examined.HasValue ? Examined.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["Positive"].Id, DynamicValue = Positive.HasValue ? Positive.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["PercentPositive"].Id, DynamicValue = PercentPositive.HasValue ? PercentPositive.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["MeanDensity"].Id, DynamicValue = MeanDensity.HasValue ? MeanDensity.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["MfCount"].Id, DynamicValue = MfCount.HasValue ? MfCount.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["MfLoad"].Id, DynamicValue = MfLoad.HasValue ? MfLoad.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["SampleSize"].Id, DynamicValue = SampleSize.HasValue ? SampleSize.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["Sampled"].Id, DynamicValue = Sampled.HasValue ? Sampled.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["Nonresponsive"].Id, DynamicValue = Nonresponsive.HasValue ? Nonresponsive.Value.ToString() : null });
-            //IndicatorValues.Add(new IndicatorValue { IndicatorId = TypeOfSurvey.Indicators["AgeRange"].Id, DynamicValue = AgeRange });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["RoundsPlannedYear"].Id, DynamicValue = RoundsPlannedYear.HasValue ? RoundsPlannedYear.Value.ToString() : null });
+
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["RoundNumber"].Id, DynamicValue = RoundNumber.HasValue ? RoundNumber.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumAtRisk"].Id, DynamicValue = NumAtRisk.HasValue ? NumAtRisk.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["EligibleMalesTargeted"].Id, DynamicValue = EligibleMalesTargeted.HasValue ? EligibleMalesTargeted.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["EligibleFemalesTargeted"].Id, DynamicValue = EligibleFemalesTargeted.HasValue ? EligibleFemalesTargeted.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumEligibleTargeted"].Id, DynamicValue = NumEligibleTargeted.HasValue ? NumEligibleTargeted.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumTargetedOncho"].Id, DynamicValue = NumTargetedOncho.HasValue ? NumTargetedOncho.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumAdultsTargeted"].Id, DynamicValue = NumAdultsTargeted.HasValue ? NumAdultsTargeted.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumSacTargeted"].Id, DynamicValue = NumSacTargeted.HasValue ? NumSacTargeted.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumPsacTargeted"].Id, DynamicValue = NumPsacTargeted.HasValue ? NumPsacTargeted.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumTreatedOncho"].Id, DynamicValue = NumTreatedOncho.HasValue ? NumTreatedOncho.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumAdultsTreated"].Id, DynamicValue = NumAdultsTreated.HasValue ? NumAdultsTreated.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumSacTreated"].Id, DynamicValue = NumSacTreated.HasValue ? NumSacTreated.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumPsacTreated"].Id, DynamicValue = NumPsacTreated.HasValue ? NumPsacTreated.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumEligibleMalesTreated"].Id, DynamicValue = NumEligibleMalesTreated.HasValue ? NumEligibleMalesTreated.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumEligibleFemalesTreated"].Id, DynamicValue = NumEligibleFemalesTreated.HasValue ? NumEligibleFemalesTreated.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumEligibleTreated"].Id, DynamicValue = NumEligibleTreated.HasValue ? NumEligibleTreated.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumTreatedTeo"].Id, DynamicValue = NumTreatedTeo.HasValue ? NumTreatedTeo.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumTreatedZxPos"].Id, DynamicValue = NumTreatedZxPos.HasValue ? NumTreatedZxPos.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumTreatedZx"].Id, DynamicValue = NumTreatedZx.HasValue ? NumTreatedZx.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["NumSacReported"].Id, DynamicValue = NumSacReported.HasValue ? NumSacReported.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["SacCoverage"].Id, DynamicValue = SacCoverage.HasValue ? SacCoverage.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["PsacCoverage"].Id, DynamicValue = PsacCoverage.HasValue ? PsacCoverage.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["MalesCoverage"].Id, DynamicValue = MalesCoverage.HasValue ? MalesCoverage.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["FemalesCoverage"].Id, DynamicValue = FemalesCoverage.HasValue ? FemalesCoverage.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["EpiCoverage"].Id, DynamicValue = EpiCoverage.HasValue ? EpiCoverage.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["ProgramCoverage"].Id, DynamicValue = ProgramCoverage.HasValue ? ProgramCoverage.Value.ToString() : null });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["StockOut"].Id, DynamicValue = StockOut });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["StockOutDrug"].Id, DynamicValue = StockOutDrug });
+            IndicatorValues.Add(new IndicatorValue { IndicatorId = IntvType.Indicators["StockOutLength"].Id, DynamicValue = StockOutLength });
         }
 
         public override void MapIndicatorsToProperties()
         {
-            //Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            //CasualAgent = inds["CasualAgent"].DynamicValue;
-            //AgeRange = inds["AgeRange"].DynamicValue;
-            //YearFirstRoundPc = inds["YearFirstRoundPc"].DynamicValue.ToNullable<int>();
-            //RoundsMda = inds["RoundsMda"].DynamicValue.ToNullable<int>();
-            //Examined = inds["Examined"].DynamicValue.ToNullable<int>();
-            //Positive = inds["Positive"].DynamicValue.ToNullable<int>();
-            //PercentPositive = inds["PercentPositive"].DynamicValue.ToNullable<double>();
-            //MeanDensity = inds["MeanDensity"].DynamicValue.ToNullable<double>();
-            //MfCount = inds["MfCount"].DynamicValue.ToNullable<int>();
-            //MfLoad = inds["MfLoad"].DynamicValue.ToNullable<double>();
-            //SampleSize = inds["SampleSize"].DynamicValue.ToNullable<int>();
-            //Sampled = inds["Sampled"].DynamicValue.ToNullable<int>();
-            //Nonresponsive = inds["Nonresponsive"].DynamicValue.ToNullable<int>();
+            Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
+            StockOut= inds["StockOut"].DynamicValue;
+            StockOutDrug = inds["StockOutDrug"].DynamicValue;
+            StockOutLength = inds["StockOutLength"].DynamicValue;
+            RoundsPlannedYear = inds["RoundsPlannedYear"].DynamicValue.ToNullable<int>();
+            RoundNumber = inds["RoundNumber"].DynamicValue.ToNullable<int>();
+            NumAtRisk = inds["NumAtRisk"].DynamicValue.ToNullable<int>();
+            EligibleMalesTargeted = inds["EligibleMalesTargeted"].DynamicValue.ToNullable<int>();
+            EligibleFemalesTargeted = inds["EligibleFemalesTargeted"].DynamicValue.ToNullable<int>();
+            NumEligibleTargeted = inds["NumEligibleTargeted"].DynamicValue.ToNullable<int>();
+            NumTargetedOncho = inds["NumTargetedOncho"].DynamicValue.ToNullable<int>();
+            NumAdultsTargeted = inds["NumAdultsTargeted"].DynamicValue.ToNullable<int>();
+            NumSacTargeted = inds["NumSacTargeted"].DynamicValue.ToNullable<int>();
+            NumPsacTargeted = inds["NumPsacTargeted"].DynamicValue.ToNullable<int>();
+            NumTreatedOncho = inds["NumTreatedOncho"].DynamicValue.ToNullable<int>();
+            NumAdultsTreated = inds["NumAdultsTreated"].DynamicValue.ToNullable<int>();
+            NumSacTreated = inds["NumSacTreated"].DynamicValue.ToNullable<int>();
+            NumPsacTreated = inds["NumPsacTreated"].DynamicValue.ToNullable<int>();
+            NumEligibleMalesTreated = inds["NumEligibleMalesTreated"].DynamicValue.ToNullable<int>();
+            NumEligibleFemalesTreated = inds["NumEligibleFemalesTreated"].DynamicValue.ToNullable<int>();
+            NumEligibleTreated = inds["NumEligibleTreated"].DynamicValue.ToNullable<int>();
+            NumTreatedTeo = inds["NumTreatedTeo"].DynamicValue.ToNullable<int>();
+            NumTreatedZxPos = inds["NumTreatedZxPos"].DynamicValue.ToNullable<int>();
+            NumTreatedZx = inds["NumTreatedZx"].DynamicValue.ToNullable<int>();
+            NumSacReported = inds["NumSacReported"].DynamicValue.ToNullable<int>();
+            SacCoverage = inds["SacCoverage"].DynamicValue.ToNullable<double>();
+            PsacCoverage = inds["PsacCoverage"].DynamicValue.ToNullable<double>();
+            MalesCoverage = inds["MalesCoverage"].DynamicValue.ToNullable<double>();
+            FemalesCoverage = inds["FemalesCoverage"].DynamicValue.ToNullable<double>();
+            EpiCoverage = inds["EpiCoverage"].DynamicValue.ToNullable<double>();
+            ProgramCoverage = inds["ProgramCoverage"].DynamicValue.ToNullable<double>();
         }
 
         #region IDataErrorInfo Members

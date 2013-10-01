@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.Globalization;
 
 namespace Nada.UI
 {
@@ -36,7 +37,7 @@ namespace Nada.UI
 
         void bgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            e.Result = "No update found.";
+            e.Result = Translations.UpdateNone;
             if (ApplicationDeployment.IsNetworkDeployed)
             {
                 ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
@@ -48,7 +49,7 @@ namespace Nada.UI
                     if (info.UpdateAvailable)
                     {
                         updateCheck.Update();
-                        e.Result = "Update completed.";
+                        e.Result = Translations.UpdateComplete;
                         MessageBox.Show("The application has been upgraded, and will now restart.");
                         Application.Restart();
                     }
@@ -56,7 +57,7 @@ namespace Nada.UI
                 }
                 catch (Exception)
                 {
-                    e.Result = "No update found, please ensure internet access";
+                    e.Result = Translations.UpdateException;
                 }
             }
         }

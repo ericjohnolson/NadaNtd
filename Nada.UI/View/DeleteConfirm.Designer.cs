@@ -71,7 +71,6 @@
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel4.AutoSize = true;
             this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel4.ColumnCount = 3;
@@ -80,7 +79,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.Controls.Add(this.btnOk, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 2, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(27, 123);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(27, 104);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -89,8 +88,10 @@
             // 
             // btnOk
             // 
+            this.btnOk.AutoSize = true;
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.Location = new System.Drawing.Point(3, 3);
+            this.btnOk.MinimumSize = new System.Drawing.Size(77, 25);
             this.btnOk.Name = "btnOk";
             this.btnOk.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnOk.Size = new System.Drawing.Size(77, 25);
@@ -100,8 +101,10 @@
             // 
             // btnSave
             // 
+            this.btnSave.AutoSize = true;
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSave.Location = new System.Drawing.Point(96, 3);
+            this.btnSave.MinimumSize = new System.Drawing.Size(77, 25);
             this.btnSave.Name = "btnSave";
             this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.btnSave.Size = new System.Drawing.Size(77, 25);
@@ -128,7 +131,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(264, 175);
+            this.ClientSize = new System.Drawing.Size(264, 151);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.h3Label1);
             this.Controls.Add(this.label3);
@@ -140,6 +143,7 @@
             this.Load += new System.EventHandler(this.DeleteConfirm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsIndicator)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

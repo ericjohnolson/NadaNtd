@@ -288,7 +288,7 @@
             // 
             this.toolStripMenuItem7.Enabled = false;
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(83, 22);
             this.toolStripMenuItem7.Text = "...";
             // 
             // reportsToolStripMenuItem1
@@ -304,7 +304,7 @@
             // createCustomToolStripMenuItem
             // 
             this.createCustomToolStripMenuItem.Name = "createCustomToolStripMenuItem";
-            this.createCustomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createCustomToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.createCustomToolStripMenuItem.Tag = "Viewreports";
             this.createCustomToolStripMenuItem.Text = "View reports";
             this.createCustomToolStripMenuItem.Click += new System.EventHandler(this.createCustomToolStripMenuItem_Click);
@@ -317,9 +317,10 @@
             this.toolStripSeparator2,
             this.aboutNationalDatabaseTemplateToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Tag = "Help";
-            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.helpToolStripMenuItem.Tag = "About";
+            this.helpToolStripMenuItem.Text = "About";
+            this.helpToolStripMenuItem.Visible = false;
             // 
             // viewHelpToolStripMenuItem
             // 
@@ -512,7 +513,8 @@
             this.Controls.Add(this.statusStrip1);
             this.MainMenuStrip = this.menuMain;
             this.Name = "Shell";
-            this.Text = "Form1";
+            this.Tag = "ApplicationTitle";
+            this.Text = "ApplicationTitle";
             this.Load += new System.EventHandler(this.Shell_Load);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();

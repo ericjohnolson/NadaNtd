@@ -19,7 +19,6 @@ namespace Nada.Model
 
                 return (T)formatter.Deserialize(ms);
             }
-
         }
         
         public static Dictionary<string, IndicatorValue> CreateIndicatorValueDictionary(IHaveDynamicIndicatorValues i)

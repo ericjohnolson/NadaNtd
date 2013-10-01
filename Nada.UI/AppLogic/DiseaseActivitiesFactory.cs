@@ -87,8 +87,8 @@ namespace Nada.UI.AppLogic
 
         public IView NewIntv(IntvType type)
         {
-            if (type.Id == (int)StaticIntvType.IvmAlbMda)
-                return new PcMdaView(adminLevel);
+            if(type.Id > 0)
+                return new PcMdaView(adminLevel, type);
             return null;
         }
 

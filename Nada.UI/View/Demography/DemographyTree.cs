@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model.Repositories;
 using Nada.Model;
+using Nada.UI.AppLogic;
+using Nada.UI.View.Reports;
 
 namespace Nada.UI.View.Demography
 {
@@ -15,6 +17,7 @@ namespace Nada.UI.View.Demography
     {
         private List<AdminLevel> tree = null;
         public event Action<AdminLevel> OnSelect = (e) => { };
+        public event Action<IView> LoadView = (e) => { };
 
         public DemographyTree()
         {
@@ -51,6 +54,22 @@ namespace Nada.UI.View.Demography
         {
             e.Handled = true;
             OnSelect((AdminLevel)e.Model);
+        }
+
+        private void tile3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void tile2_Click(object sender, EventArgs e)
+        {
+            ReportsDashboard view = new ReportsDashboard();
+            LoadView(view);
+        }
+
+        private void tile1_Click(object sender, EventArgs e)
+        {
+            var about = new About();
+            about.ShowDialog();
         }
     }
 }

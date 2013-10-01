@@ -34,9 +34,7 @@ namespace Nada.UI.Controls
 
         private void fieldLink1_OnClick()
         {
-            PartnerList list = new PartnerList();
-            list.OnSave += () => { diseaseBindingSource.DataSource = r.GetAllDiseases(); };
-            list.ShowDialog();
+            MessageBox.Show("Not implemented");
         }
 
         public List<Disease> GetSelected()
@@ -47,7 +45,7 @@ namespace Nada.UI.Controls
             return diseases;
         }
 
-        public void LoadItems(List<Partner> selected)
+        public void LoadItems(List<Disease> selected)
         {
             lbDiseases.ClearSelected();
             foreach (var p in diseases.Where(v => selected.Select(i => i.Id).Contains(v.Id)))

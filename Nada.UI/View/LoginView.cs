@@ -52,6 +52,7 @@ namespace Nada.UI.View
             CultureInfo ci = new CultureInfo(cbLanguages.SelectedValue.ToString());
             Localizer.SetCulture(ci);
             Localizer.TranslateControl(this);
+            this.ParentForm.Text = Localizer.GetValue("ApplicationTitle");
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)

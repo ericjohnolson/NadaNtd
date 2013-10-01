@@ -22,14 +22,12 @@ namespace Nada.UI.View.Survey
         public SurveyTypeEdit()
         {
             InitializeComponent();
-            this.Text = "New Survey Type";
         }
 
         public SurveyTypeEdit(SurveyType t)
         {
             model = t;
             InitializeComponent();
-            this.Text = "Edit " + t.SurveyTypeName;
         }
 
         private void SurveyTypeView_Load(object sender, EventArgs e)

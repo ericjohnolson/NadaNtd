@@ -41,9 +41,10 @@ namespace Nada.UI.View
 
         private void fieldLink1_OnClick()
         {
-            AdminLevelPicker picker = new AdminLevelPicker();
-            picker.OnSelect += picker_OnSelect;
-            picker.ShowDialog();
+            MessageBox.Show("Disabled");
+            //AdminLevelPicker picker = new AdminLevelPicker();
+            //picker.OnSelect += picker_OnSelect;
+            //picker.ShowDialog();
         }
 
         void picker_OnSelect(Model.AdminLevel obj)

@@ -38,7 +38,7 @@ namespace Nada.UI.View.Intervention
                 openFileDialog1.Filter = "Excel files|*.xlsx;*.xls";
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
                 r = new IntvRepository();
-                if (model == null) model = r.CreateIntv<PcMda>(StaticIntvType.IvmAlbMda);
+                if (model == null) model = r.CreateIntv<PcMda>((int)StaticIntvType.IvmAlbMda);
                 LoadDistributionList();
                 partnerBindingSource.DataSource = r.GetPartners();
                 foreach (var p in model.Partners)

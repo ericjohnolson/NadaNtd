@@ -24,17 +24,19 @@ namespace Nada.UI.View.Intervention
         private PcMda model = null;
         private IntvRepository r = null;
         private DemoRepository demo = null;
+        private IntvType intvType = null;
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
-
+        
         public PcMdaView()
         {
             InitializeComponent();
         }
 
-        public PcMdaView(AdminLevel a)
+        public PcMdaView(AdminLevel a, IntvType t)
         {
             adminLevel = a;
+            intvType = t;
             InitializeComponent();
         }
 
@@ -54,13 +56,14 @@ namespace Nada.UI.View.Intervention
                 demo = new DemoRepository();
                 if (model == null) 
                 {
-                    model = r.CreateIntv<PcMda>(StaticIntvType.IvmAlbMda);
+                    model = r.CreateIntv<PcMda>(intvType.Id);
                     adminLevelPickerControl1.Select(adminLevel);
                     model.AdminLevelId = adminLevel.Id;
                 }
                 else
                     adminLevelPickerControl1.Select(model.AdminLevelId.Value);
 
+                ShowType(model);
                 bsIntv.DataSource = model;
 
                 if (model.IntvType.Indicators != null && model.IntvType.Indicators.Count() > 0)
@@ -68,7 +71,25 @@ namespace Nada.UI.View.Intervention
 
                 customIndicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
                 fundersControl1.LoadItems(model.Partners);
+                diseasesControl1.LoadItems(model.DiseasesTargeted);
                 StatusChanged(Translations.LastUpdated + model.UpdatedBy);
+            }
+        }
+
+        private void ShowType(PcMda model)
+        {
+            if (model.IntvType.Id == (int)StaticIntvType.IvmAlbMda)
+            {
+                lblNumPsacTargeted.Enabled = false;
+                tbNumPsacTargeted.Enabled = false;
+                lblNumTreatedZx.Enabled = false;
+                tbNumTreatedZx.Enabled = false;
+                lblNumTreatedZxPos.Enabled = false;
+                tbNumTreatedZxPos.Enabled = false;
+                lblNumTreatedTeo.Enabled = false;
+                tbNumTreatedTeo.Enabled = false;
+                lblPsacCoverage.Enabled = false;
+                tbPsacCoverage.Enabled = false;
             }
         }
 
@@ -102,14 +123,13 @@ namespace Nada.UI.View.Intervention
                 MessageBox.Show(Translations.DiseasesRequired);
                 return;
             }
-            
 
             bsIntv.EndEdit();
             
             model.IndicatorValues = customIndicatorControl1.GetValues();
             model.MapPropertiesToIndicators();
             int userId = ApplicationData.Instance.GetUserId();
-                r.Save(model, userId);
+            r.Save(model, userId);
             OnClose();
         }
 
@@ -140,5 +160,100 @@ namespace Nada.UI.View.Intervention
             HelpView help = new HelpView();
             help.Show();
         }
+
+        #region calculated fields
+
+        private void tbNumEligibleTargeted_TextChanged(object sender, EventArgs e)
+        {
+            CalcProgramCoverage();
+        }
+
+        private void tbNumEligibleTreated_TextChanged(object sender, EventArgs e)
+        {
+            CalcProgramCoverage();
+            CalcEpiCoverage();
+            CalcFemales();
+            CalcMales();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            CalcEpiCoverage();
+        }
+
+
+        private void tbNumEligibleFemalesTreated_TextChanged(object sender, EventArgs e)
+        {
+            CalcFemales();
+        }
+
+        private void tbNumEligibleMalesTreated_TextChanged(object sender, EventArgs e)
+        {
+            CalcMales();
+        }
+
+        private void tbNumSacTargeted_TextChanged(object sender, EventArgs e)
+        {
+            CalcSac();
+        }
+
+        private void tbNumPsacTargeted_TextChanged(object sender, EventArgs e)
+        {
+            CalcPsac();
+        }
+
+        private void tbNumSacTreated_TextChanged(object sender, EventArgs e)
+        {
+            CalcSac();
+        }
+
+        private void tbNumPsacTreated_TextChanged(object sender, EventArgs e)
+        {
+            CalcPsac();
+        }
+
+        private void CalcEpiCoverage()
+        {
+            int x, y;
+            if (int.TryParse(tbNumEligibleTreated.Text, out x) && int.TryParse(textBox4.Text, out y))
+                model.EpiCoverage = Math.Round(x / Convert.ToDouble(y) * 100.0, 2);
+        }
+
+        private void CalcProgramCoverage()
+        {
+            int treat, target;
+            if (int.TryParse(tbNumEligibleTargeted.Text, out target) && int.TryParse(tbNumEligibleTreated.Text, out treat))
+                model.ProgramCoverage = Math.Round(treat / Convert.ToDouble(target) * 100.0, 2);
+        }
+
+        private void CalcFemales()
+        {
+            int x, y;
+            if (int.TryParse(tbNumEligibleFemalesTreated.Text, out x) && int.TryParse(tbNumEligibleTreated.Text, out y))
+                model.FemalesCoverage = Math.Round(x / Convert.ToDouble(y) * 100.0, 2);
+        }
+
+        private void CalcMales()
+        {
+            int x, y;
+            if (int.TryParse(tbNumEligibleMalesTreated.Text, out x) && int.TryParse(tbNumEligibleTreated.Text, out y))
+                model.MalesCoverage = Math.Round(x / Convert.ToDouble(y) * 100.0, 2);
+        }
+
+        private void CalcPsac()
+        {
+            int x, y;
+            if (int.TryParse(tbNumPsacTreated.Text, out x) && int.TryParse(tbNumPsacTargeted.Text, out y))
+                model.PsacCoverage = Math.Round(x / Convert.ToDouble(y) * 100.0, 2);
+        }
+
+        private void CalcSac()
+        {
+            int x, y;
+            if (int.TryParse(tbNumSacTreated.Text, out x) && int.TryParse(tbNumSacTargeted.Text, out y))
+                model.SacCoverage = Math.Round(x / Convert.ToDouble(y) * 100.0, 2);
+        }
+        #endregion
+
     }
 }

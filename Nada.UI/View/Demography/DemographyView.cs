@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
 using Nada.Model.Repositories;
+using Nada.UI.AppLogic;
 
 namespace Nada.UI.View.Demography
 {
@@ -42,14 +43,21 @@ namespace Nada.UI.View.Demography
 
                 treeView = new DemographyTree(tree);
                 treeView.OnSelect += t_OnSelect;
+                treeView.LoadView += treeView_LoadView;
                 treeView.Dock = DockStyle.Fill;
-                splitContainer.Panel1.Controls.Add(treeView);
+                c1SplitterPanel1.Controls.Add(treeView);
 
                 if (preloadedLevel != null)
                     t_OnSelect(preloadedLevel);
                 else if (tree.Count > 0)
                     t_OnSelect(tree.FirstOrDefault());
             }
+        }
+
+        private void treeView_LoadView(IView v)
+        {
+            v.OnClose = () => { LoadDashForAdminLevel(null); };
+            LoadView((UserControl)v);
         }
 
         private void LoadAdminLevelTypes()
@@ -75,8 +83,8 @@ namespace Nada.UI.View.Demography
             divisionView = view;
 
             divisionView.Dock = DockStyle.Fill;
-            splitContainer.Panel2.Controls.Clear();
-            splitContainer.Panel2.Controls.Add(divisionView);
+            c1SplitterPanel2.Controls.Clear();
+            c1SplitterPanel2.Controls.Add(divisionView);
         }
     }
 }

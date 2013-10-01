@@ -129,6 +129,9 @@
   <data name="AddNewDiseaseLink" xml:space="preserve">
     <value>Add new disease &gt;</value>
   </data>
+  <data name="AddNewIntvType" xml:space="preserve">
+    <value>Add new intervention type...</value>
+  </data>
   <data name="AddNewSurveyTypeLink" xml:space="preserve">
     <value>Add new survey type...</value>
   </data>
@@ -144,6 +147,9 @@
   <data name="Available" xml:space="preserve">
     <value>Available</value>
   </data>
+  <data name="AvailableReports" xml:space="preserve">
+    <value>Available reports</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -156,6 +162,9 @@
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright 2013. All rights reserved.</value>
+  </data>
   <data name="CreateImportFile" xml:space="preserve">
     <value>Create Import File</value>
   </data>
@@ -164,6 +173,12 @@
   </data>
   <data name="CustomIndicatorName" xml:space="preserve">
     <value>Custom indicator name</value>
+  </data>
+  <data name="CustomIndicators" xml:space="preserve">
+    <value>Custom Indicators</value>
+  </data>
+  <data name="CustomReport" xml:space="preserve">
+    <value>Custom Report</value>
   </data>
   <data name="DashboardPlaceholder" xml:space="preserve">
     <value>Dashboard/Getting Stared Placeholder</value>
@@ -186,6 +201,9 @@
   <data name="Diseases" xml:space="preserve">
     <value>Diseases</value>
   </data>
+  <data name="DiseasesRequired" xml:space="preserve">
+    <value>Please select diseases targeted.</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -198,8 +216,14 @@
   <data name="EndDateMda" xml:space="preserve">
     <value>End date of MDA</value>
   </data>
+  <data name="EndDateSurvey" xml:space="preserve">
+    <value>End date of survey</value>
+  </data>
   <data name="EpiCoverage" xml:space="preserve">
     <value>Epi coverage</value>
+  </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>An Error Occurred</value>
   </data>
   <data name="Examined" xml:space="preserve">
     <value>Number examined</value>
@@ -222,8 +246,14 @@
   <data name="ImportSuccess" xml:space="preserve">
     <value>Successfully added {0} new records!</value>
   </data>
+  <data name="InterventionInfo" xml:space="preserve">
+    <value>Intervention Information</value>
+  </data>
   <data name="Interventions" xml:space="preserve">
     <value>Interventions</value>
+  </data>
+  <data name="IotaInk" xml:space="preserve">
+    <value>Iota Ink</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
@@ -300,6 +330,9 @@
   <data name="NewData" xml:space="preserve">
     <value>Enter new data</value>
   </data>
+  <data name="NewLink" xml:space="preserve">
+    <value>New...</value>
+  </data>
   <data name="Nonresponsive" xml:space="preserve">
     <value>Number with nonresponse</value>
   </data>
@@ -320,6 +353,9 @@
   </data>
   <data name="NumEligibleMalesTreated" xml:space="preserve">
     <value># Eligible males treated</value>
+  </data>
+  <data name="NumEligibleTargeted" xml:space="preserve">
+    <value>Number eligible individuals targeted</value>
   </data>
   <data name="NumEligibleTreated" xml:space="preserve">
     <value># Eligible individuals treated</value>
@@ -354,8 +390,14 @@
   <data name="NumTreatedZxPos" xml:space="preserve">
     <value># Persons treated with Zx POS</value>
   </data>
+  <data name="OopsProblem" xml:space="preserve">
+    <value>Oops,there was a problem!</value>
+  </data>
   <data name="Overview" xml:space="preserve">
     <value>Overview</value>
+  </data>
+  <data name="Partner" xml:space="preserve">
+    <value>Partner</value>
   </data>
   <data name="Partners" xml:space="preserve">
     <value>Funders/Partners</value>
@@ -380,6 +422,9 @@
   </data>
   <data name="PsacCoverage" xml:space="preserve">
     <value>PSAC coverage</value>
+  </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>Publisher</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>Reports</value>
@@ -435,6 +480,9 @@
   <data name="StartDateMda" xml:space="preserve">
     <value>Start date of MDA</value>
   </data>
+  <data name="StartDateSurvey" xml:space="preserve">
+    <value>Start date of survey</value>
+  </data>
   <data name="StockOut" xml:space="preserve">
     <value>Stock out during MDA?</value>
   </data>
@@ -462,6 +510,27 @@
   <data name="TimingType" xml:space="preserve">
     <value>Survey timing</value>
   </data>
+  <data name="TreatmentReport" xml:space="preserve">
+    <value>Treatment Report</value>
+  </data>
+  <data name="UpdateComplete" xml:space="preserve">
+    <value>Update completed</value>
+  </data>
+  <data name="UpdateException" xml:space="preserve">
+    <value>No update found, please ensure internet access</value>
+  </data>
+  <data name="UpdateNone" xml:space="preserve">
+    <value>No update found</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="UpdatesCheck" xml:space="preserve">
+    <value>Check for updates...</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>Updating</value>
+  </data>
   <data name="UploadFile" xml:space="preserve">
     <value>Upload File</value>
   </data>
@@ -485,6 +554,9 @@
   </data>
   <data name="Vectors" xml:space="preserve">
     <value>Vectors</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>View</value>

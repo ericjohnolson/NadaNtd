@@ -8,7 +8,7 @@ using Nada.Model.Survey;
 namespace Nada.Model.Intervention
 {
     [Serializable]
-    public class IntvBase : NadaClass
+    public class IntvBase : NadaClass, IHaveDynamicIndicatorValues
     {
         public IntvBase()
         {

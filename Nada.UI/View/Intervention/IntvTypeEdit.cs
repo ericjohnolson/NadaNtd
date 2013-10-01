@@ -22,20 +22,19 @@ namespace Nada.UI.View.Intervention
         public IntvTypeEdit()
         {
             InitializeComponent();
-            this.Text = "New Intervention Type";
         }
 
         public IntvTypeEdit(IntvType t)
         {
             model = t;
             InitializeComponent();
-            this.Text = "Edit " + t.IntvTypeName;
         }
 
         private void IntvTypeView_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 repo = new IntvRepository();
                 bsIntvType.DataSource = model;
                 lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
@@ -69,17 +68,18 @@ namespace Nada.UI.View.Intervention
             this.Close();
         }
 
-        private void lnkNewIndicator_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            IndicatorAdd modal = new IndicatorAdd();
-            modal.OnSave += add_OnSave;
-            modal.ShowDialog();
-        }
-
         void add_OnSave(Indicator obj)
         {
             model.Indicators.Add(obj.DisplayName, obj);
             lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
+        }
+
+        private void fieldLink1_Click(object sender, EventArgs e)
+        {
+            IndicatorAdd modal = new IndicatorAdd();
+            modal.OnSave += add_OnSave;
+            modal.ShowDialog();
+
         }
     }
 }

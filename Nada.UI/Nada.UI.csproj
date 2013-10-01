@@ -24,15 +24,16 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://nada.ericdidit.com/</InstallUrl>
+    <UpdateUrl>http://nada.ericdidit.com/</UpdateUrl>
     <SupportUrl>http://supporturl.com</SupportUrl>
     <ErrorReportUrl>http://errorurl.com</ErrorReportUrl>
+    <TargetCulture>en</TargetCulture>
     <ProductName>National Database Template</ProductName>
     <PublisherName>Iota Ink</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationRevision>23</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -201,6 +202,12 @@
     </Compile>
     <Compile Include="View\Help\HelpView.Designer.cs">
       <DependentUpon>HelpView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\ReportsDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ReportsDashboard.Designer.cs">
+      <DependentUpon>ReportsDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="View\UpdateDatabase.cs">
       <SubType>Form</SubType>
@@ -534,6 +541,9 @@
     <EmbeddedResource Include="View\Help\HelpView.resx">
       <DependentUpon>HelpView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ReportsDashboard.resx">
+      <DependentUpon>ReportsDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\UpdateDatabase.resx">
       <DependentUpon>UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
@@ -731,6 +741,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="View\Help\NaDa_help_screen_text.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="View\Help\SampleHelp.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

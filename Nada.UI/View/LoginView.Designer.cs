@@ -120,9 +120,11 @@
             // 
             // btnAddNew
             // 
-            this.btnAddNew.Location = new System.Drawing.Point(163, 193);
+            this.btnAddNew.AutoSize = true;
+            this.btnAddNew.Location = new System.Drawing.Point(61, 193);
+            this.btnAddNew.MinimumSize = new System.Drawing.Size(78, 25);
             this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(75, 25);
+            this.btnAddNew.Size = new System.Drawing.Size(78, 25);
             this.btnAddNew.TabIndex = 7;
             this.btnAddNew.Tag = "SignIn";
             this.btnAddNew.Values.Text = "Sign In";

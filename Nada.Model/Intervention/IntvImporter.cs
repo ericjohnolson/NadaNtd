@@ -32,7 +32,7 @@ namespace Nada.Model.Intervention
                 IntvRepository repo = new IntvRepository();
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    PcMda intv = repo.CreateIntv<PcMda>(StaticIntvType.IvmAlbMda);
+                    PcMda intv = repo.CreateIntv<PcMda>((int)StaticIntvType.IvmAlbMda);
                     intv.AdminLevelId = Convert.ToInt32(row["Location Id"]);
                     intv.Notes = row["notes"].ToString();
                     double d = 0;
@@ -92,7 +92,7 @@ namespace Nada.Model.Intervention
                 IntvRepository repo = new IntvRepository();
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    IntvBase intv = repo.CreateIntv<IntvBase>(intvType);
+                    IntvBase intv = repo.CreateIntv<IntvBase>((int)intvType);
                     intv.AdminLevelId = Convert.ToInt32(row["Location Id"]);
                     intv.Notes = row["notes"].ToString();
 

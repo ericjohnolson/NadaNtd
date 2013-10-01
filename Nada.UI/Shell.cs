@@ -61,7 +61,7 @@ namespace Nada.UI
         {
             Shell sh = new Shell();
             var lang = Localizer.SupportedLanguages;
-            menuMain.Visible = true;
+            //menuMain.Visible = true;
             pnlLeft.Visible = true;
             DoTranslate();
             var dashboard = new DemographyView();
@@ -74,7 +74,9 @@ namespace Nada.UI
             dashboard.LoadView = (v) => { LoadView(v); };
             dashboard.LoadDashForAdminLevel = (a) => 
             { 
-                var d = new DemographyView(a);
+                DemographyView d = new DemographyView();
+                if(a != null)
+                    d = new DemographyView(a);
                 LoadDashboard(d);
             };
             LoadView(dashboard);

@@ -118,246 +118,363 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutMenu" xml:space="preserve">
-    <value>About National Database Template</value>
+    <value>À propos du modèle de base de données nationale</value>
   </data>
   <data name="AddIndicatorLink" xml:space="preserve">
-    <value>Add/remove indicators &gt;</value>
+    <value>Ajouter/Supprimer des indicateurs &gt;</value>
   </data>
   <data name="AgeRange" xml:space="preserve">
-    <value>Age range</value>
+    <value>Tranche d'âge </value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>NTD National Database</value>
+    <value>Base de données nationale des MTN</value>
   </data>
   <data name="Available" xml:space="preserve">
-    <value>Available</value>
+    <value>Disponible</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="CasualAgent" xml:space="preserve">
-    <value>Casual agent</value>
+    <value>Agent causal</value>
   </data>
   <data name="CheckUpdates" xml:space="preserve">
-    <value>Check for updates</value>
+    <value>Vérifier les mises à jour</value>
   </data>
   <data name="CreateImportFile" xml:space="preserve">
-    <value>Create Import File</value>
+    <value>Créer un fichier d'importation</value>
   </data>
   <data name="CustomIndicator" xml:space="preserve">
-    <value>Custom Indicator</value>
+    <value>Indicateur personnalisé</value>
   </data>
   <data name="CustomIndicatorName" xml:space="preserve">
-    <value>Custom indicator name</value>
+    <value>Nom de l'indicateur personnalisé</value>
+  </data>
+  <data name="CustomIndicators" xml:space="preserve">
+    <value>Indicateur personnalisé</value>
   </data>
   <data name="DashboardPlaceholder" xml:space="preserve">
-    <value>Dashboard/Getting Stared Placeholder</value>
+    <value>Espace réservé pour le tableau de bord/la mise en route</value>
   </data>
   <data name="DataType" xml:space="preserve">
-    <value>Data type</value>
+    <value>Type de données</value>
   </data>
   <data name="Demography" xml:space="preserve">
-    <value>Demography</value>
+    <value>Démographie</value>
   </data>
   <data name="DiseaseDistribution" xml:space="preserve">
-    <value>Disease Distribution</value>
+    <value>Distribution de la maladie</value>
+  </data>
+  <data name="EligibleFemalesTargeted" xml:space="preserve">
+    <value>Nombre de femmes éligibles ciblées</value>
+  </data>
+  <data name="EligibleMalesTargeted" xml:space="preserve">
+    <value>Nombre d'hommes éligibles ciblés</value>
+  </data>
+  <data name="EndDateMda" xml:space="preserve">
+    <value>Date de fin du TDM</value>
+  </data>
+  <data name="EndDateSurvey" xml:space="preserve">
+    <value>Date de fin</value>
+  </data>
+  <data name="EpiCoverage" xml:space="preserve">
+    <value>Couverture épidémiologique</value>
   </data>
   <data name="Examined" xml:space="preserve">
-    <value>Number examined</value>
+    <value>Nombre examiné</value>
+  </data>
+  <data name="FemalesCoverage" xml:space="preserve">
+    <value>Proportion des femmes traitées</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Help</value>
+    <value>Aide</value>
   </data>
   <data name="Import" xml:space="preserve">
-    <value>Import</value>
+    <value>Importer</value>
   </data>
   <data name="ImportData" xml:space="preserve">
-    <value>Import new data</value>
+    <value>Importer de nouvelles données</value>
   </data>
   <data name="ImportNoDataError" xml:space="preserve">
-    <value>The file was an incorrect format or had no data</value>
+    <value>Format de fichier invalide ou aucunes données dans le fichier</value>
   </data>
   <data name="ImportSuccess" xml:space="preserve">
-    <value>Successfully added {0} new records!</value>
+    <value>{0} nouveaux documents ajoutés avec succès !</value>
   </data>
   <data name="Interventions" xml:space="preserve">
     <value>Interventions</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Langue</value>
   </data>
   <data name="LastUpdated" xml:space="preserve">
-    <value>Last Updated:</value>
+    <value>Dernière mise à jour :</value>
   </data>
   <data name="Latitude" xml:space="preserve">
     <value>Latitude</value>
   </data>
   <data name="LevelImplementation" xml:space="preserve">
-    <value>Level of implementation</value>
+    <value>Niveau de mise en œuvre</value>
   </data>
   <data name="LF" xml:space="preserve">
-    <value>LF</value>
+    <value>FL</value>
   </data>
   <data name="LFDiseaseDistribution" xml:space="preserve">
-    <value>LF Disease Distribution...</value>
+    <value>Distribution de la maladie FL</value>
   </data>
   <data name="LFHydroceleMorbidity" xml:space="preserve">
-    <value>LF Hydrocele Morbidity</value>
+    <value>Morbidité de l'hydrocèle FL</value>
   </data>
   <data name="LFLymphedemaMorbidity" xml:space="preserve">
-    <value>LF Lymphedema Morbidity</value>
+    <value>Morbidité du lymphœdème FL</value>
   </data>
   <data name="LFMDA" xml:space="preserve">
-    <value>LF MDA</value>
+    <value>TDM de la FL</value>
   </data>
   <data name="LFPopulationInformation" xml:space="preserve">
-    <value>LF Population Information</value>
+    <value>Informations sur la population souffrant de FL</value>
   </data>
   <data name="LfSentinelImport" xml:space="preserve">
-    <value>LF Sentinel-Spot Check Survey Import</value>
+    <value>Importation de l'enquête ponctuelle de site sentinelle pour la FL</value>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>Location:</value>
+    <value>Emplacement :</value>
   </data>
   <data name="LocationSelectLink" xml:space="preserve">
-    <value>Select location &gt;</value>
+    <value>Sélectionner l'emplacement &gt;</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
-    <value>Log in.</value>
+    <value>Connexion.</value>
   </data>
   <data name="Longitude" xml:space="preserve">
     <value>Longitude</value>
   </data>
+  <data name="MalesCoverage" xml:space="preserve">
+    <value>Proportion des hommes traités</value>
+  </data>
   <data name="Mapping" xml:space="preserve">
-    <value>Mapping</value>
+    <value>Cartographie</value>
   </data>
   <data name="MeanDensity" xml:space="preserve">
-    <value>Mean density</value>
+    <value>Densité moyenne</value>
   </data>
   <data name="MfCount" xml:space="preserve">
-    <value>Count</value>
+    <value>Nombre</value>
   </data>
   <data name="MfLoad" xml:space="preserve">
-    <value>Community Mf Load</value>
+    <value>Charge microfilienne communautaire</value>
   </data>
   <data name="MonitoringTraining" xml:space="preserve">
-    <value>Monitoring and Training</value>
+    <value>Suivi et formation</value>
   </data>
   <data name="NewData" xml:space="preserve">
-    <value>Enter new data</value>
+    <value>Entrer de nouvelles données</value>
   </data>
   <data name="Nonresponsive" xml:space="preserve">
-    <value>Number with nonresponse</value>
+    <value>Nombre faisant preuve de non-réponse</value>
   </data>
   <data name="Notes" xml:space="preserve">
-    <value>Notes</value>
+    <value>Remarques</value>
+  </data>
+  <data name="NumAdultsTargeted" xml:space="preserve">
+    <value>Nombre d'adultes ciblés</value>
+  </data>
+  <data name="NumAdultsTreated" xml:space="preserve">
+    <value>Nombre d'adultes traités</value>
+  </data>
+  <data name="NumEligibleFemalesTreated" xml:space="preserve">
+    <value>Nombre de femmes traitées</value>
+  </data>
+  <data name="NumEligibleMalesTreated" xml:space="preserve">
+    <value>Nombre d'hommes traités</value>
+  </data>
+  <data name="NumEligibleTargeted" xml:space="preserve">
+    <value>Nombre de personnes éligibles ciblées</value>
+  </data>
+  <data name="NumEligibleTreated" xml:space="preserve">
+    <value>Nombre de personnes traitées</value>
+  </data>
+  <data name="NumPsacTargeted" xml:space="preserve">
+    <value>Nombre d'EAP ciblés</value>
+  </data>
+  <data name="NumPsacTreated" xml:space="preserve">
+    <value>Nombre d'EAP traités</value>
+  </data>
+  <data name="NumSacReported" xml:space="preserve">
+    <value>Nombre d'événements indésirables graves signalés</value>
+  </data>
+  <data name="NumSacTargeted" xml:space="preserve">
+    <value>Nombre d'EAS ciblés</value>
+  </data>
+  <data name="NumSacTreated" xml:space="preserve">
+    <value>Nombre d'EAS traités</value>
+  </data>
+  <data name="NumSchools" xml:space="preserve">
+    <value>Nombre d'écoles couvertes</value>
+  </data>
+  <data name="NumTargetedOncho" xml:space="preserve">
+    <value>Du total, nombre traités pour l'onchocercose</value>
+  </data>
+  <data name="NumTreatedOncho" xml:space="preserve">
+    <value>Du total, nombre traités pour l'onchocercose</value>
+  </data>
+  <data name="NumTreatedTeo" xml:space="preserve">
+    <value>Nombre de personnes traitées avec une pommade ophtalmologique à la tétracycline</value>
+  </data>
+  <data name="NumTreatedZx" xml:space="preserve">
+    <value>Nombre de personnes traitées avec des comprimés de Zx</value>
+  </data>
+  <data name="NumTreatedZxPos" xml:space="preserve">
+    <value>Nombre de personnes traitées avec une suspension orale pédiatre de Zx</value>
+  </data>
+  <data name="NumUrbanCovered" xml:space="preserve">
+    <value>Nombre de zones urbaines couvertes</value>
+  </data>
+  <data name="NumVillagesCovered" xml:space="preserve">
+    <value>Nombre de villages couverts </value>
+  </data>
+  <data name="Partner" xml:space="preserve">
+    <value>Partenaire</value>
   </data>
   <data name="Partners" xml:space="preserve">
-    <value>Funders/Partners</value>
+    <value>Donateurs/Partenaires</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Mot de passe</value>
+  </data>
+  <data name="PcsTargeted" xml:space="preserve">
+    <value>Maladie(s) ciblées/traitées par une CP</value>
   </data>
   <data name="PercentPositive" xml:space="preserve">
-    <value>% positive</value>
+    <value>% de cas positifs</value>
   </data>
   <data name="Positive" xml:space="preserve">
-    <value>Number positive</value>
+    <value>Nombre de cas positifs</value>
+  </data>
+  <data name="ProgramCoverage" xml:space="preserve">
+    <value>Couverture programmatique</value>
+  </data>
+  <data name="PsacCoverage" xml:space="preserve">
+    <value>Couverture des EAP</value>
   </data>
   <data name="Reports" xml:space="preserve">
-    <value>Reports</value>
+    <value>Rapports</value>
   </data>
   <data name="Required" xml:space="preserve">
-    <value>Required</value>
+    <value>Requis</value>
+  </data>
+  <data name="RoundNumber" xml:space="preserve">
+    <value>Numéro de la tournée</value>
   </data>
   <data name="RoundsMda" xml:space="preserve">
-    <value>Number of rounds of PC  completed prior to survey implementation</value>
+    <value>Nombre de tournées de CP terminées avant la mise en œuvre de l'enquête</value>
+  </data>
+  <data name="RoundsPlannedYear" xml:space="preserve">
+    <value>Nombre de tournées de traitement prévues pour l'année</value>
+  </data>
+  <data name="SacCoverage" xml:space="preserve">
+    <value>Couverture des EAS</value>
   </data>
   <data name="Sampled" xml:space="preserve">
-    <value>Number sampled</value>
+    <value>Nombre d'échantillons</value>
   </data>
   <data name="SampleSize" xml:space="preserve">
-    <value>Target sample size</value>
+    <value>Taille de l'échantillon cible</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Sauvegarder</value>
   </data>
   <data name="Selected" xml:space="preserve">
-    <value>Selected</value>
+    <value>Sélectionné</value>
   </data>
   <data name="SentinelSite" xml:space="preserve">
-    <value>Sentinel Site</value>
+    <value>Site sentinelle</value>
   </data>
   <data name="SentinelSites" xml:space="preserve">
-    <value>Sentinel sites</value>
+    <value>Sites sentinelles</value>
   </data>
   <data name="SentinelSpotSurvey" xml:space="preserve">
-    <value>Sentinel/Spot Check Site Survey</value>
+    <value>Enquête du site sentinelle/Enquête ponctuelle du site</value>
   </data>
   <data name="SignIn" xml:space="preserve">
-    <value>Sign In</value>
+    <value>Inscrivez-vous</value>
   </data>
   <data name="SiteName" xml:space="preserve">
-    <value>Site name</value>
+    <value>Nom du site</value>
   </data>
   <data name="SiteType" xml:space="preserve">
-    <value>Type of site</value>
+    <value>Type de site</value>
   </data>
   <data name="SortOrder" xml:space="preserve">
-    <value>Sort order</value>
+    <value>Ordre de classement</value>
+  </data>
+  <data name="StartDateMda" xml:space="preserve">
+    <value>Date de démarrage du TDM</value>
+  </data>
+  <data name="StartDateSurvey" xml:space="preserve">
+    <value>Date de démarrage</value>
+  </data>
+  <data name="StockOut" xml:space="preserve">
+    <value>Y a-t-il eu une rupture de stocks durant le TDM ?</value>
+  </data>
+  <data name="StockOutDrug" xml:space="preserve">
+    <value>Médicament en rupture de stocks</value>
+  </data>
+  <data name="StockOutLength" xml:space="preserve">
+    <value>Durée de la rupture de stocks</value>
   </data>
   <data name="SurveyInformation" xml:space="preserve">
-    <value>Survey Information</value>
+    <value>Informations de l'enquête</value>
   </data>
   <data name="SurveyName" xml:space="preserve">
-    <value>Survey name</value>
+    <value>Nom de l'enquête</value>
   </data>
   <data name="Surveys" xml:space="preserve">
-    <value>Surveys</value>
+    <value>Enquêtes</value>
   </data>
   <data name="TAS" xml:space="preserve">
-    <value>TAS</value>
+    <value>Enquête d'évaluation de la transmission</value>
   </data>
   <data name="TestType" xml:space="preserve">
-    <value>Test type</value>
+    <value>Type de test</value>
   </data>
   <data name="TimingType" xml:space="preserve">
-    <value>Survey timing</value>
+    <value>Période de l'enquête</value>
   </data>
   <data name="UploadFile" xml:space="preserve">
-    <value>Upload File</value>
+    <value>Télécharger le fichier</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Nom de l'utilisateur</value>
   </data>
   <data name="ValidationError" xml:space="preserve">
-    <value>Please fix the errors before continuing.</value>
+    <value>Veuillez corriger les erreurs avant de poursuivre.</value>
   </data>
   <data name="ValidLatitude" xml:space="preserve">
-    <value>Latitude must be between -90° and 90°</value>
+    <value>La latitude doit se trouver entre -90° et 90°.</value>
   </data>
   <data name="ValidLongitude" xml:space="preserve">
-    <value>Longitude must be between -180° and 180°</value>
+    <value>La longitude doit se trouver entre -180° et 180°.</value>
   </data>
   <data name="ValidRoundsMda" xml:space="preserve">
-    <value>Must be between 0 and 20</value>
+    <value>Doit se trouver entre 0 et 20.</value>
   </data>
   <data name="ValidYear" xml:space="preserve">
-    <value>Must be a valid year (1900-2050)</value>
+    <value>Doit être une année valide (1900-2050)</value>
   </data>
   <data name="Vectors" xml:space="preserve">
-    <value>Vectors</value>
+    <value>Vecteurs</value>
   </data>
   <data name="ViewHelp" xml:space="preserve">
-    <value>View Help</value>
+    <value>Afficher l'aide</value>
   </data>
   <data name="Viewreports" xml:space="preserve">
-    <value>View reports</value>
+    <value>Examiner les rapports</value>
   </data>
   <data name="WelcomeTitle" xml:space="preserve">
-    <value>Hello</value>
+    <value>Bonjour</value>
   </data>
   <data name="YearFirstRoundPc" xml:space="preserve">
-    <value>Date of first round of MDA (Year)</value>
+    <value>Date de la première tournée de TDM (Année)</value>
   </data>
 </root>

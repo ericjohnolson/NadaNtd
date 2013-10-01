@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.UI.AppLogic;
 
 namespace Nada.UI.View.Modals
 {
@@ -20,6 +21,12 @@ namespace Nada.UI.View.Modals
         {
             InitializeComponent();
             tbErrorMessage.Text = message;
+        }
+
+        private void ErrorModal_Load(object sender, EventArgs e)
+        {
+            if (!DesignMode)
+                Localizer.TranslateControl(this);
         }
     }
 }

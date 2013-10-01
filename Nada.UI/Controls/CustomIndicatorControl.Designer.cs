@@ -96,6 +96,7 @@
             this.fieldLink1.Name = "fieldLink1";
             this.fieldLink1.Size = new System.Drawing.Size(106, 12);
             this.fieldLink1.TabIndex = 20;
+            this.fieldLink1.Tag = "AddIndicatorLink";
             this.fieldLink1.Text = "Add/remove indicators >";
             this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);
             // 
@@ -109,6 +110,7 @@
             this.lblCustomIndicators.Name = "lblCustomIndicators";
             this.lblCustomIndicators.Size = new System.Drawing.Size(143, 21);
             this.lblCustomIndicators.TabIndex = 19;
+            this.lblCustomIndicators.Tag = "CustomIndicators";
             this.lblCustomIndicators.Text = "Custom Indicators";
             // 
             // CustomIndicatorControl

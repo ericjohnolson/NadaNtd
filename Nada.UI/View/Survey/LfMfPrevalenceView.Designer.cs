@@ -366,9 +366,10 @@
             this.nadaLabel1.Location = new System.Drawing.Point(731, 66);
             this.nadaLabel1.Margin = new System.Windows.Forms.Padding(0);
             this.nadaLabel1.Name = "nadaLabel1";
-            this.nadaLabel1.Size = new System.Drawing.Size(58, 16);
+            this.nadaLabel1.Size = new System.Drawing.Size(64, 16);
             this.nadaLabel1.TabIndex = 45;
-            this.nadaLabel1.Text = "required";
+            this.nadaLabel1.Tag = "Required";
+            this.nadaLabel1.Text = "Required";
             this.nadaLabel1.TextColor = System.Drawing.SystemColors.ControlText;
             // 
             // nadaLabel2
@@ -488,10 +489,10 @@
             this.h3Label8.Location = new System.Drawing.Point(182, 32);
             this.h3Label8.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label8.Name = "h3Label8";
-            this.h3Label8.Size = new System.Drawing.Size(87, 16);
+            this.h3Label8.Size = new System.Drawing.Size(85, 16);
             this.h3Label8.TabIndex = 47;
             this.h3Label8.Tag = "CasualAgent";
-            this.h3Label8.Text = "Casual agent";
+            this.h3Label8.Text = "CasualAgent";
             this.h3Label8.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
             // comboBox3
@@ -599,6 +600,7 @@
             this.h3Label2.Name = "h3Label2";
             this.h3Label2.Size = new System.Drawing.Size(122, 16);
             this.h3Label2.TabIndex = 3;
+            this.h3Label2.Tag = "StartDateSurvey";
             this.h3Label2.Text = "Start date of survey";
             this.h3Label2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -643,6 +645,7 @@
             this.h3Label5.Name = "h3Label5";
             this.h3Label5.Size = new System.Drawing.Size(119, 16);
             this.h3Label5.TabIndex = 6;
+            this.h3Label5.Tag = "EndDateSurvey";
             this.h3Label5.Text = "End date of survey";
             this.h3Label5.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 

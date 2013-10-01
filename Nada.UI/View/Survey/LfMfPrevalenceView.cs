@@ -59,6 +59,10 @@ namespace Nada.UI.View.Survey
                 else
                     adminLevelPickerControl1.Select(model.AdminLevelId.Value);
 
+                List<SentinelSite> sites = r.GetSitesForAdminLevel(model.AdminLevelId.Value);
+                sites.Insert(0, new SentinelSite { SiteName = Translations.PleaseSelect, Id = -1 });
+                sentinelSiteBindingSource.DataSource = sites;
+
                 bsSurvey.DataSource = model;
                 if (model.TypeOfSurvey.Indicators != null && model.TypeOfSurvey.Indicators.Count() > 0)
                     customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators, model.IndicatorValues);
@@ -118,7 +122,7 @@ namespace Nada.UI.View.Survey
         void sites_OnAdd(SentinelSite obj)
         {
             List<SentinelSite> sites = r.GetSitesForAdminLevel(obj.AdminLevel.Id);
-            sites.Insert(0, new SentinelSite { SiteName = "Please Select", Id = -1 });
+            sites.Insert(0, new SentinelSite { SiteName = Translations.PleaseSelect, Id = -1 });
             sentinelSiteBindingSource.DataSource = sites;
             adminLevelPickerControl2.Select(obj.AdminLevel);
             model.AdminLevelId = obj.AdminLevel.Id; // TODO manage changing admin levels

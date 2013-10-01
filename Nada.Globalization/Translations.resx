@@ -504,4 +504,73 @@
   <data name="Leporsy" xml:space="preserve">
     <value>Leporsy</value>
   </data>
+  <data name="NumEligibleTargeted" xml:space="preserve">
+    <value>Number eligible individuals targeted</value>
+  </data>
+  <data name="AddNewIntvType" xml:space="preserve">
+    <value>Add new intervention type...</value>
+  </data>
+  <data name="AvailableReports" xml:space="preserve">
+    <value>Available reports</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright 2013. All rights reserved.</value>
+  </data>
+  <data name="CustomIndicators" xml:space="preserve">
+    <value>Custom Indicators</value>
+  </data>
+  <data name="CustomReport" xml:space="preserve">
+    <value>Custom Report</value>
+  </data>
+  <data name="EndDateSurvey" xml:space="preserve">
+    <value>End date of survey</value>
+  </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>An Error Occurred</value>
+  </data>
+  <data name="InterventionInfo" xml:space="preserve">
+    <value>Intervention Information</value>
+  </data>
+  <data name="IotaInk" xml:space="preserve">
+    <value>Iota Ink</value>
+  </data>
+  <data name="NewLink" xml:space="preserve">
+    <value>New...</value>
+  </data>
+  <data name="OopsProblem" xml:space="preserve">
+    <value>Oops,there was a problem!</value>
+  </data>
+  <data name="Partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>Publisher</value>
+  </data>
+  <data name="StartDateSurvey" xml:space="preserve">
+    <value>Start date of survey</value>
+  </data>
+  <data name="TreatmentReport" xml:space="preserve">
+    <value>Treatment Report</value>
+  </data>
+  <data name="UpdateComplete" xml:space="preserve">
+    <value>Update completed</value>
+  </data>
+  <data name="UpdateException" xml:space="preserve">
+    <value>No update found, please ensure internet access</value>
+  </data>
+  <data name="UpdateNone" xml:space="preserve">
+    <value>No update found</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="UpdatesCheck" xml:space="preserve">
+    <value>Check for updates...</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>Updating</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
 </root>
