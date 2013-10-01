@@ -12,8 +12,8 @@ namespace Nada.Model
 {
     public class DiseaseDistributionImporter : ImporterBase, IImporter
     {
-        private DiseaseDistribution type = null;
-        public DiseaseDistributionImporter(DiseaseDistribution t)
+        private DiseaseDistro type = null;
+        public DiseaseDistributionImporter(DiseaseDistro t)
             : base(t)
         {
             type = t;
@@ -35,10 +35,10 @@ namespace Nada.Model
                 DiseaseRepository repo = new DiseaseRepository();
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    DiseaseDistribution dd = repo.Create((DiseaseType)type.Disease.Id);
+                    DiseaseDistro dd = repo.Create((DiseaseType)type.Disease.Id);
                     dd.AdminLevelId = Convert.ToInt32(row["Location Id"]);
                     dd.Notes = row["notes"].ToString();
-                    dd.CustomIndicatorValues = GetDynamicIndicatorValues(ds, row);
+                    dd.IndicatorValues = GetDynamicIndicatorValues(ds, row);
                     repo.Save(dd, userId);
                 }
 

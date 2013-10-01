@@ -8,6 +8,7 @@ using Nada.Model.Diseases;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
+using Nada.UI.View.DiseaseDistribution;
 using Nada.UI.View.Intervention;
 using Nada.UI.View.Survey;
 
@@ -42,6 +43,11 @@ namespace Nada.UI.AppLogic
         IView GetIntv(IntvDetails details);
         List<IntvType> GetIntvTypes();
         void Delete(IntvDetails details, int userId);
+        // DiseaseDistros
+        List<DiseaseDistroDetails> GetDiseaseDistros();
+        IView NewDiseaseDistro();
+        IView GetDiseaseDistro(DiseaseDistroDetails details);
+        void Delete(DiseaseDistroDetails details, int userId);
     }
 
     public class LfActivityFetcher : IFetchDiseaseActivities
@@ -50,6 +56,7 @@ namespace Nada.UI.AppLogic
         Disease disease = null;
         SurveyRepository surveys = new SurveyRepository();
         IntvRepository interventions = new IntvRepository();
+        DiseaseRepository diseases = new DiseaseRepository();
 
         public LfActivityFetcher(AdminLevel adminLevel, Disease disease)
         {
@@ -100,6 +107,19 @@ namespace Nada.UI.AppLogic
                 return new PcMdaView(mda);
             }
             return null;
+        }
+
+        #endregion
+
+        #region DiseaseDistro
+        public List<DiseaseDistroDetails> GetDiseaseDistros() { return diseases.GetAllForAdminLevel(adminLevel.Id); }
+        public void Delete(DiseaseDistroDetails details, int userId) { diseases.Delete(details, userId); }
+        public IView NewDiseaseDistro() { return new DiseaseDistroEdit(adminLevel, disease.Id); }
+
+        public IView GetDiseaseDistro(DiseaseDistroDetails details)
+        {
+            var model = diseases.GetDiseaseDistribution(details.Id, details.TypeId);
+            return new DiseaseDistroEdit(model);
         }
 
         #endregion

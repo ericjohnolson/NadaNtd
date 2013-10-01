@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label3 = new System.Windows.Forms.Label();
             this.bsPop = new System.Windows.Forms.BindingSource(this.components);
-            this.label11 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -40,41 +38,24 @@
             this.label19 = new System.Windows.Forms.Label();
             this.tblNotes = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.customIndicatorControl1 = new Nada.UI.View.CustomIndicatorControl();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label11 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.adminLevelPickerControl1 = new Nada.UI.View.AdminLevelPickerControl();
             this.lnkCreateImport = new System.Windows.Forms.LinkLabel();
             this.lnkDoImport = new System.Windows.Forms.LinkLabel();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.adminLevelPickerControl1 = new Nada.UI.View.AdminLevelPickerControl();
-            this.customIndicatorControl1 = new Nada.UI.View.CustomIndicatorControl();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsPop)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.tblNotes.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Georgia", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(372, 39);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Population Information";
-            // 
             // bsPop
             // 
             this.bsPop.DataSource = typeof(Nada.Model.DiseasePopulation);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 121);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(29, 13);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Year";
             // 
             // textBox10
             // 
@@ -155,7 +136,7 @@
             this.tblNotes.RowCount = 2;
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblNotes.Size = new System.Drawing.Size(593, 209);
+            this.tblNotes.Size = new System.Drawing.Size(593, 227);
             this.tblNotes.TabIndex = 40;
             // 
             // panel1
@@ -166,10 +147,34 @@
             this.panel1.Controls.Add(this.tableLayoutPanel4);
             this.panel1.Controls.Add(this.textBox10);
             this.panel1.Controls.Add(this.kryptonButton1);
-            this.panel1.Location = new System.Drawing.Point(3, 26);
+            this.panel1.Location = new System.Drawing.Point(3, 44);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(587, 180);
             this.panel1.TabIndex = 0;
+            // 
+            // customIndicatorControl1
+            // 
+            this.customIndicatorControl1.AutoSize = true;
+            this.customIndicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.customIndicatorControl1.Location = new System.Drawing.Point(0, 0);
+            this.customIndicatorControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.customIndicatorControl1.Name = "customIndicatorControl1";
+            this.customIndicatorControl1.Size = new System.Drawing.Size(146, 41);
+            this.customIndicatorControl1.TabIndex = 1;
+            this.customIndicatorControl1.TextColor = System.Drawing.SystemColors.ControlText;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 121);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Year";
             // 
             // linkLabel1
             // 
@@ -181,6 +186,17 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Add/remove indicators...";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // adminLevelPickerControl1
+            // 
+            this.adminLevelPickerControl1.AutoSize = true;
+            this.adminLevelPickerControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.adminLevelPickerControl1.Location = new System.Drawing.Point(7, 80);
+            this.adminLevelPickerControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.adminLevelPickerControl1.Name = "adminLevelPickerControl1";
+            this.adminLevelPickerControl1.Size = new System.Drawing.Size(200, 27);
+            this.adminLevelPickerControl1.TabIndex = 0;
+            this.adminLevelPickerControl1.TextColor = System.Drawing.SystemColors.ControlText;
             // 
             // lnkCreateImport
             // 
@@ -204,29 +220,6 @@
             this.lnkDoImport.Text = "Upload import file...";
             this.lnkDoImport.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDoImport_LinkClicked);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // adminLevelPickerControl1
-            // 
-            this.adminLevelPickerControl1.AutoSize = true;
-            this.adminLevelPickerControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.adminLevelPickerControl1.Location = new System.Drawing.Point(7, 80);
-            this.adminLevelPickerControl1.Name = "adminLevelPickerControl1";
-            this.adminLevelPickerControl1.Size = new System.Drawing.Size(123, 37);
-            this.adminLevelPickerControl1.TabIndex = 0;
-            // 
-            // customIndicatorControl1
-            // 
-            this.customIndicatorControl1.AutoSize = true;
-            this.customIndicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.customIndicatorControl1.Location = new System.Drawing.Point(0, 0);
-            this.customIndicatorControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.customIndicatorControl1.Name = "customIndicatorControl1";
-            this.customIndicatorControl1.Size = new System.Drawing.Size(506, 23);
-            this.customIndicatorControl1.TabIndex = 1;
-            // 
             // textBox1
             // 
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsPop, "Year", true));
@@ -234,6 +227,16 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 41;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Georgia", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(372, 39);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Population Information";
             // 
             // DiseasePopulationEdit
             // 
@@ -252,7 +255,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label11);
             this.Name = "DiseasePopulationEdit";
-            this.Size = new System.Drawing.Size(597, 376);
+            this.Size = new System.Drawing.Size(597, 394);
             this.Load += new System.EventHandler(this.base_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsPop)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -268,8 +271,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label18;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
@@ -279,12 +280,14 @@
         private System.Windows.Forms.BindingSource bsPop;
         private System.Windows.Forms.TableLayoutPanel tblNotes;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private CustomIndicatorControl customIndicatorControl1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.LinkLabel linkLabel1;
         private AdminLevelPickerControl adminLevelPickerControl1;
         private System.Windows.Forms.LinkLabel lnkCreateImport;
         private System.Windows.Forms.LinkLabel lnkDoImport;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
     }
 }

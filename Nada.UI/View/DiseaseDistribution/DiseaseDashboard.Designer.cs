@@ -37,7 +37,14 @@
             this.hrDisease = new Nada.UI.Controls.HR();
             this.pnlDisease = new System.Windows.Forms.TableLayoutPanel();
             this.loadingDistros = new Nada.UI.Controls.Loading();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlDistroDetails = new System.Windows.Forms.Panel();
+            this.h3Link1 = new Nada.UI.Controls.H3Link();
+            this.lvDiseaseDistro = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn13 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn14 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn16 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn17 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn18 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tblOverview = new System.Windows.Forms.TableLayoutPanel();
             this.pnlOverview = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -89,6 +96,8 @@
             this.tblDiseaseDistro.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.pnlDisease.SuspendLayout();
+            this.pnlDistroDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lvDiseaseDistro)).BeginInit();
             this.tblOverview.SuspendLayout();
             this.pnlOverview.SuspendLayout();
             this.tblHeader.SuspendLayout();
@@ -125,7 +134,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(806, 1129);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(806, 1207);
             this.tableLayoutPanel1.TabIndex = 60;
             // 
             // tblDiseaseDistro
@@ -143,7 +152,7 @@
             this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblDiseaseDistro.Size = new System.Drawing.Size(800, 221);
+            this.tblDiseaseDistro.Size = new System.Drawing.Size(800, 299);
             this.tblDiseaseDistro.TabIndex = 62;
             // 
             // tableLayoutPanel5
@@ -183,7 +192,7 @@
             this.btnDisease.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnDisease.FlatAppearance.BorderSize = 0;
             this.btnDisease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisease.Image = global::Nada.UI.Properties.Resources.ExpanderPlusIcon16x16;
+            this.btnDisease.Image = global::Nada.UI.Properties.Resources.ExpanderMinusIcon16x16;
             this.btnDisease.Location = new System.Drawing.Point(767, 3);
             this.btnDisease.Name = "btnDisease";
             this.btnDisease.Size = new System.Drawing.Size(22, 22);
@@ -210,34 +219,115 @@
             this.pnlDisease.ColumnCount = 1;
             this.pnlDisease.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.pnlDisease.Controls.Add(this.loadingDistros, 0, 1);
-            this.pnlDisease.Controls.Add(this.panel1, 0, 0);
+            this.pnlDisease.Controls.Add(this.pnlDistroDetails, 0, 0);
             this.pnlDisease.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDisease.Location = new System.Drawing.Point(3, 47);
             this.pnlDisease.Name = "pnlDisease";
             this.pnlDisease.RowCount = 2;
             this.pnlDisease.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDisease.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlDisease.Size = new System.Drawing.Size(794, 171);
+            this.pnlDisease.Size = new System.Drawing.Size(794, 249);
             this.pnlDisease.TabIndex = 22;
-            this.pnlDisease.Visible = false;
             // 
             // loadingDistros
             // 
             this.loadingDistros.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.loadingDistros.AutoSize = true;
             this.loadingDistros.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.loadingDistros.Location = new System.Drawing.Point(361, 109);
+            this.loadingDistros.Location = new System.Drawing.Point(361, 187);
             this.loadingDistros.Name = "loadingDistros";
             this.loadingDistros.Size = new System.Drawing.Size(72, 59);
             this.loadingDistros.TabIndex = 0;
             this.loadingDistros.Visible = false;
             // 
-            // panel1
+            // pnlDistroDetails
             // 
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 1;
+            this.pnlDistroDetails.Controls.Add(this.h3Link1);
+            this.pnlDistroDetails.Controls.Add(this.lvDiseaseDistro);
+            this.pnlDistroDetails.Location = new System.Drawing.Point(3, 3);
+            this.pnlDistroDetails.Name = "pnlDistroDetails";
+            this.pnlDistroDetails.Size = new System.Drawing.Size(786, 178);
+            this.pnlDistroDetails.TabIndex = 1;
+            // 
+            // h3Link1
+            // 
+            this.h3Link1.AutoSize = true;
+            this.h3Link1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Link1.BackColor = System.Drawing.Color.Transparent;
+            this.h3Link1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.h3Link1.Location = new System.Drawing.Point(1, 1);
+            this.h3Link1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Link1.Name = "h3Link1";
+            this.h3Link1.Size = new System.Drawing.Size(72, 16);
+            this.h3Link1.TabIndex = 6;
+            this.h3Link1.Tag = "AddNewLink";
+            this.h3Link1.Text = "Add New...";
+            this.h3Link1.ClickOverride += new System.Action(this.h3Link1_ClickOverride);
+            // 
+            // lvDiseaseDistro
+            // 
+            this.lvDiseaseDistro.AllColumns.Add(this.olvColumn13);
+            this.lvDiseaseDistro.AllColumns.Add(this.olvColumn14);
+            this.lvDiseaseDistro.AllColumns.Add(this.olvColumn16);
+            this.lvDiseaseDistro.AllColumns.Add(this.olvColumn17);
+            this.lvDiseaseDistro.AllColumns.Add(this.olvColumn18);
+            this.lvDiseaseDistro.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn13,
+            this.olvColumn14,
+            this.olvColumn16,
+            this.olvColumn17,
+            this.olvColumn18});
+            this.lvDiseaseDistro.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lvDiseaseDistro.Location = new System.Drawing.Point(1, 20);
+            this.lvDiseaseDistro.Name = "lvDiseaseDistro";
+            this.lvDiseaseDistro.ShowGroups = false;
+            this.lvDiseaseDistro.Size = new System.Drawing.Size(780, 145);
+            this.lvDiseaseDistro.TabIndex = 5;
+            this.lvDiseaseDistro.UseCompatibleStateImageBehavior = false;
+            this.lvDiseaseDistro.UseHyperlinks = true;
+            this.lvDiseaseDistro.View = System.Windows.Forms.View.Details;
+            this.lvDiseaseDistro.HyperlinkClicked += new System.EventHandler<BrightIdeasSoftware.HyperlinkClickedEventArgs>(this.lvDiseaseDistros_HyperlinkClicked);
+            // 
+            // olvColumn13
+            // 
+            this.olvColumn13.AspectName = "TypeName";
+            this.olvColumn13.CellPadding = null;
+            this.olvColumn13.IsEditable = false;
+            this.olvColumn13.Text = "Type";
+            this.olvColumn13.Width = 172;
+            // 
+            // olvColumn14
+            // 
+            this.olvColumn14.AspectName = "Year";
+            this.olvColumn14.CellPadding = null;
+            this.olvColumn14.IsEditable = false;
+            this.olvColumn14.Text = "Year";
+            this.olvColumn14.Width = 105;
+            // 
+            // olvColumn16
+            // 
+            this.olvColumn16.AspectName = "UpdatedBy";
+            this.olvColumn16.CellPadding = null;
+            this.olvColumn16.IsEditable = false;
+            this.olvColumn16.Text = "Last Update";
+            this.olvColumn16.Width = 196;
+            // 
+            // olvColumn17
+            // 
+            this.olvColumn17.AspectName = "View";
+            this.olvColumn17.CellPadding = null;
+            this.olvColumn17.Hyperlink = true;
+            this.olvColumn17.IsEditable = false;
+            this.olvColumn17.Text = "View";
+            this.olvColumn17.Width = 54;
+            // 
+            // olvColumn18
+            // 
+            this.olvColumn18.AspectName = "Delete";
+            this.olvColumn18.CellPadding = null;
+            this.olvColumn18.Hyperlink = true;
+            this.olvColumn18.Tag = "Delete";
+            this.olvColumn18.Text = "Delete";
             // 
             // tblOverview
             // 
@@ -347,7 +437,7 @@
             this.tblIntv.Controls.Add(this.pnlIntv, 0, 2);
             this.tblIntv.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tblIntv.Controls.Add(this.hrIntv, 0, 1);
-            this.tblIntv.Location = new System.Drawing.Point(3, 813);
+            this.tblIntv.Location = new System.Drawing.Point(3, 891);
             this.tblIntv.Name = "tblIntv";
             this.tblIntv.RowCount = 3;
             this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -599,7 +689,7 @@
             this.tblSurveys.Controls.Add(this.pnlSurvey, 0, 2);
             this.tblSurveys.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tblSurveys.Controls.Add(this.hrSurveys, 0, 1);
-            this.tblSurveys.Location = new System.Drawing.Point(3, 492);
+            this.tblSurveys.Location = new System.Drawing.Point(3, 570);
             this.tblSurveys.Name = "tblSurveys";
             this.tblSurveys.RowCount = 3;
             this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -850,7 +940,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DiseaseDashboard";
-            this.Size = new System.Drawing.Size(812, 1135);
+            this.Size = new System.Drawing.Size(812, 1213);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tblDiseaseDistro.ResumeLayout(false);
@@ -859,6 +949,9 @@
             this.tableLayoutPanel5.PerformLayout();
             this.pnlDisease.ResumeLayout(false);
             this.pnlDisease.PerformLayout();
+            this.pnlDistroDetails.ResumeLayout(false);
+            this.pnlDistroDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lvDiseaseDistro)).EndInit();
             this.tblOverview.ResumeLayout(false);
             this.tblOverview.PerformLayout();
             this.pnlOverview.ResumeLayout(false);
@@ -903,7 +996,7 @@
         private Controls.HR hrDisease;
         private System.Windows.Forms.TableLayoutPanel pnlDisease;
         private Controls.Loading loadingDistros;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlDistroDetails;
         private System.Windows.Forms.TableLayoutPanel tblOverview;
         private System.Windows.Forms.TableLayoutPanel pnlOverview;
         private System.Windows.Forms.Panel panel4;
@@ -951,5 +1044,12 @@
         private BrightIdeasSoftware.OLVColumn olvColumn10;
         private BrightIdeasSoftware.OLVColumn olvColumn11;
         private BrightIdeasSoftware.OLVColumn olvColumn12;
+        private BrightIdeasSoftware.ObjectListView lvDiseaseDistro;
+        private BrightIdeasSoftware.OLVColumn olvColumn13;
+        private BrightIdeasSoftware.OLVColumn olvColumn14;
+        private BrightIdeasSoftware.OLVColumn olvColumn16;
+        private BrightIdeasSoftware.OLVColumn olvColumn17;
+        private BrightIdeasSoftware.OLVColumn olvColumn18;
+        private Controls.H3Link h3Link1;
     }
 }

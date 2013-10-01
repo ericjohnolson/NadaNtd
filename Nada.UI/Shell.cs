@@ -210,10 +210,7 @@ namespace Nada.UI
 
         void diseaseDistroAdminLevel_OnSelect(Model.AdminLevel obj)
         {
-            DiseaseRepository r = new DiseaseRepository();
-            DiseaseDistribution dd = r.GetDiseaseDistribution(obj.Id, DiseaseType.Lf);
-            DiseaseDistributionEdit modal = new DiseaseDistributionEdit(dd);
-            modal.ShowDialog();
+            MessageBox.Show("Not Implemented");
         }
 
         private void lFPopulationToolStripMenuItem_Click(object sender, EventArgs e)

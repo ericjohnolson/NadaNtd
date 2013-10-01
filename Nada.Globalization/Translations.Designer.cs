@@ -106,6 +106,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add New....
+        /// </summary>
+        public static string AddNewLink {
+            get {
+                return ResourceManager.GetString("AddNewLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new survey type....
         /// </summary>
         public static string AddNewSurveyTypeLink {
@@ -304,6 +313,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disease Distribution: PC interventions.
+        /// </summary>
+        public static string DiseaseEndemicity {
+            get {
+                return ResourceManager.GetString("DiseaseEndemicity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Diseases.
         /// </summary>
         public static string Diseases {
@@ -318,6 +336,24 @@ namespace Nada.Globalization {
         public static string DiseasesRequired {
             get {
                 return ResourceManager.GetString("DiseasesRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diesease Distribution: Trichiasis Surgery.
+        /// </summary>
+        public static string DiseaseTrichiasis {
+            get {
+                return ResourceManager.GetString("DiseaseTrichiasis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year disease distribution information applies to.
+        /// </summary>
+        public static string DiseaseYear {
+            get {
+                return ResourceManager.GetString("DiseaseYear", resourceCulture);
             }
         }
         
@@ -952,6 +988,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Population.
+        /// </summary>
+        public static string Population {
+            get {
+                return ResourceManager.GetString("Population", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number positive.
         /// </summary>
         public static string Positive {
@@ -1015,6 +1060,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to # PC rounds/year currently implemented.
+        /// </summary>
+        public static string RoundsCurrentlyImplemented {
+            get {
+                return ResourceManager.GetString("RoundsCurrentlyImplemented", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of rounds of PC  completed prior to survey implementation.
         /// </summary>
         public static string RoundsMda {
@@ -1029,6 +1083,15 @@ namespace Nada.Globalization {
         public static string RoundsPlannedYear {
             get {
                 return ResourceManager.GetString("RoundsPlannedYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # PC rounds/year recommended by WHO guidelines.
+        /// </summary>
+        public static string RoundsRecommendedByWho {
+            get {
+                return ResourceManager.GetString("RoundsRecommendedByWho", resourceCulture);
             }
         }
         
@@ -1222,6 +1285,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Objective of planned TAS.
+        /// </summary>
+        public static string TasObjective {
+            get {
+                return ResourceManager.GetString("TasObjective", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month/Year of planned TAS.
+        /// </summary>
+        public static string TasYearMonth {
+            get {
+                return ResourceManager.GetString("TasYearMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Test type.
         /// </summary>
         public static string TestType {
@@ -1240,11 +1321,47 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ultimate intervention goal for active trachoma.
+        /// </summary>
+        public static string TrachomaGoal {
+            get {
+                return ResourceManager.GetString("TrachomaGoal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month/Year of planned trachoma impact survey.
+        /// </summary>
+        public static string TrachomaImpactYearMonth {
+            get {
+                return ResourceManager.GetString("TrachomaImpactYearMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Treatment Report.
         /// </summary>
         public static string TreatmentReport {
             get {
                 return ResourceManager.GetString("TreatmentReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trichiasis surgery backlog.
+        /// </summary>
+        public static string TrichiasisSurgeryBacklog {
+            get {
+                return ResourceManager.GetString("TrichiasisSurgeryBacklog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ultimate intervention goal for trichiasis surgery.
+        /// </summary>
+        public static string TrichiasisSurgeryGoal {
+            get {
+                return ResourceManager.GetString("TrichiasisSurgeryGoal", resourceCulture);
             }
         }
         
@@ -1425,6 +1542,33 @@ namespace Nada.Globalization {
         public static string YearFirstRoundPc {
             get {
                 return ResourceManager.GetString("YearFirstRoundPc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year PC Started.
+        /// </summary>
+        public static string YearPcStarted {
+            get {
+                return ResourceManager.GetString("YearPcStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year determined that achieved criteria for stopping PC.
+        /// </summary>
+        public static string YearStoppingPc {
+            get {
+                return ResourceManager.GetString("YearStoppingPc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year determined that achieved criteria for stopping PC (lower levels).
+        /// </summary>
+        public static string YearStoppingPcLower {
+            get {
+                return ResourceManager.GetString("YearStoppingPcLower", resourceCulture);
             }
         }
     }

@@ -477,4 +477,22 @@
   <data name="YearFirstRoundPc" xml:space="preserve">
     <value>Date de la première tournée de TDM (Année)</value>
   </data>
+  <data name="DiseaseEndemicity" xml:space="preserve">
+    <value>Distribution de la maladie/Statut de l'endémicité</value>
+  </data>
+  <data name="Population" xml:space="preserve">
+    <value>Population</value>
+  </data>
+  <data name="RoundsCurrentlyImplemented" xml:space="preserve">
+    <value>Nombre de tournées de TDM/d'années de mise en œuvre effective</value>
+  </data>
+  <data name="RoundsRecommendedByWho" xml:space="preserve">
+    <value>Nombre de tournées de TDM/d'années recommandées selon les directives de l'OMS</value>
+  </data>
+  <data name="YearPcStarted" xml:space="preserve">
+    <value>Année de début du TDM</value>
+  </data>
+  <data name="YearStoppingPc" xml:space="preserve">
+    <value>Année d'achèvement des critères d'arrêt du TDM</value>
+  </data>
 </root>

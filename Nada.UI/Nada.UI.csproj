@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -125,6 +125,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\H3Link.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\H3Link.Designer.cs">
+      <DependentUpon>H3Link.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\DiseaseDistribution\DiseaseDistroEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\DiseaseDistribution\DiseaseDistroEdit.Designer.cs">
+      <DependentUpon>DiseaseDistroEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Help\HelpView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,12 +256,6 @@
     </Compile>
     <Compile Include="View\DiseaseDistribution\DiseaseDashboard.Designer.cs">
       <DependentUpon>DiseaseDashboard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseDistributionEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseDistributionEdit.Designer.cs">
-      <DependentUpon>DiseaseDistributionEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DiseaseDistribution\DiseaseDistributionIndicators.cs">
       <SubType>Form</SubType>
@@ -497,6 +503,9 @@
     <Compile Include="View\WelcomeView.Designer.cs">
       <DependentUpon>WelcomeView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\H3Link.resx">
+      <DependentUpon>H3Link.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -538,6 +547,9 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistroEdit.resx">
+      <DependentUpon>DiseaseDistroEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Help\HelpView.resx">
       <DependentUpon>HelpView.cs</DependentUpon>
     </EmbeddedResource>
@@ -561,9 +573,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDashboard.resx">
       <DependentUpon>DiseaseDashboard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistributionEdit.resx">
-      <DependentUpon>DiseaseDistributionEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistributionIndicators.resx">
       <DependentUpon>DiseaseDistributionIndicators.cs</DependentUpon>
@@ -709,6 +718,7 @@
     <None Include="Properties\DataSources\Nada.Model.DiseaseDistribution.datasource" />
     <None Include="Properties\DataSources\Nada.Model.DiseasePopulation.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Diseases.Disease.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Diseases.DiseaseDistro.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.DistributionMethod.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.IntvBase.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.IntvType.datasource" />

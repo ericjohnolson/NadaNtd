@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\NadaListItem.cs" />
+    <Compile Include="Diseases\DiseaseDistroDetails.cs" />
     <Compile Include="Intervention\IntvDetails.cs" />
     <Compile Include="Survey\SurveyDetails.cs" />
     <Compile Include="Survey\SurveyImporter.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="Demography\AdminLevelDemography.cs" />
     <Compile Include="Diseases\DiseasePopImporter.cs" />
     <Compile Include="Diseases\DiseasePopulation.cs" />
-    <Compile Include="Diseases\DiseaseDistribution.cs" />
+    <Compile Include="Diseases\DiseaseDistro.cs" />
     <Compile Include="Diseases\DiseaseDistributionImporter.cs" />
     <Compile Include="ModelData.cs" />
     <Compile Include="Base\NadaClass.cs" />

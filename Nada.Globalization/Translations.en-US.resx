@@ -573,4 +573,52 @@
   <data name="YearFirstRoundPc" xml:space="preserve">
     <value>Date of first round of MDA (Year)</value>
   </data>
+  <data name="DiseaseEndemicity" xml:space="preserve">
+    <value>Disease Distribution: PC interventions</value>
+  </data>
+  <data name="DiseaseTrichiasis" xml:space="preserve">
+    <value>Diesease Distribution: Trichiasis Surgery</value>
+  </data>
+  <data name="DiseaseYear" xml:space="preserve">
+    <value>Year disease distribution information applies to</value>
+  </data>
+  <data name="Population" xml:space="preserve">
+    <value>Population</value>
+  </data>
+  <data name="RoundsCurrentlyImplemented" xml:space="preserve">
+    <value># PC rounds/year currently implemented</value>
+  </data>
+  <data name="RoundsRecommendedByWho" xml:space="preserve">
+    <value># PC rounds/year recommended by WHO guidelines</value>
+  </data>
+  <data name="TasObjective" xml:space="preserve">
+    <value>Objective of planned TAS</value>
+  </data>
+  <data name="TasYearMonth" xml:space="preserve">
+    <value>Month/Year of planned TAS</value>
+  </data>
+  <data name="TrachomaGoal" xml:space="preserve">
+    <value>Ultimate intervention goal for active trachoma</value>
+  </data>
+  <data name="TrachomaImpactYearMonth" xml:space="preserve">
+    <value>Month/Year of planned trachoma impact survey</value>
+  </data>
+  <data name="TrichiasisSurgeryBacklog" xml:space="preserve">
+    <value>Trichiasis surgery backlog</value>
+  </data>
+  <data name="TrichiasisSurgeryGoal" xml:space="preserve">
+    <value>Ultimate intervention goal for trichiasis surgery</value>
+  </data>
+  <data name="YearPcStarted" xml:space="preserve">
+    <value>Year PC Started</value>
+  </data>
+  <data name="YearStoppingPc" xml:space="preserve">
+    <value>Year determined that achieved criteria for stopping PC</value>
+  </data>
+  <data name="YearStoppingPcLower" xml:space="preserve">
+    <value>Year determined that achieved criteria for stopping PC (lower levels)</value>
+  </data>
+  <data name="AddNewLink" xml:space="preserve">
+    <value>Add New...</value>
+  </data>
 </root>

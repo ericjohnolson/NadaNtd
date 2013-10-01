@@ -42,6 +42,7 @@ namespace Nada.UI.View.Demography
             LoadSurveys();
             LoadIntvTypes();
             LoadInterventions();
+            LoadDiseaseDistros();
         }
 
         private void DoLoadView(IView view)
@@ -95,7 +96,6 @@ namespace Nada.UI.View.Demography
 
         void intvWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Thread.Sleep(500);
             var f = (IFetchDiseaseActivities)e.Argument;
             e.Result = f.GetIntvs();
         }
@@ -168,7 +168,6 @@ namespace Nada.UI.View.Demography
 
         void surveyWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Thread.Sleep(500);
             var f = (IFetchDiseaseActivities)e.Argument;
             e.Result = f.GetSurveys();
         }
@@ -220,6 +219,57 @@ namespace Nada.UI.View.Demography
             DoCollapse(btnDisease, pnlDisease);
         }
 
+        private void h3Link1_ClickOverride()
+        {
+            IView view = fetcher.NewDiseaseDistro();
+            DoLoadView(view);
+        }
+
+        private void LoadDiseaseDistros()
+        {
+            BackgroundWorker DiseaseDistroWorker = new BackgroundWorker();
+            DiseaseDistroWorker.DoWork += DiseaseDistroWorker_DoWork;
+            DiseaseDistroWorker.RunWorkerCompleted += DiseaseDistroWorker_RunWorkerCompleted;
+            pnlDistroDetails.Visible = false;
+            loadingDistros.Visible = true;
+            DiseaseDistroWorker.RunWorkerAsync(fetcher);
+        }
+
+        void DiseaseDistroWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            var existing = (List<DiseaseDistroDetails>)e.Result;
+            lvDiseaseDistro.SetObjects(existing);
+            loadingDistros.Visible = false;
+            pnlDistroDetails.Visible = true;
+        }
+
+        void DiseaseDistroWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var f = (IFetchDiseaseActivities)e.Argument;
+            e.Result = f.GetDiseaseDistros();
+        }
+
+        private void lvDiseaseDistros_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
+        {
+            e.Handled = true;
+            if (e.Column.AspectName == "View")
+            {
+                IView DiseaseDistro = fetcher.GetDiseaseDistro((DiseaseDistroDetails)e.Model);
+                if (DiseaseDistro == null)
+                    return;
+                DoLoadView(DiseaseDistro);
+            }
+            else if (e.Column.AspectName == "Delete")
+            {
+                DeleteConfirm confirm = new DeleteConfirm();
+                if (confirm.ShowDialog() == DialogResult.OK)
+                {
+                    fetcher.Delete((DiseaseDistroDetails)e.Model, ApplicationData.Instance.GetUserId());
+                    LoadDiseaseDistros();
+                }
+            }
+
+        }
         #endregion
 
         #region Overview
@@ -229,6 +279,9 @@ namespace Nada.UI.View.Demography
         }
 
         #endregion
+
+
+
 
 
     }
