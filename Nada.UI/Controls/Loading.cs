@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.UI.AppLogic;
 
 namespace Nada.UI.Controls
 {
@@ -15,5 +16,14 @@ namespace Nada.UI.Controls
         {
             InitializeComponent();
         }
+
+        private void Loading_Load(object sender, EventArgs e)
+        {
+            if (!DesignMode)
+            {
+                Localizer.TranslateControl(this);
+            }
+        }
+
     }
 }

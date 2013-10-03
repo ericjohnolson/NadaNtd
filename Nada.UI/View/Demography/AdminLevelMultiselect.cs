@@ -46,6 +46,7 @@ namespace Nada.UI.View
                     return ((AdminLevel)model).
                             Children;
                 };
+
             }
         }
 
@@ -76,6 +77,8 @@ namespace Nada.UI.View
 
         private void LoadTrees()
         {
+            if (cbLevels.SelectedItem == null)
+                return;
             var level = (AdminLevelType)cbLevels.SelectedItem;
             available = demography.GetAdminLevelTree(level.Id);
             selected = new List<AdminLevel>();

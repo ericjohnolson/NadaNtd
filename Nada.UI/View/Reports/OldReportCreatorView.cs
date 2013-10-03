@@ -14,14 +14,14 @@ using Nada.Model.Repositories;
 
 namespace Nada.UI.View.Reports
 {
-    public partial class ReportCreatorView : UserControl
+    public partial class OldReportCreatorView : UserControl
     {
         private ReportIndicators indicators = null;
         private ReportGenerator generator = null;
         private ReportResult currentResult = null;
         private Chart currentChart = null;
 
-        public ReportCreatorView()
+        public OldReportCreatorView()
         {
             InitializeComponent();
         }

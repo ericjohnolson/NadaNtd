@@ -86,6 +86,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Loading";
             this.Size = new System.Drawing.Size(72, 59);
+            this.Load += new System.EventHandler(this.Loading_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

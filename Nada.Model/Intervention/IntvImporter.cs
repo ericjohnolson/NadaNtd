@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Excel;
+using Nada.Globalization;
 using Nada.Model.Repositories;
 
 namespace Nada.Model.Intervention
@@ -17,7 +18,8 @@ namespace Nada.Model.Intervention
 
         protected override void AddSpecificRows(DataTable dataTable)
         {
-            dataTable.Columns.Add(new System.Data.DataColumn("Date of Intervention"));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.StartDateMda));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.EndDateMda));
         }
 
         public ImportResult ImportData(string filePath, int userId)
@@ -33,11 +35,14 @@ namespace Nada.Model.Intervention
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     PcMda intv = repo.CreateIntv<PcMda>((int)StaticIntvType.IvmAlbMda);
-                    intv.AdminLevelId = Convert.ToInt32(row["Location Id"]);
-                    intv.Notes = row["notes"].ToString();
+                    intv.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
+                    intv.Notes = row[Translations.Notes].ToString();
                     double d = 0;
-                    if (double.TryParse(row["Date of Intervention"].ToString(), out d))
+                    if (double.TryParse(row[Translations.StartDateMda].ToString(), out d))
                         intv.StartDate = DateTime.FromOADate(d);
+                    double d2 = 0;
+                    if (double.TryParse(row[Translations.EndDateMda].ToString(), out d2))
+                        intv.EndDate = DateTime.FromOADate(d2);
                     // HOW TO IMPORT Distros, funders, partners?
                     intv.IndicatorValues = GetDynamicIndicatorValues(ds, row);
                     repo.Save(intv, userId);
@@ -77,7 +82,7 @@ namespace Nada.Model.Intervention
 
         protected override void AddSpecificRows(DataTable dataTable)
         {
-            dataTable.Columns.Add(new System.Data.DataColumn("Date of Intervention"));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.StartDateMda));
         }
 
         public ImportResult ImportData(string filePath, int userId)
@@ -93,11 +98,11 @@ namespace Nada.Model.Intervention
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     IntvBase intv = repo.CreateIntv<IntvBase>((int)intvType);
-                    intv.AdminLevelId = Convert.ToInt32(row["Location Id"]);
-                    intv.Notes = row["notes"].ToString();
+                    intv.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
+                    intv.Notes = row[Translations.Notes].ToString();
 
                     double d = 0;
-                    if (double.TryParse(row["Date of Intervention"].ToString(), out d))
+                    if (double.TryParse(row[Translations.StartDateMda].ToString(), out d))
                         intv.StartDate = DateTime.FromOADate(d);
 
                     intv.IndicatorValues = GetDynamicIndicatorValues(ds, row);

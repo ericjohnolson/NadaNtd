@@ -105,8 +105,8 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(474, 418);
             this.tabPage1.TabIndex = 2;
-            this.tabPage1.Tag = "Leporsy";
-            this.tabPage1.Text = "Leporsy";
+            this.tabPage1.Tag = "Leprosy";
+            this.tabPage1.Text = "Leprosy";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1

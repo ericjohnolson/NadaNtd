@@ -18,7 +18,67 @@ namespace Nada.Model.Survey
 
         protected override void AddSpecificRows(DataTable dataTable)
         {
-            // dataTable.Columns.Add(new System.Data.DataColumn("Date of Intervention"));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.StartDateSurvey));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.EndDateSurvey));
+        }
+
+        public ImportResult ImportData(string filePath, int userId)
+        {
+            try
+            {
+                DataSet ds = LoadDataFromFile(filePath);
+
+                if (ds.Tables.Count == 0)
+                    return new ImportResult(Translations.ImportNoDataError);
+
+                SurveyRepository repo = new SurveyRepository();
+                List<LfMfPrevalence> surveysToSave = new List<LfMfPrevalence>();
+                Dictionary<int, string> errors = new Dictionary<int, string>();
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    LfMfPrevalence survey = repo.CreateSurvey<LfMfPrevalence>(StaticSurveyType.LfPrevalence);
+                    survey.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
+                    survey.Notes = row[Translations.Notes].ToString();
+                    survey.IndicatorValues = GetDynamicIndicatorValues(ds, row);
+                    survey.MapIndicatorsToProperties();
+                    surveysToSave.Add(survey);
+                    if (!survey.IsValid())
+                    {
+                        // need to add errors to the excel sheet to send back to the user?
+                        errors.Add(Convert.ToInt32(row[Translations.Location + "#"]), survey.GetAllErrors());
+                    }
+                }
+
+                // HAS ERRORS, report them back?
+                //if (errors.Keys.Count > 0)
+                //    return new ImportResult
+                //    {
+                //        WasSuccess = false,
+                //        Count = 0,
+                //        ErrorMessage = string.Empty
+                //    };
+
+                // NO ERRORS, do save.
+                foreach (var survey in surveysToSave)
+                    repo.Save(survey, userId);
+
+                int rec = ds.Tables[0].Rows.Count;
+                return new ImportResult
+                {
+                    WasSuccess = true,
+                    Count = rec,
+                    ErrorMessage = string.Empty
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ImportResult("An unexpected exception occurred: " + ex.Message);
+            }
+        }
+
+        public string ImportName
+        {
+            get { return Translations.LfSentinelImport; }
         }
 
         public void CreateWorkbook(string filename, List<AdminLevel> rows)
@@ -58,65 +118,6 @@ namespace Nada.Model.Survey
             //xlsWorksheet = null;
             //xlsWorkbook = null;
             //xlsApp = null;
-        }
-
-        public ImportResult ImportData(string filePath, int userId)
-        {
-            try
-            {
-                DataSet ds = LoadDataFromFile(filePath);
-
-                if (ds.Tables.Count == 0)
-                    return new ImportResult(Translations.ImportNoDataError);
-
-                SurveyRepository repo = new SurveyRepository();
-                List<LfMfPrevalence> surveysToSave = new List<LfMfPrevalence>();
-                Dictionary<int, string> errors = new Dictionary<int, string>();
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    LfMfPrevalence survey = repo.CreateSurvey<LfMfPrevalence>(StaticSurveyType.LfPrevalence);
-                    survey.AdminLevelId = Convert.ToInt32(row["Location Id"]);
-                    survey.Notes = row["notes"].ToString();
-                    survey.IndicatorValues = GetDynamicIndicatorValues(ds, row);
-                    survey.MapIndicatorsToProperties();
-                    surveysToSave.Add(survey);
-                    if (!survey.IsValid())
-                    {
-                        // need to add errors to the excel sheet to send back to the user?
-                        errors.Add(Convert.ToInt32(row["Location Id"]), survey.GetAllErrors());
-                    }
-                }
-
-                // HAS ERRORS, report them back?
-                //if (errors.Keys.Count > 0)
-                //    return new ImportResult
-                //    {
-                //        WasSuccess = false,
-                //        Count = 0,
-                //        ErrorMessage = string.Empty
-                //    };
-
-                // NO ERRORS, do save.
-                foreach (var survey in surveysToSave)
-                    repo.Save(survey, userId);
-
-                int rec = ds.Tables[0].Rows.Count;
-                return new ImportResult
-                {
-                    WasSuccess = true,
-                    Count = rec,
-                    ErrorMessage = string.Empty
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ImportResult("An unexpected exception occurred: " + ex.Message);
-            }
-        }
-
-        public string ImportName
-        {
-            get { return Translations.LfSentinelImport; }
         }
     }
 

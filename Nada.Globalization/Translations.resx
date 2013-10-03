@@ -618,7 +618,52 @@
   <data name="YearStoppingPcLower" xml:space="preserve">
     <value>Year determined that achieved criteria for stopping PC (lower levels)</value>
   </data>
-  <data name="AddNewLink" xml:space="preserve">
-    <value>Add New...</value>
+  <data name="EnterNewLink" xml:space="preserve">
+    <value>Enter New...</value>
+  </data>
+  <data name="EnterNew" xml:space="preserve">
+    <value>Enter new</value>
+  </data>
+  <data name="IvmAlbIntervention" xml:space="preserve">
+    <value>IVM + ALB Intervention</value>
+  </data>
+  <data name="AggregatedBy" xml:space="preserve">
+    <value>Aggregated by</value>
+  </data>
+  <data name="CustomReportBuilder" xml:space="preserve">
+    <value>Custom Report Builder</value>
+  </data>
+  <data name="EditReportOptions" xml:space="preserve">
+    <value>Edit report options</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Export to excel</value>
+  </data>
+  <data name="InterventionType" xml:space="preserve">
+    <value>Intervention type</value>
+  </data>
+  <data name="MDAs" xml:space="preserve">
+    <value>MDAs</value>
+  </data>
+  <data name="PC" xml:space="preserve">
+    <value>PC</value>
+  </data>
+  <data name="ReportLocations" xml:space="preserve">
+    <value>Select locations</value>
+  </data>
+  <data name="ReportOptions" xml:space="preserve">
+    <value>Report options</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Select a report category</value>
+  </data>
+  <data name="SelectIndicators" xml:space="preserve">
+    <value>Select indicators</value>
+  </data>
+  <data name="SurveyType" xml:space="preserve">
+    <value>Survey type</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>Years</value>
   </data>
 </root>

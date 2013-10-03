@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using Nada.Globalization;
 using Nada.Model.Repositories;
 
 namespace Nada.Model.Reports
@@ -51,6 +52,33 @@ namespace Nada.Model.Reports
             foreach (var i in settings.InterventionIndicators.Where(s => s.Selected))
                 dt.Columns.Add(new DataColumn(i.Name));
             return dt;
+        }
+    }
+
+    public interface IReportGenerator
+    {
+        ReportResult Run(ReportOptions options);
+    }
+
+    public class SurveyReportGenerator : IReportGenerator
+    {
+        private ReportRepository repo = new ReportRepository();
+        public ReportResult Run(ReportOptions options)
+        {
+            ReportResult result = new ReportResult();
+            result.DataTableResults = repo.CreateSurveyReport(options);
+            return result;
+        }
+    }
+
+    public class IntvReportGenerator : IReportGenerator
+    {
+        private ReportRepository repo = new ReportRepository();
+        public ReportResult Run(ReportOptions options)
+        {
+            ReportResult result = new ReportResult();
+            result.DataTableResults = repo.CreateIntvReport(options);
+            return result;
         }
     }
 }

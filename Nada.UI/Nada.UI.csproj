@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>24</ApplicationRevision>
+    <ApplicationRevision>28</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -79,12 +79,16 @@
     <ManifestKeyFile>Nada.UI_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C1.Win.C1Command.2, Version=2.0.20132.19578, Culture=neutral, PublicKeyToken=e808566f358766d8, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1DynamicHelp.2, Version=2.0.20132.64, Culture=neutral, PublicKeyToken=f95c5890a3995862, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Editor.2, Version=2.0.20132.204, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1FlexGrid.2, Version=2.6.20132.786, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Input.2, Version=2.0.20132.33305, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1InputPanel.2, Version=2.0.20132.166, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Sizer.2, Version=2.1.20132.78, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1SplitContainer.2, Version=2.0.20132.46, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1TileControl.2, Version=2.0.20132.76, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Win7Pack.2, Version=2.0.20132.33, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Solution Items\ComponentFactory.Krypton.Toolkit.dll</HintPath>
@@ -107,6 +111,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -125,6 +130,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppLogic\IWizardStep.cs" />
     <Compile Include="Controls\H3Link.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -203,6 +209,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Demography\TestDemoImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Demography\TestDemoImport.Designer.cs">
+      <DependentUpon>TestDemoImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\DiseaseDistribution\DiseaseDistroEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -214,6 +226,42 @@
     </Compile>
     <Compile Include="View\Help\HelpView.Designer.cs">
       <DependentUpon>HelpView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\CustomReportView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\CustomReportView.Designer.cs">
+      <DependentUpon>CustomReportView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\StepLocations.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\StepLocations.Designer.cs">
+      <DependentUpon>StepLocations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\ReportWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\ReportWizard.Designer.cs">
+      <DependentUpon>ReportWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\StepCategory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\StepCategory.Designer.cs">
+      <DependentUpon>StepCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\StepIndicators.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\StepIndicators.Designer.cs">
+      <DependentUpon>StepIndicators.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\StepOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\CustomReport\StepOptions.Designer.cs">
+      <DependentUpon>StepOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Reports\ReportsDashboard.cs">
       <SubType>UserControl</SubType>
@@ -287,11 +335,11 @@
     <Compile Include="View\Intervention\PcMdaView.Designer.cs">
       <DependentUpon>PcMdaView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\ReportIndicatorControl.cs">
+    <Compile Include="View\Reports\OldReportIndicatorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Reports\ReportIndicatorControl.Designer.cs">
-      <DependentUpon>ReportIndicatorControl.cs</DependentUpon>
+    <Compile Include="View\Reports\OldReportIndicatorControl.Designer.cs">
+      <DependentUpon>OldReportIndicatorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ImportDownload.cs">
       <SubType>Form</SubType>
@@ -353,12 +401,6 @@
     <Compile Include="View\Demography\CountryDemoEdit.Designer.cs">
       <DependentUpon>CountryDemoEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Demography\DemographyTree.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Demography\DemographyTree.Designer.cs">
-      <DependentUpon>DemographyTree.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Demography\DemographyView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -389,12 +431,6 @@
     <Compile Include="View\Intervention\DistributionMethodList.Designer.cs">
       <DependentUpon>DistributionMethodList.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Intervention\LfMdaView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Intervention\LfMdaView.Designer.cs">
-      <DependentUpon>LfMdaView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Intervention\IntvBaseView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -412,12 +448,6 @@
     </Compile>
     <Compile Include="View\Demography\AdminLevelModal.Designer.cs">
       <DependentUpon>AdminLevelModal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Demography\AdminLevelPicker.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Demography\AdminLevelPicker.Designer.cs">
-      <DependentUpon>AdminLevelPicker.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Demography\CountryModal.cs">
       <SubType>Form</SubType>
@@ -443,17 +473,17 @@
     <Compile Include="View\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\ReportCreatorView.cs">
+    <Compile Include="View\Reports\OldReportCreatorView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Reports\ReportCreatorView.Designer.cs">
-      <DependentUpon>ReportCreatorView.cs</DependentUpon>
+    <Compile Include="View\Reports\OldReportCreatorView.Designer.cs">
+      <DependentUpon>OldReportCreatorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\ReportView.cs">
+    <Compile Include="View\Reports\OldReportView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Reports\ReportView.Designer.cs">
-      <DependentUpon>ReportView.cs</DependentUpon>
+    <Compile Include="View\Reports\OldReportView.Designer.cs">
+      <DependentUpon>OldReportView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsView.cs">
       <SubType>UserControl</SubType>
@@ -547,11 +577,32 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\TestDemoImport.resx">
+      <DependentUpon>TestDemoImport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistroEdit.resx">
       <DependentUpon>DiseaseDistroEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Help\HelpView.resx">
       <DependentUpon>HelpView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\CustomReport\CustomReportView.resx">
+      <DependentUpon>CustomReportView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\CustomReport\ReportWizard.resx">
+      <DependentUpon>ReportWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\CustomReport\StepCategory.resx">
+      <DependentUpon>StepCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\CustomReport\StepIndicators.resx">
+      <DependentUpon>StepIndicators.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\CustomReport\StepLocations.resx">
+      <DependentUpon>StepLocations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\CustomReport\StepOptions.resx">
+      <DependentUpon>StepOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ReportsDashboard.resx">
       <DependentUpon>ReportsDashboard.cs</DependentUpon>
@@ -589,8 +640,8 @@
     <EmbeddedResource Include="View\Intervention\PcMdaView.resx">
       <DependentUpon>PcMdaView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Reports\ReportIndicatorControl.resx">
-      <DependentUpon>ReportIndicatorControl.cs</DependentUpon>
+    <EmbeddedResource Include="View\Reports\OldReportIndicatorControl.resx">
+      <DependentUpon>OldReportIndicatorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ImportDownload.resx">
       <DependentUpon>ImportDownload.cs</DependentUpon>
@@ -622,9 +673,6 @@
     <EmbeddedResource Include="View\Demography\CountryDemoEdit.resx">
       <DependentUpon>CountryDemoEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Demography\DemographyTree.resx">
-      <DependentUpon>DemographyTree.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\DemographyView.resx">
       <DependentUpon>DemographyView.cs</DependentUpon>
     </EmbeddedResource>
@@ -640,9 +688,6 @@
     <EmbeddedResource Include="View\Intervention\DistributionMethodList.resx">
       <DependentUpon>DistributionMethodList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Intervention\LfMdaView.resx">
-      <DependentUpon>LfMdaView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Intervention\IntvBaseView.resx">
       <DependentUpon>IntvBaseView.cs</DependentUpon>
     </EmbeddedResource>
@@ -651,9 +696,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\AdminLevelModal.resx">
       <DependentUpon>AdminLevelModal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Demography\AdminLevelPicker.resx">
-      <DependentUpon>AdminLevelPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\CountryModal.resx">
       <DependentUpon>CountryModal.cs</DependentUpon>
@@ -667,11 +709,11 @@
     <EmbeddedResource Include="View\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Reports\ReportCreatorView.resx">
-      <DependentUpon>ReportCreatorView.cs</DependentUpon>
+    <EmbeddedResource Include="View\Reports\OldReportCreatorView.resx">
+      <DependentUpon>OldReportCreatorView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Reports\ReportView.resx">
-      <DependentUpon>ReportView.cs</DependentUpon>
+    <EmbeddedResource Include="View\Reports\OldReportView.resx">
+      <DependentUpon>OldReportView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SettingsView.resx">
       <DependentUpon>SettingsView.cs</DependentUpon>
@@ -800,6 +842,28 @@
       <Project>{9887365d-56c1-4344-9753-91a5d0bf656c}</Project>
       <Name>Nada.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="en-US\Nada.Globalization.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+    <PublishFile Include="fr-FR\Nada.Globalization.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

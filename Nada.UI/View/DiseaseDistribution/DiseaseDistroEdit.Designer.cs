@@ -126,7 +126,7 @@
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.kryptonButton1.Size = new System.Drawing.Size(78, 25);
-            this.kryptonButton1.TabIndex = 1;
+            this.kryptonButton1.TabIndex = 0;
             this.kryptonButton1.Tag = "Save";
             this.kryptonButton1.Values.Text = "Save";
             this.kryptonButton1.Click += new System.EventHandler(this.save_Click);
@@ -150,7 +150,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(178, 71);
-            this.tableLayoutPanel4.TabIndex = 39;
+            this.tableLayoutPanel4.TabIndex = 0;
             // 
             // kryptonButton2
             // 
@@ -160,7 +160,8 @@
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.kryptonButton2.Size = new System.Drawing.Size(78, 25);
-            this.kryptonButton2.TabIndex = 40;
+            this.kryptonButton2.TabIndex = 1;
+            this.kryptonButton2.Tag = "Cancel";
             this.kryptonButton2.Values.Text = "Cancel";
             this.kryptonButton2.Click += new System.EventHandler(this.cancel_Click);
             // 
@@ -179,7 +180,7 @@
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblNotes.Size = new System.Drawing.Size(184, 77);
-            this.tblNotes.TabIndex = 4;
+            this.tblNotes.TabIndex = 7;
             // 
             // label21
             // 
@@ -241,7 +242,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(838, 600);
-            this.tableLayoutPanel5.TabIndex = 54;
+            this.tableLayoutPanel5.TabIndex = 0;
             // 
             // tableLayoutPanel10
             // 
@@ -266,7 +267,7 @@
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel10.Size = new System.Drawing.Size(426, 42);
-            this.tableLayoutPanel10.TabIndex = 61;
+            this.tableLayoutPanel10.TabIndex = 4;
             // 
             // tbYearStoppingPcLower
             // 
@@ -275,7 +276,7 @@
             this.tbYearStoppingPcLower.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.tbYearStoppingPcLower.Name = "tbYearStoppingPcLower";
             this.tbYearStoppingPcLower.Size = new System.Drawing.Size(180, 20);
-            this.tbYearStoppingPcLower.TabIndex = 61;
+            this.tbYearStoppingPcLower.TabIndex = 1;
             // 
             // tbYearStoppingPc
             // 
@@ -284,7 +285,7 @@
             this.tbYearStoppingPc.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.tbYearStoppingPc.Name = "tbYearStoppingPc";
             this.tbYearStoppingPc.Size = new System.Drawing.Size(180, 20);
-            this.tbYearStoppingPc.TabIndex = 58;
+            this.tbYearStoppingPc.TabIndex = 0;
             // 
             // lblYearStoppingPcLower
             // 
@@ -297,6 +298,7 @@
             this.lblYearStoppingPcLower.Name = "lblYearStoppingPcLower";
             this.lblYearStoppingPcLower.Size = new System.Drawing.Size(143, 16);
             this.lblYearStoppingPcLower.TabIndex = 58;
+            this.lblYearStoppingPcLower.TabStop = false;
             this.lblYearStoppingPcLower.Tag = "YearStoppingPcLower";
             this.lblYearStoppingPcLower.Text = "YearStoppingPcLower";
             this.lblYearStoppingPcLower.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -312,6 +314,7 @@
             this.lblYearStoppingPc.Name = "lblYearStoppingPc";
             this.lblYearStoppingPc.Size = new System.Drawing.Size(107, 16);
             this.lblYearStoppingPc.TabIndex = 58;
+            this.lblYearStoppingPc.TabStop = false;
             this.lblYearStoppingPc.Tag = "YearStoppingPc";
             this.lblYearStoppingPc.Text = "YearStoppingPc";
             this.lblYearStoppingPc.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -341,7 +344,7 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel8.Size = new System.Drawing.Size(629, 59);
-            this.tableLayoutPanel8.TabIndex = 61;
+            this.tableLayoutPanel8.TabIndex = 3;
             // 
             // cbRoundsCurrentlyImplemented
             // 
@@ -355,7 +358,7 @@
             this.cbRoundsCurrentlyImplemented.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.cbRoundsCurrentlyImplemented.Name = "cbRoundsCurrentlyImplemented";
             this.cbRoundsCurrentlyImplemented.Size = new System.Drawing.Size(180, 21);
-            this.cbRoundsCurrentlyImplemented.TabIndex = 61;
+            this.cbRoundsCurrentlyImplemented.TabIndex = 2;
             // 
             // cbRoundsRecommendedByWho
             // 
@@ -369,7 +372,7 @@
             this.cbRoundsRecommendedByWho.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.cbRoundsRecommendedByWho.Name = "cbRoundsRecommendedByWho";
             this.cbRoundsRecommendedByWho.Size = new System.Drawing.Size(180, 21);
-            this.cbRoundsRecommendedByWho.TabIndex = 61;
+            this.cbRoundsRecommendedByWho.TabIndex = 1;
             // 
             // tbYearPcStarted
             // 
@@ -378,7 +381,7 @@
             this.tbYearPcStarted.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.tbYearPcStarted.Name = "tbYearPcStarted";
             this.tbYearPcStarted.Size = new System.Drawing.Size(180, 20);
-            this.tbYearPcStarted.TabIndex = 58;
+            this.tbYearPcStarted.TabIndex = 0;
             // 
             // lblRoundsRecommendedByWho
             // 
@@ -391,6 +394,7 @@
             this.lblRoundsRecommendedByWho.Name = "lblRoundsRecommendedByWho";
             this.lblRoundsRecommendedByWho.Size = new System.Drawing.Size(178, 32);
             this.lblRoundsRecommendedByWho.TabIndex = 58;
+            this.lblRoundsRecommendedByWho.TabStop = false;
             this.lblRoundsRecommendedByWho.Tag = "RoundsRecommendedByWho";
             this.lblRoundsRecommendedByWho.Text = "RoundsRecommendedByWho";
             this.lblRoundsRecommendedByWho.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -406,6 +410,7 @@
             this.lblYearPcStarted.Name = "lblYearPcStarted";
             this.lblYearPcStarted.Size = new System.Drawing.Size(96, 16);
             this.lblYearPcStarted.TabIndex = 58;
+            this.lblYearPcStarted.TabStop = false;
             this.lblYearPcStarted.Tag = "YearPcStarted";
             this.lblYearPcStarted.Text = "YearPcStarted";
             this.lblYearPcStarted.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -421,6 +426,7 @@
             this.lblRoundsCurrentlyImplemented.Name = "lblRoundsCurrentlyImplemented";
             this.lblRoundsCurrentlyImplemented.Size = new System.Drawing.Size(177, 32);
             this.lblRoundsCurrentlyImplemented.TabIndex = 4;
+            this.lblRoundsCurrentlyImplemented.TabStop = false;
             this.lblRoundsCurrentlyImplemented.Tag = "RoundsCurrentlyImplemented";
             this.lblRoundsCurrentlyImplemented.Text = "RoundsCurrentlyImplemented";
             this.lblRoundsCurrentlyImplemented.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -440,7 +446,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel7.Size = new System.Drawing.Size(223, 42);
-            this.tableLayoutPanel7.TabIndex = 61;
+            this.tableLayoutPanel7.TabIndex = 2;
             // 
             // lblTrachomaImpactYearMonth
             // 
@@ -453,6 +459,7 @@
             this.lblTrachomaImpactYearMonth.Name = "lblTrachomaImpactYearMonth";
             this.lblTrachomaImpactYearMonth.Size = new System.Drawing.Size(175, 16);
             this.lblTrachomaImpactYearMonth.TabIndex = 58;
+            this.lblTrachomaImpactYearMonth.TabStop = false;
             this.lblTrachomaImpactYearMonth.Tag = "TrachomaImpactYearMonth";
             this.lblTrachomaImpactYearMonth.Text = "TrachomaImpactYearMonth";
             this.lblTrachomaImpactYearMonth.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -466,7 +473,7 @@
             this.dtTrachomaImpactYearMonth.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.dtTrachomaImpactYearMonth.Name = "dtTrachomaImpactYearMonth";
             this.dtTrachomaImpactYearMonth.Size = new System.Drawing.Size(180, 20);
-            this.dtTrachomaImpactYearMonth.TabIndex = 62;
+            this.dtTrachomaImpactYearMonth.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
@@ -491,7 +498,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.Size = new System.Drawing.Size(426, 43);
-            this.tableLayoutPanel2.TabIndex = 61;
+            this.tableLayoutPanel2.TabIndex = 1;
             // 
             // cbTasObjective
             // 
@@ -505,7 +512,7 @@
             this.cbTasObjective.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.cbTasObjective.Name = "cbTasObjective";
             this.cbTasObjective.Size = new System.Drawing.Size(180, 21);
-            this.cbTasObjective.TabIndex = 60;
+            this.cbTasObjective.TabIndex = 0;
             // 
             // lblTasYearMonth
             // 
@@ -518,6 +525,7 @@
             this.lblTasYearMonth.Name = "lblTasYearMonth";
             this.lblTasYearMonth.Size = new System.Drawing.Size(97, 16);
             this.lblTasYearMonth.TabIndex = 58;
+            this.lblTasYearMonth.TabStop = false;
             this.lblTasYearMonth.Tag = "TasYearMonth";
             this.lblTasYearMonth.Text = "TasYearMonth";
             this.lblTasYearMonth.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -533,6 +541,7 @@
             this.lblTasObjective.Name = "lblTasObjective";
             this.lblTasObjective.Size = new System.Drawing.Size(89, 16);
             this.lblTasObjective.TabIndex = 58;
+            this.lblTasObjective.TabStop = false;
             this.lblTasObjective.Tag = "TasObjective";
             this.lblTasObjective.Text = "TasObjective";
             this.lblTasObjective.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -546,7 +555,7 @@
             this.dtTasYearMonth.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.dtTasYearMonth.Name = "dtTasYearMonth";
             this.dtTasYearMonth.Size = new System.Drawing.Size(180, 20);
-            this.dtTasYearMonth.TabIndex = 61;
+            this.dtTasYearMonth.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -575,7 +584,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(832, 43);
-            this.tableLayoutPanel1.TabIndex = 61;
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // h3Required1
             // 
@@ -587,6 +596,7 @@
             this.h3Required1.Name = "h3Required1";
             this.h3Required1.Size = new System.Drawing.Size(101, 16);
             this.h3Required1.TabIndex = 62;
+            this.h3Required1.TabStop = false;
             this.h3Required1.Tag = "DiseaseYear";
             this.h3Required1.Text = "DiseaseYear";
             this.h3Required1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -598,7 +608,7 @@
             this.tbDiseaseYear.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.tbDiseaseYear.Name = "tbDiseaseYear";
             this.tbDiseaseYear.Size = new System.Drawing.Size(180, 20);
-            this.tbDiseaseYear.TabIndex = 61;
+            this.tbDiseaseYear.TabIndex = 2;
             // 
             // lblDiseaseEndemicity
             // 
@@ -610,6 +620,7 @@
             this.lblDiseaseEndemicity.Name = "lblDiseaseEndemicity";
             this.lblDiseaseEndemicity.Size = new System.Drawing.Size(138, 16);
             this.lblDiseaseEndemicity.TabIndex = 61;
+            this.lblDiseaseEndemicity.TabStop = false;
             this.lblDiseaseEndemicity.Tag = "DiseaseEndemicity";
             this.lblDiseaseEndemicity.Text = "DiseaseEndemicity";
             this.lblDiseaseEndemicity.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -626,7 +637,7 @@
             this.cbDiseaseTrichiasis.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.cbDiseaseTrichiasis.Name = "cbDiseaseTrichiasis";
             this.cbDiseaseTrichiasis.Size = new System.Drawing.Size(180, 21);
-            this.cbDiseaseTrichiasis.TabIndex = 60;
+            this.cbDiseaseTrichiasis.TabIndex = 1;
             // 
             // cbDiseaseEndemicity
             // 
@@ -643,7 +654,7 @@
             this.cbDiseaseEndemicity.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.cbDiseaseEndemicity.Name = "cbDiseaseEndemicity";
             this.cbDiseaseEndemicity.Size = new System.Drawing.Size(180, 21);
-            this.cbDiseaseEndemicity.TabIndex = 59;
+            this.cbDiseaseEndemicity.TabIndex = 0;
             // 
             // lblDiseaseTrichiasis
             // 
@@ -656,6 +667,7 @@
             this.lblDiseaseTrichiasis.Name = "lblDiseaseTrichiasis";
             this.lblDiseaseTrichiasis.Size = new System.Drawing.Size(117, 16);
             this.lblDiseaseTrichiasis.TabIndex = 58;
+            this.lblDiseaseTrichiasis.TabStop = false;
             this.lblDiseaseTrichiasis.Tag = "DiseaseTrichiasis";
             this.lblDiseaseTrichiasis.Text = "DiseaseTrichiasis";
             this.lblDiseaseTrichiasis.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -671,6 +683,7 @@
             this.lblPopulation.Name = "lblPopulation";
             this.lblPopulation.Size = new System.Drawing.Size(72, 16);
             this.lblPopulation.TabIndex = 5;
+            this.lblPopulation.TabStop = false;
             this.lblPopulation.Tag = "Population";
             this.lblPopulation.Text = "Population";
             this.lblPopulation.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -682,7 +695,7 @@
             this.tbPopulation.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.tbPopulation.Name = "tbPopulation";
             this.tbPopulation.Size = new System.Drawing.Size(180, 20);
-            this.tbPopulation.TabIndex = 58;
+            this.tbPopulation.TabIndex = 3;
             // 
             // tableLayoutPanel9
             // 
@@ -709,7 +722,7 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel9.Size = new System.Drawing.Size(629, 42);
-            this.tableLayoutPanel9.TabIndex = 60;
+            this.tableLayoutPanel9.TabIndex = 5;
             // 
             // tbTrachomaGoal
             // 
@@ -718,7 +731,7 @@
             this.tbTrachomaGoal.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.tbTrachomaGoal.Name = "tbTrachomaGoal";
             this.tbTrachomaGoal.Size = new System.Drawing.Size(180, 20);
-            this.tbTrachomaGoal.TabIndex = 61;
+            this.tbTrachomaGoal.TabIndex = 2;
             // 
             // tbTrichiasisSurgeryGoal
             // 
@@ -727,7 +740,7 @@
             this.tbTrichiasisSurgeryGoal.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.tbTrichiasisSurgeryGoal.Name = "tbTrichiasisSurgeryGoal";
             this.tbTrichiasisSurgeryGoal.Size = new System.Drawing.Size(180, 20);
-            this.tbTrichiasisSurgeryGoal.TabIndex = 61;
+            this.tbTrichiasisSurgeryGoal.TabIndex = 1;
             // 
             // tbTrichiasisSurgeryBacklog
             // 
@@ -736,7 +749,7 @@
             this.tbTrichiasisSurgeryBacklog.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.tbTrichiasisSurgeryBacklog.Name = "tbTrichiasisSurgeryBacklog";
             this.tbTrichiasisSurgeryBacklog.Size = new System.Drawing.Size(180, 20);
-            this.tbTrichiasisSurgeryBacklog.TabIndex = 58;
+            this.tbTrichiasisSurgeryBacklog.TabIndex = 0;
             // 
             // lblTrichiasisSurgeryGoal
             // 
@@ -749,6 +762,7 @@
             this.lblTrichiasisSurgeryGoal.Name = "lblTrichiasisSurgeryGoal";
             this.lblTrichiasisSurgeryGoal.Size = new System.Drawing.Size(142, 16);
             this.lblTrichiasisSurgeryGoal.TabIndex = 58;
+            this.lblTrichiasisSurgeryGoal.TabStop = false;
             this.lblTrichiasisSurgeryGoal.Tag = "TrichiasisSurgeryGoal";
             this.lblTrichiasisSurgeryGoal.Text = "TrichiasisSurgeryGoal";
             this.lblTrichiasisSurgeryGoal.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -764,6 +778,7 @@
             this.lblTrichiasisSurgeryBacklog.Name = "lblTrichiasisSurgeryBacklog";
             this.lblTrichiasisSurgeryBacklog.Size = new System.Drawing.Size(163, 16);
             this.lblTrichiasisSurgeryBacklog.TabIndex = 58;
+            this.lblTrichiasisSurgeryBacklog.TabStop = false;
             this.lblTrichiasisSurgeryBacklog.Tag = "TrichiasisSurgeryBacklog";
             this.lblTrichiasisSurgeryBacklog.Text = "TrichiasisSurgeryBacklog";
             this.lblTrichiasisSurgeryBacklog.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -779,6 +794,7 @@
             this.lblTrachomaGoal.Name = "lblTrachomaGoal";
             this.lblTrachomaGoal.Size = new System.Drawing.Size(99, 16);
             this.lblTrachomaGoal.TabIndex = 4;
+            this.lblTrachomaGoal.TabStop = false;
             this.lblTrachomaGoal.Tag = "TrachomaGoal";
             this.lblTrachomaGoal.Text = "TrachomaGoal";
             this.lblTrachomaGoal.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -799,7 +815,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.Size = new System.Drawing.Size(559, 120);
-            this.tableLayoutPanel3.TabIndex = 53;
+            this.tableLayoutPanel3.TabIndex = 6;
             // 
             // textBox1
             // 
@@ -809,7 +825,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox1.Size = new System.Drawing.Size(553, 98);
-            this.textBox1.TabIndex = 4;
+            this.textBox1.TabIndex = 0;
             // 
             // h3Label3
             // 
@@ -821,6 +837,7 @@
             this.h3Label3.Name = "h3Label3";
             this.h3Label3.Size = new System.Drawing.Size(44, 16);
             this.h3Label3.TabIndex = 5;
+            this.h3Label3.TabStop = false;
             this.h3Label3.Tag = "Notes";
             this.h3Label3.Text = "Notes";
             this.h3Label3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -835,6 +852,7 @@
             this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.hr5.Size = new System.Drawing.Size(800, 1);
             this.hr5.TabIndex = 57;
+            this.hr5.TabStop = false;
             // 
             // customIndicatorControl1
             // 
@@ -845,6 +863,7 @@
             this.customIndicatorControl1.Name = "customIndicatorControl1";
             this.customIndicatorControl1.Size = new System.Drawing.Size(146, 41);
             this.customIndicatorControl1.TabIndex = 0;
+            this.customIndicatorControl1.TabStop = false;
             this.customIndicatorControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             // 
             // hr4
@@ -857,6 +876,7 @@
             this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.hr4.Size = new System.Drawing.Size(800, 1);
             this.hr4.TabIndex = 47;
+            this.hr4.TabStop = false;
             // 
             // tableLayoutPanel6
             // 
@@ -885,6 +905,7 @@
             this.btnDash.Name = "btnDash";
             this.btnDash.Size = new System.Drawing.Size(46, 46);
             this.btnDash.TabIndex = 57;
+            this.btnDash.TabStop = false;
             this.btnDash.UseVisualStyleBackColor = true;
             this.btnDash.Click += new System.EventHandler(this.btnDash_Click);
             // 
@@ -899,6 +920,7 @@
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(46, 46);
             this.btnHelp.TabIndex = 59;
+            this.btnHelp.TabStop = false;
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
@@ -929,6 +951,7 @@
             this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.hrTop.Size = new System.Drawing.Size(851, 5);
             this.hrTop.TabIndex = 56;
+            this.hrTop.TabStop = false;
             // 
             // adminLevelPickerControl1
             // 
@@ -938,7 +961,8 @@
             this.adminLevelPickerControl1.Margin = new System.Windows.Forms.Padding(0);
             this.adminLevelPickerControl1.Name = "adminLevelPickerControl1";
             this.adminLevelPickerControl1.Size = new System.Drawing.Size(200, 27);
-            this.adminLevelPickerControl1.TabIndex = 0;
+            this.adminLevelPickerControl1.TabIndex = 5;
+            this.adminLevelPickerControl1.TabStop = false;
             this.adminLevelPickerControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             // 
             // nadaLabel2
@@ -951,6 +975,7 @@
             this.nadaLabel2.Name = "nadaLabel2";
             this.nadaLabel2.Size = new System.Drawing.Size(13, 16);
             this.nadaLabel2.TabIndex = 46;
+            this.nadaLabel2.TabStop = false;
             this.nadaLabel2.Text = "*";
             this.nadaLabel2.TextColor = System.Drawing.Color.Red;
             // 
@@ -964,6 +989,7 @@
             this.nadaLabel1.Name = "nadaLabel1";
             this.nadaLabel1.Size = new System.Drawing.Size(64, 16);
             this.nadaLabel1.TabIndex = 45;
+            this.nadaLabel1.TabStop = false;
             this.nadaLabel1.Tag = "Required";
             this.nadaLabel1.Text = "Required";
             this.nadaLabel1.TextColor = System.Drawing.SystemColors.ControlText;
@@ -986,6 +1012,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel15);
             this.Controls.Add(this.btnHelp);

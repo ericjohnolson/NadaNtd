@@ -1,6 +1,6 @@
 ﻿namespace Nada.UI.View.Reports
 {
-    partial class ReportView
+    partial class OldReportView
     {
         /// <summary> 
         /// Required designer variable.

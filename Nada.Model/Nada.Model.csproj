@@ -54,10 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\NadaListItem.cs" />
+    <Compile Include="Demography\AdminLevelImporter.cs" />
     <Compile Include="Diseases\DiseaseDistroDetails.cs" />
     <Compile Include="Intervention\IntvDetails.cs" />
+    <Compile Include="Reports\ReportOptions.cs" />
     <Compile Include="Survey\SurveyDetails.cs" />
-    <Compile Include="Survey\SurveyImporter.cs" />
+    <Compile Include="Survey\LfSentinelImporter.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Demography\AdminLevel.cs" />
     <Compile Include="Demography\AdminLevelType.cs" />

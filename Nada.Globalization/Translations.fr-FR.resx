@@ -495,4 +495,139 @@
   <data name="YearStoppingPc" xml:space="preserve">
     <value>Année d'achèvement des critères d'arrêt du TDM</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="AddNewDiseaseLink" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="AddNewIntvType" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="AddNewLink" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="AddNewSurveyTypeLink" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="AddPartnerLink" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="AvailableReports" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="CustomReport" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="DeleteConfirmMessage" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Diseases" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="DiseasesRequired" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="DiseaseTrichiasis" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="DiseaseYear" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="InterventionInfo" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="IotaInk" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Leporsy" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="LoadingMessage" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="LocationRequired" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="NewLink" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="NumAtRisk" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="OopsProblem" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="TasObjective" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="TasYearMonth" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="TrachomaGoal" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="TrachomaImpactYearMonth" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="TreatmentReport" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="TrichiasisSurgeryBacklog" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="TrichiasisSurgeryGoal" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="UpdateComplete" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="UpdateException" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="UpdateNone" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="UpdatesCheck" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
+  <data name="YearStoppingPcLower" xml:space="preserve">
+    <value>No Translation</value>
+  </data>
 </root>

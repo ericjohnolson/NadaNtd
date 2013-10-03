@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.UI.AppLogic;
 using Nada.UI.View.Help;
+using Nada.UI.View.Reports.CustomReport;
+using Nada.Model.Reports;
 
 namespace Nada.UI.View.Reports
 {
@@ -20,12 +22,7 @@ namespace Nada.UI.View.Reports
         {
             InitializeComponent();
         }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
+        
         private void ReportsDashboard_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
@@ -43,6 +40,27 @@ namespace Nada.UI.View.Reports
         {
             HelpView help = new HelpView();
             help.Show();
+        }
+
+        private void lnkCustom_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ReportWizard wiz = new ReportWizard(new StepCategory());
+            wiz.OnRunReport = RunCustomReport;
+            wiz.Show();
+        }
+
+        private void RunCustomReport(ReportOptions options)
+        {
+            CustomReportView report = new CustomReportView(options);
+            report.OnEditReport = EditCustomReport;
+            report.Show();
+        }
+
+        private void EditCustomReport(ReportOptions options)
+        {
+            ReportWizard wiz = new ReportWizard(new StepIndicators(options));
+            wiz.OnRunReport = RunCustomReport;
+            wiz.Show();
         }
     }
 }

@@ -56,8 +56,8 @@ namespace Nada.UI.View
                 foreach (AdminLevel l in adminLevelMultiselect1.GetSelectedAdminLevels())
                 {
                     DataRow row = data.NewRow();
-                    row["Location Id"] = l.Id;
-                    row["Location"] = l.Name;
+                    row[Translations.Location + "#"] = l.Id;
+                    row[Translations.Location] = l.Name;
                     data.Rows.Add(row);
                 }
                 using (ExcelPackage pck = new ExcelPackage())
@@ -77,9 +77,8 @@ namespace Nada.UI.View
             this.Close();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private void DoImport_Click(object sender, EventArgs e)
         {
-
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 int userId = ApplicationData.Instance.GetUserId();

@@ -46,6 +46,7 @@ namespace Nada.UI.View.Survey
         {
             if (!DesignMode)
             {
+                adminLevelPickerControl1.Focus();
                 Localizer.TranslateControl(this);
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
                 r = new SurveyRepository();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -173,6 +174,7 @@ namespace Nada.Model.Repositories
 
         #region AdminLevel
 
+
         public List<AdminLevel> GetAdminLevelChildren(int id)
         {
             List<AdminLevel> list = new List<AdminLevel>();
@@ -253,6 +255,7 @@ namespace Nada.Model.Repositories
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, IsUrban, LatWho, LngWho, Latitude, Longitude,
                     AdminLevelTypes.AdminLevel
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
+                    WHERE AdminLevels.IsDeleted = 0
                     ", connection); // WHERE ParentId > 0
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -274,7 +277,7 @@ namespace Nada.Model.Repositories
                     reader.Close();
                 }
             }
-            return MakeTreeFromFlatList(list);
+            return MakeTreeFromFlatList(list, 0);
         }
 
         public List<AdminLevel> GetAdminLevelTree(int levelTypeId)
@@ -287,7 +290,7 @@ namespace Nada.Model.Repositories
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, IsUrban, LatWho, LngWho, Latitude, Longitude,
                     AdminLevelTypes.AdminLevel
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE ParentId > 0 AND AdminLevelTypeId <= @AdminLevelTypeId", connection);
+                    WHERE ParentId > 0 AND AdminLevelTypeId <= @AdminLevelTypeId AND AdminLevels.IsDeleted = 0", connection);
                 command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", levelTypeId));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -309,16 +312,16 @@ namespace Nada.Model.Repositories
                     reader.Close();
                 }
             }
-            return MakeTreeFromFlatList(list);
+            return MakeTreeFromFlatList(list, 1);
         }
 
-        private List<AdminLevel> MakeTreeFromFlatList(IEnumerable<AdminLevel> flatList)
+        private List<AdminLevel> MakeTreeFromFlatList(IEnumerable<AdminLevel> flatList, int minRoot)
         {
             var dic = flatList.ToDictionary(n => n.Id, n => n);
             var rootNodes = new List<AdminLevel>();
             foreach (var node in flatList)
             {
-                if (node.ParentId.HasValue && node.ParentId.Value > 0)
+                if (node.ParentId.HasValue && node.ParentId.Value > minRoot)
                 {
                     AdminLevel parent = dic[node.ParentId.Value];
                     parent.Children.Add(node);
@@ -384,6 +387,7 @@ namespace Nada.Model.Repositories
                 }
             }
         }
+
         public void BulkAddDemography(List<AdminLevelDemography> children, int byUserId)
         {
             bool transWasStarted = false;
@@ -441,6 +445,89 @@ namespace Nada.Model.Repositories
                 }
             }
         }
+
+        public void BulkImportAdminLevels(DataSet ds, int byUserId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+                
+                    command = new OleDbCommand(@"Update AdminLevels set IsDeleted=1, UpdatedBy=@UpdatedBy, 
+                    UpdatedAt=@UpdatedAt WHERE ID > 1", connection);
+                    command.Parameters.Add(new OleDbParameter("@UpdatedBy", byUserId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    command.ExecuteNonQuery();
+
+
+                    Dictionary<string, int> regions = new Dictionary<string, int>();
+                    foreach (DataRow row in ds.Tables[0].Rows)
+                    {
+                        if (!regions.ContainsKey(row["Region"].ToString()))
+                        {
+                            AdminLevel region = new AdminLevel
+                            {
+                                LevelNumber = 2,
+                                Name = row["Region"].ToString(),
+                                ParentId = 1
+                            };
+                            int id = InsertAdminLevelHelper(command, region, connection, byUserId);
+                            regions.Add(row["Region"].ToString(), id);
+                        }
+
+                        AdminLevel district = new AdminLevel
+                        {
+                            LevelNumber = 3,
+                            Name = row["District"].ToString(),
+                            ParentId = regions[row["Region"].ToString()]
+                        };
+                        InsertAdminLevelHelper(command, district, connection, byUserId);
+                    }
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+
+        private int InsertAdminLevelHelper(OleDbCommand command, AdminLevel adminLevel, OleDbConnection connection, int userId)
+        {
+            command = new OleDbCommand(@"Insert Into AdminLevels (DisplayName, AdminLevelTypeId, 
+                        ParentId, UpdatedBy, UpdatedAt) VALUES
+                        (@DisplayName, @AdminLevelTypeId, @ParentId, @UpdatedBy, @UpdatedAt)", connection);
+            command.Parameters.Add(new OleDbParameter("@DisplayName", adminLevel.Name));
+            command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", adminLevel.LevelNumber));
+            command.Parameters.Add(new OleDbParameter("@ParentId", adminLevel.ParentId));
+            command.Parameters.Add(new OleDbParameter("@UpdatedBy", userId));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+            command.ExecuteNonQuery();
+
+            command = new OleDbCommand(@"SELECT Max(ID) FROM AdminLevels", connection);
+            return (int)command.ExecuteScalar();
+        }
+
         public List<AdminLevelDemography> GetAdminLevelDemography(int id)
         {
             List<AdminLevelDemography> demo = new List<AdminLevelDemography>();

@@ -16,21 +16,11 @@ namespace Nada.UI.AppLogic
 {
     public static class Localizer
     {
-        private static ResourceManager rm = null;
         public static List<Language> SupportedLanguages { get; set; }
-        private static List<string> keys = null;
 
         public static void Initialize()
         {
-            rm = new ResourceManager("Nada.Globalization.Translations", typeof(GlobalizationUtil).Assembly);
-            keys = new List<string>();
-
-            ResourceSet set = rm.GetResourceSet(CultureInfo.CurrentCulture, true, true);
-            foreach (DictionaryEntry o in set)
-            {
-                keys.Add((string)o.Key);
-            }
-
+            TranslationLookup.Initialize();
             SettingsRepository repo = new SettingsRepository();
             SupportedLanguages = repo.GetSupportedLanguages();
         }
@@ -48,20 +38,19 @@ namespace Nada.UI.AppLogic
 
         public static string GetValue(string key)
         {
-            return rm.GetString(key);
+            return TranslationLookup.GetValue(key);
         }
 
         public static void TranslateControl(Control parentCtrl)
         {
             foreach (Control c in parentCtrl.Controls)
             {
-                if (c.Tag != null && !string.IsNullOrEmpty(c.Tag.ToString()) && keys.Contains(c.Tag.ToString()))
-                    c.Text = rm.GetString(c.Tag.ToString());
+                if (c.Tag != null && !string.IsNullOrEmpty(c.Tag.ToString()))
+                    c.Text = TranslationLookup.GetValue(c.Tag.ToString(), c.Text);
 
                 TranslateControl(c);
             }
         }
-
     }
 
     public class CultureState

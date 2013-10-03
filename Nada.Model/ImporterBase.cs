@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Excel;
+using Nada.Globalization;
 using Nada.Model.Repositories;
 
 namespace Nada.Model
@@ -26,10 +27,10 @@ namespace Nada.Model
         public virtual DataTable GetDataTable()
         {
             DataTable data = new System.Data.DataTable();
-            data.Columns.Add(new System.Data.DataColumn("Location Id"));
-            data.Columns.Add(new System.Data.DataColumn("Location"));
+            data.Columns.Add(new System.Data.DataColumn(Translations.Location + "#"));
+            data.Columns.Add(new System.Data.DataColumn(Translations.Location));
             AddDynamicIndicators(data);
-            data.Columns.Add(new System.Data.DataColumn("notes"));
+            data.Columns.Add(new System.Data.DataColumn(Translations.Notes));
             return data;
         }
 

@@ -127,7 +127,7 @@ namespace Nada.UI
 
         private void createCustomToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadView(new ReportCreatorView());
+            LoadView(new OldReportCreatorView());
         }
         
         private void mappingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -165,9 +165,6 @@ namespace Nada.UI
 
         private void lFMDAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var view = new LfMdaView();
-            view.OnSave += Survey_OnSave;
-            LoadView(view);
         }
 
         private void lFLymphedemaMorbidityToolStripMenuItem_Click(object sender, EventArgs e)
@@ -201,12 +198,6 @@ namespace Nada.UI
 
         }
 
-        private void lFDiseaseDistributionToolStripMenuItem_Click(object sender, EventArgs e)
-        {        
-            AdminLevelPicker picker = new AdminLevelPicker();
-            picker.OnSelect += diseaseDistroAdminLevel_OnSelect;
-            picker.ShowDialog();
-        }
 
         void diseaseDistroAdminLevel_OnSelect(Model.AdminLevel obj)
         {

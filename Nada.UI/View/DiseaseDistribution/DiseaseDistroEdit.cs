@@ -50,6 +50,7 @@ namespace Nada.UI.View.DiseaseDistribution
         {
             if (!DesignMode)
             {
+                adminLevelPickerControl1.Focus();
                 Localizer.TranslateControl(this);
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
                 r = new DiseaseRepository();

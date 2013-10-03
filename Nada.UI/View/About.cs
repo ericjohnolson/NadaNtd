@@ -8,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.UI.AppLogic;
+using Nada.UI.View.Demography;
 
 namespace Nada.UI
 {
     public partial class About : Form
     {
+        public Action ReloadTree { get; set; }
         public About()
         {
             InitializeComponent();
@@ -34,6 +36,13 @@ namespace Nada.UI
                 var myVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion;
                 lblVersion.Text = string.Format("{0}.{1}.{2}.{3}", myVersion.Major, myVersion.Minor, myVersion.Build, myVersion.Revision);
             }
+        }
+
+        private void fieldLink1_OnClick()
+        {
+            TestDemoImport import = new TestDemoImport();
+            import.ReloadTree = () => { ReloadTree(); };
+            import.ShowDialog();
         }
     }
 }

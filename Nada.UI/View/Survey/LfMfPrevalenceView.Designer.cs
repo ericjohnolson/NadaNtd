@@ -158,7 +158,7 @@
             this.cbSiteType.Location = new System.Drawing.Point(3, 19);
             this.cbSiteType.Name = "cbSiteType";
             this.cbSiteType.Size = new System.Drawing.Size(166, 21);
-            this.cbSiteType.TabIndex = 3;
+            this.cbSiteType.TabIndex = 0;
             this.cbSiteType.SelectedIndexChanged += new System.EventHandler(this.cbSiteType_SelectedIndexChanged);
             // 
             // tblSiteName
@@ -200,6 +200,7 @@
             this.fieldLink1.Name = "fieldLink1";
             this.fieldLink1.Size = new System.Drawing.Size(66, 12);
             this.fieldLink1.TabIndex = 23;
+            this.fieldLink1.TabStop = false;
             this.fieldLink1.Text = "Add new site >";
             this.fieldLink1.OnClick += new System.Action(this.sentinelSiteAdd_OnClick);
             // 
@@ -212,7 +213,7 @@
             this.cbSites.Location = new System.Drawing.Point(7, 3);
             this.cbSites.Name = "cbSites";
             this.cbSites.Size = new System.Drawing.Size(154, 21);
-            this.cbSites.TabIndex = 1;
+            this.cbSites.TabIndex = 0;
             this.cbSites.ValueMember = "Id";
             // 
             // sentinelSiteBindingSource
@@ -234,7 +235,7 @@
             this.tbSiteName.Location = new System.Drawing.Point(3, 3);
             this.tbSiteName.Name = "tbSiteName";
             this.tbSiteName.Size = new System.Drawing.Size(154, 20);
-            this.tbSiteName.TabIndex = 1;
+            this.tbSiteName.TabIndex = 0;
             // 
             // tbLng
             // 
@@ -261,6 +262,7 @@
             this.adminLevelPickerControl1.Name = "adminLevelPickerControl1";
             this.adminLevelPickerControl1.Size = new System.Drawing.Size(200, 27);
             this.adminLevelPickerControl1.TabIndex = 0;
+            this.adminLevelPickerControl1.TabStop = false;
             this.adminLevelPickerControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
             // 
             // adminLevelPickerControl2
@@ -280,7 +282,7 @@
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.kryptonButton1.Size = new System.Drawing.Size(77, 25);
-            this.kryptonButton1.TabIndex = 1;
+            this.kryptonButton1.TabIndex = 0;
             this.kryptonButton1.Tag = "Save";
             this.kryptonButton1.Values.Text = "Save";
             this.kryptonButton1.Click += new System.EventHandler(this.save_Click);
@@ -304,7 +306,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(206, 71);
-            this.tableLayoutPanel4.TabIndex = 39;
+            this.tableLayoutPanel4.TabIndex = 0;
             // 
             // kryptonButton2
             // 
@@ -312,7 +314,8 @@
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.kryptonButton2.Size = new System.Drawing.Size(77, 25);
-            this.kryptonButton2.TabIndex = 40;
+            this.kryptonButton2.TabIndex = 1;
+            this.kryptonButton2.Tag = "Cancel";
             this.kryptonButton2.Values.Text = "Cancel";
             this.kryptonButton2.Click += new System.EventHandler(this.cancel_Click);
             // 
@@ -331,7 +334,7 @@
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblNotes.Size = new System.Drawing.Size(212, 77);
-            this.tblNotes.TabIndex = 4;
+            this.tblNotes.TabIndex = 6;
             // 
             // customIndicatorControl1
             // 
@@ -342,6 +345,7 @@
             this.customIndicatorControl1.Name = "customIndicatorControl1";
             this.customIndicatorControl1.Size = new System.Drawing.Size(146, 41);
             this.customIndicatorControl1.TabIndex = 0;
+            this.customIndicatorControl1.TabStop = false;
             this.customIndicatorControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
             // 
             // label21
@@ -368,6 +372,7 @@
             this.nadaLabel1.Name = "nadaLabel1";
             this.nadaLabel1.Size = new System.Drawing.Size(64, 16);
             this.nadaLabel1.TabIndex = 45;
+            this.nadaLabel1.TabStop = false;
             this.nadaLabel1.Tag = "Required";
             this.nadaLabel1.Text = "Required";
             this.nadaLabel1.TextColor = System.Drawing.SystemColors.ControlText;
@@ -382,6 +387,7 @@
             this.nadaLabel2.Name = "nadaLabel2";
             this.nadaLabel2.Size = new System.Drawing.Size(13, 16);
             this.nadaLabel2.TabIndex = 46;
+            this.nadaLabel2.TabStop = false;
             this.nadaLabel2.Text = "*";
             this.nadaLabel2.TextColor = System.Drawing.Color.Red;
             // 
@@ -428,7 +434,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(710, 75);
-            this.tableLayoutPanel2.TabIndex = 48;
+            this.tableLayoutPanel2.TabIndex = 2;
             // 
             // comboBox2
             // 
@@ -440,7 +446,7 @@
             this.comboBox2.Location = new System.Drawing.Point(3, 51);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(166, 21);
-            this.comboBox2.TabIndex = 49;
+            this.comboBox2.TabIndex = 0;
             // 
             // textBox4
             // 
@@ -448,7 +454,7 @@
             this.textBox4.Location = new System.Drawing.Point(551, 51);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(102, 20);
-            this.textBox4.TabIndex = 9;
+            this.textBox4.TabIndex = 3;
             // 
             // h3Label6
             // 
@@ -461,6 +467,7 @@
             this.h3Label6.Name = "h3Label6";
             this.h3Label6.Size = new System.Drawing.Size(162, 48);
             this.h3Label6.TabIndex = 7;
+            this.h3Label6.TabStop = false;
             this.h3Label6.Tag = "RoundsMda";
             this.h3Label6.Text = "Number of rounds of PC  completed prior to survey implementation";
             this.h3Label6.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -476,6 +483,7 @@
             this.h3Required4.Name = "h3Required4";
             this.h3Required4.Size = new System.Drawing.Size(77, 16);
             this.h3Required4.TabIndex = 45;
+            this.h3Required4.TabStop = false;
             this.h3Required4.Tag = "TestType";
             this.h3Required4.Text = "Test type";
             this.h3Required4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -491,6 +499,7 @@
             this.h3Label8.Name = "h3Label8";
             this.h3Label8.Size = new System.Drawing.Size(85, 16);
             this.h3Label8.TabIndex = 47;
+            this.h3Label8.TabStop = false;
             this.h3Label8.Tag = "CasualAgent";
             this.h3Label8.Text = "CasualAgent";
             this.h3Label8.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -506,7 +515,7 @@
             this.comboBox3.Location = new System.Drawing.Point(185, 51);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(166, 21);
-            this.comboBox3.TabIndex = 50;
+            this.comboBox3.TabIndex = 1;
             // 
             // h3Required3
             // 
@@ -519,6 +528,7 @@
             this.h3Required3.Name = "h3Required3";
             this.h3Required3.Size = new System.Drawing.Size(174, 32);
             this.h3Required3.TabIndex = 10;
+            this.h3Required3.TabStop = false;
             this.h3Required3.Tag = "YearFirstRoundPc";
             this.h3Required3.Text = "Date of first round of MDA (Year)";
             this.h3Required3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -529,7 +539,7 @@
             this.textBox5.Location = new System.Drawing.Point(367, 51);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(102, 20);
-            this.textBox5.TabIndex = 44;
+            this.textBox5.TabIndex = 2;
             // 
             // h3Required8
             // 
@@ -542,6 +552,7 @@
             this.h3Required8.Name = "h3Required8";
             this.h3Required8.Size = new System.Drawing.Size(81, 16);
             this.h3Required8.TabIndex = 57;
+            this.h3Required8.TabStop = false;
             this.h3Required8.Tag = "SiteName";
             this.h3Required8.Text = "Site name";
             this.h3Required8.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -557,7 +568,7 @@
             this.comboBox1.Location = new System.Drawing.Point(3, 19);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(166, 21);
-            this.comboBox1.TabIndex = 55;
+            this.comboBox1.TabIndex = 0;
             // 
             // h3Required1
             // 
@@ -570,6 +581,7 @@
             this.h3Required1.Name = "h3Required1";
             this.h3Required1.Size = new System.Drawing.Size(91, 16);
             this.h3Required1.TabIndex = 0;
+            this.h3Required1.TabStop = false;
             this.h3Required1.Tag = "SiteType";
             this.h3Required1.Text = "Type of site";
             this.h3Required1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -585,6 +597,7 @@
             this.h3Required2.Name = "h3Required2";
             this.h3Required2.Size = new System.Drawing.Size(101, 16);
             this.h3Required2.TabIndex = 1;
+            this.h3Required2.TabStop = false;
             this.h3Required2.Tag = "TimingType";
             this.h3Required2.Text = "Survey timing";
             this.h3Required2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -600,6 +613,7 @@
             this.h3Label2.Name = "h3Label2";
             this.h3Label2.Size = new System.Drawing.Size(122, 16);
             this.h3Label2.TabIndex = 3;
+            this.h3Label2.TabStop = false;
             this.h3Label2.Tag = "StartDateSurvey";
             this.h3Label2.Text = "Start date of survey";
             this.h3Label2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -615,6 +629,7 @@
             this.lblLat.Name = "lblLat";
             this.lblLat.Size = new System.Drawing.Size(55, 16);
             this.lblLat.TabIndex = 4;
+            this.lblLat.TabStop = false;
             this.lblLat.Tag = "Latitude";
             this.lblLat.Text = "Latitude";
             this.lblLat.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -630,6 +645,7 @@
             this.lblLng.Name = "lblLng";
             this.lblLng.Size = new System.Drawing.Size(67, 16);
             this.lblLng.TabIndex = 5;
+            this.lblLng.TabStop = false;
             this.lblLng.Tag = "Longitude";
             this.lblLng.Text = "Longitude";
             this.lblLng.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -645,6 +661,7 @@
             this.h3Label5.Name = "h3Label5";
             this.h3Label5.Size = new System.Drawing.Size(119, 16);
             this.h3Label5.TabIndex = 6;
+            this.h3Label5.TabStop = false;
             this.h3Label5.Tag = "EndDateSurvey";
             this.h3Label5.Text = "End date of survey";
             this.h3Label5.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -655,7 +672,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(185, 19);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 51;
+            this.dateTimePicker1.TabIndex = 1;
             // 
             // dateTimePicker2
             // 
@@ -663,7 +680,7 @@
             this.dateTimePicker2.Location = new System.Drawing.Point(401, 19);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 52;
+            this.dateTimePicker2.TabIndex = 2;
             // 
             // hr2
             // 
@@ -720,7 +737,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 94);
-            this.tableLayoutPanel1.TabIndex = 51;
+            this.tableLayoutPanel1.TabIndex = 4;
             // 
             // textBox2
             // 
@@ -728,7 +745,7 @@
             this.textBox2.Location = new System.Drawing.Point(568, 71);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(102, 20);
-            this.textBox2.TabIndex = 54;
+            this.textBox2.TabIndex = 9;
             // 
             // textBox3
             // 
@@ -736,7 +753,7 @@
             this.textBox3.Location = new System.Drawing.Point(395, 71);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(102, 20);
-            this.textBox3.TabIndex = 55;
+            this.textBox3.TabIndex = 8;
             // 
             // tbPercentPositive
             // 
@@ -745,7 +762,7 @@
             this.tbPercentPositive.Location = new System.Drawing.Point(273, 71);
             this.tbPercentPositive.Name = "tbPercentPositive";
             this.tbPercentPositive.Size = new System.Drawing.Size(102, 20);
-            this.tbPercentPositive.TabIndex = 56;
+            this.tbPercentPositive.TabIndex = 7;
             // 
             // tbExamined
             // 
@@ -753,7 +770,7 @@
             this.tbExamined.Location = new System.Drawing.Point(3, 71);
             this.tbExamined.Name = "tbExamined";
             this.tbExamined.Size = new System.Drawing.Size(102, 20);
-            this.tbExamined.TabIndex = 57;
+            this.tbExamined.TabIndex = 5;
             this.tbExamined.TextChanged += new System.EventHandler(this.tbExamined_Validated);
             // 
             // textBox8
@@ -762,7 +779,7 @@
             this.textBox8.Location = new System.Drawing.Point(568, 19);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(102, 20);
-            this.textBox8.TabIndex = 58;
+            this.textBox8.TabIndex = 4;
             // 
             // textBox9
             // 
@@ -770,7 +787,7 @@
             this.textBox9.Location = new System.Drawing.Point(395, 19);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(102, 20);
-            this.textBox9.TabIndex = 59;
+            this.textBox9.TabIndex = 3;
             // 
             // tbPositive
             // 
@@ -778,7 +795,7 @@
             this.tbPositive.Location = new System.Drawing.Point(144, 71);
             this.tbPositive.Name = "tbPositive";
             this.tbPositive.Size = new System.Drawing.Size(102, 20);
-            this.tbPositive.TabIndex = 53;
+            this.tbPositive.TabIndex = 6;
             this.tbPositive.TextChanged += new System.EventHandler(this.tbPositive_Validated);
             // 
             // textBox11
@@ -787,7 +804,7 @@
             this.textBox11.Location = new System.Drawing.Point(273, 19);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(102, 20);
-            this.textBox11.TabIndex = 60;
+            this.textBox11.TabIndex = 2;
             // 
             // textBox12
             // 
@@ -795,7 +812,7 @@
             this.textBox12.Location = new System.Drawing.Point(144, 19);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(102, 20);
-            this.textBox12.TabIndex = 61;
+            this.textBox12.TabIndex = 1;
             // 
             // textBox13
             // 
@@ -803,7 +820,7 @@
             this.textBox13.Location = new System.Drawing.Point(3, 19);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(102, 20);
-            this.textBox13.TabIndex = 62;
+            this.textBox13.TabIndex = 0;
             // 
             // h3Label9
             // 
@@ -816,6 +833,7 @@
             this.h3Label9.Name = "h3Label9";
             this.h3Label9.Size = new System.Drawing.Size(123, 16);
             this.h3Label9.TabIndex = 0;
+            this.h3Label9.TabStop = false;
             this.h3Label9.Tag = "SampleSize";
             this.h3Label9.Text = "Target sample size";
             this.h3Label9.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -831,6 +849,7 @@
             this.h3Required5.Name = "h3Required5";
             this.h3Required5.Size = new System.Drawing.Size(84, 16);
             this.h3Required5.TabIndex = 1;
+            this.h3Required5.TabStop = false;
             this.h3Required5.Tag = "AgeRange";
             this.h3Required5.Text = "Age range";
             this.h3Required5.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -846,6 +865,7 @@
             this.h3Label10.Name = "h3Label10";
             this.h3Label10.Size = new System.Drawing.Size(112, 16);
             this.h3Label10.TabIndex = 2;
+            this.h3Label10.TabStop = false;
             this.h3Label10.Tag = "Sampled";
             this.h3Label10.Text = "Number sampled";
             this.h3Label10.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -861,6 +881,7 @@
             this.h3Label11.Name = "h3Label11";
             this.h3Label11.Size = new System.Drawing.Size(163, 16);
             this.h3Label11.TabIndex = 3;
+            this.h3Label11.TabStop = false;
             this.h3Label11.Tag = "Nonresponsive";
             this.h3Label11.Text = "Number with nonresponse";
             this.h3Label11.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -876,6 +897,7 @@
             this.h3Label12.Name = "h3Label12";
             this.h3Label12.Size = new System.Drawing.Size(125, 16);
             this.h3Label12.TabIndex = 4;
+            this.h3Label12.TabStop = false;
             this.h3Label12.Tag = "MfLoad";
             this.h3Label12.Text = "Community Mf Load";
             this.h3Label12.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -891,6 +913,7 @@
             this.h3Label13.Name = "h3Label13";
             this.h3Label13.Size = new System.Drawing.Size(70, 16);
             this.h3Label13.TabIndex = 63;
+            this.h3Label13.TabStop = false;
             this.h3Label13.Tag = "PercentPositive";
             this.h3Label13.Text = "% positive";
             this.h3Label13.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -906,6 +929,7 @@
             this.h3Label14.Name = "h3Label14";
             this.h3Label14.Size = new System.Drawing.Size(88, 16);
             this.h3Label14.TabIndex = 64;
+            this.h3Label14.TabStop = false;
             this.h3Label14.Tag = "MeanDensity";
             this.h3Label14.Text = "Mean density";
             this.h3Label14.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -921,6 +945,7 @@
             this.h3Label15.Name = "h3Label15";
             this.h3Label15.Size = new System.Drawing.Size(42, 16);
             this.h3Label15.TabIndex = 65;
+            this.h3Label15.TabStop = false;
             this.h3Label15.Tag = "MfCount";
             this.h3Label15.Text = "Count";
             this.h3Label15.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -936,6 +961,7 @@
             this.h3Required6.Name = "h3Required6";
             this.h3Required6.Size = new System.Drawing.Size(131, 16);
             this.h3Required6.TabIndex = 66;
+            this.h3Required6.TabStop = false;
             this.h3Required6.Tag = "Examined";
             this.h3Required6.Text = "Number examined";
             this.h3Required6.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -951,6 +977,7 @@
             this.h3Required7.Name = "h3Required7";
             this.h3Required7.Size = new System.Drawing.Size(119, 16);
             this.h3Required7.TabIndex = 67;
+            this.h3Required7.TabStop = false;
             this.h3Required7.Text = "Number positive";
             this.h3Required7.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -984,7 +1011,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.Size = new System.Drawing.Size(424, 135);
-            this.tableLayoutPanel3.TabIndex = 53;
+            this.tableLayoutPanel3.TabIndex = 3;
             // 
             // lbVectors
             // 
@@ -995,7 +1022,7 @@
             this.lbVectors.Name = "lbVectors";
             this.lbVectors.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbVectors.Size = new System.Drawing.Size(198, 95);
-            this.lbVectors.TabIndex = 54;
+            this.lbVectors.TabIndex = 0;
             // 
             // vectorBindingSource
             // 
@@ -1012,6 +1039,7 @@
             this.h3Label16.Name = "h3Label16";
             this.h3Label16.Size = new System.Drawing.Size(54, 16);
             this.h3Label16.TabIndex = 1;
+            this.h3Label16.TabStop = false;
             this.h3Label16.Tag = "Vectors";
             this.h3Label16.Text = "Vectors";
             this.h3Label16.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1023,7 +1051,7 @@
             this.fundersControl1.Location = new System.Drawing.Point(217, 19);
             this.fundersControl1.Name = "fundersControl1";
             this.fundersControl1.Size = new System.Drawing.Size(204, 113);
-            this.fundersControl1.TabIndex = 3;
+            this.fundersControl1.TabIndex = 1;
             // 
             // h3Label17
             // 
@@ -1036,6 +1064,7 @@
             this.h3Label17.Name = "h3Label17";
             this.h3Label17.Size = new System.Drawing.Size(111, 16);
             this.h3Label17.TabIndex = 2;
+            this.h3Label17.TabStop = false;
             this.h3Label17.Tag = "Partners";
             this.h3Label17.Text = "Funders/Partners";
             this.h3Label17.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1048,7 +1077,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox1.Size = new System.Drawing.Size(670, 64);
-            this.textBox1.TabIndex = 4;
+            this.textBox1.TabIndex = 0;
             // 
             // h3Label3
             // 
@@ -1060,6 +1089,7 @@
             this.h3Label3.Name = "h3Label3";
             this.h3Label3.Size = new System.Drawing.Size(44, 16);
             this.h3Label3.TabIndex = 5;
+            this.h3Label3.TabStop = false;
             this.h3Label3.Tag = "Notes";
             this.h3Label3.Text = "Notes";
             this.h3Label3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1111,7 +1141,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.Size = new System.Drawing.Size(810, 733);
-            this.tableLayoutPanel5.TabIndex = 54;
+            this.tableLayoutPanel5.TabIndex = 0;
             // 
             // hr5
             // 
@@ -1133,7 +1163,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 482);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(676, 86);
-            this.panel1.TabIndex = 54;
+            this.panel1.TabIndex = 5;
             // 
             // tableLayoutPanel7
             // 
@@ -1162,7 +1192,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel7.Size = new System.Drawing.Size(804, 55);
-            this.tableLayoutPanel7.TabIndex = 59;
+            this.tableLayoutPanel7.TabIndex = 0;
             // 
             // tableLayoutPanel8
             // 
@@ -1186,7 +1216,7 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel8.Size = new System.Drawing.Size(604, 43);
-            this.tableLayoutPanel8.TabIndex = 60;
+            this.tableLayoutPanel8.TabIndex = 1;
             // 
             // tableLayoutPanel6
             // 
@@ -1215,6 +1245,7 @@
             this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
             this.hr4.Size = new System.Drawing.Size(823, 5);
             this.hr4.TabIndex = 56;
+            this.hr4.TabStop = false;
             // 
             // btnDash
             // 
@@ -1227,6 +1258,7 @@
             this.btnDash.Name = "btnDash";
             this.btnDash.Size = new System.Drawing.Size(46, 46);
             this.btnDash.TabIndex = 57;
+            this.btnDash.TabStop = false;
             this.btnDash.UseVisualStyleBackColor = true;
             this.btnDash.Click += new System.EventHandler(this.btnDash_Click);
             // 
@@ -1241,6 +1273,7 @@
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(46, 46);
             this.btnHelp.TabIndex = 58;
+            this.btnHelp.TabStop = false;
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
@@ -1251,6 +1284,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.label21);

@@ -18,11 +18,20 @@ namespace Nada.Model.Reports
 
     public class ReportIndicator
     {
+        public ReportIndicator()
+        {
+            Children = new List<ReportIndicator>();
+            ParentId = 0;
+        }
         public string Name { get; set; }
         public string Key { get; set; }
         public int ID { get; set; }
         public bool Selected { get; set; }
         public bool IsStatic { get; set; }
         public int DataTypeId { get; set; }
+        public int ParentId { get; set; }
+        public List<ReportIndicator> Children { get; set; }
+        public bool IsCategory { get; set; }
+
     }
 }

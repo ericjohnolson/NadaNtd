@@ -93,7 +93,7 @@
             this.helpToolStripMenuItem});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
-            this.menuMain.Size = new System.Drawing.Size(1238, 24);
+            this.menuMain.Size = new System.Drawing.Size(1070, 24);
             this.menuMain.TabIndex = 0;
             this.menuMain.Text = "menuStrip1";
             // 
@@ -210,7 +210,6 @@
             this.lFDiseaseDistributionToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.lFDiseaseDistributionToolStripMenuItem.Tag = "LFDiseaseDistribution";
             this.lFDiseaseDistributionToolStripMenuItem.Text = "LF Disease Distribution...";
-            this.lFDiseaseDistributionToolStripMenuItem.Click += new System.EventHandler(this.lFDiseaseDistributionToolStripMenuItem_Click);
             // 
             // lFPopulationToolStripMenuItem
             // 
@@ -357,7 +356,7 @@
             this.tsLastUpdated});
             this.statusStrip1.Location = new System.Drawing.Point(0, 716);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1238, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1070, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -382,7 +381,7 @@
             this.pnlMain.Location = new System.Drawing.Point(0, 25);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1238, 691);
+            this.pnlMain.Size = new System.Drawing.Size(1070, 691);
             this.pnlMain.TabIndex = 3;
             // 
             // tsQuickLinks
@@ -477,7 +476,7 @@
             this.kryptonBorderEdge1.Dock = System.Windows.Forms.DockStyle.Top;
             this.kryptonBorderEdge1.Location = new System.Drawing.Point(0, 24);
             this.kryptonBorderEdge1.Name = "kryptonBorderEdge1";
-            this.kryptonBorderEdge1.Size = new System.Drawing.Size(1238, 1);
+            this.kryptonBorderEdge1.Size = new System.Drawing.Size(1070, 1);
             this.kryptonBorderEdge1.Text = "kryptonBorderEdge1";
             // 
             // pnlLeft
@@ -505,7 +504,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1238, 738);
+            this.ClientSize = new System.Drawing.Size(1070, 738);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.kryptonBorderEdge1);

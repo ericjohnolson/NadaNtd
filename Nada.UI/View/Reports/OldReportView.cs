@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Nada.UI.View.Reports
 {
-    public partial class ReportView : UserControl
+    public partial class OldReportView : UserControl
     {
-        public ReportView()
+        public OldReportView()
         {
             InitializeComponent();
         }

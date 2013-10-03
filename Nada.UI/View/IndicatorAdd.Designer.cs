@@ -190,6 +190,7 @@
             this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.btnCancel.Size = new System.Drawing.Size(78, 25);
             this.btnCancel.TabIndex = 40;
+            this.btnCancel.Tag = "Cancel";
             this.btnCancel.Values.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
