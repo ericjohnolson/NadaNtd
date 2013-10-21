@@ -36,7 +36,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlName = new System.Windows.Forms.Panel();
             this.h3Label1 = new Nada.UI.Controls.H3Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbName = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.lvIndicators = new BrightIdeasSoftware.ObjectListView();
@@ -46,7 +46,7 @@
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.lblCustomIndicators = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.hr1 = new Nada.UI.Controls.HR();
             ((System.ComponentModel.ISupportInitialize)(this.bsIntvType)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
@@ -73,7 +73,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(20, 331);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 252);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -114,16 +114,18 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.pnlName, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 5);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 52);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(565, 252);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(565, 283);
             this.tableLayoutPanel1.TabIndex = 51;
             // 
             // pnlName
@@ -131,7 +133,7 @@
             this.pnlName.AutoSize = true;
             this.pnlName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlName.Controls.Add(this.h3Label1);
-            this.pnlName.Controls.Add(this.textBox3);
+            this.pnlName.Controls.Add(this.tbName);
             this.pnlName.Location = new System.Drawing.Point(0, 0);
             this.pnlName.Margin = new System.Windows.Forms.Padding(0);
             this.pnlName.Name = "pnlName";
@@ -153,14 +155,13 @@
             this.h3Label1.Text = "Name";
             this.h3Label1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // textBox3
+            // tbName
             // 
-            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsIntvType, "IntvTypeName", true));
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(0, 19);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(158, 20);
-            this.textBox3.TabIndex = 0;
+            this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsIntvType, "IntvTypeName", true));
+            this.tbName.Location = new System.Drawing.Point(0, 19);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(158, 20);
+            this.tbName.TabIndex = 0;
             // 
             // panel1
             // 
@@ -169,7 +170,7 @@
             this.panel1.Controls.Add(this.fieldLink1);
             this.panel1.Controls.Add(this.lvIndicators);
             this.panel1.Controls.Add(this.lblCustomIndicators);
-            this.panel1.Location = new System.Drawing.Point(3, 65);
+            this.panel1.Location = new System.Drawing.Point(3, 55);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(559, 184);
             this.panel1.TabIndex = 2;
@@ -187,7 +188,7 @@
             this.fieldLink1.TabIndex = 22;
             this.fieldLink1.Tag = "AddIndicatorLink";
             this.fieldLink1.Text = "Add/remove indicators >";
-            this.fieldLink1.Click += new System.EventHandler(this.fieldLink1_Click);
+            this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);
             // 
             // lvIndicators
             // 
@@ -231,10 +232,10 @@
             // 
             // olvColumn10
             // 
-            this.olvColumn10.AspectName = "SortOrder";
+            this.olvColumn10.AspectName = "IsRequired";
             this.olvColumn10.CellPadding = null;
             this.olvColumn10.IsEditable = false;
-            this.olvColumn10.Text = "Sort Order";
+            this.olvColumn10.Text = "Is Required";
             // 
             // olvColumn2
             // 
@@ -264,18 +265,18 @@
             this.lblCustomIndicators.TabIndex = 21;
             this.lblCustomIndicators.Text = "Custom Indicators";
             // 
-            // label3
+            // lblTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(136)))), ((int)(((byte)(65)))));
-            this.label3.Location = new System.Drawing.Point(18, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 28);
-            this.label3.TabIndex = 50;
-            this.label3.Tag = "InterventionInfo";
-            this.label3.Text = "InterventionInfo";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(136)))), ((int)(((byte)(65)))));
+            this.lblTitle.Location = new System.Drawing.Point(18, 10);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(161, 28);
+            this.lblTitle.TabIndex = 50;
+            this.lblTitle.Tag = "InterventionInfo";
+            this.lblTitle.Text = "InterventionInfo";
             // 
             // hr1
             // 
@@ -286,7 +287,7 @@
             this.hr1.Margin = new System.Windows.Forms.Padding(5);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(136)))), ((int)(((byte)(65)))));
-            this.hr1.Size = new System.Drawing.Size(628, 5);
+            this.hr1.Size = new System.Drawing.Size(617, 5);
             this.hr1.TabIndex = 49;
             // 
             // IntvTypeEdit
@@ -294,14 +295,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(628, 389);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.hr1);
-            this.Controls.Add(this.tableLayoutPanel4);
             this.Name = "IntvTypeEdit";
+            this.Size = new System.Drawing.Size(617, 366);
             this.Tag = "InterventionInfo";
-            this.Text = "InterventionInfo";
             this.Load += new System.EventHandler(this.IntvTypeView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsIntvType)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -327,7 +326,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel pnlName;
         private Controls.H3Label h3Label1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Panel panel1;
         private Controls.FieldLink fieldLink1;
         private BrightIdeasSoftware.ObjectListView lvIndicators;
@@ -337,7 +336,7 @@
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
         private System.Windows.Forms.Label lblCustomIndicators;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTitle;
         private Controls.HR hr1;
 
     }

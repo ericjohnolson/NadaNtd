@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -104,19 +104,19 @@
             this.tableLayoutPanel15.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label3
+            // lblTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.label3.Location = new System.Drawing.Point(34, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(178, 30);
-            this.label3.TabIndex = 0;
-            this.label3.Tag = "DiseaseDistribution";
-            this.label3.Text = "DiseaseDistribution";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
+            this.lblTitle.Location = new System.Drawing.Point(34, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(178, 30);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Tag = "DiseaseDistribution";
+            this.lblTitle.Text = "DiseaseDistribution";
             // 
             // kryptonButton1
             // 
@@ -351,8 +351,8 @@
             this.cbRoundsCurrentlyImplemented.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDiseaseDistro, "RoundsCurrentlyImplemented", true));
             this.cbRoundsCurrentlyImplemented.FormattingEnabled = true;
             this.cbRoundsCurrentlyImplemented.Items.AddRange(new object[] {
-            "2x/year",
-            "1x/year",
+            "xyear2",
+            "xyear1",
             "None"});
             this.cbRoundsCurrentlyImplemented.Location = new System.Drawing.Point(409, 35);
             this.cbRoundsCurrentlyImplemented.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
@@ -365,8 +365,8 @@
             this.cbRoundsRecommendedByWho.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDiseaseDistro, "RoundsRecommendedByWho", true));
             this.cbRoundsRecommendedByWho.FormattingEnabled = true;
             this.cbRoundsRecommendedByWho.Items.AddRange(new object[] {
-            "2x/year",
-            "1x/year",
+            "xyear2",
+            "xyear1",
             "None"});
             this.cbRoundsRecommendedByWho.Location = new System.Drawing.Point(206, 35);
             this.cbRoundsRecommendedByWho.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
@@ -505,9 +505,9 @@
             this.cbTasObjective.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDiseaseDistro, "TasObjective", true));
             this.cbTasObjective.FormattingEnabled = true;
             this.cbTasObjective.Items.AddRange(new object[] {
-            "Stop-MDA TAS",
-            "Post-MDA Surveillance TAS I",
-            "Post-MDA Surveillance TAS II"});
+            "StopMDATAS",
+            "PostMDAI",
+            "PostMDAII"});
             this.cbTasObjective.Location = new System.Drawing.Point(3, 19);
             this.cbTasObjective.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.cbTasObjective.Name = "cbTasObjective";
@@ -632,7 +632,7 @@
             this.cbDiseaseTrichiasis.Items.AddRange(new object[] {
             "Yes",
             "No",
-            "N/A"});
+            "NA"});
             this.cbDiseaseTrichiasis.Location = new System.Drawing.Point(206, 19);
             this.cbDiseaseTrichiasis.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.cbDiseaseTrichiasis.Name = "cbDiseaseTrichiasis";
@@ -644,12 +644,12 @@
             this.cbDiseaseEndemicity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDiseaseDistro, "DiseaseEndemicity", true));
             this.cbDiseaseEndemicity.FormattingEnabled = true;
             this.cbDiseaseEndemicity.Items.AddRange(new object[] {
-            "M - Not mapped",
-            "NS - Not mapped but not suspected",
-            "0 - Not endemic above treatment threshold",
-            "1 - Endemic above treatment threshold",
-            "100 - Achieved stopping MDA criteria",
-            "Pending - Awaiting TAS implementation/results"});
+            "EndM",
+            "EndNS",
+            "End0",
+            "End1",
+            "End100",
+            "EndPending"});
             this.cbDiseaseEndemicity.Location = new System.Drawing.Point(3, 19);
             this.cbDiseaseEndemicity.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.cbDiseaseEndemicity.Name = "cbDiseaseEndemicity";
@@ -858,6 +858,7 @@
             // 
             this.customIndicatorControl1.AutoSize = true;
             this.customIndicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.customIndicatorControl1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.customIndicatorControl1.Location = new System.Drawing.Point(0, 457);
             this.customIndicatorControl1.Margin = new System.Windows.Forms.Padding(0);
             this.customIndicatorControl1.Name = "customIndicatorControl1";
@@ -932,7 +933,7 @@
             this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel15.Controls.Add(this.label21, 0, 0);
-            this.tableLayoutPanel15.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel15.Controls.Add(this.lblTitle, 1, 0);
             this.tableLayoutPanel15.Location = new System.Drawing.Point(11, 14);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 1;
@@ -1058,7 +1059,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTitle;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private AdminLevelPickerControl adminLevelPickerControl1;

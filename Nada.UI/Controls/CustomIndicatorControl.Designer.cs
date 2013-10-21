@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tblIndicators = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.lblCustomIndicators = new System.Windows.Forms.Label();
+            this.indicatorErrors = new System.Windows.Forms.ErrorProvider(this.components);
+            this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.indicatorErrors)).BeginInit();
             this.SuspendLayout();
             // 
             // tblIndicators
@@ -85,6 +88,24 @@
             this.panel1.Size = new System.Drawing.Size(143, 32);
             this.panel1.TabIndex = 0;
             // 
+            // lblCustomIndicators
+            // 
+            this.lblCustomIndicators.AutoSize = true;
+            this.lblCustomIndicators.BackColor = System.Drawing.Color.Transparent;
+            this.lblCustomIndicators.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomIndicators.Location = new System.Drawing.Point(0, -1);
+            this.lblCustomIndicators.Margin = new System.Windows.Forms.Padding(0);
+            this.lblCustomIndicators.Name = "lblCustomIndicators";
+            this.lblCustomIndicators.Size = new System.Drawing.Size(143, 21);
+            this.lblCustomIndicators.TabIndex = 19;
+            this.lblCustomIndicators.Tag = "CustomIndicators";
+            this.lblCustomIndicators.Text = "Custom Indicators";
+            // 
+            // indicatorErrors
+            // 
+            this.indicatorErrors.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.indicatorErrors.ContainerControl = this;
+            // 
             // fieldLink1
             // 
             this.fieldLink1.AutoSize = true;
@@ -100,25 +121,13 @@
             this.fieldLink1.Text = "Add/remove indicators >";
             this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);
             // 
-            // lblCustomIndicators
-            // 
-            this.lblCustomIndicators.AutoSize = true;
-            this.lblCustomIndicators.BackColor = System.Drawing.Color.Transparent;
-            this.lblCustomIndicators.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomIndicators.Location = new System.Drawing.Point(0, -1);
-            this.lblCustomIndicators.Margin = new System.Windows.Forms.Padding(0);
-            this.lblCustomIndicators.Name = "lblCustomIndicators";
-            this.lblCustomIndicators.Size = new System.Drawing.Size(143, 21);
-            this.lblCustomIndicators.TabIndex = 19;
-            this.lblCustomIndicators.Tag = "CustomIndicators";
-            this.lblCustomIndicators.Text = "Custom Indicators";
-            // 
             // CustomIndicatorControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "CustomIndicatorControl";
@@ -127,6 +136,7 @@
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.indicatorErrors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,6 +149,7 @@
         private System.Windows.Forms.Panel panel1;
         private Controls.FieldLink fieldLink1;
         private System.Windows.Forms.Label lblCustomIndicators;
+        private System.Windows.Forms.ErrorProvider indicatorErrors;
 
     }
 }

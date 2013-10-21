@@ -8,6 +8,7 @@ namespace Nada.UI.AppLogic
     public interface IView
     {
         Action OnClose { get; set; }
-        Action<string> StatusChanged { get; set; }     
+        Action<string> StatusChanged { get; set; }
+        string Title { get; }
     }
 }

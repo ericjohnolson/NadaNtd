@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using Nada.Globalization;
 
 namespace Nada.Model
 {
@@ -30,5 +32,30 @@ namespace Nada.Model
             }
             return indicators;
         }
+
+        public static string GetAuditInfo(OleDbDataReader reader)
+        {
+            return Translations.AuditCreated + ": " + reader.GetValueOrDefault<string>("CreatedBy") + " on " + reader.GetValueOrDefault<DateTime>("CreatedAt").ToString("MM/dd/yyyy")
+                   + ", " + Translations.AuditUpdated + ": " + reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
+        }
+        
+        public static List<string> ProduceEnumeration(List<string> source)
+        {
+            List<string> enumerations = new List<string>();
+            for (int i = 0; i < (1 << source.Count); i++)
+                    enumerations.Add(string.Join(", ", constructSetFromBits(i).Select(n => source[n]).ToArray()));
+            enumerations.RemoveAt(0);
+            return enumerations;
+        }
+
+        private static IEnumerable<int> constructSetFromBits(int i)
+        {
+            for (int n = 0; i != 0; i /= 2, n++)
+            {
+                if ((i & 1) != 0)
+                    yield return n;
+            }
+        }
+
     }
 }

@@ -27,6 +27,7 @@ namespace Nada.UI.View.Intervention
         private IntvType intvType = null;
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
+        public string Title { get { return lblTitle.Text; } }
         
         public PcMdaView()
         {
@@ -63,7 +64,7 @@ namespace Nada.UI.View.Intervention
                 }
                 else
                     adminLevelPickerControl1.Select(model.AdminLevelId.Value);
-
+                LoadListValues(model);
                 ShowType(model);
                 bsIntv.DataSource = model;
 
@@ -73,8 +74,24 @@ namespace Nada.UI.View.Intervention
                 customIndicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
                 fundersControl1.LoadItems(model.Partners);
                 diseasesControl1.LoadItems(model.DiseasesTargeted);
-                StatusChanged(Translations.LastUpdated + model.UpdatedBy);
+                StatusChanged(model.UpdatedBy);
             }
+        }
+
+        private void LoadListValues(PcMda model)
+        {
+            cbStockOut.Items.Clear();
+            foreach (string key in model.StockOutValues)
+                cbStockOut.Items.Add(TranslationLookup.GetValue(key, key));
+
+            cbStockOutDrug.Items.Clear();
+            foreach (string key in model.StockOutDrugValues)
+                cbStockOutDrug.Items.Add(TranslationLookup.GetValue(key, key));
+
+            cbStockOutLength.Items.Clear();
+            foreach (string key in model.StockOutLengthValues)
+                cbStockOutLength.Items.Add(TranslationLookup.GetValue(key, key));
+
         }
 
         private void ShowType(PcMda model)
@@ -106,7 +123,7 @@ namespace Nada.UI.View.Intervention
         /// <param name="e"></param>
         private void save_Click(object sender, EventArgs e)
         {
-            if (!model.IsValid())
+            if (!model.IsValid() || !customIndicatorControl1.IsValid())
             {
                 MessageBox.Show(Translations.ValidationError);
                 return;
@@ -138,7 +155,8 @@ namespace Nada.UI.View.Intervention
         {
             IntvTypeEdit editor = new IntvTypeEdit(model.IntvType);
             editor.OnSave += editType_OnSave;
-            editor.ShowDialog();
+            ViewForm form = new ViewForm(editor);
+            form.ShowDialog();
         }
 
         void editType_OnSave()

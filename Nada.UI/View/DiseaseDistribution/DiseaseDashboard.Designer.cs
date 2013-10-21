@@ -32,8 +32,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tblDiseaseDistro = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnDisease = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.hrDisease = new Nada.UI.Controls.HR();
             this.pnlDisease = new System.Windows.Forms.TableLayoutPanel();
             this.loadingDistros = new Nada.UI.Controls.Loading();
@@ -49,8 +49,8 @@
             this.pnlOverview = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tblHeader = new System.Windows.Forms.TableLayoutPanel();
-            this.lblHeader = new System.Windows.Forms.Label();
             this.btnOverview = new System.Windows.Forms.Button();
+            this.lblHeader = new System.Windows.Forms.Label();
             this.hrOverview = new Nada.UI.Controls.HR();
             this.tblIntv = new System.Windows.Forms.TableLayoutPanel();
             this.pnlIntv = new System.Windows.Forms.TableLayoutPanel();
@@ -60,7 +60,6 @@
             this.h3Label2 = new Nada.UI.Controls.H3Label();
             this.cbIntvTypes = new System.Windows.Forms.ComboBox();
             this.intvTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lnkNewIntv = new Nada.UI.Controls.FieldLink();
             this.lvIntv = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -68,8 +67,8 @@
             this.olvColumn10 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn12 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnIntervention = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.hrIntv = new Nada.UI.Controls.HR();
             this.tblSurveys = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSurvey = new System.Windows.Forms.TableLayoutPanel();
@@ -79,7 +78,6 @@
             this.h3Label1 = new Nada.UI.Controls.H3Label();
             this.cbNewSurvey = new System.Windows.Forms.ComboBox();
             this.surveyTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.newSurveyTypeLink = new Nada.UI.Controls.FieldLink();
             this.lvSurveys = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn6 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -87,8 +85,8 @@
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn11 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnSurvey = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.hrSurveys = new Nada.UI.Controls.HR();
             this.tableLayoutPanel1.SuspendLayout();
             this.tblDiseaseDistro.SuspendLayout();
@@ -171,20 +169,6 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(694, 28);
             this.tableLayoutPanel5.TabIndex = 19;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.label4.Location = new System.Drawing.Point(30, 4);
-            this.label4.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(155, 21);
-            this.label4.TabIndex = 17;
-            this.label4.Tag = "DiseaseDistribution";
-            this.label4.Text = "Disease Distribution";
-            // 
             // btnDisease
             // 
             this.btnDisease.AutoSize = true;
@@ -198,6 +182,20 @@
             this.btnDisease.TabIndex = 0;
             this.btnDisease.UseVisualStyleBackColor = true;
             this.btnDisease.Click += new System.EventHandler(this.btnDisease_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
+            this.label4.Location = new System.Drawing.Point(30, 4);
+            this.label4.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(155, 21);
+            this.label4.TabIndex = 17;
+            this.label4.Tag = "DiseaseDistribution";
+            this.label4.Text = "Disease Distribution";
             // 
             // hrDisease
             // 
@@ -257,10 +255,10 @@
             this.h3Link1.Location = new System.Drawing.Point(1, 1);
             this.h3Link1.Margin = new System.Windows.Forms.Padding(0);
             this.h3Link1.Name = "h3Link1";
-            this.h3Link1.Size = new System.Drawing.Size(72, 16);
+            this.h3Link1.Size = new System.Drawing.Size(75, 16);
             this.h3Link1.TabIndex = 0;
-            this.h3Link1.Tag = "AddNewLink";
-            this.h3Link1.Text = "Add New...";
+            this.h3Link1.Tag = "EnterNewLink";
+            this.h3Link1.Text = "Enter new...";
             this.h3Link1.ClickOverride += new System.Action(this.h3Link1_ClickOverride);
             // 
             // lvDiseaseDistro
@@ -388,20 +386,6 @@
             this.tblHeader.Size = new System.Drawing.Size(694, 28);
             this.tblHeader.TabIndex = 19;
             // 
-            // lblHeader
-            // 
-            this.lblHeader.AutoSize = true;
-            this.lblHeader.BackColor = System.Drawing.Color.Transparent;
-            this.lblHeader.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.lblHeader.Location = new System.Drawing.Point(30, 4);
-            this.lblHeader.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(78, 21);
-            this.lblHeader.TabIndex = 17;
-            this.lblHeader.Tag = "Overview";
-            this.lblHeader.Text = "Overview";
-            // 
             // btnOverview
             // 
             this.btnOverview.AutoSize = true;
@@ -415,6 +399,20 @@
             this.btnOverview.TabIndex = 0;
             this.btnOverview.UseVisualStyleBackColor = true;
             this.btnOverview.Click += new System.EventHandler(this.btnOverview_Click_1);
+            // 
+            // lblHeader
+            // 
+            this.lblHeader.AutoSize = true;
+            this.lblHeader.BackColor = System.Drawing.Color.Transparent;
+            this.lblHeader.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.lblHeader.Location = new System.Drawing.Point(30, 4);
+            this.lblHeader.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.lblHeader.Name = "lblHeader";
+            this.lblHeader.Size = new System.Drawing.Size(78, 21);
+            this.lblHeader.TabIndex = 17;
+            this.lblHeader.Tag = "Overview";
+            this.lblHeader.Text = "Overview";
             // 
             // hrOverview
             // 
@@ -493,12 +491,11 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel6.Controls.Add(this.h3Label2, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.cbIntvTypes, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.lnkNewIntv, 2, 0);
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 2);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(353, 27);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(231, 27);
             this.tableLayoutPanel6.TabIndex = 6;
             // 
             // h3Label2
@@ -513,7 +510,7 @@
             this.h3Label2.Size = new System.Drawing.Size(66, 16);
             this.h3Label2.TabIndex = 0;
             this.h3Label2.Tag = "EnterNew";
-            this.h3Label2.Text = "EnterNew";
+            this.h3Label2.Text = "Enter new";
             this.h3Label2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
             // cbIntvTypes
@@ -530,22 +527,6 @@
             // intvTypeBindingSource
             // 
             this.intvTypeBindingSource.DataSource = typeof(Nada.Model.Intervention.IntvType);
-            // 
-            // lnkNewIntv
-            // 
-            this.lnkNewIntv.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lnkNewIntv.AutoSize = true;
-            this.lnkNewIntv.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnkNewIntv.BackColor = System.Drawing.Color.Transparent;
-            this.lnkNewIntv.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkNewIntv.Location = new System.Drawing.Point(231, 7);
-            this.lnkNewIntv.Margin = new System.Windows.Forms.Padding(0);
-            this.lnkNewIntv.Name = "lnkNewIntv";
-            this.lnkNewIntv.Size = new System.Drawing.Size(122, 12);
-            this.lnkNewIntv.TabIndex = 1;
-            this.lnkNewIntv.Tag = "AddNewIntvType";
-            this.lnkNewIntv.Text = "Add new intervention type...";
-            this.lnkNewIntv.OnClick += new System.Action(this.lnkNewIntv_OnClick);
             // 
             // lvIntv
             // 
@@ -631,20 +612,6 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(694, 28);
             this.tableLayoutPanel4.TabIndex = 19;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(136)))), ((int)(((byte)(65)))));
-            this.label2.Location = new System.Drawing.Point(30, 4);
-            this.label2.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 21);
-            this.label2.TabIndex = 17;
-            this.label2.Tag = "Interventions";
-            this.label2.Text = "Interventions";
-            // 
             // btnIntervention
             // 
             this.btnIntervention.AutoSize = true;
@@ -658,6 +625,20 @@
             this.btnIntervention.TabIndex = 0;
             this.btnIntervention.UseVisualStyleBackColor = true;
             this.btnIntervention.Click += new System.EventHandler(this.btnIntervention_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(136)))), ((int)(((byte)(65)))));
+            this.label2.Location = new System.Drawing.Point(30, 4);
+            this.label2.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 21);
+            this.label2.TabIndex = 17;
+            this.label2.Tag = "Interventions";
+            this.label2.Text = "Interventions";
             // 
             // hrIntv
             // 
@@ -737,12 +718,11 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.h3Label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.cbNewSurvey, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.newSurveyTypeLink, 2, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(333, 27);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(231, 27);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // h3Label1
@@ -757,7 +737,7 @@
             this.h3Label1.Size = new System.Drawing.Size(66, 16);
             this.h3Label1.TabIndex = 0;
             this.h3Label1.Tag = "EnterNew";
-            this.h3Label1.Text = "EnterNew";
+            this.h3Label1.Text = "Enter new";
             this.h3Label1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
             // cbNewSurvey
@@ -774,22 +754,6 @@
             // surveyTypeBindingSource
             // 
             this.surveyTypeBindingSource.DataSource = typeof(Nada.Model.Survey.SurveyType);
-            // 
-            // newSurveyTypeLink
-            // 
-            this.newSurveyTypeLink.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.newSurveyTypeLink.AutoSize = true;
-            this.newSurveyTypeLink.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.newSurveyTypeLink.BackColor = System.Drawing.Color.Transparent;
-            this.newSurveyTypeLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newSurveyTypeLink.Location = new System.Drawing.Point(231, 7);
-            this.newSurveyTypeLink.Margin = new System.Windows.Forms.Padding(0);
-            this.newSurveyTypeLink.Name = "newSurveyTypeLink";
-            this.newSurveyTypeLink.Size = new System.Drawing.Size(102, 12);
-            this.newSurveyTypeLink.TabIndex = 1;
-            this.newSurveyTypeLink.Tag = "AddNewSurveyTypeLink";
-            this.newSurveyTypeLink.Text = "Add new survey type...";
-            this.newSurveyTypeLink.OnClick += new System.Action(this.newSurveyTypeLink_OnClick);
             // 
             // lvSurveys
             // 
@@ -874,20 +838,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(694, 28);
             this.tableLayoutPanel3.TabIndex = 19;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.label1.Location = new System.Drawing.Point(30, 4);
-            this.label1.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 21);
-            this.label1.TabIndex = 17;
-            this.label1.Tag = "Surveys";
-            this.label1.Text = "Surveys";
-            // 
             // btnSurvey
             // 
             this.btnSurvey.AutoSize = true;
@@ -901,6 +851,20 @@
             this.btnSurvey.TabIndex = 1;
             this.btnSurvey.UseVisualStyleBackColor = true;
             this.btnSurvey.Click += new System.EventHandler(this.btnSurvey_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.label1.Location = new System.Drawing.Point(30, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 21);
+            this.label1.TabIndex = 17;
+            this.label1.Tag = "Surveys";
+            this.label1.Text = "Surveys";
             // 
             // hrSurveys
             // 
@@ -1010,13 +974,11 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Controls.H3Label h3Label1;
         private System.Windows.Forms.ComboBox cbNewSurvey;
-        private Controls.FieldLink newSurveyTypeLink;
         private System.Windows.Forms.BindingSource surveyTypeBindingSource;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private Controls.H3Label h3Label2;
         private System.Windows.Forms.ComboBox cbIntvTypes;
         private System.Windows.Forms.BindingSource intvTypeBindingSource;
-        private Controls.FieldLink lnkNewIntv;
         private BrightIdeasSoftware.ObjectListView lvIntv;
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvColumn3;

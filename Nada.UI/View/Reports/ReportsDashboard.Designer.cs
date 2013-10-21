@@ -200,7 +200,6 @@
             // 
             // hrDisease
             // 
-            this.hrDisease.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.hrDisease.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(178)))), ((int)(((byte)(224)))));
             this.hrDisease.ForeColor = System.Drawing.Color.Gray;
             this.hrDisease.Location = new System.Drawing.Point(16, 90);
@@ -237,7 +236,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(104, 52);
             this.tableLayoutPanel3.TabIndex = 67;
             // 

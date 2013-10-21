@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using Nada.DA;
+using Nada.Globalization;
 using Nada.Model.Base;
 using Nada.Model.Survey;
 
@@ -168,6 +169,27 @@ namespace Nada.Model.Repositories
             }
         }
 
+
+        public SurveyBase GetById(int id)
+        {
+            SurveyBase survey = null;
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = null;
+                    survey = GetSurvey<SurveyBase>(command, connection, id);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return survey;
+        }
+
         public LfMfPrevalence GetLfMfPrevalenceSurvey(int id)
         {
             LfMfPrevalence survey = null;
@@ -254,9 +276,11 @@ namespace Nada.Model.Repositories
             try
             {
                 command = new OleDbCommand(@"Select Surveys.AdminLevelId, Surveys.StartDate, Surveys.EndDate, 
-                        Surveys.Notes, Surveys.UpdatedById, Surveys.UpdatedAt, aspnet_Users.UserName, AdminLevels.DisplayName, Surveys.SurveyTypeId
-                        FROM ((Surveys INNER JOIN aspnet_Users on Surveys.UpdatedById = aspnet_Users.UserId)
+                        Surveys.Notes, Surveys.UpdatedById, Surveys.UpdatedAt, aspnet_Users.UserName, AdminLevels.DisplayName, 
+                        Surveys.SurveyTypeId, created.UserName as CreatedBy, Surveys.CreatedAt
+                        FROM (((Surveys INNER JOIN aspnet_Users on Surveys.UpdatedById = aspnet_Users.UserId)
                             LEFT OUTER JOIN AdminLevels on Surveys.AdminLevelId = AdminLevels.ID)
+                            INNER JOIN aspnet_Users created on Surveys.CreatedById = created.UserId)
                         WHERE Surveys.ID=@id", connection);
                 command.Parameters.Add(new OleDbParameter("@id", surveyId));
                 using (OleDbDataReader reader = command.ExecuteReader())
@@ -270,7 +294,7 @@ namespace Nada.Model.Repositories
                         survey.EndDate = reader.GetValueOrDefault<DateTime>("EndDate");
                         survey.Notes = reader.GetValueOrDefault<string>("Notes");
                         survey.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
-                        survey.UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
+                        survey.UpdatedBy = Util.GetAuditInfo(reader);
                         surveyTypeId = reader.GetValueOrDefault<int>("SurveyTypeId");
                     }
                     reader.Close();
@@ -337,10 +361,10 @@ namespace Nada.Model.Repositories
             return survey;
         }
 
-        public SurveyBase CreateSurvey(StaticSurveyType typeOfSurvey)
+        public SurveyBase CreateSurvey(int typeId)
         {
             SurveyBase survey = new SurveyBase();
-            survey.TypeOfSurvey = GetSurveyType((int)typeOfSurvey);
+            survey.TypeOfSurvey = GetSurveyType(typeId);
             return survey;
         }
 
@@ -388,8 +412,9 @@ namespace Nada.Model.Repositories
                 try
                 {
                     OleDbCommand command = new OleDbCommand(@"Select SurveyTypes.SurveyTypeName, SurveyTypes.UpdatedAt,
-                        aspnet_users.UserName
-                        FROM (SurveyTypes INNER JOIN aspnet_Users on SurveyTypes.UpdatedById = aspnet_Users.UserId)
+                        aspnet_users.UserName, SurveyTypes.CreatedAt, created.UserName as CreatedBy
+                        FROM ((SurveyTypes INNER JOIN aspnet_Users on SurveyTypes.UpdatedById = aspnet_Users.UserId)
+                            INNER JOIN aspnet_Users created on SurveyTypes.CreatedById = created.UserId)
                         WHERE SurveyTypes.ID=@id", connection);
                     command.Parameters.Add(new OleDbParameter("@id", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
@@ -401,7 +426,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = id,
                                 SurveyTypeName = reader.GetValueOrDefault<string>("SurveyTypeName"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+                                UpdatedBy = Util.GetAuditInfo(reader)
                             };
                         }
                         reader.Close();
@@ -411,7 +436,7 @@ namespace Nada.Model.Repositories
                         SurveyIndicators.ID,   
                         SurveyIndicators.DataTypeId,
                         SurveyIndicators.DisplayName,
-                        SurveyIndicators.SortOrder,
+                        SurveyIndicators.IsRequired,
                         SurveyIndicators.IsDisabled,
                         SurveyIndicators.IsEditable,
                         SurveyIndicators.IsDisplayed,
@@ -420,8 +445,7 @@ namespace Nada.Model.Repositories
                         IndicatorDataTypes.DataType
                         FROM ((SurveyIndicators INNER JOIN aspnet_users ON SurveyIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON SurveyIndicators.DataTypeId = IndicatorDataTypes.ID)
-                        WHERE SurveyTypeId=@SurveyTypeId AND IsDisabled=0 
-                        ORDER BY SortOrder", connection);
+                        WHERE SurveyTypeId=@SurveyTypeId AND IsDisabled=0 ", connection);
                     command.Parameters.Add(new OleDbParameter("@SurveyTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -435,7 +459,7 @@ namespace Nada.Model.Repositories
                                 UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy") + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                SortOrder = reader.GetValueOrDefault<int>("SortOrder"),
+                                IsRequired = reader.GetValueOrDefault<bool>("IsRequired"),
                                 IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
                                 IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
                                 IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
@@ -471,12 +495,20 @@ namespace Nada.Model.Repositories
                         command = new OleDbCommand(@"UPDATE SurveyTypes SET SurveyTypeName=@SurveyTypeName, UpdatedById=@UpdatedById, 
                             UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
                     else
-                        command = new OleDbCommand(@"INSERT INTO SurveyTypes SurveyTypeName, UpdatedById, 
-                            UpdatedAt) values (@SurveyTypeName, @UpdatedById, @UpdatedAt)", connection);
+                        command = new OleDbCommand(@"INSERT INTO SurveyTypes (SurveyTypeName, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@SurveyTypeName, @UpdatedById, @UpdatedAt,
+                            @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(new OleDbParameter("@SurveyTypeName", model.SurveyTypeName));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                    if (model.Id > 0) command.Parameters.Add(new OleDbParameter("@id", model.Id));
+                    if (model.Id > 0)
+                        command.Parameters.Add(new OleDbParameter("@id", model.Id));
+                    else
+                    {
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                    }
+
                     command.ExecuteNonQuery();
 
                     if (model.Id <= 0)
@@ -488,13 +520,13 @@ namespace Nada.Model.Repositories
                     foreach (var indicator in model.Indicators.Values.Where(i => i.Id > 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"UPDATE SurveyIndicators SET SurveyTypeId=@SurveyTypeId, DataTypeId=@DataTypeId,
-                        DisplayName=@DisplayName, SortOrder=@SortOrder, IsDisabled=@IsDisabled, 
+                        DisplayName=@DisplayName, IsRequired=@IsRequired, IsDisabled=@IsDisabled, 
                         IsEditable=@IsEditable, UpdatedById=@UpdateById, UpdatedAt=@UpdatedAt 
                         WHERE ID = @id", connection);
                         command.Parameters.Add(new OleDbParameter("@SurveyTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@DataTypeId", indicator.DataTypeId));
                         command.Parameters.Add(new OleDbParameter("@DisplayName", indicator.DisplayName));
-                        command.Parameters.Add(new OleDbParameter("@SortOrder", indicator.SortOrder));
+                        command.Parameters.Add(new OleDbParameter("@IsRequired", indicator.IsRequired));
                         command.Parameters.Add(new OleDbParameter("@IsDisabled", indicator.IsDisabled));
                         command.Parameters.Add(new OleDbParameter("@IsEditable", true));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
@@ -506,13 +538,13 @@ namespace Nada.Model.Repositories
                     foreach (var indicator in model.Indicators.Values.Where(i => i.Id <= 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, 
-                        DisplayName, SortOrder, IsDisabled, IsEditable, UpdatedById, UpdatedAt) VALUES
-                        (@SurveyTypeId, @DataTypeId, @DisplayName, @SortOrder, @IsDisabled, @IsEditable, @UpdatedById, 
+                        DisplayName, IsRequired, IsDisabled, IsEditable, UpdatedById, UpdatedAt) VALUES
+                        (@SurveyTypeId, @DataTypeId, @DisplayName, @IsRequired, @IsDisabled, @IsEditable, @UpdatedById, 
                          @UpdatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@SurveyTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@DataTypeId", indicator.DataTypeId));
                         command.Parameters.Add(new OleDbParameter("@DisplayName", indicator.DisplayName));
-                        command.Parameters.Add(new OleDbParameter("@SortOrder", indicator.SortOrder));
+                        command.Parameters.Add(new OleDbParameter("@IsRequired", indicator.IsRequired));
                         command.Parameters.Add(new OleDbParameter("@IsDisabled", indicator.IsDisabled));
                         command.Parameters.Add(new OleDbParameter("@IsEditable", true));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
@@ -555,8 +587,8 @@ namespace Nada.Model.Repositories
                 try
                 {
                     OleDbCommand command = new OleDbCommand(@"Insert Into SentinelSites (AdminLevelId, SiteName, Lat, Lng,
-                        Notes, UpdatedById, UpdatedAt) VALUES
-                        (@AdminLevelId, @SiteName, @Lat, @Lng, @Notes, @UpdatedById, @UpdatedAt)", connection);
+                        Notes, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
+                        (@AdminLevelId, @SiteName, @Lat, @Lng, @Notes, @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", site.AdminLevel.Id));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@SiteName", site.SiteName));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@Lat", site.Lat));
@@ -564,6 +596,8 @@ namespace Nada.Model.Repositories
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", site.Notes));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", updatedById));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    command.Parameters.Add(new OleDbParameter("@CreatedById", updatedById));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
                     command.ExecuteNonQuery();
 
                     command = new OleDbCommand(@"SELECT Max(ID) FROM SentinelSites", connection);
@@ -689,7 +723,8 @@ namespace Nada.Model.Repositories
                            EndDate=@EndDate, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
                 command = new OleDbCommand(@"INSERT INTO Surveys (SurveyTypeId, AdminLevelId, StartDate, EndDate, Notes, UpdatedById, 
-                            UpdatedAt) values (@SurveyTypeId, @AdminLevelId, @StartDate, @EndDate, @Notes, @UpdatedById, @UpdatedAt)", connection);
+                            UpdatedAt, CreatedById, CreatedAt) values (@SurveyTypeId, @AdminLevelId, @StartDate, @EndDate, @Notes, 
+                            @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@SurveyTypeId", survey.TypeOfSurvey.Id));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", survey.AdminLevelId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", survey.StartDate));
@@ -697,7 +732,14 @@ namespace Nada.Model.Repositories
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", survey.Notes));
             command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-            if (survey.Id > 0) command.Parameters.Add(new OleDbParameter("@id", survey.Id));
+            if (survey.Id > 0)
+                command.Parameters.Add(new OleDbParameter("@id", survey.Id));
+            else
+            {
+                command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+            }
+
             command.ExecuteNonQuery();
 
             if (survey.Id <= 0)

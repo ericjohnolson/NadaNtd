@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -150,19 +150,19 @@
             this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label3
+            // lblTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(136)))), ((int)(((byte)(65)))));
-            this.label3.Location = new System.Drawing.Point(45, 17);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(168, 30);
-            this.label3.TabIndex = 0;
-            this.label3.Tag = "MdaIntervention";
-            this.label3.Text = "MDA Intervention";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(136)))), ((int)(((byte)(65)))));
+            this.lblTitle.Location = new System.Drawing.Point(45, 17);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(168, 30);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Tag = "MdaIntervention";
+            this.lblTitle.Text = "MDA Intervention";
             // 
             // kryptonButton1
             // 
@@ -1303,13 +1303,6 @@
             // 
             this.cbStockOutLength.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsIntv, "StockOutLength", true));
             this.cbStockOutLength.FormattingEnabled = true;
-            this.cbStockOutLength.Items.AddRange(new object[] {
-            "1-2 days",
-            "3-14 days",
-            "4-4 weeks",
-            "Greater than 1 month",
-            "Not yet resolved",
-            "N/A"});
             this.cbStockOutLength.Location = new System.Drawing.Point(591, 19);
             this.cbStockOutLength.Name = "cbStockOutLength";
             this.cbStockOutLength.Size = new System.Drawing.Size(180, 21);
@@ -1319,9 +1312,6 @@
             // 
             this.cbStockOutDrug.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsIntv, "StockOutDrug", true));
             this.cbStockOutDrug.FormattingEnabled = true;
-            this.cbStockOutDrug.Items.AddRange(new object[] {
-            "IVM",
-            "ALB"});
             this.cbStockOutDrug.Location = new System.Drawing.Point(395, 19);
             this.cbStockOutDrug.Name = "cbStockOutDrug";
             this.cbStockOutDrug.Size = new System.Drawing.Size(180, 21);
@@ -1331,10 +1321,6 @@
             // 
             this.cbStockOut.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsIntv, "StockOut", true));
             this.cbStockOut.FormattingEnabled = true;
-            this.cbStockOut.Items.AddRange(new object[] {
-            "Yes",
-            "No",
-            "N/A"});
             this.cbStockOut.Location = new System.Drawing.Point(199, 19);
             this.cbStockOut.Name = "cbStockOut";
             this.cbStockOut.Size = new System.Drawing.Size(180, 21);
@@ -1428,6 +1414,7 @@
             // 
             this.customIndicatorControl1.AutoSize = true;
             this.customIndicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.customIndicatorControl1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.customIndicatorControl1.Location = new System.Drawing.Point(0, 775);
             this.customIndicatorControl1.Margin = new System.Windows.Forms.Padding(0);
             this.customIndicatorControl1.Name = "customIndicatorControl1";
@@ -1653,7 +1640,7 @@
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.btnDash);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.hrTop);
             this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.tableLayoutPanel5);
@@ -1701,7 +1688,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTitle;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private AdminLevelPickerControl adminLevelPickerControl1;

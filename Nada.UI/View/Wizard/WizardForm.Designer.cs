@@ -1,6 +1,6 @@
-﻿namespace Nada.UI.View.Reports.CustomReport
+﻿namespace Nada.UI.View
 {
-    partial class ReportWizard
+    partial class WizardForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.hrDisease = new Nada.UI.Controls.HR();
             this.lblStepTitle = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.hrTop = new Nada.UI.Controls.HR();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -67,7 +67,7 @@
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.hrDisease);
             this.panel1.Controls.Add(this.lblStepTitle);
-            this.panel1.Controls.Add(this.label21);
+            this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Controls.Add(this.hrTop);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -102,19 +102,19 @@
             this.lblStepTitle.Tag = "";
             this.lblStepTitle.Text = "StepTitle";
             // 
-            // label21
+            // lblTitle
             // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(178)))), ((int)(((byte)(224)))));
-            this.label21.Location = new System.Drawing.Point(18, 9);
-            this.label21.Margin = new System.Windows.Forms.Padding(0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(200, 30);
-            this.label21.TabIndex = 60;
-            this.label21.Tag = "CustomReportBuilder";
-            this.label21.Text = "CustomReportBuilder";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(178)))), ((int)(((byte)(224)))));
+            this.lblTitle.Location = new System.Drawing.Point(18, 9);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(200, 30);
+            this.lblTitle.TabIndex = 60;
+            this.lblTitle.Tag = "CustomReportBuilder";
+            this.lblTitle.Text = "CustomReportBuilder";
             // 
             // hrTop
             // 
@@ -199,14 +199,14 @@
             this.btnNext.Values.Text = "Next";
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // ReportWizard
+            // WizardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(713, 537);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "ReportWizard";
+            this.Name = "WizardForm";
             this.Tag = "CustomReport";
             this.Text = "CustomReport";
             this.Load += new System.EventHandler(this.ReportWizard_Load);
@@ -224,7 +224,7 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label lblTitle;
         private Controls.HR hrTop;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnPrev;

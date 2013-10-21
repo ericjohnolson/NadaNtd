@@ -10,6 +10,7 @@ using Nada.UI.AppLogic;
 using Nada.UI.View.Help;
 using Nada.UI.View.Reports.CustomReport;
 using Nada.Model.Reports;
+using Nada.Globalization;
 
 namespace Nada.UI.View.Reports
 {
@@ -17,6 +18,7 @@ namespace Nada.UI.View.Reports
     {
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
+        public string Title { get { return ""; } }
 
         public ReportsDashboard()
         {
@@ -44,7 +46,7 @@ namespace Nada.UI.View.Reports
 
         private void lnkCustom_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ReportWizard wiz = new ReportWizard(new StepCategory());
+            WizardForm wiz = new WizardForm(new StepCategory(), Translations.CustomReportBuilder);
             wiz.OnRunReport = RunCustomReport;
             wiz.Show();
         }
@@ -58,7 +60,7 @@ namespace Nada.UI.View.Reports
 
         private void EditCustomReport(ReportOptions options)
         {
-            ReportWizard wiz = new ReportWizard(new StepIndicators(options));
+            WizardForm wiz = new WizardForm(new StepIndicators(options), Translations.CustomReportBuilder);
             wiz.OnRunReport = RunCustomReport;
             wiz.Show();
         }

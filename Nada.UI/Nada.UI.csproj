@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>28</ApplicationRevision>
+    <ApplicationRevision>31</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -239,11 +239,17 @@
     <Compile Include="View\Reports\CustomReport\StepLocations.Designer.cs">
       <DependentUpon>StepLocations.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\CustomReport\ReportWizard.cs">
+    <Compile Include="View\Wizard\ImportStepType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\ImportStepType.Designer.cs">
+      <DependentUpon>ImportStepType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\WizardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Reports\CustomReport\ReportWizard.Designer.cs">
-      <DependentUpon>ReportWizard.cs</DependentUpon>
+    <Compile Include="View\Wizard\WizardForm.Designer.cs">
+      <DependentUpon>WizardForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Reports\CustomReport\StepCategory.cs">
       <SubType>UserControl</SubType>
@@ -341,10 +347,10 @@
     <Compile Include="View\Reports\OldReportIndicatorControl.Designer.cs">
       <DependentUpon>OldReportIndicatorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ImportDownload.cs">
+    <Compile Include="View\Wizard\ImportDownload.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\ImportDownload.Designer.cs">
+    <Compile Include="View\Wizard\ImportDownload.Designer.cs">
       <DependentUpon>ImportDownload.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MedicineAdd.cs">
@@ -438,7 +444,7 @@
       <DependentUpon>IntvBaseView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Intervention\IntvTypeEdit.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Intervention\IntvTypeEdit.Designer.cs">
       <DependentUpon>IntvTypeEdit.cs</DependentUpon>
@@ -516,22 +522,34 @@
       <DependentUpon>LfMfPrevalenceView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Survey\SurveyTypeEdit.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Survey\SurveyTypeEdit.Designer.cs">
       <DependentUpon>SurveyTypeEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Survey\SurveyTypeView.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="View\ViewForm.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Survey\SurveyTypeView.Designer.cs">
-      <DependentUpon>SurveyTypeView.cs</DependentUpon>
+    <Compile Include="View\ViewForm.Designer.cs">
+      <DependentUpon>ViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\WelcomeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\WelcomeView.Designer.cs">
       <DependentUpon>WelcomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\ImportStepOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\ImportStepOptions.Designer.cs">
+      <DependentUpon>ImportStepOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\WorkingStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\WorkingStep.Designer.cs">
+      <DependentUpon>WorkingStep.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Controls\H3Link.resx">
       <DependentUpon>H3Link.cs</DependentUpon>
@@ -589,8 +607,11 @@
     <EmbeddedResource Include="View\Reports\CustomReport\CustomReportView.resx">
       <DependentUpon>CustomReportView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Reports\CustomReport\ReportWizard.resx">
-      <DependentUpon>ReportWizard.cs</DependentUpon>
+    <EmbeddedResource Include="View\Wizard\ImportStepType.resx">
+      <DependentUpon>ImportStepType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\WizardForm.resx">
+      <DependentUpon>WizardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\CustomReport\StepCategory.resx">
       <DependentUpon>StepCategory.cs</DependentUpon>
@@ -643,7 +664,7 @@
     <EmbeddedResource Include="View\Reports\OldReportIndicatorControl.resx">
       <DependentUpon>OldReportIndicatorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ImportDownload.resx">
+    <EmbeddedResource Include="View\Wizard\ImportDownload.resx">
       <DependentUpon>ImportDownload.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MedicineAdd.resx">
@@ -733,11 +754,17 @@
     <EmbeddedResource Include="View\Survey\SurveyTypeEdit.resx">
       <DependentUpon>SurveyTypeEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Survey\SurveyTypeView.resx">
-      <DependentUpon>SurveyTypeView.cs</DependentUpon>
+    <EmbeddedResource Include="View\ViewForm.resx">
+      <DependentUpon>ViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\WelcomeView.resx">
       <DependentUpon>WelcomeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\ImportStepOptions.resx">
+      <DependentUpon>ImportStepOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\WorkingStep.resx">
+      <DependentUpon>WorkingStep.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Nada.UI_TemporaryKey.pfx" />
     <None Include="NationalDatabaseTemplateDataSet.xsc">
@@ -754,6 +781,7 @@
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\Nada.Model.AdminLevel.datasource" />
     <None Include="Properties\DataSources\Nada.Model.AdminLevelType.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Base.SurveyBase.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Country.datasource" />
     <None Include="Properties\DataSources\Nada.Model.CountryDemography.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Disease.datasource" />

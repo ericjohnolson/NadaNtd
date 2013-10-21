@@ -19,6 +19,9 @@ namespace Nada.Model.Survey
             TestType = "MF";
             Partners = new List<Partner>();
             Vectors = new List<Vector>();
+            CasualAgentValues = new List<string> { "Wbancrofti", "Brugiaspp", "WbancroftiBrugiaspp" };
+            TestTypeValues = new List<string> { "Mf", "ICT" };
+            TimingTypeValues = new List<string> { "Baseline", "Midterm", "PreTAS" };
         }
 
         // database fields
@@ -51,6 +54,10 @@ namespace Nada.Model.Survey
         // Display only
         public string SpotCheckAdminLevel { get; set; }
         public string SentinelSiteName { get; set; }
+        public List<string> CasualAgentValues { get; set; }
+        public List<string> TestTypeValues { get; set; }
+        public List<string> TimingTypeValues { get; set; }
+
 
         public override void MapPropertiesToIndicators()
         {

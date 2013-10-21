@@ -23,6 +23,11 @@ namespace Nada.Model
         {
         }
 
+        public void CreateImportFile(string filename, List<AdminLevel> adminLevels)
+        {
+            throw new NotImplementedException();
+        }
+
         public ImportResult ImportData(string filePath, int userId)
         {
             try

@@ -14,6 +14,7 @@ using C1.Win.C1Input;
 using Nada.Globalization;
 using Nada.Model.Survey;
 using Nada.Model.Intervention;
+using Nada.UI.View.Wizard;
 
 namespace Nada.UI.View.Demography
 {
@@ -146,12 +147,12 @@ namespace Nada.UI.View.Demography
                 IntvType type = repo.GetIntvType((int)StaticIntvType.IvmAlbMda);
                 importer = new LfMdaImporter(type);
             }
-            ImportDownload dialog = new ImportDownload(importer);
-            dialog.OnSuccess += dialog_OnSuccess;
-            dialog.ShowDialog();
+            WizardForm wiz = new WizardForm(new ImportStepType(importer), importer.ImportName);
+            wiz.OnFinish = import_OnSuccess;
+            wiz.ShowDialog();
         }
 
-        private void dialog_OnSuccess()
+        private void import_OnSuccess()
         {
             LoadDashForAdminLevel(preloadedLevel);
         }

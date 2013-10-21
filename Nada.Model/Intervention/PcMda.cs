@@ -17,12 +17,19 @@ namespace Nada.Model.Intervention
             Medicines = new List<Medicine>();
             Partners = new List<Partner>();
             DiseasesTargeted = new List<Disease>();
+            StockOutValues = new List<string> { "Yes", "No", "NA" };
+            StockOutDrugValues = new List<string> { "IVM", "ALB" };
+            StockOutLengthValues = new List<string> { "days2", "days14", "weeks4" , "GreaterThanMonth", "NotResolved", "NA" };
         }
 
         // List fields
         public List<Medicine> Medicines { get; set; }
         public List<Partner> Partners { get; set; }
         public List<Disease> DiseasesTargeted { get; set; }
+        // Values
+        public List<string> StockOutValues { get; set; }
+        public List<string> StockOutDrugValues { get; set; }
+        public List<string> StockOutLengthValues { get; set; }
 
         // dynamic indicators
         public Nullable<int> RoundsPlannedYear { get; set; }

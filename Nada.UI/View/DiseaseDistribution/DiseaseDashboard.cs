@@ -13,6 +13,8 @@ using Nada.UI.AppLogic;
 using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Intervention;
+using Nada.UI.View.Intervention;
+using Nada.UI.View.Survey;
 
 namespace Nada.UI.View.Demography
 {
@@ -38,11 +40,13 @@ namespace Nada.UI.View.Demography
 
         public void LoadContent()
         {
+            Localizer.TranslateControl(this);
             LoadSurveyTypes();
             LoadSurveys();
             LoadIntvTypes();
             LoadInterventions();
             LoadDiseaseDistros();
+           
         }
 
         private void DoLoadView(IView view)
@@ -72,6 +76,7 @@ namespace Nada.UI.View.Demography
         private void LoadIntvTypes()
         {
             var types = fetcher.GetIntvTypes();
+            types.Insert(0, new IntvType { Id = -1, IntvTypeName = Translations.AddNewIntvType });
             types.Insert(0, new IntvType { Id = 0, IntvTypeName = Translations.PleaseSelect });
             cbIntvTypes.DataSource = types;
         }
@@ -125,6 +130,9 @@ namespace Nada.UI.View.Demography
         {
             if (cbIntvTypes.SelectedItem == null)
                 return;
+            if (((IntvType)cbIntvTypes.SelectedItem).Id == -1)
+                DoLoadView(new IntvTypeEdit(new IntvType()));
+
             IView view = fetcher.NewIntv((IntvType)cbIntvTypes.SelectedItem);
             DoLoadView(view);
         }
@@ -133,17 +141,14 @@ namespace Nada.UI.View.Demography
         {
             DoCollapse(btnIntervention, pnlIntv);
         }
-
-        private void lnkNewIntv_OnClick()
-        {
-            MessageBox.Show("Not Implemented");
-        }
+        
         #endregion
 
         #region Surveys
         private void LoadSurveyTypes()
         {
             var types = fetcher.GetSurveyTypes();
+            types.Insert(0, new SurveyType { Id = -1, SurveyTypeName = Translations.AddNewSurveyTypeLink });
             types.Insert(0, new SurveyType { Id = 0, SurveyTypeName = Translations.PleaseSelect });
             cbNewSurvey.DataSource = types;
         }
@@ -198,13 +203,11 @@ namespace Nada.UI.View.Demography
         {
             if (cbNewSurvey.SelectedItem == null)
                 return;
+            if (((SurveyType)cbNewSurvey.SelectedItem).Id == -1)
+                DoLoadView(new SurveyTypeEdit(new SurveyType()));
+
             IView view = fetcher.NewSurvey((SurveyType)cbNewSurvey.SelectedItem);
             DoLoadView(view);
-        }
-
-        private void newSurveyTypeLink_OnClick()
-        {
-            MessageBox.Show("Not Implemented");
         }
 
         private void btnSurvey_Click(object sender, EventArgs e)

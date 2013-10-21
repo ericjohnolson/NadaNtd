@@ -23,6 +23,10 @@ namespace Nada.Model
             dataTable.Columns.Add(new System.Data.DataColumn("Year"));
         }
 
+        public void CreateImportFile(string filename, List<AdminLevel> adminLevels)
+        {
+            throw new NotImplementedException();
+        }
         public ImportResult ImportData(string filePath, int userId)
         {
             try

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
+using Nada.Model.Base;
 using Nada.Model.Diseases;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
@@ -71,9 +72,12 @@ namespace Nada.UI.AppLogic
 
         public IView NewSurvey(SurveyType type)
         {
-            if (type.Id == (int)StaticSurveyType.LfPrevalence)
+            if (type.Id < 1)
+                return null;
+            else if (type.Id == (int)StaticSurveyType.LfPrevalence)
                 return new LfMfPrevalenceView(adminLevel);
-            return null;
+            else
+                return new SurveyBaseView(type.Id, adminLevel);
         }
 
         public IView GetSurvey(SurveyDetails details)
@@ -82,6 +86,11 @@ namespace Nada.UI.AppLogic
             {
                 var survey = surveys.GetLfMfPrevalenceSurvey(details.Id);
                 return new LfMfPrevalenceView(survey);
+            }
+            else
+            {
+                var survey = surveys.GetById(details.Id);
+                return new SurveyBaseView(survey);
             }
             return null;
         }
@@ -94,9 +103,12 @@ namespace Nada.UI.AppLogic
 
         public IView NewIntv(IntvType type)
         {
-            if(type.Id > 0)
+            if (type.Id < 1)
+                return null;
+            else if(type.Id == (int)StaticIntvType.IvmAlbMda)
                 return new PcMdaView(adminLevel, type);
-            return null;
+            else
+                return new IntvBaseView(type.Id, adminLevel);
         }
 
         public IView GetIntv(IntvDetails details)
@@ -105,6 +117,11 @@ namespace Nada.UI.AppLogic
             {
                 var mda = interventions.GetPcMda(details.Id);
                 return new PcMdaView(mda);
+            }
+            else
+            {
+                var intv = interventions.GetById(details.Id);
+                return new IntvBaseView(intv);
             }
             return null;
         }

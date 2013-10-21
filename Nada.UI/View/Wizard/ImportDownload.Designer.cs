@@ -34,9 +34,9 @@
             this.adminLevelMultiselect1 = new Nada.UI.View.AdminLevelMultiselect();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,17 +97,19 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(299, 31);
             this.tableLayoutPanel4.TabIndex = 21;
             // 
-            // kryptonButton4
+            // kryptonButton3
             // 
-            this.kryptonButton4.AutoSize = true;
-            this.kryptonButton4.Location = new System.Drawing.Point(218, 3);
-            this.kryptonButton4.MinimumSize = new System.Drawing.Size(78, 25);
-            this.kryptonButton4.Name = "kryptonButton4";
-            this.kryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.kryptonButton4.Size = new System.Drawing.Size(78, 25);
-            this.kryptonButton4.TabIndex = 61;
-            this.kryptonButton4.Tag = "Cancel";
-            this.kryptonButton4.Values.Text = "Cancel";
+            this.kryptonButton3.AutoSize = true;
+            this.kryptonButton3.Location = new System.Drawing.Point(122, 3);
+            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
+            this.kryptonButton3.MinimumSize = new System.Drawing.Size(78, 25);
+            this.kryptonButton3.Name = "kryptonButton3";
+            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.kryptonButton3.Size = new System.Drawing.Size(78, 25);
+            this.kryptonButton3.TabIndex = 61;
+            this.kryptonButton3.Tag = "UploadFile";
+            this.kryptonButton3.Values.Text = "UploadFile";
+            this.kryptonButton3.Click += new System.EventHandler(this.DoImport_Click);
             // 
             // kryptonButton2
             // 
@@ -121,19 +123,20 @@
             this.kryptonButton2.TabIndex = 1;
             this.kryptonButton2.Tag = "CreateImportFile";
             this.kryptonButton2.Values.Text = "CreateImportFile";
+            this.kryptonButton2.Click += new System.EventHandler(this.btnDownload_Click);
             // 
-            // kryptonButton3
+            // kryptonButton4
             // 
-            this.kryptonButton3.AutoSize = true;
-            this.kryptonButton3.Location = new System.Drawing.Point(122, 3);
-            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
-            this.kryptonButton3.MinimumSize = new System.Drawing.Size(78, 25);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.kryptonButton3.Size = new System.Drawing.Size(78, 25);
-            this.kryptonButton3.TabIndex = 61;
-            this.kryptonButton3.Tag = "UploadFile";
-            this.kryptonButton3.Values.Text = "UploadFile";
+            this.kryptonButton4.AutoSize = true;
+            this.kryptonButton4.Location = new System.Drawing.Point(218, 3);
+            this.kryptonButton4.MinimumSize = new System.Drawing.Size(78, 25);
+            this.kryptonButton4.Name = "kryptonButton4";
+            this.kryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.kryptonButton4.Size = new System.Drawing.Size(78, 25);
+            this.kryptonButton4.TabIndex = 61;
+            this.kryptonButton4.Tag = "Cancel";
+            this.kryptonButton4.Values.Text = "Cancel";
+            this.kryptonButton4.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // ImportDownload
             // 

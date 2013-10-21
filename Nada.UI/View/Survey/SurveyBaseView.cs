@@ -11,24 +11,31 @@ using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
 using Nada.Model;
 using Nada.Model.Base;
+using Nada.UI.View.Help;
+using Nada.Globalization;
 
 namespace Nada.UI.View.Survey
 {
-    public partial class SurveyBaseView : UserControl
+    public partial class SurveyBaseView : UserControl, IView
     {
         public event Action<bool> OnSave = (b) => { };
         private SurveyBase model = null;
         private SurveyRepository r = null;
-        private StaticSurveyType creationType;
+        private int creationType;
+        private AdminLevel adminLevel = null;
+        public Action OnClose { get; set; }
+        public Action<string> StatusChanged { get; set; }
+        public string Title { get { return lblTitle.Text; } }
 
         public SurveyBaseView()
         {
             InitializeComponent();
         }
 
-        public SurveyBaseView(StaticSurveyType type)
+        public SurveyBaseView(int typeId, AdminLevel a)
         {
-            creationType = type;
+            adminLevel = a;
+            creationType = typeId;
             InitializeComponent();
         }
 
@@ -42,32 +49,38 @@ namespace Nada.UI.View.Survey
         {
             if (!DesignMode)
             {
-                adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
                 r = new SurveyRepository();
-                if (model == null) model = r.CreateSurvey(creationType);
+
+                if (model == null)
+                {
+                    if (model == null) model = r.CreateSurvey(creationType);
+                    adminLevelPickerControl1.Select(adminLevel);
+                    model.AdminLevelId = adminLevel.Id;
+                }
+                else
+                    adminLevelPickerControl1.Select(model.AdminLevelId.Value);
+
                 bsSurvey.DataSource = model;
-                bsType.DataSource = model.TypeOfSurvey;
-                customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators);
+                lblTitle.Text = model.TypeOfSurvey.SurveyTypeName;
+                customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators, model.IndicatorValues);
+                customIndicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
             }
         }
 
-        void adminLevelPickerControl1_OnSelect(Model.AdminLevel obj)
-        {
-            model.AdminLevelId = obj.Id;
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        void customIndicatorControl1_OnAddRemove()
         {
             SurveyTypeEdit editor = new SurveyTypeEdit(model.TypeOfSurvey);
-            editor.OnSave += editor_OnSave;
-            editor.ShowDialog();
+            editor.OnSave += editType_OnSave;
+            ViewForm form = new ViewForm(editor);
+            form.ShowDialog();
         }
 
-        void editor_OnSave()
+        void editType_OnSave()
         {
             customIndicatorControl1.LoadIndicators(model.TypeOfSurvey.Indicators);
-            bsType.ResetBindings(false);
         }
+        
+        
 
         /// <summary>
         /// SAVE Method
@@ -76,12 +89,39 @@ namespace Nada.UI.View.Survey
         /// <param name="e"></param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
+            if (!model.IsValid() || !customIndicatorControl1.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError);
+                return;
+            }
+            if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
+            {
+                MessageBox.Show(Translations.LocationRequired);
+                return;
+            }
+
             bsSurvey.EndEdit();
             model.IndicatorValues = customIndicatorControl1.GetValues();
             int userId = ApplicationData.Instance.GetUserId();
             r.SaveSurvey(model, userId);
-            MessageBox.Show("Survey was saved!");
-            OnSave(false);
+
+            OnClose();
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            OnClose();
+        }
+
+        private void btnDash_Click(object sender, EventArgs e)
+        {
+            OnClose();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            HelpView help = new HelpView();
+            help.Show();
         }
 
 

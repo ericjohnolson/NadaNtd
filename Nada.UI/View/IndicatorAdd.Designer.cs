@@ -29,30 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tb3 = new System.Windows.Forms.TextBox();
             this.bsIndicator = new System.Windows.Forms.BindingSource(this.components);
             this.tb1 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.h3Label1 = new Nada.UI.Controls.H3Label();
             this.h3Label2 = new Nada.UI.Controls.H3Label();
-            this.h3Label3 = new Nada.UI.Controls.H3Label();
             this.hr1 = new Nada.UI.Controls.HR();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.bsIndicator)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tb3
-            // 
-            this.tb3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsIndicator, "SortOrder", true));
-            this.tb3.Location = new System.Drawing.Point(27, 162);
-            this.tb3.Name = "tb3";
-            this.tb3.Size = new System.Drawing.Size(78, 20);
-            this.tb3.TabIndex = 2;
             // 
             // bsIndicator
             // 
@@ -72,7 +63,7 @@
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsIndicator, "IsDisabled", true));
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox1.Location = new System.Drawing.Point(27, 192);
+            this.checkBox1.Location = new System.Drawing.Point(27, 169);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(95, 20);
             this.checkBox1.TabIndex = 3;
@@ -86,7 +77,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Text",
             "Number",
-            "Yes/No",
+            "YesNo",
             "Date"});
             this.comboBox1.Location = new System.Drawing.Point(27, 116);
             this.comboBox1.Name = "comboBox1";
@@ -120,20 +111,6 @@
             this.h3Label2.Tag = "DataType";
             this.h3Label2.Text = "Data type";
             this.h3Label2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3Label3
-            // 
-            this.h3Label3.AutoSize = true;
-            this.h3Label3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label3.Location = new System.Drawing.Point(27, 140);
-            this.h3Label3.Margin = new System.Windows.Forms.Padding(0);
-            this.h3Label3.Name = "h3Label3";
-            this.h3Label3.Size = new System.Drawing.Size(67, 16);
-            this.h3Label3.TabIndex = 12;
-            this.h3Label3.Tag = "SortOrder";
-            this.h3Label3.Text = "Sort order";
-            this.h3Label3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
             // hr1
             // 
@@ -173,7 +150,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(27, 230);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(27, 212);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -207,21 +184,33 @@
             this.btnSave.Values.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsIndicator, "IsRequired", true));
+            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.checkBox2.Location = new System.Drawing.Point(27, 143);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(96, 20);
+            this.checkBox2.TabIndex = 41;
+            this.checkBox2.Text = "Is Required";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // IndicatorAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(264, 284);
+            this.ClientSize = new System.Drawing.Size(264, 274);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.hr1);
-            this.Controls.Add(this.h3Label3);
             this.Controls.Add(this.h3Label2);
             this.Controls.Add(this.h3Label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.tb3);
             this.Controls.Add(this.tb1);
             this.Name = "IndicatorAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -238,18 +227,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox tb3;
         private System.Windows.Forms.TextBox tb1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.BindingSource bsIndicator;
         private System.Windows.Forms.ComboBox comboBox1;
         private Controls.H3Label h3Label1;
         private Controls.H3Label h3Label2;
-        private Controls.H3Label h3Label3;
         private Controls.HR hr1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

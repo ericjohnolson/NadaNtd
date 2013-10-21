@@ -9,21 +9,24 @@ using System.Windows.Forms;
 using Nada.Model.Reports;
 using Nada.UI.AppLogic;
 
-namespace Nada.UI.View.Reports.CustomReport
+namespace Nada.UI.View
 {
-    public partial class ReportWizard : Form
+    public partial class WizardForm : Form
     {
+        private string title = "";
+        public Action OnFinish { get; set; }
         public Action<ReportOptions> OnRunReport { get; set; }
         private IWizardStep currentStep = null;
 
-        public ReportWizard()
+        public WizardForm()
         {
             InitializeComponent();
         }
 
-        public ReportWizard(IWizardStep step)
+        public WizardForm(IWizardStep step, string t)
         {
             currentStep = step;
+            title = t;
             InitializeComponent();
         }
 
@@ -32,6 +35,8 @@ namespace Nada.UI.View.Reports.CustomReport
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
+                this.Text = title;
+                lblTitle.Text = title;
                 LoadStep(currentStep);
             }
         }
@@ -40,6 +45,7 @@ namespace Nada.UI.View.Reports.CustomReport
         {
             step.OnSwitchStep = (s) => { LoadStep(s); };
             step.OnRunReport = RunReport;
+            step.OnFinish = DoFinish;
             lblStepTitle.Text = step.StepTitle;
             btnPrev.Visible = step.ShowPrev;
             btnPrev.Enabled = step.EnablePrev;
@@ -71,6 +77,12 @@ namespace Nada.UI.View.Reports.CustomReport
         {
             this.Close();
             OnRunReport(options);
+        }
+
+        private void DoFinish()
+        {
+            this.Close();
+            OnFinish();
         }
 
     }

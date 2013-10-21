@@ -131,7 +131,7 @@
             // 
             // IvmAlbIntervention
             // 
-            this.IvmAlbIntervention.Tag = "Interventions";
+            this.IvmAlbIntervention.Tag = "IvmAlbIntervention";
             this.IvmAlbIntervention.Text = "IVM + ALB Intervention";
             // 
             // c1Button2

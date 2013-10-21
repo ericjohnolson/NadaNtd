@@ -36,7 +36,7 @@ namespace Nada.UI.View
             if (!DesignMode)
             {
                 bindingSource1.DataSource = model;
-                lblLastUpdated.Text = Translations.LastUpdated + ": " + model.UpdatedBy;
+                lblLastUpdated.Text =  model.UpdatedBy;
             }
         }
 

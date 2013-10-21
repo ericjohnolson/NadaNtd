@@ -136,7 +136,6 @@
             this.mappingToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.mappingToolStripMenuItem.Tag = "Mapping";
             this.mappingToolStripMenuItem.Text = "Mapping";
-            this.mappingToolStripMenuItem.Click += new System.EventHandler(this.mappingToolStripMenuItem_Click);
             // 
             // prevalenceToolStripMenuItem
             // 
@@ -152,7 +151,6 @@
             this.tASToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.tASToolStripMenuItem.Tag = "TAS";
             this.tASToolStripMenuItem.Text = "TAS";
-            this.tASToolStripMenuItem.Click += new System.EventHandler(this.tASToolStripMenuItem_Click);
             // 
             // importNewSurveyDataToolStripMenuItem
             // 

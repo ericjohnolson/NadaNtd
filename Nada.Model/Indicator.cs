@@ -14,11 +14,12 @@ namespace Nada.Model
             DataType = "Text";
             IsEditable = true;
         }
+
         public int DataTypeId { get; set; }
         public string DisplayName { get; set; }
-        public int SortOrder { get; set; }
         public bool IsDisabled { get; set; }
         public bool IsEditable { get; set; }
+        public bool IsRequired { get; set; }
         public bool IsDisplayed { get; set; }
 
         // Display only props

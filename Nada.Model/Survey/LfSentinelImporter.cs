@@ -18,8 +18,16 @@ namespace Nada.Model.Survey
 
         protected override void AddSpecificRows(DataTable dataTable)
         {
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.SiteType));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.SpotCheckSiteName));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.Latitude));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.Longitude));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.TimingType));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.TestType));
             dataTable.Columns.Add(new System.Data.DataColumn(Translations.StartDateSurvey));
             dataTable.Columns.Add(new System.Data.DataColumn(Translations.EndDateSurvey));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.Vectors));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.Partners));
         }
 
         public ImportResult ImportData(string filePath, int userId)
@@ -81,44 +89,56 @@ namespace Nada.Model.Survey
             get { return Translations.LfSentinelImport; }
         }
 
-        public void CreateWorkbook(string filename, List<AdminLevel> rows)
+        public void CreateImportFile(string filename, List<AdminLevel> levels)
         {
+            // TODO Sentinel site/Spotcheck site indicators???
 
-            //Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
-            //Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
-            //Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
-            //object oMissing = System.Reflection.Missing.Value;
+            SurveyRepository repo = new SurveyRepository();
+            List<Vector> vectors = repo.GetVectors();
+            IntvRepository repo2 = new IntvRepository();
+            List<Partner> partners = repo2.GetPartners();
+            LfMfPrevalence model = new LfMfPrevalence();
+            Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
+            Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
+            Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
+            Microsoft.Office.Interop.Excel.DropDowns xlDropDowns;
+            object oMissing = System.Reflection.Missing.Value;
 
-            ////Create new workbook
-            //xlsWorkbook = xlsApp.Workbooks.Add(true);
+            //Create new workbook
+            xlsWorkbook = xlsApp.Workbooks.Add(true);
 
-            ////Get the first worksheet
-            //xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
+            //Get the first worksheet
+            xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
 
-            //string[] ddl_item = { "Answers", "Autos", "Finance", "Games", "Groups", "HotJobs", "Maps", "Mobile Web", "Movies", "Music", "Personals", "Real Estate", "Shopping", "Sports", "Tech", "Travel", "TV", "Yellow Pages" };
+            // Load data into excel worksheet
+            DataTable data = GetDataTable();
+            CreateImportExcel(data, xlsWorksheet, levels);
 
-            //Microsoft.Office.Interop.Excel.Range xlsRange;
-            //xlsRange = xlsWorksheet.get_Range("A1", "A1");
+            // Set up all the different drop downs and multiselects
+            xlDropDowns = ((Microsoft.Office.Interop.Excel.DropDowns)(xlsWorksheet.DropDowns(oMissing)));
 
-            //Microsoft.Office.Interop.Excel.DropDowns xlDropDowns;
-            //Microsoft.Office.Interop.Excel.DropDown xlDropDown;
-            //xlDropDowns = ((Microsoft.Office.Interop.Excel.DropDowns)(xlsWorksheet.DropDowns(oMissing)));
-            //xlDropDown = xlDropDowns.Add((double)xlsRange.Left, (double)xlsRange.Top, (double)xlsRange.Width, (double)xlsRange.Height, true);
+            string casCol = GetExcelColumnName(data.Columns[Translations.CasualAgent].Ordinal + 1);
+            string timingCol = GetExcelColumnName(data.Columns[Translations.TimingType].Ordinal + 1);
+            string testCol = GetExcelColumnName(data.Columns[Translations.TestType].Ordinal + 1);
+            string partnersCol = GetExcelColumnName(data.Columns[Translations.Partners].Ordinal + 1);
+            string vectorsCol = GetExcelColumnName(data.Columns[Translations.Vectors].Ordinal + 1);
+            for (int i = 1; i <= data.Rows.Count; i++)
+            {
+                AddDropdown(xlsWorksheet, xlDropDowns, model.TimingTypeValues, timingCol, i + 1);
+                AddDropdown(xlsWorksheet, xlDropDowns, model.TestTypeValues, testCol, i + 1);
+                AddDropdown(xlsWorksheet, xlDropDowns, model.CasualAgentValues, casCol, i + 1);
+                AddDropdown(xlsWorksheet, xlDropDowns, Util.ProduceEnumeration(partners.Select(p => p.DisplayName).ToList()), partnersCol, i + 1);
+                AddDropdown(xlsWorksheet, xlDropDowns, Util.ProduceEnumeration(vectors.Select(p => p.DisplayName).ToList()), vectorsCol, i + 1);
+            }
 
-            ////Add item into drop down list
-            //for (int i = 0; i < ddl_item.Length; i++)
-            //{
-            //    xlDropDown.AddItem(ddl_item[i], i + 1);
-            //}
-
-            //xlsApp.DisplayAlerts = false;
-            //xlsWorkbook.Close(true, filename, null);
-            //xlsApp.Quit();
-
-            //xlsWorksheet = null;
-            //xlsWorkbook = null;
-            //xlsApp = null;
+            xlsApp.DisplayAlerts = false;
+            xlsWorkbook.Close(true, filename, null);
+            xlsApp.Quit();
+            xlsWorksheet = null;
+            xlsWorkbook = null;
+            xlsApp = null;
         }
+
     }
 
 }

@@ -663,4 +663,160 @@
   <data name="Years" xml:space="preserve">
     <value>Years</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Add New...</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="EnterNew" xml:space="preserve">
+    <value>Enter new</value>
+  </data>
+  <data name="EnterNewLink" xml:space="preserve">
+    <value>Enter New...</value>
+  </data>
+  <data name="LastUpdate" xml:space="preserve">
+    <value>Last update</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="AuditCreated" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="AuditUpdated" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="MustBeDate" xml:space="preserve">
+    <value>Must be a valid date (mm/dd/yyyy)</value>
+  </data>
+  <data name="MustBeNumber" xml:space="preserve">
+    <value>Must be a number</value>
+  </data>
+  <data name="ALB" xml:space="preserve">
+    <value>ALB</value>
+  </data>
+  <data name="Baseline" xml:space="preserve">
+    <value>Baseline</value>
+  </data>
+  <data name="Brugiaspp" xml:space="preserve">
+    <value>Brugia spp.</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="days14" xml:space="preserve">
+    <value>3-14 days</value>
+  </data>
+  <data name="days2" xml:space="preserve">
+    <value>1-2 days</value>
+  </data>
+  <data name="End0" xml:space="preserve">
+    <value>0 - Not endemic above treatment threshold</value>
+  </data>
+  <data name="End1" xml:space="preserve">
+    <value>1 - Endemic above treatment threshold</value>
+  </data>
+  <data name="End100" xml:space="preserve">
+    <value>100 - Achieved stopping MDA criteria</value>
+  </data>
+  <data name="EndM" xml:space="preserve">
+    <value>M - Not mapped</value>
+  </data>
+  <data name="EndNS" xml:space="preserve">
+    <value>NS - Not mapped but not suspected</value>
+  </data>
+  <data name="EndPending" xml:space="preserve">
+    <value>Pending - Awaiting TAS implementation/results</value>
+  </data>
+  <data name="GreaterThanMonth" xml:space="preserve">
+    <value>Greater than 1 month</value>
+  </data>
+  <data name="ICT" xml:space="preserve">
+    <value>ICT</value>
+  </data>
+  <data name="IVM" xml:space="preserve">
+    <value>IVM</value>
+  </data>
+  <data name="Mf" xml:space="preserve">
+    <value>Mf</value>
+  </data>
+  <data name="Midterm" xml:space="preserve">
+    <value>Mid-term</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="NotResolved" xml:space="preserve">
+    <value>Not yet resolved</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="PostMDAI" xml:space="preserve">
+    <value>Post-MDA Surveillance TAS I</value>
+  </data>
+  <data name="PostMDAII" xml:space="preserve">
+    <value>Post-MDA Surveillance TAS II</value>
+  </data>
+  <data name="PreTAS" xml:space="preserve">
+    <value>TAS eligibility (Pre-TAS)</value>
+  </data>
+  <data name="Sentinel" xml:space="preserve">
+    <value>Sentinel</value>
+  </data>
+  <data name="SpotCheck" xml:space="preserve">
+    <value>Spot Check</value>
+  </data>
+  <data name="StopMDATAS" xml:space="preserve">
+    <value>Stop-MDA TAS</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Wbancrofti" xml:space="preserve">
+    <value>W. bancrofti</value>
+  </data>
+  <data name="WbancroftiBrugiaspp" xml:space="preserve">
+    <value>W. bancrofti &amp; Brugia spp.</value>
+  </data>
+  <data name="weeks4" xml:space="preserve">
+    <value>2-4 weeks</value>
+  </data>
+  <data name="xyear1" xml:space="preserve">
+    <value>1x/year</value>
+  </data>
+  <data name="xyear2" xml:space="preserve">
+    <value>2x/year</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="YesNo" xml:space="preserve">
+    <value>Yes/No</value>
+  </data>
+  <data name="ChooseAdminLevels" xml:space="preserve">
+    <value>Choose Admin Levels</value>
+  </data>
+  <data name="ImportAction" xml:space="preserve">
+    <value>Please select</value>
+  </data>
+  <data name="CreatingImportFileStatus" xml:space="preserve">
+    <value>Creating Import File...</value>
+  </data>
+  <data name="SpotCheckSiteName" xml:space="preserve">
+    <value>Spot Check Site Name</value>
+  </data>
 </root>

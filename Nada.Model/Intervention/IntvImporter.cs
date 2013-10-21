@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Excel;
 using Nada.Globalization;
+using Nada.Model.Diseases;
 using Nada.Model.Repositories;
 
 namespace Nada.Model.Intervention
@@ -20,6 +21,8 @@ namespace Nada.Model.Intervention
         {
             dataTable.Columns.Add(new System.Data.DataColumn(Translations.StartDateMda));
             dataTable.Columns.Add(new System.Data.DataColumn(Translations.EndDateMda));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.PcsTargeted));
+            dataTable.Columns.Add(new System.Data.DataColumn(Translations.Partners));
         }
 
         public ImportResult ImportData(string filePath, int userId)
@@ -64,7 +67,55 @@ namespace Nada.Model.Intervention
 
         public string ImportName
         {
-            get { return "LF MDA Import"; }
+            get { return Translations.IvmAlbIntervention; }
+        }
+
+        public void CreateImportFile(string filename, List<AdminLevel> adminLevels)
+        {
+            DiseaseRepository repo = new DiseaseRepository();
+            List<Disease> diseases = repo.GetAllDiseases();
+            IntvRepository repo2 = new IntvRepository();
+            List<Partner> partners = repo2.GetPartners();
+            PcMda model = new PcMda();
+            Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
+            Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
+            Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
+            Microsoft.Office.Interop.Excel.DropDowns xlDropDowns;
+            object oMissing = System.Reflection.Missing.Value;
+
+            //Create new workbook
+            xlsWorkbook = xlsApp.Workbooks.Add(true);
+
+            //Get the first worksheet
+            xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
+
+            // Load data into excel worksheet
+            DataTable data = GetDataTable();
+            CreateImportExcel(data, xlsWorksheet, adminLevels);
+
+            // Set up all the different drop downs and multiselects
+            xlDropDowns = ((Microsoft.Office.Interop.Excel.DropDowns)(xlsWorksheet.DropDowns(oMissing)));
+
+            string stockOutCol = GetExcelColumnName(data.Columns[Translations.StockOut].Ordinal + 1);
+            string drugsCol = GetExcelColumnName(data.Columns[Translations.StockOutDrug].Ordinal + 1);
+            string lengthCol = GetExcelColumnName(data.Columns[Translations.StockOutLength].Ordinal + 1);
+            string partnersCol = GetExcelColumnName(data.Columns[Translations.Partners].Ordinal + 1);
+            string pcsCol = GetExcelColumnName(data.Columns[Translations.PcsTargeted].Ordinal + 1);
+            for (int i = 1; i <= data.Rows.Count; i++)
+            {
+                AddDropdown(xlsWorksheet, xlDropDowns, model.StockOutValues, stockOutCol, i + 1);
+                AddDropdown(xlsWorksheet, xlDropDowns, model.StockOutDrugValues, drugsCol, i + 1);
+                AddDropdown(xlsWorksheet, xlDropDowns, model.StockOutLengthValues, lengthCol, i + 1);
+                AddDropdown(xlsWorksheet, xlDropDowns, Util.ProduceEnumeration(partners.Select(p => p.DisplayName).ToList()), partnersCol, i + 1);
+                AddDropdown(xlsWorksheet, xlDropDowns, Util.ProduceEnumeration(diseases.Select(p => p.DisplayName).ToList()), pcsCol, i + 1);
+            }
+
+            xlsApp.DisplayAlerts = false;
+            xlsWorkbook.Close(true, filename, null);
+            xlsApp.Quit();
+            xlsWorksheet = null;
+            xlsWorkbook = null;
+            xlsApp = null;
         }
     }
 
@@ -78,6 +129,11 @@ namespace Nada.Model.Intervention
         {
             intvType = t;
             importName = name;
+        }
+
+        public void CreateImportFile(string filename, List<AdminLevel> adminLevels)
+        {
+            throw new NotImplementedException();
         }
 
         protected override void AddSpecificRows(DataTable dataTable)

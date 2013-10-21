@@ -60,13 +60,49 @@ namespace Nada.UI.View
                     row[Translations.Location] = l.Name;
                     data.Rows.Add(row);
                 }
-                using (ExcelPackage pck = new ExcelPackage())
+                //using (ExcelPackage pck = new ExcelPackage())
+                //{
+                //    //Create the worksheet
+                //    ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
+                //    ws.Cells["A1"].LoadFromDataTable(data, true);
+                //    File.WriteAllBytes(saveFileDialog1.FileName, pck.GetAsByteArray());
+                //}
+
+
+                Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
+                Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
+                Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
+                object oMissing = System.Reflection.Missing.Value;
+
+                //Create new workbook
+                xlsWorkbook = xlsApp.Workbooks.Add(true);
+
+                //Get the first worksheet
+                xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
+
+                string[] ddl_item = { "Answers", "Autos", "Finance", "Games", "Groups", "HotJobs", "Maps", "Mobile Web", "Movies", "Music", "Personals", "Real Estate", "Shopping", "Sports", "Tech", "Travel", "TV", "Yellow Pages" };
+
+                Microsoft.Office.Interop.Excel.Range xlsRange;
+                xlsRange = xlsWorksheet.get_Range("A1", "A1");
+
+                Microsoft.Office.Interop.Excel.DropDowns xlDropDowns;
+                Microsoft.Office.Interop.Excel.DropDown xlDropDown;
+                xlDropDowns = ((Microsoft.Office.Interop.Excel.DropDowns)(xlsWorksheet.DropDowns(oMissing)));
+                xlDropDown = xlDropDowns.Add((double)xlsRange.Left, (double)xlsRange.Top, (double)xlsRange.Width, (double)xlsRange.Height, true);
+
+                //Add item into drop down list
+                for (int i = 0; i < ddl_item.Length; i++)
                 {
-                    //Create the worksheet
-                    ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
-                    ws.Cells["A1"].LoadFromDataTable(data, true);
-                    File.WriteAllBytes(saveFileDialog1.FileName, pck.GetAsByteArray());
+                    xlDropDown.AddItem(ddl_item[i], i + 1);
                 }
+
+                xlsApp.DisplayAlerts = false;
+                xlsWorkbook.Close(true, saveFileDialog1.FileName, null);
+                xlsApp.Quit();
+
+                xlsWorksheet = null;
+                xlsWorkbook = null;
+                xlsApp = null;
             }
 
             this.Close();

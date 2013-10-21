@@ -28,8 +28,10 @@ namespace Nada.UI
 
         private void About_Load(object sender, EventArgs e)
         {
-            if(!DesignMode)
+            if (!DesignMode)
+            {
                 Localizer.TranslateControl(this);
+            }
 
             if (ApplicationDeployment.IsNetworkDeployed)
             {

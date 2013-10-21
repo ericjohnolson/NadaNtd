@@ -25,5 +25,21 @@ namespace Nada.UI.Controls
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Bindable(true)]
+        public string StatusMessage
+        {
+            get
+            {
+                return h3Label1.Text;
+            }
+            set
+            {
+                h3Label1.Text = value;
+            }
+        }
+
     }
 }

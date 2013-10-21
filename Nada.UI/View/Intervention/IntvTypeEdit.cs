@@ -10,14 +10,18 @@ using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Intervention;
 using Nada.UI.AppLogic;
+using Nada.Globalization;
 
 namespace Nada.UI.View.Intervention
 {
-    public partial class IntvTypeEdit : Form
+    public partial class IntvTypeEdit : UserControl, IView
     {
         public event Action OnSave = () => { };
         private IntvRepository repo = null;
         private IntvType model = null;
+        public Action OnClose { get; set; }
+        public Action<string> StatusChanged { get; set; }
+        public string Title { get { return lblTitle.Text; } }
 
         public IntvTypeEdit()
         {
@@ -38,6 +42,8 @@ namespace Nada.UI.View.Intervention
                 repo = new IntvRepository();
                 bsIntvType.DataSource = model;
                 lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
+                if (model.Id == 0)
+                    pnlName.Visible = true;
             }
         }
 
@@ -56,16 +62,22 @@ namespace Nada.UI.View.Intervention
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            OnClose();
         }
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
+            if (!model.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError);
+                return;
+            }
+
             bsIntvType.EndEdit();
             int currentUser = ApplicationData.Instance.GetUserId();
             repo.Save(model, currentUser);
             OnSave();
-            this.Close();
+            OnClose();
         }
 
         void add_OnSave(Indicator obj)
@@ -74,12 +86,11 @@ namespace Nada.UI.View.Intervention
             lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
         }
 
-        private void fieldLink1_Click(object sender, EventArgs e)
+        private void fieldLink1_OnClick()
         {
             IndicatorAdd modal = new IndicatorAdd();
             modal.OnSave += add_OnSave;
             modal.ShowDialog();
-
         }
     }
 }

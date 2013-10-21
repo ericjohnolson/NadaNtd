@@ -69,10 +69,12 @@ namespace Nada.Model.Repositories
                         Interventions.StartDate, 
                         Interventions.EndDate, 
                         Interventions.UpdatedAt, 
-                        aspnet_Users.UserName, AdminLevels.DisplayName
-                        FROM (((Interventions INNER JOIN InterventionTypes on Interventions.InterventionTypeId = InterventionTypes.ID)
+                        aspnet_Users.UserName, AdminLevels.DisplayName,
+                        created.UserName as CreatedBy, Interventions.CreatedAt
+                        FROM ((((Interventions INNER JOIN InterventionTypes on Interventions.InterventionTypeId = InterventionTypes.ID)
                             INNER JOIN aspnet_Users on Interventions.UpdatedById = aspnet_Users.UserId)
                             INNER JOIN AdminLevels on Interventions.AdminLevelId = AdminLevels.ID) 
+                            INNER JOIN aspnet_Users created on Interventions.CreatedById = created.UserId)
                         WHERE Interventions.AdminLevelId=@AdminLevelId and Interventions.IsDeleted = 0
                         ORDER BY Interventions.EndDate DESC", connection);
                     command.Parameters.Add(new OleDbParameter("@AdminLevelId", adminLevel));
@@ -89,7 +91,7 @@ namespace Nada.Model.Repositories
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
                                 EndDate = reader.GetValueOrDefault<DateTime>("EndDate"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+                                UpdatedBy = Util.GetAuditInfo(reader)
 
                             });
                         }
@@ -119,7 +121,7 @@ namespace Nada.Model.Repositories
                     //command.Parameters.Add(new OleDbParameter("@DiseaseId", diseaseId));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
                             intv.Add(new IntvType
                             {
@@ -149,8 +151,9 @@ namespace Nada.Model.Repositories
                 try
                 {
                     OleDbCommand command = new OleDbCommand(@"Select InterventionTypes.InterventionTypeName, InterventionTypes.UpdatedAt,
-                        aspnet_users.UserName
-                        FROM (InterventionTypes INNER JOIN aspnet_Users on InterventionTypes.UpdatedById = aspnet_Users.UserId)
+                        aspnet_users.UserName, created.UserName as CreatedBy, InterventionTypes.CreatedAt
+                        FROM ((InterventionTypes INNER JOIN aspnet_Users on InterventionTypes.UpdatedById = aspnet_Users.UserId)
+                            INNER JOIN aspnet_Users created on InterventionTypes.CreatedById = created.UserId)
                         WHERE InterventionTypes.ID=@id", connection);
                     command.Parameters.Add(new OleDbParameter("@id", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
@@ -162,7 +165,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = id,
                                 IntvTypeName = reader.GetValueOrDefault<string>("InterventionTypeName"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+                                UpdatedBy = Util.GetAuditInfo(reader)
                             };
                         }
                         reader.Close();
@@ -172,16 +175,16 @@ namespace Nada.Model.Repositories
                         InterventionIndicators.ID,   
                         InterventionIndicators.DataTypeId,
                         InterventionIndicators.DisplayName,
-                        InterventionIndicators.SortOrder,
+                        InterventionIndicators.IsRequired,
                         InterventionIndicators.IsDisabled,
                         InterventionIndicators.IsEditable,
+                        InterventionIndicators.IsDisplayed,
                         InterventionIndicators.UpdatedAt, 
                         aspnet_users.UserName,
                         IndicatorDataTypes.DataType
                         FROM ((InterventionIndicators INNER JOIN aspnet_users ON InterventionIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON InterventionIndicators.DataTypeId = IndicatorDataTypes.ID)
-                        WHERE InterventionTypeId=@InterventionTypeId AND IsDisabled=0 
-                        ORDER BY SortOrder", connection);
+                        WHERE InterventionTypeId=@InterventionTypeId AND IsDisabled=0 ", connection);
                     command.Parameters.Add(new OleDbParameter("@InterventionTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -195,14 +198,35 @@ namespace Nada.Model.Repositories
                                 UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy") + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                SortOrder = reader.GetValueOrDefault<int>("SortOrder"),
+                                IsRequired = reader.GetValueOrDefault<bool>("IsRequired"),
                                 IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
                                 IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
+                                IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
                                 DataType = reader.GetValueOrDefault<string>("DataType")
                             });
                         }
                         reader.Close();
                     }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return intv;
+        }
+
+        public IntvBase GetById(int id)
+        {
+            IntvBase intv = null;
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = null;
+                    intv = GetIntv<IntvBase>(command, connection, id);
                 }
                 catch (Exception)
                 {
@@ -383,12 +407,19 @@ namespace Nada.Model.Repositories
                         command = new OleDbCommand(@"UPDATE InterventionTypes SET InterventionTypeName=@InterventionTypeName, UpdatedById=@UpdatedById, 
                             UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
                     else
-                        command = new OleDbCommand(@"INSERT INTO InterventionTypes InterventionTypeName, UpdatedById, 
-                            UpdatedAt) values (@InterventionTypeName, @UpdatedById, @UpdatedAt)", connection);
+                        command = new OleDbCommand(@"INSERT INTO InterventionTypes (InterventionTypeName, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@InterventionTypeName, @UpdatedById, @UpdatedAt,
+                            @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(new OleDbParameter("@InterventionTypeName", model.IntvTypeName));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                    if (model.Id > 0) command.Parameters.Add(new OleDbParameter("@id", model.Id));
+                    if (model.Id > 0)
+                        command.Parameters.Add(new OleDbParameter("@id", model.Id));
+                    else
+                    {
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                    }
                     command.ExecuteNonQuery();
 
                     if (model.Id <= 0)
@@ -400,13 +431,13 @@ namespace Nada.Model.Repositories
                     foreach (var indicator in model.Indicators.Values.Where(i => i.Id > 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"UPDATE InterventionIndicators SET InterventionTypeId=@InterventionTypeId, DataTypeId=@DataTypeId,
-                        DisplayName=@DisplayName, SortOrder=@SortOrder, IsDisabled=@IsDisabled, 
+                        DisplayName=@DisplayName, IsRequired=@IsRequired, IsDisabled=@IsDisabled, 
                         IsEditable=@IsEditable, UpdatedById=@UpdateById, UpdatedAt=@UpdatedAt 
                         WHERE ID = @id", connection);
                         command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@DataTypeId", indicator.DataTypeId));
                         command.Parameters.Add(new OleDbParameter("@DisplayName", indicator.DisplayName));
-                        command.Parameters.Add(new OleDbParameter("@SortOrder", indicator.SortOrder));
+                        command.Parameters.Add(new OleDbParameter("@IsRequired", indicator.IsRequired));
                         command.Parameters.Add(new OleDbParameter("@IsDisabled", indicator.IsDisabled));
                         command.Parameters.Add(new OleDbParameter("@IsEditable", true));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
@@ -418,13 +449,13 @@ namespace Nada.Model.Repositories
                     foreach (var indicator in model.Indicators.Values.Where(i => i.Id <= 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"INSERT INTO InterventionIndicators (InterventionTypeId, DataTypeId, 
-                        DisplayName, SortOrder, IsDisabled, IsEditable, UpdatedById, UpdatedAt) VALUES
-                        (@InterventionTypeId, @DataTypeId, @DisplayName, @SortOrder, @IsDisabled, @IsEditable, @UpdatedById, 
+                        DisplayName, IsRequired, IsDisabled, IsEditable, UpdatedById, UpdatedAt) VALUES
+                        (@InterventionTypeId, @DataTypeId, @DisplayName, @IsRequired, @IsDisabled, @IsEditable, @UpdatedById, 
                          @UpdatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@DataTypeId", indicator.DataTypeId));
                         command.Parameters.Add(new OleDbParameter("@DisplayName", indicator.DisplayName));
-                        command.Parameters.Add(new OleDbParameter("@SortOrder", indicator.SortOrder));
+                        command.Parameters.Add(new OleDbParameter("@IsRequired", indicator.IsRequired));
                         command.Parameters.Add(new OleDbParameter("@IsDisabled", indicator.IsDisabled));
                         command.Parameters.Add(new OleDbParameter("@IsEditable", true));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
@@ -465,8 +496,8 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, UserName, UpdatedAt from InterventionDistributionMethods
-                        INNER JOIN aspnet_users on InterventionDistributionMethods.UpdatedById = aspnet_users.userid WHERE IsDeleted=0", connection);
+                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName from InterventionDistributionMethods
+                         WHERE IsDeleted=0", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -474,8 +505,7 @@ namespace Nada.Model.Repositories
                             d.Add(new DistributionMethod
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
-                                DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+                                DisplayName = reader.GetValueOrDefault<string>("DisplayName")
                             });
                         }
                         reader.Close();
@@ -508,12 +538,18 @@ namespace Nada.Model.Repositories
                            UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
                     else
                         command = new OleDbCommand(@"INSERT INTO InterventionDistributionMethods (DisplayName, UpdatedById, 
-                            UpdatedAt) values (@DisplayName, @UpdatedById, @UpdatedAt)", connection); 
+                            UpdatedAt, CreatedById, CreatedAt) values (@DisplayName, @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection); 
                     
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@DisplayName", dm.DisplayName));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));               
-                    if (dm.Id > 0) command.Parameters.Add(new OleDbParameter("@id", dm.Id));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    if (dm.Id > 0)
+                        command.Parameters.Add(new OleDbParameter("@id", dm.Id));
+                    else
+                    {
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                    }
                     command.ExecuteNonQuery();
                                         
                     // COMMIT TRANS
@@ -547,8 +583,10 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, UserName, UpdatedAt from Partners
-                        INNER JOIN aspnet_users on Partners.UpdatedById = aspnet_users.userid WHERE IsDeleted=0", connection);
+                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, aspnet_users.UserName, UpdatedAt, CreatedAt, c.UserName as CreatedBy from 
+                        ((Partners INNER JOIN aspnet_users on Partners.UpdatedById = aspnet_users.userid)
+                        INNER JOIN aspnet_users c on Partners.CreatedById = c.userid)
+                        WHERE IsDeleted=0", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -557,7 +595,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+                                UpdatedBy = Util.GetAuditInfo(reader)
                             });
                         }
                         reader.Close();
@@ -590,12 +628,20 @@ namespace Nada.Model.Repositories
                            UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
                     else
                         command = new OleDbCommand(@"INSERT INTO Partners (DisplayName, UpdatedById, 
-                            UpdatedAt) values (@DisplayName, @UpdatedById, @UpdatedAt)", connection);
+                            UpdatedAt, CreatedById, CreatedAt) values (@DisplayName, @UpdatedById, @UpdatedAt, @CreatedById,
+                            @CreatedAt)", connection);
 
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@DisplayName", partner.DisplayName));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                    if (partner.Id > 0) command.Parameters.Add(new OleDbParameter("@id", partner.Id));
+                    if (partner.Id > 0)
+                        command.Parameters.Add(new OleDbParameter("@id", partner.Id));
+                    else
+                    {
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                    }
+
                     command.ExecuteNonQuery();
 
                     // COMMIT TRANS
@@ -622,15 +668,15 @@ namespace Nada.Model.Repositories
         public List<Medicine> GetMedicines()
         {
             List<Medicine> list = new List<Medicine>();
-
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, UserName, UpdatedAt from Medicines
-                        INNER JOIN aspnet_users on Medicines.UpdatedById = aspnet_users.userid WHERE IsDeleted=0", connection);
+                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, Medicines.UserName, UpdatedAt, CreatedAt, c.UserName as CreatedBy
+                        FROM ((Medicines INNER JOIN aspnet_users on Medicines.UpdatedById = aspnet_users.userid)
+                         INNER JOIN aspnet_users c on Medicines.CreatedById = c.userid) WHERE IsDeleted=0", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -672,12 +718,19 @@ namespace Nada.Model.Repositories
                            UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
                     else
                         command = new OleDbCommand(@"INSERT INTO Medicines (DisplayName, UpdatedById, 
-                            UpdatedAt) values (@DisplayName, @UpdatedById, @UpdatedAt)", connection);
+                            UpdatedAt, CreatedByID, CreatedAt) values (@DisplayName, @UpdatedById, 
+                            @UpdatedAt, @CreatedByID, @CreatedAt)", connection);
 
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@DisplayName", med.DisplayName));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                    if (med.Id > 0) command.Parameters.Add(new OleDbParameter("@id", med.Id));
+                    if (med.Id > 0)
+                        command.Parameters.Add(new OleDbParameter("@id", med.Id));
+                    else
+                    {
+                        command.Parameters.Add(new OleDbParameter("@CreatedByID", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                    }
                     command.ExecuteNonQuery();
 
                     // COMMIT TRANS
@@ -711,9 +764,11 @@ namespace Nada.Model.Repositories
             try
             {
                 command = new OleDbCommand(@"Select Interventions.AdminLevelId, Interventions.StartDate, Interventions.EndDate, 
-                        Interventions.Notes, Interventions.UpdatedById, Interventions.UpdatedAt, aspnet_Users.UserName, AdminLevels.DisplayName, Interventions.InterventionTypeId
-                        FROM ((Interventions INNER JOIN aspnet_Users on Interventions.UpdatedById = aspnet_Users.UserId)
+                        Interventions.Notes, Interventions.UpdatedById, Interventions.UpdatedAt, aspnet_Users.UserName, 
+                        AdminLevels.DisplayName, Interventions.InterventionTypeId, Interventions.CreatedAt, c.UserName as CreatedBy
+                        FROM (((Interventions INNER JOIN aspnet_Users on Interventions.UpdatedById = aspnet_Users.UserId)
                             LEFT OUTER JOIN AdminLevels on Interventions.AdminLevelId = AdminLevels.ID)
+                            INNER JOIN aspnet_Users c on Interventions.CreatedById = c.UserId)
                         WHERE Interventions.ID=@id", connection);
                 command.Parameters.Add(new OleDbParameter("@id", id));
                 using (OleDbDataReader reader = command.ExecuteReader())
@@ -727,7 +782,7 @@ namespace Nada.Model.Repositories
                         intv.EndDate = reader.GetValueOrDefault<DateTime>("EndDate");
                         intv.Notes = reader.GetValueOrDefault<string>("Notes");
                         intv.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
-                        intv.UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
+                        intv.UpdatedBy = Util.GetAuditInfo(reader);
                         typeId = reader.GetValueOrDefault<int>("InterventionTypeId");
                     }
                     reader.Close();
@@ -751,8 +806,10 @@ namespace Nada.Model.Repositories
                 command = new OleDbCommand(@"UPDATE Interventions SET InterventionTypeId=@InterventionTypeId, AdminLevelId=@AdminLevelId, StartDate=@StartDate,
                            EndDate=@EndDate, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
-                command = new OleDbCommand(@"INSERT INTO Interventions (InterventionTypeId, AdminLevelId, StartDate, EndDate, Notes, UpdatedById, 
-                            UpdatedAt) values (@InterventionTypeId, @AdminLevelId, @StartDate, @EndDate, @Notes, @UpdatedById, @UpdatedAt)", connection); 
+                command = new OleDbCommand(@"INSERT INTO Interventions (InterventionTypeId, AdminLevelId, StartDate, EndDate, Notes, 
+                            UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
+                            values (@InterventionTypeId, @AdminLevelId, @StartDate, @EndDate, @Notes, @UpdatedById, @UpdatedAt,
+                            @CreatedById, @CreatedAt)", connection); 
             command.Parameters.Add(new OleDbParameter("@InterventionTypeId", intv.IntvType.Id));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", intv.AdminLevelId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", intv.StartDate));
@@ -760,7 +817,13 @@ namespace Nada.Model.Repositories
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", intv.Notes));
             command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-            if (intv.Id > 0) command.Parameters.Add(new OleDbParameter("@id", intv.Id));
+            if (intv.Id > 0)
+                command.Parameters.Add(new OleDbParameter("@id", intv.Id));
+            else
+            {
+                command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+            }
             command.ExecuteNonQuery();
 
             if (intv.Id <= 0)

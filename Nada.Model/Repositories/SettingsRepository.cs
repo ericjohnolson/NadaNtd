@@ -35,22 +35,6 @@ namespace Nada.Model.Repositories
             }
             return languages;
         }
-
-        public static void InsertTranslations(List<TranslatedValue> translations, int byUserId, string translationId,
-            OleDbCommand command, OleDbConnection connection)
-        {
-            foreach (TranslatedValue translation in translations)
-            {
-                command = new OleDbCommand(@"INSERT INTO translations (TranslationId, IsoCode, TranslationText, UpdatedBy, UpdatedAt) VALUES
-                            (@TranslationId, @IsoCode, @TranslationText, @UpdatedBy, @UpdatedAt)", connection);
-                command.Parameters.Add(new OleDbParameter("@TranslationId", translationId));
-                command.Parameters.Add(new OleDbParameter("@IsoCode", translation.IsoCode));
-                command.Parameters.Add(new OleDbParameter("@TranslationText", translation.Value));
-                command.Parameters.Add(new OleDbParameter("@updatedby", byUserId));
-                command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
-                command.ExecuteNonQuery();
-            }
-        }
         #endregion
 
         #region Admin Levels
@@ -93,12 +77,15 @@ namespace Nada.Model.Repositories
                     transWasStarted = true;
 
                     // INSERT 
-                    command = new OleDbCommand(@"INSERT INTO AdminLevelTypes (DisplayName, AdminLevel, UpdatedBy, UpdatedAt) VALUES
-                    (@DisplayName, @AdminLevel, @UpdatedBy, @UpdatedAt)", connection);
+                    command = new OleDbCommand(@"INSERT INTO AdminLevelTypes (DisplayName, AdminLevel, UpdatedById, UpdatedAt, CreatedById,
+                    CreatedAt) VALUES
+                    (@DisplayName, @AdminLevel, @UpdatedBy, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(new OleDbParameter("@DisplayName", adminLevel.DisplayName));
                     command.Parameters.Add(new OleDbParameter("@AdminLevel", adminLevel.LevelNumber));
-                    command.Parameters.Add(new OleDbParameter("@UpdatedBy", byUserId));
+                    command.Parameters.Add(new OleDbParameter("@UpdatedById", byUserId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    command.Parameters.Add(new OleDbParameter("@CreatedById", byUserId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
                     command.ExecuteNonQuery();
 
                     // COMMIT TRANS
@@ -130,7 +117,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Update AdminLevelTypes set DisplayName=@name, AdminLevel=@AdminLevel, UpdatedBy=@updatedby, 
+                    OleDbCommand command = new OleDbCommand(@"Update AdminLevelTypes set DisplayName=@name, AdminLevel=@AdminLevel, UpdatedById=@updatedby, 
                         UpdatedAt=@updatedat WHERE ID = @id", connection);
                     command.Parameters.Add(new OleDbParameter("@name", adminLevel.DisplayName));
                     command.Parameters.Add(new OleDbParameter("@AdminLevel", adminLevel.LevelNumber));

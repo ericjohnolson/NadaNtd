@@ -27,6 +27,7 @@ namespace Nada.UI.View.DiseaseDistribution
         private int diseaseId = 0;
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
+        public string Title { get { return lblTitle.Text; } }
         
         public DiseaseDistroEdit()
         {
@@ -71,7 +72,7 @@ namespace Nada.UI.View.DiseaseDistribution
                     customIndicatorControl1.LoadIndicators(model.Indicators, model.IndicatorValues);
 
                 customIndicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
-                StatusChanged(Translations.LastUpdated + model.UpdatedBy);
+                StatusChanged(model.UpdatedBy);
             }
         }
 
@@ -106,7 +107,7 @@ namespace Nada.UI.View.DiseaseDistribution
         /// <param name="e"></param>
         private void save_Click(object sender, EventArgs e)
         {
-            if (!model.IsValid())
+            if (!model.IsValid() || !customIndicatorControl1.IsValid())
             {
                 MessageBox.Show(Translations.ValidationError);
                 return;

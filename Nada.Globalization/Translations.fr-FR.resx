@@ -117,11 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>À propos</value>
+  </data>
   <data name="AboutMenu" xml:space="preserve">
     <value>À propos du modèle de base de données nationale</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Ajouter </value>
+  </data>
   <data name="AddIndicatorLink" xml:space="preserve">
     <value>Ajouter/Supprimer des indicateurs &gt;</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Ajouter nouveau</value>
+  </data>
+  <data name="AddNewDiseaseLink" xml:space="preserve">
+    <value>Ajouter nouvelle maladie</value>
+  </data>
+  <data name="AddNewIntvType" xml:space="preserve">
+    <value>Ajouter un nouveau type d'intervention</value>
+  </data>
+  <data name="AddNewLink" xml:space="preserve">
+    <value>Ajouter un nouveau </value>
+  </data>
+  <data name="AddNewSurveyTypeLink" xml:space="preserve">
+    <value>Ajouter nouveau type enquête</value>
+  </data>
+  <data name="AddPartnerLink" xml:space="preserve">
+    <value>Ajouter nouveau financier/partenaire</value>
   </data>
   <data name="AgeRange" xml:space="preserve">
     <value>Tranche d'âge </value>
@@ -132,6 +156,9 @@
   <data name="Available" xml:space="preserve">
     <value>Disponible</value>
   </data>
+  <data name="AvailableReports" xml:space="preserve">
+    <value>Rapports disponibles</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
@@ -140,6 +167,12 @@
   </data>
   <data name="CheckUpdates" xml:space="preserve">
     <value>Vérifier les mises à jour</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirmer</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Droits d'auteur 2013. Tous droits réservés</value>
   </data>
   <data name="CreateImportFile" xml:space="preserve">
     <value>Créer un fichier d'importation</value>
@@ -153,11 +186,20 @@
   <data name="CustomIndicators" xml:space="preserve">
     <value>Indicateur personnalisé</value>
   </data>
+  <data name="CustomReport" xml:space="preserve">
+    <value>Rapport personnalisé</value>
+  </data>
   <data name="DashboardPlaceholder" xml:space="preserve">
     <value>Espace réservé pour le tableau de bord/la mise en route</value>
   </data>
   <data name="DataType" xml:space="preserve">
     <value>Type de données</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="DeleteConfirmMessage" xml:space="preserve">
+    <value>Etes-vous sûr de vouloir supprimer?</value>
   </data>
   <data name="Demography" xml:space="preserve">
     <value>Démographie</value>
@@ -165,11 +207,35 @@
   <data name="DiseaseDistribution" xml:space="preserve">
     <value>Distribution de la maladie</value>
   </data>
+  <data name="DiseaseDistribution1" xml:space="preserve">
+    <value>Distribution de la maladie</value>
+  </data>
+  <data name="DiseaseEndemicity" xml:space="preserve">
+    <value>Distribution de la maladie/Statut de l'endémicité</value>
+  </data>
+  <data name="Diseases" xml:space="preserve">
+    <value>Maladies</value>
+  </data>
+  <data name="DiseasesRequired" xml:space="preserve">
+    <value>Choisir les maladies ciblées</value>
+  </data>
+  <data name="DiseaseTrichiasis" xml:space="preserve">
+    <value>Distribution de la maladie: Chirugie de la Trichiasis</value>
+  </data>
+  <data name="DiseaseYear" xml:space="preserve">
+    <value>Année correspondant à la distribution de la maladie</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>éditer/Modifier</value>
+  </data>
   <data name="EligibleFemalesTargeted" xml:space="preserve">
     <value>Nombre de femmes éligibles ciblées</value>
   </data>
   <data name="EligibleMalesTargeted" xml:space="preserve">
     <value>Nombre d'hommes éligibles ciblés</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Date de fin</value>
   </data>
   <data name="EndDateMda" xml:space="preserve">
     <value>Date de fin du TDM</value>
@@ -177,8 +243,17 @@
   <data name="EndDateSurvey" xml:space="preserve">
     <value>Date de fin</value>
   </data>
+  <data name="EnterNew" xml:space="preserve">
+    <value>Entrez nouveau</value>
+  </data>
+  <data name="EnterNewLink" xml:space="preserve">
+    <value>Entrez nouveau</value>
+  </data>
   <data name="EpiCoverage" xml:space="preserve">
     <value>Couverture épidémiologique</value>
+  </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>Il ya eu erreur</value>
   </data>
   <data name="Examined" xml:space="preserve">
     <value>Nombre examiné</value>
@@ -201,17 +276,29 @@
   <data name="ImportSuccess" xml:space="preserve">
     <value>{0} nouveaux documents ajoutés avec succès !</value>
   </data>
+  <data name="InterventionInfo" xml:space="preserve">
+    <value>Information regardant l'intervention</value>
+  </data>
   <data name="Interventions" xml:space="preserve">
     <value>Interventions</value>
   </data>
+  <data name="IotaInk" xml:space="preserve">
+    <value>Encre Iota</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Langue</value>
+  </data>
+  <data name="LastUpdate" xml:space="preserve">
+    <value>Dernière mise à jour</value>
   </data>
   <data name="LastUpdated" xml:space="preserve">
     <value>Dernière mise à jour :</value>
   </data>
   <data name="Latitude" xml:space="preserve">
     <value>Latitude</value>
+  </data>
+  <data name="Leporsy" xml:space="preserve">
+    <value>Lèpre</value>
   </data>
   <data name="LevelImplementation" xml:space="preserve">
     <value>Niveau de mise en œuvre</value>
@@ -235,10 +322,16 @@
     <value>Informations sur la population souffrant de FL</value>
   </data>
   <data name="LfSentinelImport" xml:space="preserve">
-    <value>Importation de l'enquête ponctuelle de site sentinelle pour la FL</value>
+    <value>Imfortation de l'enquête ponctuelle de site sentinelle pour la FL</value>
+  </data>
+  <data name="LoadingMessage" xml:space="preserve">
+    <value>Télécharger</value>
   </data>
   <data name="Location" xml:space="preserve">
     <value>Emplacement :</value>
+  </data>
+  <data name="LocationRequired" xml:space="preserve">
+    <value>Bien vouloir choisir emplacement</value>
   </data>
   <data name="LocationSelectLink" xml:space="preserve">
     <value>Sélectionner l'emplacement &gt;</value>
@@ -262,13 +355,16 @@
     <value>Nombre</value>
   </data>
   <data name="MfLoad" xml:space="preserve">
-    <value>Charge microfilienne communautaire</value>
+    <value>Charge microfilarienne communautaire</value>
   </data>
   <data name="MonitoringTraining" xml:space="preserve">
     <value>Suivi et formation</value>
   </data>
   <data name="NewData" xml:space="preserve">
     <value>Entrer de nouvelles données</value>
+  </data>
+  <data name="NewLink" xml:space="preserve">
+    <value>Nouveau</value>
   </data>
   <data name="Nonresponsive" xml:space="preserve">
     <value>Nombre faisant preuve de non-réponse</value>
@@ -282,11 +378,14 @@
   <data name="NumAdultsTreated" xml:space="preserve">
     <value>Nombre d'adultes traités</value>
   </data>
+  <data name="NumAtRisk" xml:space="preserve">
+    <value>Nombre d'individus à risque</value>
+  </data>
   <data name="NumEligibleFemalesTreated" xml:space="preserve">
     <value>Nombre de femmes traitées</value>
   </data>
   <data name="NumEligibleMalesTreated" xml:space="preserve">
-    <value>Nombre d'hommes traités</value>
+    <value>Nombre d'hommes eligibles qui ont été traités</value>
   </data>
   <data name="NumEligibleTargeted" xml:space="preserve">
     <value>Nombre de personnes éligibles ciblées</value>
@@ -309,9 +408,6 @@
   <data name="NumSacTreated" xml:space="preserve">
     <value>Nombre d'EAS traités</value>
   </data>
-  <data name="NumSchools" xml:space="preserve">
-    <value>Nombre d'écoles couvertes</value>
-  </data>
   <data name="NumTargetedOncho" xml:space="preserve">
     <value>Du total, nombre traités pour l'onchocercose</value>
   </data>
@@ -327,14 +423,14 @@
   <data name="NumTreatedZxPos" xml:space="preserve">
     <value>Nombre de personnes traitées avec une suspension orale pédiatre de Zx</value>
   </data>
-  <data name="NumUrbanCovered" xml:space="preserve">
-    <value>Nombre de zones urbaines couvertes</value>
+  <data name="OopsProblem" xml:space="preserve">
+    <value>Oopd,il y a eu probleme!</value>
   </data>
-  <data name="NumVillagesCovered" xml:space="preserve">
-    <value>Nombre de villages couverts </value>
+  <data name="Overview" xml:space="preserve">
+    <value>Vue d'ensemble</value>
   </data>
   <data name="Partner" xml:space="preserve">
-    <value>Partenaire</value>
+    <value>Partenaire </value>
   </data>
   <data name="Partners" xml:space="preserve">
     <value>Donateurs/Partenaires</value>
@@ -348,6 +444,12 @@
   <data name="PercentPositive" xml:space="preserve">
     <value>% de cas positifs</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Bien vouloir choisir... </value>
+  </data>
+  <data name="Population" xml:space="preserve">
+    <value>Population</value>
+  </data>
   <data name="Positive" xml:space="preserve">
     <value>Nombre de cas positifs</value>
   </data>
@@ -357,6 +459,9 @@
   <data name="PsacCoverage" xml:space="preserve">
     <value>Couverture des EAP</value>
   </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>éditeur</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Rapports</value>
   </data>
@@ -364,13 +469,19 @@
     <value>Requis</value>
   </data>
   <data name="RoundNumber" xml:space="preserve">
-    <value>Numéro de la tournée</value>
+    <value>Numéro de tours</value>
+  </data>
+  <data name="RoundsCurrentlyImplemented" xml:space="preserve">
+    <value>Nombre de tour de TDM/d'années de mise en œuvre effective</value>
   </data>
   <data name="RoundsMda" xml:space="preserve">
-    <value>Nombre de tournées de CP terminées avant la mise en œuvre de l'enquête</value>
+    <value>Nombre de tours de CP terminées avant la mise en œuvre de l'enquête</value>
   </data>
   <data name="RoundsPlannedYear" xml:space="preserve">
-    <value>Nombre de tournées de traitement prévues pour l'année</value>
+    <value>Nombre de tours de traitement prévues pour l'année</value>
+  </data>
+  <data name="RoundsRecommendedByWho" xml:space="preserve">
+    <value>Nombre de tours de TDM/d'années recommandées selon les directives de l'OMS</value>
   </data>
   <data name="SacCoverage" xml:space="preserve">
     <value>Couverture des EAS</value>
@@ -408,6 +519,9 @@
   <data name="SortOrder" xml:space="preserve">
     <value>Ordre de classement</value>
   </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>date de début</value>
+  </data>
   <data name="StartDateMda" xml:space="preserve">
     <value>Date de démarrage du TDM</value>
   </data>
@@ -435,11 +549,56 @@
   <data name="TAS" xml:space="preserve">
     <value>Enquête d'évaluation de la transmission</value>
   </data>
+  <data name="TasObjective" xml:space="preserve">
+    <value>Objectif du TAS prévue</value>
+  </data>
+  <data name="TasYearMonth" xml:space="preserve">
+    <value>Mois/Année prévue pour TAS
+</value>
+  </data>
   <data name="TestType" xml:space="preserve">
     <value>Type de test</value>
   </data>
   <data name="TimingType" xml:space="preserve">
     <value>Période de l'enquête</value>
+  </data>
+  <data name="TrachomaGoal" xml:space="preserve">
+    <value> Objectif ultime pour intervention pour le trachome actif</value>
+  </data>
+  <data name="TrachomaImpactYearMonth" xml:space="preserve">
+    <value>Mois/Année prévue pour étude d'impact
+</value>
+  </data>
+  <data name="TreatmentReport" xml:space="preserve">
+    <value>Rapport de traitement</value>
+  </data>
+  <data name="TrichiasisSurgeryBacklog" xml:space="preserve">
+    <value>Prise en charge de  toutes les interventions chirurgicales pour Trichiasis qui restent à faire</value>
+  </data>
+  <data name="TrichiasisSurgeryGoal" xml:space="preserve">
+    <value> Objectif ultime pour intervention chirurgicale du trichiasis</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>type</value>
+  </data>
+  <data name="UpdateComplete" xml:space="preserve">
+    <value>Mise à jour achevée</value>
+  </data>
+  <data name="UpdateException" xml:space="preserve">
+    <value>Aucune mise à jour trouvée, bien vouloir  vous assurer de l'accès à Internet</value>
+  </data>
+  <data name="UpdateNone" xml:space="preserve">
+    <value>Aucune mise à jour trouvée, </value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Mise à jour </value>
+  </data>
+  <data name="UpdatesCheck" xml:space="preserve">
+    <value>Vérifier les mises à jour
+</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>Mise à jour </value>
   </data>
   <data name="UploadFile" xml:space="preserve">
     <value>Télécharger le fichier</value>
@@ -465,6 +624,12 @@
   <data name="Vectors" xml:space="preserve">
     <value>Vecteurs</value>
   </data>
+  <data name="Version" xml:space="preserve">
+    <value>version</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Vue</value>
+  </data>
   <data name="ViewHelp" xml:space="preserve">
     <value>Afficher l'aide</value>
   </data>
@@ -477,157 +642,13 @@
   <data name="YearFirstRoundPc" xml:space="preserve">
     <value>Date de la première tournée de TDM (Année)</value>
   </data>
-  <data name="DiseaseEndemicity" xml:space="preserve">
-    <value>Distribution de la maladie/Statut de l'endémicité</value>
-  </data>
-  <data name="Population" xml:space="preserve">
-    <value>Population</value>
-  </data>
-  <data name="RoundsCurrentlyImplemented" xml:space="preserve">
-    <value>Nombre de tournées de TDM/d'années de mise en œuvre effective</value>
-  </data>
-  <data name="RoundsRecommendedByWho" xml:space="preserve">
-    <value>Nombre de tournées de TDM/d'années recommandées selon les directives de l'OMS</value>
-  </data>
   <data name="YearPcStarted" xml:space="preserve">
     <value>Année de début du TDM</value>
   </data>
   <data name="YearStoppingPc" xml:space="preserve">
     <value>Année d'achèvement des critères d'arrêt du TDM</value>
   </data>
-  <data name="Add" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="AddNewDiseaseLink" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="AddNewIntvType" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="AddNewLink" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="AddNewSurveyTypeLink" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="AddPartnerLink" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="AvailableReports" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Copyright" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="CustomReport" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="DeleteConfirmMessage" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Diseases" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="DiseasesRequired" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="DiseaseTrichiasis" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="DiseaseYear" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="ErrorOccured" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="InterventionInfo" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="IotaInk" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Leporsy" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="LoadingMessage" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="LocationRequired" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="NewLink" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="NumAtRisk" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="OopsProblem" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Overview" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="PleaseSelect" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Publisher" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="TasObjective" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="TasYearMonth" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="TrachomaGoal" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="TrachomaImpactYearMonth" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="TreatmentReport" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="TrichiasisSurgeryBacklog" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="TrichiasisSurgeryGoal" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="UpdateComplete" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="UpdateException" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="UpdateNone" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Updates" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="UpdatesCheck" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Updating" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>No Translation</value>
-  </data>
   <data name="YearStoppingPcLower" xml:space="preserve">
-    <value>No Translation</value>
+    <value>Année d'achèvement des critères d'arrêt du TDM (Lower Levels)</value>
   </data>
 </root>

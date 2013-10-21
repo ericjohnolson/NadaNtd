@@ -130,26 +130,12 @@ namespace Nada.UI
             LoadView(new OldReportCreatorView());
         }
         
-        private void mappingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            var view = new SurveyBaseView(StaticSurveyType.LfMapping);
-            view.OnSave += Survey_OnSave;
-            LoadView(view);
-        }
 
         private void prevalenceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var view = new LfMfPrevalenceView();
             view.StatusChanged += view_StatusChanged;
             view.OnClose = Dash_Load;
-            LoadView(view);
-        }
-
-        private void tASToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var view = new SurveyBaseView(StaticSurveyType.LfTas);
-            view.OnSave += Survey_OnSave;
             LoadView(view);
         }
 
@@ -169,16 +155,10 @@ namespace Nada.UI
 
         private void lFLymphedemaMorbidityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var view = new IntvBaseView(StaticIntvType.LfLymphedemaMorbidity);
-            view.OnSave += Survey_OnSave;
-            LoadView(view);
         }
 
         private void lFHydroceleMorbidityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var view = new IntvBaseView(StaticIntvType.LfHydroceleMorbidity);
-            view.OnSave += Survey_OnSave;
-            LoadView(view);
         }
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)

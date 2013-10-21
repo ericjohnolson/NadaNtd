@@ -24,6 +24,7 @@ namespace Nada.UI.View.Survey
         private List<Vector> vectors = null;
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
+        public string Title { get { return lblTitle.Text; } }
 
         public LfMfPrevalenceView()
         {
@@ -46,8 +47,9 @@ namespace Nada.UI.View.Survey
         {
             if (!DesignMode)
             {
-                adminLevelPickerControl1.Focus();
                 Localizer.TranslateControl(this);
+
+                adminLevelPickerControl1.Focus();
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
                 r = new SurveyRepository();
                 demo = new DemoRepository();
@@ -60,6 +62,7 @@ namespace Nada.UI.View.Survey
                 else
                     adminLevelPickerControl1.Select(model.AdminLevelId.Value);
 
+                LoadDropdownKeys(model);
                 List<SentinelSite> sites = r.GetSitesForAdminLevel(model.AdminLevelId.Value);
                 sites.Insert(0, new SentinelSite { SiteName = Translations.PleaseSelect, Id = -1 });
                 sentinelSiteBindingSource.DataSource = sites;
@@ -76,8 +79,23 @@ namespace Nada.UI.View.Survey
                 lbVectors.ClearSelected();
                 foreach (var vector in vectors.Where(v => model.Vectors.Select(i => i.Id).Contains(v.Id)))
                     lbVectors.SelectedItems.Add(vector);
-                StatusChanged(Translations.LastUpdated + model.UpdatedBy);
+                StatusChanged(model.UpdatedBy);
             }
+        }
+
+        private void LoadDropdownKeys(LfMfPrevalence model)
+        {
+            cbTiming.Items.Clear();
+            foreach(string key in model.TimingTypeValues)
+                cbTiming.Items.Add(TranslationLookup.GetValue(key, key));
+
+            cbTestType.Items.Clear();
+            foreach (string key in model.TestTypeValues)
+                cbTestType.Items.Add(TranslationLookup.GetValue(key, key));
+
+            cbCasualAgent.Items.Clear();
+            foreach (string key in model.CasualAgentValues)
+                cbCasualAgent.Items.Add(TranslationLookup.GetValue(key, key));
         }
 
         void adminLevelPickerControl1_OnSelect(Model.AdminLevel obj)
@@ -155,7 +173,7 @@ namespace Nada.UI.View.Survey
         /// <param name="e"></param>
         private void save_Click(object sender, EventArgs e)
         {
-            if (!model.IsValid())
+            if (!model.IsValid() || !customIndicatorControl1.IsValid())
             {
                 MessageBox.Show(Translations.ValidationError);
                 return;
@@ -184,7 +202,8 @@ namespace Nada.UI.View.Survey
         {
             SurveyTypeEdit editor = new SurveyTypeEdit(model.TypeOfSurvey);
             editor.OnSave += editType_OnSave;
-            editor.ShowDialog();
+            ViewForm form = new ViewForm(editor);
+            form.ShowDialog();
         }
 
         void editType_OnSave()

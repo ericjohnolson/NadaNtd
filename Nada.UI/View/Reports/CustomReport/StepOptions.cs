@@ -17,6 +17,7 @@ namespace Nada.UI.View.Reports.CustomReport
         private ReportOptions options = null;
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<ReportOptions> OnRunReport { get; set; }
+        public Action OnFinish { get; set; }
         public bool ShowNext { get { return true; } }
         public bool EnableNext { get { return true; } }
         public bool ShowPrev { get { return true; } }

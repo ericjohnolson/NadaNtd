@@ -39,6 +39,7 @@ namespace Nada.UI.View.Demography
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 r = new DemoRepository();
                 bsAdminLevel.DataSource = adminLevel;
                 // Foreach type of disease load the dashboard, add tabs, 

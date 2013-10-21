@@ -11,24 +11,31 @@ using Nada.UI.AppLogic;
 using Nada.Model;
 using Nada.Model.Base;
 using Nada.Model.Intervention;
+using Nada.UI.View.Help;
+using Nada.Globalization;
 
 namespace Nada.UI.View.Intervention
 {
-    public partial class IntvBaseView : UserControl
+    public partial class IntvBaseView : UserControl, IView
     {
         public event Action<bool> OnSave = (b) => { };
         private IntvBase model = null;
+        private AdminLevel adminLevel = null;
         private IntvRepository r = null;
-        private StaticIntvType creationType;
+        private int creationType;
+        public Action OnClose { get; set; }
+        public Action<string> StatusChanged { get; set; }
+        public string Title { get { return lblTitle.Text; } }
 
         public IntvBaseView()
         {
             InitializeComponent();
         }
 
-        public IntvBaseView(StaticIntvType type)
+        public IntvBaseView(int type, AdminLevel a)
         {
             creationType = type;
+            adminLevel = a;
             InitializeComponent();
         }
 
@@ -42,32 +49,41 @@ namespace Nada.UI.View.Intervention
         {
             if (!DesignMode)
             {
-                openFileDialog1.Filter = "Excel files|*.xlsx;*.xls";
                 adminLevelPickerControl1.OnSelect += adminLevelPickerControl1_OnSelect;
                 r = new IntvRepository();
-                if (model == null) model = r.CreateIntv((int)creationType);
+                if (model == null)
+                {
+                    model = r.CreateIntv(creationType);
+                    adminLevelPickerControl1.Select(adminLevel);
+                    model.AdminLevelId = adminLevel.Id;
+                }
+                else
+                    adminLevelPickerControl1.Select(model.AdminLevelId.Value);
+
                 bsIntv.DataSource = model;
-                bsType.DataSource = model.IntvType;
-                customIndicatorControl1.LoadIndicators(model.IntvType.Indicators);
+                lblTitle.Text = model.IntvType.IntvTypeName;
+                customIndicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
+                customIndicatorControl1.LoadIndicators(model.IntvType.Indicators, model.IndicatorValues);
             }
         }
+
 
         void adminLevelPickerControl1_OnSelect(Model.AdminLevel obj)
         {
             model.AdminLevelId = obj.Id;
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        void customIndicatorControl1_OnAddRemove()
         {
             IntvTypeEdit editor = new IntvTypeEdit(model.IntvType);
-            editor.OnSave += editor_OnSave;
-            editor.ShowDialog();
+            editor.OnSave += editType_OnSave;
+            ViewForm form = new ViewForm(editor);
+            form.ShowDialog();
         }
 
-        void editor_OnSave()
+        void editType_OnSave()
         {
             customIndicatorControl1.LoadIndicators(model.IntvType.Indicators);
-            bsType.ResetBindings(false);
         }
 
         /// <summary>
@@ -77,32 +93,39 @@ namespace Nada.UI.View.Intervention
         /// <param name="e"></param>
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
+            if (!model.IsValid() || !customIndicatorControl1.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError);
+                return;
+            }
+            if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
+            {
+                MessageBox.Show(Translations.LocationRequired);
+                return;
+            }
+
             bsIntv.EndEdit();
             model.IndicatorValues = customIndicatorControl1.GetValues();
             int userId = ApplicationData.Instance.GetUserId();
             r.SaveBase(model, userId);
-            MessageBox.Show("Intervention was saved!");
-            OnSave(false);
+
+            OnClose();
         }
 
-        private void lnkCreateImport_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            ImportDownload form = new ImportDownload(new IntvImporter(model.IntvType, creationType, model.IntvType.IntvTypeName + " Import"));
-            form.ShowDialog();
+            OnClose();
         }
 
-        private void lnkDoImport_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnDash_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                int userId = ApplicationData.Instance.GetUserId();
-                var importer = new IntvImporter(model.IntvType, creationType, model.IntvType.IntvTypeName + " Import");
-                var result = importer.ImportData(openFileDialog1.FileName, userId);
-                if (!result.WasSuccess)
-                    MessageBox.Show(result.ErrorMessage);
-                else
-                    MessageBox.Show(string.Format("Successfully added {0} new records!", result.Count));
-            }
+            OnClose();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            HelpView help = new HelpView();
+            help.Show();
         }
     }
 }

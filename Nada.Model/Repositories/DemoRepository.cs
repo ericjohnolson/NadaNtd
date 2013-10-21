@@ -140,6 +140,7 @@ namespace Nada.Model.Repositories
                 }
             }
         }
+
         public void UpdateCountryDemography(CountryDemography demo, int byUserId)
         {
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
@@ -173,8 +174,6 @@ namespace Nada.Model.Repositories
         #endregion
 
         #region AdminLevel
-
-
         public List<AdminLevel> GetAdminLevelChildren(int id)
         {
             List<AdminLevel> list = new List<AdminLevel>();
@@ -351,9 +350,9 @@ namespace Nada.Model.Repositories
                     foreach (var child in children)
                     {
                         command = new OleDbCommand(@"Insert Into AdminLevels (DisplayName, AdminLevelTypeId, 
-                        ParentId, IsUrban, LatWho, LngWho, Latitude, Longitude, UpdatedBy, UpdatedAt) VALUES
+                        ParentId, IsUrban, LatWho, LngWho, Latitude, Longitude, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
                         (@DisplayName, @AdminLevelTypeId, @ParentId, @IsUrban, @LatWho, @LngWho, 
-                         @Latitude, @Longitude, @updatedby, @updatedat)", connection);
+                         @Latitude, @Longitude, @updatedby, @updatedat, @CreatedById, @CreatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@DisplayName", child.Name));
                         command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", childType.Id));
                         command.Parameters.Add(new OleDbParameter("@ParentId", parent.Id));
@@ -364,6 +363,8 @@ namespace Nada.Model.Repositories
                         command.Parameters.Add(new OleDbParameter("@Longitude", child.LngOther));
                         command.Parameters.Add(new OleDbParameter("@updatedby", byUserId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", byUserId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
                         command.ExecuteNonQuery();
                     }
 
@@ -515,13 +516,15 @@ namespace Nada.Model.Repositories
         private int InsertAdminLevelHelper(OleDbCommand command, AdminLevel adminLevel, OleDbConnection connection, int userId)
         {
             command = new OleDbCommand(@"Insert Into AdminLevels (DisplayName, AdminLevelTypeId, 
-                        ParentId, UpdatedBy, UpdatedAt) VALUES
-                        (@DisplayName, @AdminLevelTypeId, @ParentId, @UpdatedBy, @UpdatedAt)", connection);
+                        ParentId, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
+                        (@DisplayName, @AdminLevelTypeId, @ParentId, @UpdatedBy, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@DisplayName", adminLevel.Name));
             command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", adminLevel.LevelNumber));
             command.Parameters.Add(new OleDbParameter("@ParentId", adminLevel.ParentId));
             command.Parameters.Add(new OleDbParameter("@UpdatedBy", userId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+            command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
             command.ExecuteNonQuery();
 
             command = new OleDbCommand(@"SELECT Max(ID) FROM AdminLevels", connection);

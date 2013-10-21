@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
@@ -13,11 +14,14 @@ using Nada.UI.AppLogic;
 
 namespace Nada.UI.View.Survey
 {
-    public partial class SurveyTypeEdit : Form
+    public partial class SurveyTypeEdit : UserControl, IView
     {
         public event Action OnSave = () => { };
         private SurveyRepository repo = null;
         private SurveyType model = null;
+        public Action OnClose { get; set; }
+        public Action<string> StatusChanged { get; set; }
+        public string Title { get { return lblTitle.Text; } }
 
         public SurveyTypeEdit()
         {
@@ -38,6 +42,8 @@ namespace Nada.UI.View.Survey
                 repo = new SurveyRepository();
                 bsSurveyType.DataSource = model;
                 lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
+                if (model.Id == 0)
+                    pnlName.Visible = true;
             }
         }
 
@@ -56,16 +62,22 @@ namespace Nada.UI.View.Survey
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            OnClose();
         }
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
+            if (!model.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError);
+                return;
+            }
+
             bsSurveyType.EndEdit();
             int currentUser = ApplicationData.Instance.GetUserId();
             repo.Save(model, currentUser);
             OnSave();
-            this.Close();
+            OnClose();
         }
 
         void add_OnSave(Indicator obj)

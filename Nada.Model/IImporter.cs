@@ -10,7 +10,7 @@ namespace Nada.Model
     {
         string ImportName { get; }
         System.Data.DataTable GetDataTable();
-
+        void CreateImportFile(string filename, List<AdminLevel> adminLevels);
         ImportResult ImportData(string filePath, int userId);
     }
 
