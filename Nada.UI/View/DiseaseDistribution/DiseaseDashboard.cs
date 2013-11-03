@@ -45,6 +45,7 @@ namespace Nada.UI.View.Demography
             LoadSurveys();
             LoadIntvTypes();
             LoadInterventions();
+            LoadDiseases();
             LoadDiseaseDistros();
            
         }
@@ -217,15 +218,25 @@ namespace Nada.UI.View.Demography
         #endregion
 
         #region Disease Distro
+        private void LoadDiseases()
+        {
+            var types = fetcher.GetDiseases();
+            types.Insert(0, new Disease { Id = 0, DisplayName = Translations.PleaseSelect });
+            cbNewDiseaseDistro.DataSource = types;
+        }
+
+        private void cbNewDiseaseDistro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbNewDiseaseDistro.SelectedItem == null)
+                return;
+
+            IView view = fetcher.NewDiseaseDistro((Disease)cbNewDiseaseDistro.SelectedItem);
+            DoLoadView(view);
+        }
+
         private void btnDisease_Click(object sender, EventArgs e)
         {
             DoCollapse(btnDisease, pnlDisease);
-        }
-
-        private void h3Link1_ClickOverride()
-        {
-            IView view = fetcher.NewDiseaseDistro();
-            DoLoadView(view);
         }
 
         private void LoadDiseaseDistros()
@@ -282,10 +293,6 @@ namespace Nada.UI.View.Demography
         }
 
         #endregion
-
-
-
-
-
+        
     }
 }

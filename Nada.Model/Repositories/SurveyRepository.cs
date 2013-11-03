@@ -26,14 +26,17 @@ namespace Nada.Model.Repositories
                     OleDbCommand command = new OleDbCommand(@"Select 
                         Surveys.ID, 
                         SurveyTypes.SurveyTypeName, 
+                        Diseases.DisplayName as DiseaseName, 
+                        Diseases.DiseaseType, 
                         Surveys.SurveyTypeId, 
                         Surveys.StartDate, 
                         Surveys.EndDate, 
                         Surveys.UpdatedAt, 
                         aspnet_Users.UserName, AdminLevels.DisplayName
-                        FROM (((Surveys INNER JOIN SurveyTypes on Surveys.SurveyTypeId = SurveyTypes.ID)
+                        FROM ((((Surveys INNER JOIN SurveyTypes on Surveys.SurveyTypeId = SurveyTypes.ID)
                             INNER JOIN aspnet_Users on Surveys.UpdatedById = aspnet_Users.UserId)
                             INNER JOIN AdminLevels on Surveys.AdminLevelId = AdminLevels.ID) 
+                            INNER JOIN Diseases on SurveyTypes.DiseaseId = Diseases.ID) 
                         WHERE Surveys.AdminLevelId=@AdminLevelId and Surveys.IsDeleted = 0 
                         ORDER BY Surveys.EndDate DESC", connection);
                     command.Parameters.Add(new OleDbParameter("@AdminLevelId", adminLevel));
@@ -44,7 +47,9 @@ namespace Nada.Model.Repositories
                             surveys.Add(new SurveyDetails
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
-                                TypeName = reader.GetValueOrDefault<string>("SurveyTypeName"),
+                                TypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseName"), reader.GetValueOrDefault<string>("DisplayName")) + " " +
+                                    TranslationLookup.GetValue(reader.GetValueOrDefault<string>("SurveyTypeName"), reader.GetValueOrDefault<string>("SurveyTypeName")),
+                                DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),
                                 TypeId = reader.GetValueOrDefault<int>("SurveyTypeId"),
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
@@ -378,8 +383,8 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select SurveyTypes.ID, SurveyTypes.SurveyTypeName
-                        FROM SurveyTypes", connection);
+                    OleDbCommand command = new OleDbCommand(@"Select SurveyTypes.ID, SurveyTypes.SurveyTypeName, Diseases.DisplayName 
+                        FROM SurveyTypes INNER JOIN Diseases on Diseases.ID = SurveyTypes.DiseaseId", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -387,7 +392,8 @@ namespace Nada.Model.Repositories
                             types.Add(new SurveyType
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
-                                SurveyTypeName = reader.GetValueOrDefault<string>("SurveyTypeName")
+                                SurveyTypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DisplayName"), reader.GetValueOrDefault<string>("DisplayName")) + " " +
+                                    TranslationLookup.GetValue(reader.GetValueOrDefault<string>("SurveyTypeName"), reader.GetValueOrDefault<string>("SurveyTypeName")),
                             });
                         }
                         reader.Close();
@@ -412,9 +418,11 @@ namespace Nada.Model.Repositories
                 try
                 {
                     OleDbCommand command = new OleDbCommand(@"Select SurveyTypes.SurveyTypeName, SurveyTypes.UpdatedAt,
-                        aspnet_users.UserName, SurveyTypes.CreatedAt, created.UserName as CreatedBy
-                        FROM ((SurveyTypes INNER JOIN aspnet_Users on SurveyTypes.UpdatedById = aspnet_Users.UserId)
+                        aspnet_users.UserName, SurveyTypes.CreatedAt, created.UserName as CreatedBy, SurveyTypes.DiseaseId, 
+                        Diseases.DiseaseType, Diseases.DisplayName
+                        FROM (((SurveyTypes INNER JOIN aspnet_Users on SurveyTypes.UpdatedById = aspnet_Users.UserId)
                             INNER JOIN aspnet_Users created on SurveyTypes.CreatedById = created.UserId)
+                            INNER JOIN Diseases on Diseases.ID = SurveyTypes.DiseaseId)
                         WHERE SurveyTypes.ID=@id", connection);
                     command.Parameters.Add(new OleDbParameter("@id", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
@@ -425,7 +433,10 @@ namespace Nada.Model.Repositories
                             survey = new SurveyType
                             {
                                 Id = id,
-                                SurveyTypeName = reader.GetValueOrDefault<string>("SurveyTypeName"),
+                                SurveyTypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DisplayName"), reader.GetValueOrDefault<string>("DisplayName")) +  " " + 
+                                    TranslationLookup.GetValue(reader.GetValueOrDefault<string>("SurveyTypeName"),reader.GetValueOrDefault<string>("SurveyTypeName")),
+                                DiseaseId = reader.GetValueOrDefault<int>("DiseaseId"),
+                                DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),
                                 UpdatedBy = Util.GetAuditInfo(reader)
                             };
                         }
@@ -492,13 +503,14 @@ namespace Nada.Model.Repositories
                     transWasStarted = true;
 
                     if (model.Id > 0)
-                        command = new OleDbCommand(@"UPDATE SurveyTypes SET SurveyTypeName=@SurveyTypeName, UpdatedById=@UpdatedById, 
+                        command = new OleDbCommand(@"UPDATE SurveyTypes SET SurveyTypeName=@SurveyTypeName, DiseaseId=@DiseaseId, UpdatedById=@UpdatedById, 
                             UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
                     else
-                        command = new OleDbCommand(@"INSERT INTO SurveyTypes (SurveyTypeName, UpdatedById, 
-                            UpdatedAt, CreatedById, CreatedAt) values (@SurveyTypeName, @UpdatedById, @UpdatedAt,
+                        command = new OleDbCommand(@"INSERT INTO SurveyTypes (SurveyTypeName, DiseaseId, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@SurveyTypeName, @DiseaseId, @UpdatedById, @UpdatedAt,
                             @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(new OleDbParameter("@SurveyTypeName", model.SurveyTypeName));
+                    command.Parameters.Add(new OleDbParameter("@DiseaseId", model.DiseaseId));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                     if (model.Id > 0)

@@ -16,7 +16,7 @@ namespace Nada.Model.Diseases
         }
 
         public string DisplayName { get; set; }
-        public int Id { get; set; }
+        public string DiseaseType { get; set; }
         public string EditText { get; set; }
         public string DeleteText { get; set; }
     }

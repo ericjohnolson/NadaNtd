@@ -385,7 +385,7 @@
     <value>Nombre de femmes traitées</value>
   </data>
   <data name="NumEligibleMalesTreated" xml:space="preserve">
-    <value>Nombre d'hommes eligibles qui ont été traités</value>
+    <value>Nombre d'hommes traités</value>
   </data>
   <data name="NumEligibleTargeted" xml:space="preserve">
     <value>Nombre de personnes éligibles ciblées</value>
@@ -469,19 +469,19 @@
     <value>Requis</value>
   </data>
   <data name="RoundNumber" xml:space="preserve">
-    <value>Numéro de tours</value>
+    <value>Nombre de tournées</value>
   </data>
   <data name="RoundsCurrentlyImplemented" xml:space="preserve">
-    <value>Nombre de tour de TDM/d'années de mise en œuvre effective</value>
+    <value>Nombre de tournées de TDM/d'années de mise en œuvre effective</value>
   </data>
   <data name="RoundsMda" xml:space="preserve">
-    <value>Nombre de tours de CP terminées avant la mise en œuvre de l'enquête</value>
+    <value>Nombre de tournées de CP terminées avant la mise en œuvre de l'enquête</value>
   </data>
   <data name="RoundsPlannedYear" xml:space="preserve">
-    <value>Nombre de tours de traitement prévues pour l'année</value>
+    <value>Nombre de tournées de traitement prévues pour l'année</value>
   </data>
   <data name="RoundsRecommendedByWho" xml:space="preserve">
-    <value>Nombre de tours de TDM/d'années recommandées selon les directives de l'OMS</value>
+    <value>Nombre de tournées de TDM/d'années recommandées selon les directives de l'OMS</value>
   </data>
   <data name="SacCoverage" xml:space="preserve">
     <value>Couverture des EAS</value>

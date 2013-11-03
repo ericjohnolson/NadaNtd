@@ -12,6 +12,7 @@ using Nada.Model.Survey;
 using Nada.UI.View.DiseaseDistribution;
 using Nada.UI.View.Intervention;
 using Nada.UI.View.Survey;
+using Nada.UI.ViewModel;
 
 namespace Nada.UI.AppLogic
 {
@@ -45,8 +46,9 @@ namespace Nada.UI.AppLogic
         List<IntvType> GetIntvTypes();
         void Delete(IntvDetails details, int userId);
         // DiseaseDistros
+        List<Disease> GetDiseases();
         List<DiseaseDistroDetails> GetDiseaseDistros();
-        IView NewDiseaseDistro();
+        IView NewDiseaseDistro(Disease disease);
         IView GetDiseaseDistro(DiseaseDistroDetails details);
         void Delete(DiseaseDistroDetails details, int userId);
     }
@@ -76,8 +78,10 @@ namespace Nada.UI.AppLogic
                 return null;
             else if (type.Id == (int)StaticSurveyType.LfPrevalence)
                 return new LfMfPrevalenceView(adminLevel);
-            else
-                return new SurveyBaseView(type.Id, adminLevel);
+            else if (type.Id == (int)StaticSurveyType.BuruliSurvey)
+                return new DataEntryEdit(new SurveyBaseVm(adminLevel, type.Id, new CalcBuruliSurvey()));
+
+            return new DataEntryEdit(new SurveyBaseVm(adminLevel, type.Id, null));
         }
 
         public IView GetSurvey(SurveyDetails details)
@@ -87,12 +91,12 @@ namespace Nada.UI.AppLogic
                 var survey = surveys.GetLfMfPrevalenceSurvey(details.Id);
                 return new LfMfPrevalenceView(survey);
             }
+            else if (details.TypeId == (int)StaticSurveyType.BuruliSurvey)
+                return new DataEntryEdit(new SurveyBaseVm(adminLevel, details, new CalcBuruliSurvey()));
             else
             {
-                var survey = surveys.GetById(details.Id);
-                return new SurveyBaseView(survey);
+                return new DataEntryEdit(new SurveyBaseVm(adminLevel, details, null));
             }
-            return null;
         }
         #endregion
 
@@ -123,20 +127,56 @@ namespace Nada.UI.AppLogic
                 var intv = interventions.GetById(details.Id);
                 return new IntvBaseView(intv);
             }
-            return null;
         }
 
         #endregion
 
         #region DiseaseDistro
         public List<DiseaseDistroDetails> GetDiseaseDistros() { return diseases.GetAllForAdminLevel(adminLevel.Id); }
+        public List<Disease> GetDiseases() { return diseases.GetAllDiseases(); }
         public void Delete(DiseaseDistroDetails details, int userId) { diseases.Delete(details, userId); }
-        public IView NewDiseaseDistro() { return new DiseaseDistroEdit(adminLevel, disease.Id); }
+        public IView NewDiseaseDistro(Disease type) 
+        {
+            if (type.Id < 1)
+                return null;
+            if(type.Id == 7)
+                return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, new CalcLeprosyDistro()));
+            if (type.Id == 8)
+                return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, new CalcHatDistro()));
+            if (type.Id == 9)
+                return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, new CalcLeishDistro()));
+            if (type.Id == 10)
+                return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, new CalcBuruliDistro()));
+            if (type.Id == 11)
+                return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, new CalcYawsDistro()));
+
+            if(type.DiseaseType == "CM")
+                return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, null));
+    
+            return new DataEntryEdit(new DiseaseDistroPcVm(adminLevel, type.Id, null)); 
+        }
 
         public IView GetDiseaseDistro(DiseaseDistroDetails details)
         {
-            var model = diseases.GetDiseaseDistribution(details.Id, details.TypeId);
-            return new DiseaseDistroEdit(model);
+            DiseaseDistroCm model = diseases.GetDiseaseDistributionCm(details.Id, details.TypeId);
+            if (model.Disease.DiseaseType == "CM")
+            {
+                if (model.Disease.Id == 7)
+                    return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, model, new CalcLeprosyDistro()));
+                if (model.Disease.Id == 8)
+                    return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, model, new CalcHatDistro()));
+                if (model.Disease.Id == 9)
+                    return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, model, new CalcLeishDistro()));
+                if (model.Disease.Id == 10)
+                    return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, model, new CalcBuruliDistro()));
+                if (model.Disease.Id == 11)
+                    return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, model, new CalcYawsDistro()));
+
+                return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, model, null));
+            }
+
+            DiseaseDistroPc modelPc = diseases.GetDiseaseDistribution(details.Id, details.TypeId);
+            return new DataEntryEdit(new DiseaseDistroPcVm(adminLevel, modelPc, null)); 
         }
 
         #endregion

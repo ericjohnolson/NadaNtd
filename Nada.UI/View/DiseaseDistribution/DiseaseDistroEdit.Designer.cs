@@ -198,7 +198,7 @@
             // 
             // bsDiseaseDistro
             // 
-            this.bsDiseaseDistro.DataSource = typeof(Nada.Model.Diseases.DiseaseDistro);
+            this.bsDiseaseDistro.DataSource = typeof(Nada.Model.Diseases.DiseaseDistroPc);
             // 
             // errorProvider1
             // 

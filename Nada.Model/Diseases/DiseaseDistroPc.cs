@@ -9,9 +9,9 @@ using Nada.Model.Base;
 namespace Nada.Model.Diseases
 {
     [Serializable]
-    public class DiseaseDistro : NadaClass, IHaveDynamicIndicators, IHaveDynamicIndicatorValues, IDataErrorInfo
+    public class DiseaseDistroPc : NadaClass, IHaveDynamicIndicators, IHaveDynamicIndicatorValues, IDataErrorInfo
     {
-        public DiseaseDistro()
+        public DiseaseDistroPc()
         {
             IndicatorValues = new List<IndicatorValue>();
 

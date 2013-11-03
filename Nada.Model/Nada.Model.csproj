@@ -55,18 +55,25 @@
   <ItemGroup>
     <Compile Include="Base\NadaListItem.cs" />
     <Compile Include="Demography\AdminLevelImporter.cs" />
+    <Compile Include="Diseases\CalcHatDistro.cs" />
+    <Compile Include="Diseases\CalcLeishDistro.cs" />
+    <Compile Include="Diseases\CalcBuruliDistro.cs" />
+    <Compile Include="Diseases\CalcYawsDistro.cs" />
+    <Compile Include="Diseases\DiseaseDistroCm.cs" />
     <Compile Include="Diseases\DiseaseDistroDetails.cs" />
+    <Compile Include="Diseases\CalcLeprosyDistro.cs" />
+    <Compile Include="ICalcIndicators.cs" />
     <Compile Include="Intervention\IntvDetails.cs" />
     <Compile Include="Reports\ReportOptions.cs" />
+    <Compile Include="Survey\CalcBuruliSurvey.cs" />
     <Compile Include="Survey\SurveyDetails.cs" />
     <Compile Include="Survey\LfSentinelImporter.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Demography\AdminLevel.cs" />
     <Compile Include="Demography\AdminLevelType.cs" />
     <Compile Include="Demography\AdminLevelDemography.cs" />
-    <Compile Include="Diseases\DiseasePopImporter.cs" />
     <Compile Include="Diseases\DiseasePopulation.cs" />
-    <Compile Include="Diseases\DiseaseDistro.cs" />
+    <Compile Include="Diseases\DiseaseDistroPc.cs" />
     <Compile Include="Diseases\DiseaseDistributionImporter.cs" />
     <Compile Include="ModelData.cs" />
     <Compile Include="Base\NadaClass.cs" />

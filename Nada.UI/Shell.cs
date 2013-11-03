@@ -178,7 +178,6 @@ namespace Nada.UI
 
         }
 
-
         void diseaseDistroAdminLevel_OnSelect(Model.AdminLevel obj)
         {
             MessageBox.Show("Not Implemented");
@@ -186,9 +185,6 @@ namespace Nada.UI
 
         private void lFPopulationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var view = new DiseasePopulationEdit(DiseaseType.Lf);
-            view.OnSave += Survey_OnSave;
-            LoadView(view);
         }
         #endregion
 
@@ -198,8 +194,5 @@ namespace Nada.UI
             ImportDownload form = new ImportDownload(new LfSentinelImporter(r.GetSurveyType((int)StaticSurveyType.LfPrevalence)));
             form.ShowDialog();
         }
-
-
-
     }
 }

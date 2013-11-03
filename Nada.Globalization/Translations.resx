@@ -816,4 +816,220 @@
   <data name="SpotCheckSiteName" xml:space="preserve">
     <value>Spot Check Site Name</value>
   </data>
+  <data name="BuruliUlcer" xml:space="preserve">
+    <value>Buruli Ulcer</value>
+  </data>
+  <data name="GuineaWorm" xml:space="preserve">
+    <value>Guinea worm</value>
+  </data>
+  <data name="HAT" xml:space="preserve">
+    <value>HAT</value>
+  </data>
+  <data name="Leishmaniasis" xml:space="preserve">
+    <value>Leishmaniasis</value>
+  </data>
+  <data name="Leprosy" xml:space="preserve">
+    <value>Leprosy</value>
+  </data>
+  <data name="Oncho" xml:space="preserve">
+    <value>Oncho</value>
+  </data>
+  <data name="STH" xml:space="preserve">
+    <value>STH</value>
+  </data>
+  <data name="YAWS" xml:space="preserve">
+    <value>YAWS</value>
+  </data>
+  <data name="CaseFindingStrategy" xml:space="preserve">
+    <value>Case finding strategy</value>
+  </data>
+  <data name="Endemic" xml:space="preserve">
+    <value>Endemic</value>
+  </data>
+  <data name="EndemicityStatus" xml:space="preserve">
+    <value>Endemicity status</value>
+  </data>
+  <data name="EndemicityTbv" xml:space="preserve">
+    <value>Endemicity to be verified</value>
+  </data>
+  <data name="NotEndemic" xml:space="preserve">
+    <value>Not endemic</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Calculate &gt;</value>
+  </data>
+  <data name="CalculatedStatistics" xml:space="preserve">
+    <value>Calculated Statistics:</value>
+  </data>
+  <data name="CasesFromRural" xml:space="preserve">
+    <value>Cases from rural areas</value>
+  </data>
+  <data name="Combined" xml:space="preserve">
+    <value>Combined</value>
+  </data>
+  <data name="DetectionRate100k" xml:space="preserve">
+    <value>Detection rate per 100,000</value>
+  </data>
+  <data name="DetectionRate10k" xml:space="preserve">
+    <value>Detection rate per 10,000</value>
+  </data>
+  <data name="FormerlyEndemic" xml:space="preserve">
+    <value>Formerly endemic</value>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="MbCasesRegisteredMdtBeginning" xml:space="preserve">
+    <value>MB cases registered for MDT at the beginning of the year</value>
+  </data>
+  <data name="MbCasesRegisteredMdtEnd" xml:space="preserve">
+    <value>Prevalence (cases registered for MDT) at the end of the year</value>
+  </data>
+  <data name="NumCasesContactsTreatedCm" xml:space="preserve">
+    <value>Number of cases and contacts treated - Adults and children, male and female</value>
+  </data>
+  <data name="NumCasesDiagnosedCm" xml:space="preserve">
+    <value>Number of diagnosed cases  (Adults and children, Male and Female)</value>
+  </data>
+  <data name="NumCasesFoundCm" xml:space="preserve">
+    <value>Number of cases found - Adults and children, male and female</value>
+  </data>
+  <data name="NumCasesLeprosyCm" xml:space="preserve">
+    <value>Number of cases removed from leprosy registers for defaulting to treatment, lost to follow up, misdiagnosed cases, old patients readmitted to medical treatment (multiple drug therapy) because of grade II disabilities (claw fingers, amputation, lagophtalmos, etc.)</value>
+  </data>
+  <data name="NumCasesPcrCm" xml:space="preserve">
+    <value>Number of new cases confirmed by PCR test during assessment surveys or active case finding</value>
+  </data>
+  <data name="NumPopScreenedCm" xml:space="preserve">
+    <value>Number of persons that were screened (clinical examination and specimen taking for lab tests) - Adults and children, male and female</value>
+  </data>
+  <data name="NumPopSurveyedCm" xml:space="preserve">
+    <value>Number of population in surveyed villages or communities - Adult and children (under 15 years old),  male and female</value>
+  </data>
+  <data name="NumSchoolsScreenedCm" xml:space="preserve">
+    <value>Number of schools screened during the year</value>
+  </data>
+  <data name="NumVillagesScreenedCm" xml:space="preserve">
+    <value>Number of villages screened during the year</value>
+  </data>
+  <data name="Passive" xml:space="preserve">
+    <value>Passive</value>
+  </data>
+  <data name="PercentCasesHat2" xml:space="preserve">
+    <value>% of cases at stage 2</value>
+  </data>
+  <data name="PercentCatICases" xml:space="preserve">
+    <value>% of new cases with category I lesions</value>
+  </data>
+  <data name="PercentCatIICases" xml:space="preserve">
+    <value>% of new cases with category III lesions</value>
+  </data>
+  <data name="PercentNewCasesPcrCm" xml:space="preserve">
+    <value>% of new cases confirmed by PCR test during assessment surveys or active case finding</value>
+  </data>
+  <data name="PercentNewChildren" xml:space="preserve">
+    <value>% of new children</value>
+  </data>
+  <data name="PercentNewFemales" xml:space="preserve">
+    <value>% of new females</value>
+  </data>
+  <data name="PercentNewMb" xml:space="preserve">
+    <value>% of new MB</value>
+  </data>
+  <data name="PercentPcrCases" xml:space="preserve">
+    <value>% of new cases confirmed by PCR</value>
+  </data>
+  <data name="PercentUlcerativeCases" xml:space="preserve">
+    <value>% of ulcerative cases</value>
+  </data>
+  <data name="PreSchoolCases6" xml:space="preserve">
+    <value>Pre-school age cases (less than 6 years old)</value>
+  </data>
+  <data name="PrevalenceBeginningYear" xml:space="preserve">
+    <value>Prevalence (cases registered for MDT) at the beginning of the year</value>
+  </data>
+  <data name="PrevalenceRateEndOfYear" xml:space="preserve">
+    <value>Prevalence rate at the end of the year per 10,000</value>
+  </data>
+  <data name="RateNewGrade2" xml:space="preserve">
+    <value>Rate of New Grade II per 1 million population</value>
+  </data>
+  <data name="SchoolCases14" xml:space="preserve">
+    <value>School age cases (6 to 14 years old)</value>
+  </data>
+  <data name="Survey" xml:space="preserve">
+    <value>Survey</value>
+  </data>
+  <data name="TotalCasesConfirmedLab" xml:space="preserve">
+    <value>New cases confirmed by lab test</value>
+  </data>
+  <data name="TotalCasesConfirmedPcr" xml:space="preserve">
+    <value>Total number of new cases confirmed by lab test (PCR)</value>
+  </data>
+  <data name="TotalCasesContacted" xml:space="preserve">
+    <value>Total number of cases and contacts to be treated</value>
+  </data>
+  <data name="TotalCasesTargeted" xml:space="preserve">
+    <value>Total number of contact of cases targeted for treatment</value>
+  </data>
+  <data name="TotalCat1Cases" xml:space="preserve">
+    <value>Total number of new cases with category I Lesions</value>
+  </data>
+  <data name="TotalCat2Cases" xml:space="preserve">
+    <value>Total number of new cases with category II Lesions</value>
+  </data>
+  <data name="TotalCat3Cases" xml:space="preserve">
+    <value>Total number of new cases with category III Lesions</value>
+  </data>
+  <data name="TotalHatConfirmedLab" xml:space="preserve">
+    <value>Number of cases of HAT confirmed by a lab test</value>
+  </data>
+  <data name="TotalNumCasesRegistered" xml:space="preserve">
+    <value>Total number of cases registered</value>
+  </data>
+  <data name="TotalNumChildNewCases" xml:space="preserve">
+    <value>Total number of children among new cases</value>
+  </data>
+  <data name="TotalNumClCases" xml:space="preserve">
+    <value>Total number of CL new cases</value>
+  </data>
+  <data name="TotalNumFemaleNewCases" xml:space="preserve">
+    <value>Total number of female new cases</value>
+  </data>
+  <data name="TotalNumHat" xml:space="preserve">
+    <value>Total number of cases of HAT</value>
+  </data>
+  <data name="TotalNumHat2" xml:space="preserve">
+    <value>Total number of HAT cases at stage 2</value>
+  </data>
+  <data name="TotalNumHatChild" xml:space="preserve">
+    <value>Total number of children among the cases of HAT</value>
+  </data>
+  <data name="TotalNumHatFemale" xml:space="preserve">
+    <value>Total number of female new cases of HAT</value>
+  </data>
+  <data name="TotalNumMbCases" xml:space="preserve">
+    <value>Total number of MB new cases</value>
+  </data>
+  <data name="TotalNumNewCases" xml:space="preserve">
+    <value>Total number of new cases</value>
+  </data>
+  <data name="TotalNumPeopleScreenedCm" xml:space="preserve">
+    <value>Total number of people screened during the year</value>
+  </data>
+  <data name="TotalNumVlCases" xml:space="preserve">
+    <value>Total number of VL new cases</value>
+  </data>
+  <data name="TotalUlcerativeCases" xml:space="preserve">
+    <value>Total number of ulcerative new cases</value>
+  </data>
+  <data name="UnknownEndemicity" xml:space="preserve">
+    <value>Unknown endemicity</value>
+  </data>
 </root>

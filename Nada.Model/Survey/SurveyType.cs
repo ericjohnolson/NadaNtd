@@ -16,6 +16,9 @@ namespace Nada.Model.Survey
         }
         public string SurveyTypeName { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }
+        public List<KeyValuePair<int, string>> IndicatorDropdownValues { get; set; }
+        public int DiseaseId { get; set; }
+        public string DiseaseType { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

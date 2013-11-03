@@ -1,6 +1,6 @@
-﻿namespace Nada.UI.View.Survey
+﻿namespace Nada.UI.View
 {
-    partial class SurveyTypeEdit
+    partial class IndicatorTypeEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lvIndicators = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn8 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn9 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -45,15 +44,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.lblCustomIndicators = new System.Windows.Forms.Label();
-            this.hr1 = new Nada.UI.Controls.HR();
-            this.bsSurveyType = new System.Windows.Forms.BindingSource(this.components);
+            this.hrTop = new Nada.UI.Controls.HR();
+            this.tblTitle = new System.Windows.Forms.TableLayoutPanel();
+            this.lblDiseaseType = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.lvIndicators)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.pnlName.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSurveyType)).BeginInit();
+            this.tblTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvIndicators
@@ -70,7 +70,7 @@
             this.olvColumn2,
             this.olvColumn1});
             this.lvIndicators.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvIndicators.Location = new System.Drawing.Point(2, 37);
+            this.lvIndicators.Location = new System.Drawing.Point(2, 41);
             this.lvIndicators.Name = "lvIndicators";
             this.lvIndicators.ShowGroups = false;
             this.lvIndicators.Size = new System.Drawing.Size(554, 144);
@@ -121,7 +121,6 @@
             // 
             // tbName
             // 
-            this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSurveyType, "SurveyTypeName", true));
             this.tbName.Location = new System.Drawing.Point(0, 19);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(158, 20);
@@ -146,7 +145,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(565, 283);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(565, 287);
             this.tableLayoutPanel1.TabIndex = 18;
             // 
             // tableLayoutPanel4
@@ -162,7 +161,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 252);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 256);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -232,7 +231,7 @@
             this.panel1.Controls.Add(this.lblCustomIndicators);
             this.panel1.Location = new System.Drawing.Point(3, 55);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(559, 184);
+            this.panel1.Size = new System.Drawing.Size(559, 188);
             this.panel1.TabIndex = 2;
             // 
             // fieldLink1
@@ -255,7 +254,7 @@
             this.lblCustomIndicators.AutoSize = true;
             this.lblCustomIndicators.BackColor = System.Drawing.Color.Transparent;
             this.lblCustomIndicators.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomIndicators.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.lblCustomIndicators.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.lblCustomIndicators.Location = new System.Drawing.Point(-2, 1);
             this.lblCustomIndicators.Margin = new System.Windows.Forms.Padding(0);
             this.lblCustomIndicators.Name = "lblCustomIndicators";
@@ -263,44 +262,71 @@
             this.lblCustomIndicators.TabIndex = 21;
             this.lblCustomIndicators.Text = "Custom Indicators";
             // 
-            // hr1
+            // hrTop
             // 
-            this.hr1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.hr1.ForeColor = System.Drawing.Color.Gray;
-            this.hr1.Location = new System.Drawing.Point(0, 0);
-            this.hr1.Margin = new System.Windows.Forms.Padding(5);
-            this.hr1.Name = "hr1";
-            this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.hr1.Size = new System.Drawing.Size(619, 5);
-            this.hr1.TabIndex = 16;
+            this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
+            this.hrTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hrTop.ForeColor = System.Drawing.Color.Gray;
+            this.hrTop.Location = new System.Drawing.Point(0, 0);
+            this.hrTop.Margin = new System.Windows.Forms.Padding(5);
+            this.hrTop.Name = "hrTop";
+            this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
+            this.hrTop.Size = new System.Drawing.Size(619, 5);
+            this.hrTop.TabIndex = 16;
             // 
-            // bsSurveyType
+            // tblTitle
             // 
-            this.bsSurveyType.DataSource = typeof(Nada.Model.Survey.SurveyType);
+            this.tblTitle.AutoSize = true;
+            this.tblTitle.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblTitle.ColumnCount = 2;
+            this.tblTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblTitle.Controls.Add(this.lblDiseaseType, 0, 0);
+            this.tblTitle.Controls.Add(this.lblTitle, 1, 0);
+            this.tblTitle.Location = new System.Drawing.Point(20, 13);
+            this.tblTitle.Name = "tblTitle";
+            this.tblTitle.RowCount = 1;
+            this.tblTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblTitle.Size = new System.Drawing.Size(223, 30);
+            this.tblTitle.TabIndex = 61;
+            // 
+            // lblDiseaseType
+            // 
+            this.lblDiseaseType.AutoSize = true;
+            this.lblDiseaseType.BackColor = System.Drawing.Color.Transparent;
+            this.lblDiseaseType.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiseaseType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
+            this.lblDiseaseType.Location = new System.Drawing.Point(0, 0);
+            this.lblDiseaseType.Margin = new System.Windows.Forms.Padding(0);
+            this.lblDiseaseType.Name = "lblDiseaseType";
+            this.lblDiseaseType.Size = new System.Drawing.Size(45, 30);
+            this.lblDiseaseType.TabIndex = 44;
+            this.lblDiseaseType.Tag = "CM";
+            this.lblDiseaseType.Text = "CM";
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.lblTitle.Location = new System.Drawing.Point(18, 9);
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
+            this.lblTitle.Location = new System.Drawing.Point(45, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(187, 28);
-            this.lblTitle.TabIndex = 17;
-            this.lblTitle.Tag = "SurveyInformation";
-            this.lblTitle.Text = "Survey Information";
+            this.lblTitle.Size = new System.Drawing.Size(178, 30);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Tag = "";
+            this.lblTitle.Text = "DiseaseDistribution";
             // 
-            // SurveyTypeEdit
+            // IndicatorTypeEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.tblTitle);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.hr1);
-            this.Name = "SurveyTypeEdit";
+            this.Controls.Add(this.hrTop);
+            this.Name = "IndicatorTypeEdit";
             this.Size = new System.Drawing.Size(619, 364);
             this.Tag = "SurveyInformation";
             this.Load += new System.EventHandler(this.SurveyTypeView_Load);
@@ -313,7 +339,8 @@
             this.pnlName.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSurveyType)).EndInit();
+            this.tblTitle.ResumeLayout(false);
+            this.tblTitle.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,8 +355,7 @@
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
         private System.Windows.Forms.TextBox tbName;
-        private System.Windows.Forms.BindingSource bsSurveyType;
-        private Controls.HR hr1;
+        private Controls.HR hrTop;
         private Controls.H3Label h3Label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel pnlName;
@@ -339,6 +365,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
+        private System.Windows.Forms.TableLayoutPanel tblTitle;
+        private System.Windows.Forms.Label lblDiseaseType;
         private System.Windows.Forms.Label lblTitle;
 
     }

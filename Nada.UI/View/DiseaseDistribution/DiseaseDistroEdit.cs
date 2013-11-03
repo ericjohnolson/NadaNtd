@@ -21,7 +21,7 @@ namespace Nada.UI.View.DiseaseDistribution
     public partial class DiseaseDistroEdit : UserControl, IView
     {
         private AdminLevel adminLevel = null;
-        private DiseaseDistro model = null;
+        private DiseaseDistroPc model = null;
         private DiseaseRepository r = null;
         private DemoRepository demo = null;
         private int diseaseId = 0;
@@ -41,7 +41,7 @@ namespace Nada.UI.View.DiseaseDistribution
             InitializeComponent();
         }
 
-        public DiseaseDistroEdit(DiseaseDistro s)
+        public DiseaseDistroEdit(DiseaseDistroPc s)
         {
             this.model = s;
             InitializeComponent();
@@ -76,7 +76,7 @@ namespace Nada.UI.View.DiseaseDistribution
             }
         }
 
-        private void ShowType(DiseaseDistro model)
+        private void ShowType(DiseaseDistroPc model)
         {
             if (model.Disease.Id == (int)DiseaseType.Lf)
             {

@@ -34,7 +34,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pnlLf = new System.Windows.Forms.Panel();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.hr4 = new Nada.UI.Controls.HR();
             ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).BeginInit();
@@ -65,7 +64,6 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(15, 55);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(15, 10, 3, 3);
@@ -73,7 +71,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(482, 444);
             this.tabControl1.TabIndex = 59;
-            this.tabControl1.Tag = "Leporsy";
+            this.tabControl1.Tag = "";
             // 
             // tabPage2
             // 
@@ -84,8 +82,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(474, 418);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Tag = "LF";
-            this.tabPage2.Text = "LF";
+            this.tabPage2.Tag = "";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // pnlLf
@@ -97,17 +94,6 @@
             this.pnlLf.Name = "pnlLf";
             this.pnlLf.Size = new System.Drawing.Size(0, 0);
             this.pnlLf.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(474, 418);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Tag = "Leprosy";
-            this.tabPage1.Text = "Leprosy";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -171,6 +157,5 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel pnlLf;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TabPage tabPage1;
     }
 }

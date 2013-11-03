@@ -9,15 +9,17 @@ namespace Nada.Model
     {
         Text = 1,
         Number = 2,
+        YesNo = 3,
         Date = 4,
-        YesNo = 3
+        Dropdown = 5
     }
 
     public enum StaticSurveyType
     {
         LfPrevalence = 1,
         LfTas = 2,
-        LfMapping = 3
+        LfMapping = 3,
+        BuruliSurvey = 8
     }
 
     public enum StaticIntvType

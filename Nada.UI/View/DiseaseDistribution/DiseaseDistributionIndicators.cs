@@ -61,10 +61,8 @@ namespace Nada.UI.View
         private void btnSave_Click_1(object sender, EventArgs e)
         {
             int currentUser = ApplicationData.Instance.GetUserId();
-            if(model is DiseaseDistro)
-                repo.SaveIndicators((DiseaseDistro)model, currentUser);
-            else if(model is DiseasePopulation)
-                repo.SaveIndicators((DiseasePopulation)model, currentUser);
+            if(model is DiseaseDistroPc)
+                repo.SaveIndicators((DiseaseDistroPc)model, ((DiseaseDistroPc)model).Disease.Id, currentUser);
             OnSave();
             this.Close();
         }

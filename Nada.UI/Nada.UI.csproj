@@ -130,7 +130,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppLogic\IWizardStep.cs" />
+    <Compile Include="Controls\H3bLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\H3bLabel.Designer.cs">
+      <DependentUpon>H3bLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatCalculator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StatCalculator.Designer.cs">
+      <DependentUpon>StatCalculator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\SurveyBaseVm.cs" />
+    <Compile Include="ViewModel\DiseaseDistroPcVm.cs" />
+    <Compile Include="ViewModel\DiseaseDistroCmVm.cs" />
+    <Compile Include="ViewModel\IDataEntryVm.cs" />
+    <Compile Include="ViewModel\IWizardStep.cs" />
+    <Compile Include="Controls\IndicatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\IndicatorControl.Designer.cs">
+      <DependentUpon>IndicatorControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\H3Link.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -143,10 +165,9 @@
     <Compile Include="View\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppLogic\ApplicationData.cs" />
-    <Compile Include="AppLogic\DiseaseActivitiesFactory.cs" />
-    <Compile Include="AppLogic\IndicatorHelper.cs" />
-    <Compile Include="AppLogic\IView.cs" />
+    <Compile Include="ViewModel\ApplicationData.cs" />
+    <Compile Include="ViewModel\DiseaseActivitiesFactory.cs" />
+    <Compile Include="ViewModel\IView.cs" />
     <Compile Include="Controls\CollapsiblePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -200,7 +221,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NationalDatabaseTemplateDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="AppLogic\Localizer.cs" />
+    <Compile Include="ViewModel\Localizer.cs" />
     <Compile Include="Shell.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +235,12 @@
     </Compile>
     <Compile Include="View\Demography\TestDemoImport.Designer.cs">
       <DependentUpon>TestDemoImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DataEntryEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\DataEntryEdit.Designer.cs">
+      <DependentUpon>DataEntryEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DiseaseDistribution\DiseaseDistroEdit.cs">
       <SubType>UserControl</SubType>
@@ -238,6 +265,12 @@
     </Compile>
     <Compile Include="View\Reports\CustomReport\StepLocations.Designer.cs">
       <DependentUpon>StepLocations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\IndicatorTypeEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\IndicatorTypeEdit.Designer.cs">
+      <DependentUpon>IndicatorTypeEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Wizard\ImportStepType.cs">
       <SubType>UserControl</SubType>
@@ -316,12 +349,6 @@
     </Compile>
     <Compile Include="View\DiseaseDistribution\DiseaseDistributionIndicators.Designer.cs">
       <DependentUpon>DiseaseDistributionIndicators.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseasePopulationEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseasePopulationEdit.Designer.cs">
-      <DependentUpon>DiseasePopulationEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DiseaseDistribution\DiseaseAdd.cs">
       <SubType>Form</SubType>
@@ -551,8 +578,17 @@
     <Compile Include="View\Wizard\WorkingStep.Designer.cs">
       <DependentUpon>WorkingStep.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\H3bLabel.resx">
+      <DependentUpon>H3bLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\IndicatorControl.resx">
+      <DependentUpon>IndicatorControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\H3Link.resx">
       <DependentUpon>H3Link.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StatCalculator.resx">
+      <DependentUpon>StatCalculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\About.resx">
       <DependentUpon>About.cs</DependentUpon>
@@ -598,6 +634,9 @@
     <EmbeddedResource Include="View\Demography\TestDemoImport.resx">
       <DependentUpon>TestDemoImport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\DataEntryEdit.resx">
+      <DependentUpon>DataEntryEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistroEdit.resx">
       <DependentUpon>DiseaseDistroEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -606,6 +645,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\CustomReport\CustomReportView.resx">
       <DependentUpon>CustomReportView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\IndicatorTypeEdit.resx">
+      <DependentUpon>IndicatorTypeEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\ImportStepType.resx">
       <DependentUpon>ImportStepType.cs</DependentUpon>
@@ -648,9 +690,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistributionIndicators.resx">
       <DependentUpon>DiseaseDistributionIndicators.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\DiseaseDistribution\DiseasePopulationEdit.resx">
-      <DependentUpon>DiseasePopulationEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseAdd.resx">
       <DependentUpon>DiseaseAdd.cs</DependentUpon>
@@ -893,6 +932,7 @@
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
