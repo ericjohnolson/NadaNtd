@@ -23,6 +23,7 @@ namespace Nada.UI.ViewModel
         void DoSave(List<IndicatorValue> indicatorValues);
 
 
+
         void DoSaveType(string p);
     }
 }

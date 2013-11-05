@@ -70,7 +70,7 @@ namespace Nada.UI.AppLogic
         #region Surveys
         public List<SurveyDetails> GetSurveys() { return surveys.GetAllForAdminLevel(adminLevel.Id); }
         public List<SurveyType> GetSurveyTypes() { return surveys.GetSurveyTypes(); }
-        public void Delete(SurveyDetails details, int userId) { surveys.Delete(details, userId);  }
+        public void Delete(SurveyDetails details, int userId) { surveys.Delete(details, userId); }
 
         public IView NewSurvey(SurveyType type)
         {
@@ -102,17 +102,29 @@ namespace Nada.UI.AppLogic
 
         #region Interventions
         public List<IntvDetails> GetIntvs() { return interventions.GetAllForAdminLevel(adminLevel.Id); }
-        public List<IntvType> GetIntvTypes() { return interventions.GetTypesByDisease(disease.Id); }
+        public List<IntvType> GetIntvTypes() { return interventions.GetAllTypes(); }
         public void Delete(IntvDetails details, int userId) { interventions.Delete(details, userId); }
 
         public IView NewIntv(IntvType type)
         {
             if (type.Id < 1)
                 return null;
-            else if(type.Id == (int)StaticIntvType.IvmAlbMda)
+            else if (type.Id == (int)StaticIntvType.IvmAlbMda)
                 return new PcMdaView(adminLevel, type);
-            else
-                return new IntvBaseView(type.Id, adminLevel);
+            if (type.Id == (int)StaticIntvType.GuineaWormIntervention)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, type.Id, new CalcGuineaIntv()));
+            if (type.Id == (int)StaticIntvType.BuruliUlcerIntv)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, type.Id, new CalcBuruliIntv()));
+            if (type.Id == (int)StaticIntvType.HatIntervention)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, type.Id, new CalcHatIntv()));
+            if (type.Id == (int)StaticIntvType.LeishIntervention)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, type.Id, new CalcLeishIntv()));
+            if (type.Id == (int)StaticIntvType.LeprosyIntervention)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, type.Id, new CalcLeprosyIntv()));
+            if (type.Id == (int)StaticIntvType.YawsIntervention)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, type.Id, new CalcYawsIntv()));
+           
+            return new DataEntryEdit(new IntvBaseVm(adminLevel, type.Id, null));
         }
 
         public IView GetIntv(IntvDetails details)
@@ -122,11 +134,20 @@ namespace Nada.UI.AppLogic
                 var mda = interventions.GetPcMda(details.Id);
                 return new PcMdaView(mda);
             }
-            else
-            {
-                var intv = interventions.GetById(details.Id);
-                return new IntvBaseView(intv);
-            }
+            if (details.TypeId == (int)StaticIntvType.GuineaWormIntervention)
+                    return new DataEntryEdit(new IntvBaseVm(adminLevel, details, new CalcGuineaIntv()));
+            if (details.TypeId == (int)StaticIntvType.BuruliUlcerIntv)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, details, new CalcBuruliIntv()));
+            if (details.TypeId == (int)StaticIntvType.HatIntervention)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, details, new CalcHatIntv()));
+            if (details.TypeId == (int)StaticIntvType.LeishIntervention)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, details, new CalcLeishIntv()));
+            if (details.TypeId == (int)StaticIntvType.LeprosyIntervention)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, details, new CalcLeprosyIntv()));
+            if (details.TypeId == (int)StaticIntvType.YawsIntervention)
+                return new DataEntryEdit(new IntvBaseVm(adminLevel, details, new CalcYawsIntv()));
+
+            return new DataEntryEdit(new IntvBaseVm(adminLevel, details, null));
         }
 
         #endregion
@@ -135,11 +156,11 @@ namespace Nada.UI.AppLogic
         public List<DiseaseDistroDetails> GetDiseaseDistros() { return diseases.GetAllForAdminLevel(adminLevel.Id); }
         public List<Disease> GetDiseases() { return diseases.GetAllDiseases(); }
         public void Delete(DiseaseDistroDetails details, int userId) { diseases.Delete(details, userId); }
-        public IView NewDiseaseDistro(Disease type) 
+        public IView NewDiseaseDistro(Disease type)
         {
             if (type.Id < 1)
                 return null;
-            if(type.Id == 7)
+            if (type.Id == 7)
                 return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, new CalcLeprosyDistro()));
             if (type.Id == 8)
                 return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, new CalcHatDistro()));
@@ -150,10 +171,10 @@ namespace Nada.UI.AppLogic
             if (type.Id == 11)
                 return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, new CalcYawsDistro()));
 
-            if(type.DiseaseType == "CM")
+            if (type.DiseaseType == "CM")
                 return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, null));
-    
-            return new DataEntryEdit(new DiseaseDistroPcVm(adminLevel, type.Id, null)); 
+
+            return new DataEntryEdit(new DiseaseDistroPcVm(adminLevel, type.Id, null));
         }
 
         public IView GetDiseaseDistro(DiseaseDistroDetails details)
@@ -176,7 +197,7 @@ namespace Nada.UI.AppLogic
             }
 
             DiseaseDistroPc modelPc = diseases.GetDiseaseDistribution(details.Id, details.TypeId);
-            return new DataEntryEdit(new DiseaseDistroPcVm(adminLevel, modelPc, null)); 
+            return new DataEntryEdit(new DiseaseDistroPcVm(adminLevel, modelPc, null));
         }
 
         #endregion

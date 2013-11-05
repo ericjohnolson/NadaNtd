@@ -13,7 +13,7 @@ namespace Nada.Model.Diseases
         private static readonly string TotalChild = "TotalNumHatChild";
         private static readonly string TotalFemale = "TotalNumHatFemale";
 
-        public List<KeyValuePair<string, string>> PerformCalculations(List<IndicatorValue> indicatorValues)
+        public List<KeyValuePair<string, string>> PerformCalculations(List<IndicatorValue> indicatorValues, int adminLevel)
         {
             double total = 0, totalMb = 0, totalChild = 0, totalFemale = 0;
 

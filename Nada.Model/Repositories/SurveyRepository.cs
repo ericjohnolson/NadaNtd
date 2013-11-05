@@ -174,7 +174,6 @@ namespace Nada.Model.Repositories
             }
         }
 
-
         public SurveyBase GetById(int id)
         {
             SurveyBase survey = null;
@@ -193,6 +192,50 @@ namespace Nada.Model.Repositories
                 }
             }
             return survey;
+        }
+
+        public SurveyBase GetSurveyByAdminLevelYear(int adminLevel, int yearOfReporting)
+        {
+            if (yearOfReporting <= 0 || adminLevel <= 0)
+                return null;
+            int surveyId = -1;
+
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+
+                    OleDbCommand command = null;
+                    command = new OleDbCommand(@"Select Surveys.ID as sid FROM 
+                        ((Surveys INNER JOIN SurveyIndicatorValues on SurveyIndicatorValues.SurveyId = Surveys.ID)
+                            INNER JOIN SurveyIndicators on SurveyIndicators.ID = SurveyIndicatorValues.IndicatorId)
+                        WHERE Surveys.AdminLevelId=@adminlevelId AND SurveyIndicators.DisplayName = @yearName 
+                        AND SurveyIndicatorValues.DynamicValue = @year", connection);
+                    command.Parameters.Add(new OleDbParameter("@adminlevelId", adminLevel));
+                    command.Parameters.Add(new OleDbParameter("@yearName", "SurveyYear"));
+                    command.Parameters.Add(new OleDbParameter("@year", yearOfReporting));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            surveyId = reader.GetValueOrDefault<int>("sid");
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                if (surveyId <= 0)
+                    return null;
+
+                return GetById(surveyId);
+            }
         }
 
         public LfMfPrevalence GetLfMfPrevalenceSurvey(int id)
@@ -353,8 +396,6 @@ namespace Nada.Model.Repositories
                 }
             }
         }
-
-
         #endregion
 
         #region Survey Type
@@ -725,6 +766,7 @@ namespace Nada.Model.Repositories
             }
             return list;
         }
+
         #endregion
 
         #region Private Methods
@@ -808,6 +850,7 @@ namespace Nada.Model.Repositories
             }
         }
         #endregion
+
 
 
 

@@ -26,11 +26,23 @@ namespace Nada.Model
     {
         IvmAlbMda = 1,
         LfLymphedemaMorbidity = 2,
-        LfHydroceleMorbidity = 3
+        LfHydroceleMorbidity = 3,
+        GuineaWormIntervention = 4,
+        LeprosyIntervention = 5,
+        HatIntervention =6,
+        LeishIntervention = 7, 
+        BuruliUlcerIntv = 8, 
+        YawsIntervention = 9
     }
 
     public enum DiseaseType
     {
-        Lf = 3
+        Lf = 3,
+        Leprosy = 7,
+        Hat = 8,
+        Leish = 9,
+        Buruli = 10, 
+        Yaws = 11
     }
+    
 }

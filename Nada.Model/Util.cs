@@ -61,5 +61,21 @@ namespace Nada.Model
             }
         }
 
+        public static double ParseIndicatorDouble(Dictionary<string, IndicatorValue> inds, string name)
+        {
+            double val = -1;
+            if (inds.ContainsKey(name))
+                double.TryParse(inds[name].DynamicValue, out val);
+            return val;
+        }
+        public static int ParseIndicatorInt(Dictionary<string, IndicatorValue> inds, string name)
+        {
+            int val = -1;
+            if (inds.ContainsKey(name))
+                int.TryParse(inds[name].DynamicValue, out val);
+            return val;
+        }
+
+
     }
 }

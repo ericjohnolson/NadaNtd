@@ -298,6 +298,49 @@ namespace Nada.Model.Repositories
             return diseaseDistro;
         }
 
+        public DiseaseDistroCm GetDistroByAdminLevelYear(int adminLevel, int yearOfReporting, int diseaseType)
+        {
+            if (yearOfReporting <= 0 || adminLevel <= 0)
+                return null;
+            int did = -1;
+
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = null;
+                    command = new OleDbCommand(@"Select DiseaseDistributions.ID as did FROM 
+                        ((DiseaseDistributions INNER JOIN DiseaseDistributionIndicatorValues on DiseaseDistributionIndicatorValues.DiseaseDistributionId = DiseaseDistributions.ID)
+                            INNER JOIN DiseaseDistributionIndicators on DiseaseDistributionIndicators.ID = DiseaseDistributionIndicatorValues.IndicatorId)
+                        WHERE DiseaseDistributions.AdminLevelId=@adminlevelId AND DiseaseDistributionIndicators.DisplayName = @yearName 
+                        AND DiseaseDistributionIndicatorValues.DynamicValue = @year", connection);
+                    command.Parameters.Add(new OleDbParameter("@adminlevelId", adminLevel));
+                    command.Parameters.Add(new OleDbParameter("@yearName", "DiseaseYear"));
+                    command.Parameters.Add(new OleDbParameter("@year", yearOfReporting));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            did = reader.GetValueOrDefault<int>("did");
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                if (did <= 0)
+                    return null;
+
+                return GetDiseaseDistributionCm(did, diseaseType);
+            }
+        }
+
         public void Save(DiseaseDistroCm distro, int userId)
         {
             bool transWasStarted = false;

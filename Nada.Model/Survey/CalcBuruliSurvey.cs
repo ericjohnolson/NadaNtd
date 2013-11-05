@@ -8,20 +8,21 @@ namespace Nada.Model.Survey
 {
     public class CalcBuruliSurvey : ICalcIndicators
     {
-        private static readonly string Total = "TotalNumNewCases";
-        private static readonly string TotalType = "TotalUlcerativeCases";
-        private static readonly string TotalChild = "TotalNumChildNewCases";
-        private static readonly string TotalFemale = "TotalNumFemaleNewCases";
-        private static readonly string TotalCat1 = "TotalCat1Cases";
-        private static readonly string TotalCat3 = "TotalCat3Cases";
-        private static readonly string TotalPrc = "TotalCasesConfirmedPcr";
+        private static readonly string NumCasesDiagnosed = "NumCasesDiagnosedCm";
+        private static readonly string NumCasesPcrCm = "NumCasesPcrCm";
 
-        public List<KeyValuePair<string, string>> PerformCalculations(List<IndicatorValue> indicatorValues)
+        public List<KeyValuePair<string, string>> PerformCalculations(List<IndicatorValue> indicatorValues, int adminLevel)
         {
+            double diagnosed, pcr;
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(indicatorValues);
             List<KeyValuePair<string, string>> calcs = new List<KeyValuePair<string, string>>();
 
-            calcs.Add(new KeyValuePair<string, string>("PercentNewCasesPcrCm", Translations.NA));
+            if (inds.ContainsKey(NumCasesDiagnosed) && inds.ContainsKey(NumCasesPcrCm) &&
+                double.TryParse(inds[NumCasesDiagnosed].DynamicValue, out diagnosed) && double.TryParse(inds[NumCasesPcrCm].DynamicValue, out pcr))
+                calcs.Add(new KeyValuePair<string, string>("PercentNewCasesPcrCm", string.Format("{0:0.00}", pcr / diagnosed * 100).ToString()));
+            else
+                calcs.Add(new KeyValuePair<string, string>("PercentNewCasesPcrCm", Translations.NA));
+
             return calcs;
         }
     }

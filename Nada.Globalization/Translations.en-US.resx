@@ -861,6 +861,27 @@
   <data name="Active" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="AdultsAtEnd" xml:space="preserve">
+    <value>Adults in end of year prevalence</value>
+  </data>
+  <data name="AvailableHatMeds" xml:space="preserve">
+    <value>Availability of HAT specific medicines</value>
+  </data>
+  <data name="AvailOfAzithro" xml:space="preserve">
+    <value>Availability of quality tablets of azithromycin</value>
+  </data>
+  <data name="AvailOfStrep" xml:space="preserve">
+    <value>Availability of quality vials of streptomycinMB Adult blister packs</value>
+  </data>
+  <data name="Benza6Vials" xml:space="preserve">
+    <value>Benzathine Penicillin (0.6 M vials)</value>
+  </data>
+  <data name="BenzaVials" xml:space="preserve">
+    <value>Benzathine Penicillin (1.2 M vials)</value>
+  </data>
+  <data name="BuruliUlcerIntv" xml:space="preserve">
+    <value>Buruli Ulcer Intervention</value>
+  </data>
   <data name="Calculate" xml:space="preserve">
     <value>Calculate &gt;</value>
   </data>
@@ -870,8 +891,35 @@
   <data name="CasesFromRural" xml:space="preserve">
     <value>Cases from rural areas</value>
   </data>
+  <data name="CasesReadmitted" xml:space="preserve">
+    <value>Other cases readmitted to treatment for MDT during the year</value>
+  </data>
+  <data name="CasesRegisteredYear" xml:space="preserve">
+    <value>Total number of cases registered for treatment during the year</value>
+  </data>
+  <data name="CasesTreatedBu" xml:space="preserve">
+    <value>Total number of cases treated with WHO-recommended BU antibiotics</value>
+  </data>
+  <data name="ChildrenAtEnd" xml:space="preserve">
+    <value>Children in end of year prevalence</value>
+  </data>
+  <data name="ClofazAvail" xml:space="preserve">
+    <value>Loose clofazimin availability</value>
+  </data>
   <data name="Combined" xml:space="preserve">
     <value>Combined</value>
+  </data>
+  <data name="CureRate" xml:space="preserve">
+    <value>Cure rate</value>
+  </data>
+  <data name="CureRateBu" xml:space="preserve">
+    <value>Cure rate of Buruli ulcer cases during the year</value>
+  </data>
+  <data name="CureRateStage1" xml:space="preserve">
+    <value>Cure rate of HAT cases at stage 1</value>
+  </data>
+  <data name="CureRateStage2" xml:space="preserve">
+    <value>Cure rate of HAT cases at stage 2</value>
   </data>
   <data name="DetectionRate100k" xml:space="preserve">
     <value>Detection rate per 100,000</value>
@@ -879,14 +927,47 @@
   <data name="DetectionRate10k" xml:space="preserve">
     <value>Detection rate per 10,000</value>
   </data>
+  <data name="DetectionRatePer100k" xml:space="preserve">
+    <value>Detection rate per 100,000</value>
+  </data>
+  <data name="DetectRate100kLeish" xml:space="preserve">
+    <value>Detection rate per 100,000</value>
+  </data>
+  <data name="DetectRate100kYw" xml:space="preserve">
+    <value>Detection rate per 100 000</value>
+  </data>
+  <data name="FatalityRate" xml:space="preserve">
+    <value>Fatality rate</value>
+  </data>
+  <data name="Fexinidazole" xml:space="preserve">
+    <value>Fexinidazole</value>
+  </data>
   <data name="FormerlyEndemic" xml:space="preserve">
     <value>Formerly endemic</value>
+  </data>
+  <data name="GuineaWormIntervention" xml:space="preserve">
+    <value>Guinea Worm Intervention</value>
+  </data>
+  <data name="HatIntervention" xml:space="preserve">
+    <value>HAT Intervention</value>
   </data>
   <data name="High" xml:space="preserve">
     <value>High</value>
   </data>
+  <data name="LeishIntervention" xml:space="preserve">
+    <value>Leishmaniasis Intervention</value>
+  </data>
+  <data name="LeprosyIntervention" xml:space="preserve">
+    <value>Leprosy Intervention</value>
+  </data>
+  <data name="Lomidine" xml:space="preserve">
+    <value>Lomidine</value>
+  </data>
   <data name="Low" xml:space="preserve">
     <value>Low</value>
+  </data>
+  <data name="MbAdultsEnd" xml:space="preserve">
+    <value>MB Adults in end of year prevalence</value>
   </data>
   <data name="MbCasesRegisteredMdtBeginning" xml:space="preserve">
     <value>MB cases registered for MDT at the beginning of the year</value>
@@ -894,11 +975,47 @@
   <data name="MbCasesRegisteredMdtEnd" xml:space="preserve">
     <value>Prevalence (cases registered for MDT) at the end of the year</value>
   </data>
+  <data name="MbChildEnd" xml:space="preserve">
+    <value>MB Children in end of year prevalence</value>
+  </data>
+  <data name="Melarsoprol" xml:space="preserve">
+    <value>Melarsoprol</value>
+  </data>
+  <data name="NifurtimoxNECT" xml:space="preserve">
+    <value>Nifurtimox and Eflornithine combined treatment (NECT)</value>
+  </data>
+  <data name="NumAffectedBuSelfCare" xml:space="preserve">
+    <value>Number of people affected by Buruli Ulcer adhering to self-care group</value>
+  </data>
+  <data name="NumBuRehab" xml:space="preserve">
+    <value>Number of people affected by Buruli Ulcer beneficial of socio-economical rehabilitation</value>
+  </data>
+  <data name="NumBuSurgery" xml:space="preserve">
+    <value>Number of people affected by Buruli Ulcer in need of surgery</value>
+  </data>
   <data name="NumCasesContactsTreatedCm" xml:space="preserve">
     <value>Number of cases and contacts treated - Adults and children, male and female</value>
   </data>
+  <data name="NumCasesContained" xml:space="preserve">
+    <value>Number of cases successfully contained</value>
+  </data>
+  <data name="NumCasesCured" xml:space="preserve">
+    <value>Number of cases cured</value>
+  </data>
+  <data name="NumCasesCuredLeish" xml:space="preserve">
+    <value>Number of cases cured</value>
+  </data>
+  <data name="NumCasesCuredYaws" xml:space="preserve">
+    <value>Number of cases cured during the year</value>
+  </data>
+  <data name="NumCasesCuredYw" xml:space="preserve">
+    <value>Number of cases cured within 2 weeks</value>
+  </data>
   <data name="NumCasesDiagnosedCm" xml:space="preserve">
     <value>Number of diagnosed cases  (Adults and children, Male and Female)</value>
+  </data>
+  <data name="NumCasesFoundActively" xml:space="preserve">
+    <value>Number of cases found actively</value>
   </data>
   <data name="NumCasesFoundCm" xml:space="preserve">
     <value>Number of cases found - Adults and children, male and female</value>
@@ -906,8 +1023,161 @@
   <data name="NumCasesLeprosyCm" xml:space="preserve">
     <value>Number of cases removed from leprosy registers for defaulting to treatment, lost to follow up, misdiagnosed cases, old patients readmitted to medical treatment (multiple drug therapy) because of grade II disabilities (claw fingers, amputation, lagophtalmos, etc.)</value>
   </data>
+  <data name="NumCasesLost" xml:space="preserve">
+    <value>Number of cases lost to follow up</value>
+  </data>
+  <data name="NumCasesNewMeds" xml:space="preserve">
+    <value>Number of cases treated with new medicines</value>
+  </data>
   <data name="NumCasesPcrCm" xml:space="preserve">
     <value>Number of new cases confirmed by PCR test during assessment surveys or active case finding</value>
+  </data>
+  <data name="NumCasesReadmitted" xml:space="preserve">
+    <value>Number of other cases re-admitted to treatment</value>
+  </data>
+  <data name="NumCasesSaes" xml:space="preserve">
+    <value>Number of cases with serious adverse events</value>
+  </data>
+  <data name="NumCasesSaesLeish" xml:space="preserve">
+    <value>Number of cases with serious adverse events</value>
+  </data>
+  <data name="NumCasesTreated" xml:space="preserve">
+    <value>Total number of cases treated</value>
+  </data>
+  <data name="NumCasesTreatedLeish" xml:space="preserve">
+    <value>Total number of cases treated</value>
+  </data>
+  <data name="NumCasesTreatedRef" xml:space="preserve">
+    <value>Number of cases treated in reference centres</value>
+  </data>
+  <data name="NumCasesTreatedYaws" xml:space="preserve">
+    <value>Number of cases treated during the year</value>
+  </data>
+  <data name="NumCentersTreatingYw" xml:space="preserve">
+    <value>Number of first line health facilities providing yaws treatment</value>
+  </data>
+  <data name="NumClCases" xml:space="preserve">
+    <value>Number of clinical Cutaneous Leishmaniasis (CL) cases</value>
+  </data>
+  <data name="NumClinical" xml:space="preserve">
+    <value>Number of clinical cases</value>
+  </data>
+  <data name="NumClinicalCasesHat" xml:space="preserve">
+    <value>Number of clinical cases</value>
+  </data>
+  <data name="NumClVlCases" xml:space="preserve">
+    <value>Number of both CL &amp; VL cases</value>
+  </data>
+  <data name="NumContactsTreatedYw" xml:space="preserve">
+    <value>Number of contacts treated during the year</value>
+  </data>
+  <data name="NumDeaths" xml:space="preserve">
+    <value>Number of deaths</value>
+  </data>
+  <data name="NumDeathsLeish" xml:space="preserve">
+    <value>Number of deaths</value>
+  </data>
+  <data name="NumDistributionPoints" xml:space="preserve">
+    <value>Number of MDT distribution points with community volunteers</value>
+  </data>
+  <data name="NumEndemicAbate" xml:space="preserve">
+    <value>Number of eligible endemic villages receiving abate</value>
+  </data>
+  <data name="NumEndemicVillages" xml:space="preserve">
+    <value>Number of endemic villages</value>
+  </data>
+  <data name="NumEndemicVillagesReporting" xml:space="preserve">
+    <value>Number of endemic villages reporting</value>
+  </data>
+  <data name="NumEndemicVillageWater" xml:space="preserve">
+    <value>Number of endemic villages provided with water filters</value>
+  </data>
+  <data name="NumFacilitiesProvidingAntibiotics" xml:space="preserve">
+    <value>Number of first line health facilities providing antibiotics for Yaws</value>
+  </data>
+  <data name="NumFacilitiesProvidingBu" xml:space="preserve">
+    <value>Number of first line health facilities providing WHO-recommended BU anntibiotics</value>
+  </data>
+  <data name="NumFirstLine" xml:space="preserve">
+    <value>Number of first line health facilities providing MDT</value>
+  </data>
+  <data name="NumFullyHealed" xml:space="preserve">
+    <value>Number of cases fully healed within two weeks</value>
+  </data>
+  <data name="NumGoodClarithromycin" xml:space="preserve">
+    <value>Number of good quality tablest of clarithromycin available</value>
+  </data>
+  <data name="NumGoodRifampicin" xml:space="preserve">
+    <value>Number of good quality tablets of Rifampicin available</value>
+  </data>
+  <data name="NumGoodStreptomycin" xml:space="preserve">
+    <value>Number of good quality vials of streptomycin  available</value>
+  </data>
+  <data name="NumGrade2" xml:space="preserve">
+    <value>Total number of new cases with Grade II disabilities</value>
+  </data>
+  <data name="NumIdsr" xml:space="preserve">
+    <value>Number of IDSR/Health facilities</value>
+  </data>
+  <data name="NumIdsrReporting" xml:space="preserve">
+    <value>Number of IDSR units /HF reporting on GWD (including zero reporting)</value>
+  </data>
+  <data name="NumImported" xml:space="preserve">
+    <value>Number of imported cases</value>
+  </data>
+  <data name="NumIndigenous" xml:space="preserve">
+    <value>Number of indigenous cases</value>
+  </data>
+  <data name="NumIneffectiveYw" xml:space="preserve">
+    <value>Number of ineffective treatment</value>
+  </data>
+  <data name="NumLab" xml:space="preserve">
+    <value>Number of lab confirmed cases</value>
+  </data>
+  <data name="NumLabCases" xml:space="preserve">
+    <value>Number of lab confirmed cases</value>
+  </data>
+  <data name="NumLabClCases" xml:space="preserve">
+    <value>Number of lab confirmed CL cases</value>
+  </data>
+  <data name="NumLabVlCases" xml:space="preserve">
+    <value>Number of lab confirmed  Visceral Leishmaniasis (VL) cases</value>
+  </data>
+  <data name="NumLeprosyRehab" xml:space="preserve">
+    <value>Number of people affected by leprosy beneficial of socio-economical rehabilitation</value>
+  </data>
+  <data name="NumLeprosySelfCare" xml:space="preserve">
+    <value>Number of people affected by leprosy adhering to self-care group</value>
+  </data>
+  <data name="NumLeprosySurgery" xml:space="preserve">
+    <value>Number of people affected by leprosy in need of surgery</value>
+  </data>
+  <data name="NumMbAdult" xml:space="preserve">
+    <value>MB Adult Blister packs</value>
+  </data>
+  <data name="NumMbChild" xml:space="preserve">
+    <value>MB Child Blister packs</value>
+  </data>
+  <data name="NumPatientsComplementedBu" xml:space="preserve">
+    <value>Total number of patients whose antibiotic treatment was complemented by surgery</value>
+  </data>
+  <data name="NumPatientsFootwear" xml:space="preserve">
+    <value>Number of patients starting footwear programme</value>
+  </data>
+  <data name="NumPatientsType1" xml:space="preserve">
+    <value>Number of patients with type 1 reaction</value>
+  </data>
+  <data name="NumPatientsType2" xml:space="preserve">
+    <value>Number of patients with type 2 reaction (ENL)</value>
+  </data>
+  <data name="NumPbAdult" xml:space="preserve">
+    <value>PB Adult Blister packs</value>
+  </data>
+  <data name="NumPbChild" xml:space="preserve">
+    <value>PB Child Blister packs</value>
+  </data>
+  <data name="NumPersonsBenza" xml:space="preserve">
+    <value>Total number of persons treated with Benzathin Penicillin</value>
   </data>
   <data name="NumPopScreenedCm" xml:space="preserve">
     <value>Number of persons that were screened (clinical examination and specimen taking for lab tests) - Adults and children, male and female</value>
@@ -915,14 +1185,123 @@
   <data name="NumPopSurveyedCm" xml:space="preserve">
     <value>Number of population in surveyed villages or communities - Adult and children (under 15 years old),  male and female</value>
   </data>
+  <data name="NumProspection" xml:space="preserve">
+    <value>Number of cases found actively (prospection)</value>
+  </data>
+  <data name="NumRelapses" xml:space="preserve">
+    <value>Number of relapses</value>
+  </data>
+  <data name="NumRelapsesCases" xml:space="preserve">
+    <value>Number of relapses or recurrent cases</value>
+  </data>
+  <data name="NumRumors" xml:space="preserve">
+    <value>Number of rumors reported</value>
+  </data>
+  <data name="NumRumorsInvestigated" xml:space="preserve">
+    <value>Number of rumors investigated within 24 hours</value>
+  </data>
+  <data name="NumSaesYw" xml:space="preserve">
+    <value>Number of severe adverse events after treatment</value>
+  </data>
   <data name="NumSchoolsScreenedCm" xml:space="preserve">
     <value>Number of schools screened during the year</value>
+  </data>
+  <data name="NumSurgeryPerformed" xml:space="preserve">
+    <value>Number and type of surgery (nodulectomie, skin grafting, lesion resection, contracture release, amputation) performed</value>
+  </data>
+  <data name="NumTGamb" xml:space="preserve">
+    <value>Number of only T gambiense cases</value>
+  </data>
+  <data name="NumTGambTRhod" xml:space="preserve">
+    <value>Number of both T gambiense and T rhodesiense cases</value>
+  </data>
+  <data name="NumTreatedAzithro" xml:space="preserve">
+    <value>Number of cases treated with other antibiotics (Azithromycin)</value>
+  </data>
+  <data name="NumTreatedNect" xml:space="preserve">
+    <value>Number of cases treated with new medicines (NECT)</value>
+  </data>
+  <data name="NumTreatedRef" xml:space="preserve">
+    <value>Number of cases treated in reference centres</value>
+  </data>
+  <data name="NumTreatmentFail" xml:space="preserve">
+    <value>Number of treatment failures</value>
+  </data>
+  <data name="NumTreatmentFailures" xml:space="preserve">
+    <value>Number of treatment failures</value>
+  </data>
+  <data name="NumTRhod" xml:space="preserve">
+    <value>Number of only T rhodesiense cases</value>
+  </data>
+  <data name="NumVas" xml:space="preserve">
+    <value>Number of villages under active surveillance (VAS)</value>
+  </data>
+  <data name="NumVillagesSafeWater" xml:space="preserve">
+    <value>Number of affected villages with access to safe drinking water</value>
   </data>
   <data name="NumVillagesScreenedCm" xml:space="preserve">
     <value>Number of villages screened during the year</value>
   </data>
+  <data name="NumVillagesWithVolunteers" xml:space="preserve">
+    <value>Number of villages with community relays (volunteers)</value>
+  </data>
+  <data name="NumVillageWithImported" xml:space="preserve">
+    <value>Number of villages with imported cases</value>
+  </data>
+  <data name="NumVolunteersBu" xml:space="preserve">
+    <value>Number of community volunteers contributing to suspecting patients and referring for diagnosis</value>
+  </data>
+  <data name="NumVolunteersYw" xml:space="preserve">
+    <value>Number of Community volunteers involved in oral treatment of yaws</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="OtherAntibiotics" xml:space="preserve">
+    <value>Other antibiotics(Azithromycin)</value>
+  </data>
+  <data name="OtherMedsLeprosy" xml:space="preserve">
+    <value>Other medicines for leprosy patients****</value>
+    <comment>string</comment>
+  </data>
+  <data name="OtherWithdrawl" xml:space="preserve">
+    <value>Other withdrawal from antibiotic treatment</value>
+  </data>
   <data name="Passive" xml:space="preserve">
     <value>Passive</value>
+  </data>
+  <data name="PatientsCompletedTreatment" xml:space="preserve">
+    <value>Patients having completed treatment during the year</value>
+  </data>
+  <data name="PatientsCuredMb" xml:space="preserve">
+    <value>Patients cured (treatment completion) among MB cases at the beginning of the year</value>
+  </data>
+  <data name="PatientsCuredPb" xml:space="preserve">
+    <value>Patients cured (treatment completion) among PB new cases of the 1st semester and PB cases in the beginning of the year</value>
+  </data>
+  <data name="PatientsCuredWoDisability" xml:space="preserve">
+    <value>Patients cured without limitation of movement or disability</value>
+  </data>
+  <data name="PatientsFullyScared" xml:space="preserve">
+    <value>Patients having fully scarred their lesions during the year</value>
+  </data>
+  <data name="PatientsFullyScarred" xml:space="preserve">
+    <value>Patients having fully scarred their lesions during the year</value>
+  </data>
+  <data name="PbAdultEnd" xml:space="preserve">
+    <value>PB Adults in end of year children</value>
+  </data>
+  <data name="PbChildEnd" xml:space="preserve">
+    <value>PB Children in end of year children</value>
+  </data>
+  <data name="PercentCasesActiveLeish" xml:space="preserve">
+    <value>% cases actively found</value>
+  </data>
+  <data name="PercentCasesActivelyFound" xml:space="preserve">
+    <value>% cases actively found</value>
+  </data>
+  <data name="PercentCasesContained" xml:space="preserve">
+    <value>% of cases successfully contained</value>
   </data>
   <data name="PercentCasesHat2" xml:space="preserve">
     <value>% of cases at stage 2</value>
@@ -933,6 +1312,39 @@
   <data name="PercentCatIICases" xml:space="preserve">
     <value>% of new cases with category III lesions</value>
   </data>
+  <data name="PercentCl" xml:space="preserve">
+    <value>% only CL cases</value>
+  </data>
+  <data name="PercentClVl" xml:space="preserve">
+    <value>% of both CL &amp; VL cases</value>
+  </data>
+  <data name="PercentCoverageBu" xml:space="preserve">
+    <value>% of Health facility coverage for Buruli Ulcer treatment</value>
+  </data>
+  <data name="PercentCoverageMdt" xml:space="preserve">
+    <value>% of Health facility coverage for MDT</value>
+  </data>
+  <data name="PercentCureRateMb" xml:space="preserve">
+    <value>Cure rate of previous year MB cases</value>
+  </data>
+  <data name="PercentCureRatePb" xml:space="preserve">
+    <value>PB Cured rate during the current year</value>
+  </data>
+  <data name="PercentEndemicReporting" xml:space="preserve">
+    <value>% of endemic villages reporting</value>
+  </data>
+  <data name="PercentIdsr" xml:space="preserve">
+    <value>% of IDSR/HF reporting on GWD</value>
+  </data>
+  <data name="PercentLabConfirm" xml:space="preserve">
+    <value>% of lab confirmed cases</value>
+  </data>
+  <data name="PercentLabConfirmed" xml:space="preserve">
+    <value>% of lab confirmed cases</value>
+  </data>
+  <data name="PercentNewCasesLabYw" xml:space="preserve">
+    <value>% of new cases confirmed by lab test</value>
+  </data>
   <data name="PercentNewCasesPcrCm" xml:space="preserve">
     <value>% of new cases confirmed by PCR test during assessment surveys or active case finding</value>
   </data>
@@ -942,14 +1354,56 @@
   <data name="PercentNewFemales" xml:space="preserve">
     <value>% of new females</value>
   </data>
+  <data name="PercentNewGrade2" xml:space="preserve">
+    <value>% of New Grade II</value>
+  </data>
   <data name="PercentNewMb" xml:space="preserve">
     <value>% of new MB</value>
   </data>
   <data name="PercentPcrCases" xml:space="preserve">
     <value>% of new cases confirmed by PCR</value>
   </data>
+  <data name="PercentPsacYw" xml:space="preserve">
+    <value>% of pre-school age cases</value>
+  </data>
+  <data name="PercentRumorsInvestigated" xml:space="preserve">
+    <value>% of rumors investigated within 24 hours</value>
+  </data>
+  <data name="PercentSacYw" xml:space="preserve">
+    <value>% of school-age cases</value>
+  </data>
+  <data name="PercentSae" xml:space="preserve">
+    <value>% serious adverse events</value>
+  </data>
+  <data name="PercentScreenedYw" xml:space="preserve">
+    <value>% cases among screened populations (per 10,000)</value>
+  </data>
+  <data name="PercentTGamb" xml:space="preserve">
+    <value>% only T gambiense cases</value>
+  </data>
+  <data name="PercentTGambTRhod" xml:space="preserve">
+    <value>% of both T gambiense &amp; rhodesiense cases</value>
+  </data>
+  <data name="PercentTreatedAmongDetected" xml:space="preserve">
+    <value>% treated among detected cases</value>
+  </data>
+  <data name="PercentTreatedYw" xml:space="preserve">
+    <value>% contacts treated among all treated</value>
+  </data>
+  <data name="PercentTreatmentFailure" xml:space="preserve">
+    <value>% of treatment failure</value>
+  </data>
+  <data name="PercentTRhod" xml:space="preserve">
+    <value>% only T rhodesiense cases</value>
+  </data>
   <data name="PercentUlcerativeCases" xml:space="preserve">
     <value>% of ulcerative cases</value>
+  </data>
+  <data name="PercentVas" xml:space="preserve">
+    <value>% of VAS reporting</value>
+  </data>
+  <data name="PercentVl" xml:space="preserve">
+    <value>% only VL cases</value>
   </data>
   <data name="PreSchoolCases6" xml:space="preserve">
     <value>Pre-school age cases (less than 6 years old)</value>
@@ -957,8 +1411,14 @@
   <data name="PrevalenceBeginningYear" xml:space="preserve">
     <value>Prevalence (cases registered for MDT) at the beginning of the year</value>
   </data>
+  <data name="PrevalenceDetectionRatio" xml:space="preserve">
+    <value>Prevalence detection ratio</value>
+  </data>
   <data name="PrevalenceRateEndOfYear" xml:space="preserve">
     <value>Prevalence rate at the end of the year per 10,000</value>
+  </data>
+  <data name="PrevBeginYear" xml:space="preserve">
+    <value>Prevalence at the beginning of the year</value>
   </data>
   <data name="RateNewGrade2" xml:space="preserve">
     <value>Rate of New Grade II per 1 million population</value>
@@ -993,8 +1453,14 @@
   <data name="TotalHatConfirmedLab" xml:space="preserve">
     <value>Number of cases of HAT confirmed by a lab test</value>
   </data>
+  <data name="TotalNumCasesCat3" xml:space="preserve">
+    <value>Total number of cases on treatment with category III lesiosns</value>
+  </data>
   <data name="TotalNumCasesRegistered" xml:space="preserve">
     <value>Total number of cases registered</value>
+  </data>
+  <data name="TotalNumCasesWoDisability" xml:space="preserve">
+    <value>Total number of cases on treatment with limitation of movements or disability</value>
   </data>
   <data name="TotalNumChildNewCases" xml:space="preserve">
     <value>Total number of children among new cases</value>
@@ -1029,10 +1495,25 @@
   <data name="TotalNumVlCases" xml:space="preserve">
     <value>Total number of VL new cases</value>
   </data>
+  <data name="TotalTreatedWithPrevention" xml:space="preserve">
+    <value>Total number of patients whose treatment included prevention of disabilities and physical rehabilitation</value>
+  </data>
   <data name="TotalUlcerativeCases" xml:space="preserve">
     <value>Total number of ulcerative new cases</value>
   </data>
+  <data name="TotalWithdrawal" xml:space="preserve">
+    <value>Total withdrawal from treatment</value>
+  </data>
+  <data name="TotalWithdrawalTreatment" xml:space="preserve">
+    <value>Total withdrawal from treatment</value>
+  </data>
   <data name="UnknownEndemicity" xml:space="preserve">
     <value>Unknown endemicity</value>
+  </data>
+  <data name="VasReporting" xml:space="preserve">
+    <value>Number of villages under active surveillance reporting</value>
+  </data>
+  <data name="YawsIntervention" xml:space="preserve">
+    <value>Yaws Intervention</value>
   </data>
 </root>

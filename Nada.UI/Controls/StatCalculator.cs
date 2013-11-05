@@ -26,7 +26,7 @@ namespace Nada.UI.Controls
             OnCalc();
         }
 
-        public void DoCalc(List<IndicatorValue> values)
+        public void DoCalc(List<IndicatorValue> values, int adminLevel)
         {
             this.SuspendLayout();
             tblIndicators.Controls.Clear();
@@ -34,7 +34,7 @@ namespace Nada.UI.Controls
             int labelRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int controlRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int columnCount = 0;
-            foreach (var item in Calc.PerformCalculations(values))
+            foreach (var item in Calc.PerformCalculations(values, adminLevel))
             {
                 if (count % 2 == 0)
                 {

@@ -70,7 +70,7 @@ namespace Nada.UI.View.DiseaseDistribution
 
         private void statCalculator1_OnCalc()
         {
-            statCalculator1.DoCalc(indicatorControl1.GetValues());
+            statCalculator1.DoCalc(indicatorControl1.GetValues(), viewModel.Location.Id);
         }
                 
         /// <summary>

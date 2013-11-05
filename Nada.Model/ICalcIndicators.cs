@@ -7,7 +7,7 @@ namespace Nada.Model
 {
     public interface ICalcIndicators
     {
-        List<KeyValuePair<string, string>> PerformCalculations(List<IndicatorValue> indicatorValues);
+        List<KeyValuePair<string, string>> PerformCalculations(List<IndicatorValue> indicatorValues, int adminLevel);
     }
 
 

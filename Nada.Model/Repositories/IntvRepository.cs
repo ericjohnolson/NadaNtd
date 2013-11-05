@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using Nada.DA;
+using Nada.Globalization;
 using Nada.Model.Base;
 using Nada.Model.Diseases;
 using Nada.Model.Intervention;
@@ -106,7 +107,7 @@ namespace Nada.Model.Repositories
             return interventions;
         }
 
-        public List<IntvType> GetTypesByDisease(int diseaseId)
+        public List<IntvType> GetAllTypes()
         {
             List<IntvType> intv = new List<IntvType>();
 
@@ -116,9 +117,8 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select InterventionTypes.ID, InterventionTypes.InterventionTypeName
+                    OleDbCommand command = new OleDbCommand(@"Select InterventionTypes.ID, InterventionTypes.InterventionTypeName, DiseaseType
                         FROM InterventionTypes", connection);
-                    //command.Parameters.Add(new OleDbParameter("@DiseaseId", diseaseId));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -126,7 +126,9 @@ namespace Nada.Model.Repositories
                             intv.Add(new IntvType
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
-                                IntvTypeName = reader.GetValueOrDefault<string>("InterventionTypeName")
+                                IntvTypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("InterventionTypeName"),
+                                    reader.GetValueOrDefault<string>("InterventionTypeName")),
+                                DiseaseType = reader.GetValueOrDefault<string>("DiseaseType")
                             });
                         }
                         reader.Close();
@@ -151,7 +153,7 @@ namespace Nada.Model.Repositories
                 try
                 {
                     OleDbCommand command = new OleDbCommand(@"Select InterventionTypes.InterventionTypeName, InterventionTypes.UpdatedAt,
-                        aspnet_users.UserName, created.UserName as CreatedBy, InterventionTypes.CreatedAt
+                        aspnet_users.UserName, created.UserName as CreatedBy, InterventionTypes.CreatedAt, DiseaseType
                         FROM ((InterventionTypes INNER JOIN aspnet_Users on InterventionTypes.UpdatedById = aspnet_Users.UserId)
                             INNER JOIN aspnet_Users created on InterventionTypes.CreatedById = created.UserId)
                         WHERE InterventionTypes.ID=@id", connection);
@@ -165,6 +167,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = id,
                                 IntvTypeName = reader.GetValueOrDefault<string>("InterventionTypeName"),
+                                DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),
                                 UpdatedBy = Util.GetAuditInfo(reader)
                             };
                         }
@@ -204,6 +207,24 @@ namespace Nada.Model.Repositories
                                 IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
                                 DataType = reader.GetValueOrDefault<string>("DataType")
                             });
+                        }
+                        reader.Close();
+                    }
+
+                    command = new OleDbCommand(@"Select
+                        IndicatorId,
+                        DropdownValue
+                        FROM (InterventionIndicatorDropdownValues INNER JOIN InterventionIndicators ON 
+                            InterventionIndicators.Id = InterventionIndicatorDropdownValues.IndicatorId)
+                        WHERE InterventionTypeId=@InterventionTypeId AND IsDisabled=0
+                        ORDER BY InterventionIndicatorDropdownValues.ID", connection);
+                    command.Parameters.Add(new OleDbParameter("@InterventionTypeId", id));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            intv.IndicatorDropdownValues.Add(new KeyValuePair<int, string>(reader.GetValueOrDefault<int>("IndicatorId"), 
+                                reader.GetValueOrDefault<string>("DropdownValue")));
                         }
                         reader.Close();
                     }
