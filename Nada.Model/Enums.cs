@@ -14,6 +14,14 @@ namespace Nada.Model
         Dropdown = 5
     }
 
+    public enum IndicatorAggType
+    {
+        Sum = 1,
+        Min = 2,
+        Max = 3,
+        Combine = 4
+    }
+
     public enum StaticSurveyType
     {
         LfPrevalence = 1,
@@ -38,11 +46,11 @@ namespace Nada.Model
     public enum DiseaseType
     {
         Lf = 3,
+        GuineaWorm = 6,
         Leprosy = 7,
         Hat = 8,
         Leish = 9,
         Buruli = 10, 
         Yaws = 11
     }
-    
 }

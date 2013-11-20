@@ -45,7 +45,7 @@ namespace Nada.UI.View.Wizard
             OnFinish = onFinish;
             InitializeComponent();
         }
-        
+
         private void ImportOptions_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
@@ -73,11 +73,11 @@ namespace Nada.UI.View.Wizard
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.RunWorkerCompleted += worker_RunWorkerCompleted;
                 worker.DoWork += worker_DoWork;
-                
-            List<AdminLevel> adminLevels = new List<AdminLevel>();
-            foreach (AdminLevel l in adminLevelMultiselect1.GetSelectedAdminLevels())
-                adminLevels.Add(l);
-            worker.RunWorkerAsync(new WorkerPayload { FileName = saveFileDialog1.FileName, AdminLevels = adminLevels });
+
+                List<AdminLevel> adminLevels = new List<AdminLevel>();
+                foreach (AdminLevel l in adminLevelMultiselect1.GetSelectedAdminLevels())
+                    adminLevels.Add(l);
+                worker.RunWorkerAsync(new WorkerPayload { FileName = saveFileDialog1.FileName, AdminLevels = adminLevels });
 
                 OnSwitchStep(new WorkingStep(Translations.CreatingImportFileStatus));
             }

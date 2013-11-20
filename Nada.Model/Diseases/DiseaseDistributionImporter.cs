@@ -52,7 +52,7 @@ namespace Nada.Model
                 {
                     WasSuccess = true,
                     Count = rec,
-                    ErrorMessage = string.Empty
+                    Message = string.Empty
                 };
             }
             catch (Exception ex)

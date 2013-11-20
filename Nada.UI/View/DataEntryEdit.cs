@@ -44,27 +44,29 @@ namespace Nada.UI.View.DiseaseDistribution
                 adminLevelPickerControl1.Focus();
                 Localizer.TranslateControl(this);
                 adminLevelPickerControl1.Select(viewModel.Location);
-                if (viewModel.Calculator != null)
-                {
-                    statCalculator1.Calc = viewModel.Calculator;
-                    statCalculator1.OnCalc += statCalculator1_OnCalc;
-                }
-                else
-                    statCalculator1.Visible = false;
 
                 if (viewModel.Indicators != null && viewModel.Indicators.Count() > 0)
                     indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorValues, viewModel.IndicatorDropdownValues);
                 indicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
                 StatusChanged(viewModel.StatusMessage);
                 // design
-                lblTitle.Text = viewModel.Title;
-                lblDiseaseType.Text = viewModel.TypeTitle;
+                lblTitle.Text = TranslationLookup.GetValue(viewModel.Title, viewModel.Title);
+                lblDiseaseType.Text = TranslationLookup.GetValue(viewModel.TypeTitle, viewModel.TypeTitle);
                 lblTitle.ForeColor = viewModel.FormColor;
                 lblDiseaseType.ForeColor = viewModel.FormColor;
                 adminLevelPickerControl1.TextColor = viewModel.FormColor;
                 statCalculator1.TextColor = viewModel.FormColor;
                 indicatorControl1.TextColor = viewModel.FormColor;
                 hrTop.RuleColor = viewModel.FormColor;
+                // calclulator
+                if (viewModel.Calculator != null)
+                {
+                    statCalculator1.Calc = viewModel.Calculator;
+                    statCalculator1.OnCalc += statCalculator1_OnCalc;
+                    statCalculator1_OnCalc();
+                }
+                else
+                    statCalculator1.Visible = false;
             }
         }
 

@@ -105,7 +105,6 @@ namespace Nada.UI.View.Demography
                 levels.Add(new AdminLevel
                 {
                     Name = child.Name,
-                    IsUrban = !string.IsNullOrEmpty(child.IsUrban) && child.IsUrban.Trim() == "1" ? true : false,
                     LngOther = !string.IsNullOrEmpty(child.Lng) && Double.TryParse(child.Lng, out geoValue) ? geoValue : 0,
                     LatOther = !string.IsNullOrEmpty(child.Lat) && Double.TryParse(child.Lat, out geoValue) ? geoValue : 0,
                     LatWho = !string.IsNullOrEmpty(child.LatWho) && Double.TryParse(child.LatWho, out geoValue) ? geoValue : 0,

@@ -67,6 +67,7 @@
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(95, 20);
             this.checkBox1.TabIndex = 3;
+            this.checkBox1.Tag = "IsDisabled";
             this.checkBox1.Text = "Is Disabled";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -194,6 +195,7 @@
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(96, 20);
             this.checkBox2.TabIndex = 41;
+            this.checkBox2.Tag = "IsRequired";
             this.checkBox2.Text = "Is Required";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 

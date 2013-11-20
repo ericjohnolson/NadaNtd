@@ -75,7 +75,7 @@ namespace Nada.Model.Survey
                 {
                     WasSuccess = true,
                     Count = rec,
-                    ErrorMessage = string.Empty
+                    Message = string.Empty
                 };
             }
             catch (Exception ex)
@@ -112,7 +112,7 @@ namespace Nada.Model.Survey
 
             // Load data into excel worksheet
             DataTable data = GetDataTable();
-            CreateImportExcel(data, xlsWorksheet, levels);
+            AddDataToWorksheet(data, xlsWorksheet, levels);
 
             // Set up all the different drop downs and multiselects
             xlDropDowns = ((Microsoft.Office.Interop.Excel.DropDowns)(xlsWorksheet.DropDowns(oMissing)));

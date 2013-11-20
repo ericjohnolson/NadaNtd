@@ -49,7 +49,7 @@ namespace Nada.UI.View
 
                 // Add label
                 tblIndicators.Controls.Add(
-                    new H3Label { Text = indicator.DisplayName, Name = "ciLabel_" + indicator.Id, AutoSize = true, },
+                    new H3Label { Text = indicator.DisplayName, Name = "ciLabel_" + indicator.Id },
                     columnCount, labelRowIndex);
 
                 // Add field

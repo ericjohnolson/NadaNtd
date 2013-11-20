@@ -92,7 +92,7 @@ namespace Nada.UI.View.Demography
                 else
                 {
                     DemoRepository r = new DemoRepository();
-                    r.BulkAddDemography(demoToAdd, ApplicationData.Instance.GetUserId());
+                    //r.BulkAddDemography(demoToAdd, ApplicationData.Instance.GetUserId());
                     MessageBox.Show(string.Format("Successfully added {0} new records!", demoToAdd.Count));
                     OnSuccess();
                     this.Close();
@@ -113,16 +113,16 @@ namespace Nada.UI.View.Demography
 
                 demos.Add(new AdminLevelDemography
                 {
-                    AdminLevelId = id,
-                    AdultPopulation = !string.IsNullOrEmpty(child.AdultPop) && int.TryParse(child.AdultPop, out intValue) ? intValue : 0,
-                    TotalPopulation = !string.IsNullOrEmpty(child.TotalPop) && int.TryParse(child.TotalPop, out intValue) ? intValue : 0,
-                    YearCensus = !string.IsNullOrEmpty(child.YearCensus) && int.TryParse(child.YearCensus, out intValue) ? intValue : 0,
-                    YearReporting = !string.IsNullOrEmpty(child.YearReporting) && int.TryParse(child.YearReporting, out intValue) ? intValue : 0,
-                    YearProjections = !string.IsNullOrEmpty(child.YearProjections) && int.TryParse(child.YearProjections, out intValue) ? intValue : 0,
-                    GrowthRate = !string.IsNullOrEmpty(child.GrowthRate) && Double.TryParse(child.GrowthRate, out doubleValue) ? doubleValue : 0,
-                    AdultsPercent = !string.IsNullOrEmpty(child.AdultsPercent) && Double.TryParse(child.AdultsPercent, out doubleValue) ? doubleValue : 0,
-                    FemalePercent = !string.IsNullOrEmpty(child.FemalePercent) && Double.TryParse(child.FemalePercent, out doubleValue) ? doubleValue : 0,
-                    MalePercent = !string.IsNullOrEmpty(child.MalePercent) && Double.TryParse(child.MalePercent, out doubleValue) ? doubleValue : 0
+                    //AdminLevelId = id,
+                    //AdultPopulation = !string.IsNullOrEmpty(child.AdultPop) && int.TryParse(child.AdultPop, out intValue) ? intValue : 0,
+                    //TotalPopulation = !string.IsNullOrEmpty(child.TotalPop) && int.TryParse(child.TotalPop, out intValue) ? intValue : 0,
+                    //YearCensus = !string.IsNullOrEmpty(child.YearCensus) && int.TryParse(child.YearCensus, out intValue) ? intValue : 0,
+                    //YearReporting = !string.IsNullOrEmpty(child.YearReporting) && int.TryParse(child.YearReporting, out intValue) ? intValue : 0,
+                    //YearProjections = !string.IsNullOrEmpty(child.YearProjections) && int.TryParse(child.YearProjections, out intValue) ? intValue : 0,
+                    //GrowthRate = !string.IsNullOrEmpty(child.GrowthRate) && Double.TryParse(child.GrowthRate, out doubleValue) ? doubleValue : 0,
+                    //AdultsPercent = !string.IsNullOrEmpty(child.AdultsPercent) && Double.TryParse(child.AdultsPercent, out doubleValue) ? doubleValue : 0,
+                    //FemalePercent = !string.IsNullOrEmpty(child.FemalePercent) && Double.TryParse(child.FemalePercent, out doubleValue) ? doubleValue : 0,
+                    //MalePercent = !string.IsNullOrEmpty(child.MalePercent) && Double.TryParse(child.MalePercent, out doubleValue) ? doubleValue : 0
                 });
             }
             return demos;

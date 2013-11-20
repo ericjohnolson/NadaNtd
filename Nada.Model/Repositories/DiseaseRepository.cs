@@ -105,7 +105,7 @@ namespace Nada.Model.Repositories
             }
             return distros;
         }
-      
+
         public DiseaseDistroPc GetDiseaseDistribution(int id, int typeId)
         {
             DiseaseDistroPc diseaseDistro = Create((DiseaseType)typeId);
@@ -136,7 +136,7 @@ namespace Nada.Model.Repositories
                         }
                         reader.Close();
                     }
-                    
+
                     command = new OleDbCommand(@"Select 
                         DiseaseDistributionIndicatorValues.ID,   
                         DiseaseDistributionIndicatorValues.IndicatorId,
@@ -575,7 +575,7 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            values.Add(new KeyValuePair<int, string>(reader.GetValueOrDefault<int>("IndicatorId"), 
+                            values.Add(new KeyValuePair<int, string>(reader.GetValueOrDefault<int>("IndicatorId"),
                                 reader.GetValueOrDefault<string>("DropdownValue")));
                         }
                         reader.Close();
@@ -589,33 +589,56 @@ namespace Nada.Model.Repositories
             return values;
         }
 
-        public List<Disease> GetAllDiseases()
+        public List<Disease> GetSelectedDiseases()
         {
             List<Disease> diseases = new List<Disease>();
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
-                string sql = @"Select Diseases.ID, DisplayName, DiseaseType 
+                string sql = @"Select Diseases.ID, DisplayName, DiseaseType, UserDefinedName 
                     from Diseases
-                    where isdeleted = 0";
+                    where isdeleted = 0 and IsSelected = @IsSelected";
                 OleDbCommand command = new OleDbCommand(sql, connection);
+                command.Parameters.Add(new OleDbParameter("@IsSelected", true));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
-                        diseases.Add(new Disease
-                        {
-                            DisplayName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DisplayName"),
-                                    reader.GetValueOrDefault<string>("DisplayName")),
-                            DiseaseType = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseType"),
-                                    reader.GetValueOrDefault<string>("DiseaseType")),
-                            Id = reader.GetValueOrDefault<int>("ID")
-                        });
+                    {
+                        Disease d = GetDiseaseFromReader(reader);
+                        diseases.Add(d);
+                    }
                     reader.Close();
                 }
             }
             return diseases;
         }
+
+        public List<Disease> GetAvailableDiseases()
+        {
+            List<Disease> diseases = new List<Disease>();
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                string sql = @"Select Diseases.ID, DisplayName, DiseaseType, UserDefinedName 
+                    from Diseases
+                    where isdeleted = 0";
+                OleDbCommand command = new OleDbCommand(sql, connection);
+                command.Parameters.Add(new OleDbParameter("@IsSelected", true));
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Disease d = GetDiseaseFromReader(reader);
+                        diseases.Add(d);
+                    }
+                    reader.Close();
+                }
+            }
+            return diseases;
+        }
+
 
         public Disease GetDiseaseById(int id)
         {
@@ -624,7 +647,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                string sql = @"Select Diseases.ID, DisplayName, DiseaseType, UpdatedAt, 
+                string sql = @"Select Diseases.ID, DisplayName, DiseaseType, UserDefinedName, IsSelected, UpdatedAt, 
                     aspnet_Users.UserName, CreatedAt, created.UserName as CreatedBy
                     from ((Diseases INNER JOIN aspnet_Users on Diseases.UpdatedById = aspnet_Users.UserId)
                     INNER JOIN aspnet_users created on Diseases.CreatedById = created.UserId)
@@ -636,21 +659,28 @@ namespace Nada.Model.Repositories
                     if (reader.HasRows)
                     {
                         reader.Read();
-                        disease = new Disease
-                        {
-                            DisplayName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DisplayName"),
-                                    reader.GetValueOrDefault<string>("DisplayName")),
-                            DiseaseType = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseType"),
-                                    reader.GetValueOrDefault<string>("DiseaseType")),
-                            Id = reader.GetValueOrDefault<int>("ID"),
-                            UpdatedBy = Util.GetAuditInfo(reader)
-
-                        };
+                        disease = GetDiseaseFromReader(reader); ;
                     }
                     reader.Close();
                 }
             }
             return disease;
+        }
+
+        private Disease GetDiseaseFromReader(OleDbDataReader reader)
+        {
+            var d = new Disease
+            {
+                DisplayName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DisplayName"),
+                        reader.GetValueOrDefault<string>("DisplayName")),
+                UserDefinedName = reader.GetValueOrDefault<string>("UserDefinedName"),
+                DiseaseType = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseType"),
+                        reader.GetValueOrDefault<string>("DiseaseType")),
+                Id = reader.GetValueOrDefault<int>("ID")
+            };
+            if (!string.IsNullOrEmpty(d.UserDefinedName))
+                d.DisplayName = d.UserDefinedName;
+            return d;
         }
 
         public void Delete(Disease disease, int byUserId)
@@ -688,12 +718,13 @@ namespace Nada.Model.Repositories
                     transWasStarted = true;
 
                     if (disease.Id > 0)
-                        command = new OleDbCommand(@"UPDATE Diseases SET DisplayName=@DisplayName, UpdatedById=@UpdatedById, 
+                        command = new OleDbCommand(@"UPDATE Diseases SET DisplayName=@DisplayName, UserDefinedName=@UserDefinedName, UpdatedById=@UpdatedById, 
                             UpdatedAt=@UpdatedAt WHERE ID = @id", connection);
                     else
-                        command = new OleDbCommand(@"INSERT INTO diseases (DisplayName, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
-                            (@DisplayName, @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
+                        command = new OleDbCommand(@"INSERT INTO diseases (DisplayName, UserDefinedName, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
+                            (@DisplayName, @UserDefinedName, @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(new OleDbParameter("@DisplayName", disease.DisplayName));
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@UserDefinedName", disease.UserDefinedName));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", byUserId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                     if (disease.Id > 0)
@@ -709,6 +740,52 @@ namespace Nada.Model.Repositories
                     {
                         command = new OleDbCommand(@"SELECT Max(ID) FROM Diseases", connection);
                         disease.Id = (int)command.ExecuteScalar();
+                    }
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+
+        public void SaveSelectedDiseases(List<Disease> diseases, bool isSelected, int byUserId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    foreach (var d in diseases)
+                    {
+                        command = new OleDbCommand(@"UPDATE Diseases SET IsSelected=@IsSelected, UpdatedById=@UpdatedById, 
+                            UpdatedAt=@UpdatedAt WHERE ID = @id", connection);
+                        command.Parameters.Add(new OleDbParameter("@IsSelected", isSelected));
+                        command.Parameters.Add(new OleDbParameter("@UpdatedById", byUserId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.Parameters.Add(new OleDbParameter("@id", d.Id));
+                        command.ExecuteNonQuery();
                     }
 
                     // COMMIT TRANS

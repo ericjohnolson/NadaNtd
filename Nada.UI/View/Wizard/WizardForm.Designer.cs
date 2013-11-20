@@ -79,12 +79,12 @@
             // hrDisease
             // 
             this.hrDisease.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.hrDisease.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(178)))), ((int)(((byte)(224)))));
+            this.hrDisease.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hrDisease.ForeColor = System.Drawing.Color.Gray;
             this.hrDisease.Location = new System.Drawing.Point(21, 79);
             this.hrDisease.Margin = new System.Windows.Forms.Padding(0);
             this.hrDisease.Name = "hrDisease";
-            this.hrDisease.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(178)))), ((int)(((byte)(224)))));
+            this.hrDisease.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hrDisease.Size = new System.Drawing.Size(668, 1);
             this.hrDisease.TabIndex = 67;
             // 
@@ -93,7 +93,7 @@
             this.lblStepTitle.AutoSize = true;
             this.lblStepTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblStepTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStepTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(178)))), ((int)(((byte)(224)))));
+            this.lblStepTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.lblStepTitle.Location = new System.Drawing.Point(19, 49);
             this.lblStepTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblStepTitle.Name = "lblStepTitle";
@@ -107,7 +107,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(178)))), ((int)(((byte)(224)))));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.lblTitle.Location = new System.Drawing.Point(18, 9);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
@@ -118,13 +118,13 @@
             // 
             // hrTop
             // 
-            this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(178)))), ((int)(((byte)(224)))));
+            this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hrTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.hrTop.ForeColor = System.Drawing.Color.Gray;
             this.hrTop.Location = new System.Drawing.Point(0, 0);
             this.hrTop.Margin = new System.Windows.Forms.Padding(5);
             this.hrTop.Name = "hrTop";
-            this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(178)))), ((int)(((byte)(224)))));
+            this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hrTop.Size = new System.Drawing.Size(713, 5);
             this.hrTop.TabIndex = 59;
             // 
@@ -209,6 +209,7 @@
             this.Name = "WizardForm";
             this.Tag = "CustomReport";
             this.Text = "CustomReport";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WizardForm_FormClosed);
             this.Load += new System.EventHandler(this.ReportWizard_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

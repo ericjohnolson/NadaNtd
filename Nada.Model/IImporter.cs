@@ -23,10 +23,10 @@ namespace Nada.Model
         public ImportResult(string error)
         {
             WasSuccess = false;
-            ErrorMessage = error;
+            Message = error;
         }
         public bool WasSuccess { get; set; }
-        public string ErrorMessage { get; set; }
+        public string Message { get; set; }
         public int Count { get; set; }
     }
 }

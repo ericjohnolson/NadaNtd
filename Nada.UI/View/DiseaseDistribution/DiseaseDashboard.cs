@@ -15,6 +15,8 @@ using Nada.Model;
 using Nada.Model.Intervention;
 using Nada.UI.View.Intervention;
 using Nada.UI.View.Survey;
+using Nada.Model.Demography;
+using Nada.Model.Repositories;
 
 namespace Nada.UI.View.Demography
 {
@@ -23,7 +25,7 @@ namespace Nada.UI.View.Demography
         public Action<UserControl> LoadView = (i) => { };
         public Action<AdminLevel> ReloadView = (i) => { };
         public Action<string> StatusChanged = (e) => { };
-        IFetchDiseaseActivities fetcher = null;
+        IFetchActivities fetcher = null;
         AdminLevel adminLevel = null;
 
         public DiseaseDashboard()
@@ -31,7 +33,7 @@ namespace Nada.UI.View.Demography
             InitializeComponent();
         }
 
-        public DiseaseDashboard(IFetchDiseaseActivities f, AdminLevel l)
+        public DiseaseDashboard(IFetchActivities f, AdminLevel l)
         {
             InitializeComponent();
             fetcher = f;
@@ -47,9 +49,9 @@ namespace Nada.UI.View.Demography
             LoadInterventions();
             LoadDiseases();
             LoadDiseaseDistros();
-           
+            LoadDemography();
         }
-
+        
         private void DoLoadView(IView view)
         {
             if (view == null)
@@ -102,7 +104,7 @@ namespace Nada.UI.View.Demography
 
         void intvWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var f = (IFetchDiseaseActivities)e.Argument;
+            var f = (IFetchActivities)e.Argument;
             e.Result = f.GetIntvs();
         }
 
@@ -174,7 +176,7 @@ namespace Nada.UI.View.Demography
 
         void surveyWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var f = (IFetchDiseaseActivities)e.Argument;
+            var f = (IFetchActivities)e.Argument;
             e.Result = f.GetSurveys();
         }
 
@@ -259,7 +261,7 @@ namespace Nada.UI.View.Demography
 
         void DiseaseDistroWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var f = (IFetchDiseaseActivities)e.Argument;
+            var f = (IFetchActivities)e.Argument;
             e.Result = f.GetDiseaseDistros();
         }
 
@@ -286,13 +288,90 @@ namespace Nada.UI.View.Demography
         }
         #endregion
 
-        #region Overview
+        #region Demography
         private void btnOverview_Click_1(object sender, EventArgs e)
         {
-            DoCollapse(btnOverview, pnlOverview);
+            DoCollapse(btnOverview, pnlDemo);
         }
 
+        private void LoadDemography()
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += DemoWorker_DoWork;
+            worker.RunWorkerCompleted += DemoWorker_RunWorkerCompleted;
+            pnlDemo.Visible = false;
+            loadingDemos.Visible = true;
+            worker.RunWorkerAsync(fetcher);
+        }
+
+        void DemoWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            DemoPayload result = (DemoPayload)e.Result;
+            lvDemo.SetObjects(result.DemoList);
+
+            lnkAddDemo.Visible = result.AllowAdd;
+            loadingDemos.Visible = false;
+            pnlDistroDetails.Visible = true;
+        }
+
+        void DemoWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var f = (IFetchActivities)e.Argument;
+            var demo = f.GetDemography();
+            SettingsRepository repo = new SettingsRepository();
+            var adminType = repo.GetAdminLevelTypeByLevel(adminLevel.LevelNumber);
+            bool canCrud = false;
+            if (adminType != null)
+                canCrud = adminType.IsDemographyAllowed;
+            if (canCrud)
+            {
+                foreach (var d in demo)
+                {
+                    d.CanView = true;
+                    d.CanDelete = true;
+                }
+            }
+            e.Result = new DemoPayload
+            {
+                DemoList = demo,
+                AllowAdd = canCrud
+            };
+        }
+        public class DemoPayload
+        {
+            public List<DemoDetails> DemoList { get; set; }
+            public bool AllowAdd { get; set; }
+        }
+
+        private void lvDemo_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
+        {
+            e.Handled = true;
+            if (e.Column.AspectName == "View")
+            {
+                IView demo = fetcher.GetDemo((DemoDetails)e.Model);
+                if (demo == null)
+                    return;
+                DoLoadView(demo);
+            }
+            else if (e.Column.AspectName == "Delete")
+            {
+                DeleteConfirm confirm = new DeleteConfirm();
+                if (confirm.ShowDialog() == DialogResult.OK)
+                {
+                    fetcher.Delete((DemoDetails)e.Model, ApplicationData.Instance.GetUserId());
+                    LoadDemography();
+                }
+            }
+
+        }
+
+        private void h3Link1_ClickOverride()
+        {
+            IView view = fetcher.NewDemo();
+            DoLoadView(view);
+        }
         #endregion
+
         
     }
 }

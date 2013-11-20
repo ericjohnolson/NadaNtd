@@ -9,8 +9,22 @@ using System.Threading;
 
 namespace Nada.Globalization
 {
-    public class GlobalizationUtil
+    public class MonthItem
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    public static class GlobalizationUtil
+    {
+        public static List<MonthItem> GetAllMonths()
+        {
+            var months = new List<MonthItem>();
+            for (int i = 0; i < 12; i++) {
+                months.Add(new MonthItem { Name = CultureInfo.CurrentUICulture.DateTimeFormat.MonthNames[i], Id = i + 1 });
+            }
+            return months;
+        }
     }
 
     public static class TranslationLookup

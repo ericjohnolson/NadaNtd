@@ -58,11 +58,8 @@ namespace Nada.UI.View
                 }
 
                 // Add label
-                tblStaticIndicators.Controls.Add(
-                    new H3bLabel { Text = TranslationLookup.GetValue(indicator.DisplayName, indicator.DisplayName), 
-                        Name = "ciLabel_" + indicator.Id, AutoSize = true, },
-                    columnCount, labelRowIndex);
-
+                tblStaticIndicators.Controls.Add(CreateLabel(indicator, true), columnCount, labelRowIndex);
+                
                 // Add field
                 string val = "";
                 IndicatorValue iv = values.FirstOrDefault(i => i.IndicatorId == indicator.Id);
@@ -93,9 +90,7 @@ namespace Nada.UI.View
                 }
 
                 // Add label
-                tblIndicators.Controls.Add(
-                    new H3bLabel { Text = indicator.DisplayName, Name = "ciLabel_" + indicator.Id, AutoSize = true, },
-                    columnCount, labelRowIndex);
+                tblIndicators.Controls.Add(CreateLabel(indicator, false), columnCount, labelRowIndex);
 
                 // Add field
                 string val = "";
@@ -108,6 +103,33 @@ namespace Nada.UI.View
                 count++;
                 columnCount = columnCount + 2;
             }
+        }
+
+        private Control CreateLabel(Indicator indicator, bool isStatic)
+        {
+            var text = indicator.DisplayName;
+            if(isStatic)
+                text = TranslationLookup.GetValue(indicator.DisplayName, indicator.DisplayName);
+            if (indicator.IsRequired)
+            {
+                var required = new H3Required
+                {
+                    Text = text,
+                    Name = "ciLabel_" + indicator.Id,
+                    AutoSize = true,
+                    Anchor = (AnchorStyles.Bottom | AnchorStyles.Left)
+                };
+                required.SetMaxWidth(370);
+                return required;
+            }
+            else
+                return new H3bLabel
+                    {
+                        Text = text,
+                        Name = "ciLabel_" + indicator.Id,
+                        AutoSize = true,
+                        Anchor = (AnchorStyles.Bottom | AnchorStyles.Left)
+                    };
         }
 
         public bool IsValid()
@@ -216,11 +238,12 @@ namespace Nada.UI.View
             {
                 var cntrl = new ComboBox { Name = "dynamicCombo" + indicator.Id.ToString(), Width = 220, Margin = new Padding(0, 5, 10, 5) };
                 foreach (KeyValuePair<int, string> key in dropdownKeys.Where(k => k.Key == indicator.Id))
-                    cntrl.Items.Add(TranslationLookup.GetValue(key.Value, key.Value));
+                    cntrl.Items.Add(new DynamicDropDownValue { Name = TranslationLookup.GetValue(key.Value, key.Value), Value = key.Value });
+                cntrl.ValueMember = "Value";
+                cntrl.DisplayMember = "Name";
+                if (!string.IsNullOrEmpty(val))
+                    cntrl.Text = TranslationLookup.GetValue(val, val);
 
-                if(!string.IsNullOrEmpty(val))
-                    cntrl.Text = val;
-    
                 container.IsValid = () =>
                 {
                     if (indicator.IsRequired)
@@ -237,7 +260,12 @@ namespace Nada.UI.View
                 };
                 cntrl.Validating += (s, e) => { container.IsValid(); };
 
-                container.GetValue = () => { return cntrl.Text; };
+                container.GetValue = () =>
+                {
+                    if (cntrl.SelectedItem == null)
+                        return null;
+                    return ((DynamicDropDownValue)cntrl.SelectedItem).Value;
+                };
                 controlList.Add(container);
                 return cntrl;
             }
@@ -292,6 +320,14 @@ namespace Nada.UI.View
             OnAddRemove();
         }
 
-
+        public class DynamicDropDownValue
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
+            public override string ToString()
+            {
+                return Name;
+            }
+        }
     }
 }

@@ -54,6 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\NadaListItem.cs" />
+    <Compile Include="Demography\CountryDemography.cs" />
+    <Compile Include="Demography\DemoDetails.cs" />
+    <Compile Include="Exports\CmJrfExporter.cs" />
+    <Compile Include="IExporter.cs" />
     <Compile Include="Demography\AdminLevelImporter.cs" />
     <Compile Include="Diseases\CalcHatDistro.cs" />
     <Compile Include="Diseases\CalcLeishDistro.cs" />
@@ -63,6 +67,7 @@
     <Compile Include="Diseases\DiseaseDistroDetails.cs" />
     <Compile Include="Diseases\CalcLeprosyDistro.cs" />
     <Compile Include="ICalcIndicators.cs" />
+    <Compile Include="IndicatorAggregator.cs" />
     <Compile Include="Intervention\CalcGuineaIntv.cs" />
     <Compile Include="Intervention\CalcLeprosyIntv.cs" />
     <Compile Include="Intervention\CalcHatIntv.cs" />
@@ -71,6 +76,7 @@
     <Compile Include="Intervention\CalcYawsIntv.cs" />
     <Compile Include="Intervention\IntvDetails.cs" />
     <Compile Include="Reports\ReportOptions.cs" />
+    <Compile Include="Repositories\ExportRepository.cs" />
     <Compile Include="Survey\CalcBuruliSurvey.cs" />
     <Compile Include="Survey\SurveyDetails.cs" />
     <Compile Include="Survey\LfSentinelImporter.cs" />
@@ -96,7 +102,6 @@
     <Compile Include="Repositories\IntvRepository.cs" />
     <Compile Include="Survey\SurveyBase.cs" />
     <Compile Include="Demography\Country.cs" />
-    <Compile Include="Demography\CountryDemography.cs" />
     <Compile Include="Csv\AdminLevelDemoRow.cs" />
     <Compile Include="Csv\AdminLevelRow.cs" />
     <Compile Include="Csv\CsvItem.cs" />

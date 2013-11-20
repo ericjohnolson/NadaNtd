@@ -73,7 +73,7 @@ namespace Nada.UI.View.Wizard
                 int userId = ApplicationData.Instance.GetUserId();
                 var result = importer.ImportData(openFileDialog1.FileName, userId);
                 if (!result.WasSuccess)
-                    MessageBox.Show(result.ErrorMessage);
+                    MessageBox.Show(result.Message);
                 else
                     MessageBox.Show(string.Format(Translations.ImportSuccess, result.Count));
             }

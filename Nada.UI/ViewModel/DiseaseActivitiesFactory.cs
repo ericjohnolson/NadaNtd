@@ -5,10 +5,12 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
 using Nada.Model.Base;
+using Nada.Model.Demography;
 using Nada.Model.Diseases;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
+using Nada.UI.View.Demography;
 using Nada.UI.View.DiseaseDistribution;
 using Nada.UI.View.Intervention;
 using Nada.UI.View.Survey;
@@ -16,22 +18,8 @@ using Nada.UI.ViewModel;
 
 namespace Nada.UI.AppLogic
 {
-    public static class DiseaseActivitiesFactory
-    {
-        public static IFetchDiseaseActivities GetForDisease(DiseaseType type, AdminLevel adminLevel)
-        {
-            DiseaseRepository repo = new DiseaseRepository();
-            switch (type)
-            {
-                case DiseaseType.Lf:
-                    return new LfActivityFetcher(adminLevel, repo.GetDiseaseById((int)type));
-                default:
-                    return new LfActivityFetcher(adminLevel, repo.GetDiseaseById((int)type));
-            }
-        }
-    }
 
-    public interface IFetchDiseaseActivities
+    public interface IFetchActivities
     {
         // Surveys
         List<SurveyDetails> GetSurveys();
@@ -51,20 +39,24 @@ namespace Nada.UI.AppLogic
         IView NewDiseaseDistro(Disease disease);
         IView GetDiseaseDistro(DiseaseDistroDetails details);
         void Delete(DiseaseDistroDetails details, int userId);
+        //Demo
+        List<DemoDetails> GetDemography();
+        IView GetDemo(DemoDetails details);
+        IView NewDemo();
+        void Delete(DemoDetails details, int userId);
     }
 
-    public class LfActivityFetcher : IFetchDiseaseActivities
+    public class ActivityFetcher : IFetchActivities
     {
         AdminLevel adminLevel = null;
-        Disease disease = null;
         SurveyRepository surveys = new SurveyRepository();
         IntvRepository interventions = new IntvRepository();
         DiseaseRepository diseases = new DiseaseRepository();
+        DemoRepository demos = new DemoRepository();
 
-        public LfActivityFetcher(AdminLevel adminLevel, Disease disease)
+        public ActivityFetcher(AdminLevel adminLevel)
         {
             this.adminLevel = adminLevel;
-            this.disease = disease;
         }
 
         #region Surveys
@@ -154,7 +146,7 @@ namespace Nada.UI.AppLogic
 
         #region DiseaseDistro
         public List<DiseaseDistroDetails> GetDiseaseDistros() { return diseases.GetAllForAdminLevel(adminLevel.Id); }
-        public List<Disease> GetDiseases() { return diseases.GetAllDiseases(); }
+        public List<Disease> GetDiseases() { return diseases.GetSelectedDiseases(); }
         public void Delete(DiseaseDistroDetails details, int userId) { diseases.Delete(details, userId); }
         public IView NewDiseaseDistro(Disease type)
         {
@@ -198,6 +190,22 @@ namespace Nada.UI.AppLogic
 
             DiseaseDistroPc modelPc = diseases.GetDiseaseDistribution(details.Id, details.TypeId);
             return new DataEntryEdit(new DiseaseDistroPcVm(adminLevel, modelPc, null));
+        }
+
+        #endregion
+
+        #region Demo
+        public List<DemoDetails> GetDemography() { return demos.GetAdminLevelDemography(adminLevel.Id); }
+        public void Delete(DemoDetails details, int userId) { demos.Delete(details, userId); }
+        public IView NewDemo()
+        {
+            return new DemographyView(adminLevel);
+        }
+
+        public IView GetDemo(DemoDetails details)
+        {
+            var demo = demos.GetDemoById(details.Id);
+            return new DemographyView(demo, adminLevel);
         }
 
         #endregion

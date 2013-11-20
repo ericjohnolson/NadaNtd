@@ -11,6 +11,8 @@ using Nada.UI.View.Help;
 using Nada.UI.View.Reports.CustomReport;
 using Nada.Model.Reports;
 using Nada.Globalization;
+using Nada.Model;
+using Nada.Model.Exports;
 
 namespace Nada.UI.View.Reports
 {
@@ -30,6 +32,8 @@ namespace Nada.UI.View.Reports
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
+                lblCmJrf.SetMaxWidth(400);
+                lblCustom.SetMaxWidth(400);
             }
         }
 
@@ -63,6 +67,14 @@ namespace Nada.UI.View.Reports
             WizardForm wiz = new WizardForm(new StepIndicators(options), Translations.CustomReportBuilder);
             wiz.OnRunReport = RunCustomReport;
             wiz.Show();
+        }
+
+        private void lnkCmJrf_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            IExporter exporter = new CmJrfExporter();
+            WizardForm wiz = new WizardForm(new ExportStep(exporter, exporter.ExportName), exporter.ExportName);
+            wiz.OnFinish = () => { };
+            wiz.ShowDialog();
         }
     }
 }

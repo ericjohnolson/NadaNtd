@@ -86,7 +86,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(145, 113);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(145, 117);
             this.tableLayoutPanel1.TabIndex = 48;
             // 
             // tableLayoutPanel2
@@ -140,10 +140,10 @@
             this.fieldLink1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.fieldLink1.BackColor = System.Drawing.Color.Transparent;
             this.fieldLink1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fieldLink1.Location = new System.Drawing.Point(53, 101);
+            this.fieldLink1.Location = new System.Drawing.Point(17, 101);
             this.fieldLink1.Margin = new System.Windows.Forms.Padding(0);
             this.fieldLink1.Name = "fieldLink1";
-            this.fieldLink1.Size = new System.Drawing.Size(92, 12);
+            this.fieldLink1.Size = new System.Drawing.Size(128, 16);
             this.fieldLink1.TabIndex = 49;
             this.fieldLink1.Text = "Advanced settings...";
             this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);

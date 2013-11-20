@@ -93,7 +93,7 @@ namespace Nada.Model
             return inds;
         }
 
-        public void CreateImportExcel(DataTable data, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, List<AdminLevel> rows)
+        public void AddDataToWorksheet(DataTable data, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, List<AdminLevel> rows)
         {
             // Add rows to data table
             foreach (AdminLevel l in rows)
@@ -104,6 +104,11 @@ namespace Nada.Model
                 data.Rows.Add(row);
             }
 
+            AddTableToWorksheet(data, xlsWorksheet);
+        }
+
+        public void AddTableToWorksheet(DataTable data, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet)
+        {
             // Add columns
             int iCol = 0;
             foreach (DataColumn c in data.Columns)

@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTitle = new System.Windows.Forms.Label();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tblNotes = new System.Windows.Forms.TableLayoutPanel();
-            this.lblDiseaseType = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.hr5 = new Nada.UI.Controls.HR();
             this.hr4 = new Nada.UI.Controls.HR();
@@ -43,7 +41,6 @@
             this.indicatorControl1 = new Nada.UI.View.IndicatorControl();
             this.statCalculator1 = new Nada.UI.Controls.StatCalculator();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.tblTitle = new System.Windows.Forms.TableLayoutPanel();
             this.hrTop = new Nada.UI.Controls.HR();
             this.adminLevelPickerControl1 = new Nada.UI.View.AdminLevelPickerControl();
             this.nadaLabel2 = new Nada.UI.Controls.H3Label();
@@ -51,26 +48,15 @@
             this.adminLevelPickerControl2 = new Nada.UI.View.AdminLevelPickerControl();
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnDash = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblDiseaseType = new System.Windows.Forms.Label();
+            this.tblTitle = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4.SuspendLayout();
             this.tblNotes.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tblTitle.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.lblTitle.Location = new System.Drawing.Point(45, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(178, 30);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Tag = "";
-            this.lblTitle.Text = "DiseaseDistribution";
             // 
             // kryptonButton1
             // 
@@ -135,20 +121,6 @@
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblNotes.Size = new System.Drawing.Size(184, 77);
             this.tblNotes.TabIndex = 7;
-            // 
-            // lblDiseaseType
-            // 
-            this.lblDiseaseType.AutoSize = true;
-            this.lblDiseaseType.BackColor = System.Drawing.Color.Transparent;
-            this.lblDiseaseType.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiseaseType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.lblDiseaseType.Location = new System.Drawing.Point(0, 0);
-            this.lblDiseaseType.Margin = new System.Windows.Forms.Padding(0);
-            this.lblDiseaseType.Name = "lblDiseaseType";
-            this.lblDiseaseType.Size = new System.Drawing.Size(45, 30);
-            this.lblDiseaseType.TabIndex = 44;
-            this.lblDiseaseType.Tag = "CM";
-            this.lblDiseaseType.Text = "CM";
             // 
             // tableLayoutPanel5
             // 
@@ -284,22 +256,6 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(0, 0);
             this.tableLayoutPanel6.TabIndex = 55;
             // 
-            // tblTitle
-            // 
-            this.tblTitle.AutoSize = true;
-            this.tblTitle.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tblTitle.ColumnCount = 2;
-            this.tblTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblTitle.Controls.Add(this.lblDiseaseType, 0, 0);
-            this.tblTitle.Controls.Add(this.lblTitle, 1, 0);
-            this.tblTitle.Location = new System.Drawing.Point(11, 14);
-            this.tblTitle.Name = "tblTitle";
-            this.tblTitle.RowCount = 1;
-            this.tblTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblTitle.Size = new System.Drawing.Size(223, 30);
-            this.tblTitle.TabIndex = 60;
-            // 
             // hrTop
             // 
             this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
@@ -395,6 +351,50 @@
             this.btnDash.UseVisualStyleBackColor = true;
             this.btnDash.Click += new System.EventHandler(this.btnDash_Click);
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
+            this.lblTitle.Location = new System.Drawing.Point(45, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(178, 30);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Tag = "";
+            this.lblTitle.Text = "DiseaseDistribution";
+            // 
+            // lblDiseaseType
+            // 
+            this.lblDiseaseType.AutoSize = true;
+            this.lblDiseaseType.BackColor = System.Drawing.Color.Transparent;
+            this.lblDiseaseType.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiseaseType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
+            this.lblDiseaseType.Location = new System.Drawing.Point(0, 0);
+            this.lblDiseaseType.Margin = new System.Windows.Forms.Padding(0);
+            this.lblDiseaseType.Name = "lblDiseaseType";
+            this.lblDiseaseType.Size = new System.Drawing.Size(45, 30);
+            this.lblDiseaseType.TabIndex = 44;
+            this.lblDiseaseType.Tag = "CM";
+            this.lblDiseaseType.Text = "CM";
+            // 
+            // tblTitle
+            // 
+            this.tblTitle.AutoSize = true;
+            this.tblTitle.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblTitle.ColumnCount = 2;
+            this.tblTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblTitle.Controls.Add(this.lblDiseaseType, 0, 0);
+            this.tblTitle.Controls.Add(this.lblTitle, 1, 0);
+            this.tblTitle.Location = new System.Drawing.Point(11, 13);
+            this.tblTitle.Name = "tblTitle";
+            this.tblTitle.RowCount = 1;
+            this.tblTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblTitle.Size = new System.Drawing.Size(223, 30);
+            this.tblTitle.TabIndex = 60;
+            // 
             // DataEntryEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,13 +434,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblTitle;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private AdminLevelPickerControl adminLevelPickerControl1;
         private System.Windows.Forms.TableLayoutPanel tblNotes;
         private AdminLevelPickerControl adminLevelPickerControl2;
-        private System.Windows.Forms.Label lblDiseaseType;
         private Controls.H3Label nadaLabel1;
         private Controls.H3Label nadaLabel2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
@@ -451,11 +449,13 @@
         private Controls.HR hr5;
         private System.Windows.Forms.Button btnDash;
         private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.TableLayoutPanel tblTitle;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TextBox textBox1;
         private Controls.H3Label h3Label3;
         private IndicatorControl indicatorControl1;
         private Controls.StatCalculator statCalculator1;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblDiseaseType;
+        private System.Windows.Forms.TableLayoutPanel tblTitle;
     }
 }

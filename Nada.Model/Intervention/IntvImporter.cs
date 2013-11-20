@@ -56,7 +56,7 @@ namespace Nada.Model.Intervention
                 {
                     WasSuccess = true,
                     Count = rec,
-                    ErrorMessage = string.Empty
+                    Message = string.Empty
                 };
             }
             catch (Exception ex)
@@ -73,7 +73,7 @@ namespace Nada.Model.Intervention
         public void CreateImportFile(string filename, List<AdminLevel> adminLevels)
         {
             DiseaseRepository repo = new DiseaseRepository();
-            List<Disease> diseases = repo.GetAllDiseases();
+            List<Disease> diseases = repo.GetSelectedDiseases();
             IntvRepository repo2 = new IntvRepository();
             List<Partner> partners = repo2.GetPartners();
             PcMda model = new PcMda();
@@ -91,7 +91,7 @@ namespace Nada.Model.Intervention
 
             // Load data into excel worksheet
             DataTable data = GetDataTable();
-            CreateImportExcel(data, xlsWorksheet, adminLevels);
+            AddDataToWorksheet(data, xlsWorksheet, adminLevels);
 
             // Set up all the different drop downs and multiselects
             xlDropDowns = ((Microsoft.Office.Interop.Excel.DropDowns)(xlsWorksheet.DropDowns(oMissing)));
@@ -170,7 +170,7 @@ namespace Nada.Model.Intervention
                 {
                     WasSuccess = true,
                     Count = rec,
-                    ErrorMessage = string.Empty
+                    Message = string.Empty
                 };
             }
             catch (Exception ex)

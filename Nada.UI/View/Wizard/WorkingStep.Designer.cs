@@ -41,6 +41,7 @@
             this.loading1.Location = new System.Drawing.Point(16, 13);
             this.loading1.Name = "loading1";
             this.loading1.Size = new System.Drawing.Size(46, 59);
+            this.loading1.StatusMessage = " ";
             this.loading1.TabIndex = 0;
             // 
             // WorkingStep

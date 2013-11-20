@@ -42,6 +42,11 @@ namespace Nada.UI.View
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
+            if (!model.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationError);
+                return;
+            }
             bindingSource1.EndEdit();
             DiseaseRepository r = new DiseaseRepository();
             int userid = ApplicationData.Instance.GetUserId();

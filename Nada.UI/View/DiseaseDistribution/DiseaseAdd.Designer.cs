@@ -35,13 +35,13 @@
             this.hr1 = new Nada.UI.Controls.HR();
             this.h3Label1 = new Nada.UI.Controls.H3Label();
             this.tb1 = new System.Windows.Forms.TextBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -107,28 +107,30 @@
             this.tb1.Size = new System.Drawing.Size(207, 20);
             this.tb1.TabIndex = 25;
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(Nada.Model.Diseases.Disease);
+            // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel4.AutoSize = true;
             this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.Controls.Add(this.kryptonButton1, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnSave, 2, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(47, 126);
+            this.tableLayoutPanel4.Controls.Add(this.kryptonButton1, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(26, 127);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(186, 31);
             this.tableLayoutPanel4.TabIndex = 42;
             // 
             // kryptonButton1
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(3, 3);
+            this.kryptonButton1.Location = new System.Drawing.Point(106, 3);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.kryptonButton1.Size = new System.Drawing.Size(77, 25);
@@ -139,7 +141,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(106, 3);
+            this.btnSave.Location = new System.Drawing.Point(3, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnSave.Size = new System.Drawing.Size(77, 25);
@@ -147,10 +149,6 @@
             this.btnSave.Tag = "Save";
             this.btnSave.Values.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(Nada.Model.Diseases.Disease);
             // 
             // DiseaseAdd
             // 
@@ -165,12 +163,13 @@
             this.Controls.Add(this.hr1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "DiseaseAdd";
-            this.Text = "New Partner";
+            this.Tag = "Disease";
+            this.Text = "Disease";
             this.Load += new System.EventHandler(this.DistributionMethodAdd_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

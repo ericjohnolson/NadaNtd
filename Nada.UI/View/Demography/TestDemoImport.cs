@@ -41,7 +41,7 @@ namespace Nada.UI.View.Demography
                 var result = importer.ImportData(openFileDialog1.FileName, ApplicationData.Instance.GetUserId());
 
                 if (!result.WasSuccess)
-                    MessageBox.Show(result.ErrorMessage);
+                    MessageBox.Show(result.Message);
                 else
                 {
                     MessageBox.Show(string.Format("Successfully added {0} new districts!", result.Count));

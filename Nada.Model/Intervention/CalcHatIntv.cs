@@ -13,7 +13,7 @@ namespace Nada.Model.Intervention
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(indicatorValues);
             List<KeyValuePair<string, string>> calcs = new List<KeyValuePair<string, string>>();
-            double h19 = -1, h18 = -1, h20 = -1, h21 = -1, h22 = -1, h23 = -1, h27 = -1, h24 = -1, h29 = -1, h30 = -1;
+            double h19 = -1, h18 = -1, h20 = -1, h21 = -1, h22 = -1, h23 = -1, h27 = -1, h24 = -1, h29 = -1, h30 = -1, h28 = -1;
             h19 = Util.ParseIndicatorDouble(inds, "NumLabCases");
             h18 = Util.ParseIndicatorDouble(inds, "NumClinicalCasesHat");
             h20 = Util.ParseIndicatorDouble(inds, "NumTGamb");
@@ -22,9 +22,10 @@ namespace Nada.Model.Intervention
             h23 = Util.ParseIndicatorDouble(inds, "NumProspection");
             h27 = Util.ParseIndicatorDouble(inds, "NumCasesCured");
             h24 = Util.ParseIndicatorDouble(inds, "NumCasesTreated");
+            h28 = Util.ParseIndicatorDouble(inds, "NumTreatmentFailures");
             h29 = Util.ParseIndicatorDouble(inds, "NumCasesSaes");
             h30 = Util.ParseIndicatorDouble(inds, "NumDeaths");
-            
+
             if (h18 > 0 && h19 >= 0)
                 calcs.Add(new KeyValuePair<string, string>("PercentLabConfirmed", string.Format("{0:0.00}", h19 / h18 * 100).ToString()));
             else
@@ -55,8 +56,8 @@ namespace Nada.Model.Intervention
             else
                 calcs.Add(new KeyValuePair<string, string>("CureRate", Translations.NA));
 
-            if (h24 > 0 && h29 >= 0)
-                calcs.Add(new KeyValuePair<string, string>("PercentTreatmentFailure", string.Format("{0:0.00}", h29 / h24 * 100).ToString()));
+            if (h24 > 0 && h28 >= 0)
+                calcs.Add(new KeyValuePair<string, string>("PercentTreatmentFailure", string.Format("{0:0.00}", h28 / h24 * 100).ToString()));
             else
                 calcs.Add(new KeyValuePair<string, string>("PercentTreatmentFailure", Translations.NA));
 

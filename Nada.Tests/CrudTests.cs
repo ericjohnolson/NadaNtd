@@ -15,7 +15,7 @@ namespace Nada.Tests
             var admins = repo.GetAllAdminLevels();
             var al = admins[0];
             al.DisplayName = "update";
-            repo.UpdateAdminLevel(al, 26);
+            repo.Save(al, 26);
             var updated = repo.GetAllAdminLevels();
             Assert.AreEqual(al.DisplayName, updated[0].DisplayName);
         }

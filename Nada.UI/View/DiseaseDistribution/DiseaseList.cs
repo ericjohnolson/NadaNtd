@@ -29,7 +29,7 @@ namespace Nada.UI.View
             if (!DesignMode)
             {
                 repo = new DiseaseRepository();
-                lvDiseases.SetObjects(repo.GetAllDiseases());
+                lvDiseases.SetObjects(repo.GetSelectedDiseases());
             }
         }
 
@@ -52,14 +52,14 @@ namespace Nada.UI.View
             else if (e.Column.AspectName == "DeleteText")
             {
                 repo.Delete((Disease)e.Model, ApplicationData.Instance.GetUserId());
-                lvDiseases.SetObjects(repo.GetAllDiseases());
+                lvDiseases.SetObjects(repo.GetSelectedDiseases());
                 OnSave();
             }
         }
 
         void form_OnSave(Disease obj)
         {
-            lvDiseases.SetObjects(repo.GetAllDiseases());
+            lvDiseases.SetObjects(repo.GetSelectedDiseases());
             OnSave();
         }
 

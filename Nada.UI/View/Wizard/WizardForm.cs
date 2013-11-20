@@ -15,6 +15,7 @@ namespace Nada.UI.View
     {
         private string title = "";
         public Action OnFinish { get; set; }
+        public Action OnClose = () => { };
         public Action<ReportOptions> OnRunReport { get; set; }
         private IWizardStep currentStep = null;
 
@@ -83,6 +84,11 @@ namespace Nada.UI.View
         {
             this.Close();
             OnFinish();
+        }
+
+        private void WizardForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnClose();
         }
 
     }

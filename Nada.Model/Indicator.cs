@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Nada.Globalization;
 using Nada.Model.Base;
 
 namespace Nada.Model
@@ -11,7 +12,7 @@ namespace Nada.Model
     {
         public Indicator()
         {
-            DataType = "Text";
+            DataType = Translations.Text;
             IsEditable = true;
         }
 
@@ -24,7 +25,8 @@ namespace Nada.Model
 
         // Display only props
         public string DataType { get; set; }
-        public string EditText { get { return "Edit"; } }
+        public string EditText { get { return Translations.View; } }
+        public string DeleteText { get { return Translations.Delete; } }
         public bool IsEdited { get; set; }
     }
 }

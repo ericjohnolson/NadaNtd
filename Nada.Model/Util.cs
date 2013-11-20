@@ -42,6 +42,11 @@ namespace Nada.Model
             return Translations.AuditCreated + ": " + reader.GetValueOrDefault<string>("CreatedBy") + " on " + reader.GetValueOrDefault<DateTime>("CreatedAt").ToString("MM/dd/yyyy")
                    + ", " + Translations.AuditUpdated + ": " + reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
         }
+
+        public static string GetAuditInfoUpdate(OleDbDataReader reader)
+        {
+            return Translations.AuditUpdated + ": " + reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
+        }
         
         public static List<string> ProduceEnumeration(List<string> source)
         {
@@ -68,6 +73,7 @@ namespace Nada.Model
                 double.TryParse(inds[name].DynamicValue, out val);
             return val;
         }
+
         public static int ParseIndicatorInt(Dictionary<string, IndicatorValue> inds, string name)
         {
             int val = -1;
@@ -75,7 +81,6 @@ namespace Nada.Model
                 int.TryParse(inds[name].DynamicValue, out val);
             return val;
         }
-
-
+        
     }
 }

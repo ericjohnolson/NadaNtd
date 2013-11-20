@@ -10,7 +10,7 @@ namespace Nada.Model.Base
     {
         public DateTime UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
-        public string View
+        public virtual string View
         {
             get
             {
@@ -18,7 +18,7 @@ namespace Nada.Model.Base
             }
         }
 
-        public string Delete
+        public virtual string Delete
         {
             get
             {

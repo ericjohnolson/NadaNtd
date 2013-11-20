@@ -13,7 +13,7 @@ namespace Nada.Model.Intervention
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(indicatorValues);
             List<KeyValuePair<string, string>> calcs = new List<KeyValuePair<string, string>>();
 
-            //B52	% of Health facility coverage for Buruli Ulcer treatment	percent		U14/total population of adults > 15 years
+            //B52	% of Health facility coverage for Buruli Ulcer treatment	percent		B40/total population of adults > 15 years
             calcs.Add(new KeyValuePair<string, string>("PercentCoverageBu", Translations.NA));
             return calcs;
         }

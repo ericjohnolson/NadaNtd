@@ -6,23 +6,29 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Diseases;
+using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
 using Nada.UI.View;
 using Nada.UI.View.Demography;
+using Nada.UI.View.DiseaseDistribution;
 using Nada.UI.View.Intervention;
 using Nada.UI.View.Modals;
 using Nada.UI.View.Reports;
 using Nada.UI.View.Survey;
+using Nada.UI.View.Wizard;
+using Nada.UI.ViewModel;
 
 namespace Nada.UI
 {
     public partial class Shell : Form
     {
         private UserControl currentView = null;
+        private SettingsRepository settings = new SettingsRepository();
 
         #region Initialize/Login
         public Shell()
@@ -64,19 +70,42 @@ namespace Nada.UI
             //menuMain.Visible = true;
             pnlLeft.Visible = true;
             DoTranslate();
-            var dashboard = new DemographyView();
-            LoadDashboard(dashboard);
+
+            var status = settings.GetStartUpStatus();
+            if (status.ShouldShowStartup())
+            {
+                var startup = new StartupView();
+                startup.OnFinished = () => { LoadDashboardAndCheckStartTasks(); };
+                LoadView(startup);
+            }
+            else
+                LoadDashboardAndCheckStartTasks();
         }
 
-        private void LoadDashboard(DemographyView dashboard)
+        private void LoadDashboardAndCheckStartTasks()
+        {
+            var dashboard = new DashboardView();
+            LoadDashboard(dashboard);
+
+            if (settings.ShouldDemoUpdate())
+            {
+                StepDemoUpdateGrowthRate step = new StepDemoUpdateGrowthRate();
+                WizardForm wiz = new WizardForm(step, Translations.UpdateDemographyForYear);
+                wiz.OnFinish = () => { LoadDashboardAndCheckStartTasks(); };
+                step.OnSkip = () => { wiz.Close(); };
+                wiz.ShowDialog();
+            }
+        }
+
+        private void LoadDashboard(DashboardView dashboard)
         {
             dashboard.StatusChanged += view_StatusChanged;
             dashboard.LoadView = (v) => { LoadView(v); };
             dashboard.LoadDashForAdminLevel = (a) => 
             { 
-                DemographyView d = new DemographyView();
+                DashboardView d = new DashboardView();
                 if(a != null)
-                    d = new DemographyView(a);
+                    d = new DashboardView(a);
                 LoadDashboard(d);
             };
             LoadView(dashboard);
@@ -105,9 +134,6 @@ namespace Nada.UI
 
         private void countryInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DemoRepository r = new DemoRepository();
-            CountryModal form = new CountryModal(r.GetCountry());
-            form.ShowDialog();
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -117,12 +143,12 @@ namespace Nada.UI
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            LoadView(new DemographyView());
+            LoadView(new DashboardView());
         }
 
         private void demographyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadView(new DemographyView());
+            LoadView(new DashboardView());
         }
 
         private void createCustomToolStripMenuItem_Click(object sender, EventArgs e)
@@ -141,12 +167,12 @@ namespace Nada.UI
 
         void Survey_OnSave(bool doRefresh)
         {
-            LoadView(new DemographyView());
+            LoadView(new DashboardView());
         }
 
         void Dash_Load()
         {
-            LoadView(new DemographyView());
+            LoadView(new DashboardView());
         }
 
         private void lFMDAToolStripMenuItem_Click(object sender, EventArgs e)
@@ -186,13 +212,13 @@ namespace Nada.UI
         private void lFPopulationToolStripMenuItem_Click(object sender, EventArgs e)
         {
         }
-        #endregion
-
         private void lFSentinelSpotCheckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SurveyRepository r = new SurveyRepository();
             ImportDownload form = new ImportDownload(new LfSentinelImporter(r.GetSurveyType((int)StaticSurveyType.LfPrevalence)));
             form.ShowDialog();
         }
+        #endregion
+
     }
 }

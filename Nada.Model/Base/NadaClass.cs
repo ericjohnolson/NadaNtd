@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Nada.Globalization;
 
 namespace Nada.Model.Base
 {
@@ -54,12 +55,20 @@ namespace Nada.Model.Base
 
         public string GetAllErrors()
         {
+            return GetAllErrors(false);
+        }
+
+        public string GetAllErrors(bool showNames)
+        {
             string allErrors = string.Empty;
             foreach (string prop in propertyNames)
             {
                 if (!string.IsNullOrEmpty(this[prop]))
                 {
-                    allErrors += this[prop] + Environment.NewLine;
+                    if(showNames)
+                        allErrors += string.Format("\"{0}\": ", TranslationLookup.GetValue(prop, "")) + this[prop] + Environment.NewLine;
+                    else
+                        allErrors += this[prop] + Environment.NewLine;
                 }
             }
             return allErrors;

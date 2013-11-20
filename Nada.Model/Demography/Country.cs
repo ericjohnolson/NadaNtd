@@ -2,22 +2,46 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Nada.Globalization;
+using Nada.Model.Base;
 
 namespace Nada.Model
 {
-    public class Country
+    public class Country : NadaClass
     {
         public Country()
         {
-            Children = new List<AdminLevel>();
         }
-        public int Id { get; set; }
         public string Name { get; set; }
-        public string CountryCode { get; set; }
-        public string IsoCode { get; set; }
-        public int ParentId { get { return 0; } set { }}
-        public List<AdminLevel> Children { get; set; }
-        public bool IsCountry { get { return true; } }
-        public string ViewText { get { return "View"; } }
+        public int MonthYearStarts { get; set; }
+
+        #region IDataErrorInfo Members
+        public override string this[string columnName]
+        {
+            get
+            {
+                string error = "";
+                switch (columnName)
+                {
+                    case "Name":
+                        if (string.IsNullOrEmpty(Name))
+                            error = Translations.Required;
+                        break;
+                    case "MonthYearStarts":
+                        if (MonthYearStarts > 13 || MonthYearStarts < 1)
+                            error = Translations.Required;
+                        break;
+
+                    default: error = "";
+                        break;
+
+                }
+                return error;
+            }
+        }
+
+        #endregion
+
     }
+
 }

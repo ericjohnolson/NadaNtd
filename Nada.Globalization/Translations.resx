@@ -1522,4 +1522,250 @@
   <data name="TrainingYear" xml:space="preserve">
     <value>Year training information applies to</value>
   </data>
+  <data name="AvailableExports" xml:space="preserve">
+    <value>Available exports</value>
+  </data>
+  <data name="ExportingData" xml:space="preserve">
+    <value>Exporting data</value>
+  </data>
+  <data name="JrfCmNtds" xml:space="preserve">
+    <value>Joint Reporting Form (JRF) for CM-NTDs</value>
+  </data>
+  <data name="StartExport" xml:space="preserve">
+    <value>Start export</value>
+  </data>
+  <data name="ReportYear" xml:space="preserve">
+    <value>Year report information applies to</value>
+  </data>
+  <data name="AddAdminLevelTypeLink" xml:space="preserve">
+    <value>Add admin level type &gt;</value>
+  </data>
+  <data name="AddNewDemoLink" xml:space="preserve">
+    <value>Add demography for new year &gt;</value>
+  </data>
+  <data name="AdminLevelType" xml:space="preserve">
+    <value>Administrative Level Type</value>
+  </data>
+  <data name="AdminLevelTypeEditAdd" xml:space="preserve">
+    <value>Edit or Add Administrative Levels</value>
+  </data>
+  <data name="AgeRangePsac" xml:space="preserve">
+    <value>Age range for PSAC</value>
+  </data>
+  <data name="AgeRangeSac" xml:space="preserve">
+    <value>Age range for SAC</value>
+  </data>
+  <data name="CountryName" xml:space="preserve">
+    <value>Country name</value>
+  </data>
+  <data name="CountrySettings" xml:space="preserve">
+    <value>Country Settings</value>
+  </data>
+  <data name="EditLink" xml:space="preserve">
+    <value>Edit...</value>
+  </data>
+  <data name="GettingStarted" xml:space="preserve">
+    <value>Getting started with your national database</value>
+  </data>
+  <data name="GrowthRate" xml:space="preserve">
+    <value>Population growth rate</value>
+  </data>
+  <data name="IsDisabled" xml:space="preserve">
+    <value>Is Disabled</value>
+  </data>
+  <data name="IsDistrict" xml:space="preserve">
+    <value>Is District</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value>Is Required</value>
+  </data>
+  <data name="LevelNumber" xml:space="preserve">
+    <value>Level number</value>
+  </data>
+  <data name="MustMakeDistrict" xml:space="preserve">
+    <value>You must designate one of your administrative levels as the "District Level"</value>
+  </data>
+  <data name="Percent5yo" xml:space="preserve">
+    <value>% &lt;5 year old of total population</value>
+  </data>
+  <data name="Percent6mos" xml:space="preserve">
+    <value>% 0-6 months of total population</value>
+  </data>
+  <data name="PercentAdult" xml:space="preserve">
+    <value>% Population adults of total population</value>
+  </data>
+  <data name="PercentFemale" xml:space="preserve">
+    <value>% Population female of total population</value>
+  </data>
+  <data name="PercentMale" xml:space="preserve">
+    <value>% Population male of total population</value>
+  </data>
+  <data name="PercentPsac" xml:space="preserve">
+    <value>% PSAC of total population</value>
+  </data>
+  <data name="PercentRural" xml:space="preserve">
+    <value>% rural population of total population</value>
+  </data>
+  <data name="PercentSac" xml:space="preserve">
+    <value>% SAC of total population</value>
+  </data>
+  <data name="Pop0Month" xml:space="preserve">
+    <value>0-6 month population</value>
+  </data>
+  <data name="Pop5yo" xml:space="preserve">
+    <value>&lt;5 year old population</value>
+  </data>
+  <data name="PopAdult" xml:space="preserve">
+    <value>Adult population</value>
+  </data>
+  <data name="PopFemale" xml:space="preserve">
+    <value>Female population</value>
+  </data>
+  <data name="PopMale" xml:space="preserve">
+    <value>Male population</value>
+  </data>
+  <data name="PopPsac" xml:space="preserve">
+    <value>PSAC population</value>
+  </data>
+  <data name="PopSac" xml:space="preserve">
+    <value>SAC population</value>
+  </data>
+  <data name="StartLink" xml:space="preserve">
+    <value>Start...</value>
+  </data>
+  <data name="StartMonthOfReportingYear" xml:space="preserve">
+    <value>Start month of reporting year</value>
+  </data>
+  <data name="StartUpStepAdminLevels" xml:space="preserve">
+    <value>Add your Administrative Levels: </value>
+  </data>
+  <data name="StartUpStepCountry" xml:space="preserve">
+    <value>Setup your Country Information</value>
+  </data>
+  <data name="StartUpStepDiseases" xml:space="preserve">
+    <value>Choose your diseases</value>
+  </data>
+  <data name="StartUpTasks" xml:space="preserve">
+    <value>Start Up Tasks</value>
+  </data>
+  <data name="TotalPopulation" xml:space="preserve">
+    <value>Total population</value>
+  </data>
+  <data name="YearCensus" xml:space="preserve">
+    <value>Year of census</value>
+  </data>
+  <data name="YearDemographyData" xml:space="preserve">
+    <value>Year demography data apply to</value>
+  </data>
+  <data name="YearProjections" xml:space="preserve">
+    <value>Year of population projections</value>
+  </data>
+  <data name="CreateImportFor" xml:space="preserve">
+    <value>Create import for</value>
+  </data>
+  <data name="DemographyImportOptions" xml:space="preserve">
+    <value>Demography import options</value>
+  </data>
+  <data name="DownloadImportFile" xml:space="preserve">
+    <value>Download import file</value>
+  </data>
+  <data name="ImportAdminLevels" xml:space="preserve">
+    <value>Import administration levels - </value>
+  </data>
+  <data name="ImportSumUp" xml:space="preserve">
+    <value>Import and sum up to upper levels</value>
+  </data>
+  <data name="NumberOfLocations" xml:space="preserve">
+    <value>Number of locations to import</value>
+  </data>
+  <data name="SkipSumLower" xml:space="preserve">
+    <value>Skip demography, sum from lower level</value>
+  </data>
+  <data name="UploadImportFile" xml:space="preserve">
+    <value>Upload import file</value>
+  </data>
+  <data name="ApplyCountryGrowthRate" xml:space="preserve">
+    <value>Apply country growth rate to all administrative levels</value>
+  </data>
+  <data name="ImportComplete" xml:space="preserve">
+    <value>Import Complete</value>
+  </data>
+  <data name="ImportErrorHeader" xml:space="preserve">
+    <value>Please fix the errors before continuing the import:</value>
+  </data>
+  <data name="ImportErrors" xml:space="preserve">
+    <value>{0} is not valid, please fix the following errors: {1} {2}</value>
+  </data>
+  <data name="ImportFailed" xml:space="preserve">
+    <value>Import failed, please review and fix errors before continuing.</value>
+  </data>
+  <data name="ImportRecordsDontMatch" xml:space="preserve">
+    <value>Import records don't match expected count.  Expected {0}, actual {1}.</value>
+  </data>
+  <data name="NoDataFound" xml:space="preserve">
+    <value>No data was found in the file</value>
+  </data>
+  <data name="PleaseEnterRequiredFields" xml:space="preserve">
+    <value>Please enter required fields before continuing</value>
+  </data>
+  <data name="SelectDemoUpdateOption" xml:space="preserve">
+    <value>Review your demography</value>
+  </data>
+  <data name="UnexpectedException" xml:space="preserve">
+    <value>An unexpected exception occurred, please contact support.  Exception details: </value>
+  </data>
+  <data name="UpdateDemoByAdminLevel" xml:space="preserve">
+    <value>Update demography by administrative level</value>
+  </data>
+  <data name="UpdateDemographyForYear" xml:space="preserve">
+    <value>Update demography for new year</value>
+  </data>
+  <data name="AggAdminLevel" xml:space="preserve">
+    <value>Aggregates Up</value>
+  </data>
+  <data name="AltSpellingNames" xml:space="preserve">
+    <value>Alternate spelling names</value>
+  </data>
+  <data name="DistrictAdminLevel" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="IsAggLevel" xml:space="preserve">
+    <value>*** This level's demography is summed up to all higher levels</value>
+  </data>
+  <data name="LatOther" xml:space="preserve">
+    <value>Other geo code - latitude</value>
+  </data>
+  <data name="LatWho" xml:space="preserve">
+    <value>WHO geo code - latitude</value>
+  </data>
+  <data name="LngOther" xml:space="preserve">
+    <value>Other geo code - longitude</value>
+  </data>
+  <data name="LngWho" xml:space="preserve">
+    <value>WHO geo code - longitude</value>
+  </data>
+  <data name="UrbanOrRural" xml:space="preserve">
+    <value>Urban or rural</value>
+  </data>
+  <data name="AddDiseaseLink" xml:space="preserve">
+    <value>Add new disease &gt;</value>
+  </data>
+  <data name="ApplyingGrowthRate" xml:space="preserve">
+    <value>Applying growth rate</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="GrowthRateHasBeenApplied" xml:space="preserve">
+    <value>Growth rate has been applied, please click next to review and make changes or click finished if you are done updating this year's demography information.</value>
+  </data>
+  <data name="RemindLaterUpdateDemographyYear" xml:space="preserve">
+    <value>Remind me at next start up to update demography for new year</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="UpdateDemography" xml:space="preserve">
+    <value>Update demography</value>
+  </data>
 </root>

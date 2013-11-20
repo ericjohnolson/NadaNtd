@@ -18,6 +18,12 @@ namespace Nada.UI.Controls
             label1.AutoSize = true;
         }
 
+        public void SetMaxWidth(int maxWidth)
+        {
+            label1.MaximumSize = new Size(maxWidth, 0);
+            label1.AutoSize = true;
+        }
+
         [EditorBrowsable(EditorBrowsableState.Always)]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]

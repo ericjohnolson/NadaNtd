@@ -27,14 +27,14 @@ namespace Nada.UI.Controls
             if (!DesignMode)
             {
                 r = new DiseaseRepository();
-                diseases = r.GetAllDiseases();
+                diseases = r.GetSelectedDiseases();
                 diseaseBindingSource.DataSource = diseases;
             }
         }
 
         private void fieldLink1_OnClick()
         {
-            MessageBox.Show("Not implemented");
+
         }
 
         public List<Disease> GetSelected()

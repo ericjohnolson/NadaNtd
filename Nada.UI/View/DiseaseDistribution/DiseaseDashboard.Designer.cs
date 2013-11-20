@@ -49,8 +49,17 @@
             this.olvColumn17 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn18 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tblOverview = new System.Windows.Forms.TableLayoutPanel();
-            this.pnlOverview = new System.Windows.Forms.TableLayoutPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.pnlDemo = new System.Windows.Forms.TableLayoutPanel();
+            this.loadingDemos = new Nada.UI.Controls.Loading();
+            this.pnlDemoDetails = new System.Windows.Forms.Panel();
+            this.lnkAddDemo = new Nada.UI.Controls.H3Link();
+            this.lvDemo = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn7 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn21 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn15 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn19 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn20 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tblHeader = new System.Windows.Forms.TableLayoutPanel();
             this.btnOverview = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
@@ -100,7 +109,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.diseaseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvDiseaseDistro)).BeginInit();
             this.tblOverview.SuspendLayout();
-            this.pnlOverview.SuspendLayout();
+            this.pnlDemo.SuspendLayout();
+            this.pnlDemoDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lvDemo)).BeginInit();
             this.tblHeader.SuspendLayout();
             this.tblIntv.SuspendLayout();
             this.pnlIntv.SuspendLayout();
@@ -135,7 +146,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 1216);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 1255);
             this.tableLayoutPanel1.TabIndex = 60;
             // 
             // tblDiseaseDistro
@@ -147,7 +158,7 @@
             this.tblDiseaseDistro.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tblDiseaseDistro.Controls.Add(this.hrDisease, 0, 1);
             this.tblDiseaseDistro.Controls.Add(this.pnlDisease, 0, 2);
-            this.tblDiseaseDistro.Location = new System.Drawing.Point(3, 265);
+            this.tblDiseaseDistro.Location = new System.Drawing.Point(3, 304);
             this.tblDiseaseDistro.Name = "tblDiseaseDistro";
             this.tblDiseaseDistro.RowCount = 3;
             this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -180,7 +191,7 @@
             this.btnDisease.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnDisease.FlatAppearance.BorderSize = 0;
             this.btnDisease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisease.Image = global::Nada.UI.Properties.Resources.ExpanderMinusIcon16x16;
+            this.btnDisease.Image = global::Nada.UI.Properties.Resources.ExpanderPlusIcon16x16;
             this.btnDisease.Location = new System.Drawing.Point(3, 3);
             this.btnDisease.Name = "btnDisease";
             this.btnDisease.Size = new System.Drawing.Size(22, 22);
@@ -230,6 +241,7 @@
             this.pnlDisease.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDisease.Size = new System.Drawing.Size(694, 258);
             this.pnlDisease.TabIndex = 22;
+            this.pnlDisease.Visible = false;
             // 
             // loadingDistros
             // 
@@ -344,6 +356,7 @@
             this.olvColumn16.AspectName = "UpdatedBy";
             this.olvColumn16.CellPadding = null;
             this.olvColumn16.IsEditable = false;
+            this.olvColumn16.Tag = "LastUpdate";
             this.olvColumn16.Text = "Last Update";
             this.olvColumn16.Width = 207;
             // 
@@ -370,7 +383,7 @@
             this.tblOverview.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tblOverview.ColumnCount = 1;
             this.tblOverview.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblOverview.Controls.Add(this.pnlOverview, 0, 2);
+            this.tblOverview.Controls.Add(this.pnlDemo, 0, 2);
             this.tblOverview.Controls.Add(this.tblHeader, 0, 0);
             this.tblOverview.Controls.Add(this.hrOverview, 0, 1);
             this.tblOverview.Location = new System.Drawing.Point(3, 3);
@@ -379,32 +392,136 @@
             this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblOverview.Size = new System.Drawing.Size(700, 256);
+            this.tblOverview.Size = new System.Drawing.Size(700, 295);
             this.tblOverview.TabIndex = 60;
             // 
-            // pnlOverview
+            // pnlDemo
             // 
-            this.pnlOverview.AutoSize = true;
-            this.pnlOverview.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlOverview.ColumnCount = 1;
-            this.pnlOverview.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.pnlOverview.Controls.Add(this.panel4, 0, 0);
-            this.pnlOverview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlOverview.Location = new System.Drawing.Point(3, 47);
-            this.pnlOverview.Name = "pnlOverview";
-            this.pnlOverview.RowCount = 2;
-            this.pnlOverview.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlOverview.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlOverview.Size = new System.Drawing.Size(694, 206);
-            this.pnlOverview.TabIndex = 60;
-            this.pnlOverview.Visible = false;
+            this.pnlDemo.AutoSize = true;
+            this.pnlDemo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlDemo.ColumnCount = 1;
+            this.pnlDemo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlDemo.Controls.Add(this.loadingDemos, 0, 1);
+            this.pnlDemo.Controls.Add(this.pnlDemoDetails, 0, 0);
+            this.pnlDemo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDemo.Location = new System.Drawing.Point(3, 47);
+            this.pnlDemo.Name = "pnlDemo";
+            this.pnlDemo.RowCount = 2;
+            this.pnlDemo.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDemo.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlDemo.Size = new System.Drawing.Size(694, 245);
+            this.pnlDemo.TabIndex = 23;
+            this.pnlDemo.Visible = false;
             // 
-            // panel4
+            // loadingDemos
             // 
-            this.panel4.Location = new System.Drawing.Point(3, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(670, 200);
-            this.panel4.TabIndex = 1;
+            this.loadingDemos.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.loadingDemos.AutoSize = true;
+            this.loadingDemos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.loadingDemos.Location = new System.Drawing.Point(324, 183);
+            this.loadingDemos.Name = "loadingDemos";
+            this.loadingDemos.Size = new System.Drawing.Size(46, 59);
+            this.loadingDemos.StatusMessage = "";
+            this.loadingDemos.TabIndex = 0;
+            this.loadingDemos.Visible = false;
+            // 
+            // pnlDemoDetails
+            // 
+            this.pnlDemoDetails.Controls.Add(this.lnkAddDemo);
+            this.pnlDemoDetails.Controls.Add(this.lvDemo);
+            this.pnlDemoDetails.Location = new System.Drawing.Point(3, 3);
+            this.pnlDemoDetails.Name = "pnlDemoDetails";
+            this.pnlDemoDetails.Size = new System.Drawing.Size(670, 174);
+            this.pnlDemoDetails.TabIndex = 1;
+            // 
+            // lnkAddDemo
+            // 
+            this.lnkAddDemo.AutoSize = true;
+            this.lnkAddDemo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnkAddDemo.BackColor = System.Drawing.Color.Transparent;
+            this.lnkAddDemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkAddDemo.Location = new System.Drawing.Point(3, 0);
+            this.lnkAddDemo.Margin = new System.Windows.Forms.Padding(0);
+            this.lnkAddDemo.Name = "lnkAddDemo";
+            this.lnkAddDemo.Size = new System.Drawing.Size(121, 16);
+            this.lnkAddDemo.TabIndex = 2;
+            this.lnkAddDemo.Tag = "AddNewDemoLink";
+            this.lnkAddDemo.Text = "AddNewDemoLink";
+            this.lnkAddDemo.ClickOverride += new System.Action(this.h3Link1_ClickOverride);
+            // 
+            // lvDemo
+            // 
+            this.lvDemo.AllColumns.Add(this.olvColumn7);
+            this.lvDemo.AllColumns.Add(this.olvColumn4);
+            this.lvDemo.AllColumns.Add(this.olvColumn21);
+            this.lvDemo.AllColumns.Add(this.olvColumn15);
+            this.lvDemo.AllColumns.Add(this.olvColumn19);
+            this.lvDemo.AllColumns.Add(this.olvColumn20);
+            this.lvDemo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn7,
+            this.olvColumn4,
+            this.olvColumn21,
+            this.olvColumn15,
+            this.olvColumn19,
+            this.olvColumn20});
+            this.lvDemo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lvDemo.Location = new System.Drawing.Point(3, 19);
+            this.lvDemo.Name = "lvDemo";
+            this.lvDemo.ShowGroups = false;
+            this.lvDemo.Size = new System.Drawing.Size(652, 145);
+            this.lvDemo.TabIndex = 1;
+            this.lvDemo.UseCompatibleStateImageBehavior = false;
+            this.lvDemo.UseHyperlinks = true;
+            this.lvDemo.View = System.Windows.Forms.View.Details;
+            this.lvDemo.HyperlinkClicked += new System.EventHandler<BrightIdeasSoftware.HyperlinkClickedEventArgs>(this.lvDemo_HyperlinkClicked);
+            // 
+            // olvColumn7
+            // 
+            this.olvColumn7.AspectName = "Year";
+            this.olvColumn7.CellPadding = null;
+            this.olvColumn7.IsEditable = false;
+            this.olvColumn7.Text = "Year";
+            this.olvColumn7.Width = 88;
+            // 
+            // olvColumn4
+            // 
+            this.olvColumn4.AspectName = "TotalPopulation";
+            this.olvColumn4.CellPadding = null;
+            this.olvColumn4.IsEditable = false;
+            this.olvColumn4.Text = "TotalPopulation";
+            this.olvColumn4.Width = 156;
+            // 
+            // olvColumn21
+            // 
+            this.olvColumn21.AspectName = "GrowthRate";
+            this.olvColumn21.CellPadding = null;
+            this.olvColumn21.Text = "GrowthRate";
+            this.olvColumn21.Width = 99;
+            // 
+            // olvColumn15
+            // 
+            this.olvColumn15.AspectName = "UpdatedBy";
+            this.olvColumn15.CellPadding = null;
+            this.olvColumn15.IsEditable = false;
+            this.olvColumn15.Text = "Last Update";
+            this.olvColumn15.Width = 189;
+            // 
+            // olvColumn19
+            // 
+            this.olvColumn19.AspectName = "View";
+            this.olvColumn19.CellPadding = null;
+            this.olvColumn19.Hyperlink = true;
+            this.olvColumn19.IsEditable = false;
+            this.olvColumn19.Text = "View";
+            this.olvColumn19.Width = 54;
+            // 
+            // olvColumn20
+            // 
+            this.olvColumn20.AspectName = "Delete";
+            this.olvColumn20.CellPadding = null;
+            this.olvColumn20.Hyperlink = true;
+            this.olvColumn20.Tag = "Delete";
+            this.olvColumn20.Text = "Delete";
             // 
             // tblHeader
             // 
@@ -447,10 +564,10 @@
             this.lblHeader.Location = new System.Drawing.Point(30, 4);
             this.lblHeader.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(78, 21);
+            this.lblHeader.Size = new System.Drawing.Size(105, 21);
             this.lblHeader.TabIndex = 17;
-            this.lblHeader.Tag = "Overview";
-            this.lblHeader.Text = "Overview";
+            this.lblHeader.Tag = "Demography";
+            this.lblHeader.Text = "Demography";
             // 
             // hrOverview
             // 
@@ -473,7 +590,7 @@
             this.tblIntv.Controls.Add(this.pnlIntv, 0, 2);
             this.tblIntv.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tblIntv.Controls.Add(this.hrIntv, 0, 1);
-            this.tblIntv.Location = new System.Drawing.Point(3, 900);
+            this.tblIntv.Location = new System.Drawing.Point(3, 939);
             this.tblIntv.Name = "tblIntv";
             this.tblIntv.RowCount = 3;
             this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -498,6 +615,7 @@
             this.pnlIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIntv.Size = new System.Drawing.Size(694, 263);
             this.pnlIntv.TabIndex = 60;
+            this.pnlIntv.Visible = false;
             // 
             // loadingIntvs
             // 
@@ -657,7 +775,7 @@
             this.btnIntervention.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnIntervention.FlatAppearance.BorderSize = 0;
             this.btnIntervention.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIntervention.Image = global::Nada.UI.Properties.Resources.ExpanderMinusIcon16x16;
+            this.btnIntervention.Image = global::Nada.UI.Properties.Resources.ExpanderPlusIcon16x16;
             this.btnIntervention.Location = new System.Drawing.Point(3, 3);
             this.btnIntervention.Name = "btnIntervention";
             this.btnIntervention.Size = new System.Drawing.Size(22, 22);
@@ -700,7 +818,7 @@
             this.tblSurveys.Controls.Add(this.pnlSurvey, 0, 2);
             this.tblSurveys.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tblSurveys.Controls.Add(this.hrSurveys, 0, 1);
-            this.tblSurveys.Location = new System.Drawing.Point(3, 579);
+            this.tblSurveys.Location = new System.Drawing.Point(3, 618);
             this.tblSurveys.Name = "tblSurveys";
             this.tblSurveys.RowCount = 3;
             this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -725,6 +843,7 @@
             this.pnlSurvey.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlSurvey.Size = new System.Drawing.Size(694, 265);
             this.pnlSurvey.TabIndex = 60;
+            this.pnlSurvey.Visible = false;
             // 
             // pnlSurveyDetails
             // 
@@ -820,6 +939,7 @@
             this.olvColumn6.AspectName = "StartDate";
             this.olvColumn6.CellPadding = null;
             this.olvColumn6.IsEditable = false;
+            this.olvColumn6.Tag = "StartDate";
             this.olvColumn6.Text = "Start Date";
             this.olvColumn6.Width = 152;
             // 
@@ -828,6 +948,7 @@
             this.olvColumn8.AspectName = "UpdatedBy";
             this.olvColumn8.CellPadding = null;
             this.olvColumn8.IsEditable = false;
+            this.olvColumn8.Tag = "UpdatedBy";
             this.olvColumn8.Text = "Last Update";
             this.olvColumn8.Width = 138;
             // 
@@ -884,7 +1005,7 @@
             this.btnSurvey.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSurvey.FlatAppearance.BorderSize = 0;
             this.btnSurvey.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSurvey.Image = global::Nada.UI.Properties.Resources.ExpanderMinusIcon16x16;
+            this.btnSurvey.Image = global::Nada.UI.Properties.Resources.ExpanderPlusIcon16x16;
             this.btnSurvey.Location = new System.Drawing.Point(3, 3);
             this.btnSurvey.Name = "btnSurvey";
             this.btnSurvey.Size = new System.Drawing.Size(22, 22);
@@ -926,7 +1047,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DiseaseDashboard";
-            this.Size = new System.Drawing.Size(712, 1222);
+            this.Size = new System.Drawing.Size(712, 1261);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tblDiseaseDistro.ResumeLayout(false);
@@ -943,7 +1064,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.lvDiseaseDistro)).EndInit();
             this.tblOverview.ResumeLayout(false);
             this.tblOverview.PerformLayout();
-            this.pnlOverview.ResumeLayout(false);
+            this.pnlDemo.ResumeLayout(false);
+            this.pnlDemo.PerformLayout();
+            this.pnlDemoDetails.ResumeLayout(false);
+            this.pnlDemoDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lvDemo)).EndInit();
             this.tblHeader.ResumeLayout(false);
             this.tblHeader.PerformLayout();
             this.tblIntv.ResumeLayout(false);
@@ -987,8 +1112,6 @@
         private Controls.Loading loadingDistros;
         private System.Windows.Forms.Panel pnlDistroDetails;
         private System.Windows.Forms.TableLayoutPanel tblOverview;
-        private System.Windows.Forms.TableLayoutPanel pnlOverview;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TableLayoutPanel tblHeader;
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.Button btnOverview;
@@ -1039,5 +1162,16 @@
         private Controls.H3Label h3Label3;
         private System.Windows.Forms.ComboBox cbNewDiseaseDistro;
         private System.Windows.Forms.BindingSource diseaseBindingSource;
+        private System.Windows.Forms.TableLayoutPanel pnlDemo;
+        private Controls.Loading loadingDemos;
+        private System.Windows.Forms.Panel pnlDemoDetails;
+        private BrightIdeasSoftware.ObjectListView lvDemo;
+        private BrightIdeasSoftware.OLVColumn olvColumn4;
+        private BrightIdeasSoftware.OLVColumn olvColumn7;
+        private BrightIdeasSoftware.OLVColumn olvColumn15;
+        private BrightIdeasSoftware.OLVColumn olvColumn19;
+        private BrightIdeasSoftware.OLVColumn olvColumn20;
+        private BrightIdeasSoftware.OLVColumn olvColumn21;
+        private Controls.H3Link lnkAddDemo;
     }
 }

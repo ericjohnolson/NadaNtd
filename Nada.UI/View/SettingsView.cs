@@ -33,7 +33,7 @@ namespace Nada.UI.View
                 settings = new SettingsRepository();
                 popGroups = settings.GetAllPopGroups();
                 adminLevels = settings.GetAllAdminLevels();
-                lvDiseases.SetObjects(diseases.GetAllDiseases());
+                lvDiseases.SetObjects(diseases.GetSelectedDiseases());
                 popGroupBindingSource.DataSource = popGroups;
                 adminLevelBindingSource.DataSource = adminLevels;
             }
@@ -53,7 +53,7 @@ namespace Nada.UI.View
 
         private void disease_OnSave()
         {
-            lvDiseases.SetObjects(diseases.GetAllDiseases());
+            lvDiseases.SetObjects(diseases.GetSelectedDiseases());
         }
         #endregion
 
@@ -84,14 +84,11 @@ namespace Nada.UI.View
         {
             adminLevelBindingSource.EndEdit();
             foreach (var adminLevel in adminLevels)
-                settings.UpdateAdminLevel(adminLevel, ApplicationData.Instance.GetUserId());
+                settings.Save(adminLevel, ApplicationData.Instance.GetUserId());
         }
 
         private void btnAdminLevel_Click(object sender, EventArgs e)
         {
-            AdminLevelModal form = new AdminLevelModal(grdAdminLevels.Rows.Count + 1);
-            form.OnSave += adminLevel_OnSave;
-            form.ShowDialog();
         }
 
         private void adminLevel_OnSave(AdminLevelType obj)
