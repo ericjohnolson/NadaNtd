@@ -8,15 +8,17 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
 using Nada.Globalization;
+using Nada.UI.Base;
 
 namespace Nada.UI.Controls
 {
-    public partial class StatCalculator : UserControl
+    public partial class StatCalculator : BaseControl
     {
         public ICalcIndicators Calc { get; set; }
         public event Action OnCalc = () => { };
 
         public StatCalculator()
+            : base()
         {
             InitializeComponent();
         }

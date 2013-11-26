@@ -8,10 +8,11 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model.Repositories;
 using Nada.Model;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class AdminLevelMultiselect : UserControl
+    public partial class AdminLevelMultiselect : BaseControl
     {
         private DemoRepository demography = null;
         private SettingsRepository settings = null;
@@ -19,6 +20,7 @@ namespace Nada.UI.View
         private List<AdminLevel> selected = new List<AdminLevel>();
 
         public AdminLevelMultiselect()
+            : base()
         {
             InitializeComponent();
         }

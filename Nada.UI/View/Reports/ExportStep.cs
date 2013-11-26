@@ -12,10 +12,11 @@ using Nada.Globalization;
 using Nada.Model;
 using Nada.UI.View.Wizard;
 using System.Threading;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Reports
 {
-    public partial class ExportStep : UserControl, IWizardStep
+    public partial class ExportStep : BaseControl, IWizardStep
     {
         IExporter exporter = null;
         string title = "";
@@ -31,11 +32,13 @@ namespace Nada.UI.View.Reports
         public string StepTitle { get { return Translations.StartExport; } }
 
         public ExportStep()
+            : base()
         {
             InitializeComponent();
         }
 
         public ExportStep(IExporter e, string t)
+            : base()
         {
             exporter = e;
             title = t;

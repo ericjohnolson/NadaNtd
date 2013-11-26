@@ -56,6 +56,7 @@
     <Compile Include="Base\NadaListItem.cs" />
     <Compile Include="Demography\CountryDemography.cs" />
     <Compile Include="Demography\DemoDetails.cs" />
+    <Compile Include="IndicatorDropdownValue.cs" />
     <Compile Include="Exports\CmJrfExporter.cs" />
     <Compile Include="IExporter.cs" />
     <Compile Include="Demography\AdminLevelImporter.cs" />
@@ -75,8 +76,13 @@
     <Compile Include="Intervention\CalcLeishIntv.cs" />
     <Compile Include="Intervention\CalcYawsIntv.cs" />
     <Compile Include="Intervention\IntvDetails.cs" />
+    <Compile Include="Process\ProcessBase.cs" />
+    <Compile Include="Process\ProcessDetails.cs" />
+    <Compile Include="Process\ProcessType.cs" />
     <Compile Include="Reports\ReportOptions.cs" />
+    <Compile Include="Repositories\ProcessRepository.cs" />
     <Compile Include="Repositories\ExportRepository.cs" />
+    <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Survey\CalcBuruliSurvey.cs" />
     <Compile Include="Survey\SurveyDetails.cs" />
     <Compile Include="Survey\LfSentinelImporter.cs" />
@@ -84,7 +90,6 @@
     <Compile Include="Demography\AdminLevel.cs" />
     <Compile Include="Demography\AdminLevelType.cs" />
     <Compile Include="Demography\AdminLevelDemography.cs" />
-    <Compile Include="Diseases\DiseasePopulation.cs" />
     <Compile Include="Diseases\DiseaseDistroPc.cs" />
     <Compile Include="Diseases\DiseaseDistributionImporter.cs" />
     <Compile Include="ModelData.cs" />

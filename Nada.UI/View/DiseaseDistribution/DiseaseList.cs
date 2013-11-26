@@ -11,15 +11,17 @@ using Nada.Model.Diseases;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class DiseaseList : Form
+    public partial class DiseaseList : BaseForm
     {
         public event Action OnSave = () => { };
 
         DiseaseRepository repo = null;
         public DiseaseList()
+            : base()
         {
             InitializeComponent();
         }

@@ -9,15 +9,17 @@ using System.Windows.Forms;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Intervention
 {
-    public partial class DistributionMethodList : Form
+    public partial class DistributionMethodList : BaseForm
     {
         public event Action OnSave = () => { };
 
         IntvRepository repo = null;
         public DistributionMethodList()
+            : base()
         {
             InitializeComponent();
         }

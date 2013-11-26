@@ -11,10 +11,11 @@ using Nada.Model.Repositories;
 using Nada.Model.Intervention;
 using Nada.UI.AppLogic;
 using Nada.Globalization;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Intervention
 {
-    public partial class IntvTypeEdit : UserControl, IView
+    public partial class IntvTypeEdit : BaseControl, IView
     {
         public event Action OnSave = () => { };
         private IntvRepository repo = null;
@@ -24,11 +25,13 @@ namespace Nada.UI.View.Intervention
         public string Title { get { return lblTitle.Text; } }
 
         public IntvTypeEdit()
+            : base()
         {
             InitializeComponent();
         }
 
         public IntvTypeEdit(IntvType t)
+            : base()
         {
             model = t;
             InitializeComponent();
@@ -69,7 +72,7 @@ namespace Nada.UI.View.Intervention
         {
             if (!model.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
 

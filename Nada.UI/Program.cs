@@ -53,8 +53,8 @@ namespace Nada.UI
             //if it's not already there, 
             //copy the file from the deployment location to the folder
             string sourceFilePath = Path.Combine(
-              System.Windows.Forms.Application.StartupPath, "NationalDatabaseTemplate.accdb");
-            string destFilePath = Path.Combine(userFilePath, "NationalDatabaseTemplate.accdb");
+              System.Windows.Forms.Application.StartupPath, "NewNationalDatabaseTemplate.accdb");
+            string destFilePath = Path.Combine(userFilePath, "NewNationalDatabaseTemplate.accdb");
 
             UpdateDatabase dialog = new UpdateDatabase();
             if (!File.Exists(destFilePath) || ApplicationDeployment.IsNetworkDeployed && dialog.ShowDialog() == DialogResult.OK)
@@ -65,9 +65,10 @@ namespace Nada.UI
             // Set runtime connection string
             string connection = ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString;
             if(ApplicationDeployment.IsNetworkDeployed)
-                ModelData.Instance.AccessConnectionString = connection.Replace("Source=NationalDatabaseTemplate.accdb", "Source=" + destFilePath);
+                ModelData.Instance.AccessConnectionString = connection.Replace("Source=NewNationalDatabaseTemplate.accdb", "Source=" + destFilePath);
             else
                 ModelData.Instance.AccessConnectionString = connection;
+
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

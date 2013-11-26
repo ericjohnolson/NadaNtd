@@ -9,15 +9,17 @@ using System.Windows.Forms;
 using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class PopGroupModal : Form
+    public partial class PopGroupModal : BaseForm
     {
         private PopGroup model = null;
         public event Action<PopGroup> OnSave = (e) => { };
 
         public PopGroupModal()
+            : base()
         {
             InitializeComponent();
         }

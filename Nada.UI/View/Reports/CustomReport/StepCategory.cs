@@ -10,10 +10,11 @@ using Nada.UI.AppLogic;
 using Nada.Globalization;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Reports.CustomReport
 {
-    public partial class StepCategory : UserControl, IWizardStep
+    public partial class StepCategory : BaseControl, IWizardStep
     {
         private ReportOptions options = new ReportOptions();
         public Action<ReportOptions> OnRunReport { get; set; }
@@ -28,6 +29,7 @@ namespace Nada.UI.View.Reports.CustomReport
         public string StepTitle { get { return Translations.SelectCategory; } }
 
         public StepCategory()
+            : base()
         {
             InitializeComponent();
         }

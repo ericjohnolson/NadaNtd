@@ -10,14 +10,14 @@ using Nada.Model.Diseases;
 
 namespace Nada.Model.Repositories
 {
-    public class DiseaseRepository
+    public class DiseaseRepository : RepositoryBase
     {
         #region Disease Distribution
         public DiseaseDistroPc Create(DiseaseType disease)
         {
             DiseaseDistroPc dd = new DiseaseDistroPc();
             dd.Disease = GetDiseaseById((int)disease);
-            dd.Indicators = GetIndicatorsForDisease(dd.Disease.Id, "DiseaseDistributionIndicators");
+            GetIndicatorsForDisease(dd.Disease.Id, dd);
             return dd;
         }
 
@@ -25,8 +25,7 @@ namespace Nada.Model.Repositories
         {
             DiseaseDistroCm dd = new DiseaseDistroCm();
             dd.Disease = GetDiseaseById((int)disease);
-            dd.Indicators = GetIndicatorsForDisease(dd.Disease.Id, "DiseaseDistributionIndicators");
-            dd.IndicatorDropdownValues = GetIndicatorDropdownValuesForDisease(dd.Disease.Id);
+            GetIndicatorsForDisease(dd.Disease.Id, dd);
             return dd;
         }
 
@@ -498,36 +497,38 @@ namespace Nada.Model.Repositories
         #endregion
 
         #region Disease
-        private Dictionary<string, Indicator> GetIndicatorsForDisease(int diseaseId, string table)
+        private void GetIndicatorsForDisease(int diseaseId, IHaveDynamicIndicators entity)
         {
-            Dictionary<string, Indicator> indicators = new Dictionary<string, Indicator>();
-
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
+                entity.Indicators = new Dictionary<string, Indicator>();
+                List<string> indicatorIds = new List<string>();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(string.Format(@"Select 
-                        {0}.ID,   
+                    OleDbCommand command = new OleDbCommand(@"Select 
+                        DiseaseDistributionIndicators.ID,   
                         DataTypeId,
                         DisplayName,
                         IsRequired,
                         IsDisabled,
                         IsEditable,
                         IsDisplayed,
+                        CanAddValues,
                         UpdatedAt, 
                         UserName,
                         DataType
-                        FROM (({0} INNER JOIN aspnet_users ON {0}.UpdatedById = aspnet_users.UserId)
-                        INNER JOIN IndicatorDataTypes ON {0}.DataTypeId = IndicatorDataTypes.ID)
-                        WHERE DiseaseId=@DiseaseId AND IsDisabled=0 ", table), connection);
+                        FROM ((DiseaseDistributionIndicators INNER JOIN aspnet_users ON DiseaseDistributionIndicators.UpdatedById = aspnet_users.UserId)
+                        INNER JOIN IndicatorDataTypes ON DiseaseDistributionIndicators.DataTypeId = IndicatorDataTypes.ID)
+                        WHERE DiseaseId=@DiseaseId AND IsDisabled=0 
+                        ORDER BY SortOrder", connection);
                     command.Parameters.Add(new OleDbParameter("@DiseaseId", diseaseId));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            indicators.Add(reader.GetValueOrDefault<string>("DisplayName"),
+                            entity.Indicators.Add(reader.GetValueOrDefault<string>("DisplayName"),
                                 new Indicator
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
@@ -539,56 +540,23 @@ namespace Nada.Model.Repositories
                                 IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
                                 IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
                                 IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
+                                CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
                                 DataType = reader.GetValueOrDefault<string>("DataType")
                             });
+                            indicatorIds.Add(reader.GetValueOrDefault<int>("ID").ToString());
                         }
                         reader.Close();
                     }
+
+                    entity.IndicatorDropdownValues = GetIndicatorDropdownValues(connection, command, IndicatorEntityType.DiseaseDistribution, indicatorIds);
                 }
                 catch (Exception)
                 {
                     throw;
                 }
             }
-            return indicators;
         }
-
-        private List<KeyValuePair<int, string>> GetIndicatorDropdownValuesForDisease(int diseaseId)
-        {
-            List<KeyValuePair<int, string>> values = new List<KeyValuePair<int, string>>();
-
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    OleDbCommand command = new OleDbCommand(@"Select
-                        IndicatorId,
-                        DropdownValue
-                        FROM (DiseaseIndicatorDropdownValues INNER JOIN DiseaseDistributionIndicators ON 
-                            DiseaseDistributionIndicators.Id = DiseaseIndicatorDropdownValues.IndicatorId)
-                        WHERE DiseaseId=@DiseaseId AND IsDisabled=0
-                        ORDER BY DiseaseIndicatorDropdownValues.ID", connection);
-                    command.Parameters.Add(new OleDbParameter("@DiseaseId", diseaseId));
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            values.Add(new KeyValuePair<int, string>(reader.GetValueOrDefault<int>("IndicatorId"),
-                                reader.GetValueOrDefault<string>("DropdownValue")));
-                        }
-                        reader.Close();
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-            return values;
-        }
-
+        
         public List<Disease> GetSelectedDiseases()
         {
             List<Disease> diseases = new List<Disease>();
@@ -598,7 +566,8 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 string sql = @"Select Diseases.ID, DisplayName, DiseaseType, UserDefinedName 
                     from Diseases
-                    where isdeleted = 0 and IsSelected = @IsSelected";
+                    where isdeleted = 0 and IsSelected = @IsSelected
+                    ORDER BY Diseases.DisplayName";
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 command.Parameters.Add(new OleDbParameter("@IsSelected", true));
                 using (OleDbDataReader reader = command.ExecuteReader())
@@ -623,7 +592,8 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 string sql = @"Select Diseases.ID, DisplayName, DiseaseType, UserDefinedName 
                     from Diseases
-                    where isdeleted = 0";
+                    where isdeleted = 0
+                    ORDER BY Diseases.DisplayName";
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 command.Parameters.Add(new OleDbParameter("@IsSelected", true));
                 using (OleDbDataReader reader = command.ExecuteReader())

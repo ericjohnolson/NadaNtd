@@ -13,11 +13,12 @@ using Nada.Model.Csv;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using OfficeOpenXml;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class StepAdminLevelImport : UserControl, IWizardStep
+    public partial class StepAdminLevelImport : BaseControl, IWizardStep
     {
         string stepTitle = "";
         bool isDemoOnly = false;
@@ -38,17 +39,20 @@ namespace Nada.UI.View.Wizard
         public bool EnableFinish { get { return true; } }
         public string StepTitle { get { return stepTitle; } }
 
-        public StepAdminLevelImport()
+        public StepAdminLevelImport() 
+            : base()
         {
             InitializeComponent();
         }
 
         public StepAdminLevelImport(AdminLevelType type, IWizardStep p)
+            : base()
         {
             Init(type, p, false);
         }
 
         public StepAdminLevelImport(AdminLevelType type, IWizardStep p, bool demoOnly)
+            : base()
         {
             Init(type, p, demoOnly);
         }
@@ -144,15 +148,28 @@ namespace Nada.UI.View.Wizard
         void dl_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             ShowLoading(false);
+            ImportResult result = (ImportResult)e.Result;
+            tbStatus.Text = result.Message;
+
+            if (!result.WasSuccess)
+                MessageBox.Show(Translations.ImportFailed, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         void dl_DoWork(object sender, DoWorkEventArgs e)
         {
-            Payload payload = (Payload)e.Argument;
-            if(!payload.IsOnlyDemo)
-                importer.CreateImportFile(payload.Filename, payload.DoDemography, payload.RowCount, payload.FilteredBy);
-            else
-                updater.CreateUpdateFile(payload.Filename);
+            try
+            {
+                Payload payload = (Payload)e.Argument;
+                if (!payload.IsOnlyDemo)
+                    importer.CreateImportFile(payload.Filename, payload.DoDemography, payload.RowCount, payload.FilteredBy);
+                else
+                    updater.CreateUpdateFile(payload.Filename);
+                e.Result = new ImportResult { WasSuccess = true };
+            }
+            catch (Exception ex)
+            {
+                e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
+            }
         }
 
         private void btnImport_Click(object sender, EventArgs e)
@@ -194,16 +211,23 @@ namespace Nada.UI.View.Wizard
 
         private void up_DoWork(object sender, DoWorkEventArgs e)
         {
-            Payload payload = (Payload)e.Argument;
-            ImportResult result = null;
+            try
+            {
+                Payload payload = (Payload)e.Argument;
+                ImportResult result = null;
 
-            if (!payload.IsOnlyDemo)
-                result = importer.ImportData(payload.Filename, ApplicationData.Instance.GetUserId(),
-                    payload.DoDemography, payload.DoAggregate, payload.RowCount, payload.FilteredBy, payload.Year);
-            else
-                result = updater.ImportData(payload.Filename, ApplicationData.Instance.GetUserId(), payload.Year, payload.DoAggregate);
+                if (!payload.IsOnlyDemo)
+                    result = importer.ImportData(payload.Filename, ApplicationData.Instance.GetUserId(),
+                        payload.DoDemography, payload.DoAggregate, payload.RowCount, payload.FilteredBy, payload.Year);
+                else
+                    result = updater.ImportData(payload.Filename, ApplicationData.Instance.GetUserId(), payload.Year, payload.DoAggregate);
 
-            e.Result = result;
+                e.Result = result;
+            }
+            catch (Exception ex)
+            {
+                e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
+            }
         }
 
         private void ShowLoading(bool p)

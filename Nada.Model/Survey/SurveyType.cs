@@ -13,10 +13,11 @@ namespace Nada.Model.Survey
         public SurveyType()
         {
             Indicators = new Dictionary<string, Indicator>();
+            IndicatorDropdownValues = new List<IndicatorDropdownValue>();
         }
         public string SurveyTypeName { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }
-        public List<KeyValuePair<int, string>> IndicatorDropdownValues { get; set; }
+        public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }
         public int DiseaseId { get; set; }
         public string DiseaseType { get; set; }
 

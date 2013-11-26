@@ -307,7 +307,7 @@
     <value>Interventions</value>
   </data>
   <data name="LF" xml:space="preserve">
-    <value>LF</value>
+    <value>Lymphatic filariasis</value>
   </data>
   <data name="LFDiseaseDistribution" xml:space="preserve">
     <value>LF Disease Distribution...</value>
@@ -500,9 +500,6 @@
   </data>
   <data name="DiseasesRequired" xml:space="preserve">
     <value>Please select diseases targeted.</value>
-  </data>
-  <data name="Leporsy" xml:space="preserve">
-    <value>Leporsy</value>
   </data>
   <data name="NumEligibleTargeted" xml:space="preserve">
     <value>Number eligible individuals targeted</value>
@@ -817,13 +814,13 @@
     <value>Spot Check Site Name</value>
   </data>
   <data name="BuruliUlcer" xml:space="preserve">
-    <value>Buruli Ulcer</value>
+    <value>Buruli Ulcer (Mycobacterium ulcerans infection)</value>
   </data>
-  <data name="GuineaWorm" xml:space="preserve">
-    <value>Guinea worm</value>
+  <data name="Dracun" xml:space="preserve">
+    <value>Dracunculiasis (guinea-worm disease)</value>
   </data>
   <data name="HAT" xml:space="preserve">
-    <value>HAT</value>
+    <value>Human African trypanosomiasis (Sleeping sickness)</value>
   </data>
   <data name="Leishmaniasis" xml:space="preserve">
     <value>Leishmaniasis</value>
@@ -832,13 +829,13 @@
     <value>Leprosy</value>
   </data>
   <data name="Oncho" xml:space="preserve">
-    <value>Oncho</value>
+    <value>Onchocerciasis (River blindness)</value>
   </data>
   <data name="STH" xml:space="preserve">
-    <value>STH</value>
+    <value>Soil transmitted helminthiases</value>
   </data>
   <data name="YAWS" xml:space="preserve">
-    <value>YAWS</value>
+    <value>Yaws (Endemic treponematoses)</value>
   </data>
   <data name="CaseFindingStrategy" xml:space="preserve">
     <value>Case finding strategy</value>
@@ -1762,10 +1759,685 @@
   <data name="RemindLaterUpdateDemographyYear" xml:space="preserve">
     <value>Remind me at next start up to update demography for new year</value>
   </data>
+  <data name="AddNewType" xml:space="preserve">
+    <value>Add new type</value>
+  </data>
+  <data name="AdminLevelNameUnique" xml:space="preserve">
+    <value>Administrative level name must be unique</value>
+  </data>
+  <data name="BuruliUlcerTraining" xml:space="preserve">
+    <value>Buruli ulcer training</value>
+  </data>
+  <data name="BUTrainNumberOfParticipantsToTrainingSes" xml:space="preserve">
+    <value>Number of participants to training sessions</value>
+  </data>
+  <data name="BUTrainNumberOfSupervisionVisitsSchedule" xml:space="preserve">
+    <value>Number of supervision visits scheduled per year</value>
+  </data>
+  <data name="BUTrainNumberOfTrainingSessionsHold" xml:space="preserve">
+    <value>Number of training sessions hold</value>
+  </data>
+  <data name="BUTrainPercentageOfHealthFacilitiesHavin" xml:space="preserve">
+    <value>Percentage of health facilities having at least one trained staff for Buruli ulcer control programme</value>
+  </data>
+  <data name="BUTrainPercentageOfHealthFacilityStaffSu" xml:space="preserve">
+    <value>Percentage of health facility staff supervised as scheduled</value>
+  </data>
+  <data name="BUTrainPercentageOfSupervisionVisitsCarr" xml:space="preserve">
+    <value>Percentage of supervision visits carried out during the year</value>
+  </data>
+  <data name="BUTrainPercentageOfTrainedHealthWorkersA" xml:space="preserve">
+    <value>Percentage of trained health workers among total number of health workers in health facilities</value>
+  </data>
+  <data name="GuineaWormTraining" xml:space="preserve">
+    <value>Guinea worm training</value>
+  </data>
+  <data name="GWTrainNumberOfParticipantsToTrainingSessions" xml:space="preserve">
+    <value>Number of participants to training sessions</value>
+  </data>
+  <data name="GWTrainNumberOfSupervisionVisitsScheduledPerYea" xml:space="preserve">
+    <value>Number of supervision visits scheduled per year</value>
+  </data>
+  <data name="GWTrainNumberOfTrainingSessionsHold" xml:space="preserve">
+    <value>Number of training sessions hold</value>
+  </data>
+  <data name="GWTrainPercentageOfHealthFacilitiesHavingAtLeas" xml:space="preserve">
+    <value>Percentage of health facilities having at least one trained staff for Guinea Worm elimination programme</value>
+  </data>
+  <data name="GWTrainPercentageOfHealthFacilityStaffSupervise" xml:space="preserve">
+    <value>Percentage of health facility staff supervised as scheduled</value>
+  </data>
+  <data name="GWTrainPercentageOfSupervisionVisitsCarriedOutD" xml:space="preserve">
+    <value>Percentage of supervision visits carried out during the year</value>
+  </data>
+  <data name="GWTrainPercentageOfTrainedHealthWorkersAmongTot" xml:space="preserve">
+    <value>Percentage of trained health workers among total number of health workers in health facilities</value>
+  </data>
+  <data name="HatTraining" xml:space="preserve">
+    <value>HAT training</value>
+  </data>
+  <data name="HATTrainNumberOfParticipantsToHatTrainin" xml:space="preserve">
+    <value>Number of participants to HAT training sessions</value>
+  </data>
+  <data name="HATTrainNumberOfSupervisionVisitsSchedul" xml:space="preserve">
+    <value>Number of supervision visits scheduled per year</value>
+  </data>
+  <data name="HATTrainNumberOfTrainingSessionsForHatHo" xml:space="preserve">
+    <value>Number of training sessions for HAT hold</value>
+  </data>
+  <data name="HATTrainPercentageOfHealthFacilitiesHavi" xml:space="preserve">
+    <value>Percentage of health facilities having at least one trained staff for leprosy elimination programme</value>
+  </data>
+  <data name="HATTrainPercentageOfHealthFacilityStaffS" xml:space="preserve">
+    <value>Percentage of health facility staff supervised as scheduled</value>
+  </data>
+  <data name="HATTrainPercentageOfSupervisionVisitsCar" xml:space="preserve">
+    <value>Percentage of supervision visits carried out during the year</value>
+  </data>
+  <data name="HATTrainPercentageOfTrainedHealthWorkers" xml:space="preserve">
+    <value>Percentage of trained health workers among total number of health workers in health facilities</value>
+  </data>
   <data name="ID" xml:space="preserve">
     <value>ID</value>
   </data>
+  <data name="LeishTraining" xml:space="preserve">
+    <value>Leishmaniasis training</value>
+  </data>
+  <data name="LeishTrainNumberOfParticipantsToTraining" xml:space="preserve">
+    <value>Number of participants to training sessions</value>
+  </data>
+  <data name="LeishTrainNumberOfSupervisionVisitsSched" xml:space="preserve">
+    <value>Number of supervision visits scheduled per year</value>
+  </data>
+  <data name="LeishTrainNumberOfTrainingSessionsHold" xml:space="preserve">
+    <value>Number of training sessions hold</value>
+  </data>
+  <data name="LeishTrainPercentageOfHealthFacilitiesHa" xml:space="preserve">
+    <value>Percentage of health facilities having at least one trained staff for Leishmaniasis elimination programme</value>
+  </data>
+  <data name="LeishTrainPercentageOfHealthFacilityStaf" xml:space="preserve">
+    <value>Percentage of health facility staff supervised as scheduled</value>
+  </data>
+  <data name="LeishTrainPercentageOfSupervisionVisitsC" xml:space="preserve">
+    <value>Percentage of supervision visits carried out during the year</value>
+  </data>
+  <data name="LeishTrainPercentageOfTrainedHealthWorke" xml:space="preserve">
+    <value>Percentage of trained health workers among total number of health workers in health facilities</value>
+  </data>
+  <data name="LeprosyTraining" xml:space="preserve">
+    <value>Leprosy training</value>
+  </data>
+  <data name="LeprosyTrainNumberOfParticipantsToTraini" xml:space="preserve">
+    <value>Number of participants to training sessions</value>
+  </data>
+  <data name="LeprosyTrainNumberOfSupervisionVisitsSch" xml:space="preserve">
+    <value>Number of supervision visits scheduled per year</value>
+  </data>
+  <data name="LeprosyTrainNumberOfTrainingSessionsHold" xml:space="preserve">
+    <value>Number of training sessions hold</value>
+  </data>
+  <data name="LeprosyTrainPercentageOfHealthFacilities" xml:space="preserve">
+    <value>Percentage of health facilities having at least one trained staff for leprosy elimination programme</value>
+  </data>
+  <data name="LeprosyTrainPercentageOfHealthFacilitySt" xml:space="preserve">
+    <value>Percentage of health facility staff supervised as scheduled</value>
+  </data>
+  <data name="LeprosyTrainPercentageOfSupervisionVisit" xml:space="preserve">
+    <value>Percentage of supervision visits carried out during the year</value>
+  </data>
+  <data name="LeprosyTrainPercentageOfTrainedHealthWor" xml:space="preserve">
+    <value>Percentage of trained health workers among total number of health workers in health facilities</value>
+  </data>
+  <data name="ProcessIndicators" xml:space="preserve">
+    <value>Process Indicators</value>
+  </data>
+  <data name="SevereAdverseEffects" xml:space="preserve">
+    <value>Severe adverse effects</value>
+  </data>
+  <data name="SupplyChainMng" xml:space="preserve">
+    <value>Supply chain management</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Training</value>
+  </data>
   <data name="UpdateDemography" xml:space="preserve">
     <value>Update demography</value>
+  </data>
+  <data name="ValidationErrorTitle" xml:space="preserve">
+    <value>Validation error</value>
+  </data>
+  <data name="YawsTraining" xml:space="preserve">
+    <value>Yaws training</value>
+  </data>
+  <data name="YawsTrainNumberOfParticipantsToTrainingS" xml:space="preserve">
+    <value>Number of participants to training sessions</value>
+  </data>
+  <data name="YawsTrainNumberOfSupervisionVisitsSchedu" xml:space="preserve">
+    <value>Number of supervision visits scheduled per year</value>
+  </data>
+  <data name="YawsTrainNumberOfTrainingSessionsHold" xml:space="preserve">
+    <value>Number of training sessions hold</value>
+  </data>
+  <data name="YawsTrainPercentageOfHealthFacilitiesHav" xml:space="preserve">
+    <value>Percentage of health facilities having at least one trained staff for yaws elimination programme</value>
+  </data>
+  <data name="YawsTrainPercentageOfHealthFacilityStaff" xml:space="preserve">
+    <value>Percentage of health facility staff supervised as scheduled</value>
+  </data>
+  <data name="YawsTrainPercentageOfSupervisionVisitsCa" xml:space="preserve">
+    <value>Percentage of supervision visits carried out during the year</value>
+  </data>
+  <data name="YawsTrainPercentageOfTrainedHealthWorker" xml:space="preserve">
+    <value>Percentage of trained health workers among total number of health workers in health facilities</value>
+  </data>
+  <data name="YearReported" xml:space="preserve">
+    <value>Year reported</value>
+  </data>
+  <data name="AddNewItemLink" xml:space="preserve">
+    <value>Add new item &gt;</value>
+  </data>
+  <data name="Chagas" xml:space="preserve">
+    <value>Chagas disease</value>
+  </data>
+  <data name="DDLFAdultPopulation" xml:space="preserve">
+    <value>Adult population</value>
+  </data>
+  <data name="DDLFDiseaseDistributionPcInterventions" xml:space="preserve">
+    <value>Disease Distribution: PC interventions</value>
+  </data>
+  <data name="DDLFHighRiskAdultsAtRisk" xml:space="preserve">
+    <value>High-risk adults at-risk</value>
+  </data>
+  <data name="DDLFMonthOfPlannedTas" xml:space="preserve">
+    <value>Month of planned TAS</value>
+  </data>
+  <data name="DDLFNumPcRoundsYearCurrentlyImplemented" xml:space="preserve">
+    <value># PC rounds/year currently implemented</value>
+  </data>
+  <data name="DDLFNumPcRoundsYearRecommendedByWhoGuid" xml:space="preserve">
+    <value># PC rounds/year recommended by WHO guidelines</value>
+  </data>
+  <data name="DDLFObjectiveOfPlannedTas" xml:space="preserve">
+    <value>Objective of planned TAS</value>
+  </data>
+  <data name="DDLFPopulationAtRisk" xml:space="preserve">
+    <value>Population at-risk</value>
+  </data>
+  <data name="DDLFPopulationLivingInTheDistrictsThatAc" xml:space="preserve">
+    <value>Population living in the districts that achieved criteria for stopping PC</value>
+  </data>
+  <data name="DDLFPopulationRequiringPc" xml:space="preserve">
+    <value>Population requiring PC</value>
+  </data>
+  <data name="DDLFPsacPopulation" xml:space="preserve">
+    <value>PSAC population</value>
+  </data>
+  <data name="DDLFSacPopulation" xml:space="preserve">
+    <value>SAC population</value>
+  </data>
+  <data name="DDLFTotalPopulation" xml:space="preserve">
+    <value>Total population</value>
+  </data>
+  <data name="DDLFYearDeterminedThatAchievedCriteriaFo" xml:space="preserve">
+    <value>Year determined that achieved criteria for stopping PC (district-level)</value>
+  </data>
+  <data name="DDLFYearDiseaseDistributionInformationAp" xml:space="preserve">
+    <value>Year disease distribution information applies to</value>
+  </data>
+  <data name="DDLFYearOfPlannedTas" xml:space="preserve">
+    <value>Year of planned TAS</value>
+  </data>
+  <data name="DDLFYearPcStarted" xml:space="preserve">
+    <value>Year PC started</value>
+  </data>
+  <data name="DDOnchoDiseaseDistributionPcInterventio" xml:space="preserve">
+    <value>Disease Distribution: PC interventions</value>
+  </data>
+  <data name="DDOnchoMethodOfLoaLoaMapping" xml:space="preserve">
+    <value>Method of Loa Loa mapping </value>
+  </data>
+  <data name="DDOnchoNumPcRoundsYearCurrentlyImplemen" xml:space="preserve">
+    <value># PC rounds/year currently implemented</value>
+  </data>
+  <data name="DDOnchoNumPcRoundsYearRecommendedByWhoG" xml:space="preserve">
+    <value># PC rounds/year recommended by WHO guidelines</value>
+  </data>
+  <data name="DDOnchoPopulationAtRisk" xml:space="preserve">
+    <value>Population at-risk</value>
+  </data>
+  <data name="DDOnchoPopulationLivingInTheDistrictsTha" xml:space="preserve">
+    <value>Population living in the districts that achieved criteria for stopping PC</value>
+  </data>
+  <data name="DDOnchoPopulationRequiringPc" xml:space="preserve">
+    <value>Population requiring PC</value>
+  </data>
+  <data name="DDOnchoSaeRiskFromLoaLoa" xml:space="preserve">
+    <value>SAE risk from Loa Loa</value>
+  </data>
+  <data name="DDOnchoTotalNumEndemicVillagesCommuniti" xml:space="preserve">
+    <value>Total # endemic villages/communities in the district</value>
+  </data>
+  <data name="DDOnchoTotalNumOfVillagesCommunitiesInT" xml:space="preserve">
+    <value>Total # of villages/communities in the district</value>
+  </data>
+  <data name="DDOnchoTotalPopulation" xml:space="preserve">
+    <value>Total population</value>
+  </data>
+  <data name="DDOnchoYearDeterminedThatAchievedCriteri" xml:space="preserve">
+    <value>Year determined that achieved criteria for stopping PC (district-level)</value>
+  </data>
+  <data name="DDOnchoYearDiseaseDistributionInformatio" xml:space="preserve">
+    <value>Year disease distribution information applies to</value>
+  </data>
+  <data name="DDOnchoYearPcStarted" xml:space="preserve">
+    <value>Year PC started</value>
+  </data>
+  <data name="DDSchistoAdultPopulation" xml:space="preserve">
+    <value>Adult population</value>
+  </data>
+  <data name="DDSchistoDiseaseDistributionPcIntervent" xml:space="preserve">
+    <value>Disease Distribution: PC interventions</value>
+  </data>
+  <data name="DDSchistoHighRiskAdultsAtRisk" xml:space="preserve">
+    <value>High-risk adults at-risk</value>
+  </data>
+  <data name="DDSchistoNumPcRoundsYearCurrentlyImplem" xml:space="preserve">
+    <value># PC rounds/year currently implemented</value>
+  </data>
+  <data name="DDSchistoNumPcRoundsYearRecommendedByWh" xml:space="preserve">
+    <value># PC rounds/year recommended by WHO guidelines</value>
+  </data>
+  <data name="DDSchistoPopulationAtRisk" xml:space="preserve">
+    <value>Population at-risk</value>
+  </data>
+  <data name="DDSchistoPopulationLivingInTheDistrictsT" xml:space="preserve">
+    <value>Population living in the districts that achieved criteria for stopping PC</value>
+  </data>
+  <data name="DDSchistoPopulationRequiringPc" xml:space="preserve">
+    <value>Population requiring PC</value>
+  </data>
+  <data name="DDSchistoSacAtRisk" xml:space="preserve">
+    <value>SAC at-risk</value>
+  </data>
+  <data name="DDSchistoSacPopulation" xml:space="preserve">
+    <value>SAC population</value>
+  </data>
+  <data name="DDSchistoTotalPopulation" xml:space="preserve">
+    <value>Total population</value>
+  </data>
+  <data name="DDSchistoYearDeterminedThatAchievedCrite" xml:space="preserve">
+    <value>Year determined that achieved criteria for stopping PC (district-level)</value>
+  </data>
+  <data name="DDSchistoYearDiseaseDistributionInformat" xml:space="preserve">
+    <value>Year disease distribution information applies to</value>
+  </data>
+  <data name="DDSchistoYearPcStarted" xml:space="preserve">
+    <value>Year PC started</value>
+  </data>
+  <data name="DDSTHAdultPopulation" xml:space="preserve">
+    <value>Adult population</value>
+  </data>
+  <data name="DDSTHDiseaseDistributionPcInterventions" xml:space="preserve">
+    <value>Disease Distribution: PC interventions</value>
+  </data>
+  <data name="DDSTHHighRiskAdultsAtRisk" xml:space="preserve">
+    <value>High-risk adults at-risk</value>
+  </data>
+  <data name="DDSTHNumPcRoundsYearCurrentlyImplemente" xml:space="preserve">
+    <value># PC rounds/year currently implemented</value>
+  </data>
+  <data name="DDSTHNumPcRoundsYearRecommendedByWhoGui" xml:space="preserve">
+    <value># PC rounds/year recommended by WHO guidelines</value>
+  </data>
+  <data name="DDSTHPopulationAtRisk" xml:space="preserve">
+    <value>Population at-risk</value>
+  </data>
+  <data name="DDSTHPopulationLivingInTheDistrictsThatA" xml:space="preserve">
+    <value>Population living in the districts that achieved criteria for stopping PC</value>
+  </data>
+  <data name="DDSTHPopulationRequiringPc" xml:space="preserve">
+    <value>Population requiring PC</value>
+  </data>
+  <data name="DDSTHPsacAtRisk" xml:space="preserve">
+    <value>PSAC at-risk</value>
+  </data>
+  <data name="DDSTHPsacPopulation" xml:space="preserve">
+    <value>PSAC population</value>
+  </data>
+  <data name="DDSTHSacAtRisk" xml:space="preserve">
+    <value>SAC at-risk</value>
+  </data>
+  <data name="DDSTHSacPopulation" xml:space="preserve">
+    <value>SAC population</value>
+  </data>
+  <data name="DDSTHTotalPopulation" xml:space="preserve">
+    <value>Total population</value>
+  </data>
+  <data name="DDSTHYearDeterminedThatAchievedCriteriaF" xml:space="preserve">
+    <value>Year determined that achieved criteria for stopping PC (district-level)</value>
+  </data>
+  <data name="DDSTHYearDiseaseDistributionInformationA" xml:space="preserve">
+    <value>Year disease distribution information applies to</value>
+  </data>
+  <data name="DDSTHYearPcStarted" xml:space="preserve">
+    <value>Year PC started</value>
+  </data>
+  <data name="DDTraAdultPopulation" xml:space="preserve">
+    <value>Adult population</value>
+  </data>
+  <data name="DDTraDiseaseDistributionPcInterventions" xml:space="preserve">
+    <value>Disease Distribution: PC interventions</value>
+  </data>
+  <data name="DDTraDiseaseDistributionTrichiasisSurge" xml:space="preserve">
+    <value>Disease Distribution: Trichiasis Surgery</value>
+  </data>
+  <data name="DDTraMonthOfPlannedTrachomaImpactSurvey" xml:space="preserve">
+    <value>Month of planned trachoma impact survey</value>
+  </data>
+  <data name="DDTraNumPcRoundsYearCurrentlyImplemente" xml:space="preserve">
+    <value># PC rounds/year currently implemented</value>
+  </data>
+  <data name="DDTraNumPcRoundsYearRecommendedByWhoGui" xml:space="preserve">
+    <value># PC rounds/year recommended by WHO guidelines</value>
+  </data>
+  <data name="DDTraPopulationAtRisk" xml:space="preserve">
+    <value>Population at-risk</value>
+  </data>
+  <data name="DDTraPopulationLivingInAreasDistrict" xml:space="preserve">
+    <value>Population living in areas that have achieved criteria for stopping district-level PC for trachoma</value>
+  </data>
+  <data name="DDTraPopulationLivingInAreasSubDistrict" xml:space="preserve">
+    <value>Population living in areas that have achieved UIG-A at the sub-district level  MDA for trachoma</value>
+  </data>
+  <data name="DDTraSacPopulation" xml:space="preserve">
+    <value>SAC population</value>
+  </data>
+  <data name="DDTraTotalPopulation" xml:space="preserve">
+    <value>Total population</value>
+  </data>
+  <data name="DDTraTrichiasisSurgeryBacklog" xml:space="preserve">
+    <value>Trichiasis surgery backlog</value>
+  </data>
+  <data name="DDTraUltimateInterventionGoalForActiveTr" xml:space="preserve">
+    <value>Ultimate intervention goal for active trachoma</value>
+  </data>
+  <data name="DDTraUltimateInterventionGoalForTrichias" xml:space="preserve">
+    <value>Ultimate intervention goal for trichiasis surgery</value>
+  </data>
+  <data name="DDTraYearDeterminedThatAchievedCriteriaF" xml:space="preserve">
+    <value>Year determined that achieved criteria for stopping PC (district-level)</value>
+  </data>
+  <data name="DDTraYearDiseaseDistributionInformationA" xml:space="preserve">
+    <value>Year disease distribution information applies to</value>
+  </data>
+  <data name="DDTraYearOfPlannedTrachomaImpactSurvey" xml:space="preserve">
+    <value>Year of planned trachoma impact survey</value>
+  </data>
+  <data name="DDTraYearPcStarted" xml:space="preserve">
+    <value>Year PC started</value>
+  </data>
+  <data name="Dengue" xml:space="preserve">
+    <value>Dengue/Severe dengue</value>
+  </data>
+  <data name="DistrictLevelSup" xml:space="preserve">
+    <value>District-level supervisors</value>
+  </data>
+  <data name="DrugDistrib" xml:space="preserve">
+    <value>Drug Distributors</value>
+  </data>
+  <data name="Echino" xml:space="preserve">
+    <value>Echinococcosis</value>
+  </data>
+  <data name="FinanceAcct" xml:space="preserve">
+    <value>Finance &amp; Accounting</value>
+  </data>
+  <data name="Foodborne" xml:space="preserve">
+    <value>Foodborne trematodiases</value>
+  </data>
+  <data name="IndicatorValue" xml:space="preserve">
+    <value>Indicator value</value>
+  </data>
+  <data name="LfEnd0" xml:space="preserve">
+    <value>0 - Not endemic above treatment threshold</value>
+  </data>
+  <data name="LfEnd1" xml:space="preserve">
+    <value>1 - Endemic above treatment threshold</value>
+  </data>
+  <data name="LfEnd100" xml:space="preserve">
+    <value>100 - Achieved stopping MDA criteria</value>
+  </data>
+  <data name="LfEndM" xml:space="preserve">
+    <value>M - Not mapped</value>
+  </data>
+  <data name="LfEndNs" xml:space="preserve">
+    <value>NS - Not mapped but not suspected</value>
+  </data>
+  <data name="LfEndPending" xml:space="preserve">
+    <value>Pending - Awaiting TAS implementation/results</value>
+  </data>
+  <data name="LfPostMdaTas1" xml:space="preserve">
+    <value>Post-MDA Surveillance TAS I</value>
+  </data>
+  <data name="LfPostMdaTas2" xml:space="preserve">
+    <value>Post-MDA Surveillance TAS II</value>
+  </data>
+  <data name="LfStopMdaTas" xml:space="preserve">
+    <value>Stop-MDA TAS</value>
+  </data>
+  <data name="MandE" xml:space="preserve">
+    <value>M&amp;E</value>
+  </data>
+  <data name="Oncho0" xml:space="preserve">
+    <value>0 Not endemic above treatment threshold</value>
+  </data>
+  <data name="Oncho1" xml:space="preserve">
+    <value>1 Endemic above treatment threshold</value>
+  </data>
+  <data name="Oncho100" xml:space="preserve">
+    <value>100 Achieved stopping MDA criteria</value>
+  </data>
+  <data name="Oncho2NotMapped" xml:space="preserve">
+    <value>Not mapped</value>
+  </data>
+  <data name="Oncho3Parasite" xml:space="preserve">
+    <value>Parasitological</value>
+  </data>
+  <data name="OnchoM" xml:space="preserve">
+    <value>M Not mapped</value>
+  </data>
+  <data name="OnchoNotSuspect" xml:space="preserve">
+    <value>Not mapped but not suspected</value>
+  </data>
+  <data name="OnchoNs" xml:space="preserve">
+    <value>NS Not mapped but not suspected</value>
+  </data>
+  <data name="OnchoPending" xml:space="preserve">
+    <value>Pending Awaiting stopping-MDA assessment implementation/results</value>
+  </data>
+  <data name="OnchoRaploa" xml:space="preserve">
+    <value>RAPLOA</value>
+  </data>
+  <data name="OnchoSaeHigh" xml:space="preserve">
+    <value>High risk of SAE</value>
+  </data>
+  <data name="OnchoSaeLikely" xml:space="preserve">
+    <value>SAE likely</value>
+  </data>
+  <data name="OnchoSaeUnlikely" xml:space="preserve">
+    <value>SAE unlikely</value>
+  </data>
+  <data name="PCTrainFunders" xml:space="preserve">
+    <value>Funders</value>
+  </data>
+  <data name="PcTraining" xml:space="preserve">
+    <value>PC Training</value>
+  </data>
+  <data name="PCTrainNumIndividualsTargeted" xml:space="preserve">
+    <value># individuals targeted</value>
+  </data>
+  <data name="PCTrainNumIndividualsTrainedFemales" xml:space="preserve">
+    <value># individuals trained - females</value>
+  </data>
+  <data name="PCTrainNumIndividualsTrainedMales" xml:space="preserve">
+    <value># individuals trained - males</value>
+  </data>
+  <data name="PCTrainNumIndividualsTrainedTotal" xml:space="preserve">
+    <value># individuals trained - total</value>
+  </data>
+  <data name="PCTrainTrainingCategory" xml:space="preserve">
+    <value>Training category</value>
+  </data>
+  <data name="Rabies" xml:space="preserve">
+    <value>Rabies</value>
+  </data>
+  <data name="RegionalLevelSup" xml:space="preserve">
+    <value>Regional-level supervisors</value>
+  </data>
+  <data name="Sch1" xml:space="preserve">
+    <value>1 Low prevalence (&gt;0 and &lt;10%) upon initial mapping by parasitological method</value>
+  </data>
+  <data name="Sch10" xml:space="preserve">
+    <value>10 Very low prevalence  (&lt;1%) upon evaluation by parasitological method</value>
+  </data>
+  <data name="Sch100" xml:space="preserve">
+    <value>100 Achieved stopping MDA criteria</value>
+  </data>
+  <data name="Sch2" xml:space="preserve">
+    <value>2 Moderate prevalence</value>
+  </data>
+  <data name="Sch20" xml:space="preserve">
+    <value>20 Low prevalence (≥1 and &lt;10%) upon evaluation by parasitological method</value>
+  </data>
+  <data name="Sch2a" xml:space="preserve">
+    <value>2A Moderate prevalence (&gt;1 and &lt;30%) upon initial mapping by questionnaire</value>
+  </data>
+  <data name="Sch2b" xml:space="preserve">
+    <value>2B Moderate prevalence (≥10 and &lt;50%) upon initial mapping by parasitological method</value>
+  </data>
+  <data name="Sch3" xml:space="preserve">
+    <value>3 High prevalence upon initial mapping</value>
+  </data>
+  <data name="Sch30" xml:space="preserve">
+    <value>30 Moderate prevalence (≥10 and &lt;50%) upon evaluation by parasitological method</value>
+  </data>
+  <data name="Sch3a" xml:space="preserve">
+    <value>3A High prevalence (≥30%) upon initial mapping by questionnaire</value>
+  </data>
+  <data name="Sch3b" xml:space="preserve">
+    <value>3B High prevalence (≥50%) upon initial mapping by parasitological method</value>
+  </data>
+  <data name="Sch40" xml:space="preserve">
+    <value>40 High prevalence (≥50%) upon evaluation by parasitological method</value>
+  </data>
+  <data name="Schisto" xml:space="preserve">
+    <value>Schistosomiasis</value>
+  </data>
+  <data name="SchistoM" xml:space="preserve">
+    <value>M Not mapped</value>
+  </data>
+  <data name="SchNs" xml:space="preserve">
+    <value>NS Not mapped but not suspected</value>
+  </data>
+  <data name="Scho0" xml:space="preserve">
+    <value>0 Not endemic above treatment threshold</value>
+  </data>
+  <data name="SchPending" xml:space="preserve">
+    <value>Pending Awaiting evaluation implementation/results</value>
+  </data>
+  <data name="Sth0" xml:space="preserve">
+    <value>0 Not endemic</value>
+  </data>
+  <data name="Sth1" xml:space="preserve">
+    <value>1 Low prevalence (Not endemic above treatment threshold upon initial mapping; i.e., &lt;20%)</value>
+  </data>
+  <data name="Sth10" xml:space="preserve">
+    <value>10 Low prevalence (≥1 and &lt;10%) upon evaluation</value>
+  </data>
+  <data name="Sth100" xml:space="preserve">
+    <value>100 Achieved stopping MDA criteria (i.e., very low prevalence  (&lt;1%) upon evaluation)</value>
+  </data>
+  <data name="Sth2" xml:space="preserve">
+    <value>2 Moderate prevalence (≥20 and &lt;50%) upon initial mapping</value>
+  </data>
+  <data name="Sth20" xml:space="preserve">
+    <value>20 Moderate prevalence (≥10 and &lt;20%) upon evaluation</value>
+  </data>
+  <data name="Sth3" xml:space="preserve">
+    <value>3 High prevalence (≥50%) upon initial mapping</value>
+  </data>
+  <data name="Sth30" xml:space="preserve">
+    <value>30 High prevalence (≥20 and &lt;50%) upon evaluation</value>
+  </data>
+  <data name="Sth40" xml:space="preserve">
+    <value>40 Very high prevalence (≥50%) upon evaluation</value>
+  </data>
+  <data name="SthM" xml:space="preserve">
+    <value>M Not mapped</value>
+  </data>
+  <data name="SthNs" xml:space="preserve">
+    <value>NS Not mapped but not suspected</value>
+  </data>
+  <data name="SthPending" xml:space="preserve">
+    <value>Pending Awaiting evaluation implementation/results</value>
+  </data>
+  <data name="Taeniasis" xml:space="preserve">
+    <value>Taeniasis/Cysticercosis</value>
+  </data>
+  <data name="Tra0" xml:space="preserve">
+    <value>0 Not endemic upon initial mapping</value>
+  </data>
+  <data name="Tra1" xml:space="preserve">
+    <value>1 Sub-districts prevalence warranting sub-district level MDA or targeted MDA (district level TF &gt;0 and &lt;10%)</value>
+  </data>
+  <data name="Tra100" xml:space="preserve">
+    <value>100 Achieved UIG - A (TF &lt;5% at sub-district level)</value>
+  </data>
+  <data name="Tra2" xml:space="preserve">
+    <value>2 Very low prevalence (TF &gt;0-4.9%) at the district level - sub-district prevalence not known</value>
+  </data>
+  <data name="Tra20" xml:space="preserve">
+    <value>0 Not endemic upon initial mapping</value>
+  </data>
+  <data name="Tra21" xml:space="preserve">
+    <value>1 Trichiasis surgery required (TT ≥0.1%)</value>
+  </data>
+  <data name="Tra2100" xml:space="preserve">
+    <value>100 Achieved UIG - S</value>
+  </data>
+  <data name="Tra2M" xml:space="preserve">
+    <value>M Not yet mapped</value>
+  </data>
+  <data name="Tra2Ns" xml:space="preserve">
+    <value>NS Not mapped but not suspected</value>
+  </data>
+  <data name="Tra3" xml:space="preserve">
+    <value>3 Low prevalence (TF 5-9.9%) at the district level - sub-district prevalence not known</value>
+  </data>
+  <data name="Tra4" xml:space="preserve">
+    <value>4 Moderate prevalence (TF 10-29%)</value>
+  </data>
+  <data name="Tra5" xml:space="preserve">
+    <value>5 High prevalence (TF ≥30%)</value>
+  </data>
+  <data name="Trachoma" xml:space="preserve">
+    <value>Trachoma</value>
+  </data>
+  <data name="Trainers" xml:space="preserve">
+    <value>Trainers</value>
+  </data>
+  <data name="TraM" xml:space="preserve">
+    <value>M Not yet mapped</value>
+  </data>
+  <data name="TraNs" xml:space="preserve">
+    <value>NS Not mapped but not suspected</value>
+  </data>
+  <data name="TraPending" xml:space="preserve">
+    <value>Pending Awaiting impact survey implementation/results</value>
+  </data>
+  <data name="xyear1every2" xml:space="preserve">
+    <value>1x/every 2 years</value>
+  </data>
+  <data name="xyear1every3" xml:space="preserve">
+    <value>1x/every 3 years</value>
   </data>
 </root>

@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.UI.Base;
 
 namespace Nada.UI
 {
-    public partial class UpdateDatabase : Form
+    public partial class UpdateDatabase : BaseForm
     {
         public UpdateDatabase()
+            : base()
         {
             InitializeComponent();
         }

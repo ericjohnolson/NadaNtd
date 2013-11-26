@@ -6,14 +6,16 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.UI.Base;
 
 namespace Nada.UI.Controls
 {
-    public partial class CollapsiblePanel : UserControl
+    public partial class CollapsiblePanel : BaseControl
     {
         bool isCollapsed = false;
 
         public CollapsiblePanel()
+            : base()
         {
             InitializeComponent();
         }

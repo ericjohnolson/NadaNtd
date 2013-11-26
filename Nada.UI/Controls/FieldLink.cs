@@ -6,14 +6,16 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.UI.Base;
 
 namespace Nada.UI.Controls
 {
-    public partial class FieldLink : UserControl
+    public partial class FieldLink : BaseControl
     {
         public event Action OnClick = () => { };
 
         public FieldLink()
+            : base()
         {
             InitializeComponent();
         }

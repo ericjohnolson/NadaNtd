@@ -10,10 +10,11 @@ using Nada.Model.Repositories;
 using Nada.Model;
 using Nada.UI.AppLogic;
 using Nada.Model.Diseases;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class SettingsView : UserControl
+    public partial class SettingsView : BaseControl
     {
         private DiseaseRepository diseases = null;
         private SettingsRepository settings = null;
@@ -21,6 +22,7 @@ namespace Nada.UI.View
         private List<AdminLevelType> adminLevels = null;
 
         public SettingsView()
+            : base()
         {
             InitializeComponent();
         }

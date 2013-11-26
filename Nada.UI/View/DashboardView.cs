@@ -15,10 +15,11 @@ using Nada.Globalization;
 using Nada.Model.Survey;
 using Nada.Model.Intervention;
 using Nada.UI.View.Wizard;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Demography
 {
-    public partial class DashboardView : UserControl
+    public partial class DashboardView : BaseControl
     {
         public Action<UserControl> LoadView = (i) => { };
         public Action<AdminLevel> LoadDashForAdminLevel = (i) => { };
@@ -28,11 +29,13 @@ namespace Nada.UI.View.Demography
         private AdminLevel preloadedLevel = null;
 
         public DashboardView()
+            : base()
         {
             InitializeComponent();
         }
 
         public DashboardView(AdminLevel a)
+            : base()
         {
             InitializeComponent();
             preloadedLevel = a;
@@ -44,6 +47,9 @@ namespace Nada.UI.View.Demography
             {
                 Localizer.TranslateControl(this);
                 Translate();
+                treeListView1.HyperlinkStyle.Normal.ForeColor = Color.Black;
+                treeListView1.HyperlinkStyle.Over.ForeColor = Color.DimGray;
+
                 LoadAdminLevelTypes();
                 LoadTree();
             }
@@ -83,14 +89,23 @@ namespace Nada.UI.View.Demography
                 t_OnSelect(preloadedLevel);
             else if (t.Count > 0)
                 t_OnSelect(t.FirstOrDefault());
+
+            var root = t.FirstOrDefault();
+            treeListView1.Expand(root);
         }
 
         private void treeListView1_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
         {
             e.Handled = true;
             t_OnSelect((AdminLevel)e.Model);
+            treeListView1.Expand(e.Model);
         }
 
+        private void treeListView1_DoubleClick(object sender, EventArgs e)
+        {
+            //t_OnSelect((AdminLevel)e.Model);
+
+        }
         private void LoadAdminLevelTypes()
         {
             adminLevelTypes = new Dictionary<int, AdminLevelType>();
@@ -157,5 +172,6 @@ namespace Nada.UI.View.Demography
             LoadDashForAdminLevel(preloadedLevel);
         }
         #endregion
+
     }
 }

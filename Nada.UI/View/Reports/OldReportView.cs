@@ -6,12 +6,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Reports
 {
-    public partial class OldReportView : UserControl
+    public partial class OldReportView : BaseControl
     {
         public OldReportView()
+            : base()
         {
             InitializeComponent();
         }

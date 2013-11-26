@@ -10,12 +10,14 @@ using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class DeleteConfirm : Form
+    public partial class DeleteConfirm : BaseForm
     {
         public DeleteConfirm()
+            : base()
         {
             InitializeComponent();
         }

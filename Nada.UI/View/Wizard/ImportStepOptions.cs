@@ -13,11 +13,12 @@ using Nada.Model.Csv;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using OfficeOpenXml;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class ImportStepOptions : UserControl, IWizardStep
+    public partial class ImportStepOptions : BaseControl, IWizardStep
     {
         private List<AdminLevel> available = new List<AdminLevel>();
         private List<AdminLevel> selected = new List<AdminLevel>();
@@ -35,6 +36,7 @@ namespace Nada.UI.View.Wizard
         public string StepTitle { get { return Translations.ChooseAdminLevels; } }
 
         public ImportStepOptions()
+            : base()
         {
             InitializeComponent();
         }

@@ -13,11 +13,11 @@ namespace Nada.Model.Intervention
         public IntvType()
         {
             Indicators = new Dictionary<string, Indicator>();
-            IndicatorDropdownValues = new List<KeyValuePair<int, string>>();
+            IndicatorDropdownValues = new List<IndicatorDropdownValue>();
         }
         public string IntvTypeName { get; set; }
         public string DiseaseType { get; set; }
-        public List<KeyValuePair<int, string>> IndicatorDropdownValues { get; set; }
+        public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }
 
         #region IDataErrorInfo Members

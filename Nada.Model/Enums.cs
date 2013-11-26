@@ -11,7 +11,8 @@ namespace Nada.Model
         Number = 2,
         YesNo = 3,
         Date = 4,
-        Dropdown = 5
+        Dropdown = 5,
+        Multiselect = 6
     }
 
     public enum IndicatorAggType
@@ -19,7 +20,16 @@ namespace Nada.Model
         Sum = 1,
         Min = 2,
         Max = 3,
-        Combine = 4
+        Combine = 4,
+        None = 5
+    }
+
+    public enum IndicatorEntityType
+    {
+        DiseaseDistribution = 1,
+        Intervention = 2,
+        Survey = 3,
+        Process = 4,
     }
 
     public enum StaticSurveyType

@@ -9,20 +9,23 @@ using System.Windows.Forms;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Intervention
 {
-    public partial class DistributionMethodAdd : Form
+    public partial class DistributionMethodAdd : BaseForm
     { 
         public event Action<DistributionMethod> OnSave = (e) => { };
         private DistributionMethod model = new DistributionMethod();
 
         public DistributionMethodAdd()
+            : base()
         {
             InitializeComponent();
         }
 
         public DistributionMethodAdd(DistributionMethod m)
+            : base()
         {
             model = m;
             InitializeComponent();

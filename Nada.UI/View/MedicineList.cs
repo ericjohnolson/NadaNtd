@@ -10,15 +10,17 @@ using Nada.Model;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class MedicineList : Form
+    public partial class MedicineList : BaseForm
     {
         public event Action OnSave = () => { };
 
         IntvRepository repo = null;
         public MedicineList()
+            : base()
         {
             InitializeComponent();
         }

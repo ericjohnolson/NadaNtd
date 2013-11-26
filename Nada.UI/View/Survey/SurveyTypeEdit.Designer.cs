@@ -36,6 +36,7 @@
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tbName = new System.Windows.Forms.TextBox();
+            this.bsSurveyType = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -46,14 +47,13 @@
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.lblCustomIndicators = new System.Windows.Forms.Label();
             this.hr1 = new Nada.UI.Controls.HR();
-            this.bsSurveyType = new System.Windows.Forms.BindingSource(this.components);
             this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.lvIndicators)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSurveyType)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.pnlName.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSurveyType)).BeginInit();
             this.SuspendLayout();
             // 
             // lvIndicators
@@ -70,7 +70,7 @@
             this.olvColumn2,
             this.olvColumn1});
             this.lvIndicators.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvIndicators.Location = new System.Drawing.Point(2, 37);
+            this.lvIndicators.Location = new System.Drawing.Point(2, 41);
             this.lvIndicators.Name = "lvIndicators";
             this.lvIndicators.ShowGroups = false;
             this.lvIndicators.Size = new System.Drawing.Size(554, 144);
@@ -127,6 +127,10 @@
             this.tbName.Size = new System.Drawing.Size(158, 20);
             this.tbName.TabIndex = 0;
             // 
+            // bsSurveyType
+            // 
+            this.bsSurveyType.DataSource = typeof(Nada.Model.Survey.SurveyType);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoSize = true;
@@ -146,7 +150,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(565, 283);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(565, 287);
             this.tableLayoutPanel1.TabIndex = 18;
             // 
             // tableLayoutPanel4
@@ -162,7 +166,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 252);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 256);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -232,7 +236,7 @@
             this.panel1.Controls.Add(this.lblCustomIndicators);
             this.panel1.Location = new System.Drawing.Point(3, 55);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(559, 184);
+            this.panel1.Size = new System.Drawing.Size(559, 188);
             this.panel1.TabIndex = 2;
             // 
             // fieldLink1
@@ -275,10 +279,6 @@
             this.hr1.Size = new System.Drawing.Size(619, 5);
             this.hr1.TabIndex = 16;
             // 
-            // bsSurveyType
-            // 
-            this.bsSurveyType.DataSource = typeof(Nada.Model.Survey.SurveyType);
-            // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
@@ -305,6 +305,7 @@
             this.Tag = "SurveyInformation";
             this.Load += new System.EventHandler(this.SurveyTypeView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lvIndicators)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSurveyType)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -313,7 +314,6 @@
             this.pnlName.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSurveyType)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.Globalization;
+using Nada.UI.Base;
 
 namespace Nada.UI
 {
-    public partial class Updates : Form
+    public partial class Updates : BaseForm
     {
         public Updates()
+            : base()
         {
             InitializeComponent();
         }

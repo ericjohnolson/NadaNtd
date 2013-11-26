@@ -7,17 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Modals
 {
-    public partial class ErrorModal : Form
+    public partial class ErrorModal : BaseForm
     {
         public ErrorModal()
+            : base()
         {
             InitializeComponent();
         }
 
         public ErrorModal(string message)
+            : base()
         {
             InitializeComponent();
             tbErrorMessage.Text = message;

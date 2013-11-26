@@ -11,21 +11,24 @@ using Nada.Model.Repositories;
 using Nada.Model.Intervention;
 using Nada.UI.AppLogic;
 using Nada.Model.Diseases;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class DiseaseDistributionIndicators : Form
+    public partial class DiseaseDistributionIndicators : BaseForm
     {
         public event Action OnSave = () => { };
         private DiseaseRepository repo = null;
         private IHaveDynamicIndicators model = null;
 
         public DiseaseDistributionIndicators()
+            : base()
         {
             InitializeComponent();
         }
 
         public DiseaseDistributionIndicators(IHaveDynamicIndicators m)
+            : base()
         {
             model = m;
             InitializeComponent();

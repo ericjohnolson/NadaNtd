@@ -7,12 +7,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Help
 {
-    public partial class HelpView : Form
+    public partial class HelpView : BaseForm
     {
         public HelpView()
+            : base()
         {
             InitializeComponent();
         }

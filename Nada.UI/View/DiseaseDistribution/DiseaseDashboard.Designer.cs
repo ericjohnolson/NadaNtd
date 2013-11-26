@@ -30,6 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tbProcess = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlProcess = new System.Windows.Forms.TableLayoutPanel();
+            this.loadingProcess = new Nada.UI.Controls.Loading();
+            this.pnlProcessDetails = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.h3Label4 = new Nada.UI.Controls.H3Label();
+            this.cbProcessTypes = new System.Windows.Forms.ComboBox();
+            this.processTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lvProcess = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn22 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn23 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn24 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn25 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn26 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnProcess = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.hr1 = new Nada.UI.Controls.HR();
             this.tblDiseaseDistro = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDisease = new System.Windows.Forms.Button();
@@ -101,6 +119,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.hrSurveys = new Nada.UI.Controls.HR();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tbProcess.SuspendLayout();
+            this.pnlProcess.SuspendLayout();
+            this.pnlProcessDetails.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.processTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lvProcess)).BeginInit();
+            this.tableLayoutPanel11.SuspendLayout();
             this.tblDiseaseDistro.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.pnlDisease.SuspendLayout();
@@ -135,19 +160,249 @@
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.tbProcess, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.tblDiseaseDistro, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tblOverview, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tblIntv, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.tblSurveys, 0, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 1255);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 1574);
             this.tableLayoutPanel1.TabIndex = 60;
+            // 
+            // tbProcess
+            // 
+            this.tbProcess.AutoSize = true;
+            this.tbProcess.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tbProcess.ColumnCount = 1;
+            this.tbProcess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tbProcess.Controls.Add(this.pnlProcess, 0, 2);
+            this.tbProcess.Controls.Add(this.tableLayoutPanel11, 0, 0);
+            this.tbProcess.Controls.Add(this.hr1, 0, 1);
+            this.tbProcess.Location = new System.Drawing.Point(3, 1258);
+            this.tbProcess.Name = "tbProcess";
+            this.tbProcess.RowCount = 3;
+            this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tbProcess.Size = new System.Drawing.Size(700, 313);
+            this.tbProcess.TabIndex = 62;
+            // 
+            // pnlProcess
+            // 
+            this.pnlProcess.AutoSize = true;
+            this.pnlProcess.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlProcess.ColumnCount = 1;
+            this.pnlProcess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlProcess.Controls.Add(this.loadingProcess, 0, 1);
+            this.pnlProcess.Controls.Add(this.pnlProcessDetails, 0, 0);
+            this.pnlProcess.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlProcess.Location = new System.Drawing.Point(3, 47);
+            this.pnlProcess.Name = "pnlProcess";
+            this.pnlProcess.RowCount = 2;
+            this.pnlProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlProcess.Size = new System.Drawing.Size(694, 263);
+            this.pnlProcess.TabIndex = 60;
+            this.pnlProcess.Visible = false;
+            // 
+            // loadingProcess
+            // 
+            this.loadingProcess.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.loadingProcess.AutoSize = true;
+            this.loadingProcess.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.loadingProcess.Location = new System.Drawing.Point(324, 201);
+            this.loadingProcess.Name = "loadingProcess";
+            this.loadingProcess.Size = new System.Drawing.Size(46, 59);
+            this.loadingProcess.StatusMessage = "";
+            this.loadingProcess.TabIndex = 0;
+            this.loadingProcess.Visible = false;
+            // 
+            // pnlProcessDetails
+            // 
+            this.pnlProcessDetails.Controls.Add(this.tableLayoutPanel10);
+            this.pnlProcessDetails.Controls.Add(this.lvProcess);
+            this.pnlProcessDetails.Location = new System.Drawing.Point(3, 3);
+            this.pnlProcessDetails.Name = "pnlProcessDetails";
+            this.pnlProcessDetails.Size = new System.Drawing.Size(670, 192);
+            this.pnlProcessDetails.TabIndex = 1;
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.AutoSize = true;
+            this.tableLayoutPanel10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel10.ColumnCount = 3;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel10.Controls.Add(this.h3Label4, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.cbProcessTypes, 1, 0);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 2);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(231, 27);
+            this.tableLayoutPanel10.TabIndex = 6;
+            // 
+            // h3Label4
+            // 
+            this.h3Label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.h3Label4.AutoSize = true;
+            this.h3Label4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Label4.Location = new System.Drawing.Point(0, 5);
+            this.h3Label4.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label4.Name = "h3Label4";
+            this.h3Label4.Size = new System.Drawing.Size(66, 16);
+            this.h3Label4.TabIndex = 0;
+            this.h3Label4.Tag = "EnterNew";
+            this.h3Label4.Text = "Enter new";
+            this.h3Label4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // cbProcessTypes
+            // 
+            this.cbProcessTypes.DataSource = this.processTypeBindingSource;
+            this.cbProcessTypes.DisplayMember = "TypeName";
+            this.cbProcessTypes.FormattingEnabled = true;
+            this.cbProcessTypes.Location = new System.Drawing.Point(69, 3);
+            this.cbProcessTypes.Name = "cbProcessTypes";
+            this.cbProcessTypes.Size = new System.Drawing.Size(159, 21);
+            this.cbProcessTypes.TabIndex = 0;
+            this.cbProcessTypes.SelectedIndexChanged += new System.EventHandler(this.cbProcess_SelectedIndexChanged);
+            // 
+            // processTypeBindingSource
+            // 
+            this.processTypeBindingSource.DataSource = typeof(Nada.Model.Process.ProcessType);
+            // 
+            // lvProcess
+            // 
+            this.lvProcess.AllColumns.Add(this.olvColumn22);
+            this.lvProcess.AllColumns.Add(this.olvColumn23);
+            this.lvProcess.AllColumns.Add(this.olvColumn24);
+            this.lvProcess.AllColumns.Add(this.olvColumn25);
+            this.lvProcess.AllColumns.Add(this.olvColumn26);
+            this.lvProcess.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn22,
+            this.olvColumn23,
+            this.olvColumn24,
+            this.olvColumn25,
+            this.olvColumn26});
+            this.lvProcess.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lvProcess.Location = new System.Drawing.Point(3, 32);
+            this.lvProcess.Name = "lvProcess";
+            this.lvProcess.ShowGroups = false;
+            this.lvProcess.Size = new System.Drawing.Size(650, 145);
+            this.lvProcess.TabIndex = 0;
+            this.lvProcess.UseCompatibleStateImageBehavior = false;
+            this.lvProcess.UseHyperlinks = true;
+            this.lvProcess.View = System.Windows.Forms.View.Details;
+            this.lvProcess.HyperlinkClicked += new System.EventHandler<BrightIdeasSoftware.HyperlinkClickedEventArgs>(this.lvProcess_HyperlinkClicked);
+            // 
+            // olvColumn22
+            // 
+            this.olvColumn22.AspectName = "TypeName";
+            this.olvColumn22.CellPadding = null;
+            this.olvColumn22.IsEditable = false;
+            this.olvColumn22.Text = "Type";
+            this.olvColumn22.Width = 258;
+            // 
+            // olvColumn23
+            // 
+            this.olvColumn23.AspectName = "YearReported";
+            this.olvColumn23.CellPadding = null;
+            this.olvColumn23.IsEditable = false;
+            this.olvColumn23.Text = "Year";
+            this.olvColumn23.Width = 105;
+            // 
+            // olvColumn24
+            // 
+            this.olvColumn24.AspectName = "UpdatedBy";
+            this.olvColumn24.CellPadding = null;
+            this.olvColumn24.IsEditable = false;
+            this.olvColumn24.Text = "Last Update";
+            this.olvColumn24.Width = 154;
+            // 
+            // olvColumn25
+            // 
+            this.olvColumn25.AspectName = "View";
+            this.olvColumn25.CellPadding = null;
+            this.olvColumn25.Hyperlink = true;
+            this.olvColumn25.IsEditable = false;
+            this.olvColumn25.Tag = "View";
+            this.olvColumn25.Text = "View";
+            this.olvColumn25.Width = 54;
+            // 
+            // olvColumn26
+            // 
+            this.olvColumn26.AspectName = "Delete";
+            this.olvColumn26.CellPadding = null;
+            this.olvColumn26.Hyperlink = true;
+            this.olvColumn26.Tag = "Delete";
+            this.olvColumn26.Text = "Delete";
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.AutoSize = true;
+            this.tableLayoutPanel11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel11.ColumnCount = 2;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel11.Controls.Add(this.btnProcess, 0, 0);
+            this.tableLayoutPanel11.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 1;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(694, 28);
+            this.tableLayoutPanel11.TabIndex = 19;
+            // 
+            // btnProcess
+            // 
+            this.btnProcess.AutoSize = true;
+            this.btnProcess.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnProcess.FlatAppearance.BorderSize = 0;
+            this.btnProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProcess.Image = global::Nada.UI.Properties.Resources.ExpanderPlusIcon16x16;
+            this.btnProcess.Location = new System.Drawing.Point(3, 3);
+            this.btnProcess.Name = "btnProcess";
+            this.btnProcess.Size = new System.Drawing.Size(22, 22);
+            this.btnProcess.TabIndex = 0;
+            this.btnProcess.UseVisualStyleBackColor = true;
+            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(44)))), ((int)(((byte)(27)))));
+            this.label3.Location = new System.Drawing.Point(30, 4);
+            this.label3.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(139, 21);
+            this.label3.TabIndex = 17;
+            this.label3.Tag = "ProcessIndicators";
+            this.label3.Text = "ProcessIndicators";
+            // 
+            // hr1
+            // 
+            this.hr1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(44)))), ((int)(((byte)(27)))));
+            this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hr1.ForeColor = System.Drawing.Color.Gray;
+            this.hr1.Location = new System.Drawing.Point(0, 34);
+            this.hr1.Margin = new System.Windows.Forms.Padding(0);
+            this.hr1.Name = "hr1";
+            this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(44)))), ((int)(((byte)(27)))));
+            this.hr1.Size = new System.Drawing.Size(700, 1);
+            this.hr1.TabIndex = 21;
             // 
             // tblDiseaseDistro
             // 
@@ -1047,9 +1302,21 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DiseaseDashboard";
-            this.Size = new System.Drawing.Size(712, 1261);
+            this.Size = new System.Drawing.Size(712, 1580);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tbProcess.ResumeLayout(false);
+            this.tbProcess.PerformLayout();
+            this.pnlProcess.ResumeLayout(false);
+            this.pnlProcess.PerformLayout();
+            this.pnlProcessDetails.ResumeLayout(false);
+            this.pnlProcessDetails.PerformLayout();
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.processTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lvProcess)).EndInit();
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel11.PerformLayout();
             this.tblDiseaseDistro.ResumeLayout(false);
             this.tblDiseaseDistro.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -1173,5 +1440,23 @@
         private BrightIdeasSoftware.OLVColumn olvColumn20;
         private BrightIdeasSoftware.OLVColumn olvColumn21;
         private Controls.H3Link lnkAddDemo;
+        private System.Windows.Forms.TableLayoutPanel tbProcess;
+        private System.Windows.Forms.TableLayoutPanel pnlProcess;
+        private Controls.Loading loadingProcess;
+        private System.Windows.Forms.Panel pnlProcessDetails;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
+        private Controls.H3Label h3Label4;
+        private System.Windows.Forms.ComboBox cbProcessTypes;
+        private BrightIdeasSoftware.ObjectListView lvProcess;
+        private BrightIdeasSoftware.OLVColumn olvColumn22;
+        private BrightIdeasSoftware.OLVColumn olvColumn23;
+        private BrightIdeasSoftware.OLVColumn olvColumn24;
+        private BrightIdeasSoftware.OLVColumn olvColumn25;
+        private BrightIdeasSoftware.OLVColumn olvColumn26;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
+        private System.Windows.Forms.Button btnProcess;
+        private System.Windows.Forms.Label label3;
+        private Controls.HR hr1;
+        private System.Windows.Forms.BindingSource processTypeBindingSource;
     }
 }

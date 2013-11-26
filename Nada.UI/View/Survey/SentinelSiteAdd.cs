@@ -11,26 +11,30 @@ using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class SentinelSiteAdd : Form
+    public partial class SentinelSiteAdd : BaseForm
     {
         public event Action<SentinelSite> OnSave = (e) => { };
         private SentinelSite model = new SentinelSite();
 
         public SentinelSiteAdd()
+            : base()
         {
             InitializeComponent();
         }
 
         public SentinelSiteAdd(SentinelSite m)
+            : base()
         {
             model = m;
             InitializeComponent();
         }
 
         public SentinelSiteAdd(AdminLevel adminLevel)
+            : base()
         {
             model = new SentinelSite { AdminLevel = adminLevel };
             InitializeComponent();
@@ -58,12 +62,12 @@ namespace Nada.UI.View
         {
             if (!model.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
             if (model.AdminLevel == null || model.AdminLevel.Id < 1)
             {
-                MessageBox.Show(Translations.LocationRequired);
+                MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
                 return;
             }
 

@@ -8,21 +8,24 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class TranslationModal : Form
+    public partial class TranslationModal : BaseForm
     {
         private List<Language> languages = null;
         private TranslatedValue model = null;
         public event Action<TranslatedValue> OnSave = (e) => { };
 
         public TranslationModal()
+            : base()
         {
             InitializeComponent();
         }
 
         public TranslationModal(List<Language> unusedLanguages)
+            : base()
         {
             InitializeComponent();
             languages = unusedLanguages;

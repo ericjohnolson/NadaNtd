@@ -13,11 +13,12 @@ using Nada.Model.Csv;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using OfficeOpenXml;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class StepDiseases : UserControl, IWizardStep
+    public partial class StepDiseases : BaseControl, IWizardStep
     {
         DiseaseRepository r = new DiseaseRepository();
         public Action OnFinish { get; set; }
@@ -32,6 +33,7 @@ namespace Nada.UI.View.Wizard
         public string StepTitle { get { return Translations.Diseases; } }
 
         public StepDiseases()
+            : base()
         {
             InitializeComponent();
         }

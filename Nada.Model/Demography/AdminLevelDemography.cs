@@ -10,15 +10,15 @@ namespace Nada.Model
     public class AdminLevelDemography : NadaClass
     {
         public int AdminLevelId { get; set; }
-        public int YearDemographyData { get; set; }
-        public int YearCensus { get; set; }
+        public Nullable<int> YearDemographyData { get; set; }
+        public Nullable<int> YearCensus { get; set; }
         public Nullable<int> YearProjections { get; set; }
         public double GrowthRate { get; set; }
         public Nullable<double> PercentRural { get; set; }
-        public int TotalPopulation { get; set; }
+        public Nullable<int> TotalPopulation { get; set; }
         public Nullable<int> Pop0Month { get; set; }
         public Nullable<int> PopPsac { get; set; }
-        public int PopSac { get; set; }
+        public Nullable<int> PopSac { get; set; }
         public Nullable<int> Pop5yo { get; set; }
         public Nullable<int> PopAdult { get; set; }
         public Nullable<int> PopFemale { get; set; }
@@ -38,11 +38,15 @@ namespace Nada.Model
                 {
                         
                     case "YearDemographyData":
-                        if (YearDemographyData > 2050 || YearDemographyData < 1900)
+                        if (!YearDemographyData.HasValue)
+                            error = Translations.Required;
+                        else if (YearDemographyData.Value > 2050 || YearDemographyData.Value < 1900)
                             error = Translations.ValidYear;
                         break;
                     case "YearCensus":
-                        if (YearCensus > 2050 || YearCensus < 1900)
+                        if (!YearCensus.HasValue)
+                            error = Translations.Required;
+                        else if (YearCensus.Value > 2050 || YearCensus.Value < 1900)
                             error = Translations.ValidYear;
                         break;
                     case "YearProjections":
@@ -54,11 +58,11 @@ namespace Nada.Model
                             error = Translations.Required;
                         break;
                     case "TotalPopulation":
-                        if (!(this is CountryDemography) && TotalPopulation <= 0)
+                        if (!(this is CountryDemography) && (!TotalPopulation.HasValue || TotalPopulation.Value <= 0))
                             error = Translations.Required;
                         break;
                     case "PopSac":
-                        if (!(this is CountryDemography) && PopSac <= 0)
+                        if (!(this is CountryDemography) && (!PopSac.HasValue || PopSac.Value <= 0))
                             error = Translations.Required;
                         break;
 

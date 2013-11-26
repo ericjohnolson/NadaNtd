@@ -10,15 +10,17 @@ using Nada.Model;
 using Nada.UI.Controls;
 using Nada.UI.AppLogic;
 using Nada.Globalization;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class CustomIndicatorControl : UserControl
+    public partial class CustomIndicatorControl : BaseControl
     {
         public event Action OnAddRemove = () => { };
         private List<DynamicContainer> controlList = new List<DynamicContainer>();
 
         public CustomIndicatorControl()
+            : base()
         {
             InitializeComponent();
         }

@@ -10,10 +10,11 @@ using Nada.Model.Repositories;
 using Nada.Model;
 using Nada.Model.Diseases;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class DiseasePickerControl : UserControl
+    public partial class DiseasePickerControl : BaseControl
     {
         private DiseaseRepository repo = null;
         private List<Disease> available = new List<Disease>();
@@ -21,6 +22,7 @@ namespace Nada.UI.View
         bool isStartUp = false;
 
         public DiseasePickerControl()
+            : base()
         {
             InitializeComponent();
         }

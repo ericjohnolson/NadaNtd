@@ -43,9 +43,11 @@
             this.h3Label2 = new Nada.UI.Controls.H3Label();
             this.tb1 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox3
@@ -213,6 +215,12 @@
             this.checkBox1.Text = "AggAdminLevel";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            this.errorProvider1.DataSource = this.bsAdminLevel;
+            // 
             // AdminLevelTypeAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,6 +246,7 @@
             this.statusStrip1.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,5 +268,6 @@
         private Controls.H3Label h3Label2;
         private System.Windows.Forms.TextBox tb1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

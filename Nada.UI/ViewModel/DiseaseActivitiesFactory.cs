@@ -8,6 +8,7 @@ using Nada.Model.Base;
 using Nada.Model.Demography;
 using Nada.Model.Diseases;
 using Nada.Model.Intervention;
+using Nada.Model.Process;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.View.Demography;
@@ -44,6 +45,12 @@ namespace Nada.UI.AppLogic
         IView GetDemo(DemoDetails details);
         IView NewDemo();
         void Delete(DemoDetails details, int userId);
+        // processes
+        List<ProcessDetails> GetProcesses();
+        List<ProcessType> GetProcessTypes();
+        void Delete(ProcessDetails details, int userId);
+        IView NewProcess(ProcessType type);
+        IView GetProcess(ProcessDetails details);
     }
 
     public class ActivityFetcher : IFetchActivities
@@ -52,6 +59,7 @@ namespace Nada.UI.AppLogic
         SurveyRepository surveys = new SurveyRepository();
         IntvRepository interventions = new IntvRepository();
         DiseaseRepository diseases = new DiseaseRepository();
+        ProcessRepository processes = new ProcessRepository();
         DemoRepository demos = new DemoRepository();
 
         public ActivityFetcher(AdminLevel adminLevel)
@@ -208,6 +216,25 @@ namespace Nada.UI.AppLogic
             return new DemographyView(demo, adminLevel);
         }
 
+        #endregion
+
+        #region Processes
+        public List<ProcessDetails> GetProcesses() { return processes.GetAllForAdminLevel(adminLevel.Id); }
+        public List<ProcessType> GetProcessTypes() { return processes.GetProcessTypes(); }
+        public void Delete(ProcessDetails details, int userId) { processes.Delete(details, userId); }
+
+        public IView NewProcess(ProcessType type)
+        {
+            if (type.Id < 1)
+                return null;
+
+            return new DataEntryEdit(new ProcessBaseVm(adminLevel, type.Id, null));
+        }
+
+        public IView GetProcess(ProcessDetails details)
+        {
+            return new DataEntryEdit(new ProcessBaseVm(adminLevel, details, null));
+        }
         #endregion
     }
 }

@@ -11,11 +11,12 @@ using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using Nada.UI.ViewModel;
 
 namespace Nada.UI.View
 {
-    public partial class IndicatorTypeEdit : UserControl, IView
+    public partial class IndicatorTypeEdit : BaseControl, IView
     {
         public event Action OnSave = () => { };
         private IDataEntryVm viewModel = null;
@@ -32,11 +33,13 @@ namespace Nada.UI.View
         }
 
         public IndicatorTypeEdit()
+            : base()
         {
             InitializeComponent();
         }
 
         public IndicatorTypeEdit(IDataEntryVm t)
+            : base()
         {
             viewModel = t;
             InitializeComponent();
@@ -83,7 +86,7 @@ namespace Nada.UI.View
         {
             if (!viewModel.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
 

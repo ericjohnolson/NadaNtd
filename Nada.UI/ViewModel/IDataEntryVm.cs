@@ -13,16 +13,17 @@ namespace Nada.UI.ViewModel
         string StatusMessage { get; }
         string Title { get; }
         string TypeTitle { get; }
+        string Notes { get; }
         ICalcIndicators Calculator { get; }
         Color FormColor { get; }
         AdminLevel Location { get; }
         Dictionary<string, Indicator> Indicators { get; }
         List<IndicatorValue> IndicatorValues { get; }
-        List<KeyValuePair<int, string>> IndicatorDropdownValues { get; }
+        List<IndicatorDropdownValue> IndicatorDropdownValues { get; }
+        IndicatorEntityType EntityType { get;  }
+
         bool IsValid();
-        void DoSave(List<IndicatorValue> indicatorValues);
-
-
+        void DoSave(List<IndicatorValue> indicatorValues, string notes);
 
         void DoSaveType(string p);
     }

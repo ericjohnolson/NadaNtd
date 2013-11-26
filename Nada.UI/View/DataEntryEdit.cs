@@ -16,37 +16,40 @@ using Nada.Model.Intervention;
 using Nada.UI.View.Help;
 using Nada.Model.Diseases;
 using Nada.UI.ViewModel;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.DiseaseDistribution
 {
-    public partial class DataEntryEdit : UserControl, IView
+    public partial class DataEntryEdit : BaseControl, IView
     {
         private IDataEntryVm viewModel = null;
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return viewModel.Title; } }
-        
+
         public DataEntryEdit()
+            : base()
         {
             InitializeComponent();
         }
 
         public DataEntryEdit(IDataEntryVm vm)
+            : base()
         {
             viewModel = vm;
             InitializeComponent();
         }
 
-        private void DiseaseDistro_Load(object sender, EventArgs e)
+        private void DataEntryEdit_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
             {
                 adminLevelPickerControl1.Focus();
                 Localizer.TranslateControl(this);
                 adminLevelPickerControl1.Select(viewModel.Location);
-
+                tbNotes.Text = viewModel.Notes;
                 if (viewModel.Indicators != null && viewModel.Indicators.Count() > 0)
-                    indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorValues, viewModel.IndicatorDropdownValues);
+                    indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorValues, viewModel.IndicatorDropdownValues, viewModel.EntityType);
                 indicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
                 StatusChanged(viewModel.StatusMessage);
                 // design
@@ -84,10 +87,10 @@ namespace Nada.UI.View.DiseaseDistribution
         {
             if (!viewModel.IsValid() || !indicatorControl1.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
-            viewModel.DoSave(indicatorControl1.GetValues());
+            viewModel.DoSave(indicatorControl1.GetValues(), tbNotes.Text);
             OnClose();
         }
 
@@ -101,7 +104,7 @@ namespace Nada.UI.View.DiseaseDistribution
 
         void editType_OnSave()
         {
-            indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorDropdownValues);
+            indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorDropdownValues, viewModel.EntityType);
         }
         
         private void cancel_Click(object sender, EventArgs e)

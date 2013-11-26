@@ -11,10 +11,11 @@ using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Survey
 {
-    public partial class SurveyTypeEdit : UserControl, IView
+    public partial class SurveyTypeEdit : BaseControl, IView
     {
         public event Action OnSave = () => { };
         private SurveyRepository repo = null;
@@ -24,11 +25,13 @@ namespace Nada.UI.View.Survey
         public string Title { get { return lblTitle.Text; } }
 
         public SurveyTypeEdit()
+            : base()
         {
             InitializeComponent();
         }
 
         public SurveyTypeEdit(SurveyType t)
+            : base()
         {
             model = t;
             InitializeComponent();
@@ -69,7 +72,7 @@ namespace Nada.UI.View.Survey
         {
             if (!model.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
 

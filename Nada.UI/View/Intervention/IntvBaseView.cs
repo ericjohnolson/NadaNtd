@@ -13,10 +13,11 @@ using Nada.Model.Base;
 using Nada.Model.Intervention;
 using Nada.UI.View.Help;
 using Nada.Globalization;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Intervention
 {
-    public partial class IntvBaseView : UserControl, IView
+    public partial class IntvBaseView : BaseControl, IView
     {
         public event Action<bool> OnSave = (b) => { };
         private IntvBase model = null;
@@ -28,11 +29,13 @@ namespace Nada.UI.View.Intervention
         public string Title { get { return lblTitle.Text; } }
 
         public IntvBaseView()
+            : base()
         {
             InitializeComponent();
         }
 
         public IntvBaseView(int type, AdminLevel a)
+            : base()
         {
             creationType = type;
             adminLevel = a;
@@ -40,6 +43,7 @@ namespace Nada.UI.View.Intervention
         }
 
         public IntvBaseView(IntvBase Intv)
+            : base()
         {
             this.model = Intv;
             InitializeComponent();
@@ -95,12 +99,12 @@ namespace Nada.UI.View.Intervention
         {
             if (!model.IsValid() || !customIndicatorControl1.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
             if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
             {
-                MessageBox.Show(Translations.LocationRequired);
+                MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
                 return;
             }
 

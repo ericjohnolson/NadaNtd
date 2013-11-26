@@ -12,11 +12,12 @@ using Nada.Model;
 using Nada.Model.Csv;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using OfficeOpenXml;
 
 namespace Nada.UI.View
 {
-    public partial class ImportDownload : Form
+    public partial class ImportDownload : BaseForm
     {
         public event Action OnSuccess = () => { };
         private List<AdminLevel> available = new List<AdminLevel>();
@@ -24,11 +25,13 @@ namespace Nada.UI.View
         private IImporter importer;
 
         public ImportDownload()
+            : base()
         {
             InitializeComponent();
         }
 
         public ImportDownload(IImporter i)
+            : base()
         {
             importer = i;
             this.Text = i.ImportName;

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tblIndicators = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblContainer = new System.Windows.Forms.TableLayoutPanel();
             this.hr4 = new Nada.UI.Controls.HR();
             this.panel1 = new System.Windows.Forms.Panel();
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
@@ -38,7 +38,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tblStaticIndicators = new System.Windows.Forms.TableLayoutPanel();
             this.indicatorErrors = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tblContainer.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.indicatorErrors)).BeginInit();
@@ -60,27 +60,27 @@
             this.tblIndicators.Size = new System.Drawing.Size(40, 0);
             this.tblIndicators.TabIndex = 0;
             // 
-            // tableLayoutPanel1
+            // tblContainer
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.hr4, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tblIndicators, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 65);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.tblContainer.AutoSize = true;
+            this.tblContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblContainer.ColumnCount = 1;
+            this.tblContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblContainer.Controls.Add(this.hr4, 0, 2);
+            this.tblContainer.Controls.Add(this.panel1, 0, 3);
+            this.tblContainer.Controls.Add(this.tblIndicators, 0, 4);
+            this.tblContainer.Controls.Add(this.panel2, 0, 0);
+            this.tblContainer.Location = new System.Drawing.Point(3, 3);
+            this.tblContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.tblContainer.Name = "tblContainer";
+            this.tblContainer.RowCount = 5;
+            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblContainer.Size = new System.Drawing.Size(800, 65);
+            this.tblContainer.TabIndex = 2;
             // 
             // hr4
             // 
@@ -119,7 +119,7 @@
             this.fieldLink1.TabIndex = 20;
             this.fieldLink1.Tag = "AddIndicatorLink";
             this.fieldLink1.Text = "Add/remove indicators >";
-            this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);
+            this.fieldLink1.OnClick += new System.Action(this.AddRemoveIndicator_OnClick);
             // 
             // lblCustomIndicators
             // 
@@ -174,12 +174,12 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tblContainer);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "IndicatorControl";
             this.Size = new System.Drawing.Size(803, 68);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tblContainer.ResumeLayout(false);
+            this.tblContainer.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -193,7 +193,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tblIndicators;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tblContainer;
         private System.Windows.Forms.Panel panel1;
         private Controls.FieldLink fieldLink1;
         private System.Windows.Forms.Label lblCustomIndicators;

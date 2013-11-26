@@ -13,11 +13,12 @@ using Nada.Model.Csv;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using OfficeOpenXml;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class StepDemoUpdateOptions : UserControl, IWizardStep
+    public partial class StepDemoUpdateOptions : BaseControl, IWizardStep
     {
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
@@ -31,6 +32,7 @@ namespace Nada.UI.View.Wizard
         public string StepTitle { get { return Translations.SelectDemoUpdateOption; } }
 
         public StepDemoUpdateOptions()
+            : base()
         {
             InitializeComponent();
         }
@@ -40,6 +42,7 @@ namespace Nada.UI.View.Wizard
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
+                lblUpdateComplete.SetMaxWidth(500);
             }
         }
 

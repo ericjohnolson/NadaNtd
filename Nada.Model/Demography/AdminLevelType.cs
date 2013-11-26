@@ -42,5 +42,26 @@ namespace Nada.Model
                     return "";
             }
         }
+
+        #region IDataErrorInfo Members
+        public override string this[string columnName]
+        {
+            get
+            {
+                string error = "";
+                switch (columnName)
+                {
+                    case "DisplayName":
+                        if (string.IsNullOrEmpty(DisplayName))
+                            error = Translations.Required;
+                        break;
+
+                    default: error = "";
+                        break;
+                }
+                return error;
+            }
+        }
+        #endregion
     }
 }

@@ -8,14 +8,16 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
 using Nada.Globalization;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Demography
 {
-    public partial class CountryView : UserControl
+    public partial class CountryView : BaseControl
     {
         Country model = null;
 
         public CountryView()
+            : base()
         {
             InitializeComponent();
         }

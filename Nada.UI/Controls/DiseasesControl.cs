@@ -10,14 +10,16 @@ using Nada.UI.View;
 using Nada.Model.Repositories;
 using Nada.Model;
 using Nada.Model.Diseases;
+using Nada.UI.Base;
 
 namespace Nada.UI.Controls
 {
-    public partial class DiseasesControl : UserControl
+    public partial class DiseasesControl : BaseControl
     {
         private List<Disease> diseases = null;
         private DiseaseRepository r = null;
         public DiseasesControl()
+            : base()
         {
             InitializeComponent();
         }

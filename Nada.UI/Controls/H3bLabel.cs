@@ -50,10 +50,7 @@ namespace Nada.UI.Controls
 
         public void MakeBold()
         {
-            using (var font = label1.Font)
-            {
-                label1.Font = new Font(font, FontStyle.Bold);
-            }
+            label1.Font = new Font(label1.Font, FontStyle.Bold);
         }
     }
 }

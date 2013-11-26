@@ -10,20 +10,23 @@ using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class IndicatorAdd : Form
+    public partial class IndicatorAdd : BaseForm
     {
         public event Action<Indicator> OnSave = (e) => { };
         private Indicator model = new Indicator();
 
-        public IndicatorAdd()
+        public IndicatorAdd() 
+            : base()
         {
             InitializeComponent();
         }
 
         public IndicatorAdd(Indicator m)
+            : base()
         {
             model = m;
             InitializeComponent();

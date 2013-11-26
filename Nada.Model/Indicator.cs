@@ -17,6 +17,7 @@ namespace Nada.Model
         }
 
         public int DataTypeId { get; set; }
+        public bool CanAddValues { get; set; }
         public string DisplayName { get; set; }
         public bool IsDisabled { get; set; }
         public bool IsEditable { get; set; }

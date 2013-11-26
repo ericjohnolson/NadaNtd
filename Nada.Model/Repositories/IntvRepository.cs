@@ -12,7 +12,7 @@ using Nada.Model.Intervention;
 
 namespace Nada.Model.Repositories
 {
-    public class IntvRepository
+    public class IntvRepository : RepositoryBase
     {
         #region interventions
         public T CreateIntv<T>(int typeId) where T : IntvBase
@@ -174,6 +174,7 @@ namespace Nada.Model.Repositories
                         reader.Close();
                     }
 
+                    List<string> indicatorIds = new List<string>();
                     command = new OleDbCommand(@"Select 
                         InterventionIndicators.ID,   
                         InterventionIndicators.DataTypeId,
@@ -182,12 +183,14 @@ namespace Nada.Model.Repositories
                         InterventionIndicators.IsDisabled,
                         InterventionIndicators.IsEditable,
                         InterventionIndicators.IsDisplayed,
+                        CanAddValues,
                         InterventionIndicators.UpdatedAt, 
                         aspnet_users.UserName,
                         IndicatorDataTypes.DataType
                         FROM ((InterventionIndicators INNER JOIN aspnet_users ON InterventionIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON InterventionIndicators.DataTypeId = IndicatorDataTypes.ID)
-                        WHERE InterventionTypeId=@InterventionTypeId AND IsDisabled=0 ", connection);
+                        WHERE InterventionTypeId=@InterventionTypeId AND IsDisabled=0 
+                        ORDER BY SortOrder", connection);
                     command.Parameters.Add(new OleDbParameter("@InterventionTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -205,29 +208,15 @@ namespace Nada.Model.Repositories
                                 IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
                                 IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
                                 IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
+                                CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
                                 DataType = reader.GetValueOrDefault<string>("DataType")
                             });
+                            indicatorIds.Add(reader.GetValueOrDefault<int>("ID").ToString());
                         }
                         reader.Close();
                     }
 
-                    command = new OleDbCommand(@"Select
-                        IndicatorId,
-                        DropdownValue
-                        FROM (InterventionIndicatorDropdownValues INNER JOIN InterventionIndicators ON 
-                            InterventionIndicators.Id = InterventionIndicatorDropdownValues.IndicatorId)
-                        WHERE InterventionTypeId=@InterventionTypeId AND IsDisabled=0
-                        ORDER BY InterventionIndicatorDropdownValues.ID", connection);
-                    command.Parameters.Add(new OleDbParameter("@InterventionTypeId", id));
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            intv.IndicatorDropdownValues.Add(new KeyValuePair<int, string>(reader.GetValueOrDefault<int>("IndicatorId"), 
-                                reader.GetValueOrDefault<string>("DropdownValue")));
-                        }
-                        reader.Close();
-                    }
+                    intv.IndicatorDropdownValues = GetIndicatorDropdownValues(connection, command, IndicatorEntityType.Intervention, indicatorIds);
                 }
                 catch (Exception)
                 {

@@ -10,35 +10,93 @@ using Nada.Model;
 using Nada.UI.Controls;
 using Nada.UI.AppLogic;
 using Nada.Globalization;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class IndicatorControl : UserControl
+    public partial class IndicatorControl : BaseControl
     {
+        IndicatorEntityType entityType = IndicatorEntityType.DiseaseDistribution;
         public event Action OnAddRemove = () => { };
         private List<DynamicContainer> controlList = new List<DynamicContainer>();
-        private List<KeyValuePair<int, string>> dropdownKeys = new List<KeyValuePair<int, string>>();
+        private List<IndicatorDropdownValue> dropdownKeys = new List<IndicatorDropdownValue>();
+
+        public class DynamicContainer
+        {
+            public Indicator Indicator { get; set; }
+            public delegate string GetValueDelegate();
+            public GetValueDelegate GetValue { get; set; }
+            public delegate bool IsValidDelegate();
+            public IsValidDelegate IsValid { get; set; }
+        }
 
         public IndicatorControl()
+            : base()
         {
             InitializeComponent();
         }
 
-        public void LoadIndicators(Dictionary<string, Indicator> indicators, List<KeyValuePair<int, string>> keys)
+        public void LoadIndicators(Dictionary<string, Indicator> indicators, List<IndicatorDropdownValue> keys, IndicatorEntityType eType)
         {
             Localizer.TranslateControl(this);
-            LoadIndicators(indicators, new List<IndicatorValue>(), keys);
+            LoadIndicators(indicators, new List<IndicatorValue>(), keys, eType);
         }
 
-        public void LoadIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<int, string>> keys)
+        public void LoadIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<IndicatorDropdownValue> keys, IndicatorEntityType eType)
         {
+            entityType = eType;
             dropdownKeys = keys;
+            tblContainer.Visible = false;
             this.SuspendLayout();
             controlList = new List<DynamicContainer>();
             LoadCustom(indicators, values);
             LoadStatic(indicators, values);
             this.ResumeLayout();
+            tblContainer.Visible = true;
             IsValid();
+        }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Color TextColor
+        {
+            get { return lblCustomIndicators.ForeColor; }
+            set
+            {
+                lblCustomIndicators.ForeColor = value;
+                hr4.BackColor = value;
+            }
+        }
+
+        public bool IsValid()
+        {
+            bool isValid = true;
+            foreach (DynamicContainer cnt in controlList)
+            {
+                if (!cnt.IsValid())
+                    isValid = false;
+            }
+            return isValid;
+        }
+
+        public List<IndicatorValue> GetValues()
+        {
+            var valList = new List<IndicatorValue>();
+
+            foreach (DynamicContainer cnt in controlList)
+            {
+                IndicatorValue val = new IndicatorValue();
+                val.DynamicValue = cnt.GetValue();
+                val.Indicator = cnt.Indicator;
+                val.IndicatorId = cnt.Indicator.Id;
+                valList.Add(val);
+            }
+            return valList;
+        }
+
+        private void AddRemoveIndicator_OnClick()
+        {
+            OnAddRemove();
         }
 
         private void LoadStatic(Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
@@ -59,14 +117,15 @@ namespace Nada.UI.View
 
                 // Add label
                 tblStaticIndicators.Controls.Add(CreateLabel(indicator, true), columnCount, labelRowIndex);
-                
+
                 // Add field
                 string val = "";
                 IndicatorValue iv = values.FirstOrDefault(i => i.IndicatorId == indicator.Id);
                 if (iv != null)
                     val = iv.DynamicValue;
-
-                tblStaticIndicators.Controls.Add(CreateControl(indicator, val), columnCount, controlRowIndex);
+                var cntrl = CreateControl(indicator, val);
+                cntrl.TabIndex = count;
+                tblStaticIndicators.Controls.Add(cntrl, columnCount, controlRowIndex);
 
                 count++;
                 columnCount = columnCount + 2;
@@ -98,7 +157,9 @@ namespace Nada.UI.View
                 if (iv != null)
                     val = iv.DynamicValue;
 
-                tblIndicators.Controls.Add(CreateControl(indicator, val), columnCount, controlRowIndex);
+                var cntrl = CreateControl(indicator, val);
+                cntrl.TabIndex = count;
+                tblIndicators.Controls.Add(cntrl, columnCount, controlRowIndex);
 
                 count++;
                 columnCount = columnCount + 2;
@@ -108,7 +169,7 @@ namespace Nada.UI.View
         private Control CreateLabel(Indicator indicator, bool isStatic)
         {
             var text = indicator.DisplayName;
-            if(isStatic)
+            if (isStatic)
                 text = TranslationLookup.GetValue(indicator.DisplayName, indicator.DisplayName);
             if (indicator.IsRequired)
             {
@@ -117,49 +178,30 @@ namespace Nada.UI.View
                     Text = text,
                     Name = "ciLabel_" + indicator.Id,
                     AutoSize = true,
-                    Anchor = (AnchorStyles.Bottom | AnchorStyles.Left)
+                    Anchor = (AnchorStyles.Bottom | AnchorStyles.Left),
+                    TabStop = false
                 };
                 required.SetMaxWidth(370);
                 return required;
             }
             else
-                return new H3bLabel
+            {
+                var lbl = new H3bLabel
                     {
                         Text = text,
                         Name = "ciLabel_" + indicator.Id,
                         AutoSize = true,
-                        Anchor = (AnchorStyles.Bottom | AnchorStyles.Left)
+                        Anchor = (AnchorStyles.Bottom | AnchorStyles.Left),
+                        TabStop = false
                     };
-        }
-
-        public bool IsValid()
-        {
-            bool isValid = true;
-            foreach (DynamicContainer cnt in controlList)
-            {
-                if (!cnt.IsValid())
-                    isValid = false;
+                lbl.SetMaxWidth(370);
+                return lbl;
             }
-            return isValid;
-        }
-
-        public List<IndicatorValue> GetValues()
-        {
-            var valList = new List<IndicatorValue>();
-
-            foreach (DynamicContainer cnt in controlList)
-            {
-                IndicatorValue val = new IndicatorValue();
-                val.DynamicValue = cnt.GetValue();
-                val.Indicator = cnt.Indicator;
-                val.IndicatorId = cnt.Indicator.Id;
-                valList.Add(val);
-            }
-            return valList;
         }
 
         private Control CreateControl(Indicator indicator, string val)
         {
+            List<IndicatorDropdownValue> availableValues = new List<IndicatorDropdownValue>();
             var container = new DynamicContainer { Indicator = indicator };
             if (indicator.DataTypeId == (int)IndicatorDataType.Date)
             {
@@ -237,12 +279,18 @@ namespace Nada.UI.View
             else if (indicator.DataTypeId == (int)IndicatorDataType.Dropdown)
             {
                 var cntrl = new ComboBox { Name = "dynamicCombo" + indicator.Id.ToString(), Width = 220, Margin = new Padding(0, 5, 10, 5) };
-                foreach (KeyValuePair<int, string> key in dropdownKeys.Where(k => k.Key == indicator.Id))
-                    cntrl.Items.Add(new DynamicDropDownValue { Name = TranslationLookup.GetValue(key.Value, key.Value), Value = key.Value });
-                cntrl.ValueMember = "Value";
-                cntrl.DisplayMember = "Name";
+                foreach (IndicatorDropdownValue v in dropdownKeys.Where(k => k.IndicatorId == indicator.Id))
+                {
+                    cntrl.Items.Add(v);
+                    availableValues.Add(v);
+                }
+                cntrl.ValueMember = "IndicatorId";
+                cntrl.DisplayMember = "DisplayName";
                 if (!string.IsNullOrEmpty(val))
-                    cntrl.Text = TranslationLookup.GetValue(val, val);
+                {
+                    var valItem = availableValues.FirstOrDefault(a => a.IndicatorId.ToString() == val);
+                    cntrl.SelectedItem = valItem;
+                }
 
                 container.IsValid = () =>
                 {
@@ -264,10 +312,63 @@ namespace Nada.UI.View
                 {
                     if (cntrl.SelectedItem == null)
                         return null;
-                    return ((DynamicDropDownValue)cntrl.SelectedItem).Value;
+                    return ((IndicatorDropdownValue)cntrl.SelectedItem).IndicatorId.ToString();
                 };
                 controlList.Add(container);
-                return cntrl;
+
+                if (indicator.CanAddValues)
+                    return AddNewValLink(cntrl, indicator);
+                else
+                    return cntrl;
+            }
+            else if (indicator.DataTypeId == (int)IndicatorDataType.Multiselect)
+            {
+                var cntrl = new ListBox { Name = "dynamicMulti" + indicator.Id.ToString(), Width = 220, Height = 100, Margin = new Padding(0, 5, 20, 5), SelectionMode = SelectionMode.MultiExtended };
+                foreach (var v in dropdownKeys.Where(k => k.IndicatorId == indicator.Id))
+                {
+                    cntrl.Items.Add(v);
+                    availableValues.Add(v);
+                }
+                cntrl.ValueMember = "IndicatorId";
+                cntrl.DisplayMember = "DisplayName";
+                if (!string.IsNullOrEmpty(val))
+                {
+                    string[] vals = val.Split('|');
+                    cntrl.ClearSelected();
+                    foreach (var av in availableValues.Where(v => vals.Contains(v.IndicatorId.ToString())))
+                        cntrl.SelectedItems.Add(av);
+                }
+
+                container.GetValue = () =>
+                {
+                    List<string> selected = new List<string>();
+                    foreach (var i in cntrl.SelectedItems)
+                        selected.Add((i as IndicatorDropdownValue).IndicatorId.ToString());
+                    return string.Join("|", selected.ToArray());
+                };
+
+                container.IsValid = () =>
+                {
+                    if (indicator.IsRequired)
+                    {
+                        if (string.IsNullOrEmpty(container.GetValue()))
+                        {
+                            indicatorErrors.SetError(cntrl, Translations.Required);
+                            return false;
+                        }
+                        else
+                            indicatorErrors.SetError(cntrl, "");
+                    }
+                    return true;
+                };
+                cntrl.Validating += (s, e) => { container.IsValid(); };
+
+                controlList.Add(container);
+
+                if (indicator.CanAddValues)
+                    return AddNewValLink(cntrl, indicator);
+                else
+                    return cntrl;
             }
             else
             {
@@ -294,40 +395,36 @@ namespace Nada.UI.View
             }
         }
 
-        public class DynamicContainer
+        private Control AddNewValLink(Control cntrl, Indicator indicator)
         {
-            public Indicator Indicator { get; set; }
-            public delegate string GetValueDelegate();
-            public GetValueDelegate GetValue { get; set; }
-            public delegate bool IsValidDelegate();
-            public IsValidDelegate IsValid { get; set; }
-        }
-
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public Color TextColor
-        {
-            get { return lblCustomIndicators.ForeColor; }
-            set
+            cntrl.Margin = new Padding(0, 5, 20, 0);
+            TableLayoutPanel tblContainer = new TableLayoutPanel { AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
+            tblContainer.RowStyles.Clear();
+            tblContainer.ColumnStyles.Clear();
+            int cRow = tblContainer.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
+            tblContainer.Controls.Add(cntrl, 0, cRow);
+            int lRow = tblContainer.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
+            var lnk = new H3Link { Text = Translations.AddNewItemLink, Margin = new Padding(0, 0, 3, 5) };
+            lnk.ClickOverride += () => 
             {
-                lblCustomIndicators.ForeColor = value;
-                hr4.BackColor = value;
-            }
+                IndicatorValueItemAdd form = new IndicatorValueItemAdd(new IndicatorDropdownValue { IndicatorId = indicator.Id, EntityType=entityType });
+                form.OnSave += (v) =>
+                    {
+                        if (cntrl is ListBox)
+                            (cntrl as ListBox).Items.Add(v);
+                        else if (cntrl is ComboBox)
+                            (cntrl as ComboBox).Items.Add(v);
+                    };
+                form.ShowDialog();
+            };
+            tblContainer.Controls.Add(lnk, 0, lRow);
+
+            return tblContainer;
         }
 
-        private void fieldLink1_OnClick()
-        {
-            OnAddRemove();
-        }
 
-        public class DynamicDropDownValue
-        {
-            public string Name { get; set; }
-            public string Value { get; set; }
-            public override string ToString()
-            {
-                return Name;
-            }
-        }
+
+        
+
     }
 }

@@ -9,10 +9,11 @@ using System.Windows.Forms;
 using Nada.UI.AppLogic;
 using Nada.Globalization;
 using Nada.Model.Reports;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Reports.CustomReport
 {
-    public partial class StepLocations : UserControl, IWizardStep
+    public partial class StepLocations : BaseControl, IWizardStep
     {
         private ReportOptions options = null;
         public Action<IWizardStep> OnSwitchStep { get; set; }
@@ -42,11 +43,13 @@ namespace Nada.UI.View.Reports.CustomReport
         }
 
         public StepLocations()
+            : base()
         {
             InitializeComponent();
         }
 
         public StepLocations(ReportOptions o)
+            : base()
         {
             options = o;
             InitializeComponent();

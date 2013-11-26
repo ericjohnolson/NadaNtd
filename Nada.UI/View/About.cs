@@ -8,14 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using Nada.UI.View.Demography;
 
 namespace Nada.UI
 {
-    public partial class About : Form
+    public partial class About : BaseForm
     {
         public Action ReloadTree { get; set; }
         public About()
+            : base()
         {
             InitializeComponent();
         }

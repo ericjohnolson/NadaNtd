@@ -10,15 +10,17 @@ using Nada.Model;
 using Nada.Model.Reports;
 using Nada.UI.Controls;
 using System.Threading;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class ReportIndicatorControl : UserControl
+    public partial class ReportIndicatorControl : BaseControl
     {
         private List<ReportIndicator> indicatorList = null;
         private List<IndicatorContainer> controlList = new List<IndicatorContainer>();
 
         public ReportIndicatorControl()
+            : base()
         {
             InitializeComponent();
         }

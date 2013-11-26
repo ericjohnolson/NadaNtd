@@ -11,7 +11,7 @@ using Nada.Model.Survey;
 
 namespace Nada.Model.Repositories
 {
-    public class SurveyRepository
+    public class SurveyRepository : RepositoryBase
     {
         #region Surveys
         public List<SurveyDetails> GetAllForAdminLevel(int adminLevel)
@@ -484,6 +484,7 @@ namespace Nada.Model.Repositories
                         reader.Close();
                     }
 
+                    List<string> indicatorIds = new List<string>();
                     command = new OleDbCommand(@"Select 
                         SurveyIndicators.ID,   
                         SurveyIndicators.DataTypeId,
@@ -492,12 +493,14 @@ namespace Nada.Model.Repositories
                         SurveyIndicators.IsDisabled,
                         SurveyIndicators.IsEditable,
                         SurveyIndicators.IsDisplayed,
+                        CanAddValues,
                         SurveyIndicators.UpdatedAt, 
                         aspnet_users.UserName,
                         IndicatorDataTypes.DataType
                         FROM ((SurveyIndicators INNER JOIN aspnet_users ON SurveyIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON SurveyIndicators.DataTypeId = IndicatorDataTypes.ID)
-                        WHERE SurveyTypeId=@SurveyTypeId AND IsDisabled=0 ", connection);
+                        WHERE SurveyTypeId=@SurveyTypeId AND IsDisabled=0 
+                        ORDER BY SortOrder", connection);
                     command.Parameters.Add(new OleDbParameter("@SurveyTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -515,11 +518,15 @@ namespace Nada.Model.Repositories
                                 IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
                                 IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
                                 IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
+                                CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
                                 DataType = reader.GetValueOrDefault<string>("DataType")
                             });
+                            indicatorIds.Add(reader.GetValueOrDefault<int>("ID").ToString());
                         }
                         reader.Close();
                     }
+
+                    survey.IndicatorDropdownValues = GetIndicatorDropdownValues(connection, command, IndicatorEntityType.Survey, indicatorIds);
                 }
                 catch (Exception)
                 {

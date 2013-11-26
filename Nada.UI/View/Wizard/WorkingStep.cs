@@ -9,10 +9,11 @@ using System.Windows.Forms;
 using Nada.UI.AppLogic;
 using Nada.Model.Reports;
 using Nada.Globalization;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class WorkingStep : UserControl, IWizardStep
+    public partial class WorkingStep : BaseControl, IWizardStep
     {
         string title = "Working Status";
         public Action<IWizardStep> OnSwitchStep { get; set; }
@@ -27,11 +28,13 @@ namespace Nada.UI.View.Wizard
         public string StepTitle { get { return title; } }
 
         public WorkingStep()
+            : base()
         {
             InitializeComponent();
         }
 
         public WorkingStep(string t)
+            : base()
         {
             title = t;
             InitializeComponent();

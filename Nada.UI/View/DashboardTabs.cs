@@ -10,10 +10,11 @@ using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.Model.Diseases;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Demography
 {
-    public partial class DashboardTabs : UserControl
+    public partial class DashboardTabs : BaseControl
     {
         public Action<UserControl> LoadView = (i) => { };
         public event Action<AdminLevel> OnSelect = (e) => { };
@@ -24,11 +25,13 @@ namespace Nada.UI.View.Demography
         private DemoRepository r = null;
 
         public DashboardTabs()
+            : base()
         {
             InitializeComponent();
         }
 
         public DashboardTabs(AdminLevel adminLevel, AdminLevelType childType)
+            : base()
         {
             this.childType = childType;
             this.adminLevel = adminLevel;

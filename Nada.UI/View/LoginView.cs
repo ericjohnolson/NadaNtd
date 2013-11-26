@@ -10,14 +10,16 @@ using Nada.UI.AppLogic;
 using System.Threading;
 using System.Globalization;
 using System.Web.Security;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class LoginView : UserControl
+    public partial class LoginView : BaseControl
     {
         public event Action OnLogin = () => {};
 
         public LoginView()
+            : base()
         {
             InitializeComponent();
         }

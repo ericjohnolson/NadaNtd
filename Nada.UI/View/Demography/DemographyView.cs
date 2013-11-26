@@ -15,10 +15,11 @@ using Nada.UI.View.Survey;
 using Nada.Model.Intervention;
 using Nada.UI.View.Help;
 using Nada.Model.Diseases;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Demography
 {
-    public partial class DemographyView : UserControl, IView
+    public partial class DemographyView : BaseControl, IView
     {
         private AdminLevel adminLevel = null;
         private AdminLevelDemography model = null;
@@ -26,19 +27,22 @@ namespace Nada.UI.View.Demography
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return adminLevel.Name + " " + Translations.Demography; } }
-        
+
         public DemographyView()
+            : base()
         {
             InitializeComponent();
         }
 
         public DemographyView(AdminLevel a)
+            : base()
         {
             adminLevel = a;
             InitializeComponent();
         }
 
         public DemographyView(AdminLevelDemography d, AdminLevel a)
+            : base()
         {
             adminLevel = a;
             this.model = d;
@@ -74,7 +78,7 @@ namespace Nada.UI.View.Demography
         {
             if (!model.IsValid() || !customIndicatorControl1.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
 
@@ -85,7 +89,7 @@ namespace Nada.UI.View.Demography
             SettingsRepository settings = new SettingsRepository();
             var type = settings.GetAdminLevelTypeByLevel(adminLevel.LevelNumber);
             if (type.IsAggregatingLevel)
-                demo.AggregateUp(type, model.YearDemographyData, userId);
+                demo.AggregateUp(type, model.YearDemographyData.Value, userId);
 
             OnClose();
         }

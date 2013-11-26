@@ -49,11 +49,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lblUpdateComplete);
             this.Name = "StepDemoUpdateOptions";
-            this.Size = new System.Drawing.Size(510, 127);
+            this.Size = new System.Drawing.Size(182, 16);
             this.Load += new System.EventHandler(this.ImportOptions_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

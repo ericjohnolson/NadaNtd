@@ -85,7 +85,7 @@ namespace Nada.Model
 
             // Load data into excel worksheet
             var cDemo = demo.GetCountryDemoRecent();
-            var levels = demo.GetRecentDemography(locationType.LevelNumber, cDemo.YearDemographyData);
+            var levels = demo.GetRecentDemography(locationType.LevelNumber, cDemo.YearDemographyData.Value);
             DataTable data = CreateUpdateDataTable(levels);
 
             AddTableToWorksheet(data, xlsWorksheet);
@@ -254,7 +254,6 @@ namespace Nada.Model
             Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
             Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
             Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
-            Microsoft.Office.Interop.Excel.DropDowns xlDropDowns;
             object oMissing = System.Reflection.Missing.Value;
 
             //Create new workbook
@@ -265,10 +264,7 @@ namespace Nada.Model
 
             // Load data into excel worksheet
             DataTable data = CreateNewImportDataTable(importDemography);
-
-            // Set up all the different drop downs and multiselects
-            xlDropDowns = ((Microsoft.Office.Interop.Excel.DropDowns)(xlsWorksheet.DropDowns(oMissing)));
-
+            
             // Add columns
             int iCol = 0;
             foreach (DataColumn c in data.Columns)
@@ -291,8 +287,11 @@ namespace Nada.Model
                     {
                         if (i == 1 && filterByType != null)
                             xlsWorksheet.Cells[r, 1] = filterLevel.Name;
-                        if (dropdownCol == i)
-                            AddDropdown(xlsWorksheet, xlDropDowns, dropdownValues, GetExcelColumnName(i), r);
+                        if (dropdownCol == i && dropdownValues.Count > 0)
+                        {
+                            AddDataValidation(xlsWorksheet, GetExcelColumnName(i), r, dropdownBy.DisplayName, Translations.PleaseSelect, dropdownValues);
+                            //AddDropdown(xlsWorksheet, xlDropDowns, dropdownValues, GetExcelColumnName(i), r);
+                        }
                     }
                 }
             }

@@ -9,23 +9,26 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model.Reports;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using OfficeOpenXml;
 
 namespace Nada.UI.View.Reports.CustomReport
 {
-    public partial class CustomReportView : Form
+    public partial class CustomReportView : BaseForm
     {
         public Action<ReportOptions> OnEditReport { get; set; }
         private ReportOptions options = null;
         private DataTable currentResult = null;
 
         public CustomReportView(ReportOptions o)
+            : base()
         {
             options = o;
             InitializeComponent();
         }
 
         public CustomReportView()
+            : base()
         {
             InitializeComponent();
         }

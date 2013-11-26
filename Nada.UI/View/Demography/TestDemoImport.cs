@@ -9,13 +9,15 @@ using System.Windows.Forms;
 using Nada.Model;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Demography
 {
-    public partial class TestDemoImport : Form
+    public partial class TestDemoImport : BaseForm
     {
         public Action ReloadTree { get; set; }
         public TestDemoImport()
+            : base()
         {
             InitializeComponent();
         }

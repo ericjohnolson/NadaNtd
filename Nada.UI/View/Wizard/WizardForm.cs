@@ -8,10 +8,11 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model.Reports;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class WizardForm : Form
+    public partial class WizardForm : BaseForm
     {
         private string title = "";
         public Action OnFinish { get; set; }
@@ -20,11 +21,13 @@ namespace Nada.UI.View
         private IWizardStep currentStep = null;
 
         public WizardForm()
+            : base()
         {
             InitializeComponent();
         }
 
         public WizardForm(IWizardStep step, string t)
+            : base()
         {
             currentStep = step;
             title = t;

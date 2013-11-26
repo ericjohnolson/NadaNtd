@@ -268,20 +268,20 @@ namespace Nada.Model.Exports
                 rng.Value = district.Parent.Name;
                 rng = xlsWorksheet.get_Range("B" + rowId, missing);
                 rng.Value = district.Name;
-                AddIndValue(district, "C" + rowId, "EndemicityStatus50", rng, xlsWorksheet, missing, AggGwInd, true);
+                AddIndValue(district, "C" + rowId, "EndemicityStatus50", rng, xlsWorksheet, missing, AggLeishInd, true);
 
-                AddIndValue(district, "D" + rowId, "NumClCases126", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "E" + rowId, "NumLabClCases127", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "F" + rowId, "NumLabVlCases128", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "G" + rowId, "NumClVlCases129", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "H" + rowId, "NumCasesFoundActively130", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "I" + rowId, "NumCasesTreatedLeish131", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "J" + rowId, "NumCasesTreatedRef132", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "K" + rowId, "NumCasesNewMeds133", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "L" + rowId, "NumCasesCuredLeish134", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "M" + rowId, "NumTreatmentFail135", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "N" + rowId, "NumCasesSaesLeish136", rng, xlsWorksheet, missing, AggHatInd, false);
-                AddIndValue(district, "O" + rowId, "NumDeathsLeish137", rng, xlsWorksheet, missing, AggHatInd, false);
+                AddIndValue(district, "D" + rowId, "NumClCases126", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "E" + rowId, "NumLabClCases127", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "F" + rowId, "NumLabVlCases128", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "G" + rowId, "NumClVlCases129", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "H" + rowId, "NumCasesFoundActively130", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "I" + rowId, "NumCasesTreatedLeish131", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "J" + rowId, "NumCasesTreatedRef132", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "K" + rowId, "NumCasesNewMeds133", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "L" + rowId, "NumCasesCuredLeish134", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "M" + rowId, "NumTreatmentFail135", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "N" + rowId, "NumCasesSaesLeish136", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "O" + rowId, "NumDeathsLeish137", rng, xlsWorksheet, missing, AggLeishInd, false);
 
                 rowId++;
             }
@@ -314,26 +314,26 @@ namespace Nada.Model.Exports
                 rng.Value = district.Parent.Name;
                 rng = xlsWorksheet.get_Range("B" + rowId, missing);
                 rng.Value = district.Name;
-                AddIndValue(district, "C" + rowId, "EndemicityStatus59", rng, xlsWorksheet, missing, AggGwInd, true);
+                AddIndValue(district, "C" + rowId, "EndemicityStatus59", rng, xlsWorksheet, missing, AggBuInd, true);
 
-                AddIndValue(district, "D" + rowId, "CaseFindingStrategy61", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "E" + rowId, "TotalNumNewCases63", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "I" + rowId, "TotalNumChildNewCases66", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "J" + rowId, "TotalNumFemaleNewCases67", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "G" + rowId, "TotalCat3Cases70", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "F" + rowId, "TotalCasesConfirmedPcr71", rng, xlsWorksheet, missing, AggGwInd, false);
+                AddIndValue(district, "D" + rowId, "CaseFindingStrategy61", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "E" + rowId, "TotalNumNewCases63", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "I" + rowId, "TotalNumChildNewCases66", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "J" + rowId, "TotalNumFemaleNewCases67", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "G" + rowId, "TotalCat3Cases70", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "F" + rowId, "TotalCasesConfirmedPcr71", rng, xlsWorksheet, missing, AggBuInd, false);
 
-                AddIndValue(district, "M" + rowId, "PrevBeginYear140", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "N" + rowId, "CasesRegisteredYear141", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "O" + rowId, "PatientsCompletedTreatment143", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "P" + rowId, "PatientsFullyScared144", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "Q" + rowId, "PatientsCuredWoDisability145", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "R" + rowId, "OtherWithdrawl146", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "S" + rowId, "AdultsAtEnd147", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "T" + rowId, "ChildrenAtEnd148", rng, xlsWorksheet, missing, AggGwInd, false);
+                AddIndValue(district, "M" + rowId, "PrevBeginYear140", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "N" + rowId, "CasesRegisteredYear141", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "O" + rowId, "PatientsCompletedTreatment143", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "P" + rowId, "PatientsFullyScared144", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "Q" + rowId, "PatientsCuredWoDisability145", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "R" + rowId, "OtherWithdrawl146", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "S" + rowId, "AdultsAtEnd147", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "T" + rowId, "ChildrenAtEnd148", rng, xlsWorksheet, missing, AggBuInd, false);
 
-                AddIndValue(district, "K" + rowId, "NumRelapsesCases152", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "L" + rowId, "NumCasesReadmitted153", rng, xlsWorksheet, missing, AggGwInd, false);
+                AddIndValue(district, "K" + rowId, "NumRelapsesCases152", rng, xlsWorksheet, missing, AggBuInd, false);
+                AddIndValue(district, "L" + rowId, "NumCasesReadmitted153", rng, xlsWorksheet, missing, AggBuInd, false);
 
                 rowId++;
             }
@@ -367,34 +367,34 @@ namespace Nada.Model.Exports
                 rng = xlsWorksheet.get_Range("B" + rowId, missing);
                 rng.Value = district.Name;
 
-                AddIndValue(district, "C" + rowId, "EndemicityStatus60", rng, xlsWorksheet, missing, AggGwInd, true);
+                AddIndValue(district, "C" + rowId, "EndemicityStatus60", rng, xlsWorksheet, missing, AggYawsInd, true);
 
-                AddIndValue(district, "D" + rowId, "CaseFindingStrategy62", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "E" + rowId, "TotalNumNewCases64", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "F" + rowId, "TotalCasesConfirmedLab72", rng, xlsWorksheet, missing, AggGwInd, false);
+                AddIndValue(district, "D" + rowId, "CaseFindingStrategy62", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "E" + rowId, "TotalNumNewCases64", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "F" + rowId, "TotalCasesConfirmedLab72", rng, xlsWorksheet, missing, AggYawsInd, false);
                 
-                AddIndValue(district, "G" + rowId, "PreSchoolCases674", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "H" + rowId, "SchoolCases1475", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "I" + rowId, "TotalNumFemaleNewCases76", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "J" + rowId, "CasesFromRural77", rng, xlsWorksheet, missing, AggGwInd, false);
+                AddIndValue(district, "G" + rowId, "PreSchoolCases674", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "H" + rowId, "SchoolCases1475", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "I" + rowId, "TotalNumFemaleNewCases76", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "J" + rowId, "CasesFromRural77", rng, xlsWorksheet, missing, AggYawsInd, false);
 
-                AddIndValue(district, "K" + rowId, "NumVillagesScreenedCm90", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "L" + rowId, "NumSchoolsScreenedCm91", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "M" + rowId, "TotalNumPeopleScreenedCm92", rng, xlsWorksheet, missing, AggGwInd, false);
+                AddIndValue(district, "K" + rowId, "NumVillagesScreenedCm90", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "L" + rowId, "NumSchoolsScreenedCm91", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "M" + rowId, "TotalNumPeopleScreenedCm92", rng, xlsWorksheet, missing, AggYawsInd, false);
            
-                AddIndValue(district, "N" + rowId, "NumCasesTreatedYaws167", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "O" + rowId, "NumContactsTreatedYw168", rng, xlsWorksheet, missing, AggGwInd, false);
+                AddIndValue(district, "N" + rowId, "NumCasesTreatedYaws167", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "O" + rowId, "NumContactsTreatedYw168", rng, xlsWorksheet, missing, AggYawsInd, false);
 
-                AddIndValue(district, "P" + rowId, "NumCasesCuredYaws175", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "Q" + rowId, "NumFullyHealed176", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "R" + rowId, "NumPersonsBenza177", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "S" + rowId, "NumSaesYw178", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "T" + rowId, "NumTreatedAzithro179", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "U" + rowId, "NumFacilitiesProvidingAntibiotics180", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "V" + rowId, "NumVillagesWithVolunteers181", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "W" + rowId, "BenzaVials182", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "X" + rowId, "Benza6Vials183", rng, xlsWorksheet, missing, AggGwInd, false);
-                AddIndValue(district, "Y" + rowId, "OtherAntibiotics184", rng, xlsWorksheet, missing, AggGwInd, false);
+                AddIndValue(district, "P" + rowId, "NumCasesCuredYaws175", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "Q" + rowId, "NumFullyHealed176", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "R" + rowId, "NumPersonsBenza177", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "S" + rowId, "NumSaesYw178", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "T" + rowId, "NumTreatedAzithro179", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "U" + rowId, "NumFacilitiesProvidingAntibiotics180", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "V" + rowId, "NumVillagesWithVolunteers181", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "W" + rowId, "BenzaVials182", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "X" + rowId, "Benza6Vials183", rng, xlsWorksheet, missing, AggYawsInd, false);
+                AddIndValue(district, "Y" + rowId, "OtherAntibiotics184", rng, xlsWorksheet, missing, AggYawsInd, false);
 
                 rowId++;
             }

@@ -8,14 +8,16 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.Model;
 using Nada.Model.Repositories;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class AdminLevelPickerControl : UserControl
+    public partial class AdminLevelPickerControl : BaseControl
     {
         public event Action<AdminLevel> OnSelect = (e) => { };
 
         public AdminLevelPickerControl()
+            : base()
         {
             InitializeComponent();
         }

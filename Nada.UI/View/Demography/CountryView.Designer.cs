@@ -127,7 +127,7 @@
             this.cbMonths.Location = new System.Drawing.Point(258, 35);
             this.cbMonths.Name = "cbMonths";
             this.cbMonths.Size = new System.Drawing.Size(215, 21);
-            this.cbMonths.TabIndex = 65;
+            this.cbMonths.TabIndex = 1;
             this.cbMonths.ValueMember = "Id";
             // 
             // monthItemBindingSource

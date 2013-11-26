@@ -10,20 +10,23 @@ using Nada.Model;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class MedicineAdd : Form
+    public partial class MedicineAdd : BaseForm
     {
         public event Action<Medicine> OnSave = (e) => { };
         private Medicine model = new Medicine();
 
         public MedicineAdd()
+            : base()
         {
             InitializeComponent();
         }
 
         public MedicineAdd(Medicine m)
+            : base()
         {
             model = m;
             InitializeComponent();

@@ -39,11 +39,13 @@ namespace Nada.UI.ViewModel
 
         public bool CanEditTypeName { get { return false; } }
         public string StatusMessage { get { return model.UpdatedBy; } }
+        public string Notes { get { return model.Notes; } }
         public ICalcIndicators Calculator { get { return calc; } }
         public AdminLevel Location { get { return adminLevel; } }
         public Dictionary<string, Indicator> Indicators { get { return model.TypeOfSurvey.Indicators; } }
         public List<IndicatorValue> IndicatorValues { get { return model.IndicatorValues; } }
-        public List<KeyValuePair<int, string>> IndicatorDropdownValues { get { return model.TypeOfSurvey.IndicatorDropdownValues; } }
+        public List<IndicatorDropdownValue> IndicatorDropdownValues { get { return model.TypeOfSurvey.IndicatorDropdownValues; } }
+        public IndicatorEntityType EntityType { get { return IndicatorEntityType.Survey; } }
         public string Title { get { return model.TypeOfSurvey.SurveyTypeName; } }
         public string TypeTitle { get { return model.TypeOfSurvey.DiseaseType; } }
         public Color FormColor { get { return Color.FromArgb(197, 95, 39); } }
@@ -53,8 +55,9 @@ namespace Nada.UI.ViewModel
             return model.IsValid();
         }
 
-        public void DoSave(List<IndicatorValue> indicatorValues)
+        public void DoSave(List<IndicatorValue> indicatorValues, string notes)
         {
+            model.Notes = notes;
             model.IndicatorValues = indicatorValues;
             r.SaveSurvey(model, ApplicationData.Instance.GetUserId());
         }

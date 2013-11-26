@@ -36,7 +36,7 @@
             this.hr5 = new Nada.UI.Controls.HR();
             this.hr4 = new Nada.UI.Controls.HR();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbNotes = new System.Windows.Forms.TextBox();
             this.h3Label3 = new Nada.UI.Controls.H3Label();
             this.indicatorControl1 = new Nada.UI.View.IndicatorControl();
             this.statCalculator1 = new Nada.UI.Controls.StatCalculator();
@@ -181,7 +181,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Controls.Add(this.textBox1, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tbNotes, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.h3Label3, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 95);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -191,14 +191,14 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(559, 120);
             this.tableLayoutPanel3.TabIndex = 6;
             // 
-            // textBox1
+            // tbNotes
             // 
-            this.textBox1.Location = new System.Drawing.Point(3, 19);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(553, 98);
-            this.textBox1.TabIndex = 0;
+            this.tbNotes.Location = new System.Drawing.Point(3, 19);
+            this.tbNotes.Multiline = true;
+            this.tbNotes.Name = "tbNotes";
+            this.tbNotes.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbNotes.Size = new System.Drawing.Size(553, 98);
+            this.tbNotes.TabIndex = 0;
             // 
             // h3Label3
             // 
@@ -416,7 +416,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "DataEntryEdit";
             this.Size = new System.Drawing.Size(819, 481);
-            this.Load += new System.EventHandler(this.DiseaseDistro_Load);
+            this.Load += new System.EventHandler(this.DataEntryEdit_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tblNotes.ResumeLayout(false);
@@ -450,7 +450,7 @@
         private System.Windows.Forms.Button btnDash;
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbNotes;
         private Controls.H3Label h3Label3;
         private IndicatorControl indicatorControl1;
         private Controls.StatCalculator statCalculator1;

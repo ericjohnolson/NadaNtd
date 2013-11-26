@@ -7,18 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class ViewForm : Form
+    public partial class ViewForm : BaseForm
     {
 
         public ViewForm()
+            : base()
         {
             InitializeComponent();
         }
 
         public ViewForm(IView view)
+            : base()
         {
             InitializeComponent();
             view.OnClose = () => { this.Close(); };

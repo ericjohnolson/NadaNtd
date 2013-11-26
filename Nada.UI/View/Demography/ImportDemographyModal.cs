@@ -11,10 +11,11 @@ using Nada.Model;
 using Nada.Model.Csv;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Demography
 {
-    public partial class ImportDemographyModal : Form
+    public partial class ImportDemographyModal : BaseForm
     {
         public event Action OnSuccess = () => { };
         private AdminLevel parent;
@@ -22,11 +23,13 @@ namespace Nada.UI.View.Demography
         private List<AdminLevel> selected = new List<AdminLevel>();
 
         public ImportDemographyModal()
+            : base()
         {
             InitializeComponent();
         }
 
         public ImportDemographyModal(AdminLevel p)
+            : base()
         {
             parent = p;
             InitializeComponent();

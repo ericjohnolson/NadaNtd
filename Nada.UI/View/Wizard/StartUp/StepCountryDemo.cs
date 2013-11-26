@@ -13,11 +13,12 @@ using Nada.Model.Csv;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using OfficeOpenXml;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class StepCountryDemo : UserControl, IWizardStep
+    public partial class StepCountryDemo : BaseControl, IWizardStep
     {
         DemoRepository r = new DemoRepository();
         private CountryDemography model = null;
@@ -67,7 +68,7 @@ namespace Nada.UI.View.Wizard
         {
             if (!model.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return false;
             }
 

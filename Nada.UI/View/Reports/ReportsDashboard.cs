@@ -13,16 +13,18 @@ using Nada.Model.Reports;
 using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Exports;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Reports
 {
-    public partial class ReportsDashboard : UserControl, IView
+    public partial class ReportsDashboard : BaseControl, IView
     {
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return ""; } }
 
         public ReportsDashboard()
+            : base()
         {
             InitializeComponent();
         }

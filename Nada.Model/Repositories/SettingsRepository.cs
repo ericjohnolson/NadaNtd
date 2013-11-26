@@ -169,7 +169,9 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                string sql = @"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes WHERE AdminLevel > 0 AND IsDeleted=0";
+                string sql = @"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes 
+                    WHERE AdminLevel > 0 AND IsDeleted=0
+                    ORDER BY AdminLevel";
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -244,7 +246,8 @@ namespace Nada.Model.Repositories
             {
                 connection.Open();
                 OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes 
-                    WHERE AdminLevel > 0 AND IsDeleted=0 AND AdminLevel > @id", connection);
+                    WHERE AdminLevel > 0 AND IsDeleted=0 AND AdminLevel > @id
+                    ORDER BY AdminLevel", connection);
                 command.Parameters.Add(new OleDbParameter("@id", levelNumber));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {

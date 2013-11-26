@@ -12,20 +12,23 @@ using Nada.Model.Diseases;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class DiseaseAdd : Form
+    public partial class DiseaseAdd : BaseForm
     {
         public event Action<Disease> OnSave = (e) => { };
         private Disease model = new Disease();
 
         public DiseaseAdd()
+            : base()
         {
             InitializeComponent();
         }
 
         public DiseaseAdd(Disease m)
+            : base()
         {
             model = m;
             InitializeComponent();
@@ -44,7 +47,7 @@ namespace Nada.UI.View
         {
             if (!model.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError, Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
             bindingSource1.EndEdit();

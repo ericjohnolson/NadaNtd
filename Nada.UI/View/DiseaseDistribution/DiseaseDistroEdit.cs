@@ -15,10 +15,11 @@ using Nada.UI.View.Survey;
 using Nada.Model.Intervention;
 using Nada.UI.View.Help;
 using Nada.Model.Diseases;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.DiseaseDistribution
 {
-    public partial class DiseaseDistroEdit : UserControl, IView
+    public partial class DiseaseDistroEdit : BaseControl, IView
     {
         private AdminLevel adminLevel = null;
         private DiseaseDistroPc model = null;
@@ -28,13 +29,15 @@ namespace Nada.UI.View.DiseaseDistribution
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return lblTitle.Text; } }
-        
+
         public DiseaseDistroEdit()
+            : base()
         {
             InitializeComponent();
         }
 
         public DiseaseDistroEdit(AdminLevel a, int id)
+            : base()
         {
             adminLevel = a;
             diseaseId = id;
@@ -42,6 +45,7 @@ namespace Nada.UI.View.DiseaseDistribution
         }
 
         public DiseaseDistroEdit(DiseaseDistroPc s)
+            : base()
         {
             this.model = s;
             InitializeComponent();
@@ -109,7 +113,7 @@ namespace Nada.UI.View.DiseaseDistribution
         {
             if (!model.IsValid() || !customIndicatorControl1.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
             if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)

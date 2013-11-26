@@ -13,12 +13,13 @@ using Nada.Model.Csv;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using Nada.UI.ViewModel;
 using OfficeOpenXml;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class StepDemoUpdateGrowthRate : UserControl, IWizardStep
+    public partial class StepDemoUpdateGrowthRate : BaseControl, IWizardStep
     {
         private DemoUpdateViewModel vm = new DemoUpdateViewModel();
         private DemoRepository repo = new DemoRepository();
@@ -35,6 +36,7 @@ namespace Nada.UI.View.Wizard
         public string StepTitle { get { return Translations.ApplyCountryGrowthRate; } }
 
         public StepDemoUpdateGrowthRate()
+            : base()
         {
             InitializeComponent();
         }
@@ -58,7 +60,7 @@ namespace Nada.UI.View.Wizard
         {
             if (!vm.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError, Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
             OnSwitchStep(new WorkingStep(Translations.ApplyingGrowthRate));

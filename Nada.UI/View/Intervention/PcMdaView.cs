@@ -15,10 +15,11 @@ using Nada.UI.View.Survey;
 using Nada.Model.Intervention;
 using Nada.UI.View.Help;
 using Nada.Model.Diseases;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Intervention
 {
-    public partial class PcMdaView : UserControl, IView
+    public partial class PcMdaView : BaseControl, IView
     {
         private AdminLevel adminLevel = null;
         private PcMda model = null;
@@ -28,13 +29,15 @@ namespace Nada.UI.View.Intervention
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return lblTitle.Text; } }
-        
+
         public PcMdaView()
+            : base()
         {
             InitializeComponent();
         }
 
         public PcMdaView(AdminLevel a, IntvType t)
+            : base()
         {
             adminLevel = a;
             intvType = t;
@@ -42,6 +45,7 @@ namespace Nada.UI.View.Intervention
         }
 
         public PcMdaView(PcMda s)
+            : base()
         {
             this.model = s;
             InitializeComponent();
@@ -125,12 +129,12 @@ namespace Nada.UI.View.Intervention
         {
             if (!model.IsValid() || !customIndicatorControl1.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
             if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
             {
-                MessageBox.Show(Translations.LocationRequired);
+                MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
                 return;
             }
 
@@ -138,7 +142,7 @@ namespace Nada.UI.View.Intervention
             model.DiseasesTargeted = diseasesControl1.GetSelected();
             if (model.DiseasesTargeted == null || model.DiseasesTargeted.Count == 0)
             {
-                MessageBox.Show(Translations.DiseasesRequired);
+                MessageBox.Show(Translations.DiseasesRequired, Translations.ValidationErrorTitle);
                 return;
             }
 

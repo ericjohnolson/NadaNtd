@@ -13,11 +13,12 @@ using Nada.Model.Csv;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using OfficeOpenXml;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class StepCountrySettings : UserControl, IWizardStep
+    public partial class StepCountrySettings : BaseControl, IWizardStep
     {
         private Country model = null;
         public Action OnFinish { get; set; }
@@ -32,11 +33,13 @@ namespace Nada.UI.View.Wizard
         public string StepTitle { get { return Translations.CountrySettings; } }
 
         public StepCountrySettings()
+            : base()
         {
             InitializeComponent();
         }
 
         public StepCountrySettings(Country c)
+            : base()
         {
             model = c;
             InitializeComponent();
@@ -74,12 +77,12 @@ namespace Nada.UI.View.Wizard
         {
             if (!model.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return false;
             }
             if (!adminLevelTypesControl1.HasDistrict())
             {
-                MessageBox.Show(Translations.MustMakeDistrict);
+                MessageBox.Show(Translations.MustMakeDistrict, Translations.ValidationErrorTitle);
                 return false;
             }
 

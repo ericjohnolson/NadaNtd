@@ -9,18 +9,21 @@ using System.Windows.Forms;
 using Nada.Globalization;
 using Nada.UI.AppLogic;
 using Nada.Model.Reports;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Reports.CustomReport
 {
-    public partial class StepIndicators : UserControl, IWizardStep
+    public partial class StepIndicators : BaseControl, IWizardStep
     {
         private ReportOptions options = null;
         public StepIndicators()
+            : base()
         {
             InitializeComponent();
         }
 
         public StepIndicators(ReportOptions o)
+            : base()
         {
             options = o;
             InitializeComponent();

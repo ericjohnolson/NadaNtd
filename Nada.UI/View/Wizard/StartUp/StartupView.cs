@@ -13,16 +13,18 @@ using Nada.UI.AppLogic;
 using Nada.UI.Controls;
 using System.Deployment.Application;
 using Nada.Model;
+using System.Configuration;
+using Nada.UI.Base;
 
 namespace Nada.UI.View
 {
-    public partial class StartupView : UserControl
+    public partial class StartupView : BaseControl
     {
         public Action OnFinished = () => { };
         DemoRepository demo = new DemoRepository();
         SettingsRepository settings = new SettingsRepository();
 
-        public StartupView()
+        public StartupView() : base()
         {
             InitializeComponent();
         }
@@ -39,10 +41,7 @@ namespace Nada.UI.View
         private void LoadWiz(IWizardStep step)
         {
             WizardForm wiz = new WizardForm(step, Translations.StartUpTasks);
-            wiz.OnFinish = () =>
-            {
-                CheckStatus();
-            };
+            wiz.OnFinish = () => { };
             wiz.OnClose = () =>
             {
                 CheckStatus();
@@ -85,15 +84,16 @@ namespace Nada.UI.View
                 if(hasFinishedPrevStep)
                 {
                     var ctrl3 = new H3Link { Text = al.HasEntered ? Translations.EditLink : Translations.StartLink, Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5) };
-                    ctrl3.ClickOverride += () => { LoadWiz(new StepAdminLevelImport(settings.GetNextLevel(al.Level - 1), null)); };
+                    int levelNumber = al.Level - 1;
+                    ctrl3.ClickOverride += () => { LoadWiz(new StepAdminLevelImport(settings.GetNextLevel(levelNumber), null)); };
                     tblTasks.Controls.Add(ctrl3, 1, rowIndex);
                     hasFinishedPrevStep = al.HasEntered;
                 }
                 stepCount++;
             }
 
-            bool skipStep = true; // !ApplicationDeployment.IsNetworkDeployed
-            if (skipStep)
+
+            if (ConfigurationManager.AppSettings["DeveloperMode"] == "QA")
             {
                 rowIndex = tblTasks.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize }); 
                 var skipLink = new H3Link { Text = "Skip Start Up", Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5) };
@@ -126,22 +126,26 @@ namespace Nada.UI.View
 
         void skipLink_ClickOverride()
         {
+            int year = Convert.ToInt32(ConfigurationManager.AppSettings["SkipStartDemoYear"]);
             int userId = ApplicationData.Instance.GetUserId();
             var c = demo.GetCountry();
             c.Name = "Test Country Name";
             demo.UpdateCountry(c, userId);
+            DiseaseRepository diseases = new DiseaseRepository();
+            var availableDiseases = diseases.GetAvailableDiseases();
+            diseases.SaveSelectedDiseases(availableDiseases, true, userId);
             settings.SetDiseasesReviewedStatus();
             //Import stuff
             settings.Save(new AdminLevelType { DisplayName = "Village", LevelNumber = 3 }, userId);
             var adminLevels = settings.GetAllAdminLevels();
             AdminLevelDemoImporter regImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "Region"));
-            regImporter.ImportData("TestRegions.xlsx", userId, false, false, 2, null, 2012);
+            regImporter.ImportData("TestRegions.xlsx", userId, false, false, 2, null, year);
             AdminLevelDemoImporter disImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "District"));
-            disImporter.ImportData("TestDistricts.xlsx", userId, true, true, 4, null, 2012);
+            disImporter.ImportData("TestDistricts.xlsx", userId, true, true, 4, null, year);
             AdminLevelDemoUpdater update = new AdminLevelDemoUpdater(adminLevels.FirstOrDefault(a => a.DisplayName == "District"));
             update.ImportData("TestDistrictUpdate.xlsx", userId, 2011, true);
             AdminLevelDemoImporter vilImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "Village"));
-            vilImporter.ImportData("TestVillages.xlsx", userId, true, false, 2, demo.GetAdminLevelById(2), 2012);
+            vilImporter.ImportData("TestVillages.xlsx", userId, true, false, 2, demo.GetAdminLevelById(2), year);
             CheckStatus();
         }
     }

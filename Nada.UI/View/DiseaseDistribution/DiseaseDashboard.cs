@@ -17,10 +17,13 @@ using Nada.UI.View.Intervention;
 using Nada.UI.View.Survey;
 using Nada.Model.Demography;
 using Nada.Model.Repositories;
+using Nada.Model.Process;
+using Nada.UI.View.Process;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Demography
 {
-    public partial class DiseaseDashboard : UserControl
+    public partial class DiseaseDashboard : BaseControl
     {
         public Action<UserControl> LoadView = (i) => { };
         public Action<AdminLevel> ReloadView = (i) => { };
@@ -29,11 +32,13 @@ namespace Nada.UI.View.Demography
         AdminLevel adminLevel = null;
 
         public DiseaseDashboard()
+            : base()
         {
             InitializeComponent();
         }
 
         public DiseaseDashboard(IFetchActivities f, AdminLevel l)
+            : base()
         {
             InitializeComponent();
             fetcher = f;
@@ -50,6 +55,8 @@ namespace Nada.UI.View.Demography
             LoadDiseases();
             LoadDiseaseDistros();
             LoadDemography();
+            LoadProcessTypes();
+            LoadProcesses();
         }
         
         private void DoLoadView(IView view)
@@ -372,6 +379,76 @@ namespace Nada.UI.View.Demography
         }
         #endregion
 
-        
+        #region Processes
+        private void LoadProcesses()
+        {
+            BackgroundWorker processWorker = new BackgroundWorker();
+            processWorker.DoWork += processWorker_DoWork;
+            processWorker.RunWorkerCompleted += processWorker_RunWorkerCompleted;
+            pnlProcessDetails.Visible = false;
+            loadingProcess.Visible = true;
+            processWorker.RunWorkerAsync(fetcher);
+        }
+
+        private void LoadProcessTypes()
+        {
+            var types = fetcher.GetProcessTypes();
+            types.Insert(0, new ProcessType { Id = -1, TypeName = Translations.AddNewType });
+            types.Insert(0, new ProcessType { Id = 0, TypeName = Translations.PleaseSelect });
+            cbProcessTypes.DataSource = types;
+        }
+
+        void processWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            var existing = (List<ProcessDetails>)e.Result;
+            lvProcess.SetObjects(existing);
+            loadingProcess.Visible = false;
+            pnlProcessDetails.Visible = true;
+        }
+
+        void processWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var f = (IFetchActivities)e.Argument;
+            e.Result = f.GetProcesses();
+        }
+
+        private void lvProcess_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
+        {
+            e.Handled = true;
+            if (e.Column.AspectName == "View")
+            {
+                IView process = fetcher.GetProcess((ProcessDetails)e.Model);
+                if (process == null)
+                    return;
+                DoLoadView(process);
+            }
+            else if (e.Column.AspectName == "Delete")
+            {
+                DeleteConfirm confirm = new DeleteConfirm();
+                if (confirm.ShowDialog() == DialogResult.OK)
+                {
+                    fetcher.Delete((ProcessDetails)e.Model, ApplicationData.Instance.GetUserId());
+                    LoadProcesses();
+                }
+            }
+        }
+
+        private void cbProcess_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbProcessTypes.SelectedItem == null)
+                return;
+            if (((ProcessType)cbProcessTypes.SelectedItem).Id == -1)
+                DoLoadView(new ProcessTypeEdit(new ProcessType()));
+
+            IView view = fetcher.NewProcess((ProcessType)cbProcessTypes.SelectedItem);
+            DoLoadView(view);
+        }
+
+        private void btnProcess_Click(object sender, EventArgs e)
+        {
+            DoCollapse(btnProcess, pnlProcess);
+        }
+        #endregion
+
     }
 }

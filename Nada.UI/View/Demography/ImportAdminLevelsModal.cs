@@ -13,21 +13,24 @@ using Nada.Model;
 using Nada.Model.Csv;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Demography
 {
-    public partial class ImportAdminLevelsModal : Form
+    public partial class ImportAdminLevelsModal : BaseForm
     {
         public event Action OnSuccess = () => { };
         private AdminLevel parent = null;
         private AdminLevelType childType = null;
 
         public ImportAdminLevelsModal()
+            : base()
         {
             InitializeComponent();
         }
 
         public ImportAdminLevelsModal(AdminLevel p, AdminLevelType childType)
+            : base()
         {
             parent = p;
             this.childType = childType;

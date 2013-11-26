@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Deployment.Application;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 using Nada.UI.View;
 using Nada.UI.View.Demography;
 using Nada.UI.View.DiseaseDistribution;
@@ -25,13 +28,14 @@ using Nada.UI.ViewModel;
 
 namespace Nada.UI
 {
-    public partial class Shell : Form
+    public partial class Shell : BaseForm
     {
         private UserControl currentView = null;
         private SettingsRepository settings = new SettingsRepository();
 
         #region Initialize/Login
         public Shell()
+            : base()
         {
             InitializeComponent();
         }
@@ -46,7 +50,8 @@ namespace Nada.UI
                 loginView.OnLogin += loginView1_OnLogin;
                 LoadView(loginView);
                 DoTranslate();
-                // COMMENT OUT WHEN NOT DEVELOPING!
+                if(ConfigurationManager.AppSettings["DeveloperMode"] == "QA")
+                    lblDeveloperMode.Visible = true;
                 //LoadDeveloperMode(loginView);
             }
         }
@@ -86,8 +91,16 @@ namespace Nada.UI
         {
             var dashboard = new DashboardView();
             LoadDashboard(dashboard);
+            BackgroundWorker updateWorker = new BackgroundWorker();
+            updateWorker.DoWork += updateWorker_DoWork;
+            updateWorker.RunWorkerCompleted += updateWorker_RunWorkerCompleted;
+            updateWorker.RunWorkerAsync();
+            
+        }
 
-            if (settings.ShouldDemoUpdate())
+        void updateWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((bool)e.Result)
             {
                 StepDemoUpdateGrowthRate step = new StepDemoUpdateGrowthRate();
                 WizardForm wiz = new WizardForm(step, Translations.UpdateDemographyForYear);
@@ -95,6 +108,11 @@ namespace Nada.UI
                 step.OnSkip = () => { wiz.Close(); };
                 wiz.ShowDialog();
             }
+        }
+
+        void updateWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            e.Result = settings.ShouldDemoUpdate();
         }
 
         private void LoadDashboard(DashboardView dashboard)

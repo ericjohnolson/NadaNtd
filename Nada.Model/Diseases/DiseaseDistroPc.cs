@@ -14,13 +14,14 @@ namespace Nada.Model.Diseases
         public DiseaseDistroPc()
         {
             IndicatorValues = new List<IndicatorValue>();
-
+            IndicatorDropdownValues = new List<IndicatorDropdownValue>();
         }
 
         public Nullable<int> AdminLevelId { get; set; }
         public Disease Disease { get; set; }
         public string Notes { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }
+        public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
         public Nullable<int> YearOfReporting { get; set; }
 

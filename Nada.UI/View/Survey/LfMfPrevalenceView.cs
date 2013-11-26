@@ -12,10 +12,11 @@ using Nada.UI.AppLogic;
 using Nada.Model;
 using Nada.Globalization;
 using Nada.UI.View.Help;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Survey
 {
-    public partial class LfMfPrevalenceView : UserControl, IView
+    public partial class LfMfPrevalenceView : BaseControl, IView
     {
         private AdminLevel adminLevel = null;
         private LfMfPrevalence model = null;
@@ -27,17 +28,20 @@ namespace Nada.UI.View.Survey
         public string Title { get { return lblTitle.Text; } }
 
         public LfMfPrevalenceView()
+            : base()
         {
             InitializeComponent();
         }
 
         public LfMfPrevalenceView(AdminLevel a)
+            : base()
         {
             adminLevel = a;
             InitializeComponent();
         }
 
         public LfMfPrevalenceView(LfMfPrevalence s)
+            : base()
         {
             this.model = s;
             InitializeComponent();
@@ -175,12 +179,12 @@ namespace Nada.UI.View.Survey
         {
             if (!model.IsValid() || !customIndicatorControl1.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
             if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
             {
-                MessageBox.Show(Translations.LocationRequired);
+                MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
                 return;
             }
 

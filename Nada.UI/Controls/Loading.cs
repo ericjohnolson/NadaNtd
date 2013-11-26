@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.UI.AppLogic;
+using Nada.UI.Base;
 
 namespace Nada.UI.Controls
 {
-    public partial class Loading : UserControl
+    public partial class Loading : BaseControl
     {
         public Loading()
+            : base()
         {
             InitializeComponent();
         }

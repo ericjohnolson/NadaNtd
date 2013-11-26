@@ -13,10 +13,11 @@ using Nada.Model;
 using Nada.Model.Base;
 using Nada.UI.View.Help;
 using Nada.Globalization;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Survey
 {
-    public partial class SurveyBaseView : UserControl, IView
+    public partial class SurveyBaseView : BaseControl, IView
     {
         public event Action<bool> OnSave = (b) => { };
         private SurveyBase model = null;
@@ -28,11 +29,13 @@ namespace Nada.UI.View.Survey
         public string Title { get { return lblTitle.Text; } }
 
         public SurveyBaseView()
+            : base()
         {
             InitializeComponent();
         }
 
         public SurveyBaseView(int typeId, AdminLevel a)
+            : base()
         {
             adminLevel = a;
             creationType = typeId;
@@ -40,6 +43,7 @@ namespace Nada.UI.View.Survey
         }
 
         public SurveyBaseView(SurveyBase survey)
+            : base()
         {
             this.model = survey;
             InitializeComponent();
@@ -91,12 +95,12 @@ namespace Nada.UI.View.Survey
         {
             if (!model.IsValid() || !customIndicatorControl1.IsValid())
             {
-                MessageBox.Show(Translations.ValidationError);
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
             if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
             {
-                MessageBox.Show(Translations.LocationRequired);
+                MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
                 return;
             }
 

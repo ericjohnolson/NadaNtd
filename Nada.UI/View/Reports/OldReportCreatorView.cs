@@ -11,10 +11,11 @@ using System.Windows.Forms.DataVisualization.Charting;
 using OfficeOpenXml;
 using System.IO;
 using Nada.Model.Repositories;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Reports
 {
-    public partial class OldReportCreatorView : UserControl
+    public partial class OldReportCreatorView : BaseControl
     {
         private ReportIndicators indicators = null;
         private ReportGenerator generator = null;
@@ -22,6 +23,7 @@ namespace Nada.UI.View.Reports
         private Chart currentChart = null;
 
         public OldReportCreatorView()
+            : base()
         {
             InitializeComponent();
         }

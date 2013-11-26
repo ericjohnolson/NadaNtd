@@ -11,10 +11,11 @@ using Nada.Globalization;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.Model;
+using Nada.UI.Base;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class ImportStepType : UserControl, IWizardStep
+    public partial class ImportStepType : BaseControl, IWizardStep
     {
         private IImporter importer = null;
         public Action OnFinish { get; set; }
@@ -29,11 +30,13 @@ namespace Nada.UI.View.Wizard
         public string StepTitle { get { return Translations.ImportAction; } }
 
         public ImportStepType()
+            : base()
         {
             InitializeComponent();
         }
 
         public ImportStepType(IImporter i)
+            : base()
         {
             importer = i;
             InitializeComponent();

@@ -14,6 +14,7 @@ namespace Nada.Model.Diseases
         public DiseaseDistroCm()
         {
             IndicatorValues = new List<IndicatorValue>();
+            IndicatorDropdownValues = new List<IndicatorDropdownValue>();
         }
 
         public Nullable<int> AdminLevelId { get; set; }
@@ -21,13 +22,14 @@ namespace Nada.Model.Diseases
         public string Notes { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
-        public List<KeyValuePair<int, string>> IndicatorDropdownValues { get; set; }
+        public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }
         public Nullable<int> YearReported { get; set; }
 
         public void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            YearReported = inds["DiseaseYear"].DynamicValue.ToNullable<int>();
+            if(inds.ContainsKey("DiseaseYear"))
+                YearReported = inds["DiseaseYear"].DynamicValue.ToNullable<int>();
         }
 
         #region IDataErrorInfo Members
