@@ -177,10 +177,6 @@ namespace Nada.UI
 
         private void prevalenceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var view = new LfMfPrevalenceView();
-            view.StatusChanged += view_StatusChanged;
-            view.OnClose = Dash_Load;
-            LoadView(view);
         }
 
         void Survey_OnSave(bool doRefresh)

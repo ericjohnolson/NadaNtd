@@ -35,7 +35,7 @@ namespace Nada.UI.View.Reports
                 CreateChart();
                 generator = new ReportGenerator();
                 ReportRepository repo = new ReportRepository();
-                indicators = repo.GetReportIndicators();
+                indicators = null;
                 surveyIndicators.LoadIndicators(indicators.SurveyIndicators);
                 intvIndicators.LoadIndicators(indicators.InterventionIndicators);
             }

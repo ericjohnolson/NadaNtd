@@ -13,11 +13,14 @@ namespace Nada.Model.Repositories
         public List<IndicatorDropdownValue> GetIndicatorDropdownValues(OleDbConnection connection, OleDbCommand command, IndicatorEntityType type, List<string> ids)
         {
             List<IndicatorDropdownValue> values = new List<IndicatorDropdownValue>();
+            if (ids.Count == 0)
+                return values;
             command = new OleDbCommand(@"Select
                         ID,
                         IndicatorId,
                         DropdownValue,
-                        TranslationKey
+                        TranslationKey,
+                        SortOrder
                         FROM IndicatorDropdownValues
                         WHERE (EntityType=@EntityType AND IndicatorId in (" + String.Join(", ", ids.ToArray()) +
                         ")) ORDER BY SortOrder", connection);
@@ -34,7 +37,8 @@ namespace Nada.Model.Repositories
                     values.Add(new IndicatorDropdownValue 
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),
-                        IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"), 
+                        IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
+                        SortOrder = reader.GetValueOrDefault<int>("SortOrder"), 
                         DisplayName = name 
                     });
                 }

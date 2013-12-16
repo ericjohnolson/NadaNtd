@@ -32,6 +32,7 @@ namespace Nada.Model.Reports
         public int ParentId { get; set; }
         public List<ReportIndicator> Children { get; set; }
         public bool IsCategory { get; set; }
+        public bool IsChecked { get; set; }
 
     }
 }

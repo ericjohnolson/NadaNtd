@@ -20,6 +20,7 @@ namespace Nada.Model.Survey
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }
         public int DiseaseId { get; set; }
         public string DiseaseType { get; set; }
+        public bool HasMultipleLocations { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

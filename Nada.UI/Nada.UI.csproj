@@ -24,7 +24,6 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://nadaqa.ericdidit.com/</InstallUrl>
-    <UpdateUrl>http://nadaqa.ericdidit.com/</UpdateUrl>
     <SupportUrl>http://supporturl.com</SupportUrl>
     <ErrorReportUrl>http://errorurl.com</ErrorReportUrl>
     <TargetCulture>en</TargetCulture>
@@ -33,7 +32,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>45</ApplicationRevision>
+    <ApplicationRevision>50</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -154,7 +153,9 @@
     <Compile Include="Controls\DiseasePickerControl.Designer.cs">
       <DependentUpon>DiseasePickerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AdminLevelTypesControl.cs" />
+    <Compile Include="Controls\AdminLevelTypesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\AdminLevelTypesControl.Designer.cs">
       <DependentUpon>AdminLevelTypesControl.cs</DependentUpon>
     </Compile>
@@ -164,10 +165,19 @@
     <Compile Include="Controls\H2Label.Designer.cs">
       <DependentUpon>H2Label.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\StatCalculator.cs" />
+    <Compile Include="Controls\SentinelSitePickerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SentinelSitePickerControl.Designer.cs">
+      <DependentUpon>SentinelSitePickerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatCalculator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\StatCalculator.Designer.cs">
       <DependentUpon>StatCalculator.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ControlFactory.cs" />
     <Compile Include="ViewModel\ProcessBaseVm.cs" />
     <Compile Include="ViewModel\DemoUpdateViewModel.cs" />
     <Compile Include="ViewModel\IntvBaseVm.cs" />
@@ -176,7 +186,9 @@
     <Compile Include="ViewModel\DiseaseDistroCmVm.cs" />
     <Compile Include="ViewModel\IDataEntryVm.cs" />
     <Compile Include="ViewModel\IWizardStep.cs" />
-    <Compile Include="Controls\IndicatorControl.cs" />
+    <Compile Include="Controls\IndicatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\IndicatorControl.Designer.cs">
       <DependentUpon>IndicatorControl.cs</DependentUpon>
     </Compile>
@@ -195,15 +207,21 @@
     <Compile Include="ViewModel\ApplicationData.cs" />
     <Compile Include="ViewModel\DiseaseActivitiesFactory.cs" />
     <Compile Include="ViewModel\IView.cs" />
-    <Compile Include="Controls\CollapsiblePanel.cs" />
+    <Compile Include="Controls\CollapsiblePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\CollapsiblePanel.Designer.cs">
       <DependentUpon>CollapsiblePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DiseasesControl.cs" />
+    <Compile Include="Controls\DiseasesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\DiseasesControl.Designer.cs">
       <DependentUpon>DiseasesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FundersControl.cs" />
+    <Compile Include="Controls\FundersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\FundersControl.Designer.cs">
       <DependentUpon>FundersControl.cs</DependentUpon>
     </Compile>
@@ -213,7 +231,9 @@
     <Compile Include="Controls\H3Required.Designer.cs">
       <DependentUpon>H3Required.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FieldLink.cs" />
+    <Compile Include="Controls\FieldLink.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\FieldLink.Designer.cs">
       <DependentUpon>FieldLink.cs</DependentUpon>
     </Compile>
@@ -229,7 +249,9 @@
     <Compile Include="Controls\HR.Designer.cs">
       <DependentUpon>HR.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Loading.cs" />
+    <Compile Include="Controls\Loading.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\Loading.Designer.cs">
       <DependentUpon>Loading.cs</DependentUpon>
     </Compile>
@@ -242,19 +264,45 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Demography\CountryDemographyView.cs" />
+    <Compile Include="View\Demography\AdminLevelSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Demography\AdminLevelSelectForm.Designer.cs">
+      <DependentUpon>AdminLevelSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Demography\AdminLevelMultiselectAny.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Demography\AdminLevelMultiselectAny.Designer.cs">
+      <DependentUpon>AdminLevelMultiselectAny.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Demography\AdminLevelAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Demography\AdminLevelAdd.Designer.cs">
+      <DependentUpon>AdminLevelAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Demography\CountryDemographyView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Demography\CountryDemographyView.Designer.cs">
       <DependentUpon>CountryDemographyView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Demography\CountryView.cs" />
+    <Compile Include="View\Demography\CountryView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Demography\CountryView.Designer.cs">
       <DependentUpon>CountryView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Demography\DemographyView.cs" />
+    <Compile Include="View\Demography\DemographyView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Demography\DemographyView.Designer.cs">
       <DependentUpon>DemographyView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Demography\AdminLevelTypeAdd.cs" />
+    <Compile Include="View\Demography\AdminLevelTypeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Demography\AdminLevelTypeAdd.Designer.cs">
       <DependentUpon>AdminLevelTypeAdd.cs</DependentUpon>
     </Compile>
@@ -270,21 +318,33 @@
     <Compile Include="View\Process\ProcessTypeEdit.Designer.cs">
       <DependentUpon>ProcessTypeEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Reports\ExportWizard\JrfExportStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\JrfExportStep.Designer.cs">
+      <DependentUpon>JrfExportStep.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\ViewForm.Designer.cs">
       <DependentUpon>ViewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Wizard\StartUp\StepDiseases.cs" />
+    <Compile Include="View\Wizard\StartUp\StepDiseases.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Wizard\StartUp\StepDiseases.Designer.cs">
       <DependentUpon>StepDiseases.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Wizard\StartUp\StepDemoUpdateGrowthRate.cs" />
+    <Compile Include="View\Wizard\StartUp\StepDemoUpdateGrowthRate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Wizard\StartUp\StepDemoUpdateGrowthRate.Designer.cs">
       <DependentUpon>StepDemoUpdateGrowthRate.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Wizard\StartUp\StepDemoUpdateOptions.cs" />
+    <Compile Include="View\Wizard\StartUp\StepDemoUpdateOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Wizard\StartUp\StepDemoUpdateOptions.Designer.cs">
       <DependentUpon>StepDemoUpdateOptions.cs</DependentUpon>
     </Compile>
@@ -300,11 +360,15 @@
     <Compile Include="View\Wizard\StartUp\StepCountryDemo.Designer.cs">
       <DependentUpon>StepCountryDemo.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Wizard\StartUp\StepCountrySettings.cs" />
+    <Compile Include="View\Wizard\StartUp\StepCountrySettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Wizard\StartUp\StepCountrySettings.Designer.cs">
       <DependentUpon>StepCountrySettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Demography\TestDemoImport.cs" />
+    <Compile Include="View\Demography\TestDemoImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Demography\TestDemoImport.Designer.cs">
       <DependentUpon>TestDemoImport.cs</DependentUpon>
     </Compile>
@@ -314,11 +378,15 @@
     <Compile Include="View\DataEntryEdit.Designer.cs">
       <DependentUpon>DataEntryEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseDistroEdit.cs" />
+    <Compile Include="View\DiseaseDistribution\DiseaseDistroEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\DiseaseDistribution\DiseaseDistroEdit.Designer.cs">
       <DependentUpon>DiseaseDistroEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Help\HelpView.cs" />
+    <Compile Include="View\Help\HelpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Help\HelpView.Designer.cs">
       <DependentUpon>HelpView.cs</DependentUpon>
     </Compile>
@@ -328,7 +396,9 @@
     <Compile Include="View\Reports\CustomReport\CustomReportView.Designer.cs">
       <DependentUpon>CustomReportView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\CustomReport\StepLocations.cs" />
+    <Compile Include="View\Reports\CustomReport\StepLocations.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Reports\CustomReport\StepLocations.Designer.cs">
       <DependentUpon>StepLocations.cs</DependentUpon>
     </Compile>
@@ -338,10 +408,10 @@
     <Compile Include="View\IndicatorTypeEdit.Designer.cs">
       <DependentUpon>IndicatorTypeEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\ExportStep.cs">
+    <Compile Include="View\Reports\ExportWizard\ExportStep.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Reports\ExportStep.Designer.cs">
+    <Compile Include="View\Reports\ExportWizard\ExportStep.Designer.cs">
       <DependentUpon>ExportStep.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Wizard\StartUp\StartupView.cs">
@@ -350,11 +420,15 @@
     <Compile Include="View\Wizard\StartUp\StartupView.Designer.cs">
       <DependentUpon>StartupView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Wizard\ImportStepType.cs" />
+    <Compile Include="View\Wizard\ImportStepType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Wizard\ImportStepType.Designer.cs">
       <DependentUpon>ImportStepType.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Wizard\WizardForm.cs" />
+    <Compile Include="View\Wizard\WizardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Wizard\WizardForm.Designer.cs">
       <DependentUpon>WizardForm.cs</DependentUpon>
     </Compile>
@@ -364,11 +438,15 @@
     <Compile Include="View\Reports\CustomReport\StepCategory.Designer.cs">
       <DependentUpon>StepCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\CustomReport\StepIndicators.cs" />
+    <Compile Include="View\Reports\CustomReport\StepIndicators.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Reports\CustomReport\StepIndicators.Designer.cs">
       <DependentUpon>StepIndicators.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\CustomReport\StepOptions.cs" />
+    <Compile Include="View\Reports\CustomReport\StepOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Reports\CustomReport\StepOptions.Designer.cs">
       <DependentUpon>StepOptions.cs</DependentUpon>
     </Compile>
@@ -396,7 +474,9 @@
     <Compile Include="View\DeleteConfirm.Designer.cs">
       <DependentUpon>DeleteConfirm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Demography\AdminLevelMultiselect.cs" />
+    <Compile Include="View\Demography\AdminLevelMultiselect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Demography\AdminLevelMultiselect.Designer.cs">
       <DependentUpon>AdminLevelMultiselect.cs</DependentUpon>
     </Compile>
@@ -412,21 +492,17 @@
     <Compile Include="View\DiseaseDistribution\DiseaseDashboard.Designer.cs">
       <DependentUpon>DiseaseDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseDistributionIndicators.cs" />
-    <Compile Include="View\DiseaseDistribution\DiseaseDistributionIndicators.Designer.cs">
-      <DependentUpon>DiseaseDistributionIndicators.cs</DependentUpon>
+    <Compile Include="View\DiseaseDistribution\DiseaseAdd.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseAdd.cs" />
     <Compile Include="View\DiseaseDistribution\DiseaseAdd.Designer.cs">
       <DependentUpon>DiseaseAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseList.cs" />
+    <Compile Include="View\DiseaseDistribution\DiseaseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\DiseaseDistribution\DiseaseList.Designer.cs">
       <DependentUpon>DiseaseList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Intervention\PcMdaView.cs" />
-    <Compile Include="View\Intervention\PcMdaView.Designer.cs">
-      <DependentUpon>PcMdaView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Reports\OldReportIndicatorControl.cs">
       <SubType>UserControl</SubType>
@@ -470,7 +546,9 @@
     <Compile Include="View\IndicatorAdd.Designer.cs">
       <DependentUpon>IndicatorAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomIndicatorControl.cs" />
+    <Compile Include="Controls\CustomIndicatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\CustomIndicatorControl.Designer.cs">
       <DependentUpon>CustomIndicatorControl.cs</DependentUpon>
     </Compile>
@@ -486,27 +564,39 @@
     <Compile Include="View\DashboardView.Designer.cs">
       <DependentUpon>DashboardView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Demography\ImportAdminLevelsModal.cs" />
+    <Compile Include="View\Demography\ImportAdminLevelsModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Demography\ImportAdminLevelsModal.Designer.cs">
       <DependentUpon>ImportAdminLevelsModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Demography\ImportDemographyModal.cs" />
+    <Compile Include="View\Demography\ImportDemographyModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Demography\ImportDemographyModal.Designer.cs">
       <DependentUpon>ImportDemographyModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Intervention\DistributionMethodAdd.cs" />
+    <Compile Include="View\Intervention\DistributionMethodAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Intervention\DistributionMethodAdd.Designer.cs">
       <DependentUpon>DistributionMethodAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Intervention\DistributionMethodList.cs" />
+    <Compile Include="View\Intervention\DistributionMethodList.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Intervention\DistributionMethodList.Designer.cs">
       <DependentUpon>DistributionMethodList.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Intervention\IntvBaseView.cs" />
+    <Compile Include="View\Intervention\IntvBaseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Intervention\IntvBaseView.Designer.cs">
       <DependentUpon>IntvBaseView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Intervention\IntvTypeEdit.cs" />
+    <Compile Include="View\Intervention\IntvTypeEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Intervention\IntvTypeEdit.Designer.cs">
       <DependentUpon>IntvTypeEdit.cs</DependentUpon>
     </Compile>
@@ -552,27 +642,33 @@
     <Compile Include="View\TranslationModal.Designer.cs">
       <DependentUpon>TranslationModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Survey\SurveyBaseView.cs" />
+    <Compile Include="View\Survey\SurveyBaseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Survey\SurveyBaseView.Designer.cs">
       <DependentUpon>SurveyBaseView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Survey\SentinelSiteAdd.cs" />
+    <Compile Include="View\Survey\SentinelSiteAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Survey\SentinelSiteAdd.Designer.cs">
       <DependentUpon>SentinelSiteAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Survey\LfMfPrevalenceView.cs" />
-    <Compile Include="View\Survey\LfMfPrevalenceView.Designer.cs">
-      <DependentUpon>LfMfPrevalenceView.cs</DependentUpon>
+    <Compile Include="View\Survey\SurveyTypeEdit.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Survey\SurveyTypeEdit.cs" />
     <Compile Include="View\Survey\SurveyTypeEdit.Designer.cs">
       <DependentUpon>SurveyTypeEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Wizard\ImportStepOptions.cs" />
+    <Compile Include="View\Wizard\ImportStepOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Wizard\ImportStepOptions.Designer.cs">
       <DependentUpon>ImportStepOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Wizard\WorkingStep.cs" />
+    <Compile Include="View\Wizard\WorkingStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="View\Wizard\WorkingStep.Designer.cs">
       <DependentUpon>WorkingStep.cs</DependentUpon>
     </Compile>
@@ -593,6 +689,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\H3Link.resx">
       <DependentUpon>H3Link.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SentinelSitePickerControl.resx">
+      <DependentUpon>SentinelSitePickerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\StatCalculator.resx">
       <DependentUpon>StatCalculator.cs</DependentUpon>
@@ -638,6 +737,15 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\AdminLevelSelectForm.resx">
+      <DependentUpon>AdminLevelSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\AdminLevelMultiselectAny.resx">
+      <DependentUpon>AdminLevelMultiselectAny.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\AdminLevelAdd.resx">
+      <DependentUpon>AdminLevelAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\CountryDemographyView.resx">
       <DependentUpon>CountryDemographyView.cs</DependentUpon>
     </EmbeddedResource>
@@ -655,6 +763,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Process\ProcessTypeEdit.resx">
       <DependentUpon>ProcessTypeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ExportWizard\JrfExportStep.resx">
+      <DependentUpon>JrfExportStep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ViewForm.resx">
       <DependentUpon>ViewForm.cs</DependentUpon>
@@ -695,7 +806,7 @@
     <EmbeddedResource Include="View\IndicatorTypeEdit.resx">
       <DependentUpon>IndicatorTypeEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Reports\ExportStep.resx">
+    <EmbeddedResource Include="View\Reports\ExportWizard\ExportStep.resx">
       <DependentUpon>ExportStep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\StartUp\StartupView.resx">
@@ -740,17 +851,11 @@
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDashboard.resx">
       <DependentUpon>DiseaseDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistributionIndicators.resx">
-      <DependentUpon>DiseaseDistributionIndicators.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseAdd.resx">
       <DependentUpon>DiseaseAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseList.resx">
       <DependentUpon>DiseaseList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Intervention\PcMdaView.resx">
-      <DependentUpon>PcMdaView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\OldReportIndicatorControl.resx">
       <DependentUpon>OldReportIndicatorControl.cs</DependentUpon>
@@ -827,9 +932,6 @@
     <EmbeddedResource Include="View\Survey\SentinelSiteAdd.resx">
       <DependentUpon>SentinelSiteAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Survey\LfMfPrevalenceView.resx">
-      <DependentUpon>LfMfPrevalenceView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Survey\SurveyTypeEdit.resx">
       <DependentUpon>SurveyTypeEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -840,10 +942,13 @@
       <DependentUpon>WorkingStep.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="Exports\AFRO_CM_JRF.xls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TestDistrictUpdate.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Exports\WHO_JRF_PC.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Nada.UI_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
@@ -859,6 +964,9 @@
     <None Include="Properties\DataSources\Nada.Model.DiseasePopulation.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Diseases.Disease.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Diseases.DiseaseDistro.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Exports.ExportCmJrfQuestions.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Exports.ExportContact.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Exports.ExportQuestions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.IndicatorDropdownValue.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.DistributionMethod.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.IntvBase.datasource" />
@@ -872,6 +980,7 @@
     <None Include="Properties\DataSources\Nada.Model.Process.ProcessType.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicator.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicators.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Reports.ReportOptions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Survey.LfMfPrevalence.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Survey.SentinelSite.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Survey.SurveyIndicator.datasource" />

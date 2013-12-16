@@ -37,7 +37,7 @@ namespace Nada.Model.Intervention
                 calcs.Add(new KeyValuePair<string, string>("PercentTGamb", Translations.NA));
 
             if (h19 > 0 && h21 >= 0)
-                calcs.Add(new KeyValuePair<string, string>("PercentTRhod", string.Format("{0:0.00}", h19 / h19 * 100).ToString()));
+                calcs.Add(new KeyValuePair<string, string>("PercentTRhod", string.Format("{0:0.00}", h21 / h19 * 100).ToString()));
             else
                 calcs.Add(new KeyValuePair<string, string>("PercentTRhod", Translations.NA));
 

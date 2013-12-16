@@ -129,8 +129,10 @@ namespace Nada.UI.View
             int year = Convert.ToInt32(ConfigurationManager.AppSettings["SkipStartDemoYear"]);
             int userId = ApplicationData.Instance.GetUserId();
             var c = demo.GetCountry();
-            c.Name = "Test Country Name";
+            c.Name = "Skipped Setup Country";
             demo.UpdateCountry(c, userId);
+            demo.Save(new CountryDemography { AdminLevelId = 1, YearDemographyData = year, TotalPopulation = 1, PopSac = 1, PercentAdult = 30, PercentPsac = 20, PercentSac = 50 },
+                userId); 
             DiseaseRepository diseases = new DiseaseRepository();
             var availableDiseases = diseases.GetAvailableDiseases();
             diseases.SaveSelectedDiseases(availableDiseases, true, userId);

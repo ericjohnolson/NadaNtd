@@ -56,6 +56,10 @@
     <Compile Include="Base\NadaListItem.cs" />
     <Compile Include="Demography\CountryDemography.cs" />
     <Compile Include="Demography\DemoDetails.cs" />
+    <Compile Include="Exports\ExportContact.cs" />
+    <Compile Include="Exports\ExportCmJrfQuestions.cs" />
+    <Compile Include="Exports\PcJrfExporter.cs" />
+    <Compile Include="Exports\ExportJrfQuestions.cs" />
     <Compile Include="IndicatorDropdownValue.cs" />
     <Compile Include="Exports\CmJrfExporter.cs" />
     <Compile Include="IExporter.cs" />

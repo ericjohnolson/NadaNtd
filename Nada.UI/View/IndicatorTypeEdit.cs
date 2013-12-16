@@ -45,12 +45,13 @@ namespace Nada.UI.View
             InitializeComponent();
         }
 
-        private void SurveyTypeView_Load(object sender, EventArgs e)
+        private void IndicatorTypeEdit_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
                 lvIndicators.SetObjects(viewModel.Indicators.Values.Where(i => i.IsEditable));
+                tbName.Text = viewModel.Title;
                 if (viewModel.CanEditTypeName)
                     pnlName.Visible = true;
                 lblTitle.ForeColor = viewModel.FormColor;

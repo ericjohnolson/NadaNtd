@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
+using Nada.Model.Diseases;
 using Nada.Model.Reports;
 
 namespace Nada.Model.Repositories
@@ -60,7 +61,7 @@ namespace Nada.Model.Repositories
                                 table.Rows.Add(dr);
 
                                 CreateChartRow(chart, dr["Location"].ToString(), dr["Year"].ToString(),
-                                    reader.GetValueOrDefault<string>("IndicatorName"), 
+                                    reader.GetValueOrDefault<string>("IndicatorName"),
                                     reader.GetValueOrDefault<int>("Id"),
                                     reader.GetValueOrDefault<string>("DynamicValue"));
                             }
@@ -110,154 +111,6 @@ namespace Nada.Model.Repositories
             }
         }
 
-        public DataTable CreateSurveyReport(ReportOptions options)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("SurveyId"));
-            dt.Columns.Add(new DataColumn(Translations.Location));
-            dt.Columns.Add(new DataColumn(Translations.SurveyType));
-            dt.Columns.Add(new DataColumn(Translations.StartDateSurvey));
-            dt.Columns.Add(new DataColumn(Translations.EndDateSurvey));
-
-            foreach (var i in options.SelectedIndicators)
-                dt.Columns.Add(new DataColumn(i.Name));
-
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    OleDbCommand command = new OleDbCommand(@"Select 
-                        Surveys.ID, 
-                        SurveyTypes.SurveyTypeName, 
-                        Surveys.SurveyTypeId, 
-                        Surveys.StartDate, 
-                        Surveys.EndDate, 
-                        Surveys.UpdatedAt, 
-                        aspnet_Users.UserName, AdminLevels.DisplayName
-                        FROM (((Surveys INNER JOIN SurveyTypes on Surveys.SurveyTypeId = SurveyTypes.ID)
-                            INNER JOIN aspnet_Users on Surveys.UpdatedById = aspnet_Users.UserId)
-                            INNER JOIN AdminLevels on Surveys.AdminLevelId = AdminLevels.ID) 
-                        WHERE Surveys.IsDeleted = 0 
-                        ORDER BY Surveys.EndDate DESC", connection);
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                                DataRow dr = dt.NewRow();
-                                dr["SurveyId"] = reader.GetValueOrDefault<int>("ID");
-                                dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
-                                dr[Translations.SurveyType] = reader.GetValueOrDefault<string>("SurveyTypeName");
-                                dr[Translations.StartDateSurvey] = reader.GetValueOrDefault<DateTime>("StartDate");
-                                dr[Translations.EndDateSurvey] = reader.GetValueOrDefault<DateTime>("EndDate");
-                                dt.Rows.Add(dr);
-                        }
-                        reader.Close();
-                    }
-
-                    foreach(DataRow dr in dt.Rows)
-                    {
-                        command = new OleDbCommand(@"Select SurveyIndicators.DisplayName as IndicatorName, 
-                            SurveyIndicatorValues.DynamicValue
-                        FROM SurveyIndicators INNER JOIN SurveyIndicatorValues on SurveyIndicators.ID = SurveyIndicatorValues.IndicatorId
-                        WHERE SurveyIndicatorValues.SurveyId = @SurveyId and SurveyIndicators.Id in (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")"
-                            , connection);
-                        command.Parameters.Add(new OleDbParameter("@SurveyId", dr["SurveyId"]));
-                        using (OleDbDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                dr[TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName"))] = reader.GetValueOrDefault<string>("DynamicValue");
-                            }
-                            reader.Close();
-                        }
-                    }
-
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-            dt.Columns.Remove("SurveyId");
-            return dt;
-        }
-
-        public DataTable CreateIntvReport(ReportOptions options)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("InterventionId"));
-            dt.Columns.Add(new DataColumn(Translations.Location));
-            dt.Columns.Add(new DataColumn(Translations.InterventionType));
-            dt.Columns.Add(new DataColumn(Translations.StartDateMda));
-            dt.Columns.Add(new DataColumn(Translations.EndDateMda));
-
-            foreach (var i in options.SelectedIndicators)
-                dt.Columns.Add(new DataColumn(i.Name));
-
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    OleDbCommand command = new OleDbCommand(@"Select 
-                        Interventions.ID, 
-                        InterventionTypes.InterventionTypeName, 
-                        Interventions.InterventionTypeId, 
-                        Interventions.StartDate, 
-                        Interventions.EndDate, 
-                        Interventions.UpdatedAt, 
-                        aspnet_Users.UserName, AdminLevels.DisplayName
-                        FROM (((Interventions INNER JOIN InterventionTypes on Interventions.InterventionTypeId = InterventionTypes.ID)
-                            INNER JOIN aspnet_Users on Interventions.UpdatedById = aspnet_Users.UserId)
-                            INNER JOIN AdminLevels on Interventions.AdminLevelId = AdminLevels.ID) 
-                        WHERE Interventions.IsDeleted = 0 
-                        ORDER BY Interventions.EndDate DESC", connection);
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            DataRow dr = dt.NewRow();
-                            dr["InterventionId"] = reader.GetValueOrDefault<int>("ID");
-                            dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
-                            dr[Translations.InterventionType] = reader.GetValueOrDefault<string>("InterventionTypeName");
-                            dr[Translations.StartDateMda] = reader.GetValueOrDefault<DateTime>("StartDate");
-                            dr[Translations.EndDateMda] = reader.GetValueOrDefault<DateTime>("EndDate");
-                            dt.Rows.Add(dr);
-                        }
-                        reader.Close();
-                    }
-
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        command = new OleDbCommand(@"Select InterventionIndicators.DisplayName as IndicatorName, 
-                            InterventionIndicatorValues.DynamicValue
-                        FROM InterventionIndicators INNER JOIN InterventionIndicatorValues on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId
-                        WHERE InterventionIndicatorValues.InterventionId = @InterventionId and InterventionIndicators.Id in (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")"
-                            , connection);
-                        command.Parameters.Add(new OleDbParameter("@InterventionId", dr["InterventionId"]));
-                        using (OleDbDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                dr[TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName"))] = reader.GetValueOrDefault<string>("DynamicValue");
-                            }
-                            reader.Close();
-                        }
-                    }
-
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-            dt.Columns.Remove("InterventionId");
-            return dt;
-        }
-
         private Dictionary<string, int> CreateIndicatorDictionary(ReportIndicators settings)
         {
             Dictionary<string, int> inds = new Dictionary<string, int>();
@@ -268,25 +121,6 @@ namespace Nada.Model.Repositories
             return inds;
         }
 
-        private DataTable FormatResultData(DataTable data)
-        {
-            DataTable resultsTable = data.Copy();
-            foreach (DataRow dr in resultsTable.Rows)
-            {
-                List<string> surveyType = new List<string>();
-                surveyType.Add(dr["TestType"].ToString());
-                surveyType.Add(dr["TimingType"].ToString());
-                surveyType.Add(dr["SiteType"].ToString());
-                surveyType.Add(Convert.ToDateTime(dr["SurveyDate"]).ToString("MM/yyyy"));
-                dr["TimingType"] = string.Join(", ", surveyType.Where(t => !string.IsNullOrEmpty(t)).ToArray());
-            }
-            resultsTable.Columns.Remove(resultsTable.Columns["TestType"]);
-            resultsTable.Columns.Remove(resultsTable.Columns["SurveyDate"]);
-            resultsTable.Columns.Remove(resultsTable.Columns["SiteType"]);
-            resultsTable.Columns[1].ColumnName = "Survey Type";
-            return resultsTable;
-        }
-        
         private void CreateChartRow(DataTable chartData, string location, string year, string name, int id, string value)
         {
             // only numbers
@@ -299,160 +133,343 @@ namespace Nada.Model.Repositories
             chartData.Rows.Add(newRow);
         }
 
-        public ReportIndicators GetReportIndicators()
+        #region ReportGenerators
+
+        public void AddIndicatorsToAggregate(string cmdText, ReportOptions options, Dictionary<int, AdminLevelIndicators> dic, OleDbCommand command,
+            OleDbConnection connection, Func<OleDbDataReader, string> getKey, Func<OleDbDataReader, string> getName)
         {
-            ReportIndicators ri = new ReportIndicators();
-            ri.SurveyIndicators.Add(new ReportIndicator { Name = "Rounds MDA", Key = "static1", IsStatic = true, DataTypeId = 2 });
-            ri.SurveyIndicators.Add(new ReportIndicator { Name = "Examined", Key = "static2", IsStatic = true, DataTypeId = 2 });
-            ri.SurveyIndicators.Add(new ReportIndicator { Name = "Positive", Key = "static3", IsStatic = true, DataTypeId = 2 });
-            ri.SurveyIndicators.Add(new ReportIndicator { Name = "Mean Density", Key = "static4", IsStatic = true, DataTypeId = 2 });
-            ri.SurveyIndicators.Add(new ReportIndicator { Name = "MF Count", Key = "static5", IsStatic = true, DataTypeId = 2 });
-            ri.SurveyIndicators.Add(new ReportIndicator { Name = "MF Load", Key = "static6", IsStatic = true, DataTypeId = 2 });
-            ri.SurveyIndicators.Add(new ReportIndicator { Name = "Sample Size", Key = "static7", IsStatic = true, DataTypeId = 2 });
-            ri.SurveyIndicators.Add(new ReportIndicator { Name = "Age Range", Key = "static8", IsStatic = true, DataTypeId = 2 });
-            
+            command = new OleDbCommand(cmdText + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") "
+                             + CreateYearFilter(options)
+                       , connection);
+
+            FillDictionary(command, connection, dic, options, getKey, getName);
+        }
+
+        private void FillDictionary(OleDbCommand command, OleDbConnection connection, Dictionary<int, AdminLevelIndicators> dic, ReportOptions options,
+            Func<OleDbDataReader, string> getKey, Func<OleDbDataReader, string> getName)
+        {            
+            using (OleDbDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string indicatorName = getName(reader);
+                    string indicatorKey = getKey(reader);
+                    int adminLevelId = reader.GetValueOrDefault<int>("AID");
+                    int dataType = reader.GetValueOrDefault<int>("DataTypeId");
+                    string value = dataType == (int)IndicatorDataType.Multiselect ? reader.GetValueOrDefault<string>("DynamicValue").Replace("|", ", ") : reader.GetValueOrDefault<string>("DynamicValue");
+                    if (dic.ContainsKey(adminLevelId))
+                    {
+                        var newIndicator = new AggregateIndicator
+                        {
+                            IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
+                            Name = indicatorName,
+                            Key = indicatorKey,
+                            DataType = dataType,
+                            Value = value,
+                            AggType = reader.GetValueOrDefault<int>("AggTypeId"), 
+                            Year = reader.GetValueOrDefault<int>("YearReported")
+                        };
+                        if (dic[adminLevelId].Indicators.ContainsKey(indicatorKey))
+                        {
+                            // TODO FIX AGGREGATION CUSTOM
+                            object val = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[indicatorKey].Value);
+                            dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : val.ToString();
+                        }
+                        else
+                            dic[adminLevelId].Indicators.Add(indicatorKey, newIndicator);
+                        
+                        // Add Column
+                        if (!options.Columns.ContainsKey(indicatorKey))
+                            options.Columns.Add(indicatorKey, indicatorName);
+                    }
+                }
+                reader.Close();
+            }
+        }
+
+        public DataTable CreateNonAggregatedReport(string cmdText, ReportOptions options, DataTable dt, Func<OleDbDataReader, string> getName)
+        {
+            Dictionary<int, DataRow> ids = new Dictionary<int, DataRow>();
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, DataTypeId
-                        FROM SurveyIndicators 
-                        WHERE IsDisabled=0 
-                        ORDER BY DisplayName", connection);
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            ri.SurveyIndicators.Add(new ReportIndicator
-                            {
-                                Key = "survey" + reader.GetValueOrDefault<int>("ID"),
-                                Name = reader.GetValueOrDefault<string>("DisplayName"),
-                                ID = reader.GetValueOrDefault<int>("ID"),
-                                DataTypeId = reader.GetValueOrDefault<int>("DataTypeId")
-                            });
-                        }
-                        reader.Close();
-                    }
+                    OleDbCommand command = new OleDbCommand(cmdText + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") "
+                              + CreateYearFilter(options) + CreateAdminFilter(options)
+                        , connection);
 
-                    command = new OleDbCommand(@"Select ID, DisplayName, DataTypeId
-                        FROM InterventionIndicators 
-                        WHERE IsDisabled=0 
-                        ORDER BY DisplayName", connection);
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            ri.InterventionIndicators.Add(new ReportIndicator
-                            {
-                                Key = "intv" + reader.GetValueOrDefault<int>("ID"),
-                                Name = reader.GetValueOrDefault<string>("DisplayName"),
-                                ID = reader.GetValueOrDefault<int>("ID"),
-                                DataTypeId = reader.GetValueOrDefault<int>("DataTypeId")
-                            });
-                        }
-                        reader.Close();
-                    }
-
+                    FillDataTable(command, connection, ids, dt, getName);
                 }
                 catch (Exception)
                 {
                     throw;
                 }
             }
-
-            return ri;
+            return dt;
         }
 
+        private void FillDataTable(OleDbCommand command, OleDbConnection connection, Dictionary<int, DataRow> ids, DataTable dt, Func<OleDbDataReader, string> getName)
+        {
+            using (OleDbDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    int id = reader.GetValueOrDefault<int>("ID");
+                    string columnName = getName(reader);
+
+                    if (!dt.Columns.Contains(columnName))
+                        dt.Columns.Add(new DataColumn(columnName));
+
+                    if (!ids.ContainsKey(id))
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
+                        dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
+                        dr[Translations.Year] = reader.GetValueOrDefault<int>("YearReported");
+                        dt.Rows.Add(dr);
+                        ids.Add(id, dr);
+                    }
+
+                    string val = reader.GetValueOrDefault<string>("DynamicValue");
+                    ids[id][columnName] = string.IsNullOrEmpty(val) ? "" : val.Replace("|", ", ");
+                }
+                reader.Close();
+            }
+        }
+
+        /// <summary>
+        /// Note aggregation is easy for demo, because it is pre aggregated
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public DataTable CreateDemoReport(ReportOptions options, DataTable dt)
+        {
+            Dictionary<string, ReportIndicator> keys = new Dictionary<string, ReportIndicator>();
+            foreach (var i in options.SelectedIndicators)
+                keys.Add(i.Key, i);
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    string adminFilter = "";
+                    if (options.IsByLevelAggregation || (options.IsNoAggregation && !options.IsAllLocations) || options.IsCountryAggregation)
+                        adminFilter = " and AdminLevels.Id in (" + String.Join(", ", options.SelectedAdminLevels.Select(a => a.Id.ToString()).ToArray()) + ") ";
+                    OleDbCommand command = new OleDbCommand(@"Select 
+                                a.ID, a.YearDemographyData, AdminLevel.DisplayName, t.DisplayName as TName
+                                ,YearCensus 
+                                ,YearProjections 
+                                ,GrowthRate 
+                                ,PercentRural 
+                                ,TotalPopulation 
+                                ,Pop0Month 
+                                ,PopPsac 
+                                ,PopSac 
+                                ,Pop5yo 
+                                ,PopAdult 
+                                ,PopFemale 
+                                ,PopMale 
+                            FROM ((AdminLevelDemography a INNER JOIN AdminLevel on a.AdminLevelId = AdminLevel.ID)
+                                INNER JOIN AdminLevelTypes t on t.Id = AdminLevel.AdminLevelTypeId)
+                            WHERE a.IsDeleted = 0 and YearDemographyData in (" + String.Join(", ", options.SelectedYears.Select(a => a.ToString()).ToArray()) + ") " +
+                            adminFilter
+                        , connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DataRow dr = dt.NewRow();
+                            dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
+                            dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
+                            dr[Translations.Year] = reader.GetValueOrDefault<int>("YearDemographyData");
+                            if (keys.ContainsKey("YearCensus")) dr[Translations.YearCensus] = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
+                            if (keys.ContainsKey("YearProjections")) dr[Translations.YearProjections] = reader.GetValueOrDefault<Nullable<int>>("YearProjections");
+                            if (keys.ContainsKey("GrowthRate")) dr[Translations.GrowthRate] = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
+                            if (keys.ContainsKey("PercentRural")) dr[Translations.PercentRural] = reader.GetValueOrDefault<Nullable<double>>("PercentRural");
+                            if (keys.ContainsKey("TotalPopulation")) dr[Translations.TotalPopulation] = reader.GetValueOrDefault<Nullable<int>>("TotalPopulation");
+                            if (keys.ContainsKey("Pop0Month")) dr[Translations.Pop0Month] = reader.GetValueOrDefault<Nullable<int>>("Pop0Month");
+                            if (keys.ContainsKey("PopPsac")) dr[Translations.PopPsac] = reader.GetValueOrDefault<Nullable<int>>("PopPsac");
+                            if (keys.ContainsKey("PopSac")) dr[Translations.PopSac] = reader.GetValueOrDefault<Nullable<int>>("PopSac");
+                            if (keys.ContainsKey("Pop5yo")) dr[Translations.Pop5yo] = reader.GetValueOrDefault<Nullable<int>>("Pop5yo");
+                            if (keys.ContainsKey("PopAdult")) dr[Translations.PopAdult] = reader.GetValueOrDefault<Nullable<int>>("PopAdult");
+                            if (keys.ContainsKey("PopFemale")) dr[Translations.PopFemale] = reader.GetValueOrDefault<Nullable<int>>("PopFemale");
+                            if (keys.ContainsKey("PopMale")) dr[Translations.YearCensus] = reader.GetValueOrDefault<Nullable<int>>("PopMale");
+                            dt.Rows.Add(dr);
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return dt;
+        }
+
+
+        private string CreateYearFilter(ReportOptions options)
+        {
+            string filter = " and YearReported in (" + String.Join(", ", options.SelectedYears.Select(a => a.ToString()).ToArray()) + ") ";
+            return filter;
+        }
+        private string CreateAdminFilter(ReportOptions options)
+        {
+            string filter = " ";
+            if (options.IsByLevelAggregation || (options.IsNoAggregation && !options.IsAllLocations))
+                filter += " and AdminLevels.Id in (" + String.Join(", ", options.SelectedAdminLevels.Select(a => a.Id.ToString()).ToArray()) + ") ";
+            return filter;
+        }
+        #endregion
+
+        #region Indicator List
         public List<ReportIndicator> GetIntvIndicators()
         {
             List<ReportIndicator> indicators = new List<ReportIndicator>();
-            var cat1 = new ReportIndicator { Name = Translations.PC, IsCategory = true };
-            var cat2 = new ReportIndicator { Name = Translations.MDAs, IsCategory = true };
-            cat1.Children.Add(cat2);
-            indicators.Add(cat1);
-
-            // NON-DYNAMIC INDICATORS??? which ones?
-            //indicators.Add(new ReportIndicator { Name = "Rounds MDA", Key = "static1", IsStatic = true, DataTypeId = 2 });
-
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
-            using (connection)
+            IntvRepository repo = new IntvRepository();
+            var types = repo.GetAllTypes();
+            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PC"), IsCategory = true };
+            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("CM"), IsCategory = true };
+            indicators.Add(pc);
+            indicators.Add(cm);
+            foreach (var t in types.Where(i => i.DiseaseType == "PC"))
             {
-                connection.Open();
-                try
-                {
-                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, DataTypeId
-                        FROM InterventionIndicators 
-                        WHERE IsDisabled=0  and InterventionTypeId=@InterventionTypeId 
-                        ORDER BY DisplayName", connection);
-                    command.Parameters.Add(new OleDbParameter("@InterventionTypeId", (int)StaticIntvType.IvmAlbMda));
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            cat2.Children.Add(new ReportIndicator
-                            {
-                                Name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DisplayName")),
-                                ID = reader.GetValueOrDefault<int>("ID"),
-                                DataTypeId = reader.GetValueOrDefault<int>("DataTypeId")
-                            });
-                        }
-                        reader.Close();
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
+                var instance = repo.CreateIntv(t.Id);
+                foreach (var i in instance.IntvType.Indicators)
+                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName), DataTypeId = i.Value.DataTypeId });
+                cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
+                pc.Children.Add(cat);
             }
+            foreach (var t in types.Where(i => i.DiseaseType == "CM"))
+            {
+                var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
+                var instance = repo.CreateIntv(t.Id);
+                foreach (var i in instance.IntvType.Indicators)
+                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName), DataTypeId = i.Value.DataTypeId });
+                cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
+                cm.Children.Add(cat);
+            }
+
             return indicators;
         }
 
         public List<ReportIndicator> GetSurveyIndicators()
         {
+            // TODO: only show indicators that are reportable? also need to add calculated indicators... :(
             List<ReportIndicator> indicators = new List<ReportIndicator>();
-            var cat1 = new ReportIndicator { Name = Translations.Surveys, IsCategory = true };
-            var cat2 = new ReportIndicator { Name = Translations.LF, IsCategory = true };
-            var cat3 = new ReportIndicator { Name = Translations.SentinelSpotSurvey, IsCategory = true };
-            cat2.Children.Add(cat3);
-            cat1.Children.Add(cat2);
-            indicators.Add(cat1);
-
-            // NON-DYNAMIC INDICATORS??? which ones?
-            //indicators.Add(new ReportIndicator { Name = "Rounds MDA", Key = "static1", IsStatic = true, DataTypeId = 2 });
-
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
-            using (connection)
+            SurveyRepository repo = new SurveyRepository();
+            var types = repo.GetSurveyTypes();
+            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PC"), IsCategory = true };
+            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("CM"), IsCategory = true };
+            indicators.Add(pc);
+            indicators.Add(cm);
+            foreach (var t in types.Where(i => i.DiseaseType == "PC"))
             {
-                connection.Open();
-                try
-                {
-                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, DataTypeId
-                        FROM SurveyIndicators 
-                        WHERE IsDisabled=0 and SurveyTypeId=@SurveyTypeId 
-                        ORDER BY DisplayName", connection);
-                    command.Parameters.Add(new OleDbParameter("@SurveyTypeId", (int)StaticSurveyType.LfPrevalence));
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            cat3.Children.Add(new ReportIndicator
-                            {
-                                Name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DisplayName")),
-                                ID = reader.GetValueOrDefault<int>("ID"),
-                                DataTypeId = reader.GetValueOrDefault<int>("DataTypeId")
-                            });
-                        }
-                        reader.Close();
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true };
+                var instance = repo.CreateSurvey(t.Id);
+                foreach (var i in instance.TypeOfSurvey.Indicators)
+                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName), DataTypeId = i.Value.DataTypeId });
+                cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
+                pc.Children.Add(cat);
+            }
+            foreach (var t in types.Where(i => i.DiseaseType == "CM"))
+            {
+                var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true };
+                var instance = repo.CreateSurvey(t.Id);
+                foreach (var i in instance.TypeOfSurvey.Indicators)
+                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName), DataTypeId = i.Value.DataTypeId });
+                cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
+                cm.Children.Add(cat);
             }
             return indicators;
         }
+
+        public List<ReportIndicator> GetProcessIndicators()
+        {
+            List<ReportIndicator> indicators = new List<ReportIndicator>();
+            ProcessRepository repo = new ProcessRepository();
+            var types = repo.GetProcessTypes();
+            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PC"), IsCategory = true };
+            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("CM"), IsCategory = true };
+            indicators.Add(pc);
+            indicators.Add(cm);
+            foreach (var t in types.Where(i => i.DiseaseType == "PC"))
+            {
+                var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
+                var instance = repo.Create(t.Id);
+                foreach (var i in instance.ProcessType.Indicators)
+                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName), DataTypeId = i.Value.DataTypeId });
+                cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
+                pc.Children.Add(cat);
+            }
+            foreach (var t in types.Where(i => i.DiseaseType == "CM"))
+            {
+                var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
+                var instance = repo.Create(t.Id);
+                foreach (var i in instance.ProcessType.Indicators)
+                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName), DataTypeId = i.Value.DataTypeId });
+                cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
+                cm.Children.Add(cat);
+            }
+
+            return indicators;
+        }
+
+        public List<ReportIndicator> GetDiseaseDistroIndicators()
+        {
+            List<ReportIndicator> indicators = new List<ReportIndicator>();
+            DiseaseRepository repo = new DiseaseRepository();
+            var types = repo.GetSelectedDiseases();
+            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PC"), IsCategory = true };
+            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("CM"), IsCategory = true };
+            indicators.Add(pc);
+            indicators.Add(cm);
+            foreach (var t in types.Where(i => i.DiseaseType == "PC"))
+            {
+                var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
+                DiseaseDistroPc dd = repo.Create((DiseaseType)t.Id);
+                foreach (var i in dd.Indicators)
+                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName), DataTypeId = i.Value.DataTypeId });
+                cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
+                pc.Children.Add(cat);
+            }
+            foreach (var t in types.Where(i => i.DiseaseType == "CM"))
+            {
+                var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
+                DiseaseDistroCm dd = repo.CreateCm((DiseaseType)t.Id);
+                foreach (var i in dd.Indicators)
+                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName), DataTypeId = i.Value.DataTypeId });
+                cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
+                cm.Children.Add(cat);
+            }
+
+            return indicators;
+        }
+
+        public List<ReportIndicator> GetDemographyIndicators()
+        {
+            List<ReportIndicator> indicators = new List<ReportIndicator>();
+
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("YearCensus"), DataTypeId = 6, Key = "YearCensus" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("YearProjections"), DataTypeId = 6, Key = "YearProjections" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("GrowthRate"), DataTypeId = 2, Key = "GrowthRate" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("PercentRural"), DataTypeId = 2, Key = "PercentRural" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("TotalPopulation"), DataTypeId = 2, Key = "TotalPopulation" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("Pop0Month"), DataTypeId = 2, Key = "Pop0Month" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("PopPsac"), DataTypeId = 2, Key = "PopPsac" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("PopSac"), DataTypeId = 2, Key = "PopSac" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("Pop5yo"), DataTypeId = 2, Key = "Pop5yo" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("PopAdult"), DataTypeId = 2, Key = "PopAdult" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("PopFemale"), DataTypeId = 2, Key = "PopFemale" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("PopMale"), DataTypeId = 2, Key = "PopMale" });
+
+            return indicators.OrderBy(r => r.Name).ToList();
+        }
+        #endregion
     }
 }

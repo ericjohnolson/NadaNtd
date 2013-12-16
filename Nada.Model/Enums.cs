@@ -12,7 +12,11 @@ namespace Nada.Model
         YesNo = 3,
         Date = 4,
         Dropdown = 5,
-        Multiselect = 6
+        Multiselect = 6,
+        Year = 7,
+        Month = 8,
+        Partners = 9,
+        SentinelSite = 10
     }
 
     public enum IndicatorAggType
@@ -47,9 +51,9 @@ namespace Nada.Model
         LfHydroceleMorbidity = 3,
         GuineaWormIntervention = 4,
         LeprosyIntervention = 5,
-        HatIntervention =6,
-        LeishIntervention = 7, 
-        BuruliUlcerIntv = 8, 
+        HatIntervention = 6,
+        LeishIntervention = 7,
+        BuruliUlcerIntv = 8,
         YawsIntervention = 9
     }
 
@@ -60,7 +64,18 @@ namespace Nada.Model
         Leprosy = 7,
         Hat = 8,
         Leish = 9,
-        Buruli = 10, 
-        Yaws = 11
+        Buruli = 10,
+        Yaws = 11,
+        Oncho = 4,
+        STH = 5,
+        Schisto = 12,
+        Trachoma = 13,
+        Chagas = 14,
+        Dengue = 15,
+        Rabies = 16,
+        Echino = 17,
+        Foodborne = 18,
+        Taeniasis = 19,
+        Custom = 20
     }
 }

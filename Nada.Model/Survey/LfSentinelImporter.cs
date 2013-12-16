@@ -45,7 +45,7 @@ namespace Nada.Model.Survey
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     LfMfPrevalence survey = repo.CreateSurvey<LfMfPrevalence>(StaticSurveyType.LfPrevalence);
-                    survey.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
+                    //survey.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
                     survey.Notes = row[Translations.Notes].ToString();
                     survey.IndicatorValues = GetDynamicIndicatorValues(ds, row);
                     survey.MapIndicatorsToProperties();

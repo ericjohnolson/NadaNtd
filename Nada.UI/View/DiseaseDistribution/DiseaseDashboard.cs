@@ -85,10 +85,12 @@ namespace Nada.UI.View.Demography
         #region Interventions
         private void LoadIntvTypes()
         {
-            var types = fetcher.GetIntvTypes();
+            var types = fetcher.GetIntvTypes().OrderBy(t => t.IntvTypeName).ToList();
             types.Insert(0, new IntvType { Id = -1, IntvTypeName = Translations.AddNewIntvType });
             types.Insert(0, new IntvType { Id = 0, IntvTypeName = Translations.PleaseSelect });
             cbIntvTypes.DataSource = types;
+            
+            cbIntvTypes.DropDownWidth = BaseForm.GetDropdownWidth(types.Select(t => t.IntvTypeName));
         }
 
         private void LoadInterventions()
@@ -157,10 +159,12 @@ namespace Nada.UI.View.Demography
         #region Surveys
         private void LoadSurveyTypes()
         {
-            var types = fetcher.GetSurveyTypes();
+            var types = fetcher.GetSurveyTypes().OrderBy(t => t.SurveyTypeName).ToList();
             types.Insert(0, new SurveyType { Id = -1, SurveyTypeName = Translations.AddNewSurveyTypeLink });
             types.Insert(0, new SurveyType { Id = 0, SurveyTypeName = Translations.PleaseSelect });
             cbNewSurvey.DataSource = types;
+
+            cbNewSurvey.DropDownWidth = BaseForm.GetDropdownWidth(types.Select(t => t.SurveyTypeName));
         }
 
         private void LoadSurveys()
@@ -214,7 +218,7 @@ namespace Nada.UI.View.Demography
             if (cbNewSurvey.SelectedItem == null)
                 return;
             if (((SurveyType)cbNewSurvey.SelectedItem).Id == -1)
-                DoLoadView(new SurveyTypeEdit(new SurveyType()));
+                DoLoadView(new SurveyTypeEdit(new SurveyType { DiseaseId = (int)DiseaseType.Custom }));
 
             IView view = fetcher.NewSurvey((SurveyType)cbNewSurvey.SelectedItem);
             DoLoadView(view);
@@ -229,9 +233,10 @@ namespace Nada.UI.View.Demography
         #region Disease Distro
         private void LoadDiseases()
         {
-            var types = fetcher.GetDiseases();
+            var types = fetcher.GetDiseases().OrderBy(t => t.DisplayName).ToList();
             types.Insert(0, new Disease { Id = 0, DisplayName = Translations.PleaseSelect });
             cbNewDiseaseDistro.DataSource = types;
+            cbNewDiseaseDistro.DropDownWidth = BaseForm.GetDropdownWidth(types.Select(t=>t.DisplayName));
         }
 
         private void cbNewDiseaseDistro_SelectedIndexChanged(object sender, EventArgs e)
@@ -392,10 +397,11 @@ namespace Nada.UI.View.Demography
 
         private void LoadProcessTypes()
         {
-            var types = fetcher.GetProcessTypes();
+            var types = fetcher.GetProcessTypes().OrderBy(t => t.TypeName).ToList();
             types.Insert(0, new ProcessType { Id = -1, TypeName = Translations.AddNewType });
             types.Insert(0, new ProcessType { Id = 0, TypeName = Translations.PleaseSelect });
             cbProcessTypes.DataSource = types;
+            cbProcessTypes.DropDownWidth = BaseForm.GetDropdownWidth(types.Select(t => t.TypeName));
         }
 
         void processWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

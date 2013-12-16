@@ -20,11 +20,18 @@ namespace Nada.Model.Process
         public int YearReported { get; set; }
         public ProcessType ProcessType { get; set; }
         public string Notes { get; set; }
+        public string PCTrainTrainingCategory { get; set; }
+        public string SCMDrug { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
         public virtual void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
             YearReported = Convert.ToInt32(inds["YearReported"].DynamicValue);
+            if (inds.ContainsKey("SCMDrug"))
+                SCMDrug = inds["SCMDrug"].DynamicValue;
+            if (inds.ContainsKey("PCTrainTrainingCategory"))
+                PCTrainTrainingCategory = inds["PCTrainTrainingCategory"].DynamicValue;
+            
         }
         public virtual void MapPropertiesToIndicators() { }
     }

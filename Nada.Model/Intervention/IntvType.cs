@@ -28,7 +28,7 @@ namespace Nada.Model.Intervention
                 string error = "";
                 switch (columnName)
                 {
-                    case "SurveyTypeName":
+                    case "IntvTypeName":
                         if (String.IsNullOrEmpty(IntvTypeName))
                             error = Translations.Required;
                         break;

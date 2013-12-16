@@ -10,6 +10,7 @@ using Nada.Model.Diseases;
 using Nada.Model.Repositories;
 using Nada.Model.Process;
 using Nada.UI.AppLogic;
+using Nada.UI.View;
 
 namespace Nada.UI.ViewModel
 {
@@ -36,19 +37,22 @@ namespace Nada.UI.ViewModel
             adminLevel = a;
             calc = c;
         }
-
+        
+        public string LocationName { get { return adminLevel.Name; } }
         public bool CanEditTypeName { get { return false; } }
         public string StatusMessage { get { return model.UpdatedBy; } }
         public string Notes { get { return model.Notes; } }
         public ICalcIndicators Calculator { get { return calc; } }
         public AdminLevel Location { get { return adminLevel; } }
         public IndicatorEntityType EntityType { get { return IndicatorEntityType.Process; } }
+        public List<KeyValuePair<string, string>> MetaData { get; set; }
         public Dictionary<string, Indicator> Indicators { get { return model.ProcessType.Indicators; } }
         public List<IndicatorValue> IndicatorValues { get { return model.IndicatorValues; } }
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get { return model.ProcessType.IndicatorDropdownValues; } }
         public string Title { get { return model.ProcessType.TypeName; } }
         public string TypeTitle { get { return "";  } } //model.ProcessType.CategoryName;
         public Color FormColor { get { return Color.FromArgb(66, 44, 27); } }
+        public void AddSpecialControls(IndicatorControl cntrl) { }
 
         public bool IsValid()
         {

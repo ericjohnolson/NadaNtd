@@ -89,7 +89,9 @@ namespace Nada.UI.View.Wizard
                     {
                         tbImportFor.Visible = true;
                         cbImportFor.Visible = true;
-                        cbImportFor.DataSource = repo.GetAdminLevelByLevel(locationType.LevelNumber - 2);
+                        var levels = repo.GetAdminLevelByLevel(locationType.LevelNumber - 2);
+                        cbImportFor.DataSource = levels;
+                        cbImportFor.DropDownWidth = BaseForm.GetDropdownWidth(levels.Select(a => a.Name));
                     }
 
                     if (locationType.IsDemographyAllowed)
@@ -101,6 +103,7 @@ namespace Nada.UI.View.Wizard
 
                 if (locationType.IsAggregatingLevel)
                     lblIsAggLevel.Visible = true;
+
             }
         }
 

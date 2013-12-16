@@ -77,6 +77,7 @@ namespace Nada.UI.View.DiseaseDistribution
 
                 customIndicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
                 StatusChanged(model.UpdatedBy);
+
             }
         }
 
@@ -125,7 +126,6 @@ namespace Nada.UI.View.DiseaseDistribution
             bsDiseaseDistro.EndEdit();
             
             model.IndicatorValues = customIndicatorControl1.GetValues();
-            model.MapPropertiesToIndicators();
             int userId = ApplicationData.Instance.GetUserId();
             r.Save(model, userId);
             OnClose();
@@ -133,9 +133,6 @@ namespace Nada.UI.View.DiseaseDistribution
 
         void customIndicatorControl1_OnAddRemove()
         {
-            DiseaseDistributionIndicators editor = new DiseaseDistributionIndicators(model);
-            editor.OnSave += editType_OnSave;
-            editor.ShowDialog();
         }
 
         void editType_OnSave()

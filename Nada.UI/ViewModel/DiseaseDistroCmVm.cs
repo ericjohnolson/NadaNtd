@@ -8,6 +8,7 @@ using Nada.Model;
 using Nada.Model.Diseases;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
+using Nada.UI.View;
 
 namespace Nada.UI.ViewModel
 {
@@ -35,18 +36,21 @@ namespace Nada.UI.ViewModel
             calc = c;
         }
 
+        public string LocationName { get { return adminLevel.Name; } }
         public bool CanEditTypeName { get { return false; } }
         public string StatusMessage { get { return model.UpdatedBy; } }
         public string Notes { get { return model.Notes; } }
         public ICalcIndicators Calculator { get { return calc; } }
         public AdminLevel Location { get { return adminLevel; } }
         public IndicatorEntityType EntityType { get { return IndicatorEntityType.DiseaseDistribution; } }
+        public List<KeyValuePair<string, string>> MetaData { get; set; }
         public Dictionary<string, Indicator> Indicators { get { return model.Indicators; } }
         public List<IndicatorValue> IndicatorValues { get { return model.IndicatorValues; } }
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get { return model.IndicatorDropdownValues; } }
         public string Title { get { return model.Disease.DisplayName + " " + Translations.DiseaseDistribution; } }
         public string TypeTitle { get { return model.Disease.DiseaseType; } }
         public Color FormColor { get { return Color.FromArgb(86, 43, 115); } }
+        public void AddSpecialControls(IndicatorControl cntrl) { }
 
         public bool IsValid()
         {

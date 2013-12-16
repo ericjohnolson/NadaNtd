@@ -67,6 +67,7 @@ namespace Nada.Model.Repositories
                         Interventions.ID, 
                         InterventionTypes.InterventionTypeName, 
                         Interventions.InterventionTypeId, 
+                        Interventions.YearReported,
                         Interventions.StartDate, 
                         Interventions.EndDate, 
                         Interventions.UpdatedAt, 
@@ -86,9 +87,11 @@ namespace Nada.Model.Repositories
                             interventions.Add(new IntvDetails
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
-                                TypeName = reader.GetValueOrDefault<string>("InterventionTypeName"),
+                                TypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("InterventionTypeName"),
+                                    reader.GetValueOrDefault<string>("InterventionTypeName")),
                                 TypeId = reader.GetValueOrDefault<int>("InterventionTypeId"),
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
+                                Year = reader.GetValueOrDefault<int>("YearReported"),
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
                                 EndDate = reader.GetValueOrDefault<DateTime>("EndDate"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
@@ -117,17 +120,24 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select InterventionTypes.ID, InterventionTypes.InterventionTypeName, DiseaseType
-                        FROM InterventionTypes", connection);
+                    OleDbCommand command = new OleDbCommand(@"Select InterventionTypes.ID, InterventionTypes.InterventionTypeName, Diseases.DiseaseType
+                        FROM ((InterventionTypes INNER JOIN InterventionTypes_to_Diseases ON InterventionTypes.ID = InterventionTypes_to_Diseases.InterventionTypeId)
+                            INNER JOIN Diseases ON Diseases.ID = InterventionTypes_to_Diseases.DiseaseId) 
+                        WHERE Diseases.IsSelected = yes
+                        GROUP BY InterventionTypes.ID, InterventionTypes.InterventionTypeName, Diseases.DiseaseType", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
+                            var name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("InterventionTypeName"),
+                                    reader.GetValueOrDefault<string>("InterventionTypeName"));
+                            if (reader.GetValueOrDefault<string>("DiseaseType") == "Custom")
+                                name = reader.GetValueOrDefault<string>("InterventionTypeName");
+                                
                             intv.Add(new IntvType
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
-                                IntvTypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("InterventionTypeName"),
-                                    reader.GetValueOrDefault<string>("InterventionTypeName")),
+                                IntvTypeName = name,
                                 DiseaseType = reader.GetValueOrDefault<string>("DiseaseType")
                             });
                         }
@@ -153,20 +163,29 @@ namespace Nada.Model.Repositories
                 try
                 {
                     OleDbCommand command = new OleDbCommand(@"Select InterventionTypes.InterventionTypeName, InterventionTypes.UpdatedAt,
-                        aspnet_users.UserName, created.UserName as CreatedBy, InterventionTypes.CreatedAt, DiseaseType
-                        FROM ((InterventionTypes INNER JOIN aspnet_Users on InterventionTypes.UpdatedById = aspnet_Users.UserId)
+                        aspnet_users.UserName, created.UserName as CreatedBy, InterventionTypes.CreatedAt, Diseases.DiseaseType
+                        FROM ((((InterventionTypes INNER JOIN aspnet_Users on InterventionTypes.UpdatedById = aspnet_Users.UserId)
                             INNER JOIN aspnet_Users created on InterventionTypes.CreatedById = created.UserId)
-                        WHERE InterventionTypes.ID=@id", connection);
+                            INNER JOIN InterventionTypes_to_Diseases itod on InterventionTypes.ID = itod.InterventionTypeId)
+                            INNER JOIN Diseases on itod.DiseaseId = Diseases.Id) 
+                        WHERE InterventionTypes.ID=@id
+                        GROUP BY InterventionTypes.InterventionTypeName, InterventionTypes.UpdatedAt,
+                            aspnet_users.UserName, created.UserName, InterventionTypes.CreatedAt, Diseases.DiseaseType", connection);
                     command.Parameters.Add(new OleDbParameter("@id", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
                             reader.Read();
+                            var name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("InterventionTypeName"),
+                                    reader.GetValueOrDefault<string>("InterventionTypeName"));
+                            if (reader.GetValueOrDefault<string>("DiseaseType") == "Custom")
+                                name = reader.GetValueOrDefault<string>("InterventionTypeName");
+                                
                             intv = new IntvType
                             {
                                 Id = id,
-                                IntvTypeName = reader.GetValueOrDefault<string>("InterventionTypeName"),
+                                IntvTypeName = name,
                                 DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),
                                 UpdatedBy = Util.GetAuditInfo(reader)
                             };
@@ -187,10 +206,11 @@ namespace Nada.Model.Repositories
                         InterventionIndicators.UpdatedAt, 
                         aspnet_users.UserName,
                         IndicatorDataTypes.DataType
-                        FROM ((InterventionIndicators INNER JOIN aspnet_users ON InterventionIndicators.UpdatedById = aspnet_users.UserId)
+                        FROM (((InterventionIndicators INNER JOIN aspnet_users ON InterventionIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON InterventionIndicators.DataTypeId = IndicatorDataTypes.ID)
-                        WHERE InterventionTypeId=@InterventionTypeId AND IsDisabled=0 
-                        ORDER BY SortOrder", connection);
+                        INNER JOIN InterventionTypes_to_Indicators ON InterventionTypes_to_Indicators.IndicatorId = InterventionIndicators.ID)
+                        WHERE InterventionTypes_to_Indicators.InterventionTypeId=@InterventionTypeId AND IsDisabled=0 
+                        ORDER BY SortOrder AND InterventionIndicators.ID", connection);
                     command.Parameters.Add(new OleDbParameter("@InterventionTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -304,6 +324,7 @@ namespace Nada.Model.Repositories
 
         public void SaveBase(IntvBase intv, int userId)
         {
+            intv.MapIndicatorsToProperties();
             bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
@@ -436,6 +457,29 @@ namespace Nada.Model.Repositories
                     {
                         command = new OleDbCommand(@"SELECT Max(ID) FROM InterventionTypes", connection);
                         model.Id = (int)command.ExecuteScalar();
+
+                        // When inserting, assign custom disease to type
+                        command = new OleDbCommand(@"INSERT INTO InterventionTypes_to_Diseases (InterventionTypeId, DiseaseId
+                            ) values (@InterventionTypeId, @DiseaseId)", connection);
+                        command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
+                        command.Parameters.Add(new OleDbParameter("@DiseaseId", (int)DiseaseType.Custom));
+                        command.ExecuteNonQuery();
+                        // Add year reported
+                        command = new OleDbCommand(@"INSERT INTO InterventionIndicators (InterventionTypeId, DataTypeId, AggTypeId, 
+                        DisplayName, IsRequired, IsDisabled, IsEditable, IsDisplayed, SortOrder, UpdatedById, UpdatedAt) VALUES
+                        (@InterventionTypeId, 7, 5, 'IntvYear', -1, 0, 0, 0, -1, @UpdatedById, @UpdatedAt)", connection);
+                        command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
+                        command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.ExecuteNonQuery();
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM InterventionIndicators", connection);
+                        int yearId = (int)command.ExecuteScalar();
+
+                        command = new OleDbCommand(@"INSERT INTO InterventionTypes_to_Indicators (InterventionTypeId, IndicatorId
+                            ) values (@InterventionTypeId, @IndicatorId)", connection);
+                        command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
+                        command.Parameters.Add(new OleDbParameter("@IndicatorId", yearId));
+                        command.ExecuteNonQuery();
                     }
 
                     foreach (var indicator in model.Indicators.Values.Where(i => i.Id > 0 && i.IsEdited))
@@ -470,6 +514,15 @@ namespace Nada.Model.Repositories
                         command.Parameters.Add(new OleDbParameter("@IsEditable", true));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.ExecuteNonQuery();
+
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM InterventionIndicators", connection);
+                        int yearId = (int)command.ExecuteScalar();
+
+                        command = new OleDbCommand(@"INSERT INTO InterventionTypes_to_Indicators (InterventionTypeId, IndicatorId
+                            ) values (@InterventionTypeId, @IndicatorId)", connection);
+                        command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
+                        command.Parameters.Add(new OleDbParameter("@IndicatorId", yearId));
                         command.ExecuteNonQuery();
                     }
 
@@ -773,7 +826,7 @@ namespace Nada.Model.Repositories
 
             try
             {
-                command = new OleDbCommand(@"Select Interventions.AdminLevelId, Interventions.StartDate, Interventions.EndDate, 
+                command = new OleDbCommand(@"Select Interventions.AdminLevelId, YearReported, PcIntvRoundNumber, Interventions.StartDate, Interventions.EndDate, 
                         Interventions.Notes, Interventions.UpdatedById, Interventions.UpdatedAt, aspnet_Users.UserName, 
                         AdminLevels.DisplayName, Interventions.InterventionTypeId, Interventions.CreatedAt, c.UserName as CreatedBy
                         FROM (((Interventions INNER JOIN aspnet_Users on Interventions.UpdatedById = aspnet_Users.UserId)
@@ -788,8 +841,10 @@ namespace Nada.Model.Repositories
                         reader.Read();
                         intv.Id = id;
                         intv.AdminLevelId = reader.GetValueOrDefault<Nullable<int>>("AdminLevelId");
+                        intv.Year = reader.GetValueOrDefault<int>("YearReported");
                         intv.StartDate = reader.GetValueOrDefault<DateTime>("StartDate");
                         intv.EndDate = reader.GetValueOrDefault<DateTime>("EndDate");
+                        intv.PcIntvRoundNumber = reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber");
                         intv.Notes = reader.GetValueOrDefault<string>("Notes");
                         intv.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
                         intv.UpdatedBy = Util.GetAuditInfo(reader);
@@ -813,15 +868,17 @@ namespace Nada.Model.Repositories
         private void SaveIntvBase(OleDbCommand command, OleDbConnection connection, IntvBase intv, int userId)
         {
             if (intv.Id > 0)
-                command = new OleDbCommand(@"UPDATE Interventions SET InterventionTypeId=@InterventionTypeId, AdminLevelId=@AdminLevelId, StartDate=@StartDate,
-                           EndDate=@EndDate, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+                command = new OleDbCommand(@"UPDATE Interventions SET InterventionTypeId=@InterventionTypeId, AdminLevelId=@AdminLevelId, YearReported=@YearReported,
+                           PcIntvRoundNumber=@PcIntvRoundNumber, StartDate=@StartDate, EndDate=@EndDate, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
-                command = new OleDbCommand(@"INSERT INTO Interventions (InterventionTypeId, AdminLevelId, StartDate, EndDate, Notes, 
+                command = new OleDbCommand(@"INSERT INTO Interventions (InterventionTypeId, AdminLevelId, YearReported, PcIntvRoundNumber, StartDate, EndDate, Notes, 
                             UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
-                            values (@InterventionTypeId, @AdminLevelId, @StartDate, @EndDate, @Notes, @UpdatedById, @UpdatedAt,
+                            values (@InterventionTypeId, @AdminLevelId, @YearReported, @PcIntvRoundNumber, @StartDate, @EndDate, @Notes, @UpdatedById, @UpdatedAt,
                             @CreatedById, @CreatedAt)", connection); 
             command.Parameters.Add(new OleDbParameter("@InterventionTypeId", intv.IntvType.Id));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", intv.AdminLevelId));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearReported", intv.Year));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@PcIntvRoundNumber", intv.PcIntvRoundNumber));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", intv.StartDate));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@EndDate", intv.EndDate));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", intv.Notes));

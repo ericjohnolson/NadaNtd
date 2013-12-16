@@ -10,6 +10,8 @@ using Nada.Model.Diseases;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
+using Nada.UI.Controls;
+using Nada.UI.View;
 
 namespace Nada.UI.ViewModel
 {
@@ -19,13 +21,13 @@ namespace Nada.UI.ViewModel
         private SurveyBase model = null;
         private SurveyRepository r = null;
         private ICalcIndicators calc = null;
+        private SentinelSitePickerControl sitePicker = null;
 
         public SurveyBaseVm(AdminLevel a, int typeId, ICalcIndicators c)
         {
             adminLevel = a;
             r = new SurveyRepository();
             model = r.CreateSurvey(typeId);
-            model.AdminLevelId = adminLevel.Id;
             calc = c;
         }
 
@@ -41,7 +43,7 @@ namespace Nada.UI.ViewModel
         public string StatusMessage { get { return model.UpdatedBy; } }
         public string Notes { get { return model.Notes; } }
         public ICalcIndicators Calculator { get { return calc; } }
-        public AdminLevel Location { get { return adminLevel; } }
+        public List<KeyValuePair<string, string>> MetaData { get; set; }
         public Dictionary<string, Indicator> Indicators { get { return model.TypeOfSurvey.Indicators; } }
         public List<IndicatorValue> IndicatorValues { get { return model.IndicatorValues; } }
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get { return model.TypeOfSurvey.IndicatorDropdownValues; } }
@@ -50,6 +52,33 @@ namespace Nada.UI.ViewModel
         public string TypeTitle { get { return model.TypeOfSurvey.DiseaseType; } }
         public Color FormColor { get { return Color.FromArgb(197, 95, 39); } }
 
+        public void AddSpecialControls(IndicatorControl cntrl)
+        {
+            if (model.TypeOfSurvey.Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) != null)
+            {
+                model.HasSentinelSite = true;
+                sitePicker = cntrl.LoadSentinelSitePicker(FormColor);
+                sitePicker.LoadModel(model);
+            }
+        }
+
+        public bool Initialize()
+        {
+            if (model.TypeOfSurvey.HasMultipleLocations)
+            {
+                AdminLevelSelectForm selector = new AdminLevelSelectForm(new List<AdminLevel> { adminLevel }, this);
+                if (selector.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    model.AdminLevels = selector.GetSelected();
+                else
+                    return false;
+            }
+            else
+            {
+                model.AdminLevels = new List<AdminLevel> { adminLevel };
+            }
+            return true;
+        }
+
         public bool IsValid()
         {
             return model.IsValid();
@@ -57,9 +86,16 @@ namespace Nada.UI.ViewModel
 
         public void DoSave(List<IndicatorValue> indicatorValues, string notes)
         {
+            if (sitePicker != null)
+                sitePicker.EndEdit();
             model.Notes = notes;
             model.IndicatorValues = indicatorValues;
             r.SaveSurvey(model, ApplicationData.Instance.GetUserId());
+        }
+
+        private void selector_OnSave(List<AdminLevel> obj)
+        {
+            model.AdminLevels = obj;
         }
 
         public void DoSaveType(string name)
@@ -67,6 +103,30 @@ namespace Nada.UI.ViewModel
             model.TypeOfSurvey.SurveyTypeName = name;
             int currentUser = ApplicationData.Instance.GetUserId();
             r.Save(model.TypeOfSurvey, currentUser);
+        }
+
+        public string LocationName
+        {
+            get
+            {
+                if (model.AdminLevels == null || model.AdminLevels.Count == 0)
+                    return Translations.NA;
+                if (model.AdminLevels.Count == 1)
+                    return model.AdminLevels.First().Name;
+                else
+                    return String.Join(",", model.AdminLevels.Select(a => a.Name).ToArray());
+            }
+        }
+
+        public AdminLevel Location
+        {
+            get
+            {
+                if (model.AdminLevels.Count == 1)
+                    return model.AdminLevels.First();
+                else
+                    return new AdminLevel { Name = Translations.ManyLocations };
+            }
         }
     }
 }

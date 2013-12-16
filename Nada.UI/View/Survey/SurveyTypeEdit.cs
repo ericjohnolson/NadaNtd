@@ -76,6 +76,12 @@ namespace Nada.UI.View.Survey
                 return;
             }
 
+            if (model.Indicators.Values.FirstOrDefault() == null)
+            {
+                MessageBox.Show(Translations.ValidationErrorAddIndicator, Translations.ValidationErrorTitle);
+                return;
+            }
+
             bsSurveyType.EndEdit();
             int currentUser = ApplicationData.Instance.GetUserId();
             repo.Save(model, currentUser);

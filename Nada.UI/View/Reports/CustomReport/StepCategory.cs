@@ -34,10 +34,31 @@ namespace Nada.UI.View.Reports.CustomReport
             InitializeComponent();
         }
 
+        private void lnkDemo_ClickOverride()
+        {
+            ReportRepository repo = new ReportRepository();
+            options.ShowDiseasesOption = false;
+            options.ReportGenerator = new DemoReportGenerator();
+            options.AvailableIndicators = repo.GetDemographyIndicators();
+            OnSwitchStep(new StepIndicators(options));
+        }
+
+        private void lnkSaes_ClickOverride()
+        {
+            ReportRepository repo = new ReportRepository();
+            options.ShowDiseasesOption = false;
+            options.ReportGenerator = null; //new SurveyReportGenerator();
+            options.AvailableIndicators = null; // repo.GetSurveyIndicators();
+            OnSwitchStep(new StepIndicators(options));
+        }
+
         private void lnkDistro_ClickOverride()
         {
-            MessageBox.Show("Not Implemented");
-            //OnSwitchStep(new StepIndicators());
+            ReportRepository repo = new ReportRepository();
+            options.ShowDiseasesOption = false;
+            options.ReportGenerator = new DistributionReportGenerator();
+            options.AvailableIndicators = repo.GetDiseaseDistroIndicators();
+            OnSwitchStep(new StepIndicators(options));
         }
 
         private void lnkSurvey_ClickOverride()
@@ -58,10 +79,13 @@ namespace Nada.UI.View.Reports.CustomReport
             OnSwitchStep(new StepIndicators(options));
         }
 
-        private void lnkTraining_ClickOverride()
+        private void lnkProcess_ClickOverride()
         {
-            MessageBox.Show("Not Implemented");
-            //OnSwitchStep(new StepIndicators());
+            ReportRepository repo = new ReportRepository();
+            options.ShowDiseasesOption = false;
+            options.ReportGenerator = new ProcessReportGenerator();
+            options.AvailableIndicators = repo.GetProcessIndicators();
+            OnSwitchStep(new StepIndicators(options));
         }
 
         public void DoPrev()
@@ -79,6 +103,7 @@ namespace Nada.UI.View.Reports.CustomReport
             if(!DesignMode)
                 Localizer.TranslateControl(this);
         }
+
 
     }
 }

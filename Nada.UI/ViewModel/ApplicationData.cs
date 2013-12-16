@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Security;
+using System.Windows.Forms;
 
 namespace Nada.UI.AppLogic
 {
@@ -13,7 +14,7 @@ namespace Nada.UI.AppLogic
         private ApplicationData() { }
 
         public MembershipUser CurrentUser { get; set; }
-        
+
         public int GetUserId()
         {
             return (int)ApplicationData.Instance.CurrentUser.ProviderUserKey;

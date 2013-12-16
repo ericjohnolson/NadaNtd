@@ -7,30 +7,59 @@ using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
+    public class IndicatorAggregateResult
+    {
+        public object NewValue { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class AdminLevelIndicators
+    {
+        public AdminLevelIndicators()
+        {
+            Children = new List<AdminLevelIndicators>();
+            Indicators = new Dictionary<string, AggregateIndicator>();
+        }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> ParentId { get; set; }
+        public AdminLevelIndicators Parent { get; set; }
+        public List<AdminLevelIndicators> Children { get; set; }
+        public int LevelNumber { get; set; }
+        public bool IsDistrict { get; set; }
+        public Dictionary<string, AggregateIndicator> Indicators { get; set; }
+    }
+
     public class AggregateIndicator
     {
         public int IndicatorId { get; set; }
         public int DataType { get; set; }
         public int AggType { get; set; }
+        public int WeightedValue { get; set; }
         public string Value { get; set; }
+        public string Key { get; set; }
+        public string Name { get; set; }
+        public int Year { get; set; }
     }
 
     public static class IndicatorAggregator
     {
-        public static object AggregateChildren(List<AdminLevelIndicators> list, string key, object startResult, Func<AggregateIndicator, object, object> customAggRule)
+        public static object AggregateChildren(List<AdminLevelIndicators> list, string key, object startResult)
         {
             object aggregation = startResult;
             foreach (var level in list)
             {
                 if (level.Indicators.ContainsKey(key))
-                    aggregation = Aggregate(level.Indicators[key], aggregation, customAggRule);
+                {
+                    aggregation = Aggregate(level.Indicators[key], aggregation);
+                }
                 else
-                    aggregation = AggregateChildren(level.Children, key, aggregation, customAggRule);
+                    aggregation = AggregateChildren(level.Children, key, aggregation);
             }
             return aggregation;
         }
 
-        public static object Aggregate(AggregateIndicator ind, object existingValue, Func<AggregateIndicator, object, object> customAggRule)
+        public static object Aggregate(AggregateIndicator ind, object existingValue)
         {
             if (existingValue == null)
                 return ind.Value;
@@ -43,7 +72,7 @@ namespace Nada.Model
             if (ind.DataType == (int)IndicatorDataType.Date)
                 return AggregateDate(ind, existingValue);
             if (ind.DataType == (int)IndicatorDataType.Dropdown)
-                return customAggRule(ind, existingValue);
+                return AggregateDropdown(ind, existingValue);
 
             return AggregateString(ind, existingValue);
         }
@@ -124,6 +153,27 @@ namespace Nada.Model
                 else
                     return i2;
             return i1;
+        }
+
+        private static object AggregateDropdown(AggregateIndicator ind1, object existingValue)
+        {
+            if (ind1.AggType == (int)IndicatorAggType.Sum)
+                return existingValue;
+
+            return existingValue;
+            //var ind2 = (AggregateIndicator)existingValue;
+            //if (ind1.AggType == (int)IndicatorAggType.Min)
+            //    if (ind1.WeightedV)
+            //        return (AggregateIndicator)existingValue;
+            //    else
+            //        return dt;
+            //if (ind1.AggType == (int)IndicatorAggType.Max)
+            //    if (dt >= (AggregateIndicator)existingValue)
+            //        return dt;
+            //    else
+            //        return (AggregateIndicator)existingValue;
+
+            //return dt;
         }
 
     }

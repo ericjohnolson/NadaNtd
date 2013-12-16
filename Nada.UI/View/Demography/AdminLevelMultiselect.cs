@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Nada.Model.Repositories;
 using Nada.Model;
 using Nada.UI.Base;
+using Nada.UI.AppLogic;
 
 namespace Nada.UI.View
 {
@@ -29,9 +30,11 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 demography = new DemoRepository();
                 settings = new SettingsRepository();
-                bsLevels.DataSource = settings.GetAllAdminLevels();
+                var levels = settings.GetAllAdminLevels();
+                bsLevels.DataSource = levels;
                 cbLevels.SelectedIndex = 0;
                 LoadTrees();
                 treeAvailable.CanExpandGetter = model => ((AdminLevel)model).
@@ -48,6 +51,8 @@ namespace Nada.UI.View
                     return ((AdminLevel)model).
                             Children;
                 };
+
+                cbLevels.DropDownWidth = BaseForm.GetDropdownWidth(levels.Select(a => a.DisplayName));
 
             }
         }

@@ -17,6 +17,7 @@ using Nada.UI.View.Help;
 using Nada.Model.Diseases;
 using Nada.UI.ViewModel;
 using Nada.UI.Base;
+using Nada.UI.Controls;
 
 namespace Nada.UI.View.DiseaseDistribution
 {
@@ -44,10 +45,13 @@ namespace Nada.UI.View.DiseaseDistribution
         {
             if (!DesignMode)
             {
-                adminLevelPickerControl1.Focus();
                 Localizer.TranslateControl(this);
-                adminLevelPickerControl1.Select(viewModel.Location);
+                lblLocation.Focus();
+                lblLocation.ForeColor = viewModel.FormColor;
+                lblAdminLevel.Text = viewModel.LocationName;
                 tbNotes.Text = viewModel.Notes;
+                if (viewModel.MetaData != null && viewModel.MetaData.Count > 0)
+                    indicatorControl1.LoadMetaData(viewModel.MetaData);
                 if (viewModel.Indicators != null && viewModel.Indicators.Count() > 0)
                     indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorValues, viewModel.IndicatorDropdownValues, viewModel.EntityType);
                 indicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
@@ -57,10 +61,11 @@ namespace Nada.UI.View.DiseaseDistribution
                 lblDiseaseType.Text = TranslationLookup.GetValue(viewModel.TypeTitle, viewModel.TypeTitle);
                 lblTitle.ForeColor = viewModel.FormColor;
                 lblDiseaseType.ForeColor = viewModel.FormColor;
-                adminLevelPickerControl1.TextColor = viewModel.FormColor;
                 statCalculator1.TextColor = viewModel.FormColor;
                 indicatorControl1.TextColor = viewModel.FormColor;
                 hrTop.RuleColor = viewModel.FormColor;
+                hr4.RuleColor = viewModel.FormColor;
+                hr5.RuleColor = viewModel.FormColor;
                 // calclulator
                 if (viewModel.Calculator != null)
                 {
@@ -70,6 +75,8 @@ namespace Nada.UI.View.DiseaseDistribution
                 }
                 else
                     statCalculator1.Visible = false;
+                // special controls
+                viewModel.AddSpecialControls(indicatorControl1);
             }
         }
 
@@ -90,6 +97,7 @@ namespace Nada.UI.View.DiseaseDistribution
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
+            
             viewModel.DoSave(indicatorControl1.GetValues(), tbNotes.Text);
             OnClose();
         }

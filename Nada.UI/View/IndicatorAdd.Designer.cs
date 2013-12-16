@@ -52,9 +52,9 @@
             // tb1
             // 
             this.tb1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsIndicator, "DisplayName", true));
-            this.tb1.Location = new System.Drawing.Point(27, 71);
+            this.tb1.Location = new System.Drawing.Point(31, 82);
             this.tb1.Name = "tb1";
-            this.tb1.Size = new System.Drawing.Size(207, 20);
+            this.tb1.Size = new System.Drawing.Size(241, 21);
             this.tb1.TabIndex = 0;
             // 
             // checkBox1
@@ -63,7 +63,7 @@
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsIndicator, "IsDisabled", true));
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox1.Location = new System.Drawing.Point(27, 169);
+            this.checkBox1.Location = new System.Drawing.Point(31, 195);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(95, 20);
             this.checkBox1.TabIndex = 3;
@@ -74,26 +74,29 @@
             // comboBox1
             // 
             this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsIndicator, "DataType", true));
+            this.comboBox1.DisplayMember = "DisplayName";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Text",
             "Number",
             "YesNo",
             "Date"});
-            this.comboBox1.Location = new System.Drawing.Point(27, 116);
+            this.comboBox1.Location = new System.Drawing.Point(31, 134);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(207, 21);
+            this.comboBox1.Size = new System.Drawing.Size(241, 23);
             this.comboBox1.TabIndex = 1;
+            this.comboBox1.ValueMember = "Id";
             // 
             // h3Label1
             // 
             this.h3Label1.AutoSize = true;
             this.h3Label1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label1.Location = new System.Drawing.Point(27, 52);
+            this.h3Label1.Location = new System.Drawing.Point(31, 60);
             this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label1.Name = "h3Label1";
-            this.h3Label1.Size = new System.Drawing.Size(144, 16);
+            this.h3Label1.Size = new System.Drawing.Size(136, 18);
             this.h3Label1.TabIndex = 10;
             this.h3Label1.Tag = "CustomIndicatorName";
             this.h3Label1.Text = "Custom indicator name";
@@ -104,10 +107,10 @@
             this.h3Label2.AutoSize = true;
             this.h3Label2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label2.Location = new System.Drawing.Point(27, 94);
+            this.h3Label2.Location = new System.Drawing.Point(31, 108);
             this.h3Label2.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label2.Name = "h3Label2";
-            this.h3Label2.Size = new System.Drawing.Size(66, 16);
+            this.h3Label2.Size = new System.Drawing.Size(58, 18);
             this.h3Label2.TabIndex = 11;
             this.h3Label2.Tag = "DataType";
             this.h3Label2.Text = "Data type";
@@ -119,10 +122,10 @@
             this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
             this.hr1.ForeColor = System.Drawing.Color.Gray;
             this.hr1.Location = new System.Drawing.Point(0, 0);
-            this.hr1.Margin = new System.Windows.Forms.Padding(5);
+            this.hr1.Margin = new System.Windows.Forms.Padding(6);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hr1.Size = new System.Drawing.Size(264, 5);
+            this.hr1.Size = new System.Drawing.Size(308, 6);
             this.hr1.TabIndex = 13;
             // 
             // label3
@@ -131,7 +134,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.label3.Location = new System.Drawing.Point(22, 10);
+            this.label3.Location = new System.Drawing.Point(26, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(155, 28);
             this.label3.TabIndex = 14;
@@ -144,29 +147,29 @@
             this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel4.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(27, 212);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(31, 245);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(178, 31);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(206, 35);
             this.tableLayoutPanel4.TabIndex = 40;
             // 
             // btnCancel
             // 
             this.btnCancel.AutoSize = true;
-            this.btnCancel.Location = new System.Drawing.Point(97, 3);
-            this.btnCancel.MinimumSize = new System.Drawing.Size(78, 25);
+            this.btnCancel.Location = new System.Drawing.Point(112, 3);
+            this.btnCancel.MinimumSize = new System.Drawing.Size(91, 29);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnCancel.Size = new System.Drawing.Size(78, 25);
+            this.btnCancel.Size = new System.Drawing.Size(91, 29);
             this.btnCancel.TabIndex = 40;
             this.btnCancel.Tag = "Cancel";
             this.btnCancel.Values.Text = "Cancel";
@@ -176,10 +179,10 @@
             // 
             this.btnSave.AutoSize = true;
             this.btnSave.Location = new System.Drawing.Point(3, 3);
-            this.btnSave.MinimumSize = new System.Drawing.Size(78, 25);
+            this.btnSave.MinimumSize = new System.Drawing.Size(91, 29);
             this.btnSave.Name = "btnSave";
             this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnSave.Size = new System.Drawing.Size(78, 25);
+            this.btnSave.Size = new System.Drawing.Size(91, 29);
             this.btnSave.TabIndex = 1;
             this.btnSave.Tag = "Save";
             this.btnSave.Values.Text = "Save";
@@ -191,7 +194,7 @@
             this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsIndicator, "IsRequired", true));
             this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox2.Location = new System.Drawing.Point(27, 143);
+            this.checkBox2.Location = new System.Drawing.Point(31, 165);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(96, 20);
             this.checkBox2.TabIndex = 41;
@@ -201,10 +204,10 @@
             // 
             // IndicatorAdd
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(264, 274);
+            this.ClientSize = new System.Drawing.Size(308, 316);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.label3);

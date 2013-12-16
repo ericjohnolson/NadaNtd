@@ -48,7 +48,7 @@ namespace Nada.UI.View.Reports.CustomReport
         public void DoNext()
         {
             options.SelectedIndicators = new List<ReportIndicator>();
-            AddSelectedIndicators(options.SelectedIndicators, this.treeView.Nodes);
+            AddSelectedIndicators(options.SelectedIndicators, options.AvailableIndicators);
             OnSwitchStep(new StepOptions(options));
         }
 
@@ -61,35 +61,47 @@ namespace Nada.UI.View.Reports.CustomReport
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                this.treeView.CheckBoxes = true;
-                this.treeView.ShowLines = false;
-                LoadTree(options.AvailableIndicators, this.treeView.Nodes);
+                LoadTree(options.AvailableIndicators);
+                //LoadTree(options.AvailableIndicators, this.treeView.Nodes);
             }
         }
 
-        private void LoadTree(List<ReportIndicator> list, TreeNodeCollection tree)
+        //private void LoadTree(List<ReportIndicator> list, TreeNodeCollection tree)
+        //{
+        //    foreach (ReportIndicator ind in list)
+        //    {
+        //        TreeNode node = new TreeNode { Text = ind.Name, Tag = ind };
+        //        tree.Add(node);
+        //        if (ind.Children.Count > 0)
+        //            LoadTree(ind.Children, node.Nodes);
+        //    }
+        //}
+
+        private void AddSelectedIndicators(List<ReportIndicator> indicators, List<ReportIndicator> nodes)
         {
-            foreach (ReportIndicator ind in list)
+            foreach (var node in nodes)
             {
-                TreeNode node = new TreeNode { Text = ind.Name, Tag = ind };
-                tree.Add(node);
-                if (ind.Children.Count > 0)
-                    LoadTree(ind.Children, node.Nodes);
+                if (node.IsChecked && !node.IsCategory)
+                    indicators.Add(node);
+
+                if (node.Children.Count > 0)
+                    AddSelectedIndicators(indicators, node.Children);
             }
         }
 
-        private void AddSelectedIndicators(List<ReportIndicator> indicators, TreeNodeCollection nodes)
+        public void LoadTree(List<ReportIndicator> list)
         {
-            foreach (TreeNode node in nodes)
+            treeListView1.ClearObjects();
+            treeListView1.CanExpandGetter = model => ((ReportIndicator)model).Children.Count > 0;
+            treeListView1.ChildrenGetter = delegate(object model)
             {
-                if (node.Checked && node.Tag != null && !((ReportIndicator)node.Tag).IsCategory)
-                    indicators.Add((ReportIndicator)node.Tag);
-                
-                if (node.Nodes.Count > 0)
-                    AddSelectedIndicators(indicators, node.Nodes);
-            }
+                return ((ReportIndicator)model).Children;
+            };
+            treeListView1.SetObjects(list);
+
+            foreach(var ind in list)
+                treeListView1.Expand(ind);
         }
-
-
+        
     }
 }

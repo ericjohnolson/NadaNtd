@@ -42,6 +42,7 @@
             this.treeListView1 = new BrightIdeasSoftware.TreeListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.c1SplitterPanel2 = new C1.Win.C1SplitContainer.C1SplitterPanel();
+            this.h3Link1 = new Nada.UI.Controls.H3Link();
             ((System.ComponentModel.ISupportInitialize)(this.c1SplitContainer1)).BeginInit();
             this.c1SplitContainer1.SuspendLayout();
             this.c1SplitterPanel1.SuspendLayout();
@@ -107,7 +108,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(270, 105);
+            this.panel1.Size = new System.Drawing.Size(270, 127);
             this.panel1.TabIndex = 16;
             // 
             // tableLayoutPanel2
@@ -118,13 +119,15 @@
             this.tableLayoutPanel2.Controls.Add(this.c1SplitButton1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.c1Button2, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.c1Button1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.h3Link1, 0, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(263, 102);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(263, 124);
             this.tableLayoutPanel2.TabIndex = 16;
             // 
             // c1SplitButton1
@@ -197,10 +200,10 @@
             this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn1});
             this.treeListView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treeListView1.Font = new System.Drawing.Font("Arial", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeListView1.Font = new System.Drawing.Font("Arial", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeListView1.FullRowSelect = true;
             this.treeListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.treeListView1.Location = new System.Drawing.Point(10, 111);
+            this.treeListView1.Location = new System.Drawing.Point(10, 133);
             this.treeListView1.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.treeListView1.MinimumSize = new System.Drawing.Size(250, 321);
             this.treeListView1.Name = "treeListView1";
@@ -236,6 +239,22 @@
             this.c1SplitterPanel2.SizeRatio = 100D;
             this.c1SplitterPanel2.TabIndex = 1;
             // 
+            // h3Link1
+            // 
+            this.h3Link1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3Link1.AutoSize = true;
+            this.h3Link1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Link1.BackColor = System.Drawing.Color.Transparent;
+            this.h3Link1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.h3Link1.Location = new System.Drawing.Point(0, 109);
+            this.h3Link1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Link1.Name = "h3Link1";
+            this.h3Link1.Size = new System.Drawing.Size(100, 15);
+            this.h3Link1.TabIndex = 16;
+            this.h3Link1.Tag = "AddNewLocation";
+            this.h3Link1.Text = "AddNewLocation";
+            this.h3Link1.ClickOverride += new System.Action(this.AddAdminLevel_ClickOverride);
+            // 
             // DashboardView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -252,6 +271,7 @@
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -272,6 +292,7 @@
         private BrightIdeasSoftware.TreeListView treeListView1;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private Controls.H3Link h3Link1;
 
     }
 }

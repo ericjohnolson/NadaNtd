@@ -26,7 +26,6 @@ namespace Nada.Model.Repositories
                     OleDbCommand command = new OleDbCommand(@"Select 
                         processes.ID, 
                         ProcessTypes.TypeName, 
-                        ProcessTypes.CategoryName,
                         processes.ProcessTypeId, 
                         processes.YearReported, 
                         processes.UpdatedAt, 
@@ -45,7 +44,6 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 TypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TypeName"), reader.GetValueOrDefault<string>("TypeName")),
-                                CategoryName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("CategoryName"), reader.GetValueOrDefault<string>("CategoryName")),
                                 TypeId = reader.GetValueOrDefault<int>("ProcessTypeId"),
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
                                 YearReported = reader.GetValueOrDefault<int>("YearReported"),
@@ -123,7 +121,7 @@ namespace Nada.Model.Repositories
 
             try
             {
-                command = new OleDbCommand(@"Select processes.AdminLevelId, processes.YearReported, 
+                command = new OleDbCommand(@"Select processes.AdminLevelId, processes.YearReported, SCMDrug, PCTrainTrainingCategory,
                         processes.Notes, processes.UpdatedById, processes.UpdatedAt, aspnet_Users.UserName, AdminLevels.DisplayName, 
                         processes.ProcessTypeId, created.UserName as CreatedBy, processes.CreatedAt
                         FROM (((processes INNER JOIN aspnet_Users on processes.UpdatedById = aspnet_Users.UserId)
@@ -139,6 +137,8 @@ namespace Nada.Model.Repositories
                         process.Id = pId;
                         process.AdminLevelId = reader.GetValueOrDefault<Nullable<int>>("AdminLevelId");
                         process.YearReported = reader.GetValueOrDefault<int>("YearReported");
+                        process.SCMDrug = reader.GetValueOrDefault<string>("SCMDrug");
+                        process.PCTrainTrainingCategory = reader.GetValueOrDefault<string>("PCTrainTrainingCategory");
                         process.Notes = reader.GetValueOrDefault<string>("Notes");
                         process.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
                         process.UpdatedBy = Util.GetAuditInfo(reader);
@@ -208,17 +208,25 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select ProcessTypes.ID, ProcessTypes.TypeName, ProcessTypes.CategoryName
-                        FROM ProcessTypes ", connection);
+                    OleDbCommand command = new OleDbCommand(@"Select ProcessTypes.ID, ProcessTypes.TypeName, Diseases.DiseaseType
+                        FROM ((ProcessTypes INNER JOIN ProcessTypes_to_Diseases ON ProcessTypes.ID = ProcessTypes_to_Diseases.ProcessTypeId)
+                            INNER JOIN Diseases ON Diseases.ID = ProcessTypes_to_Diseases.DiseaseId) 
+                        WHERE Diseases.IsSelected = yes
+                        GROUP BY ProcessTypes.ID, ProcessTypes.TypeName, Diseases.DiseaseType ", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
+                            var name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TypeName"),
+                                    reader.GetValueOrDefault<string>("TypeName"));
+                            if (reader.GetValueOrDefault<string>("DiseaseType") == "Custom")
+                                name = reader.GetValueOrDefault<string>("TypeName");
+                                
                             types.Add(new ProcessType
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
-                                TypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TypeName"), reader.GetValueOrDefault<string>("TypeName")),
-                                CategoryName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("CategoryName"), reader.GetValueOrDefault<string>("CategoryName")),
+                                TypeName = name,
+                                 DiseaseType = reader.GetValueOrDefault<string>("DiseaseType")
                             });
                         }
                         reader.Close();
@@ -242,22 +250,30 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select ProcessTypes.TypeName, ProcessTypes.UpdatedAt,
-                        aspnet_users.UserName, ProcessTypes.CreatedAt, created.UserName as CreatedBy, ProcessTypes.CategoryName
-                        FROM ((ProcessTypes INNER JOIN aspnet_Users on ProcessTypes.UpdatedById = aspnet_Users.UserId)
+                    OleDbCommand command = new OleDbCommand(@"Select ProcessTypes.TypeName, Diseases.DiseaseType, ProcessTypes.UpdatedAt,
+                        aspnet_users.UserName, ProcessTypes.CreatedAt, created.UserName as CreatedBy 
+                        FROM ((((ProcessTypes INNER JOIN aspnet_Users on ProcessTypes.UpdatedById = aspnet_Users.UserId)
                             INNER JOIN aspnet_Users created on ProcessTypes.CreatedById = created.UserId)
-                        WHERE ProcessTypes.ID=@id", connection);
+                            INNER JOIN ProcessTypes_to_Diseases itod on ProcessTypes.ID = itod.ProcessTypeId)
+                            INNER JOIN Diseases on itod.DiseaseId = Diseases.Id) 
+                        WHERE ProcessTypes.ID=@id
+                        GROUP BY ProcessTypes.TypeName, Diseases.DiseaseType, ProcessTypes.UpdatedAt,
+                            aspnet_users.UserName, ProcessTypes.CreatedAt, created.UserName", connection);
                     command.Parameters.Add(new OleDbParameter("@id", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
                             reader.Read();
+                            var name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TypeName"),
+                                    reader.GetValueOrDefault<string>("TypeName"));
+                            if (reader.GetValueOrDefault<string>("DiseaseType") == "Custom")
+                                name = reader.GetValueOrDefault<string>("TypeName");
+                                
                             process = new ProcessType
                             {
                                 Id = id,
-                                TypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TypeName"), reader.GetValueOrDefault<string>("TypeName")),
-                                CategoryName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("CategoryName"), reader.GetValueOrDefault<string>("CategoryName")),
+                                TypeName = name,
                                 UpdatedBy = Util.GetAuditInfo(reader)
                             };
                         }
@@ -280,7 +296,7 @@ namespace Nada.Model.Repositories
                         FROM ((ProcessIndicators INNER JOIN aspnet_users ON ProcessIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON ProcessIndicators.DataTypeId = IndicatorDataTypes.ID)
                         WHERE ProcessTypeId=@ProcessTypeId AND IsDisabled=0 
-                        ORDER BY SortOrder", connection);
+                        ORDER BY SortOrder AND ProcessIndicators.ID", connection);
                     command.Parameters.Add(new OleDbParameter("@ProcessTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -331,14 +347,13 @@ namespace Nada.Model.Repositories
                     transWasStarted = true;
 
                     if (model.Id > 0)
-                        command = new OleDbCommand(@"UPDATE ProcessTypes SET TypeName=@TypeName, CategoryName=@CategoryName, UpdatedById=@UpdatedById, 
+                        command = new OleDbCommand(@"UPDATE ProcessTypes SET TypeName=@TypeName,  UpdatedById=@UpdatedById, 
                             UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
                     else
-                        command = new OleDbCommand(@"INSERT INTO ProcessTypes (TypeName, CategoryName, UpdatedById, 
-                            UpdatedAt, CreatedById, CreatedAt) values (@TypeName, @CategoryName, @UpdatedById, @UpdatedAt,
+                        command = new OleDbCommand(@"INSERT INTO ProcessTypes (TypeName,  UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@TypeName,  @UpdatedById, @UpdatedAt,
                             @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(new OleDbParameter("@TypeName", model.TypeName));
-                    command.Parameters.Add(new OleDbParameter("@CategoryName", model.CategoryName));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                     if (model.Id > 0)
@@ -355,6 +370,22 @@ namespace Nada.Model.Repositories
                     {
                         command = new OleDbCommand(@"SELECT Max(ID) FROM ProcessTypes", connection);
                         model.Id = (int)command.ExecuteScalar();
+
+                        // When inserting, assign custom disease to type
+                        command = new OleDbCommand(@"INSERT INTO ProcessTypes_to_Diseases (ProcessTypeId, DiseaseId
+                            ) values (@ProcessTypeId, @DiseaseId)", connection);
+                        command.Parameters.Add(new OleDbParameter("@ProcessTypeId", model.Id));
+                        command.Parameters.Add(new OleDbParameter("@DiseaseId", (int)DiseaseType.Custom));
+                        command.ExecuteNonQuery();
+                        // Add year reported
+                        command = new OleDbCommand(@"INSERT INTO ProcessIndicators (ProcessTypeId, DataTypeId, AggTypeId,
+                            DisplayName, IsRequired, IsDisabled, IsEditable, IsDisplayed, SortOrder, UpdatedById, UpdatedAt) VALUES
+                            (@ProcessTypeId, 7, 5, 'YearReported', -1, 0, 0, 0, -1, @UpdatedById, 
+                             @UpdatedAt)", connection);
+                        command.Parameters.Add(new OleDbParameter("@ProcessTypeId", model.Id));
+                        command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.ExecuteNonQuery();
                     }
 
                     foreach (var indicator in model.Indicators.Values.Where(i => i.Id > 0 && i.IsEdited))
@@ -425,14 +456,17 @@ namespace Nada.Model.Repositories
 
             if (process.Id > 0)
                 command = new OleDbCommand(@"UPDATE processes SET ProcessTypeId=@ProcessTypeId, AdminLevelId=@AdminLevelId, YearReported=@YearReported,
+                           SCMDrug=@SCMDrug, PCTrainTrainingCategory=@PCTrainTrainingCategory,
                            Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
-                command = new OleDbCommand(@"INSERT INTO processes (ProcessTypeId, AdminLevelId, YearReported, Notes, UpdatedById, 
-                            UpdatedAt, CreatedById, CreatedAt) values (@ProcessTypeId, @AdminLevelId, @YearReported, @Notes, 
-                            @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
+                command = new OleDbCommand(@"INSERT INTO processes (ProcessTypeId, AdminLevelId, YearReported, SCMDrug, PCTrainTrainingCategory,
+                            Notes, UpdatedById, UpdatedAt, CreatedById, CreatedAt) values (@ProcessTypeId, @AdminLevelId, @YearReported, @SCMDrug, 
+                            @PCTrainTrainingCategory, @Notes, @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@ProcessTypeId", process.ProcessType.Id));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", process.AdminLevelId));
             command.Parameters.Add(new OleDbParameter("@YearReported", process.YearReported));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@SCMDrug", process.SCMDrug));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@PCTrainTrainingCategory", process.PCTrainTrainingCategory));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", process.Notes));
             command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));

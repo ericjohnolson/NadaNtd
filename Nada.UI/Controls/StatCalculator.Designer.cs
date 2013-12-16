@@ -53,23 +53,23 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 52);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(933, 55);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // hr4
             // 
             this.hr4.BackColor = System.Drawing.Color.DimGray;
             this.hr4.ForeColor = System.Drawing.Color.Gray;
-            this.hr4.Location = new System.Drawing.Point(0, 10);
+            this.hr4.Location = new System.Drawing.Point(0, 12);
             this.hr4.Margin = new System.Windows.Forms.Padding(0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.DimGray;
-            this.hr4.Size = new System.Drawing.Size(800, 1);
+            this.hr4.Size = new System.Drawing.Size(933, 1);
             this.hr4.TabIndex = 48;
             this.hr4.TabStop = false;
             // 
@@ -78,7 +78,7 @@
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.tableLayoutPanel2);
-            this.panel1.Location = new System.Drawing.Point(0, 19);
+            this.panel1.Location = new System.Drawing.Point(0, 22);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(229, 27);
@@ -97,7 +97,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(223, 21);
             this.tableLayoutPanel2.TabIndex = 21;
             // 
@@ -136,29 +136,29 @@
             this.tblIndicators.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tblIndicators.ColumnCount = 3;
             this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblIndicators.Location = new System.Drawing.Point(3, 49);
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblIndicators.Location = new System.Drawing.Point(3, 52);
             this.tblIndicators.Name = "tblIndicators";
             this.tblIndicators.RowCount = 1;
             this.tblIndicators.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblIndicators.Size = new System.Drawing.Size(20, 0);
+            this.tblIndicators.Size = new System.Drawing.Size(23, 0);
             this.tblIndicators.TabIndex = 0;
             // 
             // StatCalculator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "StatCalculator";
-            this.Size = new System.Drawing.Size(800, 52);
+            this.Size = new System.Drawing.Size(933, 55);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);

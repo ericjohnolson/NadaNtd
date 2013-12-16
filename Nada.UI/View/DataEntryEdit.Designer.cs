@@ -42,7 +42,6 @@
             this.statCalculator1 = new Nada.UI.Controls.StatCalculator();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.hrTop = new Nada.UI.Controls.HR();
-            this.adminLevelPickerControl1 = new Nada.UI.View.AdminLevelPickerControl();
             this.nadaLabel2 = new Nada.UI.Controls.H3Label();
             this.nadaLabel1 = new Nada.UI.Controls.H3Label();
             this.adminLevelPickerControl2 = new Nada.UI.View.AdminLevelPickerControl();
@@ -51,21 +50,26 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblDiseaseType = new System.Windows.Forms.Label();
             this.tblTitle = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblAdminLevel = new System.Windows.Forms.Label();
+            this.lblLocation = new System.Windows.Forms.Label();
             this.tableLayoutPanel4.SuspendLayout();
             this.tblNotes.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tblTitle.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonButton1
             // 
             this.kryptonButton1.AutoSize = true;
             this.kryptonButton1.Location = new System.Drawing.Point(3, 3);
-            this.kryptonButton1.MinimumSize = new System.Drawing.Size(78, 25);
+            this.kryptonButton1.MinimumSize = new System.Drawing.Size(91, 29);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.kryptonButton1.Size = new System.Drawing.Size(78, 25);
+            this.kryptonButton1.Size = new System.Drawing.Size(91, 29);
             this.kryptonButton1.TabIndex = 0;
             this.kryptonButton1.Tag = "Save";
             this.kryptonButton1.Values.Text = "Save";
@@ -77,29 +81,29 @@
             this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel4.Controls.Add(this.kryptonButton2, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.kryptonButton1, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(178, 71);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(206, 81);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // kryptonButton2
             // 
             this.kryptonButton2.AutoSize = true;
-            this.kryptonButton2.Location = new System.Drawing.Point(97, 3);
-            this.kryptonButton2.MinimumSize = new System.Drawing.Size(78, 25);
+            this.kryptonButton2.Location = new System.Drawing.Point(112, 3);
+            this.kryptonButton2.MinimumSize = new System.Drawing.Size(91, 29);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.kryptonButton2.Size = new System.Drawing.Size(78, 25);
+            this.kryptonButton2.Size = new System.Drawing.Size(91, 29);
             this.kryptonButton2.TabIndex = 1;
             this.kryptonButton2.Tag = "Cancel";
             this.kryptonButton2.Values.Text = "Cancel";
@@ -112,14 +116,14 @@
             this.tblNotes.ColumnCount = 1;
             this.tblNotes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblNotes.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tblNotes.Location = new System.Drawing.Point(3, 298);
+            this.tblNotes.Location = new System.Drawing.Point(3, 342);
             this.tblNotes.Name = "tblNotes";
             this.tblNotes.RowCount = 2;
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblNotes.Size = new System.Drawing.Size(184, 77);
+            this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblNotes.Size = new System.Drawing.Size(212, 87);
             this.tblNotes.TabIndex = 7;
             // 
             // tableLayoutPanel5
@@ -134,30 +138,30 @@
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel3, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.indicatorControl1, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.statCalculator1, 0, 5);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(10, 100);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(12, 101);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 9;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(806, 378);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(939, 432);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // hr5
             // 
             this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.hr5.ForeColor = System.Drawing.Color.Gray;
-            this.hr5.Location = new System.Drawing.Point(0, 285);
+            this.hr5.Location = new System.Drawing.Point(0, 327);
             this.hr5.Margin = new System.Windows.Forms.Padding(0);
             this.hr5.Name = "hr5";
             this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.hr5.Size = new System.Drawing.Size(800, 1);
+            this.hr5.Size = new System.Drawing.Size(933, 1);
             this.hr5.TabIndex = 57;
             this.hr5.TabStop = false;
             // 
@@ -165,11 +169,11 @@
             // 
             this.hr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.hr4.ForeColor = System.Drawing.Color.Gray;
-            this.hr4.Location = new System.Drawing.Point(0, 82);
+            this.hr4.Location = new System.Drawing.Point(0, 102);
             this.hr4.Margin = new System.Windows.Forms.Padding(0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.hr4.Size = new System.Drawing.Size(800, 1);
+            this.hr4.Size = new System.Drawing.Size(933, 1);
             this.hr4.TabIndex = 47;
             this.hr4.TabStop = false;
             // 
@@ -179,25 +183,25 @@
             this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel3.Controls.Add(this.tbNotes, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.h3Label3, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 95);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 117);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(559, 120);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(650, 136);
             this.tableLayoutPanel3.TabIndex = 6;
             // 
             // tbNotes
             // 
-            this.tbNotes.Location = new System.Drawing.Point(3, 19);
+            this.tbNotes.Location = new System.Drawing.Point(3, 21);
             this.tbNotes.Multiline = true;
             this.tbNotes.Name = "tbNotes";
             this.tbNotes.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbNotes.Size = new System.Drawing.Size(553, 98);
+            this.tbNotes.Size = new System.Drawing.Size(644, 112);
             this.tbNotes.TabIndex = 0;
             // 
             // h3Label3
@@ -208,7 +212,7 @@
             this.h3Label3.Location = new System.Drawing.Point(0, 0);
             this.h3Label3.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label3.Name = "h3Label3";
-            this.h3Label3.Size = new System.Drawing.Size(44, 16);
+            this.h3Label3.Size = new System.Drawing.Size(40, 18);
             this.h3Label3.TabIndex = 5;
             this.h3Label3.TabStop = false;
             this.h3Label3.Tag = "Notes";
@@ -221,10 +225,11 @@
             this.indicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.indicatorControl1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.indicatorControl1.BackColor = System.Drawing.Color.White;
-            this.indicatorControl1.Location = new System.Drawing.Point(0, 5);
+            this.indicatorControl1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.indicatorControl1.Location = new System.Drawing.Point(0, 6);
             this.indicatorControl1.Margin = new System.Windows.Forms.Padding(0);
             this.indicatorControl1.Name = "indicatorControl1";
-            this.indicatorControl1.Size = new System.Drawing.Size(803, 68);
+            this.indicatorControl1.Size = new System.Drawing.Size(936, 86);
             this.indicatorControl1.TabIndex = 58;
             this.indicatorControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             // 
@@ -234,9 +239,10 @@
             this.statCalculator1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.statCalculator1.BackColor = System.Drawing.Color.White;
             this.statCalculator1.Calc = null;
-            this.statCalculator1.Location = new System.Drawing.Point(3, 221);
+            this.statCalculator1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statCalculator1.Location = new System.Drawing.Point(3, 259);
             this.statCalculator1.Name = "statCalculator1";
-            this.statCalculator1.Size = new System.Drawing.Size(800, 52);
+            this.statCalculator1.Size = new System.Drawing.Size(933, 55);
             this.statCalculator1.TabIndex = 59;
             this.statCalculator1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             // 
@@ -247,7 +253,7 @@
             this.tableLayoutPanel6.ColumnCount = 2;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(11, 7);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(13, 8);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
@@ -262,34 +268,22 @@
             this.hrTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.hrTop.ForeColor = System.Drawing.Color.Gray;
             this.hrTop.Location = new System.Drawing.Point(0, 0);
-            this.hrTop.Margin = new System.Windows.Forms.Padding(5);
+            this.hrTop.Margin = new System.Windows.Forms.Padding(6);
             this.hrTop.Name = "hrTop";
             this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.hrTop.Size = new System.Drawing.Size(819, 5);
+            this.hrTop.Size = new System.Drawing.Size(954, 6);
             this.hrTop.TabIndex = 56;
             this.hrTop.TabStop = false;
-            // 
-            // adminLevelPickerControl1
-            // 
-            this.adminLevelPickerControl1.AutoSize = true;
-            this.adminLevelPickerControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.adminLevelPickerControl1.Location = new System.Drawing.Point(10, 58);
-            this.adminLevelPickerControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.adminLevelPickerControl1.Name = "adminLevelPickerControl1";
-            this.adminLevelPickerControl1.Size = new System.Drawing.Size(200, 27);
-            this.adminLevelPickerControl1.TabIndex = 5;
-            this.adminLevelPickerControl1.TabStop = false;
-            this.adminLevelPickerControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             // 
             // nadaLabel2
             // 
             this.nadaLabel2.AutoSize = true;
             this.nadaLabel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.nadaLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.nadaLabel2.Location = new System.Drawing.Point(710, 69);
+            this.nadaLabel2.Location = new System.Drawing.Point(828, 80);
             this.nadaLabel2.Margin = new System.Windows.Forms.Padding(0);
             this.nadaLabel2.Name = "nadaLabel2";
-            this.nadaLabel2.Size = new System.Drawing.Size(13, 16);
+            this.nadaLabel2.Size = new System.Drawing.Size(12, 18);
             this.nadaLabel2.TabIndex = 46;
             this.nadaLabel2.TabStop = false;
             this.nadaLabel2.Text = "*";
@@ -300,10 +294,10 @@
             this.nadaLabel1.AutoSize = true;
             this.nadaLabel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.nadaLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.nadaLabel1.Location = new System.Drawing.Point(721, 66);
+            this.nadaLabel1.Location = new System.Drawing.Point(841, 76);
             this.nadaLabel1.Margin = new System.Windows.Forms.Padding(0);
             this.nadaLabel1.Name = "nadaLabel1";
-            this.nadaLabel1.Size = new System.Drawing.Size(64, 16);
+            this.nadaLabel1.Size = new System.Drawing.Size(58, 18);
             this.nadaLabel1.TabIndex = 45;
             this.nadaLabel1.TabStop = false;
             this.nadaLabel1.Tag = "Required";
@@ -314,6 +308,7 @@
             // 
             this.adminLevelPickerControl2.AutoSize = true;
             this.adminLevelPickerControl2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.adminLevelPickerControl2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adminLevelPickerControl2.Location = new System.Drawing.Point(0, 0);
             this.adminLevelPickerControl2.Margin = new System.Windows.Forms.Padding(0);
             this.adminLevelPickerControl2.Name = "adminLevelPickerControl2";
@@ -328,7 +323,7 @@
             this.btnHelp.FlatAppearance.BorderSize = 0;
             this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHelp.Image = global::Nada.UI.Properties.Resources.button_help;
-            this.btnHelp.Location = new System.Drawing.Point(691, 8);
+            this.btnHelp.Location = new System.Drawing.Point(806, 9);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(46, 46);
             this.btnHelp.TabIndex = 59;
@@ -343,7 +338,7 @@
             this.btnDash.FlatAppearance.BorderSize = 0;
             this.btnDash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDash.Image = global::Nada.UI.Properties.Resources.button_dashboard;
-            this.btnDash.Location = new System.Drawing.Point(743, 8);
+            this.btnDash.Location = new System.Drawing.Point(867, 9);
             this.btnDash.Name = "btnDash";
             this.btnDash.Size = new System.Drawing.Size(46, 46);
             this.btnDash.TabIndex = 57;
@@ -388,34 +383,89 @@
             this.tblTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblTitle.Controls.Add(this.lblDiseaseType, 0, 0);
             this.tblTitle.Controls.Add(this.lblTitle, 1, 0);
-            this.tblTitle.Location = new System.Drawing.Point(11, 13);
+            this.tblTitle.Location = new System.Drawing.Point(13, 15);
             this.tblTitle.Name = "tblTitle";
             this.tblTitle.RowCount = 1;
             this.tblTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblTitle.Size = new System.Drawing.Size(223, 30);
             this.tblTitle.TabIndex = 60;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.label2, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblAdminLevel, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblLocation, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(15, 73);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 21);
+            this.tableLayoutPanel2.TabIndex = 61;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(77, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(13, 16);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "*";
+            // 
+            // lblAdminLevel
+            // 
+            this.lblAdminLevel.AutoSize = true;
+            this.lblAdminLevel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdminLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblAdminLevel.Location = new System.Drawing.Point(90, 0);
+            this.lblAdminLevel.Margin = new System.Windows.Forms.Padding(0);
+            this.lblAdminLevel.Name = "lblAdminLevel";
+            this.lblAdminLevel.Size = new System.Drawing.Size(104, 21);
+            this.lblAdminLevel.TabIndex = 4;
+            this.lblAdminLevel.Text = "Not selected";
+            // 
+            // lblLocation
+            // 
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.BackColor = System.Drawing.Color.Transparent;
+            this.lblLocation.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocation.Location = new System.Drawing.Point(0, 0);
+            this.lblLocation.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(77, 21);
+            this.lblLocation.TabIndex = 16;
+            this.lblLocation.Tag = "Location";
+            this.lblLocation.Text = "Location:";
+            // 
             // DataEntryEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tblTitle);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnDash);
             this.Controls.Add(this.hrTop);
             this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.tableLayoutPanel5);
-            this.Controls.Add(this.adminLevelPickerControl1);
             this.Controls.Add(this.nadaLabel2);
             this.Controls.Add(this.nadaLabel1);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "DataEntryEdit";
-            this.Size = new System.Drawing.Size(819, 481);
+            this.Size = new System.Drawing.Size(954, 536);
             this.Load += new System.EventHandler(this.DataEntryEdit_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
@@ -427,6 +477,8 @@
             this.tableLayoutPanel3.PerformLayout();
             this.tblTitle.ResumeLayout(false);
             this.tblTitle.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,7 +488,6 @@
 
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private AdminLevelPickerControl adminLevelPickerControl1;
         private System.Windows.Forms.TableLayoutPanel tblNotes;
         private AdminLevelPickerControl adminLevelPickerControl2;
         private Controls.H3Label nadaLabel1;
@@ -457,5 +508,9 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblDiseaseType;
         private System.Windows.Forms.TableLayoutPanel tblTitle;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblAdminLevel;
+        private System.Windows.Forms.Label lblLocation;
     }
 }

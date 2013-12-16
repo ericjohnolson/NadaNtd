@@ -35,22 +35,25 @@ namespace Nada.Model.Intervention
 
             //L48	% of New Grade II	PERCENT	calc: L23/L5
             if (L23 >= 0 && L5 > 0)
-                calcs.Add(new KeyValuePair<string, string>("PercentEndemicReporting", string.Format("{0:0.00}", L23 / L5 * 100).ToString()));
+                calcs.Add(new KeyValuePair<string, string>("PercentNewGrade2", string.Format("{0:0.00}", L23 / L5 * 100).ToString()));
             else
                 calcs.Add(new KeyValuePair<string, string>("PercentNewGrade2", Translations.NA));
+
             //L49	Prevalence detection ratio	number	calc: L12/L5
             if (L12 >= 0 && L5 > 0)
-                calcs.Add(new KeyValuePair<string, string>("PercentEndemicReporting", string.Format("{0:0.00}", L12 / L5 * 100).ToString()));
+                calcs.Add(new KeyValuePair<string, string>("PrevalenceDetectionRatio", string.Format("{0:0.00}", L12 / L5 * 100).ToString()));
             else
                 calcs.Add(new KeyValuePair<string, string>("PrevalenceDetectionRatio", Translations.NA));
+
             //L51	Cure rate of previous year MB cases	PERCENT	calc: L40/L10
             if (L40 >= 0 && L10 > 0)
-                calcs.Add(new KeyValuePair<string, string>("PercentEndemicReporting", string.Format("{0:0.00}", L40 / L10 * 100).ToString()));
+                calcs.Add(new KeyValuePair<string, string>("PercentCureRateMb", string.Format("{0:0.00}", L40 / L10 * 100).ToString()));
             else
                 calcs.Add(new KeyValuePair<string, string>("PercentCureRateMb", Translations.NA));
+
             //L52	PB Cured rate during the current year  	PERCENT	calc: L41/(((L5-L6)/2)+(L9-l10))
             if (L41 >= 0 && L5 >= 0 && L10 >= 0 && L6 >= 0 && L9 >= 0)
-                calcs.Add(new KeyValuePair<string, string>("PercentEndemicReporting", string.Format("{0:0.00}", (L41/(((L5-L6)/2)+(L9-L10))) * 100).ToString()));
+                calcs.Add(new KeyValuePair<string, string>("PercentCureRatePb", string.Format("{0:0.00}", (L41 / (((L5 - L6) / 2) + (L9 - L10))) * 100).ToString()));
             else
                 calcs.Add(new KeyValuePair<string, string>("PercentCureRatePb", Translations.NA));
 

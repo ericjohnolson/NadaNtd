@@ -55,14 +55,14 @@ namespace Nada.UI.View.Survey
             {
                 r = new SurveyRepository();
 
-                if (model == null)
-                {
-                    if (model == null) model = r.CreateSurvey(creationType);
-                    adminLevelPickerControl1.Select(adminLevel);
-                    model.AdminLevelId = adminLevel.Id;
-                }
-                else
-                    adminLevelPickerControl1.Select(model.AdminLevelId.Value);
+                //if (model == null)
+                //{
+                //    if (model == null) model = r.CreateSurvey(creationType);
+                //    adminLevelPickerControl1.Select(adminLevel);
+                //    model.AdminLevelId = adminLevel.Id;
+                //}
+                //else
+                //    adminLevelPickerControl1.Select(model.AdminLevelId.Value);
 
                 bsSurvey.DataSource = model;
                 lblTitle.Text = model.TypeOfSurvey.SurveyTypeName;
@@ -98,11 +98,11 @@ namespace Nada.UI.View.Survey
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
-            if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
-            {
-                MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
-                return;
-            }
+            //if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
+            //{
+            //    MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
+            //    return;
+            //}
 
             bsSurvey.EndEdit();
             model.IndicatorValues = customIndicatorControl1.GetValues();

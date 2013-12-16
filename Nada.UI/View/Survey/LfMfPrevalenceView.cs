@@ -61,15 +61,15 @@ namespace Nada.UI.View.Survey
                 {
                     model = r.CreateSurvey<LfMfPrevalence>(StaticSurveyType.LfPrevalence);
                     adminLevelPickerControl1.Select(adminLevel);
-                    model.AdminLevelId = adminLevel.Id;
+                    //model.AdminLevelId = adminLevel.Id;
                 }
-                else
-                    adminLevelPickerControl1.Select(model.AdminLevelId.Value);
+                //else
+                  //  adminLevelPickerControl1.Select(model.AdminLevelId.Value);
 
                 LoadDropdownKeys(model);
-                List<SentinelSite> sites = r.GetSitesForAdminLevel(model.AdminLevelId.Value);
-                sites.Insert(0, new SentinelSite { SiteName = Translations.PleaseSelect, Id = -1 });
-                sentinelSiteBindingSource.DataSource = sites;
+                //List<SentinelSite> sites = r.GetSitesForAdminLevel(model.AdminLevelId.Value);
+                //sites.Insert(0, new SentinelSite { SiteName = Translations.PleaseSelect, Id = -1 });
+                //sentinelSiteBindingSource.DataSource = sites;
 
                 bsSurvey.DataSource = model;
                 if (model.TypeOfSurvey.Indicators != null && model.TypeOfSurvey.Indicators.Count() > 0)
@@ -104,7 +104,7 @@ namespace Nada.UI.View.Survey
 
         void adminLevelPickerControl1_OnSelect(Model.AdminLevel obj)
         {
-            model.AdminLevelId = obj.Id;
+            //model.AdminLevelId = obj.Id;
         }
 
         private void cbSiteType_SelectedIndexChanged(object sender, EventArgs e)
@@ -136,21 +136,21 @@ namespace Nada.UI.View.Survey
         private void sentinelSiteAdd_OnClick()
         {
             SentinelSiteAdd modal = new SentinelSiteAdd();
-            if (model.AdminLevelId.HasValue && model.AdminLevelId > 0)
-                modal = new SentinelSiteAdd(demo.GetAdminLevelById(model.AdminLevelId.Value));
+           // if (model.AdminLevelId.HasValue && model.AdminLevelId > 0)
+             //   modal = new SentinelSiteAdd(demo.GetAdminLevelById(model.AdminLevelId.Value));
             modal.OnSave += sites_OnAdd;
             modal.ShowDialog();
         }
 
         void sites_OnAdd(SentinelSite obj)
         {
-            List<SentinelSite> sites = r.GetSitesForAdminLevel(obj.AdminLevel.Id);
-            sites.Insert(0, new SentinelSite { SiteName = Translations.PleaseSelect, Id = -1 });
-            sentinelSiteBindingSource.DataSource = sites;
-            adminLevelPickerControl2.Select(obj.AdminLevel);
-            model.AdminLevelId = obj.AdminLevel.Id; // TODO manage changing admin levels
-            model.SentinelSiteId = obj.Id;
-            bsSurvey.ResetBindings(false);
+         //   List<SentinelSite> sites = r.GetSitesForAdminLevel(obj.AdminLevel.Id);
+         //   sites.Insert(0, new SentinelSite { SiteName = Translations.PleaseSelect, Id = -1 });
+         //   sentinelSiteBindingSource.DataSource = sites;
+         //   adminLevelPickerControl2.Select(obj.AdminLevel);
+         ////   model.AdminLevelId = obj.AdminLevel.Id; // TODO manage changing admin levels
+         //   model.SentinelSiteId = obj.Id;
+         //   bsSurvey.ResetBindings(false);
         }
 
         private void UpdatePercentage()
@@ -182,11 +182,11 @@ namespace Nada.UI.View.Survey
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
-            if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
-            {
-                MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
-                return;
-            }
+            //if (!model.AdminLevelId.HasValue || model.AdminLevelId.Value < 1)
+            //{
+            //    MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
+            //    return;
+            //}
 
             bsSurvey.EndEdit();
             model.Partners = fundersControl1.GetSelected();

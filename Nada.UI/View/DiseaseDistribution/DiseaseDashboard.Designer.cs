@@ -173,7 +173,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 1574);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(823, 1770);
             this.tableLayoutPanel1.TabIndex = 60;
             // 
             // tbProcess
@@ -185,13 +185,13 @@
             this.tbProcess.Controls.Add(this.pnlProcess, 0, 2);
             this.tbProcess.Controls.Add(this.tableLayoutPanel11, 0, 0);
             this.tbProcess.Controls.Add(this.hr1, 0, 1);
-            this.tbProcess.Location = new System.Drawing.Point(3, 1258);
+            this.tbProcess.Location = new System.Drawing.Point(3, 1414);
             this.tbProcess.Name = "tbProcess";
             this.tbProcess.RowCount = 3;
             this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbProcess.Size = new System.Drawing.Size(700, 313);
+            this.tbProcess.Size = new System.Drawing.Size(817, 353);
             this.tbProcess.TabIndex = 62;
             // 
             // pnlProcess
@@ -203,12 +203,12 @@
             this.pnlProcess.Controls.Add(this.loadingProcess, 0, 1);
             this.pnlProcess.Controls.Add(this.pnlProcessDetails, 0, 0);
             this.pnlProcess.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlProcess.Location = new System.Drawing.Point(3, 47);
+            this.pnlProcess.Location = new System.Drawing.Point(3, 49);
             this.pnlProcess.Name = "pnlProcess";
             this.pnlProcess.RowCount = 2;
             this.pnlProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlProcess.Size = new System.Drawing.Size(694, 263);
+            this.pnlProcess.Size = new System.Drawing.Size(811, 301);
             this.pnlProcess.TabIndex = 60;
             this.pnlProcess.Visible = false;
             // 
@@ -217,9 +217,10 @@
             this.loadingProcess.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.loadingProcess.AutoSize = true;
             this.loadingProcess.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.loadingProcess.Location = new System.Drawing.Point(324, 201);
+            this.loadingProcess.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingProcess.Location = new System.Drawing.Point(379, 231);
             this.loadingProcess.Name = "loadingProcess";
-            this.loadingProcess.Size = new System.Drawing.Size(46, 59);
+            this.loadingProcess.Size = new System.Drawing.Size(53, 67);
             this.loadingProcess.StatusMessage = "";
             this.loadingProcess.TabIndex = 0;
             this.loadingProcess.Visible = false;
@@ -230,7 +231,7 @@
             this.pnlProcessDetails.Controls.Add(this.lvProcess);
             this.pnlProcessDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlProcessDetails.Name = "pnlProcessDetails";
-            this.pnlProcessDetails.Size = new System.Drawing.Size(670, 192);
+            this.pnlProcessDetails.Size = new System.Drawing.Size(782, 222);
             this.pnlProcessDetails.TabIndex = 1;
             // 
             // tableLayoutPanel10
@@ -247,7 +248,7 @@
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(231, 27);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(253, 29);
             this.tableLayoutPanel10.TabIndex = 6;
             // 
             // h3Label4
@@ -259,7 +260,7 @@
             this.h3Label4.Location = new System.Drawing.Point(0, 5);
             this.h3Label4.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label4.Name = "h3Label4";
-            this.h3Label4.Size = new System.Drawing.Size(66, 16);
+            this.h3Label4.Size = new System.Drawing.Size(62, 18);
             this.h3Label4.TabIndex = 0;
             this.h3Label4.Tag = "EnterNew";
             this.h3Label4.Text = "Enter new";
@@ -269,10 +270,11 @@
             // 
             this.cbProcessTypes.DataSource = this.processTypeBindingSource;
             this.cbProcessTypes.DisplayMember = "TypeName";
+            this.cbProcessTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProcessTypes.FormattingEnabled = true;
-            this.cbProcessTypes.Location = new System.Drawing.Point(69, 3);
+            this.cbProcessTypes.Location = new System.Drawing.Point(65, 3);
             this.cbProcessTypes.Name = "cbProcessTypes";
-            this.cbProcessTypes.Size = new System.Drawing.Size(159, 21);
+            this.cbProcessTypes.Size = new System.Drawing.Size(185, 23);
             this.cbProcessTypes.TabIndex = 0;
             this.cbProcessTypes.SelectedIndexChanged += new System.EventHandler(this.cbProcess_SelectedIndexChanged);
             // 
@@ -294,10 +296,10 @@
             this.olvColumn25,
             this.olvColumn26});
             this.lvProcess.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvProcess.Location = new System.Drawing.Point(3, 32);
+            this.lvProcess.Location = new System.Drawing.Point(3, 37);
             this.lvProcess.Name = "lvProcess";
             this.lvProcess.ShowGroups = false;
-            this.lvProcess.Size = new System.Drawing.Size(650, 145);
+            this.lvProcess.Size = new System.Drawing.Size(758, 167);
             this.lvProcess.TabIndex = 0;
             this.lvProcess.UseCompatibleStateImageBehavior = false;
             this.lvProcess.UseHyperlinks = true;
@@ -351,9 +353,9 @@
             this.tableLayoutPanel11.AutoSize = true;
             this.tableLayoutPanel11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel11.ColumnCount = 2;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel11.Controls.Add(this.btnProcess, 0, 0);
             this.tableLayoutPanel11.Controls.Add(this.label3, 1, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Top;
@@ -361,7 +363,7 @@
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(694, 28);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(811, 28);
             this.tableLayoutPanel11.TabIndex = 19;
             // 
             // btnProcess
@@ -384,8 +386,8 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(44)))), ((int)(((byte)(27)))));
-            this.label3.Location = new System.Drawing.Point(30, 4);
-            this.label3.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.label3.Location = new System.Drawing.Point(35, 5);
+            this.label3.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(139, 21);
             this.label3.TabIndex = 17;
@@ -401,7 +403,7 @@
             this.hr1.Margin = new System.Windows.Forms.Padding(0);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(44)))), ((int)(((byte)(27)))));
-            this.hr1.Size = new System.Drawing.Size(700, 1);
+            this.hr1.Size = new System.Drawing.Size(817, 1);
             this.hr1.TabIndex = 21;
             // 
             // tblDiseaseDistro
@@ -413,13 +415,13 @@
             this.tblDiseaseDistro.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tblDiseaseDistro.Controls.Add(this.hrDisease, 0, 1);
             this.tblDiseaseDistro.Controls.Add(this.pnlDisease, 0, 2);
-            this.tblDiseaseDistro.Location = new System.Drawing.Point(3, 304);
+            this.tblDiseaseDistro.Location = new System.Drawing.Point(3, 341);
             this.tblDiseaseDistro.Name = "tblDiseaseDistro";
             this.tblDiseaseDistro.RowCount = 3;
             this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblDiseaseDistro.Size = new System.Drawing.Size(700, 308);
+            this.tblDiseaseDistro.Size = new System.Drawing.Size(817, 347);
             this.tblDiseaseDistro.TabIndex = 62;
             // 
             // tableLayoutPanel5
@@ -427,9 +429,9 @@
             this.tableLayoutPanel5.AutoSize = true;
             this.tableLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel5.Controls.Add(this.btnDisease, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.label4, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Top;
@@ -437,7 +439,7 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(694, 28);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(811, 28);
             this.tableLayoutPanel5.TabIndex = 19;
             // 
             // btnDisease
@@ -460,8 +462,8 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.label4.Location = new System.Drawing.Point(30, 4);
-            this.label4.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.label4.Location = new System.Drawing.Point(35, 5);
+            this.label4.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(155, 21);
             this.label4.TabIndex = 17;
@@ -477,7 +479,7 @@
             this.hrDisease.Margin = new System.Windows.Forms.Padding(0);
             this.hrDisease.Name = "hrDisease";
             this.hrDisease.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.hrDisease.Size = new System.Drawing.Size(700, 1);
+            this.hrDisease.Size = new System.Drawing.Size(817, 1);
             this.hrDisease.TabIndex = 21;
             // 
             // pnlDisease
@@ -489,12 +491,12 @@
             this.pnlDisease.Controls.Add(this.loadingDistros, 0, 1);
             this.pnlDisease.Controls.Add(this.pnlDistroDetails, 0, 0);
             this.pnlDisease.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDisease.Location = new System.Drawing.Point(3, 47);
+            this.pnlDisease.Location = new System.Drawing.Point(3, 49);
             this.pnlDisease.Name = "pnlDisease";
             this.pnlDisease.RowCount = 2;
             this.pnlDisease.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDisease.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlDisease.Size = new System.Drawing.Size(694, 258);
+            this.pnlDisease.Size = new System.Drawing.Size(811, 295);
             this.pnlDisease.TabIndex = 22;
             this.pnlDisease.Visible = false;
             // 
@@ -503,9 +505,10 @@
             this.loadingDistros.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.loadingDistros.AutoSize = true;
             this.loadingDistros.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.loadingDistros.Location = new System.Drawing.Point(324, 196);
+            this.loadingDistros.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingDistros.Location = new System.Drawing.Point(379, 225);
             this.loadingDistros.Name = "loadingDistros";
-            this.loadingDistros.Size = new System.Drawing.Size(46, 59);
+            this.loadingDistros.Size = new System.Drawing.Size(53, 67);
             this.loadingDistros.StatusMessage = "";
             this.loadingDistros.TabIndex = 0;
             this.loadingDistros.Visible = false;
@@ -516,7 +519,7 @@
             this.pnlDistroDetails.Controls.Add(this.lvDiseaseDistro);
             this.pnlDistroDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlDistroDetails.Name = "pnlDistroDetails";
-            this.pnlDistroDetails.Size = new System.Drawing.Size(670, 187);
+            this.pnlDistroDetails.Size = new System.Drawing.Size(782, 216);
             this.pnlDistroDetails.TabIndex = 1;
             // 
             // tableLayoutPanel7
@@ -533,7 +536,7 @@
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(231, 27);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(253, 29);
             this.tableLayoutPanel7.TabIndex = 5;
             // 
             // h3Label3
@@ -545,7 +548,7 @@
             this.h3Label3.Location = new System.Drawing.Point(0, 5);
             this.h3Label3.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label3.Name = "h3Label3";
-            this.h3Label3.Size = new System.Drawing.Size(66, 16);
+            this.h3Label3.Size = new System.Drawing.Size(62, 18);
             this.h3Label3.TabIndex = 0;
             this.h3Label3.Tag = "EnterNew";
             this.h3Label3.Text = "Enter new";
@@ -555,10 +558,11 @@
             // 
             this.cbNewDiseaseDistro.DataSource = this.diseaseBindingSource;
             this.cbNewDiseaseDistro.DisplayMember = "DisplayName";
+            this.cbNewDiseaseDistro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbNewDiseaseDistro.FormattingEnabled = true;
-            this.cbNewDiseaseDistro.Location = new System.Drawing.Point(69, 3);
+            this.cbNewDiseaseDistro.Location = new System.Drawing.Point(65, 3);
             this.cbNewDiseaseDistro.Name = "cbNewDiseaseDistro";
-            this.cbNewDiseaseDistro.Size = new System.Drawing.Size(159, 21);
+            this.cbNewDiseaseDistro.Size = new System.Drawing.Size(185, 23);
             this.cbNewDiseaseDistro.TabIndex = 0;
             this.cbNewDiseaseDistro.SelectedIndexChanged += new System.EventHandler(this.cbNewDiseaseDistro_SelectedIndexChanged);
             // 
@@ -580,10 +584,10 @@
             this.olvColumn17,
             this.olvColumn18});
             this.lvDiseaseDistro.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvDiseaseDistro.Location = new System.Drawing.Point(3, 36);
+            this.lvDiseaseDistro.Location = new System.Drawing.Point(3, 42);
             this.lvDiseaseDistro.Name = "lvDiseaseDistro";
             this.lvDiseaseDistro.ShowGroups = false;
-            this.lvDiseaseDistro.Size = new System.Drawing.Size(652, 145);
+            this.lvDiseaseDistro.Size = new System.Drawing.Size(760, 167);
             this.lvDiseaseDistro.TabIndex = 1;
             this.lvDiseaseDistro.UseCompatibleStateImageBehavior = false;
             this.lvDiseaseDistro.UseHyperlinks = true;
@@ -645,9 +649,9 @@
             this.tblOverview.Name = "tblOverview";
             this.tblOverview.RowCount = 3;
             this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblOverview.Size = new System.Drawing.Size(700, 295);
+            this.tblOverview.Size = new System.Drawing.Size(817, 332);
             this.tblOverview.TabIndex = 60;
             // 
             // pnlDemo
@@ -659,12 +663,12 @@
             this.pnlDemo.Controls.Add(this.loadingDemos, 0, 1);
             this.pnlDemo.Controls.Add(this.pnlDemoDetails, 0, 0);
             this.pnlDemo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDemo.Location = new System.Drawing.Point(3, 47);
+            this.pnlDemo.Location = new System.Drawing.Point(3, 49);
             this.pnlDemo.Name = "pnlDemo";
             this.pnlDemo.RowCount = 2;
             this.pnlDemo.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDemo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlDemo.Size = new System.Drawing.Size(694, 245);
+            this.pnlDemo.Size = new System.Drawing.Size(811, 280);
             this.pnlDemo.TabIndex = 23;
             this.pnlDemo.Visible = false;
             // 
@@ -673,9 +677,10 @@
             this.loadingDemos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.loadingDemos.AutoSize = true;
             this.loadingDemos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.loadingDemos.Location = new System.Drawing.Point(324, 183);
+            this.loadingDemos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingDemos.Location = new System.Drawing.Point(379, 210);
             this.loadingDemos.Name = "loadingDemos";
-            this.loadingDemos.Size = new System.Drawing.Size(46, 59);
+            this.loadingDemos.Size = new System.Drawing.Size(53, 67);
             this.loadingDemos.StatusMessage = "";
             this.loadingDemos.TabIndex = 0;
             this.loadingDemos.Visible = false;
@@ -686,7 +691,7 @@
             this.pnlDemoDetails.Controls.Add(this.lvDemo);
             this.pnlDemoDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlDemoDetails.Name = "pnlDemoDetails";
-            this.pnlDemoDetails.Size = new System.Drawing.Size(670, 174);
+            this.pnlDemoDetails.Size = new System.Drawing.Size(782, 201);
             this.pnlDemoDetails.TabIndex = 1;
             // 
             // lnkAddDemo
@@ -698,7 +703,7 @@
             this.lnkAddDemo.Location = new System.Drawing.Point(3, 0);
             this.lnkAddDemo.Margin = new System.Windows.Forms.Padding(0);
             this.lnkAddDemo.Name = "lnkAddDemo";
-            this.lnkAddDemo.Size = new System.Drawing.Size(121, 16);
+            this.lnkAddDemo.Size = new System.Drawing.Size(110, 15);
             this.lnkAddDemo.TabIndex = 2;
             this.lnkAddDemo.Tag = "AddNewDemoLink";
             this.lnkAddDemo.Text = "AddNewDemoLink";
@@ -720,10 +725,10 @@
             this.olvColumn19,
             this.olvColumn20});
             this.lvDemo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvDemo.Location = new System.Drawing.Point(3, 19);
+            this.lvDemo.Location = new System.Drawing.Point(3, 22);
             this.lvDemo.Name = "lvDemo";
             this.lvDemo.ShowGroups = false;
-            this.lvDemo.Size = new System.Drawing.Size(652, 145);
+            this.lvDemo.Size = new System.Drawing.Size(760, 167);
             this.lvDemo.TabIndex = 1;
             this.lvDemo.UseCompatibleStateImageBehavior = false;
             this.lvDemo.UseHyperlinks = true;
@@ -741,6 +746,7 @@
             // olvColumn4
             // 
             this.olvColumn4.AspectName = "TotalPopulation";
+            this.olvColumn4.AspectToStringFormat = "{0:n}";
             this.olvColumn4.CellPadding = null;
             this.olvColumn4.IsEditable = false;
             this.olvColumn4.Text = "TotalPopulation";
@@ -749,6 +755,7 @@
             // olvColumn21
             // 
             this.olvColumn21.AspectName = "GrowthRate";
+            this.olvColumn21.AspectToStringFormat = "{0:n}";
             this.olvColumn21.CellPadding = null;
             this.olvColumn21.Text = "GrowthRate";
             this.olvColumn21.Width = 99;
@@ -783,9 +790,9 @@
             this.tblHeader.AutoSize = true;
             this.tblHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tblHeader.ColumnCount = 2;
-            this.tblHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tblHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tblHeader.Controls.Add(this.btnOverview, 0, 0);
             this.tblHeader.Controls.Add(this.lblHeader, 1, 0);
             this.tblHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -793,7 +800,7 @@
             this.tblHeader.Name = "tblHeader";
             this.tblHeader.RowCount = 1;
             this.tblHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblHeader.Size = new System.Drawing.Size(694, 28);
+            this.tblHeader.Size = new System.Drawing.Size(811, 28);
             this.tblHeader.TabIndex = 19;
             // 
             // btnOverview
@@ -816,8 +823,8 @@
             this.lblHeader.BackColor = System.Drawing.Color.Transparent;
             this.lblHeader.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.lblHeader.Location = new System.Drawing.Point(30, 4);
-            this.lblHeader.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.lblHeader.Location = new System.Drawing.Point(35, 5);
+            this.lblHeader.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(105, 21);
             this.lblHeader.TabIndex = 17;
@@ -833,7 +840,7 @@
             this.hrOverview.Margin = new System.Windows.Forms.Padding(0);
             this.hrOverview.Name = "hrOverview";
             this.hrOverview.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hrOverview.Size = new System.Drawing.Size(700, 1);
+            this.hrOverview.Size = new System.Drawing.Size(817, 1);
             this.hrOverview.TabIndex = 21;
             // 
             // tblIntv
@@ -845,13 +852,13 @@
             this.tblIntv.Controls.Add(this.pnlIntv, 0, 2);
             this.tblIntv.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tblIntv.Controls.Add(this.hrIntv, 0, 1);
-            this.tblIntv.Location = new System.Drawing.Point(3, 939);
+            this.tblIntv.Location = new System.Drawing.Point(3, 1055);
             this.tblIntv.Name = "tblIntv";
             this.tblIntv.RowCount = 3;
             this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblIntv.Size = new System.Drawing.Size(700, 313);
+            this.tblIntv.Size = new System.Drawing.Size(817, 353);
             this.tblIntv.TabIndex = 61;
             // 
             // pnlIntv
@@ -863,12 +870,12 @@
             this.pnlIntv.Controls.Add(this.loadingIntvs, 0, 1);
             this.pnlIntv.Controls.Add(this.pnlIntvDetails, 0, 0);
             this.pnlIntv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlIntv.Location = new System.Drawing.Point(3, 47);
+            this.pnlIntv.Location = new System.Drawing.Point(3, 49);
             this.pnlIntv.Name = "pnlIntv";
             this.pnlIntv.RowCount = 2;
             this.pnlIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlIntv.Size = new System.Drawing.Size(694, 263);
+            this.pnlIntv.Size = new System.Drawing.Size(811, 301);
             this.pnlIntv.TabIndex = 60;
             this.pnlIntv.Visible = false;
             // 
@@ -877,9 +884,10 @@
             this.loadingIntvs.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.loadingIntvs.AutoSize = true;
             this.loadingIntvs.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.loadingIntvs.Location = new System.Drawing.Point(324, 201);
+            this.loadingIntvs.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingIntvs.Location = new System.Drawing.Point(379, 231);
             this.loadingIntvs.Name = "loadingIntvs";
-            this.loadingIntvs.Size = new System.Drawing.Size(46, 59);
+            this.loadingIntvs.Size = new System.Drawing.Size(53, 67);
             this.loadingIntvs.StatusMessage = "";
             this.loadingIntvs.TabIndex = 0;
             this.loadingIntvs.Visible = false;
@@ -890,7 +898,7 @@
             this.pnlIntvDetails.Controls.Add(this.lvIntv);
             this.pnlIntvDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlIntvDetails.Name = "pnlIntvDetails";
-            this.pnlIntvDetails.Size = new System.Drawing.Size(670, 192);
+            this.pnlIntvDetails.Size = new System.Drawing.Size(782, 222);
             this.pnlIntvDetails.TabIndex = 1;
             // 
             // tableLayoutPanel6
@@ -907,7 +915,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(231, 27);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(253, 29);
             this.tableLayoutPanel6.TabIndex = 6;
             // 
             // h3Label2
@@ -919,7 +927,7 @@
             this.h3Label2.Location = new System.Drawing.Point(0, 5);
             this.h3Label2.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label2.Name = "h3Label2";
-            this.h3Label2.Size = new System.Drawing.Size(66, 16);
+            this.h3Label2.Size = new System.Drawing.Size(62, 18);
             this.h3Label2.TabIndex = 0;
             this.h3Label2.Tag = "EnterNew";
             this.h3Label2.Text = "Enter new";
@@ -929,10 +937,11 @@
             // 
             this.cbIntvTypes.DataSource = this.intvTypeBindingSource;
             this.cbIntvTypes.DisplayMember = "IntvTypeName";
+            this.cbIntvTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbIntvTypes.FormattingEnabled = true;
-            this.cbIntvTypes.Location = new System.Drawing.Point(69, 3);
+            this.cbIntvTypes.Location = new System.Drawing.Point(65, 3);
             this.cbIntvTypes.Name = "cbIntvTypes";
-            this.cbIntvTypes.Size = new System.Drawing.Size(159, 21);
+            this.cbIntvTypes.Size = new System.Drawing.Size(185, 23);
             this.cbIntvTypes.TabIndex = 0;
             this.cbIntvTypes.SelectedIndexChanged += new System.EventHandler(this.cbIntvTypes_SelectedIndexChanged);
             // 
@@ -954,10 +963,10 @@
             this.olvColumn10,
             this.olvColumn12});
             this.lvIntv.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvIntv.Location = new System.Drawing.Point(3, 32);
+            this.lvIntv.Location = new System.Drawing.Point(3, 37);
             this.lvIntv.Name = "lvIntv";
             this.lvIntv.ShowGroups = false;
-            this.lvIntv.Size = new System.Drawing.Size(650, 145);
+            this.lvIntv.Size = new System.Drawing.Size(758, 167);
             this.lvIntv.TabIndex = 0;
             this.lvIntv.UseCompatibleStateImageBehavior = false;
             this.lvIntv.UseHyperlinks = true;
@@ -969,15 +978,16 @@
             this.olvColumn2.AspectName = "TypeName";
             this.olvColumn2.CellPadding = null;
             this.olvColumn2.IsEditable = false;
+            this.olvColumn2.Tag = "Year";
             this.olvColumn2.Text = "Type";
             this.olvColumn2.Width = 258;
             // 
             // olvColumn3
             // 
-            this.olvColumn3.AspectName = "StartDate";
+            this.olvColumn3.AspectName = "Year";
             this.olvColumn3.CellPadding = null;
             this.olvColumn3.IsEditable = false;
-            this.olvColumn3.Text = "Start Date";
+            this.olvColumn3.Text = "Year";
             this.olvColumn3.Width = 105;
             // 
             // olvColumn9
@@ -1011,9 +1021,9 @@
             this.tableLayoutPanel4.AutoSize = true;
             this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel4.Controls.Add(this.btnIntervention, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1021,7 +1031,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(694, 28);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(811, 28);
             this.tableLayoutPanel4.TabIndex = 19;
             // 
             // btnIntervention
@@ -1044,8 +1054,8 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(136)))), ((int)(((byte)(65)))));
-            this.label2.Location = new System.Drawing.Point(30, 4);
-            this.label2.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.label2.Location = new System.Drawing.Point(35, 5);
+            this.label2.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 21);
             this.label2.TabIndex = 17;
@@ -1061,7 +1071,7 @@
             this.hrIntv.Margin = new System.Windows.Forms.Padding(0);
             this.hrIntv.Name = "hrIntv";
             this.hrIntv.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(136)))), ((int)(((byte)(65)))));
-            this.hrIntv.Size = new System.Drawing.Size(700, 1);
+            this.hrIntv.Size = new System.Drawing.Size(817, 1);
             this.hrIntv.TabIndex = 21;
             // 
             // tblSurveys
@@ -1073,13 +1083,13 @@
             this.tblSurveys.Controls.Add(this.pnlSurvey, 0, 2);
             this.tblSurveys.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tblSurveys.Controls.Add(this.hrSurveys, 0, 1);
-            this.tblSurveys.Location = new System.Drawing.Point(3, 618);
+            this.tblSurveys.Location = new System.Drawing.Point(3, 694);
             this.tblSurveys.Name = "tblSurveys";
             this.tblSurveys.RowCount = 3;
             this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblSurveys.Size = new System.Drawing.Size(700, 315);
+            this.tblSurveys.Size = new System.Drawing.Size(817, 355);
             this.tblSurveys.TabIndex = 60;
             // 
             // pnlSurvey
@@ -1091,12 +1101,12 @@
             this.pnlSurvey.Controls.Add(this.pnlSurveyDetails, 0, 0);
             this.pnlSurvey.Controls.Add(this.loadingSurveys, 0, 1);
             this.pnlSurvey.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlSurvey.Location = new System.Drawing.Point(3, 47);
+            this.pnlSurvey.Location = new System.Drawing.Point(3, 49);
             this.pnlSurvey.Name = "pnlSurvey";
             this.pnlSurvey.RowCount = 2;
             this.pnlSurvey.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlSurvey.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlSurvey.Size = new System.Drawing.Size(694, 265);
+            this.pnlSurvey.Size = new System.Drawing.Size(811, 303);
             this.pnlSurvey.TabIndex = 60;
             this.pnlSurvey.Visible = false;
             // 
@@ -1106,7 +1116,7 @@
             this.pnlSurveyDetails.Controls.Add(this.lvSurveys);
             this.pnlSurveyDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlSurveyDetails.Name = "pnlSurveyDetails";
-            this.pnlSurveyDetails.Size = new System.Drawing.Size(670, 182);
+            this.pnlSurveyDetails.Size = new System.Drawing.Size(782, 210);
             this.pnlSurveyDetails.TabIndex = 1;
             this.pnlSurveyDetails.Visible = false;
             // 
@@ -1124,7 +1134,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(231, 27);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(253, 29);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // h3Label1
@@ -1136,7 +1146,7 @@
             this.h3Label1.Location = new System.Drawing.Point(0, 5);
             this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label1.Name = "h3Label1";
-            this.h3Label1.Size = new System.Drawing.Size(66, 16);
+            this.h3Label1.Size = new System.Drawing.Size(62, 18);
             this.h3Label1.TabIndex = 0;
             this.h3Label1.Tag = "EnterNew";
             this.h3Label1.Text = "Enter new";
@@ -1146,10 +1156,11 @@
             // 
             this.cbNewSurvey.DataSource = this.surveyTypeBindingSource;
             this.cbNewSurvey.DisplayMember = "SurveyTypeName";
+            this.cbNewSurvey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbNewSurvey.FormattingEnabled = true;
-            this.cbNewSurvey.Location = new System.Drawing.Point(69, 3);
+            this.cbNewSurvey.Location = new System.Drawing.Point(65, 3);
             this.cbNewSurvey.Name = "cbNewSurvey";
-            this.cbNewSurvey.Size = new System.Drawing.Size(159, 21);
+            this.cbNewSurvey.Size = new System.Drawing.Size(185, 23);
             this.cbNewSurvey.TabIndex = 0;
             this.cbNewSurvey.SelectedIndexChanged += new System.EventHandler(this.cbNewSurvey_SelectedIndexChanged);
             // 
@@ -1171,10 +1182,10 @@
             this.olvColumn1,
             this.olvColumn11});
             this.lvSurveys.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvSurveys.Location = new System.Drawing.Point(3, 33);
+            this.lvSurveys.Location = new System.Drawing.Point(3, 38);
             this.lvSurveys.Name = "lvSurveys";
             this.lvSurveys.ShowGroups = false;
-            this.lvSurveys.Size = new System.Drawing.Size(650, 145);
+            this.lvSurveys.Size = new System.Drawing.Size(758, 167);
             this.lvSurveys.TabIndex = 0;
             this.lvSurveys.UseCompatibleStateImageBehavior = false;
             this.lvSurveys.UseHyperlinks = true;
@@ -1191,11 +1202,11 @@
             // 
             // olvColumn6
             // 
-            this.olvColumn6.AspectName = "StartDate";
+            this.olvColumn6.AspectName = "Year";
             this.olvColumn6.CellPadding = null;
             this.olvColumn6.IsEditable = false;
-            this.olvColumn6.Tag = "StartDate";
-            this.olvColumn6.Text = "Start Date";
+            this.olvColumn6.Tag = "Year";
+            this.olvColumn6.Text = "Year";
             this.olvColumn6.Width = 152;
             // 
             // olvColumn8
@@ -1229,10 +1240,11 @@
             this.loadingSurveys.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.loadingSurveys.AutoSize = true;
             this.loadingSurveys.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.loadingSurveys.Location = new System.Drawing.Point(324, 203);
-            this.loadingSurveys.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
+            this.loadingSurveys.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingSurveys.Location = new System.Drawing.Point(379, 233);
+            this.loadingSurveys.Margin = new System.Windows.Forms.Padding(3, 17, 3, 3);
             this.loadingSurveys.Name = "loadingSurveys";
-            this.loadingSurveys.Size = new System.Drawing.Size(46, 59);
+            this.loadingSurveys.Size = new System.Drawing.Size(53, 67);
             this.loadingSurveys.StatusMessage = "";
             this.loadingSurveys.TabIndex = 0;
             // 
@@ -1241,9 +1253,9 @@
             this.tableLayoutPanel3.AutoSize = true;
             this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel3.Controls.Add(this.btnSurvey, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1251,7 +1263,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(694, 28);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(811, 28);
             this.tableLayoutPanel3.TabIndex = 19;
             // 
             // btnSurvey
@@ -1274,8 +1286,8 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.label1.Location = new System.Drawing.Point(30, 4);
-            this.label1.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.label1.Location = new System.Drawing.Point(35, 5);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 21);
             this.label1.TabIndex = 17;
@@ -1290,19 +1302,19 @@
             this.hrSurveys.Margin = new System.Windows.Forms.Padding(0);
             this.hrSurveys.Name = "hrSurveys";
             this.hrSurveys.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.hrSurveys.Size = new System.Drawing.Size(700, 1);
+            this.hrSurveys.Size = new System.Drawing.Size(817, 1);
             this.hrSurveys.TabIndex = 21;
             // 
             // DiseaseDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DiseaseDashboard";
-            this.Size = new System.Drawing.Size(712, 1580);
+            this.Size = new System.Drawing.Size(829, 1776);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tbProcess.ResumeLayout(false);

@@ -20,7 +20,6 @@ namespace Nada.Model
         public string Name { get; set; }
         public Nullable<int> ParentId { get; set; }
         public int AdminLevelTypeId { get; set; }
-        public int LevelNumber { get; set; }
         public Nullable<double> LatWho { get; set; }
         public Nullable<double> LngWho { get; set; }
         public Nullable<double> LatOther { get; set; }
@@ -28,6 +27,9 @@ namespace Nada.Model
         public string UrbanOrRural { get; set; }
         public AdminLevelDemography CurrentDemography { get; set; }
         public List<AdminLevel> Children { get; set; }
+        // Display Only
+        public string LevelName { get; set; }
+        public int LevelNumber { get; set; }
         public string ViewText { get { return "Select"; } }
 
         #region IDataErrorInfo Members
@@ -42,11 +44,26 @@ namespace Nada.Model
                         if (string.IsNullOrEmpty(Name))
                             error = Translations.Required;
                         break;
-                    case "LevelNumber":
-                        if (LevelNumber < 0)
+                    case "AdminLevelTypeId":
+                        if (AdminLevelTypeId < 0)
                             error = Translations.Required;
                         break;
-
+                    case "LatWho":
+                        if (LatWho.HasValue && (LatWho.Value > 90 || LatWho.Value < -90))
+                            error = Translations.ValidLatitude;
+                        break;
+                    case "LngWho":
+                        if (LngWho.HasValue && (LngWho.Value > 180 || LngWho.Value < -180))
+                            error = Translations.ValidLongitude;
+                        break;
+                    case "LatOther":
+                        if (LatOther.HasValue && (LatOther.Value > 90 || LatOther.Value < -90))
+                            error = Translations.ValidLatitude;
+                        break;
+                    case "LngOther":
+                        if (LngOther.HasValue && (LngOther.Value > 180 || LngOther.Value < -180))
+                            error = Translations.ValidLongitude;
+                        break;
                     default: error = "";
                         break;
 

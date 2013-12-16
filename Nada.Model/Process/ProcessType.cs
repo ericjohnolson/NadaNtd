@@ -16,14 +16,10 @@ namespace Nada.Model.Process
             IndicatorDropdownValues = new List<IndicatorDropdownValue>();
         }
         public string TypeName { get; set; }
-        public string CategoryName { get; set; }
+        public string DiseaseType { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }
 
-        public List<string> GetCategories()
-        {
-            return new List<string> { "Training", "SupplyChainMng" };
-        }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

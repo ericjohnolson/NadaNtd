@@ -171,7 +171,20 @@ namespace Nada.UI.View.Demography
         {
             LoadDashForAdminLevel(preloadedLevel);
         }
+
+        private void AddAdminLevel_ClickOverride()
+        {
+            var adminLevelAdd = new AdminLevelAdd();
+            adminLevelAdd.OnSave += adminLevelAdd_OnSave;
+            adminLevelAdd.ShowDialog();
+        }
+
+        void adminLevelAdd_OnSave()
+        {
+            LoadTree();
+        }
         #endregion
+
 
     }
 }

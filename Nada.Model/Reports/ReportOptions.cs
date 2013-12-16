@@ -12,13 +12,21 @@ namespace Nada.Model.Reports
         {
             AvailableIndicators = new List<ReportIndicator>();
             SelectedIndicators = new List<ReportIndicator>();
+            SelectedAdminLevels = new List<AdminLevel>();
+            Columns = new Dictionary<string, string>();
+            IsNoAggregation = true;
         }
         public bool ShowDiseasesOption { get; set; }
         public List<ReportIndicator> AvailableIndicators { get; set; }
         public List<ReportIndicator> SelectedIndicators { get; set; }
-        public List<Disease> SelectedDiseases { get; set; }
+        public Dictionary<string, string> Columns { get; set; }
         public List<AdminLevel> SelectedAdminLevels { get; set; }
         public List<int> SelectedYears { get; set; }
         public IReportGenerator ReportGenerator { get; set; }
+        public bool IsNoAggregation { get; set; }
+        public bool IsCountryAggregation { get; set; }
+        public bool IsByLevelAggregation { get; set; }
+        public bool IsAllLocations { get; set; }
+
     }
 }

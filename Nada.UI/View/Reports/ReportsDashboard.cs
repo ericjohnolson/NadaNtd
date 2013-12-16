@@ -50,9 +50,10 @@ namespace Nada.UI.View.Reports
             help.Show();
         }
 
-        private void lnkCustom_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lnkCustom_ClickOverride()
         {
             WizardForm wiz = new WizardForm(new StepCategory(), Translations.CustomReportBuilder);
+            wiz.Height = 685;
             wiz.OnRunReport = RunCustomReport;
             wiz.Show();
         }
@@ -67,13 +68,22 @@ namespace Nada.UI.View.Reports
         private void EditCustomReport(ReportOptions options)
         {
             WizardForm wiz = new WizardForm(new StepIndicators(options), Translations.CustomReportBuilder);
+            wiz.Height = 685;
             wiz.OnRunReport = RunCustomReport;
             wiz.Show();
         }
 
-        private void lnkCmJrf_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lnkPcJrfForm_ClickOverride()
         {
-            IExporter exporter = new CmJrfExporter();
+            PcJrfExporter exporter = new PcJrfExporter();
+            WizardForm wiz = new WizardForm(new JrfExportStep(exporter, exporter.ExportName), exporter.ExportName);
+            wiz.OnFinish = () => { };
+            wiz.ShowDialog();
+        }
+
+        private void h3Link2_ClickOverride()
+        {
+            CmJrfExporter exporter = new CmJrfExporter();
             WizardForm wiz = new WizardForm(new ExportStep(exporter, exporter.ExportName), exporter.ExportName);
             wiz.OnFinish = () => { };
             wiz.ShowDialog();

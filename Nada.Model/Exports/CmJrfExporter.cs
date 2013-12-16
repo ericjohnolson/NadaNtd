@@ -5,23 +5,30 @@ using System.Linq;
 using System.Text;
 using Nada.Globalization;
 using Nada.Model.Repositories;
+using excel = Microsoft.Office.Interop.Excel;
 
 namespace Nada.Model.Exports
 {
     public class CmJrfExporter : ExporterBase, IExporter
     {
+        SettingsRepository settings = new SettingsRepository();
+        DemoRepository demo = new DemoRepository();
+        ExportRepository repo = new ExportRepository();
+
         public string ExportName
         {
             get { return Translations.JrfCmNtds; }
         }
 
-        public ExportResult ExportData(string filePath, int userId, int year)
+        public ExportResult ExportData(string filePath, int userId, ExportCmJrfQuestions questions)
         {
             try
             {
+                int year = questions.YearReporting.Value;
                 Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
                 Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
                 Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
+                excel.Range rng = null;
                 object missing = System.Reflection.Missing.Value;
 
                 // Open workbook
@@ -29,6 +36,19 @@ namespace Nada.Model.Exports
                     missing, missing, missing, missing, missing, missing, missing,
                     missing, missing, missing, missing, missing, missing, missing);
 
+                var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
+                CountryDemography countryDemo = demo.GetCountryDemoByYear(year);
+                Country country = demo.GetCountry();
+                List<AdminLevel> demography = new List<AdminLevel>();
+                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, year, ref demography);
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[2];
+                AddContactsPage(xlsWorksheet, rng, questions, country);
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[3];
+                AddCountryPage(xlsWorksheet, rng, demography, districtLevel.LevelNumber, questions, country, countryDemo);
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[11];
+                AddPlanningPage(xlsWorksheet, rng, questions);
+
+                
                 // sheet 4 GW (start row 9)
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[5];
                 AddIndicators(DiseaseType.GuineaWorm, StaticIntvType.GuineaWormIntervention, year, xlsWorksheet, AddGwInds, AggGwInd);
@@ -82,9 +102,9 @@ namespace Nada.Model.Exports
             // If district doesn't contain key
             object value = null;
             if (district.Indicators.ContainsKey(key))
-                value = IndicatorAggregator.Aggregate(district.Indicators[key], null, customAggRule);
+                value = IndicatorAggregator.Aggregate(district.Indicators[key], null);
             else // compute key value
-                value = IndicatorAggregator.AggregateChildren(district.Children, key, null, customAggRule);
+                value = IndicatorAggregator.AggregateChildren(district.Children, key, null);
 
             if (value != null)
             {
@@ -96,7 +116,84 @@ namespace Nada.Model.Exports
             }
         }
 
-        #region disease specific
+        #region SHEET specific
+        private void AddContactsPage(excel.Worksheet xlsWorksheet, excel.Range rng, ExportCmJrfQuestions questions, Country country)
+        {
+            AddValueToRange(xlsWorksheet, rng, "C2", country.Name);
+            AddValueToRange(xlsWorksheet, rng, "E2", questions.YearReporting.Value);
+
+            int rowId = 5;
+            foreach (var contact in questions.Contacts.Take(16))
+            {
+                AddValueToRange(xlsWorksheet, rng, "B" + rowId, contact.CmContactName);
+                AddValueToRange(xlsWorksheet, rng, "C" + rowId, contact.CmContactPost);
+                AddValueToRange(xlsWorksheet, rng, "D" + rowId, contact.CmContactTele);
+                AddValueToRange(xlsWorksheet, rng, "E" + rowId, contact.CmContactEmail);
+
+                rowId++;
+            }
+        }
+
+        private void AddCountryPage(excel.Worksheet xlsWorksheet, excel.Range rng, List<AdminLevel> demography, int districtLevel, 
+            ExportCmJrfQuestions questions, Country country, CountryDemography cDemo)
+        {
+            AddValueToRange(xlsWorksheet, rng, "B2", country.Name);
+            AddValueToRange(xlsWorksheet, rng, "B3", questions.YearReporting.Value);
+            AddValueToRange(xlsWorksheet, rng, "F2", cDemo.TotalPopulation.Value);
+            AddValueToRange(xlsWorksheet, rng, "G3", demography.Where(d => d.LevelNumber == districtLevel).Count());
+        }
+
+        private void AddPlanningPage(excel.Worksheet xlsWorksheet, excel.Range rng, ExportCmJrfQuestions questions)
+        {
+            AddValueToRange(xlsWorksheet, rng, "C5", questions.CmHaveMasterPlan ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C6", questions.CmYearsMasterPlan);
+            AddValueToRange(xlsWorksheet, rng, "C7", questions.CmBuget);
+            AddValueToRange(xlsWorksheet, rng, "C8", questions.CmPercentFunded);
+            AddValueToRange(xlsWorksheet, rng, "C9", questions.CmHaveAnnualOpPlan ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C10", questions.CmDiseaseSpecOrNtdIntegrated);
+            AddValueToRange(xlsWorksheet, rng, "C12", questions.CmBuHasPlan ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C13", questions.CmGwHasPlan ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C14", questions.CmHatHasPlan ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C15", questions.CmLeishHasPlan ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C16", questions.CmLeprosyHasPlan ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C17", questions.CmYawsHasPlan ? Translations.Yes : Translations.No);
+
+            AddValueToRange(xlsWorksheet, rng, "C20", questions.CmAnySupplyFunds ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C21", questions.CmHasStorage ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C22", questions.CmStorageNtdOrCombined);
+            AddValueToRange(xlsWorksheet, rng, "C24", questions.CmStorageSponsor1);
+            AddValueToRange(xlsWorksheet, rng, "C25", questions.CmStorageSponsor2);
+            AddValueToRange(xlsWorksheet, rng, "C26", questions.CmStorageSponsor3);
+            AddValueToRange(xlsWorksheet, rng, "C27", questions.CmStorageSponsor4);
+
+            AddValueToRange(xlsWorksheet, rng, "C30", questions.CmHasTaskForce ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C32", questions.CmHasMoh ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C33", questions.CmHasMosw ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C34", questions.CmHasMot ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C35", questions.CmHasMoe ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C36", questions.CmHasMoc ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C37", questions.CmHasUni ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C38", questions.CmHasNgo ? Translations.Yes : Translations.No);
+
+            AddValueToRange(xlsWorksheet, rng, "C40", questions.CmHasAnnualForum ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C41", questions.CmForumHasRegions ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C42", questions.CmForumHasTaskForce ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C44", questions.CmHasNtdReviewMeetings ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C45", questions.CmHasDiseaseSpecMeetings ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C47", questions.CmHasGwMeeting ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C48", questions.CmHasLeprosyMeeting ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C49", questions.CmHasHatMeeting ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C50", questions.CmHasLeishMeeting ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C51", questions.CmHasBuMeeting ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C52", questions.CmHasYawsMeeting ? Translations.Yes : Translations.No);
+
+            AddValueToRange(xlsWorksheet, rng, "C55", questions.CmHasWeeklyMech ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C56", questions.CmHasMonthlyMech ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C57", questions.CmHasQuarterlyMech ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C58", questions.CmHasSemesterMech ? Translations.Yes : Translations.No);
+            AddValueToRange(xlsWorksheet, rng, "C59", questions.CmOtherMechs);
+        }
+
 
         private void AddGwInds(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, List<AdminLevelIndicators> districtIndicators)
         {

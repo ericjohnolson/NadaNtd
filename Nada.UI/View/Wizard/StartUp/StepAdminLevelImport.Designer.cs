@@ -79,15 +79,15 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(458, 390);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(533, 430);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // tbYear
             // 
-            this.tbYear.Location = new System.Drawing.Point(3, 150);
-            this.tbYear.Margin = new System.Windows.Forms.Padding(3, 5, 20, 10);
+            this.tbYear.Location = new System.Drawing.Point(3, 159);
+            this.tbYear.Margin = new System.Windows.Forms.Padding(3, 6, 23, 12);
             this.tbYear.Name = "tbYear";
-            this.tbYear.Size = new System.Drawing.Size(100, 20);
+            this.tbYear.Size = new System.Drawing.Size(116, 21);
             this.tbYear.TabIndex = 5;
             this.tbYear.Visible = false;
             // 
@@ -96,10 +96,10 @@
             this.lblYear.AutoSize = true;
             this.lblYear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lblYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblYear.Location = new System.Drawing.Point(0, 129);
+            this.lblYear.Location = new System.Drawing.Point(0, 138);
             this.lblYear.Margin = new System.Windows.Forms.Padding(0);
             this.lblYear.Name = "lblYear";
-            this.lblYear.Size = new System.Drawing.Size(158, 16);
+            this.lblYear.Size = new System.Drawing.Size(140, 15);
             this.lblYear.TabIndex = 5;
             this.lblYear.Tag = "YearDemographyData";
             this.lblYear.Text = "YearDemographyData";
@@ -108,22 +108,23 @@
             // 
             // tbStatus
             // 
-            this.tbStatus.Location = new System.Drawing.Point(3, 254);
+            this.tbStatus.Location = new System.Drawing.Point(3, 274);
             this.tbStatus.Multiline = true;
             this.tbStatus.Name = "tbStatus";
             this.tbStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbStatus.Size = new System.Drawing.Size(452, 133);
+            this.tbStatus.Size = new System.Drawing.Size(527, 153);
             this.tbStatus.TabIndex = 5;
             // 
             // cbImportFor
             // 
             this.cbImportFor.DataSource = this.adminLevelBindingSource;
             this.cbImportFor.DisplayMember = "Name";
+            this.cbImportFor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbImportFor.FormattingEnabled = true;
-            this.cbImportFor.Location = new System.Drawing.Point(3, 47);
-            this.cbImportFor.Margin = new System.Windows.Forms.Padding(3, 5, 20, 10);
+            this.cbImportFor.Location = new System.Drawing.Point(3, 49);
+            this.cbImportFor.Margin = new System.Windows.Forms.Padding(3, 6, 23, 12);
             this.cbImportFor.Name = "cbImportFor";
-            this.cbImportFor.Size = new System.Drawing.Size(246, 21);
+            this.cbImportFor.Size = new System.Drawing.Size(286, 23);
             this.cbImportFor.TabIndex = 5;
             this.cbImportFor.ValueMember = "Id";
             this.cbImportFor.Visible = false;
@@ -137,10 +138,10 @@
             this.tbImportFor.AutoSize = true;
             this.tbImportFor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tbImportFor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbImportFor.Location = new System.Drawing.Point(0, 26);
+            this.tbImportFor.Location = new System.Drawing.Point(0, 28);
             this.tbImportFor.Margin = new System.Windows.Forms.Padding(0);
             this.tbImportFor.Name = "tbImportFor";
-            this.tbImportFor.Size = new System.Drawing.Size(118, 16);
+            this.tbImportFor.Size = new System.Drawing.Size(109, 15);
             this.tbImportFor.TabIndex = 6;
             this.tbImportFor.Tag = "CreateImportFor";
             this.tbImportFor.Text = "CreateImportFor";
@@ -154,27 +155,27 @@
             this.tableLayoutPanel4.ColumnCount = 4;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.Controls.Add(this.btnImport, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnDownload, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.loadingImport, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 183);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 195);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(301, 65);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(310, 73);
             this.tableLayoutPanel4.TabIndex = 5;
             // 
             // btnImport
             // 
             this.btnImport.AutoSize = true;
-            this.btnImport.Location = new System.Drawing.Point(193, 10);
-            this.btnImport.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-            this.btnImport.MinimumSize = new System.Drawing.Size(78, 25);
+            this.btnImport.Location = new System.Drawing.Point(202, 12);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
+            this.btnImport.MinimumSize = new System.Drawing.Size(91, 29);
             this.btnImport.Name = "btnImport";
             this.btnImport.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnImport.Size = new System.Drawing.Size(105, 25);
+            this.btnImport.Size = new System.Drawing.Size(105, 29);
             this.btnImport.TabIndex = 1;
             this.btnImport.Tag = "UploadImportFile";
             this.btnImport.Values.Text = "UploadImportFile";
@@ -183,12 +184,12 @@
             // btnDownload
             // 
             this.btnDownload.AutoSize = true;
-            this.btnDownload.Location = new System.Drawing.Point(55, 10);
-            this.btnDownload.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-            this.btnDownload.MinimumSize = new System.Drawing.Size(78, 25);
+            this.btnDownload.Location = new System.Drawing.Point(62, 12);
+            this.btnDownload.Margin = new System.Windows.Forms.Padding(3, 12, 3, 12);
+            this.btnDownload.MinimumSize = new System.Drawing.Size(91, 29);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnDownload.Size = new System.Drawing.Size(122, 25);
+            this.btnDownload.Size = new System.Drawing.Size(122, 29);
             this.btnDownload.TabIndex = 0;
             this.btnDownload.Tag = "DownloadImportFile";
             this.btnDownload.Values.Text = "DownloadImportFile";
@@ -198,19 +199,20 @@
             // 
             this.loadingImport.AutoSize = true;
             this.loadingImport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.loadingImport.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadingImport.Location = new System.Drawing.Point(3, 3);
             this.loadingImport.Name = "loadingImport";
-            this.loadingImport.Size = new System.Drawing.Size(46, 59);
+            this.loadingImport.Size = new System.Drawing.Size(53, 67);
             this.loadingImport.StatusMessage = " ";
             this.loadingImport.TabIndex = 2;
             this.loadingImport.Visible = false;
             // 
             // tbRows
             // 
-            this.tbRows.Location = new System.Drawing.Point(3, 99);
-            this.tbRows.Margin = new System.Windows.Forms.Padding(3, 5, 20, 10);
+            this.tbRows.Location = new System.Drawing.Point(3, 105);
+            this.tbRows.Margin = new System.Windows.Forms.Padding(3, 6, 23, 12);
             this.tbRows.Name = "tbRows";
-            this.tbRows.Size = new System.Drawing.Size(100, 20);
+            this.tbRows.Size = new System.Drawing.Size(116, 21);
             this.tbRows.TabIndex = 3;
             // 
             // lblRows
@@ -218,10 +220,10 @@
             this.lblRows.AutoSize = true;
             this.lblRows.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lblRows.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblRows.Location = new System.Drawing.Point(0, 78);
+            this.lblRows.Location = new System.Drawing.Point(0, 84);
             this.lblRows.Margin = new System.Windows.Forms.Padding(0);
             this.lblRows.Name = "lblRows";
-            this.lblRows.Size = new System.Drawing.Size(140, 16);
+            this.lblRows.Size = new System.Drawing.Size(130, 15);
             this.lblRows.TabIndex = 2;
             this.lblRows.Tag = "NumberOfLocations";
             this.lblRows.Text = "NumberOfLocations";
@@ -233,9 +235,9 @@
             this.lblIsAggLevel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lblIsAggLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblIsAggLevel.Location = new System.Drawing.Point(0, 0);
-            this.lblIsAggLevel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.lblIsAggLevel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
             this.lblIsAggLevel.Name = "lblIsAggLevel";
-            this.lblIsAggLevel.Size = new System.Drawing.Size(76, 16);
+            this.lblIsAggLevel.Size = new System.Drawing.Size(67, 16);
             this.lblIsAggLevel.TabIndex = 8;
             this.lblIsAggLevel.Tag = "IsAggLevel";
             this.lblIsAggLevel.Text = "IsAggLevel";
@@ -254,14 +256,14 @@
             // 
             // StepAdminLevelImport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "StepAdminLevelImport";
-            this.Size = new System.Drawing.Size(464, 396);
+            this.Size = new System.Drawing.Size(539, 436);
             this.Load += new System.EventHandler(this.ImportOptions_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

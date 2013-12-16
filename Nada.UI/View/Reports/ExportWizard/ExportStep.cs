@@ -13,12 +13,16 @@ using Nada.Model;
 using Nada.UI.View.Wizard;
 using System.Threading;
 using Nada.UI.Base;
+using Nada.Model.Exports;
+using Nada.Model.Repositories;
 
 namespace Nada.UI.View.Reports
 {
     public partial class ExportStep : BaseControl, IWizardStep
     {
-        IExporter exporter = null;
+        ExportRepository repo = new ExportRepository();
+        ExportCmJrfQuestions questions = null;
+        CmJrfExporter exporter = null;
         string title = "";
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<ReportOptions> OnRunReport { get; set; }
@@ -37,7 +41,7 @@ namespace Nada.UI.View.Reports
             InitializeComponent();
         }
 
-        public ExportStep(IExporter e, string t)
+        public ExportStep(CmJrfExporter e, string t)
             : base()
         {
             exporter = e;
@@ -49,16 +53,20 @@ namespace Nada.UI.View.Reports
         {
             if (!DesignMode)
             {
+                questions = repo.GetCmExportQuestions();
                 Localizer.TranslateControl(this);
+                h3bLabel1.SetMaxWidth(500);
                 this.saveFileDialog1.DefaultExt = "xlsx";
                 this.saveFileDialog1.Filter = "Excel (.xlsx)|*.xlsx";
+                bindingSource1.DataSource = questions;
+                exportContactBindingSource.DataSource = questions.Contacts;
             }
         }
 
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Payload payload = (Payload)e.Argument;
-            exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Year);
+            ExportParams payload = (ExportParams)e.Argument;
+            exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.CmQuestions);
             Thread.Sleep(1000);
         }
 
@@ -75,22 +83,25 @@ namespace Nada.UI.View.Reports
         }
         public void DoFinish()
         {
-            saveFileDialog1.FileName = title + " " + tbYear.Text;
+            if (!questions.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
+                return;
+            }
+            bindingSource1.EndEdit();
+            repo.UpdateCmExportQuestions(questions);
+
+            saveFileDialog1.FileName = title + " " + questions.YearReporting.Value;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.DoWork += worker_DoWork;
                 worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-                worker.RunWorkerAsync(new Payload { FileName = saveFileDialog1.FileName, Year = Convert.ToInt32(tbYear.Text)});
+                worker.RunWorkerAsync(new ExportParams { FileName = saveFileDialog1.FileName, CmQuestions = questions });
 
                 OnSwitchStep(new WorkingStep(Translations.ExportingData));
             }
 
-        }
-        public class Payload
-        {
-            public int Year { get; set; }
-            public string FileName { get; set; }
         }
     }
 }

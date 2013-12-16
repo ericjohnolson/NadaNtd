@@ -76,22 +76,20 @@ namespace Nada.UI.AppLogic
         {
             if (type.Id < 1)
                 return null;
-            else if (type.Id == (int)StaticSurveyType.LfPrevalence)
-                return new LfMfPrevalenceView(adminLevel);
-            else if (type.Id == (int)StaticSurveyType.BuruliSurvey)
-                return new DataEntryEdit(new SurveyBaseVm(adminLevel, type.Id, new CalcBuruliSurvey()));
 
-            return new DataEntryEdit(new SurveyBaseVm(adminLevel, type.Id, null));
+            SurveyBaseVm vm = new SurveyBaseVm(adminLevel, type.Id, null);
+            if (type.Id == (int)StaticSurveyType.BuruliSurvey)
+                vm = new SurveyBaseVm(adminLevel, type.Id, new CalcBuruliSurvey());
+
+            if (vm.Initialize())
+                return new DataEntryEdit(vm);
+            else
+                return null;
         }
 
         public IView GetSurvey(SurveyDetails details)
         {
-            if (details.TypeId == (int)StaticSurveyType.LfPrevalence)
-            {
-                var survey = surveys.GetLfMfPrevalenceSurvey(details.Id);
-                return new LfMfPrevalenceView(survey);
-            }
-            else if (details.TypeId == (int)StaticSurveyType.BuruliSurvey)
+             if (details.TypeId == (int)StaticSurveyType.BuruliSurvey)
                 return new DataEntryEdit(new SurveyBaseVm(adminLevel, details, new CalcBuruliSurvey()));
             else
             {
@@ -109,8 +107,6 @@ namespace Nada.UI.AppLogic
         {
             if (type.Id < 1)
                 return null;
-            else if (type.Id == (int)StaticIntvType.IvmAlbMda)
-                return new PcMdaView(adminLevel, type);
             if (type.Id == (int)StaticIntvType.GuineaWormIntervention)
                 return new DataEntryEdit(new IntvBaseVm(adminLevel, type.Id, new CalcGuineaIntv()));
             if (type.Id == (int)StaticIntvType.BuruliUlcerIntv)
@@ -129,11 +125,6 @@ namespace Nada.UI.AppLogic
 
         public IView GetIntv(IntvDetails details)
         {
-            if (details.TypeId == (int)StaticIntvType.IvmAlbMda)
-            {
-                var mda = interventions.GetPcMda(details.Id);
-                return new PcMdaView(mda);
-            }
             if (details.TypeId == (int)StaticIntvType.GuineaWormIntervention)
                     return new DataEntryEdit(new IntvBaseVm(adminLevel, details, new CalcGuineaIntv()));
             if (details.TypeId == (int)StaticIntvType.BuruliUlcerIntv)

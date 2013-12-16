@@ -47,5 +47,10 @@ namespace Nada.UI.Controls
             get { return label1.ForeColor; }
             set { label1.ForeColor = value; }
         }
+
+        public void MakeBold()
+        {
+            label1.Font = new Font(label1.Font, FontStyle.Bold);
+        }
     }
 }

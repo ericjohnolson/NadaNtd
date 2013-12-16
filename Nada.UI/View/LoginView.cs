@@ -42,6 +42,7 @@ namespace Nada.UI.View
                 bsLanguages.DataSource = Localizer.SupportedLanguages;
                 cbLanguages.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;
                 Localizer.TranslateControl(this);
+                cbLanguages.DropDownWidth = BaseForm.GetDropdownWidth(Localizer.SupportedLanguages.Select(l => l.Name));
             }
 
         }

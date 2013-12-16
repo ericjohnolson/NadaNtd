@@ -44,9 +44,6 @@ namespace Nada.UI.View.Process
                 Localizer.TranslateControl(this);
                 repo = new ProcessRepository();
 
-                foreach(string key in model.GetCategories())
-                    cbTypes.Items.Add(TranslationLookup.GetValue(key, key));
-
                 lvIndicators.SetObjects(model.Indicators.Values.Where(i => i.IsEditable));
                 if (model.Id == 0)
                     pnlName.Visible = true;
@@ -77,6 +74,12 @@ namespace Nada.UI.View.Process
             if (!model.IsValid())
             {
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
+                return;
+            }
+
+            if (model.Indicators.Values.FirstOrDefault() == null)
+            {
+                MessageBox.Show(Translations.ValidationErrorAddIndicator, Translations.ValidationErrorTitle);
                 return;
             }
 

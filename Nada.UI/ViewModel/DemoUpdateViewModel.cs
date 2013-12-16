@@ -10,7 +10,7 @@ namespace Nada.UI.ViewModel
 {
     public class DemoUpdateViewModel : NadaClass
     {
-        public double GrowthRate { get; set; }
+        public Nullable<double> GrowthRate { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]
@@ -22,7 +22,7 @@ namespace Nada.UI.ViewModel
                 {
 
                     case "GrowthRate":
-                        if (GrowthRate <= 0)
+                        if (!GrowthRate.HasValue)
                             error = Translations.Required;
                         break;
 

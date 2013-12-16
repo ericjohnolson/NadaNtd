@@ -20,16 +20,12 @@ namespace Nada.UI.View
     {
         public event Action<IndicatorDropdownValue> OnSave = (e) => { };
         private IndicatorDropdownValue model = new IndicatorDropdownValue();
+        private Indicator indicator = null;
 
-        public IndicatorValueItemAdd()
+        public IndicatorValueItemAdd(IndicatorDropdownValue m, Indicator i)
             : base()
         {
-            InitializeComponent();
-        }
-
-        public IndicatorValueItemAdd(IndicatorDropdownValue m)
-            : base()
-        {
+            indicator = i;
             model = m;
             InitializeComponent();
         }
@@ -38,6 +34,9 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
+                lblTitle.Text = TranslationLookup.GetValue(indicator.DisplayName, indicator.DisplayName) + " " + Translations.Option;
+                this.Text = TranslationLookup.GetValue(indicator.DisplayName, indicator.DisplayName) + " " + Translations.Option;
                 bindingSource1.DataSource = model;
                 lblLastUpdated.Text =  model.UpdatedBy;
             }

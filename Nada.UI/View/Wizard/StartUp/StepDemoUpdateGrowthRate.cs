@@ -89,7 +89,7 @@ namespace Nada.UI.View.Wizard
                 int max = als.Max(a => a.LevelNumber);
                 int year = DateTime.Now.Year;
                 int userId = ApplicationData.Instance.GetUserId();
-                repo.ApplyGrowthRate(vm.GrowthRate, userId, aggLevel, max, year);
+                repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, max, year);
                 repo.AggregateUp(aggLevel, year, userId);
                 e.Result = "";
             }

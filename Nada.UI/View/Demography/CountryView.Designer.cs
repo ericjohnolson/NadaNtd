@@ -49,7 +49,7 @@
             this.tableLayoutPanel14.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel14.ColumnCount = 3;
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel14.Controls.Add(this.lbl2, 2, 0);
             this.tableLayoutPanel14.Controls.Add(this.lbl1, 0, 0);
@@ -61,16 +61,16 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(476, 62);
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(577, 50);
             this.tableLayoutPanel14.TabIndex = 2;
             // 
             // lbl2
@@ -79,10 +79,10 @@
             this.lbl2.AutoSize = true;
             this.lbl2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbl2.Location = new System.Drawing.Point(255, 0);
+            this.lbl2.Location = new System.Drawing.Point(299, 0);
             this.lbl2.Margin = new System.Windows.Forms.Padding(0);
             this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(173, 32);
+            this.lbl2.Size = new System.Drawing.Size(167, 15);
             this.lbl2.TabIndex = 59;
             this.lbl2.TabStop = false;
             this.lbl2.Tag = "StartMonthOfReportingYear";
@@ -95,10 +95,10 @@
             this.lbl1.AutoSize = true;
             this.lbl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbl1.Location = new System.Drawing.Point(0, 16);
+            this.lbl1.Location = new System.Drawing.Point(0, 0);
             this.lbl1.Margin = new System.Windows.Forms.Padding(0);
             this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(103, 16);
+            this.lbl1.Size = new System.Drawing.Size(95, 15);
             this.lbl1.TabIndex = 58;
             this.lbl1.TabStop = false;
             this.lbl1.Tag = "CountryName";
@@ -108,10 +108,10 @@
             // tb1
             // 
             this.tb1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "Name", true));
-            this.tb1.Location = new System.Drawing.Point(0, 37);
-            this.tb1.Margin = new System.Windows.Forms.Padding(0, 5, 15, 5);
+            this.tb1.Location = new System.Drawing.Point(3, 21);
+            this.tb1.Margin = new System.Windows.Forms.Padding(3, 6, 17, 6);
             this.tb1.Name = "tb1";
-            this.tb1.Size = new System.Drawing.Size(220, 20);
+            this.tb1.Size = new System.Drawing.Size(256, 21);
             this.tb1.TabIndex = 0;
             // 
             // bsCountry
@@ -123,10 +123,12 @@
             this.cbMonths.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCountry, "MonthYearStarts", true));
             this.cbMonths.DataSource = this.monthItemBindingSource;
             this.cbMonths.DisplayMember = "Name";
+            this.cbMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMonths.FormattingEnabled = true;
-            this.cbMonths.Location = new System.Drawing.Point(258, 35);
+            this.cbMonths.Location = new System.Drawing.Point(302, 21);
+            this.cbMonths.Margin = new System.Windows.Forms.Padding(3, 6, 25, 6);
             this.cbMonths.Name = "cbMonths";
-            this.cbMonths.Size = new System.Drawing.Size(215, 21);
+            this.cbMonths.Size = new System.Drawing.Size(250, 23);
             this.cbMonths.TabIndex = 1;
             this.cbMonths.ValueMember = "Id";
             // 
@@ -142,14 +144,14 @@
             // 
             // CountryView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel14);
             this.Name = "CountryView";
-            this.Size = new System.Drawing.Size(482, 68);
+            this.Size = new System.Drawing.Size(583, 56);
             this.Load += new System.EventHandler(this.CountryView_Load);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();

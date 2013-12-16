@@ -34,7 +34,9 @@ namespace Nada.UI.View.Reports.CustomReport
 
         public void DoNext()
         {
-            options.SelectedDiseases = diseasesControl1.GetSelected();
+            options.IsNoAggregation = rbAggListAll.Checked;
+            options.IsCountryAggregation = rbAggCountry.Checked;
+            options.IsByLevelAggregation = rbAggLevel.Checked;
             options.SelectedYears = GetSelectedYears();
             OnSwitchStep(new StepLocations(options));
         }
@@ -61,12 +63,13 @@ namespace Nada.UI.View.Reports.CustomReport
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                if (!options.ShowDiseasesOption)
-                {
-                    lblDiseases.Visible = false;
-                    diseasesControl1.Visible = false;
-                }
-                cbAggregateBy.SelectedIndex = 0;
+                var years = new List<int>();
+                for (int i = DateTime.Now.Year + 2; i >= 1990; i--)
+                    years.Add(i);
+                lbYears.DataSource = years;
+                rbAggListAll.Checked = options.IsNoAggregation;
+                rbAggCountry.Checked = options.IsCountryAggregation;
+                rbAggLevel.Checked = options.IsByLevelAggregation;
             }
         }
 
@@ -77,5 +80,6 @@ namespace Nada.UI.View.Reports.CustomReport
                 years.Add(Convert.ToInt32(year));
             return years;
         }
+
     }
 }

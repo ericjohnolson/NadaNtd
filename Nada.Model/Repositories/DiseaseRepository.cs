@@ -178,6 +178,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
+                    distro.MapIndicatorsToProperties();
                     // START TRANS
                     OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
                     command.ExecuteNonQuery();
@@ -453,6 +454,9 @@ namespace Nada.Model.Repositories
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                         command.ExecuteNonQuery();
+
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM DiseaseDistributionIndicators", connection);
+                        indicator.Id = (int)command.ExecuteScalar();
                     }
 
                     // COMMIT TRANS
@@ -566,10 +570,9 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 string sql = @"Select Diseases.ID, DisplayName, DiseaseType, UserDefinedName 
                     from Diseases
-                    where isdeleted = 0 and IsSelected = @IsSelected
+                    where isdeleted = 0 and IsSelected = yes
                     ORDER BY Diseases.DisplayName";
                 OleDbCommand command = new OleDbCommand(sql, connection);
-                command.Parameters.Add(new OleDbParameter("@IsSelected", true));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
