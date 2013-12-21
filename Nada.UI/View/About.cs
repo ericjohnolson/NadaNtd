@@ -15,7 +15,6 @@ namespace Nada.UI
 {
     public partial class About : BaseForm
     {
-        public Action ReloadTree { get; set; }
         public About()
             : base()
         {
@@ -40,13 +39,6 @@ namespace Nada.UI
                 var myVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion;
                 lblVersion.Text = string.Format("{0}.{1}.{2}.{3}", myVersion.Major, myVersion.Minor, myVersion.Build, myVersion.Revision);
             }
-        }
-
-        private void fieldLink1_OnClick()
-        {
-            TestDemoImport import = new TestDemoImport();
-            import.ReloadTree = () => { ReloadTree(); };
-            import.ShowDialog();
         }
 
     }

@@ -805,7 +805,7 @@
     <value>Choose Admin Levels</value>
   </data>
   <data name="ImportAction" xml:space="preserve">
-    <value>Please select</value>
+    <value>Please select an import type</value>
   </data>
   <data name="CreatingImportFileStatus" xml:space="preserve">
     <value>Creating Import File...</value>
@@ -4202,11 +4202,152 @@ Fixed / Mobile</value>
   <data name="Round" xml:space="preserve">
     <value>Round</value>
   </data>
+  <data name="AccessFiles" xml:space="preserve">
+    <value>Access files</value>
+  </data>
   <data name="AddNewLocation" xml:space="preserve">
     <value>Add new location &gt;</value>
   </data>
+  <data name="BrowseForFile" xml:space="preserve">
+    <value>Browse for a file...</value>
+  </data>
+  <data name="ChooseYourLanguage" xml:space="preserve">
+    <value>Choose your language</value>
+  </data>
+  <data name="CreateNewFile" xml:space="preserve">
+    <value>Create a new file...</value>
+  </data>
+  <data name="DrugAlb" xml:space="preserve">
+    <value>ALB</value>
+  </data>
+  <data name="DrugAlbIvm" xml:space="preserve">
+    <value>ALB and IVM</value>
+  </data>
+  <data name="DrugDec" xml:space="preserve">
+    <value>DEC</value>
+  </data>
+  <data name="DrugDecAlb" xml:space="preserve">
+    <value>ALB and DEC</value>
+  </data>
+  <data name="DrugIvm" xml:space="preserve">
+    <value>IVM</value>
+  </data>
+  <data name="DrugIvmPzq" xml:space="preserve">
+    <value>IVM and PZQ</value>
+  </data>
+  <data name="DrugIvmPzqAlb" xml:space="preserve">
+    <value>ALB, IVM and PZQ</value>
+  </data>
+  <data name="DrugMbd" xml:space="preserve">
+    <value>MBD</value>
+  </data>
+  <data name="DrugPzq" xml:space="preserve">
+    <value>PZQ</value>
+  </data>
+  <data name="DrugPzqAlb" xml:space="preserve">
+    <value>ALB and PZQ</value>
+  </data>
+  <data name="DrugPzqMbd" xml:space="preserve">
+    <value>MBD and PZQ</value>
+  </data>
+  <data name="DrugTeo" xml:space="preserve">
+    <value>TEO</value>
+  </data>
+  <data name="DrugZirthroTeo" xml:space="preserve">
+    <value>TEO and Zithro</value>
+  </data>
+  <data name="DrugZithro" xml:space="preserve">
+    <value>Zithro</value>
+  </data>
+  <data name="ExcelFiles" xml:space="preserve">
+    <value>Excel files</value>
+  </data>
+  <data name="ImportCompleteErrors" xml:space="preserve">
+    <value>Import complete, please ensure there are no errors below</value>
+  </data>
+  <data name="ImportingFile" xml:space="preserve">
+    <value>Importing file...</value>
+  </data>
+  <data name="IndSentinelSiteLat" xml:space="preserve">
+    <value>Sentinel site latitude</value>
+  </data>
+  <data name="IndSentinelSiteLng" xml:space="preserve">
+    <value>Sentinel site longitude</value>
+  </data>
+  <data name="IndSentinelSiteName" xml:space="preserve">
+    <value>Sentinel site name</value>
+  </data>
+  <data name="IndSpotCheckLat" xml:space="preserve">
+    <value>Spot check site latitude</value>
+  </data>
+  <data name="IndSpotCheckLng" xml:space="preserve">
+    <value>Spot check site longitude</value>
+  </data>
+  <data name="IndSpotCheckName" xml:space="preserve">
+    <value>Spot check site name</value>
+  </data>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>About...</value>
+  </data>
+  <data name="MenuCheckForUpdates" xml:space="preserve">
+    <value>Check for updates...</value>
+  </data>
+  <data name="MenuDemography" xml:space="preserve">
+    <value>Demography...</value>
+  </data>
+  <data name="MenuDiseaseDistributions" xml:space="preserve">
+    <value>Disease distributions...</value>
+  </data>
+  <data name="MenuExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="MenuFile" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="MenuHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="MenuImport" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="MenuIntv" xml:space="preserve">
+    <value>Interventions...</value>
+  </data>
+  <data name="MenuNew" xml:space="preserve">
+    <value>New...</value>
+  </data>
+  <data name="MenuNewAdminLevel" xml:space="preserve">
+    <value>New administrative level...</value>
+  </data>
+  <data name="MenuOpen" xml:space="preserve">
+    <value>Open...</value>
+  </data>
+  <data name="MenuProcess" xml:space="preserve">
+    <value>Process indicators...</value>
+  </data>
+  <data name="MenuReports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="MenuSurveys" xml:space="preserve">
+    <value>Surveys...</value>
+  </data>
+  <data name="MenuViewHelp" xml:space="preserve">
+    <value>View Help...</value>
+  </data>
+  <data name="NationalDatabaseTemplate" xml:space="preserve">
+    <value>National Database</value>
+  </data>
+  <data name="NoTranslationFound" xml:space="preserve">
+    <value>No translation found</value>
+  </data>
   <data name="ParentIsRequired" xml:space="preserve">
     <value>You must select a parent for the new administrative level</value>
+  </data>
+  <data name="RecentFile" xml:space="preserve">
+    <value>Recent file: </value>
   </data>
   <data name="SCMDropBottle" xml:space="preserve">
     <value>Bottle</value>
@@ -4241,7 +4382,13 @@ Fixed / Mobile</value>
   <data name="ScmDrpTeo" xml:space="preserve">
     <value>TEO</value>
   </data>
+  <data name="SentinelSiteId" xml:space="preserve">
+    <value>Sentinel site</value>
+  </data>
   <data name="ValidationErrorAddIndicator" xml:space="preserve">
     <value>At least one indicator is required</value>
+  </data>
+  <data name="ValidSentinelSite" xml:space="preserve">
+    <value>Sentinel site was not found in list of available sites for the location</value>
   </data>
 </root>

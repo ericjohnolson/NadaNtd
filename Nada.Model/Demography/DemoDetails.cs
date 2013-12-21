@@ -11,7 +11,7 @@ namespace Nada.Model.Demography
     {
         public int Id { get; set; }
         public int Year { get; set; }
-        public int TotalPopulation { get; set; }
+        public double TotalPopulation { get; set; }
         public double GrowthRate { get; set; }
         public bool CanView { get; set; }
         public bool CanDelete { get; set; }

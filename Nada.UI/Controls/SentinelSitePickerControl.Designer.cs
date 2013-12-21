@@ -229,6 +229,7 @@
             // cbSites
             // 
             this.cbSites.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsSurvey, "SentinelSiteId", true));
+            this.cbSites.DataSource = this.sentinelSiteBindingSource;
             this.cbSites.DisplayMember = "SiteName";
             this.cbSites.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSites.FormattingEnabled = true;

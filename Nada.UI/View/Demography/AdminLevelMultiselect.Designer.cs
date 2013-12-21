@@ -99,6 +99,7 @@
             this.treeSelected.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn3});
             this.treeSelected.Cursor = System.Windows.Forms.Cursors.Default;
+            this.treeSelected.FullRowSelect = true;
             this.treeSelected.Location = new System.Drawing.Point(428, 28);
             this.treeSelected.Name = "treeSelected";
             this.treeSelected.OwnerDraw = true;
@@ -109,12 +110,14 @@
             this.treeSelected.UseHyperlinks = true;
             this.treeSelected.View = System.Windows.Forms.View.Details;
             this.treeSelected.VirtualMode = true;
+            this.treeSelected.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.treeSelected_CellClick);
             this.treeSelected.DoubleClick += new System.EventHandler(this.treeSelected_DoubleClick);
             // 
             // olvColumn3
             // 
             this.olvColumn3.AspectName = "Name";
             this.olvColumn3.CellPadding = null;
+            this.olvColumn3.FillsFreeSpace = true;
             this.olvColumn3.IsEditable = false;
             this.olvColumn3.Text = "Name";
             this.olvColumn3.Width = 292;
@@ -125,6 +128,7 @@
             this.treeAvailable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn1});
             this.treeAvailable.Cursor = System.Windows.Forms.Cursors.Default;
+            this.treeAvailable.FullRowSelect = true;
             this.treeAvailable.Location = new System.Drawing.Point(0, 28);
             this.treeAvailable.Name = "treeAvailable";
             this.treeAvailable.OwnerDraw = true;
@@ -135,6 +139,7 @@
             this.treeAvailable.UseHyperlinks = true;
             this.treeAvailable.View = System.Windows.Forms.View.Details;
             this.treeAvailable.VirtualMode = true;
+            this.treeAvailable.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.treeAvailable_CellClick);
             this.treeAvailable.DoubleClick += new System.EventHandler(this.treeAvailable_DoubleClick);
             // 
             // olvColumn1

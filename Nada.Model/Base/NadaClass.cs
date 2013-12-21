@@ -66,7 +66,7 @@ namespace Nada.Model.Base
                 if (!string.IsNullOrEmpty(this[prop]))
                 {
                     if(showNames)
-                        allErrors += string.Format("\"{0}\": ", TranslationLookup.GetValue(prop, "")) + this[prop] + Environment.NewLine;
+                        allErrors += string.Format("\"{0}\": ", TranslationLookup.GetValue(prop, prop)) + this[prop] + Environment.NewLine;
                     else
                         allErrors += this[prop] + Environment.NewLine;
                 }

@@ -35,7 +35,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pnlLf = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.hr4 = new Nada.UI.Controls.HR();
             ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -49,8 +48,8 @@
             this.label3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAdminLevel, "Name", true));
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.label3.Location = new System.Drawing.Point(10, 15);
-            this.label3.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label3.Location = new System.Drawing.Point(12, 17);
+            this.label3.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(181, 30);
             this.label3.TabIndex = 58;
@@ -65,11 +64,11 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(15, 55);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(15, 10, 3, 3);
+            this.tabControl1.Location = new System.Drawing.Point(17, 59);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(17, 12, 3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(482, 444);
+            this.tabControl1.Size = new System.Drawing.Size(563, 515);
             this.tabControl1.TabIndex = 59;
             this.tabControl1.Tag = "";
             // 
@@ -77,10 +76,10 @@
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.Controls.Add(this.pnlLf);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(474, 418);
+            this.tabPage2.Size = new System.Drawing.Size(555, 487);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Tag = "";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -98,8 +97,7 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 500F));
-            this.tableLayoutPanel1.Controls.Add(this.hr4, 0, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 583F));
             this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -107,36 +105,24 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(500, 500);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(583, 577);
             this.tableLayoutPanel1.TabIndex = 60;
             // 
-            // hr4
+            // DashboardTabs
             // 
-            this.hr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hr4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.hr4.ForeColor = System.Drawing.Color.Gray;
-            this.hr4.Location = new System.Drawing.Point(0, 0);
-            this.hr4.Margin = new System.Windows.Forms.Padding(0);
-            this.hr4.Name = "hr4";
-            this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hr4.Size = new System.Drawing.Size(500, 5);
-            this.hr4.TabIndex = 57;
-            // 
-            // AdminLevelView
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MinimumSize = new System.Drawing.Size(500, 500);
-            this.Name = "AdminLevelView";
-            this.Size = new System.Drawing.Size(500, 500);
+            this.MinimumSize = new System.Drawing.Size(583, 577);
+            this.Name = "DashboardTabs";
+            this.Size = new System.Drawing.Size(583, 577);
             this.Load += new System.EventHandler(this.AdminLevelView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -151,7 +137,6 @@
         #endregion
 
         private System.Windows.Forms.BindingSource bsAdminLevel;
-        private Controls.HR hr4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;

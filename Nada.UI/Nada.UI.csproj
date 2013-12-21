@@ -32,7 +32,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>50</ApplicationRevision>
+    <ApplicationRevision>53</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -264,6 +264,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\DatabaseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\DatabaseView.Designer.cs">
+      <DependentUpon>DatabaseView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Demography\AdminLevelSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,12 +372,6 @@
     <Compile Include="View\Wizard\StartUp\StepCountrySettings.Designer.cs">
       <DependentUpon>StepCountrySettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Demography\TestDemoImport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Demography\TestDemoImport.Designer.cs">
-      <DependentUpon>TestDemoImport.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\DataEntryEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -426,6 +426,12 @@
     <Compile Include="View\Wizard\ImportStepType.Designer.cs">
       <DependentUpon>ImportStepType.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\ImportStepResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\ImportStepResult.Designer.cs">
+      <DependentUpon>ImportStepResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\WizardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -455,12 +461,6 @@
     </Compile>
     <Compile Include="View\Reports\ReportsDashboard.Designer.cs">
       <DependentUpon>ReportsDashboard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\UpdateDatabase.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\UpdateDatabase.Designer.cs">
-      <DependentUpon>UpdateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Updates.cs">
       <SubType>Form</SubType>
@@ -504,18 +504,6 @@
     <Compile Include="View\DiseaseDistribution\DiseaseList.Designer.cs">
       <DependentUpon>DiseaseList.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\OldReportIndicatorControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Reports\OldReportIndicatorControl.Designer.cs">
-      <DependentUpon>OldReportIndicatorControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Wizard\ImportDownload.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Wizard\ImportDownload.Designer.cs">
-      <DependentUpon>ImportDownload.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\MedicineAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -552,29 +540,17 @@
     <Compile Include="Controls\CustomIndicatorControl.Designer.cs">
       <DependentUpon>CustomIndicatorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DashboardTabs.cs">
+    <Compile Include="View\DashboardAdminLevel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\DashboardTabs.Designer.cs">
-      <DependentUpon>DashboardTabs.cs</DependentUpon>
+    <Compile Include="View\DashboardAdminLevel.Designer.cs">
+      <DependentUpon>DashboardAdminLevel.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DashboardView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\DashboardView.Designer.cs">
       <DependentUpon>DashboardView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Demography\ImportAdminLevelsModal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Demography\ImportAdminLevelsModal.Designer.cs">
-      <DependentUpon>ImportAdminLevelsModal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Demography\ImportDemographyModal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Demography\ImportDemographyModal.Designer.cs">
-      <DependentUpon>ImportDemographyModal.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Intervention\DistributionMethodAdd.cs">
       <SubType>Form</SubType>
@@ -617,18 +593,6 @@
     </Compile>
     <Compile Include="View\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Reports\OldReportCreatorView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Reports\OldReportCreatorView.Designer.cs">
-      <DependentUpon>OldReportCreatorView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Reports\OldReportView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Reports\OldReportView.Designer.cs">
-      <DependentUpon>OldReportView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsView.cs">
       <SubType>UserControl</SubType>
@@ -737,6 +701,9 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\DatabaseView.resx">
+      <DependentUpon>DatabaseView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\AdminLevelSelectForm.resx">
       <DependentUpon>AdminLevelSelectForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -788,9 +755,6 @@
     <EmbeddedResource Include="View\Wizard\StartUp\StepCountrySettings.resx">
       <DependentUpon>StepCountrySettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Demography\TestDemoImport.resx">
-      <DependentUpon>TestDemoImport.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\DataEntryEdit.resx">
       <DependentUpon>DataEntryEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -815,6 +779,9 @@
     <EmbeddedResource Include="View\Wizard\ImportStepType.resx">
       <DependentUpon>ImportStepType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\ImportStepResult.resx">
+      <DependentUpon>ImportStepResult.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\WizardForm.resx">
       <DependentUpon>WizardForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -832,9 +799,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ReportsDashboard.resx">
       <DependentUpon>ReportsDashboard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\UpdateDatabase.resx">
-      <DependentUpon>UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Updates.resx">
       <DependentUpon>Updates.cs</DependentUpon>
@@ -857,12 +821,6 @@
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseList.resx">
       <DependentUpon>DiseaseList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Reports\OldReportIndicatorControl.resx">
-      <DependentUpon>OldReportIndicatorControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Wizard\ImportDownload.resx">
-      <DependentUpon>ImportDownload.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\MedicineAdd.resx">
       <DependentUpon>MedicineAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -881,17 +839,11 @@
     <EmbeddedResource Include="Controls\CustomIndicatorControl.resx">
       <DependentUpon>CustomIndicatorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\DashboardTabs.resx">
-      <DependentUpon>DashboardTabs.cs</DependentUpon>
+    <EmbeddedResource Include="View\DashboardAdminLevel.resx">
+      <DependentUpon>DashboardAdminLevel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DashboardView.resx">
       <DependentUpon>DashboardView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Demography\ImportAdminLevelsModal.resx">
-      <DependentUpon>ImportAdminLevelsModal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Demography\ImportDemographyModal.resx">
-      <DependentUpon>ImportDemographyModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Intervention\DistributionMethodAdd.resx">
       <DependentUpon>DistributionMethodAdd.cs</DependentUpon>
@@ -913,12 +865,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Reports\OldReportCreatorView.resx">
-      <DependentUpon>OldReportCreatorView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Reports\OldReportView.resx">
-      <DependentUpon>OldReportView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SettingsView.resx">
       <DependentUpon>SettingsView.cs</DependentUpon>
@@ -944,6 +890,7 @@
     <Content Include="Exports\AFRO_CM_JRF.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Images\logosplaceholder.gif" />
     <Content Include="TestDistrictUpdate.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -967,6 +914,8 @@
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportCmJrfQuestions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportContact.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportQuestions.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Imports.ImportOptions.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Imports.TypeListItem.datasource" />
     <None Include="Properties\DataSources\Nada.Model.IndicatorDropdownValue.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.DistributionMethod.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Intervention.IntvBase.datasource" />

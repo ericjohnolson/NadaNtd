@@ -36,7 +36,6 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblLastUpdated = new System.Windows.Forms.ToolStripStatusLabel();
-            this.adminLevelPickerControl1 = new Nada.UI.View.AdminLevelPickerControl();
             this.label3 = new System.Windows.Forms.Label();
             this.hr1 = new Nada.UI.Controls.HR();
             this.h3Label2 = new Nada.UI.Controls.H3Label();
@@ -56,9 +55,9 @@
             // tbLng
             // 
             this.tbLng.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSentinelSite, "Lng", true));
-            this.tbLng.Location = new System.Drawing.Point(172, 168);
+            this.tbLng.Location = new System.Drawing.Point(201, 131);
             this.tbLng.Name = "tbLng";
-            this.tbLng.Size = new System.Drawing.Size(92, 20);
+            this.tbLng.Size = new System.Drawing.Size(107, 21);
             this.tbLng.TabIndex = 3;
             // 
             // bsSentinelSite
@@ -68,36 +67,37 @@
             // tbLat
             // 
             this.tbLat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSentinelSite, "Lat", true));
-            this.tbLat.Location = new System.Drawing.Point(27, 168);
+            this.tbLat.Location = new System.Drawing.Point(31, 131);
             this.tbLat.Name = "tbLat";
-            this.tbLat.Size = new System.Drawing.Size(92, 20);
+            this.tbLat.Size = new System.Drawing.Size(107, 21);
             this.tbLat.TabIndex = 2;
             // 
             // tbSiteName
             // 
             this.tbSiteName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSentinelSite, "SiteName", true));
-            this.tbSiteName.Location = new System.Drawing.Point(27, 117);
+            this.tbSiteName.Location = new System.Drawing.Point(31, 72);
             this.tbSiteName.Name = "tbSiteName";
-            this.tbSiteName.Size = new System.Drawing.Size(158, 20);
+            this.tbSiteName.Size = new System.Drawing.Size(184, 21);
             this.tbSiteName.TabIndex = 0;
             // 
             // textBox10
             // 
             this.textBox10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSentinelSite, "Notes", true));
-            this.textBox10.Location = new System.Drawing.Point(27, 221);
+            this.textBox10.Location = new System.Drawing.Point(31, 192);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
             this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox10.Size = new System.Drawing.Size(332, 87);
+            this.textBox10.Size = new System.Drawing.Size(387, 100);
             this.textBox10.TabIndex = 4;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblLastUpdated});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 378);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 365);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(387, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(451, 22);
             this.statusStrip1.TabIndex = 11;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -107,24 +107,13 @@
             this.lblLastUpdated.Size = new System.Drawing.Size(82, 17);
             this.lblLastUpdated.Text = "Last Updated: ";
             // 
-            // adminLevelPickerControl1
-            // 
-            this.adminLevelPickerControl1.AutoSize = true;
-            this.adminLevelPickerControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.adminLevelPickerControl1.Location = new System.Drawing.Point(22, 50);
-            this.adminLevelPickerControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.adminLevelPickerControl1.Name = "adminLevelPickerControl1";
-            this.adminLevelPickerControl1.Size = new System.Drawing.Size(200, 27);
-            this.adminLevelPickerControl1.TabIndex = 1;
-            this.adminLevelPickerControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.label3.Location = new System.Drawing.Point(22, 10);
+            this.label3.Location = new System.Drawing.Point(26, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 28);
             this.label3.TabIndex = 20;
@@ -137,10 +126,10 @@
             this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
             this.hr1.ForeColor = System.Drawing.Color.Gray;
             this.hr1.Location = new System.Drawing.Point(0, 0);
-            this.hr1.Margin = new System.Windows.Forms.Padding(5);
+            this.hr1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.hr1.Size = new System.Drawing.Size(387, 5);
+            this.hr1.Size = new System.Drawing.Size(451, 6);
             this.hr1.TabIndex = 19;
             // 
             // h3Label2
@@ -148,10 +137,10 @@
             this.h3Label2.AutoSize = true;
             this.h3Label2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label2.Location = new System.Drawing.Point(27, 149);
+            this.h3Label2.Location = new System.Drawing.Point(31, 109);
             this.h3Label2.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label2.Name = "h3Label2";
-            this.h3Label2.Size = new System.Drawing.Size(55, 16);
+            this.h3Label2.Size = new System.Drawing.Size(51, 18);
             this.h3Label2.TabIndex = 21;
             this.h3Label2.Tag = "Latitude";
             this.h3Label2.Text = "Latitude";
@@ -162,10 +151,10 @@
             this.h3Label3.AutoSize = true;
             this.h3Label3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label3.Location = new System.Drawing.Point(172, 149);
+            this.h3Label3.Location = new System.Drawing.Point(201, 109);
             this.h3Label3.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label3.Name = "h3Label3";
-            this.h3Label3.Size = new System.Drawing.Size(67, 16);
+            this.h3Label3.Size = new System.Drawing.Size(62, 18);
             this.h3Label3.TabIndex = 22;
             this.h3Label3.Tag = "Longitude";
             this.h3Label3.Text = "Longitude";
@@ -176,10 +165,10 @@
             this.h3Label4.AutoSize = true;
             this.h3Label4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label4.Location = new System.Drawing.Point(27, 202);
+            this.h3Label4.Location = new System.Drawing.Point(31, 170);
             this.h3Label4.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label4.Name = "h3Label4";
-            this.h3Label4.Size = new System.Drawing.Size(44, 16);
+            this.h3Label4.Size = new System.Drawing.Size(40, 18);
             this.h3Label4.TabIndex = 23;
             this.h3Label4.Tag = "Notes";
             this.h3Label4.Text = "Notes";
@@ -190,10 +179,10 @@
             this.h3Required1.AutoSize = true;
             this.h3Required1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Required1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Required1.Location = new System.Drawing.Point(27, 98);
+            this.h3Required1.Location = new System.Drawing.Point(31, 50);
             this.h3Required1.Margin = new System.Windows.Forms.Padding(0);
             this.h3Required1.Name = "h3Required1";
-            this.h3Required1.Size = new System.Drawing.Size(81, 16);
+            this.h3Required1.Size = new System.Drawing.Size(75, 15);
             this.h3Required1.TabIndex = 24;
             this.h3Required1.Tag = "SiteName";
             this.h3Required1.Text = "Site name";
@@ -211,29 +200,29 @@
             this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel4.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(27, 322);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(31, 309);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(178, 31);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(206, 35);
             this.tableLayoutPanel4.TabIndex = 48;
             // 
             // btnCancel
             // 
             this.btnCancel.AutoSize = true;
-            this.btnCancel.Location = new System.Drawing.Point(97, 3);
-            this.btnCancel.MinimumSize = new System.Drawing.Size(78, 25);
+            this.btnCancel.Location = new System.Drawing.Point(112, 3);
+            this.btnCancel.MinimumSize = new System.Drawing.Size(91, 29);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnCancel.Size = new System.Drawing.Size(78, 25);
+            this.btnCancel.Size = new System.Drawing.Size(91, 29);
             this.btnCancel.TabIndex = 40;
             this.btnCancel.Tag = "Cancel";
             this.btnCancel.Values.Text = "Cancel";
@@ -243,10 +232,10 @@
             // 
             this.btnSave.AutoSize = true;
             this.btnSave.Location = new System.Drawing.Point(3, 3);
-            this.btnSave.MinimumSize = new System.Drawing.Size(78, 25);
+            this.btnSave.MinimumSize = new System.Drawing.Size(91, 29);
             this.btnSave.Name = "btnSave";
             this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnSave.Size = new System.Drawing.Size(78, 25);
+            this.btnSave.Size = new System.Drawing.Size(91, 29);
             this.btnSave.TabIndex = 1;
             this.btnSave.Tag = "Save";
             this.btnSave.Values.Text = "Save";
@@ -254,11 +243,11 @@
             // 
             // SentinelSiteAdd
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(387, 400);
+            this.ClientSize = new System.Drawing.Size(451, 387);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.h3Required1);
             this.Controls.Add(this.h3Label4);
@@ -266,7 +255,6 @@
             this.Controls.Add(this.h3Label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.hr1);
-            this.Controls.Add(this.adminLevelPickerControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.tbLng);
@@ -297,7 +285,6 @@
         private System.Windows.Forms.BindingSource bsSentinelSite;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblLastUpdated;
-        private AdminLevelPickerControl adminLevelPickerControl1;
         private System.Windows.Forms.Label label3;
         private Controls.HR hr1;
         private Controls.H3Label h3Label2;

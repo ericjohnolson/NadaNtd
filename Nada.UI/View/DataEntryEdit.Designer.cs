@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.c1Button2 = new C1.Win.C1Input.C1Button();
+            this.c1Button1 = new C1.Win.C1Input.C1Button();
             this.tblNotes = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.hr5 = new Nada.UI.Controls.HR();
@@ -62,19 +62,6 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // kryptonButton1
-            // 
-            this.kryptonButton1.AutoSize = true;
-            this.kryptonButton1.Location = new System.Drawing.Point(3, 3);
-            this.kryptonButton1.MinimumSize = new System.Drawing.Size(91, 29);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.kryptonButton1.Size = new System.Drawing.Size(91, 29);
-            this.kryptonButton1.TabIndex = 0;
-            this.kryptonButton1.Tag = "Save";
-            this.kryptonButton1.Values.Text = "Save";
-            this.kryptonButton1.Click += new System.EventHandler(this.save_Click);
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.AutoSize = true;
@@ -86,28 +73,49 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel4.Controls.Add(this.kryptonButton2, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.kryptonButton1, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.c1Button2, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.c1Button1, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(206, 81);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(204, 79);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // kryptonButton2
+            // c1Button2
             // 
-            this.kryptonButton2.AutoSize = true;
-            this.kryptonButton2.Location = new System.Drawing.Point(112, 3);
-            this.kryptonButton2.MinimumSize = new System.Drawing.Size(91, 29);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.kryptonButton2.Size = new System.Drawing.Size(91, 29);
-            this.kryptonButton2.TabIndex = 1;
-            this.kryptonButton2.Tag = "Cancel";
-            this.kryptonButton2.Values.Text = "Cancel";
-            this.kryptonButton2.Click += new System.EventHandler(this.cancel_Click);
+            this.c1Button2.AutoSize = true;
+            this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button2.Location = new System.Drawing.Point(111, 3);
+            this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button2.Name = "c1Button2";
+            this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button2.Size = new System.Drawing.Size(90, 27);
+            this.c1Button2.TabIndex = 62;
+            this.c1Button2.Tag = "Cancel";
+            this.c1Button2.Text = "Cancel";
+            this.c1Button2.UseVisualStyleBackColor = true;
+            this.c1Button2.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button2.Click += new System.EventHandler(this.cancel_Click);
+            // 
+            // c1Button1
+            // 
+            this.c1Button1.AutoSize = true;
+            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button1.Location = new System.Drawing.Point(3, 3);
+            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button1.Name = "c1Button1";
+            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button1.Size = new System.Drawing.Size(90, 27);
+            this.c1Button1.TabIndex = 2;
+            this.c1Button1.Tag = "Save";
+            this.c1Button1.Text = "Save";
+            this.c1Button1.UseVisualStyleBackColor = true;
+            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button1.Click += new System.EventHandler(this.save_Click);
             // 
             // tblNotes
             // 
@@ -123,7 +131,7 @@
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tblNotes.Size = new System.Drawing.Size(212, 87);
+            this.tblNotes.Size = new System.Drawing.Size(210, 85);
             this.tblNotes.TabIndex = 7;
             // 
             // tableLayoutPanel5
@@ -150,7 +158,8 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(939, 432);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(939, 430);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // hr5
@@ -327,7 +336,6 @@
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(46, 46);
             this.btnHelp.TabIndex = 59;
-            this.btnHelp.TabStop = false;
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
@@ -352,13 +360,13 @@
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.lblTitle.Location = new System.Drawing.Point(45, 0);
+            this.lblTitle.Location = new System.Drawing.Point(40, 0);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(178, 30);
+            this.lblTitle.Size = new System.Drawing.Size(165, 30);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Tag = "";
-            this.lblTitle.Text = "DiseaseDistribution";
+            this.lblTitle.Text = "GenericDataEntry";
             // 
             // lblDiseaseType
             // 
@@ -369,10 +377,10 @@
             this.lblDiseaseType.Location = new System.Drawing.Point(0, 0);
             this.lblDiseaseType.Margin = new System.Windows.Forms.Padding(0);
             this.lblDiseaseType.Name = "lblDiseaseType";
-            this.lblDiseaseType.Size = new System.Drawing.Size(45, 30);
+            this.lblDiseaseType.Size = new System.Drawing.Size(40, 30);
             this.lblDiseaseType.TabIndex = 44;
-            this.lblDiseaseType.Tag = "CM";
-            this.lblDiseaseType.Text = "CM";
+            this.lblDiseaseType.Tag = "EO";
+            this.lblDiseaseType.Text = "EO";
             // 
             // tblTitle
             // 
@@ -387,7 +395,7 @@
             this.tblTitle.Name = "tblTitle";
             this.tblTitle.RowCount = 1;
             this.tblTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblTitle.Size = new System.Drawing.Size(223, 30);
+            this.tblTitle.Size = new System.Drawing.Size(205, 30);
             this.tblTitle.TabIndex = 60;
             // 
             // tableLayoutPanel2
@@ -465,7 +473,7 @@
             this.Controls.Add(this.nadaLabel1);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "DataEntryEdit";
-            this.Size = new System.Drawing.Size(954, 536);
+            this.Size = new System.Drawing.Size(954, 534);
             this.Load += new System.EventHandler(this.DataEntryEdit_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
@@ -486,13 +494,11 @@
 
         #endregion
 
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tblNotes;
         private AdminLevelPickerControl adminLevelPickerControl2;
         private Controls.H3Label nadaLabel1;
         private Controls.H3Label nadaLabel2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
         private Controls.HR hr4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
@@ -512,5 +518,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblAdminLevel;
         private System.Windows.Forms.Label lblLocation;
+        private C1.Win.C1Input.C1Button c1Button2;
+        private C1.Win.C1Input.C1Button c1Button1;
     }
 }

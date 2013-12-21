@@ -65,21 +65,18 @@ namespace Nada.UI.ViewModel
             var cntrl = new DateTimePicker { Name = "dynamicDt" + indicator.Id.ToString(), Width = 220, Margin = new Padding(0, 5, 10, bottomPadding) };
             container.IsValid = () =>
             {
-                if (indicator.IsRequired)
+                if (indicator.IsRequired && (cntrl.Text == "" || cntrl.Text == null))
                 {
-                    if (cntrl.Text == "" || cntrl.Text == null)
-                    {
-                        indicatorErrors.SetError(cntrl, Translations.Required);
-                        return false;
-                    }
-                    else if (!DateTime.TryParse(cntrl.Text, out d))
-                    {
-                        indicatorErrors.SetError(cntrl, Translations.MustBeDate);
-                        return false;
-                    }
-                    else
-                        indicatorErrors.SetError(cntrl, "");
+                    indicatorErrors.SetError(cntrl, Translations.Required);
+                    return false;
                 }
+                else if (!string.IsNullOrEmpty(cntrl.Text) && !DateTime.TryParse(cntrl.Text, out d))
+                {
+                    indicatorErrors.SetError(cntrl, Translations.MustBeDate);
+                    return false;
+                }
+                
+                indicatorErrors.SetError(cntrl, "");
                 return true;
             };
             cntrl.Validating += (s, e) => { container.IsValid(); };
@@ -100,84 +97,31 @@ namespace Nada.UI.ViewModel
             var cntrl = new TextBox { Name = "dynamicNum" + indicator.Id.ToString(), Text = val, Width = 220, Margin = new Padding(0, 5, 10, bottomPadding) };
             container.IsValid = () =>
             {
-                if (indicator.IsRequired)
+                double d = 0;
+                int i = 0;
+                if (indicator.IsRequired && (cntrl.Text == "" || cntrl.Text == null))
                 {
-                    double d = 0;
-                    int i = 0;
-                    if (cntrl.Text == "" || cntrl.Text == null)
-                    {
-                        indicatorErrors.SetError(cntrl, Translations.Required);
-                        return false;
-                    }
-                    else if (type == IndicatorDataType.Number && !Double.TryParse(cntrl.Text, out d))
-                    {
-                        indicatorErrors.SetError(cntrl, Translations.MustBeNumber);
-                        return false;
-                    }
-                    else if (type == IndicatorDataType.Year && (!int.TryParse(cntrl.Text, out i) || (i > 2100 || i < 1900)))
-                    {
-                        indicatorErrors.SetError(cntrl, Translations.ValidYear);
-                        return false;
-                    }
-                    else
-                        indicatorErrors.SetError(cntrl, "");
+                    indicatorErrors.SetError(cntrl, Translations.Required);
+                    return false;
                 }
+                else if (!string.IsNullOrEmpty(cntrl.Text) && type == IndicatorDataType.Number && !Double.TryParse(cntrl.Text, out d))
+                {
+                    indicatorErrors.SetError(cntrl, Translations.MustBeNumber);
+                    return false;
+                }
+                else if (!string.IsNullOrEmpty(cntrl.Text) && type == IndicatorDataType.Year && (!int.TryParse(cntrl.Text, out i) || (i > 2100 || i < 1900)))
+                {
+                    indicatorErrors.SetError(cntrl, Translations.ValidYear);
+                    return false;
+                }
+
+                indicatorErrors.SetError(cntrl, "");
                 return true;
             };
             cntrl.Validating += (s, e) => { container.IsValid(); };
             container.GetValue = () => { return cntrl.Text; };
             controlList.Add(container);
             return cntrl;
-        }
-
-        public static Control CreateMonth(Indicator indicator, string val, ErrorProvider indicatorErrors, List<DynamicContainer> controlList,
-           IndicatorEntityType entityType, List<IndicatorDropdownValue> dropdownKeys)
-        {
-            List<IndicatorDropdownValue> availableValues = new List<IndicatorDropdownValue>();
-            var container = new DynamicContainer { Indicator = indicator };
-            var cntrl = new ComboBox { Name = "dynamicCombo" + indicator.Id.ToString(), Width = 220, Margin = new Padding(0, 5, 10, bottomPadding) };
-            foreach (IndicatorDropdownValue v in dropdownKeys.Where(k => k.IndicatorId == indicator.Id))
-            {
-                cntrl.Items.Add(v);
-                availableValues.Add(v);
-            }
-            cntrl.ValueMember = "Id";
-            cntrl.DisplayMember = "DisplayName";
-            cntrl.DropDownWidth -= BaseForm.GetDropdownWidth(availableValues.Select(a => a.DisplayName));
-            if (!string.IsNullOrEmpty(val))
-            {
-                var valItem = availableValues.FirstOrDefault(a => a.IndicatorId.ToString() == val);
-                cntrl.SelectedItem = valItem;
-            }
-
-            container.IsValid = () =>
-            {
-                if (indicator.IsRequired)
-                {
-                    if (cntrl.Text == "" || cntrl.Text == null)
-                    {
-                        indicatorErrors.SetError(cntrl, Translations.Required);
-                        return false;
-                    }
-                    else
-                        indicatorErrors.SetError(cntrl, "");
-                }
-                return true;
-            };
-            cntrl.Validating += (s, e) => { container.IsValid(); };
-
-            container.GetValue = () =>
-            {
-                if (cntrl.SelectedItem == null)
-                    return null;
-                return ((IndicatorDropdownValue)cntrl.SelectedItem).IndicatorId.ToString();
-            };
-            controlList.Add(container);
-
-            if (indicator.CanAddValues)
-                return AddNewValLink(cntrl, indicator, entityType);
-            else
-                return cntrl;
         }
 
         public static Control CreateYesNo(Indicator indicator, string val, ErrorProvider indicatorErrors, List<DynamicContainer> controlList)
@@ -193,7 +137,7 @@ namespace Nada.UI.ViewModel
             controlList.Add(container);
             return cntrl;
         }
-        
+
         public static Control CreateDropdown(Indicator indicator, string val, ErrorProvider indicatorErrors, List<DynamicContainer> controlList,
             IndicatorEntityType entityType, List<IndicatorDropdownValue> dropdownKeys)
         {
@@ -207,7 +151,7 @@ namespace Nada.UI.ViewModel
             }
             cntrl.ValueMember = "Id";
             cntrl.DisplayMember = "DisplayName";
-            if(availableValues.Count > 0)
+            if (availableValues.Count > 0)
                 cntrl.DropDownWidth = BaseForm.GetDropdownWidth(availableValues.Select(a => a.DisplayName));
             if (!string.IsNullOrEmpty(val))
             {
@@ -298,6 +242,53 @@ namespace Nada.UI.ViewModel
                 return cntrl;
         }
 
+        public static Control CreateDynamicNameVal(Indicator indicator, string val, ErrorProvider indicatorErrors, List<DynamicContainer> controlList,
+           IndicatorEntityType entityType, List<IndicatorDropdownValue> values)
+        {
+            var container = new DynamicContainer { Indicator = indicator };
+            var cntrl = new ComboBox { Name = "dynamicCombo" + indicator.Id.ToString(), Width = 220, Margin = new Padding(0, 5, 10, bottomPadding), DropDownStyle = ComboBoxStyle.DropDownList };
+            foreach (IndicatorDropdownValue v in values)
+                cntrl.Items.Add(v);
+            cntrl.ValueMember = "Id";
+            cntrl.DisplayMember = "DisplayName";
+            if (values.Count > 0)
+                cntrl.DropDownWidth = BaseForm.GetDropdownWidth(values.Select(a => a.DisplayName));
+            if (!string.IsNullOrEmpty(val))
+            {
+                var valItem = values.FirstOrDefault(a => a.Id == Convert.ToInt32(val));
+                cntrl.SelectedItem = valItem;
+            }
+
+            container.IsValid = () =>
+            {
+                if (indicator.IsRequired)
+                {
+                    if (cntrl.Text == "" || cntrl.Text == null)
+                    {
+                        indicatorErrors.SetError(cntrl, Translations.Required);
+                        return false;
+                    }
+                    else
+                        indicatorErrors.SetError(cntrl, "");
+                }
+                return true;
+            };
+            cntrl.Validating += (s, e) => { container.IsValid(); };
+
+            container.GetValue = () =>
+            {
+                if (cntrl.SelectedItem == null)
+                    return null;
+                return ((IndicatorDropdownValue)cntrl.SelectedItem).Id.ToString();
+            };
+            controlList.Add(container);
+
+            if (indicator.CanAddValues)
+                return AddNewValLink(cntrl, indicator, entityType);
+            else
+                return cntrl;
+        }
+              
         public static Control CreatePartners(Indicator indicator, string val, ErrorProvider indicatorErrors, List<DynamicContainer> controlList)
         {
             var container = new DynamicContainer { Indicator = indicator };
@@ -351,7 +342,7 @@ namespace Nada.UI.ViewModel
             lnk.ClickOverride += () =>
             {
                 PartnerList list = new PartnerList();
-                list.OnSave += () => 
+                list.OnSave += () =>
                 {
                     partners = GetAndLoadPartners(cntrl);
                 };

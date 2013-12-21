@@ -24,6 +24,10 @@ namespace Nada.UI.View.Process
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return lblTitle.Text; } }
 
+        public void SetFocus()
+        {
+        }
+
         public ProcessTypeEdit()
             : base()
         {

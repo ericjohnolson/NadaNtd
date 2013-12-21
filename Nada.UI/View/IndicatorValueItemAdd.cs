@@ -50,9 +50,17 @@ namespace Nada.UI.View
                 return;
             }
             bindingSource1.EndEdit();
+
+            SettingsRepository s = new SettingsRepository();
             RepositoryBase r = new RepositoryBase();
             int userid = ApplicationData.Instance.GetUserId();
-            r.Save(model, userid);
+
+            if (model.EntityType == IndicatorEntityType.EcologicalZone)
+                s.SaveEz(model, userid);
+            else if (model.EntityType == IndicatorEntityType.EvaluationUnit)
+                s.SaveEu(model, userid);
+            else
+                r.Save(model, userid);
             OnSave(model);
             this.Close();
         }

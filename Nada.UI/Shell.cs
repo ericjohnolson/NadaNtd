@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Diseases;
+using Nada.Model.Imports;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
@@ -19,6 +20,7 @@ using Nada.UI.Base;
 using Nada.UI.View;
 using Nada.UI.View.Demography;
 using Nada.UI.View.DiseaseDistribution;
+using Nada.UI.View.Help;
 using Nada.UI.View.Intervention;
 using Nada.UI.View.Modals;
 using Nada.UI.View.Reports;
@@ -45,36 +47,42 @@ namespace Nada.UI
             if (!DesignMode)
             {
                 pnlLeft.Visible = false;
-                menuMain.Visible = false;
-                LoginView loginView = new LoginView();
-                loginView.OnLogin += loginView1_OnLogin;
-                LoadView(loginView);
+                DatabaseView dbView = new DatabaseView();
+                dbView.OnFileSelected += dbView_OnFileSelected;
+                LoadView(dbView);
                 DoTranslate();
-                if(ConfigurationManager.AppSettings["DeveloperMode"] == "QA")
+                if (ConfigurationManager.AppSettings["DeveloperMode"] == "QA")
                     lblDeveloperMode.Visible = true;
-                //LoadDeveloperMode(loginView);
             }
-        }
-
-        private void LoadDeveloperMode(LoginView view)
-        {
-            view.DoLogin("admin", "@ntd1one!");
-            lblDeveloperMode.Visible = true;
         }
 
         private void DoTranslate()
         {
             this.Text = Localizer.GetValue("ApplicationTitle");
             Localizer.TranslateControl(this);
+            // Translate controls
+            foreach (ToolStripMenuItem item in mainMenu.Items)
+            {
+                item.Text = TranslationLookup.GetValue(item.Text, item.Text);
+                foreach (var child in item.DropDownItems)
+                    if (child is ToolStripMenuItem)
+                        (child as ToolStripMenuItem).Text = TranslationLookup.GetValue((child as ToolStripMenuItem).Text, (child as ToolStripMenuItem).Text);
+            }
+        }
+
+        void dbView_OnFileSelected()
+        {
+            DoTranslate();
+            LoginView loginView = new LoginView();
+            loginView.OnLogin += loginView1_OnLogin;
+            LoadView(loginView);
         }
 
         public void loginView1_OnLogin()
         {
-            Shell sh = new Shell();
             var lang = Localizer.SupportedLanguages;
             //menuMain.Visible = true;
             pnlLeft.Visible = true;
-            DoTranslate();
 
             var status = settings.GetStartUpStatus();
             if (status.ShouldShowStartup())
@@ -95,7 +103,7 @@ namespace Nada.UI
             updateWorker.DoWork += updateWorker_DoWork;
             updateWorker.RunWorkerCompleted += updateWorker_RunWorkerCompleted;
             updateWorker.RunWorkerAsync();
-            
+
         }
 
         void updateWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -119,120 +127,130 @@ namespace Nada.UI
         {
             dashboard.StatusChanged += view_StatusChanged;
             dashboard.LoadView = (v) => { LoadView(v); };
-            dashboard.LoadDashForAdminLevel = (a) => 
-            { 
+            dashboard.LoadDashForAdminLevel = (a) =>
+            {
                 DashboardView d = new DashboardView();
-                if(a != null)
+                if (a != null)
                     d = new DashboardView(a);
                 LoadDashboard(d);
             };
             LoadView(dashboard);
         }
- 
+
         void LoadView(UserControl view)
         {
             pnlMain.Controls.Clear();
             currentView = view;
             currentView.Dock = DockStyle.Fill;
             pnlMain.Controls.Add(currentView);
+            hrTop.Visible = (view is DashboardView);
+            mainMenu.Visible = (view is DashboardView);
         }
 
         private void view_StatusChanged(string status)
         {
             tsLastUpdated.Text = status;
         }
+
         #endregion
 
         #region Menu
 
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadView(new SettingsView());
+            DatabaseView dbView = new DatabaseView();
+            dbView.OnFileSelected += dbView_OnFileSelected;
+            LoadView(dbView);
         }
 
-        private void countryInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DatabaseView dbView = new DatabaseView();
+            dbView.OnFileSelected += dbView_OnFileSelected;
+            LoadView(dbView);
         }
 
-        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void menuViewHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadView(new DashboardView());
+            HelpView help = new HelpView();
+            help.Show();
         }
 
-        private void demographyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadView(new DashboardView());
-        }
-
-        private void createCustomToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadView(new OldReportCreatorView());
-        }
-        
-
-        private void prevalenceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        void Survey_OnSave(bool doRefresh)
-        {
-            LoadView(new DashboardView());
-        }
-
-        void Dash_Load()
-        {
-            LoadView(new DashboardView());
-        }
-
-        private void lFMDAToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void lFLymphedemaMorbidityToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void lFHydroceleMorbidityToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuCheckForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var updates = new Updates();
             updates.ShowDialog();
         }
 
-        private void aboutNationalDatabaseTemplateToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuAboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var about = new About();
             about.ShowDialog();
         }
 
-        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        private void menuNewReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            LoadView(new ReportsDashboard());
         }
 
-        void diseaseDistroAdminLevel_OnSelect(Model.AdminLevel obj)
+        private void menuDemographyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not Implemented");
+            throw new NotImplementedException();
         }
 
-        private void lFPopulationToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuDiseaseDistributionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            LoadImporter(new DistroImporter());
         }
-        private void lFSentinelSpotCheckToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void menuIntvToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SurveyRepository r = new SurveyRepository();
-            ImportDownload form = new ImportDownload(new LfSentinelImporter(r.GetSurveyType((int)StaticSurveyType.LfPrevalence)));
-            form.ShowDialog();
+            LoadImporter(new IntvImporter());
+        }
+
+        private void menuProcessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadImporter(new ProcessImporter());
+        }
+
+        private void menuSurveysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadImporter(new SurveyImporter());
+        }
+
+        private void LoadImporter(IImporter importer)
+        {
+            WizardForm wiz = new WizardForm(new ImportStepType(new ImportOptions { Importer = importer }), importer.ImportName);
+            wiz.OnFinish = import_OnSuccess;
+            wiz.ShowDialog();
+        }
+
+        private void import_OnSuccess()
+        {
+            LoadView(new DashboardView());
+        }
+
+        private void menuNewAdminLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var adminLevelAdd = new AdminLevelAdd();
+            adminLevelAdd.OnSave += adminLevelAdd_OnSave;
+            adminLevelAdd.ShowDialog();
+        }
+
+        private void adminLevelAdd_OnSave()
+        {
+            var dashboard = new DashboardView();
+            LoadDashboard(dashboard);
         }
         #endregion
+
+
+        
 
     }
 }

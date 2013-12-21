@@ -529,7 +529,7 @@ namespace Nada.Model.Repositories
                         FROM ((SurveyIndicators INNER JOIN aspnet_users ON SurveyIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON SurveyIndicators.DataTypeId = IndicatorDataTypes.ID)
                         WHERE SurveyTypeId=@SurveyTypeId AND IsDisabled=0 
-                        ORDER BY SortOrder AND SurveyIndicators.ID", connection);
+                        ORDER BY SortOrder,SurveyIndicators.ID", connection);
                     command.Parameters.Add(new OleDbParameter("@SurveyTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -683,10 +683,9 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Insert Into SentinelSites (AdminLevelId, SiteName, Lat, Lng,
+                    OleDbCommand command = new OleDbCommand(@"Insert Into SentinelSites (SiteName, Lat, Lng,
                         Notes, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
-                        (@AdminLevelId, @SiteName, @Lat, @Lng, @Notes, @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", site.AdminLevel.Id));
+                        (@SiteName, @Lat, @Lng, @Notes, @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@SiteName", site.SiteName));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@Lat", site.Lat));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@Lng", site.Lng));
@@ -699,6 +698,15 @@ namespace Nada.Model.Repositories
 
                     command = new OleDbCommand(@"SELECT Max(ID) FROM SentinelSites", connection);
                     site.Id = (int)command.ExecuteScalar();
+
+                    foreach (var adminLevel in site.AdminLevels)
+                    {
+                        command = new OleDbCommand(@"Insert Into SentinelSites_to_AdminLevels (SentinelSiteId, AdminLevelId) VALUES
+                        (@SentinelSiteId, @AdminLevelId)", connection);
+                        command.Parameters.Add(new OleDbParameter("@SentinelSiteId", site.Id));
+                        command.Parameters.Add(new OleDbParameter("@AdminLevelId", adminLevel.Id));
+                        command.ExecuteNonQuery();
+                    }
                     return site;
                 }
                 catch (Exception)
@@ -716,9 +724,8 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"UPDATE SentinelSites SET AdminLevelId=@AdminLevelId, SiteName=@SiteName,
+                    OleDbCommand command = new OleDbCommand(@"UPDATE SentinelSites SET SiteName=@SiteName,
                         Lat=@Lat, Lng=@Lng, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
-                    command.Parameters.Add(new OleDbParameter("@AdminLevelId", site.AdminLevel));
                     command.Parameters.Add(new OleDbParameter("@SiteName", site.SiteName));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@Lat", site.Lat));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@Lng", site.Lng));
@@ -745,11 +752,11 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select SentinelSites.ID, SentinelSites.AdminLevelId, SentinelSites.SiteName, 
-                        SentinelSites.Lat, SentinelSites.Lng, SentinelSites.Notes,  
-                        SentinelSites.UpdatedAt, aspnet_users.UserName 
-                        FROM (SentinelSites INNER JOIN aspnet_users ON SentinelSites.UpdatedById = aspnet_users.UserId)
-                        WHERE AdminLevelId in (" + String.Join(", ", adminLevelIds.ToArray()) + ")", connection);
+                    OleDbCommand command = new OleDbCommand(@"Select SentinelSites.ID, SentinelSites.SiteName, 
+                        SentinelSites.Lat, SentinelSites.Lng, SentinelSites.Notes
+                        FROM (SentinelSites INNER JOIN SentinelSites_to_AdminLevels ON SentinelSites_to_AdminLevels.SentinelSiteId = SentinelSites.ID)
+                        WHERE SentinelSites_to_AdminLevels.AdminLevelId in (" + String.Join(", ", adminLevelIds.ToArray()) + @")
+                        GROUP BY SentinelSites.ID, SentinelSites.SiteName, SentinelSites.Lat, SentinelSites.Lng, SentinelSites.Notes", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -757,12 +764,10 @@ namespace Nada.Model.Repositories
                             sites.Add(new SentinelSite
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
-                                AdminLevel = new AdminLevel { Id = reader.GetValueOrDefault<int>("AdminLevelId") },
                                 SiteName = reader.GetValueOrDefault<string>("SiteName"),
                                 Lat = reader.GetNullableDouble("Lat"),
                                 Lng = reader.GetNullableDouble("Lng"),
-                                Notes = reader.GetValueOrDefault<string>("Notes"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+                                Notes = reader.GetValueOrDefault<string>("Notes")
                             });
                         }
                         reader.Close();

@@ -10,5 +10,7 @@ namespace Nada.UI.AppLogic
         Action OnClose { get; set; }
         Action<string> StatusChanged { get; set; }
         string Title { get; }
+
+        void SetFocus();
     }
 }

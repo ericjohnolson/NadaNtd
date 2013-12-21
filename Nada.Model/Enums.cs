@@ -16,7 +16,9 @@ namespace Nada.Model
         Year = 7,
         Month = 8,
         Partners = 9,
-        SentinelSite = 10
+        SentinelSite = 10,
+        EcologicalZone = 11,
+        EvaluationUnit = 12
     }
 
     public enum IndicatorAggType
@@ -34,14 +36,17 @@ namespace Nada.Model
         Intervention = 2,
         Survey = 3,
         Process = 4,
+        EvaluationUnit = 5,
+        EcologicalZone = 6,
     }
 
     public enum StaticSurveyType
     {
         LfPrevalence = 1,
-        LfTas = 2,
-        LfMapping = 3,
-        BuruliSurvey = 8
+        BuruliSurvey = 8,
+        LfSentinel = 10,
+        SchistoSentinel = 11,
+        SthSentinel = 12
     }
 
     public enum StaticIntvType

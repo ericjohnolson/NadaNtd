@@ -33,7 +33,7 @@
             // 
             // linkLabel1
             // 
-            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.MidnightBlue;
+            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.LightSkyBlue;
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Arial", 9F);
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;

@@ -28,6 +28,10 @@ namespace Nada.UI.View.Intervention
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return lblTitle.Text; } }
 
+        public void SetFocus()
+        {
+        }
+
         public IntvBaseView()
             : base()
         {

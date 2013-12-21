@@ -64,13 +64,17 @@ namespace Nada.Model.Reports
     public class BaseReportGenerator : IReportGenerator
     {
         protected ReportRepository repo = new ReportRepository();
+        protected ReportOptions opts = null;
         protected virtual string CmdText()
         {
             throw new NotImplementedException();
         }
-        public ReportResult Run(ReportOptions options)
+
+        public virtual ReportResult Run(ReportOptions options)
         {
+            opts = options;
             ReportResult result = new ReportResult();
+            repo.LoadRelatedLists();
 
             if (options.IsNoAggregation)
                 result.DataTableResults = CreateNonAggregatedReport(options);
@@ -79,19 +83,14 @@ namespace Nada.Model.Reports
 
             return result;
         }
-
-        protected virtual DataTable FillDataTable(ReportOptions options, DataTable dataTable)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public DataTable CreateNonAggregatedReport(ReportOptions options)
         {
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn(Translations.Location));
             dataTable.Columns.Add(new DataColumn(Translations.Type));
             dataTable.Columns.Add(new DataColumn(Translations.Year));
-            repo.CreateNonAggregatedReport(CmdText(), options, dataTable, GetIndicatorColumnName);
+            repo.CreateNonAggregatedReport(CmdText(), options, dataTable, GetIndicatorColumnName, AddStaticIndicators);
             return dataTable;
         }
 
@@ -111,9 +110,10 @@ namespace Nada.Model.Reports
                 OleDbCommand command = new OleDbCommand();
                 list = ExportRepository.GetAdminLevels(command, connection);
                 dic = list.ToDictionary(n => n.Id, n => n);
-                repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndicatorKey, GetIndicatorColumnName);
+                repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndicatorKey, GetIndicatorColumnName, AddStaticAggIndicators);
             }
 
+            // CONVERT TO TREE
             var rootNodes = new List<AdminLevelIndicators>();
             foreach (var node in list)
             {
@@ -135,6 +135,7 @@ namespace Nada.Model.Reports
             if (options.IsByLevelAggregation && options.SelectedAdminLevels.Count > 0)
                 selectedLevels = list.Where(a => options.SelectedAdminLevels.Select(s => s.Id).Contains(a.Id)).ToList();
 
+            // AGGREGATE INDICATORS, PUT IN TABLE
             Dictionary<string, DataRow> ids = new Dictionary<string, DataRow>();
             foreach (var level in selectedLevels)
             {
@@ -186,8 +187,14 @@ namespace Nada.Model.Reports
 
         protected virtual string GetIndicatorColumnName(OleDbDataReader reader)
         {
+            if (TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) == Translations.NoTranslationFound)
+                return null;
+
             return TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) + " - " + TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
         }
+
+        protected virtual void AddStaticAggIndicators(CreateAggParams param) { }
+        protected virtual void AddStaticIndicators(CreateAggParams param) { }
 
         protected string GetValueOrBlank(string value, string separator)
         {
@@ -208,7 +215,24 @@ namespace Nada.Model.Reports
     {
         protected override string CmdText()
         {
-            return @"Select 
+            string staticConditional = "";
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckName) != null)
+                staticConditional += "OR Surveys.SpotCheckName IS NOT NULL ";
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLat) != null)
+                staticConditional += "OR Surveys.SpotCheckLat IS NOT NULL ";
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLng) != null)
+                staticConditional += "OR Surveys.SpotCheckLng IS NOT NULL ";
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteName) != null)
+                staticConditional += "OR SentinelSites.SiteName IS NOT NULL ";
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLat) != null)
+                staticConditional += "OR SentinelSites.Lat IS NOT NULL ";
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLng) != null)
+                staticConditional += "OR SentinelSites.Lng IS NOT NULL ";
+            if (staticConditional.Length > 0)
+                staticConditional = " AND ( " + staticConditional.Remove(0, 2) + " ) ";
+        
+            if (opts.SelectedIndicators.Where(i => i.ID > 0).Count() > 0)
+                return @"Select 
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
                         Surveys.ID, 
@@ -218,14 +242,109 @@ namespace Nada.Model.Reports
                         SurveyIndicators.DisplayName as IndicatorName, 
                         SurveyIndicators.DataTypeId, 
                         SurveyIndicators.AggTypeId,    
-                        SurveyIndicatorValues.DynamicValue
-                        FROM (((((Surveys INNER JOIN SurveyTypes on Surveys.SurveyTypeId = SurveyTypes.ID)
+                        SurveyIndicatorValues.DynamicValue,
+                        Surveys.SpotCheckName as IndSpotCheckName,
+                        Surveys.SpotCheckLat as IndSpotCheckLat,
+                        Surveys.SpotCheckLng as IndSpotCheckLng,
+                        SentinelSites.SiteName as IndSentinelSiteName,
+                        SentinelSites.Lat as IndSentinelSiteLat,
+                        SentinelSites.Lng as IndSentinelSiteLng
+                        FROM ((((((Surveys INNER JOIN SurveyTypes on Surveys.SurveyTypeId = SurveyTypes.ID)
                             INNER JOIN SurveyIndicatorValues on Surveys.Id = SurveyIndicatorValues.SurveyId)
                             INNER JOIN Surveys_to_AdminLevels on Surveys_to_AdminLevels.SurveyId = Surveys.ID) 
                             INNER JOIN AdminLevels on Surveys_to_AdminLevels.AdminLevelId = AdminLevels.ID) 
                             INNER JOIN SurveyIndicators on SurveyIndicators.ID = SurveyIndicatorValues.IndicatorId)
-                        WHERE Surveys.IsDeleted = 0 AND  
-                              SurveyIndicators.Id in ";
+                            LEFT OUTER JOIN SentinelSites on Surveys.SentinelSiteId = SentinelSites.ID)
+                        WHERE Surveys.IsDeleted = 0 AND SurveyIndicators.Id in " + " (" + 
+                       String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") " + 
+                       staticConditional;
+            else
+                return @"Select 
+                        AdminLevels.ID as AID, 
+                        AdminLevels.DisplayName,
+                        Surveys.ID, 
+                        Surveys.YearReported, 
+                        SurveyTypes.SurveyTypeName as TName,      
+                        0 as IndicatorId, 
+                        '' as IndicatorName, 
+                        1 as DataTypeId, 
+                        1 as AggTypeId,    
+                        '' as DynamicValue,
+                        Surveys.SpotCheckName as IndSpotCheckName,
+                        Surveys.SpotCheckLat as IndSpotCheckLat,
+                        Surveys.SpotCheckLng as IndSpotCheckLng,
+                        SentinelSites.SiteName as IndSentinelSiteName,
+                        SentinelSites.Lat as IndSentinelSiteLat,
+                        SentinelSites.Lng as IndSentinelSiteLng
+                        FROM ((((Surveys INNER JOIN SurveyTypes on Surveys.SurveyTypeId = SurveyTypes.ID)
+                            INNER JOIN Surveys_to_AdminLevels on Surveys_to_AdminLevels.SurveyId = Surveys.ID) 
+                            INNER JOIN AdminLevels on Surveys_to_AdminLevels.AdminLevelId = AdminLevels.ID) 
+                            LEFT OUTER JOIN SentinelSites on Surveys.SentinelSiteId = SentinelSites.ID)
+                        WHERE Surveys.IsDeleted = 0 " + staticConditional;
+            
+        }
+
+        protected override void AddStaticIndicators(CreateAggParams param)
+        {
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckName) != null)
+                AddIndicatorToTable<string>(Translations.IndSpotCheckName, "IndSpotCheckName", param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLat) != null)
+                AddIndicatorToTable<Nullable<double>>(Translations.IndSpotCheckLat, "IndSpotCheckLat", param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLng) != null)
+                AddIndicatorToTable<Nullable<double>>(Translations.IndSpotCheckLng, "IndSpotCheckLng", param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteName) != null)
+                AddIndicatorToTable<string>(Translations.IndSentinelSiteName, "IndSentinelSiteName", param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLat) != null)
+                AddIndicatorToTable<Nullable<double>>(Translations.IndSentinelSiteLat, "IndSentinelSiteLat", param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLng) != null)
+                AddIndicatorToTable<Nullable<double>>(Translations.IndSentinelSiteLng, "IndSentinelSiteLng", param);
+        }
+
+        private void AddIndicatorToTable<T>(string displayName, string colName, CreateAggParams param)
+        {
+            if (!param.Table.Columns.Contains(displayName))
+                param.Table.Columns.Add(new DataColumn(displayName));
+
+            param.Row[displayName] = param.Reader.GetValueOrDefault<T>(colName);
+        }
+
+        protected override void AddStaticAggIndicators(CreateAggParams param)
+        {
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckName) != null)
+                AddIndicatorAndColumn<string>("IndSpotCheckName", Translations.IndSpotCheckName,  param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLat) != null)
+                AddIndicatorAndColumn<Nullable<double>>("IndSpotCheckLat", Translations.IndSpotCheckLat, param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLng) != null)
+                AddIndicatorAndColumn<Nullable<double>>("IndSpotCheckLng", Translations.IndSpotCheckLng, param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteName) != null)
+                AddIndicatorAndColumn<string>("IndSentinelSiteName", Translations.IndSentinelSiteName, param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLat) != null)
+                AddIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLat", Translations.IndSentinelSiteLat, param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLng) != null)
+                AddIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLng", Translations.IndSentinelSiteLng, param);
+        }
+
+        private void AddIndicatorAndColumn<T>(string columnName, string transName, CreateAggParams param)
+        {
+            string key = columnName + "_" + param.Reader.GetValueOrDefault<int>("YearReported") + "_" + param.Reader.GetValueOrDefault<string>("TName");
+            string displayName = transName + " - " + TranslationLookup.GetValue(param.Reader.GetValueOrDefault<string>("TName"));
+            T val = param.Reader.GetValueOrDefault<T>(columnName);
+            if (!param.AdminLevel.Indicators.ContainsKey(key))
+            {
+                param.AdminLevel.Indicators.Add(key, new AggregateIndicator
+                    {
+                        Name = displayName,
+                        Key = key,
+                        DataType = (int)IndicatorDataType.Text,
+                        Value = val == null ? null : val.ToString(),
+                        AggType = (int)IndicatorAggType.None,
+                        Year = param.Reader.GetValueOrDefault<int>("YearReported")
+                    });
+
+                // Add Column
+                if (!param.Options.Columns.ContainsKey(key))
+                    param.Options.Columns.Add(key, displayName);
+            }
         }
     }
 
@@ -250,7 +369,8 @@ namespace Nada.Model.Reports
                             INNER JOIN AdminLevels on Interventions.AdminLevelId = AdminLevels.ID) 
                             INNER JOIN InterventionIndicators on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId)
                         WHERE Interventions.IsDeleted = 0 AND  
-                              InterventionIndicators.Id in ";
+                              InterventionIndicators.Id in "
+            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
         }
 
         protected override string GetIndicatorKey(OleDbDataReader reader)
@@ -266,6 +386,7 @@ namespace Nada.Model.Reports
                 GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", Translations.Round));
         }
     }
+
     public class ProcessReportGenerator : BaseReportGenerator
     {
         protected override string CmdText()
@@ -288,7 +409,8 @@ namespace Nada.Model.Reports
                             INNER JOIN AdminLevels on Processes.AdminLevelId = AdminLevels.ID) 
                             INNER JOIN ProcessIndicators on ProcessIndicators.ID = ProcessIndicatorValues.IndicatorId)
                         WHERE Processes.IsDeleted = 0 AND  
-                              ProcessIndicators.Id in ";
+                              ProcessIndicators.Id in "
+            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
         }
 
         protected override string GetIndicatorKey(OleDbDataReader reader)
@@ -327,14 +449,25 @@ namespace Nada.Model.Reports
                             INNER JOIN AdminLevels on DiseaseDistributions.AdminLevelId = AdminLevels.ID) 
                             INNER JOIN DiseaseDistributionIndicators on DiseaseDistributionIndicators.ID = DiseaseDistributionIndicatorValues.IndicatorId)
                         WHERE DiseaseDistributions.IsDeleted = 0 AND  
-                              DiseaseDistributionIndicators.Id in ";
+                              DiseaseDistributionIndicators.Id in "
+            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
         }
     }
+
     public class DemoReportGenerator : BaseReportGenerator
     {
-        protected override DataTable FillDataTable(ReportOptions options, DataTable dataTable)
+        public override ReportResult Run(ReportOptions options)
         {
-            return repo.CreateDemoReport(options, dataTable);
+            opts = options;
+            ReportResult result = new ReportResult();
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add(new DataColumn(Translations.Location));
+            dataTable.Columns.Add(new DataColumn(Translations.Type));
+            dataTable.Columns.Add(new DataColumn(Translations.Year));
+            foreach (var ind in options.SelectedIndicators)
+                dataTable.Columns.Add(new DataColumn(ind.Name));
+            result.DataTableResults = repo.CreateDemoReport(options, dataTable);
+            return result;
         }
     }
 }

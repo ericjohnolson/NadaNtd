@@ -159,5 +159,11 @@ namespace Nada.UI.View
                     GetChildren(children, i);
         }
 
+        private void treeAvailable_CellClick(object sender, BrightIdeasSoftware.CellClickEventArgs e)
+        {
+            // e.Handled = true;
+            treeAvailable.Expand(e.Model);
+        }
+
     }
 }

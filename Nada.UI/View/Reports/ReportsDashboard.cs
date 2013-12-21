@@ -23,6 +23,10 @@ namespace Nada.UI.View.Reports
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return ""; } }
 
+        public void SetFocus()
+        {
+        }
+
         public ReportsDashboard()
             : base()
         {

@@ -27,6 +27,10 @@ namespace Nada.UI.View.Demography
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return adminLevel.Name + " " + Translations.Demography; } }
+        public void SetFocus()
+        {
+            tbYearCensus.Focus();
+        }
 
         public DemographyView()
             : base()

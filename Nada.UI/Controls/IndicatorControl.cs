@@ -12,12 +12,14 @@ using Nada.UI.AppLogic;
 using Nada.Globalization;
 using Nada.UI.Base;
 using Nada.UI.ViewModel;
+using Nada.Model.Repositories;
 
 namespace Nada.UI.View
 {
     public partial class IndicatorControl : BaseControl
     {
         IndicatorEntityType entityType = IndicatorEntityType.DiseaseDistribution;
+        SettingsRepository settings = new SettingsRepository();
         public event Action OnAddRemove = () => { };
         private List<DynamicContainer> controlList = new List<DynamicContainer>();
         private List<IndicatorDropdownValue> dropdownKeys = new List<IndicatorDropdownValue>();
@@ -90,7 +92,7 @@ namespace Nada.UI.View
                     columnCount, labelRowIndex);
 
                 // Add val
-                var label = new H3bLabel { Text = item.Value, Name = "metaData_Val" + item.Key, AutoSize = true, };
+                var label = new H3bLabel { Text = string.Format(item.Value, "{0:n}"), Name = "metaData_Val" + item.Key, AutoSize = true, };
                 label.MakeBold();
                 tblMetaData.Controls.Add(label, columnCount, controlRowIndex);
 
@@ -241,6 +243,10 @@ namespace Nada.UI.View
             }
             if (indicator.DataTypeId == (int)IndicatorDataType.Partners)
                 return ControlFactory.CreatePartners(indicator, val, indicatorErrors, controlList);
+            if (indicator.DataTypeId == (int)IndicatorDataType.EvaluationUnit)
+                return ControlFactory.CreateDynamicNameVal(indicator, val, indicatorErrors, controlList, IndicatorEntityType.EvaluationUnit, settings.GetEvaluationUnits());
+            if (indicator.DataTypeId == (int)IndicatorDataType.EcologicalZone)
+                return ControlFactory.CreateDynamicNameVal(indicator, val, indicatorErrors, controlList, IndicatorEntityType.EcologicalZone, settings.GetEcologicalZones());
 
             return ControlFactory.CreateText(indicator, val, indicatorErrors, controlList);
         }

@@ -134,31 +134,6 @@ namespace Nada.Model.Repositories
             }
             return shouldUpdate;
         }
-
-        public List<Language> GetSupportedLanguages()
-        {
-            List<Language> languages = new List<Language>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                string sql = @"Select IsoCode, DisplayName from Languages order by DisplayName";
-                OleDbCommand command = new OleDbCommand(sql, connection);
-                connection.Open();
-
-                //command.Parameters.Add(new OleDbParameter("@Pass", pass));
-                using (OleDbDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                        languages.Add(new Language
-                        {
-                            IsoCode = reader.GetValueOrDefault<string>("IsoCode"),
-                            Name = reader.GetValueOrDefault<string>("DisplayName")
-                        });
-                    reader.Close();
-                }
-            }
-            return languages;
-        }
         #endregion
 
         #region Admin Levels
@@ -466,7 +441,196 @@ namespace Nada.Model.Repositories
         }
         #endregion
 
+        #region Related Entities
 
-        
+        public List<IndicatorDropdownValue> GetEvaluationUnits()
+        {
+            List<IndicatorDropdownValue> list = new List<IndicatorDropdownValue>();
+
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, aspnet_users.UserName, UpdatedAt, CreatedAt, c.UserName as CreatedBy from 
+                        ((EvaluationUnits INNER JOIN aspnet_users on EvaluationUnits.UpdatedById = aspnet_users.userid)
+                        INNER JOIN aspnet_users c on EvaluationUnits.CreatedById = c.userid)
+                        WHERE IsDeleted=0", connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new IndicatorDropdownValue
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+                                UpdatedBy = Util.GetAuditInfo(reader),
+                                EntityType = IndicatorEntityType.EvaluationUnit
+                            });
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return list;
+        }
+
+        public void SaveEu(IndicatorDropdownValue eu, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    if (eu.Id > 0)
+                        command = new OleDbCommand(@"UPDATE EvaluationUnits SET DisplayName=@DisplayName,
+                           UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+                    else
+                        command = new OleDbCommand(@"INSERT INTO EvaluationUnits (DisplayName, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@DisplayName, @UpdatedById, @UpdatedAt, @CreatedById,
+                            @CreatedAt)", connection);
+
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@DisplayName", eu.DisplayName));
+                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    if (eu.Id > 0)
+                        command.Parameters.Add(new OleDbParameter("@id", eu.Id));
+                    else
+                    {
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                    }
+
+                    command.ExecuteNonQuery();
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+
+
+        public List<IndicatorDropdownValue> GetEcologicalZones()
+        {
+            List<IndicatorDropdownValue> list = new List<IndicatorDropdownValue>();
+
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, aspnet_users.UserName, UpdatedAt, CreatedAt, c.UserName as CreatedBy from 
+                        ((EcologicalZones INNER JOIN aspnet_users on EcologicalZones.UpdatedById = aspnet_users.userid)
+                        INNER JOIN aspnet_users c on EcologicalZones.CreatedById = c.userid)
+                        WHERE IsDeleted=0", connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new IndicatorDropdownValue
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+                                UpdatedBy = Util.GetAuditInfo(reader),
+                                EntityType = IndicatorEntityType.EcologicalZone
+                            });
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return list;
+        }
+
+        public void SaveEz(IndicatorDropdownValue ez, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    if (ez.Id > 0)
+                        command = new OleDbCommand(@"UPDATE EcologicalZones SET DisplayName=@DisplayName,
+                           UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+                    else
+                        command = new OleDbCommand(@"INSERT INTO EcologicalZones (DisplayName, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@DisplayName, @UpdatedById, @UpdatedAt, @CreatedById,
+                            @CreatedAt)", connection);
+
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@DisplayName", ez.DisplayName));
+                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    if (ez.Id > 0)
+                        command.Parameters.Add(new OleDbParameter("@id", ez.Id));
+                    else
+                    {
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                    }
+
+                    command.ExecuteNonQuery();
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+        #endregion 
+
+
     }
 }

@@ -421,20 +421,23 @@ namespace Nada.Model.Repositories
 
         public List<AdminLevel> GetAdminLevelTree(int levelTypeId)
         {
-            return GetAdminLevelTree(levelTypeId, 1);
+            return GetAdminLevelTree(levelTypeId, 1, false);
         }
 
-        public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel)
+        public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry)
         {
             List<AdminLevel> list = new List<AdminLevel>();
             OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, LatOther, LngOther,
+                string cmd = @"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, LatOther, LngOther,
                     AdminLevelTypes.AdminLevel, AdminLevelTypes.DisplayName as LevelName
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE ParentId > 0 AND AdminLevelTypeId <= @AdminLevelTypeId AND AdminLevels.IsDeleted = 0", connection);
+                    WHERE AdminLevelTypeId <= @AdminLevelTypeId AND AdminLevels.IsDeleted = 0";
+                if (!includeCountry)
+                    cmd += " AND ParentId > 0 ";
+                OleDbCommand command = new OleDbCommand(cmd, connection);
                 command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", levelTypeId));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -750,13 +753,13 @@ namespace Nada.Model.Repositories
                         (@DisplayName, @AdminLevelTypeId, @ParentId, @UrbanOrRural, @LatWho, @LngWho, 
                          @LatOther, @LngOther, @updatedby, @updatedat, @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(new OleDbParameter("@DisplayName", model.Name));
-                    command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", model.Id));
+                    command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", model.AdminLevelTypeId));
                     command.Parameters.Add(new OleDbParameter("@ParentId", model.ParentId));
-                    command.Parameters.Add(new OleDbParameter("@UrbanOrRural", model.UrbanOrRural));
-                    command.Parameters.Add(new OleDbParameter("@LatWho", model.LatWho));
-                    command.Parameters.Add(new OleDbParameter("@LngWho", model.LngWho));
-                    command.Parameters.Add(new OleDbParameter("@LatOther", model.LatOther));
-                    command.Parameters.Add(new OleDbParameter("@LngOther", model.LngOther));
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@UrbanOrRural", model.UrbanOrRural));
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@LatWho", model.LatWho));
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@LngWho", model.LngWho));
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@LatOther", model.LatOther));
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@LngOther", model.LngOther));
                     command.Parameters.Add(new OleDbParameter("@updatedby", userid));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
                     command.Parameters.Add(new OleDbParameter("@CreatedById", userid));
@@ -857,14 +860,14 @@ namespace Nada.Model.Repositories
                             d.Id = 0;
                             d.YearDemographyData = year;
                             d.GrowthRate = growthRatePercent;
-                            if (d.Pop0Month.HasValue) d.Pop0Month = Convert.ToInt32(d.Pop0Month * growthRateDemonminator);
-                            if (d.Pop5yo.HasValue) d.Pop5yo = Convert.ToInt32(d.Pop5yo * growthRateDemonminator);
-                            if (d.PopAdult.HasValue) d.PopAdult = Convert.ToInt32(d.PopAdult * growthRateDemonminator);
-                            if (d.PopFemale.HasValue) d.PopFemale = Convert.ToInt32(d.PopFemale * growthRateDemonminator);
-                            if (d.PopMale.HasValue) d.PopMale = Convert.ToInt32(d.PopMale * growthRateDemonminator);
-                            if (d.PopPsac.HasValue) d.PopPsac = Convert.ToInt32(d.PopPsac * growthRateDemonminator);
-                            if (d.PopPsac.HasValue) d.PopSac = Convert.ToInt32(d.PopSac * growthRateDemonminator);
-                            if (d.PopPsac.HasValue) d.TotalPopulation = Convert.ToInt32(d.TotalPopulation * growthRateDemonminator);
+                            if (d.Pop0Month.HasValue) d.Pop0Month = d.Pop0Month * growthRateDemonminator;
+                            if (d.Pop5yo.HasValue) d.Pop5yo = d.Pop5yo * growthRateDemonminator;
+                            if (d.PopAdult.HasValue) d.PopAdult = d.PopAdult * growthRateDemonminator;
+                            if (d.PopFemale.HasValue) d.PopFemale = d.PopFemale * growthRateDemonminator;
+                            if (d.PopMale.HasValue) d.PopMale = d.PopMale * growthRateDemonminator;
+                            if (d.PopPsac.HasValue) d.PopPsac = d.PopPsac * growthRateDemonminator;
+                            if (d.PopPsac.HasValue) d.PopSac = d.PopSac * growthRateDemonminator;
+                            if (d.PopPsac.HasValue) d.TotalPopulation = d.TotalPopulation * growthRateDemonminator;
                             SaveAdminDemography(command, connection, d, userId);
                         }
                     }
@@ -935,7 +938,7 @@ namespace Nada.Model.Repositories
                             Id = reader.GetValueOrDefault<int>("ID"),
                             Year = reader.GetValueOrDefault<int>("YearDemographyData"),
                             GrowthRate = reader.GetValueOrDefault<double>("GrowthRate"),
-                            TotalPopulation = reader.GetValueOrDefault<int>("TotalPopulation"),
+                            TotalPopulation = reader.GetValueOrDefault<double>("TotalPopulation"),
                             UpdatedBy = Util.GetAuditInfo(reader)
                         });
                     }
@@ -1068,14 +1071,14 @@ namespace Nada.Model.Repositories
                     demo.YearProjections = reader.GetValueOrDefault<Nullable<int>>("YearProjections");
                     demo.GrowthRate = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
                     demo.PercentRural = reader.GetValueOrDefault<Nullable<double>>("PercentRural");
-                    demo.TotalPopulation = reader.GetValueOrDefault<Nullable<int>>("TotalPopulation");
-                    demo.Pop0Month = reader.GetValueOrDefault<Nullable<int>>("Pop0Month");
-                    demo.PopPsac = reader.GetValueOrDefault<Nullable<int>>("PopPsac");
-                    demo.PopSac = reader.GetValueOrDefault<Nullable<int>>("PopSac");
-                    demo.Pop5yo = reader.GetValueOrDefault<Nullable<int>>("Pop5yo");
-                    demo.PopAdult = reader.GetValueOrDefault<Nullable<int>>("PopAdult");
-                    demo.PopFemale = reader.GetValueOrDefault<Nullable<int>>("PopFemale");
-                    demo.PopMale = reader.GetValueOrDefault<Nullable<int>>("PopMale");
+                    demo.TotalPopulation = reader.GetValueOrDefault<Nullable<double>>("TotalPopulation");
+                    demo.Pop0Month = reader.GetValueOrDefault<Nullable<double>>("Pop0Month");
+                    demo.PopPsac = reader.GetValueOrDefault<Nullable<double>>("PopPsac");
+                    demo.PopSac = reader.GetValueOrDefault<Nullable<double>>("PopSac");
+                    demo.Pop5yo = reader.GetValueOrDefault<Nullable<double>>("Pop5yo");
+                    demo.PopAdult = reader.GetValueOrDefault<Nullable<double>>("PopAdult");
+                    demo.PopFemale = reader.GetValueOrDefault<Nullable<double>>("PopFemale");
+                    demo.PopMale = reader.GetValueOrDefault<Nullable<double>>("PopMale");
                     demo.Notes = reader.GetValueOrDefault<string>("Notes");
                     demo.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
                     demo.UpdatedBy = Util.GetAuditInfo(reader);

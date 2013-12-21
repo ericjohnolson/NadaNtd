@@ -75,6 +75,7 @@
             this.olvColumn2});
             this.lvSelected.Cursor = System.Windows.Forms.Cursors.Default;
             this.lvSelected.Font = new System.Drawing.Font("Arial", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvSelected.FullRowSelect = true;
             this.lvSelected.Location = new System.Drawing.Point(430, 28);
             this.lvSelected.Name = "lvSelected";
             this.lvSelected.ShowGroups = false;
@@ -145,6 +146,7 @@
             this.treeAvailable.UseHyperlinks = true;
             this.treeAvailable.View = System.Windows.Forms.View.Details;
             this.treeAvailable.VirtualMode = true;
+            this.treeAvailable.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.treeAvailable_CellClick);
             this.treeAvailable.DoubleClick += new System.EventHandler(this.treeAvailable_DoubleClick);
             // 
             // olvColumn1

@@ -28,6 +28,11 @@ namespace Nada.UI.View.Survey
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return lblTitle.Text; } }
 
+        public void SetFocus()
+        {
+            
+        }
+
         public SurveyBaseView()
             : base()
         {

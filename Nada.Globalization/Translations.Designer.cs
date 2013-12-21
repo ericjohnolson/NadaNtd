@@ -79,6 +79,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access files.
+        /// </summary>
+        public static string AccessFiles {
+            get {
+                return ResourceManager.GetString("AccessFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string Active {
@@ -538,6 +547,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse for a file....
+        /// </summary>
+        public static string BrowseForFile {
+            get {
+                return ResourceManager.GetString("BrowseForFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Brugia Rapid.
         /// </summary>
         public static string BrugiaRapid {
@@ -786,6 +804,15 @@ namespace Nada.Globalization {
         public static string ChooseLocations {
             get {
                 return ResourceManager.GetString("ChooseLocations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose your language.
+        /// </summary>
+        public static string ChooseYourLanguage {
+            get {
+                return ResourceManager.GetString("ChooseYourLanguage", resourceCulture);
             }
         }
         
@@ -1399,6 +1426,15 @@ namespace Nada.Globalization {
         public static string CreateImportFor {
             get {
                 return ResourceManager.GetString("CreateImportFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new file....
+        /// </summary>
+        public static string CreateNewFile {
+            get {
+                return ResourceManager.GetString("CreateNewFile", resourceCulture);
             }
         }
         
@@ -2519,11 +2555,137 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ALB.
+        /// </summary>
+        public static string DrugAlb {
+            get {
+                return ResourceManager.GetString("DrugAlb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALB and IVM.
+        /// </summary>
+        public static string DrugAlbIvm {
+            get {
+                return ResourceManager.GetString("DrugAlbIvm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DEC.
+        /// </summary>
+        public static string DrugDec {
+            get {
+                return ResourceManager.GetString("DrugDec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALB and DEC.
+        /// </summary>
+        public static string DrugDecAlb {
+            get {
+                return ResourceManager.GetString("DrugDecAlb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drug Distributors.
         /// </summary>
         public static string DrugDistrib {
             get {
                 return ResourceManager.GetString("DrugDistrib", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IVM.
+        /// </summary>
+        public static string DrugIvm {
+            get {
+                return ResourceManager.GetString("DrugIvm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IVM and PZQ.
+        /// </summary>
+        public static string DrugIvmPzq {
+            get {
+                return ResourceManager.GetString("DrugIvmPzq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALB, IVM and PZQ.
+        /// </summary>
+        public static string DrugIvmPzqAlb {
+            get {
+                return ResourceManager.GetString("DrugIvmPzqAlb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MBD.
+        /// </summary>
+        public static string DrugMbd {
+            get {
+                return ResourceManager.GetString("DrugMbd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PZQ.
+        /// </summary>
+        public static string DrugPzq {
+            get {
+                return ResourceManager.GetString("DrugPzq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALB and PZQ.
+        /// </summary>
+        public static string DrugPzqAlb {
+            get {
+                return ResourceManager.GetString("DrugPzqAlb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MBD and PZQ.
+        /// </summary>
+        public static string DrugPzqMbd {
+            get {
+                return ResourceManager.GetString("DrugPzqMbd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEO.
+        /// </summary>
+        public static string DrugTeo {
+            get {
+                return ResourceManager.GetString("DrugTeo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEO and Zithro.
+        /// </summary>
+        public static string DrugZirthroTeo {
+            get {
+                return ResourceManager.GetString("DrugZirthroTeo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zithro.
+        /// </summary>
+        public static string DrugZithro {
+            get {
+                return ResourceManager.GetString("DrugZithro", resourceCulture);
             }
         }
         
@@ -2776,6 +2938,15 @@ namespace Nada.Globalization {
         public static string Examined {
             get {
                 return ResourceManager.GetString("Examined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excel files.
+        /// </summary>
+        public static string ExcelFiles {
+            get {
+                return ResourceManager.GetString("ExcelFiles", resourceCulture);
             }
         }
         
@@ -3239,7 +3410,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select.
+        ///   Looks up a localized string similar to Please select an import type.
         /// </summary>
         public static string ImportAction {
             get {
@@ -3262,6 +3433,15 @@ namespace Nada.Globalization {
         public static string ImportComplete {
             get {
                 return ResourceManager.GetString("ImportComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import complete, please ensure there are no errors below.
+        /// </summary>
+        public static string ImportCompleteErrors {
+            get {
+                return ResourceManager.GetString("ImportCompleteErrors", resourceCulture);
             }
         }
         
@@ -3298,6 +3478,15 @@ namespace Nada.Globalization {
         public static string ImportFailed {
             get {
                 return ResourceManager.GetString("ImportFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importing file....
+        /// </summary>
+        public static string ImportingFile {
+            get {
+                return ResourceManager.GetString("ImportingFile", resourceCulture);
             }
         }
         
@@ -3343,6 +3532,60 @@ namespace Nada.Globalization {
         public static string IndicatorValue {
             get {
                 return ResourceManager.GetString("IndicatorValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sentinel site latitude.
+        /// </summary>
+        public static string IndSentinelSiteLat {
+            get {
+                return ResourceManager.GetString("IndSentinelSiteLat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sentinel site longitude.
+        /// </summary>
+        public static string IndSentinelSiteLng {
+            get {
+                return ResourceManager.GetString("IndSentinelSiteLng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sentinel site name.
+        /// </summary>
+        public static string IndSentinelSiteName {
+            get {
+                return ResourceManager.GetString("IndSentinelSiteName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spot check site latitude.
+        /// </summary>
+        public static string IndSpotCheckLat {
+            get {
+                return ResourceManager.GetString("IndSpotCheckLat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spot check site longitude.
+        /// </summary>
+        public static string IndSpotCheckLng {
+            get {
+                return ResourceManager.GetString("IndSpotCheckLng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spot check site name.
+        /// </summary>
+        public static string IndSpotCheckName {
+            get {
+                return ResourceManager.GetString("IndSpotCheckName", resourceCulture);
             }
         }
         
@@ -4832,6 +5075,159 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About....
+        /// </summary>
+        public static string MenuAbout {
+            get {
+                return ResourceManager.GetString("MenuAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for updates....
+        /// </summary>
+        public static string MenuCheckForUpdates {
+            get {
+                return ResourceManager.GetString("MenuCheckForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Demography....
+        /// </summary>
+        public static string MenuDemography {
+            get {
+                return ResourceManager.GetString("MenuDemography", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disease distributions....
+        /// </summary>
+        public static string MenuDiseaseDistributions {
+            get {
+                return ResourceManager.GetString("MenuDiseaseDistributions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string MenuExit {
+            get {
+                return ResourceManager.GetString("MenuExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string MenuFile {
+            get {
+                return ResourceManager.GetString("MenuFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string MenuHelp {
+            get {
+                return ResourceManager.GetString("MenuHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string MenuImport {
+            get {
+                return ResourceManager.GetString("MenuImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interventions....
+        /// </summary>
+        public static string MenuIntv {
+            get {
+                return ResourceManager.GetString("MenuIntv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New....
+        /// </summary>
+        public static string MenuNew {
+            get {
+                return ResourceManager.GetString("MenuNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New administrative level....
+        /// </summary>
+        public static string MenuNewAdminLevel {
+            get {
+                return ResourceManager.GetString("MenuNewAdminLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open....
+        /// </summary>
+        public static string MenuOpen {
+            get {
+                return ResourceManager.GetString("MenuOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process indicators....
+        /// </summary>
+        public static string MenuProcess {
+            get {
+                return ResourceManager.GetString("MenuProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reports.
+        /// </summary>
+        public static string MenuReports {
+            get {
+                return ResourceManager.GetString("MenuReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string MenuSettings {
+            get {
+                return ResourceManager.GetString("MenuSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surveys....
+        /// </summary>
+        public static string MenuSurveys {
+            get {
+                return ResourceManager.GetString("MenuSurveys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Help....
+        /// </summary>
+        public static string MenuViewHelp {
+            get {
+                return ResourceManager.GetString("MenuViewHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mf.
         /// </summary>
         public static string Mf {
@@ -4976,6 +5372,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to National Database.
+        /// </summary>
+        public static string NationalDatabaseTemplate {
+            get {
+                return ResourceManager.GetString("NationalDatabaseTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Necator americanus (hookworm).
         /// </summary>
         public static string Necator {
@@ -5116,6 +5521,15 @@ namespace Nada.Globalization {
         public static string Notes {
             get {
                 return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No translation found.
+        /// </summary>
+        public static string NoTranslationFound {
+            get {
+                return ResourceManager.GetString("NoTranslationFound", resourceCulture);
             }
         }
         
@@ -8036,6 +8450,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recent file: .
+        /// </summary>
+        public static string RecentFile {
+            get {
+                return ResourceManager.GetString("RecentFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Regional-level supervisors.
         /// </summary>
         public static string RegionalLevelSup {
@@ -9148,6 +9571,15 @@ namespace Nada.Globalization {
         public static string SentinelSite {
             get {
                 return ResourceManager.GetString("SentinelSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sentinel site.
+        /// </summary>
+        public static string SentinelSiteId {
+            get {
+                return ResourceManager.GetString("SentinelSiteId", resourceCulture);
             }
         }
         
@@ -12064,6 +12496,15 @@ namespace Nada.Globalization {
         public static string ValidRoundsMda {
             get {
                 return ResourceManager.GetString("ValidRoundsMda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sentinel site was not found in list of available sites for the location.
+        /// </summary>
+        public static string ValidSentinelSite {
+            get {
+                return ResourceManager.GetString("ValidSentinelSite", resourceCulture);
             }
         }
         

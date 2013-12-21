@@ -221,7 +221,6 @@ namespace Nada.Model.Repositories
                     };
                 if (dic[adminLevelId].Indicators.ContainsKey(key))
                 {
-                    // TODO figure out dropdownlist aggregation
                     object val = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[key].Value);
                     dic[adminLevelId].Indicators[key].Value = val == null ? "" : val.ToString();
                 }

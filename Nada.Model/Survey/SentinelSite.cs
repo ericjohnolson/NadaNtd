@@ -10,7 +10,7 @@ namespace Nada.Model.Survey
 {
     public class SentinelSite : NadaClass, IDataErrorInfo
     {
-        public AdminLevel AdminLevel { get; set; }
+        public List<AdminLevel> AdminLevels { get; set; }
         public string SiteName { get; set; }
         public Nullable<double> Lat { get; set; }
         public Nullable<double> Lng { get; set; }

@@ -37,8 +37,7 @@ namespace Nada.UI.Controls
         {
             model = m;
             Localizer.TranslateControl(this);
-            List<SentinelSite> sites = r.GetSitesForAdminLevel(model.AdminLevels.Select(a => a.Id.ToString()));
-            sites.Insert(0, new SentinelSite { SiteName = Translations.PleaseSelect, Id = -1 });
+            sites = r.GetSitesForAdminLevel(model.AdminLevels.Select(a => a.Id.ToString()));
             sentinelSiteBindingSource.DataSource = sites;
             bsSurvey.DataSource = model;
 
@@ -72,10 +71,8 @@ namespace Nada.UI.Controls
 
         void sites_OnAdd(SentinelSite obj)
         {
-            sites.RemoveAt(0);
             sites.Add(obj);
             sites = sites.OrderBy(s => s.SiteName).ToList();
-            sites.Insert(0, new SentinelSite { SiteName = Translations.PleaseSelect, Id = -1 });
             sentinelSiteBindingSource.DataSource = sites;
             model.SentinelSiteId = obj.Id;
             bsSurvey.ResetBindings(false);
@@ -83,7 +80,7 @@ namespace Nada.UI.Controls
 
         private void fieldLink1_OnClick()
         {
-            SentinelSiteAdd modal = new SentinelSiteAdd(model.AdminLevels.First());
+            SentinelSiteAdd modal = new SentinelSiteAdd(model.AdminLevels);
             modal.OnSave += sites_OnAdd;
             modal.ShowDialog();
         }

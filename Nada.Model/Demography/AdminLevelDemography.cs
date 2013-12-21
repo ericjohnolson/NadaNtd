@@ -15,14 +15,14 @@ namespace Nada.Model
         public Nullable<int> YearProjections { get; set; }
         public Nullable<double> GrowthRate { get; set; }
         public Nullable<double> PercentRural { get; set; }
-        public Nullable<int> TotalPopulation { get; set; }
-        public Nullable<int> Pop0Month { get; set; }
-        public Nullable<int> PopPsac { get; set; }
-        public Nullable<int> PopSac { get; set; }
-        public Nullable<int> Pop5yo { get; set; }
-        public Nullable<int> PopAdult { get; set; }
-        public Nullable<int> PopFemale { get; set; }
-        public Nullable<int> PopMale { get; set; }
+        public Nullable<double> TotalPopulation { get; set; }
+        public Nullable<double> Pop0Month { get; set; }
+        public Nullable<double> PopPsac { get; set; }
+        public Nullable<double> PopSac { get; set; }
+        public Nullable<double> Pop5yo { get; set; }
+        public Nullable<double> PopAdult { get; set; }
+        public Nullable<double> PopFemale { get; set; }
+        public Nullable<double> PopMale { get; set; }
         public string Notes { get; set; }
         // display only
         public string NameDisplayOnly { get; set; }

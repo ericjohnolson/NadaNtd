@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using Nada.Model.Imports;
 
 namespace Nada.Model
 {
     public interface IImporter
     {
+        void SetType(int id);
         string ImportName { get; }
-        System.Data.DataTable GetDataTable();
         void CreateImportFile(string filename, List<AdminLevel> adminLevels);
         ImportResult ImportData(string filePath, int userId);
+        List<TypeListItem> GetAllTypes();
     }
 
     public class ImportResult

@@ -31,6 +31,10 @@ namespace Nada.UI.View
                 return lblTitle.Text;
             }
         }
+        public void SetFocus()
+        {
+            tbName.Focus();
+        }
 
         public IndicatorTypeEdit()
             : base()

@@ -27,6 +27,10 @@ namespace Nada.UI.View.DiseaseDistribution
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return viewModel.Title; } }
+        public void SetFocus()
+        {
+            btnHelp.Focus();
+        }
 
         public DataEntryEdit()
             : base()
@@ -46,7 +50,7 @@ namespace Nada.UI.View.DiseaseDistribution
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                lblLocation.Focus();
+                tblTitle.Focus();
                 lblLocation.ForeColor = viewModel.FormColor;
                 lblAdminLevel.Text = viewModel.LocationName;
                 tbNotes.Text = viewModel.Notes;

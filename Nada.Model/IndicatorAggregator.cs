@@ -63,6 +63,8 @@ namespace Nada.Model
         {
             if (existingValue == null)
                 return ind.Value;
+            if (ind.DataType == (int)IndicatorAggType.None)
+                return Translations.NA;
             if (ind.AggType == (int)IndicatorAggType.Combine && ind.DataType == (int)IndicatorDataType.Dropdown)
                 return existingValue + ", " + TranslationLookup.GetValue(ind.Value, ind.Value);
             if (ind.AggType == (int)IndicatorAggType.Combine)
@@ -132,7 +134,8 @@ namespace Nada.Model
         {
             if (ind1.AggType == (int)IndicatorAggType.Combine)
                 return existingValue + ", " + ind1.Value;
-            
+            else if (ind1.AggType == (int)IndicatorAggType.None)
+                return Translations.NA;
             return "Invalid Aggregation Rule or Data Type";
         }
 

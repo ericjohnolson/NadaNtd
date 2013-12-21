@@ -52,7 +52,7 @@ namespace Nada.Model
         {
             List<string> enumerations = new List<string>();
             for (int i = 0; i < (1 << source.Count); i++)
-                    enumerations.Add(string.Join(", ", constructSetFromBits(i).Select(n => source[n]).ToArray()));
+                    enumerations.Add(string.Join(" - ", constructSetFromBits(i).Select(n => source[n]).ToArray()));
             enumerations.RemoveAt(0);
             return enumerations;
         }
@@ -80,6 +80,22 @@ namespace Nada.Model
             if (inds.ContainsKey(name))
                 int.TryParse(inds[name].DynamicValue, out val);
             return val;
+        }
+
+        public static string GetExcelColumnName(int columnNumber)
+        {
+            int dividend = columnNumber;
+            string columnName = String.Empty;
+            int modulo;
+
+            while (dividend > 0)
+            {
+                modulo = (dividend - 1) % 26;
+                columnName = Convert.ToChar(65 + modulo).ToString() + columnName;
+                dividend = (int)((dividend - modulo) / 26);
+            }
+
+            return columnName;
         }
         
     }

@@ -29,8 +29,6 @@ namespace Nada.UI.View
             if (Membership.ValidateUser(uid, pwd))
             {
                 ApplicationData.Instance.CurrentUser = Membership.GetUser(uid);
-                CultureInfo ci = new CultureInfo(cbLanguages.SelectedValue.ToString());
-                Localizer.SetCulture(ci);
                 OnLogin();
             }
         }
@@ -39,23 +37,9 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
-                bsLanguages.DataSource = Localizer.SupportedLanguages;
-                cbLanguages.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;
                 Localizer.TranslateControl(this);
-                cbLanguages.DropDownWidth = BaseForm.GetDropdownWidth(Localizer.SupportedLanguages.Select(l => l.Name));
             }
 
-        }
-        
-        private void cbLanguages_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbLanguages.SelectedValue == null)
-                return;
-
-            CultureInfo ci = new CultureInfo(cbLanguages.SelectedValue.ToString());
-            Localizer.SetCulture(ci);
-            Localizer.TranslateControl(this);
-            this.ParentForm.Text = Localizer.GetValue("ApplicationTitle");
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)

@@ -46,7 +46,7 @@ namespace Nada.Globalization
 
         public static string GetValue(string key)
         {
-            return GetValue(key, "No translation found");
+            return GetValue(key, Translations.NoTranslationFound);
         }
 
         public static string GetValue(string key, string def)

@@ -30,6 +30,10 @@ namespace Nada.UI.View.DiseaseDistribution
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return lblTitle.Text; } }
 
+        public void SetFocus()
+        {
+        }
+
         public DiseaseDistroEdit()
             : base()
         {

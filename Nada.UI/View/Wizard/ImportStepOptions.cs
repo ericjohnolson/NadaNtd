@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Csv;
+using Nada.Model.Imports;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
@@ -22,7 +23,7 @@ namespace Nada.UI.View.Wizard
     {
         private List<AdminLevel> available = new List<AdminLevel>();
         private List<AdminLevel> selected = new List<AdminLevel>();
-        private IImporter importer;
+        private ImportOptions options;
         public Action OnFinish { get; set; }
 
         public Action<IWizardStep> OnSwitchStep { get; set; }
@@ -41,9 +42,9 @@ namespace Nada.UI.View.Wizard
             InitializeComponent();
         }
 
-        public ImportStepOptions(IImporter i, Action onFinish)
+        public ImportStepOptions(ImportOptions o, Action onFinish)
         {
-            importer = i;
+            options = o;
             OnFinish = onFinish;
             InitializeComponent();
         }
@@ -53,15 +54,15 @@ namespace Nada.UI.View.Wizard
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                saveFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveFileDialog1.FileName = importer.ImportName;
+                saveFileDialog1.Filter = Translations.ExcelFiles + " (*.xlsx)|*.xlsx";
+                saveFileDialog1.FileName = options.Importer.ImportName;
                 saveFileDialog1.DefaultExt = ".xlsx";
             }
         }
 
         public void DoPrev()
         {
-            OnSwitchStep(new ImportStepType(importer));
+            OnSwitchStep(new ImportStepType(options));
         }
 
         public void DoNext()
@@ -88,7 +89,7 @@ namespace Nada.UI.View.Wizard
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             WorkerPayload payload = (WorkerPayload)e.Argument;
-            importer.CreateImportFile(payload.FileName, payload.AdminLevels);
+            options.Importer.CreateImportFile(payload.FileName, payload.AdminLevels);
         }
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

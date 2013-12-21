@@ -7,58 +7,11 @@ using System.Text;
 using Excel;
 using Nada.Globalization;
 using Nada.Model.Diseases;
+using Nada.Model.Imports;
 using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
-    public class AdminLevelImporter : ImporterBase, IImporter
-    {
-        public AdminLevelImporter()
-            : base()
-        {
-        }
-
-        protected override void AddSpecificRows(DataTable dataTable)
-        {
-        }
-
-        public void CreateImportFile(string filename, List<AdminLevel> adminLevels)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ImportResult ImportData(string filePath, int userId)
-        {
-            try
-            {
-                DataSet ds = LoadDataFromFile(filePath);
-
-                if (ds.Tables.Count == 0)
-                    return new ImportResult("The file was an incorrect format or had no data");
-
-                DemoRepository repo = new DemoRepository();
-                repo.BulkImportAdminLevels(ds, userId);
-
-                int rec = ds.Tables[0].Rows.Count;
-                return new ImportResult
-                {
-                    WasSuccess = true,
-                    Count = rec,
-                    Message = string.Empty
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ImportResult("An unexpected exception occurred: " + ex.Message);
-            }
-        }
-
-        public string ImportName
-        {
-            get { throw new NotImplementedException(); }
-        }
-    }
-
     public class AdminLevelDemoUpdater : ImporterBase
     {
         AdminLevelType locationType = null;
@@ -171,28 +124,28 @@ namespace Nada.Model
                         demography.YearCensus = i;
                     if (int.TryParse(row[Translations.YearProjections].ToString(), out i))
                         demography.YearProjections = i;
-                    if (int.TryParse(row[Translations.TotalPopulation].ToString(), out i))
-                        demography.TotalPopulation = i;
-                    if (int.TryParse(row[Translations.Pop0Month].ToString(), out i))
-                        demography.Pop0Month = i;
-                    if (int.TryParse(row[Translations.PopPsac].ToString(), out i))
-                        demography.PopPsac = i;
-                    if (int.TryParse(row[Translations.PopSac].ToString(), out i))
-                        demography.PopSac = i;
-                    if (int.TryParse(row[Translations.Pop5yo].ToString(), out i))
-                        demography.Pop5yo = i;
-                    if (int.TryParse(row[Translations.PopAdult].ToString(), out i))
-                        demography.PopAdult = i;
-                    if (int.TryParse(row[Translations.PopFemale].ToString(), out i))
-                        demography.PopFemale = i;
-                    if (int.TryParse(row[Translations.PopMale].ToString(), out i))
-                        demography.PopMale = i;
 
                     double d = 0;
                     if (double.TryParse(row[Translations.GrowthRate].ToString(), out d))
                         demography.GrowthRate = d;
                     if (double.TryParse(row[Translations.PopMale].ToString(), out d))
                         demography.PercentRural = d;
+                    if (double.TryParse(row[Translations.TotalPopulation].ToString(), out d))
+                        demography.TotalPopulation = d;
+                    if (double.TryParse(row[Translations.Pop0Month].ToString(), out d))
+                        demography.Pop0Month = d;
+                    if (double.TryParse(row[Translations.PopPsac].ToString(), out d))
+                        demography.PopPsac = d;
+                    if (double.TryParse(row[Translations.PopSac].ToString(), out d))
+                        demography.PopSac = d;
+                    if (double.TryParse(row[Translations.Pop5yo].ToString(), out d))
+                        demography.Pop5yo = d;
+                    if (double.TryParse(row[Translations.PopAdult].ToString(), out d))
+                        demography.PopAdult = d;
+                    if (double.TryParse(row[Translations.PopFemale].ToString(), out d))
+                        demography.PopFemale = d;
+                    if (double.TryParse(row[Translations.PopMale].ToString(), out d))
+                        demography.PopMale = d;
 
 
                     var demographyErrors = !demography.IsValid() ? demography.GetAllErrors(true) : "";
@@ -289,8 +242,7 @@ namespace Nada.Model
                             xlsWorksheet.Cells[r, 1] = filterLevel.Name;
                         if (dropdownCol == i && dropdownValues.Count > 0)
                         {
-                            AddDataValidation(xlsWorksheet, GetExcelColumnName(i), r, dropdownBy.DisplayName, Translations.PleaseSelect, dropdownValues);
-                            //AddDropdown(xlsWorksheet, xlDropDowns, dropdownValues, GetExcelColumnName(i), r);
+                            AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(i), r, dropdownBy.DisplayName, Translations.PleaseSelect, dropdownValues);
                         }
                     }
                 }
@@ -404,28 +356,29 @@ namespace Nada.Model
                             demography.YearCensus = i;
                         if (int.TryParse(row[Translations.YearProjections].ToString(), out i))
                             demography.YearProjections = i;
-                        if (int.TryParse(row[Translations.TotalPopulation].ToString(), out i))
-                            demography.TotalPopulation = i;
-                        if (int.TryParse(row[Translations.Pop0Month].ToString(), out i))
-                            demography.Pop0Month = i;
-                        if (int.TryParse(row[Translations.PopPsac].ToString(), out i))
-                            demography.PopPsac = i;
-                        if (int.TryParse(row[Translations.PopSac].ToString(), out i))
-                            demography.PopSac = i;
-                        if (int.TryParse(row[Translations.Pop5yo].ToString(), out i))
-                            demography.Pop5yo = i;
-                        if (int.TryParse(row[Translations.PopAdult].ToString(), out i))
-                            demography.PopAdult = i;
-                        if (int.TryParse(row[Translations.PopFemale].ToString(), out i))
-                            demography.PopFemale = i;
-                        if (int.TryParse(row[Translations.PopMale].ToString(), out i))
-                            demography.PopMale = i;
-
+                       
                         double d = 0;
                         if (double.TryParse(row[Translations.GrowthRate].ToString(), out d))
                             demography.GrowthRate = d;
                         if (double.TryParse(row[Translations.PopMale].ToString(), out d))
                             demography.PercentRural = d;
+                        if (double.TryParse(row[Translations.TotalPopulation].ToString(), out d))
+                            demography.TotalPopulation = d;
+                        if (double.TryParse(row[Translations.Pop0Month].ToString(), out d))
+                            demography.Pop0Month = d;
+                        if (double.TryParse(row[Translations.PopPsac].ToString(), out d))
+                            demography.PopPsac = d;
+                        if (double.TryParse(row[Translations.PopSac].ToString(), out d))
+                            demography.PopSac = d;
+                        if (double.TryParse(row[Translations.Pop5yo].ToString(), out d))
+                            demography.Pop5yo = d;
+                        if (double.TryParse(row[Translations.PopAdult].ToString(), out d))
+                            demography.PopAdult = d;
+                        if (double.TryParse(row[Translations.PopFemale].ToString(), out d))
+                            demography.PopFemale = d;
+                        if (double.TryParse(row[Translations.PopMale].ToString(), out d))
+                            demography.PopMale = d;
+
 
                         adminLevel.CurrentDemography = demography;
                     }

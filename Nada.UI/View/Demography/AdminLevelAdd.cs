@@ -43,7 +43,7 @@ namespace Nada.UI.View
                 bindingSource1.DataSource = model;
 
                 var levels = settings.GetAllAdminLevels();
-                var t = repo.GetAdminLevelTree(levels.OrderByDescending(l => l.LevelNumber).ToArray()[1].Id, 0);
+                var t = repo.GetAdminLevelTree(levels.OrderByDescending(l => l.LevelNumber).ToArray()[1].Id, 0, true);
                 treeAvailable.CanExpandGetter = m => ((AdminLevel)m).Children.Count > 0;
                 treeAvailable.ChildrenGetter = delegate(object m)
                 {
@@ -83,6 +83,5 @@ namespace Nada.UI.View
         {
             this.Close();
         }
-
     }
 }

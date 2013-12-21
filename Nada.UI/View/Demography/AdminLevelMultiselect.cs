@@ -203,5 +203,18 @@ namespace Nada.UI.View
             }
         }
 
+        private void treeSelected_CellClick(object sender, BrightIdeasSoftware.CellClickEventArgs e)
+        {
+            // e.Handled = true;
+            treeSelected.Expand(e.Model);
+        }
+
+        private void treeAvailable_CellClick(object sender, BrightIdeasSoftware.CellClickEventArgs e)
+        {
+            // e.Handled = true;
+            treeAvailable.Expand(e.Model);
+        }
+
+
     }
 }

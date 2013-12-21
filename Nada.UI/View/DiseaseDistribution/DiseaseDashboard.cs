@@ -26,6 +26,7 @@ namespace Nada.UI.View.Demography
     public partial class DiseaseDashboard : BaseControl
     {
         public Action<UserControl> LoadView = (i) => { };
+        public Action<IView> LoadForm = (i) => { };
         public Action<AdminLevel> ReloadView = (i) => { };
         public Action<string> StatusChanged = (e) => { };
         IFetchActivities fetcher = null;
@@ -64,8 +65,8 @@ namespace Nada.UI.View.Demography
             if (view == null)
                 return;
             view.OnClose = () => { ReloadView(adminLevel); };
-            view.StatusChanged = (s) => { StatusChanged(s); };
-            LoadView((UserControl)view);
+            //view.StatusChanged = (s) => { StatusChanged(s); };
+            LoadForm(view);
         }
 
         private void DoCollapse(Button toggleBtn, Panel collapsible)

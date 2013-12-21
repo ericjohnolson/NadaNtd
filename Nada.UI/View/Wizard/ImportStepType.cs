@@ -12,12 +12,13 @@ using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.Model;
 using Nada.UI.Base;
+using Nada.Model.Imports;
 
 namespace Nada.UI.View.Wizard
 {
     public partial class ImportStepType : BaseControl, IWizardStep
     {
-        private IImporter importer = null;
+        private ImportOptions options = null;
         public Action OnFinish { get; set; }
         public Action<ReportOptions> OnRunReport { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
@@ -35,10 +36,10 @@ namespace Nada.UI.View.Wizard
             InitializeComponent();
         }
 
-        public ImportStepType(IImporter i)
+        public ImportStepType(ImportOptions o)
             : base()
         {
-            importer = i;
+            options = o;
             InitializeComponent();
         }
         
@@ -58,28 +59,75 @@ namespace Nada.UI.View.Wizard
             {
                 Localizer.TranslateControl(this);
                 openFileDialog1.Filter = "Excel files|*.xlsx;*.xls";
+                var types = options.Importer.GetAllTypes();
+                typeListItemBindingSource.DataSource = types.OrderBy(t => t.Name);
+                bsImportOptions.DataSource = options;
+                
+                if (types.Count > 0)
+                    cbTypes.DropDownWidth = BaseForm.GetDropdownWidth(types.Select(a => a.Name));
             }
         }
-
 
         private void lnkDownload_ClickOverride()
         {
-
-            OnSwitchStep(new ImportStepOptions(importer, OnFinish));
+            if (!IsValid())
+                return;
+            OnSwitchStep(new ImportStepOptions(options, OnFinish));
         }
+
 
         private void lnkUpload_ClickOverride()
         {
-
+            if (!IsValid())
+                return;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 int userId = ApplicationData.Instance.GetUserId();
-                var result = importer.ImportData(openFileDialog1.FileName, userId);
-                if (!result.WasSuccess)
-                    MessageBox.Show(result.Message);
-                else
-                    MessageBox.Show(string.Format(Translations.ImportSuccess, result.Count));
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+                worker.DoWork += worker_DoWork;
+
+                worker.RunWorkerAsync(new WorkerPayload { FileName = openFileDialog1.FileName, UserId = userId });
+
+                OnSwitchStep(new WorkingStep(Translations.ImportingFile));
             }
+        }
+
+        void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                WorkerPayload payload = (WorkerPayload)e.Argument;
+                ImportResult result = options.Importer.ImportData(payload.FileName, payload.UserId);
+                e.Result = result;
+            }
+            catch (Exception ex)
+            {
+                e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
+            }
+        }
+
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {   
+            OnSwitchStep(new ImportStepResult((ImportResult)e.Result, this));
+        }
+
+        private class WorkerPayload
+        {
+            public string FileName { get; set; }
+            public int UserId { get; set; }
+        }
+           
+
+        private bool IsValid()
+        {
+            if (!options.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
+                return false;
+            }
+            options.Importer.SetType(options.TypeId.Value);
+            return true;
         }
 
     }

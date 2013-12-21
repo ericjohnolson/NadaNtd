@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using BrightIdeasSoftware;
 using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Repositories;
@@ -21,8 +23,12 @@ namespace Nada.UI.AppLogic
         public static void Initialize()
         {
             TranslationLookup.Initialize();
-            SettingsRepository repo = new SettingsRepository();
-            SupportedLanguages = repo.GetSupportedLanguages();
+            List<string> langz = ConfigurationManager.AppSettings["SupportedLanguages"].Split('|').ToList();
+            SupportedLanguages = langz.Select(l => new Language
+            {
+                IsoCode = l.Split(';')[0],
+                Name = l.Split(';')[1]
+            }).ToList();
         }
 
         public static void SetCulture(CultureInfo cultureInfo)
@@ -60,6 +66,14 @@ namespace Nada.UI.AppLogic
                     ((ComboBox)c).Items.Clear();
                     foreach(var key in keys)
                         ((ComboBox)c).Items.Add(TranslationLookup.GetValue(key, key));
+                }
+
+                if (c is ObjectListView)
+                {
+                    foreach (var col in ((ObjectListView)c).AllColumns)
+                    {
+                        col.Text = TranslationLookup.GetValue(col.Text, col.Text);
+                    }
                 }
 
                 TranslateControl(c);

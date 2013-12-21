@@ -57,11 +57,11 @@ namespace Nada.UI.View.Demography
 
         private void Translate()
         {
-            foreach (DropDownItem item in c1SplitButton1.Items)
-            {
-                if(item.Tag != null)
-                    item.Text = Localizer.GetValue(item.Tag.ToString());
-            }
+            //foreach (DropDownItem item in c1SplitButton1.Items)
+            //{
+            //    if (item.Tag != null)
+            //        item.Text = Localizer.GetValue(item.Tag.ToString());
+            //}
         }
 
         #region Menu
@@ -86,9 +86,9 @@ namespace Nada.UI.View.Demography
             treeListView1.SetObjects(t);
 
             if (preloadedLevel != null)
-                t_OnSelect(preloadedLevel);
+                LoadDashboard(preloadedLevel);
             else if (t.Count > 0)
-                t_OnSelect(t.FirstOrDefault());
+                LoadDashboard(t.FirstOrDefault());
 
             var root = t.FirstOrDefault();
             treeListView1.Expand(root);
@@ -97,7 +97,7 @@ namespace Nada.UI.View.Demography
         private void treeListView1_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
         {
             e.Handled = true;
-            t_OnSelect((AdminLevel)e.Model);
+            LoadDashboard((AdminLevel)e.Model);
             treeListView1.Expand(e.Model);
         }
 
@@ -115,7 +115,7 @@ namespace Nada.UI.View.Demography
                 adminLevelTypes.Add(t.LevelNumber, t);
         }
 
-        void t_OnSelect(AdminLevel obj)
+        void LoadDashboard(AdminLevel obj)
         {
             preloadedLevel = obj;
             AdminLevelType adminLevelType = null;
@@ -126,7 +126,8 @@ namespace Nada.UI.View.Demography
             view.StatusChanged = (s) => { StatusChanged(s); };
             view.ReloadView = (a) => { LoadDashForAdminLevel(a); };
             view.LoadView = (v) => { LoadView(v); };
-            view.OnSelect += t_OnSelect;
+            view.LoadForm = (v) => { LoadForm(v); };
+            view.OnSelect += LoadDashboard;
             divisionView = view;
 
             divisionView.Dock = DockStyle.Fill;
@@ -134,56 +135,28 @@ namespace Nada.UI.View.Demography
             c1SplitterPanel2.Controls.Add(divisionView);
         }
 
-        private void about_Click(object sender, EventArgs e)
+        private void LoadForm(IView v)
         {
-            var about = new About();
-            about.ReloadTree = () => { LoadTree();  };
-            about.ShowDialog();
-        }
-
-        private void reports_Click(object sender, EventArgs e)
-        {
-            ReportsDashboard view = new ReportsDashboard();
-            treeView_LoadView(view);
-        }
-
-        private void c1SplitButton1_DropDownItemClicked(object sender, C1.Win.C1Input.DropDownItemClickedEventArgs e)
-        {
-            IImporter importer = null;
-            if (e.ClickedItem.Tag.ToString() == "LfSentinelImport")
-            {
-                SurveyRepository repo = new SurveyRepository();
-                SurveyType type = repo.GetSurveyType((int)StaticSurveyType.LfPrevalence);
-                importer = new LfSentinelImporter(type);
-            }
-            else
-            {
-                IntvRepository repo = new IntvRepository();
-                IntvType type = repo.GetIntvType((int)StaticIntvType.IvmAlbMda);
-                importer = new LfMdaImporter(type);
-            }
-            WizardForm wiz = new WizardForm(new ImportStepType(importer), importer.ImportName);
-            wiz.OnFinish = import_OnSuccess;
-            wiz.ShowDialog();
+            ViewForm form = new ViewForm(v);
+            v.OnClose = () => 
+            { 
+                LoadDashboard(preloadedLevel);
+                form.Close();
+            };
+            form.Show();
         }
 
         private void import_OnSuccess()
         {
             LoadDashForAdminLevel(preloadedLevel);
         }
-
-        private void AddAdminLevel_ClickOverride()
-        {
-            var adminLevelAdd = new AdminLevelAdd();
-            adminLevelAdd.OnSave += adminLevelAdd_OnSave;
-            adminLevelAdd.ShowDialog();
-        }
-
+        
         void adminLevelAdd_OnSave()
         {
             LoadTree();
         }
         #endregion
+
 
 
     }

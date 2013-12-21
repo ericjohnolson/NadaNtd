@@ -17,6 +17,7 @@ namespace Nada.UI.View.Demography
     public partial class DashboardTabs : BaseControl
     {
         public Action<UserControl> LoadView = (i) => { };
+        public Action<IView> LoadForm = (i) => { };
         public event Action<AdminLevel> OnSelect = (e) => { };
         public Action<string> StatusChanged = (e) => { };
         public Action<AdminLevel> ReloadView = (i) => { };
@@ -56,12 +57,14 @@ namespace Nada.UI.View.Demography
             DiseaseDashboard dash = new DiseaseDashboard(fetcher, adminLevel);
             dash.ReloadView = (v) => { ReloadView(v); };
             dash.LoadView = (v) => { LoadView(v); };
+            dash.LoadForm = (v) => { LoadForm(v); };
             dash.StatusChanged = (s) => { StatusChanged(s); };
 
             dash.LoadContent();
             dash.Dock = DockStyle.Fill;
             pnlLf.Controls.Add(dash);
         }
+
 
     }
 }
