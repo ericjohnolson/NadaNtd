@@ -34,11 +34,12 @@
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.label3 = new System.Windows.Forms.Label();
             this.hr1 = new Nada.UI.Controls.HR();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.c1Button3 = new C1.Win.C1Input.C1Button();
+            this.c1Button1 = new C1.Win.C1Input.C1Button();
+            this.c1Button2 = new C1.Win.C1Input.C1Button();
             ((System.ComponentModel.ISupportInitialize)(this.lvDistros)).BeginInit();
-            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvDistros
@@ -52,10 +53,10 @@
             this.olvColumn1});
             this.lvDistros.Cursor = System.Windows.Forms.Cursors.Default;
             this.lvDistros.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvDistros.Location = new System.Drawing.Point(26, 52);
+            this.lvDistros.Location = new System.Drawing.Point(30, 60);
             this.lvDistros.Name = "lvDistros";
             this.lvDistros.ShowGroups = false;
-            this.lvDistros.Size = new System.Drawing.Size(380, 190);
+            this.lvDistros.Size = new System.Drawing.Size(443, 219);
             this.lvDistros.TabIndex = 0;
             this.lvDistros.UseCompatibleStateImageBehavior = false;
             this.lvDistros.UseHyperlinks = true;
@@ -93,7 +94,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.label3.Location = new System.Drawing.Point(21, 10);
+            this.label3.Location = new System.Drawing.Point(24, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 28);
             this.label3.TabIndex = 45;
@@ -106,66 +107,90 @@
             this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
             this.hr1.ForeColor = System.Drawing.Color.Gray;
             this.hr1.Location = new System.Drawing.Point(0, 0);
-            this.hr1.Margin = new System.Windows.Forms.Padding(5);
+            this.hr1.Margin = new System.Windows.Forms.Padding(6);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hr1.Size = new System.Drawing.Size(431, 5);
+            this.hr1.Size = new System.Drawing.Size(503, 6);
             this.hr1.TabIndex = 44;
             // 
-            // tableLayoutPanel4
+            // tableLayoutPanel2
             // 
-            this.tableLayoutPanel4.AutoSize = true;
-            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.btnCancel, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(26, 254);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(178, 31);
-            this.tableLayoutPanel4.TabIndex = 46;
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.c1Button3, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.c1Button1, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.c1Button2, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(29, 302);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(312, 33);
+            this.tableLayoutPanel2.TabIndex = 50;
             // 
-            // btnCancel
+            // c1Button3
             // 
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.Location = new System.Drawing.Point(97, 3);
-            this.btnCancel.MinimumSize = new System.Drawing.Size(78, 25);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnCancel.Size = new System.Drawing.Size(78, 25);
-            this.btnCancel.TabIndex = 40;
-            this.btnCancel.Tag = "Cancel";
-            this.btnCancel.Values.Text = "Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.c1Button3.AutoSize = true;
+            this.c1Button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button3.Location = new System.Drawing.Point(219, 3);
+            this.c1Button3.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button3.Name = "c1Button3";
+            this.c1Button3.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button3.Size = new System.Drawing.Size(90, 27);
+            this.c1Button3.TabIndex = 51;
+            this.c1Button3.Tag = "Cancel";
+            this.c1Button3.Text = "Cancel";
+            this.c1Button3.UseVisualStyleBackColor = true;
+            this.c1Button3.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button3.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnSave
+            // c1Button1
             // 
-            this.btnSave.AutoSize = true;
-            this.btnSave.Location = new System.Drawing.Point(3, 3);
-            this.btnSave.MinimumSize = new System.Drawing.Size(78, 25);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnSave.Size = new System.Drawing.Size(78, 25);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Tag = "Add";
-            this.btnSave.Values.Text = "Add";
-            this.btnSave.Click += new System.EventHandler(this.btnAddNew_Click);
+            this.c1Button1.AutoSize = true;
+            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button1.Location = new System.Drawing.Point(111, 3);
+            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button1.Name = "c1Button1";
+            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button1.Size = new System.Drawing.Size(90, 27);
+            this.c1Button1.TabIndex = 3;
+            this.c1Button1.Tag = "AddNew";
+            this.c1Button1.Text = "AddNew";
+            this.c1Button1.UseVisualStyleBackColor = true;
+            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button1.Click += new System.EventHandler(this.btnAddNew_Click);
+            // 
+            // c1Button2
+            // 
+            this.c1Button2.AutoSize = true;
+            this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button2.Location = new System.Drawing.Point(3, 3);
+            this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button2.Name = "c1Button2";
+            this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button2.Size = new System.Drawing.Size(90, 27);
+            this.c1Button2.TabIndex = 4;
+            this.c1Button2.Tag = "Done";
+            this.c1Button2.Text = "Done";
+            this.c1Button2.UseVisualStyleBackColor = true;
+            this.c1Button2.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // PartnerList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(431, 311);
-            this.Controls.Add(this.tableLayoutPanel4);
+            this.ClientSize = new System.Drawing.Size(503, 359);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.hr1);
             this.Controls.Add(this.lvDistros);
@@ -174,8 +199,8 @@
             this.Text = "Partners/Funders";
             this.Load += new System.EventHandler(this.DistributionMethodList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lvDistros)).EndInit();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,8 +214,9 @@
         private BrightIdeasSoftware.OLVColumn olvColumn1;
         private System.Windows.Forms.Label label3;
         private Controls.HR hr1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private C1.Win.C1Input.C1Button c1Button3;
+        private C1.Win.C1Input.C1Button c1Button1;
+        private C1.Win.C1Input.C1Button c1Button2;
     }
 }

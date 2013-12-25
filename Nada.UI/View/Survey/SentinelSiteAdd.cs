@@ -52,7 +52,9 @@ namespace Nada.UI.View
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            if (!model.IsValid())
+            double d;
+            if (!model.IsValid() || (tbLat.Text.Length > 0 && !double.TryParse(tbLat.Text, out d)) || 
+                (tbLng.Text.Length > 0 && !double.TryParse(tbLng.Text, out d)))
             {
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;

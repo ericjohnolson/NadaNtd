@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalizationUtil.cs" />
+    <Compile Include="DatabaseData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translations.Designer.cs">
       <DependentUpon>Translations.resx</DependentUpon>

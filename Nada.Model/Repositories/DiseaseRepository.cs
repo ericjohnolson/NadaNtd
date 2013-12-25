@@ -31,7 +31,7 @@ namespace Nada.Model.Repositories
 
         public void Delete(DiseaseDistroDetails distro, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -56,7 +56,7 @@ namespace Nada.Model.Repositories
         public List<DiseaseDistroDetails> GetAllForAdminLevel(int adminLevel)
         {
             List<DiseaseDistroDetails> distros = new List<DiseaseDistroDetails>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -109,7 +109,7 @@ namespace Nada.Model.Repositories
         {
             DiseaseDistroPc diseaseDistro = Create((DiseaseType)typeId);
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -172,7 +172,7 @@ namespace Nada.Model.Repositories
         public void Save(DiseaseDistroPc distro, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -239,7 +239,7 @@ namespace Nada.Model.Repositories
         {
             DiseaseDistroCm diseaseDistro = CreateCm((DiseaseType)typeId);
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -304,7 +304,7 @@ namespace Nada.Model.Repositories
                 return null;
             int did = -1;
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -344,7 +344,7 @@ namespace Nada.Model.Repositories
         public void Save(DiseaseDistroCm distro, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -410,7 +410,7 @@ namespace Nada.Model.Repositories
         public void SaveIndicators(IHaveDynamicIndicators model, int diseaseId, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -503,7 +503,7 @@ namespace Nada.Model.Repositories
         #region Disease
         private void GetIndicatorsForDisease(int diseaseId, IHaveDynamicIndicators entity)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -519,6 +519,8 @@ namespace Nada.Model.Repositories
                         IsDisabled,
                         IsEditable,
                         IsDisplayed,
+                        IsCalculated,
+                        IsMetaData,
                         CanAddValues,
                         UpdatedAt, 
                         UserName,
@@ -544,6 +546,8 @@ namespace Nada.Model.Repositories
                                 IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
                                 IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
                                 IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
+                                IsCalculated = reader.GetValueOrDefault<bool>("IsCalculated"),
+                                IsMetaData = reader.GetValueOrDefault<bool>("IsMetaData"),
                                 CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
                                 DataType = reader.GetValueOrDefault<string>("DataType")
                             });
@@ -564,13 +568,13 @@ namespace Nada.Model.Repositories
         public List<Disease> GetSelectedDiseases()
         {
             List<Disease> diseases = new List<Disease>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
                 string sql = @"Select Diseases.ID, DisplayName, DiseaseType, UserDefinedName 
                     from Diseases
-                    where isdeleted = 0 and IsSelected = yes
+                    where isdeleted = 0 and IsSelected = -1 and IsHidden = 0
                     ORDER BY Diseases.DisplayName";
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 using (OleDbDataReader reader = command.ExecuteReader())
@@ -589,16 +593,15 @@ namespace Nada.Model.Repositories
         public List<Disease> GetAvailableDiseases()
         {
             List<Disease> diseases = new List<Disease>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
                 string sql = @"Select Diseases.ID, DisplayName, DiseaseType, UserDefinedName 
                     from Diseases
-                    where isdeleted = 0
+                    where isdeleted = 0 and IsHidden = 0
                     ORDER BY Diseases.DisplayName";
                 OleDbCommand command = new OleDbCommand(sql, connection);
-                command.Parameters.Add(new OleDbParameter("@IsSelected", true));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -616,7 +619,7 @@ namespace Nada.Model.Repositories
         public Disease GetDiseaseById(int id)
         {
             Disease disease = new Disease();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -658,7 +661,7 @@ namespace Nada.Model.Repositories
 
         public void Delete(Disease disease, int byUserId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -679,7 +682,7 @@ namespace Nada.Model.Repositories
         public void Save(Disease disease, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -739,7 +742,7 @@ namespace Nada.Model.Repositories
         public void SaveSelectedDiseases(List<Disease> diseases, bool isSelected, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();

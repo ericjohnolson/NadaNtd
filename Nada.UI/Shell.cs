@@ -5,8 +5,10 @@ using System.Configuration;
 using System.Data;
 using System.Deployment.Application;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web.Security;
 using System.Windows.Forms;
 using Nada.Globalization;
 using Nada.Model;
@@ -20,7 +22,6 @@ using Nada.UI.Base;
 using Nada.UI.View;
 using Nada.UI.View.Demography;
 using Nada.UI.View.DiseaseDistribution;
-using Nada.UI.View.Help;
 using Nada.UI.View.Intervention;
 using Nada.UI.View.Modals;
 using Nada.UI.View.Reports;
@@ -32,7 +33,7 @@ namespace Nada.UI
 {
     public partial class Shell : BaseForm
     {
-        private UserControl currentView = null;
+        private IView currentView = null;
         private SettingsRepository settings = new SettingsRepository();
 
         #region Initialize/Login
@@ -81,9 +82,7 @@ namespace Nada.UI
         public void loginView1_OnLogin()
         {
             var lang = Localizer.SupportedLanguages;
-            //menuMain.Visible = true;
             pnlLeft.Visible = true;
-
             var status = settings.GetStartUpStatus();
             if (status.ShouldShowStartup())
             {
@@ -108,7 +107,8 @@ namespace Nada.UI
 
         void updateWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if ((bool)e.Result)
+            if ((bool)e.Result && (Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") ||
+                Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin")))
             {
                 StepDemoUpdateGrowthRate step = new StepDemoUpdateGrowthRate();
                 WizardForm wiz = new WizardForm(step, Translations.UpdateDemographyForYear);
@@ -125,6 +125,7 @@ namespace Nada.UI
 
         private void LoadDashboard(DashboardView dashboard)
         {
+            SetPermissions();
             dashboard.StatusChanged += view_StatusChanged;
             dashboard.LoadView = (v) => { LoadView(v); };
             dashboard.LoadDashForAdminLevel = (a) =>
@@ -137,12 +138,31 @@ namespace Nada.UI
             LoadView(dashboard);
         }
 
-        void LoadView(UserControl view)
+        private void SetPermissions()
+        {
+            menuEditSettingsToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
+            if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
+               !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
+            {
+                menuNewAdminLevelToolStripMenuItem.Visible = false;
+                menuSettingsToolStripMenuItem.Visible = false;
+                menuImportToolStripMenuItem.Visible = false;
+            }
+            else
+            {
+                menuNewAdminLevelToolStripMenuItem.Visible = true;
+                menuSettingsToolStripMenuItem.Visible = true;
+                menuImportToolStripMenuItem.Visible = true;
+            }
+        }
+
+        void LoadView(IView view)
         {
             pnlMain.Controls.Clear();
+            view.OnClose = () => { LoadDashboard(new DashboardView()); };
             currentView = view;
-            currentView.Dock = DockStyle.Fill;
-            pnlMain.Controls.Add(currentView);
+            (currentView as UserControl).Dock = DockStyle.Fill;
+            pnlMain.Controls.Add((UserControl)currentView);
             hrTop.Visible = (view is DashboardView);
             mainMenu.Visible = (view is DashboardView);
         }
@@ -177,8 +197,9 @@ namespace Nada.UI
 
         private void menuViewHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HelpView help = new HelpView();
-            help.Show();
+            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
+            //HelpView help = new HelpView();
+            //help.Show();
         }
 
         private void menuCheckForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -232,7 +253,7 @@ namespace Nada.UI
 
         private void import_OnSuccess()
         {
-            LoadView(new DashboardView());
+            LoadDashboard(new DashboardView());
         }
 
         private void menuNewAdminLevelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -244,13 +265,15 @@ namespace Nada.UI
 
         private void adminLevelAdd_OnSave()
         {
-            var dashboard = new DashboardView();
-            LoadDashboard(dashboard);
+            LoadDashboard(new DashboardView());
+        }
+
+        private void menuEditSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dashboard = new SettingsDashboard();
+            LoadView(dashboard);
         }
         #endregion
-
-
-        
 
     }
 }

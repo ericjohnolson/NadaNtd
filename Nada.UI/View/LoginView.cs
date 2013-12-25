@@ -11,11 +11,19 @@ using System.Threading;
 using System.Globalization;
 using System.Web.Security;
 using Nada.UI.Base;
+using Nada.Model.Repositories;
+using System.IO;
+using System.Configuration;
+
 
 namespace Nada.UI.View
 {
-    public partial class LoginView : BaseControl
+    public partial class LoginView : BaseControl, IView
     {
+        public Action<string> StatusChanged { get; set; }
+        public Action OnClose { get; set; }
+        public string Title { get { return ""; } }
+        public void SetFocus() { }
         public event Action OnLogin = () => {};
 
         public LoginView()
@@ -26,11 +34,9 @@ namespace Nada.UI.View
 
         public void DoLogin(string uid, string pwd)
         {
-            if (Membership.ValidateUser(uid, pwd))
-            {
-                ApplicationData.Instance.CurrentUser = Membership.GetUser(uid);
+            MemberRepository repo = new MemberRepository();
+            if (repo.Authenticate(uid, pwd))
                 OnLogin();
-            }
         }
 
         private void LoginView_Load(object sender, EventArgs e)
@@ -46,6 +52,13 @@ namespace Nada.UI.View
         {
             DoLogin(tbUid.Text, tbPwd.Text);
 
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
+            //HelpView help = new HelpView();
+            //help.Show();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Nada.Tests
     {
         public BaseTest()
         {
-            ModelData.Instance.AccessConnectionString = ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString;
+            DatabaseData.Instance.AccessConnectionString = ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString;
         }
     }
 }

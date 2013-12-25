@@ -20,12 +20,13 @@ using Nada.Model.Repositories;
 using Nada.Model.Process;
 using Nada.UI.View.Process;
 using Nada.UI.Base;
+using System.Web.Security;
 
 namespace Nada.UI.View.Demography
 {
     public partial class DiseaseDashboard : BaseControl
     {
-        public Action<UserControl> LoadView = (i) => { };
+        public Action<IView> LoadView = (i) => { };
         public Action<IView> LoadForm = (i) => { };
         public Action<AdminLevel> ReloadView = (i) => { };
         public Action<string> StatusChanged = (e) => { };
@@ -58,6 +59,25 @@ namespace Nada.UI.View.Demography
             LoadDemography();
             LoadProcessTypes();
             LoadProcesses();
+            if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
+                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
+            {
+                tblEditDd.Visible = false;
+                tblEditIntv.Visible = false;
+                tblEditProcess.Visible = false;
+                tblEditSurveys.Visible = false;
+
+                lvDemo.AllColumns[5].IsVisible = false; 
+                lvDemo.RebuildColumns();
+                lvDiseaseDistro.AllColumns[4].IsVisible = false;
+                lvDiseaseDistro.RebuildColumns();
+                lvIntv.AllColumns[4].IsVisible = false;
+                lvIntv.RebuildColumns();
+                lvProcess.AllColumns[4].IsVisible = false;
+                lvProcess.RebuildColumns();
+                lvSurveys.AllColumns[4].IsVisible = false;
+                lvSurveys.RebuildColumns();
+            }
         }
         
         private void DoLoadView(IView view)
@@ -322,9 +342,16 @@ namespace Nada.UI.View.Demography
             DemoPayload result = (DemoPayload)e.Result;
             lvDemo.SetObjects(result.DemoList);
 
+
             lnkAddDemo.Visible = result.AllowAdd;
             loadingDemos.Visible = false;
             pnlDistroDetails.Visible = true;
+
+            if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
+                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
+            {
+                lnkAddDemo.Visible = false;
+            }
         }
 
         void DemoWorker_DoWork(object sender, DoWorkEventArgs e)

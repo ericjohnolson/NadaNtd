@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Security;
-using System.Windows.Forms;
 
-namespace Nada.UI.AppLogic
+namespace Nada.Model
 {
     public class ApplicationData
     {

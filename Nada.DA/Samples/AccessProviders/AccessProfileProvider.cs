@@ -31,6 +31,7 @@ namespace Samples.AccessProviders
     using System.Web.Hosting;
     using System.Web.DataAccess;
     using System.Web.Util;
+    using Nada;
 
     public class AccessProfileProvider : ProfileProvider
     {
@@ -66,6 +67,9 @@ namespace Samples.AccessProviders
                 throw new ProviderException("Connection string not found" + _DatabaseFileName);
             }
             _DatabaseFileName = temp;
+
+            // EDIT GET THE IN MEMORY CONNECTION STRING
+            _DatabaseFileName = DatabaseData.Instance.AccessConnectionString;
             //HandlerBase.CheckAndReadRegistryValue(ref _DatabaseFileName, true);
             AccessConnectionHelper.CheckConnectionString(_DatabaseFileName);
 

@@ -19,11 +19,14 @@ using Nada.UI.Base;
 
 namespace Nada.UI.View.Demography
 {
-    public partial class DashboardView : BaseControl
+    public partial class DashboardView : BaseControl, IView
     {
-        public Action<UserControl> LoadView = (i) => { };
-        public Action<AdminLevel> LoadDashForAdminLevel = (i) => { };
+        public Action OnClose { get; set; }
+        public string Title { get { return ""; } }
+        public void SetFocus() { }
         public Action<string> StatusChanged { get; set; }
+        public Action<IView> LoadView = (i) => { };
+        public Action<AdminLevel> LoadDashForAdminLevel = (i) => { };
         private UserControl divisionView = null;
         private Dictionary<int, AdminLevelType> adminLevelTypes = null;
         private AdminLevel preloadedLevel = null;
@@ -68,7 +71,7 @@ namespace Nada.UI.View.Demography
         private void treeView_LoadView(IView v)
         {
             v.OnClose = () => { LoadDashForAdminLevel(null); };
-            LoadView((UserControl)v);
+            LoadView(v);
         }
 
         public void LoadTree()
@@ -138,8 +141,8 @@ namespace Nada.UI.View.Demography
         private void LoadForm(IView v)
         {
             ViewForm form = new ViewForm(v);
-            v.OnClose = () => 
-            { 
+            v.OnClose = () =>
+            {
                 LoadDashboard(preloadedLevel);
                 form.Close();
             };
@@ -150,12 +153,13 @@ namespace Nada.UI.View.Demography
         {
             LoadDashForAdminLevel(preloadedLevel);
         }
-        
+
         void adminLevelAdd_OnSave()
         {
             LoadTree();
         }
         #endregion
+
 
 
 

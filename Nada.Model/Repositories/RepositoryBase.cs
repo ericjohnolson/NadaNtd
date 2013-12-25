@@ -50,7 +50,7 @@ namespace Nada.Model.Repositories
         public void Save(IndicatorDropdownValue model, int userid)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();

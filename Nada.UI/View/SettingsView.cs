@@ -69,9 +69,6 @@ namespace Nada.UI.View
 
         private void btnPopGroup_Click(object sender, EventArgs e)
         {
-            PopGroupModal form = new PopGroupModal();
-            form.OnSave += pop_OnSave;
-            form.ShowDialog();
         }
 
         private void pop_OnSave(PopGroup obj)

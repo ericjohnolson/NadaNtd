@@ -52,9 +52,13 @@ namespace Nada.UI.View
             }
             else if (e.Column.AspectName == "DeleteText")
             {
-                repo.Delete((Partner)e.Model, ApplicationData.Instance.GetUserId());
-                lvDistros.SetObjects(repo.GetPartners());
-                OnSave();
+                DeleteConfirm confirm = new DeleteConfirm();
+                if (confirm.ShowDialog() == DialogResult.OK)
+                {
+                    repo.Delete((Partner)e.Model, ApplicationData.Instance.GetUserId());
+                    lvDistros.SetObjects(repo.GetPartners());
+                    OnSave();
+                }
             }
         }
 

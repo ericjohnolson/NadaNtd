@@ -5,16 +5,16 @@ using System.Text;
 
 namespace Nada.Model.Reports
 {
-    public class ReportIndicators
-    {
-        public ReportIndicators()
-        {
-            SurveyIndicators = new List<ReportIndicator>();
-            InterventionIndicators = new List<ReportIndicator>();
-        }
-        public List<ReportIndicator> SurveyIndicators { get; set; }
-        public List<ReportIndicator> InterventionIndicators { get; set; }
-    }
+    //public class ReportIndicators
+    //{
+    //    public ReportIndicators()
+    //    {
+    //        SurveyIndicators = new List<ReportIndicator>();
+    //        InterventionIndicators = new List<ReportIndicator>();
+    //    }
+    //    public List<ReportIndicator> SurveyIndicators { get; set; }
+    //    public List<ReportIndicator> InterventionIndicators { get; set; }
+    //}
 
     public class ReportIndicator
     {
@@ -33,6 +33,7 @@ namespace Nada.Model.Reports
         public List<ReportIndicator> Children { get; set; }
         public bool IsCategory { get; set; }
         public bool IsChecked { get; set; }
-
+        public bool IsCalculated { get; set; }
+        public int TypeId { get; set; }
     }
 }

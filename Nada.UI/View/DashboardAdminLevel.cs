@@ -16,7 +16,7 @@ namespace Nada.UI.View.Demography
 {
     public partial class DashboardTabs : BaseControl
     {
-        public Action<UserControl> LoadView = (i) => { };
+        public Action<IView> LoadView = (i) => { };
         public Action<IView> LoadForm = (i) => { };
         public event Action<AdminLevel> OnSelect = (e) => { };
         public Action<string> StatusChanged = (e) => { };

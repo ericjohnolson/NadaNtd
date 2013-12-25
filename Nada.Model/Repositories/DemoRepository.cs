@@ -18,7 +18,7 @@ namespace Nada.Model.Repositories
         {
             Country country = new Country();
             int id = Convert.ToInt32(ConfigurationManager.AppSettings["CountryId"]);
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -49,7 +49,7 @@ namespace Nada.Model.Repositories
 
         public void UpdateCountry(Country country, int byUserId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -81,7 +81,7 @@ namespace Nada.Model.Repositories
         {
             CountryDemography demo = new CountryDemography();
             demo.AdminLevelId = Convert.ToInt32(ConfigurationManager.AppSettings["CountryId"]);
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -120,7 +120,7 @@ namespace Nada.Model.Repositories
         {
             CountryDemography demo = new CountryDemography();
             demo.AdminLevelId = Convert.ToInt32(ConfigurationManager.AppSettings["CountryId"]);
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -189,7 +189,7 @@ namespace Nada.Model.Repositories
         public void Save(CountryDemography demo, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -287,7 +287,7 @@ namespace Nada.Model.Repositories
         public List<AdminLevel> GetAdminLevelChildren(int parentId)
         {
             List<AdminLevel> list = new List<AdminLevel>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -322,7 +322,7 @@ namespace Nada.Model.Repositories
         public List<AdminLevel> GetAdminLevelByLevel(int levelNumber)
         {
             List<AdminLevel> list = new List<AdminLevel>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -351,7 +351,7 @@ namespace Nada.Model.Repositories
         public AdminLevel GetAdminLevelById(int id)
         {
             AdminLevel al = new AdminLevel();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -387,7 +387,7 @@ namespace Nada.Model.Repositories
         public List<AdminLevel> GetAdminLevelTree()
         {
             List<AdminLevel> list = new List<AdminLevel>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -427,7 +427,7 @@ namespace Nada.Model.Repositories
         public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry)
         {
             List<AdminLevel> list = new List<AdminLevel>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -465,7 +465,7 @@ namespace Nada.Model.Repositories
 
         public List<AdminLevel> GetAdminLevelTreeForDemography(int level, int demoYear, ref List<AdminLevel> list)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -523,7 +523,7 @@ namespace Nada.Model.Repositories
         public void AddChildren(AdminLevel parent, List<AdminLevel> children, AdminLevelType childType, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -579,7 +579,7 @@ namespace Nada.Model.Repositories
         public void BulkImportAdminLevelsForLevel(List<AdminLevel> levels, int typeId, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -625,7 +625,7 @@ namespace Nada.Model.Repositories
         public void BulkImportAdminLevels(DataSet ds, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -694,7 +694,7 @@ namespace Nada.Model.Repositories
             if (filterBy == null && parentType == null)
                 return parentIds;
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -737,7 +737,7 @@ namespace Nada.Model.Repositories
         public void Save(AdminLevel model, int userid)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -833,7 +833,7 @@ namespace Nada.Model.Repositories
         public void ApplyGrowthRate(double growthRatePercent, int userId, AdminLevelType aggLevel, int maxLevels, int year)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -895,7 +895,7 @@ namespace Nada.Model.Repositories
 
         public void Delete(DemoDetails demo, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -919,7 +919,7 @@ namespace Nada.Model.Repositories
         public List<DemoDetails> GetAdminLevelDemography(int adminLevelId)
         {
             List<DemoDetails> demo = new List<DemoDetails>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -951,7 +951,7 @@ namespace Nada.Model.Repositories
         public List<AdminLevelDemography> GetRecentDemography(int level, int recentYear)
         {
             List<AdminLevelDemography> recent = new List<AdminLevelDemography>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -996,7 +996,7 @@ namespace Nada.Model.Repositories
         {
             AdminLevelDemography demo = new AdminLevelDemography { YearDemographyData = demoYear, AdminLevelId = adminLevelid };
             int id = 0;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -1030,7 +1030,7 @@ namespace Nada.Model.Repositories
         public AdminLevelDemography GetDemoById(int id)
         {
             AdminLevelDemography demo = new AdminLevelDemography();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -1091,7 +1091,7 @@ namespace Nada.Model.Repositories
         public void BulkImportAggregatedDemo(List<AdminLevel> tree, int userId, int aggregatingLevel)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -1141,7 +1141,7 @@ namespace Nada.Model.Repositories
         public void Save(List<AdminLevelDemography> demos, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -1179,7 +1179,7 @@ namespace Nada.Model.Repositories
         public void Save(AdminLevelDemography demo, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();

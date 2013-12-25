@@ -20,7 +20,7 @@ namespace Nada.Model.Repositories
         {
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
             Dictionary<int, AdminLevelIndicators> dic = new Dictionary<int, AdminLevelIndicators>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -233,7 +233,7 @@ namespace Nada.Model.Repositories
         {
             ExportJrfQuestions questions = new ExportJrfQuestions();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -268,7 +268,7 @@ namespace Nada.Model.Repositories
 
         public void UpdateExportQuestions(ExportJrfQuestions questions)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -302,7 +302,7 @@ namespace Nada.Model.Repositories
         {
             ExportCmJrfQuestions questions = new ExportCmJrfQuestions();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -431,7 +431,7 @@ namespace Nada.Model.Repositories
 
         public void UpdateCmExportQuestions(ExportCmJrfQuestions questions)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();

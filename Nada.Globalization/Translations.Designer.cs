@@ -214,6 +214,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new user &gt;.
+        /// </summary>
+        public static string AddUserLink {
+            get {
+                return ResourceManager.GetString("AddUserLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adequate.
         /// </summary>
         public static string Adequate {
@@ -682,6 +691,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculation error occured.
+        /// </summary>
+        public static string CalculationError {
+            get {
+                return ResourceManager.GetString("CalculationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -768,6 +786,15 @@ namespace Nada.Globalization {
         public static string Chagas {
             get {
                 return ResourceManager.GetString("Chagas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change password &gt;.
+        /// </summary>
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
             }
         }
         
@@ -2492,6 +2519,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Done.
+        /// </summary>
+        public static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download import file.
         /// </summary>
         public static string DownloadImportFile {
@@ -3590,15 +3626,6 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insufficient.
-        /// </summary>
-        public static string Insufficient {
-            get {
-                return ResourceManager.GetString("Insufficient", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Intervention Information.
         /// </summary>
         public static string InterventionInfo {
@@ -3952,9 +3979,9 @@ namespace Nada.Globalization {
         /// <summary>
         ///   Looks up a localized string similar to Kato-Katz.
         /// </summary>
-        public static string KatoKatz {
+        public static string KatoKat {
             get {
-                return ResourceManager.GetString("KatoKatz", resourceCulture);
+                return ResourceManager.GetString("KatoKat", resourceCulture);
             }
         }
         
@@ -4198,6 +4225,15 @@ namespace Nada.Globalization {
         public static string LevelImplementation {
             get {
                 return ResourceManager.GetString("LevelImplementation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level name.
+        /// </summary>
+        public static string LevelName {
+            get {
+                return ResourceManager.GetString("LevelName", resourceCulture);
             }
         }
         
@@ -4553,7 +4589,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Will the site(s) also serve as a sentinel or spot check site?.
+        ///   Looks up a localized string similar to Will the site(s) also serve as a sentinel?.
         /// </summary>
         public static string LFMapSurWillTheSitesAlsoServeAsASentin {
             get {
@@ -5107,6 +5143,15 @@ namespace Nada.Globalization {
         public static string MenuDiseaseDistributions {
             get {
                 return ResourceManager.GetString("MenuDiseaseDistributions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit settings.
+        /// </summary>
+        public static string MenuEditSettings {
+            get {
+                return ResourceManager.GetString("MenuEditSettings", resourceCulture);
             }
         }
         
@@ -6965,7 +7010,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to if ecological assessment conductd, then name of River Basin.
+        ///   Looks up a localized string similar to if ecological assessment conducted, then name of River Basin.
         /// </summary>
         public static string OnchoSurIfEcologicalAssessmentRiver {
             get {
@@ -6974,7 +7019,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If ecological assessment conductd, then site/focus.
+        ///   Looks up a localized string similar to If ecological assessment conducted, then site/focus.
         /// </summary>
         public static string OnchoSurIfEcologicalAssessmentSite {
             get {
@@ -8531,6 +8576,42 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administrator.
+        /// </summary>
+        public static string RoleAdmin {
+            get {
+                return ResourceManager.GetString("RoleAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data enterer.
+        /// </summary>
+        public static string RoleDataEnterer {
+            get {
+                return ResourceManager.GetString("RoleDataEnterer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data viewer.
+        /// </summary>
+        public static string RoleDataViewer {
+            get {
+                return ResourceManager.GetString("RoleDataViewer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roles.
+        /// </summary>
+        public static string Roles {
+            get {
+                return ResourceManager.GetString("Roles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Round.
         /// </summary>
         public static string Round {
@@ -8954,7 +9035,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Will the site(s) also serve as a sentinel or spot check site?.
+        ///   Looks up a localized string similar to Will the site(s) also serve as a sentinel?.
         /// </summary>
         public static string SCHMapSurWillSite {
             get {
@@ -9314,7 +9395,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MDB.
+        ///   Looks up a localized string similar to MBD.
         /// </summary>
         public static string ScmDrpMdb {
             get {
@@ -10223,7 +10304,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Will the site(s) also serve as a sentinel or spot check site?.
+        ///   Looks up a localized string similar to Will the site(s) also serve as a sentinel?.
         /// </summary>
         public static string STHMapSurSurWillTheSitesAlsoServeAsASentinelO {
             get {
@@ -12158,6 +12239,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insufficient.
+        /// </summary>
+        public static string TsInsufficient {
+            get {
+                return ResourceManager.GetString("TsInsufficient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to National policy: Are Primary Health Care (PHC) workers trained to identify TT?.
         /// </summary>
         public static string TSNationalPolicyArePrimaryHealthCarPh {
@@ -12437,6 +12527,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string Username {
@@ -12469,6 +12568,15 @@ namespace Nada.Globalization {
         public static string ValidationErrorTitle {
             get {
                 return ResourceManager.GetString("ValidationErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username must be unique.
+        /// </summary>
+        public static string ValidationUserName {
+            get {
+                return ResourceManager.GetString("ValidationUserName", resourceCulture);
             }
         }
         

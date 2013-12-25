@@ -13,11 +13,14 @@ using Nada.Model;
 using Nada.Globalization;
 using Nada.UI.View.Survey;
 using Nada.Model.Intervention;
-using Nada.UI.View.Help;
+
 using Nada.Model.Diseases;
 using Nada.UI.ViewModel;
 using Nada.UI.Base;
 using Nada.UI.Controls;
+using System.Web.Security;
+using System.IO;
+using System.Configuration;
 
 namespace Nada.UI.View.DiseaseDistribution
 {
@@ -81,12 +84,18 @@ namespace Nada.UI.View.DiseaseDistribution
                     statCalculator1.Visible = false;
                 // special controls
                 viewModel.AddSpecialControls(indicatorControl1);
+                if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
+                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
+                {
+                    tblEdit.Visible = false;
+                }
             }
         }
 
         private void statCalculator1_OnCalc()
         {
-            statCalculator1.DoCalc(indicatorControl1.GetValues(), viewModel.Location.Id);
+            statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id, viewModel.CalculatorTypeId);
+            c1Button1.Focus();
         }
                 
         /// <summary>
@@ -131,8 +140,9 @@ namespace Nada.UI.View.DiseaseDistribution
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            HelpView help = new HelpView();
-            help.Show();
+            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
+            //HelpView help = new HelpView();
+            //help.Show();
         }
     }
 }

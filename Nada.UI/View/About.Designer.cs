@@ -28,29 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnUpdate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblVersion = new Nada.UI.Controls.H3Label();
             this.h3Label1 = new Nada.UI.Controls.H3Label();
             this.hr1 = new Nada.UI.Controls.HR();
+            this.c1Button2 = new C1.Win.C1Input.C1Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.AutoSize = true;
-            this.btnUpdate.Location = new System.Drawing.Point(3, 78);
-            this.btnUpdate.MinimumSize = new System.Drawing.Size(162, 29);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(162, 29);
-            this.btnUpdate.TabIndex = 8;
-            this.btnUpdate.Tag = "UpdatesCheck";
-            this.btnUpdate.Values.Text = "Check for updates...";
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label3
             // 
@@ -72,8 +59,8 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.c1Button2, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnUpdate, 0, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 10);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 23, 23);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -82,9 +69,9 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(168, 110);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(121, 118);
             this.tableLayoutPanel1.TabIndex = 48;
             // 
             // tableLayoutPanel2
@@ -137,11 +124,28 @@
             this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
             this.hr1.ForeColor = System.Drawing.Color.Gray;
             this.hr1.Location = new System.Drawing.Point(0, 0);
-            this.hr1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.hr1.Margin = new System.Windows.Forms.Padding(6);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr1.Size = new System.Drawing.Size(444, 6);
             this.hr1.TabIndex = 46;
+            // 
+            // c1Button2
+            // 
+            this.c1Button2.AutoSize = true;
+            this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button2.Location = new System.Drawing.Point(3, 88);
+            this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button2.Name = "c1Button2";
+            this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button2.Size = new System.Drawing.Size(115, 27);
+            this.c1Button2.TabIndex = 4;
+            this.c1Button2.Tag = "UpdatesCheck";
+            this.c1Button2.Text = "UpdatesCheck";
+            this.c1Button2.UseVisualStyleBackColor = true;
+            this.c1Button2.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // About
             // 
@@ -169,12 +173,12 @@
 
         #endregion
 
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnUpdate;
         private System.Windows.Forms.Label label3;
         private Controls.HR hr1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Controls.H3Label lblVersion;
         private Controls.H3Label h3Label1;
+        private C1.Win.C1Input.C1Button c1Button2;
     }
 }

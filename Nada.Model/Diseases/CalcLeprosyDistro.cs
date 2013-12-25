@@ -26,15 +26,16 @@ namespace Nada.Model.Diseases
             l9 = Util.ParseIndicatorDouble(inds, "PrevalenceBeginningYear");
 
             int yearOfReporting = Util.ParseIndicatorInt(inds, "IntvYear");
-            DiseaseRepository distros = new DiseaseRepository();
-            DiseaseDistroCm distro = distros.GetDistroByAdminLevelYear(adminLevel, yearOfReporting, (int)DiseaseType.Yaws);
-            if (distro != null)
-            {
-                L24 = Util.ParseIndicatorDouble(inds, "NumRelapses");
-                L25 = Util.ParseIndicatorDouble(inds, "CasesReadmitted");
-            }
+            // NEED TO GET INTERVENTION LEPROSY NOT DD DUH.
+            //DiseaseRepository distros = new DiseaseRepository();
+            //DiseaseDistroCm distro = distros.GetDistroByAdminLevelYear(adminLevel, yearOfReporting, (int)DiseaseType.Leprosy);
+            //if (distro != null)
+            //{
+            //    L24 = Util.ParseIndicatorDouble(inds, "NumRelapses");
+            //    L25 = Util.ParseIndicatorDouble(inds, "CasesReadmitted");
+            //}
 
-            //L11	Total number of cases registered 	PERCENT	CALC: L5+L24+L25+l9
+            //L11	Total number of cases registered 	PERCENT	CALC: L5+L24+L25+L9
             if (L5 >= 0 && L24 >= 0 && L25 >= 0 && l9 >= 0)
                 calcs.Add(new KeyValuePair<string, string>("TotalNumCasesRegistered", string.Format("{0}", L5 + L24 + L25 + l9).ToString()));
             else
@@ -63,7 +64,7 @@ namespace Nada.Model.Diseases
 
             //L18	Prevalence rate at the end of the year per 10,000	number	CALC: L12/total population(from demography)
             calcs.Add(new KeyValuePair<string, string>("PrevalenceRateEndOfYear", Translations.NA));
-            //L15	Rate of New Grade II per 1 million population	number	CALC: L23/total population
+            //L15	Rate of New Grade II per 1 million population	number	CALC: L23 (Total number of new cases with Grade II disabilities)/total population
             calcs.Add(new KeyValuePair<string, string>("RateNewGrade2", Translations.NA));
             //L13	Detection rate per 100,000	number	CALC: L5/total population (from demography)
             calcs.Add(new KeyValuePair<string, string>("DetectionRate100k", Translations.NA));

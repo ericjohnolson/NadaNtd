@@ -51,6 +51,8 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuNewAdminLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDemographyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDiseaseDistributionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,10 +66,9 @@
             this.menuCheckForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuNewAdminLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hrTop = new Nada.UI.Controls.HR();
             this.hr1 = new Nada.UI.Controls.HR();
+            this.menuEditSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tsQuickLinks.SuspendLayout();
             this.pnlLeft.SuspendLayout();
@@ -281,6 +282,22 @@
             this.menuExitToolStripMenuItem.Text = "MenuExit";
             this.menuExitToolStripMenuItem.Click += new System.EventHandler(this.menuExitToolStripMenuItem_Click);
             // 
+            // menuSettingsToolStripMenuItem
+            // 
+            this.menuSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuEditSettingsToolStripMenuItem,
+            this.menuNewAdminLevelToolStripMenuItem});
+            this.menuSettingsToolStripMenuItem.Name = "menuSettingsToolStripMenuItem";
+            this.menuSettingsToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.menuSettingsToolStripMenuItem.Text = "MenuSettings";
+            // 
+            // menuNewAdminLevelToolStripMenuItem
+            // 
+            this.menuNewAdminLevelToolStripMenuItem.Name = "menuNewAdminLevelToolStripMenuItem";
+            this.menuNewAdminLevelToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.menuNewAdminLevelToolStripMenuItem.Text = "MenuNewAdminLevel";
+            this.menuNewAdminLevelToolStripMenuItem.Click += new System.EventHandler(this.menuNewAdminLevelToolStripMenuItem_Click);
+            // 
             // menuImportToolStripMenuItem
             // 
             this.menuImportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -380,21 +397,6 @@
             this.menuAboutToolStripMenuItem.Text = "MenuAbout";
             this.menuAboutToolStripMenuItem.Click += new System.EventHandler(this.menuAboutToolStripMenuItem_Click);
             // 
-            // menuSettingsToolStripMenuItem
-            // 
-            this.menuSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuNewAdminLevelToolStripMenuItem});
-            this.menuSettingsToolStripMenuItem.Name = "menuSettingsToolStripMenuItem";
-            this.menuSettingsToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
-            this.menuSettingsToolStripMenuItem.Text = "MenuSettings";
-            // 
-            // menuNewAdminLevelToolStripMenuItem
-            // 
-            this.menuNewAdminLevelToolStripMenuItem.Name = "menuNewAdminLevelToolStripMenuItem";
-            this.menuNewAdminLevelToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.menuNewAdminLevelToolStripMenuItem.Text = "MenuNewAdminLevel";
-            this.menuNewAdminLevelToolStripMenuItem.Click += new System.EventHandler(this.menuNewAdminLevelToolStripMenuItem_Click);
-            // 
             // hrTop
             // 
             this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
@@ -418,6 +420,13 @@
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr1.Size = new System.Drawing.Size(1248, 1);
             this.hr1.TabIndex = 63;
+            // 
+            // menuEditSettingsToolStripMenuItem
+            // 
+            this.menuEditSettingsToolStripMenuItem.Name = "menuEditSettingsToolStripMenuItem";
+            this.menuEditSettingsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.menuEditSettingsToolStripMenuItem.Text = "MenuEditSettings";
+            this.menuEditSettingsToolStripMenuItem.Click += new System.EventHandler(this.menuEditSettingsToolStripMenuItem_Click);
             // 
             // Shell
             // 
@@ -489,6 +498,7 @@
         private Controls.HR hr1;
         private System.Windows.Forms.ToolStripMenuItem menuSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuNewAdminLevelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuEditSettingsToolStripMenuItem;
     }
 }
 

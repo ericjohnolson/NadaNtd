@@ -2942,10 +2942,10 @@ Fixed / Mobile</value>
   <data name="ImpactSurvey" xml:space="preserve">
     <value>Impact Survey</value>
   </data>
-  <data name="Insufficient" xml:space="preserve">
+  <data name="TsInsufficient" xml:space="preserve">
     <value>Insufficient</value>
   </data>
-  <data name="KatoKatz" xml:space="preserve">
+  <data name="KatoKat" xml:space="preserve">
     <value>Kato-Katz</value>
   </data>
   <data name="LFMapSurAgeRange" xml:space="preserve">
@@ -3033,7 +3033,7 @@ Fixed / Mobile</value>
     <value>Vector</value>
   </data>
   <data name="LFMapSurWillTheSitesAlsoServeAsASentin" xml:space="preserve">
-    <value>Will the site(s) also serve as a sentinel or spot check site?</value>
+    <value>Will the site(s) also serve as a sentinel?</value>
   </data>
   <data name="LFMMDPNumHydroceleCases" xml:space="preserve">
     <value># hydrocele cases</value>
@@ -3273,10 +3273,10 @@ Fixed / Mobile</value>
     <value>Entomological assessment conducted?</value>
   </data>
   <data name="OnchoSurIfEcologicalAssessmentRiver" xml:space="preserve">
-    <value>if ecological assessment conductd, then name of River Basin</value>
+    <value>if ecological assessment conducted, then name of River Basin</value>
   </data>
   <data name="OnchoSurIfEcologicalAssessmentSite" xml:space="preserve">
-    <value>If ecological assessment conductd, then site/focus</value>
+    <value>If ecological assessment conducted, then site/focus</value>
   </data>
   <data name="OnchoSurIfTestTypeIsNpNumDep" xml:space="preserve">
     <value>If test type is nodule palpation, dermatological morbidity - number of individuals with depigmentation</value>
@@ -3441,7 +3441,7 @@ Fixed / Mobile</value>
     <value>Test type</value>
   </data>
   <data name="SCHMapSurWillSite" xml:space="preserve">
-    <value>Will the site(s) also serve as a sentinel or spot check site?</value>
+    <value>Will the site(s) also serve as a sentinel?</value>
   </data>
   <data name="School" xml:space="preserve">
     <value>School</value>
@@ -3705,7 +3705,7 @@ Fixed / Mobile</value>
     <value>Test type</value>
   </data>
   <data name="STHMapSurSurWillTheSitesAlsoServeAsASentinelO" xml:space="preserve">
-    <value>Will the site(s) also serve as a sentinel or spot check site?</value>
+    <value>Will the site(s) also serve as a sentinel?</value>
   </data>
   <data name="STHSurAgeGroupSurveyed" xml:space="preserve">
     <value>Age group surveyed</value>
@@ -4208,14 +4208,26 @@ Fixed / Mobile</value>
   <data name="AddNewLocation" xml:space="preserve">
     <value>Add new location &gt;</value>
   </data>
+  <data name="AddUserLink" xml:space="preserve">
+    <value>Add new user &gt;</value>
+  </data>
   <data name="BrowseForFile" xml:space="preserve">
     <value>Browse for a file...</value>
+  </data>
+  <data name="CalculationError" xml:space="preserve">
+    <value>Calculation error occured</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password &gt;</value>
   </data>
   <data name="ChooseYourLanguage" xml:space="preserve">
     <value>Choose your language</value>
   </data>
   <data name="CreateNewFile" xml:space="preserve">
     <value>Create a new file...</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
   </data>
   <data name="DrugAlb" xml:space="preserve">
     <value>ALB</value>
@@ -4286,6 +4298,9 @@ Fixed / Mobile</value>
   <data name="IndSpotCheckName" xml:space="preserve">
     <value>Spot check site name</value>
   </data>
+  <data name="LevelName" xml:space="preserve">
+    <value>Level name</value>
+  </data>
   <data name="MenuAbout" xml:space="preserve">
     <value>About...</value>
   </data>
@@ -4297,6 +4312,9 @@ Fixed / Mobile</value>
   </data>
   <data name="MenuDiseaseDistributions" xml:space="preserve">
     <value>Disease distributions...</value>
+  </data>
+  <data name="MenuEditSettings" xml:space="preserve">
+    <value>Edit settings</value>
   </data>
   <data name="MenuExit" xml:space="preserve">
     <value>Exit</value>
@@ -4349,6 +4367,18 @@ Fixed / Mobile</value>
   <data name="RecentFile" xml:space="preserve">
     <value>Recent file: </value>
   </data>
+  <data name="RoleAdmin" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="RoleDataEnterer" xml:space="preserve">
+    <value>Data enterer</value>
+  </data>
+  <data name="RoleDataViewer" xml:space="preserve">
+    <value>Data viewer</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
   <data name="SCMDropBottle" xml:space="preserve">
     <value>Bottle</value>
   </data>
@@ -4374,7 +4404,7 @@ Fixed / Mobile</value>
     <value>IVM</value>
   </data>
   <data name="ScmDrpMdb" xml:space="preserve">
-    <value>MDB</value>
+    <value>MBD</value>
   </data>
   <data name="ScmDrpPzq" xml:space="preserve">
     <value>PZQ</value>
@@ -4385,8 +4415,14 @@ Fixed / Mobile</value>
   <data name="SentinelSiteId" xml:space="preserve">
     <value>Sentinel site</value>
   </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
   <data name="ValidationErrorAddIndicator" xml:space="preserve">
     <value>At least one indicator is required</value>
+  </data>
+  <data name="ValidationUserName" xml:space="preserve">
+    <value>Username must be unique</value>
   </data>
   <data name="ValidSentinelSite" xml:space="preserve">
     <value>Sentinel site was not found in list of available sites for the location</value>

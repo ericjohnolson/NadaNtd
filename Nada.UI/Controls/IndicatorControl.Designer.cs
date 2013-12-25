@@ -31,15 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.tblIndicators = new System.Windows.Forms.TableLayoutPanel();
             this.tblContainer = new System.Windows.Forms.TableLayoutPanel();
-            this.tblMetaData = new System.Windows.Forms.TableLayoutPanel();
+            this.tblTopControls = new System.Windows.Forms.TableLayoutPanel();
             this.hr4 = new Nada.UI.Controls.HR();
             this.panel1 = new System.Windows.Forms.Panel();
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.lblCustomIndicators = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tblStaticIndicators = new System.Windows.Forms.TableLayoutPanel();
+            this.tblMetaData = new System.Windows.Forms.TableLayoutPanel();
             this.indicatorErrors = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tblTopControls = new System.Windows.Forms.TableLayoutPanel();
             this.tblContainer.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -55,7 +55,7 @@
             this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tblIndicators.Location = new System.Drawing.Point(3, 80);
+            this.tblIndicators.Location = new System.Drawing.Point(3, 92);
             this.tblIndicators.Name = "tblIndicators";
             this.tblIndicators.RowCount = 1;
             this.tblIndicators.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -85,31 +85,31 @@
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblContainer.Size = new System.Drawing.Size(933, 83);
+            this.tblContainer.Size = new System.Drawing.Size(933, 95);
             this.tblContainer.TabIndex = 2;
             // 
-            // tblMetaData
+            // tblTopControls
             // 
-            this.tblMetaData.AutoSize = true;
-            this.tblMetaData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tblMetaData.ColumnCount = 5;
-            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblMetaData.Location = new System.Drawing.Point(3, 3);
-            this.tblMetaData.Name = "tblMetaData";
-            this.tblMetaData.RowCount = 1;
-            this.tblMetaData.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblMetaData.Size = new System.Drawing.Size(46, 0);
-            this.tblMetaData.TabIndex = 51;
+            this.tblTopControls.AutoSize = true;
+            this.tblTopControls.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblTopControls.ColumnCount = 1;
+            this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblTopControls.Location = new System.Drawing.Point(3, 21);
+            this.tblTopControls.Name = "tblTopControls";
+            this.tblTopControls.RowCount = 1;
+            this.tblTopControls.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblTopControls.Size = new System.Drawing.Size(0, 0);
+            this.tblTopControls.TabIndex = 52;
             // 
             // hr4
             // 
             this.hr4.BackColor = System.Drawing.Color.DimGray;
             this.hr4.ForeColor = System.Drawing.Color.Gray;
-            this.hr4.Location = new System.Drawing.Point(0, 28);
+            this.hr4.Location = new System.Drawing.Point(0, 40);
             this.hr4.Margin = new System.Windows.Forms.Padding(0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.DimGray;
@@ -123,7 +123,7 @@
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.fieldLink1);
             this.panel1.Controls.Add(this.lblCustomIndicators);
-            this.panel1.Location = new System.Drawing.Point(0, 38);
+            this.panel1.Location = new System.Drawing.Point(0, 50);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(159, 39);
@@ -162,7 +162,7 @@
             this.panel2.AutoSize = true;
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.Controls.Add(this.tblStaticIndicators);
-            this.panel2.Location = new System.Drawing.Point(0, 12);
+            this.panel2.Location = new System.Drawing.Point(0, 24);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(52, 4);
@@ -184,27 +184,31 @@
             this.tblStaticIndicators.Size = new System.Drawing.Size(46, 0);
             this.tblStaticIndicators.TabIndex = 49;
             // 
+            // tblMetaData
+            // 
+            this.tblMetaData.AutoSize = true;
+            this.tblMetaData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblMetaData.ColumnCount = 7;
+            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblMetaData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblMetaData.Location = new System.Drawing.Point(3, 3);
+            this.tblMetaData.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
+            this.tblMetaData.Name = "tblMetaData";
+            this.tblMetaData.RowCount = 1;
+            this.tblMetaData.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblMetaData.Size = new System.Drawing.Size(69, 0);
+            this.tblMetaData.TabIndex = 51;
+            this.tblMetaData.Visible = false;
+            // 
             // indicatorErrors
             // 
             this.indicatorErrors.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.indicatorErrors.ContainerControl = this;
-            // 
-            // tblTopControls
-            // 
-            this.tblTopControls.AutoSize = true;
-            this.tblTopControls.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tblTopControls.ColumnCount = 1;
-            this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblTopControls.Location = new System.Drawing.Point(3, 9);
-            this.tblTopControls.Name = "tblTopControls";
-            this.tblTopControls.RowCount = 1;
-            this.tblTopControls.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblTopControls.Size = new System.Drawing.Size(0, 0);
-            this.tblTopControls.TabIndex = 52;
             // 
             // IndicatorControl
             // 
@@ -217,7 +221,7 @@
             this.Controls.Add(this.tblContainer);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "IndicatorControl";
-            this.Size = new System.Drawing.Size(936, 86);
+            this.Size = new System.Drawing.Size(936, 98);
             this.Load += new System.EventHandler(this.IndicatorControl_Load);
             this.tblContainer.ResumeLayout(false);
             this.tblContainer.PerformLayout();

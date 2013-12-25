@@ -15,7 +15,7 @@ namespace Nada.Tests
             // DON"T RUN UNLESS NECESSARY
             Assert.IsTrue(false);
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();

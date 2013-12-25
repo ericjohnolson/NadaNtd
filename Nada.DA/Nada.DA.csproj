@@ -81,8 +81,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Nada.Globalization\Nada.Globalization.csproj">
+      <Project>{14b15d94-7af4-43ff-aa5b-178a7edc8abb}</Project>
+      <Name>Nada.Globalization</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

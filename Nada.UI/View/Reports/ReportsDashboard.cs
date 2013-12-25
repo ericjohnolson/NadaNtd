@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.UI.AppLogic;
-using Nada.UI.View.Help;
+
 using Nada.UI.View.Reports.CustomReport;
 using Nada.Model.Reports;
 using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Exports;
 using Nada.UI.Base;
+using System.IO;
+using System.Configuration;
 
 namespace Nada.UI.View.Reports
 {
@@ -50,8 +52,9 @@ namespace Nada.UI.View.Reports
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            HelpView help = new HelpView();
-            help.Show();
+            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
+            //HelpView help = new HelpView();
+            //help.Show();
         }
 
         private void lnkCustom_ClickOverride()

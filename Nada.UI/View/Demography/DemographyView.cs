@@ -13,9 +13,12 @@ using Nada.Model;
 using Nada.Globalization;
 using Nada.UI.View.Survey;
 using Nada.Model.Intervention;
-using Nada.UI.View.Help;
+
 using Nada.Model.Diseases;
 using Nada.UI.Base;
+using System.Web.Security;
+using System.IO;
+using System.Configuration;
 
 namespace Nada.UI.View.Demography
 {
@@ -69,6 +72,12 @@ namespace Nada.UI.View.Demography
                 bsDemo.DataSource = model;
                 
                 StatusChanged(model.UpdatedBy);
+
+                if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
+                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
+                {
+                    tblEdit.Visible = false;
+                }
             }
         }
 
@@ -110,8 +119,9 @@ namespace Nada.UI.View.Demography
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            HelpView help = new HelpView();
-            help.Show();
+            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
+            //HelpView help = new HelpView();
+            //help.Show();
         }
     }
 }

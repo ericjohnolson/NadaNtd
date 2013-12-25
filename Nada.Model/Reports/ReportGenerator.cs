@@ -6,55 +6,45 @@ using System.Linq;
 using System.Text;
 using Nada.Globalization;
 using Nada.Model.Repositories;
+using Nada.Model.Survey;
 
 namespace Nada.Model.Reports
 {
-    public class ReportGenerator
-    {
-        private ReportRepository repo = new ReportRepository();
+    #region ChartGenerator
+    //public class ChartGenerator
+    //{
+    //    private ReportRepository repo = new ReportRepository();
 
-        public ReportResult Run(ReportIndicators settings)
-        {
-            ReportResult result = new ReportResult();
-            result.DataTableResults = CreateTable(settings);
-            result.ChartData = CreateChart();
-            repo.GetReportData(settings, result.DataTableResults, result.ChartData);
-            result.ChartIndicators = GetChartIndicators(settings);
-            return result;
-        }
+    //    public ReportResult Run(ReportIndicators settings)
+    //    {
+    //        ReportResult result = new ReportResult();
+    //        result.ChartData = CreateChart();
+    //        repo.GetReportData(settings, result.DataTableResults, result.ChartData);
+    //        result.ChartIndicators = GetChartIndicators(settings);
+    //        return result;
+    //    }
 
-        private List<ReportIndicator> GetChartIndicators(ReportIndicators settings)
-        {
-            List<ReportIndicator> chartIndicators = new List<ReportIndicator>();
-            chartIndicators.AddRange(settings.SurveyIndicators.Where(s => s.Selected && s.DataTypeId == 2));
-            chartIndicators.AddRange(settings.InterventionIndicators.Where(s => s.Selected && s.DataTypeId == 2));
-            return chartIndicators;
-        }
+    //    private List<ReportIndicator> GetChartIndicators(ReportIndicators settings)
+    //    {
+    //        List<ReportIndicator> chartIndicators = new List<ReportIndicator>();
+    //        chartIndicators.AddRange(settings.SurveyIndicators.Where(s => s.Selected && s.DataTypeId == 2));
+    //        chartIndicators.AddRange(settings.InterventionIndicators.Where(s => s.Selected && s.DataTypeId == 2));
+    //        return chartIndicators;
+    //    }
 
-        private DataTable CreateChart()
-        {
-            DataTable chartData = new DataTable();
-            chartData.Columns.Add(new DataColumn("Location"));
-            chartData.Columns.Add(new DataColumn("IndicatorName"));
-            chartData.Columns.Add(new DataColumn("IndicatorId"));
-            chartData.Columns.Add(new DataColumn("Year"));
-            chartData.Columns.Add(new DataColumn("Value"));
-            return chartData;
-        }
+    //    private DataTable CreateChart()
+    //    {
+    //        DataTable chartData = new DataTable();
+    //        chartData.Columns.Add(new DataColumn("Location"));
+    //        chartData.Columns.Add(new DataColumn("IndicatorName"));
+    //        chartData.Columns.Add(new DataColumn("IndicatorId"));
+    //        chartData.Columns.Add(new DataColumn("Year"));
+    //        chartData.Columns.Add(new DataColumn("Value"));
+    //        return chartData;
+    //    }
+    //}
 
-        private DataTable CreateTable(ReportIndicators settings)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("Location"));
-            dt.Columns.Add(new DataColumn("Type"));
-            dt.Columns.Add(new DataColumn("Year"));
-            foreach (var i in settings.SurveyIndicators.Where(s => s.Selected))
-                dt.Columns.Add(new DataColumn(i.Name));
-            foreach (var i in settings.InterventionIndicators.Where(s => s.Selected))
-                dt.Columns.Add(new DataColumn(i.Name));
-            return dt;
-        }
-    }
+    #endregion
 
     public interface IReportGenerator
     {
@@ -75,6 +65,7 @@ namespace Nada.Model.Reports
             opts = options;
             ReportResult result = new ReportResult();
             repo.LoadRelatedLists();
+            Init();
 
             if (options.IsNoAggregation)
                 result.DataTableResults = CreateNonAggregatedReport(options);
@@ -83,6 +74,9 @@ namespace Nada.Model.Reports
 
             return result;
         }
+
+        #region Non-Aggregated
+        protected virtual void AddStaticIndicators(CreateAggParams param) { }
         
         public DataTable CreateNonAggregatedReport(ReportOptions options)
         {
@@ -91,9 +85,14 @@ namespace Nada.Model.Reports
             dataTable.Columns.Add(new DataColumn(Translations.Type));
             dataTable.Columns.Add(new DataColumn(Translations.Year));
             repo.CreateNonAggregatedReport(CmdText(), options, dataTable, GetIndicatorColumnName, AddStaticIndicators);
+
             return dataTable;
         }
+        #endregion
 
+        #region Aggregated
+        protected virtual void AddStaticAggIndicators(CreateAggParams param) { }
+        
         public DataTable CreateAggregatedReport(ReportOptions options)
         {
             DataTable dataTable = new DataTable();
@@ -103,7 +102,7 @@ namespace Nada.Model.Reports
             List<AdminLevelIndicators> selectedLevels = new List<AdminLevelIndicators>();
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
             Dictionary<int, AdminLevelIndicators> dic = new Dictionary<int, AdminLevelIndicators>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -139,7 +138,7 @@ namespace Nada.Model.Reports
             Dictionary<string, DataRow> ids = new Dictionary<string, DataRow>();
             foreach (var level in selectedLevels)
             {
-                foreach(var year in options.SelectedYears)
+                foreach (var year in options.SelectedYears)
                 {
                     foreach (KeyValuePair<string, string> columnDef in options.Columns)
                     {
@@ -179,6 +178,10 @@ namespace Nada.Model.Reports
 
             return dataTable;
         }
+        #endregion
+
+        #region Shared Methods
+        protected virtual void Init() { }
 
         protected virtual string GetIndicatorKey(OleDbDataReader reader)
         {
@@ -193,12 +196,9 @@ namespace Nada.Model.Reports
             return TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) + " - " + TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
         }
 
-        protected virtual void AddStaticAggIndicators(CreateAggParams param) { }
-        protected virtual void AddStaticIndicators(CreateAggParams param) { }
-
         protected string GetValueOrBlank(string value, string separator)
         {
-            if(string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
                 return "";
             return separator + value;
         }
@@ -209,10 +209,35 @@ namespace Nada.Model.Reports
                 return "";
             return separator + value.Value.ToString();
         }
+
+        protected void AddIndicatorToTable<T>(string displayName, string colName, CreateAggParams param)
+        {
+            if (!param.Table.Columns.Contains(displayName))
+                param.Table.Columns.Add(new DataColumn(displayName));
+
+            param.Row[displayName] = param.Reader.GetValueOrDefault<T>(colName);
+        }
+
+        protected void AddCalcToTable(string displayName, string val, CreateAggParams param)
+        {
+            if (!param.Table.Columns.Contains(displayName))
+                param.Table.Columns.Add(new DataColumn(displayName));
+
+            param.Row[displayName] = val;
+        }
+        #endregion
     }
 
     public class SurveyReportGenerator : BaseReportGenerator
     {
+        private CalcSurvey calc = null;
+        private List<string> selectedCalcFields = new List<string>();
+        protected override void Init()
+        {
+            calc = new CalcSurvey();
+            selectedCalcFields = opts.SelectedIndicators.Where(c => c.IsCalculated).Select(i => i.TypeId + i.Name).ToList();
+        }
+
         protected override string CmdText()
         {
             string staticConditional = "";
@@ -230,7 +255,7 @@ namespace Nada.Model.Reports
                 staticConditional += "OR SentinelSites.Lng IS NOT NULL ";
             if (staticConditional.Length > 0)
                 staticConditional = " AND ( " + staticConditional.Remove(0, 2) + " ) ";
-        
+
             if (opts.SelectedIndicators.Where(i => i.ID > 0).Count() > 0)
                 return @"Select 
                         AdminLevels.ID as AID, 
@@ -255,8 +280,8 @@ namespace Nada.Model.Reports
                             INNER JOIN AdminLevels on Surveys_to_AdminLevels.AdminLevelId = AdminLevels.ID) 
                             INNER JOIN SurveyIndicators on SurveyIndicators.ID = SurveyIndicatorValues.IndicatorId)
                             LEFT OUTER JOIN SentinelSites on Surveys.SentinelSiteId = SentinelSites.ID)
-                        WHERE Surveys.IsDeleted = 0 AND SurveyIndicators.Id in " + " (" + 
-                       String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") " + 
+                        WHERE Surveys.IsDeleted = 0 AND SurveyIndicators.Id in " + " (" +
+                       String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") " +
                        staticConditional;
             else
                 return @"Select 
@@ -281,11 +306,12 @@ namespace Nada.Model.Reports
                             INNER JOIN AdminLevels on Surveys_to_AdminLevels.AdminLevelId = AdminLevels.ID) 
                             LEFT OUTER JOIN SentinelSites on Surveys.SentinelSiteId = SentinelSites.ID)
                         WHERE Surveys.IsDeleted = 0 " + staticConditional;
-            
+
         }
 
         protected override void AddStaticIndicators(CreateAggParams param)
         {
+            // Spot check/Sentinel Site
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckName) != null)
                 AddIndicatorToTable<string>(Translations.IndSpotCheckName, "IndSpotCheckName", param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLat) != null)
@@ -298,20 +324,23 @@ namespace Nada.Model.Reports
                 AddIndicatorToTable<Nullable<double>>(Translations.IndSentinelSiteLat, "IndSentinelSiteLat", param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLng) != null)
                 AddIndicatorToTable<Nullable<double>>(Translations.IndSentinelSiteLng, "IndSentinelSiteLng", param);
+            // Calculations
+            AddCalcFields(param);
         }
 
-        private void AddIndicatorToTable<T>(string displayName, string colName, CreateAggParams param)
+        private void AddCalcFields(CreateAggParams param)
         {
-            if (!param.Table.Columns.Contains(displayName))
-                param.Table.Columns.Add(new DataColumn(displayName));
-
-            param.Row[displayName] = param.Reader.GetValueOrDefault<T>(colName);
+            //string tname = TranslationLookup.GetValue(param.Reader.GetValueOrDefault<string>("TName"));
+            //int adminLevelId = param.Reader.GetValueOrDefault<int>("AID");
+            //var calcs = calc.GetCalculatedValues(selectedCalcFields, null, adminLevelId);
+            //foreach (var c in calcs)
+            //    AddCalcToTable(c.Key + " - " + tname, c.Value, param);
         }
 
         protected override void AddStaticAggIndicators(CreateAggParams param)
         {
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckName) != null)
-                AddIndicatorAndColumn<string>("IndSpotCheckName", Translations.IndSpotCheckName,  param);
+                AddIndicatorAndColumn<string>("IndSpotCheckName", Translations.IndSpotCheckName, param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLat) != null)
                 AddIndicatorAndColumn<Nullable<double>>("IndSpotCheckLat", Translations.IndSpotCheckLat, param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLng) != null)
@@ -350,6 +379,14 @@ namespace Nada.Model.Reports
 
     public class IntvReportGenerator : BaseReportGenerator
     {
+        private CalcSurvey calc = null;
+        private List<string> selectedCalcFields = new List<string>();
+        protected override void Init()
+        {
+            calc = new CalcSurvey();
+            selectedCalcFields = opts.SelectedIndicators.Where(c => c.IsCalculated).Select(i => i.TypeId + i.Name).ToList();
+        }
+
         protected override string CmdText()
         {
             return @"Select 
@@ -373,9 +410,24 @@ namespace Nada.Model.Reports
             + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
         }
 
+        protected override void AddStaticIndicators(CreateAggParams param)
+        {
+            AddCalcFields(param);
+        }
+
+        private void AddCalcFields(CreateAggParams param)
+        {
+            //string tname = TranslationLookup.GetValue(param.Reader.GetValueOrDefault<string>("TName"));
+            //int adminLevelId = param.Reader.GetValueOrDefault<int>("AID");
+            //string roundOrBlank = GetValueOrBlank(param.Reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", Translations.Round));
+            //var calcs = calc.GetCalculatedValues(selectedCalcFields, null, adminLevelId);
+            //foreach (var c in calcs)
+            //    AddCalcToTable(c.Key + " - " + tname + roundOrBlank, c.Value, param);
+        }
+
         protected override string GetIndicatorKey(OleDbDataReader reader)
         {
-            return reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_"  +
+            return reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_" +
                 reader.GetValueOrDefault<string>("TName") + GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), "_");
         }
 
@@ -431,6 +483,14 @@ namespace Nada.Model.Reports
 
     public class DistributionReportGenerator : BaseReportGenerator
     {
+        private CalcSurvey calc = null;
+        private List<string> selectedCalcFields = new List<string>();
+        protected override void Init()
+        {
+            calc = new CalcSurvey();
+            selectedCalcFields = opts.SelectedIndicators.Where(c => c.IsCalculated).Select(i => i.TypeId + i.Name).ToList();
+        }
+
         protected override string CmdText()
         {
             return @"Select 
@@ -451,6 +511,20 @@ namespace Nada.Model.Reports
                         WHERE DiseaseDistributions.IsDeleted = 0 AND  
                               DiseaseDistributionIndicators.Id in "
             + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
+        }
+
+        protected override void AddStaticIndicators(CreateAggParams param)
+        {
+            AddCalcFields(param);
+        }
+
+        private void AddCalcFields(CreateAggParams param)
+        {
+            //string tname = TranslationLookup.GetValue(param.Reader.GetValueOrDefault<string>("TName"));
+            //int adminLevelId = param.Reader.GetValueOrDefault<int>("AID");
+            //var calcs = calc.GetCalculatedValues(selectedCalcFields, null, adminLevelId);
+            //foreach (var c in calcs)
+            //    AddCalcToTable(c.Key + " - " + tname, c.Value, param);
         }
     }
 

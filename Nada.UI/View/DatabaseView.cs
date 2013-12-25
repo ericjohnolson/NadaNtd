@@ -18,11 +18,15 @@ using Nada.Model;
 using System.Runtime.Serialization.Formatters.Binary;
 using Nada.Globalization;
 
+
 namespace Nada.UI.View
 {
-
-    public partial class DatabaseView : BaseControl
+    public partial class DatabaseView : BaseControl, IView
     {
+        public Action<string> StatusChanged { get; set; }
+        public Action OnClose { get; set; }
+        public string Title { get { return ""; } }
+        public void SetFocus() { }
         private string NewFileLocation = "";
         private string RecentFilesPath = "";
         private List<RecentFile> RecentFiles = new List<RecentFile>();
@@ -175,7 +179,7 @@ namespace Nada.UI.View
         private void SetDatabaseConnection(string filePath)
         {
             string connection = ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString;
-            ModelData.Instance.AccessConnectionString = connection.Replace("Source=NewNationalDatabaseTemplate.accdb", "Source=" + filePath);
+            DatabaseData.Instance.AccessConnectionString = connection.Replace("Source=NewNationalDatabaseTemplate.accdb", "Source=" + filePath);
         }
 
         [Serializable]
@@ -183,6 +187,13 @@ namespace Nada.UI.View
         {
             public string Name { get; set; }
             public string Path { get; set; }
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
+            //HelpView help = new HelpView();
+            //help.Show();
         }
     }
 }

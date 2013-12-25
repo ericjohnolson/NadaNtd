@@ -30,11 +30,11 @@ namespace Nada.Model.Survey
                             error = Translations.Required;
                         break;
                     case "Lat":
-                        if (Lat.HasValue && (Lat > 90 || Lat < -90))
+                        if (Lat.HasValue && (Lat.Value > 90 || Lat.Value < -90))
                             error = Translations.ValidLatitude;
                         break;
                     case "Lng":
-                        if (Lng.HasValue && (Lng > 180 || Lng < -180))
+                        if (Lng.HasValue && (Lng.Value > 180 || Lng.Value < -180))
                             error = Translations.ValidLongitude;
                         break;
 

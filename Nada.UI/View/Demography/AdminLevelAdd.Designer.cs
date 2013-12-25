@@ -33,9 +33,6 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bsAdminLevel = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.label3 = new System.Windows.Forms.Label();
             this.hr1 = new Nada.UI.Controls.HR();
             this.h3Label1 = new Nada.UI.Controls.H3Label();
@@ -43,11 +40,14 @@
             this.treeAvailable = new BrightIdeasSoftware.TreeListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.h3Label3 = new Nada.UI.Controls.H3Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.c1Button1 = new C1.Win.C1Input.C1Button();
+            this.c1Button2 = new C1.Win.C1Input.C1Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).BeginInit();
-            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeAvailable)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox3
@@ -74,53 +74,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(442, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.AutoSize = true;
-            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel4.Controls.Add(this.btnCancel, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(33, 445);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(206, 35);
-            this.tableLayoutPanel4.TabIndex = 41;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.Location = new System.Drawing.Point(112, 3);
-            this.btnCancel.MinimumSize = new System.Drawing.Size(91, 29);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnCancel.Size = new System.Drawing.Size(91, 29);
-            this.btnCancel.TabIndex = 40;
-            this.btnCancel.Tag = "Cancel";
-            this.btnCancel.Values.Text = "Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.AutoSize = true;
-            this.btnSave.Location = new System.Drawing.Point(3, 3);
-            this.btnSave.MinimumSize = new System.Drawing.Size(91, 29);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnSave.Size = new System.Drawing.Size(91, 29);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Tag = "Save";
-            this.btnSave.Values.Text = "Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
             // label3
             // 
@@ -208,18 +161,72 @@
             this.h3Label3.Text = "Parent";
             this.h3Label3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel2.Controls.Add(this.c1Button1, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.c1Button2, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(33, 444);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(204, 33);
+            this.tableLayoutPanel2.TabIndex = 52;
+            // 
+            // c1Button1
+            // 
+            this.c1Button1.AutoSize = true;
+            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button1.Location = new System.Drawing.Point(111, 3);
+            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button1.Name = "c1Button1";
+            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button1.Size = new System.Drawing.Size(90, 27);
+            this.c1Button1.TabIndex = 3;
+            this.c1Button1.Tag = "Cancel";
+            this.c1Button1.Text = "Cancel";
+            this.c1Button1.UseVisualStyleBackColor = true;
+            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button1.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // c1Button2
+            // 
+            this.c1Button2.AutoSize = true;
+            this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button2.Location = new System.Drawing.Point(3, 3);
+            this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button2.Name = "c1Button2";
+            this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button2.Size = new System.Drawing.Size(90, 27);
+            this.c1Button2.TabIndex = 4;
+            this.c1Button2.Tag = "Save";
+            this.c1Button2.Text = "Save";
+            this.c1Button2.UseVisualStyleBackColor = true;
+            this.c1Button2.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.Click += new System.EventHandler(this.btnSave_Click_1);
+            // 
             // AdminLevelAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(442, 523);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.h3Label3);
             this.Controls.Add(this.treeAvailable);
             this.Controls.Add(this.h3Label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.hr1);
-            this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.textBox3);
             this.Name = "AdminLevelAdd";
@@ -228,10 +235,10 @@
             this.Load += new System.EventHandler(this.DistributionMethodAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).EndInit();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeAvailable)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,9 +249,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.BindingSource bsAdminLevel;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
         private System.Windows.Forms.Label label3;
         private Controls.HR hr1;
         private Controls.H3Label h3Label1;
@@ -253,5 +257,8 @@
         private Controls.H3Label h3Label3;
         private BrightIdeasSoftware.TreeListView treeAvailable;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private C1.Win.C1Input.C1Button c1Button1;
+        private C1.Win.C1Input.C1Button c1Button2;
     }
 }

@@ -70,6 +70,10 @@
       <Project>{4b602617-32b5-492a-8d10-653f1c509075}</Project>
       <Name>Nada.DA</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nada.Globalization\Nada.Globalization.csproj">
+      <Project>{14b15d94-7af4-43ff-aa5b-178a7edc8abb}</Project>
+      <Name>Nada.Globalization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nada.Model\Nada.Model.csproj">
       <Project>{9887365d-56c1-4344-9753-91a5d0bf656c}</Project>
       <Name>Nada.Model</Name>

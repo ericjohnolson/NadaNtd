@@ -16,6 +16,7 @@ namespace Nada.UI.ViewModel
         string TypeTitle { get; }
         string Notes { get; }
         string LocationName { get; }
+        string CalculatorTypeId { get; }
         ICalcIndicators Calculator { get; }
         Color FormColor { get; }
         AdminLevel Location { get; }

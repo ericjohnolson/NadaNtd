@@ -45,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbLanguages = new System.Windows.Forms.ComboBox();
             this.bsLanguages = new System.Windows.Forms.BindingSource(this.components);
+            this.btnHelp = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -92,15 +93,15 @@
             // 
             this.tblContents.AutoSize = true;
             this.tblContents.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tblContents.ColumnCount = 2;
-            this.tblContents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tblContents.ColumnCount = 1;
             this.tblContents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblContents.Controls.Add(this.panel1, 1, 1);
+            this.tblContents.Controls.Add(this.panel1, 0, 1);
+            this.tblContents.Controls.Add(this.btnHelp, 0, 0);
             this.tblContents.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblContents.Location = new System.Drawing.Point(3, 3);
             this.tblContents.Name = "tblContents";
             this.tblContents.RowCount = 2;
-            this.tblContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tblContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tblContents.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblContents.Size = new System.Drawing.Size(1074, 594);
             this.tblContents.TabIndex = 0;
@@ -112,7 +113,8 @@
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Controls.Add(this.tblTitle);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Location = new System.Drawing.Point(253, 203);
+            this.panel1.Location = new System.Drawing.Point(150, 153);
+            this.panel1.Margin = new System.Windows.Forms.Padding(150, 3, 3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(378, 211);
             this.panel1.TabIndex = 62;
@@ -298,6 +300,23 @@
             // 
             this.bsLanguages.DataSource = typeof(Nada.Model.Language);
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHelp.AutoSize = true;
+            this.btnHelp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Image = global::Nada.UI.Properties.Resources.button_help;
+            this.btnHelp.Location = new System.Drawing.Point(1003, 3);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(46, 46);
+            this.btnHelp.TabIndex = 63;
+            this.btnHelp.TabStop = false;
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
@@ -361,5 +380,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

@@ -29,6 +29,7 @@ namespace Samples.AccessProviders
     using System.Web.DataAccess;
     using System.Web.Management;
     using System.Web.Util;
+    using Nada;
 
     public class AccessMembershipProvider : MembershipProvider
     {
@@ -186,7 +187,8 @@ namespace Samples.AccessProviders
             if (temp == null || temp.Length < 1)
                 throw new ProviderException("Connection string not found: " + _DatabaseFileName);
             _DatabaseFileName = temp;
-
+            // EDIT GET THE IN MEMORY CONNECTION STRING
+            _DatabaseFileName = DatabaseData.Instance.AccessConnectionString;
             // Make sure connection is good
             AccessConnectionHelper.CheckConnectionString(_DatabaseFileName);
 

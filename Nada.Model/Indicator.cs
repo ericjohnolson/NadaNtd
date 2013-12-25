@@ -23,6 +23,8 @@ namespace Nada.Model
         public bool IsEditable { get; set; }
         public bool IsRequired { get; set; }
         public bool IsDisplayed { get; set; }
+        public bool IsCalculated { get; set; }
+        public bool IsMetaData { get; set; }
 
         // Display only props
         public string DataType { get; set; }

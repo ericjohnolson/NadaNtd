@@ -31,14 +31,15 @@
             this.lvDiseases = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn14 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.label3 = new System.Windows.Forms.Label();
             this.hr1 = new Nada.UI.Controls.HR();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.c1Button3 = new C1.Win.C1Input.C1Button();
+            this.c1Button1 = new C1.Win.C1Input.C1Button();
+            this.c1Button2 = new C1.Win.C1Input.C1Button();
             ((System.ComponentModel.ISupportInitialize)(this.lvDiseases)).BeginInit();
-            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvDiseases
@@ -51,11 +52,11 @@
             this.olvColumn14,
             this.olvColumn1});
             this.lvDiseases.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvDiseases.Location = new System.Drawing.Point(26, 52);
+            this.lvDiseases.Location = new System.Drawing.Point(30, 60);
             this.lvDiseases.Name = "lvDiseases";
             this.lvDiseases.ShowGroups = false;
             this.lvDiseases.ShowHeaderInAllViews = false;
-            this.lvDiseases.Size = new System.Drawing.Size(380, 152);
+            this.lvDiseases.Size = new System.Drawing.Size(443, 175);
             this.lvDiseases.TabIndex = 0;
             this.lvDiseases.UseCompatibleStateImageBehavior = false;
             this.lvDiseases.UseHyperlinks = true;
@@ -79,13 +80,20 @@
             this.olvColumn14.Text = "Edit";
             this.olvColumn14.Width = 51;
             // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "DeleteText";
+            this.olvColumn1.CellPadding = null;
+            this.olvColumn1.Hyperlink = true;
+            this.olvColumn1.Text = "Delete";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.label3.Location = new System.Drawing.Point(21, 10);
+            this.label3.Location = new System.Drawing.Point(24, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 28);
             this.label3.TabIndex = 22;
@@ -98,67 +106,90 @@
             this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
             this.hr1.ForeColor = System.Drawing.Color.Gray;
             this.hr1.Location = new System.Drawing.Point(0, 0);
-            this.hr1.Margin = new System.Windows.Forms.Padding(5);
+            this.hr1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.hr1.Size = new System.Drawing.Size(433, 5);
+            this.hr1.Size = new System.Drawing.Size(505, 6);
             this.hr1.TabIndex = 21;
             // 
-            // tableLayoutPanel4
+            // tableLayoutPanel2
             // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.AutoSize = true;
-            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.Controls.Add(this.kryptonButton1, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnSave, 2, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(220, 222);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(186, 31);
-            this.tableLayoutPanel4.TabIndex = 41;
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.c1Button3, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.c1Button1, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.c1Button2, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(30, 261);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(312, 33);
+            this.tableLayoutPanel2.TabIndex = 51;
             // 
-            // kryptonButton1
+            // c1Button3
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(3, 3);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.kryptonButton1.Size = new System.Drawing.Size(77, 25);
-            this.kryptonButton1.TabIndex = 2;
-            this.kryptonButton1.Tag = "Cancel";
-            this.kryptonButton1.Values.Text = "Cancel";
-            this.kryptonButton1.Click += new System.EventHandler(this.btnCancel_Click);
+            this.c1Button3.AutoSize = true;
+            this.c1Button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button3.Location = new System.Drawing.Point(219, 3);
+            this.c1Button3.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button3.Name = "c1Button3";
+            this.c1Button3.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button3.Size = new System.Drawing.Size(90, 27);
+            this.c1Button3.TabIndex = 51;
+            this.c1Button3.Tag = "Cancel";
+            this.c1Button3.Text = "Cancel";
+            this.c1Button3.UseVisualStyleBackColor = true;
+            this.c1Button3.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button3.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnSave
+            // c1Button1
             // 
-            this.btnSave.Location = new System.Drawing.Point(106, 3);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnSave.Size = new System.Drawing.Size(77, 25);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Tag = "Add";
-            this.btnSave.Values.Text = "Add";
-            this.btnSave.Click += new System.EventHandler(this.btnAddNew_Click);
+            this.c1Button1.AutoSize = true;
+            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button1.Location = new System.Drawing.Point(111, 3);
+            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button1.Name = "c1Button1";
+            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button1.Size = new System.Drawing.Size(90, 27);
+            this.c1Button1.TabIndex = 3;
+            this.c1Button1.Tag = "AddNew";
+            this.c1Button1.Text = "AddNew";
+            this.c1Button1.UseVisualStyleBackColor = true;
+            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button1.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
-            // olvColumn1
+            // c1Button2
             // 
-            this.olvColumn1.AspectName = "DeleteText";
-            this.olvColumn1.CellPadding = null;
-            this.olvColumn1.Hyperlink = true;
-            this.olvColumn1.Text = "Delete";
+            this.c1Button2.AutoSize = true;
+            this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button2.Location = new System.Drawing.Point(3, 3);
+            this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button2.Name = "c1Button2";
+            this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button2.Size = new System.Drawing.Size(90, 27);
+            this.c1Button2.TabIndex = 4;
+            this.c1Button2.Tag = "Done";
+            this.c1Button2.Text = "Done";
+            this.c1Button2.UseVisualStyleBackColor = true;
+            this.c1Button2.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // DiseaseList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(433, 276);
-            this.Controls.Add(this.tableLayoutPanel4);
+            this.ClientSize = new System.Drawing.Size(505, 318);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.hr1);
             this.Controls.Add(this.lvDiseases);
@@ -167,7 +198,8 @@
             this.Text = "Diseases";
             this.Load += new System.EventHandler(this.DistributionMethodList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lvDiseases)).EndInit();
-            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,9 +212,10 @@
         private BrightIdeasSoftware.OLVColumn olvColumn14;
         private System.Windows.Forms.Label label3;
         private Controls.HR hr1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private C1.Win.C1Input.C1Button c1Button3;
+        private C1.Win.C1Input.C1Button c1Button1;
+        private C1.Win.C1Input.C1Button c1Button2;
     }
 }

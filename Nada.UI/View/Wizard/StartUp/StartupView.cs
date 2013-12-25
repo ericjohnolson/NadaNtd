@@ -15,11 +15,17 @@ using System.Deployment.Application;
 using Nada.Model;
 using System.Configuration;
 using Nada.UI.Base;
+using System.IO;
+
 
 namespace Nada.UI.View
 {
-    public partial class StartupView : BaseControl
+    public partial class StartupView : BaseControl, IView
     {
+        public Action OnClose { get; set; }
+        public string Title { get { return ""; } }
+        public void SetFocus() { }
+        public Action<string> StatusChanged { get; set; }
         public Action OnFinished = () => { };
         DemoRepository demo = new DemoRepository();
         SettingsRepository settings = new SettingsRepository();
@@ -107,7 +113,7 @@ namespace Nada.UI.View
 
         private Control CreateLabel(string name, bool isComplete)
         {
-            var lbl = new H2Label
+            var lbl = new H2LabelLight
             {
                 Text = name,
                 Name = "ciLabel_" + name,
@@ -149,6 +155,13 @@ namespace Nada.UI.View
             AdminLevelDemoImporter vilImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "Village"));
             vilImporter.ImportData("TestVillages.xlsx", userId, true, false, 2, demo.GetAdminLevelById(2), year);
             CheckStatus();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
+            //HelpView help = new HelpView();
+            //help.Show();
         }
     }
 }

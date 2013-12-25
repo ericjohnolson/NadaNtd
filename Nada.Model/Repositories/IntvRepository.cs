@@ -32,7 +32,7 @@ namespace Nada.Model.Repositories
 
         public void Delete(IntvDetails intv, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -57,7 +57,7 @@ namespace Nada.Model.Repositories
         public List<IntvDetails> GetAllForAdminLevel(int adminLevel)
         {
             List<IntvDetails> interventions = new List<IntvDetails>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -114,7 +114,7 @@ namespace Nada.Model.Repositories
         {
             List<IntvType> intv = new List<IntvType>();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -156,7 +156,7 @@ namespace Nada.Model.Repositories
         {
             IntvType intv = new IntvType();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -202,6 +202,7 @@ namespace Nada.Model.Repositories
                         InterventionIndicators.IsDisabled,
                         InterventionIndicators.IsEditable,
                         InterventionIndicators.IsDisplayed,
+                        IsCalculated,
                         CanAddValues,
                         InterventionIndicators.UpdatedAt, 
                         aspnet_users.UserName,
@@ -228,6 +229,7 @@ namespace Nada.Model.Repositories
                                 IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
                                 IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
                                 IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
+                                IsCalculated = reader.GetValueOrDefault<bool>("IsCalculated"),
                                 CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
                                 DataType = reader.GetValueOrDefault<string>("DataType")
                             });
@@ -249,7 +251,7 @@ namespace Nada.Model.Repositories
         public IntvBase GetById(int id)
         {
             IntvBase intv = null;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -269,7 +271,7 @@ namespace Nada.Model.Repositories
         public PcMda GetPcMda(int id)
         {
             PcMda intv = null;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -326,7 +328,7 @@ namespace Nada.Model.Repositories
         {
             intv.MapIndicatorsToProperties();
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -363,7 +365,7 @@ namespace Nada.Model.Repositories
         public void Save(PcMda intv, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -423,7 +425,7 @@ namespace Nada.Model.Repositories
         public void Save(IntvType model, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -553,7 +555,7 @@ namespace Nada.Model.Repositories
         {
             List<DistributionMethod> d = new List<DistributionMethod>();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -585,7 +587,7 @@ namespace Nada.Model.Repositories
         public void Save(DistributionMethod dm, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -640,7 +642,7 @@ namespace Nada.Model.Repositories
         {
             List<Partner> list = new List<Partner>();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -675,7 +677,7 @@ namespace Nada.Model.Repositories
         public void Save(Partner partner, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -731,7 +733,7 @@ namespace Nada.Model.Repositories
         public List<Medicine> GetMedicines()
         {
             List<Medicine> list = new List<Medicine>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -765,7 +767,7 @@ namespace Nada.Model.Repositories
         public void Save(Medicine med, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -949,7 +951,7 @@ namespace Nada.Model.Repositories
 
         public void Delete(DistributionMethod distributionMethod, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -973,7 +975,7 @@ namespace Nada.Model.Repositories
 
         public void Delete(Medicine medicine, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -997,7 +999,7 @@ namespace Nada.Model.Repositories
 
         public void Delete(Partner partner, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();

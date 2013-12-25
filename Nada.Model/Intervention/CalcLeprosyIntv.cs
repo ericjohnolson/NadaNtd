@@ -23,7 +23,7 @@ namespace Nada.Model.Intervention
 
             int yearOfReporting = Util.ParseIndicatorInt(inds, "IntvYear");
             DiseaseRepository distros = new DiseaseRepository();
-            DiseaseDistroCm distro = distros.GetDistroByAdminLevelYear(adminLevel, yearOfReporting, (int)DiseaseType.Yaws);
+            DiseaseDistroCm distro = distros.GetDistroByAdminLevelYear(adminLevel, yearOfReporting, (int)DiseaseType.Leprosy);
             if (distro != null)
             {
                 L5 = Util.ParseIndicatorDouble(inds, "TotalNumNewCases");

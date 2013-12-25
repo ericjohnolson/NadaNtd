@@ -79,7 +79,7 @@ namespace Nada.UI.View
             int columnCount = 0;
             foreach (var item in values)
             {
-                if (count % 3 == 0)
+                if (count % 4 == 0)
                 {
                     labelRowIndex = tblMetaData.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
                     controlRowIndex = tblMetaData.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
@@ -92,7 +92,7 @@ namespace Nada.UI.View
                     columnCount, labelRowIndex);
 
                 // Add val
-                var label = new H3bLabel { Text = string.Format(item.Value, "{0:n}"), Name = "metaData_Val" + item.Key, AutoSize = true, };
+                var label = new H3bLabel { Text = Convert.ToDouble(item.Value).ToString("N"), Name = "metaData_Val" + item.Key, AutoSize = true, };
                 label.MakeBold();
                 tblMetaData.Controls.Add(label, columnCount, controlRowIndex);
 
@@ -153,7 +153,7 @@ namespace Nada.UI.View
             int labelRowIndex = tblStaticIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int controlRowIndex = tblStaticIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int columnCount = 0;
-            foreach (var indicator in indicators.Values.Where(i => !i.IsDisplayed).ToList())
+            foreach (var indicator in indicators.Values.Where(i => !i.IsDisplayed && !i.IsCalculated && !i.IsMetaData).ToList())
             {
                 if (indicator.DataTypeId == (int)IndicatorDataType.SentinelSite)
                     continue;

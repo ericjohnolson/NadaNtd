@@ -38,7 +38,7 @@ namespace Nada.Model.Repositories
             var status = new StartUpStatus();
 
             int id = Convert.ToInt32(ConfigurationManager.AppSettings["CountryId"]);
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -88,7 +88,7 @@ namespace Nada.Model.Repositories
 
         public void SetDiseasesReviewedStatus()
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -109,7 +109,7 @@ namespace Nada.Model.Repositories
         {
             bool shouldUpdate = false;
             int id = Convert.ToInt32(ConfigurationManager.AppSettings["CountryId"]);
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -140,7 +140,7 @@ namespace Nada.Model.Repositories
         public List<AdminLevelType> GetAllAdminLevels()
         {
             List<AdminLevelType> lvls = new List<AdminLevelType>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -167,7 +167,7 @@ namespace Nada.Model.Repositories
         public AdminLevelType GetAdminLevelTypeByLevel(int level)
         {
             AdminLevelType al = null;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -216,7 +216,7 @@ namespace Nada.Model.Repositories
         public AdminLevelType GetNextLevel(int levelNumber)
         {
             AdminLevelType al = null;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -265,7 +265,7 @@ namespace Nada.Model.Repositories
 
         public void Delete(AdminLevelType adminLevelType, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -287,7 +287,7 @@ namespace Nada.Model.Repositories
 
         public void Save(AdminLevelType adminLevel, int byUserId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -350,7 +350,7 @@ namespace Nada.Model.Repositories
         public List<PopGroup> GetAllPopGroups()
         {
             List<PopGroup> pops = new List<PopGroup>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -374,7 +374,7 @@ namespace Nada.Model.Repositories
         public void InsertPopGroup(PopGroup popGroup, int byUserId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -417,7 +417,7 @@ namespace Nada.Model.Repositories
 
         public void UpdatePopGroup(PopGroup popGroup, int byUserId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -447,7 +447,7 @@ namespace Nada.Model.Repositories
         {
             List<IndicatorDropdownValue> list = new List<IndicatorDropdownValue>();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -483,7 +483,7 @@ namespace Nada.Model.Repositories
         public void SaveEu(IndicatorDropdownValue eu, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -541,7 +541,7 @@ namespace Nada.Model.Repositories
         {
             List<IndicatorDropdownValue> list = new List<IndicatorDropdownValue>();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -577,7 +577,7 @@ namespace Nada.Model.Repositories
         public void SaveEz(IndicatorDropdownValue ez, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();

@@ -9,7 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using Nada.UI.Base;
 
-namespace Nada.UI.View.Help
+namespace Nada.UI.View
 {
     public partial class HelpView : BaseForm
     {

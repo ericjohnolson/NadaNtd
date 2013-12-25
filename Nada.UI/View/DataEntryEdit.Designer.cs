@@ -31,7 +31,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
             this.c1Button1 = new C1.Win.C1Input.C1Button();
-            this.tblNotes = new System.Windows.Forms.TableLayoutPanel();
+            this.tblEdit = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.hr5 = new Nada.UI.Controls.HR();
             this.hr4 = new Nada.UI.Controls.HR();
@@ -55,7 +55,7 @@
             this.lblAdminLevel = new System.Windows.Forms.Label();
             this.lblLocation = new System.Windows.Forms.Label();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tblNotes.SuspendLayout();
+            this.tblEdit.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tblTitle.SuspendLayout();
@@ -117,22 +117,22 @@
             this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
             this.c1Button1.Click += new System.EventHandler(this.save_Click);
             // 
-            // tblNotes
+            // tblEdit
             // 
-            this.tblNotes.AutoSize = true;
-            this.tblNotes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tblNotes.ColumnCount = 1;
-            this.tblNotes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblNotes.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tblNotes.Location = new System.Drawing.Point(3, 342);
-            this.tblNotes.Name = "tblNotes";
-            this.tblNotes.RowCount = 2;
-            this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tblNotes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tblNotes.Size = new System.Drawing.Size(210, 85);
-            this.tblNotes.TabIndex = 7;
+            this.tblEdit.AutoSize = true;
+            this.tblEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblEdit.ColumnCount = 1;
+            this.tblEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblEdit.Controls.Add(this.tableLayoutPanel4, 0, 1);
+            this.tblEdit.Location = new System.Drawing.Point(3, 342);
+            this.tblEdit.Name = "tblEdit";
+            this.tblEdit.RowCount = 2;
+            this.tblEdit.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblEdit.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblEdit.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblEdit.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblEdit.Size = new System.Drawing.Size(210, 85);
+            this.tblEdit.TabIndex = 7;
             // 
             // tableLayoutPanel5
             // 
@@ -142,7 +142,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel5.Controls.Add(this.hr5, 0, 7);
             this.tableLayoutPanel5.Controls.Add(this.hr4, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.tblNotes, 0, 8);
+            this.tableLayoutPanel5.Controls.Add(this.tblEdit, 0, 8);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel3, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.indicatorControl1, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.statCalculator1, 0, 5);
@@ -477,8 +477,8 @@
             this.Load += new System.EventHandler(this.DataEntryEdit_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            this.tblNotes.ResumeLayout(false);
-            this.tblNotes.PerformLayout();
+            this.tblEdit.ResumeLayout(false);
+            this.tblEdit.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -495,7 +495,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.TableLayoutPanel tblNotes;
+        private System.Windows.Forms.TableLayoutPanel tblEdit;
         private AdminLevelPickerControl adminLevelPickerControl2;
         private Controls.H3Label nadaLabel1;
         private Controls.H3Label nadaLabel2;

@@ -17,7 +17,7 @@ namespace Nada.Model.Repositories
         public List<SurveyDetails> GetAllForAdminLevel(int adminLevel)
         {
             List<SurveyDetails> surveys = new List<SurveyDetails>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -75,7 +75,7 @@ namespace Nada.Model.Repositories
 
         public void Delete(SurveyDetails survey, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -100,7 +100,7 @@ namespace Nada.Model.Repositories
         public void Save(LfMfPrevalence survey, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -180,7 +180,7 @@ namespace Nada.Model.Repositories
         public SurveyBase GetById(int id)
         {
             SurveyBase survey = null;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -203,7 +203,7 @@ namespace Nada.Model.Repositories
                 return null;
             int surveyId = -1;
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -241,7 +241,7 @@ namespace Nada.Model.Repositories
         public LfMfPrevalence GetLfMfPrevalenceSurvey(int id)
         {
             LfMfPrevalence survey = null;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -378,7 +378,7 @@ namespace Nada.Model.Repositories
         public void SaveSurvey(SurveyBase survey, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -433,7 +433,7 @@ namespace Nada.Model.Repositories
         {
             List<SurveyType> types = new List<SurveyType>();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -474,7 +474,7 @@ namespace Nada.Model.Repositories
         {
             SurveyType survey = new SurveyType();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -522,6 +522,7 @@ namespace Nada.Model.Repositories
                         SurveyIndicators.IsDisabled,
                         SurveyIndicators.IsEditable,
                         SurveyIndicators.IsDisplayed,
+                        IsCalculated,
                         CanAddValues,
                         SurveyIndicators.UpdatedAt, 
                         aspnet_users.UserName,
@@ -547,6 +548,7 @@ namespace Nada.Model.Repositories
                                 IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
                                 IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
                                 IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
+                                IsCalculated = reader.GetValueOrDefault<bool>("IsCalculated"),
                                 CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
                                 DataType = reader.GetValueOrDefault<string>("DataType")
                             });
@@ -568,7 +570,7 @@ namespace Nada.Model.Repositories
         public void Save(SurveyType model, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -677,7 +679,7 @@ namespace Nada.Model.Repositories
         #region Misc
         public SentinelSite Insert(SentinelSite site, int updatedById)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -718,7 +720,7 @@ namespace Nada.Model.Repositories
 
         public SentinelSite Update(SentinelSite site, int updatedById)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -746,7 +748,7 @@ namespace Nada.Model.Repositories
         public List<SentinelSite> GetSitesForAdminLevel(IEnumerable<string> adminLevelIds)
         {
             List<SentinelSite> sites = new List<SentinelSite>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -785,7 +787,7 @@ namespace Nada.Model.Repositories
         {
             List<Vector> list = new List<Vector>();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();

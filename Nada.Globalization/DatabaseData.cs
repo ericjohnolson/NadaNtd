@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Nada.Model
+namespace Nada
 {
-    public class ModelData
+    public class DatabaseData
     {
-        private static ModelData instance;
+        private static DatabaseData instance;
 
-        private ModelData() { }
+        private DatabaseData() { }
 
         public string AccessConnectionString { get; set; }
 
-        public static ModelData Instance
+        public static DatabaseData Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new ModelData();
+                    instance = new DatabaseData();
                 }
                 return instance;
             }

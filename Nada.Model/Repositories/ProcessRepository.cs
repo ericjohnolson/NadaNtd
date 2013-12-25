@@ -17,7 +17,7 @@ namespace Nada.Model.Repositories
         public List<ProcessDetails> GetAllForAdminLevel(int adminLevel)
         {
             List<ProcessDetails> processes = new List<ProcessDetails>();
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -72,7 +72,7 @@ namespace Nada.Model.Repositories
 
         public void Delete(ProcessDetails Process, int userId)
         {
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -97,7 +97,7 @@ namespace Nada.Model.Repositories
         public ProcessBase GetById(int id)
         {
             ProcessBase Process = null;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -162,7 +162,7 @@ namespace Nada.Model.Repositories
         public void Save(ProcessBase process, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -202,7 +202,7 @@ namespace Nada.Model.Repositories
         {
             List<ProcessType> types = new List<ProcessType>();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -244,7 +244,7 @@ namespace Nada.Model.Repositories
         {
             ProcessType process = new ProcessType();
 
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
@@ -335,7 +335,7 @@ namespace Nada.Model.Repositories
         public void Save(ProcessType model, int userId)
         {
             bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(ModelData.Instance.AccessConnectionString);
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
