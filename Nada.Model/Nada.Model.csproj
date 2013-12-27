@@ -80,6 +80,7 @@
     <Compile Include="Process\ProcessBase.cs" />
     <Compile Include="Process\ProcessDetails.cs" />
     <Compile Include="Process\ProcessType.cs" />
+    <Compile Include="Reports\ReportAggregationHelper.cs" />
     <Compile Include="Reports\ReportOptions.cs" />
     <Compile Include="Repositories\MemberRepository.cs" />
     <Compile Include="Repositories\ProcessRepository.cs" />

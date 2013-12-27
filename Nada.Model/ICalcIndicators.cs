@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
+using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
@@ -11,10 +12,19 @@ namespace Nada.Model
         List<KeyValuePair<string, string>> PerformCalculations(Dictionary<string, Indicator> indicators, List<IndicatorValue> indicatorValues,
             int adminLevel, string typeId);
         List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel);
+        KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo);
+        AdminLevelDemography GetAdminLevelDemo(int adminLevelId, int year);
     }
 
     public class CalcBase : ICalcIndicators
     {
+        protected  DemoRepository demoRepo = new DemoRepository();
+
+        public AdminLevelDemography GetAdminLevelDemo(int adminLevelId, int year)
+        {
+            return demoRepo.GetDemoByAdminLevelIdAndYear(adminLevelId, year);
+        }
+
         public virtual List<KeyValuePair<string, string>> PerformCalculations(Dictionary<string, Indicator> indicators, List<IndicatorValue> indicatorValues, 
             int adminLevel, string typeId)
         {
@@ -35,6 +45,11 @@ namespace Nada.Model
         public virtual List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel)
         {
             return new List<KeyValuePair<string, string>>();
+        }
+
+        public virtual KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo)
+        {
+            return new KeyValuePair<string, string>();
         }
 
         public string GetPercentage(Dictionary<string, IndicatorValue> indicators, string numerator, string denominator)
@@ -81,6 +96,13 @@ namespace Nada.Model
             if (double.TryParse(val1, out v1) && double.TryParse(val2, out v2))
                 return string.Format("{0:0.00}", v1 - v2);
             return Translations.NA;
+        }
+
+        public string GetValueOrDefault(string key, Dictionary<string, string> values)
+        {
+            if(values.ContainsKey(key))
+                return values[key];
+            return "";
         }
     }
 

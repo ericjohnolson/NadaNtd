@@ -39,7 +39,12 @@ namespace Nada.Model
         public string Value { get; set; }
         public string Key { get; set; }
         public string Name { get; set; }
+        public string ColumnTypeName { get; set; }
         public int Year { get; set; }
+        public int TypeId { get; set; }
+        public bool IsCalcRelated { get; set; }
+        public int FormId { get; set; }
+        public string TypeName { get; set; }
     }
 
     public static class IndicatorAggregator
@@ -117,16 +122,18 @@ namespace Nada.Model
                 return DateTime.MinValue;
 
             DateTime dt = Convert.ToDateTime(ind1.Value);
+            DateTime existing = existingValue is string ? Convert.ToDateTime(existingValue) : (DateTime)existingValue;
+
             if (ind1.AggType == (int)IndicatorAggType.Min)
-                if (dt >= (DateTime)existingValue)
-                    return (DateTime)existingValue;
+                if (dt >= (DateTime)existing)
+                    return (DateTime)existing;
                 else
                     return dt;
             if (ind1.AggType == (int)IndicatorAggType.Max)
-                if (dt >= (DateTime)existingValue)
+                if (dt >= (DateTime)existing)
                     return dt;
                 else
-                    return (DateTime)existingValue;
+                    return (DateTime)existing;
             return dt;
         }
 

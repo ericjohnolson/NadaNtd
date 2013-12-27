@@ -18,7 +18,18 @@ namespace Nada.Model.Repositories
         public ReportOptions Options { get; set; }
         public DataRow Row { get; set; }
         public DataTable Table { get; set; }
+    }
 
+    public class ReportRow
+    {
+        public ReportRow()
+        {
+            CalcRelated = new List<AggregateIndicator>();
+        }
+        public DataRow Row { get; set; }
+        public List<AggregateIndicator> CalcRelated { get; set; }
+        public int AdminLevelId { get; set; }
+        public int Year { get; set; }
     }
 
     public class ReportRepository
@@ -29,102 +40,102 @@ namespace Nada.Model.Repositories
 
         #region Old report generator
         //        public void GetReportData(ReportIndicators settings, DataTable table, DataTable chart)
-//        {
-//            // Create dictionary,
-//            Dictionary<string, DataRow> tableRows = new Dictionary<string, DataRow>();
-//            Dictionary<string, int> selectedIndicators = CreateIndicatorDictionary(settings);
-//            if (selectedIndicators.Count == 0)
-//                return;
+        //        {
+        //            // Create dictionary,
+        //            Dictionary<string, DataRow> tableRows = new Dictionary<string, DataRow>();
+        //            Dictionary<string, int> selectedIndicators = CreateIndicatorDictionary(settings);
+        //            if (selectedIndicators.Count == 0)
+        //                return;
 
-//            // if a location exists ADD indicator to column
-//            // if not add new row to new dictionary entry for location
-//            // for chart add row for each indicator value 
-//            // CreateChartRow(DataTable chartData, DataRow dr)
+        //            // if a location exists ADD indicator to column
+        //            // if not add new row to new dictionary entry for location
+        //            // for chart add row for each indicator value 
+        //            // CreateChartRow(DataTable chartData, DataRow dr)
 
-//            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-//            using (connection)
-//            {
-//                connection.Open();
-//                try
-//                {
-//                    // Load LF MF Indicators
-//                    OleDbCommand command = new OleDbCommand();
+        //            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+        //            using (connection)
+        //            {
+        //                connection.Open();
+        //                try
+        //                {
+        //                    // Load LF MF Indicators
+        //                    OleDbCommand command = new OleDbCommand();
 
-//                    if (settings.SurveyIndicators.Where(i => i.Selected && !i.IsStatic).Count() > 0)
-//                    {
-//                        command = new OleDbCommand(@"Select SurveyIndicators.DisplayName as IndicatorName, 
-//                            SurveyIndicatorValues.DynamicValue,
-//                            SurveyIndicators.DataTypeId,
-//                            SurveyIndicators.Id,
-//                            SurveyTypes.SurveyTypeName,
-//                            Surveys.SurveyDate,
-//                            AdminLevels.DisplayName as Location
-//                        FROM ((((SurveyIndicators INNER JOIN SurveyIndicatorValues on SurveyIndicators.ID = SurveyIndicatorValues.IndicatorId)
-//                            INNER JOIN SurveyTypes ON SurveyIndicators.SurveyTypeId = SurveyTypes.ID)
-//                            INNER JOIN Surveys ON SurveyIndicatorValues.SurveyId = Surveys.ID)
-//                            INNER JOIN AdminLevels ON Surveys.AdminLevelId = AdminLevels.ID)
-//                        WHERE SurveyIndicators.Id in (" + String.Join(", ", settings.SurveyIndicators.Where(i => i.Selected && !i.IsStatic).Select(s => s.ID.ToString()).ToArray()) + ")", connection);
-//                        using (OleDbDataReader reader = command.ExecuteReader())
-//                        {
-//                            while (reader.Read())
-//                            {
-//                                DataRow dr = table.NewRow();
-//                                dr["Location"] = reader.GetValueOrDefault<string>("Location");
-//                                dr["Type"] = reader.GetValueOrDefault<string>("SurveyTypeName");
-//                                dr["Year"] = reader.GetValueOrDefault<DateTime>("SurveyDate").ToString("yyyy");
-//                                dr[reader.GetValueOrDefault<string>("IndicatorName")] = reader.GetValueOrDefault<string>("DynamicValue");
-//                                table.Rows.Add(dr);
+        //                    if (settings.SurveyIndicators.Where(i => i.Selected && !i.IsStatic).Count() > 0)
+        //                    {
+        //                        command = new OleDbCommand(@"Select SurveyIndicators.DisplayName as IndicatorName, 
+        //                            SurveyIndicatorValues.DynamicValue,
+        //                            SurveyIndicators.DataTypeId,
+        //                            SurveyIndicators.Id,
+        //                            SurveyTypes.SurveyTypeName,
+        //                            Surveys.SurveyDate,
+        //                            AdminLevels.DisplayName as Location
+        //                        FROM ((((SurveyIndicators INNER JOIN SurveyIndicatorValues on SurveyIndicators.ID = SurveyIndicatorValues.IndicatorId)
+        //                            INNER JOIN SurveyTypes ON SurveyIndicators.SurveyTypeId = SurveyTypes.ID)
+        //                            INNER JOIN Surveys ON SurveyIndicatorValues.SurveyId = Surveys.ID)
+        //                            INNER JOIN AdminLevels ON Surveys.AdminLevelId = AdminLevels.ID)
+        //                        WHERE SurveyIndicators.Id in (" + String.Join(", ", settings.SurveyIndicators.Where(i => i.Selected && !i.IsStatic).Select(s => s.ID.ToString()).ToArray()) + ")", connection);
+        //                        using (OleDbDataReader reader = command.ExecuteReader())
+        //                        {
+        //                            while (reader.Read())
+        //                            {
+        //                                DataRow dr = table.NewRow();
+        //                                dr["Location"] = reader.GetValueOrDefault<string>("Location");
+        //                                dr["Type"] = reader.GetValueOrDefault<string>("SurveyTypeName");
+        //                                dr["Year"] = reader.GetValueOrDefault<DateTime>("SurveyDate").ToString("yyyy");
+        //                                dr[reader.GetValueOrDefault<string>("IndicatorName")] = reader.GetValueOrDefault<string>("DynamicValue");
+        //                                table.Rows.Add(dr);
 
-//                                CreateChartRow(chart, dr["Location"].ToString(), dr["Year"].ToString(),
-//                                    reader.GetValueOrDefault<string>("IndicatorName"),
-//                                    reader.GetValueOrDefault<int>("Id"),
-//                                    reader.GetValueOrDefault<string>("DynamicValue"));
-//                            }
-//                            reader.Close();
-//                        }
-//                    }
+        //                                CreateChartRow(chart, dr["Location"].ToString(), dr["Year"].ToString(),
+        //                                    reader.GetValueOrDefault<string>("IndicatorName"),
+        //                                    reader.GetValueOrDefault<int>("Id"),
+        //                                    reader.GetValueOrDefault<string>("DynamicValue"));
+        //                            }
+        //                            reader.Close();
+        //                        }
+        //                    }
 
-//                    if (settings.InterventionIndicators.Where(i => i.Selected && !i.IsStatic).Count() > 0)
-//                    {
-//                        command = new OleDbCommand(@"Select InterventionIndicators.DisplayName as IndicatorName, 
-//                            InterventionIndicatorValues.DynamicValue,
-//                            InterventionIndicators.DataTypeId,
-//                            InterventionIndicators.Id,
-//                            InterventionTypes.InterventionTypeName,
-//                            Interventions.InterventionDate,
-//                            AdminLevels.DisplayName as Location
-//                        FROM ((((InterventionIndicators INNER JOIN InterventionIndicatorValues on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId)
-//                            INNER JOIN InterventionTypes ON InterventionIndicators.InterventionTypeId = InterventionTypes.ID)
-//                            INNER JOIN Interventions ON InterventionIndicatorValues.InterventionId = Interventions.ID)
-//                            INNER JOIN AdminLevels ON Interventions.AdminLevelId = AdminLevels.ID)
-//                        WHERE InterventionIndicators.Id in (" + String.Join(", ", settings.InterventionIndicators.Where(i => i.Selected && !i.IsStatic).Select(s => s.ID.ToString()).ToArray()) + ")", connection);
-//                        using (OleDbDataReader reader = command.ExecuteReader())
-//                        {
-//                            while (reader.Read())
-//                            {
-//                                DataRow dr = table.NewRow();
-//                                dr["Location"] = reader.GetValueOrDefault<string>("Location");
-//                                dr["Type"] = reader.GetValueOrDefault<string>("InterventionTypeName");
-//                                dr["Year"] = reader.GetValueOrDefault<DateTime>("InterventionDate").ToString("yyyy");
-//                                dr[reader.GetValueOrDefault<string>("IndicatorName")] = reader.GetValueOrDefault<string>("DynamicValue");
-//                                table.Rows.Add(dr);
+        //                    if (settings.InterventionIndicators.Where(i => i.Selected && !i.IsStatic).Count() > 0)
+        //                    {
+        //                        command = new OleDbCommand(@"Select InterventionIndicators.DisplayName as IndicatorName, 
+        //                            InterventionIndicatorValues.DynamicValue,
+        //                            InterventionIndicators.DataTypeId,
+        //                            InterventionIndicators.Id,
+        //                            InterventionTypes.InterventionTypeName,
+        //                            Interventions.InterventionDate,
+        //                            AdminLevels.DisplayName as Location
+        //                        FROM ((((InterventionIndicators INNER JOIN InterventionIndicatorValues on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId)
+        //                            INNER JOIN InterventionTypes ON InterventionIndicators.InterventionTypeId = InterventionTypes.ID)
+        //                            INNER JOIN Interventions ON InterventionIndicatorValues.InterventionId = Interventions.ID)
+        //                            INNER JOIN AdminLevels ON Interventions.AdminLevelId = AdminLevels.ID)
+        //                        WHERE InterventionIndicators.Id in (" + String.Join(", ", settings.InterventionIndicators.Where(i => i.Selected && !i.IsStatic).Select(s => s.ID.ToString()).ToArray()) + ")", connection);
+        //                        using (OleDbDataReader reader = command.ExecuteReader())
+        //                        {
+        //                            while (reader.Read())
+        //                            {
+        //                                DataRow dr = table.NewRow();
+        //                                dr["Location"] = reader.GetValueOrDefault<string>("Location");
+        //                                dr["Type"] = reader.GetValueOrDefault<string>("InterventionTypeName");
+        //                                dr["Year"] = reader.GetValueOrDefault<DateTime>("InterventionDate").ToString("yyyy");
+        //                                dr[reader.GetValueOrDefault<string>("IndicatorName")] = reader.GetValueOrDefault<string>("DynamicValue");
+        //                                table.Rows.Add(dr);
 
-//                                CreateChartRow(chart, dr["Location"].ToString(), dr["Year"].ToString(),
-//                                    reader.GetValueOrDefault<string>("IndicatorName"),
-//                                    reader.GetValueOrDefault<int>("Id"),
-//                                    reader.GetValueOrDefault<string>("DynamicValue"));
-//                            }
-//                            reader.Close();
-//                        }
-//                    }
+        //                                CreateChartRow(chart, dr["Location"].ToString(), dr["Year"].ToString(),
+        //                                    reader.GetValueOrDefault<string>("IndicatorName"),
+        //                                    reader.GetValueOrDefault<int>("Id"),
+        //                                    reader.GetValueOrDefault<string>("DynamicValue"));
+        //                            }
+        //                            reader.Close();
+        //                        }
+        //                    }
 
-//                }
-//                catch (Exception)
-//                {
-//                    throw;
-//                }
-//            }
-//        }
+        //                }
+        //                catch (Exception)
+        //                {
+        //                    throw;
+        //                }
+        //            }
+        //        }
 
         //private Dictionary<string, int> CreateIndicatorDictionary(ReportIndicators settings)
         //{
@@ -160,128 +171,134 @@ namespace Nada.Model.Repositories
         }
 
         public void AddIndicatorsToAggregate(string cmdText, ReportOptions options, Dictionary<int, AdminLevelIndicators> dic, OleDbCommand command,
-            OleDbConnection connection, Func<OleDbDataReader, string> getKey, Func<OleDbDataReader, string> getName, Action<CreateAggParams> addStaticIndicators)
+            OleDbConnection connection, Func<OleDbDataReader, bool, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
+            Action<CreateAggParams> addStaticIndicators, bool isCalcRelated)
         {
-            command = new OleDbCommand(cmdText + CreateYearFilter(options)
+            command = new OleDbCommand(cmdText + CreateYearFilter(options) + CreateAdminFilter(options)
                        , connection);
 
-            FillDictionary(command, connection, dic, options, getKey, getName, addStaticIndicators);
+            FillDictionary(command, connection, dic, options, getKey, getName, getColTypeName, addStaticIndicators, isCalcRelated);
         }
 
         private void FillDictionary(OleDbCommand command, OleDbConnection connection, Dictionary<int, AdminLevelIndicators> dic, ReportOptions options,
-            Func<OleDbDataReader, string> getKey, Func<OleDbDataReader, string> getName, Action<CreateAggParams> addStaticIndicators)
+            Func<OleDbDataReader, bool, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
+            Action<CreateAggParams> addStaticIndicators, bool isCalcRelated)
         {
             using (OleDbDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
                     string indicatorName = getName(reader);
-                    string indicatorKey = getKey(reader);
+                    string indicatorKey = getKey(reader, options.IsNoAggregation) + isCalcRelated;
                     int adminLevelId = reader.GetValueOrDefault<int>("AID");
                     int dataType = reader.GetValueOrDefault<int>("DataTypeId");
                     string value = GetDynamicValue(reader);
-                    if (dic.ContainsKey(adminLevelId))
+                    if (!dic.ContainsKey(adminLevelId))
+                        continue;
+                    var newIndicator = new AggregateIndicator
                     {
-                        var newIndicator = new AggregateIndicator
-                        {
-                            IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
-                            Name = indicatorName,
-                            Key = indicatorKey,
-                            DataType = dataType,
-                            Value = value,
-                            AggType = reader.GetValueOrDefault<int>("AggTypeId"),
-                            Year = reader.GetValueOrDefault<int>("YearReported")
-                        };
-                        // if the adminlevel already contains the indicator for that year, aggregate
-                        if (dic[adminLevelId].Indicators.ContainsKey(indicatorKey))
-                        {
-                            // TODO FIX AGGREGATION CUSTOM
-                            object val = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[indicatorKey].Value);
-                            dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : val.ToString();
-                        }
-                        else
-                        {
-                            dic[adminLevelId].Indicators.Add(indicatorKey, newIndicator);
+                        IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
+                        Name = indicatorName,
+                        Key = reader.GetValueOrDefault<string>("IndicatorName"),
+                        DataType = dataType,
+                        Value = value,
+                        AggType = reader.GetValueOrDefault<int>("AggTypeId"),
+                        Year = reader.GetValueOrDefault<int>("YearReported"),
+                        IsCalcRelated = isCalcRelated,
+                        ColumnTypeName = getColTypeName(reader),
+                        TypeId = reader.GetValueOrDefault<int>("Tid"),
+                        TypeName = reader.GetValueOrDefault<string>("TName"),
+                        FormId = reader.GetValueOrDefault<int>("ID")
+                    };
+                    // if the adminlevel already contains the indicator for that year, aggregate
+                    if (dic[adminLevelId].Indicators.ContainsKey(indicatorKey))
+                    {
+                        object val = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[indicatorKey].Value);
+                        dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : val.ToString();
+                    }
+                    else
+                    {
+                        dic[adminLevelId].Indicators.Add(indicatorKey, newIndicator);
 
-                            // Add Column
-                            if (!options.Columns.ContainsKey(indicatorKey))
-                                options.Columns.Add(indicatorKey, indicatorName);
+                        // Add Column
+                        if (!options.Columns.ContainsKey(indicatorKey))
+                            options.Columns.Add(indicatorKey, newIndicator);
 
+                        if(!isCalcRelated)
                             addStaticIndicators(new CreateAggParams
                             {
                                 AdminLevel = dic[adminLevelId],
                                 Reader = reader,
                                 Options = options,
                             });
-
-                        }
                     }
+
                 }
                 reader.Close();
             }
         }
 
-        public DataTable CreateNonAggregatedReport(string cmdText, ReportOptions options, DataTable dt, Func<OleDbDataReader, string> getName,
-            Action<CreateAggParams> addStaticIndicators)
-        {
-            Dictionary<int, DataRow> ids = new Dictionary<int, DataRow>();
-            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    OleDbCommand command = new OleDbCommand(cmdText + CreateYearFilter(options) + CreateAdminFilter(options)
-                        , connection);
+        //public DataTable CreateNonAggregatedReport(string cmdText, ReportOptions options, DataTable dt, Func<OleDbDataReader, string> getName,
+        //    Action<CreateAggParams> addStaticIndicators)
+        //{
+        //    Dictionary<int, DataRow> ids = new Dictionary<int, DataRow>();
+        //    OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+        //    using (connection)
+        //    {
+        //        connection.Open();
+        //        try
+        //        {
+        //            OleDbCommand command = new OleDbCommand(cmdText + CreateYearFilter(options) + CreateAdminFilter(options)
+        //                , connection);
 
-                    FillDataTable(command, connection, ids, dt, getName, addStaticIndicators);
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-            return dt;
-        }
+        //            FillDataTable(command, connection, ids, dt, getName, addStaticIndicators);
+        //        }
+        //        catch (Exception)
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //    return dt;
+        //}
 
-        private void FillDataTable(OleDbCommand command, OleDbConnection connection, Dictionary<int, DataRow> ids, DataTable dt, Func<OleDbDataReader, string> getName,
-            Action<CreateAggParams> addStaticIndicators)
-        {
-            using (OleDbDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    int id = reader.GetValueOrDefault<int>("ID");
-                    // column name (which is unique depending on type, round number/ cat etc
-                    string columnName = getName(reader);
-                    // if the column doesnt exist, add it.
-                    if (columnName != null && !dt.Columns.Contains(columnName))
-                        dt.Columns.Add(new DataColumn(columnName));
+        //private void FillDataTable(OleDbCommand command, OleDbConnection connection, Dictionary<int, DataRow> ids, DataTable dt, Func<OleDbDataReader, string> getName,
+        //    Action<CreateAggParams> addStaticIndicators)
+        //{
+        //    using (OleDbDataReader reader = command.ExecuteReader())
+        //    {
+        //        while (reader.Read())
+        //        {
+        //            int id = reader.GetValueOrDefault<int>("ID");
+        //            // column name (which is unique depending on type, round number/ cat etc
+        //            string columnName = getName(reader);
+        //            // if the column doesnt exist, add it.
+        //            if (columnName != null && !dt.Columns.Contains(columnName))
+        //                dt.Columns.Add(new DataColumn(columnName));
 
-                    if (!ids.ContainsKey(id))
-                    {
-                        DataRow dr = dt.NewRow();
-                        dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
-                        dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
-                        dr[Translations.Year] = reader.GetValueOrDefault<int>("YearReported");
-                        addStaticIndicators(new CreateAggParams
-                             {
-                                 Row = dr,
-                                 Reader = reader,
-                                 Table = dt
-                             });
-                        dt.Rows.Add(dr);
-                        ids.Add(id, dr);
-                    }
+        //            if (!ids.ContainsKey(id))
+        //            {
+        //                DataRow dr = dt.NewRow();
+        //                dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
+        //                dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
+        //                dr[Translations.Year] = reader.GetValueOrDefault<int>("YearReported");
+        //                addStaticIndicators(new CreateAggParams
+        //                     {
+        //                         Row = dr,
+        //                         Reader = reader,
+        //                         Table = dt
+        //                     });
+        //                dt.Rows.Add(dr);
+        //                ids.Add(id, dr);
+        //            }
 
-                    if (columnName != null)
-                    {
-                        ids[id][columnName] = GetDynamicValue(reader);
-                    }
-                }
-                reader.Close();
-            }
-        }
+        //            if (columnName != null)
+        //            {
+        //                ids[id][columnName] = GetDynamicValue(reader);
+        //            }
+        //        }
+        //        reader.Close();
+        //    }
+        //}
 
         /// <summary>
         /// Note aggregation is easy for demo, because it is pre aggregated
@@ -359,7 +376,7 @@ namespace Nada.Model.Repositories
         {
             int dataType = reader.GetValueOrDefault<int>("DataTypeId");
             string value = reader.GetValueOrDefault<string>("DynamicValue");
-            if(dataType == (int)IndicatorDataType.Multiselect)
+            if (dataType == (int)IndicatorDataType.Multiselect)
                 value = value.Replace("|", ", ");
             else if (dataType == (int)IndicatorDataType.Partners)
             {
@@ -397,7 +414,7 @@ namespace Nada.Model.Repositories
         private string CreateAdminFilter(ReportOptions options)
         {
             string filter = " ";
-            if (options.IsByLevelAggregation || (options.IsNoAggregation && !options.IsAllLocations))
+            if (options.IsNoAggregation && !options.IsAllLocations)
                 filter += " and AdminLevels.Id in (" + String.Join(", ", options.SelectedAdminLevels.Select(a => a.Id.ToString()).ToArray()) + ") ";
             return filter;
         }
@@ -418,12 +435,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
                 var instance = repo.CreateIntv(t.Id);
                 foreach (var i in instance.IntvType.Indicators)
-                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName),
-                                                           DataTypeId = i.Value.DataTypeId,
-                                                           IsCalculated = i.Value.IsCalculated,
-                                                           IsStatic = !i.Value.IsEditable,
-                                                           TypeId = t.Id
-                    });
+                    cat.Children.Add(CreateReportIndicator(t.Id, i));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -432,12 +444,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
                 var instance = repo.CreateIntv(t.Id);
                 foreach (var i in instance.IntvType.Indicators)
-                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName),
-                                                           DataTypeId = i.Value.DataTypeId,
-                                                           IsCalculated = i.Value.IsCalculated,
-                                                           IsStatic = !i.Value.IsEditable,
-                                                           TypeId = t.Id
-                    });
+                    cat.Children.Add(CreateReportIndicator(t.Id, i));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -466,15 +473,12 @@ namespace Nada.Model.Repositories
                     cat.Children.Add(new ReportIndicator { Name = Translations.IndSpotCheckName });
                     cat.Children.Add(new ReportIndicator { Name = Translations.IndSpotCheckLat });
                     cat.Children.Add(new ReportIndicator { Name = Translations.IndSpotCheckLng });
+                    cat.Children.Add(new ReportIndicator { Name = Translations.SiteType });
                 }
 
                 foreach (var i in instance.TypeOfSurvey.Indicators)
-                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName),
-                                                           DataTypeId = i.Value.DataTypeId,
-                                                           IsCalculated = i.Value.IsCalculated,
-                                                           IsStatic = !i.Value.IsEditable,
-                                                           TypeId = t.Id
-                    });
+                    if(i.Value.DataTypeId != (int)IndicatorDataType.SentinelSite)
+                        cat.Children.Add(CreateReportIndicator(t.Id, i));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -483,12 +487,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true };
                 var instance = repo.CreateSurvey(t.Id);
                 foreach (var i in instance.TypeOfSurvey.Indicators)
-                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName),
-                                                           DataTypeId = i.Value.DataTypeId,
-                                                           IsCalculated = i.Value.IsCalculated,
-                                                           IsStatic = !i.Value.IsEditable,
-                                                           TypeId = t.Id
-                    });
+                    cat.Children.Add(CreateReportIndicator(t.Id, i));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -509,12 +508,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
                 var instance = repo.Create(t.Id);
                 foreach (var i in instance.ProcessType.Indicators)
-                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName),
-                                                           DataTypeId = i.Value.DataTypeId,
-                                                           IsCalculated = i.Value.IsCalculated,
-                                                           IsStatic = !i.Value.IsEditable,
-                                                           TypeId = t.Id
-                    });
+                    cat.Children.Add(CreateReportIndicator(t.Id, i));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -523,12 +517,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
                 var instance = repo.Create(t.Id);
                 foreach (var i in instance.ProcessType.Indicators)
-                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName),
-                                                           DataTypeId = i.Value.DataTypeId,
-                                                           IsCalculated = i.Value.IsCalculated,
-                                                           IsStatic = !i.Value.IsEditable,
-                                                           TypeId = t.Id
-                    });
+                    cat.Children.Add(CreateReportIndicator(t.Id, i));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -550,12 +539,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
                 DiseaseDistroPc dd = repo.Create((DiseaseType)t.Id);
                 foreach (var i in dd.Indicators)
-                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName),
-                                                           DataTypeId = i.Value.DataTypeId,
-                                                           IsCalculated = i.Value.IsCalculated,
-                                                           IsStatic = !i.Value.IsEditable,
-                                                           TypeId = t.Id
-                    });
+                    cat.Children.Add(CreateReportIndicator(t.Id, i));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -564,12 +548,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
                 DiseaseDistroCm dd = repo.CreateCm((DiseaseType)t.Id);
                 foreach (var i in dd.Indicators)
-                    cat.Children.Add(new ReportIndicator { ID = i.Value.Id, Name = TranslationLookup.GetValue(i.Value.DisplayName),
-                                                           DataTypeId = i.Value.DataTypeId,
-                                                           IsCalculated = i.Value.IsCalculated,
-                                                           IsStatic = !i.Value.IsEditable,
-                                                           TypeId = t.Id
-                    });
+                    cat.Children.Add(CreateReportIndicator(t.Id, i));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -595,6 +574,25 @@ namespace Nada.Model.Repositories
             indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("PopMale"), DataTypeId = 2, Key = "PopMale" });
 
             return indicators.OrderBy(r => r.Name).ToList();
+        }
+
+
+        private static ReportIndicator CreateReportIndicator(int typeId, KeyValuePair<string, Indicator> i)
+        {
+            string name = i.Value.DisplayName;
+            if (!i.Value.IsDisplayed)
+                name = TranslationLookup.GetValue(i.Value.DisplayName, i.Value.DisplayName);
+
+            return new ReportIndicator
+            {
+                ID = i.Value.Id,
+                Name = name,
+                DataTypeId = i.Value.DataTypeId,
+                IsCalculated = i.Value.IsCalculated,
+                IsStatic = !i.Value.IsEditable,
+                TypeId = typeId,
+                Key = i.Value.DisplayName
+            };
         }
         #endregion
     }

@@ -67,6 +67,7 @@ namespace Nada.UI.View.Reports.CustomReport
             options.ShowDiseasesOption = false;
             options.ReportGenerator = new SurveyReportGenerator();
             options.AvailableIndicators = repo.GetSurveyIndicators();
+            options.HideAggregation = true;
             OnSwitchStep(new StepIndicators(options));
         }
 

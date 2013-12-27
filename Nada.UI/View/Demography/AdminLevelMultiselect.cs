@@ -17,6 +17,7 @@ namespace Nada.UI.View
     {
         private DemoRepository demography = null;
         private SettingsRepository settings = null;
+        private List<AdminLevelType> levels = new List<AdminLevelType>();
         private List<AdminLevel> available = new List<AdminLevel>();
         private List<AdminLevel> selected = new List<AdminLevel>();
 
@@ -33,7 +34,7 @@ namespace Nada.UI.View
                 Localizer.TranslateControl(this);
                 demography = new DemoRepository();
                 settings = new SettingsRepository();
-                var levels = settings.GetAllAdminLevels();
+                levels = settings.GetAllAdminLevels();
                 bsLevels.DataSource = levels;
                 cbLevels.SelectedIndex = 0;
                 LoadTrees();
@@ -65,6 +66,23 @@ namespace Nada.UI.View
                 AddNodeRecursive(a, list);
             }
             return list;
+        }
+
+        public void SetSelectedItems(List<AdminLevel> selectedLevels)
+        {
+            if (selectedLevels.Count == 0)
+                return;
+
+            cbLevels.SelectedItem = levels.FirstOrDefault(l => l.Id == selectedLevels.FirstOrDefault().AdminLevelTypeId);
+
+            foreach (var item in available.Where(i => selectedLevels.Select(a => a.Id).Contains(i.Id)))
+            {
+                var parent = GetParent(item, available, selected);
+                if (parent != null)
+                    MergeNodes(selected, parent);
+                DeleteNode(item, available);
+            }
+            ReloadLists();
         }
 
         private void AddNodeRecursive(AdminLevel adminLevel, List<AdminLevel> list)

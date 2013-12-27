@@ -42,7 +42,7 @@ namespace Nada.UI.ViewModel
         public bool CanEditTypeName { get { return false; } }
         public string StatusMessage { get { return model.UpdatedBy; } }
         public string Notes { get { return model.Notes; } }
-        public string CalculatorTypeId { get { return ""; } }
+        public string CalculatorTypeId { get { return model.TypeOfSurvey.Id.ToString(); } }
         public ICalcIndicators Calculator { get { return calc; } }
         public List<KeyValuePair<string, string>> MetaData { get; set; }
         public Dictionary<string, Indicator> Indicators { get { return model.TypeOfSurvey.Indicators; } }

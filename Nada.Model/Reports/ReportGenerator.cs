@@ -5,6 +5,8 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
+using Nada.Model.Diseases;
+using Nada.Model.Intervention;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 
@@ -53,147 +55,185 @@ namespace Nada.Model.Reports
 
     public class BaseReportGenerator : IReportGenerator
     {
+        protected ICalcIndicators calc = null;
         protected ReportRepository repo = new ReportRepository();
         protected ReportOptions opts = null;
-        protected virtual string CmdText()
-        {
-            throw new NotImplementedException();
-        }
+        protected List<ReportIndicator> selectedCalcFields = new List<ReportIndicator>();
+        protected bool hasCalculations = false;
+        protected virtual string CmdText() { throw new NotImplementedException(); }
+        protected virtual int EntityTypeId { get { return 0; } }
 
         public virtual ReportResult Run(ReportOptions options)
         {
             opts = options;
+            selectedCalcFields = opts.SelectedIndicators.Where(c => c.IsCalculated).ToList();
+            hasCalculations = selectedCalcFields.Count > 0;
             ReportResult result = new ReportResult();
             repo.LoadRelatedLists();
             Init();
-
-            if (options.IsNoAggregation)
-                result.DataTableResults = CreateNonAggregatedReport(options);
-            else
-                result.DataTableResults = CreateAggregatedReport(options);
-
+            result.DataTableResults = CreateReport(options);
             return result;
         }
-
-        #region Non-Aggregated
-        protected virtual void AddStaticIndicators(CreateAggParams param) { }
         
-        public DataTable CreateNonAggregatedReport(ReportOptions options)
-        {
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add(new DataColumn(Translations.Location));
-            dataTable.Columns.Add(new DataColumn(Translations.Type));
-            dataTable.Columns.Add(new DataColumn(Translations.Year));
-            repo.CreateNonAggregatedReport(CmdText(), options, dataTable, GetIndicatorColumnName, AddStaticIndicators);
+        protected virtual void AddStaticAggInd(CreateAggParams param) { }
 
-            return dataTable;
-        }
-        #endregion
-
-        #region Aggregated
-        protected virtual void AddStaticAggIndicators(CreateAggParams param) { }
-        
-        public DataTable CreateAggregatedReport(ReportOptions options)
+        public DataTable CreateReport(ReportOptions options)
         {
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add(new DataColumn(Translations.Location));
-            dataTable.Columns.Add(new DataColumn(Translations.Type));
-            dataTable.Columns.Add(new DataColumn(Translations.Year));
-            List<AdminLevelIndicators> selectedLevels = new List<AdminLevelIndicators>();
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
             Dictionary<int, AdminLevelIndicators> dic = new Dictionary<int, AdminLevelIndicators>();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+
+            // Get all indicators
             using (connection)
             {
                 connection.Open();
                 OleDbCommand command = new OleDbCommand();
                 list = ExportRepository.GetAdminLevels(command, connection);
                 dic = list.ToDictionary(n => n.Id, n => n);
-                repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndicatorKey, GetIndicatorColumnName, AddStaticAggIndicators);
+                repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndKey, GetColName, GetColTypeName, AddStaticAggInd, false);
+                if (hasCalculations)
+                    ReportAggregationHelper.AddRelatedCalcIndicators(options, dic, command, connection, GetIndKey, GetColName, GetColTypeName,
+                        AddStaticAggInd, EntityTypeId);
             }
 
-            // CONVERT TO TREE
-            var rootNodes = new List<AdminLevelIndicators>();
-            foreach (var node in list)
+            // Create table
+            DataTable result = new DataTable();
+            result.Columns.Add(new DataColumn(Translations.Location));
+            result.Columns.Add(new DataColumn(Translations.Type));
+            result.Columns.Add(new DataColumn(Translations.Year));
+            Dictionary<string, ReportRow> resultDic = new Dictionary<string, ReportRow>();
+            if (options.IsNoAggregation)
             {
-                if (node.ParentId.HasValue && node.ParentId.Value > 0)
-                {
-                    AdminLevelIndicators parent = dic[node.ParentId.Value];
-                    node.Parent = parent;
-                    parent.Children.Add(node);
-                }
-                else
-                {
-                    rootNodes.Add(node);
-                }
+                foreach (var level in list) // Each admin level
+                    foreach (var ind in level.Indicators) // each indicator
+                        AddToTable(result, resultDic, level, ind.Value.Year, ind.Value, ind.Value.FormId.ToString(), ind.Value.Value, TranslationLookup.GetValue(ind.Value.TypeName));
             }
-
-            // Aggregation type
-            if (options.IsCountryAggregation)
-                selectedLevels = list.Where(a => a.LevelNumber == 0).ToList();
-            if (options.IsByLevelAggregation && options.SelectedAdminLevels.Count > 0)
-                selectedLevels = list.Where(a => options.SelectedAdminLevels.Select(s => s.Id).Contains(a.Id)).ToList();
-
-            // AGGREGATE INDICATORS, PUT IN TABLE
-            Dictionary<string, DataRow> ids = new Dictionary<string, DataRow>();
-            foreach (var level in selectedLevels)
+            else
             {
-                foreach (var year in options.SelectedYears)
+                ReportAggregationHelper.IndicatorListToTree(list, dic);
+
+                List<AdminLevelIndicators> selectedLevels = new List<AdminLevelIndicators>();
+                if (options.IsCountryAggregation)
+                    selectedLevels = list.Where(a => a.LevelNumber == 0).ToList(); // Aggregate to country
+                if (options.IsByLevelAggregation && options.SelectedAdminLevels.Count > 0)
+                    selectedLevels = list.Where(a => options.SelectedAdminLevels.Select(s => s.Id).Contains(a.Id)).ToList();  // aggregate to level
+
+                // AGGREGATE INDICATORS, PUT IN TABLE
+                foreach (var level in selectedLevels) // Each admin level
                 {
-                    foreach (KeyValuePair<string, string> columnDef in options.Columns)
+                    foreach (var year in options.SelectedYears) // Each year
                     {
-                        string levelAndYear = level.Id + "_" + year;
-
-                        // Aggregate value
-                        object value = null;
-                        if (level.Indicators.ContainsKey(columnDef.Key))
+                        foreach (KeyValuePair<string, AggregateIndicator> columnDef in options.Columns) // each column
                         {
-                            value = IndicatorAggregator.Aggregate(level.Indicators[columnDef.Key], null);
+                            if (columnDef.Value.Year != year)
+                                continue;
+
+                            string levelAndYear = level.Id + "_" + year;
+
+                            object value = null;
+                            if (level.Indicators.ContainsKey(columnDef.Key)) // The level already has the indicator, don't aggregate
+                                value = IndicatorAggregator.Aggregate(level.Indicators[columnDef.Key], null);
+                            else
+                                value = IndicatorAggregator.AggregateChildren(level.Children, columnDef.Key, null); // level doesn't have it, aggregate children
+
+                            if (value == null)
+                                continue;
+
+                            AddToTable(result, resultDic, level, year, columnDef.Value, levelAndYear, value, Translations.NA);
                         }
-                        else // compute key value
-                            value = IndicatorAggregator.AggregateChildren(level.Children, columnDef.Key, null);
+                    }
+                }
 
-                        if (value != null)
+
+            }
+
+            // Do calculated fields
+            if (hasCalculations)
+            {
+                var fields = selectedCalcFields.Select(i => i.TypeId + i.Key).ToList();
+                foreach (ReportRow row in resultDic.Values)
+                {
+                    var adminLevelDemo = calc.GetAdminLevelDemo(row.AdminLevelId, row.Year);
+                    foreach (var field in selectedCalcFields)
+                    {
+                        Dictionary<string, Dictionary<string, string>> relatedByType = CreateCalcRelatedValueDic(row.CalcRelated.Where(i => i.TypeId == field.TypeId));
+                        foreach (var related in relatedByType)
                         {
-                            // add column
-                            if (!dataTable.Columns.Contains(columnDef.Value))
-                                dataTable.Columns.Add(new DataColumn(columnDef.Value));
-
-                            // Add row
-                            if (!ids.ContainsKey(levelAndYear))
-                            {
-                                DataRow dr = dataTable.NewRow();
-                                dr[Translations.Location] = level.Name;
-                                dr[Translations.Type] = Translations.NA;
-                                dr[Translations.Year] = year;
-                                dataTable.Rows.Add(dr);
-                                ids.Add(levelAndYear, dr);
-                            }
-
-                            ids[levelAndYear][columnDef.Value] = value;
+                            var calcResult = calc.GetCalculatedValue(field.TypeId + field.Key, related.Value, adminLevelDemo);
+                            if (!result.Columns.Contains(calcResult.Key + related.Key))
+                                result.Columns.Add(new DataColumn(calcResult.Key + related.Key));
+                            row.Row[calcResult.Key + related.Key] = calcResult.Value;
                         }
                     }
                 }
             }
 
-            return dataTable;
+            return result;
         }
-        #endregion
+
 
         #region Shared Methods
-        protected virtual void Init() { }
-
-        protected virtual string GetIndicatorKey(OleDbDataReader reader)
+        private static void AddToTable(DataTable result, Dictionary<string, ReportRow> resultDic, AdminLevelIndicators level, int year, AggregateIndicator indicator,
+            string rowKey, object value, string typeName)
         {
-            return reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_" + reader.GetValueOrDefault<string>("TName");
+            // Add row if it doesn't exist
+            if (!resultDic.ContainsKey(rowKey))
+            {
+                DataRow dr = result.NewRow();
+                dr[Translations.Location] = level.Name;
+                dr[Translations.Type] = typeName;
+                dr[Translations.Year] = year;
+                result.Rows.Add(dr);
+                resultDic.Add(rowKey, new ReportRow { Row = dr, AdminLevelId = level.Id, Year = year });
+            }
+
+            // add column if it doesn't exist
+            if (!result.Columns.Contains(indicator.Name) && !indicator.IsCalcRelated)
+                result.Columns.Add(new DataColumn(indicator.Name));
+
+            if (!indicator.IsCalcRelated)
+                resultDic[rowKey].Row[indicator.Name] = value;
+            else // Related to a calculated field
+            {
+                indicator.Value = value == null ? "" : value.ToString();
+                resultDic[rowKey].CalcRelated.Add(indicator);
+            }
         }
 
-        protected virtual string GetIndicatorColumnName(OleDbDataReader reader)
+        private Dictionary<string, Dictionary<string, string>> CreateCalcRelatedValueDic(IEnumerable<AggregateIndicator> list)
+        {
+            Dictionary<string, Dictionary<string, string>> dic = new Dictionary<string, Dictionary<string, string>>();
+            foreach (var inds in list.GroupBy(i => i.ColumnTypeName))
+            {
+                dic.Add(inds.Key, new Dictionary<string, string>());
+                foreach (var ind in inds)
+                    dic[inds.Key].Add(ind.TypeId + ind.Key, ind.Value);
+            }
+
+            return dic;
+        }
+
+        protected virtual void Init() { }
+
+        protected virtual string GetIndKey(OleDbDataReader reader, bool isNotAgg)
+        {
+            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_" + reader.GetValueOrDefault<string>("TName");
+            if (isNotAgg)
+                return reader.GetValueOrDefault<int>("ID").ToString() + "_" + key;
+            return key;
+        }
+
+        protected virtual string GetColName(OleDbDataReader reader)
         {
             if (TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) == Translations.NoTranslationFound)
                 return null;
 
             return TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) + " - " + TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
+        }
+
+        protected virtual string GetColTypeName(OleDbDataReader reader)
+        {
+            return " - " + TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
         }
 
         protected string GetValueOrBlank(string value, string separator)
@@ -228,14 +268,67 @@ namespace Nada.Model.Reports
         #endregion
     }
 
+    public class IntvReportGenerator : BaseReportGenerator
+    {
+        protected override int EntityTypeId { get { return (int)IndicatorEntityType.Intervention; } }
+        protected override void Init()
+        {
+            calc = new CalcIntv();
+        }
+
+        protected override string CmdText()
+        {
+            return @"Select 
+                        AdminLevels.ID as AID, 
+                        AdminLevels.DisplayName,
+                        Interventions.ID, 
+                        Interventions.YearReported, 
+                        Interventions.PcIntvRoundNumber, 
+                        InterventionTypes.InterventionTypeName as TName, 
+                        InterventionTypes.ID as Tid,      
+                        InterventionIndicators.ID as IndicatorId, 
+                        InterventionIndicators.DisplayName as IndicatorName, 
+                        InterventionIndicators.DataTypeId, 
+                        InterventionIndicators.AggTypeId, 
+                        InterventionIndicatorValues.DynamicValue
+                        FROM ((((Interventions INNER JOIN InterventionTypes on Interventions.InterventionTypeId = InterventionTypes.ID)
+                            INNER JOIN InterventionIndicatorValues on Interventions.Id = InterventionIndicatorValues.InterventionId)
+                            INNER JOIN AdminLevels on Interventions.AdminLevelId = AdminLevels.ID) 
+                            INNER JOIN InterventionIndicators on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId)
+                        WHERE Interventions.IsDeleted = 0 AND  
+                              InterventionIndicators.Id in "
+            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
+        }
+
+        protected override string GetIndKey(OleDbDataReader reader, bool isNotAgg)
+        {
+            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_" +
+                    reader.GetValueOrDefault<string>("TName") + GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), "_");
+            if (isNotAgg)
+                return reader.GetValueOrDefault<int>("ID").ToString() + "_" + key;
+            return key;
+        }
+
+        protected override string GetColName(OleDbDataReader reader)
+        {
+            return TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) + " - " +
+                TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName")) +
+                GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", Translations.Round));
+        }
+
+        protected override string GetColTypeName(OleDbDataReader reader)
+        {
+            return " - " + TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName")) +
+                GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", Translations.Round));
+        }
+    }
+
     public class SurveyReportGenerator : BaseReportGenerator
     {
-        private CalcSurvey calc = null;
-        private List<string> selectedCalcFields = new List<string>();
+        protected override int EntityTypeId { get { return (int)IndicatorEntityType.Survey; } }
         protected override void Init()
         {
             calc = new CalcSurvey();
-            selectedCalcFields = opts.SelectedIndicators.Where(c => c.IsCalculated).Select(i => i.TypeId + i.Name).ToList();
         }
 
         protected override string CmdText()
@@ -262,7 +355,8 @@ namespace Nada.Model.Reports
                         AdminLevels.DisplayName,
                         Surveys.ID, 
                         Surveys.YearReported, 
-                        SurveyTypes.SurveyTypeName as TName,      
+                        SurveyTypes.SurveyTypeName as TName,            
+                        SurveyTypes.ID as Tid,      
                         SurveyIndicators.ID as IndicatorId, 
                         SurveyIndicators.DisplayName as IndicatorName, 
                         SurveyIndicators.DataTypeId, 
@@ -271,6 +365,7 @@ namespace Nada.Model.Reports
                         Surveys.SpotCheckName as IndSpotCheckName,
                         Surveys.SpotCheckLat as IndSpotCheckLat,
                         Surveys.SpotCheckLng as IndSpotCheckLng,
+                        Surveys.SiteType, 
                         SentinelSites.SiteName as IndSentinelSiteName,
                         SentinelSites.Lat as IndSentinelSiteLat,
                         SentinelSites.Lng as IndSentinelSiteLng
@@ -289,7 +384,8 @@ namespace Nada.Model.Reports
                         AdminLevels.DisplayName,
                         Surveys.ID, 
                         Surveys.YearReported, 
-                        SurveyTypes.SurveyTypeName as TName,      
+                        SurveyTypes.SurveyTypeName as TName,           
+                        SurveyTypes.ID as Tid,       
                         0 as IndicatorId, 
                         '' as IndicatorName, 
                         1 as DataTypeId, 
@@ -298,6 +394,7 @@ namespace Nada.Model.Reports
                         Surveys.SpotCheckName as IndSpotCheckName,
                         Surveys.SpotCheckLat as IndSpotCheckLat,
                         Surveys.SpotCheckLng as IndSpotCheckLng,
+                        Surveys.SiteType, 
                         SentinelSites.SiteName as IndSentinelSiteName,
                         SentinelSites.Lat as IndSentinelSiteLat,
                         SentinelSites.Lng as IndSentinelSiteLng
@@ -308,36 +405,8 @@ namespace Nada.Model.Reports
                         WHERE Surveys.IsDeleted = 0 " + staticConditional;
 
         }
-
-        protected override void AddStaticIndicators(CreateAggParams param)
-        {
-            // Spot check/Sentinel Site
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckName) != null)
-                AddIndicatorToTable<string>(Translations.IndSpotCheckName, "IndSpotCheckName", param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLat) != null)
-                AddIndicatorToTable<Nullable<double>>(Translations.IndSpotCheckLat, "IndSpotCheckLat", param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLng) != null)
-                AddIndicatorToTable<Nullable<double>>(Translations.IndSpotCheckLng, "IndSpotCheckLng", param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteName) != null)
-                AddIndicatorToTable<string>(Translations.IndSentinelSiteName, "IndSentinelSiteName", param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLat) != null)
-                AddIndicatorToTable<Nullable<double>>(Translations.IndSentinelSiteLat, "IndSentinelSiteLat", param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLng) != null)
-                AddIndicatorToTable<Nullable<double>>(Translations.IndSentinelSiteLng, "IndSentinelSiteLng", param);
-            // Calculations
-            AddCalcFields(param);
-        }
-
-        private void AddCalcFields(CreateAggParams param)
-        {
-            //string tname = TranslationLookup.GetValue(param.Reader.GetValueOrDefault<string>("TName"));
-            //int adminLevelId = param.Reader.GetValueOrDefault<int>("AID");
-            //var calcs = calc.GetCalculatedValues(selectedCalcFields, null, adminLevelId);
-            //foreach (var c in calcs)
-            //    AddCalcToTable(c.Key + " - " + tname, c.Value, param);
-        }
-
-        protected override void AddStaticAggIndicators(CreateAggParams param)
+        
+        protected override void AddStaticAggInd(CreateAggParams param)
         {
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckName) != null)
                 AddIndicatorAndColumn<string>("IndSpotCheckName", Translations.IndSpotCheckName, param);
@@ -351,6 +420,8 @@ namespace Nada.Model.Reports
                 AddIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLat", Translations.IndSentinelSiteLat, param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLng) != null)
                 AddIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLng", Translations.IndSentinelSiteLng, param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.SiteType) != null)
+                AddIndicatorAndColumn<string>("SiteType", Translations.SiteType, param);
         }
 
         private void AddIndicatorAndColumn<T>(string columnName, string transName, CreateAggParams param)
@@ -360,31 +431,33 @@ namespace Nada.Model.Reports
             T val = param.Reader.GetValueOrDefault<T>(columnName);
             if (!param.AdminLevel.Indicators.ContainsKey(key))
             {
-                param.AdminLevel.Indicators.Add(key, new AggregateIndicator
-                    {
-                        Name = displayName,
-                        Key = key,
-                        DataType = (int)IndicatorDataType.Text,
-                        Value = val == null ? null : val.ToString(),
-                        AggType = (int)IndicatorAggType.None,
-                        Year = param.Reader.GetValueOrDefault<int>("YearReported")
-                    });
+                var ind = new AggregateIndicator
+                {
+                    Name = displayName,
+                    Key = key,
+                    DataType = (int)IndicatorDataType.Text,
+                    Value = val == null ? null : val.ToString(),
+                    AggType = (int)IndicatorAggType.None,
+                    Year = param.Reader.GetValueOrDefault<int>("YearReported"),
+                    TypeName = param.Reader.GetValueOrDefault<string>("TName"),
+                    IsCalcRelated = false,
+                    FormId = param.Reader.GetValueOrDefault<int>("ID")
+                };
+                param.AdminLevel.Indicators.Add(key, ind);
 
                 // Add Column
                 if (!param.Options.Columns.ContainsKey(key))
-                    param.Options.Columns.Add(key, displayName);
+                    param.Options.Columns.Add(key, ind);
             }
         }
     }
 
-    public class IntvReportGenerator : BaseReportGenerator
+    public class DistributionReportGenerator : BaseReportGenerator
     {
-        private CalcSurvey calc = null;
-        private List<string> selectedCalcFields = new List<string>();
+        protected override int EntityTypeId { get { return (int)IndicatorEntityType.DiseaseDistribution; } }
         protected override void Init()
         {
-            calc = new CalcSurvey();
-            selectedCalcFields = opts.SelectedIndicators.Where(c => c.IsCalculated).Select(i => i.TypeId + i.Name).ToList();
+            calc = new CalcDistro();
         }
 
         protected override string CmdText()
@@ -392,50 +465,22 @@ namespace Nada.Model.Reports
             return @"Select 
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
-                        Interventions.ID, 
-                        Interventions.YearReported, 
-                        Interventions.PcIntvRoundNumber, 
-                        InterventionTypes.InterventionTypeName as TName,     
-                        InterventionIndicators.ID as IndicatorId, 
-                        InterventionIndicators.DisplayName as IndicatorName, 
-                        InterventionIndicators.DataTypeId, 
-                        InterventionIndicators.AggTypeId, 
-                        InterventionIndicatorValues.DynamicValue
-                        FROM ((((Interventions INNER JOIN InterventionTypes on Interventions.InterventionTypeId = InterventionTypes.ID)
-                            INNER JOIN InterventionIndicatorValues on Interventions.Id = InterventionIndicatorValues.InterventionId)
-                            INNER JOIN AdminLevels on Interventions.AdminLevelId = AdminLevels.ID) 
-                            INNER JOIN InterventionIndicators on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId)
-                        WHERE Interventions.IsDeleted = 0 AND  
-                              InterventionIndicators.Id in "
+                        DiseaseDistributions.ID, 
+                        DiseaseDistributions.YearReported, 
+                        Diseases.DisplayName as TName,       
+                        Diseases.ID as Tid,       
+                        DiseaseDistributionIndicators.ID as IndicatorId, 
+                        DiseaseDistributionIndicators.DisplayName as IndicatorName, 
+                        DiseaseDistributionIndicators.DataTypeId, 
+                        DiseaseDistributionIndicators.AggTypeId, 
+                        DiseaseDistributionIndicatorValues.DynamicValue
+                        FROM ((((DiseaseDistributions INNER JOIN Diseases on DiseaseDistributions.DiseaseId = Diseases.ID)
+                            INNER JOIN DiseaseDistributionIndicatorValues on DiseaseDistributions.Id = DiseaseDistributionIndicatorValues.DiseaseDistributionId)
+                            INNER JOIN AdminLevels on DiseaseDistributions.AdminLevelId = AdminLevels.ID) 
+                            INNER JOIN DiseaseDistributionIndicators on DiseaseDistributionIndicators.ID = DiseaseDistributionIndicatorValues.IndicatorId)
+                        WHERE DiseaseDistributions.IsDeleted = 0 AND  
+                              DiseaseDistributionIndicators.Id in "
             + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
-        }
-
-        protected override void AddStaticIndicators(CreateAggParams param)
-        {
-            AddCalcFields(param);
-        }
-
-        private void AddCalcFields(CreateAggParams param)
-        {
-            //string tname = TranslationLookup.GetValue(param.Reader.GetValueOrDefault<string>("TName"));
-            //int adminLevelId = param.Reader.GetValueOrDefault<int>("AID");
-            //string roundOrBlank = GetValueOrBlank(param.Reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", Translations.Round));
-            //var calcs = calc.GetCalculatedValues(selectedCalcFields, null, adminLevelId);
-            //foreach (var c in calcs)
-            //    AddCalcToTable(c.Key + " - " + tname + roundOrBlank, c.Value, param);
-        }
-
-        protected override string GetIndicatorKey(OleDbDataReader reader)
-        {
-            return reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_" +
-                reader.GetValueOrDefault<string>("TName") + GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), "_");
-        }
-
-        protected override string GetIndicatorColumnName(OleDbDataReader reader)
-        {
-            return TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) + " - " +
-                TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName")) +
-                GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", Translations.Round));
         }
     }
 
@@ -450,8 +495,9 @@ namespace Nada.Model.Reports
                         Processes.YearReported, 
                         Processes.SCMDrug, 
                         Processes.PCTrainTrainingCategory, 
-                        ProcessTypes.TypeName as TName,        
-                        ProcessIndicators.ID as IndicatorId, 
+                        ProcessTypes.TypeName as TName,           
+                        Diseases.ID as Tid,        
+                        Diseases.ID as IndicatorId, 
                         ProcessIndicators.DisplayName as IndicatorName, 
                         ProcessIndicators.DataTypeId, 
                         ProcessIndicators.AggTypeId, 
@@ -465,66 +511,29 @@ namespace Nada.Model.Reports
             + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
         }
 
-        protected override string GetIndicatorKey(OleDbDataReader reader)
+        protected override string GetIndKey(OleDbDataReader reader, bool isNotAgg)
         {
-            return reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_" +
+            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_" +
                 reader.GetValueOrDefault<string>("TName") + GetValueOrBlank(reader.GetValueOrDefault<string>("SCMDrug"), "_") +
                 GetValueOrBlank(reader.GetValueOrDefault<string>("PCTrainTrainingCategory"), "_");
+            if (isNotAgg)
+                return reader.GetValueOrDefault<int>("ID").ToString() + "_" + key;
+            return key;
         }
 
-        protected override string GetIndicatorColumnName(OleDbDataReader reader)
+        protected override string GetColName(OleDbDataReader reader)
         {
             return TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) + " - " +
                 TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName")) +
                 GetValueOrBlank(reader.GetValueOrDefault<string>("SCMDrug"), " - ") +
                 GetValueOrBlank(reader.GetValueOrDefault<string>("PCTrainTrainingCategory"), " - ").Replace("|", ", ");
         }
-    }
 
-    public class DistributionReportGenerator : BaseReportGenerator
-    {
-        private CalcSurvey calc = null;
-        private List<string> selectedCalcFields = new List<string>();
-        protected override void Init()
+        protected override string GetColTypeName(OleDbDataReader reader)
         {
-            calc = new CalcSurvey();
-            selectedCalcFields = opts.SelectedIndicators.Where(c => c.IsCalculated).Select(i => i.TypeId + i.Name).ToList();
-        }
-
-        protected override string CmdText()
-        {
-            return @"Select 
-                        AdminLevels.ID as AID, 
-                        AdminLevels.DisplayName,
-                        DiseaseDistributions.ID, 
-                        DiseaseDistributions.YearReported, 
-                        Diseases.DisplayName as TName,       
-                        DiseaseDistributionIndicators.ID as IndicatorId, 
-                        DiseaseDistributionIndicators.DisplayName as IndicatorName, 
-                        DiseaseDistributionIndicators.DataTypeId, 
-                        DiseaseDistributionIndicators.AggTypeId, 
-                        DiseaseDistributionIndicatorValues.DynamicValue
-                        FROM ((((DiseaseDistributions INNER JOIN Diseases on DiseaseDistributions.DiseaseId = Diseases.ID)
-                            INNER JOIN DiseaseDistributionIndicatorValues on DiseaseDistributions.Id = DiseaseDistributionIndicatorValues.DiseaseDistributionId)
-                            INNER JOIN AdminLevels on DiseaseDistributions.AdminLevelId = AdminLevels.ID) 
-                            INNER JOIN DiseaseDistributionIndicators on DiseaseDistributionIndicators.ID = DiseaseDistributionIndicatorValues.IndicatorId)
-                        WHERE DiseaseDistributions.IsDeleted = 0 AND  
-                              DiseaseDistributionIndicators.Id in "
-            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
-        }
-
-        protected override void AddStaticIndicators(CreateAggParams param)
-        {
-            AddCalcFields(param);
-        }
-
-        private void AddCalcFields(CreateAggParams param)
-        {
-            //string tname = TranslationLookup.GetValue(param.Reader.GetValueOrDefault<string>("TName"));
-            //int adminLevelId = param.Reader.GetValueOrDefault<int>("AID");
-            //var calcs = calc.GetCalculatedValues(selectedCalcFields, null, adminLevelId);
-            //foreach (var c in calcs)
-            //    AddCalcToTable(c.Key + " - " + tname, c.Value, param);
+            return " - " + TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName")) +
+                GetValueOrBlank(reader.GetValueOrDefault<string>("SCMDrug"), " - ") +
+                GetValueOrBlank(reader.GetValueOrDefault<string>("PCTrainTrainingCategory"), " - ").Replace("|", ", ");
         }
     }
 

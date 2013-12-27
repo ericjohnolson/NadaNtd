@@ -9,7 +9,6 @@ namespace Nada.Model.Intervention
 {
     public class CalcIntv : CalcBase, ICalcIndicators
     {
-        private DemoRepository demoRepo = new DemoRepository();
 
         public override List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel)
         {
@@ -21,11 +20,11 @@ namespace Nada.Model.Intervention
             List<KeyValuePair<string, string>> results = new List<KeyValuePair<string, string>>();
 
             foreach (string field in fields)
-                results.Add(GetCalculatedValues(field, relatedValues, recentDemo));
+                results.Add(GetCalculatedValue(field, relatedValues, recentDemo));
             return results;
         }
 
-        private KeyValuePair<string, string> GetCalculatedValues(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo)
+        public override KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo)
         {
             try
             {
@@ -33,61 +32,61 @@ namespace Nada.Model.Intervention
                 {
                     case "8PercentCoverageBu":
                         if (demo != null)
-                            return new KeyValuePair<string, string>(Translations.PercentCoverageBu, GetPercentage(relatedValues["8NumFacilitiesProvidingBu"], demo.PopAdult.ToString()));
+                            return new KeyValuePair<string, string>(Translations.PercentCoverageBu, GetPercentage(GetValueOrDefault("8NumFacilitiesProvidingBu", relatedValues), demo.PopAdult.ToString()));
                         break;
                     case "4NumImported":
-                        return new KeyValuePair<string, string>(Translations.NumImported, GetDifference(relatedValues["4NumClinical"], relatedValues["4NumIndigenous"]));
+                        return new KeyValuePair<string, string>(Translations.NumImported, GetDifference(GetValueOrDefault("4NumClinical", relatedValues), GetValueOrDefault("4NumIndigenous", relatedValues)));
                     case "4PercentVas":
-                        return new KeyValuePair<string, string>(Translations.PercentVas, GetPercentage(relatedValues["4VasReporting"], relatedValues["4NumVas"]));
+                        return new KeyValuePair<string, string>(Translations.PercentVas, GetPercentage(GetValueOrDefault("4VasReporting", relatedValues), GetValueOrDefault("4NumVas", relatedValues)));
                     case "4PercentIdsr":
-                        return new KeyValuePair<string, string>(Translations.PercentIdsr, GetPercentage(relatedValues["4NumIdsrReporting"], relatedValues["4NumIdsr"]));
+                        return new KeyValuePair<string, string>(Translations.PercentIdsr, GetPercentage(GetValueOrDefault("4NumIdsrReporting", relatedValues), GetValueOrDefault("4NumIdsr", relatedValues)));
                     case "4PercentRumorsInvestigated":
-                        return new KeyValuePair<string, string>(Translations.PercentRumorsInvestigated, GetPercentage(relatedValues["4NumRumorsInvestigated"], relatedValues["4NumRumors"]));
+                        return new KeyValuePair<string, string>(Translations.PercentRumorsInvestigated, GetPercentage(GetValueOrDefault("4NumRumorsInvestigated", relatedValues), GetValueOrDefault("4NumRumors", relatedValues)));
                     case "4PercentCasesContained":
-                        return new KeyValuePair<string, string>(Translations.PercentCasesContained, GetPercentage(relatedValues["4NumCasesContained"], relatedValues["4NumClinical"]));
+                        return new KeyValuePair<string, string>(Translations.PercentCasesContained, GetPercentage(GetValueOrDefault("4NumCasesContained", relatedValues), GetValueOrDefault("4NumClinical", relatedValues)));
                     case "4PercentEndemicReporting":
-                        return new KeyValuePair<string, string>(Translations.PercentEndemicReporting, GetPercentage(relatedValues["4NumEndemicVillagesReporting"], relatedValues["4NumEndemicVillages"]));
+                        return new KeyValuePair<string, string>(Translations.PercentEndemicReporting, GetPercentage(GetValueOrDefault("4NumEndemicVillagesReporting", relatedValues), GetValueOrDefault("4NumEndemicVillages", relatedValues)));
                     case "7DetectRate100kLeish":
                         if (demo != null)
-                            return new KeyValuePair<string, string>(Translations.DetectRate100kLeish, GetPercentage(GetTotal(relatedValues["7NumClCases"], relatedValues["7NumLabVlCases"], relatedValues["7NumClVlCases"]), 
+                            return new KeyValuePair<string, string>(Translations.DetectRate100kLeish, GetPercentage(GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues)), 
                                 demo.TotalPopulation.ToString(), 100000));
                         break;
                     case "7PercentLabConfirm":
-                        return new KeyValuePair<string, string>(Translations.PercentLabConfirm, GetPercentage(GetTotal(relatedValues["7NumLabClCases"], relatedValues["7NumLabVlCases"]),
-                            GetTotal(relatedValues["7NumClCases"], relatedValues["7NumLabVlCases"], relatedValues["7NumClVlCases"])));
+                        return new KeyValuePair<string, string>(Translations.PercentLabConfirm, GetPercentage(GetTotal(GetValueOrDefault("7NumLabClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues)),
+                            GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues))));
                     case "7PercentCl":
-                        return new KeyValuePair<string, string>(Translations.PercentCl, GetPercentage(relatedValues["7NumClCases"],
-                            GetTotal(relatedValues["7NumClCases"], relatedValues["7NumLabVlCases"], relatedValues["7NumClVlCases"])));
+                        return new KeyValuePair<string, string>(Translations.PercentCl, GetPercentage(GetValueOrDefault("7NumClCases", relatedValues),
+                            GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues))));
                     case "7PercentVl":
-                        return new KeyValuePair<string, string>(Translations.PercentVl, GetPercentage(relatedValues["7NumLabVlCases"],
-                            GetTotal(relatedValues["7NumClCases"], relatedValues["7NumLabVlCases"], relatedValues["7NumClVlCases"])));
+                        return new KeyValuePair<string, string>(Translations.PercentVl, GetPercentage(GetValueOrDefault("7NumLabVlCases", relatedValues),
+                            GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues))));
                     case "7PercentClVl":
-                        return new KeyValuePair<string, string>(Translations.PercentClVl, GetPercentage(relatedValues["7NumClVlCases"],
-                            GetTotal(relatedValues["7NumClCases"], relatedValues["7NumLabVlCases"], relatedValues["7NumClVlCases"])));
+                        return new KeyValuePair<string, string>(Translations.PercentClVl, GetPercentage(GetValueOrDefault("7NumClVlCases", relatedValues),
+                            GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues))));
                     case "7PercentCasesActiveLeish":
-                        return new KeyValuePair<string, string>(Translations.PercentCasesActiveLeish, GetPercentage(relatedValues["7NumCasesFoundActively"],
-                            GetTotal(relatedValues["7NumClCases"], relatedValues["7NumLabVlCases"], relatedValues["7NumClVlCases"])));
+                        return new KeyValuePair<string, string>(Translations.PercentCasesActiveLeish, GetPercentage(GetValueOrDefault("7NumCasesFoundActively", relatedValues),
+                            GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues))));
                     case "6PercentLabConfirmed":
-                        return new KeyValuePair<string, string>(Translations.PercentLabConfirmed, GetPercentage(relatedValues["6NumLabCases"], relatedValues["6NumClinicalCasesHat"]));
+                        return new KeyValuePair<string, string>(Translations.PercentLabConfirmed, GetPercentage(GetValueOrDefault("6NumLabCases", relatedValues), GetValueOrDefault("6NumClinicalCasesHat", relatedValues)));
                     case "6PercentTGamb":
-                        return new KeyValuePair<string, string>(Translations.PercentTGamb, GetPercentage(relatedValues["6NumTGamb"], relatedValues["6NumLabCases"]));
+                        return new KeyValuePair<string, string>(Translations.PercentTGamb, GetPercentage(GetValueOrDefault("6NumTGamb", relatedValues), GetValueOrDefault("6NumLabCases", relatedValues)));
                     case "6PercentTRhod":
-                        return new KeyValuePair<string, string>(Translations.PercentTRhod, GetPercentage(relatedValues["6NumTRhod"], relatedValues["6NumLabCases"]));
+                        return new KeyValuePair<string, string>(Translations.PercentTRhod, GetPercentage(GetValueOrDefault("6NumTRhod", relatedValues), GetValueOrDefault("6NumLabCases", relatedValues)));
                     case "6PercentTGambTRhod":
-                        return new KeyValuePair<string, string>(Translations.PercentTGambTRhod, GetPercentage(relatedValues["6NumTGambTRhod"], relatedValues["6NumClinicalCasesHat"]));
+                        return new KeyValuePair<string, string>(Translations.PercentTGambTRhod, GetPercentage(GetValueOrDefault("6NumTGambTRhod", relatedValues), GetValueOrDefault("6NumClinicalCasesHat", relatedValues)));
                     case "6PercentCasesActivelyFound":
-                        return new KeyValuePair<string, string>(Translations.PercentCasesActivelyFound, GetPercentage(relatedValues["6NumProspection"], relatedValues["6NumClinicalCasesHat"]));
+                        return new KeyValuePair<string, string>(Translations.PercentCasesActivelyFound, GetPercentage(GetValueOrDefault("6NumProspection", relatedValues), GetValueOrDefault("6NumClinicalCasesHat", relatedValues)));
                     case "6CureRate":
-                        return new KeyValuePair<string, string>(Translations.CureRate, GetPercentage(relatedValues["6NumCasesCured"], relatedValues["6NumCasesTreated"]));
+                        return new KeyValuePair<string, string>(Translations.CureRate, GetPercentage(GetValueOrDefault("6NumCasesCured", relatedValues), GetValueOrDefault("6NumCasesTreated", relatedValues)));
                     case "6PercentTreatmentFailure":
-                        return new KeyValuePair<string, string>(Translations.PercentTreatmentFailure, GetPercentage(relatedValues["6NumTreatmentFailures"], relatedValues["6NumCasesTreated"]));
+                        return new KeyValuePair<string, string>(Translations.PercentTreatmentFailure, GetPercentage(GetValueOrDefault("6NumTreatmentFailures", relatedValues), GetValueOrDefault("6NumCasesTreated", relatedValues)));
                     case "6PercentSae":
-                        return new KeyValuePair<string, string>(Translations.PercentSae, GetPercentage(relatedValues["6NumCasesSaes"], relatedValues["6NumCasesTreated"]));
+                        return new KeyValuePair<string, string>(Translations.PercentSae, GetPercentage(GetValueOrDefault("6NumCasesSaes", relatedValues), GetValueOrDefault("6NumCasesTreated", relatedValues)));
                     case "6FatalityRate":
-                        return new KeyValuePair<string, string>(Translations.FatalityRate, GetPercentage(relatedValues["6NumDeaths"], relatedValues["6NumClinicalCasesHat"]));
+                        return new KeyValuePair<string, string>(Translations.FatalityRate, GetPercentage(GetValueOrDefault("6NumDeaths", relatedValues), GetValueOrDefault("6NumClinicalCasesHat", relatedValues)));
                     case "6DetectionRatePer100k":
                         if (demo != null)
-                            return new KeyValuePair<string, string>(Translations.DetectionRatePer100k, GetPercentage(relatedValues["6NumClinicalCasesHat"], demo.TotalPopulation.ToString(), 100000));
+                            return new KeyValuePair<string, string>(Translations.DetectionRatePer100k, GetPercentage(GetValueOrDefault("6NumClinicalCasesHat", relatedValues), demo.TotalPopulation.ToString(), 100000));
                         break;
                     //DiseaseDistroCm distro = distros.GetDistroByAdminLevelYear(adminLevel, yearOfReporting, (int)DiseaseType.Leprosy));
                     //if (distro != null)
@@ -121,8 +120,8 @@ namespace Nada.Model.Intervention
                     case "9PercentNewCasesLabYw":
                         return new KeyValuePair<string, string>(Translations.PercentNewCasesLabYw, Translations.CalculationError);  //Y40	% of new cases confirmed by lab test	percent		Y5.5/total population (demography)*100000)
                     case "9PercentTreatedYw":
-                        return new KeyValuePair<string, string>(Translations.PercentTreatedYw, GetPercentage(relatedValues["9NumContactsTreatedYw"],
-                            GetTotal(relatedValues["9NumContactsTreatedYw"], relatedValues["9NumCasesTreatedYaws"])));
+                        return new KeyValuePair<string, string>(Translations.PercentTreatedYw, GetPercentage(GetValueOrDefault("9NumContactsTreatedYw", relatedValues),
+                            GetTotal(GetValueOrDefault("9NumContactsTreatedYw", relatedValues), GetValueOrDefault("9NumCasesTreatedYaws", relatedValues))));
                     default:
                         return CheckEachIntvType(relatedValues, field);
                 }
@@ -147,22 +146,22 @@ namespace Nada.Model.Intervention
         private KeyValuePair<string, string> CheckPcIntvCalculations(Dictionary<string, string> relatedValues, string field, int intvTypeId)
         {
             if (field == intvTypeId + "PcIntvProgramCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvProgramCoverage, GetPercentage(relatedValues[intvTypeId + "PcIntvNumIndividualsTreated"], relatedValues[intvTypeId + "PcIntvNumEligibleIndividualsTargeted"]));
+                return new KeyValuePair<string, string>(Translations.PcIntvProgramCoverage, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumEligibleIndividualsTargeted", relatedValues)));
             if (field == intvTypeId + "PcIntvEpiCoverage")
                 return new KeyValuePair<string, string>(Translations.PcIntvProgramCoverage,Translations.CalculationError);
                 //Note need to fix this row in the indicators calcs table	
                 //ID IndicatorId	EntityTypeId	RelatedIndicatorId	RelatedEntityTypeId
                 //181	253	2	238	2
                 //# individuals treated/# individuals at-risk (comes from disease distribution
-                //return GetPercentage(relatedValues[intvTypeId + "PcIntvNumIndividualsTreated"], relatedValues[intvTypeId + "x"]); // # individuals at-risk
+                //return GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetValueOrDefault(intvTypeId + "x", relatedValues)); // # individuals at-risk
             if (field == intvTypeId + "PcIntvFemalesTreatedProportion")
-                return new KeyValuePair<string, string>(Translations.PcIntvFemalesTreatedProportion,GetPercentage(relatedValues[intvTypeId + "PcIntvNumFemalesTreated"], relatedValues[intvTypeId + "PcIntvNumIndividualsTreated"]));
+                return new KeyValuePair<string, string>(Translations.PcIntvFemalesTreatedProportion,GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumFemalesTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues)));
             if (field == intvTypeId + "PcIntvMalesTreatedProportion")
-                return new KeyValuePair<string, string>(Translations.PcIntvMalesTreatedProportion,GetPercentage(relatedValues[intvTypeId + "PcIntvNumMalesTreated"], relatedValues[intvTypeId + "PcIntvNumIndividualsTreated"]));
+                return new KeyValuePair<string, string>(Translations.PcIntvMalesTreatedProportion,GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumMalesTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues)));
             if (field == intvTypeId + "PcIntvPsacCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvPsacCoverage,GetPercentage(relatedValues[intvTypeId + "PcIntvPsacTreated"], relatedValues[intvTypeId + "PcIntvNumPsacTargeted"]));
+                return new KeyValuePair<string, string>(Translations.PcIntvPsacCoverage,GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvPsacTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumPsacTargeted", relatedValues)));
             if (field == intvTypeId + "PcIntvSacCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvSacCoverage,GetPercentage(relatedValues[intvTypeId + "PcIntvNumSacTreated"], relatedValues[intvTypeId + "PcIntvNumSacTargeted"]));
+                return new KeyValuePair<string, string>(Translations.PcIntvSacCoverage,GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumSacTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumSacTargeted", relatedValues)));
             return new KeyValuePair<string, string>(null, null);
         }
     }

@@ -75,11 +75,16 @@ namespace Nada.UI.View.Reports.CustomReport
 
                 if (options.IsNoAggregation)
                 {
-                    cbAllLocations.Checked = true;
+                    cbAllLocations.Checked = options.IsAllLocations;
                     tblListAllLocations.Visible = true;
+                    if(!options.IsAllLocations)
+                        pickerAllLocations.SetSelected(options.SelectedAdminLevels);
                 }
                 else if (options.IsByLevelAggregation)
+                {
                     levelPicker.Visible = true;
+                    levelPicker.SetSelectedItems(options.SelectedAdminLevels);
+                }
                 else
                     lblNoLocations.Visible = true;
             }

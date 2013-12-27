@@ -15,6 +15,7 @@ namespace Nada.UI.View.Reports.CustomReport
 {
     public partial class StepOptions : BaseControl, IWizardStep
     {
+        private List<int> years = new List<int>();
         private ReportOptions options = null;
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<ReportOptions> OnRunReport { get; set; }
@@ -63,13 +64,23 @@ namespace Nada.UI.View.Reports.CustomReport
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                var years = new List<int>();
                 for (int i = DateTime.Now.Year + 2; i >= 1990; i--)
                     years.Add(i);
                 lbYears.DataSource = years;
+                lbYears.ClearSelected();
+                foreach (var year in years.Where(y => options.SelectedYears.Contains(y)))
+                    lbYears.SelectedItems.Add(year);
+
                 rbAggListAll.Checked = options.IsNoAggregation;
                 rbAggCountry.Checked = options.IsCountryAggregation;
                 rbAggLevel.Checked = options.IsByLevelAggregation;
+
+                if (options.HideAggregation)
+                {
+                    rbAggCountry.Visible = false;
+                    rbAggLevel.Visible = false;
+                    rbAggListAll.Checked = true;
+                }
             }
         }
 
