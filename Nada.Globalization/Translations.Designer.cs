@@ -7244,6 +7244,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other NTDs.
+        /// </summary>
+        public static string OtherNtds {
+            get {
+                return ResourceManager.GetString("OtherNtds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other withdrawal from antibiotic treatment.
         /// </summary>
         public static string OtherWithdrawl {
@@ -7699,6 +7708,15 @@ namespace Nada.Globalization {
         public static string PcJrfForm {
             get {
                 return ResourceManager.GetString("PcJrfForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PC NTDs.
+        /// </summary>
+        public static string PcNtds {
+            get {
+                return ResourceManager.GetString("PcNtds", resourceCulture);
             }
         }
         
@@ -10673,6 +10691,150 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buruli Ulcer (Mycobacterium ulcerans infection) Survey.
+        /// </summary>
+        public static string SurBuSurvey {
+            get {
+                return ResourceManager.GetString("SurBuSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dracunculiasis (guinea-worm disease) Survey.
+        /// </summary>
+        public static string SurGwSurvey {
+            get {
+                return ResourceManager.GetString("SurGwSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Human African trypanosomiasis (Sleeping sickness) Survey.
+        /// </summary>
+        public static string SurHatSurvey {
+            get {
+                return ResourceManager.GetString("SurHatSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trachoma Impact Survey.
+        /// </summary>
+        public static string SurImpactSurvey {
+            get {
+                return ResourceManager.GetString("SurImpactSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leishmaniasis Survey.
+        /// </summary>
+        public static string SurLeishSurvey {
+            get {
+                return ResourceManager.GetString("SurLeishSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leprosy Survey.
+        /// </summary>
+        public static string SurLeprosySurvey {
+            get {
+                return ResourceManager.GetString("SurLeprosySurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lymphatic filariasis Mapping.
+        /// </summary>
+        public static string SurLfMapping {
+            get {
+                return ResourceManager.GetString("SurLfMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lymphatic filariasis Sentinel/Spot Check Site Survey.
+        /// </summary>
+        public static string SurLfSentinelSpotCheckSurvey {
+            get {
+                return ResourceManager.GetString("SurLfSentinelSpotCheckSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Onchocerciasis (River blindness) Assement.
+        /// </summary>
+        public static string SurOnchoAssesments {
+            get {
+                return ResourceManager.GetString("SurOnchoAssesments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Onchocerciasis (River blindness) Mapping.
+        /// </summary>
+        public static string SurOnchoMapping {
+            get {
+                return ResourceManager.GetString("SurOnchoMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schistosomiasis Mapping.
+        /// </summary>
+        public static string SurSchMapping {
+            get {
+                return ResourceManager.GetString("SurSchMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schistosomiasis Sentinel/Spot Check Site Survey.
+        /// </summary>
+        public static string SurSchSentinelSpotCheckSurvey {
+            get {
+                return ResourceManager.GetString("SurSchSentinelSpotCheckSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soil transmitted helminthiases Mapping.
+        /// </summary>
+        public static string SurSthMapping {
+            get {
+                return ResourceManager.GetString("SurSthMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soil transmitted helminthiases Sentinel/Spot Check Site Survey.
+        /// </summary>
+        public static string SurSthSentinelSpotCheckSurvey {
+            get {
+                return ResourceManager.GetString("SurSthSentinelSpotCheckSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trachoma Mapping.
+        /// </summary>
+        public static string SurTrachomaMapping {
+            get {
+                return ResourceManager.GetString("SurTrachomaMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lymphatic filariasis Transmission Assessment Survey.
+        /// </summary>
+        public static string SurTransAssessSurvey {
+            get {
+                return ResourceManager.GetString("SurTransAssessSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Survey.
         /// </summary>
         public static string Survey {
@@ -10723,6 +10885,15 @@ namespace Nada.Globalization {
         public static string SurveyYear {
             get {
                 return ResourceManager.GetString("SurveyYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yaws (Endemic treponematoses) Survey.
+        /// </summary>
+        public static string SurYawsSurvey {
+            get {
+                return ResourceManager.GetString("SurYawsSurvey", resourceCulture);
             }
         }
         

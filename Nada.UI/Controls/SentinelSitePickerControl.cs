@@ -45,6 +45,7 @@ namespace Nada.UI.Controls
 
         private void cbSiteType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.SuspendLayout();
             if (cbSiteType.SelectedIndex == 0)
             {
                 pnlSentinel.Visible = true;
@@ -67,6 +68,7 @@ namespace Nada.UI.Controls
                 tbLng.Visible = true;
                 model.SentinelSiteId = null;
             }
+            this.ResumeLayout();
         }
 
         void sites_OnAdd(SentinelSite obj)

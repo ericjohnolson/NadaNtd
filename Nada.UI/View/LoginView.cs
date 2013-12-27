@@ -44,14 +44,13 @@ namespace Nada.UI.View
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
+                DoLogin("admin", "@ntd1one!");
             }
-
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             DoLogin(tbUid.Text, tbPwd.Text);
-
         }
 
         private void btnHelp_Click(object sender, EventArgs e)

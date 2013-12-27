@@ -52,7 +52,7 @@ namespace Nada.Model
         {
             List<string> enumerations = new List<string>();
             for (int i = 0; i < (1 << source.Count); i++)
-                    enumerations.Add(string.Join(" - ", constructSetFromBits(i).Select(n => source[n]).ToArray()));
+                    enumerations.Add(string.Join(" & ", constructSetFromBits(i).Select(n => source[n]).ToArray()));
             enumerations.RemoveAt(0);
             return enumerations;
         }

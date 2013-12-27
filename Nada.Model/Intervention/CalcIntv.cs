@@ -148,7 +148,7 @@ namespace Nada.Model.Intervention
             if (field == intvTypeId + "PcIntvProgramCoverage")
                 return new KeyValuePair<string, string>(Translations.PcIntvProgramCoverage, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumEligibleIndividualsTargeted", relatedValues)));
             if (field == intvTypeId + "PcIntvEpiCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvProgramCoverage,Translations.CalculationError);
+                return new KeyValuePair<string, string>(Translations.PcIntvEpiCoverage, Translations.CalculationError);
                 //Note need to fix this row in the indicators calcs table	
                 //ID IndicatorId	EntityTypeId	RelatedIndicatorId	RelatedEntityTypeId
                 //181	253	2	238	2

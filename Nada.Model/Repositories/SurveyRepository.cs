@@ -446,10 +446,9 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            var name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DisplayName"), reader.GetValueOrDefault<string>("DisplayName")) + " " +
-                                    TranslationLookup.GetValue(reader.GetValueOrDefault<string>("SurveyTypeName"), reader.GetValueOrDefault<string>("SurveyTypeName"));
-                            
-                            if(reader.GetValueOrDefault<string>("DisplayName") == "Custom")
+                            var name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("SurveyTypeName"),
+                                    reader.GetValueOrDefault<string>("SurveyTypeName"));
+                            if (reader.GetValueOrDefault<string>("DiseaseType") == "Custom")
                                 name = reader.GetValueOrDefault<string>("SurveyTypeName");
 
                             types.Add(new SurveyType
@@ -494,11 +493,11 @@ namespace Nada.Model.Repositories
                         {
                             reader.Read();
 
-                            var name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DisplayName"), reader.GetValueOrDefault<string>("DisplayName")) + " " +
-                                    TranslationLookup.GetValue(reader.GetValueOrDefault<string>("SurveyTypeName"), reader.GetValueOrDefault<string>("SurveyTypeName"));
-
-                            if (reader.GetValueOrDefault<string>("DisplayName") == "Custom")
+                            var name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("SurveyTypeName"),
+                                    reader.GetValueOrDefault<string>("SurveyTypeName"));
+                            if (reader.GetValueOrDefault<string>("DiseaseType") == "Custom")
                                 name = reader.GetValueOrDefault<string>("SurveyTypeName");
+
 
                             survey = new SurveyType
                             {

@@ -173,7 +173,6 @@
             this.tbUid.Name = "tbUid";
             this.tbUid.Size = new System.Drawing.Size(206, 21);
             this.tbUid.TabIndex = 0;
-            this.tbUid.Text = "admin";
             // 
             // tbPwd
             // 
@@ -182,7 +181,6 @@
             this.tbPwd.PasswordChar = '*';
             this.tbPwd.Size = new System.Drawing.Size(206, 21);
             this.tbPwd.TabIndex = 1;
-            this.tbPwd.Text = "@ntd1one!";
             // 
             // btnHelp
             // 

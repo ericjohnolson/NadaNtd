@@ -92,7 +92,7 @@ namespace Nada.Model.Reports
                 dic = list.ToDictionary(n => n.Id, n => n);
                 repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndKey, GetColName, GetColTypeName, AddStaticAggInd, false);
                 if (hasCalculations)
-                    ReportAggregationHelper.AddRelatedCalcIndicators(options, dic, command, connection, GetIndKey, GetColName, GetColTypeName,
+                    AddRelatedCalcIndicators(options, dic, command, connection, GetIndKey, GetColName, GetColTypeName,
                         AddStaticAggInd, EntityTypeId);
             }
 
@@ -110,7 +110,7 @@ namespace Nada.Model.Reports
             }
             else
             {
-                ReportAggregationHelper.IndicatorListToTree(list, dic);
+                IndicatorListToTree(list, dic);
 
                 List<AdminLevelIndicators> selectedLevels = new List<AdminLevelIndicators>();
                 if (options.IsCountryAggregation)
@@ -225,15 +225,25 @@ namespace Nada.Model.Reports
 
         protected virtual string GetColName(OleDbDataReader reader)
         {
-            if (TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) == Translations.NoTranslationFound)
+            string name = reader.GetValueOrDefault<string>("IndicatorName");
+            if(!reader.GetValueOrDefault<bool>("IsDisplayed"))
+                name = TranslationLookup.GetValue(name);
+            if (name == Translations.NoTranslationFound)
                 return null;
 
-            return TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) + " - " + TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
+            return name + " - " + GetTypeName(reader);
         }
 
         protected virtual string GetColTypeName(OleDbDataReader reader)
         {
-            return " - " + TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
+            return " - " + GetTypeName(reader);
+        }
+
+        protected string GetTypeName(OleDbDataReader reader)
+        {
+            var name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"),
+                    reader.GetValueOrDefault<string>("TName"));
+            return name;
         }
 
         protected string GetValueOrBlank(string value, string separator)
@@ -265,6 +275,104 @@ namespace Nada.Model.Reports
 
             param.Row[displayName] = val;
         }
+        
+        protected void IndicatorListToTree(List<AdminLevelIndicators> list, Dictionary<int, AdminLevelIndicators> dic)
+        {
+            var rootNodes = new List<AdminLevelIndicators>();
+            foreach (var node in list)
+                if (node.ParentId.HasValue && node.ParentId.Value > 0)
+                {
+                    AdminLevelIndicators parent = dic[node.ParentId.Value];
+                    node.Parent = parent;
+                    parent.Children.Add(node);
+                }
+                else
+                    rootNodes.Add(node);
+        }
+
+        protected void AddRelatedCalcIndicators(ReportOptions options, Dictionary<int, AdminLevelIndicators> dic, OleDbCommand command,
+            OleDbConnection connection, Func<OleDbDataReader, bool, string> getAggKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getType,
+            Action<CreateAggParams> sind,
+            int entityTypeId)
+        {
+            ReportRepository repo = new ReportRepository();
+            string intv = @"Select 
+                        AdminLevels.ID as AID, 
+                        AdminLevels.DisplayName,
+                        Interventions.ID, 
+                        Interventions.YearReported, 
+                        Interventions.PcIntvRoundNumber, 
+                        InterventionTypes.InterventionTypeName as TName,     
+                        InterventionTypes.ID as Tid,      
+                        InterventionIndicators.ID as IndicatorId, 
+                        InterventionIndicators.DisplayName as IndicatorName, 
+                        InterventionIndicators.IsDisplayed, 
+                        InterventionIndicators.DataTypeId, 
+                        InterventionIndicators.AggTypeId, 
+                        InterventionIndicatorValues.DynamicValue
+                        FROM (((((Interventions INNER JOIN InterventionTypes on Interventions.InterventionTypeId = InterventionTypes.ID)
+                            INNER JOIN InterventionIndicatorValues on Interventions.Id = InterventionIndicatorValues.InterventionId)
+                            INNER JOIN AdminLevels on Interventions.AdminLevelId = AdminLevels.ID) 
+                            INNER JOIN InterventionIndicators on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId)
+                            INNER JOIN IndicatorCalculations on InterventionIndicators.ID = IndicatorCalculations.RelatedIndicatorId) 
+                        WHERE Interventions.IsDeleted = 0 AND IndicatorCalculations.RelatedEntityTypeId = 2 AND 
+                              IndicatorCalculations.IndicatorId in "
+            + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
+            + entityTypeId;
+
+            repo.AddIndicatorsToAggregate(intv, options, dic, command, connection, getAggKey, getName, getType, sind, true);
+
+            string dd = @"Select 
+                        AdminLevels.ID as AID, 
+                        AdminLevels.DisplayName,
+                        DiseaseDistributions.ID, 
+                        DiseaseDistributions.YearReported, 
+                        Diseases.DisplayName as TName,       
+                        Diseases.ID as Tid,   
+                        DiseaseDistributionIndicators.ID as IndicatorId, 
+                        DiseaseDistributionIndicators.DisplayName as IndicatorName, 
+                        DiseaseDistributionIndicators.IsDisplayed, 
+                        DiseaseDistributionIndicators.DataTypeId, 
+                        DiseaseDistributionIndicators.AggTypeId, 
+                        DiseaseDistributionIndicatorValues.DynamicValue
+                        FROM (((((DiseaseDistributions INNER JOIN Diseases on DiseaseDistributions.DiseaseId = Diseases.ID)
+                            INNER JOIN DiseaseDistributionIndicatorValues on DiseaseDistributions.Id = DiseaseDistributionIndicatorValues.DiseaseDistributionId)
+                            INNER JOIN AdminLevels on DiseaseDistributions.AdminLevelId = AdminLevels.ID) 
+                            INNER JOIN DiseaseDistributionIndicators on DiseaseDistributionIndicators.ID = DiseaseDistributionIndicatorValues.IndicatorId)
+                            INNER JOIN IndicatorCalculations on DiseaseDistributionIndicators.ID = IndicatorCalculations.RelatedIndicatorId) 
+                        WHERE DiseaseDistributions.IsDeleted = 0 AND  IndicatorCalculations.RelatedEntityTypeId = 1 AND
+                               IndicatorCalculations.IndicatorId in "
+            + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
+            + entityTypeId;
+
+            repo.AddIndicatorsToAggregate(dd, options, dic, command, connection, getAggKey, getName, getType, sind, true);
+
+            string survey = @"Select 
+                        AdminLevels.ID as AID, 
+                        AdminLevels.DisplayName,
+                        Surveys.ID, 
+                        Surveys.YearReported, 
+                        SurveyTypes.SurveyTypeName as TName,        
+                        SurveyTypes.ID as Tid,      
+                        SurveyIndicators.ID as IndicatorId, 
+                        SurveyIndicators.DisplayName as IndicatorName, 
+                        SurveyIndicators.IsDisplayed, 
+                        SurveyIndicators.DataTypeId, 
+                        SurveyIndicators.AggTypeId,    
+                        SurveyIndicatorValues.DynamicValue
+                        FROM ((((((Surveys INNER JOIN SurveyTypes on Surveys.SurveyTypeId = SurveyTypes.ID)
+                            INNER JOIN SurveyIndicatorValues on Surveys.Id = SurveyIndicatorValues.SurveyId)
+                            INNER JOIN Surveys_to_AdminLevels on Surveys_to_AdminLevels.SurveyId = Surveys.ID) 
+                            INNER JOIN AdminLevels on Surveys_to_AdminLevels.AdminLevelId = AdminLevels.ID) 
+                            INNER JOIN SurveyIndicators on SurveyIndicators.ID = SurveyIndicatorValues.IndicatorId)
+                            INNER JOIN IndicatorCalculations on SurveyIndicators.ID = IndicatorCalculations.RelatedIndicatorId) 
+                        WHERE Surveys.IsDeleted = 0 AND IndicatorCalculations.RelatedEntityTypeId = 3 AND 
+                              IndicatorCalculations.IndicatorId in "
+            + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
+            + entityTypeId;
+
+            repo.AddIndicatorsToAggregate(survey, options, dic, command, connection, getAggKey, getName, getType, sind, true);
+        }
         #endregion
     }
 
@@ -288,6 +396,7 @@ namespace Nada.Model.Reports
                         InterventionTypes.ID as Tid,      
                         InterventionIndicators.ID as IndicatorId, 
                         InterventionIndicators.DisplayName as IndicatorName, 
+                        InterventionIndicators.IsDisplayed, 
                         InterventionIndicators.DataTypeId, 
                         InterventionIndicators.AggTypeId, 
                         InterventionIndicatorValues.DynamicValue
@@ -311,14 +420,18 @@ namespace Nada.Model.Reports
 
         protected override string GetColName(OleDbDataReader reader)
         {
-            return TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) + " - " +
-                TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName")) +
+            string name = reader.GetValueOrDefault<string>("IndicatorName");
+            if (!reader.GetValueOrDefault<bool>("IsDisplayed"))
+                name = TranslationLookup.GetValue(name);
+
+            return name + " - " +
+                GetTypeName(reader) +
                 GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", Translations.Round));
         }
 
         protected override string GetColTypeName(OleDbDataReader reader)
         {
-            return " - " + TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName")) +
+            return " - " + GetTypeName(reader) +
                 GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", Translations.Round));
         }
     }
@@ -359,6 +472,7 @@ namespace Nada.Model.Reports
                         SurveyTypes.ID as Tid,      
                         SurveyIndicators.ID as IndicatorId, 
                         SurveyIndicators.DisplayName as IndicatorName, 
+                        SurveyIndicators.IsDisplayed, 
                         SurveyIndicators.DataTypeId, 
                         SurveyIndicators.AggTypeId,    
                         SurveyIndicatorValues.DynamicValue,
@@ -388,6 +502,7 @@ namespace Nada.Model.Reports
                         SurveyTypes.ID as Tid,       
                         0 as IndicatorId, 
                         '' as IndicatorName, 
+                        0 as IsDisplayed, 
                         1 as DataTypeId, 
                         1 as AggTypeId,    
                         '' as DynamicValue,
@@ -471,6 +586,7 @@ namespace Nada.Model.Reports
                         Diseases.ID as Tid,       
                         DiseaseDistributionIndicators.ID as IndicatorId, 
                         DiseaseDistributionIndicators.DisplayName as IndicatorName, 
+                        DiseaseDistributionIndicators.IsDisplayed, 
                         DiseaseDistributionIndicators.DataTypeId, 
                         DiseaseDistributionIndicators.AggTypeId, 
                         DiseaseDistributionIndicatorValues.DynamicValue
@@ -499,6 +615,7 @@ namespace Nada.Model.Reports
                         Diseases.ID as Tid,        
                         Diseases.ID as IndicatorId, 
                         ProcessIndicators.DisplayName as IndicatorName, 
+                        ProcessIndicators.IsDisplayed, 
                         ProcessIndicators.DataTypeId, 
                         ProcessIndicators.AggTypeId, 
                         ProcessIndicatorValues.DynamicValue
@@ -523,15 +640,19 @@ namespace Nada.Model.Reports
 
         protected override string GetColName(OleDbDataReader reader)
         {
-            return TranslationLookup.GetValue(reader.GetValueOrDefault<string>("IndicatorName")) + " - " +
-                TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName")) +
+            string name = reader.GetValueOrDefault<string>("IndicatorName");
+            if (!reader.GetValueOrDefault<bool>("IsDisplayed"))
+                name = TranslationLookup.GetValue(name);
+
+            return name + " - " +
+                GetTypeName(reader) +
                 GetValueOrBlank(reader.GetValueOrDefault<string>("SCMDrug"), " - ") +
                 GetValueOrBlank(reader.GetValueOrDefault<string>("PCTrainTrainingCategory"), " - ").Replace("|", ", ");
         }
 
         protected override string GetColTypeName(OleDbDataReader reader)
         {
-            return " - " + TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName")) +
+            return " - " + GetTypeName(reader) +
                 GetValueOrBlank(reader.GetValueOrDefault<string>("SCMDrug"), " - ") +
                 GetValueOrBlank(reader.GetValueOrDefault<string>("PCTrainTrainingCategory"), " - ").Replace("|", ", ");
         }

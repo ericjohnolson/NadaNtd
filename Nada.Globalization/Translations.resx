@@ -4361,8 +4361,14 @@ Fixed / Mobile</value>
   <data name="NoTranslationFound" xml:space="preserve">
     <value>No translation found</value>
   </data>
+  <data name="OtherNtds" xml:space="preserve">
+    <value>Other NTDs</value>
+  </data>
   <data name="ParentIsRequired" xml:space="preserve">
     <value>You must select a parent for the new administrative level</value>
+  </data>
+  <data name="PcNtds" xml:space="preserve">
+    <value>PC NTDs</value>
   </data>
   <data name="RecentFile" xml:space="preserve">
     <value>Recent file: </value>
@@ -4414,6 +4420,57 @@ Fixed / Mobile</value>
   </data>
   <data name="SentinelSiteId" xml:space="preserve">
     <value>Sentinel site</value>
+  </data>
+  <data name="SurBuSurvey" xml:space="preserve">
+    <value>Buruli Ulcer (Mycobacterium ulcerans infection) Survey</value>
+  </data>
+  <data name="SurGwSurvey" xml:space="preserve">
+    <value>Dracunculiasis (guinea-worm disease) Survey</value>
+  </data>
+  <data name="SurHatSurvey" xml:space="preserve">
+    <value>Human African trypanosomiasis (Sleeping sickness) Survey</value>
+  </data>
+  <data name="SurImpactSurvey" xml:space="preserve">
+    <value>Trachoma Impact Survey</value>
+  </data>
+  <data name="SurLeishSurvey" xml:space="preserve">
+    <value>Leishmaniasis Survey</value>
+  </data>
+  <data name="SurLeprosySurvey" xml:space="preserve">
+    <value>Leprosy Survey</value>
+  </data>
+  <data name="SurLfMapping" xml:space="preserve">
+    <value>Lymphatic filariasis Mapping</value>
+  </data>
+  <data name="SurLfSentinelSpotCheckSurvey" xml:space="preserve">
+    <value>Lymphatic filariasis Sentinel/Spot Check Site Survey</value>
+  </data>
+  <data name="SurOnchoAssesments" xml:space="preserve">
+    <value>Onchocerciasis (River blindness) Assement</value>
+  </data>
+  <data name="SurOnchoMapping" xml:space="preserve">
+    <value>Onchocerciasis (River blindness) Mapping</value>
+  </data>
+  <data name="SurSchMapping" xml:space="preserve">
+    <value>Schistosomiasis Mapping</value>
+  </data>
+  <data name="SurSchSentinelSpotCheckSurvey" xml:space="preserve">
+    <value>Schistosomiasis Sentinel/Spot Check Site Survey</value>
+  </data>
+  <data name="SurSthMapping" xml:space="preserve">
+    <value>Soil transmitted helminthiases Mapping</value>
+  </data>
+  <data name="SurSthSentinelSpotCheckSurvey" xml:space="preserve">
+    <value>Soil transmitted helminthiases Sentinel/Spot Check Site Survey</value>
+  </data>
+  <data name="SurTrachomaMapping" xml:space="preserve">
+    <value>Trachoma Mapping</value>
+  </data>
+  <data name="SurTransAssessSurvey" xml:space="preserve">
+    <value>Lymphatic filariasis Transmission Assessment Survey</value>
+  </data>
+  <data name="SurYawsSurvey" xml:space="preserve">
+    <value>Yaws (Endemic treponematoses) Survey</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>

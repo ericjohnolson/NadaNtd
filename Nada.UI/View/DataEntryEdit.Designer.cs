@@ -46,7 +46,6 @@
             this.nadaLabel1 = new Nada.UI.Controls.H3Label();
             this.adminLevelPickerControl2 = new Nada.UI.View.AdminLevelPickerControl();
             this.btnHelp = new System.Windows.Forms.Button();
-            this.btnDash = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblDiseaseType = new System.Windows.Forms.Label();
             this.tblTitle = new System.Windows.Forms.TableLayoutPanel();
@@ -124,7 +123,7 @@
             this.tblEdit.ColumnCount = 1;
             this.tblEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblEdit.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tblEdit.Location = new System.Drawing.Point(3, 342);
+            this.tblEdit.Location = new System.Drawing.Point(3, 336);
             this.tblEdit.Name = "tblEdit";
             this.tblEdit.RowCount = 2;
             this.tblEdit.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -159,14 +158,14 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(939, 430);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(939, 424);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // hr5
             // 
             this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.hr5.ForeColor = System.Drawing.Color.Gray;
-            this.hr5.Location = new System.Drawing.Point(0, 327);
+            this.hr5.Location = new System.Drawing.Point(0, 321);
             this.hr5.Margin = new System.Windows.Forms.Padding(0);
             this.hr5.Name = "hr5";
             this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
@@ -178,7 +177,7 @@
             // 
             this.hr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.hr4.ForeColor = System.Drawing.Color.Gray;
-            this.hr4.Location = new System.Drawing.Point(0, 102);
+            this.hr4.Location = new System.Drawing.Point(0, 96);
             this.hr4.Margin = new System.Windows.Forms.Padding(0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
@@ -196,7 +195,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel3.Controls.Add(this.tbNotes, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.h3Label3, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 117);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 111);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -238,7 +237,7 @@
             this.indicatorControl1.Location = new System.Drawing.Point(0, 6);
             this.indicatorControl1.Margin = new System.Windows.Forms.Padding(0);
             this.indicatorControl1.Name = "indicatorControl1";
-            this.indicatorControl1.Size = new System.Drawing.Size(936, 86);
+            this.indicatorControl1.Size = new System.Drawing.Size(936, 80);
             this.indicatorControl1.TabIndex = 58;
             this.indicatorControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             // 
@@ -249,7 +248,7 @@
             this.statCalculator1.BackColor = System.Drawing.Color.White;
             this.statCalculator1.Calc = null;
             this.statCalculator1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statCalculator1.Location = new System.Drawing.Point(3, 259);
+            this.statCalculator1.Location = new System.Drawing.Point(3, 253);
             this.statCalculator1.Name = "statCalculator1";
             this.statCalculator1.Size = new System.Drawing.Size(933, 55);
             this.statCalculator1.TabIndex = 59;
@@ -277,7 +276,7 @@
             this.hrTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.hrTop.ForeColor = System.Drawing.Color.Gray;
             this.hrTop.Location = new System.Drawing.Point(0, 0);
-            this.hrTop.Margin = new System.Windows.Forms.Padding(6);
+            this.hrTop.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.hrTop.Name = "hrTop";
             this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.hrTop.Size = new System.Drawing.Size(954, 6);
@@ -332,27 +331,12 @@
             this.btnHelp.FlatAppearance.BorderSize = 0;
             this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHelp.Image = global::Nada.UI.Properties.Resources.button_help;
-            this.btnHelp.Location = new System.Drawing.Point(806, 9);
+            this.btnHelp.Location = new System.Drawing.Point(867, 8);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(46, 46);
             this.btnHelp.TabIndex = 59;
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
-            // btnDash
-            // 
-            this.btnDash.AutoSize = true;
-            this.btnDash.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnDash.FlatAppearance.BorderSize = 0;
-            this.btnDash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDash.Image = global::Nada.UI.Properties.Resources.button_dashboard;
-            this.btnDash.Location = new System.Drawing.Point(867, 9);
-            this.btnDash.Name = "btnDash";
-            this.btnDash.Size = new System.Drawing.Size(46, 46);
-            this.btnDash.TabIndex = 57;
-            this.btnDash.TabStop = false;
-            this.btnDash.UseVisualStyleBackColor = true;
-            this.btnDash.Click += new System.EventHandler(this.btnDash_Click);
             // 
             // lblTitle
             // 
@@ -457,7 +441,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
@@ -465,7 +448,6 @@
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tblTitle);
             this.Controls.Add(this.btnHelp);
-            this.Controls.Add(this.btnDash);
             this.Controls.Add(this.hrTop);
             this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.tableLayoutPanel5);
@@ -473,7 +455,7 @@
             this.Controls.Add(this.nadaLabel1);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "DataEntryEdit";
-            this.Size = new System.Drawing.Size(954, 534);
+            this.Size = new System.Drawing.Size(954, 528);
             this.Load += new System.EventHandler(this.DataEntryEdit_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
@@ -504,7 +486,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private Controls.HR hrTop;
         private Controls.HR hr5;
-        private System.Windows.Forms.Button btnDash;
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TextBox tbNotes;

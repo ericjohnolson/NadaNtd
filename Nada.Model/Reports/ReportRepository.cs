@@ -376,6 +376,8 @@ namespace Nada.Model.Repositories
         {
             int dataType = reader.GetValueOrDefault<int>("DataTypeId");
             string value = reader.GetValueOrDefault<string>("DynamicValue");
+            if (value == null)
+                return null;
             if (dataType == (int)IndicatorDataType.Multiselect)
                 value = value.Replace("|", ", ");
             else if (dataType == (int)IndicatorDataType.Partners)
@@ -426,8 +428,8 @@ namespace Nada.Model.Repositories
             List<ReportIndicator> indicators = new List<ReportIndicator>();
             IntvRepository repo = new IntvRepository();
             var types = repo.GetAllTypes();
-            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PC"), IsCategory = true };
-            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("CM"), IsCategory = true };
+            var pc = new ReportIndicator { Name = Translations.PcNtds, IsCategory = true };
+            var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
             indicators.Add(pc);
             indicators.Add(cm);
             foreach (var t in types.Where(i => i.DiseaseType == "PC").OrderBy(t => t.IntvTypeName))
@@ -457,8 +459,8 @@ namespace Nada.Model.Repositories
             List<ReportIndicator> indicators = new List<ReportIndicator>();
             SurveyRepository repo = new SurveyRepository();
             var types = repo.GetSurveyTypes();
-            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PC"), IsCategory = true };
-            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("CM"), IsCategory = true };
+            var pc = new ReportIndicator { Name = Translations.PcNtds, IsCategory = true };
+            var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
             indicators.Add(pc);
             indicators.Add(cm);
             foreach (var t in types.Where(i => i.DiseaseType == "PC").OrderBy(t => t.SurveyTypeName))
@@ -499,8 +501,8 @@ namespace Nada.Model.Repositories
             List<ReportIndicator> indicators = new List<ReportIndicator>();
             ProcessRepository repo = new ProcessRepository();
             var types = repo.GetProcessTypes();
-            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PC"), IsCategory = true };
-            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("CM"), IsCategory = true };
+            var pc = new ReportIndicator { Name = Translations.PcNtds, IsCategory = true };
+            var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
             indicators.Add(pc);
             indicators.Add(cm);
             foreach (var t in types.Where(i => i.DiseaseType == "PC").OrderBy(t => t.TypeName))
@@ -530,8 +532,8 @@ namespace Nada.Model.Repositories
             List<ReportIndicator> indicators = new List<ReportIndicator>();
             DiseaseRepository repo = new DiseaseRepository();
             var types = repo.GetSelectedDiseases();
-            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PC"), IsCategory = true };
-            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("CM"), IsCategory = true };
+            var pc = new ReportIndicator { Name = Translations.PcNtds, IsCategory = true };
+            var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
             indicators.Add(pc);
             indicators.Add(cm);
             foreach (var t in types.Where(i => i.DiseaseType == "PC").OrderBy(t => t.DisplayName))
