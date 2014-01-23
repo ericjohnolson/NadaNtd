@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Base;
@@ -91,7 +92,10 @@ namespace Nada.UI.ViewModel
                 sitePicker.EndEdit();
             model.Notes = notes;
             model.IndicatorValues = indicatorValues;
+            bool isNew = model.Id < 1;
             r.SaveSurvey(model, ApplicationData.Instance.GetUserId());
+            if (isNew && r.CopySentinelSiteSurvey(model, ApplicationData.Instance.GetUserId()))
+                MessageBox.Show(Translations.SurveyCopiedMessage, Translations.SurveyCopiedTitle);
         }
 
         private void selector_OnSave(List<AdminLevel> obj)

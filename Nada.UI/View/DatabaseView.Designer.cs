@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tblContainer = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tblContents = new System.Windows.Forms.TableLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblRecentFile = new System.Windows.Forms.Label();
@@ -45,49 +44,33 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbLanguages = new System.Windows.Forms.ComboBox();
             this.bsLanguages = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.btnHelp = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.tblContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tblContents.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tblTitle.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tblContainer
-            // 
-            this.tblContainer.AutoSize = true;
-            this.tblContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tblContainer.ColumnCount = 1;
-            this.tblContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblContainer.Controls.Add(this.pictureBox2, 0, 2);
-            this.tblContainer.Controls.Add(this.tblContents, 0, 0);
-            this.tblContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblContainer.Location = new System.Drawing.Point(0, 6);
-            this.tblContainer.Name = "tblContainer";
-            this.tblContainer.RowCount = 4;
-            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblContainer.Size = new System.Drawing.Size(1080, 720);
-            this.tblContainer.TabIndex = 5;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Location = new System.Drawing.Point(437, 603);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 3, 40, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(603, 94);
-            this.pictureBox2.TabIndex = 52;
-            this.pictureBox2.TabStop = false;
             // 
             // tblContents
             // 
@@ -95,16 +78,30 @@
             this.tblContents.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tblContents.ColumnCount = 1;
             this.tblContents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblContents.Controls.Add(this.panel1, 0, 1);
+            this.tblContents.Controls.Add(this.panel4, 0, 1);
+            this.tblContents.Controls.Add(this.label1, 0, 3);
             this.tblContents.Controls.Add(this.btnHelp, 0, 0);
-            this.tblContents.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblContents.Location = new System.Drawing.Point(3, 3);
+            this.tblContents.Controls.Add(this.panel3, 0, 4);
+            this.tblContents.Location = new System.Drawing.Point(0, 6);
             this.tblContents.Name = "tblContents";
-            this.tblContents.RowCount = 2;
-            this.tblContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tblContents.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblContents.Size = new System.Drawing.Size(1074, 594);
+            this.tblContents.RowCount = 5;
+            this.tblContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tblContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tblContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tblContents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tblContents.Size = new System.Drawing.Size(1080, 720);
             this.tblContents.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.AutoScroll = true;
+            this.panel4.Controls.Add(this.panel1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 128);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1074, 404);
+            this.panel4.TabIndex = 6;
             // 
             // panel1
             // 
@@ -113,7 +110,7 @@
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Controls.Add(this.tblTitle);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Location = new System.Drawing.Point(150, 153);
+            this.panel1.Location = new System.Drawing.Point(150, 3);
             this.panel1.Margin = new System.Windows.Forms.Padding(150, 3, 3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(378, 211);
@@ -300,6 +297,19 @@
             // 
             this.bsLanguages.DataSource = typeof(Nada.Model.Language);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 8F);
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(80, 550);
+            this.label1.Margin = new System.Windows.Forms.Padding(80, 0, 0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 14);
+            this.label1.TabIndex = 65;
+            this.label1.Tag = "NadaIntro";
+            this.label1.Text = "NadaIntro";
+            // 
             // btnHelp
             // 
             this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -308,7 +318,7 @@
             this.btnHelp.FlatAppearance.BorderSize = 0;
             this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHelp.Image = global::Nada.UI.Properties.Resources.button_help;
-            this.btnHelp.Location = new System.Drawing.Point(1003, 3);
+            this.btnHelp.Location = new System.Drawing.Point(1009, 3);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(46, 46);
@@ -316,6 +326,81 @@
             this.btnHelp.TabStop = false;
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.pictureBox6);
+            this.panel3.Controls.Add(this.pictureBox5);
+            this.panel3.Controls.Add(this.pictureBox4);
+            this.panel3.Controls.Add(this.pictureBox3);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Controls.Add(this.pictureBox1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(80, 595);
+            this.panel3.Margin = new System.Windows.Forms.Padding(80, 5, 0, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1000, 122);
+            this.panel3.TabIndex = 64;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::Nada.UI.Properties.Resources.rti;
+            this.pictureBox6.Location = new System.Drawing.Point(103, 68);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(180, 32);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 5;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Nada.UI.Properties.Resources.envision;
+            this.pictureBox5.Location = new System.Drawing.Point(115, 4);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(154, 62);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 4;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Nada.UI.Properties.Resources.ntd;
+            this.pictureBox4.Location = new System.Drawing.Point(289, 3);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(95, 98);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 3;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Nada.UI.Properties.Resources.apoc;
+            this.pictureBox3.Location = new System.Drawing.Point(516, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(114, 100);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 2;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Nada.UI.Properties.Resources.who;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Nada.UI.Properties.Resources.afro;
+            this.pictureBox1.Location = new System.Drawing.Point(401, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -334,17 +419,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.tblContainer);
+            this.Controls.Add(this.tblContents);
             this.Controls.Add(this.panel2);
             this.Name = "DatabaseView";
             this.Size = new System.Drawing.Size(1080, 726);
             this.Load += new System.EventHandler(this.DatabaseView_Load);
-            this.tblContainer.ResumeLayout(false);
-            this.tblContainer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tblContents.ResumeLayout(false);
             this.tblContents.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -354,6 +439,13 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).EndInit();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,8 +454,6 @@
         #endregion
 
         private System.Windows.Forms.BindingSource bsLanguages;
-        private System.Windows.Forms.TableLayoutPanel tblContainer;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TableLayoutPanel tblContents;
         private System.Windows.Forms.TableLayoutPanel tblTitle;
         private System.Windows.Forms.Label lblTitle;
@@ -381,5 +471,14 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel4;
     }
 }

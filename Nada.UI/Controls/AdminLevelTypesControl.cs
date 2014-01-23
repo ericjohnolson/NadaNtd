@@ -75,5 +75,10 @@ namespace Nada.UI.Controls
             return (types.FirstOrDefault(t => t.IsDistrict) != null);
         }
 
+        public bool HasAggregatingLevel()
+        {
+            return (types.FirstOrDefault(t => t.IsAggregatingLevel) != null);
+        }
+
     }
 }

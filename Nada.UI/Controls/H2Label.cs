@@ -14,7 +14,6 @@ namespace Nada.UI.Controls
         public H2Label()
         {
             InitializeComponent();
-            
             label1.MaximumSize = new Size(370, 0);
             label1.AutoSize = true;
         }

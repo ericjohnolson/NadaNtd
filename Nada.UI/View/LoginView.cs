@@ -20,6 +20,8 @@ namespace Nada.UI.View
 {
     public partial class LoginView : BaseControl, IView
     {
+        MemberRepository repo = new MemberRepository();
+        private bool autoLogin = false;
         public Action<string> StatusChanged { get; set; }
         public Action OnClose { get; set; }
         public string Title { get { return ""; } }
@@ -34,7 +36,6 @@ namespace Nada.UI.View
 
         public void DoLogin(string uid, string pwd)
         {
-            MemberRepository repo = new MemberRepository();
             if (repo.Authenticate(uid, pwd))
                 OnLogin();
         }
@@ -44,12 +45,15 @@ namespace Nada.UI.View
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                DoLogin("admin", "@ntd1one!");
+                autoLogin = repo.Authenticate("admin", "@ntd1one!");
             }
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
+            if(tbUid.Text == "" && tbPwd.Text == "" && autoLogin)
+                OnLogin();
+
             DoLogin(tbUid.Text, tbPwd.Text);
         }
 

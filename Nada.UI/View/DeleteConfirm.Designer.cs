@@ -32,7 +32,7 @@
             this.hr1 = new Nada.UI.Controls.HR();
             this.label3 = new System.Windows.Forms.Label();
             this.bsIndicator = new System.Windows.Forms.BindingSource(this.components);
-            this.h3Label1 = new Nada.UI.Controls.H3Label();
+            this.h3Label1 = new Nada.UI.Controls.H3bLabel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.c1Button1 = new C1.Win.C1Input.C1Button();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
@@ -46,10 +46,10 @@
             this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
             this.hr1.ForeColor = System.Drawing.Color.Gray;
             this.hr1.Location = new System.Drawing.Point(0, 0);
-            this.hr1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.hr1.Margin = new System.Windows.Forms.Padding(6);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hr1.Size = new System.Drawing.Size(308, 6);
+            this.hr1.Size = new System.Drawing.Size(274, 6);
             this.hr1.TabIndex = 13;
             // 
             // label3
@@ -75,9 +75,9 @@
             this.h3Label1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.h3Label1.Location = new System.Drawing.Point(31, 50);
-            this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label1.Margin = new System.Windows.Forms.Padding(0, 0, 25, 0);
             this.h3Label1.Name = "h3Label1";
-            this.h3Label1.Size = new System.Drawing.Size(183, 37);
+            this.h3Label1.Size = new System.Drawing.Size(183, 16);
             this.h3Label1.TabIndex = 15;
             this.h3Label1.Tag = "DeleteConfirmMessage";
             this.h3Label1.Text = "Are you sure you want to delete?";
@@ -97,6 +97,7 @@
             this.tableLayoutPanel2.Controls.Add(this.c1Button1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.c1Button2, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(31, 118);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(25, 3, 25, 25);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -141,8 +142,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(308, 174);
+            this.ClientSize = new System.Drawing.Size(274, 174);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.h3Label1);
             this.Controls.Add(this.label3);
@@ -165,7 +168,7 @@
         private System.Windows.Forms.BindingSource bsIndicator;
         private Controls.HR hr1;
         private System.Windows.Forms.Label label3;
-        private Controls.H3Label h3Label1;
+        private Controls.H3bLabel h3Label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private C1.Win.C1Input.C1Button c1Button1;
         private C1.Win.C1Input.C1Button c1Button2;

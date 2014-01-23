@@ -85,6 +85,11 @@ namespace Nada.UI.View.Wizard
                 MessageBox.Show(Translations.MustMakeDistrict, Translations.ValidationErrorTitle);
                 return false;
             }
+            if (!adminLevelTypesControl1.HasAggregatingLevel())
+            {
+                MessageBox.Show(Translations.MustMakeAggregatingLevel, Translations.ValidationErrorTitle);
+                return false;
+            }
 
             int userId = ApplicationData.Instance.GetUserId();
             var demo = new DemoRepository();

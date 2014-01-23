@@ -31,9 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.bsAdminLevel = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.hr1 = new Nada.UI.Controls.HR();
             this.h3Label1 = new Nada.UI.Controls.H3Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -43,11 +42,12 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.c1Button1 = new C1.Win.C1Input.C1Button();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
+            this.bsAdminLevel = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeAvailable)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox3
@@ -62,31 +62,27 @@
             // 
             this.bindingSource1.DataSource = typeof(Nada.Model.AdminLevel);
             // 
-            // bsAdminLevel
-            // 
-            this.bsAdminLevel.DataSource = typeof(Nada.Model.AdminLevelType);
-            // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 501);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 504);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(442, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(447, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // label3
+            // lblTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Light", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.label3.Location = new System.Drawing.Point(28, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 28);
-            this.label3.TabIndex = 43;
-            this.label3.Tag = "AdminLevel";
-            this.label3.Text = "AdminLevel";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.lblTitle.Location = new System.Drawing.Point(28, 12);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(109, 28);
+            this.lblTitle.TabIndex = 43;
+            this.lblTitle.Tag = "AdminLevel";
+            this.lblTitle.Text = "AdminLevel";
             // 
             // hr1
             // 
@@ -97,7 +93,7 @@
             this.hr1.Margin = new System.Windows.Forms.Padding(6);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hr1.Size = new System.Drawing.Size(442, 6);
+            this.hr1.Size = new System.Drawing.Size(447, 6);
             this.hr1.TabIndex = 42;
             // 
             // h3Label1
@@ -144,6 +140,7 @@
             this.olvColumn1.CellPadding = null;
             this.olvColumn1.FillsFreeSpace = true;
             this.olvColumn1.IsEditable = false;
+            this.olvColumn1.Tag = "Name";
             this.olvColumn1.Text = "Name";
             this.olvColumn1.Width = 290;
             // 
@@ -215,17 +212,21 @@
             this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
             this.c1Button2.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
+            // bsAdminLevel
+            // 
+            this.bsAdminLevel.DataSource = typeof(Nada.Model.AdminLevelType);
+            // 
             // AdminLevelAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(442, 523);
+            this.ClientSize = new System.Drawing.Size(447, 526);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.h3Label3);
             this.Controls.Add(this.treeAvailable);
             this.Controls.Add(this.h3Label1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.hr1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.textBox3);
@@ -234,11 +235,11 @@
             this.Text = "AdminLevel";
             this.Load += new System.EventHandler(this.DistributionMethodAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeAvailable)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAdminLevel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,7 +250,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.BindingSource bsAdminLevel;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTitle;
         private Controls.HR hr1;
         private Controls.H3Label h3Label1;
         private System.Windows.Forms.ErrorProvider errorProvider1;

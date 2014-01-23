@@ -161,7 +161,7 @@ namespace Nada.UI.ViewModel
 
             container.IsValid = () =>
             {
-                if (indicator.IsRequired)
+                if (indicator.IsRequired && indicatorErrors != null)
                 {
                     if (cntrl.Text == "" || cntrl.Text == null)
                     {
@@ -220,7 +220,7 @@ namespace Nada.UI.ViewModel
 
             container.IsValid = () =>
             {
-                if (indicator.IsRequired)
+                if (indicator.IsRequired && indicatorErrors != null)
                 {
                     if (string.IsNullOrEmpty(container.GetValue()))
                     {
@@ -261,7 +261,7 @@ namespace Nada.UI.ViewModel
 
             container.IsValid = () =>
             {
-                if (indicator.IsRequired)
+                if (indicator.IsRequired && indicatorErrors != null)
                 {
                     if (cntrl.Text == "" || cntrl.Text == null)
                     {
@@ -315,7 +315,7 @@ namespace Nada.UI.ViewModel
 
             container.IsValid = () =>
             {
-                if (indicator.IsRequired)
+                if (indicator.IsRequired && indicatorErrors != null)
                 {
                     if (string.IsNullOrEmpty(container.GetValue()))
                     {
@@ -353,7 +353,7 @@ namespace Nada.UI.ViewModel
             return tblContainer;
         }
 
-        private static List<Partner> GetAndLoadPartners(ListBox cntrl)
+        public static List<Partner> GetAndLoadPartners(ListBox cntrl)
         {
             IntvRepository repo = new IntvRepository();
             cntrl.Items.Clear();
@@ -365,10 +365,10 @@ namespace Nada.UI.ViewModel
             return partners;
         }
 
-        public static Control CreateText(Indicator indicator, string val, ErrorProvider indicatorErrors, List<DynamicContainer> controlList)
+        public static Control CreateText(Indicator indicator, string val, ErrorProvider indicatorErrors, List<DynamicContainer> controlList, int height, bool isMultiLine)
         {
             var container = new DynamicContainer { Indicator = indicator };
-            var cntrl = new TextBox { Name = "dynamicTxt" + indicator.Id.ToString(), Text = val, Width = 220, Margin = new Padding(0, 5, 10, bottomPadding) };
+            var cntrl = new TextBox { Name = "dynamicTxt" + indicator.Id.ToString(), Text = val, Width = 220, Height = height, Multiline = isMultiLine, Margin = new Padding(0, 5, 10, bottomPadding) };
             container.IsValid = () =>
             {
                 if (indicator.IsRequired)

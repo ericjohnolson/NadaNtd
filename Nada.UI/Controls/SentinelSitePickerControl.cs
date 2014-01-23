@@ -40,11 +40,11 @@ namespace Nada.UI.Controls
             sites = r.GetSitesForAdminLevel(model.AdminLevels.Select(a => a.Id.ToString()));
             sentinelSiteBindingSource.DataSource = sites;
             bsSurvey.DataSource = model;
-
         }
 
         private void cbSiteType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            tblContainer.Visible = false;
             this.SuspendLayout();
             if (cbSiteType.SelectedIndex == 0)
             {
@@ -68,7 +68,9 @@ namespace Nada.UI.Controls
                 tbLng.Visible = true;
                 model.SentinelSiteId = null;
             }
+
             this.ResumeLayout();
+            tblContainer.Visible = true;
         }
 
         void sites_OnAdd(SentinelSite obj)

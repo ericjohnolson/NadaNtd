@@ -141,7 +141,7 @@ namespace Nada.Model.Repositories
                         process.PCTrainTrainingCategory = reader.GetValueOrDefault<string>("PCTrainTrainingCategory");
                         process.Notes = reader.GetValueOrDefault<string>("Notes");
                         process.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
-                        process.UpdatedBy = Util.GetAuditInfo(reader);
+                        process.UpdatedBy = GetAuditInfo(reader);
                         ptypeId = reader.GetValueOrDefault<int>("ProcessTypeId");
                     }
                     reader.Close();
@@ -159,6 +159,43 @@ namespace Nada.Model.Repositories
             return process;
         }
 
+        public void Save(List<ProcessBase> import, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    foreach(var process in import)
+                        Save(command, connection, process, userId);
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
         public void Save(ProcessBase process, int userId)
         {
             bool transWasStarted = false;
@@ -208,11 +245,11 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select ProcessTypes.ID, ProcessTypes.TypeName, Diseases.DiseaseType
+                    OleDbCommand command = new OleDbCommand(@"Select ProcessTypes.ID, ProcessTypes.TypeName, MAX(Diseases.DiseaseType) as DiseaseType
                         FROM ((ProcessTypes INNER JOIN ProcessTypes_to_Diseases ON ProcessTypes.ID = ProcessTypes_to_Diseases.ProcessTypeId)
                             INNER JOIN Diseases ON Diseases.ID = ProcessTypes_to_Diseases.DiseaseId) 
                         WHERE Diseases.IsSelected = yes
-                        GROUP BY ProcessTypes.ID, ProcessTypes.TypeName, Diseases.DiseaseType ", connection);
+                        GROUP BY ProcessTypes.ID, ProcessTypes.TypeName  ", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -274,7 +311,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = id,
                                 TypeName = name,
-                                UpdatedBy = Util.GetAuditInfo(reader)
+                                UpdatedBy = GetAuditInfo(reader)
                             };
                         }
                         reader.Close();

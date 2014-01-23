@@ -54,7 +54,7 @@
             this.treeListView1.OwnerDraw = true;
             this.treeListView1.ShowGroups = false;
             this.treeListView1.ShowImagesOnSubItems = true;
-            this.treeListView1.Size = new System.Drawing.Size(799, 433);
+            this.treeListView1.Size = new System.Drawing.Size(714, 372);
             this.treeListView1.TabIndex = 13;
             this.treeListView1.UseCompatibleStateImageBehavior = false;
             this.treeListView1.UseHyperlinks = true;
@@ -79,7 +79,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.treeListView1);
             this.Name = "StepIndicators";
-            this.Size = new System.Drawing.Size(799, 433);
+            this.Size = new System.Drawing.Size(714, 372);
             this.Load += new System.EventHandler(this.StepIndicators_Load);
             ((System.ComponentModel.ISupportInitialize)(this.treeListView1)).EndInit();
             this.ResumeLayout(false);

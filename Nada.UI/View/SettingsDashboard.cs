@@ -22,7 +22,11 @@ namespace Nada.UI.View
 {
     public partial class SettingsDashboard : BaseControl, IView
     {
+        private Country country = null;
         private MemberRepository members = new MemberRepository();
+        private SettingsRepository settings = new SettingsRepository();
+        private DiseaseRepository diseases = new DiseaseRepository();
+        private DemoRepository demo = new DemoRepository();
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return ""; } }
@@ -43,6 +47,9 @@ namespace Nada.UI.View
             {
                 Localizer.TranslateControl(this);
                 lvUsers.SetObjects(members.GetAllUsers());
+                country = demo.GetCountry();
+                countryView1.LoadCountry(country);
+                diseasePickerControl1.LoadLists(true);
             }
         }
 
@@ -89,6 +96,54 @@ namespace Nada.UI.View
         void form_OnSave(Member obj)
         {
             lvUsers.SetObjects(members.GetAllUsers());
+        }
+
+        private void c1Button2_Click(object sender, EventArgs e)
+        {
+            DeleteConfirm confirm = new DeleteConfirm(Translations.Restore, Translations.RestoreConfirm);
+            if (confirm.ShowDialog() == DialogResult.OK)
+            {
+                string localAppData =
+                    Environment.GetFolderPath(
+                    Environment.SpecialFolder.LocalApplicationData);
+                string uPath = Path.Combine(localAppData, "IotaInk");
+                string backupFile = Path.Combine(uPath, "DatabaseBackup.accdb");
+                File.Copy(backupFile, DatabaseData.Instance.FilePath, true);
+                OnClose();
+            }
+        }
+
+        private void saveCountry_Click(object sender, EventArgs e)
+        {
+            if (!country.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
+                return;
+            }
+            if (!adminLevelTypesControl1.HasDistrict())
+            {
+                MessageBox.Show(Translations.MustMakeDistrict, Translations.ValidationErrorTitle);
+                return;
+            }
+            if (!adminLevelTypesControl1.HasAggregatingLevel())
+            {
+                MessageBox.Show(Translations.MustMakeAggregatingLevel, Translations.ValidationErrorTitle);
+                return;
+            }
+
+            int userId = ApplicationData.Instance.GetUserId();
+            demo.UpdateCountry(country, userId);
+            OnClose();
+        }
+
+        private void btnSaveDiseases_Click(object sender, EventArgs e)
+        {
+            var selected = diseasePickerControl1.GetSelectedItems();
+            var available = diseasePickerControl1.GetUnselectedItems();
+            int userId = ApplicationData.Instance.GetUserId();
+            diseases.SaveSelectedDiseases(selected, true, userId);
+            diseases.SaveSelectedDiseases(available, false, userId);
+            OnClose();
         }
     }
 }

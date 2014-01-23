@@ -142,4 +142,22 @@
   <data name="logosplaceholder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\logosplaceholder.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="afro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\afro.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="apoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\apoc.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="envision" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\envision.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ntd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\ntd.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rti" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\rti.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="who" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\who.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

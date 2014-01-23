@@ -37,7 +37,6 @@
             this.tbName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.pnlName = new System.Windows.Forms.Panel();
             this.h3Label1 = new Nada.UI.Controls.H3Label();
@@ -85,6 +84,7 @@
             this.olvColumn8.AspectName = "DisplayName";
             this.olvColumn8.CellPadding = null;
             this.olvColumn8.IsEditable = false;
+            this.olvColumn8.Tag = "Name";
             this.olvColumn8.Text = "Name";
             this.olvColumn8.Width = 243;
             // 
@@ -93,6 +93,7 @@
             this.olvColumn9.AspectName = "DataType";
             this.olvColumn9.CellPadding = null;
             this.olvColumn9.IsEditable = false;
+            this.olvColumn9.Tag = "Type";
             this.olvColumn9.Text = "Type";
             this.olvColumn9.Width = 107;
             // 
@@ -101,6 +102,7 @@
             this.olvColumn10.AspectName = "IsRequired";
             this.olvColumn10.CellPadding = null;
             this.olvColumn10.IsEditable = false;
+            this.olvColumn10.Tag = "IsRequired";
             this.olvColumn10.Text = "Is Required";
             this.olvColumn10.Width = 72;
             // 
@@ -109,6 +111,7 @@
             this.olvColumn2.AspectName = "IsDisabled";
             this.olvColumn2.CellPadding = null;
             this.olvColumn2.IsEditable = false;
+            this.olvColumn2.Tag = "Disabled";
             this.olvColumn2.Text = "Disabled";
             // 
             // olvColumn1
@@ -117,6 +120,7 @@
             this.olvColumn1.CellPadding = null;
             this.olvColumn1.Hyperlink = true;
             this.olvColumn1.IsEditable = false;
+            this.olvColumn1.Tag = "Edit";
             this.olvColumn1.Text = "Edit";
             // 
             // tbName
@@ -160,28 +164,14 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel4.Controls.Add(this.btnCancel, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 292);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(206, 35);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(109, 35);
             this.tableLayoutPanel4.TabIndex = 47;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.Location = new System.Drawing.Point(112, 3);
-            this.btnCancel.MinimumSize = new System.Drawing.Size(91, 29);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.btnCancel.Size = new System.Drawing.Size(91, 29);
-            this.btnCancel.TabIndex = 40;
-            this.btnCancel.Tag = "Cancel";
-            this.btnCancel.Values.Text = "Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -192,8 +182,8 @@
             this.btnSave.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnSave.Size = new System.Drawing.Size(91, 29);
             this.btnSave.TabIndex = 1;
-            this.btnSave.Tag = "Save";
-            this.btnSave.Values.Text = "Save";
+            this.btnSave.Tag = "Done";
+            this.btnSave.Values.Text = "Done";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
             // pnlName
@@ -269,10 +259,10 @@
             this.hrTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.hrTop.ForeColor = System.Drawing.Color.Gray;
             this.hrTop.Location = new System.Drawing.Point(0, 0);
-            this.hrTop.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.hrTop.Margin = new System.Windows.Forms.Padding(6);
             this.hrTop.Name = "hrTop";
             this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.hrTop.Size = new System.Drawing.Size(722, 6);
+            this.hrTop.Size = new System.Drawing.Size(950, 6);
             this.hrTop.TabIndex = 16;
             // 
             // tblTitle
@@ -328,7 +318,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.hrTop);
             this.Name = "IndicatorTypeEdit";
-            this.Size = new System.Drawing.Size(722, 420);
+            this.Size = new System.Drawing.Size(950, 420);
             this.Tag = "SurveyInformation";
             this.Load += new System.EventHandler(this.IndicatorTypeEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lvIndicators)).EndInit();
@@ -364,7 +354,6 @@
         private Controls.FieldLink fieldLink1;
         private System.Windows.Forms.Label lblCustomIndicators;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
         private System.Windows.Forms.TableLayoutPanel tblTitle;
         private System.Windows.Forms.Label lblDiseaseType;

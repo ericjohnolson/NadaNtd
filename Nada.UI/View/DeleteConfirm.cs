@@ -16,9 +16,19 @@ namespace Nada.UI.View
 {
     public partial class DeleteConfirm : BaseForm
     {
+        private string title = "";
+        private string message = "";
         public DeleteConfirm()
             : base()
         {
+            InitializeComponent();
+        }
+
+        public DeleteConfirm(string t, string m)
+            : base()
+        {
+            title = t;
+            message = m;
             InitializeComponent();
         }
 
@@ -28,6 +38,12 @@ namespace Nada.UI.View
                 Localizer.TranslateControl(this);
 
             h3Label1.SetMaxWidth(210);
+
+            if (title.Length > 0)
+            {
+                h3Label1.Text = message;
+                label3.Text = title;
+            }
         }
     }
 }

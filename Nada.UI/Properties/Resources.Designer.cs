@@ -73,9 +73,29 @@ namespace Nada.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap afro {
+            get {
+                object obj = ResourceManager.GetObject("afro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ajax_loader {
             get {
                 object obj = ResourceManager.GetObject("ajax_loader", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap apoc {
+            get {
+                object obj = ResourceManager.GetObject("apoc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,6 +116,16 @@ namespace Nada.UI.Properties {
         internal static System.Drawing.Bitmap button_help {
             get {
                 object obj = ResourceManager.GetObject("button_help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap envision {
+            get {
+                object obj = ResourceManager.GetObject("envision", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,6 +166,36 @@ namespace Nada.UI.Properties {
         internal static System.Drawing.Bitmap logosplaceholder {
             get {
                 object obj = ResourceManager.GetObject("logosplaceholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ntd {
+            get {
+                object obj = ResourceManager.GetObject("ntd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rti {
+            get {
+                object obj = ResourceManager.GetObject("rti", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap who {
+            get {
+                object obj = ResourceManager.GetObject("who", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

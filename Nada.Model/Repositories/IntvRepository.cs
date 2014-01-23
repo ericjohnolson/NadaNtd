@@ -95,7 +95,7 @@ namespace Nada.Model.Repositories
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
                                 EndDate = reader.GetValueOrDefault<DateTime>("EndDate"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
-                                UpdatedBy = Util.GetAuditInfo(reader)
+                                UpdatedBy = GetAuditInfo(reader)
 
                             });
                         }
@@ -187,7 +187,7 @@ namespace Nada.Model.Repositories
                                 Id = id,
                                 IntvTypeName = name,
                                 DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),
-                                UpdatedBy = Util.GetAuditInfo(reader)
+                                UpdatedBy = GetAuditInfo(reader)
                             };
                         }
                         reader.Close();
@@ -322,6 +322,47 @@ namespace Nada.Model.Repositories
                 }
             }
             return intv;
+        }
+
+        public void Save(List<IntvBase> import, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    foreach (var intv in import)
+                    {
+                        intv.MapIndicatorsToProperties();
+                        SaveIntvBase(command, connection, intv, userId);
+                    }
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
         }
 
         public void SaveBase(IntvBase intv, int userId)
@@ -660,7 +701,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                UpdatedBy = Util.GetAuditInfo(reader)
+                                UpdatedBy = GetAuditInfo(reader)
                             });
                         }
                         reader.Close();
@@ -849,7 +890,7 @@ namespace Nada.Model.Repositories
                         intv.PcIntvRoundNumber = reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber");
                         intv.Notes = reader.GetValueOrDefault<string>("Notes");
                         intv.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
-                        intv.UpdatedBy = Util.GetAuditInfo(reader);
+                        intv.UpdatedBy = GetAuditInfo(reader);
                         typeId = reader.GetValueOrDefault<int>("InterventionTypeId");
                     }
                     reader.Close();

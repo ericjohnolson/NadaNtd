@@ -16,6 +16,7 @@ namespace Nada.Model
         {
             Children = new List<AdminLevel>();
             LevelNumber = -1;
+            ViewText = Translations.Select;
         }
         public string Name { get; set; }
         public Nullable<int> ParentId { get; set; }
@@ -30,7 +31,7 @@ namespace Nada.Model
         // Display Only
         public string LevelName { get; set; }
         public int LevelNumber { get; set; }
-        public string ViewText { get { return "Select"; } }
+        public string ViewText { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]
@@ -99,6 +100,23 @@ namespace Nada.Model
                 LngOther = this.LngOther,
                 LngWho = this.LngWho
             };
+        }
+
+        public IEnumerable<AdminLevel> GetNodeAndDescendants() // Note that this method is lazy
+        {
+             return new[] { this }
+                    .Concat(Children.SelectMany(child => child.GetNodeAndDescendants()));    
+        }
+
+        public static AdminLevel Find(List<AdminLevel> roots, int id)
+        {
+            foreach (var level in roots)
+            {
+                var result = level.GetNodeAndDescendants().FirstOrDefault(i => i.Id == id);
+                if (result != null)
+                    return result;
+            }
+            return null;
         }
     }
 }

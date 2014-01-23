@@ -106,7 +106,7 @@ namespace Nada.Model.Reports
             {
                 foreach (var level in list) // Each admin level
                     foreach (var ind in level.Indicators) // each indicator
-                        AddToTable(result, resultDic, level, ind.Value.Year, ind.Value, ind.Value.FormId.ToString(), ind.Value.Value, TranslationLookup.GetValue(ind.Value.TypeName));
+                        AddToTable(result, resultDic, level, ind.Value.Year, ind.Value, ind.Value.FormId.ToString() + level.Id, ind.Value.Value, TranslationLookup.GetValue(ind.Value.TypeName, ind.Value.TypeName));
             }
             else
             {
@@ -171,7 +171,6 @@ namespace Nada.Model.Reports
             return result;
         }
 
-
         #region Shared Methods
         private static void AddToTable(DataTable result, Dictionary<string, ReportRow> resultDic, AdminLevelIndicators level, int year, AggregateIndicator indicator,
             string rowKey, object value, string typeName)
@@ -188,10 +187,10 @@ namespace Nada.Model.Reports
             }
 
             // add column if it doesn't exist
-            if (!result.Columns.Contains(indicator.Name) && !indicator.IsCalcRelated)
+            if (indicator.Name != null && !result.Columns.Contains(indicator.Name) && !indicator.IsCalcRelated)
                 result.Columns.Add(new DataColumn(indicator.Name));
 
-            if (!indicator.IsCalcRelated)
+            if (indicator.Name != null && !indicator.IsCalcRelated)
                 resultDic[rowKey].Row[indicator.Name] = value;
             else // Related to a calculated field
             {
@@ -207,7 +206,8 @@ namespace Nada.Model.Reports
             {
                 dic.Add(inds.Key, new Dictionary<string, string>());
                 foreach (var ind in inds)
-                    dic[inds.Key].Add(ind.TypeId + ind.Key, ind.Value);
+                    if(!dic[inds.Key].ContainsKey(ind.TypeId + ind.Key))
+                        dic[inds.Key].Add(ind.TypeId + ind.Key, ind.Value);
             }
 
             return dic;
@@ -226,9 +226,10 @@ namespace Nada.Model.Reports
         protected virtual string GetColName(OleDbDataReader reader)
         {
             string name = reader.GetValueOrDefault<string>("IndicatorName");
-            if(!reader.GetValueOrDefault<bool>("IsDisplayed"))
+            object isDisplayed = reader["IsDisplayed"];
+            if(!Convert.ToBoolean(isDisplayed))
                 name = TranslationLookup.GetValue(name);
-            if (name == Translations.NoTranslationFound)
+            if (name == Translations.NoTranslationFound || name.Length == 0)
                 return null;
 
             return name + " - " + GetTypeName(reader);
@@ -317,8 +318,23 @@ namespace Nada.Model.Reports
                             INNER JOIN IndicatorCalculations on InterventionIndicators.ID = IndicatorCalculations.RelatedIndicatorId) 
                         WHERE Interventions.IsDeleted = 0 AND IndicatorCalculations.RelatedEntityTypeId = 2 AND 
                               IndicatorCalculations.IndicatorId in "
-            + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
-            + entityTypeId;
+            + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = " + entityTypeId
+            + " AND InterventionTypes.ID in (" + String.Join(", ", options.SelectedIndicators.Select(i => i.TypeId.ToString()).Distinct().ToArray()) + ") "
+            + ReportRepository.CreateYearFilter(options) + ReportRepository.CreateAdminFilter(options) + @"
+                        GROUP BY 
+                        AdminLevels.ID, 
+                        AdminLevels.DisplayName,
+                        Interventions.ID, 
+                        Interventions.YearReported, 
+                        Interventions.PcIntvRoundNumber, 
+                        InterventionTypes.InterventionTypeName,     
+                        InterventionTypes.ID,      
+                        InterventionIndicators.ID, 
+                        InterventionIndicators.DisplayName, 
+                        InterventionIndicators.IsDisplayed, 
+                        InterventionIndicators.DataTypeId, 
+                        InterventionIndicators.AggTypeId, 
+                        InterventionIndicatorValues.DynamicValue";
 
             repo.AddIndicatorsToAggregate(intv, options, dic, command, connection, getAggKey, getName, getType, sind, true);
 
@@ -343,7 +359,20 @@ namespace Nada.Model.Reports
                         WHERE DiseaseDistributions.IsDeleted = 0 AND  IndicatorCalculations.RelatedEntityTypeId = 1 AND
                                IndicatorCalculations.IndicatorId in "
             + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
-            + entityTypeId;
+            + entityTypeId + ReportRepository.CreateYearFilter(options) + ReportRepository.CreateAdminFilter(options) + @"
+                        GROUP BY  
+                        AdminLevels.ID, 
+                        AdminLevels.DisplayName,
+                        DiseaseDistributions.ID, 
+                        DiseaseDistributions.YearReported, 
+                        Diseases.DisplayName,       
+                        Diseases.ID,   
+                        DiseaseDistributionIndicators.ID, 
+                        DiseaseDistributionIndicators.DisplayName, 
+                        DiseaseDistributionIndicators.IsDisplayed, 
+                        DiseaseDistributionIndicators.DataTypeId, 
+                        DiseaseDistributionIndicators.AggTypeId, 
+                        DiseaseDistributionIndicatorValues.DynamicValue";
 
             repo.AddIndicatorsToAggregate(dd, options, dic, command, connection, getAggKey, getName, getType, sind, true);
 
@@ -369,7 +398,20 @@ namespace Nada.Model.Reports
                         WHERE Surveys.IsDeleted = 0 AND IndicatorCalculations.RelatedEntityTypeId = 3 AND 
                               IndicatorCalculations.IndicatorId in "
             + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
-            + entityTypeId;
+            + entityTypeId + ReportRepository.CreateYearFilter(options) + ReportRepository.CreateAdminFilter(options) + @"
+                        GROUP BY 
+                        AdminLevels.ID, 
+                        AdminLevels.DisplayName,
+                        Surveys.ID, 
+                        Surveys.YearReported, 
+                        SurveyTypes.SurveyTypeName,        
+                        SurveyTypes.ID,      
+                        SurveyIndicators.ID, 
+                        SurveyIndicators.DisplayName, 
+                        SurveyIndicators.IsDisplayed, 
+                        SurveyIndicators.DataTypeId, 
+                        SurveyIndicators.AggTypeId,    
+                        SurveyIndicatorValues.DynamicValue";
 
             repo.AddIndicatorsToAggregate(survey, options, dic, command, connection, getAggKey, getName, getType, sind, true);
         }
@@ -406,7 +448,9 @@ namespace Nada.Model.Reports
                             INNER JOIN InterventionIndicators on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId)
                         WHERE Interventions.IsDeleted = 0 AND  
                               InterventionIndicators.Id in "
-            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
+            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray())
+            + ") AND InterventionTypes.ID in (" + String.Join(", ", opts.SelectedIndicators.Select(i => i.TypeId.ToString()).Distinct().ToArray())  + ") "
+            + ReportRepository.CreateYearFilter(opts) + ReportRepository.CreateAdminFilter(opts);
         }
 
         protected override string GetIndKey(OleDbDataReader reader, bool isNotAgg)
@@ -442,6 +486,30 @@ namespace Nada.Model.Reports
         protected override void Init()
         {
             calc = new CalcSurvey();
+            AddRequiredIndicator(14, 466);
+            AddRequiredIndicator(20, 467);
+            AddRequiredIndicator(18, 420);
+            AddRequiredIndicator(17, 419);
+            AddRequiredIndicator(12, 418);
+            AddRequiredIndicator(11, 417);
+            AddRequiredIndicator(15, 415);
+        }
+
+        private void AddRequiredIndicator(int typeId, int indicatorId)
+        {
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.TypeId == typeId) != null && opts.SelectedIndicators.FirstOrDefault(x => x.ID == indicatorId) == null)
+                FindAndAddIndicator(indicatorId, typeId);
+        }
+
+        private void FindAndAddIndicator(int indicatorId, int typeId)
+        {
+            var reportType = opts.AvailableIndicators[0].Children.FirstOrDefault(t => t.ID == typeId);
+            if(reportType != null)
+            {
+                var ind = reportType.Children.FirstOrDefault(v => v.ID == indicatorId);
+                if(ind != null)
+                    opts.SelectedIndicators.Add(ind);
+            }
         }
 
         protected override string CmdText()
@@ -491,7 +559,8 @@ namespace Nada.Model.Reports
                             LEFT OUTER JOIN SentinelSites on Surveys.SentinelSiteId = SentinelSites.ID)
                         WHERE Surveys.IsDeleted = 0 AND SurveyIndicators.Id in " + " (" +
                        String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") " +
-                       staticConditional;
+                       staticConditional
+                       + ReportRepository.CreateYearFilter(opts) + ReportRepository.CreateAdminFilter(opts);
             else
                 return @"Select 
                         AdminLevels.ID as AID, 
@@ -517,7 +586,9 @@ namespace Nada.Model.Reports
                             INNER JOIN Surveys_to_AdminLevels on Surveys_to_AdminLevels.SurveyId = Surveys.ID) 
                             INNER JOIN AdminLevels on Surveys_to_AdminLevels.AdminLevelId = AdminLevels.ID) 
                             LEFT OUTER JOIN SentinelSites on Surveys.SentinelSiteId = SentinelSites.ID)
-                        WHERE Surveys.IsDeleted = 0 " + staticConditional;
+                        WHERE Surveys.IsDeleted = 0 "
+                    + staticConditional
+                    + ReportRepository.CreateYearFilter(opts) + ReportRepository.CreateAdminFilter(opts);
 
         }
         
@@ -596,7 +667,8 @@ namespace Nada.Model.Reports
                             INNER JOIN DiseaseDistributionIndicators on DiseaseDistributionIndicators.ID = DiseaseDistributionIndicatorValues.IndicatorId)
                         WHERE DiseaseDistributions.IsDeleted = 0 AND  
                               DiseaseDistributionIndicators.Id in "
-            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
+            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") "
+            + ReportRepository.CreateYearFilter(opts) + ReportRepository.CreateAdminFilter(opts);
         }
     }
 
@@ -625,7 +697,8 @@ namespace Nada.Model.Reports
                             INNER JOIN ProcessIndicators on ProcessIndicators.ID = ProcessIndicatorValues.IndicatorId)
                         WHERE Processes.IsDeleted = 0 AND  
                               ProcessIndicators.Id in "
-            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") ";
+            + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") "
+            + ReportRepository.CreateYearFilter(opts) + ReportRepository.CreateAdminFilter(opts);
         }
 
         protected override string GetIndKey(OleDbDataReader reader, bool isNotAgg)

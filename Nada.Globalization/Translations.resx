@@ -1577,7 +1577,7 @@
     <value>Level number</value>
   </data>
   <data name="MustMakeDistrict" xml:space="preserve">
-    <value>You must designate one of your administrative levels as the "District Level"</value>
+    <value>You must designate one of your administrative levels as the "Reporting Level"</value>
   </data>
   <data name="Percent5yo" xml:space="preserve">
     <value>% &lt;5 year old of total population</value>
@@ -1688,7 +1688,7 @@
     <value>Please fix the errors before continuing the import:</value>
   </data>
   <data name="ImportErrors" xml:space="preserve">
-    <value>{0} is not valid, please fix the following errors: {1} {2}</value>
+    <value>{0} is not valid, please fix the following errors:</value>
   </data>
   <data name="ImportFailed" xml:space="preserve">
     <value>Import failed, please review and fix errors before continuing.</value>
@@ -1721,7 +1721,7 @@
     <value>Alternate spelling names</value>
   </data>
   <data name="DistrictAdminLevel" xml:space="preserve">
-    <value>District</value>
+    <value>Reporting level</value>
   </data>
   <data name="IsAggLevel" xml:space="preserve">
     <value>*** This level's demography is summed up to all higher levels</value>
@@ -2799,7 +2799,7 @@ Fixed / Mobile</value>
     <value>Buruli ulcer</value>
   </data>
   <data name="CmContacts" xml:space="preserve">
-    <value>Contacts</value>
+    <value>Contact information - NTD Programme</value>
   </data>
   <data name="CmDiseaseSpecOrNtdIntegrated" xml:space="preserve">
     <value>If yes, is it a disease specific or NTD integrated annual plan?</value>
@@ -2814,10 +2814,10 @@ Fixed / Mobile</value>
     <value>Human African Trypanosomiasis</value>
   </data>
   <data name="CmHaveAnnualOpPlan" xml:space="preserve">
-    <value>Have you developed an Annual Operational Plan?</value>
+    <value>Check if you have developed an Annual Operational Plan</value>
   </data>
   <data name="CmHaveMasterPlan" xml:space="preserve">
-    <value>Does the country have a NTD National Master Plan?</value>
+    <value>Check if the country has an NTD National Master Plan</value>
   </data>
   <data name="CmIfSpecWhichNtdPlan" xml:space="preserve">
     <value>If Specific, which CM NTD has an operational annual plan:</value>
@@ -4197,7 +4197,7 @@ Fixed / Mobile</value>
     <value>Yes-Sentinel site</value>
   </data>
   <data name="AddAdminLevelTypeLink" xml:space="preserve">
-    <value>Add administrative level type &gt;</value>
+    <value>Add administrative level &gt;</value>
   </data>
   <data name="Round" xml:space="preserve">
     <value>Round</value>
@@ -4280,6 +4280,9 @@ Fixed / Mobile</value>
   <data name="ImportingFile" xml:space="preserve">
     <value>Importing file...</value>
   </data>
+  <data name="ImportLists" xml:space="preserve">
+    <value>Please verify that all related lists have the necessary values</value>
+  </data>
   <data name="IndSentinelSiteLat" xml:space="preserve">
     <value>Sentinel site latitude</value>
   </data>
@@ -4319,7 +4322,7 @@ Fixed / Mobile</value>
   <data name="MenuExit" xml:space="preserve">
     <value>Exit</value>
   </data>
-  <data name="MenuFile" xml:space="preserve">
+  <data name="MenuFile2" xml:space="preserve">
     <value>File</value>
   </data>
   <data name="MenuHelp" xml:space="preserve">
@@ -4335,7 +4338,7 @@ Fixed / Mobile</value>
     <value>New...</value>
   </data>
   <data name="MenuNewAdminLevel" xml:space="preserve">
-    <value>New administrative level...</value>
+    <value>Add new administrative unit...</value>
   </data>
   <data name="MenuOpen" xml:space="preserve">
     <value>Open...</value>
@@ -4346,7 +4349,7 @@ Fixed / Mobile</value>
   <data name="MenuReports" xml:space="preserve">
     <value>Reports</value>
   </data>
-  <data name="MenuSettings" xml:space="preserve">
+  <data name="MenuSettings2" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="MenuSurveys" xml:space="preserve">
@@ -4354,6 +4357,9 @@ Fixed / Mobile</value>
   </data>
   <data name="MenuViewHelp" xml:space="preserve">
     <value>View Help...</value>
+  </data>
+  <data name="MustBeYesNo" xml:space="preserve">
+    <value>Must be a yes or no</value>
   </data>
   <data name="NationalDatabaseTemplate" xml:space="preserve">
     <value>National Database</value>
@@ -4372,6 +4378,15 @@ Fixed / Mobile</value>
   </data>
   <data name="RecentFile" xml:space="preserve">
     <value>Recent file: </value>
+  </data>
+  <data name="Restore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="RestoreConfirm" xml:space="preserve">
+    <value>Are you sure you want to restore the database?</value>
+  </data>
+  <data name="RevertToEmergencyBackup" xml:space="preserve">
+    <value>Restore database to backup copy saved at last login.</value>
   </data>
   <data name="RoleAdmin" xml:space="preserve">
     <value>Administrator</value>
@@ -4420,6 +4435,12 @@ Fixed / Mobile</value>
   </data>
   <data name="SentinelSiteId" xml:space="preserve">
     <value>Sentinel site</value>
+  </data>
+  <data name="SentinelSitePicker" xml:space="preserve">
+    <value>Sentinel sites</value>
+  </data>
+  <data name="SubDistrictName" xml:space="preserve">
+    <value>Sub-district name</value>
   </data>
   <data name="SurBuSurvey" xml:space="preserve">
     <value>Buruli Ulcer (Mycobacterium ulcerans infection) Survey</value>
@@ -4483,5 +4504,461 @@ Fixed / Mobile</value>
   </data>
   <data name="ValidSentinelSite" xml:space="preserve">
     <value>Sentinel site was not found in list of available sites for the location</value>
+  </data>
+  <data name="xyear3" xml:space="preserve">
+    <value>3x/year</value>
+  </data>
+  <data name="NTD" xml:space="preserve">
+    <value>NTD</value>
+  </data>
+  <data name="SaeAe" xml:space="preserve">
+    <value>AE</value>
+  </data>
+  <data name="SaeAge" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="SaeAlbendazole" xml:space="preserve">
+    <value>Albendazole</value>
+  </data>
+  <data name="SaeAzithromycin" xml:space="preserve">
+    <value>Azithromycin</value>
+  </data>
+  <data name="SAEBatchnumber" xml:space="preserve">
+    <value>Batch number</value>
+  </data>
+  <data name="SAEBrandandmanufacturername" xml:space="preserve">
+    <value>Brand and manufacturer name</value>
+  </data>
+  <data name="SAEClinicalcourse" xml:space="preserve">
+    <value>Clinical course</value>
+  </data>
+  <data name="SAEClinicalsignsandsymptoms" xml:space="preserve">
+    <value>Clinical signs and symptoms</value>
+  </data>
+  <data name="SAEComments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="SaeCongenitalanomalybirthdefect" xml:space="preserve">
+    <value>Congenital anomaly/birth defect</value>
+  </data>
+  <data name="SaeContactDetails" xml:space="preserve">
+    <value>Contact details</value>
+  </data>
+  <data name="SaeDate" xml:space="preserve">
+    <value>Date of report</value>
+  </data>
+  <data name="SAEDateofonset" xml:space="preserve">
+    <value>Date of onset</value>
+  </data>
+  <data name="SAEDateoftest" xml:space="preserve">
+    <value>Date of test</value>
+  </data>
+  <data name="SAEDateoftreatment" xml:space="preserve">
+    <value>Date of treatment</value>
+  </data>
+  <data name="SaeDeath" xml:space="preserve">
+    <value>Death</value>
+  </data>
+  <data name="SAEDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="SAEDetails1" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="SAEDidpatienttakealcoholwithin24hoursoftreatment" xml:space="preserve">
+    <value>Did patient take alcohol within 24 hours of treatment?</value>
+  </data>
+  <data name="SaeDiethylcarbamazine" xml:space="preserve">
+    <value>Diethylcarbamazine</value>
+  </data>
+  <data name="SAEDoseadministered" xml:space="preserve">
+    <value>Dose administered</value>
+  </data>
+  <data name="SAEDoseadministeredtomanageSAE" xml:space="preserve">
+    <value>Dose administered to manage SAE</value>
+  </data>
+  <data name="SaeDrugs" xml:space="preserve">
+    <value>Which drugs were administered?</value>
+  </data>
+  <data name="SAEDrugsadministeredtomanageSAE" xml:space="preserve">
+    <value>Drugs administered to manage SAE</value>
+  </data>
+  <data name="SAEExpirydateofdrug" xml:space="preserve">
+    <value>Expiry date of drug</value>
+  </data>
+  <data name="SAEExtenuatingorcomplicatingcircumstances" xml:space="preserve">
+    <value>Extenuating or complicating circumstances</value>
+  </data>
+  <data name="SaeFemale" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="SaeFullrecovery" xml:space="preserve">
+    <value>Full recovery</value>
+  </data>
+  <data name="SaeGood" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="SAEHealthstatusbeforetreatment" xml:space="preserve">
+    <value>Health status before treatment</value>
+  </data>
+  <data name="SaeHeight" xml:space="preserve">
+    <value>Height (cm)</value>
+  </data>
+  <data name="SaeId" xml:space="preserve">
+    <value>ID Number</value>
+  </data>
+  <data name="SAEIfdeathcauseofdeath" xml:space="preserve">
+    <value>If death, cause of death</value>
+  </data>
+  <data name="SAEIfdeathcircumstancesatthetimeofdeath" xml:space="preserve">
+    <value>If death, circumstances at the time of death</value>
+  </data>
+  <data name="SAEIfdeathdateofdeath" xml:space="preserve">
+    <value>If death, date of death</value>
+  </data>
+  <data name="SAEIfhospitalizationrequireddateofadmission" xml:space="preserve">
+    <value>If hospitalization required, date of admission</value>
+  </data>
+  <data name="SAEIfhospitalizationrequireddateofdischarge" xml:space="preserve">
+    <value>If hospitalization required, date of discharge</value>
+  </data>
+  <data name="SAEIfhospitalizationrequiredreasonforadmission" xml:space="preserve">
+    <value>If hospitalization required, reason for admission</value>
+  </data>
+  <data name="SAEIfLoiasisinfectionsmfmlblood" xml:space="preserve">
+    <value>If Loiasis infections, known or suspected, mf/ml (blood)</value>
+  </data>
+  <data name="SAEIfLoiasisinfectionsmfmlCSF" xml:space="preserve">
+    <value>If Loiasis infections, known or suspected, mf/ml (CSF)</value>
+  </data>
+  <data name="SAEIfthiswasnotthefirsttreatmentwiththisdrugcircumstancesofpasttreatments" xml:space="preserve">
+    <value>If this was not the first treatment with this drug, circumstances of past treatment(s)</value>
+  </data>
+  <data name="SAEIspatientpregnant" xml:space="preserve">
+    <value>Is patient pregnant?</value>
+  </data>
+  <data name="SaeIvermectin" xml:space="preserve">
+    <value>Ivermectin</value>
+  </data>
+  <data name="SAELaboratorytestsperformed" xml:space="preserve">
+    <value>Laboratory tests performed</value>
+  </data>
+  <data name="SaeLF" xml:space="preserve">
+    <value>LF</value>
+  </data>
+  <data name="SaeLifethreatening" xml:space="preserve">
+    <value>Life-threatening</value>
+  </data>
+  <data name="SaeLoiasis" xml:space="preserve">
+    <value>Loiasis</value>
+  </data>
+  <data name="SaeMalaria" xml:space="preserve">
+    <value>Malaria</value>
+  </data>
+  <data name="SaeMale" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="SaeMebendazole" xml:space="preserve">
+    <value>Mebendazole</value>
+  </data>
+  <data name="SaeNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="SAENormalRangeHigh" xml:space="preserve">
+    <value>Normal Range (High)</value>
+  </data>
+  <data name="SAENormalRangeLow" xml:space="preserve">
+    <value>Normal Range (Low)</value>
+  </data>
+  <data name="SAENumberoftabletsadministered" xml:space="preserve">
+    <value>Number of tablets administered</value>
+  </data>
+  <data name="SaeOncho" xml:space="preserve">
+    <value>Oncho</value>
+  </data>
+  <data name="SaeOngoingillness" xml:space="preserve">
+    <value>Ongoing illness</value>
+  </data>
+  <data name="SaeOther" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="SAEOthermedicationsbeingtakencurrentlyorrecently" xml:space="preserve">
+    <value>Other medications being taken (currently or recently)</value>
+  </data>
+  <data name="SAEOutcomeattimeoflastobservation" xml:space="preserve">
+    <value>Outcome at time of last observation</value>
+  </data>
+  <data name="SaePatientName" xml:space="preserve">
+    <value>Patient name</value>
+  </data>
+  <data name="SaePersistentorsignificantdisabilityincapacity" xml:space="preserve">
+    <value>Persistent or significant disability/incapacity</value>
+  </data>
+  <data name="SaePoor" xml:space="preserve">
+    <value>Poor</value>
+  </data>
+  <data name="SaePraziquantel" xml:space="preserve">
+    <value>Praziquantel</value>
+  </data>
+  <data name="SaeProlongationofexistinghospitalization" xml:space="preserve">
+    <value>Prolongation of existing hospitalization</value>
+  </data>
+  <data name="SAEResultofinvestigation" xml:space="preserve">
+    <value>Result of investigation</value>
+  </data>
+  <data name="SAEResultoftest" xml:space="preserve">
+    <value>Result of test</value>
+  </data>
+  <data name="SAEs" xml:space="preserve">
+    <value>Serious Adverse Events</value>
+  </data>
+  <data name="SaeSae" xml:space="preserve">
+    <value>SAE</value>
+  </data>
+  <data name="SaeSchisto" xml:space="preserve">
+    <value>Schisto</value>
+  </data>
+  <data name="SaeSex" xml:space="preserve">
+    <value>Sex</value>
+  </data>
+  <data name="SAESourceoftreatmentPCClinicorphysiciantreatmentsOther" xml:space="preserve">
+    <value>Source of treatment (PC, Clinic or physician treatments, Other)</value>
+  </data>
+  <data name="SAEStatusknown" xml:space="preserve">
+    <value> Status of parasitic/bacterial infections (confirmed, suspected, negative, unknown)</value>
+  </data>
+  <data name="SaeSTH" xml:space="preserve">
+    <value>STH</value>
+  </data>
+  <data name="SaeTetracycline" xml:space="preserve">
+    <value>Tetracycline</value>
+  </data>
+  <data name="SAETimeofonset" xml:space="preserve">
+    <value>Time of onset</value>
+  </data>
+  <data name="SAETimeoftreatment" xml:space="preserve">
+    <value>Time of treatment</value>
+  </data>
+  <data name="SaeTrachoma" xml:space="preserve">
+    <value>Trachoma</value>
+  </data>
+  <data name="SaeType" xml:space="preserve">
+    <value>Is this SAE or AE?</value>
+  </data>
+  <data name="SAEUnits" xml:space="preserve">
+    <value>Units</value>
+  </data>
+  <data name="SaeUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="SAEWashospitalizationrequired" xml:space="preserve">
+    <value>Was hospitalization required?</value>
+  </data>
+  <data name="SAEWastheSAErelatedtothedrugs" xml:space="preserve">
+    <value>Was the SAE related to the drugs?</value>
+  </data>
+  <data name="SAEWasthiscaseinvestigated" xml:space="preserve">
+    <value>Was this case investigated?</value>
+  </data>
+  <data name="SAEWasthisthefirsttreatmentwiththisdrug" xml:space="preserve">
+    <value>Was this the first treatment with this drug?</value>
+  </data>
+  <data name="SaeWeight" xml:space="preserve">
+    <value>Weight (kg)</value>
+  </data>
+  <data name="SAEWhichparasitichave" xml:space="preserve">
+    <value>Which parasitic/bacterial infections did the patient have?</value>
+  </data>
+  <data name="SaeYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="SplitCombineDistrict" xml:space="preserve">
+    <value>Split / combine &gt;</value>
+  </data>
+  <data name="AdministrativeLevels" xml:space="preserve">
+    <value>Administrative levels</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="ItemsToSplit" xml:space="preserve">
+    <value>Items to redistribution</value>
+  </data>
+  <data name="MenuNewYearDemo" xml:space="preserve">
+    <value>Add demography for new year...</value>
+  </data>
+  <data name="MenuNewYearDistro" xml:space="preserve">
+    <value>Add disease distribution for new year...</value>
+  </data>
+  <data name="MenuRunReports" xml:space="preserve">
+    <value>Run reports</value>
+  </data>
+  <data name="MenuSplitCombineDistrict" xml:space="preserve">
+    <value>Split &amp; combine administrative units...</value>
+  </data>
+  <data name="NadaIntro" xml:space="preserve">
+    <value>The template for the NTD National Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in cooperation with the World Health Organization (WHO) and its regional offices, the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.</value>
+  </data>
+  <data name="NewAdminLevel" xml:space="preserve">
+    <value>New administrative level &gt;</value>
+  </data>
+  <data name="PercentToRedistribute" xml:space="preserve">
+    <value>Percent to redistribute</value>
+  </data>
+  <data name="RedistributionSettings" xml:space="preserve">
+    <value>Redistribution settings</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SplittingRedistributing" xml:space="preserve">
+    <value>Performing district redistribution...</value>
+  </data>
+  <data name="SplittingSelectDistrict" xml:space="preserve">
+    <value>Select the district you are redistributing to</value>
+  </data>
+  <data name="SplittingSelectSource" xml:space="preserve">
+    <value>Select the administrative units you are splitting</value>
+  </data>
+  <data name="SplittingTitle" xml:space="preserve">
+    <value>Split administrative unit</value>
+  </data>
+  <data name="AdminLevel" xml:space="preserve">
+    <value>Administrative unit</value>
+  </data>
+  <data name="ChooseLocation" xml:space="preserve">
+    <value>Choose a location</value>
+  </data>
+  <data name="GrowthRateHasBeenAppliedDd" xml:space="preserve">
+    <value>Growth rate has been applied, please click next to review and make changes or click finished if you are done updating the entered year's disease distribution information.</value>
+  </data>
+  <data name="HowManyAdminUnits" xml:space="preserve">
+    <value>How many administrative units would you like to split {0} into?</value>
+  </data>
+  <data name="LinkSelect" xml:space="preserve">
+    <value>Select...</value>
+  </data>
+  <data name="MenuMergeDistrict" xml:space="preserve">
+    <value>Merge administrative units...</value>
+  </data>
+  <data name="MenuSplitDistrict" xml:space="preserve">
+    <value>Split administrative unit...</value>
+  </data>
+  <data name="MustBeGreaterThanZero" xml:space="preserve">
+    <value>Must be greater than zero</value>
+  </data>
+  <data name="NewAdminUnitName" xml:space="preserve">
+    <value>Administrative unit name</value>
+  </data>
+  <data name="NewAdminUnits" xml:space="preserve">
+    <value>New administrative units</value>
+  </data>
+  <data name="PercentPop" xml:space="preserve">
+    <value>Percentage of population</value>
+  </data>
+  <data name="SplitChildrenAllocatedError" xml:space="preserve">
+    <value>All child administrative units must be allocated</value>
+  </data>
+  <data name="SplitCombineConfirmReview" xml:space="preserve">
+    <value>All demography, disease distributions, surveys, interventions, process indicators and SAEs data have been split and combined. Please click "Next" to review and make changes or "Finish" if done.</value>
+  </data>
+  <data name="SplitCombineTitle" xml:space="preserve">
+    <value>Split and combine administrative units</value>
+  </data>
+  <data name="SplitConfirmReview" xml:space="preserve">
+    <value>All other data has been distributed between the new administrative units. Please click "Next" to review and make changes or "Finish" if done.</value>
+  </data>
+  <data name="SplitConfirmReviewTitle" xml:space="preserve">
+    <value>Completed redistribution</value>
+  </data>
+  <data name="SplitHowMany" xml:space="preserve">
+    <value>How many units?</value>
+  </data>
+  <data name="SplitMergeConfirmReview" xml:space="preserve">
+    <value>All demography, disease distributions, surveys, interventions, process indicators and SAEs data have been combined into the new administrative unit. Please click "Next" to review and make changes or "Finish" if done.</value>
+  </data>
+  <data name="SplitMergeTitle" xml:space="preserve">
+    <value>Merge administrative units</value>
+  </data>
+  <data name="SplitPercentsRequired" xml:space="preserve">
+    <value>All percentages are required</value>
+  </data>
+  <data name="SplitPercentsTotal" xml:space="preserve">
+    <value>All percentages must add up to 100</value>
+  </data>
+  <data name="SplitPercentsValid" xml:space="preserve">
+    <value>Percentage must be between 0 and 100</value>
+  </data>
+  <data name="SplittingOptions" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="SplitUnitsRequired" xml:space="preserve">
+    <value>All administrative units are required</value>
+  </data>
+  <data name="SurveyCopiedMessage" xml:space="preserve">
+    <value>Because this mapping survey also serves as a sentinel site survey, it has also been added as a Sentinel/Spot Check Site survey. Any edits made in one form are not automatically duplicated in the other. If you edit one, you should edit both the Mapping and the Sentinel/Spot check Site survey forms for this particular site.</value>
+  </data>
+  <data name="SurveyCopiedTitle" xml:space="preserve">
+    <value>Survey Copied</value>
+  </data>
+  <data name="UpdateDdForYear" xml:space="preserve">
+    <value>Update disease distribution for new year</value>
+  </data>
+  <data name="UpdateDiseaseDistro" xml:space="preserve">
+    <value>Update disease distribution</value>
+  </data>
+  <data name="Checkbox" xml:space="preserve">
+    <value>Check box</value>
+  </data>
+  <data name="ChildAdminUnits" xml:space="preserve">
+    <value>Child administrative units</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="MustMakeAggregatingLevel" xml:space="preserve">
+    <value>You must designate one of your administrative levels as the "Aggregating Level"</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="NotSaved" xml:space="preserve">
+    <value>Not Saved</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="ReviewAndConfirm" xml:space="preserve">
+    <value>Review and confirm</value>
+  </data>
+  <data name="SelectAdminLevel" xml:space="preserve">
+    <value>Select administrative unit</value>
+  </data>
+  <data name="SplitAdminUnitsRequired" xml:space="preserve">
+    <value>All administrative units are required</value>
+  </data>
+  <data name="SplitCombineSource" xml:space="preserve">
+    <value>Select the administrative units you are splitting to create a new administrative unit</value>
+  </data>
+  <data name="SplitMergeSource" xml:space="preserve">
+    <value>Select the administrative units you are merging</value>
+  </data>
+  <data name="YearDistroData" xml:space="preserve">
+    <value>Year disease distribution data apply to</value>
   </data>
 </root>

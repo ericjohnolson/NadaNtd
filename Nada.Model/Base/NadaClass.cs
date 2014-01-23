@@ -14,7 +14,7 @@ namespace Nada.Model.Base
         private readonly List<string> propertyNames = new List<string>();
         public NadaClass()
         {
-            UpdatedBy = "Not Saved";
+            UpdatedBy = "";
             propertyNames = GetPropertyNames();
         }
 

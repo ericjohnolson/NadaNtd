@@ -48,7 +48,7 @@ namespace Nada.UI.View
             List<IndicatorDropdownValue> vals = new List<IndicatorDropdownValue>();
             vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Text, Id = 1 });
             vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Number, Id = 2 });
-            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.YesNo, Id = 3 });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Checkbox, Id = 3 });
             vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Date, Id = 4 });
             vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Year, Id = 7 });
             vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Month, Id = 8 });

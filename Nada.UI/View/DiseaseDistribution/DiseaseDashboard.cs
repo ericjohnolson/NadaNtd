@@ -26,12 +26,13 @@ namespace Nada.UI.View.Demography
 {
     public partial class DiseaseDashboard : BaseControl
     {
+        bool isReadOnly = false;
         public Action<IView> LoadView = (i) => { };
         public Action<IView> LoadForm = (i) => { };
         public Action<AdminLevel> ReloadView = (i) => { };
         public Action<string> StatusChanged = (e) => { };
-        IFetchActivities fetcher = null;
-        AdminLevel adminLevel = null;
+        public IFetchActivities fetcher = null;
+        public AdminLevel adminLevel = null;
 
         public DiseaseDashboard()
             : base()
@@ -39,12 +40,22 @@ namespace Nada.UI.View.Demography
             InitializeComponent();
         }
 
-        public DiseaseDashboard(IFetchActivities f, AdminLevel l)
+        public DiseaseDashboard(bool readOnly)
+            : base()
+        {
+            InitializeComponent();
+            fetcher = null;
+            adminLevel = null;
+            isReadOnly = readOnly;
+        }
+
+        public DiseaseDashboard(IFetchActivities f, AdminLevel l, bool readOnly)
             : base()
         {
             InitializeComponent();
             fetcher = f;
             adminLevel = l;
+            isReadOnly = readOnly;
         }
 
         public void LoadContent()
@@ -59,8 +70,8 @@ namespace Nada.UI.View.Demography
             LoadDemography();
             LoadProcessTypes();
             LoadProcesses();
-            if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
-                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
+            if ((!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
+                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin")) || isReadOnly)
             {
                 tblEditDd.Visible = false;
                 tblEditIntv.Visible = false;

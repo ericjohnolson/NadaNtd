@@ -122,8 +122,8 @@ namespace Nada.UI.View.Demography
         {
             preloadedLevel = obj;
             AdminLevelType adminLevelType = null;
-            if (adminLevelTypes.ContainsKey(obj.LevelNumber + 1))
-                adminLevelType = adminLevelTypes[obj.LevelNumber + 1];
+            if (adminLevelTypes.ContainsKey(obj.LevelNumber))
+                adminLevelType = adminLevelTypes[obj.LevelNumber];
 
             var view = new DashboardTabs((AdminLevel)obj, adminLevelType);
             view.StatusChanged = (s) => { StatusChanged(s); };

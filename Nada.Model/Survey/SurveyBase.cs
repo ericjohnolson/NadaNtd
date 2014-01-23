@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
+using Nada.Model.Repositories;
 using Nada.Model.Survey;
 
 namespace Nada.Model.Base
@@ -32,6 +33,22 @@ namespace Nada.Model.Base
         public string Notes { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
         public bool HasSentinelSite { get; set; }
+        
+        public SurveyBase CreateCopy(int newTypeId, int roundsId, int surveyTimingId, string roundsName, string timingName)
+        {
+            SurveyRepository repo = new SurveyRepository();
+            SurveyBase copy = new SurveyBase();
+            copy.TypeOfSurvey = repo.GetSurveyType(newTypeId);
+            copy.AdminLevels = AdminLevels;
+            copy.StartDate = StartDate;
+            copy.EndDate = EndDate;
+            copy.SiteType = Translations.Sentinel;
+            copy.Notes = Notes;
+            copy.HasSentinelSite = true;
+            copy.IndicatorValues.Add(new IndicatorValue { DynamicValue = "0", IndicatorId = roundsId, Indicator = copy.TypeOfSurvey.Indicators[roundsName] });
+            copy.IndicatorValues.Add(new IndicatorValue { DynamicValue = Translations.Baseline, IndicatorId = surveyTimingId, Indicator = copy.TypeOfSurvey.Indicators[timingName] });
+            return copy;
+        }
         public virtual void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);

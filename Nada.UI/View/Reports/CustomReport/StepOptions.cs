@@ -35,6 +35,8 @@ namespace Nada.UI.View.Reports.CustomReport
 
         public void DoNext()
         {
+            if (!options.IsNoAggregation && rbAggListAll.Checked)
+                options.IsAllLocations = true;
             options.IsNoAggregation = rbAggListAll.Checked;
             options.IsCountryAggregation = rbAggCountry.Checked;
             options.IsByLevelAggregation = rbAggLevel.Checked;

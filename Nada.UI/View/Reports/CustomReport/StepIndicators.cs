@@ -98,9 +98,10 @@ namespace Nada.UI.View.Reports.CustomReport
                 return ((ReportIndicator)model).Children;
             };
             treeListView1.SetObjects(list);
-
-            foreach(var ind in list)
-                treeListView1.Expand(ind);
+            
+            for(int i = list.Count - 1; i >= 0; i--)
+                treeListView1.Expand(list[i]);
+            
         }
         
     }

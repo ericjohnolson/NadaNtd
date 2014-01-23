@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tblIndicators = new System.Windows.Forms.TableLayoutPanel();
             this.tblContainer = new System.Windows.Forms.TableLayoutPanel();
             this.tblTopControls = new System.Windows.Forms.TableLayoutPanel();
             this.hr4 = new Nada.UI.Controls.HR();
             this.panel1 = new System.Windows.Forms.Panel();
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.lblCustomIndicators = new System.Windows.Forms.Label();
+            this.tblIndicators = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tblStaticIndicators = new System.Windows.Forms.TableLayoutPanel();
             this.tblMetaData = new System.Windows.Forms.TableLayoutPanel();
@@ -45,22 +45,6 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.indicatorErrors)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tblIndicators
-            // 
-            this.tblIndicators.AutoSize = true;
-            this.tblIndicators.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tblIndicators.ColumnCount = 4;
-            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tblIndicators.Location = new System.Drawing.Point(3, 92);
-            this.tblIndicators.Name = "tblIndicators";
-            this.tblIndicators.RowCount = 1;
-            this.tblIndicators.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblIndicators.Size = new System.Drawing.Size(46, 0);
-            this.tblIndicators.TabIndex = 0;
             // 
             // tblContainer
             // 
@@ -85,7 +69,7 @@
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblContainer.Size = new System.Drawing.Size(933, 95);
+            this.tblContainer.Size = new System.Drawing.Size(920, 95);
             this.tblContainer.TabIndex = 2;
             // 
             // tblTopControls
@@ -113,7 +97,7 @@
             this.hr4.Margin = new System.Windows.Forms.Padding(0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.DimGray;
-            this.hr4.Size = new System.Drawing.Size(933, 1);
+            this.hr4.Size = new System.Drawing.Size(920, 1);
             this.hr4.TabIndex = 48;
             this.hr4.TabStop = false;
             // 
@@ -156,6 +140,22 @@
             this.lblCustomIndicators.TabIndex = 19;
             this.lblCustomIndicators.Tag = "CustomIndicators";
             this.lblCustomIndicators.Text = "Custom Indicators";
+            // 
+            // tblIndicators
+            // 
+            this.tblIndicators.AutoSize = true;
+            this.tblIndicators.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblIndicators.ColumnCount = 4;
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblIndicators.Location = new System.Drawing.Point(3, 92);
+            this.tblIndicators.Name = "tblIndicators";
+            this.tblIndicators.RowCount = 1;
+            this.tblIndicators.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblIndicators.Size = new System.Drawing.Size(46, 0);
+            this.tblIndicators.TabIndex = 0;
             // 
             // panel2
             // 
@@ -221,7 +221,7 @@
             this.Controls.Add(this.tblContainer);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "IndicatorControl";
-            this.Size = new System.Drawing.Size(936, 98);
+            this.Size = new System.Drawing.Size(923, 98);
             this.Load += new System.EventHandler(this.IndicatorControl_Load);
             this.tblContainer.ResumeLayout(false);
             this.tblContainer.PerformLayout();

@@ -53,8 +53,8 @@ namespace Nada.UI.View.Reports
         {
             if (!DesignMode)
             {
-                questions = repo.GetCmExportQuestions();
                 Localizer.TranslateControl(this);
+                questions = repo.GetCmExportQuestions();
                 h3bLabel1.SetMaxWidth(500);
                 this.saveFileDialog1.DefaultExt = "xlsx";
                 this.saveFileDialog1.Filter = "Excel (.xlsx)|*.xlsx";

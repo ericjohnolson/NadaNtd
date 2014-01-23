@@ -125,6 +125,7 @@
             this.lnkSaes.TabIndex = 6;
             this.lnkSaes.Tag = "SAEs";
             this.lnkSaes.Text = "SAEs";
+            this.lnkSaes.Visible = false;
             this.lnkSaes.ClickOverride += new System.Action(this.lnkSaes_ClickOverride);
             // 
             // StepCategory

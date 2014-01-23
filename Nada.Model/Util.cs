@@ -11,6 +11,7 @@ namespace Nada.Model
 {
     public static class Util
     {
+        public static readonly string EnumerationDelinator = " & ";
         public static T DeepClone<T>(T obj)
         {
             using (var ms = new MemoryStream())
@@ -37,22 +38,11 @@ namespace Nada.Model
             return indicators;
         }
 
-        public static string GetAuditInfo(OleDbDataReader reader)
-        {
-            return Translations.AuditCreated + ": " + reader.GetValueOrDefault<string>("CreatedBy") + " on " + reader.GetValueOrDefault<DateTime>("CreatedAt").ToString("MM/dd/yyyy")
-                   + ", " + Translations.AuditUpdated + ": " + reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
-        }
-
-        public static string GetAuditInfoUpdate(OleDbDataReader reader)
-        {
-            return Translations.AuditUpdated + ": " + reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
-        }
-        
         public static List<string> ProduceEnumeration(List<string> source)
         {
             List<string> enumerations = new List<string>();
             for (int i = 0; i < (1 << source.Count); i++)
-                    enumerations.Add(string.Join(" & ", constructSetFromBits(i).Select(n => source[n]).ToArray()));
+                enumerations.Add(string.Join(EnumerationDelinator, constructSetFromBits(i).Select(n => source[n]).ToArray()));
             enumerations.RemoveAt(0);
             return enumerations;
         }

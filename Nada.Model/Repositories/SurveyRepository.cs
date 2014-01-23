@@ -12,7 +12,7 @@ using Nada.Model.Survey;
 namespace Nada.Model.Repositories
 {
     public class SurveyRepository : RepositoryBase
-    {   
+    {
         #region Surveys
         public List<SurveyDetails> GetAllForAdminLevel(int adminLevel)
         {
@@ -49,8 +49,7 @@ namespace Nada.Model.Repositories
                             surveys.Add(new SurveyDetails
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
-                                TypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseName"), reader.GetValueOrDefault<string>("DisplayName")) + " " +
-                                    TranslationLookup.GetValue(reader.GetValueOrDefault<string>("SurveyTypeName"), reader.GetValueOrDefault<string>("SurveyTypeName")),
+                                TypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("SurveyTypeName"), reader.GetValueOrDefault<string>("SurveyTypeName")),
                                 DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),
                                 TypeId = reader.GetValueOrDefault<int>("SurveyTypeId"),
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
@@ -347,7 +346,7 @@ namespace Nada.Model.Repositories
                         survey.SentinelSiteId = reader.GetValueOrDefault<Nullable<int>>("SentinelSiteId");
                         survey.Notes = reader.GetValueOrDefault<string>("Notes");
                         survey.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
-                        survey.UpdatedBy = Util.GetAuditInfo(reader);
+                        survey.UpdatedBy = GetAuditInfo(reader);
                         surveyTypeId = reader.GetValueOrDefault<int>("SurveyTypeId");
                     }
                     reader.Close();
@@ -373,6 +372,44 @@ namespace Nada.Model.Repositories
             }
 
             return survey;
+        }
+
+        public void Save(List<SurveyBase> import, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    foreach (var survey in import)
+                        SaveSurveyBase(command, connection, survey, userId);
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
         }
 
         public void SaveSurvey(SurveyBase survey, int userId)
@@ -410,6 +447,160 @@ namespace Nada.Model.Repositories
                     throw;
                 }
             }
+        }
+
+        public bool CopySentinelSiteSurvey(SurveyBase survey, int userId)
+        {
+            SurveyBase copy = null;
+            if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping &&
+                survey.IndicatorValues.FirstOrDefault(i => i.IndicatorId == 273).DynamicValue == Translations.YesSentinelSite)
+            {
+                copy = survey.CreateCopy((int)StaticSurveyType.LfSentinel, 104, 105, "LFSurNumberOfRoundsOfPcCompletedPriorToS", "LFSurSurveyTiming");
+                copy.SentinelSiteId = ParseSentinelSite(survey, 272, 274, 275, userId);
+            }
+            else if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping &&
+                survey.IndicatorValues.FirstOrDefault(i => i.IndicatorId == 322).DynamicValue == Translations.YesSentinelSite)
+            {
+                copy = survey.CreateCopy((int)StaticSurveyType.SchistoSentinel, 151, 152, "SCHSurNumberOfRoundsOfPcCompletedPriorTo", "SCHSurSurveyTiming");
+                copy.SentinelSiteId = ParseSentinelSite(survey, 321, 323, 324, userId);
+            }
+            else if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping &&
+                survey.IndicatorValues.FirstOrDefault(i => i.IndicatorId == 347).DynamicValue == Translations.YesSentinelSite)
+            {
+                copy = survey.CreateCopy((int)StaticSurveyType.SthSentinel, 173, 174, "STHSurNumberOfRoundsOfPcCompletedPriorTo", "STHSurSurveyTiming");
+                copy.SentinelSiteId = ParseSentinelSite(survey, 346, 348, 349, userId);
+            }
+            else
+                return false;
+
+            MapDynamic(survey, copy, userId);
+            SaveSurvey(copy, userId);
+            return true;
+        }
+
+        private void MapDynamic(SurveyBase orig, SurveyBase copy, int userId)
+        {
+            var mappingDict = CreateMappingDictionary();
+            foreach (var val in orig.IndicatorValues)
+            {
+                if (!mappingDict.ContainsKey(val.IndicatorId))
+                    continue;
+                Indicator ind = copy.TypeOfSurvey.Indicators.Values.FirstOrDefault(i => i.Id == mappingDict[val.IndicatorId]);
+                if (ind == null)
+                    continue;
+                copy.IndicatorValues.Add(new IndicatorValue { IndicatorId = ind.Id, Indicator = ind, DynamicValue = val.DynamicValue });
+
+                if (ind.CanAddValues)
+                {
+                    List<string> selectedValues = new List<string>();
+                    if (ind.DataTypeId == (int)IndicatorDataType.Multiselect)
+                        selectedValues = val.DynamicValue.Split('|').ToList();
+                    else
+                        selectedValues.Add(val.DynamicValue);
+
+                    foreach (string v in selectedValues)
+                    {
+                        var ddVal = copy.TypeOfSurvey.IndicatorDropdownValues.FirstOrDefault(i => i.DisplayName == v && i.IndicatorId == ind.Id);
+                        if (ddVal == null)
+                            Save(new IndicatorDropdownValue { IndicatorId = ind.Id, DisplayName = v, EntityType = IndicatorEntityType.Survey }, userId);
+                    }
+                }
+            }
+        }
+
+        private int ParseSentinelSite(SurveyBase copy, int nameId, int latId, int lngId, int userId)
+        {
+            var nameInd = copy.IndicatorValues.FirstOrDefault(i => i.IndicatorId == nameId);
+            if (nameInd == null)
+                return 0;
+            var sites = GetSitesForAdminLevel(copy.AdminLevels.Select(a => a.Id.ToString()));
+            var existingSite = sites.FirstOrDefault(i => i.SiteName == nameInd.DynamicValue);
+            if (existingSite != null)
+            {
+                return existingSite.Id;
+            }
+            SentinelSite newSite = new SentinelSite { SiteName = nameInd.DynamicValue, AdminLevels = copy.AdminLevels };
+            var latInd = copy.IndicatorValues.FirstOrDefault(i => i.IndicatorId == latId);
+            if (latInd != null)
+                newSite.Lat = Double.Parse(latInd.DynamicValue);
+            var lngInd = copy.IndicatorValues.FirstOrDefault(i => i.IndicatorId == lngId);
+            if (lngInd != null)
+                newSite.Lng = Double.Parse(lngInd.DynamicValue);
+            newSite = Insert(newSite, userId);
+            return newSite.Id;
+        }
+
+        private Dictionary<int, int> CreateMappingDictionary()
+        {
+            return new Dictionary<int, int>
+    	    {
+                // LF
+    		    {277, 101},
+                {278, 102},
+                {279, 106},
+                {282, 107},
+                {283, 108},
+                {284, 109},
+                {285, 110},
+                {286, 111},
+                {287, 112},
+                {288, 113},
+                {291, 114},
+                {295, 116},
+                {296, 117},
+                {297, 118},
+                {301, 148},
+                {427, 421},
+                // SCH
+                {325, 149},
+                {326, 153},
+                {327, 154},
+                {328, 155},
+                {329, 156},
+                {330, 157},
+                {331, 158},
+                {332, 159},
+                {333, 160},
+                {334, 161},
+                {336, 163},
+                {337, 164},
+                {338, 165},
+                {339, 166},
+                {341, 168},
+                {342, 169},
+                {345, 170},
+                {419, 417},
+                {428, 422},
+                // STH
+                {350, 171},
+                {351, 175},
+                {352, 176},
+                {353, 177},
+                {354, 178},
+                {355, 179},
+                {356, 180},
+                {357, 181},
+                {358, 182},
+                {359, 183},
+                {361, 185},
+                {362, 186},
+                {363, 187},
+                {364, 188},
+                {366, 190},
+                {367, 191},
+                {368, 192},
+                {369, 193},
+                {371, 195},
+                {372, 196},
+                {373, 197},
+                {374, 198},
+                {376, 200},
+                {377, 201},
+                {380, 202},
+                {420, 418},
+                {429, 423},
+
+    	    };
         }
         #endregion
 
@@ -506,7 +697,7 @@ namespace Nada.Model.Repositories
                                 DiseaseId = reader.GetValueOrDefault<int>("DiseaseId"),
                                 DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),
                                 HasMultipleLocations = reader.GetValueOrDefault<bool>("HasMultipleLocations"),
-                                UpdatedBy = Util.GetAuditInfo(reader)
+                                UpdatedBy = GetAuditInfo(reader)
                             };
                         }
                         reader.Close();
@@ -914,7 +1105,7 @@ namespace Nada.Model.Repositories
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
-                        DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"), 
+                        DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
                         Indicator = survey.TypeOfSurvey.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
                     });
                 }

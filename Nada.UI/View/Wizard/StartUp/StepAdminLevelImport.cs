@@ -28,6 +28,7 @@ namespace Nada.UI.View.Wizard
         AdminLevelType locationType = null;
         AdminLevelType nextType = null;
         IWizardStep prev = null;
+        private int demoYear;
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<ReportOptions> OnRunReport { get; set; }
@@ -51,9 +52,10 @@ namespace Nada.UI.View.Wizard
             Init(type, p, false);
         }
 
-        public StepAdminLevelImport(AdminLevelType type, IWizardStep p, bool demoOnly)
+        public StepAdminLevelImport(AdminLevelType type, IWizardStep p, bool demoOnly, int year)
             : base()
         {
+            demoYear = year;
             Init(type, p, demoOnly);
         }
 
@@ -114,7 +116,7 @@ namespace Nada.UI.View.Wizard
 
         public void DoNext()
         {
-            OnSwitchStep(new StepAdminLevelImport(nextType, this, isDemoOnly));
+            OnSwitchStep(new StepAdminLevelImport(nextType, this, isDemoOnly, demoYear));
         }
 
         public void DoFinish()
@@ -245,7 +247,10 @@ namespace Nada.UI.View.Wizard
             year = DateTime.Now.Year;
             count = 0;
             if (isDemoOnly)
+            {
+                year = demoYear;
                 return true;
+            }
 
             if ((cbImportFor.Visible && cbImportFor.SelectedItem == null) ||
                 (string.IsNullOrEmpty(tbRows.Text) || !int.TryParse(tbRows.Text, out count)) ||

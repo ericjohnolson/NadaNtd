@@ -20,6 +20,7 @@ namespace Nada.Model.Imports
         public IndicatorEntityType EntityType { get; set; }
         public List<TypeListItem> Types { get; set; }
         public Nullable<int> TypeId { get; set; }
+        public List<AdminLevel> AdminLevels { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

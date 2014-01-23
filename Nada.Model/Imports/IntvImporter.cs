@@ -14,6 +14,7 @@ namespace Nada.Model.Imports
 {
     public class IntvImporter : ImporterBase, IImporter
     {
+        public override IndicatorEntityType EntityType { get { return IndicatorEntityType.Intervention; } }
         IntvRepository repo = new IntvRepository();
         private IntvType iType = null;
         public IntvImporter() {  }
@@ -28,7 +29,7 @@ namespace Nada.Model.Imports
             }).ToList();
         }
 
-        public override void SetType(int id)
+        protected override void SetSpecificType(int id)
         {
             iType = repo.GetIntvType(id);
             Indicators = iType.Indicators;
@@ -38,32 +39,30 @@ namespace Nada.Model.Imports
         protected override ImportResult MapAndSaveObjects(DataSet ds, int userId)
         {
             string errorMessage = "";
-            List<IntvBase> intvs = new List<IntvBase>();
+            List<IntvBase> objs = new List<IntvBase>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                IntvBase intv = repo.CreateIntv(iType.Id);
-                intv.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
-                intv.Notes = row[Translations.Notes].ToString();
-                intv.IndicatorValues = GetDynamicIndicatorValues(ds, row);
-            
-                var objerrors = !intv.IsValid() ? intv.GetAllErrors(true) : "";
-                if (!string.IsNullOrEmpty(objerrors))
-                    errorMessage += string.Format(Translations.ImportErrors, row[Translations.Location], "", objerrors) + Environment.NewLine;
-                
-                intvs.Add(intv);
+                string objerrors = "";
+                IntvBase obj = repo.CreateIntv(iType.Id);
+                obj.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
+                obj.Notes = row[Translations.Notes].ToString();
+                // Validation
+                obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
+                objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
+                errorMessage += GetObjectErrors(objerrors, row[Translations.Location].ToString());
+                objs.Add(obj);
             }
 
             if (!string.IsNullOrEmpty(errorMessage))
-                return new ImportResult(Translations.ImportErrorHeader + Environment.NewLine + errorMessage);
+                return new ImportResult(CreateErrorMessage(errorMessage));
 
-            foreach (IntvBase obj in intvs)
-                repo.SaveBase(obj, userId);
+            repo.Save(objs, userId);
 
             return new ImportResult
             {
                 WasSuccess = true,
-                Count = intvs.Count,
-                Message = string.Format(Translations.ImportSuccess, intvs.Count)
+                Count = objs.Count,
+                Message = string.Format(Translations.ImportSuccess, objs.Count)
             };
         }
 

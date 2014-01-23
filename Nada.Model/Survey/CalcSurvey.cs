@@ -69,11 +69,11 @@ namespace Nada.Model.Survey
                     case "19OnchoMapSurPercentPositive":
                         return new KeyValuePair<string, string>(Translations.OnchoMapSurPercentPositive, GetPercentage(GetValueOrDefault("19OnchoMapSurNumberOfIndividualsPositive", relatedValues), GetValueOrDefault("19OnchoMapSurNumberOfIndividualsExamined", relatedValues)));
                     case "19OnchoMapSurIfTestTypeIsNpPerDep":
-                        return new KeyValuePair<string, string>(Translations.OnchoMapSurIfTestTypeIsNpPerDep, GetPercentage(GetValueOrDefault("19OnchoSurIfTestTypeIsNpPerDep", relatedValues), GetValueOrDefault("19OnchoMapSurNumberOfIndividualsExamined", relatedValues)));
+                        return new KeyValuePair<string, string>(Translations.OnchoMapSurIfTestTypeIsNpPerDep, GetPercentage(GetValueOrDefault("19OnchoMapSurIfTestTypeIsNpNumDep", relatedValues), GetValueOrDefault("19OnchoMapSurNumberOfIndividualsExamined", relatedValues)));
                     case "19OnchoMapSurIfTestTypeIsNpPerNod":
-                        return new KeyValuePair<string, string>(Translations.OnchoMapSurIfTestTypeIsNpPerNod, GetPercentage(GetValueOrDefault("19OnchoSurIfTestTypeIsNpPerNod", relatedValues), GetValueOrDefault("19OnchoMapSurNumberOfIndividualsExamined", relatedValues)));
+                        return new KeyValuePair<string, string>(Translations.OnchoMapSurIfTestTypeIsNpPerNod, GetPercentage(GetValueOrDefault("19OnchoMapSurIfTestTypeIsNpNumNod", relatedValues), GetValueOrDefault("19OnchoMapSurNumberOfIndividualsExamined", relatedValues)));
                     case "19OnchoMapSurIfTestTypeIsNpPerWri":
-                        return new KeyValuePair<string, string>(Translations.OnchoMapSurIfTestTypeIsNpPerWri, GetPercentage(GetValueOrDefault("19OnchoSurIfTestTypeIsNpPerWri", relatedValues), GetValueOrDefault("19OnchoMapSurNumberOfIndividualsExamined", relatedValues)));
+                        return new KeyValuePair<string, string>(Translations.OnchoMapSurIfTestTypeIsNpPerWri, GetPercentage(GetValueOrDefault("19OnchoMapSurIfTestTypeIsNpNumWri", relatedValues), GetValueOrDefault("19OnchoMapSurNumberOfIndividualsExamined", relatedValues)));
                     case "17SCHMapSurPrevalenceOfAnyHaemuaturiaOrPar":
                         return new KeyValuePair<string, string>(Translations.SCHMapSurPrevalenceOfAnyHaemuaturiaOrPar, GetPercentage(GetValueOrDefault("17SCHMapSurNumberOfIndividualsPositiveForH", relatedValues), GetValueOrDefault("17SCHMapSurNumberOfIndividualsExaminedForU", relatedValues)));
                     case "17SCHMapSurPrevalenceOfIntestinalSchistoso":

@@ -155,6 +155,7 @@
             this.olvColumn1.CellPadding = null;
             this.olvColumn1.FillsFreeSpace = true;
             this.olvColumn1.IsEditable = false;
+            this.olvColumn1.Tag = "Name";
             this.olvColumn1.Text = "Name";
             this.olvColumn1.Width = 290;
             // 

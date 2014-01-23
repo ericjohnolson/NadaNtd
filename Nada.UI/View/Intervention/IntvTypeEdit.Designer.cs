@@ -220,6 +220,7 @@
             this.olvColumn8.AspectName = "DisplayName";
             this.olvColumn8.CellPadding = null;
             this.olvColumn8.IsEditable = false;
+            this.olvColumn8.Tag = "Name";
             this.olvColumn8.Text = "Name";
             this.olvColumn8.Width = 258;
             // 
@@ -228,6 +229,7 @@
             this.olvColumn9.AspectName = "DataType";
             this.olvColumn9.CellPadding = null;
             this.olvColumn9.IsEditable = false;
+            this.olvColumn9.Tag = "Type";
             this.olvColumn9.Text = "Type";
             this.olvColumn9.Width = 107;
             // 
@@ -236,6 +238,7 @@
             this.olvColumn10.AspectName = "IsRequired";
             this.olvColumn10.CellPadding = null;
             this.olvColumn10.IsEditable = false;
+            this.olvColumn10.Tag = "IsRequired";
             this.olvColumn10.Text = "Is Required";
             // 
             // olvColumn2
@@ -243,6 +246,7 @@
             this.olvColumn2.AspectName = "IsDisabled";
             this.olvColumn2.CellPadding = null;
             this.olvColumn2.IsEditable = false;
+            this.olvColumn2.Tag = "Disabled";
             this.olvColumn2.Text = "Disabled";
             // 
             // olvColumn1
@@ -251,6 +255,7 @@
             this.olvColumn1.CellPadding = null;
             this.olvColumn1.Hyperlink = true;
             this.olvColumn1.IsEditable = false;
+            this.olvColumn1.Tag = "Edit";
             this.olvColumn1.Text = "Edit";
             // 
             // lblCustomIndicators
@@ -285,7 +290,7 @@
             this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
             this.hr1.ForeColor = System.Drawing.Color.Gray;
             this.hr1.Location = new System.Drawing.Point(0, 0);
-            this.hr1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.hr1.Margin = new System.Windows.Forms.Padding(6);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(136)))), ((int)(((byte)(65)))));
             this.hr1.Size = new System.Drawing.Size(720, 6);

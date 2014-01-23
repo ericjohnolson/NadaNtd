@@ -36,7 +36,7 @@ namespace Nada.UI.View
                 settings = new SettingsRepository();
                 levels = settings.GetAllAdminLevels();
                 bsLevels.DataSource = levels;
-                cbLevels.SelectedIndex = 0;
+                cbLevels.SelectedItem = levels.FirstOrDefault();
                 LoadTrees();
                 treeAvailable.CanExpandGetter = model => ((AdminLevel)model).
                                                               Children.Count > 0;
@@ -182,11 +182,11 @@ namespace Nada.UI.View
         private AdminLevel GetParent(AdminLevel item, List<AdminLevel> oldList, List<AdminLevel> newList)
         {
             // if it is parent add it
-            if (item.LevelNumber == 1)
+            if (item.LevelNumber == 1 || !item.ParentId.HasValue)
                 return item;
 
-            AdminLevel oldParent = oldList.FirstOrDefault(p => p.Id == item.ParentId);
-            AdminLevel newParent = newList.FirstOrDefault(p => p.Id == item.ParentId);
+            AdminLevel oldParent = AdminLevel.Find(oldList, item.ParentId.Value);
+            AdminLevel newParent = AdminLevel.Find(newList, item.ParentId.Value);
             if (newParent == null)
             {
                 newParent = oldParent.CopyTreeNode();
@@ -212,11 +212,11 @@ namespace Nada.UI.View
 
         private void DeleteNode(AdminLevel item, List<AdminLevel> oldList)
         {
-            if (item.LevelNumber == 1)
+            if (item.LevelNumber == 1 || !item.ParentId.HasValue)
                 oldList.Remove(item);
             else
             {
-                AdminLevel parent = oldList.FirstOrDefault(p => p.Id == item.ParentId);
+                AdminLevel parent = AdminLevel.Find(oldList, item.ParentId.Value);
                 parent.Children.Remove(item);
             }
         }

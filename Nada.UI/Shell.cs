@@ -27,6 +27,7 @@ using Nada.UI.View.Modals;
 using Nada.UI.View.Reports;
 using Nada.UI.View.Survey;
 using Nada.UI.View.Wizard;
+using Nada.UI.View.Wizard.DistrictSplitting;
 using Nada.UI.ViewModel;
 
 namespace Nada.UI
@@ -61,14 +62,6 @@ namespace Nada.UI
         {
             this.Text = Localizer.GetValue("ApplicationTitle");
             Localizer.TranslateControl(this);
-            // Translate controls
-            foreach (ToolStripMenuItem item in mainMenu.Items)
-            {
-                item.Text = TranslationLookup.GetValue(item.Text, item.Text);
-                foreach (var child in item.DropDownItems)
-                    if (child is ToolStripMenuItem)
-                        (child as ToolStripMenuItem).Text = TranslationLookup.GetValue((child as ToolStripMenuItem).Text, (child as ToolStripMenuItem).Text);
-            }
         }
 
         void dbView_OnFileSelected()
@@ -107,15 +100,15 @@ namespace Nada.UI
 
         void updateWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if ((bool)e.Result && (Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") ||
-                Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin")))
-            {
-                StepDemoUpdateGrowthRate step = new StepDemoUpdateGrowthRate();
-                WizardForm wiz = new WizardForm(step, Translations.UpdateDemographyForYear);
-                wiz.OnFinish = () => { LoadDashboardAndCheckStartTasks(); };
-                step.OnSkip = () => { wiz.Close(); };
-                wiz.ShowDialog();
-            }
+            //if ((bool)e.Result && (Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") ||
+            //    Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin")))
+            //{
+            //    StepDemoUpdateGrowthRate step = new StepDemoUpdateGrowthRate();
+            //    WizardForm wiz = new WizardForm(step, Translations.UpdateDemographyForYear);
+            //    wiz.OnFinish = () => { LoadDashboardAndCheckStartTasks(); };
+            //    step.OnSkip = () => { wiz.Close(); };
+            //    wiz.ShowDialog();
+            //}
         }
 
         void updateWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -175,7 +168,6 @@ namespace Nada.UI
         #endregion
 
         #region Menu
-
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DatabaseView dbView = new DatabaseView();
@@ -274,6 +266,76 @@ namespace Nada.UI
             LoadView(dashboard);
         }
         #endregion
+
+        private void menuNewYearDemoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StepDemoUpdateGrowthRate step = new StepDemoUpdateGrowthRate();
+            WizardForm wiz = new WizardForm(step, Translations.UpdateDemographyForYear);
+            wiz.OnFinish = () => { LoadDashboard(new DashboardView()); };
+            step.OnSkip = () => { wiz.Close(); };
+            wiz.ShowDialog();
+        }
+
+        private void menuNewYearDistroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StepDdUpdateGrowthRate step = new StepDdUpdateGrowthRate();
+            WizardForm wiz = new WizardForm(step, Translations.UpdateDdForYear);
+            wiz.OnFinish = () => { LoadDashboard(new DashboardView()); };
+            step.OnSkip = () => { wiz.Close(); };
+            wiz.ShowDialog();
+        }
+
+        private void menuSplitCombineDistrictToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsRepository repo = new SettingsRepository();
+            DiseaseDashboard dash = new DiseaseDashboard(true);
+            dash.ReloadView = (v) => {  };
+            dash.LoadView = (v) => {  };
+            dash.LoadForm = (v) => { LoadForm(v); };
+            dash.StatusChanged = (s) => {  };
+            WizardForm wiz = new WizardForm(new MergingSources(new SplittingOptions { Dashboard = dash, SplitType = SplittingType.SplitCombine }, Translations.SplitCombineSource),
+                Translations.SplitCombineTitle);
+            wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
+            wiz.ShowDialog();
+        }
+
+        private void menuSplitDistrictToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsRepository repo = new SettingsRepository();
+            DiseaseDashboard dash = new DiseaseDashboard(true);
+            dash.ReloadView = (v) => { };
+            dash.LoadView = (v) => { };
+            dash.LoadForm = (v) => { LoadForm(v); };
+            dash.StatusChanged = (s) => { };
+            WizardForm wiz = new WizardForm(new SplittingSource(new SplittingOptions { Dashboard = dash,  SplitType = SplittingType.Split }),
+                Translations.SplittingTitle);
+            wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
+            wiz.ShowDialog();
+        }
+
+        private void menuMergeDistrictToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsRepository repo = new SettingsRepository();
+            DiseaseDashboard dash = new DiseaseDashboard(true);
+            dash.ReloadView = (v) => { };
+            dash.LoadView = (v) => { };
+            dash.LoadForm = (v) => { LoadForm(v); };
+            dash.StatusChanged = (s) => { };
+            WizardForm wiz = new WizardForm(new MergingSources(new SplittingOptions { Dashboard = dash, SplitType = SplittingType.Merge }, Translations.SplitMergeSource),
+                Translations.SplitMergeTitle);
+            wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
+            wiz.ShowDialog();
+        }
+
+        private void LoadForm(IView v)
+        {
+            ViewForm form = new ViewForm(v);
+            v.OnClose = () =>
+            {
+                form.Close();
+            };
+            form.Show();
+        }
 
     }
 }

@@ -18,7 +18,10 @@ namespace Nada.Model
         Partners = 9,
         SentinelSite = 10,
         EcologicalZone = 11,
-        EvaluationUnit = 12
+        EvaluationUnit = 12,
+        Calculated = 13,
+        EvalSubDistrict = 14,
+        LargeText = 15
     }
 
     public enum IndicatorAggType
@@ -38,6 +41,7 @@ namespace Nada.Model
         Process = 4,
         EvaluationUnit = 5,
         EcologicalZone = 6,
+        EvalSubDistrict = 7,
     }
 
     public enum StaticSurveyType
@@ -46,7 +50,10 @@ namespace Nada.Model
         BuruliSurvey = 8,
         LfSentinel = 10,
         SchistoSentinel = 11,
-        SthSentinel = 12
+        SthSentinel = 12,
+        LfMapping = 16,
+        SchMapping = 17,
+        SthMapping = 18
     }
 
     public enum StaticIntvType

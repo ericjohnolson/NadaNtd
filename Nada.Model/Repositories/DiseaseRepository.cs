@@ -90,7 +90,7 @@ namespace Nada.Model.Repositories
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
                                 Year = reader.GetValueOrDefault<int>("YearReported"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
-                                UpdatedBy = Util.GetAuditInfo(reader)
+                                UpdatedBy = GetAuditInfo(reader)
 
                             });
                         }
@@ -131,7 +131,7 @@ namespace Nada.Model.Repositories
                             diseaseDistro.Notes = reader.GetValueOrDefault<string>("Notes");
                             diseaseDistro.YearOfReporting = reader.GetValueOrDefault<int>("YearReported");
                             diseaseDistro.AdminLevelId = reader.GetValueOrDefault<int>("AdminLevelId");
-                            diseaseDistro.UpdatedBy = Util.GetAuditInfo(reader);
+                            diseaseDistro.UpdatedBy = GetAuditInfo(reader);
                         }
                         reader.Close();
                     }
@@ -168,8 +168,8 @@ namespace Nada.Model.Repositories
             }
             return diseaseDistro;
         }
-
-        public void Save(DiseaseDistroPc distro, int userId)
+        
+        public void Save(List<DiseaseDistroPc> import, int userId)
         {
             bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -178,41 +178,13 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    distro.MapIndicatorsToProperties();
                     // START TRANS
                     OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
                     command.ExecuteNonQuery();
                     transWasStarted = true;
 
-                    if (distro.Id > 0)
-                        command = new OleDbCommand(@"UPDATE DiseaseDistributions SET DiseaseId=@DiseaseId, AdminLevelId=@AdminLevelId,
-                           YearReported=@YearReported, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
-                    else
-                        command = new OleDbCommand(@"INSERT INTO DiseaseDistributions (DiseaseId, AdminLevelId, YearReported, Notes, UpdatedById, 
-                            UpdatedAt, CreatedById, CreatedAt) values (@DiseaseId, @AdminLevelId, @YearReported, @Notes, @UpdatedById, 
-                            @UpdatedAt, @CreatedById, @CreatedAt)", connection);
-                    command.Parameters.Add(new OleDbParameter("@DiseaseId", distro.Disease.Id));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", distro.AdminLevelId));
-                    command.Parameters.Add(new OleDbParameter("@YearReported", distro.YearOfReporting));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", distro.Notes));
-                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                    if (distro.Id > 0)
-                        command.Parameters.Add(new OleDbParameter("@id", distro.Id));
-                    else
-                    {
-                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
-                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
-                    }
-                    command.ExecuteNonQuery();
-
-                    if (distro.Id <= 0)
-                    {
-                        command = new OleDbCommand(@"SELECT Max(ID) FROM DiseaseDistributions", connection);
-                        distro.Id = (int)command.ExecuteScalar();
-                    }
-
-                    AddIndicatorValues(connection, distro, distro.Id, userId);
+                    foreach(var distro in import)
+                        SavePc(distro, userId, connection, command);
 
                     // COMMIT TRANS
                     command = new OleDbCommand("COMMIT TRANSACTION", connection);
@@ -233,6 +205,77 @@ namespace Nada.Model.Repositories
                     throw;
                 }
             }
+        }
+
+        public void Save(DiseaseDistroPc distro, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+                    
+                    SavePc(distro, userId, connection, command);
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+
+        private void SavePc(DiseaseDistroPc distro, int userId, OleDbConnection connection, OleDbCommand command)
+        {
+            distro.MapIndicatorsToProperties();
+            if (distro.Id > 0)
+                command = new OleDbCommand(@"UPDATE DiseaseDistributions SET DiseaseId=@DiseaseId, AdminLevelId=@AdminLevelId,
+                           YearReported=@YearReported, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+            else
+                command = new OleDbCommand(@"INSERT INTO DiseaseDistributions (DiseaseId, AdminLevelId, YearReported, Notes, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@DiseaseId, @AdminLevelId, @YearReported, @Notes, @UpdatedById, 
+                            @UpdatedAt, @CreatedById, @CreatedAt)", connection);
+            command.Parameters.Add(new OleDbParameter("@DiseaseId", distro.Disease.Id));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", distro.AdminLevelId));
+            command.Parameters.Add(new OleDbParameter("@YearReported", distro.YearOfReporting));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", distro.Notes));
+            command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+            if (distro.Id > 0)
+                command.Parameters.Add(new OleDbParameter("@id", distro.Id));
+            else
+            {
+                command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+            }
+            command.ExecuteNonQuery();
+
+            if (distro.Id <= 0)
+            {
+                command = new OleDbCommand(@"SELECT Max(ID) FROM DiseaseDistributions", connection);
+                distro.Id = (int)command.ExecuteScalar();
+            }
+
+            AddIndicatorValues(connection, distro, distro.Id, userId);
         }
 
         public DiseaseDistroCm GetDiseaseDistributionCm(int id, int typeId)
@@ -261,7 +304,7 @@ namespace Nada.Model.Repositories
                             diseaseDistro.Notes = reader.GetValueOrDefault<string>("Notes");
                             diseaseDistro.YearReported = reader.GetValueOrDefault<int>("YearReported");
                             diseaseDistro.AdminLevelId = reader.GetValueOrDefault<int>("AdminLevelId");
-                            diseaseDistro.UpdatedBy = Util.GetAuditInfo(reader);
+                            diseaseDistro.UpdatedBy = GetAuditInfo(reader);
                         }
                         reader.Close();
                     }
@@ -340,8 +383,8 @@ namespace Nada.Model.Repositories
                 return GetDiseaseDistributionCm(did, diseaseType);
             }
         }
-
-        public void Save(DiseaseDistroCm distro, int userId)
+        
+        public void Save(List<DiseaseDistroCm> import, int userId)
         {
             bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -350,41 +393,13 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    distro.MapIndicatorsToProperties();
                     // START TRANS
                     OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
                     command.ExecuteNonQuery();
                     transWasStarted = true;
 
-                    if (distro.Id > 0)
-                        command = new OleDbCommand(@"UPDATE DiseaseDistributions SET DiseaseId=@DiseaseId, AdminLevelId=@AdminLevelId,
-                            Notes=@Notes, YearReported=@YearReported, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
-                    else
-                        command = new OleDbCommand(@"INSERT INTO DiseaseDistributions (DiseaseId, AdminLevelId,  Notes, YearReported, UpdatedById, 
-                            UpdatedAt, CreatedById, CreatedAt) values (@DiseaseId, @AdminLevelId, @Notes, @YearReported, @UpdatedById, 
-                            @UpdatedAt, @CreatedById, @CreatedAt)", connection);
-                    command.Parameters.Add(new OleDbParameter("@DiseaseId", distro.Disease.Id));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", distro.AdminLevelId));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", distro.Notes));
-                    command.Parameters.Add(new OleDbParameter("@YearReported", distro.YearReported));
-                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                    if (distro.Id > 0)
-                        command.Parameters.Add(new OleDbParameter("@id", distro.Id));
-                    else
-                    {
-                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
-                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
-                    }
-                    command.ExecuteNonQuery();
-
-                    if (distro.Id <= 0)
-                    {
-                        command = new OleDbCommand(@"SELECT Max(ID) FROM DiseaseDistributions", connection);
-                        distro.Id = (int)command.ExecuteScalar();
-                    }
-
-                    AddIndicatorValues(connection, distro, distro.Id, userId);
+                    foreach(var distro in import)
+                        SaveCm(distro, userId, connection, command);
 
                     // COMMIT TRANS
                     command = new OleDbCommand("COMMIT TRANSACTION", connection);
@@ -405,6 +420,76 @@ namespace Nada.Model.Repositories
                     throw;
                 }
             }
+        }
+        public void Save(DiseaseDistroCm distro, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                   // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    SaveCm(distro, userId, connection, command);
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+
+        private void SaveCm(DiseaseDistroCm distro, int userId, OleDbConnection connection, OleDbCommand command)
+        {
+            distro.MapIndicatorsToProperties();
+            if (distro.Id > 0)
+                command = new OleDbCommand(@"UPDATE DiseaseDistributions SET DiseaseId=@DiseaseId, AdminLevelId=@AdminLevelId,
+                            Notes=@Notes, YearReported=@YearReported, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+            else
+                command = new OleDbCommand(@"INSERT INTO DiseaseDistributions (DiseaseId, AdminLevelId,  Notes, YearReported, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@DiseaseId, @AdminLevelId, @Notes, @YearReported, @UpdatedById, 
+                            @UpdatedAt, @CreatedById, @CreatedAt)", connection);
+            command.Parameters.Add(new OleDbParameter("@DiseaseId", distro.Disease.Id));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", distro.AdminLevelId));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", distro.Notes));
+            command.Parameters.Add(new OleDbParameter("@YearReported", distro.YearReported));
+            command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+            if (distro.Id > 0)
+                command.Parameters.Add(new OleDbParameter("@id", distro.Id));
+            else
+            {
+                command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+            }
+            command.ExecuteNonQuery();
+
+            if (distro.Id <= 0)
+            {
+                command = new OleDbCommand(@"SELECT Max(ID) FROM DiseaseDistributions", connection);
+                distro.Id = (int)command.ExecuteScalar();
+            }
+
+            AddIndicatorValues(connection, distro, distro.Id, userId);
         }
 
         public void SaveIndicators(IHaveDynamicIndicators model, int diseaseId, int userId)
@@ -694,13 +779,14 @@ namespace Nada.Model.Repositories
                     transWasStarted = true;
 
                     if (disease.Id > 0)
-                        command = new OleDbCommand(@"UPDATE Diseases SET DisplayName=@DisplayName, UserDefinedName=@UserDefinedName, UpdatedById=@UpdatedById, 
+                        command = new OleDbCommand(@"UPDATE Diseases SET DisplayName=@DisplayName, UserDefinedName=@UserDefinedName, DiseaseType=@DiseaseType, UpdatedById=@UpdatedById, 
                             UpdatedAt=@UpdatedAt WHERE ID = @id", connection);
                     else
-                        command = new OleDbCommand(@"INSERT INTO diseases (DisplayName, UserDefinedName, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
-                            (@DisplayName, @UserDefinedName, @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
+                        command = new OleDbCommand(@"INSERT INTO diseases (DisplayName, UserDefinedName, DiseaseType, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
+                            (@DisplayName, @UserDefinedName, @DiseaseType, @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(new OleDbParameter("@DisplayName", disease.DisplayName));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@UserDefinedName", disease.UserDefinedName));
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@DiseaseType", disease.DiseaseType));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", byUserId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                     if (disease.Id > 0)
@@ -716,6 +802,13 @@ namespace Nada.Model.Repositories
                     {
                         command = new OleDbCommand(@"SELECT Max(ID) FROM Diseases", connection);
                         disease.Id = (int)command.ExecuteScalar();
+                        // Insert Disease Distro Year Reported
+                        command = new OleDbCommand(@"INSERT INTO DiseaseDistributionIndicators (DiseaseId, DisplayName, DataTypeId, AggTypeId, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, IsMetaData, CanAddValues, SortOrder, UpdatedById, UpdatedAt) VALUES
+                            (@DiseaseId, 'DiseaseYear', 7, 5, No, No, Yes, No, False, False, False, 1, @UpdatedById, @UpdatedAt)", connection);
+                        command.Parameters.Add(new OleDbParameter("@DiseaseId", disease.Id));
+                        command.Parameters.Add(new OleDbParameter("@UpdatedById", byUserId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.ExecuteNonQuery();
                     }
 
                     // COMMIT TRANS

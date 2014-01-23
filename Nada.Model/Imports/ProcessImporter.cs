@@ -15,6 +15,7 @@ namespace Nada.Model
 {
     public class ProcessImporter : ImporterBase, IImporter
     {
+        public override IndicatorEntityType EntityType { get { return IndicatorEntityType.Process; } }
         public override string ImportName { get { return Translations.ProcessIndicators + " " + Translations.Import; } }
         private ProcessRepository repo = new ProcessRepository();
         private ProcessType type = null;
@@ -22,7 +23,7 @@ namespace Nada.Model
         {
 
         }
-        public override void SetType(int id)
+        protected override void SetSpecificType(int id)
         {
            type = repo.GetProcessType(id);
            Indicators = type.Indicators;
@@ -44,23 +45,22 @@ namespace Nada.Model
             List<ProcessBase> objs = new List<ProcessBase>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
+
+                string objerrors = "";
                 var obj = repo.Create(type.Id);
                 obj.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
                 obj.Notes = row[Translations.Notes].ToString();
-                obj.IndicatorValues = GetDynamicIndicatorValues(ds, row);
-
-                var objerrors = !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                if (!string.IsNullOrEmpty(objerrors))
-                    errorMessage += string.Format(Translations.ImportErrors, row[Translations.Location], "", objerrors) + Environment.NewLine;
-
+                // Validation
+                obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
+                objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
+                errorMessage += GetObjectErrors(objerrors, row[Translations.Location].ToString());
                 objs.Add(obj);
             }
 
             if (!string.IsNullOrEmpty(errorMessage))
-                return new ImportResult(Translations.ImportErrorHeader + Environment.NewLine + errorMessage);
+                return new ImportResult(CreateErrorMessage(errorMessage));
 
-            foreach (var obj in objs)
-                repo.Save(obj, userId);
+            repo.Save(objs, userId);
 
             return new ImportResult
             {

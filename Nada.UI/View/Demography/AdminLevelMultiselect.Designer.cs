@@ -62,7 +62,7 @@
             this.pnlSelector.Location = new System.Drawing.Point(3, 50);
             this.pnlSelector.Margin = new System.Windows.Forms.Padding(0);
             this.pnlSelector.Name = "pnlSelector";
-            this.pnlSelector.Size = new System.Drawing.Size(779, 383);
+            this.pnlSelector.Size = new System.Drawing.Size(779, 346);
             this.pnlSelector.TabIndex = 1;
             // 
             // h3Label3
@@ -104,7 +104,7 @@
             this.treeSelected.Name = "treeSelected";
             this.treeSelected.OwnerDraw = true;
             this.treeSelected.ShowGroups = false;
-            this.treeSelected.Size = new System.Drawing.Size(345, 348);
+            this.treeSelected.Size = new System.Drawing.Size(345, 313);
             this.treeSelected.TabIndex = 1;
             this.treeSelected.UseCompatibleStateImageBehavior = false;
             this.treeSelected.UseHyperlinks = true;
@@ -119,6 +119,7 @@
             this.olvColumn3.CellPadding = null;
             this.olvColumn3.FillsFreeSpace = true;
             this.olvColumn3.IsEditable = false;
+            this.olvColumn3.Tag = "Name";
             this.olvColumn3.Text = "Name";
             this.olvColumn3.Width = 292;
             // 
@@ -133,7 +134,7 @@
             this.treeAvailable.Name = "treeAvailable";
             this.treeAvailable.OwnerDraw = true;
             this.treeAvailable.ShowGroups = false;
-            this.treeAvailable.Size = new System.Drawing.Size(345, 348);
+            this.treeAvailable.Size = new System.Drawing.Size(345, 313);
             this.treeAvailable.TabIndex = 0;
             this.treeAvailable.UseCompatibleStateImageBehavior = false;
             this.treeAvailable.UseHyperlinks = true;
@@ -148,12 +149,13 @@
             this.olvColumn1.CellPadding = null;
             this.olvColumn1.FillsFreeSpace = true;
             this.olvColumn1.IsEditable = false;
+            this.olvColumn1.Tag = "Name";
             this.olvColumn1.Text = "Name";
             this.olvColumn1.Width = 290;
             // 
             // btnDeselect
             // 
-            this.btnDeselect.Location = new System.Drawing.Point(352, 207);
+            this.btnDeselect.Location = new System.Drawing.Point(352, 188);
             this.btnDeselect.Name = "btnDeselect";
             this.btnDeselect.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.btnDeselect.Size = new System.Drawing.Size(69, 29);
@@ -163,7 +165,7 @@
             // 
             // btnSelectAll
             // 
-            this.btnSelectAll.Location = new System.Drawing.Point(352, 135);
+            this.btnSelectAll.Location = new System.Drawing.Point(352, 116);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.btnSelectAll.Size = new System.Drawing.Size(69, 29);
@@ -173,7 +175,7 @@
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(352, 171);
+            this.btnSelect.Location = new System.Drawing.Point(352, 152);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.btnSelect.Size = new System.Drawing.Size(69, 29);
@@ -183,7 +185,7 @@
             // 
             // btnDeselectAll
             // 
-            this.btnDeselectAll.Location = new System.Drawing.Point(352, 242);
+            this.btnDeselectAll.Location = new System.Drawing.Point(352, 223);
             this.btnDeselectAll.Name = "btnDeselectAll";
             this.btnDeselectAll.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
             this.btnDeselectAll.Size = new System.Drawing.Size(69, 29);
@@ -232,7 +234,7 @@
             this.Controls.Add(this.pnlSelector);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AdminLevelMultiselect";
-            this.Size = new System.Drawing.Size(782, 433);
+            this.Size = new System.Drawing.Size(782, 396);
             this.Load += new System.EventHandler(this.AdminLevelMultiselect_Load);
             this.pnlSelector.ResumeLayout(false);
             this.pnlSelector.PerformLayout();

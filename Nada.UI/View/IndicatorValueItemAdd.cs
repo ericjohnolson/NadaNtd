@@ -57,6 +57,8 @@ namespace Nada.UI.View
 
             if (model.EntityType == IndicatorEntityType.EcologicalZone)
                 s.SaveEz(model, userid);
+            if (model.EntityType == IndicatorEntityType.EvalSubDistrict)
+                s.SaveEvalSubDistrict(model, userid);
             else if (model.EntityType == IndicatorEntityType.EvaluationUnit)
                 s.SaveEu(model, userid);
             else

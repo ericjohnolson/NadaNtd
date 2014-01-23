@@ -74,7 +74,7 @@ namespace Nada.UI.View.Wizard
 
             int userId = ApplicationData.Instance.GetUserId();
             var demo = new DemoRepository();
-            demo.Save(model, userId);
+            //demo.Save(model, userId);
             return true;
         }
     }

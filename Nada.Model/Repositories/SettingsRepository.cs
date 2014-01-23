@@ -30,7 +30,7 @@ namespace Nada.Model.Repositories
         public int Level { get; set; }
     }
 
-    public class SettingsRepository
+    public class SettingsRepository : RepositoryBase
     {
         #region Shared
         public StartUpStatus GetStartUpStatus()
@@ -42,21 +42,18 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select DisplayName, MonthYearStarts, HasReviewedDiseases 
-                    FROM ((Country INNER JOIN AdminLevels on Country.AdminLevelId = AdminLevels.ID)
-                        INNER JOIN AdminLevelDemography d on d.AdminLevelId = Country.AdminLevelId) 
-                    WHERE AdminLevels.ID = @id", connection);
+                OleDbCommand command = new OleDbCommand(@"Select MonthYearStarts
+                    FROM Country ", connection);
                 command.Parameters.Add(new OleDbParameter("@id", id));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)
                     {
                         reader.Read();
-                        status.HasEnteredCountrySettings = !string.IsNullOrEmpty(reader.GetValueOrDefault<string>("DisplayName")) &&
-                                reader.GetValueOrDefault<int>("MonthYearStarts") > 0;
+                        status.HasEnteredCountrySettings = reader.GetValueOrDefault<int>("MonthYearStarts") > 0;
                     }
                     reader.Close();
-                } 
+                }
 
                 command = new OleDbCommand(@"Select HasReviewedDiseases FROM Country;", connection);
                 using (OleDbDataReader reader = command.ExecuteReader())
@@ -70,7 +67,7 @@ namespace Nada.Model.Repositories
                 }
 
                 var adminLevels = GetAllAdminLevels();
-                foreach(var adminLevel in adminLevels)
+                foreach (var adminLevel in adminLevels)
                 {
                     command = new OleDbCommand(@"Select Count(ID) from AdminLevels where AdminLevelTypeId = @id", connection);
                     command.Parameters.Add(new OleDbParameter("@id", adminLevel.Id));
@@ -164,6 +161,34 @@ namespace Nada.Model.Repositories
             }
             return lvls;
         }
+
+        public AdminLevelType GetDistrictAdminLevel()
+        {
+            AdminLevelType lvl = new AdminLevelType();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                string sql = @"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes 
+                    WHERE AdminLevel > 0 AND IsDeleted=0 AND IsDistrict=-1";
+                OleDbCommand command = new OleDbCommand(sql, connection);
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                        lvl = new AdminLevelType
+                        {
+                            Id = reader.GetValueOrDefault<int>("ID"),
+                            DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+                            LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
+                            IsDistrict = reader.GetValueOrDefault<bool>("IsDistrict"),
+                            IsAggregatingLevel = reader.GetValueOrDefault<bool>("IsAggregatingLevel"),
+                        };
+                    reader.Close();
+                }
+            }
+            return lvl;
+        }
+
         public AdminLevelType GetAdminLevelTypeByLevel(int level)
         {
             AdminLevelType al = null;
@@ -273,10 +298,10 @@ namespace Nada.Model.Repositories
                 {
                     OleDbCommand command = new OleDbCommand(@"Update AdminLevelTypes set IsDeleted=1, UpdatedById=@updatedby, 
                         UpdatedAt=@updatedat WHERE ID = @id", connection);
-                        command.Parameters.Add(new OleDbParameter("@updatedby", userId));
-                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
-                        command.Parameters.Add(new OleDbParameter("@id", adminLevelType.Id));
-                        command.ExecuteNonQuery();
+                    command.Parameters.Add(new OleDbParameter("@updatedby", userId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
+                    command.Parameters.Add(new OleDbParameter("@id", adminLevelType.Id));
+                    command.ExecuteNonQuery();
                 }
                 catch (Exception)
                 {
@@ -335,6 +360,10 @@ namespace Nada.Model.Repositories
                         command.Parameters.Add(new OleDbParameter("@CreatedById", byUserId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
                         command.ExecuteNonQuery();
+
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM AdminLevelTypes", connection);
+                        adminLevel.Id = (int)command.ExecuteScalar();
+
                     }
                 }
                 catch (Exception)
@@ -344,101 +373,6 @@ namespace Nada.Model.Repositories
             }
         }
 
-        #endregion
-
-        #region Pop Groups
-        public List<PopGroup> GetAllPopGroups()
-        {
-            List<PopGroup> pops = new List<PopGroup>();
-            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                string sql = @"Select ID, DisplayName, Abbreviation from PopulationGroups";
-                OleDbCommand command = new OleDbCommand(sql, connection);
-                using (OleDbDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                        pops.Add(new PopGroup
-                        {
-                            Id = reader.GetValueOrDefault<int>("ID"),
-                            DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                            Abbreviation = reader.GetValueOrDefault<string>("Abbreviation"),
-                        });
-                    reader.Close();
-                }
-            }
-            return pops;
-        }
-
-        public void InsertPopGroup(PopGroup popGroup, int byUserId)
-        {
-            bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    // START TRANS
-                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
-                    command.ExecuteNonQuery();
-                    transWasStarted = true;
-
-                    // INSERT DISEASE
-                    command = new OleDbCommand(@"INSERT INTO PopulationGroups (DisplayName, Abbreviation, UpdatedBy, UpdatedAt) VALUES
-                    (@DisplayName, @Abbreviation, @UpdatedBy, @UpdatedAt)", connection);
-                    command.Parameters.Add(new OleDbParameter("@DisplayName", popGroup.DisplayName));
-                    command.Parameters.Add(new OleDbParameter("@Abbreviation", popGroup.Abbreviation));
-                    command.Parameters.Add(new OleDbParameter("@UpdatedBy", byUserId));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                    command.ExecuteNonQuery();
-
-                    // COMMIT TRANS
-                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
-                    command.ExecuteNonQuery();
-                    transWasStarted = false;
-                }
-                catch (Exception)
-                {
-                    if (transWasStarted)
-                    {
-                        try
-                        {
-                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch { }
-                    }
-                    throw;
-                }
-            }
-        }
-
-        public void UpdatePopGroup(PopGroup popGroup, int byUserId)
-        {
-            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    // Update DISEASE
-                    OleDbCommand cmd2 = new OleDbCommand(@"UPDATE PopulationGroups SET DisplayName=@DisplayName, Abbreviation=@Abbreviation, UpdatedBy=@UpdatedBy, UpdatedAt=@UpdatedAt WHERE ID=@ID", connection);
-                    cmd2.Parameters.Add(new OleDbParameter("@DisplayName", popGroup.DisplayName));
-                    cmd2.Parameters.Add(new OleDbParameter("@Abbreviation", popGroup.Abbreviation));
-                    cmd2.Parameters.Add(new OleDbParameter("@UpdatedBy", byUserId));
-                    cmd2.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
-                    cmd2.Parameters.Add(new OleDbParameter("@ID", popGroup.Id));
-                    cmd2.ExecuteNonQuery();
-
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-        }
         #endregion
 
         #region Related Entities
@@ -465,7 +399,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                UpdatedBy = Util.GetAuditInfo(reader),
+                                UpdatedBy = GetAuditInfo(reader),
                                 EntityType = IndicatorEntityType.EvaluationUnit
                             });
                         }
@@ -515,6 +449,12 @@ namespace Nada.Model.Repositories
 
                     command.ExecuteNonQuery();
 
+                    if (eu.Id <= 0)
+                    {
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM EvaluationUnits", connection);
+                        eu.Id = (int)command.ExecuteScalar();
+                    }
+
                     // COMMIT TRANS
                     command = new OleDbCommand("COMMIT TRANSACTION", connection);
                     command.ExecuteNonQuery();
@@ -559,7 +499,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                UpdatedBy = Util.GetAuditInfo(reader),
+                                UpdatedBy = GetAuditInfo(reader),
                                 EntityType = IndicatorEntityType.EcologicalZone
                             });
                         }
@@ -609,6 +549,12 @@ namespace Nada.Model.Repositories
 
                     command.ExecuteNonQuery();
 
+                    if (ez.Id <= 0)
+                    {
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM EcologicalZones", connection);
+                        ez.Id = (int)command.ExecuteScalar();
+                    }
+
                     // COMMIT TRANS
                     command = new OleDbCommand("COMMIT TRANSACTION", connection);
                     command.ExecuteNonQuery();
@@ -629,7 +575,106 @@ namespace Nada.Model.Repositories
                 }
             }
         }
-        #endregion 
+
+        public List<IndicatorDropdownValue> GetEvalSubDistricts()
+        {
+            List<IndicatorDropdownValue> list = new List<IndicatorDropdownValue>();
+
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, aspnet_users.UserName, UpdatedAt, CreatedAt, c.UserName as CreatedBy from 
+                        ((EvalSubDistricts INNER JOIN aspnet_users on EvalSubDistricts.UpdatedById = aspnet_users.userid)
+                        INNER JOIN aspnet_users c on EvalSubDistricts.CreatedById = c.userid)
+                        WHERE IsDeleted=0", connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new IndicatorDropdownValue
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+                                UpdatedBy = GetAuditInfo(reader),
+                                EntityType = IndicatorEntityType.EvalSubDistrict
+                            });
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return list;
+        }
+
+        public void SaveEvalSubDistrict(IndicatorDropdownValue ez, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    if (ez.Id > 0)
+                        command = new OleDbCommand(@"UPDATE EvalSubDistricts SET DisplayName=@DisplayName,
+                           UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+                    else
+                        command = new OleDbCommand(@"INSERT INTO EvalSubDistricts (DisplayName, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@DisplayName, @UpdatedById, @UpdatedAt, @CreatedById,
+                            @CreatedAt)", connection);
+
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@DisplayName", ez.DisplayName));
+                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    if (ez.Id > 0)
+                        command.Parameters.Add(new OleDbParameter("@id", ez.Id));
+                    else
+                    {
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                    }
+
+                    command.ExecuteNonQuery();
+
+                    if (ez.Id <= 0)
+                    {
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM EvalSubDistricts", connection);
+                        ez.Id = (int)command.ExecuteScalar();
+                    }
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+        #endregion
 
 
     }

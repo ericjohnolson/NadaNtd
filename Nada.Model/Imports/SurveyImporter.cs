@@ -14,12 +14,13 @@ namespace Nada.Model.Imports
 {
     public class SurveyImporter : ImporterBase, IImporter
     {
+        public override IndicatorEntityType EntityType { get { return IndicatorEntityType.Survey; } }
         public override string ImportName { get { return Translations.Survey + " " + Translations.Import; } }
         private SurveyRepository repo = new SurveyRepository();
         private SurveyType sType = null;
         public SurveyImporter() { }
 
-        public override void SetType(int id)
+        protected override void SetSpecificType(int id)
         {
             sType = repo.GetSurveyType(id);
             Indicators = sType.Indicators;
@@ -100,20 +101,18 @@ namespace Nada.Model.Imports
                 }
 
                 obj.Notes = row[Translations.Notes].ToString();
-                obj.IndicatorValues = GetDynamicIndicatorValues(ds, row);
 
+                // Validation
+                obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                if (!string.IsNullOrEmpty(objerrors))
-                    errorMessage += string.Format(Translations.ImportErrors, row[Translations.Location], "", objerrors) + Environment.NewLine;
-
+                errorMessage += GetObjectErrors(objerrors, row[Translations.Location].ToString());
                 objs.Add(obj);
             }
 
             if (!string.IsNullOrEmpty(errorMessage))
-                return new ImportResult(Translations.ImportErrorHeader + Environment.NewLine + errorMessage);
+                return new ImportResult(CreateErrorMessage(errorMessage));
 
-            foreach (var obj in objs)
-                repo.SaveSurvey(obj, userId);
+            repo.Save(objs, userId);
 
             return new ImportResult
             {
@@ -122,6 +121,7 @@ namespace Nada.Model.Imports
                 Message = string.Format(Translations.ImportSuccess, objs.Count)
             };
         }
+
 
     }
 

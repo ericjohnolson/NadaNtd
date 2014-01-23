@@ -58,7 +58,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(933, 55);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(925, 55);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // hr4
@@ -69,7 +69,7 @@
             this.hr4.Margin = new System.Windows.Forms.Padding(0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.DimGray;
-            this.hr4.Size = new System.Drawing.Size(933, 1);
+            this.hr4.Size = new System.Drawing.Size(925, 1);
             this.hr4.TabIndex = 48;
             this.hr4.TabStop = false;
             // 
@@ -97,7 +97,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(223, 21);
             this.tableLayoutPanel2.TabIndex = 21;
             // 
@@ -158,7 +158,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "StatCalculator";
-            this.Size = new System.Drawing.Size(933, 55);
+            this.Size = new System.Drawing.Size(925, 55);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);

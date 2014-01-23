@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblContainer = new System.Windows.Forms.TableLayoutPanel();
             this.h3Required8 = new Nada.UI.Controls.H3Required();
             this.tbLng = new System.Windows.Forms.TextBox();
             this.bsSurvey = new System.Windows.Forms.BindingSource(this.components);
@@ -42,48 +42,48 @@
             this.pnlSentinel = new System.Windows.Forms.Panel();
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.cbSites = new System.Windows.Forms.ComboBox();
+            this.sentinelSiteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlSpotCheckName = new System.Windows.Forms.Panel();
             this.tbSiteName = new System.Windows.Forms.TextBox();
-            this.sentinelSiteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tableLayoutPanel7.SuspendLayout();
+            this.tblContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurvey)).BeginInit();
             this.tblSiteName.SuspendLayout();
             this.pnlSentinel.SuspendLayout();
-            this.pnlSpotCheckName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sentinelSiteBindingSource)).BeginInit();
+            this.pnlSpotCheckName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel7
+            // tblContainer
             // 
-            this.tableLayoutPanel7.AutoSize = true;
-            this.tableLayoutPanel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel7.ColumnCount = 8;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel7.Controls.Add(this.h3Required8, 2, 0);
-            this.tableLayoutPanel7.Controls.Add(this.tbLng, 6, 1);
-            this.tableLayoutPanel7.Controls.Add(this.h3Required1, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.lblLat, 4, 0);
-            this.tableLayoutPanel7.Controls.Add(this.lblLng, 6, 0);
-            this.tableLayoutPanel7.Controls.Add(this.tbLat, 4, 1);
-            this.tableLayoutPanel7.Controls.Add(this.cbSiteType, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.tblSiteName, 2, 1);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(933, 63);
-            this.tableLayoutPanel7.TabIndex = 1;
+            this.tblContainer.AutoSize = true;
+            this.tblContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblContainer.ColumnCount = 8;
+            this.tblContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tblContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tblContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tblContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblContainer.Controls.Add(this.h3Required8, 2, 0);
+            this.tblContainer.Controls.Add(this.tbLng, 6, 1);
+            this.tblContainer.Controls.Add(this.h3Required1, 0, 0);
+            this.tblContainer.Controls.Add(this.lblLat, 4, 0);
+            this.tblContainer.Controls.Add(this.lblLng, 6, 0);
+            this.tblContainer.Controls.Add(this.tbLat, 4, 1);
+            this.tblContainer.Controls.Add(this.cbSiteType, 0, 1);
+            this.tblContainer.Controls.Add(this.tblSiteName, 2, 1);
+            this.tblContainer.Location = new System.Drawing.Point(0, 0);
+            this.tblContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.tblContainer.Name = "tblContainer";
+            this.tblContainer.RowCount = 2;
+            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblContainer.Size = new System.Drawing.Size(933, 63);
+            this.tblContainer.TabIndex = 1;
             // 
             // h3Required8
             // 
@@ -239,6 +239,10 @@
             this.cbSites.TabIndex = 0;
             this.cbSites.ValueMember = "Id";
             // 
+            // sentinelSiteBindingSource
+            // 
+            this.sentinelSiteBindingSource.DataSource = typeof(Nada.Model.Survey.SentinelSite);
+            // 
             // pnlSpotCheckName
             // 
             this.pnlSpotCheckName.Controls.Add(this.tbSiteName);
@@ -256,10 +260,6 @@
             this.tbSiteName.Size = new System.Drawing.Size(179, 20);
             this.tbSiteName.TabIndex = 0;
             // 
-            // sentinelSiteBindingSource
-            // 
-            this.sentinelSiteBindingSource.DataSource = typeof(Nada.Model.Survey.SentinelSite);
-            // 
             // errorProvider1
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
@@ -272,20 +272,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.tableLayoutPanel7);
+            this.Controls.Add(this.tblContainer);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "SentinelSitePickerControl";
             this.Size = new System.Drawing.Size(933, 63);
             this.Load += new System.EventHandler(this.SentinelSitePickerControl_Load);
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
+            this.tblContainer.ResumeLayout(false);
+            this.tblContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurvey)).EndInit();
             this.tblSiteName.ResumeLayout(false);
             this.pnlSentinel.ResumeLayout(false);
             this.pnlSentinel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sentinelSiteBindingSource)).EndInit();
             this.pnlSpotCheckName.ResumeLayout(false);
             this.pnlSpotCheckName.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sentinelSiteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -294,7 +294,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.TableLayoutPanel tblContainer;
         private H3Required h3Required8;
         private System.Windows.Forms.TextBox tbLng;
         private H3Required h3Required1;

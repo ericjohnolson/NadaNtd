@@ -44,11 +44,11 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnHelp, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -158,6 +158,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.hrTop);
@@ -173,6 +174,7 @@
             this.tblTitle.ResumeLayout(false);
             this.tblTitle.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

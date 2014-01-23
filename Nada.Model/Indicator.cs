@@ -31,5 +31,8 @@ namespace Nada.Model
         public string EditText { get { return Translations.View; } }
         public string DeleteText { get { return Translations.Delete; } }
         public bool IsEdited { get; set; }
+
+
+        
     }
 }

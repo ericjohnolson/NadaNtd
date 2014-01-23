@@ -106,7 +106,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add administrative level type &gt;.
+        ///   Looks up a localized string similar to Add administrative level &gt;.
         /// </summary>
         public static string AddAdminLevelTypeLink {
             get {
@@ -228,6 +228,24 @@ namespace Nada.Globalization {
         public static string Adequate {
             get {
                 return ResourceManager.GetString("Adequate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrative levels.
+        /// </summary>
+        public static string AdministrativeLevels {
+            get {
+                return ResourceManager.GetString("AdministrativeLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrative unit.
+        /// </summary>
+        public static string AdminLevel {
+            get {
+                return ResourceManager.GetString("AdminLevel", resourceCulture);
             }
         }
         
@@ -799,11 +817,29 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check box.
+        /// </summary>
+        public static string Checkbox {
+            get {
+                return ResourceManager.GetString("Checkbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for updates.
         /// </summary>
         public static string CheckUpdates {
             get {
                 return ResourceManager.GetString("CheckUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Child administrative units.
+        /// </summary>
+        public static string ChildAdminUnits {
+            get {
+                return ResourceManager.GetString("ChildAdminUnits", resourceCulture);
             }
         }
         
@@ -822,6 +858,15 @@ namespace Nada.Globalization {
         public static string ChooseAdminLevels {
             get {
                 return ResourceManager.GetString("ChooseAdminLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a location.
+        /// </summary>
+        public static string ChooseLocation {
+            get {
+                return ResourceManager.GetString("ChooseLocation", resourceCulture);
             }
         }
         
@@ -925,7 +970,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contacts.
+        ///   Looks up a localized string similar to Contact information - NTD Programme.
         /// </summary>
         public static string CmContacts {
             get {
@@ -1187,7 +1232,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Have you developed an Annual Operational Plan?.
+        ///   Looks up a localized string similar to Check if you have developed an Annual Operational Plan.
         /// </summary>
         public static string CmHaveAnnualOpPlan {
             get {
@@ -1196,7 +1241,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Does the country have a NTD National Master Plan?.
+        ///   Looks up a localized string similar to Check if the country has an NTD National Master Plan.
         /// </summary>
         public static string CmHaveMasterPlan {
             get {
@@ -1417,6 +1462,15 @@ namespace Nada.Globalization {
         public static string Copyright {
             get {
                 return ResourceManager.GetString("Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
             }
         }
         
@@ -2384,6 +2438,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Destination.
+        /// </summary>
+        public static string Destination {
+            get {
+                return ResourceManager.GetString("Destination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detection rate per 100,000.
         /// </summary>
         public static string DetectionRate100k {
@@ -2434,6 +2497,15 @@ namespace Nada.Globalization {
         public static string Dipstick {
             get {
                 return ResourceManager.GetString("Dipstick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string Disabled {
+            get {
+                return ResourceManager.GetString("Disabled", resourceCulture);
             }
         }
         
@@ -2493,6 +2565,15 @@ namespace Nada.Globalization {
         
         /// <summary>
         ///   Looks up a localized string similar to District.
+        /// </summary>
+        public static string District {
+            get {
+                return ResourceManager.GetString("District", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reporting level.
         /// </summary>
         public static string DistrictAdminLevel {
             get {
@@ -3149,6 +3230,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        public static string Finish {
+            get {
+                return ResourceManager.GetString("Finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Foodborne trematodiases.
         /// </summary>
         public static string Foodborne {
@@ -3208,6 +3298,15 @@ namespace Nada.Globalization {
         public static string GrowthRateHasBeenApplied {
             get {
                 return ResourceManager.GetString("GrowthRateHasBeenApplied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Growth rate has been applied, please click next to review and make changes or click finished if you are done updating the entered year&apos;s disease distribution information..
+        /// </summary>
+        public static string GrowthRateHasBeenAppliedDd {
+            get {
+                return ResourceManager.GetString("GrowthRateHasBeenAppliedDd", resourceCulture);
             }
         }
         
@@ -3410,6 +3509,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to How many administrative units would you like to split {0} into?.
+        /// </summary>
+        public static string HowManyAdminUnits {
+            get {
+                return ResourceManager.GetString("HowManyAdminUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ICT.
         /// </summary>
         public static string ICT {
@@ -3500,7 +3608,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not valid, please fix the following errors: {1} {2}.
+        ///   Looks up a localized string similar to {0} is not valid, please fix the following errors:.
         /// </summary>
         public static string ImportErrors {
             get {
@@ -3523,6 +3631,15 @@ namespace Nada.Globalization {
         public static string ImportingFile {
             get {
                 return ResourceManager.GetString("ImportingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please verify that all related lists have the necessary values.
+        /// </summary>
+        public static string ImportLists {
+            get {
+                return ResourceManager.GetString("ImportLists", resourceCulture);
             }
         }
         
@@ -3883,6 +4000,15 @@ namespace Nada.Globalization {
         public static string IsRequired {
             get {
                 return ResourceManager.GetString("IsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items to redistribution.
+        /// </summary>
+        public static string ItemsToSplit {
+            get {
+                return ResourceManager.GetString("ItemsToSplit", resourceCulture);
             }
         }
         
@@ -4895,6 +5021,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select....
+        /// </summary>
+        public static string LinkSelect {
+            get {
+                return ResourceManager.GetString("LinkSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other geo code - longitude.
         /// </summary>
         public static string LngOther {
@@ -5167,9 +5302,9 @@ namespace Nada.Globalization {
         /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
-        public static string MenuFile {
+        public static string MenuFile2 {
             get {
-                return ResourceManager.GetString("MenuFile", resourceCulture);
+                return ResourceManager.GetString("MenuFile2", resourceCulture);
             }
         }
         
@@ -5201,6 +5336,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merge administrative units....
+        /// </summary>
+        public static string MenuMergeDistrict {
+            get {
+                return ResourceManager.GetString("MenuMergeDistrict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New....
         /// </summary>
         public static string MenuNew {
@@ -5210,11 +5354,29 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New administrative level....
+        ///   Looks up a localized string similar to Add new administrative unit....
         /// </summary>
         public static string MenuNewAdminLevel {
             get {
                 return ResourceManager.GetString("MenuNewAdminLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add demography for new year....
+        /// </summary>
+        public static string MenuNewYearDemo {
+            get {
+                return ResourceManager.GetString("MenuNewYearDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add disease distribution for new year....
+        /// </summary>
+        public static string MenuNewYearDistro {
+            get {
+                return ResourceManager.GetString("MenuNewYearDistro", resourceCulture);
             }
         }
         
@@ -5246,11 +5408,38 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Run reports.
+        /// </summary>
+        public static string MenuRunReports {
+            get {
+                return ResourceManager.GetString("MenuRunReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
-        public static string MenuSettings {
+        public static string MenuSettings2 {
             get {
-                return ResourceManager.GetString("MenuSettings", resourceCulture);
+                return ResourceManager.GetString("MenuSettings2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split &amp; combine administrative units....
+        /// </summary>
+        public static string MenuSplitCombineDistrict {
+            get {
+                return ResourceManager.GetString("MenuSplitCombineDistrict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split administrative unit....
+        /// </summary>
+        public static string MenuSplitDistrict {
+            get {
+                return ResourceManager.GetString("MenuSplitDistrict", resourceCulture);
             }
         }
         
@@ -5390,6 +5579,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must be greater than zero.
+        /// </summary>
+        public static string MustBeGreaterThanZero {
+            get {
+                return ResourceManager.GetString("MustBeGreaterThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Must be a number.
         /// </summary>
         public static string MustBeNumber {
@@ -5399,7 +5597,25 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must designate one of your administrative levels as the &quot;District Level&quot;.
+        ///   Looks up a localized string similar to Must be a yes or no.
+        /// </summary>
+        public static string MustBeYesNo {
+            get {
+                return ResourceManager.GetString("MustBeYesNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must designate one of your administrative levels as the &quot;Aggregating Level&quot;.
+        /// </summary>
+        public static string MustMakeAggregatingLevel {
+            get {
+                return ResourceManager.GetString("MustMakeAggregatingLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must designate one of your administrative levels as the &quot;Reporting Level&quot;.
         /// </summary>
         public static string MustMakeDistrict {
             get {
@@ -5413,6 +5629,24 @@ namespace Nada.Globalization {
         public static string NA {
             get {
                 return ResourceManager.GetString("NA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The template for the NTD National Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in cooperation with the World Health Organization (WHO) and its regional offices, the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases..
+        /// </summary>
+        public static string NadaIntro {
+            get {
+                return ResourceManager.GetString("NadaIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -5435,6 +5669,33 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New administrative level &gt;.
+        /// </summary>
+        public static string NewAdminLevel {
+            get {
+                return ResourceManager.GetString("NewAdminLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrative unit name.
+        /// </summary>
+        public static string NewAdminUnitName {
+            get {
+                return ResourceManager.GetString("NewAdminUnitName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New administrative units.
+        /// </summary>
+        public static string NewAdminUnits {
+            get {
+                return ResourceManager.GetString("NewAdminUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter new data.
         /// </summary>
         public static string NewData {
@@ -5449,6 +5710,15 @@ namespace Nada.Globalization {
         public static string NewLink {
             get {
                 return ResourceManager.GetString("NewLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
             }
         }
         
@@ -5588,11 +5858,29 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not Saved.
+        /// </summary>
+        public static string NotSaved {
+            get {
+                return ResourceManager.GetString("NotSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not yet determined.
         /// </summary>
         public static string NotYetDetermined {
             get {
                 return ResourceManager.GetString("NotYetDetermined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NTD.
+        /// </summary>
+        public static string NTD {
+            get {
+                return ResourceManager.GetString("NTD", resourceCulture);
             }
         }
         
@@ -8045,6 +8333,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Percentage of population.
+        /// </summary>
+        public static string PercentPop {
+            get {
+                return ResourceManager.GetString("PercentPop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to % positive.
         /// </summary>
         public static string PercentPositive {
@@ -8140,6 +8437,15 @@ namespace Nada.Globalization {
         public static string PercentTGambTRhod {
             get {
                 return ResourceManager.GetString("PercentTGambTRhod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percent to redistribute.
+        /// </summary>
+        public static string PercentToRedistribute {
+            get {
+                return ResourceManager.GetString("PercentToRedistribute", resourceCulture);
             }
         }
         
@@ -8441,6 +8747,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Previous.
+        /// </summary>
+        public static string Previous {
+            get {
+                return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Price recovery system.
         /// </summary>
         public static string PriceRecoverySystem {
@@ -8522,6 +8837,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Redistribution settings.
+        /// </summary>
+        public static string RedistributionSettings {
+            get {
+                return ResourceManager.GetString("RedistributionSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Region.
+        /// </summary>
+        public static string Region {
+            get {
+                return ResourceManager.GetString("Region", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Regional-level supervisors.
         /// </summary>
         public static string RegionalLevelSup {
@@ -8590,6 +8923,42 @@ namespace Nada.Globalization {
         public static string Required {
             get {
                 return ResourceManager.GetString("Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore.
+        /// </summary>
+        public static string Restore {
+            get {
+                return ResourceManager.GetString("Restore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to restore the database?.
+        /// </summary>
+        public static string RestoreConfirm {
+            get {
+                return ResourceManager.GetString("RestoreConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore database to backup copy saved at last login..
+        /// </summary>
+        public static string RevertToEmergencyBackup {
+            get {
+                return ResourceManager.GetString("RevertToEmergencyBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Review and confirm.
+        /// </summary>
+        public static string ReviewAndConfirm {
+            get {
+                return ResourceManager.GetString("ReviewAndConfirm", resourceCulture);
             }
         }
         
@@ -8689,6 +9058,789 @@ namespace Nada.Globalization {
         public static string SacCoverage {
             get {
                 return ResourceManager.GetString("SacCoverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AE.
+        /// </summary>
+        public static string SaeAe {
+            get {
+                return ResourceManager.GetString("SaeAe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Age.
+        /// </summary>
+        public static string SaeAge {
+            get {
+                return ResourceManager.GetString("SaeAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Albendazole.
+        /// </summary>
+        public static string SaeAlbendazole {
+            get {
+                return ResourceManager.GetString("SaeAlbendazole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Azithromycin.
+        /// </summary>
+        public static string SaeAzithromycin {
+            get {
+                return ResourceManager.GetString("SaeAzithromycin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Batch number.
+        /// </summary>
+        public static string SAEBatchnumber {
+            get {
+                return ResourceManager.GetString("SAEBatchnumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brand and manufacturer name.
+        /// </summary>
+        public static string SAEBrandandmanufacturername {
+            get {
+                return ResourceManager.GetString("SAEBrandandmanufacturername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clinical course.
+        /// </summary>
+        public static string SAEClinicalcourse {
+            get {
+                return ResourceManager.GetString("SAEClinicalcourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clinical signs and symptoms.
+        /// </summary>
+        public static string SAEClinicalsignsandsymptoms {
+            get {
+                return ResourceManager.GetString("SAEClinicalsignsandsymptoms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comments.
+        /// </summary>
+        public static string SAEComments {
+            get {
+                return ResourceManager.GetString("SAEComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Congenital anomaly/birth defect.
+        /// </summary>
+        public static string SaeCongenitalanomalybirthdefect {
+            get {
+                return ResourceManager.GetString("SaeCongenitalanomalybirthdefect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact details.
+        /// </summary>
+        public static string SaeContactDetails {
+            get {
+                return ResourceManager.GetString("SaeContactDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of report.
+        /// </summary>
+        public static string SaeDate {
+            get {
+                return ResourceManager.GetString("SaeDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of onset.
+        /// </summary>
+        public static string SAEDateofonset {
+            get {
+                return ResourceManager.GetString("SAEDateofonset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of test.
+        /// </summary>
+        public static string SAEDateoftest {
+            get {
+                return ResourceManager.GetString("SAEDateoftest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of treatment.
+        /// </summary>
+        public static string SAEDateoftreatment {
+            get {
+                return ResourceManager.GetString("SAEDateoftreatment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Death.
+        /// </summary>
+        public static string SaeDeath {
+            get {
+                return ResourceManager.GetString("SaeDeath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string SAEDetails {
+            get {
+                return ResourceManager.GetString("SAEDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string SAEDetails1 {
+            get {
+                return ResourceManager.GetString("SAEDetails1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did patient take alcohol within 24 hours of treatment?.
+        /// </summary>
+        public static string SAEDidpatienttakealcoholwithin24hoursoftreatment {
+            get {
+                return ResourceManager.GetString("SAEDidpatienttakealcoholwithin24hoursoftreatment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diethylcarbamazine.
+        /// </summary>
+        public static string SaeDiethylcarbamazine {
+            get {
+                return ResourceManager.GetString("SaeDiethylcarbamazine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dose administered.
+        /// </summary>
+        public static string SAEDoseadministered {
+            get {
+                return ResourceManager.GetString("SAEDoseadministered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dose administered to manage SAE.
+        /// </summary>
+        public static string SAEDoseadministeredtomanageSAE {
+            get {
+                return ResourceManager.GetString("SAEDoseadministeredtomanageSAE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which drugs were administered?.
+        /// </summary>
+        public static string SaeDrugs {
+            get {
+                return ResourceManager.GetString("SaeDrugs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drugs administered to manage SAE.
+        /// </summary>
+        public static string SAEDrugsadministeredtomanageSAE {
+            get {
+                return ResourceManager.GetString("SAEDrugsadministeredtomanageSAE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiry date of drug.
+        /// </summary>
+        public static string SAEExpirydateofdrug {
+            get {
+                return ResourceManager.GetString("SAEExpirydateofdrug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extenuating or complicating circumstances.
+        /// </summary>
+        public static string SAEExtenuatingorcomplicatingcircumstances {
+            get {
+                return ResourceManager.GetString("SAEExtenuatingorcomplicatingcircumstances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Female.
+        /// </summary>
+        public static string SaeFemale {
+            get {
+                return ResourceManager.GetString("SaeFemale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full recovery.
+        /// </summary>
+        public static string SaeFullrecovery {
+            get {
+                return ResourceManager.GetString("SaeFullrecovery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good.
+        /// </summary>
+        public static string SaeGood {
+            get {
+                return ResourceManager.GetString("SaeGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Health status before treatment.
+        /// </summary>
+        public static string SAEHealthstatusbeforetreatment {
+            get {
+                return ResourceManager.GetString("SAEHealthstatusbeforetreatment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height (cm).
+        /// </summary>
+        public static string SaeHeight {
+            get {
+                return ResourceManager.GetString("SaeHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID Number.
+        /// </summary>
+        public static string SaeId {
+            get {
+                return ResourceManager.GetString("SaeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If death, cause of death.
+        /// </summary>
+        public static string SAEIfdeathcauseofdeath {
+            get {
+                return ResourceManager.GetString("SAEIfdeathcauseofdeath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If death, circumstances at the time of death.
+        /// </summary>
+        public static string SAEIfdeathcircumstancesatthetimeofdeath {
+            get {
+                return ResourceManager.GetString("SAEIfdeathcircumstancesatthetimeofdeath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If death, date of death.
+        /// </summary>
+        public static string SAEIfdeathdateofdeath {
+            get {
+                return ResourceManager.GetString("SAEIfdeathdateofdeath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If hospitalization required, date of admission.
+        /// </summary>
+        public static string SAEIfhospitalizationrequireddateofadmission {
+            get {
+                return ResourceManager.GetString("SAEIfhospitalizationrequireddateofadmission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If hospitalization required, date of discharge.
+        /// </summary>
+        public static string SAEIfhospitalizationrequireddateofdischarge {
+            get {
+                return ResourceManager.GetString("SAEIfhospitalizationrequireddateofdischarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If hospitalization required, reason for admission.
+        /// </summary>
+        public static string SAEIfhospitalizationrequiredreasonforadmission {
+            get {
+                return ResourceManager.GetString("SAEIfhospitalizationrequiredreasonforadmission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If Loiasis infections, known or suspected, mf/ml (blood).
+        /// </summary>
+        public static string SAEIfLoiasisinfectionsmfmlblood {
+            get {
+                return ResourceManager.GetString("SAEIfLoiasisinfectionsmfmlblood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If Loiasis infections, known or suspected, mf/ml (CSF).
+        /// </summary>
+        public static string SAEIfLoiasisinfectionsmfmlCSF {
+            get {
+                return ResourceManager.GetString("SAEIfLoiasisinfectionsmfmlCSF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If this was not the first treatment with this drug, circumstances of past treatment(s).
+        /// </summary>
+        public static string SAEIfthiswasnotthefirsttreatmentwiththisdrugcircumstancesofpasttreatments {
+            get {
+                return ResourceManager.GetString("SAEIfthiswasnotthefirsttreatmentwiththisdrugcircumstancesofpasttreatments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is patient pregnant?.
+        /// </summary>
+        public static string SAEIspatientpregnant {
+            get {
+                return ResourceManager.GetString("SAEIspatientpregnant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ivermectin.
+        /// </summary>
+        public static string SaeIvermectin {
+            get {
+                return ResourceManager.GetString("SaeIvermectin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Laboratory tests performed.
+        /// </summary>
+        public static string SAELaboratorytestsperformed {
+            get {
+                return ResourceManager.GetString("SAELaboratorytestsperformed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LF.
+        /// </summary>
+        public static string SaeLF {
+            get {
+                return ResourceManager.GetString("SaeLF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Life-threatening.
+        /// </summary>
+        public static string SaeLifethreatening {
+            get {
+                return ResourceManager.GetString("SaeLifethreatening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loiasis.
+        /// </summary>
+        public static string SaeLoiasis {
+            get {
+                return ResourceManager.GetString("SaeLoiasis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Malaria.
+        /// </summary>
+        public static string SaeMalaria {
+            get {
+                return ResourceManager.GetString("SaeMalaria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Male.
+        /// </summary>
+        public static string SaeMale {
+            get {
+                return ResourceManager.GetString("SaeMale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mebendazole.
+        /// </summary>
+        public static string SaeMebendazole {
+            get {
+                return ResourceManager.GetString("SaeMebendazole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string SaeNo {
+            get {
+                return ResourceManager.GetString("SaeNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Range (High).
+        /// </summary>
+        public static string SAENormalRangeHigh {
+            get {
+                return ResourceManager.GetString("SAENormalRangeHigh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Range (Low).
+        /// </summary>
+        public static string SAENormalRangeLow {
+            get {
+                return ResourceManager.GetString("SAENormalRangeLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of tablets administered.
+        /// </summary>
+        public static string SAENumberoftabletsadministered {
+            get {
+                return ResourceManager.GetString("SAENumberoftabletsadministered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oncho.
+        /// </summary>
+        public static string SaeOncho {
+            get {
+                return ResourceManager.GetString("SaeOncho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ongoing illness.
+        /// </summary>
+        public static string SaeOngoingillness {
+            get {
+                return ResourceManager.GetString("SaeOngoingillness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string SaeOther {
+            get {
+                return ResourceManager.GetString("SaeOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other medications being taken (currently or recently).
+        /// </summary>
+        public static string SAEOthermedicationsbeingtakencurrentlyorrecently {
+            get {
+                return ResourceManager.GetString("SAEOthermedicationsbeingtakencurrentlyorrecently", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outcome at time of last observation.
+        /// </summary>
+        public static string SAEOutcomeattimeoflastobservation {
+            get {
+                return ResourceManager.GetString("SAEOutcomeattimeoflastobservation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patient name.
+        /// </summary>
+        public static string SaePatientName {
+            get {
+                return ResourceManager.GetString("SaePatientName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Persistent or significant disability/incapacity.
+        /// </summary>
+        public static string SaePersistentorsignificantdisabilityincapacity {
+            get {
+                return ResourceManager.GetString("SaePersistentorsignificantdisabilityincapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poor.
+        /// </summary>
+        public static string SaePoor {
+            get {
+                return ResourceManager.GetString("SaePoor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Praziquantel.
+        /// </summary>
+        public static string SaePraziquantel {
+            get {
+                return ResourceManager.GetString("SaePraziquantel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prolongation of existing hospitalization.
+        /// </summary>
+        public static string SaeProlongationofexistinghospitalization {
+            get {
+                return ResourceManager.GetString("SaeProlongationofexistinghospitalization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Result of investigation.
+        /// </summary>
+        public static string SAEResultofinvestigation {
+            get {
+                return ResourceManager.GetString("SAEResultofinvestigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Result of test.
+        /// </summary>
+        public static string SAEResultoftest {
+            get {
+                return ResourceManager.GetString("SAEResultoftest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serious Adverse Events.
+        /// </summary>
+        public static string SAEs {
+            get {
+                return ResourceManager.GetString("SAEs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SAE.
+        /// </summary>
+        public static string SaeSae {
+            get {
+                return ResourceManager.GetString("SaeSae", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schisto.
+        /// </summary>
+        public static string SaeSchisto {
+            get {
+                return ResourceManager.GetString("SaeSchisto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sex.
+        /// </summary>
+        public static string SaeSex {
+            get {
+                return ResourceManager.GetString("SaeSex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source of treatment (PC, Clinic or physician treatments, Other).
+        /// </summary>
+        public static string SAESourceoftreatmentPCClinicorphysiciantreatmentsOther {
+            get {
+                return ResourceManager.GetString("SAESourceoftreatmentPCClinicorphysiciantreatmentsOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Status of parasitic/bacterial infections (confirmed, suspected, negative, unknown).
+        /// </summary>
+        public static string SAEStatusknown {
+            get {
+                return ResourceManager.GetString("SAEStatusknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STH.
+        /// </summary>
+        public static string SaeSTH {
+            get {
+                return ResourceManager.GetString("SaeSTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tetracycline.
+        /// </summary>
+        public static string SaeTetracycline {
+            get {
+                return ResourceManager.GetString("SaeTetracycline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time of onset.
+        /// </summary>
+        public static string SAETimeofonset {
+            get {
+                return ResourceManager.GetString("SAETimeofonset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time of treatment.
+        /// </summary>
+        public static string SAETimeoftreatment {
+            get {
+                return ResourceManager.GetString("SAETimeoftreatment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trachoma.
+        /// </summary>
+        public static string SaeTrachoma {
+            get {
+                return ResourceManager.GetString("SaeTrachoma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is this SAE or AE?.
+        /// </summary>
+        public static string SaeType {
+            get {
+                return ResourceManager.GetString("SaeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Units.
+        /// </summary>
+        public static string SAEUnits {
+            get {
+                return ResourceManager.GetString("SAEUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string SaeUnknown {
+            get {
+                return ResourceManager.GetString("SaeUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Was hospitalization required?.
+        /// </summary>
+        public static string SAEWashospitalizationrequired {
+            get {
+                return ResourceManager.GetString("SAEWashospitalizationrequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Was the SAE related to the drugs?.
+        /// </summary>
+        public static string SAEWastheSAErelatedtothedrugs {
+            get {
+                return ResourceManager.GetString("SAEWastheSAErelatedtothedrugs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Was this case investigated?.
+        /// </summary>
+        public static string SAEWasthiscaseinvestigated {
+            get {
+                return ResourceManager.GetString("SAEWasthiscaseinvestigated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Was this the first treatment with this drug?.
+        /// </summary>
+        public static string SAEWasthisthefirsttreatmentwiththisdrug {
+            get {
+                return ResourceManager.GetString("SAEWasthisthefirsttreatmentwiththisdrug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight (kg).
+        /// </summary>
+        public static string SaeWeight {
+            get {
+                return ResourceManager.GetString("SaeWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which parasitic/bacterial infections did the patient have?.
+        /// </summary>
+        public static string SAEWhichparasitichave {
+            get {
+                return ResourceManager.GetString("SAEWhichparasitichave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string SaeYes {
+            get {
+                return ResourceManager.GetString("SaeYes", resourceCulture);
             }
         }
         
@@ -9620,6 +10772,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select administrative unit.
+        /// </summary>
+        public static string SelectAdminLevel {
+            get {
+                return ResourceManager.GetString("SelectAdminLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a report category.
         /// </summary>
         public static string SelectCategory {
@@ -9679,6 +10849,15 @@ namespace Nada.Globalization {
         public static string SentinelSiteId {
             get {
                 return ResourceManager.GetString("SentinelSiteId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sentinel sites.
+        /// </summary>
+        public static string SentinelSitePicker {
+            get {
+                return ResourceManager.GetString("SentinelSitePicker", resourceCulture);
             }
         }
         
@@ -9814,6 +10993,195 @@ namespace Nada.Globalization {
         public static string SortOrder {
             get {
                 return ResourceManager.GetString("SortOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All administrative units are required.
+        /// </summary>
+        public static string SplitAdminUnitsRequired {
+            get {
+                return ResourceManager.GetString("SplitAdminUnitsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All child administrative units must be allocated.
+        /// </summary>
+        public static string SplitChildrenAllocatedError {
+            get {
+                return ResourceManager.GetString("SplitChildrenAllocatedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All demography, disease distributions, surveys, interventions, process indicators and SAEs data have been split and combined. Please click &quot;Next&quot; to review and make changes or &quot;Finish&quot; if done..
+        /// </summary>
+        public static string SplitCombineConfirmReview {
+            get {
+                return ResourceManager.GetString("SplitCombineConfirmReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split / combine &gt;.
+        /// </summary>
+        public static string SplitCombineDistrict {
+            get {
+                return ResourceManager.GetString("SplitCombineDistrict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the administrative units you are splitting to create a new administrative unit.
+        /// </summary>
+        public static string SplitCombineSource {
+            get {
+                return ResourceManager.GetString("SplitCombineSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split and combine administrative units.
+        /// </summary>
+        public static string SplitCombineTitle {
+            get {
+                return ResourceManager.GetString("SplitCombineTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All other data has been distributed between the new administrative units. Please click &quot;Next&quot; to review and make changes or &quot;Finish&quot; if done..
+        /// </summary>
+        public static string SplitConfirmReview {
+            get {
+                return ResourceManager.GetString("SplitConfirmReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed redistribution.
+        /// </summary>
+        public static string SplitConfirmReviewTitle {
+            get {
+                return ResourceManager.GetString("SplitConfirmReviewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How many units?.
+        /// </summary>
+        public static string SplitHowMany {
+            get {
+                return ResourceManager.GetString("SplitHowMany", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All demography, disease distributions, surveys, interventions, process indicators and SAEs data have been combined into the new administrative unit. Please click &quot;Next&quot; to review and make changes or &quot;Finish&quot; if done..
+        /// </summary>
+        public static string SplitMergeConfirmReview {
+            get {
+                return ResourceManager.GetString("SplitMergeConfirmReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the administrative units you are merging.
+        /// </summary>
+        public static string SplitMergeSource {
+            get {
+                return ResourceManager.GetString("SplitMergeSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge administrative units.
+        /// </summary>
+        public static string SplitMergeTitle {
+            get {
+                return ResourceManager.GetString("SplitMergeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All percentages are required.
+        /// </summary>
+        public static string SplitPercentsRequired {
+            get {
+                return ResourceManager.GetString("SplitPercentsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All percentages must add up to 100.
+        /// </summary>
+        public static string SplitPercentsTotal {
+            get {
+                return ResourceManager.GetString("SplitPercentsTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percentage must be between 0 and 100.
+        /// </summary>
+        public static string SplitPercentsValid {
+            get {
+                return ResourceManager.GetString("SplitPercentsValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string SplittingOptions {
+            get {
+                return ResourceManager.GetString("SplittingOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Performing district redistribution....
+        /// </summary>
+        public static string SplittingRedistributing {
+            get {
+                return ResourceManager.GetString("SplittingRedistributing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the district you are redistributing to.
+        /// </summary>
+        public static string SplittingSelectDistrict {
+            get {
+                return ResourceManager.GetString("SplittingSelectDistrict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the administrative units you are splitting.
+        /// </summary>
+        public static string SplittingSelectSource {
+            get {
+                return ResourceManager.GetString("SplittingSelectSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split administrative unit.
+        /// </summary>
+        public static string SplittingTitle {
+            get {
+                return ResourceManager.GetString("SplittingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All administrative units are required.
+        /// </summary>
+        public static string SplitUnitsRequired {
+            get {
+                return ResourceManager.GetString("SplitUnitsRequired", resourceCulture);
             }
         }
         
@@ -10673,6 +12041,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sub-district name.
+        /// </summary>
+        public static string SubDistrictName {
+            get {
+                return ResourceManager.GetString("SubDistrictName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Super District.
         /// </summary>
         public static string SuperDistrict {
@@ -10840,6 +12217,24 @@ namespace Nada.Globalization {
         public static string Survey {
             get {
                 return ResourceManager.GetString("Survey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Because this mapping survey also serves as a sentinel site survey, it has also been added as a Sentinel/Spot Check Site survey. Any edits made in one form are not automatically duplicated in the other. If you edit one, you should edit both the Mapping and the Sentinel/Spot check Site survey forms for this particular site..
+        /// </summary>
+        public static string SurveyCopiedMessage {
+            get {
+                return ResourceManager.GetString("SurveyCopiedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Survey Copied.
+        /// </summary>
+        public static string SurveyCopiedTitle {
+            get {
+                return ResourceManager.GetString("SurveyCopiedTitle", resourceCulture);
             }
         }
         
@@ -12590,6 +13985,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update disease distribution for new year.
+        /// </summary>
+        public static string UpdateDdForYear {
+            get {
+                return ResourceManager.GetString("UpdateDdForYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update demography by administrative level.
         /// </summary>
         public static string UpdateDemoByAdminLevel {
@@ -12613,6 +14017,15 @@ namespace Nada.Globalization {
         public static string UpdateDemographyForYear {
             get {
                 return ResourceManager.GetString("UpdateDemographyForYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update disease distribution.
+        /// </summary>
+        public static string UpdateDiseaseDistro {
+            get {
+                return ResourceManager.GetString("UpdateDiseaseDistro", resourceCulture);
             }
         }
         
@@ -12941,6 +14354,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 3x/year.
+        /// </summary>
+        public static string xyear3 {
+            get {
+                return ResourceManager.GetString("xyear3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yaws (Endemic treponematoses).
         /// </summary>
         public static string YAWS {
@@ -13054,6 +14476,15 @@ namespace Nada.Globalization {
         public static string YearDemographyData {
             get {
                 return ResourceManager.GetString("YearDemographyData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year disease distribution data apply to.
+        /// </summary>
+        public static string YearDistroData {
+            get {
+                return ResourceManager.GetString("YearDistroData", resourceCulture);
             }
         }
         

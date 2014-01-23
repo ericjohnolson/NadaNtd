@@ -15,22 +15,35 @@ namespace Nada.Model
     {
         public ImporterBase()
         {
-            LoadRelatedLists();
         }
 
-        protected Dictionary<string, Indicator> Indicators = null;
+        public virtual IndicatorEntityType EntityType { get { return IndicatorEntityType.Intervention; } }
+        public Dictionary<string, Indicator> Indicators { get; set; }
+        public List<IndicatorDropdownValue> DropDownValues { get; set; }
+        protected Dictionary<string, Indicator> translatedIndicators = new Dictionary<string, Indicator>();
         protected Dictionary<int, Indicator> ColumnIdToIndicator = null;
         protected List<Partner> partners = new List<Partner>();
         private List<IndicatorDropdownValue> ezs = new List<IndicatorDropdownValue>();
         private List<IndicatorDropdownValue> eus = new List<IndicatorDropdownValue>();
+        private List<IndicatorDropdownValue> subdistricts = new List<IndicatorDropdownValue>();
         protected List<MonthItem> months = new List<MonthItem>();
-        protected List<IndicatorDropdownValue> DropDownValues = null;
         public virtual string ImportName { get { return ""; } }
         public virtual List<TypeListItem> GetAllTypes() { return new List<TypeListItem>(); }
-        public virtual void SetType(int id) { }
+        protected virtual void SetSpecificType(int id) { }
+        public void SetType(int id)
+        {
+            translatedIndicators = new Dictionary<string, Indicator>();
+            SetSpecificType(id);
+            if (Indicators == null)
+                throw new ArgumentException("Need to override SetSpecificType and set Indicators for import type");
+
+            foreach (var keyValue in Indicators)
+                translatedIndicators.Add(TranslationLookup.GetValue(keyValue.Key, keyValue.Key), keyValue.Value);
+        }
 
         public virtual void CreateImportFile(string filename, List<AdminLevel> adminLevels)
         {
+            LoadRelatedLists();
             Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
             Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
             Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
@@ -49,15 +62,15 @@ namespace Nada.Model
             xlsColCount += AddTypeSpecific(xlsWorksheet);
             int colCountAfterStatic = xlsColCount;
 
-            foreach (var key in Indicators.Keys)
+            foreach (var item in Indicators)
             {
-                if (Indicators[key].DataTypeId == (int)IndicatorDataType.SentinelSite)
+                if (item.Value.DataTypeId == (int)IndicatorDataType.SentinelSite || item.Value.IsCalculated || item.Value.IsMetaData)
                     continue;
                 //TODO TEST DATE FIELD? if (Indicators[key].DataTypeId == (int)IndicatorDataType.Date)
                 //    col = new DataColumn(TranslationLookup.GetValue(key, key), typeof(DateTime));
                 xlsColCount++;
-                xlsWorksheet.Cells[1, xlsColCount] = TranslationLookup.GetValue(key, key);
-                ColumnIdToIndicator.Add(xlsColCount, Indicators[key]);
+                xlsWorksheet.Cells[1, xlsColCount] = TranslationLookup.GetValue(item.Key, item.Key);
+                ColumnIdToIndicator.Add(xlsColCount, item.Value);
             }
             xlsWorksheet.Cells[1, xlsColCount + 1] = Translations.Notes;
 
@@ -71,7 +84,7 @@ namespace Nada.Model
                 int colCount = colCountAfterStatic;
                 foreach (var key in Indicators.Keys)
                 {
-                    if (Indicators[key].DataTypeId == (int)IndicatorDataType.SentinelSite)
+                    if (Indicators[key].DataTypeId == (int)IndicatorDataType.SentinelSite || Indicators[key].IsCalculated || Indicators[key].IsMetaData)
                         continue;
                     colCount++;
                     AddValueToCell(xlsWorksheet, colCount, xlsRowCount, "", Indicators[key]);
@@ -129,6 +142,7 @@ namespace Nada.Model
 
         public virtual ImportResult ImportData(string filePath, int userId)
         {
+            LoadRelatedLists();
             try
             {
                 DataSet ds = LoadDataFromFile(filePath);
@@ -172,51 +186,23 @@ namespace Nada.Model
             return ds;
         }
 
-        protected List<IndicatorValue> GetDynamicIndicatorValues(DataSet ds, DataRow row)
+        protected List<IndicatorValue> GetDynamicIndicatorValues(DataSet ds, DataRow row, ref string errors)
         {
-            Dictionary<string, Indicator> translatedIndicators = new Dictionary<string, Indicator>();
-            foreach (var keyValue in Indicators)
-                translatedIndicators.Add(TranslationLookup.GetValue(keyValue.Key, keyValue.Key), keyValue.Value);
             List<IndicatorValue> inds = new List<IndicatorValue>();
             foreach (DataColumn col in ds.Tables[0].Columns)
             {
                 if (translatedIndicators.ContainsKey(col.ColumnName))
                 {
                     string val = row[col].ToString();
-                    double d = 0;
-                    if (translatedIndicators[col.ColumnName].DataTypeId == (int)IndicatorDataType.Date && double.TryParse(val, out d))
-                        val = DateTime.FromOADate(d).ToString();
-                    else if (translatedIndicators[col.ColumnName].DataTypeId == (int)IndicatorDataType.Partners && !string.IsNullOrEmpty(val))
-                    {
-                        List<string> partnerIds = new List<string>();
-                        string p = val.Replace(" - ", "-");
-                        string[] vals = p.Split('-');
-                        foreach (var partner in partners.Where(v => vals.Contains(v.DisplayName)))
-                            partnerIds.Add(partner.Id.ToString());
-                        val = string.Join("|", partnerIds.ToArray());
-                    }
-                    else if (translatedIndicators[col.ColumnName].DataTypeId == (int)IndicatorDataType.Multiselect && !string.IsNullOrEmpty(val))
-                    {
-                        string p = val.Replace(" - ", "-");
-                        string[] vals = p.Split('-');
-                        val = string.Join("|", vals);
-                    }
-                    else if (translatedIndicators[col.ColumnName].DataTypeId == (int)IndicatorDataType.EcologicalZone && !string.IsNullOrEmpty(val))
-                    {
-                        var selected = ezs.FirstOrDefault(v => v.DisplayName == val);
-                        val = selected == null ? null : selected.Id.ToString();
-                    }
-                    else if (translatedIndicators[col.ColumnName].DataTypeId == (int)IndicatorDataType.EvaluationUnit && !string.IsNullOrEmpty(val))
-                    {
-                        var selected = eus.FirstOrDefault(v => v.DisplayName == val);
-                        val = selected == null ? null : selected.Id.ToString();
-                    }
+                    Indicator curInd = translatedIndicators[col.ColumnName];
+
+                    errors += GetValueAndValidate(curInd, ref val, col.ColumnName);
 
                     inds.Add(new IndicatorValue
                     {
-                        IndicatorId = translatedIndicators[col.ColumnName].Id,
+                        IndicatorId = curInd.Id,
                         DynamicValue = val,
-                        Indicator = translatedIndicators[col.ColumnName]
+                        Indicator = curInd
                     });
                 }
             }
@@ -232,8 +218,76 @@ namespace Nada.Model
             SettingsRepository settings = new SettingsRepository();
             ezs = settings.GetEcologicalZones();
             eus = settings.GetEvaluationUnits();
+            eus = settings.GetEvalSubDistricts();
         }
 
+        private string GetValueAndValidate(Indicator indicator, ref string val, string name)
+        {
+            double d = 0;
+            int i = 0;
+            DateTime dt = new DateTime();
+
+            if (indicator.IsRequired && string.IsNullOrEmpty(val))
+                return name + ": " + Translations.IsRequired + Environment.NewLine;
+
+            switch (indicator.DataTypeId)
+            {
+                case (int)IndicatorDataType.Date:
+                    if (!DateTime.TryParse(val, out dt))
+                        return name + ": " + Translations.MustBeDate + Environment.NewLine;
+                    else
+                        val = dt.ToString("MM/dd/yyyy");
+                    break;
+                case (int)IndicatorDataType.Number:
+                    if (!Double.TryParse(val, out d))
+                        return name + ": " + Translations.MustBeNumber + Environment.NewLine;
+                    break;
+                case (int)IndicatorDataType.Year:
+                    if (!int.TryParse(val, out i) || (i > 2100 || i < 1900))
+                        return name + ": " + Translations.ValidYear + Environment.NewLine;
+                    break;
+                case (int)IndicatorDataType.YesNo:
+                    bool isChecked = false;
+                    if (val.ToLower() == "no")
+                        val = "false";
+                    else if (val.ToLower() == "yes")
+                        val = "true";
+                    if (!Boolean.TryParse(val, out isChecked))
+                        return name + ": " + Translations.MustBeYesNo + Environment.NewLine;
+                    val = isChecked.ToString();
+                    break;
+                case (int)IndicatorDataType.Multiselect:
+                    val = val.Replace(Util.EnumerationDelinator, "|");
+                    break;
+                case (int)IndicatorDataType.Partners:
+                    List<string> partnerIds = new List<string>();
+                    string p = val.Replace(Util.EnumerationDelinator, "|");
+                    string[] ps = p.Split('|');
+                    foreach (var partner in partners.Where(v => ps.Contains(v.DisplayName)))
+                        partnerIds.Add(partner.Id.ToString());
+                    val = string.Join("|", partnerIds.ToArray());
+                    break;
+                case (int)IndicatorDataType.EvaluationUnit:
+                    string euVal = val;
+                    var eu = eus.FirstOrDefault(v => v.DisplayName == euVal);
+                    val = eu == null ? null : eu.Id.ToString();
+                    break;
+                case (int)IndicatorDataType.EcologicalZone:
+                    var evVal = val;
+                    var ez = ezs.FirstOrDefault(v => v.DisplayName == evVal);
+                    val = ez == null ? null : ez.Id.ToString();
+                    break;
+                case (int)IndicatorDataType.EvalSubDistrict:
+                    var sdVal = val;
+                    var sd = subdistricts.FirstOrDefault(v => v.DisplayName == sdVal);
+                    val = sd == null ? null : sd.Id.ToString();
+                    break;
+            }
+
+            if (indicator.IsRequired && string.IsNullOrEmpty(val))
+                return name + ": " + Translations.IsRequired + Environment.NewLine;
+            return "";
+        }
         /// <summary>
         /// Adds a small Infobox and a Validation with restriction (only these values will be selectable) to the specified cell.
         /// </summary>
@@ -247,6 +301,8 @@ namespace Nada.Model
         public static void AddDataValidation(Microsoft.Office.Interop.Excel.Worksheet worksheet, string col, int row,
             string title, string message, List<string> validationValues)
         {
+            if (validationValues == null || validationValues.Count == 0)
+                return;
             //If the message-string is too long (more than 255 characters, prune it)
             if (message.Length > 255)
                 message = message.Substring(0, 254);
@@ -341,12 +397,12 @@ namespace Nada.Model
                     if (iRow == 1)
                     {
                         // Add the header the first time through 
-                        xlsWorksheet.Cells[iRow, i] = data.Columns[i- 1].ColumnName;
+                        xlsWorksheet.Cells[iRow, i] = data.Columns[i - 1].ColumnName;
                     }
 
                     if (r[1].ToString() != "")
                     {
-                        xlsWorksheet.Cells[iRow + 1, i] = r[i -1].ToString();
+                        xlsWorksheet.Cells[iRow + 1, i] = r[i - 1].ToString();
                     }
                 }
             }
@@ -354,6 +410,19 @@ namespace Nada.Model
             var last = xlsWorksheet.Cells.SpecialCells(Microsoft.Office.Interop.Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
             var range = xlsWorksheet.get_Range("A1", last);
             range.Columns.AutoFit();
+        }
+
+        protected string CreateErrorMessage(string errorMessage)
+        {
+            return Translations.ImportErrorHeader + Environment.NewLine + "--------" + Environment.NewLine + errorMessage;
+        }
+
+        protected string GetObjectErrors(string objerrors, string location)
+        {
+            if (!string.IsNullOrEmpty(objerrors))
+                return Environment.NewLine + string.Format(Translations.ImportErrors, location) +
+                    Environment.NewLine + "--------" + Environment.NewLine + objerrors;
+            return "";
         }
         #endregion
     }

@@ -118,6 +118,11 @@
             this.btnSurvey = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.hrSurveys = new Nada.UI.Controls.HR();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tbProcess.SuspendLayout();
             this.pnlProcess.SuspendLayout();
@@ -152,6 +157,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.surveyTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvSurveys)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -227,8 +237,7 @@
             // 
             // pnlProcessDetails
             // 
-            this.pnlProcessDetails.Controls.Add(this.tblEditProcess);
-            this.pnlProcessDetails.Controls.Add(this.lvProcess);
+            this.pnlProcessDetails.Controls.Add(this.tableLayoutPanel9);
             this.pnlProcessDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlProcessDetails.Name = "pnlProcessDetails";
             this.pnlProcessDetails.Size = new System.Drawing.Size(782, 222);
@@ -244,7 +253,7 @@
             this.tblEditProcess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblEditProcess.Controls.Add(this.h3Label4, 0, 0);
             this.tblEditProcess.Controls.Add(this.cbProcessTypes, 1, 0);
-            this.tblEditProcess.Location = new System.Drawing.Point(3, 2);
+            this.tblEditProcess.Location = new System.Drawing.Point(3, 3);
             this.tblEditProcess.Name = "tblEditProcess";
             this.tblEditProcess.RowCount = 1;
             this.tblEditProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -296,7 +305,7 @@
             this.olvColumn25,
             this.olvColumn26});
             this.lvProcess.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvProcess.Location = new System.Drawing.Point(3, 37);
+            this.lvProcess.Location = new System.Drawing.Point(3, 38);
             this.lvProcess.Name = "lvProcess";
             this.lvProcess.ShowGroups = false;
             this.lvProcess.Size = new System.Drawing.Size(758, 167);
@@ -311,6 +320,7 @@
             this.olvColumn22.AspectName = "TypeName";
             this.olvColumn22.CellPadding = null;
             this.olvColumn22.IsEditable = false;
+            this.olvColumn22.Tag = "Type";
             this.olvColumn22.Text = "Type";
             this.olvColumn22.Width = 258;
             // 
@@ -319,6 +329,7 @@
             this.olvColumn23.AspectName = "YearReported";
             this.olvColumn23.CellPadding = null;
             this.olvColumn23.IsEditable = false;
+            this.olvColumn23.Tag = "Year";
             this.olvColumn23.Text = "Year";
             this.olvColumn23.Width = 105;
             // 
@@ -327,6 +338,7 @@
             this.olvColumn24.AspectName = "UpdatedBy";
             this.olvColumn24.CellPadding = null;
             this.olvColumn24.IsEditable = false;
+            this.olvColumn24.Tag = "LastUpdate";
             this.olvColumn24.Text = "Last Update";
             this.olvColumn24.Width = 154;
             // 
@@ -515,8 +527,7 @@
             // 
             // pnlDistroDetails
             // 
-            this.pnlDistroDetails.Controls.Add(this.tblEditDd);
-            this.pnlDistroDetails.Controls.Add(this.lvDiseaseDistro);
+            this.pnlDistroDetails.Controls.Add(this.tableLayoutPanel6);
             this.pnlDistroDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlDistroDetails.Name = "pnlDistroDetails";
             this.pnlDistroDetails.Size = new System.Drawing.Size(782, 216);
@@ -584,7 +595,7 @@
             this.olvColumn17,
             this.olvColumn18});
             this.lvDiseaseDistro.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvDiseaseDistro.Location = new System.Drawing.Point(3, 42);
+            this.lvDiseaseDistro.Location = new System.Drawing.Point(3, 38);
             this.lvDiseaseDistro.Name = "lvDiseaseDistro";
             this.lvDiseaseDistro.ShowGroups = false;
             this.lvDiseaseDistro.Size = new System.Drawing.Size(760, 167);
@@ -599,6 +610,7 @@
             this.olvColumn13.AspectName = "TypeName";
             this.olvColumn13.CellPadding = null;
             this.olvColumn13.IsEditable = false;
+            this.olvColumn13.Tag = "Type";
             this.olvColumn13.Text = "Type";
             this.olvColumn13.Width = 184;
             // 
@@ -607,6 +619,7 @@
             this.olvColumn14.AspectName = "Year";
             this.olvColumn14.CellPadding = null;
             this.olvColumn14.IsEditable = false;
+            this.olvColumn14.Tag = "Year";
             this.olvColumn14.Text = "Year";
             this.olvColumn14.Width = 142;
             // 
@@ -625,6 +638,7 @@
             this.olvColumn17.CellPadding = null;
             this.olvColumn17.Hyperlink = true;
             this.olvColumn17.IsEditable = false;
+            this.olvColumn17.Tag = "View";
             this.olvColumn17.Text = "View";
             this.olvColumn17.Width = 54;
             // 
@@ -687,8 +701,7 @@
             // 
             // pnlDemoDetails
             // 
-            this.pnlDemoDetails.Controls.Add(this.lnkAddDemo);
-            this.pnlDemoDetails.Controls.Add(this.lvDemo);
+            this.pnlDemoDetails.Controls.Add(this.tableLayoutPanel2);
             this.pnlDemoDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlDemoDetails.Name = "pnlDemoDetails";
             this.pnlDemoDetails.Size = new System.Drawing.Size(782, 201);
@@ -700,7 +713,7 @@
             this.lnkAddDemo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lnkAddDemo.BackColor = System.Drawing.Color.Transparent;
             this.lnkAddDemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkAddDemo.Location = new System.Drawing.Point(3, 0);
+            this.lnkAddDemo.Location = new System.Drawing.Point(0, 0);
             this.lnkAddDemo.Margin = new System.Windows.Forms.Padding(0);
             this.lnkAddDemo.Name = "lnkAddDemo";
             this.lnkAddDemo.Size = new System.Drawing.Size(110, 15);
@@ -725,7 +738,7 @@
             this.olvColumn19,
             this.olvColumn20});
             this.lvDemo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvDemo.Location = new System.Drawing.Point(3, 22);
+            this.lvDemo.Location = new System.Drawing.Point(3, 18);
             this.lvDemo.Name = "lvDemo";
             this.lvDemo.ShowGroups = false;
             this.lvDemo.Size = new System.Drawing.Size(760, 167);
@@ -740,6 +753,7 @@
             this.olvColumn7.AspectName = "Year";
             this.olvColumn7.CellPadding = null;
             this.olvColumn7.IsEditable = false;
+            this.olvColumn7.Tag = "Year";
             this.olvColumn7.Text = "Year";
             this.olvColumn7.Width = 88;
             // 
@@ -749,6 +763,7 @@
             this.olvColumn4.AspectToStringFormat = "{0:n}";
             this.olvColumn4.CellPadding = null;
             this.olvColumn4.IsEditable = false;
+            this.olvColumn4.Tag = "TotalPopulation";
             this.olvColumn4.Text = "TotalPopulation";
             this.olvColumn4.Width = 156;
             // 
@@ -757,6 +772,7 @@
             this.olvColumn21.AspectName = "GrowthRate";
             this.olvColumn21.AspectToStringFormat = "{0:n}";
             this.olvColumn21.CellPadding = null;
+            this.olvColumn21.Tag = "GrowthRate";
             this.olvColumn21.Text = "GrowthRate";
             this.olvColumn21.Width = 99;
             // 
@@ -765,6 +781,7 @@
             this.olvColumn15.AspectName = "UpdatedBy";
             this.olvColumn15.CellPadding = null;
             this.olvColumn15.IsEditable = false;
+            this.olvColumn15.Tag = "LastUpdate";
             this.olvColumn15.Text = "Last Update";
             this.olvColumn15.Width = 189;
             // 
@@ -774,6 +791,7 @@
             this.olvColumn19.CellPadding = null;
             this.olvColumn19.Hyperlink = true;
             this.olvColumn19.IsEditable = false;
+            this.olvColumn19.Tag = "View";
             this.olvColumn19.Text = "View";
             this.olvColumn19.Width = 54;
             // 
@@ -894,8 +912,7 @@
             // 
             // pnlIntvDetails
             // 
-            this.pnlIntvDetails.Controls.Add(this.tblEditIntv);
-            this.pnlIntvDetails.Controls.Add(this.lvIntv);
+            this.pnlIntvDetails.Controls.Add(this.tableLayoutPanel8);
             this.pnlIntvDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlIntvDetails.Name = "pnlIntvDetails";
             this.pnlIntvDetails.Size = new System.Drawing.Size(782, 222);
@@ -911,7 +928,7 @@
             this.tblEditIntv.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblEditIntv.Controls.Add(this.h3Label2, 0, 0);
             this.tblEditIntv.Controls.Add(this.cbIntvTypes, 1, 0);
-            this.tblEditIntv.Location = new System.Drawing.Point(3, 2);
+            this.tblEditIntv.Location = new System.Drawing.Point(3, 3);
             this.tblEditIntv.Name = "tblEditIntv";
             this.tblEditIntv.RowCount = 1;
             this.tblEditIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -963,7 +980,7 @@
             this.olvColumn10,
             this.olvColumn12});
             this.lvIntv.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvIntv.Location = new System.Drawing.Point(3, 37);
+            this.lvIntv.Location = new System.Drawing.Point(3, 38);
             this.lvIntv.Name = "lvIntv";
             this.lvIntv.ShowGroups = false;
             this.lvIntv.Size = new System.Drawing.Size(758, 167);
@@ -978,7 +995,7 @@
             this.olvColumn2.AspectName = "TypeName";
             this.olvColumn2.CellPadding = null;
             this.olvColumn2.IsEditable = false;
-            this.olvColumn2.Tag = "Year";
+            this.olvColumn2.Tag = "Type";
             this.olvColumn2.Text = "Type";
             this.olvColumn2.Width = 258;
             // 
@@ -987,6 +1004,7 @@
             this.olvColumn3.AspectName = "Year";
             this.olvColumn3.CellPadding = null;
             this.olvColumn3.IsEditable = false;
+            this.olvColumn3.Tag = "Year";
             this.olvColumn3.Text = "Year";
             this.olvColumn3.Width = 105;
             // 
@@ -995,6 +1013,7 @@
             this.olvColumn9.AspectName = "UpdatedBy";
             this.olvColumn9.CellPadding = null;
             this.olvColumn9.IsEditable = false;
+            this.olvColumn9.Tag = "LastUpdate";
             this.olvColumn9.Text = "Last Update";
             this.olvColumn9.Width = 154;
             // 
@@ -1112,8 +1131,7 @@
             // 
             // pnlSurveyDetails
             // 
-            this.pnlSurveyDetails.Controls.Add(this.tblEditSurveys);
-            this.pnlSurveyDetails.Controls.Add(this.lvSurveys);
+            this.pnlSurveyDetails.Controls.Add(this.tableLayoutPanel7);
             this.pnlSurveyDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlSurveyDetails.Name = "pnlSurveyDetails";
             this.pnlSurveyDetails.Size = new System.Drawing.Size(782, 210);
@@ -1197,6 +1215,7 @@
             this.olvColumn5.AspectName = "TypeName";
             this.olvColumn5.CellPadding = null;
             this.olvColumn5.IsEditable = false;
+            this.olvColumn5.Tag = "Type";
             this.olvColumn5.Text = "Type";
             this.olvColumn5.Width = 240;
             // 
@@ -1214,7 +1233,7 @@
             this.olvColumn8.AspectName = "UpdatedBy";
             this.olvColumn8.CellPadding = null;
             this.olvColumn8.IsEditable = false;
-            this.olvColumn8.Tag = "UpdatedBy";
+            this.olvColumn8.Tag = "LastUpdate";
             this.olvColumn8.Text = "Last Update";
             this.olvColumn8.Width = 138;
             // 
@@ -1224,6 +1243,7 @@
             this.olvColumn1.CellPadding = null;
             this.olvColumn1.Hyperlink = true;
             this.olvColumn1.IsEditable = false;
+            this.olvColumn1.Tag = "View";
             this.olvColumn1.Text = "View";
             this.olvColumn1.Width = 54;
             // 
@@ -1305,6 +1325,91 @@
             this.hrSurveys.Size = new System.Drawing.Size(817, 1);
             this.hrSurveys.TabIndex = 21;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.lnkAddDemo, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lvDemo, 0, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(766, 188);
+            this.tableLayoutPanel2.TabIndex = 3;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.AutoSize = true;
+            this.tableLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Controls.Add(this.tblEditDd, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.lvDiseaseDistro, 0, 1);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(766, 208);
+            this.tableLayoutPanel6.TabIndex = 6;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.AutoSize = true;
+            this.tableLayoutPanel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Controls.Add(this.tblEditSurveys, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.lvSurveys, 0, 1);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(764, 208);
+            this.tableLayoutPanel7.TabIndex = 5;
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.AutoSize = true;
+            this.tableLayoutPanel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel8.ColumnCount = 1;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel8.Controls.Add(this.tblEditIntv, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.lvIntv, 0, 1);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 2;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(764, 208);
+            this.tableLayoutPanel8.TabIndex = 7;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.AutoSize = true;
+            this.tableLayoutPanel9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel9.ColumnCount = 1;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel9.Controls.Add(this.tblEditProcess, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.lvProcess, 0, 1);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 3);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 2;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(764, 208);
+            this.tableLayoutPanel9.TabIndex = 7;
+            // 
             // DiseaseDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1374,6 +1479,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.lvSurveys)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel8.PerformLayout();
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1470,5 +1585,10 @@
         private System.Windows.Forms.Label label3;
         private Controls.HR hr1;
         private System.Windows.Forms.BindingSource processTypeBindingSource;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
     }
 }

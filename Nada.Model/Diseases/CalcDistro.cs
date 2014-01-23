@@ -36,9 +36,9 @@ namespace Nada.Model.Diseases
                     case "11PercentNewFemales":
                         return new KeyValuePair<string,string>(Translations.PercentNewFemales,  GetPercentage(GetValueOrDefault("11TotalNumFemaleNewCases", relatedValues), GetValueOrDefault("11TotalNumNewCases", relatedValues)));
                     case "7PercentNewChildren":
-                        return new KeyValuePair<string,string>(Translations.PercentNewChildren,  GetPercentage(GetValueOrDefault("7TotalNumNewCases", relatedValues), GetValueOrDefault("7TotalNumNewCases", relatedValues)));
+                        return new KeyValuePair<string, string>(Translations.PercentNewChildren, GetPercentage(GetValueOrDefault("7TotalNumChildNewCases", relatedValues), GetValueOrDefault("7TotalNumNewCases", relatedValues)));
                     case "7PercentNewFemales":
-                        return new KeyValuePair<string,string>(Translations.PercentNewFemales,  GetPercentage(GetValueOrDefault("7TotalNumNewCases", relatedValues), GetValueOrDefault("7TotalNumNewCases", relatedValues)));
+                        return new KeyValuePair<string, string>(Translations.PercentNewFemales, GetPercentage(GetValueOrDefault("7TotalNumFemaleNewCases", relatedValues), GetValueOrDefault("7TotalNumNewCases", relatedValues)));
                     case "7TotalNumCasesRegistered":
                         //if (L5 >= 0 && L24 >= 0 && L25 >= 0 && l9 >= 0)
                         //    calcs.Add(new KeyValuePair<string, string>("TotalNumCasesRegistered", string.Format("{0}", L5 + L24 + L25 + l9).ToString())));

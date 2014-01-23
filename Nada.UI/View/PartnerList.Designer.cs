@@ -35,9 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.hr1 = new Nada.UI.Controls.HR();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.c1Button3 = new C1.Win.C1Input.C1Button();
-            this.c1Button1 = new C1.Win.C1Input.C1Button();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
+            this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             ((System.ComponentModel.ISupportInitialize)(this.lvDistros)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -123,49 +122,13 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.c1Button3, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.c1Button1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.c1Button2, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(29, 302);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(29, 323);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(312, 33);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(120, 33);
             this.tableLayoutPanel2.TabIndex = 50;
-            // 
-            // c1Button3
-            // 
-            this.c1Button3.AutoSize = true;
-            this.c1Button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button3.Location = new System.Drawing.Point(219, 3);
-            this.c1Button3.MinimumSize = new System.Drawing.Size(90, 27);
-            this.c1Button3.Name = "c1Button3";
-            this.c1Button3.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
-            this.c1Button3.Size = new System.Drawing.Size(90, 27);
-            this.c1Button3.TabIndex = 51;
-            this.c1Button3.Tag = "Cancel";
-            this.c1Button3.Text = "Cancel";
-            this.c1Button3.UseVisualStyleBackColor = true;
-            this.c1Button3.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
-            this.c1Button3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
-            this.c1Button3.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // c1Button1
-            // 
-            this.c1Button1.AutoSize = true;
-            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button1.Location = new System.Drawing.Point(111, 3);
-            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
-            this.c1Button1.Name = "c1Button1";
-            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
-            this.c1Button1.Size = new System.Drawing.Size(90, 27);
-            this.c1Button1.TabIndex = 3;
-            this.c1Button1.Tag = "AddNew";
-            this.c1Button1.Text = "AddNew";
-            this.c1Button1.UseVisualStyleBackColor = true;
-            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
-            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
-            this.c1Button1.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // c1Button2
             // 
@@ -184,12 +147,28 @@
             this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
             this.c1Button2.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // fieldLink1
+            // 
+            this.fieldLink1.AutoSize = true;
+            this.fieldLink1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.fieldLink1.BackColor = System.Drawing.Color.Transparent;
+            this.fieldLink1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fieldLink1.Location = new System.Drawing.Point(29, 291);
+            this.fieldLink1.Margin = new System.Windows.Forms.Padding(0);
+            this.fieldLink1.Name = "fieldLink1";
+            this.fieldLink1.Size = new System.Drawing.Size(100, 16);
+            this.fieldLink1.TabIndex = 51;
+            this.fieldLink1.Tag = "AddPartnerLink";
+            this.fieldLink1.Text = "AddPartnerLink";
+            this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);
+            // 
             // PartnerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(503, 359);
+            this.ClientSize = new System.Drawing.Size(503, 379);
+            this.Controls.Add(this.fieldLink1);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.hr1);
@@ -215,8 +194,7 @@
         private System.Windows.Forms.Label label3;
         private Controls.HR hr1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private C1.Win.C1Input.C1Button c1Button3;
-        private C1.Win.C1Input.C1Button c1Button1;
         private C1.Win.C1Input.C1Button c1Button2;
+        private Controls.FieldLink fieldLink1;
     }
 }

@@ -52,7 +52,7 @@ namespace Nada.UI.View
             }
             SettingsRepository r = new SettingsRepository();
             var adminLevels = r.GetAllAdminLevels();
-            if (adminLevels.FirstOrDefault(a => a.DisplayName == model.DisplayName.Trim()) != null)
+            if (model.Id <= 0 && adminLevels.FirstOrDefault(a => a.DisplayName == model.DisplayName.Trim()) != null)
             {
                 MessageBox.Show(Translations.AdminLevelNameUnique, Translations.ValidationErrorTitle);
                 return;

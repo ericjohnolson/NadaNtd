@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using Nada.Globalization;
 using Nada.Model.Diseases;
+using Nada.Model.Process;
 using Nada.Model.Reports;
 
 namespace Nada.Model.Repositories
@@ -37,6 +38,7 @@ namespace Nada.Model.Repositories
         private List<Partner> partners = new List<Partner>();
         private List<IndicatorDropdownValue> ezs = new List<IndicatorDropdownValue>();
         private List<IndicatorDropdownValue> eus = new List<IndicatorDropdownValue>();
+        private List<IndicatorDropdownValue> subdistricts = new List<IndicatorDropdownValue>();
 
         #region Old report generator
         //        public void GetReportData(ReportIndicators settings, DataTable table, DataTable chart)
@@ -166,6 +168,7 @@ namespace Nada.Model.Repositories
             SettingsRepository settings = new SettingsRepository();
             ezs = settings.GetEcologicalZones();
             eus = settings.GetEvaluationUnits();
+            subdistricts = settings.GetEvalSubDistricts();
             IntvRepository repo = new IntvRepository();
             partners = repo.GetPartners();
         }
@@ -174,8 +177,7 @@ namespace Nada.Model.Repositories
             OleDbConnection connection, Func<OleDbDataReader, bool, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
             Action<CreateAggParams> addStaticIndicators, bool isCalcRelated)
         {
-            command = new OleDbCommand(cmdText + CreateYearFilter(options) + CreateAdminFilter(options)
-                       , connection);
+            command = new OleDbCommand(cmdText, connection);
 
             FillDictionary(command, connection, dic, options, getKey, getName, getColTypeName, addStaticIndicators, isCalcRelated);
         }
@@ -224,7 +226,7 @@ namespace Nada.Model.Repositories
                         if (!options.Columns.ContainsKey(indicatorKey))
                             options.Columns.Add(indicatorKey, newIndicator);
 
-                        if(!isCalcRelated)
+                        if (!isCalcRelated)
                             addStaticIndicators(new CreateAggParams
                             {
                                 AdminLevel = dic[adminLevelId],
@@ -321,7 +323,7 @@ namespace Nada.Model.Repositories
                     if (options.IsByLevelAggregation || (options.IsNoAggregation && !options.IsAllLocations) || options.IsCountryAggregation)
                         adminFilter = " and AdminLevels.Id in (" + String.Join(", ", options.SelectedAdminLevels.Select(a => a.Id.ToString()).ToArray()) + ") ";
                     OleDbCommand command = new OleDbCommand(@"Select 
-                                a.ID, a.YearDemographyData, AdminLevel.DisplayName, t.DisplayName as TName
+                                a.ID, a.YearDemographyData, AdminLevels.DisplayName, t.DisplayName as TName
                                 ,YearCensus 
                                 ,YearProjections 
                                 ,GrowthRate 
@@ -334,8 +336,8 @@ namespace Nada.Model.Repositories
                                 ,PopAdult 
                                 ,PopFemale 
                                 ,PopMale 
-                            FROM ((AdminLevelDemography a INNER JOIN AdminLevel on a.AdminLevelId = AdminLevel.ID)
-                                INNER JOIN AdminLevelTypes t on t.Id = AdminLevel.AdminLevelTypeId)
+                            FROM ((AdminLevelDemography a INNER JOIN AdminLevels on a.AdminLevelId = AdminLevels.ID)
+                                INNER JOIN AdminLevelTypes t on t.Id = AdminLevels.AdminLevelTypeId)
                             WHERE a.IsDeleted = 0 and YearDemographyData in (" + String.Join(", ", options.SelectedYears.Select(a => a.ToString()).ToArray()) + ") " +
                             adminFilter
                         , connection);
@@ -345,20 +347,20 @@ namespace Nada.Model.Repositories
                         {
                             DataRow dr = dt.NewRow();
                             dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
-                            dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
+                            dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"), reader.GetValueOrDefault<string>("TName"));
                             dr[Translations.Year] = reader.GetValueOrDefault<int>("YearDemographyData");
                             if (keys.ContainsKey("YearCensus")) dr[Translations.YearCensus] = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
                             if (keys.ContainsKey("YearProjections")) dr[Translations.YearProjections] = reader.GetValueOrDefault<Nullable<int>>("YearProjections");
                             if (keys.ContainsKey("GrowthRate")) dr[Translations.GrowthRate] = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
                             if (keys.ContainsKey("PercentRural")) dr[Translations.PercentRural] = reader.GetValueOrDefault<Nullable<double>>("PercentRural");
-                            if (keys.ContainsKey("TotalPopulation")) dr[Translations.TotalPopulation] = reader.GetValueOrDefault<Nullable<int>>("TotalPopulation");
-                            if (keys.ContainsKey("Pop0Month")) dr[Translations.Pop0Month] = reader.GetValueOrDefault<Nullable<int>>("Pop0Month");
-                            if (keys.ContainsKey("PopPsac")) dr[Translations.PopPsac] = reader.GetValueOrDefault<Nullable<int>>("PopPsac");
-                            if (keys.ContainsKey("PopSac")) dr[Translations.PopSac] = reader.GetValueOrDefault<Nullable<int>>("PopSac");
-                            if (keys.ContainsKey("Pop5yo")) dr[Translations.Pop5yo] = reader.GetValueOrDefault<Nullable<int>>("Pop5yo");
-                            if (keys.ContainsKey("PopAdult")) dr[Translations.PopAdult] = reader.GetValueOrDefault<Nullable<int>>("PopAdult");
-                            if (keys.ContainsKey("PopFemale")) dr[Translations.PopFemale] = reader.GetValueOrDefault<Nullable<int>>("PopFemale");
-                            if (keys.ContainsKey("PopMale")) dr[Translations.YearCensus] = reader.GetValueOrDefault<Nullable<int>>("PopMale");
+                            if (keys.ContainsKey("TotalPopulation")) dr[Translations.TotalPopulation] = reader.GetValueOrDefault<Nullable<double>>("TotalPopulation");
+                            if (keys.ContainsKey("Pop0Month")) dr[Translations.Pop0Month] = reader.GetValueOrDefault<Nullable<double>>("Pop0Month");
+                            if (keys.ContainsKey("PopPsac")) dr[Translations.PopPsac] = reader.GetValueOrDefault<Nullable<double>>("PopPsac");
+                            if (keys.ContainsKey("PopSac")) dr[Translations.PopSac] = reader.GetValueOrDefault<Nullable<double>>("PopSac");
+                            if (keys.ContainsKey("Pop5yo")) dr[Translations.Pop5yo] = reader.GetValueOrDefault<Nullable<double>>("Pop5yo");
+                            if (keys.ContainsKey("PopAdult")) dr[Translations.PopAdult] = reader.GetValueOrDefault<Nullable<double>>("PopAdult");
+                            if (keys.ContainsKey("PopFemale")) dr[Translations.PopFemale] = reader.GetValueOrDefault<Nullable<double>>("PopFemale");
+                            if (keys.ContainsKey("PopMale")) dr[Translations.PopMale] = reader.GetValueOrDefault<Nullable<double>>("PopMale");
                             dt.Rows.Add(dr);
                         }
                         reader.Close();
@@ -392,28 +394,36 @@ namespace Nada.Model.Repositories
             {
                 List<string> names = new List<string>();
                 string[] vals = value.Split('|');
-                foreach (var partner in ezs.Where(v => vals.Contains(v.Id.ToString())))
-                    names.Add(partner.DisplayName);
+                foreach (var ez in ezs.Where(v => vals.Contains(v.Id.ToString())))
+                    names.Add(ez.DisplayName);
                 value = String.Join(", ", names.ToArray());
             }
             else if (dataType == (int)IndicatorDataType.EvaluationUnit)
             {
                 List<string> names = new List<string>();
                 string[] vals = value.Split('|');
-                foreach (var partner in eus.Where(v => vals.Contains(v.Id.ToString())))
-                    names.Add(partner.DisplayName);
+                foreach (var eu in eus.Where(v => vals.Contains(v.Id.ToString())))
+                    names.Add(eu.DisplayName);
+                value = String.Join(", ", names.ToArray());
+            }
+            else if (dataType == (int)IndicatorDataType.EvalSubDistrict)
+            {
+                List<string> names = new List<string>();
+                string[] vals = value.Split('|');
+                foreach (var sd in subdistricts.Where(v => vals.Contains(v.Id.ToString())))
+                    names.Add(sd.DisplayName);
                 value = String.Join(", ", names.ToArray());
             }
             return value;
         }
 
-        private string CreateYearFilter(ReportOptions options)
+        public static string CreateYearFilter(ReportOptions options)
         {
             string filter = " and YearReported in (" + String.Join(", ", options.SelectedYears.Select(a => a.ToString()).ToArray()) + ") ";
             return filter;
         }
 
-        private string CreateAdminFilter(ReportOptions options)
+        public static string CreateAdminFilter(ReportOptions options)
         {
             string filter = " ";
             if (options.IsNoAggregation && !options.IsAllLocations)
@@ -465,7 +475,7 @@ namespace Nada.Model.Repositories
             indicators.Add(cm);
             foreach (var t in types.Where(i => i.DiseaseType == "PC").OrderBy(t => t.SurveyTypeName))
             {
-                var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true };
+                var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true, ID = t.Id };
                 var instance = repo.CreateSurvey(t.Id);
                 if (t.Id == (int)StaticSurveyType.LfSentinel || t.Id == (int)StaticSurveyType.SchistoSentinel || t.Id == (int)StaticSurveyType.SthSentinel)
                 {
@@ -479,7 +489,7 @@ namespace Nada.Model.Repositories
                 }
 
                 foreach (var i in instance.TypeOfSurvey.Indicators)
-                    if(i.Value.DataTypeId != (int)IndicatorDataType.SentinelSite)
+                    if (i.Value.DataTypeId != (int)IndicatorDataType.SentinelSite)
                         cat.Children.Add(CreateReportIndicator(t.Id, i));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
@@ -503,6 +513,7 @@ namespace Nada.Model.Repositories
             var types = repo.GetProcessTypes();
             var pc = new ReportIndicator { Name = Translations.PcNtds, IsCategory = true };
             var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
+            types.RemoveAll(t => t.TypeName == Translations.SAEs);
             indicators.Add(pc);
             indicators.Add(cm);
             foreach (var t in types.Where(i => i.DiseaseType == "PC").OrderBy(t => t.TypeName))
@@ -523,6 +534,14 @@ namespace Nada.Model.Repositories
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
+
+            // SAEs
+            ProcessBase saes = repo.Create(9);
+            var saeCat = new ReportIndicator { Name = saes.ProcessType.TypeName, IsCategory = true };
+            foreach (var i in saes.ProcessType.Indicators)
+                saeCat.Children.Add(CreateReportIndicator(saes.ProcessType.Id, i));
+            saeCat.Children = saeCat.Children.OrderBy(c => c.Name).ToList();
+            indicators.Add(saeCat);
 
             return indicators;
         }

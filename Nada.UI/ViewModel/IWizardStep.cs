@@ -23,4 +23,5 @@ namespace Nada.UI.AppLogic
         void DoPrev();
         void DoFinish();
     }
+
 }

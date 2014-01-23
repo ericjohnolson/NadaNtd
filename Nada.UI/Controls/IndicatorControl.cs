@@ -173,7 +173,7 @@ namespace Nada.UI.View
                 IndicatorValue iv = values.FirstOrDefault(i => i.IndicatorId == indicator.Id);
                 if (iv != null)
                     val = iv.DynamicValue;
-                var cntrl = CreateControl(indicator, val);
+                var cntrl = CreateIndicatorControl(indicator, val);
                 cntrl.TabIndex = count;
                 tblStaticIndicators.Controls.Add(cntrl, columnCount, controlRowIndex);
 
@@ -207,7 +207,7 @@ namespace Nada.UI.View
                 if (iv != null)
                     val = iv.DynamicValue;
 
-                var cntrl = CreateControl(indicator, val);
+                var cntrl = CreateIndicatorControl(indicator, val);
                 cntrl.TabIndex = count;
                 tblIndicators.Controls.Add(cntrl, columnCount, controlRowIndex);
 
@@ -216,7 +216,7 @@ namespace Nada.UI.View
             }
         }
 
-        private Control CreateControl(Indicator indicator, string val)
+        private Control CreateIndicatorControl(Indicator indicator, string val)
         {
             if (indicator.DataTypeId == (int)IndicatorDataType.Date)
                 return ControlFactory.CreateDate(indicator, val, indicatorErrors, controlList);
@@ -247,10 +247,12 @@ namespace Nada.UI.View
                 return ControlFactory.CreateDynamicNameVal(indicator, val, indicatorErrors, controlList, IndicatorEntityType.EvaluationUnit, settings.GetEvaluationUnits());
             if (indicator.DataTypeId == (int)IndicatorDataType.EcologicalZone)
                 return ControlFactory.CreateDynamicNameVal(indicator, val, indicatorErrors, controlList, IndicatorEntityType.EcologicalZone, settings.GetEcologicalZones());
-
-            return ControlFactory.CreateText(indicator, val, indicatorErrors, controlList);
+            if (indicator.DataTypeId == (int)IndicatorDataType.EvalSubDistrict)
+                return ControlFactory.CreateDynamicNameVal(indicator, val, indicatorErrors, controlList, IndicatorEntityType.EvalSubDistrict, settings.GetEvalSubDistricts());
+            if (indicator.DataTypeId == (int)IndicatorDataType.LargeText)
+                return ControlFactory.CreateText(indicator, val, indicatorErrors, controlList, 100, true);
+            
+            return ControlFactory.CreateText(indicator, val, indicatorErrors, controlList, 21, false);
         }
-
-
     }
 }

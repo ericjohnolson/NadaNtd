@@ -14,11 +14,12 @@ namespace Nada.Model
 {
     public class DistroImporter : ImporterBase, IImporter
     {
+        public override IndicatorEntityType EntityType { get { return IndicatorEntityType.DiseaseDistribution; } }
         public override string ImportName { get { return Translations.DiseaseDistribution +" " + Translations.Import; } }
         private DiseaseDistroPc type = null;
         private DiseaseDistroCm cmType = null;
         DiseaseRepository repo = new DiseaseRepository();
-        public override void SetType(int id)
+        protected override void SetSpecificType(int id)
         {
            var d = repo.GetDiseaseById(id);
            if (d.DiseaseType == "CM")
@@ -57,23 +58,21 @@ namespace Nada.Model
             List<DiseaseDistroPc> objs = new List<DiseaseDistroPc>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
+                string objerrors = "";
                 var obj = repo.Create((DiseaseType)type.Disease.Id);
                 obj.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
                 obj.Notes = row[Translations.Notes].ToString();
-                obj.IndicatorValues = GetDynamicIndicatorValues(ds, row);
-
-                var objerrors = !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                if (!string.IsNullOrEmpty(objerrors))
-                    errorMessage += string.Format(Translations.ImportErrors, row[Translations.Location], "", objerrors) + Environment.NewLine;
-
+                // Validation
+                obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
+                objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
+                errorMessage += GetObjectErrors(objerrors, row[Translations.Location].ToString());
                 objs.Add(obj);
             }
 
             if (!string.IsNullOrEmpty(errorMessage))
-                return new ImportResult(Translations.ImportErrorHeader + Environment.NewLine + errorMessage);
+                return new ImportResult(CreateErrorMessage(errorMessage));
 
-            foreach (var obj in objs)
-                repo.Save(obj, userId);
+            repo.Save(objs, userId);
 
             return new ImportResult
             {
@@ -88,24 +87,21 @@ namespace Nada.Model
             List<DiseaseDistroCm> objs = new List<DiseaseDistroCm>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
+                string objerrors = "";
                 var obj = repo.CreateCm((DiseaseType)cmType.Disease.Id);
-
                 obj.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
                 obj.Notes = row[Translations.Notes].ToString();
-                obj.IndicatorValues = GetDynamicIndicatorValues(ds, row);
-
-                var objerrors = !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                if (!string.IsNullOrEmpty(objerrors))
-                    errorMessage += string.Format(Translations.ImportErrors, row[Translations.Location], "", objerrors) + Environment.NewLine;
-
+                // Validation
+                obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
+                objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
+                errorMessage += GetObjectErrors(objerrors, row[Translations.Location].ToString());
                 objs.Add(obj);
             }
 
             if (!string.IsNullOrEmpty(errorMessage))
-                return new ImportResult(Translations.ImportErrorHeader + Environment.NewLine + errorMessage);
+                return new ImportResult(CreateErrorMessage(errorMessage));
 
-            foreach (var obj in objs)
-                repo.Save(obj, userId);
+            repo.Save(objs, userId);
 
             return new ImportResult
             {

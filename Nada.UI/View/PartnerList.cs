@@ -29,18 +29,12 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 repo = new IntvRepository();
                 lvDistros.SetObjects(repo.GetPartners());
             }
         }
-
-        private void btnAddNew_Click(object sender, EventArgs e)
-        {
-            PartnerAdd form = new PartnerAdd();
-            form.OnSave += form_OnSave;
-            form.ShowDialog();
-        }
-
+        
         private void lvDistros_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
         {
             e.Handled = true;
@@ -71,6 +65,13 @@ namespace Nada.UI.View
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void fieldLink1_OnClick()
+        {
+            PartnerAdd form = new PartnerAdd();
+            form.OnSave += form_OnSave;
+            form.ShowDialog();
         }
 
 

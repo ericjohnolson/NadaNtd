@@ -12,6 +12,7 @@ namespace Nada
         private DatabaseData() { }
 
         public string AccessConnectionString { get; set; }
+        public string FilePath { get; set; }
 
         public static DatabaseData Instance
         {

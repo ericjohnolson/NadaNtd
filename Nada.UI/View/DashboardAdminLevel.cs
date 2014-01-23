@@ -11,6 +11,9 @@ using Nada.Model.Repositories;
 using Nada.Model.Diseases;
 using Nada.UI.AppLogic;
 using Nada.UI.Base;
+using Nada.UI.View.Wizard;
+using Nada.UI.View.Wizard.DistrictSplitting;
+using Nada.Globalization;
 
 namespace Nada.UI.View.Demography
 {
@@ -22,7 +25,7 @@ namespace Nada.UI.View.Demography
         public Action<string> StatusChanged = (e) => { };
         public Action<AdminLevel> ReloadView = (i) => { };
         private AdminLevel adminLevel;
-        private AdminLevelType childType;
+        private AdminLevelType adminlevelType;
         private DemoRepository r = null;
 
         public DashboardTabs()
@@ -31,10 +34,10 @@ namespace Nada.UI.View.Demography
             InitializeComponent();
         }
 
-        public DashboardTabs(AdminLevel adminLevel, AdminLevelType childType)
+        public DashboardTabs(AdminLevel adminLevel, AdminLevelType t)
             : base()
         {
-            this.childType = childType;
+            this.adminlevelType = t;
             this.adminLevel = adminLevel;
             InitializeComponent();
         }
@@ -54,7 +57,7 @@ namespace Nada.UI.View.Demography
         private void LoadDash(AdminLevel adminLevel)
         {
             IFetchActivities fetcher = new ActivityFetcher(adminLevel);
-            DiseaseDashboard dash = new DiseaseDashboard(fetcher, adminLevel);
+            DiseaseDashboard dash = new DiseaseDashboard(fetcher, adminLevel, false);
             dash.ReloadView = (v) => { ReloadView(v); };
             dash.LoadView = (v) => { LoadView(v); };
             dash.LoadForm = (v) => { LoadForm(v); };
@@ -64,7 +67,6 @@ namespace Nada.UI.View.Demography
             dash.Dock = DockStyle.Fill;
             pnlLf.Controls.Add(dash);
         }
-
 
     }
 }

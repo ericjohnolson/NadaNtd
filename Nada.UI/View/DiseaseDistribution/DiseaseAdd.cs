@@ -19,21 +19,14 @@ namespace Nada.UI.View
     public partial class DiseaseAdd : BaseForm
     {
         public event Action<Disease> OnSave = (e) => { };
-        private Disease model = new Disease();
+        private Disease model = new Disease { DiseaseType = "CM" };
 
         public DiseaseAdd()
             : base()
         {
             InitializeComponent();
         }
-
-        public DiseaseAdd(Disease m)
-            : base()
-        {
-            model = m;
-            InitializeComponent();
-        }
-
+        
         private void DistributionMethodAdd_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
@@ -50,6 +43,7 @@ namespace Nada.UI.View
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
+            model.UserDefinedName = model.DisplayName;
             bindingSource1.EndEdit();
             DiseaseRepository r = new DiseaseRepository();
             int userid = ApplicationData.Instance.GetUserId();

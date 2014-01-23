@@ -11,7 +11,7 @@ using Nada.Model.Demography;
 
 namespace Nada.Model.Repositories
 {
-    public class DemoRepository
+    public class DemoRepository : RepositoryBase
     {
         #region Country
         public Country GetCountry()
@@ -37,7 +37,7 @@ namespace Nada.Model.Repositories
                             Id = reader.GetValueOrDefault<int>("ID"),
                             Name = reader.GetValueOrDefault<string>("DisplayName"),
                             MonthYearStarts = reader.GetValueOrDefault<int>("MonthYearStarts"),
-                            UpdatedBy = Util.GetAuditInfoUpdate(reader)
+                            UpdatedBy = GetAuditInfoUpdate(reader)
                         };
                     }
                     reader.Close();
@@ -291,8 +291,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, IsUrban, LatWho, LngWho, LatOther, LngOther,
-                    AdminLevelTypes.AdminLevel
+                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName,  AdminLevelTypes.AdminLevel
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE ParentId = @ParentId", connection);
                 command.Parameters.Add(new OleDbParameter("@ParentId", parentId));
@@ -305,12 +304,7 @@ namespace Nada.Model.Repositories
                             Id = reader.GetValueOrDefault<int>("ID"),
                             ParentId = reader.GetValueOrDefault<Nullable<int>>("ParentId"),
                             Name = reader.GetValueOrDefault<string>("DisplayName"),
-                            LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
-                            UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
-                            LatWho = reader.GetValueOrDefault<double>("LatWho"),
-                            LngWho = reader.GetValueOrDefault<double>("LngWho"),
-                            LatOther = reader.GetValueOrDefault<double>("LatOther"),
-                            LngOther = reader.GetValueOrDefault<double>("LngOther"),
+                            LevelNumber = reader.GetValueOrDefault<int>("AdminLevel")
                         });
                     }
                     reader.Close();
@@ -426,13 +420,18 @@ namespace Nada.Model.Repositories
 
         public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry)
         {
+            return GetAdminLevelTree(levelTypeId, lowestLevel, includeCountry, false, 0);
+        }
+
+        public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry, bool allowSelect, int levelToSelect)
+        {
             List<AdminLevel> list = new List<AdminLevel>();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
                 string cmd = @"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, LatOther, LngOther,
-                    AdminLevelTypes.AdminLevel, AdminLevelTypes.DisplayName as LevelName
+                    AdminLevelTypes.AdminLevel, AdminLevelTypes.ID as AdminLevelTypeId, AdminLevelTypes.DisplayName as LevelName
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE AdminLevelTypeId <= @AdminLevelTypeId AND AdminLevels.IsDeleted = 0";
                 if (!includeCountry)
@@ -450,6 +449,7 @@ namespace Nada.Model.Repositories
                             Name = reader.GetValueOrDefault<string>("DisplayName"),
                             LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
                             LevelName = reader.GetValueOrDefault<string>("LevelName"),
+                            AdminLevelTypeId = reader.GetValueOrDefault<int>("AdminLevelTypeId"),
                             UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
                             LatWho = reader.GetValueOrDefault<double>("LatWho"),
                             LngWho = reader.GetValueOrDefault<double>("LngWho"),
@@ -460,7 +460,7 @@ namespace Nada.Model.Repositories
                     reader.Close();
                 }
             }
-            return MakeTreeFromFlatList(list, lowestLevel);
+            return MakeTreeFromFlatList(list, lowestLevel, allowSelect, levelToSelect);
         }
 
         public List<AdminLevel> GetAdminLevelTreeForDemography(int level, int demoYear, ref List<AdminLevel> list)
@@ -501,12 +501,15 @@ namespace Nada.Model.Repositories
             return MakeTreeFromFlatList(list, 0);
         }
 
-        private List<AdminLevel> MakeTreeFromFlatList(IEnumerable<AdminLevel> flatList, int minRoot)
+        private List<AdminLevel> MakeTreeFromFlatList(IEnumerable<AdminLevel> flatList, int minRoot, bool allowSelect, int levelToSelect)
         {
             var dic = flatList.ToDictionary(n => n.Id, n => n);
             var rootNodes = new List<AdminLevel>();
             foreach (var node in flatList)
             {
+                if (allowSelect && (levelToSelect != -1 && node.AdminLevelTypeId != levelToSelect))
+                    node.ViewText = "";
+
                 if (node.ParentId.HasValue && node.ParentId.Value > minRoot)
                 {
                     AdminLevel parent = dic[node.ParentId.Value];
@@ -519,6 +522,12 @@ namespace Nada.Model.Repositories
             }
             return rootNodes;
         }
+
+        private List<AdminLevel> MakeTreeFromFlatList(IEnumerable<AdminLevel> flatList, int minRoot)
+        {
+            return MakeTreeFromFlatList(flatList, minRoot, false, 0);
+        }
+            
 
         public void AddChildren(AdminLevel parent, List<AdminLevel> children, AdminLevelType childType, int byUserId)
         {
@@ -939,7 +948,7 @@ namespace Nada.Model.Repositories
                             Year = reader.GetValueOrDefault<int>("YearDemographyData"),
                             GrowthRate = reader.GetValueOrDefault<double>("GrowthRate"),
                             TotalPopulation = reader.GetValueOrDefault<double>("TotalPopulation"),
-                            UpdatedBy = Util.GetAuditInfo(reader)
+                            UpdatedBy = GetAuditInfo(reader)
                         });
                     }
                     reader.Close();
@@ -966,6 +975,41 @@ namespace Nada.Model.Repositories
                 }
             }
             return recent;
+        }
+
+        public AdminLevelDemography GetRecentDemography(int adminUnitId)
+        {
+            AdminLevelDemography demo = new AdminLevelDemography { AdminLevelId = adminUnitId };
+            int id = 0;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand(@"Select ID
+                        FROM AdminLevelDemography
+                        WHERE AdminLevelId = @id and IsDeleted = 0 
+                        ORDER BY YearDemographyData DESC", connection);
+                    command.Parameters.Add(new OleDbParameter("@id", adminUnitId));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            id = reader.GetValueOrDefault<int>("ID");
+                        }
+                    }
+                    if (id > 0)
+                        GetDemoById(demo, id, connection, command);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return demo;
         }
 
         private List<AdminLevelDemography> GetRecentDemographyByLevel(int level, int recentYear, OleDbCommand command, OleDbConnection connection)
@@ -1081,7 +1125,7 @@ namespace Nada.Model.Repositories
                     demo.PopMale = reader.GetValueOrDefault<Nullable<double>>("PopMale");
                     demo.Notes = reader.GetValueOrDefault<string>("Notes");
                     demo.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
-                    demo.UpdatedBy = Util.GetAuditInfo(reader);
+                    demo.UpdatedBy = GetAuditInfo(reader);
 
                 }
                 reader.Close();

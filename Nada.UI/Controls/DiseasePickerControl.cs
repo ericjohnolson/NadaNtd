@@ -16,7 +16,7 @@ namespace Nada.UI.View
 {
     public partial class DiseasePickerControl : BaseControl
     {
-        private DiseaseRepository repo = null;
+        private DiseaseRepository repo = new DiseaseRepository();
         private List<Disease> available = new List<Disease>();
         private List<Disease> selected = new List<Disease>();
         bool isStartUp = false;
@@ -32,7 +32,6 @@ namespace Nada.UI.View
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                repo = new DiseaseRepository();
             }
         }
 

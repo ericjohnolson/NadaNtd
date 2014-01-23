@@ -29,6 +29,8 @@ namespace Nada.UI.View
         public void SetFocus() { }
         private string NewFileLocation = "";
         private string RecentFilesPath = "";
+        private string UserFilesPath = "";
+        private string RecentFileName = "";
         private List<RecentFile> RecentFiles = new List<RecentFile>();
         public event Action OnFileSelected = () => { };
 
@@ -47,26 +49,27 @@ namespace Nada.UI.View
                 cbLanguages.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;
                 Localizer.TranslateControl(this);
                 cbLanguages.DropDownWidth = BaseForm.GetDropdownWidth(Localizer.SupportedLanguages.Select(l => l.Name));
-                string recent = "";
-                if (!RecentFileExists(ref recent))
+                if (!RecentFileExists())
                 {
                     c1Button1.Visible = false;
                     lblRecentFile.Visible = false;
                 }
-                lblRecentFile.Text = recent;
+                lblRecentFile.Text = Translations.RecentFile + RecentFileName;
                 openFileDialog1.Filter = Translations.AccessFiles + "|*.accdb";
                 saveFileDialog1.Filter = Translations.AccessFiles + " (*.accdb)|*.accdb";
                 saveFileDialog1.DefaultExt = ".accdb";
+                label1.MaximumSize = new Size(900, 0);
+                label1.AutoSize = true;
             }
         }
 
-        private bool RecentFileExists(ref string recent)
+        private bool RecentFileExists()
         {
             foreach (RecentFile f in RecentFiles)
             {
                 if (File.Exists(f.Path))
                 {
-                    recent = Translations.RecentFile + f.Name.Trim();
+                    RecentFileName = f.Name.Trim();
                     return true;
                 }
             }
@@ -81,6 +84,7 @@ namespace Nada.UI.View
             CultureInfo ci = new CultureInfo(cbLanguages.SelectedValue.ToString());
             Localizer.SetCulture(ci);
             Localizer.TranslateControl(this);
+            lblRecentFile.Text = Translations.RecentFile + RecentFileName;
             this.ParentForm.Text = Localizer.GetValue("ApplicationTitle");
         }
 
@@ -120,16 +124,16 @@ namespace Nada.UI.View
             string localAppData =
                 Environment.GetFolderPath(
                 Environment.SpecialFolder.LocalApplicationData);
-            string userFilePath = Path.Combine(localAppData, "IotaInk");
-            RecentFilesPath = Path.Combine(userFilePath, "NadaRecentFiles.txt");
+            UserFilesPath = Path.Combine(localAppData, "IotaInk");
+            RecentFilesPath = Path.Combine(UserFilesPath, "NadaRecentFiles.txt");
 
-            if (!Directory.Exists(userFilePath))
-                Directory.CreateDirectory(userFilePath);
+            if (!Directory.Exists(UserFilesPath))
+                Directory.CreateDirectory(UserFilesPath);
 
             // ALWAYS COPY BIN TO LOCAL STORAGE
             string sourceFilePath = Path.Combine(
               System.Windows.Forms.Application.StartupPath, "NewNationalDatabaseTemplate.accdb");
-            NewFileLocation = Path.Combine(userFilePath, "NewNationalDatabaseTemplate.accdb");
+            NewFileLocation = Path.Combine(UserFilesPath, "NewNationalDatabaseTemplate.accdb");
             File.Copy(sourceFilePath, NewFileLocation, true);
 
             // Get Recent File
@@ -180,6 +184,9 @@ namespace Nada.UI.View
         {
             string connection = ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString;
             DatabaseData.Instance.AccessConnectionString = connection.Replace("Source=NewNationalDatabaseTemplate.accdb", "Source=" + filePath);
+            DatabaseData.Instance.FilePath = filePath;
+            string backupFile = Path.Combine(UserFilesPath, "DatabaseBackup.accdb");
+            File.Copy(filePath, backupFile, true);
         }
 
         [Serializable]
