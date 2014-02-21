@@ -23,7 +23,7 @@ namespace Nada.Model.Base
         public List<AdminLevel> AdminLevels { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int Year { get; set; }
+        public DateTime DateReported { get; set; }
         public SurveyType TypeOfSurvey { get; set; }
         public string SiteType { get; set; }
         public string SpotCheckName { get; set; }
@@ -52,7 +52,7 @@ namespace Nada.Model.Base
         public virtual void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            Year = Convert.ToInt32(inds["SurveyYear"].DynamicValue);
+            DateReported = Convert.ToDateTime(inds["DateReported"].DynamicValue);
         }
         public virtual void MapPropertiesToIndicators() { }
 

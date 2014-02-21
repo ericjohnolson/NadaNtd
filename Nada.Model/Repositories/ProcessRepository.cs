@@ -27,14 +27,14 @@ namespace Nada.Model.Repositories
                         processes.ID, 
                         ProcessTypes.TypeName, 
                         processes.ProcessTypeId, 
-                        processes.YearReported, 
+                        processes.DateReported, 
                         processes.UpdatedAt, 
                         aspnet_Users.UserName, AdminLevels.DisplayName
                         FROM (((processes INNER JOIN ProcessTypes on processes.ProcessTypeId = ProcessTypes.ID)
                             INNER JOIN aspnet_Users on processes.UpdatedById = aspnet_Users.UserId)
                             INNER JOIN AdminLevels on processes.AdminLevelId = AdminLevels.ID) 
                         WHERE processes.AdminLevelId=@AdminLevelId and processes.IsDeleted = 0 
-                        ORDER BY processes.YearReported DESC", connection);
+                        ORDER BY processes.DateReported DESC", connection);
                     command.Parameters.Add(new OleDbParameter("@AdminLevelId", adminLevel));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -46,7 +46,7 @@ namespace Nada.Model.Repositories
                                 TypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TypeName"), reader.GetValueOrDefault<string>("TypeName")),
                                 TypeId = reader.GetValueOrDefault<int>("ProcessTypeId"),
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
-                                YearReported = reader.GetValueOrDefault<int>("YearReported"),
+                                DateReported = reader.GetValueOrDefault<DateTime>("DateReported"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
                                 UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
 
@@ -121,7 +121,7 @@ namespace Nada.Model.Repositories
 
             try
             {
-                command = new OleDbCommand(@"Select processes.AdminLevelId, processes.YearReported, SCMDrug, PCTrainTrainingCategory,
+                command = new OleDbCommand(@"Select processes.AdminLevelId, processes.DateReported, SCMDrug, PCTrainTrainingCategory,
                         processes.Notes, processes.UpdatedById, processes.UpdatedAt, aspnet_Users.UserName, AdminLevels.DisplayName, 
                         processes.ProcessTypeId, created.UserName as CreatedBy, processes.CreatedAt
                         FROM (((processes INNER JOIN aspnet_Users on processes.UpdatedById = aspnet_Users.UserId)
@@ -136,7 +136,7 @@ namespace Nada.Model.Repositories
                         reader.Read();
                         process.Id = pId;
                         process.AdminLevelId = reader.GetValueOrDefault<Nullable<int>>("AdminLevelId");
-                        process.YearReported = reader.GetValueOrDefault<int>("YearReported");
+                        process.DateReported = reader.GetValueOrDefault<DateTime>("DateReported");
                         process.SCMDrug = reader.GetValueOrDefault<string>("SCMDrug");
                         process.PCTrainTrainingCategory = reader.GetValueOrDefault<string>("PCTrainTrainingCategory");
                         process.Notes = reader.GetValueOrDefault<string>("Notes");
@@ -417,7 +417,7 @@ namespace Nada.Model.Repositories
                         // Add year reported
                         command = new OleDbCommand(@"INSERT INTO ProcessIndicators (ProcessTypeId, DataTypeId, AggTypeId,
                             DisplayName, IsRequired, IsDisabled, IsEditable, IsDisplayed, SortOrder, UpdatedById, UpdatedAt) VALUES
-                            (@ProcessTypeId, 7, 5, 'YearReported', -1, 0, 0, 0, -1, @UpdatedById, 
+                            (@ProcessTypeId, 4, 5, 'DateReported', -1, 0, 0, 0, -1, @UpdatedById, 
                              @UpdatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@ProcessTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
@@ -492,16 +492,16 @@ namespace Nada.Model.Repositories
             process.MapIndicatorsToProperties();
 
             if (process.Id > 0)
-                command = new OleDbCommand(@"UPDATE processes SET ProcessTypeId=@ProcessTypeId, AdminLevelId=@AdminLevelId, YearReported=@YearReported,
+                command = new OleDbCommand(@"UPDATE processes SET ProcessTypeId=@ProcessTypeId, AdminLevelId=@AdminLevelId, DateReported=@DateReported,
                            SCMDrug=@SCMDrug, PCTrainTrainingCategory=@PCTrainTrainingCategory,
                            Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
-                command = new OleDbCommand(@"INSERT INTO processes (ProcessTypeId, AdminLevelId, YearReported, SCMDrug, PCTrainTrainingCategory,
-                            Notes, UpdatedById, UpdatedAt, CreatedById, CreatedAt) values (@ProcessTypeId, @AdminLevelId, @YearReported, @SCMDrug, 
+                command = new OleDbCommand(@"INSERT INTO processes (ProcessTypeId, AdminLevelId, DateReported, SCMDrug, PCTrainTrainingCategory,
+                            Notes, UpdatedById, UpdatedAt, CreatedById, CreatedAt) values (@ProcessTypeId, @AdminLevelId, @DateReported, @SCMDrug, 
                             @PCTrainTrainingCategory, @Notes, @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@ProcessTypeId", process.ProcessType.Id));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", process.AdminLevelId));
-            command.Parameters.Add(new OleDbParameter("@YearReported", process.YearReported));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@DateReported", process.DateReported));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@SCMDrug", process.SCMDrug));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@PCTrainTrainingCategory", process.PCTrainTrainingCategory));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", process.Notes));

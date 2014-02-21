@@ -9,8 +9,12 @@ namespace Nada.Model
 {
     public class AdminLevelDemography : NadaClass
     {
+        public AdminLevelDemography()
+        {
+            DateDemographyData = DateTime.Now;
+        }
         public int AdminLevelId { get; set; }
-        public Nullable<int> YearDemographyData { get; set; }
+        public DateTime DateDemographyData { get; set; }
         public Nullable<int> YearCensus { get; set; }
         public Nullable<int> YearProjections { get; set; }
         public Nullable<double> GrowthRate { get; set; }
@@ -36,13 +40,6 @@ namespace Nada.Model
                 string error = "";
                 switch (columnName)
                 {
-                        
-                    case "YearDemographyData":
-                        if (!YearDemographyData.HasValue)
-                            error = Translations.Required;
-                        else if (YearDemographyData.Value > 2100 || YearDemographyData.Value < 1900)
-                            error = Translations.ValidYear;
-                        break;
                     case "YearCensus":
                         if (!YearCensus.HasValue)
                             error = Translations.Required;

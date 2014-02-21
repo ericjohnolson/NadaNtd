@@ -14,7 +14,7 @@ namespace Nada.Model.Intervention
         {
             AdminLevelDemography recentDemo = null;
             var demography = demoRepo.GetAdminLevelDemography(adminLevel);
-            var recentDemogInfo = demography.OrderByDescending(d => d.Year).FirstOrDefault();
+            var recentDemogInfo = demography.OrderByDescending(d => d.DateReported).FirstOrDefault();
             if (recentDemogInfo != null)
                 recentDemo = demoRepo.GetDemoById(recentDemogInfo.Id);
             List<KeyValuePair<string, string>> results = new List<KeyValuePair<string, string>>();

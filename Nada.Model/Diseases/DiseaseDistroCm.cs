@@ -23,13 +23,13 @@ namespace Nada.Model.Diseases
         public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }
-        public Nullable<int> YearReported { get; set; }
+        public Nullable<DateTime> DateReported { get; set; }
 
         public void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            if(inds.ContainsKey("DiseaseYear"))
-                YearReported = inds["DiseaseYear"].DynamicValue.ToNullable<int>();
+            if (inds.ContainsKey("DateReported"))
+                DateReported = Convert.ToDateTime(inds["DateReported"].DynamicValue);
         }
 
         #region IDataErrorInfo Members

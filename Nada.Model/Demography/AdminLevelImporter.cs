@@ -38,7 +38,7 @@ namespace Nada.Model
 
             // Load data into excel worksheet
             var cDemo = demo.GetCountryDemoRecent();
-            var levels = demo.GetRecentDemography(locationType.LevelNumber, cDemo.YearDemographyData.Value);
+            var levels = demo.GetRecentDemography(locationType.LevelNumber, cDemo.DateDemographyData.Year);
             DataTable data = CreateUpdateDataTable(levels);
 
             AddTableToWorksheet(data, xlsWorksheet);
@@ -99,7 +99,7 @@ namespace Nada.Model
             return data;
         }
 
-        public ImportResult ImportData(string filePath, int userId, int yearDemo, bool doAggregate)
+        public ImportResult ImportData(string filePath, int userId, DateTime dateReported, bool doAggregate)
         {
             try
             {
@@ -117,7 +117,7 @@ namespace Nada.Model
                         demography.Id = Convert.ToInt32(row[Translations.ID + "#"]);
                     demography.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
                     demography.Notes = row[Translations.Notes].ToString();
-                    demography.YearDemographyData = yearDemo;
+                    demography.DateDemographyData = dateReported;
                     // need to do the required validation, do all and then show errors
                     int i = 0;
                     if (int.TryParse(row[Translations.YearCensus].ToString(), out i))
@@ -161,7 +161,7 @@ namespace Nada.Model
                 demo.Save(demos, userId);
 
                 if (doAggregate)
-                    demo.AggregateUp(locationType, yearDemo, userId);
+                    demo.AggregateUp(locationType, dateReported.Year, userId);
 
                 int rec = demos.Count;
                 return new ImportResult
@@ -302,7 +302,7 @@ namespace Nada.Model
         }
 
         public ImportResult ImportData(string filePath, int userId, bool importDemography, bool doAggregate, int rows,
-            AdminLevel filterLevel, int yearDemo)
+            AdminLevel filterLevel, DateTime dateReported)
         {
             try
             {
@@ -349,7 +349,7 @@ namespace Nada.Model
                         var demography = new AdminLevelDemography();
 
                         demography.Notes = row[Translations.Notes].ToString();
-                        demography.YearDemographyData = yearDemo;
+                        demography.DateDemographyData = dateReported;
                         // need to do the required validation, do all and then show errors
                         int i = 0;
                         if (int.TryParse(row[Translations.YearCensus].ToString(), out i))
@@ -388,7 +388,7 @@ namespace Nada.Model
                     if (!string.IsNullOrEmpty(demographyErrors) && !string.IsNullOrEmpty(adminErrors))
                         errorMessage += string.Format(Translations.ImportErrors, adminLevel.Name, adminErrors + ",", demographyErrors) + Environment.NewLine;
                     else if (!string.IsNullOrEmpty(demographyErrors) || !string.IsNullOrEmpty(adminErrors))
-                        errorMessage += string.Format(Translations.ImportErrors, adminLevel.Name, adminErrors, demographyErrors) + Environment.NewLine;
+                        errorMessage += string.Format(Translations.ImportErrors, adminLevel.Name, adminErrors + demographyErrors) + Environment.NewLine;
 
                     levels.Add(adminLevel);
                 }
@@ -403,7 +403,7 @@ namespace Nada.Model
                 demo.BulkImportAdminLevelsForLevel(levels, locationType.Id, userId);
 
                 if (doAggregate)
-                    demo.AggregateUp(locationType, yearDemo, userId);
+                    demo.AggregateUp(locationType, dateReported.Year, userId); // Do I just use this year, what does it break?
 
                 int rec = levels.Count;
                 return new ImportResult

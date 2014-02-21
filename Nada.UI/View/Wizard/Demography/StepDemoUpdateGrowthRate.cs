@@ -76,7 +76,7 @@ namespace Nada.UI.View.Wizard
         void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (string.IsNullOrEmpty(e.Result.ToString()))
-                OnSwitchStep(new StepDemoUpdateOptions(vm.Year.Value));
+                OnSwitchStep(new StepDemoUpdateOptions(vm.DateReported));
             else
                 MessageBox.Show(e.Result.ToString(), Translations.UnexpectedException, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -90,8 +90,8 @@ namespace Nada.UI.View.Wizard
                 var aggLevel = als.FirstOrDefault(a => a.IsAggregatingLevel);
                 int max = als.Max(a => a.LevelNumber);
                 int userId = ApplicationData.Instance.GetUserId();
-                repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, max, vm.Year.Value);
-                repo.AggregateUp(aggLevel, vm.Year.Value, userId);
+                repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, max, vm.DateReported);
+                repo.AggregateUp(aggLevel, vm.DateReported.Year, userId);
                 e.Result = "";
             }
             catch (Exception ex)

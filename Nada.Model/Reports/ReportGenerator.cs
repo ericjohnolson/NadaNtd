@@ -217,7 +217,7 @@ namespace Nada.Model.Reports
 
         protected virtual string GetIndKey(OleDbDataReader reader, bool isNotAgg)
         {
-            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_" + reader.GetValueOrDefault<string>("TName");
+            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<Int16>("DYear") + "_" + reader.GetValueOrDefault<string>("TName");
             if (isNotAgg)
                 return reader.GetValueOrDefault<int>("ID").ToString() + "_" + key;
             return key;
@@ -301,7 +301,7 @@ namespace Nada.Model.Reports
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
                         Interventions.ID, 
-                        Interventions.YearReported, 
+                        DatePart('yyyy', [DateReported]) as DYear, 
                         Interventions.PcIntvRoundNumber, 
                         InterventionTypes.InterventionTypeName as TName,     
                         InterventionTypes.ID as Tid,      
@@ -320,12 +320,12 @@ namespace Nada.Model.Reports
                               IndicatorCalculations.IndicatorId in "
             + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = " + entityTypeId
             + " AND InterventionTypes.ID in (" + String.Join(", ", options.SelectedIndicators.Select(i => i.TypeId.ToString()).Distinct().ToArray()) + ") "
-            + ReportRepository.CreateYearFilter(options) + ReportRepository.CreateAdminFilter(options) + @"
+            + ReportRepository.CreateYearFilter(options, "DateReported") + ReportRepository.CreateAdminFilter(options) + @"
                         GROUP BY 
                         AdminLevels.ID, 
                         AdminLevels.DisplayName,
                         Interventions.ID, 
-                        Interventions.YearReported, 
+                        DatePart('yyyy', [DateReported]), 
                         Interventions.PcIntvRoundNumber, 
                         InterventionTypes.InterventionTypeName,     
                         InterventionTypes.ID,      
@@ -342,7 +342,7 @@ namespace Nada.Model.Reports
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
                         DiseaseDistributions.ID, 
-                        DiseaseDistributions.YearReported, 
+                        DatePart('yyyy', [DateReported]) as DYear, 
                         Diseases.DisplayName as TName,       
                         Diseases.ID as Tid,   
                         DiseaseDistributionIndicators.ID as IndicatorId, 
@@ -359,12 +359,12 @@ namespace Nada.Model.Reports
                         WHERE DiseaseDistributions.IsDeleted = 0 AND  IndicatorCalculations.RelatedEntityTypeId = 1 AND
                                IndicatorCalculations.IndicatorId in "
             + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
-            + entityTypeId + ReportRepository.CreateYearFilter(options) + ReportRepository.CreateAdminFilter(options) + @"
+            + entityTypeId + ReportRepository.CreateYearFilter(options, "DateReported") + ReportRepository.CreateAdminFilter(options) + @"
                         GROUP BY  
                         AdminLevels.ID, 
                         AdminLevels.DisplayName,
                         DiseaseDistributions.ID, 
-                        DiseaseDistributions.YearReported, 
+                        DatePart('yyyy', [DateReported]), 
                         Diseases.DisplayName,       
                         Diseases.ID,   
                         DiseaseDistributionIndicators.ID, 
@@ -380,7 +380,7 @@ namespace Nada.Model.Reports
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
                         Surveys.ID, 
-                        Surveys.YearReported, 
+                        DatePart('yyyy', [DateReported]) as DYear, 
                         SurveyTypes.SurveyTypeName as TName,        
                         SurveyTypes.ID as Tid,      
                         SurveyIndicators.ID as IndicatorId, 
@@ -398,12 +398,12 @@ namespace Nada.Model.Reports
                         WHERE Surveys.IsDeleted = 0 AND IndicatorCalculations.RelatedEntityTypeId = 3 AND 
                               IndicatorCalculations.IndicatorId in "
             + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
-            + entityTypeId + ReportRepository.CreateYearFilter(options) + ReportRepository.CreateAdminFilter(options) + @"
+            + entityTypeId + ReportRepository.CreateYearFilter(options, "DateReported") + ReportRepository.CreateAdminFilter(options) + @"
                         GROUP BY 
                         AdminLevels.ID, 
                         AdminLevels.DisplayName,
                         Surveys.ID, 
-                        Surveys.YearReported, 
+                        DatePart('yyyy', [DateReported]), 
                         SurveyTypes.SurveyTypeName,        
                         SurveyTypes.ID,      
                         SurveyIndicators.ID, 
@@ -432,7 +432,7 @@ namespace Nada.Model.Reports
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
                         Interventions.ID, 
-                        Interventions.YearReported, 
+                        DatePart('yyyy', [DateReported]) as DYear, 
                         Interventions.PcIntvRoundNumber, 
                         InterventionTypes.InterventionTypeName as TName, 
                         InterventionTypes.ID as Tid,      
@@ -450,12 +450,12 @@ namespace Nada.Model.Reports
                               InterventionIndicators.Id in "
             + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray())
             + ") AND InterventionTypes.ID in (" + String.Join(", ", opts.SelectedIndicators.Select(i => i.TypeId.ToString()).Distinct().ToArray())  + ") "
-            + ReportRepository.CreateYearFilter(opts) + ReportRepository.CreateAdminFilter(opts);
+            + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts);
         }
 
         protected override string GetIndKey(OleDbDataReader reader, bool isNotAgg)
         {
-            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_" +
+            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<Int16>("DYear") + "_" +
                     reader.GetValueOrDefault<string>("TName") + GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), "_");
             if (isNotAgg)
                 return reader.GetValueOrDefault<int>("ID").ToString() + "_" + key;
@@ -535,7 +535,7 @@ namespace Nada.Model.Reports
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
                         Surveys.ID, 
-                        Surveys.YearReported, 
+                        DatePart('yyyy', [DateReported]) as DYear, 
                         SurveyTypes.SurveyTypeName as TName,            
                         SurveyTypes.ID as Tid,      
                         SurveyIndicators.ID as IndicatorId, 
@@ -560,13 +560,13 @@ namespace Nada.Model.Reports
                         WHERE Surveys.IsDeleted = 0 AND SurveyIndicators.Id in " + " (" +
                        String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") " +
                        staticConditional
-                       + ReportRepository.CreateYearFilter(opts) + ReportRepository.CreateAdminFilter(opts);
+                       + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts);
             else
                 return @"Select 
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
                         Surveys.ID, 
-                        Surveys.YearReported, 
+                        DatePart('yyyy', [DateReported]) as DYear, 
                         SurveyTypes.SurveyTypeName as TName,           
                         SurveyTypes.ID as Tid,       
                         0 as IndicatorId, 
@@ -588,7 +588,7 @@ namespace Nada.Model.Reports
                             LEFT OUTER JOIN SentinelSites on Surveys.SentinelSiteId = SentinelSites.ID)
                         WHERE Surveys.IsDeleted = 0 "
                     + staticConditional
-                    + ReportRepository.CreateYearFilter(opts) + ReportRepository.CreateAdminFilter(opts);
+                    + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts);
 
         }
         
@@ -612,7 +612,7 @@ namespace Nada.Model.Reports
 
         private void AddIndicatorAndColumn<T>(string columnName, string transName, CreateAggParams param)
         {
-            string key = columnName + "_" + param.Reader.GetValueOrDefault<int>("YearReported") + "_" + param.Reader.GetValueOrDefault<string>("TName");
+            string key = columnName + "_" + param.Reader.GetValueOrDefault<Int16>("DYear") + "_" + param.Reader.GetValueOrDefault<string>("TName");
             string displayName = transName + " - " + TranslationLookup.GetValue(param.Reader.GetValueOrDefault<string>("TName"));
             T val = param.Reader.GetValueOrDefault<T>(columnName);
             if (!param.AdminLevel.Indicators.ContainsKey(key))
@@ -624,7 +624,7 @@ namespace Nada.Model.Reports
                     DataType = (int)IndicatorDataType.Text,
                     Value = val == null ? null : val.ToString(),
                     AggType = (int)IndicatorAggType.None,
-                    Year = param.Reader.GetValueOrDefault<int>("YearReported"),
+                    Year = param.Reader.GetValueOrDefault<Int16>("DYear"),
                     TypeName = param.Reader.GetValueOrDefault<string>("TName"),
                     IsCalcRelated = false,
                     FormId = param.Reader.GetValueOrDefault<int>("ID")
@@ -652,7 +652,7 @@ namespace Nada.Model.Reports
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
                         DiseaseDistributions.ID, 
-                        DiseaseDistributions.YearReported, 
+                        DatePart('yyyy', [DateReported]) as DYear, 
                         Diseases.DisplayName as TName,       
                         Diseases.ID as Tid,       
                         DiseaseDistributionIndicators.ID as IndicatorId, 
@@ -668,7 +668,7 @@ namespace Nada.Model.Reports
                         WHERE DiseaseDistributions.IsDeleted = 0 AND  
                               DiseaseDistributionIndicators.Id in "
             + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") "
-            + ReportRepository.CreateYearFilter(opts) + ReportRepository.CreateAdminFilter(opts);
+            + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts);
         }
     }
 
@@ -680,12 +680,12 @@ namespace Nada.Model.Reports
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
                         Processes.ID, 
-                        Processes.YearReported, 
+                        DatePart('yyyy', [DateReported]) as DYear, 
                         Processes.SCMDrug, 
                         Processes.PCTrainTrainingCategory, 
                         ProcessTypes.TypeName as TName,           
-                        Diseases.ID as Tid,        
-                        Diseases.ID as IndicatorId, 
+                        ProcessTypes.ID as Tid,        
+                        ProcessIndicators.ID as IndicatorId, 
                         ProcessIndicators.DisplayName as IndicatorName, 
                         ProcessIndicators.IsDisplayed, 
                         ProcessIndicators.DataTypeId, 
@@ -698,12 +698,12 @@ namespace Nada.Model.Reports
                         WHERE Processes.IsDeleted = 0 AND  
                               ProcessIndicators.Id in "
             + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") "
-            + ReportRepository.CreateYearFilter(opts) + ReportRepository.CreateAdminFilter(opts);
+            + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts);
         }
 
         protected override string GetIndKey(OleDbDataReader reader, bool isNotAgg)
         {
-            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<int>("YearReported") + "_" +
+            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + reader.GetValueOrDefault<Int16>("DYear") + "_" +
                 reader.GetValueOrDefault<string>("TName") + GetValueOrBlank(reader.GetValueOrDefault<string>("SCMDrug"), "_") +
                 GetValueOrBlank(reader.GetValueOrDefault<string>("PCTrainTrainingCategory"), "_");
             if (isNotAgg)

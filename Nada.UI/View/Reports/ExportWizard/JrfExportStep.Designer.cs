@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.h3bLabel1 = new Nada.UI.Controls.H3Required();
-            this.tbYear = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.h3bLabel2 = new Nada.UI.Controls.H3Required();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -42,6 +41,7 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.textBox5 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -54,19 +54,11 @@
             this.h3bLabel1.Location = new System.Drawing.Point(5, 5);
             this.h3bLabel1.Margin = new System.Windows.Forms.Padding(0);
             this.h3bLabel1.Name = "h3bLabel1";
-            this.h3bLabel1.Size = new System.Drawing.Size(80, 15);
+            this.h3bLabel1.Size = new System.Drawing.Size(43, 15);
             this.h3bLabel1.TabIndex = 0;
-            this.h3bLabel1.Tag = "ReportYear";
-            this.h3bLabel1.Text = "ReportYear";
+            this.h3bLabel1.Tag = "Year";
+            this.h3bLabel1.Text = "Year";
             this.h3bLabel1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // tbYear
-            // 
-            this.tbYear.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "JrfYearReporting", true));
-            this.tbYear.Location = new System.Drawing.Point(5, 27);
-            this.tbYear.Name = "tbYear";
-            this.tbYear.Size = new System.Drawing.Size(230, 21);
-            this.tbYear.TabIndex = 1;
             // 
             // bindingSource1
             // 
@@ -93,6 +85,7 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(5, 71);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(230, 23);
             this.comboBox1.TabIndex = 3;
@@ -147,6 +140,7 @@
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(5, 116);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(230, 23);
             this.comboBox2.TabIndex = 9;
@@ -159,6 +153,7 @@
             this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(5, 162);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(230, 23);
             this.comboBox3.TabIndex = 10;
@@ -171,6 +166,7 @@
             this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(5, 208);
+            this.comboBox4.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(230, 23);
             this.comboBox4.TabIndex = 11;
@@ -182,12 +178,22 @@
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.DataSource = this.bindingSource1;
             // 
+            // textBox5
+            // 
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "JrfYearReporting", true));
+            this.textBox5.Location = new System.Drawing.Point(5, 23);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(230, 21);
+            this.textBox5.TabIndex = 71;
+            // 
             // JrfExportStep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.comboBox2);
@@ -196,7 +202,6 @@
             this.Controls.Add(this.h3bLabel3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.h3bLabel2);
-            this.Controls.Add(this.tbYear);
             this.Controls.Add(this.h3bLabel1);
             this.Name = "JrfExportStep";
             this.Size = new System.Drawing.Size(365, 250);
@@ -212,7 +217,6 @@
 
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private Controls.H3Required h3bLabel1;
-        private System.Windows.Forms.TextBox tbYear;
         private Controls.H3Required h3bLabel2;
         private System.Windows.Forms.ComboBox comboBox1;
         private Controls.H3Required h3bLabel3;
@@ -223,6 +227,7 @@
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox textBox5;
 
 
     }

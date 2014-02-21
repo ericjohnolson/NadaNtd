@@ -24,13 +24,13 @@ namespace Nada.Model.Diseases
         public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
-        public Nullable<int> YearOfReporting { get; set; }
+        public Nullable<DateTime> DateReported { get; set; }
 
         public void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            if (inds.ContainsKey("DiseaseYear"))
-                YearOfReporting = inds["DiseaseYear"].DynamicValue.ToNullable<int>();
+            if (inds.ContainsKey("DateReported"))
+                DateReported = Convert.ToDateTime(inds["DateReported"].DynamicValue);
         }
 
         public List<KeyValuePair<string, string>> GetDemographyStats()
@@ -39,8 +39,8 @@ namespace Nada.Model.Diseases
 
             DemoRepository demo = new DemoRepository();
             int year = DateTime.Now.Year;
-            if(YearOfReporting.HasValue)
-                year = YearOfReporting.Value;
+            if (DateReported.HasValue)
+                year = DateReported.Value.Year;
             AdminLevelDemography d = demo.GetDemoByAdminLevelIdAndYear(AdminLevelId.Value, year);
             values.Add(new KeyValuePair<string,string>(Translations.DDLFTotalPopulation, d.TotalPopulation.HasValue ? d.TotalPopulation.Value.ToString() : Translations.NA));
             if(Disease.Id == (int)DiseaseType.Lf || Disease.Id == (int)DiseaseType.STH)

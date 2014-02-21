@@ -47,6 +47,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnHelp = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -64,6 +66,8 @@
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -329,6 +333,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.pictureBox8);
+            this.panel3.Controls.Add(this.pictureBox7);
             this.panel3.Controls.Add(this.pictureBox6);
             this.panel3.Controls.Add(this.pictureBox5);
             this.panel3.Controls.Add(this.pictureBox4);
@@ -342,12 +348,35 @@
             this.panel3.Size = new System.Drawing.Size(1000, 122);
             this.panel3.TabIndex = 64;
             // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::Nada.UI.Properties.Resources.WPRO;
+            this.pictureBox8.Location = new System.Drawing.Point(692, 0);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(181, 75);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 7;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::Nada.UI.Properties.Resources.SEARO;
+            this.pictureBox7.Location = new System.Drawing.Point(490, 0);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(189, 75);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 6;
+            this.pictureBox7.TabStop = false;
+            // 
             // pictureBox6
             // 
             this.pictureBox6.Image = global::Nada.UI.Properties.Resources.rti;
-            this.pictureBox6.Location = new System.Drawing.Point(103, 68);
+            this.pictureBox6.Location = new System.Drawing.Point(90, 53);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(180, 32);
+            this.pictureBox6.Size = new System.Drawing.Size(118, 22);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 5;
             this.pictureBox6.TabStop = false;
@@ -355,9 +384,10 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::Nada.UI.Properties.Resources.envision;
-            this.pictureBox5.Location = new System.Drawing.Point(115, 4);
+            this.pictureBox5.Location = new System.Drawing.Point(90, 3);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(154, 62);
+            this.pictureBox5.Size = new System.Drawing.Size(117, 50);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 4;
             this.pictureBox5.TabStop = false;
@@ -365,9 +395,10 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Nada.UI.Properties.Resources.ntd;
-            this.pictureBox4.Location = new System.Drawing.Point(289, 3);
+            this.pictureBox4.Location = new System.Drawing.Point(220, 0);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(95, 98);
+            this.pictureBox4.Size = new System.Drawing.Size(72, 75);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 3;
             this.pictureBox4.TabStop = false;
@@ -375,9 +406,10 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Nada.UI.Properties.Resources.apoc;
-            this.pictureBox3.Location = new System.Drawing.Point(516, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(392, 0);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(114, 100);
+            this.pictureBox3.Size = new System.Drawing.Size(85, 75);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
@@ -386,8 +418,9 @@
             // 
             this.pictureBox2.Image = global::Nada.UI.Properties.Resources.who;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox2.Size = new System.Drawing.Size(77, 75);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
@@ -395,9 +428,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Nada.UI.Properties.Resources.afro;
-            this.pictureBox1.Location = new System.Drawing.Point(401, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(304, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.Size = new System.Drawing.Size(75, 75);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -440,6 +474,8 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).EndInit();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -480,5 +516,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }

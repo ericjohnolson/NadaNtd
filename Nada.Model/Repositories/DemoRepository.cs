@@ -89,9 +89,9 @@ namespace Nada.Model.Repositories
                 {
                     int demoId = 0;
                     OleDbCommand command = new OleDbCommand(@"Select ID FROM AdminLevelDemography WHERE AdminLevelId=@id AND
-                        YearDemographyData =@YearDemographyData ", connection);
+                        DatePart('yyyy', [DateDemographyData])=@Year ", connection);
                     command.Parameters.Add(new OleDbParameter("@id", demo.AdminLevelId));
-                    command.Parameters.Add(new OleDbParameter("@YearDemographyData", year));
+                    command.Parameters.Add(new OleDbParameter("@Year", year));
 
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -128,7 +128,7 @@ namespace Nada.Model.Repositories
                 {
                     int demoId = 0;
                     OleDbCommand command = new OleDbCommand(@"Select ID FROM AdminLevelDemography WHERE AdminLevelId=@id
-                        ORDER BY YearDemographyData DESC", connection);
+                        ORDER BY DateDemographyData DESC", connection);
                     command.Parameters.Add(new OleDbParameter("@id", demo.AdminLevelId));
 
                     using (OleDbDataReader reader = command.ExecuteReader())
@@ -227,16 +227,16 @@ namespace Nada.Model.Repositories
         {
             int countryAdminId = Convert.ToInt32(ConfigurationManager.AppSettings["CountryId"]);
             if (demo.Id > 0)
-                command = new OleDbCommand(@"UPDATE AdminLevelDemography SET AdminLevelId=@AdminLevelId, YearDemographyData=@YearDemographyData,
+                command = new OleDbCommand(@"UPDATE AdminLevelDemography SET AdminLevelId=@AdminLevelId, DateDemographyData=@DateDemographyData,
                             YearCensus=@YearCensus,  YearProjections=@YearProjections, GrowthRate=@GrowthRate, PercentRural=@PercentRural, 
                             Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
-                command = new OleDbCommand(@"INSERT INTO AdminLevelDemography (AdminLevelId, YearDemographyData,
+                command = new OleDbCommand(@"INSERT INTO AdminLevelDemography (AdminLevelId, DateDemographyData,
                             YearCensus,  YearProjections, GrowthRate, PercentRural, Notes, UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
-                            values (@AdminLevelId, @YearDemographyData, @YearCensus,  @YearProjections, @GrowthRate, @PercentRural, @Notes, 
+                            values (@AdminLevelId, @DateDemographyData, @YearCensus,  @YearProjections, @GrowthRate, @PercentRural, @Notes, 
                             @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@AdminLevelId", demo.AdminLevelId));
-            command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearDemographyData", demo.YearDemographyData));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@DateDemographyData", demo.DateDemographyData));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearCensus", demo.YearCensus));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearProjections", demo.YearProjections));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@GrowthRate", demo.GrowthRate));
@@ -728,7 +728,8 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            parentIds.Add(reader.GetValueOrDefault<string>("DisplayName"), reader.GetValueOrDefault<int>("ID"));
+                            if(!parentIds.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
+                                parentIds.Add(reader.GetValueOrDefault<string>("DisplayName"), reader.GetValueOrDefault<int>("ID"));
                         }
                         reader.Close();
                     }
@@ -839,7 +840,7 @@ namespace Nada.Model.Repositories
             }
         }
 
-        public void ApplyGrowthRate(double growthRatePercent, int userId, AdminLevelType aggLevel, int maxLevels, int year)
+        public void ApplyGrowthRate(double growthRatePercent, int userId, AdminLevelType aggLevel, int maxLevels, DateTime dateReported)
         {
             bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -854,10 +855,11 @@ namespace Nada.Model.Repositories
                     transWasStarted = true;
                     var growthRateDemonminator = 1 + (growthRatePercent / 100);
                     var demo = GetCountryDemoRecent();
-                    int recentYear = demo.YearDemographyData.Value;
+                    int recentYear = demo.DateDemographyData.Year;
                     demo.Id = 0;
                     demo.GrowthRate = growthRatePercent;
-                    demo.YearDemographyData = year;
+
+                    demo.DateDemographyData = dateReported;
                     SaveCountryDemoTransactional(demo, userId, connection, command);
 
                     // Get Agg Level & Below and create new demo
@@ -867,7 +869,7 @@ namespace Nada.Model.Repositories
                         foreach (var d in existing)
                         {
                             d.Id = 0;
-                            d.YearDemographyData = year;
+                            d.DateDemographyData = dateReported;
                             d.GrowthRate = growthRatePercent;
                             if (d.Pop0Month.HasValue) d.Pop0Month = d.Pop0Month * growthRateDemonminator;
                             if (d.Pop5yo.HasValue) d.Pop5yo = d.Pop5yo * growthRateDemonminator;
@@ -932,7 +934,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select a.ID, a.YearDemographyData, a.GrowthRate, a.TotalPopulation, a.UpdatedAt, 
+                OleDbCommand command = new OleDbCommand(@"Select a.ID, a.DateDemographyData, a.GrowthRate, a.TotalPopulation, a.UpdatedAt, 
                     aspnet_Users.UserName, created.UserName as CreatedBy, a.CreatedAt
                     FROM ((AdminLevelDemography a INNER JOIN aspnet_Users on a.UpdatedById = aspnet_Users.UserId)
                             INNER JOIN aspnet_Users created on a.CreatedById = created.UserId)
@@ -945,7 +947,7 @@ namespace Nada.Model.Repositories
                         demo.Add(new DemoDetails
                         {
                             Id = reader.GetValueOrDefault<int>("ID"),
-                            Year = reader.GetValueOrDefault<int>("YearDemographyData"),
+                            DateReported = reader.GetValueOrDefault<DateTime>("DateDemographyData"),
                             GrowthRate = reader.GetValueOrDefault<double>("GrowthRate"),
                             TotalPopulation = reader.GetValueOrDefault<double>("TotalPopulation"),
                             UpdatedBy = GetAuditInfo(reader)
@@ -991,7 +993,7 @@ namespace Nada.Model.Repositories
                     OleDbCommand command = new OleDbCommand(@"Select ID
                         FROM AdminLevelDemography
                         WHERE AdminLevelId = @id and IsDeleted = 0 
-                        ORDER BY YearDemographyData DESC", connection);
+                        ORDER BY DateDemographyData DESC", connection);
                     command.Parameters.Add(new OleDbParameter("@id", adminUnitId));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -1018,7 +1020,7 @@ namespace Nada.Model.Repositories
             command = new OleDbCommand(@"SELECT MAX(AdminLevelDemography.ID) as MID, MAX(AdminLevels.DisplayName) as MName
                     FROM ((AdminLevelDemography INNER JOIN AdminLevels on AdminLevelDemography.AdminLevelId = AdminLevels.ID)
                             INNER JOIN AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID)
-                    WHERE AdminLevelTypes.AdminLevel=@lvl AND AdminLevelDemography.YearDemographyData=@Year
+                    WHERE AdminLevelTypes.AdminLevel=@lvl AND DatePart('yyyy', [AdminLevelDemography.DateDemographyData])=@Year
                     GROUP BY AdminLevelDemography.AdminLevelId", connection);
             command.Parameters.Add(new OleDbParameter("@lvl", level));
             command.Parameters.Add(new OleDbParameter("@Year", recentYear));
@@ -1038,7 +1040,7 @@ namespace Nada.Model.Repositories
 
         public AdminLevelDemography GetDemoByAdminLevelIdAndYear(int adminLevelid, int demoYear)
         {
-            AdminLevelDemography demo = new AdminLevelDemography { YearDemographyData = demoYear, AdminLevelId = adminLevelid };
+            AdminLevelDemography demo = new AdminLevelDemography { DateDemographyData = new DateTime(demoYear, 1, 1), AdminLevelId = adminLevelid };
             int id = 0;
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
@@ -1049,7 +1051,7 @@ namespace Nada.Model.Repositories
                     // START TRANS
                     OleDbCommand command = new OleDbCommand(@"Select ID
                         FROM AdminLevelDemography
-                        WHERE AdminLevelId = @id and IsDeleted = 0 AND YearDemographyData = @Year", connection);
+                        WHERE AdminLevelId = @id and IsDeleted = 0 AND DatePart('yyyy', [DateDemographyData]) = @Year", connection);
                     command.Parameters.Add(new OleDbParameter("@id", adminLevelid));
                     command.Parameters.Add(new OleDbParameter("@Year", demoYear));
                     using (OleDbDataReader reader = command.ExecuteReader())
@@ -1094,7 +1096,7 @@ namespace Nada.Model.Repositories
 
         private void GetDemoById(AdminLevelDemography demo, int id, OleDbConnection connection, OleDbCommand command)
         {
-            command = new OleDbCommand(@"Select a.AdminLevelId, a.YearDemographyData,
+            command = new OleDbCommand(@"Select a.AdminLevelId, a.DateDemographyData,
                             a.YearCensus,  a.YearProjections, a.GrowthRate, a.PercentRural, a.TotalPopulation, a.AdultPopulation, a.Pop0Month, a.PopPsac, 
                             a.PopSac, a.Pop5yo, a.PopAdult, a.PopFemale, a.PopMale, a.Notes, a.UpdatedById, a.UpdatedAt, aspnet_Users.UserName, 
                         AdminLevels.DisplayName, a.CreatedAt, c.UserName as CreatedBy
@@ -1110,7 +1112,7 @@ namespace Nada.Model.Repositories
                     reader.Read();
                     demo.Id = id;
                     demo.AdminLevelId = reader.GetValueOrDefault<int>("AdminLevelId");
-                    demo.YearDemographyData = reader.GetValueOrDefault<Nullable<int>>("YearDemographyData");
+                    demo.DateDemographyData = reader.GetValueOrDefault<DateTime>("DateDemographyData");
                     demo.YearCensus = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
                     demo.YearProjections = reader.GetValueOrDefault<Nullable<int>>("YearProjections");
                     demo.GrowthRate = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
@@ -1260,19 +1262,19 @@ namespace Nada.Model.Repositories
         private void SaveAdminDemography(OleDbCommand command, OleDbConnection connection, AdminLevelDemography demo, int userId)
         {
             if (demo.Id > 0)
-                command = new OleDbCommand(@"UPDATE AdminLevelDemography SET AdminLevelId=@AdminLevelId, YearDemographyData=@YearDemographyData,
+                command = new OleDbCommand(@"UPDATE AdminLevelDemography SET AdminLevelId=@AdminLevelId, DateDemographyData=@DateDemographyData,
                             YearCensus=@YearCensus,  YearProjections=@YearProjections, GrowthRate=@GrowthRate, PercentRural=@PercentRural, TotalPopulation=@TotalPopulation,
                             Pop0Month=@Pop0Month, PopPsac=@PopPsac, PopSac=@PopSac, Pop5yo=@Pop5yo, PopAdult=@PopAdult,
                             PopFemale=@PopFemale, PopMale=@PopMale, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
-                command = new OleDbCommand(@"INSERT INTO AdminLevelDemography (AdminLevelId, YearDemographyData,
+                command = new OleDbCommand(@"INSERT INTO AdminLevelDemography (AdminLevelId, DateDemographyData,
                             YearCensus,  YearProjections, GrowthRate, PercentRural, TotalPopulation, Pop0Month, PopPsac, 
                             PopSac, Pop5yo, PopAdult, PopFemale, PopMale, Notes, UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
-                            values (@AdminLevelId, @YearDemographyData, @YearCensus,  @YearProjections, @GrowthRate, @PercentRural, @TotalPopulation, 
+                            values (@AdminLevelId, @DateDemographyData, @YearCensus,  @YearProjections, @GrowthRate, @PercentRural, @TotalPopulation, 
                              @Pop0Month, @PopPsac, @PopSac, @Pop5yo, @PopAdult, @PopFemale, @PopMale, @Notes, @UpdatedById, @UpdatedAt,
                             @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@AdminLevelId", demo.AdminLevelId));
-            command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearDemographyData", demo.YearDemographyData));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@DateDemographyData", demo.DateDemographyData));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearCensus", demo.YearCensus));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearProjections", demo.YearProjections));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@GrowthRate", demo.GrowthRate));

@@ -24,7 +24,7 @@ namespace Nada.Model.Exports
         {
             try
             {
-                int year = questions.JrfYearReporting.Value;
+                int yearReported = questions.JrfYearReporting.Value;
                 excel.Application xlsApp = new excel.ApplicationClass();
                 excel.Workbook xlsWorkbook;
                 excel.Worksheet xlsWorksheet;
@@ -37,10 +37,10 @@ namespace Nada.Model.Exports
                     missing, missing, missing, missing, missing, missing, missing);
 
                 var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
-                CountryDemography countryDemo = demo.GetCountryDemoByYear(year);
+                CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReported);
                 Country country = demo.GetCountry();
                 List<AdminLevel> demography = new List<AdminLevel>();
-                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, year, ref demography);
+                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, yearReported, ref demography);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[1];
                 AddQuestions(xlsWorksheet, rng, questions, countryDemo, demography, districtLevel.LevelNumber, country);
                 // run macro to create district rows.

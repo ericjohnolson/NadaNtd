@@ -18,14 +18,14 @@ namespace Nada.Model.Intervention
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public IntvType IntvType { get; set; }
-        public int Year { get; set; }
+        public DateTime DateReported { get; set; }
         public Nullable<int> PcIntvRoundNumber { get; set; }
         public string Notes { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
         public virtual void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            Year = Convert.ToInt32(inds["IntvYear"].DynamicValue);
+            DateReported = Convert.ToDateTime(inds["DateReported"].DynamicValue);
             if(inds.ContainsKey("PcIntvStartDateOfMda"))
                 StartDate = Convert.ToDateTime(inds["PcIntvStartDateOfMda"].DynamicValue);
             if (inds.ContainsKey("PcIntvEndDateOfMda"))

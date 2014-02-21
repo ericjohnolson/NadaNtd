@@ -34,8 +34,8 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.h3bLabel1 = new Nada.UI.Controls.H3Required();
-            this.tbYear = new System.Windows.Forms.TextBox();
             this.h3bLabel2 = new Nada.UI.Controls.H3Required();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.bsVm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -45,7 +45,7 @@
             this.tbGrowthRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsVm, "GrowthRate", true));
             this.tbGrowthRate.Location = new System.Drawing.Point(3, 22);
             this.tbGrowthRate.Name = "tbGrowthRate";
-            this.tbGrowthRate.Size = new System.Drawing.Size(199, 21);
+            this.tbGrowthRate.Size = new System.Drawing.Size(142, 21);
             this.tbGrowthRate.TabIndex = 1;
             // 
             // bsVm
@@ -86,14 +86,6 @@
             this.h3bLabel1.Text = "GrowthRate";
             this.h3bLabel1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // tbYear
-            // 
-            this.tbYear.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsVm, "Year", true));
-            this.tbYear.Location = new System.Drawing.Point(3, 64);
-            this.tbYear.Name = "tbYear";
-            this.tbYear.Size = new System.Drawing.Size(199, 21);
-            this.tbYear.TabIndex = 6;
-            // 
             // h3bLabel2
             // 
             this.h3bLabel2.AutoSize = true;
@@ -102,11 +94,20 @@
             this.h3bLabel2.Location = new System.Drawing.Point(3, 46);
             this.h3bLabel2.Margin = new System.Windows.Forms.Padding(0);
             this.h3bLabel2.Name = "h3bLabel2";
-            this.h3bLabel2.Size = new System.Drawing.Size(140, 15);
+            this.h3bLabel2.Size = new System.Drawing.Size(96, 15);
             this.h3bLabel2.TabIndex = 5;
-            this.h3bLabel2.Tag = "YearDemographyData";
-            this.h3bLabel2.Text = "YearDemographyData";
+            this.h3bLabel2.Tag = "DateReported";
+            this.h3bLabel2.Text = "DateReported";
             this.h3bLabel2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsVm, "DateReported", true));
+            this.dateTimePicker1.Location = new System.Drawing.Point(3, 64);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(253, 21);
+            this.dateTimePicker1.TabIndex = 68;
             // 
             // StepDemoUpdateGrowthRate
             // 
@@ -114,7 +115,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.tbYear);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.h3bLabel2);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbGrowthRate);
@@ -136,8 +137,8 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.BindingSource bsVm;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
-        private System.Windows.Forms.TextBox tbYear;
         private Controls.H3Required h3bLabel2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
 
 
     }

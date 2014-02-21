@@ -73,7 +73,7 @@ namespace Nada.UI.View.Reports
 
         private void ClearErrors()
         {
-            errorProvider1.SetError(tbYear, "");
+            errorProvider1.SetError(textBox5, "");
             errorProvider1.SetError(comboBox1, "");
             errorProvider1.SetError(comboBox2, "");
             errorProvider1.SetError(comboBox3, "");
@@ -106,7 +106,7 @@ namespace Nada.UI.View.Reports
             bindingSource1.EndEdit();
             repo.UpdateExportQuestions(questions);
 
-            saveFileDialog1.FileName = title + " " + tbYear.Text;
+            saveFileDialog1.FileName = title + "-" + textBox5.Text;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 BackgroundWorker worker = new BackgroundWorker();

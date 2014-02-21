@@ -102,7 +102,7 @@ namespace Nada.UI.View.Demography
             SettingsRepository settings = new SettingsRepository();
             var type = settings.GetAdminLevelTypeByLevel(adminLevel.LevelNumber);
             if (type.IsAggregatingLevel)
-                demo.AggregateUp(type, model.YearDemographyData.Value, userId);
+                demo.AggregateUp(type, model.DateDemographyData.Year, userId);
 
             OnClose();
         }

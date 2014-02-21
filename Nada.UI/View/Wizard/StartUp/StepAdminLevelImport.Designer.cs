@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbYear = new System.Windows.Forms.TextBox();
             this.lblYear = new Nada.UI.Controls.H3Required();
             this.tbStatus = new System.Windows.Forms.TextBox();
             this.cbImportFor = new System.Windows.Forms.ComboBox();
@@ -43,6 +42,7 @@
             this.tbRows = new System.Windows.Forms.TextBox();
             this.lblRows = new Nada.UI.Controls.H3Required();
             this.lblIsAggLevel = new Nada.UI.Controls.H3bLabel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
@@ -56,7 +56,6 @@
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.tbYear, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.lblYear, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.tbStatus, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.cbImportFor, 0, 2);
@@ -65,6 +64,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tbRows, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.lblRows, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblIsAggLevel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 0, 6);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 11;
@@ -79,17 +79,9 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(533, 430);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(533, 427);
             this.tableLayoutPanel1.TabIndex = 4;
-            // 
-            // tbYear
-            // 
-            this.tbYear.Location = new System.Drawing.Point(3, 159);
-            this.tbYear.Margin = new System.Windows.Forms.Padding(3, 6, 23, 12);
-            this.tbYear.Name = "tbYear";
-            this.tbYear.Size = new System.Drawing.Size(116, 21);
-            this.tbYear.TabIndex = 5;
-            this.tbYear.Visible = false;
             // 
             // lblYear
             // 
@@ -99,16 +91,16 @@
             this.lblYear.Location = new System.Drawing.Point(0, 138);
             this.lblYear.Margin = new System.Windows.Forms.Padding(0);
             this.lblYear.Name = "lblYear";
-            this.lblYear.Size = new System.Drawing.Size(140, 15);
+            this.lblYear.Size = new System.Drawing.Size(96, 15);
             this.lblYear.TabIndex = 5;
-            this.lblYear.Tag = "YearDemographyData";
-            this.lblYear.Text = "YearDemographyData";
+            this.lblYear.Tag = "DateReported";
+            this.lblYear.Text = "DateReported";
             this.lblYear.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblYear.Visible = false;
             // 
             // tbStatus
             // 
-            this.tbStatus.Location = new System.Drawing.Point(3, 274);
+            this.tbStatus.Location = new System.Drawing.Point(3, 271);
             this.tbStatus.Multiline = true;
             this.tbStatus.Name = "tbStatus";
             this.tbStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -160,7 +152,7 @@
             this.tableLayoutPanel4.Controls.Add(this.btnImport, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnDownload, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.loadingImport, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 195);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 192);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -244,6 +236,15 @@
             this.lblIsAggLevel.TextColor = System.Drawing.Color.Red;
             this.lblIsAggLevel.Visible = false;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(3, 156);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(253, 21);
+            this.dateTimePicker1.TabIndex = 67;
+            this.dateTimePicker1.Visible = false;
+            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.DefaultExt = "xlsx";
@@ -263,7 +264,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "StepAdminLevelImport";
-            this.Size = new System.Drawing.Size(539, 436);
+            this.Size = new System.Drawing.Size(539, 433);
             this.Load += new System.EventHandler(this.ImportOptions_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -291,8 +292,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private Controls.H3bLabel lblIsAggLevel;
-        private System.Windows.Forms.TextBox tbYear;
         private Controls.H3Required lblYear;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
 
 
 

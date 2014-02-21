@@ -13,6 +13,6 @@ namespace Nada.Model.Diseases
         public string AdminLevel { get; set; }
         public string TypeName { get; set; }
         public int TypeId { get; set; }
-        public int Year { get; set; }
+        public DateTime DateReported { get; set; }
      }
 }

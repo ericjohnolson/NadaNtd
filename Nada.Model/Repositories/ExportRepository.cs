@@ -58,10 +58,10 @@ namespace Nada.Model.Repositories
                         ((Interventions INNER JOIN InterventionIndicatorValues on InterventionIndicatorValues.InterventionId = Interventions.ID)
                             INNER JOIN InterventionIndicators on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId)
                         WHERE Interventions.InterventionTypeId=@InterventionTypeId AND InterventionIndicators.DisplayName = @YearName 
-                        AND InterventionIndicatorValues.DynamicValue = @YearReporting and Interventions.IsDeleted = 0", connection);
+                        AND InterventionIndicatorValues.DynamicValue like @YearReporting and Interventions.IsDeleted = 0", connection);
             command.Parameters.Add(new OleDbParameter("@InterventionTypeId", interventionTypeId));
-            command.Parameters.Add(new OleDbParameter("@YearName", "IntvYear"));
-            command.Parameters.Add(new OleDbParameter("@YearReporting", year));
+            command.Parameters.Add(new OleDbParameter("@YearName", "DateReported"));
+            command.Parameters.Add(new OleDbParameter("@YearReporting", "%" + year));
             using (OleDbDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
@@ -101,10 +101,10 @@ namespace Nada.Model.Repositories
                             INNER JOIN SurveyIndicators on SurveyIndicators.ID = SurveyIndicatorValues.IndicatorId)
                             INNER JOIN SurveyTypes on SurveyTypes.ID = Surveys.SurveyTypeId)
                         WHERE SurveyTypes.DiseaseId=@DiseaseId AND SurveyIndicators.DisplayName = @YearName 
-                        AND SurveyIndicatorValues.DynamicValue = @YearReporting and Surveys.IsDeleted = 0", connection);
+                        AND SurveyIndicatorValues.DynamicValue like @YearReporting and Surveys.IsDeleted = 0", connection);
             command.Parameters.Add(new OleDbParameter("@DiseaseId", diseaseId));
-            command.Parameters.Add(new OleDbParameter("@YearName", "SurveyYear"));
-            command.Parameters.Add(new OleDbParameter("@YearReporting", year));
+            command.Parameters.Add(new OleDbParameter("@YearName", "DateReported"));
+            command.Parameters.Add(new OleDbParameter("@YearReporting", "%" + year));
             using (OleDbDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
@@ -119,9 +119,10 @@ namespace Nada.Model.Repositories
 
             command = new OleDbCommand(@"Select AdminLevels.ID as aid, SurveyIndicators.DataTypeId, SurveyIndicators.DisplayName as iname, 
                         SurveyIndicators.ID as iid, SurveyIndicatorValues.DynamicValue, SurveyIndicators.AggTypeId FROM 
-                            ((((Surveys INNER JOIN SurveyIndicatorValues on SurveyIndicatorValues.SurveyId = Surveys.ID)
+                            (((((Surveys INNER JOIN SurveyIndicatorValues on SurveyIndicatorValues.SurveyId = Surveys.ID)
                             INNER JOIN SurveyIndicators on SurveyIndicators.ID = SurveyIndicatorValues.IndicatorId)
-                            INNER JOIN AdminLevels on Surveys.AdminLevelId = AdminLevels.ID)
+                            INNER JOIN Surveys_to_adminlevels on Surveys_to_AdminLevels.SurveyId = Surveys.ID)
+                            INNER JOIN AdminLevels on Surveys_to_adminlevels.AdminLevelId = AdminLevels.ID)
                             INNER JOIN AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.Id)
                         WHERE Surveys.ID in (" + String.Join(", ", surveyIds.ToArray()) +
                         ") ORDER BY SurveyIndicators.ID, AdminLevelTypes.AdminLevel", connection);
@@ -142,10 +143,10 @@ namespace Nada.Model.Repositories
                             DiseaseDistributionIndicatorValues.DiseaseDistributionId = DiseaseDistributions.ID)
                             INNER JOIN DiseaseDistributionIndicators on DiseaseDistributionIndicators.ID = DiseaseDistributionIndicatorValues.IndicatorId)
                         WHERE DiseaseDistributions.DiseaseId=@DiseaseId AND DiseaseDistributionIndicators.DisplayName = @YearName 
-                        AND DiseaseDistributionIndicatorValues.DynamicValue = @YearReporting and DiseaseDistributions.IsDeleted = 0", connection);
+                        AND DiseaseDistributionIndicatorValues.DynamicValue like @YearReporting and DiseaseDistributions.IsDeleted = 0", connection);
             command.Parameters.Add(new OleDbParameter("@DiseaseId", diseaseId));
-            command.Parameters.Add(new OleDbParameter("@YearName", "DiseaseYear"));
-            command.Parameters.Add(new OleDbParameter("@YearReporting", year));
+            command.Parameters.Add(new OleDbParameter("@YearName", "DateReported"));
+            command.Parameters.Add(new OleDbParameter("@YearReporting", "%" + year));
             using (OleDbDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
@@ -253,7 +254,7 @@ namespace Nada.Model.Repositories
                     {
                         reader.Read();
                         questions.Id = reader.GetValueOrDefault<int>("ID");
-                        questions.JrfYearReporting = reader.GetValueOrDefault<Nullable<int>>("JrfYearReporting");
+                        questions.JrfYearReporting = reader.GetValueOrDefault<int>("JrfYearReporting");
                         questions.JrfEndemicLf = reader.GetValueOrDefault<string>("JrfEndemicLf");
                         questions.JrfEndemicOncho = reader.GetValueOrDefault<string>("JrfEndemicOncho");
                         questions.JrfEndemicSth = reader.GetValueOrDefault<string>("JrfEndemicSth");
@@ -365,7 +366,7 @@ namespace Nada.Model.Repositories
                         questions.CmHaveMasterPlan = reader.GetValueOrDefault<bool>("CmHaveMasterPlan");
                         questions.CmYearsMasterPlan = reader.GetValueOrDefault<string>("CmYearsMasterPlan");
                         questions.CmBuget = reader.GetValueOrDefault<Nullable<int>>("CmBuget");
-                        questions.CmPercentFunded = reader.GetValueOrDefault<Nullable<double>>("CmPercentFunded");
+                        questions.CmPercentFunded = reader.GetNullableDouble("CmPercentFunded");
                         questions.CmHaveAnnualOpPlan = reader.GetValueOrDefault<bool>("CmHaveAnnualOpPlan");
                         questions.CmDiseaseSpecOrNtdIntegrated = reader.GetValueOrDefault<string>("CmDiseaseSpecOrNtdIntegrated");
                         questions.CmBuHasPlan = reader.GetValueOrDefault<bool>("CmBuHasPlan");
@@ -486,7 +487,7 @@ namespace Nada.Model.Repositories
                             ,CmOtherMechs=@CmOtherMechs               
                         WHERE ID = @id", connection);
 
-                    command.Parameters.Add(new OleDbParameter("@YearReporting", questions.YearReporting.Value));
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearReporting", questions.YearReporting));
                     command.Parameters.Add(new OleDbParameter("@CmHaveMasterPlan", questions.CmHaveMasterPlan));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@CmYearsMasterPlan", questions.CmYearsMasterPlan));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@CmBuget", questions.CmBuget));

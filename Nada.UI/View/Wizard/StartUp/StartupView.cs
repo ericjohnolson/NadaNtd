@@ -137,7 +137,7 @@ namespace Nada.UI.View
             var c = demo.GetCountry();
             c.Name = "Skipped Setup Country";
             demo.UpdateCountry(c, userId);
-            demo.Save(new CountryDemography { AdminLevelId = 1, YearDemographyData = year, TotalPopulation = 1, PopSac = 1, PercentAdult = 30, PercentPsac = 20, PercentSac = 50 },
+            demo.Save(new CountryDemography { AdminLevelId = 1, DateDemographyData = new DateTime(year, 1, 1), TotalPopulation = 1, PopSac = 1, PercentAdult = 30, PercentPsac = 20, PercentSac = 50 },
                 userId); 
             DiseaseRepository diseases = new DiseaseRepository();
             var availableDiseases = diseases.GetAvailableDiseases();
@@ -147,13 +147,13 @@ namespace Nada.UI.View
             settings.Save(new AdminLevelType { DisplayName = "Village", LevelNumber = 3 }, userId);
             var adminLevels = settings.GetAllAdminLevels();
             AdminLevelDemoImporter regImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "Region"));
-            regImporter.ImportData("TestRegions.xlsx", userId, false, false, 2, null, year);
+            regImporter.ImportData("TestRegions.xlsx", userId, false, false, 2, null, new DateTime(year, 1, 1));
             AdminLevelDemoImporter disImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "District"));
-            disImporter.ImportData("TestDistricts.xlsx", userId, true, true, 4, null, year);
+            disImporter.ImportData("TestDistricts.xlsx", userId, true, true, 4, null, new DateTime(year, 1, 1));
             AdminLevelDemoUpdater update = new AdminLevelDemoUpdater(adminLevels.FirstOrDefault(a => a.DisplayName == "District"));
-            update.ImportData("TestDistrictUpdate.xlsx", userId, 2011, true);
+            update.ImportData("TestDistrictUpdate.xlsx", userId, new DateTime(2011, 1, 1), true);
             AdminLevelDemoImporter vilImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "Village"));
-            vilImporter.ImportData("TestVillages.xlsx", userId, true, false, 2, demo.GetAdminLevelById(2), year);
+            vilImporter.ImportData("TestVillages.xlsx", userId, true, false, 2, demo.GetAdminLevelById(2), new DateTime(year, 1, 1));
             CheckStatus();
         }
 

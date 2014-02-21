@@ -13,11 +13,11 @@ namespace Nada.Model.Process
     {
         public ProcessBase()
         {
-            YearReported = DateTime.Now.Year;
+            DateReported = DateTime.Now;
             IndicatorValues = new List<IndicatorValue>();
         }
         public Nullable<int> AdminLevelId { get; set; }
-        public int YearReported { get; set; }
+        public DateTime DateReported { get; set; }
         public ProcessType ProcessType { get; set; }
         public string Notes { get; set; }
         public string PCTrainTrainingCategory { get; set; }
@@ -26,7 +26,7 @@ namespace Nada.Model.Process
         public virtual void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            YearReported = Convert.ToInt32(inds["YearReported"].DynamicValue);
+            DateReported = Convert.ToDateTime(inds["DateReported"].DynamicValue);
             if (inds.ContainsKey("SCMDrug"))
                 SCMDrug = inds["SCMDrug"].DynamicValue;
             if (inds.ContainsKey("PCTrainTrainingCategory"))

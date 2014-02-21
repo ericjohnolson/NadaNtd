@@ -28,10 +28,10 @@ namespace Nada.UI.View.Demography
             {
                 var months = GlobalizationUtil.GetAllMonths(); 
                 monthItemBindingSource.DataSource = months;
+                cbMonths.DropDownWidth = BaseForm.GetDropdownWidth(months.Select(m => m.Name));
                 lbl1.SetMaxWidth(370);
                 lbl2.SetMaxWidth(370);
 
-                cbMonths.DropDownWidth = BaseForm.GetDropdownWidth(months.Select(m => m.Name));
             }
         }
 

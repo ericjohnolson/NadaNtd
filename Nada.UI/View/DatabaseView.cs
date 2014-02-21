@@ -45,8 +45,13 @@ namespace Nada.UI.View
             if (!DesignMode)
             {
                 SetUpFiles();
-                bsLanguages.DataSource = Localizer.SupportedLanguages;
-                cbLanguages.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;
+                List<Language> langz = Localizer.SupportedLanguages;
+                bsLanguages.DataSource = langz;
+                if (langz.FirstOrDefault(l => l.IsoCode == Thread.CurrentThread.CurrentCulture.Name) != null)
+                    cbLanguages.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;
+                else
+                    cbLanguages.SelectedValue = "en-US";
+
                 Localizer.TranslateControl(this);
                 cbLanguages.DropDownWidth = BaseForm.GetDropdownWidth(Localizer.SupportedLanguages.Select(l => l.Name));
                 if (!RecentFileExists())

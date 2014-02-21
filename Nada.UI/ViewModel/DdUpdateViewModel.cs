@@ -12,7 +12,7 @@ namespace Nada.UI.ViewModel
     public class DdUpdateViewModel : NadaClass
     {
         public Nullable<double> GrowthRate { get; set; }
-        public Nullable<int> Year { get; set; }
+        public DateTime DateReported { get; set; }
         public List<Disease> Diseases { get; set; }
         public int DiseaseStepNumber { get; set; }
 
@@ -28,12 +28,6 @@ namespace Nada.UI.ViewModel
                     case "GrowthRate":
                         if (!GrowthRate.HasValue)
                             error = Translations.Required;
-                        break;
-                    case "Year":
-                        if (!Year.HasValue)
-                            error = Translations.Required;
-                        else if (Year.Value > 2100 || Year.Value < 1900)
-                            error = Translations.ValidYear;
                         break;
 
 

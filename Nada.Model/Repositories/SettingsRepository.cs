@@ -110,19 +110,19 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select DisplayName, MonthYearStarts, YearDemographyData 
+                OleDbCommand command = new OleDbCommand(@"Select DisplayName, MonthYearStarts, DateDemographyData 
                     FROM ((Country INNER JOIN AdminLevels on Country.AdminLevelId = AdminLevels.ID)
                         INNER JOIN AdminLevelDemography d on d.AdminLevelId = Country.AdminLevelId) 
-                    WHERE AdminLevels.ID = @id ORDER BY YearDemographyData DESC", connection);
+                    WHERE AdminLevels.ID = @id ORDER BY DateDemographyData DESC", connection);
                 command.Parameters.Add(new OleDbParameter("@id", id));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)
                     {
                         reader.Read();
-                        int lastYear = reader.GetValueOrDefault<int>("YearDemographyData");
+                        DateTime lastDate = reader.GetValueOrDefault<DateTime>("DateDemographyData");
                         int month = reader.GetValueOrDefault<int>("MonthYearStarts");
-                        if (DateTime.Now > new DateTime(lastYear + 1, month, 1))
+                        if (DateTime.Now > new DateTime(lastDate.Year + 1, month, 1))
                             shouldUpdate = true;
                     }
                     reader.Close();

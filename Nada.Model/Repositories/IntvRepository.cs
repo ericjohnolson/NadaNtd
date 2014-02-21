@@ -67,7 +67,7 @@ namespace Nada.Model.Repositories
                         Interventions.ID, 
                         InterventionTypes.InterventionTypeName, 
                         Interventions.InterventionTypeId, 
-                        Interventions.YearReported,
+                        Interventions.DateReported,
                         Interventions.StartDate, 
                         Interventions.EndDate, 
                         Interventions.UpdatedAt, 
@@ -91,7 +91,7 @@ namespace Nada.Model.Repositories
                                     reader.GetValueOrDefault<string>("InterventionTypeName")),
                                 TypeId = reader.GetValueOrDefault<int>("InterventionTypeId"),
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
-                                Year = reader.GetValueOrDefault<int>("YearReported"),
+                                DateReported = reader.GetValueOrDefault<DateTime>("DateReported"),
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
                                 EndDate = reader.GetValueOrDefault<DateTime>("EndDate"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
@@ -510,7 +510,7 @@ namespace Nada.Model.Repositories
                         // Add year reported
                         command = new OleDbCommand(@"INSERT INTO InterventionIndicators (InterventionTypeId, DataTypeId, AggTypeId, 
                         DisplayName, IsRequired, IsDisabled, IsEditable, IsDisplayed, SortOrder, UpdatedById, UpdatedAt) VALUES
-                        (@InterventionTypeId, 7, 5, 'IntvYear', -1, 0, 0, 0, -1, @UpdatedById, @UpdatedAt)", connection);
+                        (@InterventionTypeId, 4, 5, 'DateReported', -1, 0, 0, 0, -1, @UpdatedById, @UpdatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
@@ -869,7 +869,7 @@ namespace Nada.Model.Repositories
 
             try
             {
-                command = new OleDbCommand(@"Select Interventions.AdminLevelId, YearReported, PcIntvRoundNumber, Interventions.StartDate, Interventions.EndDate, 
+                command = new OleDbCommand(@"Select Interventions.AdminLevelId, DateReported, PcIntvRoundNumber, Interventions.StartDate, Interventions.EndDate, 
                         Interventions.Notes, Interventions.UpdatedById, Interventions.UpdatedAt, aspnet_Users.UserName, 
                         AdminLevels.DisplayName, Interventions.InterventionTypeId, Interventions.CreatedAt, c.UserName as CreatedBy
                         FROM (((Interventions INNER JOIN aspnet_Users on Interventions.UpdatedById = aspnet_Users.UserId)
@@ -884,7 +884,7 @@ namespace Nada.Model.Repositories
                         reader.Read();
                         intv.Id = id;
                         intv.AdminLevelId = reader.GetValueOrDefault<Nullable<int>>("AdminLevelId");
-                        intv.Year = reader.GetValueOrDefault<int>("YearReported");
+                        intv.DateReported = reader.GetValueOrDefault<DateTime>("DateReported");
                         intv.StartDate = reader.GetValueOrDefault<DateTime>("StartDate");
                         intv.EndDate = reader.GetValueOrDefault<DateTime>("EndDate");
                         intv.PcIntvRoundNumber = reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber");
@@ -911,16 +911,16 @@ namespace Nada.Model.Repositories
         private void SaveIntvBase(OleDbCommand command, OleDbConnection connection, IntvBase intv, int userId)
         {
             if (intv.Id > 0)
-                command = new OleDbCommand(@"UPDATE Interventions SET InterventionTypeId=@InterventionTypeId, AdminLevelId=@AdminLevelId, YearReported=@YearReported,
+                command = new OleDbCommand(@"UPDATE Interventions SET InterventionTypeId=@InterventionTypeId, AdminLevelId=@AdminLevelId, DateReported=@DateReported,
                            PcIntvRoundNumber=@PcIntvRoundNumber, StartDate=@StartDate, EndDate=@EndDate, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
-                command = new OleDbCommand(@"INSERT INTO Interventions (InterventionTypeId, AdminLevelId, YearReported, PcIntvRoundNumber, StartDate, EndDate, Notes, 
+                command = new OleDbCommand(@"INSERT INTO Interventions (InterventionTypeId, AdminLevelId, DateReported, PcIntvRoundNumber, StartDate, EndDate, Notes, 
                             UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
-                            values (@InterventionTypeId, @AdminLevelId, @YearReported, @PcIntvRoundNumber, @StartDate, @EndDate, @Notes, @UpdatedById, @UpdatedAt,
+                            values (@InterventionTypeId, @AdminLevelId, @DateReported, @PcIntvRoundNumber, @StartDate, @EndDate, @Notes, @UpdatedById, @UpdatedAt,
                             @CreatedById, @CreatedAt)", connection); 
             command.Parameters.Add(new OleDbParameter("@InterventionTypeId", intv.IntvType.Id));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", intv.AdminLevelId));
-            command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearReported", intv.Year));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@DateReported", intv.DateReported));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@PcIntvRoundNumber", intv.PcIntvRoundNumber));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", intv.StartDate));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@EndDate", intv.EndDate));

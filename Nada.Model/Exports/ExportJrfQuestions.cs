@@ -26,7 +26,7 @@ namespace Nada.Model.Exports
                     case "JrfYearReporting":
                         if (!JrfYearReporting.HasValue)
                             error = Translations.Required;
-                        else if ((JrfYearReporting.Value > 2100 || JrfYearReporting.Value < 1900))
+                        else if (JrfYearReporting.Value > 2100 || JrfYearReporting.Value < 1900)
                             error = Translations.ValidYear;
                         break;
                     case "JrfEndemicLf":

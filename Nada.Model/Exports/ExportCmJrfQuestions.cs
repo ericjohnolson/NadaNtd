@@ -71,7 +71,7 @@ namespace Nada.Model.Exports
                     case "YearReporting":
                         if (!YearReporting.HasValue)
                             error = Translations.Required;
-                        else if ((YearReporting.Value > 2100 || YearReporting.Value < 1900))
+                        else if (YearReporting.Value > 2100 || YearReporting.Value < 1900)
                             error = Translations.ValidYear;
                         break;
                     default: error = "";

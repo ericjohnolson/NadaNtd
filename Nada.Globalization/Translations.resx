@@ -1526,7 +1526,7 @@
     <value>Exporting data</value>
   </data>
   <data name="JrfCmNtds" xml:space="preserve">
-    <value>Joint Reporting Form (JRF) for CM-NTDs</value>
+    <value>CM Joint Reporting Form</value>
   </data>
   <data name="StartExport" xml:space="preserve">
     <value>Start export</value>
@@ -4467,7 +4467,7 @@ Fixed / Mobile</value>
     <value>Lymphatic filariasis Sentinel/Spot Check Site Survey</value>
   </data>
   <data name="SurOnchoAssesments" xml:space="preserve">
-    <value>Onchocerciasis (River blindness) Assement</value>
+    <value>Oncho Assement</value>
   </data>
   <data name="SurOnchoMapping" xml:space="preserve">
     <value>Onchocerciasis (River blindness) Mapping</value>
@@ -4960,5 +4960,17 @@ Fixed / Mobile</value>
   </data>
   <data name="YearDistroData" xml:space="preserve">
     <value>Year disease distribution data apply to</value>
+  </data>
+  <data name="MenuViewTutorial" xml:space="preserve">
+    <value>View PowerPoint tutorial...</value>
+  </data>
+  <data name="DateReported" xml:space="preserve">
+    <value>Date data applies to</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="StartMonthForReportYear" xml:space="preserve">
+    <value />
   </data>
 </root>

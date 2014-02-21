@@ -66,7 +66,7 @@ namespace Nada.Model.Repositories
                         DiseaseDistributions.ID, 
                         Diseases.DisplayName as DiseaseName, 
                         DiseaseDistributions.DiseaseId, 
-                        DiseaseDistributions.YearReported, 
+                        DiseaseDistributions.DateReported, 
                         DiseaseDistributions.UpdatedAt, 
                         aspnet_Users.UserName, AdminLevels.DisplayName,
                         created.UserName as CreatedBy, DiseaseDistributions.CreatedAt
@@ -75,7 +75,7 @@ namespace Nada.Model.Repositories
                             INNER JOIN AdminLevels on DiseaseDistributions.AdminLevelId = AdminLevels.ID) 
                             INNER JOIN aspnet_Users created on DiseaseDistributions.CreatedById = created.UserId)
                         WHERE DiseaseDistributions.AdminLevelId=@AdminLevelId and DiseaseDistributions.IsDeleted = 0
-                        ORDER BY DiseaseDistributions.YearReported DESC", connection);
+                        ORDER BY DiseaseDistributions.DateReported DESC", connection);
                     command.Parameters.Add(new OleDbParameter("@AdminLevelId", adminLevel));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -88,7 +88,7 @@ namespace Nada.Model.Repositories
                                     reader.GetValueOrDefault<string>("DiseaseName")),
                                 TypeId = reader.GetValueOrDefault<int>("DiseaseId"),
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
-                                Year = reader.GetValueOrDefault<int>("YearReported"),
+                                DateReported = reader.GetValueOrDefault<DateTime>("DateReported"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
                                 UpdatedBy = GetAuditInfo(reader)
 
@@ -116,7 +116,7 @@ namespace Nada.Model.Repositories
                 try
                 {
                     OleDbCommand command = new OleDbCommand(@"Select DiseaseDistributions.ID, DiseaseDistributions.Notes, DiseaseDistributions.UpdatedAt,
-                        DiseaseDistributions.YearReported, DiseaseDistributions.AdminLevelId, aspnet_users.UserName, created.UserName as CreatedBy, 
+                        DiseaseDistributions.DateReported, DiseaseDistributions.AdminLevelId, aspnet_users.UserName, created.UserName as CreatedBy, 
                         DiseaseDistributions.CreatedAt
                         FROM ((DiseaseDistributions INNER JOIN aspnet_Users on DiseaseDistributions.UpdatedById = aspnet_Users.UserId)
                             INNER JOIN aspnet_Users created on DiseaseDistributions.CreatedById = created.UserId)
@@ -129,7 +129,7 @@ namespace Nada.Model.Repositories
                             reader.Read();
                             diseaseDistro.Id = reader.GetValueOrDefault<int>("ID");
                             diseaseDistro.Notes = reader.GetValueOrDefault<string>("Notes");
-                            diseaseDistro.YearOfReporting = reader.GetValueOrDefault<int>("YearReported");
+                            diseaseDistro.DateReported = reader.GetValueOrDefault<DateTime>("DateReported");
                             diseaseDistro.AdminLevelId = reader.GetValueOrDefault<int>("AdminLevelId");
                             diseaseDistro.UpdatedBy = GetAuditInfo(reader);
                         }
@@ -249,14 +249,14 @@ namespace Nada.Model.Repositories
             distro.MapIndicatorsToProperties();
             if (distro.Id > 0)
                 command = new OleDbCommand(@"UPDATE DiseaseDistributions SET DiseaseId=@DiseaseId, AdminLevelId=@AdminLevelId,
-                           YearReported=@YearReported, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+                           DateReported=@DateReported, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
-                command = new OleDbCommand(@"INSERT INTO DiseaseDistributions (DiseaseId, AdminLevelId, YearReported, Notes, UpdatedById, 
-                            UpdatedAt, CreatedById, CreatedAt) values (@DiseaseId, @AdminLevelId, @YearReported, @Notes, @UpdatedById, 
+                command = new OleDbCommand(@"INSERT INTO DiseaseDistributions (DiseaseId, AdminLevelId, DateReported, Notes, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@DiseaseId, @AdminLevelId, @DateReported, @Notes, @UpdatedById, 
                             @UpdatedAt, @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@DiseaseId", distro.Disease.Id));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", distro.AdminLevelId));
-            command.Parameters.Add(new OleDbParameter("@YearReported", distro.YearOfReporting));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@DateReported", distro.DateReported.Value));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", distro.Notes));
             command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
@@ -289,7 +289,7 @@ namespace Nada.Model.Repositories
                 try
                 {
                     OleDbCommand command = new OleDbCommand(@"Select DiseaseDistributions.ID, DiseaseDistributions.Notes, DiseaseDistributions.UpdatedAt,
-                        DiseaseDistributions.YearReported, DiseaseDistributions.AdminLevelId, aspnet_users.UserName, created.UserName as CreatedBy,
+                        DiseaseDistributions.DateReported, DiseaseDistributions.AdminLevelId, aspnet_users.UserName, created.UserName as CreatedBy,
                         DiseaseDistributions.CreatedAt
                         FROM ((DiseaseDistributions INNER JOIN aspnet_Users on DiseaseDistributions.UpdatedById = aspnet_Users.UserId)
                             INNER JOIN aspnet_Users created on DiseaseDistributions.CreatedById = created.UserId)
@@ -302,7 +302,7 @@ namespace Nada.Model.Repositories
                             reader.Read();
                             diseaseDistro.Id = reader.GetValueOrDefault<int>("ID");
                             diseaseDistro.Notes = reader.GetValueOrDefault<string>("Notes");
-                            diseaseDistro.YearReported = reader.GetValueOrDefault<int>("YearReported");
+                            diseaseDistro.DateReported = reader.GetValueOrDefault<DateTime>("DateReported");
                             diseaseDistro.AdminLevelId = reader.GetValueOrDefault<int>("AdminLevelId");
                             diseaseDistro.UpdatedBy = GetAuditInfo(reader);
                         }
@@ -341,48 +341,48 @@ namespace Nada.Model.Repositories
             return diseaseDistro;
         }
 
-        public DiseaseDistroCm GetDistroByAdminLevelYear(int adminLevel, int yearOfReporting, int diseaseType)
-        {
-            if (yearOfReporting <= 0 || adminLevel <= 0)
-                return null;
-            int did = -1;
+//        public DiseaseDistroCm GetDistroByAdminLevelYear(int adminLevel, int yearOfReporting, int diseaseType)
+//        {
+//            if (yearOfReporting <= 0 || adminLevel <= 0)
+//                return null;
+//            int did = -1;
 
-            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    OleDbCommand command = null;
-                    command = new OleDbCommand(@"Select DiseaseDistributions.ID as did FROM 
-                        ((DiseaseDistributions INNER JOIN DiseaseDistributionIndicatorValues on DiseaseDistributionIndicatorValues.DiseaseDistributionId = DiseaseDistributions.ID)
-                            INNER JOIN DiseaseDistributionIndicators on DiseaseDistributionIndicators.ID = DiseaseDistributionIndicatorValues.IndicatorId)
-                        WHERE DiseaseDistributions.AdminLevelId=@adminlevelId AND DiseaseDistributionIndicators.DisplayName = @yearName 
-                        AND DiseaseDistributionIndicatorValues.DynamicValue = @year", connection);
-                    command.Parameters.Add(new OleDbParameter("@adminlevelId", adminLevel));
-                    command.Parameters.Add(new OleDbParameter("@yearName", "DiseaseYear"));
-                    command.Parameters.Add(new OleDbParameter("@year", yearOfReporting));
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            reader.Read();
-                            did = reader.GetValueOrDefault<int>("did");
-                        }
-                        reader.Close();
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+//            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+//            using (connection)
+//            {
+//                connection.Open();
+//                try
+//                {
+//                    OleDbCommand command = null;
+//                    command = new OleDbCommand(@"Select DiseaseDistributions.ID as did FROM 
+//                        ((DiseaseDistributions INNER JOIN DiseaseDistributionIndicatorValues on DiseaseDistributionIndicatorValues.DiseaseDistributionId = DiseaseDistributions.ID)
+//                            INNER JOIN DiseaseDistributionIndicators on DiseaseDistributionIndicators.ID = DiseaseDistributionIndicatorValues.IndicatorId)
+//                        WHERE DiseaseDistributions.AdminLevelId=@adminlevelId AND DiseaseDistributionIndicators.DisplayName = @yearName 
+//                        AND DiseaseDistributionIndicatorValues.DynamicValue = @year", connection);
+//                    command.Parameters.Add(new OleDbParameter("@adminlevelId", adminLevel));
+//                    command.Parameters.Add(new OleDbParameter("@yearName", "DiseaseYear"));
+//                    command.Parameters.Add(new OleDbParameter("@year", yearOfReporting));
+//                    using (OleDbDataReader reader = command.ExecuteReader())
+//                    {
+//                        if (reader.HasRows)
+//                        {
+//                            reader.Read();
+//                            did = reader.GetValueOrDefault<int>("did");
+//                        }
+//                        reader.Close();
+//                    }
+//                }
+//                catch (Exception)
+//                {
+//                    throw;
+//                }
 
-                if (did <= 0)
-                    return null;
+//                if (did <= 0)
+//                    return null;
 
-                return GetDiseaseDistributionCm(did, diseaseType);
-            }
-        }
+//                return GetDiseaseDistributionCm(did, diseaseType);
+//            }
+//        }
         
         public void Save(List<DiseaseDistroCm> import, int userId)
         {
@@ -463,15 +463,15 @@ namespace Nada.Model.Repositories
             distro.MapIndicatorsToProperties();
             if (distro.Id > 0)
                 command = new OleDbCommand(@"UPDATE DiseaseDistributions SET DiseaseId=@DiseaseId, AdminLevelId=@AdminLevelId,
-                            Notes=@Notes, YearReported=@YearReported, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+                            Notes=@Notes, DateReported=@DateReported, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
-                command = new OleDbCommand(@"INSERT INTO DiseaseDistributions (DiseaseId, AdminLevelId,  Notes, YearReported, UpdatedById, 
-                            UpdatedAt, CreatedById, CreatedAt) values (@DiseaseId, @AdminLevelId, @Notes, @YearReported, @UpdatedById, 
+                command = new OleDbCommand(@"INSERT INTO DiseaseDistributions (DiseaseId, AdminLevelId,  Notes, DateReported, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@DiseaseId, @AdminLevelId, @Notes, @DateReported, @UpdatedById, 
                             @UpdatedAt, @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@DiseaseId", distro.Disease.Id));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@AdminLevelId", distro.AdminLevelId));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", distro.Notes));
-            command.Parameters.Add(new OleDbParameter("@YearReported", distro.YearReported));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@DateReported", distro.DateReported.Value));
             command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
             if (distro.Id > 0)
@@ -700,7 +700,6 @@ namespace Nada.Model.Repositories
             return diseases;
         }
 
-
         public Disease GetDiseaseById(int id)
         {
             Disease disease = new Disease();
@@ -804,7 +803,7 @@ namespace Nada.Model.Repositories
                         disease.Id = (int)command.ExecuteScalar();
                         // Insert Disease Distro Year Reported
                         command = new OleDbCommand(@"INSERT INTO DiseaseDistributionIndicators (DiseaseId, DisplayName, DataTypeId, AggTypeId, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, IsMetaData, CanAddValues, SortOrder, UpdatedById, UpdatedAt) VALUES
-                            (@DiseaseId, 'DiseaseYear', 7, 5, No, No, Yes, No, False, False, False, 1, @UpdatedById, @UpdatedAt)", connection);
+                            (@DiseaseId, 'DateReported', 4, 5, No, No, Yes, No, False, False, False, 1, @UpdatedById, @UpdatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@DiseaseId", disease.Id));
                         command.Parameters.Add(new OleDbParameter("@UpdatedById", byUserId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));

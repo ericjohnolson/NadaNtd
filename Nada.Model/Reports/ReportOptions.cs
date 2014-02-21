@@ -24,6 +24,7 @@ namespace Nada.Model.Reports
         public Dictionary<string, AggregateIndicator> Columns { get; set; }
         public List<AdminLevel> SelectedAdminLevels { get; set; }
         public List<int> SelectedYears { get; set; }
+        public int MonthYearStarts { get; set; }
         public IReportGenerator ReportGenerator { get; set; }
         public bool IsNoAggregation { get; set; }
         public bool IsCountryAggregation { get; set; }

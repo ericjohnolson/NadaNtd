@@ -34,6 +34,7 @@
             this.pnlProcess = new System.Windows.Forms.TableLayoutPanel();
             this.loadingProcess = new Nada.UI.Controls.Loading();
             this.pnlProcessDetails = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tblEditProcess = new System.Windows.Forms.TableLayoutPanel();
             this.h3Label4 = new Nada.UI.Controls.H3Label();
             this.cbProcessTypes = new System.Windows.Forms.ComboBox();
@@ -56,6 +57,7 @@
             this.pnlDisease = new System.Windows.Forms.TableLayoutPanel();
             this.loadingDistros = new Nada.UI.Controls.Loading();
             this.pnlDistroDetails = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tblEditDd = new System.Windows.Forms.TableLayoutPanel();
             this.h3Label3 = new Nada.UI.Controls.H3Label();
             this.cbNewDiseaseDistro = new System.Windows.Forms.ComboBox();
@@ -70,6 +72,7 @@
             this.pnlDemo = new System.Windows.Forms.TableLayoutPanel();
             this.loadingDemos = new Nada.UI.Controls.Loading();
             this.pnlDemoDetails = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lnkAddDemo = new Nada.UI.Controls.H3Link();
             this.lvDemo = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn7 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -86,6 +89,7 @@
             this.pnlIntv = new System.Windows.Forms.TableLayoutPanel();
             this.loadingIntvs = new Nada.UI.Controls.Loading();
             this.pnlIntvDetails = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tblEditIntv = new System.Windows.Forms.TableLayoutPanel();
             this.h3Label2 = new Nada.UI.Controls.H3Label();
             this.cbIntvTypes = new System.Windows.Forms.ComboBox();
@@ -103,6 +107,7 @@
             this.tblSurveys = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSurvey = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSurveyDetails = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tblEditSurveys = new System.Windows.Forms.TableLayoutPanel();
             this.h3Label1 = new Nada.UI.Controls.H3Label();
             this.cbNewSurvey = new System.Windows.Forms.ComboBox();
@@ -118,15 +123,11 @@
             this.btnSurvey = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.hrSurveys = new Nada.UI.Controls.HR();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tbProcess.SuspendLayout();
             this.pnlProcess.SuspendLayout();
             this.pnlProcessDetails.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             this.tblEditProcess.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.processTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvProcess)).BeginInit();
@@ -135,17 +136,20 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.pnlDisease.SuspendLayout();
             this.pnlDistroDetails.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.tblEditDd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diseaseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvDiseaseDistro)).BeginInit();
             this.tblOverview.SuspendLayout();
             this.pnlDemo.SuspendLayout();
             this.pnlDemoDetails.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lvDemo)).BeginInit();
             this.tblHeader.SuspendLayout();
             this.tblIntv.SuspendLayout();
             this.pnlIntv.SuspendLayout();
             this.pnlIntvDetails.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
             this.tblEditIntv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.intvTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvIntv)).BeginInit();
@@ -153,15 +157,11 @@
             this.tblSurveys.SuspendLayout();
             this.pnlSurvey.SuspendLayout();
             this.pnlSurveyDetails.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.tblEditSurveys.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.surveyTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvSurveys)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -242,6 +242,23 @@
             this.pnlProcessDetails.Name = "pnlProcessDetails";
             this.pnlProcessDetails.Size = new System.Drawing.Size(782, 222);
             this.pnlProcessDetails.TabIndex = 1;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.AutoSize = true;
+            this.tableLayoutPanel9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel9.ColumnCount = 1;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel9.Controls.Add(this.tblEditProcess, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.lvProcess, 0, 1);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 3);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 2;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(764, 208);
+            this.tableLayoutPanel9.TabIndex = 7;
             // 
             // tblEditProcess
             // 
@@ -326,11 +343,12 @@
             // 
             // olvColumn23
             // 
-            this.olvColumn23.AspectName = "YearReported";
+            this.olvColumn23.AspectName = "DateReported";
+            this.olvColumn23.AspectToStringFormat = "{0:d}";
             this.olvColumn23.CellPadding = null;
             this.olvColumn23.IsEditable = false;
-            this.olvColumn23.Tag = "Year";
-            this.olvColumn23.Text = "Year";
+            this.olvColumn23.Tag = "Date";
+            this.olvColumn23.Text = "Date";
             this.olvColumn23.Width = 105;
             // 
             // olvColumn24
@@ -533,6 +551,23 @@
             this.pnlDistroDetails.Size = new System.Drawing.Size(782, 216);
             this.pnlDistroDetails.TabIndex = 1;
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.AutoSize = true;
+            this.tableLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Controls.Add(this.tblEditDd, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.lvDiseaseDistro, 0, 1);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(766, 208);
+            this.tableLayoutPanel6.TabIndex = 6;
+            // 
             // tblEditDd
             // 
             this.tblEditDd.AutoSize = true;
@@ -616,11 +651,12 @@
             // 
             // olvColumn14
             // 
-            this.olvColumn14.AspectName = "Year";
+            this.olvColumn14.AspectName = "DateReported";
+            this.olvColumn14.AspectToStringFormat = "{0:d}";
             this.olvColumn14.CellPadding = null;
             this.olvColumn14.IsEditable = false;
-            this.olvColumn14.Tag = "Year";
-            this.olvColumn14.Text = "Year";
+            this.olvColumn14.Tag = "Date";
+            this.olvColumn14.Text = "Date";
             this.olvColumn14.Width = 142;
             // 
             // olvColumn16
@@ -707,6 +743,23 @@
             this.pnlDemoDetails.Size = new System.Drawing.Size(782, 201);
             this.pnlDemoDetails.TabIndex = 1;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.lnkAddDemo, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lvDemo, 0, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(766, 188);
+            this.tableLayoutPanel2.TabIndex = 3;
+            // 
             // lnkAddDemo
             // 
             this.lnkAddDemo.AutoSize = true;
@@ -750,11 +803,12 @@
             // 
             // olvColumn7
             // 
-            this.olvColumn7.AspectName = "Year";
+            this.olvColumn7.AspectName = "DateReported";
+            this.olvColumn7.AspectToStringFormat = "{0:d}";
             this.olvColumn7.CellPadding = null;
             this.olvColumn7.IsEditable = false;
-            this.olvColumn7.Tag = "Year";
-            this.olvColumn7.Text = "Year";
+            this.olvColumn7.Tag = "Date";
+            this.olvColumn7.Text = "Date";
             this.olvColumn7.Width = 88;
             // 
             // olvColumn4
@@ -918,6 +972,23 @@
             this.pnlIntvDetails.Size = new System.Drawing.Size(782, 222);
             this.pnlIntvDetails.TabIndex = 1;
             // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.AutoSize = true;
+            this.tableLayoutPanel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel8.ColumnCount = 1;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel8.Controls.Add(this.tblEditIntv, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.lvIntv, 0, 1);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 2;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(764, 208);
+            this.tableLayoutPanel8.TabIndex = 7;
+            // 
             // tblEditIntv
             // 
             this.tblEditIntv.AutoSize = true;
@@ -1001,11 +1072,12 @@
             // 
             // olvColumn3
             // 
-            this.olvColumn3.AspectName = "Year";
+            this.olvColumn3.AspectName = "DateReported";
+            this.olvColumn3.AspectToStringFormat = "{0:d}";
             this.olvColumn3.CellPadding = null;
             this.olvColumn3.IsEditable = false;
-            this.olvColumn3.Tag = "Year";
-            this.olvColumn3.Text = "Year";
+            this.olvColumn3.Tag = "Date";
+            this.olvColumn3.Text = "Date";
             this.olvColumn3.Width = 105;
             // 
             // olvColumn9
@@ -1138,6 +1210,23 @@
             this.pnlSurveyDetails.TabIndex = 1;
             this.pnlSurveyDetails.Visible = false;
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.AutoSize = true;
+            this.tableLayoutPanel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Controls.Add(this.tblEditSurveys, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.lvSurveys, 0, 1);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(764, 208);
+            this.tableLayoutPanel7.TabIndex = 5;
+            // 
             // tblEditSurveys
             // 
             this.tblEditSurveys.AutoSize = true;
@@ -1221,11 +1310,12 @@
             // 
             // olvColumn6
             // 
-            this.olvColumn6.AspectName = "Year";
+            this.olvColumn6.AspectName = "DateReported";
+            this.olvColumn6.AspectToStringFormat = "{0:d}";
             this.olvColumn6.CellPadding = null;
             this.olvColumn6.IsEditable = false;
-            this.olvColumn6.Tag = "Year";
-            this.olvColumn6.Text = "Year";
+            this.olvColumn6.Tag = "Date";
+            this.olvColumn6.Text = "Date";
             this.olvColumn6.Width = 152;
             // 
             // olvColumn8
@@ -1325,91 +1415,6 @@
             this.hrSurveys.Size = new System.Drawing.Size(817, 1);
             this.hrSurveys.TabIndex = 21;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.AutoSize = true;
-            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.lnkAddDemo, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lvDemo, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(766, 188);
-            this.tableLayoutPanel2.TabIndex = 3;
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.AutoSize = true;
-            this.tableLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel6.Controls.Add(this.tblEditDd, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.lvDiseaseDistro, 0, 1);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 3);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(766, 208);
-            this.tableLayoutPanel6.TabIndex = 6;
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.AutoSize = true;
-            this.tableLayoutPanel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Controls.Add(this.tblEditSurveys, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.lvSurveys, 0, 1);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(764, 208);
-            this.tableLayoutPanel7.TabIndex = 5;
-            // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.AutoSize = true;
-            this.tableLayoutPanel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel8.ColumnCount = 1;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel8.Controls.Add(this.tblEditIntv, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.lvIntv, 0, 1);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 2;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(764, 208);
-            this.tableLayoutPanel8.TabIndex = 7;
-            // 
-            // tableLayoutPanel9
-            // 
-            this.tableLayoutPanel9.AutoSize = true;
-            this.tableLayoutPanel9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel9.ColumnCount = 1;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel9.Controls.Add(this.tblEditProcess, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.lvProcess, 0, 1);
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 3);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 2;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(764, 208);
-            this.tableLayoutPanel9.TabIndex = 7;
-            // 
             // DiseaseDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1428,6 +1433,8 @@
             this.pnlProcess.PerformLayout();
             this.pnlProcessDetails.ResumeLayout(false);
             this.pnlProcessDetails.PerformLayout();
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
             this.tblEditProcess.ResumeLayout(false);
             this.tblEditProcess.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.processTypeBindingSource)).EndInit();
@@ -1442,6 +1449,8 @@
             this.pnlDisease.PerformLayout();
             this.pnlDistroDetails.ResumeLayout(false);
             this.pnlDistroDetails.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.tblEditDd.ResumeLayout(false);
             this.tblEditDd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diseaseBindingSource)).EndInit();
@@ -1452,6 +1461,8 @@
             this.pnlDemo.PerformLayout();
             this.pnlDemoDetails.ResumeLayout(false);
             this.pnlDemoDetails.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lvDemo)).EndInit();
             this.tblHeader.ResumeLayout(false);
             this.tblHeader.PerformLayout();
@@ -1461,6 +1472,8 @@
             this.pnlIntv.PerformLayout();
             this.pnlIntvDetails.ResumeLayout(false);
             this.pnlIntvDetails.PerformLayout();
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel8.PerformLayout();
             this.tblEditIntv.ResumeLayout(false);
             this.tblEditIntv.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.intvTypeBindingSource)).EndInit();
@@ -1473,22 +1486,14 @@
             this.pnlSurvey.PerformLayout();
             this.pnlSurveyDetails.ResumeLayout(false);
             this.pnlSurveyDetails.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.tblEditSurveys.ResumeLayout(false);
             this.tblEditSurveys.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.surveyTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvSurveys)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
-            this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel8.PerformLayout();
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

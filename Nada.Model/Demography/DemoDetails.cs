@@ -10,7 +10,7 @@ namespace Nada.Model.Demography
     public class DemoDetails : NadaListItem
     {
         public int Id { get; set; }
-        public int Year { get; set; }
+        public DateTime DateReported { get; set; }
         public double TotalPopulation { get; set; }
         public double GrowthRate { get; set; }
         public bool CanView { get; set; }

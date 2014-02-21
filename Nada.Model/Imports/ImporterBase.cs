@@ -233,17 +233,17 @@ namespace Nada.Model
             switch (indicator.DataTypeId)
             {
                 case (int)IndicatorDataType.Date:
-                    if (!DateTime.TryParse(val, out dt))
+                    if (val.Length > 0 && !DateTime.TryParse(val, out dt))
                         return name + ": " + Translations.MustBeDate + Environment.NewLine;
                     else
                         val = dt.ToString("MM/dd/yyyy");
                     break;
                 case (int)IndicatorDataType.Number:
-                    if (!Double.TryParse(val, out d))
+                    if (val.Length > 0 && !Double.TryParse(val, out d))
                         return name + ": " + Translations.MustBeNumber + Environment.NewLine;
                     break;
                 case (int)IndicatorDataType.Year:
-                    if (!int.TryParse(val, out i) || (i > 2100 || i < 1900))
+                    if (val.Length > 0 && !int.TryParse(val, out i) || (i > 2100 || i < 1900))
                         return name + ": " + Translations.ValidYear + Environment.NewLine;
                     break;
                 case (int)IndicatorDataType.YesNo:
@@ -252,7 +252,7 @@ namespace Nada.Model
                         val = "false";
                     else if (val.ToLower() == "yes")
                         val = "true";
-                    if (!Boolean.TryParse(val, out isChecked))
+                    if (val.Length > 0 && !Boolean.TryParse(val, out isChecked))
                         return name + ": " + Translations.MustBeYesNo + Environment.NewLine;
                     val = isChecked.ToString();
                     break;
@@ -284,8 +284,10 @@ namespace Nada.Model
                     break;
             }
 
+            // Values are manipulated in the above loop, double check if now they are required because invalid.
             if (indicator.IsRequired && string.IsNullOrEmpty(val))
                 return name + ": " + Translations.IsRequired + Environment.NewLine;
+
             return "";
         }
         /// <summary>

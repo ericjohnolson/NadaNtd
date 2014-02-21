@@ -74,6 +74,7 @@
             this.menuAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hrTop = new Nada.UI.Controls.HR();
             this.hr1 = new Nada.UI.Controls.HR();
+            this.menuViewTutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tsQuickLinks.SuspendLayout();
             this.pnlLeft.SuspendLayout();
@@ -437,6 +438,7 @@
             // 
             this.menuHelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuViewHelpToolStripMenuItem,
+            this.menuViewTutorialToolStripMenuItem,
             this.menuCheckForUpdatesToolStripMenuItem,
             this.toolStripSeparator2,
             this.menuAboutToolStripMenuItem});
@@ -497,6 +499,14 @@
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr1.Size = new System.Drawing.Size(1248, 1);
             this.hr1.TabIndex = 63;
+            // 
+            // menuViewTutorialToolStripMenuItem
+            // 
+            this.menuViewTutorialToolStripMenuItem.Name = "menuViewTutorialToolStripMenuItem";
+            this.menuViewTutorialToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.menuViewTutorialToolStripMenuItem.Tag = "MenuViewTutorial";
+            this.menuViewTutorialToolStripMenuItem.Text = "MenuViewTutorial";
+            this.menuViewTutorialToolStripMenuItem.Click += new System.EventHandler(this.menuViewTutorialToolStripMenuItem_Click);
             // 
             // Shell
             // 
@@ -574,6 +584,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuSplitCombineDistrictToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuSplitDistrictToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuMergeDistrictToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuViewTutorialToolStripMenuItem;
     }
 }
 

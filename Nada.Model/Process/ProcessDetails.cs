@@ -14,6 +14,6 @@ namespace Nada.Model.Process
         public string AdminLevel { get; set; }
         public string TypeName { get; set; }
         public string CategoryName { get; set; }
-        public int YearReported { get; set; }
+        public DateTime DateReported { get; set; }
     }
 }

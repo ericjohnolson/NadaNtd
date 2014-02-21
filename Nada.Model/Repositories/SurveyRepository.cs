@@ -29,7 +29,7 @@ namespace Nada.Model.Repositories
                         Diseases.DisplayName as DiseaseName, 
                         Diseases.DiseaseType, 
                         Surveys.SurveyTypeId, 
-                        Surveys.YearReported,
+                        Surveys.DateReported,
                         Surveys.StartDate, 
                         Surveys.EndDate, 
                         Surveys.UpdatedAt, 
@@ -53,7 +53,7 @@ namespace Nada.Model.Repositories
                                 DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),
                                 TypeId = reader.GetValueOrDefault<int>("SurveyTypeId"),
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
-                                Year = reader.GetValueOrDefault<int>("YearReported"),
+                                DateReported = reader.GetValueOrDefault<DateTime>("DateReported"),
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
                                 EndDate = reader.GetValueOrDefault<DateTime>("EndDate"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
@@ -212,9 +212,10 @@ namespace Nada.Model.Repositories
                     OleDbCommand command = null;
                     command = new OleDbCommand(@"Select Surveys.ID as sid FROM 
                         Surveys
-                        WHERE Surveys.AdminLevelId=@adminlevelId AND Surveys.YearReported=@year", connection);
+                        WHERE Surveys.AdminLevelId=@adminlevelId AND Surveys.DateReported >= @StartDate AND Surveys.DateReported < @EndDate", connection);
                     command.Parameters.Add(new OleDbParameter("@adminlevelId", adminLevel));
-                    command.Parameters.Add(new OleDbParameter("@year", yearOfReporting));
+                    command.Parameters.Add(new OleDbParameter("@StartDate", new DateTime(yearOfReporting, 1, 1)));
+                    command.Parameters.Add(new OleDbParameter("@EndDate", new DateTime(yearOfReporting + 1, 1, 1)));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
@@ -322,7 +323,7 @@ namespace Nada.Model.Repositories
 
             try
             {
-                command = new OleDbCommand(@"Select Surveys.StartDate, Surveys.EndDate, Surveys.YearReported, 
+                command = new OleDbCommand(@"Select Surveys.StartDate, Surveys.EndDate, Surveys.DateReported, 
                         SiteType, SpotCheckName, SpotCheckLat, SpotCheckLng, SentinelSiteId,
                         Surveys.Notes, Surveys.UpdatedById, Surveys.UpdatedAt, aspnet_Users.UserName, 
                         Surveys.SurveyTypeId, created.UserName as CreatedBy, Surveys.CreatedAt
@@ -338,7 +339,7 @@ namespace Nada.Model.Repositories
                         survey.Id = surveyId;
                         survey.StartDate = reader.GetValueOrDefault<DateTime>("StartDate");
                         survey.EndDate = reader.GetValueOrDefault<DateTime>("EndDate");
-                        survey.Year = reader.GetValueOrDefault<int>("YearReported");
+                        survey.DateReported = reader.GetValueOrDefault<DateTime>("DateReported");
                         survey.SiteType = reader.GetValueOrDefault<string>("SiteType");
                         survey.SpotCheckName = reader.GetValueOrDefault<string>("SpotCheckName");
                         survey.Lat = reader.GetValueOrDefault<Nullable<double>>("SpotCheckLat");
@@ -521,11 +522,12 @@ namespace Nada.Model.Repositories
             }
             SentinelSite newSite = new SentinelSite { SiteName = nameInd.DynamicValue, AdminLevels = copy.AdminLevels };
             var latInd = copy.IndicatorValues.FirstOrDefault(i => i.IndicatorId == latId);
-            if (latInd != null)
-                newSite.Lat = Double.Parse(latInd.DynamicValue);
+            double val = 0;
+            if (latInd != null && Double.TryParse(latInd.DynamicValue, out val))
+                newSite.Lat = val;
             var lngInd = copy.IndicatorValues.FirstOrDefault(i => i.IndicatorId == lngId);
-            if (lngInd != null)
-                newSite.Lng = Double.Parse(lngInd.DynamicValue);
+            if (lngInd != null && Double.TryParse(lngInd.DynamicValue, out val))
+                newSite.Lng = val;
             newSite = Insert(newSite, userId);
             return newSite.Id;
         }
@@ -799,7 +801,7 @@ namespace Nada.Model.Repositories
                         // Add year reported
                         command = new OleDbCommand(@"INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, AggTypeId, 
                         DisplayName, IsRequired, IsDisabled, IsEditable, IsDisplayed, SortOrder,  UpdatedById, UpdatedAt) VALUES
-                        (@SurveyTypeId, 7, 5, 'SurveyYear', -1, 0, 0, 0, -1, @UpdatedById, @UpdatedAt)", connection);
+                        (@SurveyTypeId, 4, 5, 'DateReported', -1, 0, 0, 0, -1, @UpdatedById, @UpdatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@SurveyTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
@@ -1014,19 +1016,19 @@ namespace Nada.Model.Repositories
         {
             // Mapping year reported
             survey.MapIndicatorsToProperties();
-
+            // Find all Year and Year Reported
             if (survey.Id > 0)
-                command = new OleDbCommand(@"UPDATE Surveys SET SurveyTypeId=@SurveyTypeId, YearReported=@YearReported, StartDate=@StartDate,
+                command = new OleDbCommand(@"UPDATE Surveys SET SurveyTypeId=@SurveyTypeId, DateReported=@DateReported, StartDate=@StartDate,
                            EndDate=@EndDate, SiteType=@SiteType, SpotCheckName=@SpotCheckName, SpotCheckLat=@SpotCheckLat, SpotCheckLng=@SpotCheckLng,
                            SentinelSiteId=@SentinelSiteId, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
-                command = new OleDbCommand(@"INSERT INTO Surveys (SurveyTypeId, YearReported, StartDate, EndDate, 
+                command = new OleDbCommand(@"INSERT INTO Surveys (SurveyTypeId, DateReported, StartDate, EndDate, 
                             SiteType, SpotCheckName, SpotCheckLat, SpotCheckLng, SentinelSiteId, Notes, UpdatedById, 
-                            UpdatedAt, CreatedById, CreatedAt) values (@SurveyTypeId, @YearReported, @StartDate, @EndDate, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@SurveyTypeId, @DateReported, @StartDate, @EndDate, 
                             @SiteType, @SpotCheckName, @SpotCheckLat, @SpotCheckLng, @SentinelSiteId, @Notes, 
                             @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@SurveyTypeId", survey.TypeOfSurvey.Id));
-            command.Parameters.Add(new OleDbParameter("@YearReported", survey.Year));
+            command.Parameters.Add(new OleDbParameter("@DateReported", survey.DateReported));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", survey.StartDate));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@EndDate", survey.EndDate));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@SiteType", survey.SiteType));

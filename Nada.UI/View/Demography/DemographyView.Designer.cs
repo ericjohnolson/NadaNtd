@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.c1Button1 = new C1.Win.C1Input.C1Button();
+            this.c1Button2 = new C1.Win.C1Input.C1Button();
             this.tblEdit = new System.Windows.Forms.TableLayoutPanel();
             this.bsDemo = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -53,7 +55,6 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.h3Required1 = new Nada.UI.Controls.H3Required();
             this.h3bLabel4 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel3 = new Nada.UI.Controls.H3bLabel();
@@ -76,8 +77,7 @@
             this.tblTitle = new System.Windows.Forms.TableLayoutPanel();
             this.lblAdminLevel = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
-            this.c1Button1 = new C1.Win.C1Input.C1Button();
-            this.c1Button2 = new C1.Win.C1Input.C1Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel4.SuspendLayout();
             this.tblEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsDemo)).BeginInit();
@@ -108,6 +108,40 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(204, 79);
             this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // c1Button1
+            // 
+            this.c1Button1.AutoSize = true;
+            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button1.Location = new System.Drawing.Point(111, 3);
+            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button1.Name = "c1Button1";
+            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button1.Size = new System.Drawing.Size(90, 27);
+            this.c1Button1.TabIndex = 3;
+            this.c1Button1.Tag = "Cancel";
+            this.c1Button1.Text = "Cancel";
+            this.c1Button1.UseVisualStyleBackColor = true;
+            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button1.Click += new System.EventHandler(this.cancel_Click);
+            // 
+            // c1Button2
+            // 
+            this.c1Button2.AutoSize = true;
+            this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button2.Location = new System.Drawing.Point(3, 3);
+            this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button2.Name = "c1Button2";
+            this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button2.Size = new System.Drawing.Size(90, 27);
+            this.c1Button2.TabIndex = 4;
+            this.c1Button2.Tag = "Save";
+            this.c1Button2.Text = "Save";
+            this.c1Button2.UseVisualStyleBackColor = true;
+            this.c1Button2.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.Click += new System.EventHandler(this.save_Click);
             // 
             // tblEdit
             // 
@@ -228,6 +262,7 @@
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel14.Controls.Add(this.dateTimePicker1, 0, 3);
             this.tableLayoutPanel14.Controls.Add(this.h3Required3, 0, 2);
             this.tableLayoutPanel14.Controls.Add(this.h3bLabel9, 2, 10);
             this.tableLayoutPanel14.Controls.Add(this.h3bLabel8, 0, 10);
@@ -243,7 +278,6 @@
             this.tableLayoutPanel14.Controls.Add(this.textBox6, 0, 5);
             this.tableLayoutPanel14.Controls.Add(this.textBox5, 2, 5);
             this.tableLayoutPanel14.Controls.Add(this.textBox4, 2, 3);
-            this.tableLayoutPanel14.Controls.Add(this.textBox3, 0, 3);
             this.tableLayoutPanel14.Controls.Add(this.h3Required1, 0, 4);
             this.tableLayoutPanel14.Controls.Add(this.h3bLabel4, 2, 4);
             this.tableLayoutPanel14.Controls.Add(this.h3bLabel3, 2, 2);
@@ -279,11 +313,11 @@
             this.h3Required3.Location = new System.Drawing.Point(0, 50);
             this.h3Required3.Margin = new System.Windows.Forms.Padding(0);
             this.h3Required3.Name = "h3Required3";
-            this.h3Required3.Size = new System.Drawing.Size(140, 15);
+            this.h3Required3.Size = new System.Drawing.Size(96, 15);
             this.h3Required3.TabIndex = 62;
             this.h3Required3.TabStop = false;
-            this.h3Required3.Tag = "YearDemographyData";
-            this.h3Required3.Text = "YearDemographyData";
+            this.h3Required3.Tag = "DateReported";
+            this.h3Required3.Text = "DateReported";
             this.h3Required3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
             // h3bLabel9
@@ -448,15 +482,6 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(256, 21);
             this.textBox4.TabIndex = 62;
-            // 
-            // textBox3
-            // 
-            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "YearDemographyData", true));
-            this.textBox3.Location = new System.Drawing.Point(0, 71);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(256, 21);
-            this.textBox3.TabIndex = 62;
             // 
             // h3Required1
             // 
@@ -758,39 +783,13 @@
             this.lblType.Tag = "Demography";
             this.lblType.Text = "Demography";
             // 
-            // c1Button1
+            // dateTimePicker1
             // 
-            this.c1Button1.AutoSize = true;
-            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button1.Location = new System.Drawing.Point(111, 3);
-            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
-            this.c1Button1.Name = "c1Button1";
-            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
-            this.c1Button1.Size = new System.Drawing.Size(90, 27);
-            this.c1Button1.TabIndex = 3;
-            this.c1Button1.Tag = "Cancel";
-            this.c1Button1.Text = "Cancel";
-            this.c1Button1.UseVisualStyleBackColor = true;
-            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
-            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
-            this.c1Button1.Click += new System.EventHandler(this.cancel_Click);
-            // 
-            // c1Button2
-            // 
-            this.c1Button2.AutoSize = true;
-            this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button2.Location = new System.Drawing.Point(3, 3);
-            this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
-            this.c1Button2.Name = "c1Button2";
-            this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
-            this.c1Button2.Size = new System.Drawing.Size(90, 27);
-            this.c1Button2.TabIndex = 4;
-            this.c1Button2.Tag = "Save";
-            this.c1Button2.Text = "Save";
-            this.c1Button2.UseVisualStyleBackColor = true;
-            this.c1Button2.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
-            this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
-            this.c1Button2.Click += new System.EventHandler(this.save_Click);
+            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsDemo, "DateDemographyData", true));
+            this.dateTimePicker1.Location = new System.Drawing.Point(3, 68);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(253, 21);
+            this.dateTimePicker1.TabIndex = 67;
             // 
             // DemographyView
             // 
@@ -869,7 +868,6 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
         private Controls.H3Required h3Required1;
         private Controls.H3bLabel h3bLabel4;
         private Controls.H3bLabel h3bLabel3;
@@ -883,5 +881,6 @@
         private Controls.H3Required h3Required3;
         private C1.Win.C1Input.C1Button c1Button1;
         private C1.Win.C1Input.C1Button c1Button2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

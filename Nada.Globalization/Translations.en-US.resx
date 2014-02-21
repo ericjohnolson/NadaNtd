@@ -1442,7 +1442,7 @@ Fixed / Mobile</value>
     <value>IVM + ALB Intervention</value>
   </data>
   <data name="JrfCmNtds" xml:space="preserve">
-    <value>Joint Reporting Form (JRF) for CM-NTDs</value>
+    <value>CM Joint Reporting Form</value>
   </data>
   <data name="JrfEndemic" xml:space="preserve">
     <value>Endemic</value>
@@ -4146,7 +4146,7 @@ Fixed / Mobile</value>
     <value>Lymphatic filariasis Sentinel/Spot Check Site Survey</value>
   </data>
   <data name="SurOnchoAssesments" xml:space="preserve">
-    <value>Onchocerciasis (River blindness) Assement</value>
+    <value>Oncho Assement</value>
   </data>
   <data name="SurOnchoMapping" xml:space="preserve">
     <value>Onchocerciasis (River blindness) Mapping</value>
@@ -4960,5 +4960,14 @@ Fixed / Mobile</value>
   </data>
   <data name="YesSentinelSite" xml:space="preserve">
     <value>Yes-Sentinel site</value>
+  </data>
+  <data name="MenuViewTutorial" xml:space="preserve">
+    <value>View PowerPoint tutorial...</value>
+  </data>
+  <data name="DateReported" xml:space="preserve">
+    <value>Date data applies to</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
   </data>
 </root>

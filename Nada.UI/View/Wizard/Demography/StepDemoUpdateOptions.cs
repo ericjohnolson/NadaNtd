@@ -20,7 +20,7 @@ namespace Nada.UI.View.Wizard
 {
     public partial class StepDemoUpdateOptions : BaseControl, IWizardStep
     {
-        private int demoYear { get; set; }
+        private DateTime demoDate { get; set; }
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<ReportOptions> OnRunReport { get; set; }
@@ -32,10 +32,10 @@ namespace Nada.UI.View.Wizard
         public bool EnableFinish { get { return true; } }
         public string StepTitle { get { return Translations.SelectDemoUpdateOption; } }
 
-        public StepDemoUpdateOptions(int year)
+        public StepDemoUpdateOptions(DateTime d)
             : base()
         {
-            demoYear = year;
+            demoDate = d;
             InitializeComponent();
         }
         
@@ -57,7 +57,7 @@ namespace Nada.UI.View.Wizard
             SettingsRepository settings = new SettingsRepository();
             var als = settings.GetAllAdminLevels();
             var aggLevel = als.FirstOrDefault(a => a.IsAggregatingLevel);
-            OnSwitchStep(new StepAdminLevelImport(aggLevel, this, true, demoYear));
+            OnSwitchStep(new StepAdminLevelImport(aggLevel, this, true, demoDate));
         }
 
         public void DoFinish()

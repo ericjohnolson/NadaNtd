@@ -24,7 +24,7 @@ namespace Nada.Model.Exports
         {
             try
             {
-                int year = questions.YearReporting.Value;
+                int yearReporting = questions.YearReporting.Value;
                 Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
                 Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
                 Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
@@ -37,10 +37,10 @@ namespace Nada.Model.Exports
                     missing, missing, missing, missing, missing, missing, missing);
 
                 var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
-                CountryDemography countryDemo = demo.GetCountryDemoByYear(year);
+                CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReporting);
                 Country country = demo.GetCountry();
                 List<AdminLevel> demography = new List<AdminLevel>();
-                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, year, ref demography);
+                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, yearReporting, ref demography);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[2];
                 AddContactsPage(xlsWorksheet, rng, questions, country);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[3];
@@ -51,22 +51,22 @@ namespace Nada.Model.Exports
                 
                 // sheet 4 GW (start row 9)
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[5];
-                AddIndicators(DiseaseType.GuineaWorm, StaticIntvType.GuineaWormIntervention, year, xlsWorksheet, AddGwInds, AggGwInd);
+                AddIndicators(DiseaseType.GuineaWorm, StaticIntvType.GuineaWormIntervention, yearReporting, xlsWorksheet, AddGwInds, AggGwInd);
                 //// leprosy
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[6];
-                AddIndicators(DiseaseType.Leprosy, StaticIntvType.LeprosyIntervention, year, xlsWorksheet, AddLeprosyInds, AggLeprosyInd);
+                AddIndicators(DiseaseType.Leprosy, StaticIntvType.LeprosyIntervention, yearReporting, xlsWorksheet, AddLeprosyInds, AggLeprosyInd);
                 //// hat
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[7];
-                AddIndicators(DiseaseType.Hat, StaticIntvType.HatIntervention, year, xlsWorksheet, AddHatInds, AggHatInd);
+                AddIndicators(DiseaseType.Hat, StaticIntvType.HatIntervention, yearReporting, xlsWorksheet, AddHatInds, AggHatInd);
                 //// leish
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[8];
-                AddIndicators(DiseaseType.Leish, StaticIntvType.LeishIntervention, year, xlsWorksheet, AddLeishInds, AggLeishInd);
+                AddIndicators(DiseaseType.Leish, StaticIntvType.LeishIntervention, yearReporting, xlsWorksheet, AddLeishInds, AggLeishInd);
                 //// buruli
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[9];
-                AddIndicators(DiseaseType.Buruli, StaticIntvType.BuruliUlcerIntv, year, xlsWorksheet, AddBuInds, AggBuInd);
+                AddIndicators(DiseaseType.Buruli, StaticIntvType.BuruliUlcerIntv, yearReporting, xlsWorksheet, AddBuInds, AggBuInd);
                 //// yaws
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[10];
-                AddIndicators(DiseaseType.Yaws, StaticIntvType.YawsIntervention, year, xlsWorksheet, AddYawsInds, AggYawsInd);
+                AddIndicators(DiseaseType.Yaws, StaticIntvType.YawsIntervention, yearReporting, xlsWorksheet, AddYawsInds, AggYawsInd);
 
                 xlsApp.DisplayAlerts = false;
                 xlsWorkbook.SaveAs(filePath, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, missing,
@@ -139,7 +139,8 @@ namespace Nada.Model.Exports
         {
             AddValueToRange(xlsWorksheet, rng, "B2", country.Name);
             AddValueToRange(xlsWorksheet, rng, "B3", questions.YearReporting.Value);
-            AddValueToRange(xlsWorksheet, rng, "F2", cDemo.TotalPopulation.Value);
+            if(cDemo.TotalPopulation.HasValue)
+                AddValueToRange(xlsWorksheet, rng, "F2", cDemo.TotalPopulation.Value);
             AddValueToRange(xlsWorksheet, rng, "G3", demography.Where(d => d.LevelNumber == districtLevel).Count());
         }
 

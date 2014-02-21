@@ -194,6 +194,12 @@ namespace Nada.UI
             //help.Show();
         }
 
+        private void menuViewTutorialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string file = "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["TutorialFile"];
+            System.Diagnostics.Process.Start(file);
+        }
+
         private void menuCheckForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var updates = new Updates();
@@ -336,6 +342,7 @@ namespace Nada.UI
             };
             form.Show();
         }
+
 
     }
 }
