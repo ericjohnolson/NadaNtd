@@ -426,9 +426,9 @@ namespace Nada.Model.Repositories
             builder.Append(" and (");
             for(int i = 0; i < options.SelectedYears.Count; i++)
             {
-                builder.Append(string.Format("({0} >= cdate('{1}') AND {0} < cdate('{2}')) ", dateName, 
-                    new DateTime(options.SelectedYears[i], options.MonthYearStarts, 1).ToString("MM/dd/yyyy"),  
-                    new DateTime(options.SelectedYears[i] + 1, options.MonthYearStarts, 1).ToString("MM/dd/yyyy")));
+                builder.Append(string.Format("({0} >= cdate('{1}') AND {0} < cdate('{2}')) ", dateName,
+                    new DateTime(options.SelectedYears[i], options.MonthYearStarts, 1).ToShortDateString(),
+                    new DateTime(options.SelectedYears[i] + 1, options.MonthYearStarts, 1).ToShortDateString()));
                 if(i < options.SelectedYears.Count - 1)
                     builder.Append("OR");
             }
@@ -456,7 +456,7 @@ namespace Nada.Model.Repositories
             var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
             indicators.Add(pc);
             indicators.Add(cm);
-            foreach (var t in types.Where(i => i.DiseaseType == "PC").OrderBy(t => t.IntvTypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == Translations.PC).OrderBy(t => t.IntvTypeName))
             {
                 var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
                 var instance = repo.CreateIntv(t.Id);
@@ -465,7 +465,7 @@ namespace Nada.Model.Repositories
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
-            foreach (var t in types.Where(i => i.DiseaseType == "CM").OrderBy(t => t.IntvTypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == Translations.CM).OrderBy(t => t.IntvTypeName))
             {
                 var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
                 var instance = repo.CreateIntv(t.Id);
@@ -487,7 +487,7 @@ namespace Nada.Model.Repositories
             var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
             indicators.Add(pc);
             indicators.Add(cm);
-            foreach (var t in types.Where(i => i.DiseaseType == "PC").OrderBy(t => t.SurveyTypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == Translations.PC).OrderBy(t => t.SurveyTypeName))
             {
                 var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true, ID = t.Id };
                 var instance = repo.CreateSurvey(t.Id);
@@ -508,7 +508,7 @@ namespace Nada.Model.Repositories
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
-            foreach (var t in types.Where(i => i.DiseaseType == "CM").OrderBy(t => t.SurveyTypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == Translations.CM).OrderBy(t => t.SurveyTypeName))
             {
                 var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true };
                 var instance = repo.CreateSurvey(t.Id);
@@ -530,7 +530,7 @@ namespace Nada.Model.Repositories
             types.RemoveAll(t => t.TypeName == Translations.SAEs);
             indicators.Add(pc);
             indicators.Add(cm);
-            foreach (var t in types.Where(i => i.DiseaseType == "PC").OrderBy(t => t.TypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == Translations.PC).OrderBy(t => t.TypeName))
             {
                 var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
                 var instance = repo.Create(t.Id);
@@ -539,7 +539,7 @@ namespace Nada.Model.Repositories
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
-            foreach (var t in types.Where(i => i.DiseaseType == "CM").OrderBy(t => t.TypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == Translations.CM).OrderBy(t => t.TypeName))
             {
                 var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
                 var instance = repo.Create(t.Id);
@@ -569,7 +569,7 @@ namespace Nada.Model.Repositories
             var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
             indicators.Add(pc);
             indicators.Add(cm);
-            foreach (var t in types.Where(i => i.DiseaseType == "PC").OrderBy(t => t.DisplayName))
+            foreach (var t in types.Where(i => i.DiseaseType == Translations.PC).OrderBy(t => t.DisplayName))
             {
                 var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
                 DiseaseDistroPc dd = repo.Create((DiseaseType)t.Id);
@@ -578,7 +578,7 @@ namespace Nada.Model.Repositories
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
-            foreach (var t in types.Where(i => i.DiseaseType == "CM").OrderBy(t => t.DisplayName))
+            foreach (var t in types.Where(i => i.DiseaseType == Translations.CM).OrderBy(t => t.DisplayName))
             {
                 var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
                 DiseaseDistroCm dd = repo.CreateCm((DiseaseType)t.Id);

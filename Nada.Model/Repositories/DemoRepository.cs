@@ -728,8 +728,8 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            if(!parentIds.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
-                                parentIds.Add(reader.GetValueOrDefault<string>("DisplayName"), reader.GetValueOrDefault<int>("ID"));
+                            if(!parentIds.ContainsKey(reader.GetValueOrDefault<string>("DisplayName").ToLower()))
+                                parentIds.Add(reader.GetValueOrDefault<string>("DisplayName").ToLower(), reader.GetValueOrDefault<int>("ID"));
                         }
                         reader.Close();
                     }

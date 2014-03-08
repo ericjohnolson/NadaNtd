@@ -25,6 +25,8 @@ namespace Nada.Model.Exports
             try
             {
                 int yearReporting = questions.YearReporting.Value;
+                System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
                 Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
                 Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
                 Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
@@ -77,6 +79,7 @@ namespace Nada.Model.Exports
                 xlsWorksheet = null;
                 xlsWorkbook = null;
                 xlsApp = null;
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
                 return new ExportResult();
 
             }

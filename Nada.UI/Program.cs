@@ -43,7 +43,9 @@ namespace Nada.UI
         {
             try
             {
+                Logger logger = new Logger();
                 Exception ex = (Exception)e.ExceptionObject;
+                logger.Error("Unhandled exception occured in application. " + ex.Message, ex);
                 Console.WriteLine("MyHandler caught : " + ex.Message);
                 Console.WriteLine("Runtime terminating: {0}", e.IsTerminating);
                 ErrorModal form = new ErrorModal(ex.Message);

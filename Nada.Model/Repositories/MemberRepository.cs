@@ -57,7 +57,7 @@ namespace Nada.Model.Repositories
             if (model.Id > 0)
             {
                 MembershipUser user = Membership.GetUser(model.Username);
-                user.Comment = Translations.LastUpdated + " " + DateTime.Now.ToString("MM/dd/yyyy");
+                user.Comment = Translations.LastUpdated + " " + DateTime.Now.ToShortDateString();
                 Membership.UpdateUser(user);
                 // update roles!
                 var roles = Roles.GetRolesForUser(model.Username);
@@ -70,7 +70,7 @@ namespace Nada.Model.Repositories
             {
                 Membership.CreateUser(model.Username, model.Password);
                 MembershipUser user = Membership.GetUser(model.Username);
-                user.Comment = Translations.LastUpdated + " " + DateTime.Now.ToString("MM/dd/yyyy");
+                user.Comment = Translations.LastUpdated + " " + DateTime.Now.ToShortDateString();
                 Membership.UpdateUser(user);
                 // add roles!
                 if (model.SelectedRoles.Count > 0)

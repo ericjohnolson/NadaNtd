@@ -25,6 +25,8 @@ namespace Nada.Model.Exports
             try
             {
                 int yearReported = questions.JrfYearReporting.Value;
+                System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
                 excel.Application xlsApp = new excel.ApplicationClass();
                 excel.Workbook xlsWorkbook;
                 excel.Worksheet xlsWorksheet;
@@ -63,6 +65,7 @@ namespace Nada.Model.Exports
                 xlsWorksheet = null;
                 xlsWorkbook = null;
                 xlsApp = null;
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
                 return new ExportResult();
 
             }

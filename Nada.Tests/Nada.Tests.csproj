@@ -60,7 +60,7 @@
     <Compile Include="CrudTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CanCreateSurveys.cs" />
-    <Compile Include="CleanDatabase.cs" />
+    <Compile Include="DatabaseTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

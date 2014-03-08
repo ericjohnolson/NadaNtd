@@ -55,9 +55,10 @@ namespace Nada.UI
                 DoTranslate();
                 if (ConfigurationManager.AppSettings["DeveloperMode"] == "QA")
                     lblDeveloperMode.Visible = true;
+
             }
         }
-
+        
         private void DoTranslate()
         {
             this.Text = Localizer.GetValue("ApplicationTitle");
@@ -68,6 +69,7 @@ namespace Nada.UI
         {
             DoTranslate();
             LoginView loginView = new LoginView();
+            loginView.OnRestart += RestartApp;
             loginView.OnLogin += loginView1_OnLogin;
             LoadView(loginView);
         }
@@ -165,6 +167,11 @@ namespace Nada.UI
             tsLastUpdated.Text = status;
         }
 
+        private void RestartApp()
+        {
+            System.Diagnostics.Process.Start(Application.ExecutablePath); // to start new instance of application
+            this.Close(); //to turn off current app
+        }
         #endregion
 
         #region Menu
@@ -202,13 +209,15 @@ namespace Nada.UI
 
         private void menuCheckForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var updates = new Updates();
-            updates.ShowDialog();
+            WizardForm wiz = new WizardForm(new UpdateApp(RestartApp), Translations.Updates);
+            wiz.OnFinish += () => { };
+            wiz.ShowDialog();
         }
 
         private void menuAboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var about = new About();
+            about.OnRestart += RestartApp;
             about.ShowDialog();
         }
 

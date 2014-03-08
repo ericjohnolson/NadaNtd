@@ -39,6 +39,9 @@
     <Reference Include="LINQtoCSV">
       <HintPath>..\Solution Items\LINQtoCSV.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Solution Items\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -76,6 +79,7 @@
     <Compile Include="IndicatorAggregator.cs" />
     <Compile Include="Intervention\CalcIntv.cs" />
     <Compile Include="Intervention\IntvDetails.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="Process\ProcessBase.cs" />
     <Compile Include="Process\ProcessDetails.cs" />

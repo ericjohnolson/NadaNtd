@@ -18,7 +18,7 @@ namespace Nada.Model.Imports
         IntvRepository repo = new IntvRepository();
         private IntvType iType = null;
         public IntvImporter() {  }
-        public override string ImportName { get { return Translations.Interventions + " " + Translations.Import; } }
+        public override string ImportName { get { return TranslationLookup.GetValue("Interventions") + " " + TranslationLookup.GetValue("Import"); } }
 
         public override List<TypeListItem> GetAllTypes()
         {
@@ -44,12 +44,12 @@ namespace Nada.Model.Imports
             {
                 string objerrors = "";
                 IntvBase obj = repo.CreateIntv(iType.Id);
-                obj.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
-                obj.Notes = row[Translations.Notes].ToString();
+                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
+                obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[Translations.Location].ToString());
+                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("Location")].ToString());
                 objs.Add(obj);
             }
 
@@ -62,7 +62,7 @@ namespace Nada.Model.Imports
             {
                 WasSuccess = true,
                 Count = objs.Count,
-                Message = string.Format(Translations.ImportSuccess, objs.Count)
+                Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), objs.Count)
             };
         }
 

@@ -48,7 +48,7 @@ namespace Nada.Model.Repositories
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
                                 DateReported = reader.GetValueOrDefault<DateTime>("DateReported"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString()
 
                             });
                         }
@@ -263,7 +263,8 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 TypeName = name,
-                                 DiseaseType = reader.GetValueOrDefault<string>("DiseaseType")
+                                DiseaseType = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseType"),
+                                    reader.GetValueOrDefault<string>("DiseaseType"))
                             });
                         }
                         reader.Close();
@@ -344,7 +345,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
-                                UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy") + " by " +
+                                UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
                                 IsRequired = reader.GetValueOrDefault<bool>("IsRequired"),

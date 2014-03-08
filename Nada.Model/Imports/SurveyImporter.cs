@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Nada.Model.Imports
     public class SurveyImporter : ImporterBase, IImporter
     {
         public override IndicatorEntityType EntityType { get { return IndicatorEntityType.Survey; } }
-        public override string ImportName { get { return Translations.Survey + " " + Translations.Import; } }
+        public override string ImportName { get { return TranslationLookup.GetValue("Survey") + " " + TranslationLookup.GetValue("Import"); } }
         private SurveyRepository repo = new SurveyRepository();
         private SurveyType sType = null;
         public SurveyImporter() { }
@@ -41,20 +42,20 @@ namespace Nada.Model.Imports
             if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null)
                 return 0;
 
-            xlsWorksheet.Cells[1, 3] = Translations.IndSentinelSiteName;
-            xlsWorksheet.Cells[1, 4] = Translations.IndSpotCheckName;
-            xlsWorksheet.Cells[1, 5] = Translations.IndSpotCheckLat;
-            xlsWorksheet.Cells[1, 6] = Translations.IndSpotCheckLng;
+            xlsWorksheet.Cells[1, 3] = TranslationLookup.GetValue("IndSentinelSiteName");
+            xlsWorksheet.Cells[1, 4] = TranslationLookup.GetValue("IndSpotCheckName");
+            xlsWorksheet.Cells[1, 5] = TranslationLookup.GetValue("IndSpotCheckLat");
+            xlsWorksheet.Cells[1, 6] = TranslationLookup.GetValue("IndSpotCheckLng");
             return 4;
         }
 
-        protected override void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int adminLevelId, int r)
+        protected override void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int adminLevelId, int r, CultureInfo currentCulture)
         {
             if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null)
                 return;
             var sites = repo.GetSitesForAdminLevel(new List<string> { adminLevelId.ToString() });
             if(sites.Count > 0)
-                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(3), r, "", "", sites.Select(p => p.SiteName).ToList());
+                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(3), r, "", "", sites.Select(p => p.SiteName).ToList(), currentCulture);
         }
 
         protected override ImportResult MapAndSaveObjects(DataSet ds, int userId)
@@ -65,47 +66,47 @@ namespace Nada.Model.Imports
             {
                 string objerrors = "";
                 var obj = repo.CreateSurvey(sType.Id);
-                int adminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
+                int adminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
                 obj.AdminLevels = new List<AdminLevel> { new AdminLevel { Id =  adminLevelId } };
 
                 // CHECK FOR SENTINEL SITES/SPOTCHECK
                 if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) != null)
                 {
                     obj.HasSentinelSite = true;
-                    if(string.IsNullOrEmpty(row[Translations.IndSentinelSiteName].ToString()))
+                    if(string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSentinelSiteName")].ToString()))
                     {
-                        obj.SiteType = Translations.SpotCheck;
-                        obj.SpotCheckName = row[Translations.IndSpotCheckName].ToString();
+                        obj.SiteType = TranslationLookup.GetValue("SpotCheck");
+                        obj.SpotCheckName = row[TranslationLookup.GetValue("IndSpotCheckName")].ToString();
 
                         double d;
-                        if (!string.IsNullOrEmpty(row[Translations.IndSpotCheckLat].ToString()) && double.TryParse(row[Translations.IndSpotCheckLat].ToString(), out d))
+                        if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString()) && double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString(), out d))
                             obj.Lat = d;
                         else
-                            objerrors += Translations.ValidLatitude + Environment.NewLine;
-                        if (!string.IsNullOrEmpty(row[Translations.IndSpotCheckLng].ToString()) && double.TryParse(row[Translations.IndSpotCheckLng].ToString(), out d))
+                            objerrors += TranslationLookup.GetValue("ValidLatitude") + Environment.NewLine;
+                        if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString()) && double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString(), out d))
                             obj.Lng = d;
                         else
-                            objerrors += Translations.ValidLongitude + Environment.NewLine;
+                            objerrors += TranslationLookup.GetValue("ValidLongitude") + Environment.NewLine;
                     }
                     else
                     {
-                        obj.SiteType = Translations.Sentinel;
+                        obj.SiteType = TranslationLookup.GetValue("Sentinel");
                         var sites = repo.GetSitesForAdminLevel(new List<string> { adminLevelId.ToString() });
-                        var site = sites.FirstOrDefault(s => s.SiteName == row[Translations.IndSentinelSiteName].ToString());
+                        var site = sites.FirstOrDefault(s => s.SiteName == row[TranslationLookup.GetValue("IndSentinelSiteName")].ToString());
                         if (site != null)
                             obj.SentinelSiteId = site.Id;
                         else
-                            objerrors += Translations.ValidSentinelSite + Environment.NewLine;
+                            objerrors += TranslationLookup.GetValue("ValidSentinelSite") + Environment.NewLine;
 
                     }
                 }
 
-                obj.Notes = row[Translations.Notes].ToString();
+                obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
 
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[Translations.Location].ToString());
+                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("Location")].ToString());
                 objs.Add(obj);
             }
 
@@ -118,7 +119,7 @@ namespace Nada.Model.Imports
             {
                 WasSuccess = true,
                 Count = objs.Count,
-                Message = string.Format(Translations.ImportSuccess, objs.Count)
+                Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), objs.Count)
             };
         }
 

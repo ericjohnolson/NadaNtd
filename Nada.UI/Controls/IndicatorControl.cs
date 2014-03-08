@@ -92,7 +92,11 @@ namespace Nada.UI.View
                     columnCount, labelRowIndex);
 
                 // Add val
-                var label = new H3bLabel { Text = Convert.ToDouble(item.Value).ToString("N"), Name = "metaData_Val" + item.Key, AutoSize = true, };
+                string labelVal = item.Value;
+                double d = 0;
+                if(double.TryParse(item.Value, out d))
+                    labelVal = Convert.ToDouble(item.Value).ToString("N");
+                var label = new H3bLabel { Text = labelVal, Name = "metaData_Val" + item.Key, AutoSize = true, };
                 label.MakeBold();
                 tblMetaData.Controls.Add(label, columnCount, controlRowIndex);
 

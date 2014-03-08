@@ -52,8 +52,11 @@
             this.olvColumn17 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn18 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.h3bLabel3 = new Nada.UI.Controls.H3bLabel();
+            this.btnSaveLog = new C1.Win.C1Input.C1Button();
             this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -372,6 +375,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.h3bLabel3);
+            this.tabPage4.Controls.Add(this.btnSaveLog);
             this.tabPage4.Controls.Add(this.h3bLabel2);
             this.tabPage4.Controls.Add(this.c1Button2);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
@@ -382,12 +387,43 @@
             this.tabPage4.Text = "Database";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // h3bLabel3
+            // 
+            this.h3bLabel3.AutoSize = true;
+            this.h3bLabel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel3.Location = new System.Drawing.Point(13, 13);
+            this.h3bLabel3.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel3.Name = "h3bLabel3";
+            this.h3bLabel3.Size = new System.Drawing.Size(152, 16);
+            this.h3bLabel3.TabIndex = 8;
+            this.h3bLabel3.Tag = "CreateCopyOfErrorLogFile";
+            this.h3bLabel3.Text = "CreateCopyOfErrorLogFile";
+            this.h3bLabel3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // btnSaveLog
+            // 
+            this.btnSaveLog.AutoSize = true;
+            this.btnSaveLog.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSaveLog.Location = new System.Drawing.Point(13, 42);
+            this.btnSaveLog.MinimumSize = new System.Drawing.Size(90, 27);
+            this.btnSaveLog.Name = "btnSaveLog";
+            this.btnSaveLog.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnSaveLog.Size = new System.Drawing.Size(119, 27);
+            this.btnSaveLog.TabIndex = 7;
+            this.btnSaveLog.Tag = "RetrieveLogFile";
+            this.btnSaveLog.Text = "RetrieveLogFile";
+            this.btnSaveLog.UseVisualStyleBackColor = true;
+            this.btnSaveLog.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.btnSaveLog.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.btnSaveLog.Click += new System.EventHandler(this.btnSaveLog_Click);
+            // 
             // h3bLabel2
             // 
             this.h3bLabel2.AutoSize = true;
             this.h3bLabel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3bLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel2.Location = new System.Drawing.Point(13, 11);
+            this.h3bLabel2.Location = new System.Drawing.Point(13, 81);
             this.h3bLabel2.Margin = new System.Windows.Forms.Padding(0);
             this.h3bLabel2.Name = "h3bLabel2";
             this.h3bLabel2.Size = new System.Drawing.Size(158, 16);
@@ -400,7 +436,7 @@
             // 
             this.c1Button2.AutoSize = true;
             this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button2.Location = new System.Drawing.Point(13, 40);
+            this.c1Button2.Location = new System.Drawing.Point(13, 110);
             this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
             this.c1Button2.Name = "c1Button2";
             this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
@@ -412,6 +448,12 @@
             this.c1Button2.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Black;
             this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Black;
             this.c1Button2.Click += new System.EventHandler(this.c1Button2_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "log";
+            this.saveFileDialog1.FileName = "NationalDatabaseLog.log";
+            this.saveFileDialog1.Filter = " (*.log)|*.log";
             // 
             // SettingsDashboard
             // 
@@ -473,5 +515,8 @@
         private C1.Win.C1Input.C1Button c1Button2;
         private C1.Win.C1Input.C1Button saveCountry;
         private C1.Win.C1Input.C1Button btnSaveDiseases;
+        private Controls.H3bLabel h3bLabel3;
+        private C1.Win.C1Input.C1Button btnSaveLog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

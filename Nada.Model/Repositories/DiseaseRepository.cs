@@ -624,7 +624,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
-                                UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy") + " by " +
+                                UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
                                 IsRequired = reader.GetValueOrDefault<bool>("IsRequired"),

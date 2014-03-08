@@ -1955,7 +1955,7 @@ Fixed / Mobile</value>
     <value>Ministry of Water</value>
   </data>
   <data name="MustBeDate" xml:space="preserve">
-    <value>Must be a valid date (mm/dd/yyyy)</value>
+    <value>Must be a valid date</value>
   </data>
   <data name="MustBeGreaterThanZero" xml:space="preserve">
     <value>Must be greater than zero</value>
@@ -4146,7 +4146,7 @@ Fixed / Mobile</value>
     <value>Lymphatic filariasis Sentinel/Spot Check Site Survey</value>
   </data>
   <data name="SurOnchoAssesments" xml:space="preserve">
-    <value>Oncho Assement</value>
+    <value>Onchocerciasis (River blindness) Assessment</value>
   </data>
   <data name="SurOnchoMapping" xml:space="preserve">
     <value>Onchocerciasis (River blindness) Mapping</value>
@@ -4969,5 +4969,53 @@ Fixed / Mobile</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Open</value>
+  </data>
+  <data name="CreateCopyOfErrorLogFile" xml:space="preserve">
+    <value>Create copy of error log file.</value>
+  </data>
+  <data name="RetrieveLogFile" xml:space="preserve">
+    <value>Retrieve log file</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Checking for updates...</value>
+  </data>
+  <data name="UpdateExecute" xml:space="preserve">
+    <value>Run Update</value>
+  </data>
+  <data name="UpdateFound" xml:space="preserve">
+    <value>There is a new version of this application, would you like to update?</value>
+  </data>
+  <data name="UpdateNoInternet" xml:space="preserve">
+    <value>Please verify your internet connection is working and try again.</value>
+  </data>
+  <data name="UpdateRestart" xml:space="preserve">
+    <value>The application has been upgraded, and will now restart.</value>
+  </data>
+  <data name="ApplicationUpdate" xml:space="preserve">
+    <value>Application update</value>
+  </data>
+  <data name="DatabaseScriptException" xml:space="preserve">
+    <value>Database script exception</value>
+  </data>
+  <data name="DatabaseScriptFailed" xml:space="preserve">
+    <value>Database scripts failed</value>
+  </data>
+  <data name="DatabaseScripts" xml:space="preserve">
+    <value>You must update your database with the latest scripts before continuing.  Please click "Next" to start.</value>
+  </data>
+  <data name="DatabaseScriptsExecuting" xml:space="preserve">
+    <value>Executing database scripts...</value>
+  </data>
+  <data name="DatabaseScriptSuccess" xml:space="preserve">
+    <value>Database script successfully executed.</value>
+  </data>
+  <data name="DatabaseUpdate" xml:space="preserve">
+    <value>Database update</value>
+  </data>
+  <data name="UpdateCompleteErrors" xml:space="preserve">
+    <value>Update complete, please ensure there are no errors below</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
   </data>
 </root>

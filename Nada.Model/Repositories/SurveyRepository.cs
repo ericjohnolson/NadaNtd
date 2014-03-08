@@ -57,7 +57,7 @@ namespace Nada.Model.Repositories
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
                                 EndDate = reader.GetValueOrDefault<DateTime>("EndDate"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString()
 
                             });
                         }
@@ -648,7 +648,8 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 SurveyTypeName = name,
-                                DiseaseType = reader.GetValueOrDefault<string>("DiseaseType")
+                                DiseaseType = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseType"),
+                                    reader.GetValueOrDefault<string>("DiseaseType"))
                             });
                         }
                         reader.Close();
@@ -733,7 +734,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
-                                UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy") + " by " +
+                                UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
                                 IsRequired = reader.GetValueOrDefault<bool>("IsRequired"),
@@ -995,7 +996,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString()
                             });
                         }
                         reader.Close();
@@ -1014,9 +1015,8 @@ namespace Nada.Model.Repositories
         #region Private Methods
         private void SaveSurveyBase(OleDbCommand command, OleDbConnection connection, SurveyBase survey, int userId)
         {
-            // Mapping year reported
             survey.MapIndicatorsToProperties();
-            // Find all Year and Year Reported
+         
             if (survey.Id > 0)
                 command = new OleDbCommand(@"UPDATE Surveys SET SurveyTypeId=@SurveyTypeId, DateReported=@DateReported, StartDate=@StartDate,
                            EndDate=@EndDate, SiteType=@SiteType, SpotCheckName=@SpotCheckName, SpotCheckLat=@SpotCheckLat, SpotCheckLng=@SpotCheckLng,

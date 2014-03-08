@@ -60,22 +60,21 @@ namespace Nada.UI.ViewModel
 
         public static Control CreateDate(Indicator indicator, string val, ErrorProvider indicatorErrors, List<DynamicContainer> controlList)
         {
-            DateTime d;
             var container = new DynamicContainer { Indicator = indicator };
-            var cntrl = new DateTimePicker { Name = "dynamicDt" + indicator.Id.ToString(), Width = 220, Margin = new Padding(0, 5, 10, bottomPadding) };
+            var cntrl = new NullableDatePickerControl
+            {
+                Name = "dynamicDt" + indicator.Id.ToString(),
+                Margin = new Padding(0, 5, 10, bottomPadding),
+                ShowClear = !indicator.IsRequired
+            };
             container.IsValid = () =>
             {
-                if (indicator.IsRequired && (cntrl.Text == "" || cntrl.Text == null))
+                if (indicator.IsRequired && cntrl.GetValue() == DateTime.MinValue)
                 {
                     indicatorErrors.SetError(cntrl, Translations.Required);
                     return false;
                 }
-                else if (!string.IsNullOrEmpty(cntrl.Text) && !DateTime.TryParse(cntrl.Text, out d))
-                {
-                    indicatorErrors.SetError(cntrl, Translations.MustBeDate);
-                    return false;
-                }
-                
+
                 indicatorErrors.SetError(cntrl, "");
                 return true;
             };
@@ -84,9 +83,15 @@ namespace Nada.UI.ViewModel
             if (DateTime.TryParse(val, out dt))
                 cntrl.Value = dt;
             else
-                cntrl.Value = DateTime.Now;
+                cntrl.Value = DateTime.MinValue;
 
-            container.GetValue = () => { return cntrl.Value.ToString("MM/dd/yyyy"); };
+            container.GetValue = () => 
+            {
+                if (cntrl.GetValue() == DateTime.MinValue)
+                    return "";
+                else
+                    return cntrl.GetValue().ToShortDateString(); 
+            };
             controlList.Add(container);
             return cntrl;
         }
@@ -144,6 +149,10 @@ namespace Nada.UI.ViewModel
             List<IndicatorDropdownValue> availableValues = new List<IndicatorDropdownValue>();
             var container = new DynamicContainer { Indicator = indicator };
             var cntrl = new ComboBox { Name = "dynamicCombo" + indicator.Id.ToString(), Width = 220, Margin = new Padding(0, 5, 10, bottomPadding), DropDownStyle = ComboBoxStyle.DropDownList };
+
+            if (!indicator.IsRequired)
+                cntrl.Items.Add(new IndicatorDropdownValue { DisplayName = "", Id = -1 });
+
             foreach (IndicatorDropdownValue v in dropdownKeys.Where(k => k.IndicatorId == indicator.Id).OrderBy(i => i.SortOrder))
             {
                 cntrl.Items.Add(v);
@@ -177,7 +186,7 @@ namespace Nada.UI.ViewModel
 
             container.GetValue = () =>
             {
-                if (cntrl.SelectedItem == null)
+                if (cntrl.SelectedItem == null || ((IndicatorDropdownValue)cntrl.SelectedItem).Id == -1)
                     return null;
                 return ((IndicatorDropdownValue)cntrl.SelectedItem).DisplayName;
             };
@@ -288,7 +297,7 @@ namespace Nada.UI.ViewModel
             else
                 return cntrl;
         }
-              
+
         public static Control CreatePartners(Indicator indicator, string val, ErrorProvider indicatorErrors, List<DynamicContainer> controlList)
         {
             var container = new DynamicContainer { Indicator = indicator };

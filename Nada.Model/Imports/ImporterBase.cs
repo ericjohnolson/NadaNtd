@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Excel;
 using Nada.Globalization;
 using Nada.Model.Imports;
@@ -44,6 +46,8 @@ namespace Nada.Model
         public virtual void CreateImportFile(string filename, List<AdminLevel> adminLevels)
         {
             LoadRelatedLists();
+            System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
             Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
             Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
@@ -56,8 +60,8 @@ namespace Nada.Model
             xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
 
             // row 1 column headers
-            xlsWorksheet.Cells[1, 1] = Translations.Location + "#";
-            xlsWorksheet.Cells[1, 2] = Translations.Location;
+            xlsWorksheet.Cells[1, 1] = TranslationLookup.GetValue("Location") + "#";
+            xlsWorksheet.Cells[1, 2] = TranslationLookup.GetValue("Location");
             int xlsColCount = 2;
             xlsColCount += AddTypeSpecific(xlsWorksheet);
             int colCountAfterStatic = xlsColCount;
@@ -72,7 +76,7 @@ namespace Nada.Model
                 xlsWorksheet.Cells[1, xlsColCount] = TranslationLookup.GetValue(item.Key, item.Key);
                 ColumnIdToIndicator.Add(xlsColCount, item.Value);
             }
-            xlsWorksheet.Cells[1, xlsColCount + 1] = Translations.Notes;
+            xlsWorksheet.Cells[1, xlsColCount + 1] = TranslationLookup.GetValue("Notes");
 
             // row 2+ admin levels
             int xlsRowCount = 2;
@@ -80,14 +84,14 @@ namespace Nada.Model
             {
                 xlsWorksheet.Cells[xlsRowCount, 1] = l.Id;
                 xlsWorksheet.Cells[xlsRowCount, 2] = l.Name;
-                AddTypeSpecificLists(xlsWorksheet, l.Id, xlsRowCount);
+                AddTypeSpecificLists(xlsWorksheet, l.Id, xlsRowCount, oldCI);
                 int colCount = colCountAfterStatic;
                 foreach (var key in Indicators.Keys)
                 {
                     if (Indicators[key].DataTypeId == (int)IndicatorDataType.SentinelSite || Indicators[key].IsCalculated || Indicators[key].IsMetaData)
                         continue;
                     colCount++;
-                    AddValueToCell(xlsWorksheet, colCount, xlsRowCount, "", Indicators[key]);
+                    AddValueToCell(xlsWorksheet, colCount, xlsRowCount, "", Indicators[key], oldCI);
                 }
                 xlsRowCount++;
             }
@@ -107,9 +111,10 @@ namespace Nada.Model
             xlsWorksheet = null;
             xlsWorkbook = null;
             xlsApp = null;
+            System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
         }
 
-        protected virtual void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int adminLevelId, int r)
+        protected virtual void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int adminLevelId, int r, CultureInfo currentCulture)
         {
 
         }
@@ -119,22 +124,22 @@ namespace Nada.Model
             return 0;
         }
 
-        private void AddValueToCell(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int c, int r, string value, Indicator indicator)
+        private void AddValueToCell(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int c, int r, string value, Indicator indicator, CultureInfo currentCulture)
         {
             if (indicator.DataTypeId == (int)IndicatorDataType.Partners)
-                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", Util.ProduceEnumeration(partners.Select(p => p.DisplayName).ToList()));
+                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", Util.ProduceEnumeration(partners.Select(p => p.DisplayName).ToList()), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.EvaluationUnit)
-                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", eus.Select(p => p.DisplayName).ToList());
+                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", eus.Select(p => p.DisplayName).ToList(), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.EcologicalZone)
-                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", ezs.Select(p => p.DisplayName).ToList());
+                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", ezs.Select(p => p.DisplayName).ToList(), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.Multiselect)
                 AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "",
-                    Util.ProduceEnumeration(DropDownValues.Where(i => i.IndicatorId == indicator.Id).Select(p => p.DisplayName).ToList()));
+                    Util.ProduceEnumeration(DropDownValues.Where(i => i.IndicatorId == indicator.Id).Select(p => p.DisplayName).ToList()), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.Dropdown)
                 AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "",
-                    DropDownValues.Where(i => i.IndicatorId == indicator.Id).Select(p => p.DisplayName).ToList());
+                    DropDownValues.Where(i => i.IndicatorId == indicator.Id).Select(p => p.DisplayName).ToList(), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.Month)
-                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", months.Select(p => p.Name).ToList());
+                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", months.Select(p => p.Name).ToList(), currentCulture);
             else
                 xlsWorksheet.Cells[r, c] = value;
 
@@ -148,12 +153,12 @@ namespace Nada.Model
                 DataSet ds = LoadDataFromFile(filePath);
 
                 if (ds.Tables.Count == 0)
-                    return new ImportResult(Translations.NoDataFound);
+                    return new ImportResult(TranslationLookup.GetValue("NoDataFound"));
                 return MapAndSaveObjects(ds, userId);
             }
             catch (Exception ex)
             {
-                return new ImportResult(Translations.UnexpectedException + ex.Message);
+                return new ImportResult(TranslationLookup.GetValue("UnexpectedException") + ex.Message);
             }
         }
 
@@ -161,7 +166,6 @@ namespace Nada.Model
         {
             throw new NotImplementedException();
         }
-
 
         protected DataSet LoadDataFromFile(string filePath)
         {
@@ -193,7 +197,7 @@ namespace Nada.Model
             {
                 if (translatedIndicators.ContainsKey(col.ColumnName))
                 {
-                    string val = row[col].ToString();
+                    string val = row[col].ToString().Trim();
                     Indicator curInd = translatedIndicators[col.ColumnName];
 
                     errors += GetValueAndValidate(curInd, ref val, col.ColumnName);
@@ -228,23 +232,23 @@ namespace Nada.Model
             DateTime dt = new DateTime();
 
             if (indicator.IsRequired && string.IsNullOrEmpty(val))
-                return name + ": " + Translations.IsRequired + Environment.NewLine;
+                return name + ": " + TranslationLookup.GetValue("IsRequired") + Environment.NewLine;
 
             switch (indicator.DataTypeId)
             {
                 case (int)IndicatorDataType.Date:
                     if (val.Length > 0 && !DateTime.TryParse(val, out dt))
-                        return name + ": " + Translations.MustBeDate + Environment.NewLine;
+                        return name + ": " + TranslationLookup.GetValue("MustBeDate") + Environment.NewLine;
                     else
-                        val = dt.ToString("MM/dd/yyyy");
+                        val = dt.ToShortDateString();
                     break;
                 case (int)IndicatorDataType.Number:
                     if (val.Length > 0 && !Double.TryParse(val, out d))
-                        return name + ": " + Translations.MustBeNumber + Environment.NewLine;
+                        return name + ": " + TranslationLookup.GetValue("MustBeNumber") + Environment.NewLine;
                     break;
                 case (int)IndicatorDataType.Year:
-                    if (val.Length > 0 && !int.TryParse(val, out i) || (i > 2100 || i < 1900))
-                        return name + ": " + Translations.ValidYear + Environment.NewLine;
+                    if (val.Length > 0 && (!int.TryParse(val, out i) || (i > 2100 || i < 1900)))
+                        return name + ": " + TranslationLookup.GetValue("ValidYear") + Environment.NewLine;
                     break;
                 case (int)IndicatorDataType.YesNo:
                     bool isChecked = false;
@@ -253,7 +257,7 @@ namespace Nada.Model
                     else if (val.ToLower() == "yes")
                         val = "true";
                     if (val.Length > 0 && !Boolean.TryParse(val, out isChecked))
-                        return name + ": " + Translations.MustBeYesNo + Environment.NewLine;
+                        return name + ": " + TranslationLookup.GetValue("MustBeYesNo") + Environment.NewLine;
                     val = isChecked.ToString();
                     break;
                 case (int)IndicatorDataType.Multiselect:
@@ -286,7 +290,7 @@ namespace Nada.Model
 
             // Values are manipulated in the above loop, double check if now they are required because invalid.
             if (indicator.IsRequired && string.IsNullOrEmpty(val))
-                return name + ": " + Translations.IsRequired + Environment.NewLine;
+                return name + ": " + TranslationLookup.GetValue("IsRequired") + Environment.NewLine;
 
             return "";
         }
@@ -301,7 +305,7 @@ namespace Nada.Model
         /// <param name="validationValues">List of available values for selection of the cell. No other value, than this list is allowed to be used.</param>
         /// <exception cref="Exception">Thrown, if an error occurs, or the worksheet was null.</exception>
         public static void AddDataValidation(Microsoft.Office.Interop.Excel.Worksheet worksheet, string col, int row,
-            string title, string message, List<string> validationValues)
+            string title, string message, List<string> validationValues, CultureInfo currentCulture)
         {
             if (validationValues == null || validationValues.Count == 0)
                 return;
@@ -314,7 +318,12 @@ namespace Nada.Model
                 //The validation requires a ';'-separated list of values, that goes as the restrictions-parameter.
                 //Fold the list, so you can add it as restriction. (Result is "Value1;Value2;Value3")
                 //If you use another separation-character (e.g in US) change the ; appropriately (e.g. to the ,)
-                string values = string.Join(",", validationValues.ToArray());
+                string values = "";
+                if (currentCulture.TwoLetterISOLanguageName == "en")
+                    values = string.Join(",", validationValues.ToArray());
+                else
+                    values = string.Join(";", validationValues.ToArray());
+
                 //Select the specified cell
                 Microsoft.Office.Interop.Excel.Range cell = (Microsoft.Office.Interop.Excel.Range)worksheet.get_Range(col + row, col + row);
                 //Delete any previous validation
@@ -341,10 +350,10 @@ namespace Nada.Model
         protected virtual DataTable GetDataTable()
         {
             DataTable data = new System.Data.DataTable();
-            data.Columns.Add(new System.Data.DataColumn(Translations.Location + "#"));
-            data.Columns.Add(new System.Data.DataColumn(Translations.Location));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location")));
             AddDynamicIndicators(data);
-            data.Columns.Add(new System.Data.DataColumn(Translations.Notes));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Notes")));
             return data;
         }
 
@@ -370,8 +379,8 @@ namespace Nada.Model
             foreach (AdminLevel l in rows)
             {
                 DataRow row = data.NewRow();
-                row[Translations.Location + "#"] = l.Id;
-                row[Translations.Location] = l.Name;
+                row[TranslationLookup.GetValue("Location") + "#"] = l.Id;
+                row[TranslationLookup.GetValue("Location")] = l.Name;
                 data.Rows.Add(row);
             }
 
@@ -416,13 +425,13 @@ namespace Nada.Model
 
         protected string CreateErrorMessage(string errorMessage)
         {
-            return Translations.ImportErrorHeader + Environment.NewLine + "--------" + Environment.NewLine + errorMessage;
+            return TranslationLookup.GetValue("ImportErrorHeader") + Environment.NewLine + "--------" + Environment.NewLine + errorMessage;
         }
 
         protected string GetObjectErrors(string objerrors, string location)
         {
             if (!string.IsNullOrEmpty(objerrors))
-                return Environment.NewLine + string.Format(Translations.ImportErrors, location) +
+                return Environment.NewLine + string.Format(TranslationLookup.GetValue("ImportErrors"), location) +
                     Environment.NewLine + "--------" + Environment.NewLine + objerrors;
             return "";
         }

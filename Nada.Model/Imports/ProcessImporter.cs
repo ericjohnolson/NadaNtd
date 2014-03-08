@@ -16,7 +16,7 @@ namespace Nada.Model
     public class ProcessImporter : ImporterBase, IImporter
     {
         public override IndicatorEntityType EntityType { get { return IndicatorEntityType.Process; } }
-        public override string ImportName { get { return Translations.ProcessIndicators + " " + Translations.Import; } }
+        public override string ImportName { get { return TranslationLookup.GetValue("ProcessIndicators") + " " + TranslationLookup.GetValue("Import"); } }
         private ProcessRepository repo = new ProcessRepository();
         private ProcessType type = null;
         public ProcessImporter()
@@ -48,12 +48,12 @@ namespace Nada.Model
 
                 string objerrors = "";
                 var obj = repo.Create(type.Id);
-                obj.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
-                obj.Notes = row[Translations.Notes].ToString();
+                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
+                obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[Translations.Location].ToString());
+                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("Location")].ToString());
                 objs.Add(obj);
             }
 
@@ -66,7 +66,7 @@ namespace Nada.Model
             {
                 WasSuccess = true,
                 Count = objs.Count,
-                Message = string.Format(Translations.ImportSuccess, objs.Count)
+                Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), objs.Count)
             };
         }
 

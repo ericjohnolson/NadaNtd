@@ -125,7 +125,7 @@ namespace Nada.UI.View
                 if (DateTime.TryParse(val, out dt))
                     cntrl.Value = dt;
 
-                container.GetValue = () => { return cntrl.Value.ToString("MM/dd/yyyy"); };
+                container.GetValue = () => { return cntrl.Value.ToShortDateString(); };
                 controlList.Add(container);
                 return cntrl;
             }

@@ -31,12 +31,14 @@ namespace Nada.Globalization
     {
         private static ResourceManager rm = null;
         private static List<string> keys = null;
+        private static CultureInfo initializedCulture = null;
 
         public static void Initialize()
         {
             rm = new ResourceManager("Nada.Globalization.Translations", typeof(GlobalizationUtil).Assembly);
             keys = new List<string>();
 
+            initializedCulture = CultureInfo.CurrentCulture;
             ResourceSet set = rm.GetResourceSet(CultureInfo.CurrentCulture, true, true);
             foreach (DictionaryEntry o in set)
             {
@@ -52,7 +54,7 @@ namespace Nada.Globalization
         public static string GetValue(string key, string def)
         {
             if (key != null && rm !=null && !string.IsNullOrEmpty(key.ToString()) && keys.Contains(key))
-                return rm.GetString(key);
+                return rm.GetString(key, initializedCulture);
             return def;
         }
     }

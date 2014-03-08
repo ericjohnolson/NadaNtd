@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Nada.UI.AppLogic;
-
 using Nada.UI.View.Reports.CustomReport;
 using Nada.Model.Reports;
 using Nada.Globalization;
@@ -144,6 +143,17 @@ namespace Nada.UI.View
             diseases.SaveSelectedDiseases(selected, true, userId);
             diseases.SaveSelectedDiseases(available, false, userId);
             OnClose();
+        }
+
+        private void btnSaveLog_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string sourceFilePath = Path.Combine(
+                  System.Windows.Forms.Application.StartupPath, "NationalDatabaseLog.log");
+                File.Copy(sourceFilePath, saveFileDialog1.FileName, true);
+                System.Diagnostics.Process.Start("notepad.exe", saveFileDialog1.FileName);
+            }
         }
     }
 }

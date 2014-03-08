@@ -16,7 +16,7 @@ namespace Nada.Model.Intervention
         }
         public Nullable<int> AdminLevelId { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public Nullable<DateTime> EndDate { get; set; }
         public IntvType IntvType { get; set; }
         public DateTime DateReported { get; set; }
         public Nullable<int> PcIntvRoundNumber { get; set; }
@@ -28,7 +28,7 @@ namespace Nada.Model.Intervention
             DateReported = Convert.ToDateTime(inds["DateReported"].DynamicValue);
             if(inds.ContainsKey("PcIntvStartDateOfMda"))
                 StartDate = Convert.ToDateTime(inds["PcIntvStartDateOfMda"].DynamicValue);
-            if (inds.ContainsKey("PcIntvEndDateOfMda"))
+            if (inds.ContainsKey("PcIntvEndDateOfMda") && !string.IsNullOrEmpty(inds["PcIntvEndDateOfMda"].DynamicValue))
                 EndDate = Convert.ToDateTime(inds["PcIntvEndDateOfMda"].DynamicValue);
             if (inds.ContainsKey("PcIntvRoundNumber"))
             {

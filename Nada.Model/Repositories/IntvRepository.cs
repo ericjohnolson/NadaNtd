@@ -93,7 +93,7 @@ namespace Nada.Model.Repositories
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
                                 DateReported = reader.GetValueOrDefault<DateTime>("DateReported"),
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
-                                EndDate = reader.GetValueOrDefault<DateTime>("EndDate"),
+                                EndDate = reader.GetValueOrDefault<Nullable<DateTime>>("EndDate"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
                                 UpdatedBy = GetAuditInfo(reader)
 
@@ -138,7 +138,8 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 IntvTypeName = name,
-                                DiseaseType = reader.GetValueOrDefault<string>("DiseaseType")
+                                DiseaseType = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseType"),
+                                    reader.GetValueOrDefault<string>("DiseaseType"))
                             });
                         }
                         reader.Close();
@@ -222,7 +223,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
-                                UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy") + " by " +
+                                UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
                                 IsRequired = reader.GetValueOrDefault<bool>("IsRequired"),
@@ -791,7 +792,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy")
+                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString()
                             });
                         }
                         reader.Close();
@@ -923,7 +924,7 @@ namespace Nada.Model.Repositories
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@DateReported", intv.DateReported));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@PcIntvRoundNumber", intv.PcIntvRoundNumber));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", intv.StartDate));
-            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@EndDate", intv.EndDate));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@EndDate", intv.EndDate));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", intv.Notes));
             command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));

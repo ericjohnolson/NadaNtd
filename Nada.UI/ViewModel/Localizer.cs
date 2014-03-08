@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
@@ -35,8 +36,9 @@ namespace Nada.UI.AppLogic
         {
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            TranslationLookup.Initialize();
         }
-
+        
         public static string GetCultureName()
         {
             return Thread.CurrentThread.CurrentUICulture.Name;

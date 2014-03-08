@@ -15,6 +15,6 @@ namespace Nada.Model.Intervention
         public int TypeId { get; set; }
         public DateTime DateReported { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public Nullable<DateTime> EndDate { get; set; }
      }
 }

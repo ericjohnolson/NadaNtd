@@ -110,13 +110,13 @@ namespace Nada.Model.Repositories
 
         public string GetAuditInfo(OleDbDataReader reader)
         {
-            return Translations.AuditCreated + ": " + reader.GetValueOrDefault<string>("CreatedBy") + " on " + reader.GetValueOrDefault<DateTime>("CreatedAt").ToString("MM/dd/yyyy")
-                   + ", " + Translations.AuditUpdated + ": " + reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
+            return Translations.AuditCreated + ": " + reader.GetValueOrDefault<string>("CreatedBy") + " on " + reader.GetValueOrDefault<DateTime>("CreatedAt").ToShortDateString()
+                   + ", " + Translations.AuditUpdated + ": " + reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString();
         }
 
         public string GetAuditInfoUpdate(OleDbDataReader reader)
         {
-            return Translations.AuditUpdated + ": " + reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToString("MM/dd/yyyy");
+            return Translations.AuditUpdated + ": " + reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString();
         }
         
     }

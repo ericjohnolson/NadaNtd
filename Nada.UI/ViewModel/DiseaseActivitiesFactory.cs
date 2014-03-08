@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Base;
 using Nada.Model.Demography;
@@ -119,7 +120,7 @@ namespace Nada.UI.AppLogic
             if (type.Id < 1)
                 return null;
 
-            if (type.DiseaseType == "CM")
+            if (type.DiseaseType == Translations.CM)
                 return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, type.Id, new CalcDistro()));
 
             return new DataEntryEdit(new DiseaseDistroPcVm(adminLevel, type.Id, new CalcDistro()));
@@ -128,7 +129,7 @@ namespace Nada.UI.AppLogic
         public IView GetDiseaseDistro(DiseaseDistroDetails details)
         {
             DiseaseDistroCm model = diseases.GetDiseaseDistributionCm(details.Id, details.TypeId);
-            if (model.Disease.DiseaseType == "CM")
+            if (model.Disease.DiseaseType == Translations.CM)
                 return new DataEntryEdit(new DiseaseDistroCmVm(adminLevel, model, new CalcDistro()));
             
             DiseaseDistroPc modelPc = diseases.GetDiseaseDistribution(details.Id, details.TypeId);

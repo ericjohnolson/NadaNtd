@@ -15,14 +15,14 @@ namespace Nada.Model
     public class DistroImporter : ImporterBase, IImporter
     {
         public override IndicatorEntityType EntityType { get { return IndicatorEntityType.DiseaseDistribution; } }
-        public override string ImportName { get { return Translations.DiseaseDistribution +" " + Translations.Import; } }
+        public override string ImportName { get { return TranslationLookup.GetValue("DiseaseDistribution") + " " + TranslationLookup.GetValue("Import"); } }
         private DiseaseDistroPc type = null;
         private DiseaseDistroCm cmType = null;
         DiseaseRepository repo = new DiseaseRepository();
         protected override void SetSpecificType(int id)
         {
            var d = repo.GetDiseaseById(id);
-           if (d.DiseaseType == "CM")
+           if (d.DiseaseType == Translations.CM)
            {
                cmType = repo.CreateCm((DiseaseType)d.Id);
                Indicators = cmType.Indicators;
@@ -60,12 +60,12 @@ namespace Nada.Model
             {
                 string objerrors = "";
                 var obj = repo.Create((DiseaseType)type.Disease.Id);
-                obj.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
-                obj.Notes = row[Translations.Notes].ToString();
+                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
+                obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[Translations.Location].ToString());
+                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("Location")].ToString());
                 objs.Add(obj);
             }
 
@@ -78,7 +78,7 @@ namespace Nada.Model
             {
                 WasSuccess = true,
                 Count = objs.Count,
-                Message = string.Format(Translations.ImportSuccess, objs.Count)
+                Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), objs.Count)
             };
         }
         private ImportResult MapAndSaveObjectsCm(DataSet ds, int userId)
@@ -89,12 +89,12 @@ namespace Nada.Model
             {
                 string objerrors = "";
                 var obj = repo.CreateCm((DiseaseType)cmType.Disease.Id);
-                obj.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
-                obj.Notes = row[Translations.Notes].ToString();
+                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
+                obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[Translations.Location].ToString());
+                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("Location")].ToString());
                 objs.Add(obj);
             }
 
@@ -107,7 +107,7 @@ namespace Nada.Model
             {
                 WasSuccess = true,
                 Count = objs.Count,
-                Message = string.Format(Translations.ImportSuccess, objs.Count)
+                Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), objs.Count)
             };
         }
 

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.OleDb;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Nada.DA;
+using Nada.Globalization;
 
 namespace Nada.Model.Repositories
 {
@@ -32,6 +34,11 @@ namespace Nada.Model.Repositories
 
     public class SettingsRepository : RepositoryBase
     {
+        Logger logger = new Logger();
+        public SettingsRepository()
+        {
+
+        }
         #region Shared
         public StartUpStatus GetStartUpStatus()
         {
@@ -676,6 +683,102 @@ namespace Nada.Model.Repositories
         }
         #endregion
 
+        #region Database Updates
+        public string RunSchemaChangeScripts(List<string> files)
+        {
+            bool transWasStarted = false;
 
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    foreach (string fileName in files)
+                    {
+                        FileInfo file = new FileInfo(fileName);
+                        string script = file.OpenText().ReadToEnd();
+                        string[] commands = script.Split(';');
+                        foreach (string cmdText in commands)
+                        {
+                            if (cmdText.Trim().Length == 0)
+                                continue;
+
+                            command = new OleDbCommand(cmdText, connection);
+                            command.ExecuteNonQuery();
+                        }
+                        file.OpenText().Close();
+                    }
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                    return "";
+                }
+                catch (Exception ex)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    logger.Error("Error RunSchemaChangeScripts: " + ex.Message + "(" + String.Join(", ", files.ToArray()) + ")", ex); 
+                    return Translations.DatabaseScriptException + ": " + ex.Message;
+                }
+            }
+        }
+
+        public List<string> GetSchemaChangeScripts(string scriptsDirectory)
+        {
+            List<string> filesToRun = new List<string>();
+            string lastFileUpdated = "";
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand("Select top 1 ScriptName from SchemaChangeLog Order By ID DESC", connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            lastFileUpdated = reader.GetValueOrDefault<string>("ScriptName");
+                        }
+                        reader.Close();
+                    }
+                    var files = from file in Directory.GetFiles(scriptsDirectory)
+                                orderby file ascending
+                                select file;
+
+                    filesToRun = files.ToList();
+                    filesToRun.RemoveAll(n => String.Compare(n, scriptsDirectory + lastFileUpdated) <= 0);
+                    return filesToRun;
+                }
+                catch (OleDbException ex)
+                {
+                    if (ex.Message.Contains("SchemaChangeLog"))
+                    {
+                        RunSchemaChangeScripts(new List<string> { scriptsDirectory + "00SchemaChangeLog.sql" });
+                        return GetSchemaChangeScripts(scriptsDirectory);
+                    }
+                    logger.Error("Error GetSchemaChangeScripts: " + ex.Message, ex); 
+                }
+                return new List<string>();
+            }
+        }
+        #endregion
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Excel;
 using Nada.Globalization;
 using Nada.Model.Diseases;
@@ -25,6 +27,14 @@ namespace Nada.Model
 
         public void CreateUpdateFile(string filename)
         {
+            // Get data
+            var cDemo = demo.GetCountryDemoRecent();
+            var levels = demo.GetRecentDemography(locationType.LevelNumber, cDemo.DateDemographyData.Year);
+            DataTable data = CreateUpdateDataTable(levels);
+
+            // Create excel
+            System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
             Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
             Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
@@ -37,10 +47,6 @@ namespace Nada.Model
             xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
 
             // Load data into excel worksheet
-            var cDemo = demo.GetCountryDemoRecent();
-            var levels = demo.GetRecentDemography(locationType.LevelNumber, cDemo.DateDemographyData.Year);
-            DataTable data = CreateUpdateDataTable(levels);
-
             AddTableToWorksheet(data, xlsWorksheet);
 
             xlsApp.DisplayAlerts = false;
@@ -52,48 +58,49 @@ namespace Nada.Model
             xlsWorksheet = null;
             xlsWorkbook = null;
             xlsApp = null;
+            System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
         }
 
         protected DataTable CreateUpdateDataTable(List<AdminLevelDemography> levels)
         {
             DataTable data = new System.Data.DataTable();
-            data.Columns.Add(new System.Data.DataColumn(Translations.ID + "#"));
-            data.Columns.Add(new System.Data.DataColumn(Translations.Location + "#"));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("ID") + "#"));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
             data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
-            data.Columns.Add(new System.Data.DataColumn(Translations.YearCensus));
-            data.Columns.Add(new System.Data.DataColumn(Translations.YearProjections));
-            data.Columns.Add(new System.Data.DataColumn(Translations.GrowthRate));
-            data.Columns.Add(new System.Data.DataColumn(Translations.TotalPopulation));
-            data.Columns.Add(new System.Data.DataColumn(Translations.Pop0Month));
-            data.Columns.Add(new System.Data.DataColumn(Translations.PopPsac));
-            data.Columns.Add(new System.Data.DataColumn(Translations.PopSac));
-            data.Columns.Add(new System.Data.DataColumn(Translations.Pop5yo));
-            data.Columns.Add(new System.Data.DataColumn(Translations.PopAdult));
-            data.Columns.Add(new System.Data.DataColumn(Translations.PopFemale));
-            data.Columns.Add(new System.Data.DataColumn(Translations.PopMale));
-            data.Columns.Add(new System.Data.DataColumn(Translations.PercentRural));
-            data.Columns.Add(new System.Data.DataColumn(Translations.Notes));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("YearCensus")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("YearProjections")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("GrowthRate")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("TotalPopulation")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Pop0Month")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopPsac")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopSac")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Pop5yo")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopAdult")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopFemale")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopMale")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PercentRural")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Notes")));
 
             // Add rows to data table
             foreach (AdminLevelDemography l in levels)
             {
                 DataRow row = data.NewRow();
-                row[Translations.ID + "#"] = l.Id;
-                row[Translations.Location + "#"] = l.AdminLevelId;
+                row[TranslationLookup.GetValue("ID") + "#"] = l.Id;
+                row[TranslationLookup.GetValue("Location") + "#"] = l.AdminLevelId;
                 row[locationType.DisplayName] = l.NameDisplayOnly;
-                row[Translations.YearCensus] = l.YearCensus;
-                row[Translations.YearProjections] = l.YearProjections;
-                row[Translations.GrowthRate] = l.GrowthRate;
-                row[Translations.TotalPopulation] = l.TotalPopulation;
-                row[Translations.Pop0Month] = l.Pop0Month;
-                row[Translations.PopPsac] = l.PopPsac;
-                row[Translations.PopSac] = l.PopSac;
-                row[Translations.Pop5yo] = l.Pop5yo;
-                row[Translations.PopAdult] = l.PopAdult;
-                row[Translations.PopFemale] = l.PopFemale;
-                row[Translations.PopMale] = l.PopMale;
-                row[Translations.PercentRural] = l.PercentRural;
-                row[Translations.Notes] = l.Notes;
+                row[TranslationLookup.GetValue("YearCensus")] = l.YearCensus;
+                row[TranslationLookup.GetValue("YearProjections")] = l.YearProjections;
+                row[TranslationLookup.GetValue("GrowthRate")] = l.GrowthRate;
+                row[TranslationLookup.GetValue("TotalPopulation")] = l.TotalPopulation;
+                row[TranslationLookup.GetValue("Pop0Month")] = l.Pop0Month;
+                row[TranslationLookup.GetValue("PopPsac")] = l.PopPsac;
+                row[TranslationLookup.GetValue("PopSac")] = l.PopSac;
+                row[TranslationLookup.GetValue("Pop5yo")] = l.Pop5yo;
+                row[TranslationLookup.GetValue("PopAdult")] = l.PopAdult;
+                row[TranslationLookup.GetValue("PopFemale")] = l.PopFemale;
+                row[TranslationLookup.GetValue("PopMale")] = l.PopMale;
+                row[TranslationLookup.GetValue("PercentRural")] = l.PercentRural;
+                row[TranslationLookup.GetValue("Notes")] = l.Notes;
                 data.Rows.Add(row);
             }
             return data;
@@ -103,60 +110,61 @@ namespace Nada.Model
         {
             try
             {
+                System.Globalization.CultureInfo cultureEn = new System.Globalization.CultureInfo("en-US");
                 DataSet ds = LoadDataFromFile(filePath);
 
                 if (ds.Tables.Count == 0)
-                    return new ImportResult(Translations.NoDataFound);
+                    return new ImportResult(TranslationLookup.GetValue("NoDataFound"));
 
                 string errorMessage = "";
                 List<AdminLevelDemography> demos = new List<AdminLevelDemography>();
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     var demography = new AdminLevelDemography();
-                    if(ds.Tables[0].Columns.Contains(Translations.ID + "#"))
-                        demography.Id = Convert.ToInt32(row[Translations.ID + "#"]);
-                    demography.AdminLevelId = Convert.ToInt32(row[Translations.Location + "#"]);
-                    demography.Notes = row[Translations.Notes].ToString();
+                    if (ds.Tables[0].Columns.Contains(TranslationLookup.GetValue("ID") + "#"))
+                        demography.Id = Convert.ToInt32(row[TranslationLookup.GetValue("ID") + "#"]);
+                    demography.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
+                    demography.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                     demography.DateDemographyData = dateReported;
                     // need to do the required validation, do all and then show errors
                     int i = 0;
-                    if (int.TryParse(row[Translations.YearCensus].ToString(), out i))
+                    if (int.TryParse(row[TranslationLookup.GetValue("YearCensus")].ToString(), out i))
                         demography.YearCensus = i;
-                    if (int.TryParse(row[Translations.YearProjections].ToString(), out i))
+                    if (int.TryParse(row[TranslationLookup.GetValue("YearProjections")].ToString(), out i))
                         demography.YearProjections = i;
 
                     double d = 0;
-                    if (double.TryParse(row[Translations.GrowthRate].ToString(), out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("GrowthRate")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.GrowthRate = d;
-                    if (double.TryParse(row[Translations.PopMale].ToString(), out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("PopMale")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.PercentRural = d;
-                    if (double.TryParse(row[Translations.TotalPopulation].ToString(), out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("TotalPopulation")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.TotalPopulation = d;
-                    if (double.TryParse(row[Translations.Pop0Month].ToString(), out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("Pop0Month")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.Pop0Month = d;
-                    if (double.TryParse(row[Translations.PopPsac].ToString(), out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("PopPsac")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.PopPsac = d;
-                    if (double.TryParse(row[Translations.PopSac].ToString(), out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("PopSac")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.PopSac = d;
-                    if (double.TryParse(row[Translations.Pop5yo].ToString(), out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("Pop5yo")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.Pop5yo = d;
-                    if (double.TryParse(row[Translations.PopAdult].ToString(), out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("PopAdult")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.PopAdult = d;
-                    if (double.TryParse(row[Translations.PopFemale].ToString(), out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("PopFemale")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.PopFemale = d;
-                    if (double.TryParse(row[Translations.PopMale].ToString(), out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("PopMale")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.PopMale = d;
 
 
                     var demographyErrors = !demography.IsValid() ? demography.GetAllErrors(true) : "";
                     if (!string.IsNullOrEmpty(demographyErrors))
-                        errorMessage += string.Format(Translations.ImportErrors, row[locationType.DisplayName], "", demographyErrors) + Environment.NewLine;
+                        errorMessage += string.Format(TranslationLookup.GetValue("ImportErrors"), row[locationType.DisplayName], "", demographyErrors) + Environment.NewLine;
 
                     demos.Add(demography);
                 }
 
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return new ImportResult(Translations.ImportErrorHeader + Environment.NewLine + errorMessage);
+                    return new ImportResult(TranslationLookup.GetValue("ImportErrorHeader") + Environment.NewLine + errorMessage);
 
                 demo.Save(demos, userId);
 
@@ -168,12 +176,12 @@ namespace Nada.Model
                 {
                     WasSuccess = true,
                     Count = rec,
-                    Message = string.Format(Translations.ImportSuccess, rec)
+                    Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), rec)
                 };
             }
             catch (Exception ex)
             {
-                return new ImportResult(Translations.UnexpectedException + ex.Message);
+                return new ImportResult(TranslationLookup.GetValue("UnexpectedException") + ex.Message);
             }
         }
 
@@ -195,15 +203,21 @@ namespace Nada.Model
             locationType = l;
         }
 
-        public string ImportName
+        public override string ImportName
         {
-            get { return Translations.ImportAdminLevels + locationType.DisplayName; }
+            get { return TranslationLookup.GetValue("ImportAdminLevels") + locationType.DisplayName; }
         }
 
         public void CreateImportFile(string filename, bool importDemography, int rows, AdminLevel filterLevel)
         {
+            // Get data
             filterBy = filterLevel;
             int dropdownCol = GetParams();
+            DataTable data = CreateNewImportDataTable(importDemography);
+
+            // Create excel
+            System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
             Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
             Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
@@ -215,9 +229,6 @@ namespace Nada.Model
             //Get the first worksheet
             xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
 
-            // Load data into excel worksheet
-            DataTable data = CreateNewImportDataTable(importDemography);
-            
             // Add columns
             int iCol = 0;
             foreach (DataColumn c in data.Columns)
@@ -242,7 +253,7 @@ namespace Nada.Model
                             xlsWorksheet.Cells[r, 1] = filterLevel.Name;
                         if (dropdownCol == i && dropdownValues.Count > 0)
                         {
-                            AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(i), r, dropdownBy.DisplayName, Translations.PleaseSelect, dropdownValues);
+                            AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(i), r, dropdownBy.DisplayName, TranslationLookup.GetValue("PleaseSelect"), dropdownValues, oldCI);
                         }
                     }
                 }
@@ -261,6 +272,7 @@ namespace Nada.Model
             xlsWorksheet = null;
             xlsWorkbook = null;
             xlsApp = null;
+            System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
         }
 
         protected DataTable CreateNewImportDataTable(bool isDemo)
@@ -274,29 +286,29 @@ namespace Nada.Model
                 data.Columns.Add(new System.Data.DataColumn(dropdownBy.DisplayName));
 
             data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
-            data.Columns.Add(new System.Data.DataColumn(Translations.AltSpellingNames));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("AltSpellingNames")));
             if (isDemo)
             {
-                data.Columns.Add(new System.Data.DataColumn(Translations.YearCensus));
-                data.Columns.Add(new System.Data.DataColumn(Translations.YearProjections));
-                data.Columns.Add(new System.Data.DataColumn(Translations.GrowthRate));
-                data.Columns.Add(new System.Data.DataColumn(Translations.TotalPopulation));
-                data.Columns.Add(new System.Data.DataColumn(Translations.Pop0Month));
-                data.Columns.Add(new System.Data.DataColumn(Translations.PopPsac));
-                data.Columns.Add(new System.Data.DataColumn(Translations.PopSac));
-                data.Columns.Add(new System.Data.DataColumn(Translations.Pop5yo));
-                data.Columns.Add(new System.Data.DataColumn(Translations.PopAdult));
-                data.Columns.Add(new System.Data.DataColumn(Translations.PopFemale));
-                data.Columns.Add(new System.Data.DataColumn(Translations.PopMale));
-                data.Columns.Add(new System.Data.DataColumn(Translations.PercentRural));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("YearCensus")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("YearProjections")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("GrowthRate")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("TotalPopulation")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Pop0Month")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopPsac")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopSac")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Pop5yo")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopAdult")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopFemale")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopMale")));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PercentRural")));
             }
-            data.Columns.Add(new System.Data.DataColumn(Translations.LatWho));
-            data.Columns.Add(new System.Data.DataColumn(Translations.LngWho));
-            data.Columns.Add(new System.Data.DataColumn(Translations.LatOther));
-            data.Columns.Add(new System.Data.DataColumn(Translations.LngOther));
-            data.Columns.Add(new System.Data.DataColumn(Translations.UrbanOrRural));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("LatWho")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("LngWho")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("LatOther")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("LngOther")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("UrbanOrRural")));
             if (isDemo)
-                data.Columns.Add(new System.Data.DataColumn(Translations.Notes));
+                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Notes")));
 
             return data;
         }
@@ -306,13 +318,14 @@ namespace Nada.Model
         {
             try
             {
+                System.Globalization.CultureInfo cultureEn = new System.Globalization.CultureInfo("en-US");
                 filterBy = filterLevel;
                 GetParams();
 
                 DataSet ds = LoadDataFromFile(filePath);
 
                 if (ds.Tables.Count == 0)
-                    return new ImportResult(Translations.NoDataFound);
+                    return new ImportResult(TranslationLookup.GetValue("NoDataFound"));
 
                 string errorMessage = "";
                 Dictionary<string, int> parentIds = demo.GetParentIds(filterBy, dropdownBy);
@@ -321,62 +334,62 @@ namespace Nada.Model
                 {
                     int parentId = 1;
                     if (parentIds.Count > 0)
-                        if (parentIds.ContainsKey(row[dropdownBy.DisplayName].ToString()))
-                            parentId = parentIds[row[dropdownBy.DisplayName].ToString()];
+                        if (parentIds.ContainsKey(row[dropdownBy.DisplayName].ToString().Trim().ToLower()))
+                            parentId = parentIds[row[dropdownBy.DisplayName].ToString().Trim().ToLower()];
 
                     var adminLevel = new AdminLevel
                     {
                         AdminLevelTypeId = locationType.Id,
                         LevelNumber = locationType.LevelNumber,
                         Name = row[locationType.DisplayName].ToString(),
-                        UrbanOrRural = row[Translations.UrbanOrRural].ToString(),
+                        UrbanOrRural = row[TranslationLookup.GetValue("UrbanOrRural")].ToString(),
                         ParentId = parentId,
                         CurrentDemography = null
                     };
 
                     double d1 = 0;
-                    if (double.TryParse(row[Translations.LatWho].ToString(), out d1))
+                    if (double.TryParse(row[TranslationLookup.GetValue("LatWho")].ToString(), NumberStyles.Any, cultureEn, out d1))
                         adminLevel.LatWho = d1;
-                    if (double.TryParse(row[Translations.LngWho].ToString(), out d1))
+                    if (double.TryParse(row[TranslationLookup.GetValue("LngWho")].ToString(), NumberStyles.Any, cultureEn, out d1))
                         adminLevel.LngWho = d1;
-                    if (double.TryParse(row[Translations.LatOther].ToString(), out d1))
+                    if (double.TryParse(row[TranslationLookup.GetValue("LatOther")].ToString(), NumberStyles.Any, cultureEn, out d1))
                         adminLevel.LatOther = d1;
-                    if (double.TryParse(row[Translations.LngOther].ToString(), out d1))
+                    if (double.TryParse(row[TranslationLookup.GetValue("LngOther")].ToString(), NumberStyles.Any, cultureEn, out d1))
                         adminLevel.LngOther = d1;
 
                     if (importDemography)
                     {
                         var demography = new AdminLevelDemography();
 
-                        demography.Notes = row[Translations.Notes].ToString();
+                        demography.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                         demography.DateDemographyData = dateReported;
                         // need to do the required validation, do all and then show errors
                         int i = 0;
-                        if (int.TryParse(row[Translations.YearCensus].ToString(), out i))
+                        if (int.TryParse(row[TranslationLookup.GetValue("YearCensus")].ToString(), out i))
                             demography.YearCensus = i;
-                        if (int.TryParse(row[Translations.YearProjections].ToString(), out i))
+                        if (int.TryParse(row[TranslationLookup.GetValue("YearProjections")].ToString(), out i))
                             demography.YearProjections = i;
-                       
+
                         double d = 0;
-                        if (double.TryParse(row[Translations.GrowthRate].ToString(), out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("GrowthRate")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.GrowthRate = d;
-                        if (double.TryParse(row[Translations.PopMale].ToString(), out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("PopMale")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.PercentRural = d;
-                        if (double.TryParse(row[Translations.TotalPopulation].ToString(), out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("TotalPopulation")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.TotalPopulation = d;
-                        if (double.TryParse(row[Translations.Pop0Month].ToString(), out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("Pop0Month")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.Pop0Month = d;
-                        if (double.TryParse(row[Translations.PopPsac].ToString(), out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("PopPsac")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.PopPsac = d;
-                        if (double.TryParse(row[Translations.PopSac].ToString(), out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("PopSac")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.PopSac = d;
-                        if (double.TryParse(row[Translations.Pop5yo].ToString(), out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("Pop5yo")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.Pop5yo = d;
-                        if (double.TryParse(row[Translations.PopAdult].ToString(), out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("PopAdult")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.PopAdult = d;
-                        if (double.TryParse(row[Translations.PopFemale].ToString(), out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("PopFemale")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.PopFemale = d;
-                        if (double.TryParse(row[Translations.PopMale].ToString(), out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("PopMale")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.PopMale = d;
 
 
@@ -386,19 +399,19 @@ namespace Nada.Model
                     var demographyErrors = (adminLevel.CurrentDemography != null && !adminLevel.CurrentDemography.IsValid()) ? adminLevel.CurrentDemography.GetAllErrors(true) : "";
                     var adminErrors = !adminLevel.IsValid() ? adminLevel.GetAllErrors(true) : "";
                     if (!string.IsNullOrEmpty(demographyErrors) && !string.IsNullOrEmpty(adminErrors))
-                        errorMessage += string.Format(Translations.ImportErrors, adminLevel.Name, adminErrors + ",", demographyErrors) + Environment.NewLine;
+                        errorMessage += string.Format(TranslationLookup.GetValue("ImportErrors"), adminLevel.Name) + adminErrors + "," + demographyErrors + Environment.NewLine;
                     else if (!string.IsNullOrEmpty(demographyErrors) || !string.IsNullOrEmpty(adminErrors))
-                        errorMessage += string.Format(Translations.ImportErrors, adminLevel.Name, adminErrors + demographyErrors) + Environment.NewLine;
+                        errorMessage += string.Format(TranslationLookup.GetValue("ImportErrors"), adminLevel.Name) + adminErrors + demographyErrors + Environment.NewLine;
 
                     levels.Add(adminLevel);
                 }
 
                 // Validation rules and errors
                 if (levels.Count != rows)
-                    errorMessage = string.Format(Translations.ImportRecordsDontMatch, rows, levels.Count) + Environment.NewLine + errorMessage;
+                    errorMessage = string.Format(TranslationLookup.GetValue("ImportRecordsDontMatch"), rows, levels.Count) + Environment.NewLine + errorMessage;
 
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return new ImportResult(Translations.ImportErrorHeader + Environment.NewLine + errorMessage);
+                    return new ImportResult(TranslationLookup.GetValue("ImportErrorHeader") + Environment.NewLine + errorMessage);
 
                 demo.BulkImportAdminLevelsForLevel(levels, locationType.Id, userId);
 
@@ -410,12 +423,12 @@ namespace Nada.Model
                 {
                     WasSuccess = true,
                     Count = rec,
-                    Message = string.Format(Translations.ImportSuccess, rec)
+                    Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), rec)
                 };
             }
             catch (Exception ex)
             {
-                return new ImportResult(Translations.UnexpectedException + ex.Message);
+                return new ImportResult(TranslationLookup.GetValue("UnexpectedException") + ex.Message);
             }
         }
 

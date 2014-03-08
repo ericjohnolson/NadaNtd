@@ -16,14 +16,14 @@
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://apps.who.int/neglected_diseases/ntddata/ntd_database/</InstallUrl>
+    <InstallUrl>http://nadaqa.ericdidit.com/</InstallUrl>
     <SupportUrl>http://supporturl.com</SupportUrl>
     <ErrorReportUrl>http://errorurl.com</ErrorReportUrl>
     <ProductName>National Database Template</ProductName>
@@ -31,7 +31,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>90</ApplicationRevision>
+    <ApplicationRevision>108</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -71,10 +71,10 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>547A8437E7D5DC81A701FB83F50C3A7852292A86</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>D7698C0931E13D2F40C049B06E16FE0D6EE0EC54</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Nada.UI_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>certificate.p12</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="C1.Win.C1Command.2, Version=2.0.20132.19578, Culture=neutral, PublicKeyToken=e808566f358766d8, processorArchitecture=MSIL" />
@@ -97,6 +97,10 @@
     </Reference>
     <Reference Include="LINQtoCSV">
       <HintPath>..\Solution Items\LINQtoCSV.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Solution Items\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -146,11 +150,20 @@
     <Compile Include="Controls\AdminUnitChooser.Designer.cs">
       <DependentUpon>AdminUnitChooser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NullableDatePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\H2LabelLight.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\H2LabelLight.Designer.cs">
       <DependentUpon>H2LabelLight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NullableDatePickerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NullableDatePickerControl.Designer.cs">
+      <DependentUpon>NullableDatePickerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\RolePickerControl.cs">
       <SubType>UserControl</SubType>
@@ -570,6 +583,24 @@
     <Compile Include="View\Wizard\Import\ImportStepResult.Designer.cs">
       <DependentUpon>ImportStepResult.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\Updates\UpdateDbResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Updates\UpdateDbResult.Designer.cs">
+      <DependentUpon>UpdateDbResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\Updates\UpdateDb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Updates\UpdateDb.Designer.cs">
+      <DependentUpon>UpdateDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\Updates\UpdateApp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Updates\UpdateApp.Designer.cs">
+      <DependentUpon>UpdateApp.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\WizardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -599,12 +630,6 @@
     </Compile>
     <Compile Include="View\Reports\ReportsDashboard.Designer.cs">
       <DependentUpon>ReportsDashboard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Updates.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Updates.Designer.cs">
-      <DependentUpon>Updates.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DeleteConfirm.cs">
       <SubType>Form</SubType>
@@ -719,6 +744,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\H2LabelLight.resx">
       <DependentUpon>H2LabelLight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NullableDatePickerControl.resx">
+      <DependentUpon>NullableDatePickerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\RolePickerControl.resx">
       <DependentUpon>RolePickerControl.cs</DependentUpon>
@@ -929,6 +957,15 @@
     <EmbeddedResource Include="View\Wizard\Import\ImportStepResult.resx">
       <DependentUpon>ImportStepResult.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Updates\UpdateDbResult.resx">
+      <DependentUpon>UpdateDbResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Updates\UpdateDb.resx">
+      <DependentUpon>UpdateDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Updates\UpdateApp.resx">
+      <DependentUpon>UpdateApp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\WizardForm.resx">
       <DependentUpon>WizardForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -946,9 +983,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ReportsDashboard.resx">
       <DependentUpon>ReportsDashboard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Updates.resx">
-      <DependentUpon>Updates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DeleteConfirm.resx">
       <DependentUpon>DeleteConfirm.cs</DependentUpon>
@@ -1004,9 +1038,22 @@
     <EmbeddedResource Include="View\Wizard\WorkingStep.resx">
       <DependentUpon>WorkingStep.cs</DependentUpon>
     </EmbeddedResource>
+    <Content Include="BaselineNationalDatabase.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseScripts\Differentials\00SchemaChangeLog.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseScripts\00NadaDatabaseBaseline.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.01.00.0001.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Exports\AFRO_CM_JRF.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="certificate.p12" />
     <None Include="Images\logosplaceholder.gif" />
     <None Include="Images\afro.gif" />
     <None Include="Images\apoc.jpg" />
