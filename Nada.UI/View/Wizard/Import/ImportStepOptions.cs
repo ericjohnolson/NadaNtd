@@ -67,6 +67,7 @@ namespace Nada.UI.View.Wizard
             }
 
             options.AdminLevels = selected;
+            options.AdminLevelType = adminLevelMultiselect1.SelectedAdminLevelType;
             OnSwitchStep(new ImportStepLists(options, OnFinish));
         }
 

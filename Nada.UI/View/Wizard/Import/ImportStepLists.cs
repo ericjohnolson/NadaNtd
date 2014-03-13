@@ -92,7 +92,7 @@ namespace Nada.UI.View.Wizard
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             WorkerPayload payload = (WorkerPayload)e.Argument;
-            options.Importer.CreateImportFile(payload.FileName, options.AdminLevels);
+            options.Importer.CreateImportFile(payload.FileName, options.AdminLevels, options.AdminLevelType);
         }
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

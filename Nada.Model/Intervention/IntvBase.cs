@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Nada.Model.Base;
@@ -25,11 +26,11 @@ namespace Nada.Model.Intervention
         public virtual void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            DateReported = Convert.ToDateTime(inds["DateReported"].DynamicValue);
-            if(inds.ContainsKey("PcIntvStartDateOfMda"))
-                StartDate = Convert.ToDateTime(inds["PcIntvStartDateOfMda"].DynamicValue);
+            DateReported = DateTime.ParseExact(inds["DateReported"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            if (inds.ContainsKey("PcIntvStartDateOfMda"))
+                StartDate = DateTime.ParseExact(inds["PcIntvStartDateOfMda"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             if (inds.ContainsKey("PcIntvEndDateOfMda") && !string.IsNullOrEmpty(inds["PcIntvEndDateOfMda"].DynamicValue))
-                EndDate = Convert.ToDateTime(inds["PcIntvEndDateOfMda"].DynamicValue);
+                EndDate = DateTime.ParseExact(inds["PcIntvEndDateOfMda"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
             if (inds.ContainsKey("PcIntvRoundNumber"))
             {
                 int round = 0;

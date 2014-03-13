@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
@@ -52,7 +53,7 @@ namespace Nada.Model.Base
         public virtual void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            DateReported = Convert.ToDateTime(inds["DateReported"].DynamicValue);
+            DateReported = DateTime.ParseExact(inds["DateReported"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         }
         public virtual void MapPropertiesToIndicators() { }
 

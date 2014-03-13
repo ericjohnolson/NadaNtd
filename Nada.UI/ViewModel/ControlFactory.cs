@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -80,7 +81,10 @@ namespace Nada.UI.ViewModel
             };
             cntrl.Validating += (s, e) => { container.IsValid(); };
             DateTime dt = new DateTime();
-            if (DateTime.TryParse(val, out dt))
+            if(DateTime.TryParseExact(val, "MM/dd/yyyy", 
+    				CultureInfo.InvariantCulture, 
+    				DateTimeStyles.None, 
+    				out dt))
                 cntrl.Value = dt;
             else
                 cntrl.Value = DateTime.MinValue;
@@ -90,7 +94,7 @@ namespace Nada.UI.ViewModel
                 if (cntrl.GetValue() == DateTime.MinValue)
                     return "";
                 else
-                    return cntrl.GetValue().ToShortDateString(); 
+                    return cntrl.GetValue().ToString("MM/dd/yyyy"); 
             };
             controlList.Add(container);
             return cntrl;
@@ -164,7 +168,7 @@ namespace Nada.UI.ViewModel
                 cntrl.DropDownWidth = BaseForm.GetDropdownWidth(availableValues.Select(a => a.DisplayName));
             if (!string.IsNullOrEmpty(val))
             {
-                var valItem = availableValues.FirstOrDefault(a => a.DisplayName == val);
+                var valItem = availableValues.FirstOrDefault(a => a.TranslationKey == val);
                 cntrl.SelectedItem = valItem;
             }
 
@@ -188,7 +192,7 @@ namespace Nada.UI.ViewModel
             {
                 if (cntrl.SelectedItem == null || ((IndicatorDropdownValue)cntrl.SelectedItem).Id == -1)
                     return null;
-                return ((IndicatorDropdownValue)cntrl.SelectedItem).DisplayName;
+                return ((IndicatorDropdownValue)cntrl.SelectedItem).TranslationKey;
             };
             controlList.Add(container);
 
@@ -215,7 +219,7 @@ namespace Nada.UI.ViewModel
             {
                 string[] vals = val.Split('|');
                 cntrl.ClearSelected();
-                foreach (var av in availableValues.Where(v => vals.Contains(v.DisplayName)))
+                foreach (var av in availableValues.Where(v => vals.Contains(v.TranslationKey)))
                     cntrl.SelectedItems.Add(av);
             }
 
@@ -223,7 +227,7 @@ namespace Nada.UI.ViewModel
             {
                 List<string> selected = new List<string>();
                 foreach (var i in cntrl.SelectedItems)
-                    selected.Add((i as IndicatorDropdownValue).DisplayName);
+                    selected.Add((i as IndicatorDropdownValue).TranslationKey);
                 return string.Join("|", selected.ToArray());
             };
 
@@ -414,6 +418,7 @@ namespace Nada.UI.ViewModel
                 IndicatorValueItemAdd form = new IndicatorValueItemAdd(new IndicatorDropdownValue { IndicatorId = indicator.Id, EntityType = entityType }, indicator);
                 form.OnSave += (v) =>
                 {
+                    v.TranslationKey = v.DisplayName;
                     if (cntrl is ListBox)
                         (cntrl as ListBox).Items.Add(v);
                     else if (cntrl is ComboBox)

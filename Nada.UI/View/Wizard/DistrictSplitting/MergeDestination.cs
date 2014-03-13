@@ -68,7 +68,7 @@ namespace Nada.UI.View.Wizard
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                adminUnitAdd1.Load(options.MergeSources[0].AdminLevelTypeId);
+                adminUnitAdd1.LoadLevel(options.MergeSources[0].AdminLevelTypeId);
             }
         }
 

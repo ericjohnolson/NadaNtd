@@ -23,8 +23,6 @@ namespace Nada.UI.View.Wizard
     {
         string stepTitle = "";
         private DdUpdateViewModel vm = new DdUpdateViewModel();
-        AdminLevelDemoImporter importer = null;
-        AdminLevelDemoUpdater updater = null;
         DemoRepository repo = new DemoRepository();
         IWizardStep prev = null;
         public Action OnFinish { get; set; }

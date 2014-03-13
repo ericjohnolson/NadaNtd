@@ -1673,7 +1673,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Database scripts failed.
+        ///   Looks up a localized string similar to Update failed..
         /// </summary>
         public static string DatabaseScriptFailed {
             get {
@@ -3982,6 +3982,123 @@ namespace Nada.Globalization {
         public static string IntvMbd {
             get {
                 return ResourceManager.GetString("IntvMbd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALB.
+        /// </summary>
+        public static string IntvPkgALB {
+            get {
+                return ResourceManager.GetString("IntvPkgALB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALB x 2 for LF.
+        /// </summary>
+        public static string IntvPkgALB2forLF {
+            get {
+                return ResourceManager.GetString("IntvPkgALB2forLF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DEC + ALB.
+        /// </summary>
+        public static string IntvPkgDECALB {
+            get {
+                return ResourceManager.GetString("IntvPkgDECALB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IVM.
+        /// </summary>
+        public static string IntvPkgIVM {
+            get {
+                return ResourceManager.GetString("IntvPkgIVM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IVM + ALB.
+        /// </summary>
+        public static string IntvPkgIVMALB {
+            get {
+                return ResourceManager.GetString("IntvPkgIVMALB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MBD.
+        /// </summary>
+        public static string IntvPkgMBD {
+            get {
+                return ResourceManager.GetString("IntvPkgMBD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PZQ.
+        /// </summary>
+        public static string IntvPkgPZQ {
+            get {
+                return ResourceManager.GetString("IntvPkgPZQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PZQ + ALB.
+        /// </summary>
+        public static string IntvPkgPZQALB {
+            get {
+                return ResourceManager.GetString("IntvPkgPZQALB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PZQ + IVM + ALB.
+        /// </summary>
+        public static string IntvPkgPZQIVMALB {
+            get {
+                return ResourceManager.GetString("IntvPkgPZQIVMALB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PZQ + MBD.
+        /// </summary>
+        public static string IntvPkgPZQMBD {
+            get {
+                return ResourceManager.GetString("IntvPkgPZQMBD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEO.
+        /// </summary>
+        public static string IntvPkgTEO {
+            get {
+                return ResourceManager.GetString("IntvPkgTEO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEO + Zithro.
+        /// </summary>
+        public static string IntvPkgTEOZithro {
+            get {
+                return ResourceManager.GetString("IntvPkgTEOZithro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zithro.
+        /// </summary>
+        public static string IntvPkgZithro {
+            get {
+                return ResourceManager.GetString("IntvPkgZithro", resourceCulture);
             }
         }
         
@@ -13265,6 +13382,42 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disease(s) included in training.
+        /// </summary>
+        public static string TrainingDiseases {
+            get {
+                return ResourceManager.GetString("TrainingDiseases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drugs package(s) included in training.
+        /// </summary>
+        public static string TrainingDrugPackages {
+            get {
+                return ResourceManager.GetString("TrainingDrugPackages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of females involved in distribution.
+        /// </summary>
+        public static string TrainingNumFemales {
+            get {
+                return ResourceManager.GetString("TrainingNumFemales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of males involved in distribution.
+        /// </summary>
+        public static string TrainingNumMales {
+            get {
+                return ResourceManager.GetString("TrainingNumMales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Year training information applies to.
         /// </summary>
         public static string TrainingYear {
@@ -14219,7 +14372,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The application has been upgraded, and will now restart..
+        ///   Looks up a localized string similar to The application has been upgraded, please restart..
         /// </summary>
         public static string UpdateRestart {
             get {

@@ -21,8 +21,6 @@ namespace Nada.UI.View.Wizard
 {
     public partial class UpdateDb : BaseControl, IWizardStep
     {
-        ImportResult result = null;
-        IWizardStep prev = null;
         List<string> filesToRun = new List<string>();
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }

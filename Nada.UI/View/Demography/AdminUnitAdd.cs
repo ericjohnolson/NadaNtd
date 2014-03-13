@@ -34,7 +34,7 @@ namespace Nada.UI.View.Demography
         {
         }
 
-        public void Load(int levelTypeId)
+        public void LoadLevel(int levelTypeId)
         {
             Localizer.TranslateControl(this);
             bindingSource1.DataSource = model;

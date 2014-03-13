@@ -33,13 +33,16 @@ namespace Nada.Model.Repositories
                     string transKey = reader.GetValueOrDefault<string>("TranslationKey");
                     if (!string.IsNullOrEmpty(transKey))
                         name = TranslationLookup.GetValue(transKey);
+                    else
+                        transKey = name;
 
                     values.Add(new IndicatorDropdownValue 
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
                         SortOrder = reader.GetValueOrDefault<int>("SortOrder"), 
-                        DisplayName = name 
+                        DisplayName = name,
+                        TranslationKey = transKey
                     });
                 }
                 reader.Close();

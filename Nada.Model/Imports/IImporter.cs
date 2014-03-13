@@ -11,7 +11,7 @@ namespace Nada.Model
     {
         void SetType(int id);
         string ImportName { get; }
-        void CreateImportFile(string filename, List<AdminLevel> adminLevels);
+        void CreateImportFile(string filename, List<AdminLevel> adminLevels, AdminLevelType adminLevelType);
         ImportResult ImportData(string filePath, int userId);
         List<TypeListItem> GetAllTypes();
         Dictionary<string, Indicator> Indicators { get; set; }

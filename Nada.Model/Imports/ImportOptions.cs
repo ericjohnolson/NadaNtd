@@ -21,6 +21,7 @@ namespace Nada.Model.Imports
         public List<TypeListItem> Types { get; set; }
         public Nullable<int> TypeId { get; set; }
         public List<AdminLevel> AdminLevels { get; set; }
+        public AdminLevelType AdminLevelType { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

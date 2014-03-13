@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
@@ -30,7 +31,7 @@ namespace Nada.Model.Diseases
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
             if (inds.ContainsKey("DateReported"))
-                DateReported = Convert.ToDateTime(inds["DateReported"].DynamicValue);
+                DateReported = DateTime.ParseExact(inds["DateReported"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
         }
 
         public List<KeyValuePair<string, string>> GetDemographyStats()

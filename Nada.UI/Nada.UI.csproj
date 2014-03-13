@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://nadaqa.ericdidit.com/</InstallUrl>
+    <InstallUrl>http://apps.who.int/neglected_diseases/ntddata/ntd_database/</InstallUrl>
     <SupportUrl>http://supporturl.com</SupportUrl>
     <ErrorReportUrl>http://errorurl.com</ErrorReportUrl>
     <ProductName>National Database Template</ProductName>
@@ -31,7 +31,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>108</ApplicationRevision>
+    <ApplicationRevision>127</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -71,10 +71,10 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D7698C0931E13D2F40C049B06E16FE0D6EE0EC54</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A08F660B6BE2618C1E014C43D3E4F051B69B8739</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>certificate.p12</ManifestKeyFile>
+    <ManifestKeyFile>nadasha1.p12</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="C1.Win.C1Command.2, Version=2.0.20132.19578, Culture=neutral, PublicKeyToken=e808566f358766d8, processorArchitecture=MSIL" />
@@ -117,12 +117,8 @@
     <Reference Include="System.Messaging" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Windows.Forms.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -1038,13 +1034,14 @@
     <EmbeddedResource Include="View\Wizard\WorkingStep.resx">
       <DependentUpon>WorkingStep.cs</DependentUpon>
     </EmbeddedResource>
-    <Content Include="BaselineNationalDatabase.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="BaselineNationalDatabase.accdb" />
     <Content Include="DatabaseScripts\Differentials\00SchemaChangeLog.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\00NadaDatabaseBaseline.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.01.00.0002.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0001.sql">
@@ -1070,7 +1067,9 @@
     <Content Include="Exports\WHO_JRF_PC.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Nada.UI_1_TemporaryKey.pfx" />
     <None Include="Nada.UI_TemporaryKey.pfx" />
+    <None Include="nadasha1.p12" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\Nada.Globalization.MonthItem.datasource" />
     <None Include="Properties\DataSources\Nada.Model.AdminLevel.datasource" />
@@ -1175,6 +1174,11 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>

@@ -36,7 +36,7 @@ namespace Nada.UI.View.Wizard
         public bool EnableFinish { get { return true; } }
         public string StepTitle { get { return Translations.ApplicationUpdate; } }
 
-        public UpdateApp() 
+        public UpdateApp()
             : base()
         {
             InitializeComponent();
@@ -58,7 +58,7 @@ namespace Nada.UI.View.Wizard
                 Localizer.TranslateControl(this);
 
                 lblStatus.SetMaxWidth(500);
-                if(hasInternet)
+                if (hasInternet)
                 {
                     if (hasUpdate)
                     {
@@ -94,8 +94,14 @@ namespace Nada.UI.View.Wizard
         {
             bool success = false;
             string result = e.Result.ToString();
-            if (result == Translations.UpdateComplete)
+
+            if (result != "exception")
+            {
                 success = true;
+                result = Translations.UpdateComplete;
+            }
+            else
+                result = Translations.UpdateException;
 
             OnSwitchStep(new UpdateDbResult(success, result, this));
 
@@ -108,7 +114,7 @@ namespace Nada.UI.View.Wizard
 
         void updateWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            e.Result = Translations.UpdateNone;
+            e.Result = "NoUpdate"; 
             if (ApplicationDeployment.IsNetworkDeployed)
             {
                 ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
@@ -118,12 +124,14 @@ namespace Nada.UI.View.Wizard
                     if (info.UpdateAvailable)
                     {
                         updateCheck.Update();
-                        e.Result = Translations.UpdateComplete;
+                        e.Result = "complete"; 
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    e.Result = Translations.UpdateException;
+                    Logger logger = new Logger();
+                    logger.Error("Error updating application", ex);
+                    e.Result = "exception";
                 }
             }
         }
@@ -135,6 +143,7 @@ namespace Nada.UI.View.Wizard
 
         public static bool HasInternetConnection()
         {
+            var logger = new Logger();
             try
             {
                 string myAddress = "www.google.com";
@@ -148,8 +157,9 @@ namespace Nada.UI.View.Wizard
                     return false;
 
             }
-            catch
+            catch (Exception ex)
             {
+                logger.Error("Exception checking HasInternetConnection", ex);
                 return false;
             }
 
@@ -157,23 +167,25 @@ namespace Nada.UI.View.Wizard
 
         public static bool HasUpdate()
         {
-            if (ApplicationDeployment.IsNetworkDeployed)
+            var logger = new Logger();
+            try
             {
-                ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
-
-                try
+                if (ApplicationDeployment.IsNetworkDeployed)
                 {
+                    ApplicationDeployment updateCheck = ApplicationDeployment.CurrentDeployment;
+
                     UpdateCheckInfo info = updateCheck.CheckForDetailedUpdate();
                     return info.UpdateAvailable;
                 }
-                catch (Exception)
-                {
-                    return false;
-                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Exception checking HasInternetConnection", ex);
+                return false;
             }
             return false;
         }
 
-       
+
     }
 }

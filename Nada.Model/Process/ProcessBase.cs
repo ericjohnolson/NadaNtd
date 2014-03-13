@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Nada.Model.Base;
@@ -26,7 +27,8 @@ namespace Nada.Model.Process
         public virtual void MapIndicatorsToProperties()
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            DateReported = Convert.ToDateTime(inds["DateReported"].DynamicValue);
+
+            DateReported = DateTime.ParseExact(inds["DateReported"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             if (inds.ContainsKey("SCMDrug"))
                 SCMDrug = inds["SCMDrug"].DynamicValue;
             if (inds.ContainsKey("PCTrainTrainingCategory"))

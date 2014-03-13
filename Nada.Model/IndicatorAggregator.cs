@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
@@ -120,9 +121,11 @@ namespace Nada.Model
         {
             if (ind1.AggType == (int)IndicatorAggType.Sum)
                 return DateTime.MinValue;
+            if (string.IsNullOrEmpty(ind1.Value))
+                return DateTime.MinValue;
 
-            DateTime dt = Convert.ToDateTime(ind1.Value);
-            DateTime existing = existingValue is string ? Convert.ToDateTime(existingValue) : (DateTime)existingValue;
+            DateTime dt = DateTime.ParseExact(ind1.Value, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            DateTime existing = existingValue is string ? DateTime.ParseExact(existingValue.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture) : (DateTime)existingValue;
 
             if (ind1.AggType == (int)IndicatorAggType.Min)
                 if (dt >= (DateTime)existing)

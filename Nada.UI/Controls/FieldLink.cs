@@ -12,7 +12,7 @@ namespace Nada.UI.Controls
 {
     public partial class FieldLink : BaseControl
     {
-        public event Action OnClick = () => { };
+        public new event Action OnClick = () => { };
 
         public FieldLink()
             : base()

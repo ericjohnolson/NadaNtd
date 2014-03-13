@@ -60,12 +60,12 @@ namespace Nada.Model
             {
                 string objerrors = "";
                 var obj = repo.Create((DiseaseType)type.Disease.Id);
-                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
+                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
                 obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("Location")].ToString());
+                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("ID")].ToString());
                 objs.Add(obj);
             }
 
@@ -89,12 +89,12 @@ namespace Nada.Model
             {
                 string objerrors = "";
                 var obj = repo.CreateCm((DiseaseType)cmType.Disease.Id);
-                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
+                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
                 obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("Location")].ToString());
+                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("ID")].ToString());
                 objs.Add(obj);
             }
 

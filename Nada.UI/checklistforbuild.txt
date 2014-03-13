@@ -1,0 +1,14 @@
+Checklist For Releases:
+
+1. Make sure not developer mode.
+2. Make sure it doesn't auto update.
+
+QA:
+<add key="DeveloperMode" value="QA" />
+1. http://nadaqa.ericdidit.com/
+2. http://nadaqa.ericdidit.com/x64/
+
+Prod:
+<add key="DeveloperMode" value="PR" />
+1. http://apps.who.int/neglected_diseases/ntddata/ntd_database/
+2. http://apps.who.int/neglected_diseases/ntddata/ntd_database/x64/

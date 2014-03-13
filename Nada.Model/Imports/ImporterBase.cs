@@ -43,7 +43,7 @@ namespace Nada.Model
                 translatedIndicators.Add(TranslationLookup.GetValue(keyValue.Key, keyValue.Key), keyValue.Value);
         }
 
-        public virtual void CreateImportFile(string filename, List<AdminLevel> adminLevels)
+        public virtual void CreateImportFile(string filename, List<AdminLevel> adminLevels, AdminLevelType adminLevelType)
         {
             LoadRelatedLists();
             System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
@@ -60,9 +60,14 @@ namespace Nada.Model
             xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
 
             // row 1 column headers
-            xlsWorksheet.Cells[1, 1] = TranslationLookup.GetValue("Location") + "#";
-            xlsWorksheet.Cells[1, 2] = TranslationLookup.GetValue("Location");
-            int xlsColCount = 2;
+            DemoRepository repo = new DemoRepository();
+            List<string> names = repo.GetAdminLevelTypeNames(adminLevelType.Id);
+            
+            xlsWorksheet.Cells[1, 1] = TranslationLookup.GetValue("ID");
+            for (int i = 0; i < names.Count; i++)
+                xlsWorksheet.Cells[1, 2 + i] = names[i];
+            int locationCount = names.Count + 1;
+            int xlsColCount = names.Count + 1;
             xlsColCount += AddTypeSpecific(xlsWorksheet);
             int colCountAfterStatic = xlsColCount;
 
@@ -72,8 +77,12 @@ namespace Nada.Model
                     continue;
                 //TODO TEST DATE FIELD? if (Indicators[key].DataTypeId == (int)IndicatorDataType.Date)
                 //    col = new DataColumn(TranslationLookup.GetValue(key, key), typeof(DateTime));
+                string isReq = "";
+                if (item.Value.IsRequired)
+                    isReq = "* ";
+
                 xlsColCount++;
-                xlsWorksheet.Cells[1, xlsColCount] = TranslationLookup.GetValue(item.Key, item.Key);
+                xlsWorksheet.Cells[1, xlsColCount] = isReq + TranslationLookup.GetValue(item.Key, item.Key);
                 ColumnIdToIndicator.Add(xlsColCount, item.Value);
             }
             xlsWorksheet.Cells[1, xlsColCount + 1] = TranslationLookup.GetValue("Notes");
@@ -83,8 +92,14 @@ namespace Nada.Model
             foreach (AdminLevel l in adminLevels)
             {
                 xlsWorksheet.Cells[xlsRowCount, 1] = l.Id;
-                xlsWorksheet.Cells[xlsRowCount, 2] = l.Name;
-                AddTypeSpecificLists(xlsWorksheet, l.Id, xlsRowCount, oldCI);
+                List<string> parentNames = repo.GetAdminLevelParentNames(l.Id);
+                int aCol = 2;
+                foreach(string aname in parentNames)
+                {
+                    xlsWorksheet.Cells[xlsRowCount, aCol] = aname;
+                    aCol++;
+                }
+                AddTypeSpecificLists(xlsWorksheet, l.Id, xlsRowCount, oldCI, locationCount);
                 int colCount = colCountAfterStatic;
                 foreach (var key in Indicators.Keys)
                 {
@@ -114,7 +129,8 @@ namespace Nada.Model
             System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
         }
 
-        protected virtual void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int adminLevelId, int r, CultureInfo currentCulture)
+        protected virtual void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int adminLevelId, int r,
+            CultureInfo currentCulture, int colCount)
         {
 
         }
@@ -195,12 +211,14 @@ namespace Nada.Model
             List<IndicatorValue> inds = new List<IndicatorValue>();
             foreach (DataColumn col in ds.Tables[0].Columns)
             {
-                if (translatedIndicators.ContainsKey(col.ColumnName))
+                string indicatorName = col.ColumnName.Replace("* ", "");
+                if (translatedIndicators.ContainsKey(indicatorName))
                 {
                     string val = row[col].ToString().Trim();
-                    Indicator curInd = translatedIndicators[col.ColumnName];
+                    Indicator curInd = translatedIndicators[indicatorName];
 
-                    errors += GetValueAndValidate(curInd, ref val, col.ColumnName);
+
+                    errors += GetValueAndValidate(curInd, ref val, indicatorName);
 
                     inds.Add(new IndicatorValue
                     {
@@ -240,7 +258,7 @@ namespace Nada.Model
                     if (val.Length > 0 && !DateTime.TryParse(val, out dt))
                         return name + ": " + TranslationLookup.GetValue("MustBeDate") + Environment.NewLine;
                     else
-                        val = dt.ToShortDateString();
+                        val = dt.ToString("MM/dd/yyyy");
                     break;
                 case (int)IndicatorDataType.Number:
                     if (val.Length > 0 && !Double.TryParse(val, out d))
@@ -261,7 +279,22 @@ namespace Nada.Model
                     val = isChecked.ToString();
                     break;
                 case (int)IndicatorDataType.Multiselect:
-                    val = val.Replace(Util.EnumerationDelinator, "|");
+                    List<string> translationKeys = new List<string>();
+                    foreach(string displayName in val.Replace(Util.EnumerationDelinator, "|").Split('|'))
+                    {
+                        IndicatorDropdownValue idv = DropDownValues.FirstOrDefault(a => a.IndicatorId == indicator.Id && a.DisplayName == displayName);
+                        if(idv != null)
+                            translationKeys.Add(idv.TranslationKey);
+                        else
+                            translationKeys.Add(displayName);
+                    }
+                    val = string.Join("|", translationKeys.ToArray());
+                    break;
+                case (int)IndicatorDataType.Dropdown:
+                    string val2 = val;
+                    IndicatorDropdownValue ival = DropDownValues.FirstOrDefault(a => a.IndicatorId == indicator.Id && a.DisplayName == val2);
+                    if (ival != null)
+                        val = ival.TranslationKey;
                     break;
                 case (int)IndicatorDataType.Partners:
                     List<string> partnerIds = new List<string>();
@@ -347,15 +380,15 @@ namespace Nada.Model
 
         #region Data Table Specific
 
-        protected virtual DataTable GetDataTable()
-        {
-            DataTable data = new System.Data.DataTable();
-            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
-            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location")));
-            AddDynamicIndicators(data);
-            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Notes")));
-            return data;
-        }
+        //protected virtual DataTable GetDataTable()
+        //{
+        //    DataTable data = new System.Data.DataTable();
+        //    data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
+        //    data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location")));
+        //    AddDynamicIndicators(data);
+        //    data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Notes")));
+        //    return data;
+        //}
 
         private void AddDynamicIndicators(DataTable dataTable)
         {
@@ -373,19 +406,19 @@ namespace Nada.Model
 
         protected virtual void AddSpecificRows(DataTable dataTable) { }
 
-        public void AddDataToWorksheet(DataTable data, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, List<AdminLevel> rows)
-        {
-            // Add rows to data table
-            foreach (AdminLevel l in rows)
-            {
-                DataRow row = data.NewRow();
-                row[TranslationLookup.GetValue("Location") + "#"] = l.Id;
-                row[TranslationLookup.GetValue("Location")] = l.Name;
-                data.Rows.Add(row);
-            }
+        //public void AddDataToWorksheet(DataTable data, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, List<AdminLevel> rows)
+        //{
+        //    // Add rows to data table
+        //    foreach (AdminLevel l in rows)
+        //    {
+        //        DataRow row = data.NewRow();
+        //        row[TranslationLookup.GetValue("Location") + "#"] = l.Id;
+        //        row[TranslationLookup.GetValue("Location")] = l.Name;
+        //        data.Rows.Add(row);
+        //    }
 
-            AddTableToWorksheet(data, xlsWorksheet);
-        }
+        //    AddTableToWorksheet(data, xlsWorksheet);
+        //}
 
         public void AddTableToWorksheet(DataTable data, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet)
         {
@@ -431,7 +464,7 @@ namespace Nada.Model
         protected string GetObjectErrors(string objerrors, string location)
         {
             if (!string.IsNullOrEmpty(objerrors))
-                return Environment.NewLine + string.Format(TranslationLookup.GetValue("ImportErrors"), location) +
+                return Environment.NewLine + string.Format(TranslationLookup.GetValue("ImportErrors"), TranslationLookup.GetValue("ID") + " " + location) +
                     Environment.NewLine + "--------" + Environment.NewLine + objerrors;
             return "";
         }

@@ -49,13 +49,13 @@ namespace Nada.Model.Imports
             return 4;
         }
 
-        protected override void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int adminLevelId, int r, CultureInfo currentCulture)
+        protected override void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int adminLevelId, int r, CultureInfo currentCulture, int colCount)
         {
             if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null)
                 return;
             var sites = repo.GetSitesForAdminLevel(new List<string> { adminLevelId.ToString() });
             if(sites.Count > 0)
-                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(3), r, "", "", sites.Select(p => p.SiteName).ToList(), currentCulture);
+                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(colCount + 1), r, "", "", sites.Select(p => p.SiteName).ToList(), currentCulture);
         }
 
         protected override ImportResult MapAndSaveObjects(DataSet ds, int userId)
@@ -66,7 +66,7 @@ namespace Nada.Model.Imports
             {
                 string objerrors = "";
                 var obj = repo.CreateSurvey(sType.Id);
-                int adminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
+                int adminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
                 obj.AdminLevels = new List<AdminLevel> { new AdminLevel { Id =  adminLevelId } };
 
                 // CHECK FOR SENTINEL SITES/SPOTCHECK
@@ -106,7 +106,7 @@ namespace Nada.Model.Imports
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("Location")].ToString());
+                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("ID")].ToString());
                 objs.Add(obj);
             }
 

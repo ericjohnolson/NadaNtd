@@ -11,6 +11,7 @@ using Nada.UI.Controls;
 using Nada.UI.AppLogic;
 using Nada.Globalization;
 using Nada.UI.Base;
+using System.Globalization;
 
 namespace Nada.UI.View
 {
@@ -100,7 +101,11 @@ namespace Nada.UI.View
             if (indicator.DataTypeId == (int)IndicatorDataType.Date)
             {
                 DateTime d;
-                var cntrl = new DateTimePicker { Name = "dynamicDt" + indicator.Id.ToString() };
+                var cntrl = new NullableDatePickerControl
+                {
+                    Name = "dynamicDt" + indicator.Id.ToString(),
+                    ShowClear = true
+                };
                 container.IsValid = () =>
                 {
                     if (indicator.IsRequired)
@@ -122,10 +127,21 @@ namespace Nada.UI.View
                 };
                 cntrl.Validating += (s, e) => { container.IsValid(); };
                 DateTime dt = new DateTime();
-                if (DateTime.TryParse(val, out dt))
+                if (DateTime.TryParseExact(val, "MM/dd/yyyy",
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.None,
+                        out dt))
                     cntrl.Value = dt;
+                else
+                    cntrl.Value = DateTime.MinValue;
 
-                container.GetValue = () => { return cntrl.Value.ToShortDateString(); };
+                container.GetValue = () =>
+                {
+                    if (cntrl.GetValue() == DateTime.MinValue)
+                        return "";
+                    else
+                        return cntrl.GetValue().ToString("MM/dd/yyyy");
+                };
                 controlList.Add(container);
                 return cntrl;
             }

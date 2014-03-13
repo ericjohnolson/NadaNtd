@@ -4974,7 +4974,7 @@
     <value>Retrieve log file</value>
   </data>
   <data name="UpdateChecking" xml:space="preserve">
-    <value>Checking for updates...</value>
+    <value>Checking for updates french...</value>
   </data>
   <data name="UpdateExecute" xml:space="preserve">
     <value>Run Update</value>
@@ -4986,7 +4986,7 @@
     <value>Please verify your internet connection is working and try again.</value>
   </data>
   <data name="UpdateRestart" xml:space="preserve">
-    <value>The application has been upgraded, and will now restart.</value>
+    <value>The application has been upgraded, please restart.</value>
   </data>
   <data name="ApplicationUpdate" xml:space="preserve">
     <value>Application update</value>
@@ -4995,7 +4995,7 @@
     <value>Database script exception</value>
   </data>
   <data name="DatabaseScriptFailed" xml:space="preserve">
-    <value>Database scripts failed</value>
+    <value>Update failed french.</value>
   </data>
   <data name="DatabaseScripts" xml:space="preserve">
     <value>You must update your database with the latest scripts before continuing.  Please click "Next" to start.</value>
@@ -5014,5 +5014,56 @@
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Clear</value>
+  </data>
+  <data name="IntvPkgALB" xml:space="preserve">
+    <value>ALB</value>
+  </data>
+  <data name="IntvPkgALB2forLF" xml:space="preserve">
+    <value>ALB x 2 for LF</value>
+  </data>
+  <data name="IntvPkgDECALB" xml:space="preserve">
+    <value>DEC + ALB</value>
+  </data>
+  <data name="IntvPkgIVM" xml:space="preserve">
+    <value>IVM</value>
+  </data>
+  <data name="IntvPkgIVMALB" xml:space="preserve">
+    <value>IVM + ALB</value>
+  </data>
+  <data name="IntvPkgMBD" xml:space="preserve">
+    <value>MBD</value>
+  </data>
+  <data name="IntvPkgPZQ" xml:space="preserve">
+    <value>PZQ</value>
+  </data>
+  <data name="IntvPkgPZQALB" xml:space="preserve">
+    <value>PZQ + ALB</value>
+  </data>
+  <data name="IntvPkgPZQIVMALB" xml:space="preserve">
+    <value>PZQ + IVM + ALB</value>
+  </data>
+  <data name="IntvPkgPZQMBD" xml:space="preserve">
+    <value>PZQ + MBD</value>
+  </data>
+  <data name="IntvPkgTEO" xml:space="preserve">
+    <value>TEO</value>
+  </data>
+  <data name="IntvPkgTEOZithro" xml:space="preserve">
+    <value>TEO + Zithro</value>
+  </data>
+  <data name="IntvPkgZithro" xml:space="preserve">
+    <value>Zithro</value>
+  </data>
+  <data name="TrainingDiseases" xml:space="preserve">
+    <value>Disease(s) included in training</value>
+  </data>
+  <data name="TrainingDrugPackages" xml:space="preserve">
+    <value>Drugs package(s) included in training</value>
+  </data>
+  <data name="TrainingNumFemales" xml:space="preserve">
+    <value>Number of females involved in distribution</value>
+  </data>
+  <data name="TrainingNumMales" xml:space="preserve">
+    <value>Number of males involved in distribution</value>
   </data>
 </root>

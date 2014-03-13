@@ -734,7 +734,7 @@ namespace Nada.Model.Repositories
                         catch { }
                     }
                     logger.Error("Error RunSchemaChangeScripts: " + ex.Message + "(" + String.Join(", ", files.ToArray()) + ")", ex); 
-                    return Translations.DatabaseScriptException + ": " + ex.Message;
+                    return TranslationLookup.GetValue("DatabaseScriptException") + ": " + ex.Message;
                 }
             }
         }

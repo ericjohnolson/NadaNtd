@@ -20,6 +20,7 @@ namespace Nada.UI.View
         private List<AdminLevelType> levels = new List<AdminLevelType>();
         private List<AdminLevel> available = new List<AdminLevel>();
         private List<AdminLevel> selected = new List<AdminLevel>();
+        public AdminLevelType SelectedAdminLevelType { get; set; }
 
         public AdminLevelMultiselect()
             : base()
@@ -104,8 +105,8 @@ namespace Nada.UI.View
         {
             if (cbLevels.SelectedItem == null)
                 return;
-            var level = (AdminLevelType)cbLevels.SelectedItem;
-            available = demography.GetAdminLevelTree(level.Id);
+            SelectedAdminLevelType = (AdminLevelType)cbLevels.SelectedItem;
+            available = demography.GetAdminLevelTree(SelectedAdminLevelType.Id);
             selected = new List<AdminLevel>();
             treeAvailable.SetObjects(available.OrderBy(i => i.Name).ToList());
             treeSelected.SetObjects(selected.OrderBy(i => i.Name).ToList());

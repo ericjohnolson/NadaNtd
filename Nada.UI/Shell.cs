@@ -56,6 +56,13 @@ namespace Nada.UI
                 if (ConfigurationManager.AppSettings["DeveloperMode"] == "QA")
                     lblDeveloperMode.Visible = true;
 
+                // Updates
+                if (UpdateApp.HasInternetConnection() && UpdateApp.HasUpdate())
+                {
+                    WizardForm wiz = new WizardForm(new UpdateApp(RestartApp), Translations.Updates);
+                    wiz.OnFinish += () => { };
+                    wiz.ShowDialog();
+                }
             }
         }
         
@@ -169,7 +176,6 @@ namespace Nada.UI
 
         private void RestartApp()
         {
-            System.Diagnostics.Process.Start(Application.ExecutablePath); // to start new instance of application
             this.Close(); //to turn off current app
         }
         #endregion

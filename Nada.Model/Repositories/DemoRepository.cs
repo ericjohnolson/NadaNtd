@@ -501,6 +501,60 @@ namespace Nada.Model.Repositories
             return MakeTreeFromFlatList(list, 0);
         }
 
+        public List<string> GetAdminLevelParentNames(int levelId)
+        {
+            Nullable<int> id = levelId;
+            List<string> list = new List<string>();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                bool hasParent = true;
+                while (hasParent)
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select ParentId, DisplayName
+                    FROM AdminLevels
+                    WHERE AdminLevels.ID = @id", connection);
+                    command.Parameters.Add(new OleDbParameter("@id", id));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if(reader.HasRows)
+                        {
+                            reader.Read();
+                            list.Insert(0, reader.GetValueOrDefault<string>("DisplayName"));
+                            id = reader.GetValueOrDefault<Nullable<int>>("ParentId");
+                            if (!id.HasValue || id <= 1)
+                                hasParent = false;
+                        }
+                        reader.Close();
+                    }
+                }
+            }
+            return list;
+        }
+
+        public List<string> GetAdminLevelTypeNames(int levelTypeId)
+        {
+            List<string> list = new List<string>();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                OleDbCommand command = new OleDbCommand(@"SELECT DisplayName FROM AdminLevelTypes WHERE ID > 1 AND ID <= @TypeId ORDER BY AdminLevel", connection);
+                command.Parameters.Add(new OleDbParameter("@TypeId", levelTypeId));
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(reader.GetValueOrDefault<string>("DisplayName"));
+                    }
+                    reader.Close();
+                }
+            }
+            return list;
+        }
+
+
         private List<AdminLevel> MakeTreeFromFlatList(IEnumerable<AdminLevel> flatList, int minRoot, bool allowSelect, int levelToSelect)
         {
             var dic = flatList.ToDictionary(n => n.Id, n => n);
@@ -528,7 +582,6 @@ namespace Nada.Model.Repositories
             return MakeTreeFromFlatList(flatList, minRoot, false, 0);
         }
             
-
         public void AddChildren(AdminLevel parent, List<AdminLevel> children, AdminLevelType childType, int byUserId)
         {
             bool transWasStarted = false;

@@ -49,12 +49,6 @@ namespace Nada.UI.View
 
         private void RunUpdates()
         {
-            if (UpdateApp.HasInternetConnection() && UpdateApp.HasUpdate())
-            {
-                WizardForm wiz = new WizardForm(new UpdateApp(OnRestart), Translations.Updates);
-                wiz.OnFinish += () => { };
-                wiz.ShowDialog();
-            }
             SettingsRepository repo = new SettingsRepository();
             string scriptsPath = Path.Combine(
               System.Windows.Forms.Application.StartupPath, @"DatabaseScripts\Differentials\");
