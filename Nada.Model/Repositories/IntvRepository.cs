@@ -269,61 +269,7 @@ namespace Nada.Model.Repositories
             return intv;
         }
 
-        public PcMda GetPcMda(int id)
-        {
-            PcMda intv = null;
-            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    OleDbCommand command = null;
-
-                    intv = GetIntv<PcMda>(command, connection, id);
-
-                    command = new OleDbCommand(@"Select Diseases.ID, Diseases.DisplayName
-                        FROM Diseases INNER JOIN Interventions_to_Diseases on Diseases.ID = Interventions_to_Diseases.DiseaseId
-                        WHERE Interventions_to_Diseases.InterventionId=@id", connection);
-                    command.Parameters.Add(new OleDbParameter("@id", id));
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            intv.DiseasesTargeted.Add(new Disease
-                            {
-                                Id = reader.GetValueOrDefault<int>("ID"),
-                                DisplayName = reader.GetValueOrDefault<string>("DisplayName")
-                            });
-                        }
-                        reader.Close();
-                    }
-
-                    command = new OleDbCommand(@"Select Partners.ID, Partners.DisplayName
-                        FROM Partners INNER JOIN Interventions_to_Partners on Partners.ID = Interventions_to_Partners.PartnerId
-                        WHERE Interventions_to_Partners.InterventionId=@id", connection);
-                    command.Parameters.Add(new OleDbParameter("@id", id));
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            intv.Partners.Add(new Partner
-                            {
-                                Id = reader.GetValueOrDefault<int>("ID"),
-                                DisplayName = reader.GetValueOrDefault<string>("DisplayName")
-                            });
-                        }
-                        reader.Close();
-                    }
-
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-            return intv;
-        }
+     
 
         public void Save(List<IntvBase> import, int userId)
         {
@@ -404,66 +350,7 @@ namespace Nada.Model.Repositories
             }
         }
 
-        public void Save(PcMda intv, int userId)
-        {
-            bool transWasStarted = false;
-            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    // START TRANS
-                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
-                    command.ExecuteNonQuery();
-                    transWasStarted = true;
-
-                    SaveIntvBase(command, connection, intv, userId);
-                    
-                    // Save related lists
-                    command = new OleDbCommand(@"DELETE FROM Interventions_to_Diseases WHERE InterventionId=@IntvId", connection);
-                    command.Parameters.Add(new OleDbParameter("@IntvId", intv.Id));
-                    command.ExecuteNonQuery();
-                    foreach (var Disease in intv.DiseasesTargeted)
-                    {
-                        command = new OleDbCommand(@"INSERT INTO Interventions_to_Diseases (InterventionId, DiseaseId) values (@id, @DiseaseId)", connection);
-                        command.Parameters.Add(new OleDbParameter("@id", intv.Id));
-                        command.Parameters.Add(new OleDbParameter("@DiseaseId", Disease.Id));
-                        command.ExecuteNonQuery();
-                    }
-
-                    command = new OleDbCommand(@"DELETE FROM Interventions_to_Partners WHERE InterventionId=@IntvId", connection);
-                    command.Parameters.Add(new OleDbParameter("@IntvId", intv.Id));
-                    command.ExecuteNonQuery();
-                    foreach (var partner in intv.Partners)
-                    {
-                        command = new OleDbCommand(@"INSERT INTO Interventions_to_Partners (InterventionId, PartnerId) values (@id, @PartnerId)", connection);
-                        command.Parameters.Add(new OleDbParameter("@id", intv.Id));
-                        command.Parameters.Add(new OleDbParameter("@PartnerId", partner.Id));
-                        command.ExecuteNonQuery();
-                    }
-
-                    // COMMIT TRANS
-                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
-                    command.ExecuteNonQuery();
-                    transWasStarted = false;
-                }
-                catch (Exception)
-                {
-                    if (transWasStarted)
-                    {
-                        try
-                        {
-                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch { }
-                    }
-                    throw;
-                }
-            }
-        }
-
+   
         public void Save(IntvType model, int userId)
         {
             bool transWasStarted = false;

@@ -649,9 +649,6 @@
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="DateReported" xml:space="preserve">
-    <value>La date des données s’applique à</value>
-  </data>
   <data name="days14" xml:space="preserve">
     <value>3-14 jours</value>
   </data>
@@ -1487,9 +1484,6 @@
   <data name="LatOther" xml:space="preserve">
     <value>Autre code géo - latitude</value>
   </data>
-  <data name="LatWho" xml:space="preserve">
-    <value>Code géo OMS - latitude</value>
-  </data>
   <data name="LeishIntervention" xml:space="preserve">
     <value>Intervention contre la leishmaniose</value>
   </data>
@@ -1780,9 +1774,6 @@
   </data>
   <data name="LngOther" xml:space="preserve">
     <value>Autre code géo - longitude</value>
-  </data>
-  <data name="LngWho" xml:space="preserve">
-    <value>Code géo OMS - longitude</value>
   </data>
   <data name="LoadingMessage" xml:space="preserve">
     <value>Chargement...</value>
@@ -4966,5 +4957,53 @@
   </data>
   <data name="YesSentinelSite" xml:space="preserve">
     <value>Oui-Site sentinelle</value>
+  </data>
+  <data name="OnchoSurCatchingPoint" xml:space="preserve">
+    <value>Nom du point de capture</value>
+  </data>
+  <data name="OnchoSurFliesDissected" xml:space="preserve">
+    <value>Nombre de simulies disséquées</value>
+  </data>
+  <data name="OnchoSurInfectedFlies" xml:space="preserve">
+    <value>Nombre de simulies infectées</value>
+  </data>
+  <data name="OnchoSurInfectionRate" xml:space="preserve">
+    <value>Taux d'infestation</value>
+  </data>
+  <data name="OnchoSurInfectiveFlies" xml:space="preserve">
+    <value>Nombre de simulies infectieuses</value>
+  </data>
+  <data name="OnchoSurInfectiveLarvae" xml:space="preserve">
+    <value>Nombre de larves infectantes</value>
+  </data>
+  <data name="OnchoSurInfectivityRate" xml:space="preserve">
+    <value>Taux d'infectivité</value>
+  </data>
+  <data name="OnchoSurLat" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="OnchoSurLng" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="OnchoSurMonth" xml:space="preserve">
+    <value>Mois de collecte des simulies</value>
+  </data>
+  <data name="OnchoSurNoFlies" xml:space="preserve">
+    <value>Nombre de simulies collectées</value>
+  </data>
+  <data name="OnchoSurParousFlies" xml:space="preserve">
+    <value>Nombre de simulies pares</value>
+  </data>
+  <data name="OnchoSurParousRate" xml:space="preserve">
+    <value>Taux de parturité</value>
+  </data>
+  <data name="OnchoSurProject" xml:space="preserve">
+    <value>Nom du projet</value>
+  </data>
+  <data name="OnchoSurRiver" xml:space="preserve">
+    <value>Nom de la rivière</value>
+  </data>
+  <data name="OnchoSurRiverBasin" xml:space="preserve">
+    <value>Nom du bassin fluvial</value>
   </data>
 </root>

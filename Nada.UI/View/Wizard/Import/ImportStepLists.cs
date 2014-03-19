@@ -150,6 +150,8 @@ namespace Nada.UI.View.Wizard
                 return CreateListBox(indicator, AddValues, AddNewVal, IndicatorEntityType.EcologicalZone, settings.GetEcologicalZones());
             if (indicator.DataTypeId == (int)IndicatorDataType.EvalSubDistrict)
                 return CreateListBox(indicator, AddValues, AddNewVal, IndicatorEntityType.EvalSubDistrict, settings.GetEvalSubDistricts());
+            if (indicator.DataTypeId == (int)IndicatorDataType.EvaluationSite)
+                return CreateListBox(indicator, AddValues, AddNewVal, IndicatorEntityType.EvalSite, settings.GetEvalSites());
             if (indicator.DataTypeId == (int)IndicatorDataType.SentinelSite)
                 return CreateListBox(indicator, AddSites, AddSentinelSite, entityType, dropdownKeys, "SiteName");
             if (indicator.DataTypeId == (int)IndicatorDataType.Partners)

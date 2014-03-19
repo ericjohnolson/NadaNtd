@@ -21,7 +21,8 @@ namespace Nada.Model
         EvaluationUnit = 12,
         Calculated = 13,
         EvalSubDistrict = 14,
-        LargeText = 15
+        LargeText = 15,
+        EvaluationSite = 16
     }
 
     public enum IndicatorAggType
@@ -42,6 +43,7 @@ namespace Nada.Model
         EvaluationUnit = 5,
         EcologicalZone = 6,
         EvalSubDistrict = 7,
+        EvalSite = 8
     }
 
     public enum StaticSurveyType

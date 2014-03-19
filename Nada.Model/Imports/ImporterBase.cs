@@ -27,6 +27,7 @@ namespace Nada.Model
         protected List<Partner> partners = new List<Partner>();
         private List<IndicatorDropdownValue> ezs = new List<IndicatorDropdownValue>();
         private List<IndicatorDropdownValue> eus = new List<IndicatorDropdownValue>();
+        private List<IndicatorDropdownValue> ess = new List<IndicatorDropdownValue>();
         private List<IndicatorDropdownValue> subdistricts = new List<IndicatorDropdownValue>();
         protected List<MonthItem> months = new List<MonthItem>();
         public virtual string ImportName { get { return ""; } }
@@ -146,6 +147,10 @@ namespace Nada.Model
                 AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", Util.ProduceEnumeration(partners.Select(p => p.DisplayName).ToList()), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.EvaluationUnit)
                 AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", eus.Select(p => p.DisplayName).ToList(), currentCulture);
+            else if (indicator.DataTypeId == (int)IndicatorDataType.EvaluationSite)
+                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", ess.Select(p => p.DisplayName).ToList(), currentCulture);
+            else if (indicator.DataTypeId == (int)IndicatorDataType.EvalSubDistrict)
+                AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", subdistricts.Select(p => p.DisplayName).ToList(), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.EcologicalZone)
                 AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(c), r, "", "", ezs.Select(p => p.DisplayName).ToList(), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.Multiselect)
@@ -240,7 +245,8 @@ namespace Nada.Model
             SettingsRepository settings = new SettingsRepository();
             ezs = settings.GetEcologicalZones();
             eus = settings.GetEvaluationUnits();
-            eus = settings.GetEvalSubDistricts();
+            subdistricts = settings.GetEvalSubDistricts();
+            ess = settings.GetEvalSites();
         }
 
         private string GetValueAndValidate(Indicator indicator, ref string val, string name)
@@ -313,6 +319,11 @@ namespace Nada.Model
                     var evVal = val;
                     var ez = ezs.FirstOrDefault(v => v.DisplayName == evVal);
                     val = ez == null ? null : ez.Id.ToString();
+                    break;
+                case (int)IndicatorDataType.EvaluationSite:
+                    var esVal = val;
+                    var es = ess.FirstOrDefault(v => v.DisplayName == esVal);
+                    val = es == null ? null : es.Id.ToString();
                     break;
                 case (int)IndicatorDataType.EvalSubDistrict:
                     var sdVal = val;

@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://apps.who.int/neglected_diseases/ntddata/ntd_database/</InstallUrl>
+    <InstallUrl>http://nadaqa.ericdidit.com/</InstallUrl>
     <SupportUrl>http://supporturl.com</SupportUrl>
     <ErrorReportUrl>http://errorurl.com</ErrorReportUrl>
     <ProductName>National Database Template</ProductName>
@@ -31,7 +31,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>127</ApplicationRevision>
+    <ApplicationRevision>128</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1050,7 +1050,6 @@
     <Content Include="Exports\AFRO_CM_JRF.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="certificate.p12" />
     <None Include="Images\logosplaceholder.gif" />
     <None Include="Images\afro.gif" />
     <None Include="Images\apoc.jpg" />

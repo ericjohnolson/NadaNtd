@@ -249,6 +249,8 @@ namespace Nada.UI.View
                 return ControlFactory.CreatePartners(indicator, val, indicatorErrors, controlList);
             if (indicator.DataTypeId == (int)IndicatorDataType.EvaluationUnit)
                 return ControlFactory.CreateDynamicNameVal(indicator, val, indicatorErrors, controlList, IndicatorEntityType.EvaluationUnit, settings.GetEvaluationUnits());
+            if (indicator.DataTypeId == (int)IndicatorDataType.EvaluationSite)
+                return ControlFactory.CreateDynamicNameVal(indicator, val, indicatorErrors, controlList, IndicatorEntityType.EvalSite, settings.GetEvalSites());
             if (indicator.DataTypeId == (int)IndicatorDataType.EcologicalZone)
                 return ControlFactory.CreateDynamicNameVal(indicator, val, indicatorErrors, controlList, IndicatorEntityType.EcologicalZone, settings.GetEcologicalZones());
             if (indicator.DataTypeId == (int)IndicatorDataType.EvalSubDistrict)

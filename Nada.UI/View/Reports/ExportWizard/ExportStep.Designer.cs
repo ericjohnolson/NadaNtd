@@ -62,6 +62,7 @@
             this.h3bLabel5 = new Nada.UI.Controls.H3bLabel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel7 = new Nada.UI.Controls.H3bLabel();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -113,7 +114,6 @@
             this.h3bLabel14 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel13 = new Nada.UI.Controls.H3bLabel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -154,7 +154,6 @@
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
-            this.errorProvider1.DataSource = this.bindingSource1;
             // 
             // dataGridView1
             // 
@@ -533,6 +532,15 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(225, 47);
             this.tableLayoutPanel5.TabIndex = 27;
+            // 
+            // textBox5
+            // 
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "YearReporting", true));
+            this.textBox5.Location = new System.Drawing.Point(46, 3);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(154, 21);
+            this.textBox5.TabIndex = 70;
             // 
             // tableLayoutPanel6
             // 
@@ -1370,15 +1378,6 @@
             this.h3bLabel13.Tag = "CmIfSpecWhichNtdPlan";
             this.h3bLabel13.Text = "CmIfSpecWhichNtdPlan";
             this.h3bLabel13.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // textBox5
-            // 
-            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "YearReporting", true));
-            this.textBox5.Location = new System.Drawing.Point(46, 3);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(154, 21);
-            this.textBox5.TabIndex = 70;
             // 
             // ExportStep
             // 

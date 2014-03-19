@@ -1484,7 +1484,7 @@ Fixed / Mobile</value>
     <value>Other geo code - latitude</value>
   </data>
   <data name="LatWho" xml:space="preserve">
-    <value>WHO geo code - latitude</value>
+    <value>Latitude (if applicable)</value>
   </data>
   <data name="LeishIntervention" xml:space="preserve">
     <value>Leishmaniasis Intervention</value>
@@ -1778,7 +1778,7 @@ Fixed / Mobile</value>
     <value>Other geo code - longitude</value>
   </data>
   <data name="LngWho" xml:space="preserve">
-    <value>WHO geo code - longitude</value>
+    <value>Longitude (if applicable)</value>
   </data>
   <data name="LoadingMessage" xml:space="preserve">
     <value>Loading...</value>
@@ -4965,7 +4965,7 @@ Fixed / Mobile</value>
     <value>View PowerPoint tutorial...</value>
   </data>
   <data name="DateReported" xml:space="preserve">
-    <value>Date data applies to</value>
+    <value>Start date data applies to</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Open</value>
@@ -5057,6 +5057,21 @@ Fixed / Mobile</value>
   <data name="IntvPkgZithro" xml:space="preserve">
     <value>Zithro</value>
   </data>
+  <data name="LfEnd0b" xml:space="preserve">
+    <value>0 - Not endemic, not above treatment threshold</value>
+  </data>
+  <data name="OnchoMapEvaluationSite" xml:space="preserve">
+    <value>Evaluation Site</value>
+  </data>
+  <data name="OnchoMapSiteName" xml:space="preserve">
+    <value>Site Name</value>
+  </data>
+  <data name="OnchoSurEvaluationSite" xml:space="preserve">
+    <value>Evaluation Site</value>
+  </data>
+  <data name="OnchoSurSiteName" xml:space="preserve">
+    <value>Site Name</value>
+  </data>
   <data name="TrainingDiseases" xml:space="preserve">
     <value>Disease(s) included in training</value>
   </data>
@@ -5064,9 +5079,60 @@ Fixed / Mobile</value>
     <value>Drugs package(s) included in training</value>
   </data>
   <data name="TrainingNumFemales" xml:space="preserve">
-    <value>Number of females involved in distribution</value>
+    <value># females involved in distribution</value>
   </data>
   <data name="TrainingNumMales" xml:space="preserve">
-    <value>Number of males involved in distribution</value>
+    <value># males involved in distribution</value>
+  </data>
+  <data name="OnchoSurCatchingPoint" xml:space="preserve">
+    <value>Name of the catching point</value>
+  </data>
+  <data name="OnchoSurEntomological" xml:space="preserve">
+    <value>Oncho Entomological Survey</value>
+  </data>
+  <data name="OnchoSurFliesDissected" xml:space="preserve">
+    <value>Number of flies dissected</value>
+  </data>
+  <data name="OnchoSurInfectedFlies" xml:space="preserve">
+    <value>Number of infected flies</value>
+  </data>
+  <data name="OnchoSurInfectionRate" xml:space="preserve">
+    <value>Infection rate</value>
+  </data>
+  <data name="OnchoSurInfectiveFlies" xml:space="preserve">
+    <value>Number of infective flies</value>
+  </data>
+  <data name="OnchoSurInfectiveLarvae" xml:space="preserve">
+    <value>Number of infective larvae</value>
+  </data>
+  <data name="OnchoSurInfectivityRate" xml:space="preserve">
+    <value>Infectivity rate</value>
+  </data>
+  <data name="OnchoSurLat" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="OnchoSurLng" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="OnchoSurMonth" xml:space="preserve">
+    <value>Month of flies collection</value>
+  </data>
+  <data name="OnchoSurNoFlies" xml:space="preserve">
+    <value>Number of flies collected</value>
+  </data>
+  <data name="OnchoSurParousFlies" xml:space="preserve">
+    <value>Number of parous flies</value>
+  </data>
+  <data name="OnchoSurParousRate" xml:space="preserve">
+    <value>Parous rate</value>
+  </data>
+  <data name="OnchoSurProject" xml:space="preserve">
+    <value>Name of the project</value>
+  </data>
+  <data name="OnchoSurRiver" xml:space="preserve">
+    <value>Name of river</value>
+  </data>
+  <data name="OnchoSurRiverBasin" xml:space="preserve">
+    <value>Name of river basin</value>
   </data>
 </root>

@@ -40,7 +40,8 @@ namespace Nada.UI.View.Reports.CustomReport
             options.IsNoAggregation = rbAggListAll.Checked;
             options.IsCountryAggregation = rbAggCountry.Checked;
             options.IsByLevelAggregation = rbAggLevel.Checked;
-            options.SelectedYears = GetSelectedYears();
+            options.StartDate = dtStart.Value;
+            options.EndDate = dtEnd.Value;
             options.MonthYearStarts = Convert.ToInt32(cbMonths.SelectedValue);
             OnSwitchStep(new StepLocations(options));
         }
@@ -67,12 +68,9 @@ namespace Nada.UI.View.Reports.CustomReport
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                for (int i = DateTime.Now.Year + 2; i >= 1990; i--)
-                    years.Add(i);
-                lbYears.DataSource = years;
-                lbYears.ClearSelected();
-                foreach (var year in years.Where(y => options.SelectedYears.Contains(y)))
-                    lbYears.SelectedItems.Add(year);
+
+                dtStart.Value = options.StartDate;
+                dtEnd.Value = options.EndDate;
 
                 var months = GlobalizationUtil.GetAllMonths();
                 monthItemBindingSource.DataSource = months;
@@ -95,13 +93,6 @@ namespace Nada.UI.View.Reports.CustomReport
             }
         }
 
-        private List<int> GetSelectedYears()
-        {
-            List<int> years = new List<int>();
-            foreach (var year in lbYears.SelectedItems)
-                years.Add(Convert.ToInt32(year));
-            return years;
-        }
 
     }
 }

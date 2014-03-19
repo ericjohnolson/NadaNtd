@@ -583,6 +583,105 @@ namespace Nada.Model.Repositories
             }
         }
 
+        public List<IndicatorDropdownValue> GetEvalSites()
+        {
+            List<IndicatorDropdownValue> list = new List<IndicatorDropdownValue>();
+
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, aspnet_users.UserName, UpdatedAt, CreatedAt, c.UserName as CreatedBy from 
+                        ((EvaluationSites INNER JOIN aspnet_users on EvaluationSites.UpdatedById = aspnet_users.userid)
+                        INNER JOIN aspnet_users c on EvaluationSites.CreatedById = c.userid)
+                        WHERE IsDeleted=0", connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new IndicatorDropdownValue
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+                                UpdatedBy = GetAuditInfo(reader),
+                                EntityType = IndicatorEntityType.EvalSite
+                            });
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return list;
+        }
+
+        public void SaveEvalSite(IndicatorDropdownValue ez, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    if (ez.Id > 0)
+                        command = new OleDbCommand(@"UPDATE EvaluationSites SET DisplayName=@DisplayName,
+                           UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+                    else
+                        command = new OleDbCommand(@"INSERT INTO EvaluationSites (DisplayName, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@DisplayName, @UpdatedById, @UpdatedAt, @CreatedById,
+                            @CreatedAt)", connection);
+
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@DisplayName", ez.DisplayName));
+                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    if (ez.Id > 0)
+                        command.Parameters.Add(new OleDbParameter("@id", ez.Id));
+                    else
+                    {
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                    }
+
+                    command.ExecuteNonQuery();
+
+                    if (ez.Id <= 0)
+                    {
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM EvaluationSites", connection);
+                        ez.Id = (int)command.ExecuteScalar();
+                    }
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+
         public List<IndicatorDropdownValue> GetEvalSubDistricts()
         {
             List<IndicatorDropdownValue> list = new List<IndicatorDropdownValue>();

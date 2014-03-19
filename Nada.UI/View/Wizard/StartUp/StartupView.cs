@@ -136,6 +136,7 @@ namespace Nada.UI.View
             int userId = ApplicationData.Instance.GetUserId();
             var c = demo.GetCountry();
             c.Name = "Skipped Setup Country";
+            c.MonthYearStarts = 1;
             demo.UpdateCountry(c, userId);
             demo.Save(new CountryDemography { AdminLevelId = 1, DateDemographyData = new DateTime(year, 1, 1), TotalPopulation = 1, PopSac = 1, PercentAdult = 30, PercentPsac = 20, PercentSac = 50 },
                 userId); 

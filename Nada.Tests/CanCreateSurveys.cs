@@ -11,8 +11,6 @@ namespace Nada.Tests
         public void CanFetchLfMfPrevalence()
         {
             SurveyRepository repo = new SurveyRepository();
-            var survey = repo.GetLfMfPrevalenceSurvey(15);
-            Assert.IsNotNull(survey);
         }
     }
 }

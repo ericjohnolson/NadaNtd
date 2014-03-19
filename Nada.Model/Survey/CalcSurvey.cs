@@ -96,6 +96,12 @@ namespace Nada.Model.Survey
                         return new KeyValuePair<string, string>(Translations.TraMapSurPerWithClinicalSignTs, GetPercentage(GetValueOrDefault("20TraMapSurNumberOfIndividualsWithClTS", relatedValues), GetValueOrDefault("20TraMapSurNumberOfIndividualsExaminedTs", relatedValues)));
                     case "20TraMapSurPerWithClinicalSignCo":
                         return new KeyValuePair<string, string>(Translations.TraMapSurPerWithClinicalSignCo, GetPercentage(GetValueOrDefault("20TraMapSurNumberOfIndividualsWithClinical", relatedValues), GetValueOrDefault("20TraMapSurNumberOfIndividualsExamined", relatedValues)));
+                    case "21OnchoSurInfectionRate":
+                        return new KeyValuePair<string, string>(Translations.OnchoSurInfectionRate, GetPercentage(GetValueOrDefault("21OnchoSurInfectedFlies", relatedValues), GetValueOrDefault("21OnchoSurFliesDissected", relatedValues)));
+                    case "21OnchoSurParousRate":
+                        return new KeyValuePair<string, string>(Translations.OnchoSurParousRate, GetPercentage(GetValueOrDefault("21OnchoSurParousFlies", relatedValues), GetValueOrDefault("21OnchoSurFliesDissected", relatedValues)));
+                    case "21OnchoSurInfectivityRate":
+                        return new KeyValuePair<string, string>(Translations.OnchoSurInfectivityRate, GetPercentage(GetValueOrDefault("21OnchoSurInfectiveFlies", relatedValues), GetValueOrDefault("21OnchoSurNoFlies", relatedValues), 1000));
                     default:
                         return new KeyValuePair<string,string>(field, Translations.NA);
                 }

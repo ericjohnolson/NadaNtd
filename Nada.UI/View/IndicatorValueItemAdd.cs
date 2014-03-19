@@ -61,6 +61,8 @@ namespace Nada.UI.View
                 s.SaveEvalSubDistrict(model, userid);
             else if (model.EntityType == IndicatorEntityType.EvaluationUnit)
                 s.SaveEu(model, userid);
+            else if (model.EntityType == IndicatorEntityType.EvalSite)
+                s.SaveEvalSite(model, userid);
             else
                 r.Save(model, userid);
             OnSave(model);

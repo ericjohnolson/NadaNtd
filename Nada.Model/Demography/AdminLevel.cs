@@ -23,8 +23,6 @@ namespace Nada.Model
         public int AdminLevelTypeId { get; set; }
         public Nullable<double> LatWho { get; set; }
         public Nullable<double> LngWho { get; set; }
-        public Nullable<double> LatOther { get; set; }
-        public Nullable<double> LngOther { get; set; }
         public string UrbanOrRural { get; set; }
         public AdminLevelDemography CurrentDemography { get; set; }
         public List<AdminLevel> Children { get; set; }
@@ -55,14 +53,6 @@ namespace Nada.Model
                         break;
                     case "LngWho":
                         if (LngWho.HasValue && (LngWho.Value > 180 || LngWho.Value < -180))
-                            error = Translations.ValidLongitude;
-                        break;
-                    case "LatOther":
-                        if (LatOther.HasValue && (LatOther.Value > 90 || LatOther.Value < -90))
-                            error = Translations.ValidLatitude;
-                        break;
-                    case "LngOther":
-                        if (LngOther.HasValue && (LngOther.Value > 180 || LngOther.Value < -180))
                             error = Translations.ValidLongitude;
                         break;
                     default: error = "";
@@ -96,8 +86,6 @@ namespace Nada.Model
                 LevelNumber = this.LevelNumber,
                 UrbanOrRural = this.UrbanOrRural,
                 LatWho = this.LatWho,
-                LatOther = this.LatOther,
-                LngOther = this.LngOther,
                 LngWho = this.LngWho
             };
         }

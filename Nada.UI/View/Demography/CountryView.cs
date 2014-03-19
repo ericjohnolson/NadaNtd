@@ -47,5 +47,10 @@ namespace Nada.UI.View.Demography
             return model;
         }
 
+        public void DoValidate()
+        {
+            errorProvider1.DataSource = bsCountry;
+        }
+
     }
 }

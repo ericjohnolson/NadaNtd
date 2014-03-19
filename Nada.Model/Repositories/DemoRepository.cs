@@ -349,7 +349,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, LatOther, LngOther,
+                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho,
                     AdminLevelTypes.AdminLevel, AdminLevelTypes.DisplayName as LevelName
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE AdminLevels.ID = @id", connection);
@@ -368,8 +368,6 @@ namespace Nada.Model.Repositories
                             UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
                             LatWho = reader.GetValueOrDefault<double>("LatWho"),
                             LngWho = reader.GetValueOrDefault<double>("LngWho"),
-                            LatOther = reader.GetValueOrDefault<double>("LatOther"),
-                            LngOther = reader.GetValueOrDefault<double>("LngOther"),
                         };
                     }
                     reader.Close();
@@ -385,7 +383,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, LatOther, LngOther,
+                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho,
                     AdminLevelTypes.AdminLevel
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE AdminLevels.IsDeleted = 0
@@ -403,8 +401,6 @@ namespace Nada.Model.Repositories
                             UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
                             LatWho = reader.GetValueOrDefault<double>("LatWho"),
                             LngWho = reader.GetValueOrDefault<double>("LngWho"),
-                            LatOther = reader.GetValueOrDefault<double>("LatOther"),
-                            LngOther = reader.GetValueOrDefault<double>("LngOther"),
                         });
                     }
                     reader.Close();
@@ -430,7 +426,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                string cmd = @"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, LatOther, LngOther,
+                string cmd = @"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, 
                     AdminLevelTypes.AdminLevel, AdminLevelTypes.ID as AdminLevelTypeId, AdminLevelTypes.DisplayName as LevelName
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE AdminLevelTypeId <= @AdminLevelTypeId AND AdminLevels.IsDeleted = 0";
@@ -453,8 +449,6 @@ namespace Nada.Model.Repositories
                             UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
                             LatWho = reader.GetValueOrDefault<double>("LatWho"),
                             LngWho = reader.GetValueOrDefault<double>("LngWho"),
-                            LatOther = reader.GetValueOrDefault<double>("LatOther"),
-                            LngOther = reader.GetValueOrDefault<double>("LngOther"),
                         });
                     }
                     reader.Close();
@@ -469,7 +463,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, LatOther, LngOther,
+                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, 
                     AdminLevelTypes.AdminLevel, AdminLevelTypeId
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE AdminLevel <= @AdminLevel AND AdminLevels.IsDeleted = 0", connection);
@@ -487,8 +481,6 @@ namespace Nada.Model.Repositories
                             UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
                             LatWho = reader.GetValueOrDefault<Nullable<double>>("LatWho"),
                             LngWho = reader.GetValueOrDefault<Nullable<double>>("LngWho"),
-                            LatOther = reader.GetValueOrDefault<Nullable<double>>("LatOther"),
-                            LngOther = reader.GetValueOrDefault<Nullable<double>>("LngOther"),
                             AdminLevelTypeId = reader.GetValueOrDefault<int>("AdminLevelTypeId")
                         };
                         al.CurrentDemography = GetDemoByAdminLevelIdAndYear(al.Id, demoYear);
@@ -599,17 +591,15 @@ namespace Nada.Model.Repositories
                     foreach (var child in children)
                     {
                         command = new OleDbCommand(@"Insert Into AdminLevels (DisplayName, AdminLevelTypeId, 
-                        ParentId, UrbanOrRural, LatWho, LngWho, LatOther, LngOther, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
+                        ParentId, UrbanOrRural, LatWho, LngWho,  UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
                         (@DisplayName, @AdminLevelTypeId, @ParentId, @UrbanOrRural, @LatWho, @LngWho, 
-                         @LatOther, @LngOther, @updatedby, @updatedat, @CreatedById, @CreatedAt)", connection);
+                         @updatedby, @updatedat, @CreatedById, @CreatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@DisplayName", child.Name));
                         command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", childType.Id));
                         command.Parameters.Add(new OleDbParameter("@ParentId", parent.Id));
                         command.Parameters.Add(new OleDbParameter("@UrbanOrRural", child.UrbanOrRural));
                         command.Parameters.Add(new OleDbParameter("@LatWho", child.LatWho));
                         command.Parameters.Add(new OleDbParameter("@LngWho", child.LngWho));
-                        command.Parameters.Add(new OleDbParameter("@LatOther", child.LatOther));
-                        command.Parameters.Add(new OleDbParameter("@LngOther", child.LngOther));
                         command.Parameters.Add(new OleDbParameter("@updatedby", byUserId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
                         command.Parameters.Add(new OleDbParameter("@CreatedById", byUserId));
@@ -812,17 +802,15 @@ namespace Nada.Model.Repositories
                     transWasStarted = true;
 
                     command = new OleDbCommand(@"Insert Into AdminLevels (DisplayName, AdminLevelTypeId, 
-                        ParentId, UrbanOrRural, LatWho, LngWho, LatOther, LngOther, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
+                        ParentId, UrbanOrRural, LatWho, LngWho, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
                         (@DisplayName, @AdminLevelTypeId, @ParentId, @UrbanOrRural, @LatWho, @LngWho, 
-                         @LatOther, @LngOther, @updatedby, @updatedat, @CreatedById, @CreatedAt)", connection);
+                         @updatedby, @updatedat, @CreatedById, @CreatedAt)", connection);
                     command.Parameters.Add(new OleDbParameter("@DisplayName", model.Name));
                     command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", model.AdminLevelTypeId));
                     command.Parameters.Add(new OleDbParameter("@ParentId", model.ParentId));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@UrbanOrRural", model.UrbanOrRural));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@LatWho", model.LatWho));
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@LngWho", model.LngWho));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@LatOther", model.LatOther));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@LngOther", model.LngOther));
                     command.Parameters.Add(new OleDbParameter("@updatedby", userid));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
                     command.Parameters.Add(new OleDbParameter("@CreatedById", userid));

@@ -39,6 +39,7 @@ namespace Nada.Model.Repositories
         private List<IndicatorDropdownValue> ezs = new List<IndicatorDropdownValue>();
         private List<IndicatorDropdownValue> eus = new List<IndicatorDropdownValue>();
         private List<IndicatorDropdownValue> subdistricts = new List<IndicatorDropdownValue>();
+        private List<IndicatorDropdownValue> evalsites = new List<IndicatorDropdownValue>();
 
         #region Old report generator
         //        public void GetReportData(ReportIndicators settings, DataTable table, DataTable chart)
@@ -169,12 +170,13 @@ namespace Nada.Model.Repositories
             ezs = settings.GetEcologicalZones();
             eus = settings.GetEvaluationUnits();
             subdistricts = settings.GetEvalSubDistricts();
+            evalsites = settings.GetEvalSites();
             IntvRepository repo = new IntvRepository();
             partners = repo.GetPartners();
         }
 
         public void AddIndicatorsToAggregate(string cmdText, ReportOptions options, Dictionary<int, AdminLevelIndicators> dic, OleDbCommand command,
-            OleDbConnection connection, Func<OleDbDataReader, bool, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
+            OleDbConnection connection, Func<OleDbDataReader, bool, ReportOptions, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
             Action<CreateAggParams> addStaticIndicators, bool isCalcRelated)
         {
             command = new OleDbCommand(cmdText, connection);
@@ -183,7 +185,7 @@ namespace Nada.Model.Repositories
         }
 
         private void FillDictionary(OleDbCommand command, OleDbConnection connection, Dictionary<int, AdminLevelIndicators> dic, ReportOptions options,
-            Func<OleDbDataReader, bool, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
+            Func<OleDbDataReader, bool, ReportOptions, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
             Action<CreateAggParams> addStaticIndicators, bool isCalcRelated)
         {
             using (OleDbDataReader reader = command.ExecuteReader())
@@ -191,7 +193,7 @@ namespace Nada.Model.Repositories
                 while (reader.Read())
                 {
                     string indicatorName = getName(reader);
-                    string indicatorKey = getKey(reader, options.IsNoAggregation) + isCalcRelated;
+                    string indicatorKey = getKey(reader, options.IsNoAggregation, options) + isCalcRelated;
                     int adminLevelId = reader.GetValueOrDefault<int>("AID");
                     int dataType = reader.GetValueOrDefault<int>("DataTypeId");
                     string value = GetDynamicValue(reader);
@@ -205,7 +207,7 @@ namespace Nada.Model.Repositories
                         DataType = dataType,
                         Value = value,
                         AggType = reader.GetValueOrDefault<int>("AggTypeId"),
-                        Year = reader.GetValueOrDefault<Int16>("DYear"),
+                        Year = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")),
                         IsCalcRelated = isCalcRelated,
                         ColumnTypeName = getColTypeName(reader),
                         TypeId = reader.GetValueOrDefault<int>("Tid"),
@@ -323,7 +325,10 @@ namespace Nada.Model.Repositories
                     if (options.IsByLevelAggregation || (options.IsNoAggregation && !options.IsAllLocations) || options.IsCountryAggregation)
                         adminFilter = " and AdminLevels.Id in (" + String.Join(", ", options.SelectedAdminLevels.Select(a => a.Id.ToString()).ToArray()) + ") ";
                     OleDbCommand command = new OleDbCommand(@"Select 
-                                a.ID, DatePart('yyyy', [DateDemographyData]) as DYear, AdminLevels.DisplayName, t.DisplayName as TName
+                                a.ID, 
+                                [DateDemographyData] as DateReported, 
+                                AdminLevels.DisplayName, 
+                                t.DisplayName as TName
                                 ,YearCensus 
                                 ,YearProjections 
                                 ,GrowthRate 
@@ -348,7 +353,7 @@ namespace Nada.Model.Repositories
                             DataRow dr = dt.NewRow();
                             dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
                             dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"), reader.GetValueOrDefault<string>("TName"));
-                            dr[Translations.Year] = Convert.ToInt32(reader.GetValueOrDefault<Int16>("DYear"));
+                            dr[Translations.Year] = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported"));
                             if (keys.ContainsKey("YearCensus")) dr[Translations.YearCensus] = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
                             if (keys.ContainsKey("YearProjections")) dr[Translations.YearProjections] = reader.GetValueOrDefault<Nullable<int>>("YearProjections");
                             if (keys.ContainsKey("GrowthRate")) dr[Translations.GrowthRate] = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
@@ -414,27 +419,51 @@ namespace Nada.Model.Repositories
                     names.Add(sd.DisplayName);
                 value = String.Join(", ", names.ToArray());
             }
+            else if (dataType == (int)IndicatorDataType.EvaluationSite)
+            {
+                List<string> names = new List<string>();
+                string[] vals = value.Split('|');
+                foreach (var es in evalsites.Where(v => vals.Contains(v.Id.ToString())))
+                    names.Add(es.DisplayName);
+                value = String.Join(", ", names.ToArray());
+            }
             return value;
         }
 
         public static string CreateYearFilter(ReportOptions options, string dateName)
         {
-            if(options.SelectedYears.Count == 0)
+            if(options.StartDate == DateTime.MinValue && options.EndDate == DateTime.MinValue)
                 return "";
 
-            StringBuilder builder = new StringBuilder();
-            builder.Append(" and (");
-            for(int i = 0; i < options.SelectedYears.Count; i++)
+            if (options.StartDate == DateTime.MinValue)
             {
-                builder.Append(string.Format("({0} >= cdate('{1}') AND {0} < cdate('{2}')) ", dateName,
-                    new DateTime(options.SelectedYears[i], options.MonthYearStarts, 1).ToShortDateString(),
-                    new DateTime(options.SelectedYears[i] + 1, options.MonthYearStarts, 1).ToShortDateString()));
-                if(i < options.SelectedYears.Count - 1)
-                    builder.Append("OR");
+                return string.Format("({0} >= cdate('{1}') AND {0} <= cdate('{2}')) ", dateName,
+                    options.StartDate.ToShortDateString(),
+                    options.EndDate.ToShortDateString());
+                
             }
+            else if (options.EndDate == DateTime.MinValue)
+            {
+                return string.Format("({0} >= cdate('{1}') )) ", dateName,
+                    options.StartDate.ToShortDateString());
+            }
+            else
+            {
+                return string.Format("({0} <= cdate('{1}')) ", dateName,
+                    options.EndDate.ToShortDateString());
+            }
+            
+            // INCASE MY LOGIC FAILS
+            //for(int i = 0; i < options.SelectedYears.Count; i++)
+            //{
+            //    builder.Append(string.Format("({0} >= cdate('{1}') AND {0} < cdate('{2}')) ", dateName,
+            //        new DateTime(options.SelectedYears[i], options.MonthYearStarts, 1).ToShortDateString(),
+            //        new DateTime(options.SelectedYears[i] + 1, options.MonthYearStarts, 1).ToShortDateString()));
+            //    if(i < options.SelectedYears.Count - 1)
+            //        builder.Append("OR");
+            //}
 //            string filter = " and DatePart('yyyy', [DateReported]) in (" + String.Join(", ", options.SelectedYears.Select(a => a.ToString()).ToArray()) + ") ";
-            builder.Append(")");
-            return builder.ToString();
+            
         }
 
         public static string CreateAdminFilter(ReportOptions options)

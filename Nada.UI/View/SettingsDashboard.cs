@@ -114,6 +114,7 @@ namespace Nada.UI.View
 
         private void saveCountry_Click(object sender, EventArgs e)
         {
+            countryView1.DoValidate();
             if (!country.IsValid())
             {
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);

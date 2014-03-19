@@ -1736,7 +1736,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date data applies to.
+        ///   Looks up a localized string similar to Start date data applies to.
         /// </summary>
         public static string DateReported {
             get {
@@ -4364,7 +4364,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WHO geo code - latitude.
+        ///   Looks up a localized string similar to Latitude (if applicable).
         /// </summary>
         public static string LatWho {
             get {
@@ -4603,6 +4603,15 @@ namespace Nada.Globalization {
         public static string LfEnd0 {
             get {
                 return ResourceManager.GetString("LfEnd0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0 - Not endemic, not above treatment threshold.
+        /// </summary>
+        public static string LfEnd0b {
+            get {
+                return ResourceManager.GetString("LfEnd0b", resourceCulture);
             }
         }
         
@@ -5246,7 +5255,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WHO geo code - longitude.
+        ///   Looks up a localized string similar to Longitude (if applicable).
         /// </summary>
         public static string LngWho {
             get {
@@ -7154,6 +7163,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Evaluation Site.
+        /// </summary>
+        public static string OnchoMapEvaluationSite {
+            get {
+                return ResourceManager.GetString("OnchoMapEvaluationSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site Name.
+        /// </summary>
+        public static string OnchoMapSiteName {
+            get {
+                return ResourceManager.GetString("OnchoMapSiteName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Age range.
         /// </summary>
         public static string OnchoMapSurAgeRange {
@@ -7478,6 +7505,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name of the catching point.
+        /// </summary>
+        public static string OnchoSurCatchingPoint {
+            get {
+                return ResourceManager.GetString("OnchoSurCatchingPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CMFL.
         /// </summary>
         public static string OnchoSurCmfl {
@@ -7505,11 +7541,38 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oncho Entomological Survey.
+        /// </summary>
+        public static string OnchoSurEntomological {
+            get {
+                return ResourceManager.GetString("OnchoSurEntomological", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Entomological assessment conducted?.
         /// </summary>
         public static string OnchoSurEntomologicalAssessmentConducted {
             get {
                 return ResourceManager.GetString("OnchoSurEntomologicalAssessmentConducted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evaluation Site.
+        /// </summary>
+        public static string OnchoSurEvaluationSite {
+            get {
+                return ResourceManager.GetString("OnchoSurEvaluationSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of flies dissected.
+        /// </summary>
+        public static string OnchoSurFliesDissected {
+            get {
+                return ResourceManager.GetString("OnchoSurFliesDissected", resourceCulture);
             }
         }
         
@@ -7586,6 +7649,60 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of infected flies.
+        /// </summary>
+        public static string OnchoSurInfectedFlies {
+            get {
+                return ResourceManager.GetString("OnchoSurInfectedFlies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Infection rate.
+        /// </summary>
+        public static string OnchoSurInfectionRate {
+            get {
+                return ResourceManager.GetString("OnchoSurInfectionRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of infective flies.
+        /// </summary>
+        public static string OnchoSurInfectiveFlies {
+            get {
+                return ResourceManager.GetString("OnchoSurInfectiveFlies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of infective larvae.
+        /// </summary>
+        public static string OnchoSurInfectiveLarvae {
+            get {
+                return ResourceManager.GetString("OnchoSurInfectiveLarvae", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Infectivity rate.
+        /// </summary>
+        public static string OnchoSurInfectivityRate {
+            get {
+                return ResourceManager.GetString("OnchoSurInfectivityRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latitude.
+        /// </summary>
+        public static string OnchoSurLat {
+            get {
+                return ResourceManager.GetString("OnchoSurLat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Latitude.
         /// </summary>
         public static string OnchoSurLatitude {
@@ -7597,9 +7714,36 @@ namespace Nada.Globalization {
         /// <summary>
         ///   Looks up a localized string similar to Longitude.
         /// </summary>
+        public static string OnchoSurLng {
+            get {
+                return ResourceManager.GetString("OnchoSurLng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Longitude.
+        /// </summary>
         public static string OnchoSurLongitude {
             get {
                 return ResourceManager.GetString("OnchoSurLongitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month of flies collection.
+        /// </summary>
+        public static string OnchoSurMonth {
+            get {
+                return ResourceManager.GetString("OnchoSurMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of flies collected.
+        /// </summary>
+        public static string OnchoSurNoFlies {
+            get {
+                return ResourceManager.GetString("OnchoSurNoFlies", resourceCulture);
             }
         }
         
@@ -7631,11 +7775,38 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of parous flies.
+        /// </summary>
+        public static string OnchoSurParousFlies {
+            get {
+                return ResourceManager.GetString("OnchoSurParousFlies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parous rate.
+        /// </summary>
+        public static string OnchoSurParousRate {
+            get {
+                return ResourceManager.GetString("OnchoSurParousRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Percent Positive.
         /// </summary>
         public static string OnchoSurPercentPositive {
             get {
                 return ResourceManager.GetString("OnchoSurPercentPositive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of the project.
+        /// </summary>
+        public static string OnchoSurProject {
+            get {
+                return ResourceManager.GetString("OnchoSurProject", resourceCulture);
             }
         }
         
@@ -7654,6 +7825,33 @@ namespace Nada.Globalization {
         public static string OnchoSurReportedPopulation {
             get {
                 return ResourceManager.GetString("OnchoSurReportedPopulation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of river.
+        /// </summary>
+        public static string OnchoSurRiver {
+            get {
+                return ResourceManager.GetString("OnchoSurRiver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of river basin.
+        /// </summary>
+        public static string OnchoSurRiverBasin {
+            get {
+                return ResourceManager.GetString("OnchoSurRiverBasin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site Name.
+        /// </summary>
+        public static string OnchoSurSiteName {
+            get {
+                return ResourceManager.GetString("OnchoSurSiteName", resourceCulture);
             }
         }
         
@@ -13400,7 +13598,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of females involved in distribution.
+        ///   Looks up a localized string similar to # females involved in distribution.
         /// </summary>
         public static string TrainingNumFemales {
             get {
@@ -13409,7 +13607,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of males involved in distribution.
+        ///   Looks up a localized string similar to # males involved in distribution.
         /// </summary>
         public static string TrainingNumMales {
             get {

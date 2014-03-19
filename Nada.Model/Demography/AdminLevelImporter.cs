@@ -123,7 +123,7 @@ namespace Nada.Model
                     var demography = new AdminLevelDemography();
                     if (ds.Tables[0].Columns.Contains(TranslationLookup.GetValue("ID") + "#"))
                         demography.Id = Convert.ToInt32(row[TranslationLookup.GetValue("ID") + "#"]);
-                    demography.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
+                    demography.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
                     demography.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                     demography.DateDemographyData = dateReported;
                     // need to do the required validation, do all and then show errors
@@ -142,9 +142,9 @@ namespace Nada.Model
                         demography.TotalPopulation = d;
                     if (double.TryParse(row[TranslationLookup.GetValue("Pop0Month")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.Pop0Month = d;
-                    if (double.TryParse(row["* " + TranslationLookup.GetValue("PopPsac")].ToString(), NumberStyles.Any, cultureEn, out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("PopPsac")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.PopPsac = d;
-                    if (double.TryParse(row[TranslationLookup.GetValue("PopSac")].ToString(), NumberStyles.Any, cultureEn, out d))
+                    if (double.TryParse(row["* " + TranslationLookup.GetValue("PopSac")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.PopSac = d;
                     if (double.TryParse(row[TranslationLookup.GetValue("Pop5yo")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.Pop5yo = d;
@@ -304,8 +304,6 @@ namespace Nada.Model
             }
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("LatWho")));
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("LngWho")));
-            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("LatOther")));
-            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("LngOther")));
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("UrbanOrRural")));
             if (isDemo)
                 data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Notes")));
@@ -352,10 +350,6 @@ namespace Nada.Model
                         adminLevel.LatWho = d1;
                     if (double.TryParse(row[TranslationLookup.GetValue("LngWho")].ToString(), NumberStyles.Any, cultureEn, out d1))
                         adminLevel.LngWho = d1;
-                    if (double.TryParse(row[TranslationLookup.GetValue("LatOther")].ToString(), NumberStyles.Any, cultureEn, out d1))
-                        adminLevel.LatOther = d1;
-                    if (double.TryParse(row[TranslationLookup.GetValue("LngOther")].ToString(), NumberStyles.Any, cultureEn, out d1))
-                        adminLevel.LngOther = d1;
 
                     if (importDemography)
                     {

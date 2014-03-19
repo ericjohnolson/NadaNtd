@@ -75,6 +75,7 @@ namespace Nada.UI.View.Wizard
 
         private bool SaveCountry()
         {
+            countryView1.DoValidate();
             if (!model.IsValid())
             {
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);

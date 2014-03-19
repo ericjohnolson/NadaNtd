@@ -85,6 +85,7 @@ namespace Nada.UI.View.Reports
         {
             if (!questions.IsValid())
             {
+                errorProvider1.DataSource = bindingSource1;
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }

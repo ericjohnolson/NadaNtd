@@ -123,6 +123,7 @@ namespace Nada.UI.View.Wizard
         {
             if (!options.IsValid())
             {
+                errorProvider1.DataSource = bsImportOptions;
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return false;
             }

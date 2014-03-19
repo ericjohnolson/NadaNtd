@@ -91,7 +91,6 @@
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Survey\CalcSurvey.cs" />
     <Compile Include="Survey\SurveyDetails.cs" />
-    <Compile Include="Vector.cs" />
     <Compile Include="Demography\AdminLevel.cs" />
     <Compile Include="Demography\AdminLevelType.cs" />
     <Compile Include="Demography\AdminLevelDemography.cs" />
@@ -107,7 +106,6 @@
     <Compile Include="Intervention\DistributionMethod.cs" />
     <Compile Include="Intervention\IntvBase.cs" />
     <Compile Include="Intervention\IntvType.cs" />
-    <Compile Include="Intervention\PcMda.cs" />
     <Compile Include="Repositories\IntvRepository.cs" />
     <Compile Include="Survey\SurveyBase.cs" />
     <Compile Include="Demography\Country.cs" />
@@ -128,7 +126,6 @@
     <Compile Include="Repositories\SettingsRepository.cs" />
     <Compile Include="Repositories\SurveyRepository.cs" />
     <Compile Include="Repositories\DiseaseRepository.cs" />
-    <Compile Include="Survey\LfMfPrevalence.cs" />
     <Compile Include="Survey\SentinelSite.cs" />
     <Compile Include="Indicator.cs" />
     <Compile Include="IndicatorValue.cs" />

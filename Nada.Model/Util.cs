@@ -87,6 +87,14 @@ namespace Nada.Model
 
             return columnName;
         }
+
+        public static int GetYearReported(int month, DateTime dateReported)
+        {
+            if (dateReported.Month >= month)
+                return dateReported.Year;
+            else
+                return dateReported.Year - 1;
+        }
         
     }
 }

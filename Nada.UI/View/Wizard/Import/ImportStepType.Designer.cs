@@ -32,7 +32,7 @@
             this.lnkDownload = new Nada.UI.Controls.H3Link();
             this.lnkUpload = new Nada.UI.Controls.H3Link();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.h3Label1 = new Nada.UI.Controls.H3Label();
+            this.h3Label1 = new Nada.UI.Controls.H3Required();
             this.cbTypes = new System.Windows.Forms.ComboBox();
             this.bsImportOptions = new System.Windows.Forms.BindingSource(this.components);
             this.typeListItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -116,7 +116,6 @@
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
-            this.errorProvider1.DataSource = this.bsImportOptions;
             // 
             // ImportStepType
             // 
@@ -147,7 +146,7 @@
         private Controls.H3Link lnkDownload;
         private Controls.H3Link lnkUpload;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private Controls.H3Label h3Label1;
+        private Controls.H3Required h3Label1;
         private System.Windows.Forms.ComboBox cbTypes;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.BindingSource bsImportOptions;
