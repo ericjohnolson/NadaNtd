@@ -180,7 +180,7 @@ namespace Nada.Model.Repositories
         public static List<AdminLevelIndicators> GetAdminLevels(OleDbCommand command, OleDbConnection connection)
         {
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
-            command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, AdminLevelTypes.AdminLevel, AdminLevelTypes.IsDistrict
+            command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, AdminLevelTypes.AdminLevel, AdminLevelTypes.IsDistrict, AdminLevels.AdminLevelTypeId
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE AdminLevels.IsDeleted = 0
                     ", connection);
@@ -191,6 +191,7 @@ namespace Nada.Model.Repositories
                     list.Add(new AdminLevelIndicators
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),
+                        TypeId = reader.GetValueOrDefault<int>("AdminLevelTypeId"),
                         ParentId = reader.GetValueOrDefault<Nullable<int>>("ParentId"),
                         Name = reader.GetValueOrDefault<string>("DisplayName"),
                         LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),

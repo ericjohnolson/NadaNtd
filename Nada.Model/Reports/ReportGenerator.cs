@@ -57,6 +57,7 @@ namespace Nada.Model.Reports
     {
         protected ICalcIndicators calc = null;
         protected ReportRepository repo = new ReportRepository();
+        protected DemoRepository demo = new DemoRepository();
         protected ReportOptions opts = null;
         protected List<ReportIndicator> selectedCalcFields = new List<ReportIndicator>();
         protected bool hasCalculations = false;
@@ -72,6 +73,8 @@ namespace Nada.Model.Reports
             repo.LoadRelatedLists();
             Init();
             result.DataTableResults = CreateReport(options);
+            result.ChartData = result.DataTableResults.Copy();
+            result.DataTableResults.Columns.Remove(Translations.Location);
             return result;
         }
         
@@ -151,8 +154,6 @@ namespace Nada.Model.Reports
                         }
                     }
                 }
-
-
             }
 
             // Do calculated fields
@@ -180,13 +181,24 @@ namespace Nada.Model.Reports
         }
 
         #region Shared Methods
-        private static void AddToTable(DataTable result, Dictionary<string, ReportRow> resultDic, AdminLevelIndicators level, int year, AggregateIndicator indicator,
+        private void AddToTable(DataTable result, Dictionary<string, ReportRow> resultDic, AdminLevelIndicators level, int year, AggregateIndicator indicator,
             string rowKey, object value, string typeName)
         {
             // Add row if it doesn't exist
             if (!resultDic.ContainsKey(rowKey))
             {
                 DataRow dr = result.NewRow();
+                List<AdminLevel> parents = demo.GetAdminLevelParentNames(level.Id);
+                for (int i = 0; i < parents.Count; i++)
+                {
+                    if (!result.Columns.Contains(parents[i].LevelName))
+                    {
+                        DataColumn dc = new DataColumn(parents[i].LevelName);
+                        result.Columns.Add(dc);
+                        dc.SetOrdinal(i);
+                    }
+                    dr[parents[i].LevelName] = parents[i].Name;
+                }
                 dr[Translations.Location] = level.Name;
                 dr[Translations.Type] = typeName;
                 dr[Translations.Year] = year;
@@ -754,12 +766,29 @@ namespace Nada.Model.Reports
             opts = options;
             ReportResult result = new ReportResult();
             DataTable dataTable = new DataTable();
+            dataTable.Columns.Add(new DataColumn(Translations.ID));
             dataTable.Columns.Add(new DataColumn(Translations.Location));
             dataTable.Columns.Add(new DataColumn(Translations.Type));
             dataTable.Columns.Add(new DataColumn(Translations.Year));
             foreach (var ind in options.SelectedIndicators)
                 dataTable.Columns.Add(new DataColumn(ind.Name));
             result.DataTableResults = repo.CreateDemoReport(options, dataTable);
+
+            foreach (DataRow dr in result.DataTableResults.Rows)
+            {
+                List<AdminLevel> parents = demo.GetAdminLevelParentNames(Convert.ToInt32(dr[Translations.ID]));
+                for (int i = 0; i < parents.Count; i++)
+                {
+                    if (!result.DataTableResults.Columns.Contains(parents[i].LevelName))
+                    {
+                        DataColumn dc = new DataColumn(parents[i].LevelName);
+                        result.DataTableResults.Columns.Add(dc);
+                        dc.SetOrdinal(i);
+                    }
+                    dr[parents[i].LevelName] = parents[i].Name;
+                }
+            }
+            result.DataTableResults.Columns.Remove(Translations.ID);
             return result;
         }
     }

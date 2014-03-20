@@ -493,10 +493,10 @@ namespace Nada.Model.Repositories
             return MakeTreeFromFlatList(list, 0);
         }
 
-        public List<string> GetAdminLevelParentNames(int levelId)
+        public List<AdminLevel> GetAdminLevelParentNames(int levelId)
         {
             Nullable<int> id = levelId;
-            List<string> list = new List<string>();
+            List<AdminLevel> list = new List<AdminLevel>();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
@@ -504,16 +504,19 @@ namespace Nada.Model.Repositories
                 bool hasParent = true;
                 while (hasParent)
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select ParentId, DisplayName
-                    FROM AdminLevels
-                    WHERE AdminLevels.ID = @id", connection);
+                    OleDbCommand command = new OleDbCommand(@"Select a.ParentId, a.DisplayName, t.DisplayName as TypeName
+                    FROM AdminLevels a inner join adminleveltypes t on t.id = a.adminleveltypeid
+                    WHERE a.ID = @id", connection);
                     command.Parameters.Add(new OleDbParameter("@id", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         if(reader.HasRows)
                         {
                             reader.Read();
-                            list.Insert(0, reader.GetValueOrDefault<string>("DisplayName"));
+                            list.Insert(0, new AdminLevel {
+                                Name = reader.GetValueOrDefault<string>("DisplayName"),
+                                LevelName = reader.GetValueOrDefault<string>("TypeName")
+                            });
                             id = reader.GetValueOrDefault<Nullable<int>>("ParentId");
                             if (!id.HasValue || id <= 1)
                                 hasParent = false;

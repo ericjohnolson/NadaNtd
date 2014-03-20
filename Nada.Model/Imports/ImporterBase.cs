@@ -93,11 +93,11 @@ namespace Nada.Model
             foreach (AdminLevel l in adminLevels)
             {
                 xlsWorksheet.Cells[xlsRowCount, 1] = l.Id;
-                List<string> parentNames = repo.GetAdminLevelParentNames(l.Id);
+                List<AdminLevel> parents = repo.GetAdminLevelParentNames(l.Id);
                 int aCol = 2;
-                foreach(string aname in parentNames)
+                foreach(AdminLevel adminlevel in parents)
                 {
-                    xlsWorksheet.Cells[xlsRowCount, aCol] = aname;
+                    xlsWorksheet.Cells[xlsRowCount, aCol] = adminlevel.Name;
                     aCol++;
                 }
                 AddTypeSpecificLists(xlsWorksheet, l.Id, xlsRowCount, oldCI, locationCount);

@@ -69,8 +69,10 @@ namespace Nada.UI.View.Reports.CustomReport
             {
                 Localizer.TranslateControl(this);
 
-                dtStart.Value = options.StartDate;
-                dtEnd.Value = options.EndDate;
+                if (options.StartDate != DateTime.MinValue)
+                    dtStart.Value = options.StartDate;
+                if (options.EndDate != DateTime.MinValue)
+                    dtEnd.Value = options.EndDate;
 
                 var months = GlobalizationUtil.GetAllMonths();
                 monthItemBindingSource.DataSource = months;

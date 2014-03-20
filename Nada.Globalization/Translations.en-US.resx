@@ -5135,4 +5135,13 @@ Fixed / Mobile</value>
   <data name="OnchoSurRiverBasin" xml:space="preserve">
     <value>Name of river basin</value>
   </data>
+  <data name="Chart" xml:space="preserve">
+    <value>Chart</value>
+  </data>
+  <data name="ExportImage" xml:space="preserve">
+    <value>Export image...</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
 </root>

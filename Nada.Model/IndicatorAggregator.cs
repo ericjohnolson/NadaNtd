@@ -22,6 +22,7 @@ namespace Nada.Model
             Indicators = new Dictionary<string, AggregateIndicator>();
         }
         public int Id { get; set; }
+        public int TypeId { get; set; }
         public string Name { get; set; }
         public Nullable<int> ParentId { get; set; }
         public AdminLevelIndicators Parent { get; set; }

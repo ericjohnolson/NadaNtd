@@ -351,6 +351,7 @@ namespace Nada.Model.Repositories
                         while (reader.Read())
                         {
                             DataRow dr = dt.NewRow();
+                            dr[Translations.ID] = reader.GetValueOrDefault<int>("ID");
                             dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
                             dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"), reader.GetValueOrDefault<string>("TName"));
                             dr[Translations.Year] = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported"));
@@ -437,19 +438,19 @@ namespace Nada.Model.Repositories
 
             if (options.StartDate == DateTime.MinValue)
             {
-                return string.Format("({0} >= cdate('{1}') AND {0} <= cdate('{2}')) ", dateName,
+                return string.Format(" AND {0} >= cdate('{1}') AND {0} <= cdate('{2}') ", dateName,
                     options.StartDate.ToShortDateString(),
                     options.EndDate.ToShortDateString());
                 
             }
             else if (options.EndDate == DateTime.MinValue)
             {
-                return string.Format("({0} >= cdate('{1}') )) ", dateName,
+                return string.Format(" AND {0} >= cdate('{1}') ", dateName,
                     options.StartDate.ToShortDateString());
             }
             else
             {
-                return string.Format("({0} <= cdate('{1}')) ", dateName,
+                return string.Format(" AND {0} <= cdate('{1}') ", dateName,
                     options.EndDate.ToShortDateString());
             }
             
