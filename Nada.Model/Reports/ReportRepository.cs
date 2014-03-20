@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
+using Nada.DA;
 using Nada.Globalization;
 using Nada.Model.Diseases;
 using Nada.Model.Process;
@@ -33,135 +34,13 @@ namespace Nada.Model.Repositories
         public int Year { get; set; }
     }
 
-    public class ReportRepository
+    public class ReportRepository : RepositoryBase
     {
         private List<Partner> partners = new List<Partner>();
         private List<IndicatorDropdownValue> ezs = new List<IndicatorDropdownValue>();
         private List<IndicatorDropdownValue> eus = new List<IndicatorDropdownValue>();
         private List<IndicatorDropdownValue> subdistricts = new List<IndicatorDropdownValue>();
         private List<IndicatorDropdownValue> evalsites = new List<IndicatorDropdownValue>();
-
-        #region Old report generator
-        //        public void GetReportData(ReportIndicators settings, DataTable table, DataTable chart)
-        //        {
-        //            // Create dictionary,
-        //            Dictionary<string, DataRow> tableRows = new Dictionary<string, DataRow>();
-        //            Dictionary<string, int> selectedIndicators = CreateIndicatorDictionary(settings);
-        //            if (selectedIndicators.Count == 0)
-        //                return;
-
-        //            // if a location exists ADD indicator to column
-        //            // if not add new row to new dictionary entry for location
-        //            // for chart add row for each indicator value 
-        //            // CreateChartRow(DataTable chartData, DataRow dr)
-
-        //            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-        //            using (connection)
-        //            {
-        //                connection.Open();
-        //                try
-        //                {
-        //                    // Load LF MF Indicators
-        //                    OleDbCommand command = new OleDbCommand();
-
-        //                    if (settings.SurveyIndicators.Where(i => i.Selected && !i.IsStatic).Count() > 0)
-        //                    {
-        //                        command = new OleDbCommand(@"Select SurveyIndicators.DisplayName as IndicatorName, 
-        //                            SurveyIndicatorValues.DynamicValue,
-        //                            SurveyIndicators.DataTypeId,
-        //                            SurveyIndicators.Id,
-        //                            SurveyTypes.SurveyTypeName,
-        //                            Surveys.SurveyDate,
-        //                            AdminLevels.DisplayName as Location
-        //                        FROM ((((SurveyIndicators INNER JOIN SurveyIndicatorValues on SurveyIndicators.ID = SurveyIndicatorValues.IndicatorId)
-        //                            INNER JOIN SurveyTypes ON SurveyIndicators.SurveyTypeId = SurveyTypes.ID)
-        //                            INNER JOIN Surveys ON SurveyIndicatorValues.SurveyId = Surveys.ID)
-        //                            INNER JOIN AdminLevels ON Surveys.AdminLevelId = AdminLevels.ID)
-        //                        WHERE SurveyIndicators.Id in (" + String.Join(", ", settings.SurveyIndicators.Where(i => i.Selected && !i.IsStatic).Select(s => s.ID.ToString()).ToArray()) + ")", connection);
-        //                        using (OleDbDataReader reader = command.ExecuteReader())
-        //                        {
-        //                            while (reader.Read())
-        //                            {
-        //                                DataRow dr = table.NewRow();
-        //                                dr["Location"] = reader.GetValueOrDefault<string>("Location");
-        //                                dr["Type"] = reader.GetValueOrDefault<string>("SurveyTypeName");
-        //                                dr["Year"] = reader.GetValueOrDefault<DateTime>("SurveyDate").ToString("yyyy");
-        //                                dr[reader.GetValueOrDefault<string>("IndicatorName")] = reader.GetValueOrDefault<string>("DynamicValue");
-        //                                table.Rows.Add(dr);
-
-        //                                CreateChartRow(chart, dr["Location"].ToString(), dr["Year"].ToString(),
-        //                                    reader.GetValueOrDefault<string>("IndicatorName"),
-        //                                    reader.GetValueOrDefault<int>("Id"),
-        //                                    reader.GetValueOrDefault<string>("DynamicValue"));
-        //                            }
-        //                            reader.Close();
-        //                        }
-        //                    }
-
-        //                    if (settings.InterventionIndicators.Where(i => i.Selected && !i.IsStatic).Count() > 0)
-        //                    {
-        //                        command = new OleDbCommand(@"Select InterventionIndicators.DisplayName as IndicatorName, 
-        //                            InterventionIndicatorValues.DynamicValue,
-        //                            InterventionIndicators.DataTypeId,
-        //                            InterventionIndicators.Id,
-        //                            InterventionTypes.InterventionTypeName,
-        //                            Interventions.InterventionDate,
-        //                            AdminLevels.DisplayName as Location
-        //                        FROM ((((InterventionIndicators INNER JOIN InterventionIndicatorValues on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId)
-        //                            INNER JOIN InterventionTypes ON InterventionIndicators.InterventionTypeId = InterventionTypes.ID)
-        //                            INNER JOIN Interventions ON InterventionIndicatorValues.InterventionId = Interventions.ID)
-        //                            INNER JOIN AdminLevels ON Interventions.AdminLevelId = AdminLevels.ID)
-        //                        WHERE InterventionIndicators.Id in (" + String.Join(", ", settings.InterventionIndicators.Where(i => i.Selected && !i.IsStatic).Select(s => s.ID.ToString()).ToArray()) + ")", connection);
-        //                        using (OleDbDataReader reader = command.ExecuteReader())
-        //                        {
-        //                            while (reader.Read())
-        //                            {
-        //                                DataRow dr = table.NewRow();
-        //                                dr["Location"] = reader.GetValueOrDefault<string>("Location");
-        //                                dr["Type"] = reader.GetValueOrDefault<string>("InterventionTypeName");
-        //                                dr["Year"] = reader.GetValueOrDefault<DateTime>("InterventionDate").ToString("yyyy");
-        //                                dr[reader.GetValueOrDefault<string>("IndicatorName")] = reader.GetValueOrDefault<string>("DynamicValue");
-        //                                table.Rows.Add(dr);
-
-        //                                CreateChartRow(chart, dr["Location"].ToString(), dr["Year"].ToString(),
-        //                                    reader.GetValueOrDefault<string>("IndicatorName"),
-        //                                    reader.GetValueOrDefault<int>("Id"),
-        //                                    reader.GetValueOrDefault<string>("DynamicValue"));
-        //                            }
-        //                            reader.Close();
-        //                        }
-        //                    }
-
-        //                }
-        //                catch (Exception)
-        //                {
-        //                    throw;
-        //                }
-        //            }
-        //        }
-
-        //private Dictionary<string, int> CreateIndicatorDictionary(ReportIndicators settings)
-        //{
-        //    Dictionary<string, int> inds = new Dictionary<string, int>();
-        //    foreach (var i in settings.InterventionIndicators.Where(ii => ii.Selected))
-        //        inds.Add(i.Key, i.ID);
-        //    foreach (var i in settings.SurveyIndicators.Where(ii => ii.Selected))
-        //        inds.Add(i.Key, i.ID);
-        //    return inds;
-        //}
-
-        private void CreateChartRow(DataTable chartData, string location, string year, string name, int id, string value)
-        {
-            // only numbers
-            var newRow = chartData.NewRow();
-            newRow["Location"] = location;
-            newRow["Year"] = year;
-            newRow["IndicatorName"] = name;
-            newRow["IndicatorId"] = id;
-            newRow["Value"] = value;
-            chartData.Rows.Add(newRow);
-        }
-        #endregion
 
         #region ReportGenerators
         public void LoadRelatedLists()
@@ -241,68 +120,6 @@ namespace Nada.Model.Repositories
                 reader.Close();
             }
         }
-
-        //public DataTable CreateNonAggregatedReport(string cmdText, ReportOptions options, DataTable dt, Func<OleDbDataReader, string> getName,
-        //    Action<CreateAggParams> addStaticIndicators)
-        //{
-        //    Dictionary<int, DataRow> ids = new Dictionary<int, DataRow>();
-        //    OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-        //    using (connection)
-        //    {
-        //        connection.Open();
-        //        try
-        //        {
-        //            OleDbCommand command = new OleDbCommand(cmdText + CreateYearFilter(options) + CreateAdminFilter(options)
-        //                , connection);
-
-        //            FillDataTable(command, connection, ids, dt, getName, addStaticIndicators);
-        //        }
-        //        catch (Exception)
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    return dt;
-        //}
-
-        //private void FillDataTable(OleDbCommand command, OleDbConnection connection, Dictionary<int, DataRow> ids, DataTable dt, Func<OleDbDataReader, string> getName,
-        //    Action<CreateAggParams> addStaticIndicators)
-        //{
-        //    using (OleDbDataReader reader = command.ExecuteReader())
-        //    {
-        //        while (reader.Read())
-        //        {
-        //            int id = reader.GetValueOrDefault<int>("ID");
-        //            // column name (which is unique depending on type, round number/ cat etc
-        //            string columnName = getName(reader);
-        //            // if the column doesnt exist, add it.
-        //            if (columnName != null && !dt.Columns.Contains(columnName))
-        //                dt.Columns.Add(new DataColumn(columnName));
-
-        //            if (!ids.ContainsKey(id))
-        //            {
-        //                DataRow dr = dt.NewRow();
-        //                dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
-        //                dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"));
-        //                dr[Translations.Year] = reader.GetValueOrDefault<int>("YearReported");
-        //                addStaticIndicators(new CreateAggParams
-        //                     {
-        //                         Row = dr,
-        //                         Reader = reader,
-        //                         Table = dt
-        //                     });
-        //                dt.Rows.Add(dr);
-        //                ids.Add(id, dr);
-        //            }
-
-        //            if (columnName != null)
-        //            {
-        //                ids[id][columnName] = GetDynamicValue(reader);
-        //            }
-        //        }
-        //        reader.Close();
-        //    }
-        //}
 
         /// <summary>
         /// Note aggregation is easy for demo, because it is pre aggregated
@@ -453,18 +270,6 @@ namespace Nada.Model.Repositories
                 return string.Format(" AND {0} <= cdate('{1}') ", dateName,
                     options.EndDate.ToShortDateString());
             }
-            
-            // INCASE MY LOGIC FAILS
-            //for(int i = 0; i < options.SelectedYears.Count; i++)
-            //{
-            //    builder.Append(string.Format("({0} >= cdate('{1}') AND {0} < cdate('{2}')) ", dateName,
-            //        new DateTime(options.SelectedYears[i], options.MonthYearStarts, 1).ToShortDateString(),
-            //        new DateTime(options.SelectedYears[i] + 1, options.MonthYearStarts, 1).ToShortDateString()));
-            //    if(i < options.SelectedYears.Count - 1)
-            //        builder.Append("OR");
-            //}
-//            string filter = " and DatePart('yyyy', [DateReported]) in (" + String.Join(", ", options.SelectedYears.Select(a => a.ToString()).ToArray()) + ") ";
-            
         }
 
         public static string CreateAdminFilter(ReportOptions options)
@@ -476,7 +281,7 @@ namespace Nada.Model.Repositories
         }
         #endregion
 
-        #region Indicator List
+        #region Indicators
         public List<ReportIndicator> GetIntvIndicators()
         {
             List<ReportIndicator> indicators = new List<ReportIndicator>();
@@ -641,7 +446,6 @@ namespace Nada.Model.Repositories
             return indicators.OrderBy(r => r.Name).ToList();
         }
 
-
         private static ReportIndicator CreateReportIndicator(int typeId, KeyValuePair<string, Indicator> i)
         {
             string name = i.Value.DisplayName;
@@ -660,5 +464,111 @@ namespace Nada.Model.Repositories
             };
         }
         #endregion
+
+        #region Custom Reports
+        public List<CustomReport> GetCustomReports()
+        {
+            List<CustomReport> list = new List<CustomReport>();
+
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, ReportOptions, aspnet_users.UserName, UpdatedAt, CreatedAt, c.UserName as CreatedBy from 
+                        ((CustomReports INNER JOIN aspnet_users on CustomReports.UpdatedById = aspnet_users.userid)
+                        INNER JOIN aspnet_users c on CustomReports.CreatedById = c.userid)
+                        WHERE IsDeleted=0", connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var report = new CustomReport
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+                                SerializedReportOptions = reader.GetValueOrDefault<string>("ReportOptions"),
+                                UpdatedBy = GetAuditInfo(reader)
+                            };
+                            report.Deserialize();
+                            list.Add(report);
+
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return list;
+        }
+
+        public void Save(CustomReport report, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    report.Serialize();
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    if (report.Id > 0)
+                        command = new OleDbCommand(@"UPDATE CustomReports SET DisplayName=@DisplayName, ReportOptions=@ReportOptions,
+                           UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+                    else
+                        command = new OleDbCommand(@"INSERT INTO CustomReports (DisplayName, ReportOptions, UpdatedById, 
+                            UpdatedAt, CreatedById, CreatedAt) values (@DisplayName, @ReportOptions, @UpdatedById, @UpdatedAt, @CreatedById,
+                            @CreatedAt)", connection);
+
+                    command.Parameters.Add(new OleDbParameter("@DisplayName", report.DisplayName));
+                    command.Parameters.Add(new OleDbParameter("@ReportOptions", report.SerializedReportOptions));
+                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    if (report.Id > 0)
+                        command.Parameters.Add(new OleDbParameter("@id", report.Id));
+                    else
+                    {
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                    }
+
+                    command.ExecuteNonQuery();
+                    if (report.Id <= 0)
+                    {
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM CustomReports", connection);
+                        report.Id = (int)command.ExecuteScalar();
+                    }
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+        #endregion
+
     }
 }

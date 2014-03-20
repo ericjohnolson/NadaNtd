@@ -135,7 +135,19 @@ insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,R
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 4, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurInfectiveFlies' and SurveyTypeId = 21;
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 8, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurNoFlies' and SurveyTypeId = 21;
 
+Drop table InterventionDistributionMethods;
 
+CREATE TABLE [CustomReports](
+   [ID] AUTOINCREMENT,
+   [DisplayName] TEXT,
+   [ReportOptions] TEXT,
+   [IsDeleted] YesNo,
+   UpdatedById NUMBER,
+   UpdatedAt DATETIME,
+   CreatedById NUMBER,
+   CreatedAt DATETIME,
+   CONSTRAINT [PrimaryKey] PRIMARY KEY ([ID])
+);
 
 
 
