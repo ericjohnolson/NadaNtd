@@ -26,7 +26,7 @@ namespace Nada.UI.View.Wizard
         private SplittingOptions options = null;
         private IWizardStep prev = null;
         public Action OnFinish { get; set; }
-        public Action<ReportOptions> OnRunReport { get; set; }
+        public Action<SavedReport> OnRunReport { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public bool ShowNext { get { return false; } }
         public bool EnableNext { get { return false; } }

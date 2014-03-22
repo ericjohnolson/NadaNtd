@@ -16,9 +16,9 @@ namespace Nada.UI.View.Reports.CustomReport
 {
     public partial class StepLocations : BaseControl, IWizardStep
     {
-        private ReportOptions options = null;
+        private SavedReport report = null;
         public Action<IWizardStep> OnSwitchStep { get; set; }
-        public Action<ReportOptions> OnRunReport { get; set; }
+        public Action<SavedReport> OnRunReport { get; set; }
         public Action OnFinish { get; set; }
         public bool ShowNext { get { return false; } }
         public bool EnableNext { get { return false; } }
@@ -30,7 +30,7 @@ namespace Nada.UI.View.Reports.CustomReport
 
         public void DoPrev()
         {
-            OnSwitchStep(new StepOptions(options));
+            OnSwitchStep(new StepOptions(report));
         }
 
         public void DoNext()
@@ -39,16 +39,16 @@ namespace Nada.UI.View.Reports.CustomReport
 
         public void DoFinish()
         {
-            options.IsAllLocations = false;
-            if (options.IsNoAggregation && cbAllLocations.Checked)
-                options.IsAllLocations = true;
-            if (options.IsNoAggregation)
-                options.SelectedAdminLevels = pickerAllLocations.GetSelected();
-            else if (options.IsByLevelAggregation)
-                options.SelectedAdminLevels = levelPicker.GetSelectedAdminLevels();
-            else if (options.IsCountryAggregation)
-                options.SelectedAdminLevels = new List<AdminLevel> { new AdminLevel { Id = 1 } }; 
-            OnRunReport(options);
+            report.ReportOptions.IsAllLocations = false;
+            if (report.ReportOptions.IsNoAggregation && cbAllLocations.Checked)
+                report.ReportOptions.IsAllLocations = true;
+            if (report.ReportOptions.IsNoAggregation)
+                report.ReportOptions.SelectedAdminLevels = pickerAllLocations.GetSelected();
+            else if (report.ReportOptions.IsByLevelAggregation)
+                report.ReportOptions.SelectedAdminLevels = levelPicker.GetSelectedAdminLevels();
+            else if (report.ReportOptions.IsCountryAggregation)
+                report.ReportOptions.SelectedAdminLevels = new List<AdminLevel> { new AdminLevel { Id = 1 } }; 
+            OnRunReport(report);
         }
 
         public StepLocations()
@@ -57,10 +57,10 @@ namespace Nada.UI.View.Reports.CustomReport
             InitializeComponent();
         }
 
-        public StepLocations(ReportOptions o)
+        public StepLocations(SavedReport o)
             : base()
         {
-            options = o;
+            report = o;
             InitializeComponent();
         }
 
@@ -73,17 +73,17 @@ namespace Nada.UI.View.Reports.CustomReport
                 levelPicker.Visible = false;
                 tblListAllLocations.Visible = false;
 
-                if (options.IsNoAggregation)
+                if (report.ReportOptions.IsNoAggregation)
                 {
-                    cbAllLocations.Checked = options.IsAllLocations;
+                    cbAllLocations.Checked = report.ReportOptions.IsAllLocations;
                     tblListAllLocations.Visible = true;
-                    if(!options.IsAllLocations)
-                        pickerAllLocations.SetSelected(options.SelectedAdminLevels);
+                    if (!report.ReportOptions.IsAllLocations)
+                        pickerAllLocations.SetSelected(report.ReportOptions.SelectedAdminLevels);
                 }
-                else if (options.IsByLevelAggregation)
+                else if (report.ReportOptions.IsByLevelAggregation)
                 {
                     levelPicker.Visible = true;
-                    levelPicker.SetSelectedItems(options.SelectedAdminLevels);
+                    levelPicker.SetSelectedItems(report.ReportOptions.SelectedAdminLevels);
                 }
                 else
                     lblNoLocations.Visible = true;

@@ -16,8 +16,8 @@ namespace Nada.UI.View.Reports.CustomReport
 {
     public partial class StepCategory : BaseControl, IWizardStep
     {
-        private ReportOptions options = new ReportOptions();
-        public Action<ReportOptions> OnRunReport { get; set; }
+        private SavedReport report = new SavedReport();
+        public Action<SavedReport> OnRunReport { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action OnFinish { get; set; }
         public bool ShowNext { get { return false; } }
@@ -37,56 +37,56 @@ namespace Nada.UI.View.Reports.CustomReport
         private void lnkDemo_ClickOverride()
         {
             ReportRepository repo = new ReportRepository();
-            options.ShowDiseasesOption = false;
-            options.ReportGenerator = new DemoReportGenerator();
-            options.AvailableIndicators = repo.GetDemographyIndicators();
-            OnSwitchStep(new StepIndicators(options));
+            report.ReportOptions.ShowDiseasesOption = false;
+            report.ReportOptions.ReportGenerator = new DemoReportGenerator();
+            report.ReportOptions.AvailableIndicators = repo.GetDemographyIndicators();
+            OnSwitchStep(new StepIndicators(report));
         }
 
         private void lnkSaes_ClickOverride()
         {
             ReportRepository repo = new ReportRepository();
-            options.ShowDiseasesOption = false;
-            options.ReportGenerator = null; //new SurveyReportGenerator();
-            options.AvailableIndicators = null; // repo.GetSurveyIndicators();
-            OnSwitchStep(new StepIndicators(options));
+            report.ReportOptions.ShowDiseasesOption = false;
+            report.ReportOptions.ReportGenerator = null; //new SurveyReportGenerator();
+           report.ReportOptions.AvailableIndicators = null; // repo.GetSurveyIndicators();
+            OnSwitchStep(new StepIndicators(report));
         }
 
         private void lnkDistro_ClickOverride()
         {
             ReportRepository repo = new ReportRepository();
-            options.ShowDiseasesOption = false;
-            options.ReportGenerator = new DistributionReportGenerator();
-            options.AvailableIndicators = repo.GetDiseaseDistroIndicators();
-            OnSwitchStep(new StepIndicators(options));
+           report.ReportOptions.ShowDiseasesOption = false;
+           report.ReportOptions.ReportGenerator = new DistributionReportGenerator();
+           report.ReportOptions.AvailableIndicators = repo.GetDiseaseDistroIndicators();
+            OnSwitchStep(new StepIndicators(report));
         }
 
         private void lnkSurvey_ClickOverride()
         {
             ReportRepository repo = new ReportRepository();
-            options.ShowDiseasesOption = false;
-            options.ReportGenerator = new SurveyReportGenerator();
-            options.AvailableIndicators = repo.GetSurveyIndicators();
-            options.HideAggregation = true;
-            OnSwitchStep(new StepIndicators(options));
+           report.ReportOptions.ShowDiseasesOption = false;
+           report.ReportOptions.ReportGenerator = new SurveyReportGenerator();
+           report.ReportOptions.AvailableIndicators = repo.GetSurveyIndicators();
+           report.ReportOptions.HideAggregation = true;
+            OnSwitchStep(new StepIndicators(report));
         }
 
         private void lnkIntv_ClickOverride()
         {
             ReportRepository repo = new ReportRepository();
-            options.ShowDiseasesOption = true;
-            options.ReportGenerator = new IntvReportGenerator();
-            options.AvailableIndicators = repo.GetIntvIndicators();
-            OnSwitchStep(new StepIndicators(options));
+           report.ReportOptions.ShowDiseasesOption = true;
+           report.ReportOptions.ReportGenerator = new IntvReportGenerator();
+           report.ReportOptions.AvailableIndicators = repo.GetIntvIndicators();
+            OnSwitchStep(new StepIndicators(report));
         }
 
         private void lnkProcess_ClickOverride()
         {
             ReportRepository repo = new ReportRepository();
-            options.ShowDiseasesOption = false;
-            options.ReportGenerator = new ProcessReportGenerator();
-            options.AvailableIndicators = repo.GetProcessIndicators();
-            OnSwitchStep(new StepIndicators(options));
+           report.ReportOptions.ShowDiseasesOption = false;
+           report.ReportOptions.ReportGenerator = new ProcessReportGenerator();
+           report.ReportOptions.AvailableIndicators = repo.GetProcessIndicators();
+            OnSwitchStep(new StepIndicators(report));
         }
 
         public void DoPrev()

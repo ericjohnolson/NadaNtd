@@ -16,9 +16,9 @@ namespace Nada.UI.View.Reports.CustomReport
     public partial class StepOptions : BaseControl, IWizardStep
     {
         private List<int> years = new List<int>();
-        private ReportOptions options = null;
+        private SavedReport report = null;
         public Action<IWizardStep> OnSwitchStep { get; set; }
-        public Action<ReportOptions> OnRunReport { get; set; }
+        public Action<SavedReport> OnRunReport { get; set; }
         public Action OnFinish { get; set; }
         public bool ShowNext { get { return true; } }
         public bool EnableNext { get { return true; } }
@@ -30,20 +30,20 @@ namespace Nada.UI.View.Reports.CustomReport
 
         public void DoPrev()
         {
-            OnSwitchStep(new StepIndicators(options));
+            OnSwitchStep(new StepIndicators(report));
         }
 
         public void DoNext()
         {
-            if (!options.IsNoAggregation && rbAggListAll.Checked)
-                options.IsAllLocations = true;
-            options.IsNoAggregation = rbAggListAll.Checked;
-            options.IsCountryAggregation = rbAggCountry.Checked;
-            options.IsByLevelAggregation = rbAggLevel.Checked;
-            options.StartDate = dtStart.Value;
-            options.EndDate = dtEnd.Value;
-            options.MonthYearStarts = Convert.ToInt32(cbMonths.SelectedValue);
-            OnSwitchStep(new StepLocations(options));
+            if (!report.ReportOptions.IsNoAggregation && rbAggListAll.Checked)
+                report.ReportOptions.IsAllLocations = true;
+            report.ReportOptions.IsNoAggregation = rbAggListAll.Checked;
+            report.ReportOptions.IsCountryAggregation = rbAggCountry.Checked;
+            report.ReportOptions.IsByLevelAggregation = rbAggLevel.Checked;
+            report.ReportOptions.StartDate = dtStart.Value;
+            report.ReportOptions.EndDate = dtEnd.Value;
+            report.ReportOptions.MonthYearStarts = Convert.ToInt32(cbMonths.SelectedValue);
+            OnSwitchStep(new StepLocations(report));
         }
 
         public void DoFinish()
@@ -56,10 +56,10 @@ namespace Nada.UI.View.Reports.CustomReport
             InitializeComponent();
         }
 
-        public StepOptions(ReportOptions o)
+        public StepOptions(SavedReport o)
             : base()
         {
-            options = o;
+            report = o;
             InitializeComponent();
         }
 
@@ -69,24 +69,24 @@ namespace Nada.UI.View.Reports.CustomReport
             {
                 Localizer.TranslateControl(this);
 
-                if (options.StartDate != DateTime.MinValue)
-                    dtStart.Value = options.StartDate;
-                if (options.EndDate != DateTime.MinValue)
-                    dtEnd.Value = options.EndDate;
+                if (report.ReportOptions.StartDate != DateTime.MinValue)
+                    dtStart.Value = report.ReportOptions.StartDate;
+                if (report.ReportOptions.EndDate != DateTime.MinValue)
+                    dtEnd.Value = report.ReportOptions.EndDate;
 
                 var months = GlobalizationUtil.GetAllMonths();
                 monthItemBindingSource.DataSource = months;
                 cbMonths.DropDownWidth = BaseForm.GetDropdownWidth(months.Select(m => m.Name));
-                if (options.MonthYearStarts > 0)
-                    cbMonths.SelectedValue = options.MonthYearStarts;
+                if (report.ReportOptions.MonthYearStarts > 0)
+                    cbMonths.SelectedValue = report.ReportOptions.MonthYearStarts;
                 else
                     cbMonths.SelectedValue = 1;
 
-                rbAggListAll.Checked = options.IsNoAggregation;
-                rbAggCountry.Checked = options.IsCountryAggregation;
-                rbAggLevel.Checked = options.IsByLevelAggregation;
+                rbAggListAll.Checked = report.ReportOptions.IsNoAggregation;
+                rbAggCountry.Checked = report.ReportOptions.IsCountryAggregation;
+                rbAggLevel.Checked = report.ReportOptions.IsByLevelAggregation;
 
-                if (options.HideAggregation)
+                if (report.ReportOptions.HideAggregation)
                 {
                     rbAggCountry.Visible = false;
                     rbAggLevel.Visible = false;

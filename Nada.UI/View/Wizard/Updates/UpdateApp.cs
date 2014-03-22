@@ -26,7 +26,7 @@ namespace Nada.UI.View.Wizard
         bool hasInternet = false;
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
-        public Action<ReportOptions> OnRunReport { get; set; }
+        public Action<SavedReport> OnRunReport { get; set; }
         public Action OnRestart { get; set; }
         public bool ShowNext { get { return hasUpdate; } }
         public bool EnableNext { get { return true; } }

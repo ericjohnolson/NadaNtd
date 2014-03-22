@@ -510,10 +510,11 @@ namespace Nada.Model.Repositories
                     command.Parameters.Add(new OleDbParameter("@id", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
-                        if(reader.HasRows)
+                        if (reader.HasRows)
                         {
                             reader.Read();
-                            list.Insert(0, new AdminLevel {
+                            list.Insert(0, new AdminLevel
+                            {
                                 Name = reader.GetValueOrDefault<string>("DisplayName"),
                                 LevelName = reader.GetValueOrDefault<string>("TypeName")
                             });
@@ -521,6 +522,8 @@ namespace Nada.Model.Repositories
                             if (!id.HasValue || id <= 1)
                                 hasParent = false;
                         }
+                        else
+                            hasParent = false;
                         reader.Close();
                     }
                 }

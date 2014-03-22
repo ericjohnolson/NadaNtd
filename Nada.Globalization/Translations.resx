@@ -5147,4 +5147,13 @@ Fixed / Mobile</value>
   <data name="Table" xml:space="preserve">
     <value>Table</value>
   </data>
+  <data name="Exports" xml:space="preserve">
+    <value>Exports</value>
+  </data>
+  <data name="ReportBuilder" xml:space="preserve">
+    <value>Report builder</value>
+  </data>
+  <data name="StandardReports" xml:space="preserve">
+    <value>Standard reports</value>
+  </data>
 </root>

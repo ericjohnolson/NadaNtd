@@ -60,7 +60,7 @@
   <ItemGroup>
     <Compile Include="ApplicationData.cs" />
     <Compile Include="Base\NadaListItem.cs" />
-    <Compile Include="Reports\CustomReport.cs" />
+    <Compile Include="Reports\SavedReport.cs" />
     <Compile Include="Demography\CountryDemography.cs" />
     <Compile Include="Demography\DemoDetails.cs" />
     <Compile Include="Diseases\CalcDistro.cs" />

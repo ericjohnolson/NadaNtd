@@ -789,6 +789,9 @@ namespace Nada.Model.Reports
                 }
             }
             result.DataTableResults.Columns.Remove(Translations.ID);
+
+            result.ChartData = result.DataTableResults.Copy();
+            result.DataTableResults.Columns.Remove(Translations.Location);
             return result;
         }
     }

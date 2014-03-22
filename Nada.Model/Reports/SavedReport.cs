@@ -7,8 +7,12 @@ using Nada.Model.Base;
 
 namespace Nada.Model.Reports
 {
-    public class CustomReport : NadaClass
+    public class SavedReport : NadaClass
     {
+        public SavedReport()
+        {
+            ReportOptions = new ReportOptions();
+        }
         public string DisplayName { get; set; }
         public string SerializedReportOptions { get; set; }
         public ReportOptions ReportOptions { get; set; }

@@ -24,7 +24,7 @@ namespace Nada.UI.View.Wizard
         private SettingsRepository settings = new SettingsRepository();
         private SplittingOptions options = null;
         public Action OnFinish { get; set; }
-        public Action<ReportOptions> OnRunReport { get; set; }
+        public Action<SavedReport> OnRunReport { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public bool ShowNext { get { return true; } }
         public bool EnableNext { get { return true; } }

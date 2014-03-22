@@ -45,6 +45,7 @@
             this.h3Link2 = new Nada.UI.Controls.H3Link();
             this.c1Chart1 = new C1.Win.C1Chart.C1Chart();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.h3Link3 = new Nada.UI.Controls.H3Link();
             ((System.ComponentModel.ISupportInitialize)(this.grdReport)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -109,13 +110,13 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.h3Link3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.h3Link1, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(878, 27);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(832, 27);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(120, 15);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(166, 15);
             this.tableLayoutPanel2.TabIndex = 62;
             // 
             // h3Link1
@@ -124,7 +125,7 @@
             this.h3Link1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Link1.BackColor = System.Drawing.Color.Transparent;
             this.h3Link1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.h3Link1.Location = new System.Drawing.Point(12, 0);
+            this.h3Link1.Location = new System.Drawing.Point(58, 0);
             this.h3Link1.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.h3Link1.Name = "h3Link1";
             this.h3Link1.Size = new System.Drawing.Size(108, 15);
@@ -272,6 +273,21 @@
             this.saveFileDialog1.DefaultExt = "xlsx";
             this.saveFileDialog1.Filter = "Excel (.xlsx)|*.xlsx";
             // 
+            // h3Link3
+            // 
+            this.h3Link3.AutoSize = true;
+            this.h3Link3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Link3.BackColor = System.Drawing.Color.Transparent;
+            this.h3Link3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.h3Link3.Location = new System.Drawing.Point(12, 0);
+            this.h3Link3.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.h3Link3.Name = "h3Link3";
+            this.h3Link3.Size = new System.Drawing.Size(34, 15);
+            this.h3Link3.TabIndex = 63;
+            this.h3Link3.Tag = "Save";
+            this.h3Link3.Text = "Save";
+            this.h3Link3.ClickOverride += new System.Action(this.h3Link3_ClickOverride);
+            // 
             // CustomReportView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -321,5 +337,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private C1.Win.C1Chart.C1Chart c1Chart1;
+        private Controls.H3Link h3Link3;
     }
 }

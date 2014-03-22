@@ -9,7 +9,7 @@ namespace Nada.UI.AppLogic
     public interface IWizardStep
     {
         Action OnFinish { get; set; }
-        Action<ReportOptions> OnRunReport { get; set; }
+        Action<SavedReport> OnRunReport { get; set; }
         Action<IWizardStep> OnSwitchStep { get; set; }
         bool ShowNext { get;  }
         bool EnableNext { get;  }

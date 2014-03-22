@@ -31,7 +31,7 @@ namespace Nada.UI.View.Wizard
         private DateTime demoDate;
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
-        public Action<ReportOptions> OnRunReport { get; set; }
+        public Action<SavedReport> OnRunReport { get; set; }
         public bool ShowNext { get { return nextType != null; } }
         public bool EnableNext { get { return true; } }
         public bool ShowPrev { get { return prev != null; } }

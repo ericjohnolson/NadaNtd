@@ -15,22 +15,22 @@ namespace Nada.UI.View.Reports.CustomReport
 {
     public partial class StepIndicators : BaseControl, IWizardStep
     {
-        private ReportOptions options = null;
+        private SavedReport report = null;
         public StepIndicators()
             : base()
         {
             InitializeComponent();
         }
 
-        public StepIndicators(ReportOptions o)
+        public StepIndicators(SavedReport o)
             : base()
         {
-            options = o;
+            report = o;
             InitializeComponent();
         }
 
         public Action<IWizardStep> OnSwitchStep { get; set; }
-        public Action<ReportOptions> OnRunReport { get; set; }
+        public Action<SavedReport> OnRunReport { get; set; }
         public Action OnFinish { get; set; }
         public bool ShowNext { get { return true; } }
         public bool EnableNext { get { return true; } }
@@ -47,9 +47,9 @@ namespace Nada.UI.View.Reports.CustomReport
 
         public void DoNext()
         {
-            options.SelectedIndicators = new List<ReportIndicator>();
-            AddSelectedIndicators(options.SelectedIndicators, options.AvailableIndicators);
-            OnSwitchStep(new StepOptions(options));
+            report.ReportOptions.SelectedIndicators = new List<ReportIndicator>();
+            AddSelectedIndicators(report.ReportOptions.SelectedIndicators, report.ReportOptions.AvailableIndicators);
+            OnSwitchStep(new StepOptions(report));
         }
 
         public void DoFinish()
@@ -61,7 +61,7 @@ namespace Nada.UI.View.Reports.CustomReport
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                LoadTree(options.AvailableIndicators);
+                LoadTree(report.ReportOptions.AvailableIndicators);
                 //LoadTree(options.AvailableIndicators, this.treeView.Nodes);
             }
         }

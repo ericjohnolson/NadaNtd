@@ -24,7 +24,7 @@ namespace Nada.UI.View.Wizard
         private CountryDemography model = null;
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
-        public Action<ReportOptions> OnRunReport { get; set; }
+        public Action<SavedReport> OnRunReport { get; set; }
         public bool ShowNext { get { return false; } }
         public bool EnableNext { get { return false; } }
         public bool ShowPrev { get { return true; } }

@@ -3185,6 +3185,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exports.
+        /// </summary>
+        public static string Exports {
+            get {
+                return ResourceManager.GetString("Exports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export to excel.
         /// </summary>
         public static string ExportToExcel {
@@ -9323,6 +9332,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report builder.
+        /// </summary>
+        public static string ReportBuilder {
+            get {
+                return ResourceManager.GetString("ReportBuilder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select locations.
         /// </summary>
         public static string ReportLocations {
@@ -11650,6 +11668,15 @@ namespace Nada.Globalization {
         public static string SpotCheckSiteName {
             get {
                 return ResourceManager.GetString("SpotCheckSiteName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard reports.
+        /// </summary>
+        public static string StandardReports {
+            get {
+                return ResourceManager.GetString("StandardReports", resourceCulture);
             }
         }
         

@@ -14,19 +14,21 @@ using OfficeOpenXml;
 using Nada.Globalization;
 using C1.Win.C1Chart;
 using System.Collections;
+using Nada.Model.Repositories;
 
 namespace Nada.UI.View.Reports.CustomReport
 {
     public partial class CustomReportView : BaseForm
     {
-        public Action<ReportOptions> OnEditReport { get; set; }
-        private ReportOptions options = null;
+        public System.Action OnSave { get; set; }
+        public Action<SavedReport> OnEditReport { get; set; }
+        private SavedReport report = null;
         private ReportResult currentResult = null;
 
-        public CustomReportView(ReportOptions o)
+        public CustomReportView(SavedReport o)
             : base()
         {
-            options = o;
+            report = o;
             InitializeComponent();
         }
 
@@ -47,7 +49,7 @@ namespace Nada.UI.View.Reports.CustomReport
 
         private void CreateReport()
         {
-            currentResult = options.ReportGenerator.Run(options);
+            currentResult = report.ReportOptions.ReportGenerator.Run(report.ReportOptions);
             grdReport.DataSource = currentResult.DataTableResults;
             LoadChart(currentResult);
         }
@@ -79,7 +81,7 @@ namespace Nada.UI.View.Reports.CustomReport
         private void h3Link1_ClickOverride()
         {
             this.Close();
-            OnEditReport(options);
+            OnEditReport(report);
         }
 
         private void lnkExport_ClickOverride()
@@ -118,6 +120,13 @@ namespace Nada.UI.View.Reports.CustomReport
             }
         }
 
+        private void h3Link3_ClickOverride()
+        {
+            SaveReport saveReport = new SaveReport(report);
+            saveReport.OnSave = OnSave;
+            saveReport.ShowDialog(this);
+        }
+
         #region chart helpers
 
         // copy data from a data source to the chart
@@ -148,14 +157,16 @@ namespace Nada.UI.View.Reports.CustomReport
                 throw new ApplicationException(string.Format("Invalid field name used for Y values ({0}).", field));
 
             int i;
+            double d;
             for (i = 0; i < list.Count; i++)
             {
                 data[i].X = i;
-                try
+
+                if (Double.TryParse(pd.GetValue(list[i]).ToString(), out d))
                 {
                     data[i].Y = float.Parse(pd.GetValue(list[i]).ToString());
                 }
-                catch
+                else
                 {
                     data[i].Y = float.NaN;
                 }
@@ -184,5 +195,6 @@ namespace Nada.UI.View.Reports.CustomReport
             BindSeries(c1c, series, dataSource, field, null);
         }
         #endregion
+
     }
 }

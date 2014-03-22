@@ -466,9 +466,9 @@ namespace Nada.Model.Repositories
         #endregion
 
         #region Custom Reports
-        public List<CustomReport> GetCustomReports()
+        public List<SavedReport> GetCustomReports()
         {
-            List<CustomReport> list = new List<CustomReport>();
+            List<SavedReport> list = new List<SavedReport>();
 
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
@@ -484,7 +484,7 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            var report = new CustomReport
+                            var report = new SavedReport
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
@@ -506,7 +506,7 @@ namespace Nada.Model.Repositories
             return list;
         }
 
-        public void Save(CustomReport report, int userId)
+        public void Save(SavedReport report, int userId)
         {
             bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -567,8 +567,37 @@ namespace Nada.Model.Repositories
                     throw;
                 }
             }
+
+        }
+
+        public void DeleteCustomReport(SavedReport report, int userId)
+        {
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    report.Serialize();
+                    // START TRANS
+                    OleDbCommand command =  new OleDbCommand(@"UPDATE CustomReports SET IsDeleted=-1,
+                           UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
+                    
+                    command.Parameters.Add(new OleDbParameter("@ID", report.Id));
+                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    
+                    command.ExecuteNonQuery();
+                    
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
         }
         #endregion
+
 
     }
 }
