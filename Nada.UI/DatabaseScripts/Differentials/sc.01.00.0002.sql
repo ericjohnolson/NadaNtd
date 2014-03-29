@@ -119,6 +119,8 @@ insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId,
 insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('OnchoSurInfectionRate',130, 21, 13, 5, 0, -1, 0, 0, 26, NOW());
 insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('OnchoSurParousRate',140, 21, 13, 5, 0, -1, 0, 0, 26, NOW());
 insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('OnchoSurInfectivityRate',150, 21, 13, 5, 0, -1, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('OnchoSurParousFliesInfected',94, 21, 2, 1, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('OnchoSurParousFliesDisected',97, 21, 2, 1, 0, 0, 0, 0, 26, NOW());
 
 drop table vectors;
 drop table surveys_to_partners;
@@ -128,10 +130,10 @@ drop table Interventions_to_medicines;
 drop table Interventions_to_diseases;
 drop table SurveyLfMf;
 
-insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 3, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurInfectedFlies' and SurveyTypeId = 21;
-insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 5, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurFliesDissected' and SurveyTypeId = 21;
+insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID - 3, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurParousFliesInfected' and SurveyTypeId = 21;
+insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID - 4, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurParousFliesDisected' and SurveyTypeId = 21;
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 5, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurParousFlies' and SurveyTypeId = 21;
-insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 6, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurFliesDissected' and SurveyTypeId = 21;
+insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 7, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurNoFlies' and SurveyTypeId = 21;
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 4, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurInfectiveFlies' and SurveyTypeId = 21;
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 8, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurNoFlies' and SurveyTypeId = 21;
 
@@ -150,6 +152,26 @@ CREATE TABLE [CustomReports](
 );
 
 
+update surveyindicators set datatypeid = 1 where id = 259;
+update surveyindicators set datatypeid = 1 where id = 261;
+update surveyindicators set datatypeid = 1 where id = 260;
+delete from surveyindicators where displayname = 'TASTasActualTimelineAndResourcesStaff';
+delete from surveyindicators where displayname = 'TASTasActualTimelineAndResourcesTeams';
+
+UPDATE SurveyIndicators Set SortOrder=SortOrder * 100 where SurveyTypeId = 15; 
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('TasEstimatedNonResponseRate',1950, 15, 2, 5, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('TasGradesWithMajorityOf6yo',3650, 15, 1, 5, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('TasTotalNumChildrenInGrades',3660, 15, 2, 5, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('TasTotalNumPrimarySchools',3670, 15, 2, 5, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('TasTotal6yoInCommunities',3680, 15, 2, 5, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId , IsRequired ,IsCalculated, CanAddValues , IsDisplayed,UpdatedById ,UpdatedAt) values('TasTotalAreasInCommunities',3690, 15, 2, 5, 0, 0, 0, 0, 26, NOW());
+
+update surveyindicators set canaddvalues = 0 where id in (246, 249);
+Delete from IndicatorDropdownValues where indicatorid = 249 and entitytype = 3 and ID not in (269, 270, 271);
+Delete from IndicatorDropdownValues where indicatorid = 246 and entitytype = 3 and ID not in (329, 330);
+
+ALTER TABLE Country ADD COLUMN ReportingYearStartDate DATETIME;
+UPDATE Country SET ReportingYearStartDate = '1/1/2000';
 
 
 INSERT INTO [SchemaChangeLog]

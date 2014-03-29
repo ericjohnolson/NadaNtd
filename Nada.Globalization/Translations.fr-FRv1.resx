@@ -1691,17 +1691,8 @@
   <data name="LFPopulationInformation" xml:space="preserve">
     <value>Informations sur la population atteinte de FL</value>
   </data>
-  <data name="LfPostMdaTas1" xml:space="preserve">
-    <value>Enquête d'évaluation de la transmission/Surveillance post-TDM I</value>
-  </data>
-  <data name="LfPostMdaTas2" xml:space="preserve">
-    <value>Enquête d'évaluation de la transmission/Surveillance post-TDM II</value>
-  </data>
   <data name="LfSentinelImport" xml:space="preserve">
     <value>Importation de l'enquête ponctuelle de site sentinelle pour la FL</value>
-  </data>
-  <data name="LfStopMdaTas" xml:space="preserve">
-    <value>Enquête d'évaluation de la transmission / Arrêt du TDM</value>
   </data>
   <data name="LFSurAgeRange" xml:space="preserve">
     <value>Tranche d'âge</value>
@@ -4208,9 +4199,6 @@
   <data name="TASActualNonResponseRateAbsent" xml:space="preserve">
     <value>Taux de non-réponse actuel - % absents</value>
   </data>
-  <data name="TASActualNonResponseRateInabilityToPerfo" xml:space="preserve">
-    <value>Taux de non-réponse actuel- % impossible d'effectuer le test de diagnostic </value>
-  </data>
   <data name="TASActualNonResponseRateRefusalOrNoConse" xml:space="preserve">
     <value>Taux de non-réponse actuel - % refus ou absence de consentement</value>
   </data>
@@ -4219,12 +4207,6 @@
   </data>
   <data name="TASActualNumberOfSchoolsOrEasSurveyed" xml:space="preserve">
     <value>Nombre actuel d'écoles ou d'AE ayant fait l'objet d'une enquête</value>
-  </data>
-  <data name="TASActualSampleSizeNegative" xml:space="preserve">
-    <value>Taille actuelle de l'échantillon - négatif</value>
-  </data>
-  <data name="TASActualSampleSizePositive" xml:space="preserve">
-    <value>Taille actuelle de l'échantillon - positif</value>
   </data>
   <data name="TASActualSampleSizeTotal" xml:space="preserve">
     <value>Taille actuelle de l'échantillon - total</value>

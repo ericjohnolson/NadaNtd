@@ -6,6 +6,7 @@ using Nada.Model.Diseases;
 
 namespace Nada.Model.Reports
 {
+    [Serializable]
     public class ReportOptions
     {
         public ReportOptions()
@@ -27,7 +28,8 @@ namespace Nada.Model.Reports
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int MonthYearStarts { get; set; }
-        public IReportGenerator ReportGenerator { get; set; }
+        public BaseReportGenerator ReportGenerator { get; set; }
+        public IndicatorEntityType EntityType { get; set; }
         public bool IsNoAggregation { get; set; }
         public bool IsCountryAggregation { get; set; }
         public bool IsByLevelAggregation { get; set; }

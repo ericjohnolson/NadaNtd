@@ -367,7 +367,7 @@ namespace Nada.Model
                         double d = 0;
                         if (double.TryParse(row["* " + TranslationLookup.GetValue("GrowthRate")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.GrowthRate = d;
-                        if (double.TryParse(row[TranslationLookup.GetValue("PopMale")].ToString(), NumberStyles.Any, cultureEn, out d))
+                        if (double.TryParse(row[TranslationLookup.GetValue("PercentRural")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.PercentRural = d;
                         if (double.TryParse(row["* " + TranslationLookup.GetValue("TotalPopulation")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.TotalPopulation = d;

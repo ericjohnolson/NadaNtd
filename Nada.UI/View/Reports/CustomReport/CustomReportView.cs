@@ -108,7 +108,7 @@ namespace Nada.UI.View.Reports.CustomReport
 
             sfd.Filter = "JPEG (*.jpg)|*.jpg";
             sfd.DefaultExt = "png";
-            sfd.FileName = Translations.Chart;
+            sfd.FileName = Translations.ApplicationTitle + "_" + Translations.Chart + "_" + DateTime.Now.ToString("yyyyddMM");
             sfd.OverwritePrompt = true;
             sfd.CheckPathExists = true;
             sfd.RestoreDirectory = false;
@@ -116,15 +116,22 @@ namespace Nada.UI.View.Reports.CustomReport
 
             if (sfd.ShowDialog(this) == DialogResult.OK)
             {
-                c1Chart1.SaveImage(sfd.FileName, System.Drawing.Imaging.ImageFormat.Jpeg, new System.Drawing.Size(1024, 768));
+                c1Chart1.SaveImage(sfd.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                System.Diagnostics.Process.Start(sfd.FileName);
             }
         }
 
         private void h3Link3_ClickOverride()
         {
             SaveReport saveReport = new SaveReport(report);
-            saveReport.OnSave = OnSave;
+            saveReport.OnSave = reportSave;
             saveReport.ShowDialog(this);
+        }
+
+        private void reportSave()
+        {
+            OnSave();
+            this.Close();
         }
 
         #region chart helpers

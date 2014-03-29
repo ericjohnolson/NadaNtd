@@ -13,6 +13,7 @@ using Nada.Model.Reports;
 
 namespace Nada.Model.Repositories
 {
+
     public class CreateAggParams
     {
         public AdminLevelIndicators AdminLevel { get; set; }
@@ -488,10 +489,9 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                SerializedReportOptions = reader.GetValueOrDefault<string>("ReportOptions"),
                                 UpdatedBy = GetAuditInfo(reader)
                             };
-                            report.Deserialize();
+                            report.Deserialize(reader.GetValueOrDefault<string>("ReportOptions"));
                             list.Add(report);
 
                         }
@@ -515,7 +515,6 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    report.Serialize();
                     // START TRANS
                     OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
                     command.ExecuteNonQuery();
@@ -530,7 +529,7 @@ namespace Nada.Model.Repositories
                             @CreatedAt)", connection);
 
                     command.Parameters.Add(new OleDbParameter("@DisplayName", report.DisplayName));
-                    command.Parameters.Add(new OleDbParameter("@ReportOptions", report.SerializedReportOptions));
+                    command.Parameters.Add(new OleDbParameter("@ReportOptions", report.Serialize()));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                     if (report.Id > 0)
@@ -578,15 +577,19 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    report.Serialize();
                     // START TRANS
-                    OleDbCommand command =  new OleDbCommand(@"UPDATE CustomReports SET IsDeleted=-1,
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    // START TRANS
+                    command =  new OleDbCommand(@"UPDATE CustomReports SET IsDeleted= Yes,
                            UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
-                    
-                    command.Parameters.Add(new OleDbParameter("@ID", report.Id));
                     command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    command.Parameters.Add(new OleDbParameter("@ID", report.Id));
                     
+                    command.ExecuteNonQuery();
+
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
                     command.ExecuteNonQuery();
                     
                 }

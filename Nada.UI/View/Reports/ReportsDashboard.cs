@@ -53,6 +53,7 @@ namespace Nada.UI.View.Reports
             var reports = repo.GetCustomReports();
             tblReportBuilder.Visible = false;
             this.SuspendLayout();
+            tblReportBuilder.Controls.Clear();
             int rowIndex = tblReportBuilder.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             var tblNew = new TableLayoutPanel { AutoSize = true, AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink };
             tblNew.RowStyles.Clear();
@@ -62,7 +63,7 @@ namespace Nada.UI.View.Reports
             tblNew.RowStyles.Add(new RowStyle { SizeType = System.Windows.Forms.SizeType.AutoSize });
             var name2 = new H3bLabel { Text = Translations.CustomReport, Name = "rpt_cr", AutoSize = true, };
             name2.SetMaxWidth(400);
-            var edit2 = new H3Link { Text = Translations.NewLink };
+            var edit2 = new H3Link { Text = Translations.NewLink, Margin = new Padding(0, 2, 0, 0) };
             edit2.ClickOverride += () =>
             {
                 WizardForm wiz = new WizardForm(new StepCategory(), Translations.CustomReportBuilder);
@@ -86,7 +87,7 @@ namespace Nada.UI.View.Reports
                 tbl.RowStyles.Add(new RowStyle { SizeType = System.Windows.Forms.SizeType.AutoSize });
                 var name = new H3bLabel { Text = report.DisplayName, Name = "rpt_" + report.DisplayName, AutoSize = true, };
                 name.SetMaxWidth(400);
-                var edit = new H3Link { Text = Translations.NewLink };
+                var edit = new H3Link { Text = Translations.Edit + "...", Margin = new Padding(0, 2, 0, 0) };
                 edit.ClickOverride += () =>
                 {
                     WizardForm wiz = new WizardForm(new StepIndicators(report), Translations.CustomReportBuilder);
@@ -94,8 +95,12 @@ namespace Nada.UI.View.Reports
                     wiz.OnRunReport = RunCustomReport;
                     wiz.Show();
                 };
-                var delete = new H3Link { Text = Translations.NewLink };
-                delete.ClickOverride += () => { repo.DeleteCustomReport(report, ApplicationData.Instance.GetUserId()); };
+                var delete = new H3Link { Text = Translations.Delete + "...", Margin = new Padding(0, 2, 0, 0) };
+                delete.ClickOverride += () => 
+                { 
+                    repo.DeleteCustomReport(report, ApplicationData.Instance.GetUserId());
+                    LoadSavedReports();
+                };
                 tbl.Controls.Add(name, 0, 0);
                 tbl.Controls.Add(edit, 1, 0);
                 tbl.Controls.Add(delete, 2, 0);

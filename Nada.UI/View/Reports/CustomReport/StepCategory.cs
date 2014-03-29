@@ -38,6 +38,7 @@ namespace Nada.UI.View.Reports.CustomReport
         {
             ReportRepository repo = new ReportRepository();
             report.ReportOptions.ShowDiseasesOption = false;
+            report.ReportOptions.EntityType = Model.IndicatorEntityType.Demo;
             report.ReportOptions.ReportGenerator = new DemoReportGenerator();
             report.ReportOptions.AvailableIndicators = repo.GetDemographyIndicators();
             OnSwitchStep(new StepIndicators(report));
@@ -47,6 +48,7 @@ namespace Nada.UI.View.Reports.CustomReport
         {
             ReportRepository repo = new ReportRepository();
             report.ReportOptions.ShowDiseasesOption = false;
+            report.ReportOptions.EntityType = Model.IndicatorEntityType.Sae;
             report.ReportOptions.ReportGenerator = null; //new SurveyReportGenerator();
            report.ReportOptions.AvailableIndicators = null; // repo.GetSurveyIndicators();
             OnSwitchStep(new StepIndicators(report));
@@ -55,7 +57,8 @@ namespace Nada.UI.View.Reports.CustomReport
         private void lnkDistro_ClickOverride()
         {
             ReportRepository repo = new ReportRepository();
-           report.ReportOptions.ShowDiseasesOption = false;
+            report.ReportOptions.ShowDiseasesOption = false;
+            report.ReportOptions.EntityType = Model.IndicatorEntityType.DiseaseDistribution;
            report.ReportOptions.ReportGenerator = new DistributionReportGenerator();
            report.ReportOptions.AvailableIndicators = repo.GetDiseaseDistroIndicators();
             OnSwitchStep(new StepIndicators(report));
@@ -64,7 +67,8 @@ namespace Nada.UI.View.Reports.CustomReport
         private void lnkSurvey_ClickOverride()
         {
             ReportRepository repo = new ReportRepository();
-           report.ReportOptions.ShowDiseasesOption = false;
+            report.ReportOptions.ShowDiseasesOption = false;
+            report.ReportOptions.EntityType = Model.IndicatorEntityType.Survey;
            report.ReportOptions.ReportGenerator = new SurveyReportGenerator();
            report.ReportOptions.AvailableIndicators = repo.GetSurveyIndicators();
            report.ReportOptions.HideAggregation = true;
@@ -74,7 +78,8 @@ namespace Nada.UI.View.Reports.CustomReport
         private void lnkIntv_ClickOverride()
         {
             ReportRepository repo = new ReportRepository();
-           report.ReportOptions.ShowDiseasesOption = true;
+            report.ReportOptions.ShowDiseasesOption = true;
+            report.ReportOptions.EntityType = Model.IndicatorEntityType.Intervention;
            report.ReportOptions.ReportGenerator = new IntvReportGenerator();
            report.ReportOptions.AvailableIndicators = repo.GetIntvIndicators();
             OnSwitchStep(new StepIndicators(report));
@@ -83,7 +88,8 @@ namespace Nada.UI.View.Reports.CustomReport
         private void lnkProcess_ClickOverride()
         {
             ReportRepository repo = new ReportRepository();
-           report.ReportOptions.ShowDiseasesOption = false;
+            report.ReportOptions.ShowDiseasesOption = false;
+            report.ReportOptions.EntityType = Model.IndicatorEntityType.Process;
            report.ReportOptions.ReportGenerator = new ProcessReportGenerator();
            report.ReportOptions.AvailableIndicators = repo.GetProcessIndicators();
             OnSwitchStep(new StepIndicators(report));

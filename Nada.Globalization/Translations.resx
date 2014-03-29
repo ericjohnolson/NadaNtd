@@ -2213,13 +2213,13 @@
     <value>Pending - Awaiting TAS implementation/results</value>
   </data>
   <data name="LfPostMdaTas1" xml:space="preserve">
-    <value>Post-MDA Surveillance TAS I</value>
+    <value>Post-MDA surveillance 1</value>
   </data>
   <data name="LfPostMdaTas2" xml:space="preserve">
-    <value>Post-MDA Surveillance TAS II</value>
+    <value>Post-MDA surveillance 2</value>
   </data>
   <data name="LfStopMdaTas" xml:space="preserve">
-    <value>Stop-MDA TAS</value>
+    <value>Stop MDA</value>
   </data>
   <data name="MandE" xml:space="preserve">
     <value>M&amp;E</value>
@@ -3816,7 +3816,7 @@ Fixed / Mobile</value>
     <value>Actual non-response rate - Absent %</value>
   </data>
   <data name="TASActualNonResponseRateInabilityToPerfo" xml:space="preserve">
-    <value>Actual non-response rate - inability to perform diagnostic test %</value>
+    <value>Actual non-response rate - unable to perform diagnostic test %</value>
   </data>
   <data name="TASActualNonResponseRateRefusalOrNoConse" xml:space="preserve">
     <value>Actual non-response rate - Refusal or no consent %</value>
@@ -3828,10 +3828,10 @@ Fixed / Mobile</value>
     <value>Actual number of schools or EAs surveyed</value>
   </data>
   <data name="TASActualSampleSizeNegative" xml:space="preserve">
-    <value>Actual sample size - negative</value>
+    <value>Actual sample size tested – negative</value>
   </data>
   <data name="TASActualSampleSizePositive" xml:space="preserve">
-    <value>Actual sample size - positive</value>
+    <value>Actual sample size tested – positive</value>
   </data>
   <data name="TASActualSampleSizeTotal" xml:space="preserve">
     <value>Actual sample size - total</value>
@@ -3852,7 +3852,7 @@ Fixed / Mobile</value>
     <value>End date of survey</value>
   </data>
   <data name="TASEuNetPrimarySchoolEnrolmentRate" xml:space="preserve">
-    <value>EU net primary school enrolment rate</value>
+    <value>EU net primary school enrollment rate</value>
   </data>
   <data name="TASLocationType" xml:space="preserve">
     <value>Location type</value>
@@ -4965,7 +4965,7 @@ Fixed / Mobile</value>
     <value>View PowerPoint tutorial...</value>
   </data>
   <data name="DateReported" xml:space="preserve">
-    <value>Start date data applies to</value>
+    <value>Start date data apply to</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Open</value>
@@ -5091,7 +5091,7 @@ Fixed / Mobile</value>
     <value>Name of the catching point</value>
   </data>
   <data name="OnchoSurEntomological" xml:space="preserve">
-    <value>Oncho Entomological Survey</value>
+    <value>Onchocerciasis (River Blindness) Entomological survey</value>
   </data>
   <data name="OnchoSurFliesDissected" xml:space="preserve">
     <value>Number of flies dissected</value>
@@ -5142,7 +5142,7 @@ Fixed / Mobile</value>
     <value>Chart</value>
   </data>
   <data name="ExportImage" xml:space="preserve">
-    <value>Export image...</value>
+    <value>Export image</value>
   </data>
   <data name="Table" xml:space="preserve">
     <value>Table</value>
@@ -5155,5 +5155,32 @@ Fixed / Mobile</value>
   </data>
   <data name="StandardReports" xml:space="preserve">
     <value>Standard reports</value>
+  </data>
+  <data name="OnchoSurParousFliesDisected" xml:space="preserve">
+    <value>Number of parous flies dissected</value>
+  </data>
+  <data name="OnchoSurParousFliesInfected" xml:space="preserve">
+    <value>Number of parous flies infected</value>
+  </data>
+  <data name="ReportingYearStartDate" xml:space="preserve">
+    <value>Start date of reporting year</value>
+  </data>
+  <data name="TasEstimatedNonResponseRate" xml:space="preserve">
+    <value>Estimated non-response rate</value>
+  </data>
+  <data name="TasGradesWithMajorityOf6yo" xml:space="preserve">
+    <value>If implementing TAS in schools, grade(s) with majority of 6-7 year olds</value>
+  </data>
+  <data name="TasTotal6yoInCommunities" xml:space="preserve">
+    <value>If implementing TAS in communities, total # of 6-7 year olds in EU</value>
+  </data>
+  <data name="TasTotalAreasInCommunities" xml:space="preserve">
+    <value>If implementing TAS in communities, total number of enumeration areas in EU</value>
+  </data>
+  <data name="TasTotalNumChildrenInGrades" xml:space="preserve">
+    <value>If implementing TAS in schools, total number of children in selected grade(s) in EU</value>
+  </data>
+  <data name="TasTotalNumPrimarySchools" xml:space="preserve">
+    <value>If implementing TAS in schools, total number of primary schools in EU</value>
   </data>
 </root>

@@ -4779,38 +4779,11 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enquête d&apos;évaluation de la transmission/Surveillance post-TDM I.
-        /// </summary>
-        public static string LfPostMdaTas1 {
-            get {
-                return ResourceManager.GetString("LfPostMdaTas1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enquête d&apos;évaluation de la transmission/Surveillance post-TDM II.
-        /// </summary>
-        public static string LfPostMdaTas2 {
-            get {
-                return ResourceManager.GetString("LfPostMdaTas2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Importation de l&apos;enquête ponctuelle de site sentinelle pour la FL.
         /// </summary>
         public static string LfSentinelImport {
             get {
                 return ResourceManager.GetString("LfSentinelImport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enquête d&apos;évaluation de la transmission / Arrêt du TDM.
-        /// </summary>
-        public static string LfStopMdaTas {
-            get {
-                return ResourceManager.GetString("LfStopMdaTas", resourceCulture);
             }
         }
         
@@ -12474,15 +12447,6 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Taux de non-réponse actuel- % impossible d&apos;effectuer le test de diagnostic .
-        /// </summary>
-        public static string TASActualNonResponseRateInabilityToPerfo {
-            get {
-                return ResourceManager.GetString("TASActualNonResponseRateInabilityToPerfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Taux de non-réponse actuel - % refus ou absence de consentement.
         /// </summary>
         public static string TASActualNonResponseRateRefusalOrNoConse {
@@ -12506,24 +12470,6 @@ namespace Nada.Globalization {
         public static string TASActualNumberOfSchoolsOrEasSurveyed {
             get {
                 return ResourceManager.GetString("TASActualNumberOfSchoolsOrEasSurveyed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Taille actuelle de l&apos;échantillon - négatif.
-        /// </summary>
-        public static string TASActualSampleSizeNegative {
-            get {
-                return ResourceManager.GetString("TASActualSampleSizeNegative", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Taille actuelle de l&apos;échantillon - positif.
-        /// </summary>
-        public static string TASActualSampleSizePositive {
-            get {
-                return ResourceManager.GetString("TASActualSampleSizePositive", resourceCulture);
             }
         }
         

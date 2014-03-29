@@ -50,7 +50,7 @@ namespace Nada.UI.View.Wizard
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                countryView1.LoadCountry(model);
+                countryView1.LoadCountry(model, false);
             }
         }
 

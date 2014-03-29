@@ -66,6 +66,7 @@ namespace Nada.UI.View.Wizard
         
         private bool SaveDemo()
         {
+            countryDemographyView1.DoValidate();
             if (!model.IsValid())
             {
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
@@ -78,5 +79,6 @@ namespace Nada.UI.View.Wizard
             //demo.Save(model, userId);
             return true;
         }
+
     }
 }

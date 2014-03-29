@@ -43,7 +43,9 @@ namespace Nada.Model
         EvaluationUnit = 5,
         EcologicalZone = 6,
         EvalSubDistrict = 7,
-        EvalSite = 8
+        EvalSite = 8,
+        Demo = 9, 
+        Sae = 10
     }
 
     public enum StaticSurveyType

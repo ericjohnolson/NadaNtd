@@ -40,6 +40,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.h3Required3 = new Nada.UI.Controls.H3Required();
             this.h3bLabel9 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel8 = new Nada.UI.Controls.H3bLabel();
@@ -77,7 +78,8 @@
             this.tblTitle = new System.Windows.Forms.TableLayoutPanel();
             this.lblAdminLevel = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4.SuspendLayout();
             this.tblEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsDemo)).BeginInit();
@@ -150,7 +152,7 @@
             this.tblEdit.ColumnCount = 1;
             this.tblEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblEdit.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tblEdit.Location = new System.Drawing.Point(3, 571);
+            this.tblEdit.Location = new System.Drawing.Point(3, 620);
             this.tblEdit.Name = "tblEdit";
             this.tblEdit.RowCount = 2;
             this.tblEdit.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -174,7 +176,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel3.Controls.Add(this.textBox1, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.h3Label3, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 337);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 386);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -251,7 +253,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(933, 659);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(933, 708);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // tableLayoutPanel14
@@ -262,6 +264,8 @@
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel14.Controls.Add(this.textBox3, 0, 13);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel2, 0, 12);
             this.tableLayoutPanel14.Controls.Add(this.dateTimePicker1, 0, 3);
             this.tableLayoutPanel14.Controls.Add(this.h3Required3, 0, 2);
             this.tableLayoutPanel14.Controls.Add(this.h3bLabel9, 2, 10);
@@ -288,7 +292,7 @@
             this.tableLayoutPanel14.Controls.Add(this.textBox7, 2, 7);
             this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
-            this.tableLayoutPanel14.RowCount = 12;
+            this.tableLayoutPanel14.RowCount = 14;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -301,8 +305,18 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(569, 294);
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(569, 343);
             this.tableLayoutPanel14.TabIndex = 1;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsDemo, "DateDemographyData", true));
+            this.dateTimePicker1.Location = new System.Drawing.Point(3, 68);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(253, 21);
+            this.dateTimePicker1.TabIndex = 67;
             // 
             // h3Required3
             // 
@@ -591,7 +605,7 @@
             // 
             this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr5.ForeColor = System.Drawing.Color.Gray;
-            this.hr5.Location = new System.Drawing.Point(0, 556);
+            this.hr5.Location = new System.Drawing.Point(0, 605);
             this.hr5.Margin = new System.Windows.Forms.Padding(0);
             this.hr5.Name = "hr5";
             this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
@@ -605,7 +619,7 @@
             this.customIndicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.customIndicatorControl1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.customIndicatorControl1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customIndicatorControl1.Location = new System.Drawing.Point(0, 498);
+            this.customIndicatorControl1.Location = new System.Drawing.Point(0, 547);
             this.customIndicatorControl1.Margin = new System.Windows.Forms.Padding(0);
             this.customIndicatorControl1.Name = "customIndicatorControl1";
             this.customIndicatorControl1.Size = new System.Drawing.Size(162, 48);
@@ -618,7 +632,7 @@
             // 
             this.hr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr4.ForeColor = System.Drawing.Color.Gray;
-            this.hr4.Location = new System.Drawing.Point(0, 486);
+            this.hr4.Location = new System.Drawing.Point(0, 535);
             this.hr4.Margin = new System.Windows.Forms.Padding(0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
@@ -631,7 +645,7 @@
             // 
             this.hr3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr3.ForeColor = System.Drawing.Color.Gray;
-            this.hr3.Location = new System.Drawing.Point(0, 316);
+            this.hr3.Location = new System.Drawing.Point(0, 365);
             this.hr3.Margin = new System.Windows.Forms.Padding(0);
             this.hr3.Name = "hr3";
             this.hr3.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
@@ -783,13 +797,29 @@
             this.lblType.Tag = "Demography";
             this.lblType.Text = "Demography";
             // 
-            // dateTimePicker1
+            // h3bLabel2
             // 
-            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsDemo, "DateDemographyData", true));
-            this.dateTimePicker1.Location = new System.Drawing.Point(3, 68);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(253, 21);
-            this.dateTimePicker1.TabIndex = 67;
+            this.h3bLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel2.AutoSize = true;
+            this.h3bLabel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel2.Location = new System.Drawing.Point(0, 294);
+            this.h3bLabel2.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel2.Name = "h3bLabel2";
+            this.h3bLabel2.Size = new System.Drawing.Size(79, 16);
+            this.h3bLabel2.TabIndex = 65;
+            this.h3bLabel2.Tag = "PercentRural";
+            this.h3bLabel2.Text = "PercentRural";
+            this.h3bLabel2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox3
+            // 
+            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PercentRural", true));
+            this.textBox3.Location = new System.Drawing.Point(0, 316);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(256, 21);
+            this.textBox3.TabIndex = 63;
             // 
             // DemographyView
             // 
@@ -810,7 +840,7 @@
             this.Controls.Add(this.nadaLabel1);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "DemographyView";
-            this.Size = new System.Drawing.Size(948, 753);
+            this.Size = new System.Drawing.Size(948, 802);
             this.Load += new System.EventHandler(this.Demo_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
@@ -882,5 +912,7 @@
         private C1.Win.C1Input.C1Button c1Button1;
         private C1.Win.C1Input.C1Button c1Button2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox textBox3;
+        private Controls.H3bLabel h3bLabel2;
     }
 }

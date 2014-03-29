@@ -17,6 +17,22 @@ namespace Nada.DA
             return p;
         }
 
+        public static OleDbParameter CreateObjectOleDbParameter(string parameterName, object obj)
+        {
+            OleDbParameter p = new OleDbParameter(parameterName, OleDbType.LongVarBinary);
+            p.Direction = ParameterDirection.Input;
+            p.Value = obj;
+            return p;
+        }
+
+        public static OleDbParameter CreateJsonOleDbParameter(string parameterName, string obj)
+        {
+            OleDbParameter p = new OleDbParameter(parameterName, OleDbType.VarChar);
+            p.Direction = ParameterDirection.Input;
+            p.Value = obj;
+            return p;
+        }
+
         public static OleDbParameter CreateNullableParam(string parameterName, Nullable<int> intValue)
         {
             if(intValue.HasValue)

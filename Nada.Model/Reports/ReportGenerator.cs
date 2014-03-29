@@ -12,59 +12,49 @@ using Nada.Model.Survey;
 
 namespace Nada.Model.Reports
 {
-    #region ChartGenerator
-    //public class ChartGenerator
-    //{
-    //    private ReportRepository repo = new ReportRepository();
-
-    //    public ReportResult Run(ReportIndicators settings)
-    //    {
-    //        ReportResult result = new ReportResult();
-    //        result.ChartData = CreateChart();
-    //        repo.GetReportData(settings, result.DataTableResults, result.ChartData);
-    //        result.ChartIndicators = GetChartIndicators(settings);
-    //        return result;
-    //    }
-
-    //    private List<ReportIndicator> GetChartIndicators(ReportIndicators settings)
-    //    {
-    //        List<ReportIndicator> chartIndicators = new List<ReportIndicator>();
-    //        chartIndicators.AddRange(settings.SurveyIndicators.Where(s => s.Selected && s.DataTypeId == 2));
-    //        chartIndicators.AddRange(settings.InterventionIndicators.Where(s => s.Selected && s.DataTypeId == 2));
-    //        return chartIndicators;
-    //    }
-
-    //    private DataTable CreateChart()
-    //    {
-    //        DataTable chartData = new DataTable();
-    //        chartData.Columns.Add(new DataColumn("Location"));
-    //        chartData.Columns.Add(new DataColumn("IndicatorName"));
-    //        chartData.Columns.Add(new DataColumn("IndicatorId"));
-    //        chartData.Columns.Add(new DataColumn("Year"));
-    //        chartData.Columns.Add(new DataColumn("Value"));
-    //        return chartData;
-    //    }
-    //}
-
-    #endregion
-
     public interface IReportGenerator
     {
         ReportResult Run(ReportOptions options);
     }
 
+
+    [Serializable]
     public class BaseReportGenerator : IReportGenerator
     {
         protected ICalcIndicators calc = null;
-        protected ReportRepository repo = new ReportRepository();
-        protected DemoRepository demo = new DemoRepository();
+        [NonSerialized]
+        protected ReportRepository repo = null;
+        [NonSerialized]
+        protected DemoRepository demo = null;
+        [NonSerialized]
         protected ReportOptions opts = null;
-        protected List<ReportIndicator> selectedCalcFields = new List<ReportIndicator>();
+        [NonSerialized]
+        protected List<ReportIndicator> selectedCalcFields = null;
+        [NonSerialized]
         protected bool hasCalculations = false;
         protected virtual string CmdText() { throw new NotImplementedException(); }
         protected virtual int EntityTypeId { get { return 0; } }
 
-        public virtual ReportResult Run(ReportOptions options)
+        public BaseReportGenerator()
+        {
+
+        }
+
+        public ReportResult Run(ReportOptions options)
+        {
+            Initialize();
+            return DoRun(options);
+        }
+
+        private void Initialize()
+        {
+            repo = new ReportRepository();
+            demo = new DemoRepository();
+            selectedCalcFields = new List<ReportIndicator>();
+
+        }
+
+        protected virtual ReportResult DoRun(ReportOptions options)
         {
             opts = options;
             selectedCalcFields = opts.SelectedIndicators.Where(c => c.IsCalculated).ToList();
@@ -446,6 +436,7 @@ namespace Nada.Model.Reports
         #endregion
     }
 
+    [Serializable]
     public class IntvReportGenerator : BaseReportGenerator
     {
         protected override int EntityTypeId { get { return (int)IndicatorEntityType.Intervention; } }
@@ -508,6 +499,7 @@ namespace Nada.Model.Reports
         }
     }
 
+    [Serializable]
     public class SurveyReportGenerator : BaseReportGenerator
     {
         protected override int EntityTypeId { get { return (int)IndicatorEntityType.Survey; } }
@@ -666,6 +658,7 @@ namespace Nada.Model.Reports
         }
     }
 
+    [Serializable]
     public class DistributionReportGenerator : BaseReportGenerator
     {
         protected override int EntityTypeId { get { return (int)IndicatorEntityType.DiseaseDistribution; } }
@@ -700,6 +693,7 @@ namespace Nada.Model.Reports
         }
     }
 
+    [Serializable]
     public class ProcessReportGenerator : BaseReportGenerator
     {
         protected override string CmdText()
@@ -759,9 +753,10 @@ namespace Nada.Model.Reports
         }
     }
 
+    [Serializable]
     public class DemoReportGenerator : BaseReportGenerator
     {
-        public override ReportResult Run(ReportOptions options)
+        protected override ReportResult DoRun(ReportOptions options)
         {
             opts = options;
             ReportResult result = new ReportResult();

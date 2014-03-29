@@ -22,7 +22,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select Country.ID, DisplayName, MonthYearStarts, aspnet_Users.UserName, Country.UpdatedAt 
+                OleDbCommand command = new OleDbCommand(@"Select Country.ID, DisplayName, ReportingYearStartDate, aspnet_Users.UserName, Country.UpdatedAt 
                     FROM ((Country INNER JOIN AdminLevels on Country.AdminLevelId = AdminLevels.ID)
                             INNER JOIN aspnet_Users on Country.UpdatedById = aspnet_Users.UserId)
                     WHERE AdminLevels.ID = @id", connection);
@@ -36,7 +36,7 @@ namespace Nada.Model.Repositories
                         {
                             Id = reader.GetValueOrDefault<int>("ID"),
                             Name = reader.GetValueOrDefault<string>("DisplayName"),
-                            MonthYearStarts = reader.GetValueOrDefault<int>("MonthYearStarts"),
+                            ReportingYearStartDate = reader.GetValueOrDefault<DateTime>("ReportingYearStartDate"),
                             UpdatedBy = GetAuditInfoUpdate(reader)
                         };
                     }
@@ -55,9 +55,9 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Update Country set MonthYearStarts=@MonthYearStarts,
+                    OleDbCommand command = new OleDbCommand(@"Update Country set ReportingYearStartDate=@ReportingYearStartDate, MonthYearStarts=1,
                          UpdatedById=@updatedby, UpdatedAt=@updatedat WHERE ID = @id", connection);
-                    command.Parameters.Add(new OleDbParameter("@MonthYearStarts", country.MonthYearStarts));
+                    command.Parameters.Add(new OleDbParameter("@ReportingYearStartDate", country.ReportingYearStartDate));
                     command.Parameters.Add(new OleDbParameter("@updatedby", byUserId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
                     command.Parameters.Add(new OleDbParameter("@id", country.Id));

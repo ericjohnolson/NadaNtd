@@ -47,7 +47,7 @@ namespace Nada.UI.View
                 Localizer.TranslateControl(this);
                 lvUsers.SetObjects(members.GetAllUsers());
                 country = demo.GetCountry();
-                countryView1.LoadCountry(country);
+                countryView1.LoadCountry(country, true);
                 diseasePickerControl1.LoadLists(true);
             }
         }

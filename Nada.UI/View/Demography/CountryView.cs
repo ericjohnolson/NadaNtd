@@ -26,17 +26,18 @@ namespace Nada.UI.View.Demography
         {
             if (!DesignMode)
             {
-                var months = GlobalizationUtil.GetAllMonths(); 
+                var months = GlobalizationUtil.GetAllMonths();
                 monthItemBindingSource.DataSource = months;
-                cbMonths.DropDownWidth = BaseForm.GetDropdownWidth(months.Select(m => m.Name));
                 lbl1.SetMaxWidth(370);
                 lbl2.SetMaxWidth(370);
 
             }
         }
 
-        public void LoadCountry(Country country)
+        public void LoadCountry(Country country, bool showDate)
         {
+            lbl2.Visible = showDate;
+            dateTimePicker1.Visible = showDate;
             model = country;
             bsCountry.DataSource = model;
         }

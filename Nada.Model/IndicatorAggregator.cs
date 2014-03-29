@@ -8,12 +8,16 @@ using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
+
+    [Serializable]
     public class IndicatorAggregateResult
     {
         public object NewValue { get; set; }
         public string Name { get; set; }
     }
 
+
+    [Serializable]
     public class AdminLevelIndicators
     {
         public AdminLevelIndicators()
@@ -32,6 +36,8 @@ namespace Nada.Model
         public Dictionary<string, AggregateIndicator> Indicators { get; set; }
     }
 
+
+    [Serializable]
     public class AggregateIndicator
     {
         public int IndicatorId { get; set; }
@@ -49,6 +55,8 @@ namespace Nada.Model
         public string TypeName { get; set; }
     }
 
+
+    [Serializable]
     public static class IndicatorAggregator
     {
         public static object AggregateChildren(List<AdminLevelIndicators> list, string key, object startResult)

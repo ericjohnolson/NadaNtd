@@ -7,6 +7,8 @@ using Nada.Model.Base;
 
 namespace Nada.Model
 {
+
+    [Serializable]
     public class AdminLevelDemography : NadaClass
     {
         public AdminLevelDemography()

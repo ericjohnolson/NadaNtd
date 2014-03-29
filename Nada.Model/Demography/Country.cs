@@ -13,7 +13,7 @@ namespace Nada.Model
         {
         }
         public string Name { get; set; }
-        public int MonthYearStarts { get; set; }
+        public DateTime ReportingYearStartDate { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]
@@ -25,10 +25,6 @@ namespace Nada.Model
                 {
                     case "Name":
                         if (string.IsNullOrEmpty(Name))
-                            error = Translations.Required;
-                        break;
-                    case "MonthYearStarts":
-                        if (MonthYearStarts > 13 || MonthYearStarts < 1)
                             error = Translations.Required;
                         break;
 
