@@ -98,7 +98,10 @@ namespace Nada.Model.Repositories
                     if (dic[adminLevelId].Indicators.ContainsKey(indicatorKey))
                     {
                         object val = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[indicatorKey].Value);
-                        dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : val.ToString();
+                        if(newIndicator.DataType == (int)IndicatorDataType.Date)
+                            dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : ((DateTime)val).ToString("MM/dd/yyyy");
+                        else
+                            dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : val.ToString();
                     }
                     else
                     {
