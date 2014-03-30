@@ -214,6 +214,8 @@ namespace Nada.Model
             filterBy = filterLevel;
             int dropdownCol = GetParams();
             DataTable data = CreateNewImportDataTable(importDemography);
+            DemoRepository demo = new DemoRepository();
+            CountryDemography recentCountryDemo = demo.GetCountryDemoRecent();
 
             // Create excel
             System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
@@ -250,10 +252,31 @@ namespace Nada.Model
                     else
                     {
                         if (i == 1 && filterByType != null)
-                            xlsWorksheet.Cells[r, 1] = filterLevel.Name;
+                            xlsWorksheet.Cells[r, i] = filterLevel.Name;
                         if (dropdownCol == i && dropdownValues.Count > 0)
                         {
                             AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(i), r, dropdownBy.DisplayName, TranslationLookup.GetValue("PleaseSelect"), dropdownValues, oldCI);
+                        }
+                        if (importDemography)
+                        {
+                            if (Util.GetExcelColumnName(i) == "D")
+                                xlsWorksheet.Cells[r, i] = recentCountryDemo.YearCensus;
+                            if (Util.GetExcelColumnName(i) == "F")
+                                xlsWorksheet.Cells[r, i] = recentCountryDemo.GrowthRate;
+                            if (Util.GetExcelColumnName(i) == "H" && recentCountryDemo.Percent6mos.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.Percent6mos, r);
+                            if (Util.GetExcelColumnName(i) == "I" && recentCountryDemo.PercentPsac.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.PercentPsac, r);
+                            if (Util.GetExcelColumnName(i) == "J" && recentCountryDemo.PercentSac.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.PercentSac, r);
+                            if (Util.GetExcelColumnName(i) == "K" && recentCountryDemo.Percent5yo.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.Percent5yo, r);
+                            if (Util.GetExcelColumnName(i) == "L" && recentCountryDemo.PercentAdult.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.PercentAdult, r);
+                            if (Util.GetExcelColumnName(i) == "M" && recentCountryDemo.PercentFemale.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.PercentFemale, r);
+                            if (Util.GetExcelColumnName(i) == "N" && recentCountryDemo.PercentMale.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.PercentMale, r);
                         }
                     }
                 }

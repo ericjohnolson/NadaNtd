@@ -35,14 +35,14 @@
             this.monthItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.h3Label2 = new Nada.UI.Controls.H3Required();
             this.h3Label3 = new Nada.UI.Controls.H3Required();
+            this.dtStart = new System.Windows.Forms.DateTimePicker();
+            this.dtEnd = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.h3Label1 = new Nada.UI.Controls.H3Required();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rbAggLevel = new System.Windows.Forms.RadioButton();
             this.rbAggCountry = new System.Windows.Forms.RadioButton();
             this.rbAggListAll = new System.Windows.Forms.RadioButton();
-            this.dtStart = new System.Windows.Forms.DateTimePicker();
-            this.dtEnd = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.monthItemBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -55,22 +55,24 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.h3Required1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.cbMonths, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.h3Label2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.h3Label3, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.dtStart, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.dtEnd, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.cbMonths, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.h3Required1, 0, 6);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(279, 132);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(279, 134);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // h3Required1
@@ -79,7 +81,7 @@
             this.h3Required1.AutoSize = true;
             this.h3Required1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Required1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Required1.Location = new System.Drawing.Point(0, 0);
+            this.h3Required1.Location = new System.Drawing.Point(0, 84);
             this.h3Required1.Margin = new System.Windows.Forms.Padding(0);
             this.h3Required1.Name = "h3Required1";
             this.h3Required1.Size = new System.Drawing.Size(167, 15);
@@ -95,7 +97,7 @@
             this.cbMonths.DisplayMember = "Name";
             this.cbMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMonths.FormattingEnabled = true;
-            this.cbMonths.Location = new System.Drawing.Point(3, 21);
+            this.cbMonths.Location = new System.Drawing.Point(3, 105);
             this.cbMonths.Margin = new System.Windows.Forms.Padding(3, 6, 25, 6);
             this.cbMonths.Name = "cbMonths";
             this.cbMonths.Size = new System.Drawing.Size(251, 23);
@@ -111,7 +113,7 @@
             this.h3Label2.AutoSize = true;
             this.h3Label2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label2.Location = new System.Drawing.Point(0, 50);
+            this.h3Label2.Location = new System.Drawing.Point(0, 0);
             this.h3Label2.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label2.Name = "h3Label2";
             this.h3Label2.Size = new System.Drawing.Size(70, 15);
@@ -125,7 +127,7 @@
             this.h3Label3.AutoSize = true;
             this.h3Label3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label3.Location = new System.Drawing.Point(0, 91);
+            this.h3Label3.Location = new System.Drawing.Point(0, 42);
             this.h3Label3.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label3.Name = "h3Label3";
             this.h3Label3.Size = new System.Drawing.Size(67, 15);
@@ -133,6 +135,20 @@
             this.h3Label3.Tag = "EndDate";
             this.h3Label3.Text = "EndDate";
             this.h3Label3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // dtStart
+            // 
+            this.dtStart.Location = new System.Drawing.Point(3, 18);
+            this.dtStart.Name = "dtStart";
+            this.dtStart.Size = new System.Drawing.Size(251, 21);
+            this.dtStart.TabIndex = 12;
+            // 
+            // dtEnd
+            // 
+            this.dtEnd.Location = new System.Drawing.Point(3, 60);
+            this.dtEnd.Name = "dtEnd";
+            this.dtEnd.Size = new System.Drawing.Size(251, 21);
+            this.dtEnd.TabIndex = 13;
             // 
             // tableLayoutPanel2
             // 
@@ -153,7 +169,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(453, 251);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(453, 250);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // h3Label1
@@ -161,10 +177,10 @@
             this.h3Label1.AutoSize = true;
             this.h3Label1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label1.Location = new System.Drawing.Point(0, 138);
+            this.h3Label1.Location = new System.Drawing.Point(0, 140);
             this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label1.Name = "h3Label1";
-            this.h3Label1.Size = new System.Drawing.Size(83, 18);
+            this.h3Label1.Size = new System.Drawing.Size(95, 15);
             this.h3Label1.TabIndex = 1;
             this.h3Label1.Tag = "AggregatedBy";
             this.h3Label1.Text = "AggregatedBy";
@@ -175,7 +191,7 @@
             this.panel1.Controls.Add(this.rbAggLevel);
             this.panel1.Controls.Add(this.rbAggCountry);
             this.panel1.Controls.Add(this.rbAggListAll);
-            this.panel1.Location = new System.Drawing.Point(3, 159);
+            this.panel1.Location = new System.Drawing.Point(3, 158);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(447, 89);
             this.panel1.TabIndex = 2;
@@ -216,20 +232,6 @@
             this.rbAggListAll.Text = "AggListAll";
             this.rbAggListAll.UseVisualStyleBackColor = true;
             // 
-            // dtStart
-            // 
-            this.dtStart.Location = new System.Drawing.Point(3, 68);
-            this.dtStart.Name = "dtStart";
-            this.dtStart.Size = new System.Drawing.Size(251, 21);
-            this.dtStart.TabIndex = 12;
-            // 
-            // dtEnd
-            // 
-            this.dtEnd.Location = new System.Drawing.Point(3, 109);
-            this.dtEnd.Name = "dtEnd";
-            this.dtEnd.Size = new System.Drawing.Size(251, 21);
-            this.dtEnd.TabIndex = 13;
-            // 
             // StepOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -238,7 +240,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "StepOptions";
-            this.Size = new System.Drawing.Size(459, 257);
+            this.Size = new System.Drawing.Size(459, 256);
             this.Load += new System.EventHandler(this.StepOptions_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

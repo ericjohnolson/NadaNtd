@@ -65,6 +65,9 @@ namespace Nada.UI.View.Wizard
             locationType = type;
             prev = step;
             SettingsRepository settings = new SettingsRepository();
+            DemoRepository demo = new DemoRepository();
+            if (!isDemoOnly)
+                demoDate = demo.GetCountryDemoRecent().DateDemographyData;
             nextType = settings.GetNextLevel(locationType.LevelNumber);
             importer = new AdminLevelDemoImporter(locationType);
             updater = new AdminLevelDemoUpdater(locationType);
@@ -97,11 +100,11 @@ namespace Nada.UI.View.Wizard
                             cbImportFor.DropDownWidth = BaseForm.GetDropdownWidth(levels.Select(a => a.Name));
                     }
 
-                    if (locationType.IsDemographyAllowed)
-                    {
-                        lblYear.Visible = true;
-                        dateTimePicker1.Visible = true;
-                    }
+                    //if (locationType.IsDemographyAllowed)
+                    //{
+                    //    lblYear.Visible = true;
+                    //    dateTimePicker1.Visible = true;
+                    //}
                 }
 
                 if (locationType.IsAggregatingLevel)
@@ -129,8 +132,8 @@ namespace Nada.UI.View.Wizard
         {
             AdminLevel filteredBy = null;
             int rows = 0;
-            DateTime dateReported = DateTime.Now;
-            if (!IsValid(ref filteredBy, out rows, out dateReported))
+            DateTime dateReported = demoDate;
+            if (!IsValid(ref filteredBy, out rows))
                 return;
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -166,10 +169,10 @@ namespace Nada.UI.View.Wizard
             try
             {
                 Payload payload = (Payload)e.Argument;
-                if (!payload.IsOnlyDemo)
-                    importer.CreateImportFile(payload.Filename, payload.DoDemography, payload.RowCount, payload.FilteredBy);
-                else
+                if (payload.IsOnlyDemo)
                     updater.CreateUpdateFile(payload.Filename);
+                else
+                    importer.CreateImportFile(payload.Filename, payload.DoDemography, payload.RowCount, payload.FilteredBy);
                 e.Result = new ImportResult { WasSuccess = true };
             }
             catch (Exception ex)
@@ -182,8 +185,8 @@ namespace Nada.UI.View.Wizard
         {
             AdminLevel filteredBy = null;
             int rows = 0;
-            DateTime dateReported = DateTime.Now;
-            if (!IsValid(ref filteredBy, out rows, out dateReported))
+            DateTime dateReported = demoDate;
+            if (!IsValid(ref filteredBy, out rows))
                 return;
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -243,13 +246,11 @@ namespace Nada.UI.View.Wizard
             loadingImport.Visible = p;
         }
 
-        private bool IsValid(ref AdminLevel filteredBy, out int count, out DateTime dateReported)
+        private bool IsValid(ref AdminLevel filteredBy, out int count)
         {
-            dateReported = DateTime.Now;
             count = 0;
             if (isDemoOnly)
             {
-                dateReported = demoDate;
                 return true;
             }
 

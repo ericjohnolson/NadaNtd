@@ -99,7 +99,7 @@ namespace Nada.Model.Reports
             {
                 foreach (var level in list) // Each admin level
                     foreach (var ind in level.Indicators) // each indicator
-                        AddToTable(result, resultDic, level, ind.Value.Year, ind.Value, ind.Value.FormId.ToString() + level.Id, ind.Value.Value, TranslationLookup.GetValue(ind.Value.TypeName, ind.Value.TypeName));
+                        AddToTable(result, resultDic, level, ind.Value.Year, ind.Value, ind.Value.FormId.ToString() + level.Id, ind.Value.Value, TranslationLookup.GetValue(ind.Value.TypeName, ind.Value.TypeName), options);
             }
             else
             {
@@ -140,7 +140,7 @@ namespace Nada.Model.Reports
                             if (value == null)
                                 continue;
 
-                            AddToTable(result, resultDic, level, year, columnDef.Value, levelAndYear, value, Translations.NA);
+                            AddToTable(result, resultDic, level, year, columnDef.Value, levelAndYear, value, Translations.NA, options);
                         }
                     }
                 }
@@ -172,7 +172,7 @@ namespace Nada.Model.Reports
 
         #region Shared Methods
         private void AddToTable(DataTable result, Dictionary<string, ReportRow> resultDic, AdminLevelIndicators level, int year, AggregateIndicator indicator,
-            string rowKey, object value, string typeName)
+            string rowKey, object value, string typeName, ReportOptions options)
         {
             // Add row if it doesn't exist
             if (!resultDic.ContainsKey(rowKey))
@@ -191,14 +191,20 @@ namespace Nada.Model.Reports
                 }
                 dr[Translations.Location] = level.Name;
                 dr[Translations.Type] = typeName;
-                dr[Translations.Year] = year;
+                DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
+                dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
                 result.Rows.Add(dr);
                 resultDic.Add(rowKey, new ReportRow { Row = dr, AdminLevelId = level.Id, Year = year });
             }
 
             // add column if it doesn't exist
             if (indicator.Name != null && !result.Columns.Contains(indicator.Name) && !indicator.IsCalcRelated)
-                result.Columns.Add(new DataColumn(indicator.Name));
+            {
+                if(indicator.DataType == (int) IndicatorDataType.Number)
+                    result.Columns.Add(new DataColumn(indicator.Name, typeof(double)));
+                else
+                    result.Columns.Add(new DataColumn(indicator.Name));
+            }
 
             if (indicator.Name != null && !indicator.IsCalcRelated)
                 resultDic[rowKey].Row[indicator.Name] = value;
