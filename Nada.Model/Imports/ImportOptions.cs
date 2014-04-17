@@ -16,12 +16,17 @@ namespace Nada.Model.Imports
 
     public class ImportOptions : NadaClass, IDataErrorInfo
     {
+        public ImportOptions()
+        {
+            IndicatorValuesSublist = new Dictionary<string, List<string>>();
+        }
         public IImporter Importer { get; set; }
         public IndicatorEntityType EntityType { get; set; }
         public List<TypeListItem> Types { get; set; }
         public Nullable<int> TypeId { get; set; }
         public List<AdminLevel> AdminLevels { get; set; }
         public AdminLevelType AdminLevelType { get; set; }
+        public Dictionary<string, List<string>> IndicatorValuesSublist { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

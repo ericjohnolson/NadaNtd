@@ -12,7 +12,7 @@ namespace Nada.Tests
     [TestClass]
     public class DatabaseTests : BaseTest
     {
-        [TestMethod]
+        //[TestMethod]
         public void CanCreateBaselineDatabase()
         {
             SettingsRepository repo = new SettingsRepository();
@@ -23,6 +23,16 @@ namespace Nada.Tests
         }
 
         [TestMethod]
+        public void DoUpdateDatabase()
+        {
+            SettingsRepository repo = new SettingsRepository();
+            List<string> filesToRun = new List<string> { @"C:\Development\Nada\NadaNtd\Nada.UI\DatabaseScripts\ScriptDiffTest.sql" };
+            string result = repo.RunSchemaChangeScripts(filesToRun);
+
+            Assert.IsTrue(result.Length == 0);
+        }
+
+        //[TestMethod]
         public void DoCleanDataOld()
         {
             // DON"T RUN UNLESS NECESSARY

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using Nada.Globalization;
 using Nada.Model.Exports;
 using excel = Microsoft.Office.Interop.Excel;
 
@@ -17,6 +18,7 @@ namespace Nada.Model
     {
         public ExportJrfQuestions Questions { get; set; }
         public ExportCmJrfQuestions CmQuestions { get; set; }
+        public int Year { get; set; }
         public string FileName { get; set; }
     }
 
@@ -44,5 +46,7 @@ namespace Nada.Model
             rng = xlsWorksheet.get_Range(cell, missing);
             rng.Value = value;
         }
+
+        
     }
 }

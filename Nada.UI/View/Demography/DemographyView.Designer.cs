@@ -40,30 +40,30 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.h3Required3 = new Nada.UI.Controls.H3Required();
-            this.h3bLabel9 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel8 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel7 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel6 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel5 = new Nada.UI.Controls.H3bLabel();
-            this.h3Required2 = new Nada.UI.Controls.H3Required();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.h3Required1 = new Nada.UI.Controls.H3Required();
-            this.h3bLabel4 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel3 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel1 = new Nada.UI.Controls.H3bLabel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.lblYear = new Nada.UI.Controls.H3Required();
             this.tbYearCensus = new System.Windows.Forms.TextBox();
+            this.h3Required3 = new Nada.UI.Controls.H3Required();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.h3bLabel3 = new Nada.UI.Controls.H3bLabel();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.h3Required1 = new Nada.UI.Controls.H3Required();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.h3bLabel4 = new Nada.UI.Controls.H3bLabel();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.h3bLabel5 = new Nada.UI.Controls.H3bLabel();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.h3Required2 = new Nada.UI.Controls.H3Required();
             this.textBox7 = new System.Windows.Forms.TextBox();
+            this.h3bLabel6 = new Nada.UI.Controls.H3bLabel();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.h3bLabel7 = new Nada.UI.Controls.H3bLabel();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.h3bLabel8 = new Nada.UI.Controls.H3bLabel();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.h3bLabel9 = new Nada.UI.Controls.H3bLabel();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.hr5 = new Nada.UI.Controls.HR();
             this.customIndicatorControl1 = new Nada.UI.View.CustomIndicatorControl();
             this.hr4 = new Nada.UI.Controls.HR();
@@ -78,8 +78,12 @@
             this.tblTitle = new System.Windows.Forms.TableLayoutPanel();
             this.lblAdminLevel = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
-            this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tblIndicators = new System.Windows.Forms.TableLayoutPanel();
+            this.h3bLabel10 = new Nada.UI.Controls.H3bLabel();
+            this.h3bLabel1 = new Nada.UI.Controls.H3bLabel();
+            this.lnkEditAdminLevelUnit = new Nada.UI.Controls.H3Link();
+            this.lblLat = new Nada.UI.Controls.H3bLabel();
+            this.lblLng = new Nada.UI.Controls.H3bLabel();
             this.tableLayoutPanel4.SuspendLayout();
             this.tblEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsDemo)).BeginInit();
@@ -88,6 +92,7 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tblTitle.SuspendLayout();
+            this.tblIndicators.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel4
@@ -152,7 +157,7 @@
             this.tblEdit.ColumnCount = 1;
             this.tblEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblEdit.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tblEdit.Location = new System.Drawing.Point(3, 620);
+            this.tblEdit.Location = new System.Drawing.Point(3, 570);
             this.tblEdit.Name = "tblEdit";
             this.tblEdit.RowCount = 2;
             this.tblEdit.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -176,7 +181,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel3.Controls.Add(this.textBox1, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.h3Label3, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 386);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 336);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -228,7 +233,7 @@
             this.tableLayoutPanel5.Controls.Add(this.hr4, 0, 8);
             this.tableLayoutPanel5.Controls.Add(this.hr3, 0, 3);
             this.tableLayoutPanel5.Controls.Add(this.tblEdit, 0, 12);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(12, 91);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(12, 105);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 13;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -253,7 +258,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(933, 708);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(933, 658);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // tableLayoutPanel14
@@ -264,32 +269,30 @@
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel14.Controls.Add(this.textBox3, 0, 13);
-            this.tableLayoutPanel14.Controls.Add(this.h3bLabel2, 0, 12);
-            this.tableLayoutPanel14.Controls.Add(this.dateTimePicker1, 0, 3);
-            this.tableLayoutPanel14.Controls.Add(this.h3Required3, 0, 2);
-            this.tableLayoutPanel14.Controls.Add(this.h3bLabel9, 2, 10);
-            this.tableLayoutPanel14.Controls.Add(this.h3bLabel8, 0, 10);
-            this.tableLayoutPanel14.Controls.Add(this.h3bLabel7, 2, 8);
-            this.tableLayoutPanel14.Controls.Add(this.h3bLabel6, 0, 8);
-            this.tableLayoutPanel14.Controls.Add(this.h3bLabel5, 0, 6);
-            this.tableLayoutPanel14.Controls.Add(this.h3Required2, 2, 6);
-            this.tableLayoutPanel14.Controls.Add(this.textBox12, 0, 7);
-            this.tableLayoutPanel14.Controls.Add(this.textBox11, 0, 9);
-            this.tableLayoutPanel14.Controls.Add(this.textBox10, 0, 11);
-            this.tableLayoutPanel14.Controls.Add(this.textBox9, 2, 11);
-            this.tableLayoutPanel14.Controls.Add(this.textBox8, 2, 9);
-            this.tableLayoutPanel14.Controls.Add(this.textBox6, 0, 5);
-            this.tableLayoutPanel14.Controls.Add(this.textBox5, 2, 5);
-            this.tableLayoutPanel14.Controls.Add(this.textBox4, 2, 3);
-            this.tableLayoutPanel14.Controls.Add(this.h3Required1, 0, 4);
-            this.tableLayoutPanel14.Controls.Add(this.h3bLabel4, 2, 4);
-            this.tableLayoutPanel14.Controls.Add(this.h3bLabel3, 2, 2);
-            this.tableLayoutPanel14.Controls.Add(this.h3bLabel1, 2, 0);
-            this.tableLayoutPanel14.Controls.Add(this.textBox2, 2, 1);
             this.tableLayoutPanel14.Controls.Add(this.lblYear, 0, 0);
             this.tableLayoutPanel14.Controls.Add(this.tbYearCensus, 0, 1);
-            this.tableLayoutPanel14.Controls.Add(this.textBox7, 2, 7);
+            this.tableLayoutPanel14.Controls.Add(this.h3Required3, 2, 0);
+            this.tableLayoutPanel14.Controls.Add(this.dateTimePicker1, 2, 1);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel3, 0, 2);
+            this.tableLayoutPanel14.Controls.Add(this.textBox4, 0, 3);
+            this.tableLayoutPanel14.Controls.Add(this.h3Required1, 2, 2);
+            this.tableLayoutPanel14.Controls.Add(this.textBox6, 2, 3);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel4, 0, 4);
+            this.tableLayoutPanel14.Controls.Add(this.textBox5, 0, 5);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel5, 2, 4);
+            this.tableLayoutPanel14.Controls.Add(this.textBox12, 2, 5);
+            this.tableLayoutPanel14.Controls.Add(this.h3Required2, 0, 6);
+            this.tableLayoutPanel14.Controls.Add(this.textBox7, 0, 7);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel6, 2, 6);
+            this.tableLayoutPanel14.Controls.Add(this.textBox11, 2, 7);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel7, 0, 8);
+            this.tableLayoutPanel14.Controls.Add(this.textBox8, 0, 9);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel8, 2, 8);
+            this.tableLayoutPanel14.Controls.Add(this.textBox10, 2, 9);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel9, 0, 10);
+            this.tableLayoutPanel14.Controls.Add(this.textBox9, 0, 11);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel2, 2, 10);
+            this.tableLayoutPanel14.Controls.Add(this.textBox3, 2, 11);
             this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 14;
@@ -307,265 +310,8 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(569, 343);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(569, 293);
             this.tableLayoutPanel14.TabIndex = 1;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsDemo, "DateDemographyData", true));
-            this.dateTimePicker1.Location = new System.Drawing.Point(3, 68);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(253, 21);
-            this.dateTimePicker1.TabIndex = 67;
-            // 
-            // h3Required3
-            // 
-            this.h3Required3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3Required3.AutoSize = true;
-            this.h3Required3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Required3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Required3.Location = new System.Drawing.Point(0, 50);
-            this.h3Required3.Margin = new System.Windows.Forms.Padding(0);
-            this.h3Required3.Name = "h3Required3";
-            this.h3Required3.Size = new System.Drawing.Size(96, 15);
-            this.h3Required3.TabIndex = 62;
-            this.h3Required3.TabStop = false;
-            this.h3Required3.Tag = "DateReported";
-            this.h3Required3.Text = "DateReported";
-            this.h3Required3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel9
-            // 
-            this.h3bLabel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel9.AutoSize = true;
-            this.h3bLabel9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel9.Location = new System.Drawing.Point(296, 245);
-            this.h3bLabel9.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel9.Name = "h3bLabel9";
-            this.h3bLabel9.Size = new System.Drawing.Size(55, 16);
-            this.h3bLabel9.TabIndex = 64;
-            this.h3bLabel9.Tag = "PopMale";
-            this.h3bLabel9.Text = "PopMale";
-            this.h3bLabel9.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel8
-            // 
-            this.h3bLabel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel8.AutoSize = true;
-            this.h3bLabel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel8.Location = new System.Drawing.Point(0, 245);
-            this.h3bLabel8.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel8.Name = "h3bLabel8";
-            this.h3bLabel8.Size = new System.Drawing.Size(71, 16);
-            this.h3bLabel8.TabIndex = 64;
-            this.h3bLabel8.Tag = "PopFemale";
-            this.h3bLabel8.Text = "PopFemale";
-            this.h3bLabel8.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel7
-            // 
-            this.h3bLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel7.AutoSize = true;
-            this.h3bLabel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel7.Location = new System.Drawing.Point(296, 196);
-            this.h3bLabel7.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel7.Name = "h3bLabel7";
-            this.h3bLabel7.Size = new System.Drawing.Size(56, 16);
-            this.h3bLabel7.TabIndex = 64;
-            this.h3bLabel7.Tag = "PopAdult";
-            this.h3bLabel7.Text = "PopAdult";
-            this.h3bLabel7.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel6
-            // 
-            this.h3bLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel6.AutoSize = true;
-            this.h3bLabel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel6.Location = new System.Drawing.Point(0, 196);
-            this.h3bLabel6.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel6.Name = "h3bLabel6";
-            this.h3bLabel6.Size = new System.Drawing.Size(48, 16);
-            this.h3bLabel6.TabIndex = 64;
-            this.h3bLabel6.Tag = "Pop5yo";
-            this.h3bLabel6.Text = "Pop5yo";
-            this.h3bLabel6.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel5
-            // 
-            this.h3bLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel5.AutoSize = true;
-            this.h3bLabel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel5.Location = new System.Drawing.Point(0, 147);
-            this.h3bLabel5.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel5.Name = "h3bLabel5";
-            this.h3bLabel5.Size = new System.Drawing.Size(57, 16);
-            this.h3bLabel5.TabIndex = 64;
-            this.h3bLabel5.Tag = "PopPsac";
-            this.h3bLabel5.Text = "PopPsac";
-            this.h3bLabel5.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3Required2
-            // 
-            this.h3Required2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3Required2.AutoSize = true;
-            this.h3Required2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Required2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Required2.Location = new System.Drawing.Point(296, 148);
-            this.h3Required2.Margin = new System.Windows.Forms.Padding(0);
-            this.h3Required2.Name = "h3Required2";
-            this.h3Required2.Size = new System.Drawing.Size(62, 15);
-            this.h3Required2.TabIndex = 63;
-            this.h3Required2.TabStop = false;
-            this.h3Required2.Tag = "PopSac";
-            this.h3Required2.Text = "PopSac";
-            this.h3Required2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // textBox12
-            // 
-            this.textBox12.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PopPsac", true));
-            this.textBox12.Location = new System.Drawing.Point(0, 169);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(256, 21);
-            this.textBox12.TabIndex = 62;
-            // 
-            // textBox11
-            // 
-            this.textBox11.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "Pop5yo", true));
-            this.textBox11.Location = new System.Drawing.Point(0, 218);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(256, 21);
-            this.textBox11.TabIndex = 62;
-            // 
-            // textBox10
-            // 
-            this.textBox10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PopFemale", true));
-            this.textBox10.Location = new System.Drawing.Point(0, 267);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(256, 21);
-            this.textBox10.TabIndex = 62;
-            // 
-            // textBox9
-            // 
-            this.textBox9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PopMale", true));
-            this.textBox9.Location = new System.Drawing.Point(296, 267);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(256, 21);
-            this.textBox9.TabIndex = 62;
-            // 
-            // textBox8
-            // 
-            this.textBox8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PopAdult", true));
-            this.textBox8.Location = new System.Drawing.Point(296, 218);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(256, 21);
-            this.textBox8.TabIndex = 62;
-            // 
-            // textBox6
-            // 
-            this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "TotalPopulation", true));
-            this.textBox6.Location = new System.Drawing.Point(0, 120);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(256, 21);
-            this.textBox6.TabIndex = 62;
-            // 
-            // textBox5
-            // 
-            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "Pop0Month", true));
-            this.textBox5.Location = new System.Drawing.Point(296, 120);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(256, 21);
-            this.textBox5.TabIndex = 62;
-            // 
-            // textBox4
-            // 
-            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "GrowthRate", true));
-            this.textBox4.Location = new System.Drawing.Point(296, 71);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(256, 21);
-            this.textBox4.TabIndex = 62;
-            // 
-            // h3Required1
-            // 
-            this.h3Required1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3Required1.AutoSize = true;
-            this.h3Required1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Required1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Required1.Location = new System.Drawing.Point(0, 99);
-            this.h3Required1.Margin = new System.Windows.Forms.Padding(0);
-            this.h3Required1.Name = "h3Required1";
-            this.h3Required1.Size = new System.Drawing.Size(104, 15);
-            this.h3Required1.TabIndex = 62;
-            this.h3Required1.TabStop = false;
-            this.h3Required1.Tag = "TotalPopulation";
-            this.h3Required1.Text = "TotalPopulation";
-            this.h3Required1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel4
-            // 
-            this.h3bLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel4.AutoSize = true;
-            this.h3bLabel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel4.Location = new System.Drawing.Point(296, 98);
-            this.h3bLabel4.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel4.Name = "h3bLabel4";
-            this.h3bLabel4.Size = new System.Drawing.Size(69, 16);
-            this.h3bLabel4.TabIndex = 63;
-            this.h3bLabel4.Tag = "Pop0Month";
-            this.h3bLabel4.Text = "Pop0Month";
-            this.h3bLabel4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel3
-            // 
-            this.h3bLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel3.AutoSize = true;
-            this.h3bLabel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel3.Location = new System.Drawing.Point(296, 49);
-            this.h3bLabel3.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel3.Name = "h3bLabel3";
-            this.h3bLabel3.Size = new System.Drawing.Size(72, 16);
-            this.h3bLabel3.TabIndex = 63;
-            this.h3bLabel3.Tag = "GrowthRate";
-            this.h3bLabel3.Text = "GrowthRate";
-            this.h3bLabel3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel1
-            // 
-            this.h3bLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel1.AutoSize = true;
-            this.h3bLabel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel1.Location = new System.Drawing.Point(296, 0);
-            this.h3bLabel1.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel1.Name = "h3bLabel1";
-            this.h3bLabel1.Size = new System.Drawing.Size(93, 16);
-            this.h3bLabel1.TabIndex = 62;
-            this.h3bLabel1.Tag = "YearProjections";
-            this.h3bLabel1.Text = "YearProjections";
-            this.h3bLabel1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // textBox2
-            // 
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "YearProjections", true));
-            this.textBox2.Location = new System.Drawing.Point(296, 22);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(256, 21);
-            this.textBox2.TabIndex = 62;
             // 
             // lblYear
             // 
@@ -573,7 +319,7 @@
             this.lblYear.AutoSize = true;
             this.lblYear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lblYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblYear.Location = new System.Drawing.Point(0, 1);
+            this.lblYear.Location = new System.Drawing.Point(0, 0);
             this.lblYear.Margin = new System.Windows.Forms.Padding(0);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(87, 15);
@@ -586,26 +332,283 @@
             // tbYearCensus
             // 
             this.tbYearCensus.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "YearCensus", true));
-            this.tbYearCensus.Location = new System.Drawing.Point(0, 22);
+            this.tbYearCensus.Location = new System.Drawing.Point(0, 21);
             this.tbYearCensus.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.tbYearCensus.Name = "tbYearCensus";
             this.tbYearCensus.Size = new System.Drawing.Size(256, 21);
             this.tbYearCensus.TabIndex = 0;
             // 
+            // h3Required3
+            // 
+            this.h3Required3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3Required3.AutoSize = true;
+            this.h3Required3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Required3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Required3.Location = new System.Drawing.Point(296, 0);
+            this.h3Required3.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Required3.Name = "h3Required3";
+            this.h3Required3.Size = new System.Drawing.Size(96, 15);
+            this.h3Required3.TabIndex = 62;
+            this.h3Required3.TabStop = false;
+            this.h3Required3.Tag = "DateReported";
+            this.h3Required3.Text = "DateReported";
+            this.h3Required3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsDemo, "DateDemographyData", true));
+            this.dateTimePicker1.Location = new System.Drawing.Point(299, 18);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(253, 21);
+            this.dateTimePicker1.TabIndex = 67;
+            // 
+            // h3bLabel3
+            // 
+            this.h3bLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel3.AutoSize = true;
+            this.h3bLabel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel3.Location = new System.Drawing.Point(0, 48);
+            this.h3bLabel3.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel3.Name = "h3bLabel3";
+            this.h3bLabel3.Size = new System.Drawing.Size(72, 16);
+            this.h3bLabel3.TabIndex = 63;
+            this.h3bLabel3.Tag = "GrowthRate";
+            this.h3bLabel3.Text = "GrowthRate";
+            this.h3bLabel3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox4
+            // 
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "GrowthRate", true));
+            this.textBox4.Location = new System.Drawing.Point(0, 70);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(256, 21);
+            this.textBox4.TabIndex = 62;
+            // 
+            // h3Required1
+            // 
+            this.h3Required1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3Required1.AutoSize = true;
+            this.h3Required1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Required1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Required1.Location = new System.Drawing.Point(296, 49);
+            this.h3Required1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Required1.Name = "h3Required1";
+            this.h3Required1.Size = new System.Drawing.Size(104, 15);
+            this.h3Required1.TabIndex = 62;
+            this.h3Required1.TabStop = false;
+            this.h3Required1.Tag = "TotalPopulation";
+            this.h3Required1.Text = "TotalPopulation";
+            this.h3Required1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox6
+            // 
+            this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "TotalPopulation", true));
+            this.textBox6.Location = new System.Drawing.Point(296, 70);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(256, 21);
+            this.textBox6.TabIndex = 62;
+            // 
+            // h3bLabel4
+            // 
+            this.h3bLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel4.AutoSize = true;
+            this.h3bLabel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel4.Location = new System.Drawing.Point(0, 97);
+            this.h3bLabel4.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel4.Name = "h3bLabel4";
+            this.h3bLabel4.Size = new System.Drawing.Size(69, 16);
+            this.h3bLabel4.TabIndex = 63;
+            this.h3bLabel4.Tag = "Pop0Month";
+            this.h3bLabel4.Text = "Pop0Month";
+            this.h3bLabel4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox5
+            // 
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "Pop0Month", true));
+            this.textBox5.Location = new System.Drawing.Point(0, 119);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(256, 21);
+            this.textBox5.TabIndex = 62;
+            // 
+            // h3bLabel5
+            // 
+            this.h3bLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel5.AutoSize = true;
+            this.h3bLabel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel5.Location = new System.Drawing.Point(296, 97);
+            this.h3bLabel5.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel5.Name = "h3bLabel5";
+            this.h3bLabel5.Size = new System.Drawing.Size(57, 16);
+            this.h3bLabel5.TabIndex = 64;
+            this.h3bLabel5.Tag = "PopPsac";
+            this.h3bLabel5.Text = "PopPsac";
+            this.h3bLabel5.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox12
+            // 
+            this.textBox12.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PopPsac", true));
+            this.textBox12.Location = new System.Drawing.Point(296, 119);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(256, 21);
+            this.textBox12.TabIndex = 62;
+            // 
+            // h3Required2
+            // 
+            this.h3Required2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3Required2.AutoSize = true;
+            this.h3Required2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Required2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Required2.Location = new System.Drawing.Point(0, 147);
+            this.h3Required2.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Required2.Name = "h3Required2";
+            this.h3Required2.Size = new System.Drawing.Size(62, 15);
+            this.h3Required2.TabIndex = 63;
+            this.h3Required2.TabStop = false;
+            this.h3Required2.Tag = "PopSac";
+            this.h3Required2.Text = "PopSac";
+            this.h3Required2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
             // textBox7
             // 
             this.textBox7.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PopSac", true));
-            this.textBox7.Location = new System.Drawing.Point(296, 169);
+            this.textBox7.Location = new System.Drawing.Point(0, 168);
             this.textBox7.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(256, 21);
             this.textBox7.TabIndex = 62;
             // 
+            // h3bLabel6
+            // 
+            this.h3bLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel6.AutoSize = true;
+            this.h3bLabel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel6.Location = new System.Drawing.Point(296, 146);
+            this.h3bLabel6.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel6.Name = "h3bLabel6";
+            this.h3bLabel6.Size = new System.Drawing.Size(48, 16);
+            this.h3bLabel6.TabIndex = 64;
+            this.h3bLabel6.Tag = "Pop5yo";
+            this.h3bLabel6.Text = "Pop5yo";
+            this.h3bLabel6.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox11
+            // 
+            this.textBox11.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "Pop5yo", true));
+            this.textBox11.Location = new System.Drawing.Point(296, 168);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(256, 21);
+            this.textBox11.TabIndex = 62;
+            // 
+            // h3bLabel7
+            // 
+            this.h3bLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel7.AutoSize = true;
+            this.h3bLabel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel7.Location = new System.Drawing.Point(0, 195);
+            this.h3bLabel7.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel7.Name = "h3bLabel7";
+            this.h3bLabel7.Size = new System.Drawing.Size(56, 16);
+            this.h3bLabel7.TabIndex = 64;
+            this.h3bLabel7.Tag = "PopAdult";
+            this.h3bLabel7.Text = "PopAdult";
+            this.h3bLabel7.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox8
+            // 
+            this.textBox8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PopAdult", true));
+            this.textBox8.Location = new System.Drawing.Point(0, 217);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(256, 21);
+            this.textBox8.TabIndex = 62;
+            // 
+            // h3bLabel8
+            // 
+            this.h3bLabel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel8.AutoSize = true;
+            this.h3bLabel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel8.Location = new System.Drawing.Point(296, 195);
+            this.h3bLabel8.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel8.Name = "h3bLabel8";
+            this.h3bLabel8.Size = new System.Drawing.Size(71, 16);
+            this.h3bLabel8.TabIndex = 64;
+            this.h3bLabel8.Tag = "PopFemale";
+            this.h3bLabel8.Text = "PopFemale";
+            this.h3bLabel8.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox10
+            // 
+            this.textBox10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PopFemale", true));
+            this.textBox10.Location = new System.Drawing.Point(296, 217);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(256, 21);
+            this.textBox10.TabIndex = 62;
+            // 
+            // h3bLabel9
+            // 
+            this.h3bLabel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel9.AutoSize = true;
+            this.h3bLabel9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel9.Location = new System.Drawing.Point(0, 244);
+            this.h3bLabel9.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel9.Name = "h3bLabel9";
+            this.h3bLabel9.Size = new System.Drawing.Size(55, 16);
+            this.h3bLabel9.TabIndex = 64;
+            this.h3bLabel9.Tag = "PopMale";
+            this.h3bLabel9.Text = "PopMale";
+            this.h3bLabel9.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox9
+            // 
+            this.textBox9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PopMale", true));
+            this.textBox9.Location = new System.Drawing.Point(0, 266);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(256, 21);
+            this.textBox9.TabIndex = 62;
+            // 
+            // h3bLabel2
+            // 
+            this.h3bLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel2.AutoSize = true;
+            this.h3bLabel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel2.Location = new System.Drawing.Point(296, 244);
+            this.h3bLabel2.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel2.Name = "h3bLabel2";
+            this.h3bLabel2.Size = new System.Drawing.Size(79, 16);
+            this.h3bLabel2.TabIndex = 65;
+            this.h3bLabel2.Tag = "PercentRural";
+            this.h3bLabel2.Text = "PercentRural";
+            this.h3bLabel2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox3
+            // 
+            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PercentRural", true));
+            this.textBox3.Location = new System.Drawing.Point(296, 266);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(256, 21);
+            this.textBox3.TabIndex = 63;
+            // 
             // hr5
             // 
             this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr5.ForeColor = System.Drawing.Color.Gray;
-            this.hr5.Location = new System.Drawing.Point(0, 605);
+            this.hr5.Location = new System.Drawing.Point(0, 555);
             this.hr5.Margin = new System.Windows.Forms.Padding(0);
             this.hr5.Name = "hr5";
             this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
@@ -619,7 +622,7 @@
             this.customIndicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.customIndicatorControl1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.customIndicatorControl1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customIndicatorControl1.Location = new System.Drawing.Point(0, 547);
+            this.customIndicatorControl1.Location = new System.Drawing.Point(0, 497);
             this.customIndicatorControl1.Margin = new System.Windows.Forms.Padding(0);
             this.customIndicatorControl1.Name = "customIndicatorControl1";
             this.customIndicatorControl1.Size = new System.Drawing.Size(162, 48);
@@ -632,7 +635,7 @@
             // 
             this.hr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr4.ForeColor = System.Drawing.Color.Gray;
-            this.hr4.Location = new System.Drawing.Point(0, 535);
+            this.hr4.Location = new System.Drawing.Point(0, 485);
             this.hr4.Margin = new System.Windows.Forms.Padding(0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
@@ -645,7 +648,7 @@
             // 
             this.hr3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr3.ForeColor = System.Drawing.Color.Gray;
-            this.hr3.Location = new System.Drawing.Point(0, 365);
+            this.hr3.Location = new System.Drawing.Point(0, 315);
             this.hr3.Margin = new System.Windows.Forms.Padding(0);
             this.hr3.Name = "hr3";
             this.hr3.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
@@ -797,29 +800,105 @@
             this.lblType.Tag = "Demography";
             this.lblType.Text = "Demography";
             // 
-            // h3bLabel2
+            // tblIndicators
             // 
-            this.h3bLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel2.AutoSize = true;
-            this.h3bLabel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel2.Location = new System.Drawing.Point(0, 294);
-            this.h3bLabel2.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel2.Name = "h3bLabel2";
-            this.h3bLabel2.Size = new System.Drawing.Size(79, 16);
-            this.h3bLabel2.TabIndex = 65;
-            this.h3bLabel2.Tag = "PercentRural";
-            this.h3bLabel2.Text = "PercentRural";
-            this.h3bLabel2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tblIndicators.AutoSize = true;
+            this.tblIndicators.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblIndicators.ColumnCount = 5;
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblIndicators.Controls.Add(this.h3bLabel10, 2, 0);
+            this.tblIndicators.Controls.Add(this.h3bLabel1, 0, 0);
+            this.tblIndicators.Controls.Add(this.lnkEditAdminLevelUnit, 4, 0);
+            this.tblIndicators.Controls.Add(this.lblLat, 0, 1);
+            this.tblIndicators.Controls.Add(this.lblLng, 2, 1);
+            this.tblIndicators.Location = new System.Drawing.Point(15, 66);
+            this.tblIndicators.Name = "tblIndicators";
+            this.tblIndicators.RowCount = 2;
+            this.tblIndicators.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblIndicators.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblIndicators.Size = new System.Drawing.Size(176, 32);
+            this.tblIndicators.TabIndex = 62;
             // 
-            // textBox3
+            // h3bLabel10
             // 
-            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDemo, "PercentRural", true));
-            this.textBox3.Location = new System.Drawing.Point(0, 316);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(256, 21);
-            this.textBox3.TabIndex = 63;
+            this.h3bLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel10.AutoSize = true;
+            this.h3bLabel10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel10.Location = new System.Drawing.Point(72, 0);
+            this.h3bLabel10.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel10.Name = "h3bLabel10";
+            this.h3bLabel10.Size = new System.Drawing.Size(53, 16);
+            this.h3bLabel10.TabIndex = 65;
+            this.h3bLabel10.Tag = "LngWho";
+            this.h3bLabel10.Text = "LngWho";
+            this.h3bLabel10.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3bLabel1
+            // 
+            this.h3bLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel1.AutoSize = true;
+            this.h3bLabel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel1.Location = new System.Drawing.Point(0, 0);
+            this.h3bLabel1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel1.Name = "h3bLabel1";
+            this.h3bLabel1.Size = new System.Drawing.Size(49, 16);
+            this.h3bLabel1.TabIndex = 65;
+            this.h3bLabel1.Tag = "LatWho";
+            this.h3bLabel1.Text = "LatWho";
+            this.h3bLabel1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // lnkEditAdminLevelUnit
+            // 
+            this.lnkEditAdminLevelUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lnkEditAdminLevelUnit.AutoSize = true;
+            this.lnkEditAdminLevelUnit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnkEditAdminLevelUnit.BackColor = System.Drawing.Color.Transparent;
+            this.lnkEditAdminLevelUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkEditAdminLevelUnit.Location = new System.Drawing.Point(148, 1);
+            this.lnkEditAdminLevelUnit.Margin = new System.Windows.Forms.Padding(0);
+            this.lnkEditAdminLevelUnit.Name = "lnkEditAdminLevelUnit";
+            this.lnkEditAdminLevelUnit.Size = new System.Drawing.Size(28, 15);
+            this.lnkEditAdminLevelUnit.TabIndex = 66;
+            this.lnkEditAdminLevelUnit.Tag = "Edit";
+            this.lnkEditAdminLevelUnit.Text = "Edit";
+            this.lnkEditAdminLevelUnit.ClickOverride += new System.Action(this.h3Link1_ClickOverride);
+            // 
+            // lblLat
+            // 
+            this.lblLat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblLat.AutoSize = true;
+            this.lblLat.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lblLat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblLat.Location = new System.Drawing.Point(0, 16);
+            this.lblLat.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLat.Name = "lblLat";
+            this.lblLat.Size = new System.Drawing.Size(23, 16);
+            this.lblLat.TabIndex = 67;
+            this.lblLat.Tag = "NA";
+            this.lblLat.Text = "NA";
+            this.lblLat.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // lblLng
+            // 
+            this.lblLng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblLng.AutoSize = true;
+            this.lblLng.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lblLng.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblLng.Location = new System.Drawing.Point(72, 16);
+            this.lblLng.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLng.Name = "lblLng";
+            this.lblLng.Size = new System.Drawing.Size(23, 16);
+            this.lblLng.TabIndex = 68;
+            this.lblLng.Tag = "NA";
+            this.lblLng.Text = "NA";
+            this.lblLng.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
             // DemographyView
             // 
@@ -830,6 +909,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.tblIndicators);
             this.Controls.Add(this.tblTitle);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnDash);
@@ -840,7 +920,7 @@
             this.Controls.Add(this.nadaLabel1);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "DemographyView";
-            this.Size = new System.Drawing.Size(948, 802);
+            this.Size = new System.Drawing.Size(948, 766);
             this.Load += new System.EventHandler(this.Demo_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
@@ -856,6 +936,8 @@
             this.tableLayoutPanel14.PerformLayout();
             this.tblTitle.ResumeLayout(false);
             this.tblTitle.PerformLayout();
+            this.tblIndicators.ResumeLayout(false);
+            this.tblIndicators.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -888,8 +970,6 @@
         private System.Windows.Forms.TableLayoutPanel tblTitle;
         private System.Windows.Forms.Label lblAdminLevel;
         private System.Windows.Forms.Label lblType;
-        private Controls.H3bLabel h3bLabel1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox10;
@@ -914,5 +994,11 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox textBox3;
         private Controls.H3bLabel h3bLabel2;
+        private System.Windows.Forms.TableLayoutPanel tblIndicators;
+        private Controls.H3bLabel h3bLabel10;
+        private Controls.H3bLabel h3bLabel1;
+        private Controls.H3Link lnkEditAdminLevelUnit;
+        private Controls.H3bLabel lblLat;
+        private Controls.H3bLabel lblLng;
     }
 }

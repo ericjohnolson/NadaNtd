@@ -1,0 +1,223 @@
+﻿namespace Nada.UI.View
+{
+    partial class PickerControl
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.pnlSelector = new System.Windows.Forms.Panel();
+            this.lstAvailable = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lstSelected = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn20 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.h3Label3 = new Nada.UI.Controls.H3Label();
+            this.h3Label2 = new Nada.UI.Controls.H3Label();
+            this.btnDeselect = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnSelectAll = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnSelect = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnDeselectAll = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.bsLevels = new System.Windows.Forms.BindingSource(this.components);
+            this.pnlSelector.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lstAvailable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lstSelected)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLevels)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // pnlSelector
+            // 
+            this.pnlSelector.Controls.Add(this.lstAvailable);
+            this.pnlSelector.Controls.Add(this.lstSelected);
+            this.pnlSelector.Controls.Add(this.h3Label3);
+            this.pnlSelector.Controls.Add(this.h3Label2);
+            this.pnlSelector.Controls.Add(this.btnDeselect);
+            this.pnlSelector.Controls.Add(this.btnSelectAll);
+            this.pnlSelector.Controls.Add(this.btnSelect);
+            this.pnlSelector.Controls.Add(this.btnDeselectAll);
+            this.pnlSelector.Location = new System.Drawing.Point(0, 0);
+            this.pnlSelector.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlSelector.Name = "pnlSelector";
+            this.pnlSelector.Size = new System.Drawing.Size(542, 236);
+            this.pnlSelector.TabIndex = 1;
+            // 
+            // lstAvailable
+            // 
+            this.lstAvailable.AllColumns.Add(this.olvColumn1);
+            this.lstAvailable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1});
+            this.lstAvailable.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lstAvailable.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lstAvailable.Location = new System.Drawing.Point(0, 21);
+            this.lstAvailable.Name = "lstAvailable";
+            this.lstAvailable.ShowGroups = false;
+            this.lstAvailable.Size = new System.Drawing.Size(227, 210);
+            this.lstAvailable.TabIndex = 23;
+            this.lstAvailable.UseCompatibleStateImageBehavior = false;
+            this.lstAvailable.UseHyperlinks = true;
+            this.lstAvailable.View = System.Windows.Forms.View.Details;
+            this.lstAvailable.DoubleClick += new System.EventHandler(this.treeAvailable_DoubleClick);
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "DisplayName";
+            this.olvColumn1.CellPadding = null;
+            this.olvColumn1.Tag = "Name";
+            this.olvColumn1.Text = "Name";
+            this.olvColumn1.Width = 212;
+            // 
+            // lstSelected
+            // 
+            this.lstSelected.AllColumns.Add(this.olvColumn20);
+            this.lstSelected.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn20});
+            this.lstSelected.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lstSelected.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lstSelected.Location = new System.Drawing.Point(308, 21);
+            this.lstSelected.Name = "lstSelected";
+            this.lstSelected.ShowGroups = false;
+            this.lstSelected.Size = new System.Drawing.Size(227, 210);
+            this.lstSelected.TabIndex = 22;
+            this.lstSelected.UseCompatibleStateImageBehavior = false;
+            this.lstSelected.UseHyperlinks = true;
+            this.lstSelected.View = System.Windows.Forms.View.Details;
+            this.lstSelected.DoubleClick += new System.EventHandler(this.treeSelected_DoubleClick);
+            // 
+            // olvColumn20
+            // 
+            this.olvColumn20.AspectName = "DisplayName";
+            this.olvColumn20.CellPadding = null;
+            this.olvColumn20.Tag = "Name";
+            this.olvColumn20.Text = "Name";
+            this.olvColumn20.Width = 214;
+            // 
+            // h3Label3
+            // 
+            this.h3Label3.AutoSize = true;
+            this.h3Label3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Label3.Location = new System.Drawing.Point(308, 0);
+            this.h3Label3.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label3.Name = "h3Label3";
+            this.h3Label3.Size = new System.Drawing.Size(55, 18);
+            this.h3Label3.TabIndex = 21;
+            this.h3Label3.Tag = "Selected";
+            this.h3Label3.Text = "Selected";
+            this.h3Label3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3Label2
+            // 
+            this.h3Label2.AutoSize = true;
+            this.h3Label2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Label2.Location = new System.Drawing.Point(0, 0);
+            this.h3Label2.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Label2.Name = "h3Label2";
+            this.h3Label2.Size = new System.Drawing.Size(56, 18);
+            this.h3Label2.TabIndex = 20;
+            this.h3Label2.Tag = "Available";
+            this.h3Label2.Text = "Available";
+            this.h3Label2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // btnDeselect
+            // 
+            this.btnDeselect.Location = new System.Drawing.Point(233, 126);
+            this.btnDeselect.Name = "btnDeselect";
+            this.btnDeselect.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.btnDeselect.Size = new System.Drawing.Size(69, 29);
+            this.btnDeselect.TabIndex = 4;
+            this.btnDeselect.Values.Text = "<";
+            this.btnDeselect.Click += new System.EventHandler(this.btnDeselect_Click);
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Location = new System.Drawing.Point(233, 54);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.btnSelectAll.Size = new System.Drawing.Size(69, 29);
+            this.btnSelectAll.TabIndex = 2;
+            this.btnSelectAll.Values.Text = ">>";
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(233, 90);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.btnSelect.Size = new System.Drawing.Size(69, 29);
+            this.btnSelect.TabIndex = 3;
+            this.btnSelect.Values.Text = ">";
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // btnDeselectAll
+            // 
+            this.btnDeselectAll.Location = new System.Drawing.Point(233, 162);
+            this.btnDeselectAll.Name = "btnDeselectAll";
+            this.btnDeselectAll.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.btnDeselectAll.Size = new System.Drawing.Size(69, 29);
+            this.btnDeselectAll.TabIndex = 5;
+            this.btnDeselectAll.Values.Text = "<<";
+            this.btnDeselectAll.Click += new System.EventHandler(this.btnDeselectAll_Click);
+            // 
+            // bsLevels
+            // 
+            this.bsLevels.DataSource = typeof(Nada.Model.AdminLevelType);
+            // 
+            // RolePickerControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.pnlSelector);
+            this.Margin = new System.Windows.Forms.Padding(0);
+            this.Name = "RolePickerControl";
+            this.Size = new System.Drawing.Size(542, 236);
+            this.Load += new System.EventHandler(this.RoleControl_Load);
+            this.pnlSelector.ResumeLayout(false);
+            this.pnlSelector.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lstAvailable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lstSelected)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLevels)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel pnlSelector;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnDeselect;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSelectAll;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSelect;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnDeselectAll;
+        private System.Windows.Forms.BindingSource bsLevels;
+        private Controls.H3Label h3Label2;
+        private Controls.H3Label h3Label3;
+        private BrightIdeasSoftware.ObjectListView lstAvailable;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.ObjectListView lstSelected;
+        private BrightIdeasSoftware.OLVColumn olvColumn20;
+    }
+}

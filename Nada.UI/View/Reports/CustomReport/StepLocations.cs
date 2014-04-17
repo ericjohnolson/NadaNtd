@@ -16,6 +16,7 @@ namespace Nada.UI.View.Reports.CustomReport
 {
     public partial class StepLocations : BaseControl, IWizardStep
     {
+        private IWizardStep prev = null;
         private SavedReport report = null;
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
@@ -30,7 +31,7 @@ namespace Nada.UI.View.Reports.CustomReport
 
         public void DoPrev()
         {
-            OnSwitchStep(new StepOptions(report));
+            OnSwitchStep(prev);
         }
 
         public void DoNext()
@@ -57,9 +58,10 @@ namespace Nada.UI.View.Reports.CustomReport
             InitializeComponent();
         }
 
-        public StepLocations(SavedReport o)
+        public StepLocations(SavedReport o, IWizardStep p)
             : base()
         {
+            prev = p;
             report = o;
             InitializeComponent();
         }

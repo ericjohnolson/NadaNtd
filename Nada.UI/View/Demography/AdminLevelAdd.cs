@@ -39,6 +39,18 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
+
+                if (model.Id > 0)
+                {
+                    treeAvailable.Visible = false;
+                    lblParent.Visible = false;
+                }
+
+                if (model.LatWho.HasValue)
+                    model.BindingLat = model.LatWho.Value.ToString();
+                if (model.LngWho.HasValue)
+                    model.BindingLng = model.LngWho.Value.ToString();
+
                 Localizer.TranslateControl(this);
                 bindingSource1.DataSource = model;
 
@@ -55,23 +67,54 @@ namespace Nada.UI.View
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
+            errorProvider1.SetError(tbLat, "");
+            errorProvider1.SetError(tbLng, "");
+            errorProvider1.SetError(tbName, "");
+            model.LatWho = null;
+            model.LngWho = null;
+            double d = -999, d2 = -999;
+            if (tbLat.Text.Length > 0)
+                if (!double.TryParse(tbLat.Text, out d) || (double.TryParse(tbLat.Text, out d) && (d > 90 || d < -90)))
+                {
+                    errorProvider1.SetError(tbLat, Translations.ValidLatitude);
+                    model.LatWho = -999;
+                }
+                else
+                    model.LatWho = d;
+            
+
+            if (tbLng.Text.Length > 0)
+                if (!double.TryParse(tbLng.Text, out d2) || (double.TryParse(tbLng.Text, out d2) && (d2 > 180 || d2 < -180)))
+                {
+                    errorProvider1.SetError(tbLng, Translations.ValidLongitude);
+                    model.LngWho = -999;
+                }
+                else
+                    model.LngWho = d2;
+
+            if (string.IsNullOrEmpty(tbName.Text))
+                errorProvider1.SetError(tbName, Translations.Required);
+
             if (!model.IsValid())
             {
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
 
-            if (treeAvailable.SelectedObjects.Count == 0)
+            if (model.Id == 0)
             {
-                MessageBox.Show(Translations.ParentIsRequired, Translations.ValidationErrorTitle);
-                return;
+                if (treeAvailable.SelectedObjects.Count == 0)
+                {
+                    MessageBox.Show(Translations.ParentIsRequired, Translations.ValidationErrorTitle);
+                    return;
+                }
+
+                var parent = (treeAvailable.SelectedObjects.Cast<AdminLevel>().First() as AdminLevel);
+                model.ParentId = parent.Id;
+                var childLevel = settings.GetAdminLevelTypeByLevel(parent.LevelNumber + 1);
+                model.AdminLevelTypeId = childLevel.Id;
             }
 
-            var parent = (treeAvailable.SelectedObjects.Cast<AdminLevel>().First() as AdminLevel);
-            model.ParentId = parent.Id;
-            var childLevel = settings.GetAdminLevelTypeByLevel(parent.LevelNumber + 1);
-            
-            model.AdminLevelTypeId = childLevel.Id;
             bindingSource1.EndEdit();
             int userid = ApplicationData.Instance.GetUserId();
             repo.Save(model, userid);

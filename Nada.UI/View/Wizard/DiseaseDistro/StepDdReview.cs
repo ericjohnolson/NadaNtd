@@ -149,8 +149,9 @@ namespace Nada.UI.View.Wizard
                 Payload payload = (Payload)e.Argument;
                 ImportResult result = null;
 
-                    //result = importer.ImportData(payload.Filename, ApplicationData.Instance.GetUserId(),
-                    //    payload.DoDemography, payload.DoAggregate, payload.RowCount, payload.FilteredBy, payload.Year);
+                // NEED TO ACTUALLY IMPLEMENT NEXT YEAR WIZARD FOR DISTRO
+                //result = importer.ImportData(payload.Filename, ApplicationData.Instance.GetUserId(),
+                //    payload.DoDemography, payload.DoAggregate, payload.RowCount, payload.FilteredBy, payload.Year);
                 
                 e.Result = result;
             }

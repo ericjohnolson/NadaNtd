@@ -53,15 +53,16 @@ namespace Nada.Model
         public bool IsCalcRelated { get; set; }
         public int FormId { get; set; }
         public string TypeName { get; set; }
+        public DateTime ReportedDate { get; set; }
     }
 
 
     [Serializable]
     public static class IndicatorAggregator
     {
-        public static object AggregateChildren(List<AdminLevelIndicators> list, string key, object startResult)
+        public static AggregateIndicator AggregateChildren(List<AdminLevelIndicators> list, string key, AggregateIndicator startResult)
         {
-            object aggregation = startResult;
+            AggregateIndicator aggregation = startResult;
             foreach (var level in list)
             {
                 if (level.Indicators.ContainsKey(key))
@@ -74,26 +75,52 @@ namespace Nada.Model
             return aggregation;
         }
 
-        public static object Aggregate(AggregateIndicator ind, object existingValue)
+        public static AggregateIndicator Aggregate(AggregateIndicator ind, AggregateIndicator existingValue)
         {
-            if (existingValue == null)
-                return ind.Value;
-            if (ind.DataType == (int)IndicatorAggType.None)
-                return Translations.NA;
-            if (ind.AggType == (int)IndicatorAggType.Combine && ind.DataType == (int)IndicatorDataType.Dropdown)
-                return existingValue + ", " + TranslationLookup.GetValue(ind.Value, ind.Value);
-            if (ind.AggType == (int)IndicatorAggType.Combine)
-                return existingValue + ", " + ind.Value;
-            if (ind.DataType == (int)IndicatorDataType.Number)
-                return AggregateDouble(ind, existingValue);
-            if (ind.DataType == (int)IndicatorDataType.Date)
-                return AggregateDate(ind, existingValue);
-            if (ind.DataType == (int)IndicatorDataType.Dropdown)
-                return AggregateDropdown(ind, existingValue);
+            AggregateIndicator result = null;
+            // THIS WAS AN ATTEMPT TO FIX THIS INDICATOR BY INDICATOR ISSUE ON THE REPORTS, not sure that is correct :(
+            if (ind.ReportedDate > existingValue.ReportedDate)
+                result = ind;
+            else
+                result = existingValue;
 
-            return AggregateString(ind, existingValue);
+            if (existingValue == null)
+                result.Value = ind.Value;
+            else if (ind.DataType == (int)IndicatorAggType.None)
+                result.Value = Translations.NA;
+            else if (ind.DataType == (int)IndicatorAggType.Recent)
+            {
+                // already handled above
+            }
+            else if (ind.AggType == (int)IndicatorAggType.Combine && ind.DataType == (int)IndicatorDataType.Dropdown)
+                result.Value = existingValue + ", " + TranslationLookup.GetValue(ind.Value, ind.Value);
+            else if (ind.AggType == (int)IndicatorAggType.Combine)
+                result.Value = existingValue + ", " + ind.Value;
+            else if (ind.DataType == (int)IndicatorDataType.Number)
+                result.Value = AggregateDouble(ind, existingValue);
+            else if (ind.DataType == (int)IndicatorDataType.Date)
+                result.Value = AggregateDate(ind, existingValue);
+            else if (ind.DataType == (int)IndicatorDataType.Dropdown)
+                result.Value = AggregateDropdown(ind, existingValue);
+            else
+                result.Value = AggregateString(ind, existingValue);
+
+            return result;
+            //if (val.DataType == (int)IndicatorDataType.Date)
+            //    dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : ((DateTime)val).ToString("MM/dd/yyyy");
+            //else
+            //    dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : val.ToString();
         }
 
+        public static object ParseValue(AggregateIndicator ind)
+        {
+            if (ind.DataType == (int)IndicatorDataType.Number)
+                return Double.Parse(ind.Value);
+            else if (ind.DataType == (int)IndicatorDataType.Date)
+                return DateTime.ParseExact(ind.Value, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            else
+                return ind.Value;
+        }
         public static AdminLevelDemography AggregateTree(AdminLevel node)
         {
             if(node.Children.Count == 0)
@@ -126,63 +153,60 @@ namespace Nada.Model
             return node.CurrentDemography;
         }
 
-        private static DateTime AggregateDate(AggregateIndicator ind1, object existingValue)
+        private static string AggregateDate(AggregateIndicator ind1, AggregateIndicator existingValue)
         {
             if (ind1.AggType == (int)IndicatorAggType.Sum)
-                return DateTime.MinValue;
+                return DateTime.MinValue.ToString("MM/dd/yyyy");
             if (string.IsNullOrEmpty(ind1.Value))
-                return DateTime.MinValue;
+                return DateTime.MinValue.ToString("MM/dd/yyyy");
 
             DateTime dt = DateTime.ParseExact(ind1.Value, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            DateTime existing = existingValue is string ? DateTime.ParseExact(existingValue.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture) : (DateTime)existingValue;
+            DateTime existing = DateTime.ParseExact(existingValue.Value, "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
             if (ind1.AggType == (int)IndicatorAggType.Min)
                 if (dt >= (DateTime)existing)
-                    return (DateTime)existing;
+                    return existing.ToString("MM/dd/yyyy");
                 else
-                    return dt;
+                    return dt.ToString("MM/dd/yyyy");
             if (ind1.AggType == (int)IndicatorAggType.Max)
                 if (dt >= (DateTime)existing)
-                    return dt;
+                    return dt.ToString("MM/dd/yyyy");
                 else
-                    return (DateTime)existing;
-            return dt;
+                    return existing.ToString("MM/dd/yyyy");
+            return dt.ToString("MM/dd/yyyy");
         }
 
-        private static string AggregateString(AggregateIndicator ind1, object existingValue)
+        private static string AggregateString(AggregateIndicator ind1, AggregateIndicator existingValue)
         {
             if (ind1.AggType == (int)IndicatorAggType.Combine)
-                return existingValue + ", " + ind1.Value;
+                return existingValue.Value + ", " + ind1.Value;
             else if (ind1.AggType == (int)IndicatorAggType.None)
                 return Translations.NA;
             return "Invalid Aggregation Rule or Data Type";
         }
 
-        private static double AggregateDouble(AggregateIndicator ind1, object existingValue)
+        private static string AggregateDouble(AggregateIndicator ind1, AggregateIndicator existingValue)
         {
             double i1 = Double.Parse(ind1.Value);
-            double i2 = Convert.ToDouble(existingValue);
+            double i2 = Double.Parse(existingValue.Value);
             if (ind1.AggType == (int)IndicatorAggType.Sum)
-                return i1 + i2;
+                return (i1 + i2).ToString();
             if (ind1.AggType == (int)IndicatorAggType.Min)
                 if (i1 >= i2)
-                    return i2;
+                    return i2.ToString();
                 else
-                    return i1;
+                    return i1.ToString();
             if (ind1.AggType == (int)IndicatorAggType.Max)
                 if (i1 >= i2)
-                    return i1;
+                    return i1.ToString();
                 else
-                    return i2;
-            return i1;
+                    return i2.ToString();
+            return i1.ToString();
         }
 
-        private static object AggregateDropdown(AggregateIndicator ind1, object existingValue)
+        private static string AggregateDropdown(AggregateIndicator ind1, AggregateIndicator existingValue)
         {
-            if (ind1.AggType == (int)IndicatorAggType.Sum)
-                return existingValue;
-
-            return existingValue;
+            return ind1.Value;
             //var ind2 = (AggregateIndicator)existingValue;
             //if (ind1.AggType == (int)IndicatorAggType.Min)
             //    if (ind1.WeightedV)

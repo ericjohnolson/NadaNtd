@@ -21,21 +21,22 @@ namespace Nada.UI.View.Wizard
 {
     public partial class ImportStepLists : BaseControl, IWizardStep
     {
-        
         private SurveyRepository surveys = new SurveyRepository();
         private List<DynamicContainer> controlList = new List<DynamicContainer>();
         private SettingsRepository settings = new SettingsRepository();
+        private List<string> selectedDiseases = new List<string>();
         private ImportOptions options = null;
         public Action OnFinish { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
-        public bool ShowNext { get { return false; } }
-        public bool EnableNext { get { return false; } }
+        public bool ShowNext { get { return true; } }
+        public bool EnableNext { get { return true; } }
         public bool ShowPrev { get { return true; } }
         public bool EnablePrev { get { return true; } }
-        public bool ShowFinish { get { return true; } }
-        public bool EnableFinish { get { return true; } }
+        public bool ShowFinish { get { return false; } }
+        public bool EnableFinish { get { return false; } }
         public string StepTitle { get { return Translations.ImportLists; } }
+        
 
         public ImportStepLists()
             : base()
@@ -56,14 +57,11 @@ namespace Nada.UI.View.Wizard
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                saveFileDialog1.Filter = Translations.ExcelFiles + " (*.xlsx)|*.xlsx";
-                saveFileDialog1.FileName = options.Importer.ImportName;
-                saveFileDialog1.DefaultExt = ".xlsx";
                 List<Indicator> indicators = options.Importer.Indicators.Values.Where(i => i.CanAddValues).ToList();
                 if (indicators.Count() > 0)
                     LoadLists(indicators);
                 else
-                    DoFinish();
+                    DoNext();
             }
         }
         
@@ -74,35 +72,11 @@ namespace Nada.UI.View.Wizard
 
         public void DoNext()
         {
+            OnSwitchStep(new ImportStepListSelection(options, OnFinish));
         }
 
         public void DoFinish()
         {
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-                worker.DoWork += worker_DoWork;
-                worker.RunWorkerAsync(new WorkerPayload { FileName = saveFileDialog1.FileName });
-
-                OnSwitchStep(new WorkingStep(Translations.CreatingImportFileStatus));
-            }
-        }
-
-        void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            WorkerPayload payload = (WorkerPayload)e.Argument;
-            options.Importer.CreateImportFile(payload.FileName, options.AdminLevels, options.AdminLevelType);
-        }
-
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            OnSwitchStep(new ImportStepType(options));
-        }
-
-        private class WorkerPayload
-        {
-            public string FileName { get; set; }
         }
 
         private void LoadLists(List<Indicator> indicators)

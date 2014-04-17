@@ -33,30 +33,7 @@ namespace Nada.Model.Diseases
             if (inds.ContainsKey("DateReported"))
                 DateReported = DateTime.ParseExact(inds["DateReported"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
         }
-
-        public List<KeyValuePair<string, string>> GetDemographyStats()
-        {
-            List<KeyValuePair<string, string>> values = new List<KeyValuePair<string,string>>();
-
-            DemoRepository demo = new DemoRepository();
-            int year = DateTime.Now.Year;
-            if (DateReported.HasValue)
-                year = DateReported.Value.Year;
-            AdminLevelDemography d = demo.GetDemoByAdminLevelIdAndYear(AdminLevelId.Value, year);
-            values.Add(new KeyValuePair<string,string>(Translations.DDLFTotalPopulation, d.TotalPopulation.HasValue ? d.TotalPopulation.Value.ToString() : Translations.NA));
-            if(Disease.Id == (int)DiseaseType.Lf || Disease.Id == (int)DiseaseType.STH)
-                values.Add(new KeyValuePair<string, string>(Translations.DDLFPsacPopulation, d.PopPsac.HasValue ? d.PopPsac.Value.ToString() : Translations.NA));
-            if(Disease.Id == (int)DiseaseType.Lf || Disease.Id == (int)DiseaseType.STH || 
-                Disease.Id == (int)DiseaseType.Schisto || Disease.Id == (int)DiseaseType.Trachoma)
-            {
-                values.Add(new KeyValuePair<string, string>(Translations.DDLFSacPopulation, d.PopSac.HasValue ? d.PopSac.Value.ToString() : Translations.NA));
-                values.Add(new KeyValuePair<string, string>(Translations.DDLFAdultPopulation, d.PopAdult.HasValue ? d.PopAdult.Value.ToString() : Translations.NA));
-            }
-
-            return values;
-        }
-
-
+        
         #region IDataErrorInfo Members
         public override string this[string columnName]
         {

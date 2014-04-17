@@ -835,6 +835,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bar.
+        /// </summary>
+        public static string ChartBar {
+            get {
+                return ResourceManager.GetString("ChartBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line.
+        /// </summary>
+        public static string ChartLine {
+            get {
+                return ResourceManager.GetString("ChartLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check box.
         /// </summary>
         public static string Checkbox {
@@ -2960,6 +2978,42 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of persons at-risk.
+        /// </summary>
+        public static string EliminationAtRisk {
+            get {
+                return ResourceManager.GetString("EliminationAtRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of endemic {0} requiring PC.
+        /// </summary>
+        public static string EliminationEndemicDistricts {
+            get {
+                return ResourceManager.GetString("EliminationEndemicDistricts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of persons living in areas that have achieved the criteria for stopping MDA.
+        /// </summary>
+        public static string EliminationLiving {
+            get {
+                return ResourceManager.GetString("EliminationLiving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of {0} that have achieved the criteria for stopping PC.
+        /// </summary>
+        public static string EliminationStoppedDistricts {
+            get {
+                return ResourceManager.GetString("EliminationStoppedDistricts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 0 - Not endemic above treatment threshold.
         /// </summary>
         public static string End0 {
@@ -3167,6 +3221,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to APOC Report.
+        /// </summary>
+        public static string ExportApocReport {
+            get {
+                return ResourceManager.GetString("ExportApocReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export image.
         /// </summary>
         public static string ExportImage {
@@ -3190,6 +3253,51 @@ namespace Nada.Globalization {
         public static string Exports {
             get {
                 return ResourceManager.GetString("Exports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Budgeted cost.
+        /// </summary>
+        public static string ExportTasCost {
+            get {
+                return ResourceManager.GetString("ExportTasCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estimated number of survey days required.
+        /// </summary>
+        public static string ExportTasDays {
+            get {
+                return ResourceManager.GetString("ExportTasDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of ICT or Brugia Rapid tests required.
+        /// </summary>
+        public static string ExportTasIctTests {
+            get {
+                return ResourceManager.GetString("ExportTasIctTests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source(s) of funding.
+        /// </summary>
+        public static string ExportTasSources {
+            get {
+                return ResourceManager.GetString("ExportTasSources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Planned starting month and year.
+        /// </summary>
+        public static string ExportTasStartYear {
+            get {
+                return ResourceManager.GetString("ExportTasStartYear", resourceCulture);
             }
         }
         
@@ -3757,6 +3865,15 @@ namespace Nada.Globalization {
         public static string ImportLists {
             get {
                 return ResourceManager.GetString("ImportLists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select the values necessary for this import.
+        /// </summary>
+        public static string ImportListsSelect {
+            get {
+                return ResourceManager.GetString("ImportListsSelect", resourceCulture);
             }
         }
         
@@ -5300,7 +5417,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Location:.
+        ///   Looks up a localized string similar to Location.
         /// </summary>
         public static string Location {
             get {
@@ -8207,6 +8324,42 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LF at-risk population.
+        /// </summary>
+        public static string PcIntvLfAtRisk {
+            get {
+                return ResourceManager.GetString("PcIntvLfAtRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LF Epi coverage.
+        /// </summary>
+        public static string PcIntvLfEpiCoverage {
+            get {
+                return ResourceManager.GetString("PcIntvLfEpiCoverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LF population requiring PC.
+        /// </summary>
+        public static string PcIntvLfPopRecPc {
+            get {
+                return ResourceManager.GetString("PcIntvLfPopRecPc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lower confidence interval of surveyed coverage.
+        /// </summary>
+        public static string PcIntvLowerConfidence {
+            get {
+                return ResourceManager.GetString("PcIntvLowerConfidence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Males treated proportion.
         /// </summary>
         public static string PcIntvMalesTreatedProportion {
@@ -8378,6 +8531,51 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oncho at-risk population.
+        /// </summary>
+        public static string PcIntvOnchoAtRisk {
+            get {
+                return ResourceManager.GetString("PcIntvOnchoAtRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oncho Epi coverage.
+        /// </summary>
+        public static string PcIntvOnchoEpiCoverage {
+            get {
+                return ResourceManager.GetString("PcIntvOnchoEpiCoverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oncho Epi coverage.
+        /// </summary>
+        public static string PcIntvOnchoEpiCoverageOfOncho {
+            get {
+                return ResourceManager.GetString("PcIntvOnchoEpiCoverageOfOncho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oncho population requiring PC.
+        /// </summary>
+        public static string PcIntvOnchoPopReqPc {
+            get {
+                return ResourceManager.GetString("PcIntvOnchoPopReqPc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oncho program coverage.
+        /// </summary>
+        public static string PcIntvOnchoProgramCov {
+            get {
+                return ResourceManager.GetString("PcIntvOnchoProgramCov", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Partner.
         /// </summary>
         public static string PcIntvPartner {
@@ -8432,11 +8630,119 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SCH total at-risk population.
+        /// </summary>
+        public static string PcIntvSchAtRisk {
+            get {
+                return ResourceManager.GetString("PcIntvSchAtRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SCH total Epi coverage.
+        /// </summary>
+        public static string PcIntvSchEpi {
+            get {
+                return ResourceManager.GetString("PcIntvSchEpi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SCH population requiring PC.
+        /// </summary>
+        public static string PcIntvSchPopReqPc {
+            get {
+                return ResourceManager.GetString("PcIntvSchPopReqPc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SCH SAC at-risk population.
+        /// </summary>
+        public static string PcIntvSchSacAtRisk {
+            get {
+                return ResourceManager.GetString("PcIntvSchSacAtRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SCH SAC Epi coverage.
+        /// </summary>
+        public static string PcIntvSchSacEpi {
+            get {
+                return ResourceManager.GetString("PcIntvSchSacEpi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start date of MDA.
         /// </summary>
         public static string PcIntvStartDateOfMda {
             get {
                 return ResourceManager.GetString("PcIntvStartDateOfMda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STH total at-risk population.
+        /// </summary>
+        public static string PcIntvSthAtRisk {
+            get {
+                return ResourceManager.GetString("PcIntvSthAtRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STH total Epi coverage.
+        /// </summary>
+        public static string PcIntvSthEpiCoverage {
+            get {
+                return ResourceManager.GetString("PcIntvSthEpiCoverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STH population requiring PC.
+        /// </summary>
+        public static string PcIntvSthPopReqPc {
+            get {
+                return ResourceManager.GetString("PcIntvSthPopReqPc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STH PSAC at-risk population.
+        /// </summary>
+        public static string PcIntvSthPsacAtRisk {
+            get {
+                return ResourceManager.GetString("PcIntvSthPsacAtRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STH PSAC Epi coverage.
+        /// </summary>
+        public static string PcIntvSthPsacEpiCoverage {
+            get {
+                return ResourceManager.GetString("PcIntvSthPsacEpiCoverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STH SAC at-risk population.
+        /// </summary>
+        public static string PcIntvSthSacAtRisk {
+            get {
+                return ResourceManager.GetString("PcIntvSthSacAtRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STH SAC Epi coverage.
+        /// </summary>
+        public static string PcIntvSthSacEpiCoverage {
+            get {
+                return ResourceManager.GetString("PcIntvSthSacEpiCoverage", resourceCulture);
             }
         }
         
@@ -8455,6 +8761,42 @@ namespace Nada.Globalization {
         public static string PcIntvStockOutDuringMda {
             get {
                 return ResourceManager.GetString("PcIntvStockOutDuringMda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surveyed coverage.
+        /// </summary>
+        public static string PcIntvSurveyedCoverage {
+            get {
+                return ResourceManager.GetString("PcIntvSurveyedCoverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trachoma at-risk population.
+        /// </summary>
+        public static string PcIntvTraAtRisk {
+            get {
+                return ResourceManager.GetString("PcIntvTraAtRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trachoma EPI coverage.
+        /// </summary>
+        public static string PcIntvTraEpi {
+            get {
+                return ResourceManager.GetString("PcIntvTraEpi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upper confidence interval of surveyed coverage.
+        /// </summary>
+        public static string PcIntvUpperConfidence {
+            get {
+                return ResourceManager.GetString("PcIntvUpperConfidence", resourceCulture);
             }
         }
         
@@ -8981,6 +9323,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Persons.
+        /// </summary>
+        public static string Persons {
+            get {
+                return ResourceManager.GetString("Persons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phase 1a evaluation.
         /// </summary>
         public static string Phase1aEval {
@@ -9116,7 +9467,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post-MDA Surveillance TAS I.
+        ///   Looks up a localized string similar to Post-MDA surveillance 1.
         /// </summary>
         public static string PostMDAI {
             get {
@@ -9125,7 +9476,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post-MDA Surveillance TAS II.
+        ///   Looks up a localized string similar to Post-MDA surveillance 2.
         /// </summary>
         public static string PostMDAII {
             get {
@@ -9134,7 +9485,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post-MDA Surveillance TAS I.
+        ///   Looks up a localized string similar to Post-MDA surveillance 1.
         /// </summary>
         public static string PostMdaTasI {
             get {
@@ -9143,7 +9494,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post-MDA Surveillance TAS II.
+        ///   Looks up a localized string similar to Post-MDA surveillance 2.
         /// </summary>
         public static string PostMdaTasII {
             get {
@@ -9382,6 +9733,15 @@ namespace Nada.Globalization {
         public static string ReportOptions {
             get {
                 return ResourceManager.GetString("ReportOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progress towards Elimination.
+        /// </summary>
+        public static string ReportProgressTowardsEliminiation {
+            get {
+                return ResourceManager.GetString("ReportProgressTowardsEliminiation", resourceCulture);
             }
         }
         
@@ -10363,6 +10723,15 @@ namespace Nada.Globalization {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save report options.
+        /// </summary>
+        public static string SaveReportOptions {
+            get {
+                return ResourceManager.GetString("SaveReportOptions", resourceCulture);
             }
         }
         
@@ -12536,7 +12905,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stop-MDA TAS.
+        ///   Looks up a localized string similar to Stop MDA.
         /// </summary>
         public static string StopMDATAS {
             get {
@@ -12860,7 +13229,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actual non-response rate - unable to perform diagnostic test %.
+        ///   Looks up a localized string similar to Actual non-response rate - inability to perform diagnostic test %.
         /// </summary>
         public static string TASActualNonResponseRateInabilityToPerfo {
             get {
@@ -14827,6 +15196,15 @@ namespace Nada.Globalization {
         public static string ValidationUserName {
             get {
                 return ResourceManager.GetString("ValidationUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid value, please select an item from the list of options..
+        /// </summary>
+        public static string ValidDropdown {
+            get {
+                return ResourceManager.GetString("ValidDropdown", resourceCulture);
             }
         }
         

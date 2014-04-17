@@ -8757,42 +8757,6 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enquête d&apos;évaluation de la transmission I de surveillance post-TDM.
-        /// </summary>
-        public static string PostMDAI {
-            get {
-                return ResourceManager.GetString("PostMDAI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enquête d&apos;évaluation de la transmission II de surveillance post-TDM.
-        /// </summary>
-        public static string PostMDAII {
-            get {
-                return ResourceManager.GetString("PostMDAII", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enquête d&apos;évaluation de la transmission I de surveillance post-TDM.
-        /// </summary>
-        public static string PostMdaTasI {
-            get {
-                return ResourceManager.GetString("PostMdaTasI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enquête d&apos;évaluation de la transmission II de surveillance post-TDM.
-        /// </summary>
-        public static string PostMdaTasII {
-            get {
-                return ResourceManager.GetString("PostMdaTasII", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cas d&apos;âge préscolaire (moins de 6 ans).
         /// </summary>
         public static string PreSchoolCases6 {
@@ -12128,15 +12092,6 @@ namespace Nada.Globalization {
         public static string StockOutLength {
             get {
                 return ResourceManager.GetString("StockOutLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enquête d&apos;évaluation de la transmission - arrêt du TDM.
-        /// </summary>
-        public static string StopMDATAS {
-            get {
-                return ResourceManager.GetString("StopMDATAS", resourceCulture);
             }
         }
         

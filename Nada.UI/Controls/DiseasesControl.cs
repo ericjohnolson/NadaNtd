@@ -11,6 +11,7 @@ using Nada.Model.Repositories;
 using Nada.Model;
 using Nada.Model.Diseases;
 using Nada.UI.Base;
+using Nada.Globalization;
 
 namespace Nada.UI.Controls
 {
@@ -28,15 +29,17 @@ namespace Nada.UI.Controls
         {
             if (!DesignMode)
             {
-                r = new DiseaseRepository();
-                diseases = r.GetSelectedDiseases();
-                diseaseBindingSource.DataSource = diseases;
+                LoadAvailable(false);
             }
         }
 
-        private void fieldLink1_OnClick()
+        public void LoadAvailable(bool filterPc)
         {
-
+            r = new DiseaseRepository();
+            diseases = r.GetSelectedDiseases();
+            if(filterPc)
+                diseases = diseases.Where(d => d.DiseaseType == Translations.PC).ToList();
+            diseaseBindingSource.DataSource = diseases;
         }
 
         public List<Disease> GetSelected()

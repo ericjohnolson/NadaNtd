@@ -30,33 +30,33 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.bsCountry = new System.Windows.Forms.BindingSource(this.components);
             this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.bsCountry = new System.Windows.Forms.BindingSource(this.components);
             this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.h3bLabel18 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel17 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel16 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel15 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel14 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel13 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel12 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel11 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel10 = new Nada.UI.Controls.H3bLabel();
-            this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
-            this.h3Required3 = new Nada.UI.Controls.H3Required();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.h3bLabel3 = new Nada.UI.Controls.H3Required();
             this.lblYear = new Nada.UI.Controls.H3Required();
             this.tbNumEligibleTargeted = new System.Windows.Forms.TextBox();
+            this.h3Required3 = new Nada.UI.Controls.H3Required();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.h3bLabel3 = new Nada.UI.Controls.H3Required();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.h3bLabel10 = new Nada.UI.Controls.H3bLabel();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.h3bLabel11 = new Nada.UI.Controls.H3bLabel();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.h3bLabel12 = new Nada.UI.Controls.H3bLabel();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.h3bLabel14 = new Nada.UI.Controls.H3bLabel();
+            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.h3bLabel13 = new Nada.UI.Controls.H3bLabel();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.h3bLabel18 = new Nada.UI.Controls.H3bLabel();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.h3bLabel17 = new Nada.UI.Controls.H3bLabel();
+            this.textBox18 = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
@@ -125,19 +125,6 @@
             this.tableLayoutPanel14.Size = new System.Drawing.Size(569, 342);
             this.tableLayoutPanel14.TabIndex = 2;
             // 
-            // textBox21
-            // 
-            this.textBox21.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentSac", true));
-            this.textBox21.Location = new System.Drawing.Point(296, 168);
-            this.textBox21.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(256, 21);
-            this.textBox21.TabIndex = 8;
-            // 
-            // bsCountry
-            // 
-            this.bsCountry.DataSource = typeof(Nada.Model.CountryDemography);
-            // 
             // textBox20
             // 
             this.textBox20.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentFemale", true));
@@ -147,23 +134,9 @@
             this.textBox20.Size = new System.Drawing.Size(256, 21);
             this.textBox20.TabIndex = 10;
             // 
-            // textBox19
+            // bsCountry
             // 
-            this.textBox19.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentAdult", true));
-            this.textBox19.Location = new System.Drawing.Point(296, 217);
-            this.textBox19.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(256, 21);
-            this.textBox19.TabIndex = 12;
-            // 
-            // textBox18
-            // 
-            this.textBox18.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentRural", true));
-            this.textBox18.Location = new System.Drawing.Point(0, 315);
-            this.textBox18.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(256, 21);
-            this.textBox18.TabIndex = 13;
+            this.bsCountry.DataSource = typeof(Nada.Model.CountryDemography);
             // 
             // textBox17
             // 
@@ -173,83 +146,6 @@
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(256, 21);
             this.textBox17.TabIndex = 11;
-            // 
-            // textBox16
-            // 
-            this.textBox16.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "Percent5yo", true));
-            this.textBox16.Location = new System.Drawing.Point(0, 217);
-            this.textBox16.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(256, 21);
-            this.textBox16.TabIndex = 9;
-            // 
-            // textBox15
-            // 
-            this.textBox15.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "Percent6mos", true));
-            this.textBox15.Location = new System.Drawing.Point(296, 119);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(256, 21);
-            this.textBox15.TabIndex = 6;
-            // 
-            // textBox14
-            // 
-            this.textBox14.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentPsac", true));
-            this.textBox14.Location = new System.Drawing.Point(0, 168);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(256, 21);
-            this.textBox14.TabIndex = 7;
-            // 
-            // textBox13
-            // 
-            this.textBox13.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "AgeRangeSac", true));
-            this.textBox13.Location = new System.Drawing.Point(0, 119);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(256, 21);
-            this.textBox13.TabIndex = 5;
-            // 
-            // textBox1
-            // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "AgeRangePsac", true));
-            this.textBox1.Location = new System.Drawing.Point(296, 70);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(256, 21);
-            this.textBox1.TabIndex = 4;
-            // 
-            // h3bLabel18
-            // 
-            this.h3bLabel18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel18.AutoSize = true;
-            this.h3bLabel18.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel18.Location = new System.Drawing.Point(296, 195);
-            this.h3bLabel18.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel18.Name = "h3bLabel18";
-            this.h3bLabel18.Size = new System.Drawing.Size(76, 16);
-            this.h3bLabel18.TabIndex = 65;
-            this.h3bLabel18.TabStop = false;
-            this.h3bLabel18.Tag = "PercentAdult";
-            this.h3bLabel18.Text = "PercentAdult";
-            this.h3bLabel18.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel17
-            // 
-            this.h3bLabel17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel17.AutoSize = true;
-            this.h3bLabel17.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel17.Location = new System.Drawing.Point(0, 293);
-            this.h3bLabel17.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel17.Name = "h3bLabel17";
-            this.h3bLabel17.Size = new System.Drawing.Size(79, 16);
-            this.h3bLabel17.TabIndex = 65;
-            this.h3bLabel17.TabStop = false;
-            this.h3bLabel17.Tag = "PercentRural";
-            this.h3bLabel17.Text = "PercentRural";
-            this.h3bLabel17.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
             // h3bLabel16
             // 
@@ -283,143 +179,6 @@
             this.h3bLabel15.Text = "PercentMale";
             this.h3bLabel15.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // h3bLabel14
-            // 
-            this.h3bLabel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel14.AutoSize = true;
-            this.h3bLabel14.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel14.Location = new System.Drawing.Point(296, 146);
-            this.h3bLabel14.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel14.Name = "h3bLabel14";
-            this.h3bLabel14.Size = new System.Drawing.Size(70, 16);
-            this.h3bLabel14.TabIndex = 65;
-            this.h3bLabel14.TabStop = false;
-            this.h3bLabel14.Tag = "PercentSac";
-            this.h3bLabel14.Text = "PercentSac";
-            this.h3bLabel14.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel13
-            // 
-            this.h3bLabel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel13.AutoSize = true;
-            this.h3bLabel13.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel13.Location = new System.Drawing.Point(0, 195);
-            this.h3bLabel13.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel13.Name = "h3bLabel13";
-            this.h3bLabel13.Size = new System.Drawing.Size(68, 16);
-            this.h3bLabel13.TabIndex = 65;
-            this.h3bLabel13.TabStop = false;
-            this.h3bLabel13.Tag = "Percent5yo";
-            this.h3bLabel13.Text = "Percent5yo";
-            this.h3bLabel13.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel12
-            // 
-            this.h3bLabel12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel12.AutoSize = true;
-            this.h3bLabel12.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel12.Location = new System.Drawing.Point(0, 146);
-            this.h3bLabel12.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel12.Name = "h3bLabel12";
-            this.h3bLabel12.Size = new System.Drawing.Size(77, 16);
-            this.h3bLabel12.TabIndex = 65;
-            this.h3bLabel12.TabStop = false;
-            this.h3bLabel12.Tag = "PercentPsac";
-            this.h3bLabel12.Text = "PercentPsac";
-            this.h3bLabel12.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel11
-            // 
-            this.h3bLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel11.AutoSize = true;
-            this.h3bLabel11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel11.Location = new System.Drawing.Point(296, 97);
-            this.h3bLabel11.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel11.Name = "h3bLabel11";
-            this.h3bLabel11.Size = new System.Drawing.Size(81, 16);
-            this.h3bLabel11.TabIndex = 65;
-            this.h3bLabel11.TabStop = false;
-            this.h3bLabel11.Tag = "Percent6mos";
-            this.h3bLabel11.Text = "Percent6mos";
-            this.h3bLabel11.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel10
-            // 
-            this.h3bLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel10.AutoSize = true;
-            this.h3bLabel10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel10.Location = new System.Drawing.Point(0, 97);
-            this.h3bLabel10.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel10.Name = "h3bLabel10";
-            this.h3bLabel10.Size = new System.Drawing.Size(86, 16);
-            this.h3bLabel10.TabIndex = 65;
-            this.h3bLabel10.TabStop = false;
-            this.h3bLabel10.Tag = "AgeRangeSac";
-            this.h3bLabel10.Text = "AgeRangeSac";
-            this.h3bLabel10.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3bLabel2
-            // 
-            this.h3bLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel2.AutoSize = true;
-            this.h3bLabel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel2.Location = new System.Drawing.Point(296, 48);
-            this.h3bLabel2.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel2.Name = "h3bLabel2";
-            this.h3bLabel2.Size = new System.Drawing.Size(93, 16);
-            this.h3bLabel2.TabIndex = 65;
-            this.h3bLabel2.TabStop = false;
-            this.h3bLabel2.Tag = "AgeRangePsac";
-            this.h3bLabel2.Text = "AgeRangePsac";
-            this.h3bLabel2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3Required3
-            // 
-            this.h3Required3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3Required3.AutoSize = true;
-            this.h3Required3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Required3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Required3.Location = new System.Drawing.Point(296, 0);
-            this.h3Required3.Margin = new System.Windows.Forms.Padding(0);
-            this.h3Required3.Name = "h3Required3";
-            this.h3Required3.Size = new System.Drawing.Size(96, 15);
-            this.h3Required3.TabIndex = 62;
-            this.h3Required3.TabStop = false;
-            this.h3Required3.Tag = "DateReported";
-            this.h3Required3.Text = "DateReported";
-            this.h3Required3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // textBox4
-            // 
-            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "GrowthRate", true));
-            this.textBox4.Location = new System.Drawing.Point(0, 70);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(256, 21);
-            this.textBox4.TabIndex = 3;
-            // 
-            // h3bLabel3
-            // 
-            this.h3bLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3bLabel3.AutoSize = true;
-            this.h3bLabel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel3.Location = new System.Drawing.Point(0, 48);
-            this.h3bLabel3.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel3.Name = "h3bLabel3";
-            this.h3bLabel3.Size = new System.Drawing.Size(72, 16);
-            this.h3bLabel3.TabIndex = 63;
-            this.h3bLabel3.TabStop = false;
-            this.h3bLabel3.Tag = "GrowthRate";
-            this.h3bLabel3.Text = "GrowthRate";
-            this.h3bLabel3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
             // lblYear
             // 
             this.lblYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -445,13 +204,255 @@
             this.tbNumEligibleTargeted.Size = new System.Drawing.Size(256, 21);
             this.tbNumEligibleTargeted.TabIndex = 0;
             // 
+            // h3Required3
+            // 
+            this.h3Required3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3Required3.AutoSize = true;
+            this.h3Required3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Required3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Required3.Location = new System.Drawing.Point(296, 0);
+            this.h3Required3.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Required3.Name = "h3Required3";
+            this.h3Required3.Size = new System.Drawing.Size(96, 15);
+            this.h3Required3.TabIndex = 62;
+            this.h3Required3.TabStop = false;
+            this.h3Required3.Tag = "DateReported";
+            this.h3Required3.Text = "DateReported";
+            this.h3Required3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.CustomFormat = "dd MMMM";
             this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsCountry, "DateDemographyData", true));
             this.dateTimePicker1.Location = new System.Drawing.Point(299, 18);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(253, 21);
-            this.dateTimePicker1.TabIndex = 66;
+            this.dateTimePicker1.TabIndex = 1;
+            // 
+            // h3bLabel3
+            // 
+            this.h3bLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel3.AutoSize = true;
+            this.h3bLabel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel3.Location = new System.Drawing.Point(0, 49);
+            this.h3bLabel3.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel3.Name = "h3bLabel3";
+            this.h3bLabel3.Size = new System.Drawing.Size(84, 15);
+            this.h3bLabel3.TabIndex = 63;
+            this.h3bLabel3.TabStop = false;
+            this.h3bLabel3.Tag = "GrowthRate";
+            this.h3bLabel3.Text = "GrowthRate";
+            this.h3bLabel3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox4
+            // 
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "GrowthRate", true));
+            this.textBox4.Location = new System.Drawing.Point(0, 70);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(256, 21);
+            this.textBox4.TabIndex = 2;
+            // 
+            // h3bLabel2
+            // 
+            this.h3bLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel2.AutoSize = true;
+            this.h3bLabel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel2.Location = new System.Drawing.Point(296, 48);
+            this.h3bLabel2.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel2.Name = "h3bLabel2";
+            this.h3bLabel2.Size = new System.Drawing.Size(93, 16);
+            this.h3bLabel2.TabIndex = 65;
+            this.h3bLabel2.TabStop = false;
+            this.h3bLabel2.Tag = "AgeRangePsac";
+            this.h3bLabel2.Text = "AgeRangePsac";
+            this.h3bLabel2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox1
+            // 
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "AgeRangePsac", true));
+            this.textBox1.Location = new System.Drawing.Point(296, 70);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(256, 21);
+            this.textBox1.TabIndex = 3;
+            // 
+            // h3bLabel10
+            // 
+            this.h3bLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel10.AutoSize = true;
+            this.h3bLabel10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel10.Location = new System.Drawing.Point(0, 97);
+            this.h3bLabel10.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel10.Name = "h3bLabel10";
+            this.h3bLabel10.Size = new System.Drawing.Size(86, 16);
+            this.h3bLabel10.TabIndex = 65;
+            this.h3bLabel10.TabStop = false;
+            this.h3bLabel10.Tag = "AgeRangeSac";
+            this.h3bLabel10.Text = "AgeRangeSac";
+            this.h3bLabel10.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox13
+            // 
+            this.textBox13.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "AgeRangeSac", true));
+            this.textBox13.Location = new System.Drawing.Point(0, 119);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(256, 21);
+            this.textBox13.TabIndex = 4;
+            // 
+            // h3bLabel11
+            // 
+            this.h3bLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel11.AutoSize = true;
+            this.h3bLabel11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel11.Location = new System.Drawing.Point(296, 97);
+            this.h3bLabel11.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel11.Name = "h3bLabel11";
+            this.h3bLabel11.Size = new System.Drawing.Size(81, 16);
+            this.h3bLabel11.TabIndex = 65;
+            this.h3bLabel11.TabStop = false;
+            this.h3bLabel11.Tag = "Percent6mos";
+            this.h3bLabel11.Text = "Percent6mos";
+            this.h3bLabel11.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox15
+            // 
+            this.textBox15.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "Percent6mos", true));
+            this.textBox15.Location = new System.Drawing.Point(296, 119);
+            this.textBox15.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(256, 21);
+            this.textBox15.TabIndex = 5;
+            // 
+            // h3bLabel12
+            // 
+            this.h3bLabel12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel12.AutoSize = true;
+            this.h3bLabel12.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel12.Location = new System.Drawing.Point(0, 146);
+            this.h3bLabel12.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel12.Name = "h3bLabel12";
+            this.h3bLabel12.Size = new System.Drawing.Size(77, 16);
+            this.h3bLabel12.TabIndex = 65;
+            this.h3bLabel12.TabStop = false;
+            this.h3bLabel12.Tag = "PercentPsac";
+            this.h3bLabel12.Text = "PercentPsac";
+            this.h3bLabel12.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox14
+            // 
+            this.textBox14.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentPsac", true));
+            this.textBox14.Location = new System.Drawing.Point(0, 168);
+            this.textBox14.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(256, 21);
+            this.textBox14.TabIndex = 6;
+            // 
+            // h3bLabel14
+            // 
+            this.h3bLabel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel14.AutoSize = true;
+            this.h3bLabel14.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel14.Location = new System.Drawing.Point(296, 146);
+            this.h3bLabel14.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel14.Name = "h3bLabel14";
+            this.h3bLabel14.Size = new System.Drawing.Size(70, 16);
+            this.h3bLabel14.TabIndex = 65;
+            this.h3bLabel14.TabStop = false;
+            this.h3bLabel14.Tag = "PercentSac";
+            this.h3bLabel14.Text = "PercentSac";
+            this.h3bLabel14.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox21
+            // 
+            this.textBox21.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentSac", true));
+            this.textBox21.Location = new System.Drawing.Point(296, 168);
+            this.textBox21.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox21.Name = "textBox21";
+            this.textBox21.Size = new System.Drawing.Size(256, 21);
+            this.textBox21.TabIndex = 7;
+            // 
+            // h3bLabel13
+            // 
+            this.h3bLabel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel13.AutoSize = true;
+            this.h3bLabel13.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel13.Location = new System.Drawing.Point(0, 195);
+            this.h3bLabel13.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel13.Name = "h3bLabel13";
+            this.h3bLabel13.Size = new System.Drawing.Size(68, 16);
+            this.h3bLabel13.TabIndex = 65;
+            this.h3bLabel13.TabStop = false;
+            this.h3bLabel13.Tag = "Percent5yo";
+            this.h3bLabel13.Text = "Percent5yo";
+            this.h3bLabel13.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox16
+            // 
+            this.textBox16.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "Percent5yo", true));
+            this.textBox16.Location = new System.Drawing.Point(0, 217);
+            this.textBox16.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(256, 21);
+            this.textBox16.TabIndex = 8;
+            // 
+            // h3bLabel18
+            // 
+            this.h3bLabel18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel18.AutoSize = true;
+            this.h3bLabel18.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel18.Location = new System.Drawing.Point(296, 195);
+            this.h3bLabel18.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel18.Name = "h3bLabel18";
+            this.h3bLabel18.Size = new System.Drawing.Size(76, 16);
+            this.h3bLabel18.TabIndex = 65;
+            this.h3bLabel18.TabStop = false;
+            this.h3bLabel18.Tag = "PercentAdult";
+            this.h3bLabel18.Text = "PercentAdult";
+            this.h3bLabel18.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox19
+            // 
+            this.textBox19.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentAdult", true));
+            this.textBox19.Location = new System.Drawing.Point(296, 217);
+            this.textBox19.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(256, 21);
+            this.textBox19.TabIndex = 9;
+            // 
+            // h3bLabel17
+            // 
+            this.h3bLabel17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel17.AutoSize = true;
+            this.h3bLabel17.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel17.Location = new System.Drawing.Point(0, 293);
+            this.h3bLabel17.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel17.Name = "h3bLabel17";
+            this.h3bLabel17.Size = new System.Drawing.Size(79, 16);
+            this.h3bLabel17.TabIndex = 65;
+            this.h3bLabel17.TabStop = false;
+            this.h3bLabel17.Tag = "PercentRural";
+            this.h3bLabel17.Text = "PercentRural";
+            this.h3bLabel17.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox18
+            // 
+            this.textBox18.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentRural", true));
+            this.textBox18.Location = new System.Drawing.Point(0, 315);
+            this.textBox18.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(256, 21);
+            this.textBox18.TabIndex = 12;
             // 
             // errorProvider1
             // 

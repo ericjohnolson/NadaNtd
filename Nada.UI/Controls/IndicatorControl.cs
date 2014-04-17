@@ -18,6 +18,7 @@ namespace Nada.UI.View
 {
     public partial class IndicatorControl : BaseControl
     {
+        List<string> selectedDiseases = new List<string>();
         IndicatorEntityType entityType = IndicatorEntityType.DiseaseDistribution;
         SettingsRepository settings = new SettingsRepository();
         public event Action OnAddRemove = () => { };
@@ -37,6 +38,8 @@ namespace Nada.UI.View
                 Localizer.TranslateControl(this);
                 tblMetaData.Visible = false;
                 tblTopControls.Visible = false;
+                DiseaseRepository diseases = new DiseaseRepository();
+                selectedDiseases = diseases.GetSelectedDiseases().Select(d => d.DisplayName).ToList();
             }
         }
 
@@ -96,9 +99,8 @@ namespace Nada.UI.View
                 double d = 0;
                 if(double.TryParse(item.Value, out d))
                     labelVal = Convert.ToDouble(item.Value).ToString("N");
-                var label = new H3bLabel { Text = labelVal, Name = "metaData_Val" + item.Key, AutoSize = true, };
-                label.MakeBold();
-                tblMetaData.Controls.Add(label, columnCount, controlRowIndex);
+                var tb = new TextBox { Text = labelVal, Name = "metaData_Val" + item.Key, Width = 100, ReadOnly = true };
+                tblMetaData.Controls.Add(tb, columnCount, controlRowIndex);
 
                 count++;
                 columnCount = columnCount + 2;
@@ -234,6 +236,8 @@ namespace Nada.UI.View
                 return ControlFactory.CreateDropdown(indicator, val, indicatorErrors, controlList, entityType, dropdownKeys);
             if (indicator.DataTypeId == (int)IndicatorDataType.Multiselect)
                 return ControlFactory.CreateMulti(indicator, val, indicatorErrors, controlList, entityType, dropdownKeys);
+            if (indicator.DataTypeId == (int)IndicatorDataType.DiseaseMultiselect)
+                return ControlFactory.CreateMulti(indicator, val, indicatorErrors, controlList, entityType, dropdownKeys.Where(k => selectedDiseases.Contains(k.DisplayName)).ToList());
             if (indicator.DataTypeId == (int)IndicatorDataType.Month)
             {
                 var months = GlobalizationUtil.GetAllMonths();

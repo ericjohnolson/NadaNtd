@@ -23,6 +23,8 @@ namespace Nada.Model
         public int AdminLevelTypeId { get; set; }
         public Nullable<double> LatWho { get; set; }
         public Nullable<double> LngWho { get; set; }
+        public string BindingLat { get; set; }
+        public string BindingLng { get; set; }
         public string UrbanOrRural { get; set; }
         public AdminLevelDemography CurrentDemography { get; set; }
         public List<AdminLevel> Children { get; set; }

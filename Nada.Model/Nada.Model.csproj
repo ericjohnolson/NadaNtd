@@ -60,6 +60,9 @@
   <ItemGroup>
     <Compile Include="ApplicationData.cs" />
     <Compile Include="Base\NadaListItem.cs" />
+    <Compile Include="Exports\ApocExporter.cs" />
+    <Compile Include="Exports\ExportType.cs" />
+    <Compile Include="Reports\IStandardOptions.cs" />
     <Compile Include="Reports\SavedReport.cs" />
     <Compile Include="Demography\CountryDemography.cs" />
     <Compile Include="Demography\DemoDetails.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Process\ProcessDetails.cs" />
     <Compile Include="Process\ProcessType.cs" />
     <Compile Include="Reports\ReportOptions.cs" />
+    <Compile Include="Reports\EliminationReportGenerator.cs" />
     <Compile Include="Repositories\MemberRepository.cs" />
     <Compile Include="Repositories\ProcessRepository.cs" />
     <Compile Include="Repositories\ExportRepository.cs" />

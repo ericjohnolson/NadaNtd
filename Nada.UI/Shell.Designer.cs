@@ -69,12 +69,12 @@
             this.menuNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuViewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuViewTutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCheckForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hrTop = new Nada.UI.Controls.HR();
             this.hr1 = new Nada.UI.Controls.HR();
-            this.menuViewTutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tsQuickLinks.SuspendLayout();
             this.pnlLeft.SuspendLayout();
@@ -455,6 +455,14 @@
             this.menuViewHelpToolStripMenuItem.Text = "MenuViewHelp";
             this.menuViewHelpToolStripMenuItem.Click += new System.EventHandler(this.menuViewHelpToolStripMenuItem_Click);
             // 
+            // menuViewTutorialToolStripMenuItem
+            // 
+            this.menuViewTutorialToolStripMenuItem.Name = "menuViewTutorialToolStripMenuItem";
+            this.menuViewTutorialToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.menuViewTutorialToolStripMenuItem.Tag = "MenuViewTutorial";
+            this.menuViewTutorialToolStripMenuItem.Text = "MenuViewTutorial";
+            this.menuViewTutorialToolStripMenuItem.Click += new System.EventHandler(this.menuViewTutorialToolStripMenuItem_Click);
+            // 
             // menuCheckForUpdatesToolStripMenuItem
             // 
             this.menuCheckForUpdatesToolStripMenuItem.Name = "menuCheckForUpdatesToolStripMenuItem";
@@ -499,14 +507,6 @@
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr1.Size = new System.Drawing.Size(1248, 1);
             this.hr1.TabIndex = 63;
-            // 
-            // menuViewTutorialToolStripMenuItem
-            // 
-            this.menuViewTutorialToolStripMenuItem.Name = "menuViewTutorialToolStripMenuItem";
-            this.menuViewTutorialToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.menuViewTutorialToolStripMenuItem.Tag = "MenuViewTutorial";
-            this.menuViewTutorialToolStripMenuItem.Text = "MenuViewTutorial";
-            this.menuViewTutorialToolStripMenuItem.Click += new System.EventHandler(this.menuViewTutorialToolStripMenuItem_Click);
             // 
             // Shell
             // 

@@ -133,7 +133,7 @@ drop table SurveyLfMf;
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID - 3, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurParousFliesInfected' and SurveyTypeId = 21;
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID - 4, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurParousFliesDisected' and SurveyTypeId = 21;
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 5, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurParousFlies' and SurveyTypeId = 21;
-insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 7, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurNoFlies' and SurveyTypeId = 21;
+insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 7, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurFliesDissected' and SurveyTypeId = 21;
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 4, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurInfectiveFlies' and SurveyTypeId = 21;
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) Select ID + 8, 3, ID, 3 FROM SurveyIndicators where DisplayName ='OnchoSurNoFlies' and SurveyTypeId = 21;
 
@@ -152,9 +152,7 @@ CREATE TABLE [CustomReports](
 );
 
 
-update surveyindicators set datatypeid = 1 where id = 259;
-update surveyindicators set datatypeid = 1 where id = 261;
-update surveyindicators set datatypeid = 1 where id = 260;
+update surveyindicators set datatypeid = 2 where id in (259, 261, 260);
 delete from surveyindicators where displayname = 'TASTasActualTimelineAndResourcesStaff';
 delete from surveyindicators where displayname = 'TASTasActualTimelineAndResourcesTeams';
 

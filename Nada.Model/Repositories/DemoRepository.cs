@@ -74,7 +74,7 @@ namespace Nada.Model.Repositories
                 {
                     throw;
                 }
-            }
+            } 
         }
 
         public CountryDemography GetCountryDemoByYear(int year)
@@ -228,17 +228,16 @@ namespace Nada.Model.Repositories
             int countryAdminId = Convert.ToInt32(ConfigurationManager.AppSettings["CountryId"]);
             if (demo.Id > 0)
                 command = new OleDbCommand(@"UPDATE AdminLevelDemography SET AdminLevelId=@AdminLevelId, DateDemographyData=@DateDemographyData,
-                            YearCensus=@YearCensus,  YearProjections=@YearProjections, GrowthRate=@GrowthRate, PercentRural=@PercentRural, 
+                            YearCensus=@YearCensus,  GrowthRate=@GrowthRate, PercentRural=@PercentRural, 
                             Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
                 command = new OleDbCommand(@"INSERT INTO AdminLevelDemography (AdminLevelId, DateDemographyData,
-                            YearCensus,  YearProjections, GrowthRate, PercentRural, Notes, UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
-                            values (@AdminLevelId, @DateDemographyData, @YearCensus,  @YearProjections, @GrowthRate, @PercentRural, @Notes, 
+                            YearCensus, GrowthRate, PercentRural, Notes, UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
+                            values (@AdminLevelId, @DateDemographyData, @YearCensus, @GrowthRate, @PercentRural, @Notes, 
                             @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@AdminLevelId", demo.AdminLevelId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@DateDemographyData", demo.DateDemographyData));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearCensus", demo.YearCensus));
-            command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearProjections", demo.YearProjections));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@GrowthRate", demo.GrowthRate));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@PercentRural", demo.PercentRural));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@Notes", demo.Notes));
@@ -807,21 +806,37 @@ namespace Nada.Model.Repositories
                     command.ExecuteNonQuery();
                     transWasStarted = true;
 
-                    command = new OleDbCommand(@"Insert Into AdminLevels (DisplayName, AdminLevelTypeId, 
+                    if (model.Id > 0)
+                    {
+                        command = new OleDbCommand(@"UPDATE AdminLevels set DisplayName=@DisplayName, UrbanOrRural=@UrbanOrRural, 
+                        LatWho=@LatWho, LngWho=@LngWho, UpdatedById=@updatedby, UpdatedAt=@updatedat WHERE ID=@ID", connection);
+                        command.Parameters.Add(new OleDbParameter("@DisplayName", model.Name));
+                        command.Parameters.Add(OleDbUtil.CreateNullableParam("@UrbanOrRural", model.UrbanOrRural));
+                        command.Parameters.Add(OleDbUtil.CreateNullableParam("@LatWho", model.LatWho));
+                        command.Parameters.Add(OleDbUtil.CreateNullableParam("@LngWho", model.LngWho));
+                        command.Parameters.Add(new OleDbParameter("@updatedby", userid));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
+                        command.Parameters.Add(new OleDbParameter("@ID", model.Id));
+                        command.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        command = new OleDbCommand(@"Insert Into AdminLevels (DisplayName, AdminLevelTypeId, 
                         ParentId, UrbanOrRural, LatWho, LngWho, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
                         (@DisplayName, @AdminLevelTypeId, @ParentId, @UrbanOrRural, @LatWho, @LngWho, 
                          @updatedby, @updatedat, @CreatedById, @CreatedAt)", connection);
-                    command.Parameters.Add(new OleDbParameter("@DisplayName", model.Name));
-                    command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", model.AdminLevelTypeId));
-                    command.Parameters.Add(new OleDbParameter("@ParentId", model.ParentId));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@UrbanOrRural", model.UrbanOrRural));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@LatWho", model.LatWho));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@LngWho", model.LngWho));
-                    command.Parameters.Add(new OleDbParameter("@updatedby", userid));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
-                    command.Parameters.Add(new OleDbParameter("@CreatedById", userid));
-                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
-                    command.ExecuteNonQuery();
+                        command.Parameters.Add(new OleDbParameter("@DisplayName", model.Name));
+                        command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", model.AdminLevelTypeId));
+                        command.Parameters.Add(new OleDbParameter("@ParentId", model.ParentId));
+                        command.Parameters.Add(OleDbUtil.CreateNullableParam("@UrbanOrRural", model.UrbanOrRural));
+                        command.Parameters.Add(OleDbUtil.CreateNullableParam("@LatWho", model.LatWho));
+                        command.Parameters.Add(OleDbUtil.CreateNullableParam("@LngWho", model.LngWho));
+                        command.Parameters.Add(new OleDbParameter("@updatedby", userid));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
+                        command.Parameters.Add(new OleDbParameter("@CreatedById", userid));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+                        command.ExecuteNonQuery();
+                    }
 
                     // COMMIT TRANS
                     command = new OleDbCommand("COMMIT TRANSACTION", connection);
@@ -1006,6 +1021,39 @@ namespace Nada.Model.Repositories
             return demo;
         }
 
+        public AdminLevelDemography GetRecentDemography(int adminLevelId, DateTime? end)
+        {
+            // REALLY YOU WANT ME TO DO SOME DEEP AGGREGATION ON THIS? WE NEVER DID BEFORE
+            AdminLevelDemography demog = new AdminLevelDemography();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                OleDbCommand command = new OleDbCommand(@"Select a.ID
+                    FROM AdminLevelDemography a 
+                    WHERE AdminLevelId = @id and IsDeleted = 0 " + CreateDateRange(end)
+                    + " ORDER BY DateDemographyData Desc", connection);
+                command.Parameters.Add(new OleDbParameter("@id", adminLevelId));
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int id = reader.GetValueOrDefault<int>("ID");
+                        GetDemoById(demog, id, connection, command);
+                    }
+                    reader.Close();
+                }
+            }
+            return demog;
+        }
+
+        private string CreateDateRange(DateTime? end)
+        {
+            if (end.HasValue)
+                return string.Format("AND DateDemographyData <= cdate('{0}')",  end.Value.ToShortDateString());
+            return "";
+        }
+
         public List<AdminLevelDemography> GetRecentDemography(int level, int recentYear)
         {
             List<AdminLevelDemography> recent = new List<AdminLevelDemography>();
@@ -1144,7 +1192,7 @@ namespace Nada.Model.Repositories
         private void GetDemoById(AdminLevelDemography demo, int id, OleDbConnection connection, OleDbCommand command)
         {
             command = new OleDbCommand(@"Select a.AdminLevelId, a.DateDemographyData,
-                            a.YearCensus,  a.YearProjections, a.GrowthRate, a.PercentRural, a.TotalPopulation, a.AdultPopulation, a.Pop0Month, a.PopPsac, 
+                            a.YearCensus, a.GrowthRate, a.PercentRural, a.TotalPopulation, a.AdultPopulation, a.Pop0Month, a.PopPsac, 
                             a.PopSac, a.Pop5yo, a.PopAdult, a.PopFemale, a.PopMale, a.Notes, a.UpdatedById, a.UpdatedAt, aspnet_Users.UserName, 
                         AdminLevels.DisplayName, a.CreatedAt, c.UserName as CreatedBy
                         FROM (((AdminLevelDemography a INNER JOIN aspnet_Users on a.UpdatedById = aspnet_Users.UserId)
@@ -1161,7 +1209,6 @@ namespace Nada.Model.Repositories
                     demo.AdminLevelId = reader.GetValueOrDefault<int>("AdminLevelId");
                     demo.DateDemographyData = reader.GetValueOrDefault<DateTime>("DateDemographyData");
                     demo.YearCensus = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
-                    demo.YearProjections = reader.GetValueOrDefault<Nullable<int>>("YearProjections");
                     demo.GrowthRate = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
                     demo.PercentRural = reader.GetValueOrDefault<Nullable<double>>("PercentRural");
                     demo.TotalPopulation = reader.GetValueOrDefault<Nullable<double>>("TotalPopulation");
@@ -1310,20 +1357,19 @@ namespace Nada.Model.Repositories
         {
             if (demo.Id > 0)
                 command = new OleDbCommand(@"UPDATE AdminLevelDemography SET AdminLevelId=@AdminLevelId, DateDemographyData=@DateDemographyData,
-                            YearCensus=@YearCensus,  YearProjections=@YearProjections, GrowthRate=@GrowthRate, PercentRural=@PercentRural, TotalPopulation=@TotalPopulation,
+                            YearCensus=@YearCensus, GrowthRate=@GrowthRate, PercentRural=@PercentRural, TotalPopulation=@TotalPopulation,
                             Pop0Month=@Pop0Month, PopPsac=@PopPsac, PopSac=@PopSac, Pop5yo=@Pop5yo, PopAdult=@PopAdult,
                             PopFemale=@PopFemale, PopMale=@PopMale, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
                 command = new OleDbCommand(@"INSERT INTO AdminLevelDemography (AdminLevelId, DateDemographyData,
-                            YearCensus,  YearProjections, GrowthRate, PercentRural, TotalPopulation, Pop0Month, PopPsac, 
+                            YearCensus,   GrowthRate, PercentRural, TotalPopulation, Pop0Month, PopPsac, 
                             PopSac, Pop5yo, PopAdult, PopFemale, PopMale, Notes, UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
-                            values (@AdminLevelId, @DateDemographyData, @YearCensus,  @YearProjections, @GrowthRate, @PercentRural, @TotalPopulation, 
+                            values (@AdminLevelId, @DateDemographyData, @YearCensus,  @GrowthRate, @PercentRural, @TotalPopulation, 
                              @Pop0Month, @PopPsac, @PopSac, @Pop5yo, @PopAdult, @PopFemale, @PopMale, @Notes, @UpdatedById, @UpdatedAt,
                             @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@AdminLevelId", demo.AdminLevelId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@DateDemographyData", demo.DateDemographyData));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearCensus", demo.YearCensus));
-            command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearProjections", demo.YearProjections));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@GrowthRate", demo.GrowthRate));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@PercentRural", demo.PercentRural));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@TotalPopulation", demo.TotalPopulation));

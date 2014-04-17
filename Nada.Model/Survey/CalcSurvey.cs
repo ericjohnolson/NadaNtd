@@ -9,16 +9,16 @@ namespace Nada.Model.Survey
 {
     public class CalcSurvey : CalcBase, ICalcIndicators
     {
-        public override List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel)
+        public override List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime? end)
         {
             List<KeyValuePair<string, string>> results = new List<KeyValuePair<string, string>>();
 
             foreach (string field in fields)
-                results.Add(GetCalculatedValue(field, relatedValues, null));
+                results.Add(GetCalculatedValue(field, relatedValues, null, end));
             return results;
         }
 
-        public override KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo)
+        public override KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime? end)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace Nada.Model.Survey
                     case "20TraMapSurPerWithClinicalSignCo":
                         return new KeyValuePair<string, string>(Translations.TraMapSurPerWithClinicalSignCo, GetPercentage(GetValueOrDefault("20TraMapSurNumberOfIndividualsWithClinical", relatedValues), GetValueOrDefault("20TraMapSurNumberOfIndividualsExamined", relatedValues)));
                     case "21OnchoSurInfectionRate":
-                        return new KeyValuePair<string, string>(Translations.OnchoSurInfectionRate, GetPercentage(GetValueOrDefault("21OnchoSurInfectedFlies", relatedValues), GetValueOrDefault("21OnchoSurFliesDissected", relatedValues)));
+                        return new KeyValuePair<string, string>(Translations.OnchoSurInfectionRate, GetPercentage(GetValueOrDefault("21OnchoSurParousFliesInfected", relatedValues), GetValueOrDefault("21OnchoSurParousFliesDisected", relatedValues)));
                     case "21OnchoSurParousRate":
                         return new KeyValuePair<string, string>(Translations.OnchoSurParousRate, GetPercentage(GetValueOrDefault("21OnchoSurParousFlies", relatedValues), GetValueOrDefault("21OnchoSurFliesDissected", relatedValues)));
                     case "21OnchoSurInfectivityRate":

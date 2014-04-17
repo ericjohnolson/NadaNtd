@@ -156,7 +156,8 @@ namespace Nada.Model.Repositories
         public IntvType GetIntvType(int id)
         {
             IntvType intv = new IntvType();
-
+            DiseaseRepository repo = new DiseaseRepository();
+            var selectedDiseases = repo.GetSelectedDiseases();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
@@ -207,12 +208,14 @@ namespace Nada.Model.Repositories
                         CanAddValues,
                         InterventionIndicators.UpdatedAt, 
                         aspnet_users.UserName,
-                        IndicatorDataTypes.DataType
+                        IndicatorDataTypes.DataType,
+                        InterventionIndicators.IsMetaData
                         FROM (((InterventionIndicators INNER JOIN aspnet_users ON InterventionIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON InterventionIndicators.DataTypeId = IndicatorDataTypes.ID)
                         INNER JOIN InterventionTypes_to_Indicators ON InterventionTypes_to_Indicators.IndicatorId = InterventionIndicators.ID)
-                        WHERE InterventionTypes_to_Indicators.InterventionTypeId=@InterventionTypeId AND IsDisabled=0 
-                        ORDER BY SortOrder, InterventionIndicators.ID", connection);
+                        WHERE InterventionTypes_to_Indicators.InterventionTypeId=@InterventionTypeId AND IsDisabled=0 AND " +
+                        "DiseaseId in (0," + String.Join(", ", selectedDiseases.Select(i => i.Id.ToString()).ToArray()) + ")" +
+                        "ORDER BY SortOrder, InterventionIndicators.ID", connection);
                     command.Parameters.Add(new OleDbParameter("@InterventionTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -232,7 +235,8 @@ namespace Nada.Model.Repositories
                                 IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
                                 IsCalculated = reader.GetValueOrDefault<bool>("IsCalculated"),
                                 CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
-                                DataType = reader.GetValueOrDefault<string>("DataType")
+                                DataType = reader.GetValueOrDefault<string>("DataType"),
+                                IsMetaData = reader.GetValueOrDefault<bool>("IsMetaData")
                             });
                             indicatorIds.Add(reader.GetValueOrDefault<int>("ID").ToString());
                         }

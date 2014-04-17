@@ -68,7 +68,6 @@ namespace Nada.Model
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
             data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("YearCensus")));
-            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("YearProjections")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("GrowthRate")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("TotalPopulation")));
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Pop0Month")));
@@ -89,12 +88,12 @@ namespace Nada.Model
                 row[TranslationLookup.GetValue("Location") + "#"] = l.AdminLevelId;
                 row[locationType.DisplayName] = l.NameDisplayOnly;
                 row["* " + TranslationLookup.GetValue("YearCensus")] = l.YearCensus;
-                row[TranslationLookup.GetValue("YearProjections")] = l.YearProjections;
+                //row[TranslationLookup.GetValue("YearProjections")] = l.YearProjections;
                 row["* " + TranslationLookup.GetValue("GrowthRate")] = l.GrowthRate;
                 row["* " + TranslationLookup.GetValue("TotalPopulation")] = l.TotalPopulation;
                 row[TranslationLookup.GetValue("Pop0Month")] = l.Pop0Month;
-                row["* " + TranslationLookup.GetValue("PopPsac")] = l.PopPsac;
-                row[TranslationLookup.GetValue("PopSac")] = l.PopSac;
+                row[TranslationLookup.GetValue("PopPsac")] = l.PopPsac;
+                row["* " + TranslationLookup.GetValue("PopSac")] = l.PopSac;
                 row[TranslationLookup.GetValue("Pop5yo")] = l.Pop5yo;
                 row[TranslationLookup.GetValue("PopAdult")] = l.PopAdult;
                 row[TranslationLookup.GetValue("PopFemale")] = l.PopFemale;
@@ -123,20 +122,18 @@ namespace Nada.Model
                     var demography = new AdminLevelDemography();
                     if (ds.Tables[0].Columns.Contains(TranslationLookup.GetValue("ID") + "#"))
                         demography.Id = Convert.ToInt32(row[TranslationLookup.GetValue("ID") + "#"]);
-                    demography.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
+                    demography.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
                     demography.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                     demography.DateDemographyData = dateReported;
                     // need to do the required validation, do all and then show errors
                     int i = 0;
                     if (int.TryParse(row["* " + TranslationLookup.GetValue("YearCensus")].ToString(), out i))
                         demography.YearCensus = i;
-                    if (int.TryParse(row[TranslationLookup.GetValue("YearProjections")].ToString(), out i))
-                        demography.YearProjections = i;
-
+                    
                     double d = 0;
                     if (double.TryParse(row["* " + TranslationLookup.GetValue("GrowthRate")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.GrowthRate = d;
-                    if (double.TryParse(row[TranslationLookup.GetValue("PopMale")].ToString(), NumberStyles.Any, cultureEn, out d))
+                    if (double.TryParse(row[TranslationLookup.GetValue("PercentRural")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.PercentRural = d;
                     if (double.TryParse(row["* " + TranslationLookup.GetValue("TotalPopulation")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.TotalPopulation = d;
@@ -228,6 +225,12 @@ namespace Nada.Model
             //Create new workbook
             xlsWorkbook = xlsApp.Workbooks.Add(true);
 
+            // add hidden validation worksheet
+            xlsWorkbook.Worksheets.Add(oMissing, oMissing, oMissing, oMissing);
+            xlsValidation = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[2]);
+            xlsValidation.Name = validationSheetName;
+            xlsValidation.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
+
             //Get the first worksheet
             xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
 
@@ -238,7 +241,7 @@ namespace Nada.Model
                 iCol++;
                 xlsWorksheet.Cells[1, iCol] = c.ColumnName;
             }
-
+            string totalPopColumn = "F";
             // Add rows
             for (int r = 1; r <= rows + 1; r++)
             {
@@ -255,28 +258,30 @@ namespace Nada.Model
                             xlsWorksheet.Cells[r, i] = filterLevel.Name;
                         if (dropdownCol == i && dropdownValues.Count > 0)
                         {
-                            AddDataValidation(xlsWorksheet, Util.GetExcelColumnName(i), r, dropdownBy.DisplayName, TranslationLookup.GetValue("PleaseSelect"), dropdownValues, oldCI);
+                            AddDataValidation(xlsWorksheet, xlsValidation, Util.GetExcelColumnName(i), r, dropdownBy.DisplayName, TranslationLookup.GetValue("PleaseSelect"), dropdownValues, oldCI);
                         }
                         if (importDemography)
                         {
-                            if (Util.GetExcelColumnName(i) == "D")
+                            if (data.Columns[i - 1].ColumnName == "* " + TranslationLookup.GetValue("YearCensus"))
                                 xlsWorksheet.Cells[r, i] = recentCountryDemo.YearCensus;
-                            if (Util.GetExcelColumnName(i) == "F")
+                            if (data.Columns[i - 1].ColumnName == "* " + TranslationLookup.GetValue("GrowthRate"))
                                 xlsWorksheet.Cells[r, i] = recentCountryDemo.GrowthRate;
-                            if (Util.GetExcelColumnName(i) == "H" && recentCountryDemo.Percent6mos.HasValue)
-                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.Percent6mos, r);
-                            if (Util.GetExcelColumnName(i) == "I" && recentCountryDemo.PercentPsac.HasValue)
-                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.PercentPsac, r);
-                            if (Util.GetExcelColumnName(i) == "J" && recentCountryDemo.PercentSac.HasValue)
-                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.PercentSac, r);
-                            if (Util.GetExcelColumnName(i) == "K" && recentCountryDemo.Percent5yo.HasValue)
-                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.Percent5yo, r);
-                            if (Util.GetExcelColumnName(i) == "L" && recentCountryDemo.PercentAdult.HasValue)
-                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.PercentAdult, r);
-                            if (Util.GetExcelColumnName(i) == "M" && recentCountryDemo.PercentFemale.HasValue)
-                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.PercentFemale, r);
-                            if (Util.GetExcelColumnName(i) == "N" && recentCountryDemo.PercentMale.HasValue)
-                                xlsWorksheet.Cells[r, i] = string.Format("=G{1}*{0}/100", recentCountryDemo.PercentMale, r);
+                            if (data.Columns[i - 1].ColumnName == "* " + TranslationLookup.GetValue("TotalPopulation"))
+                                totalPopColumn = Util.GetExcelColumnName(i);
+                            if (data.Columns[i - 1].ColumnName == TranslationLookup.GetValue("Pop0Month") && recentCountryDemo.Percent6mos.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("={2}{1}*{0}/100", recentCountryDemo.Percent6mos, r, totalPopColumn);
+                            if (data.Columns[i - 1].ColumnName == TranslationLookup.GetValue("PopPsac") && recentCountryDemo.PercentPsac.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("={2}{1}*{0}/100", recentCountryDemo.PercentPsac, r, totalPopColumn);
+                            if (data.Columns[i - 1].ColumnName == "* " + TranslationLookup.GetValue("PopSac") && recentCountryDemo.PercentSac.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("={2}{1}*{0}/100", recentCountryDemo.PercentSac, r, totalPopColumn);
+                            if (data.Columns[i - 1].ColumnName == TranslationLookup.GetValue("Pop5yo") && recentCountryDemo.Percent5yo.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("={2}{1}*{0}/100", recentCountryDemo.Percent5yo, r, totalPopColumn);
+                            if (data.Columns[i - 1].ColumnName == TranslationLookup.GetValue("PopAdult") && recentCountryDemo.PercentAdult.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("={2}{1}*{0}/100", recentCountryDemo.PercentAdult, r, totalPopColumn);
+                            if (data.Columns[i - 1].ColumnName == TranslationLookup.GetValue("PopFemale") && recentCountryDemo.PercentFemale.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("={2}{1}*{0}/100", recentCountryDemo.PercentFemale, r, totalPopColumn);
+                            if (data.Columns[i - 1].ColumnName == TranslationLookup.GetValue("PopMale") && recentCountryDemo.PercentMale.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("={2}{1}*{0}/100", recentCountryDemo.PercentMale, r, totalPopColumn);
                         }
                     }
                 }
@@ -293,6 +298,7 @@ namespace Nada.Model
                 oMissing, oMissing, oMissing);
             xlsApp.Visible = true;
             xlsWorksheet = null;
+            xlsValidation = null;
             xlsWorkbook = null;
             xlsApp = null;
             System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
@@ -313,7 +319,6 @@ namespace Nada.Model
             if (isDemo)
             {
                 data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("YearCensus")));
-                data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("YearProjections")));
                 data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("GrowthRate")));
                 data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("TotalPopulation")));
                 data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Pop0Month")));
@@ -384,8 +389,6 @@ namespace Nada.Model
                         int i = 0;
                         if (int.TryParse(row["* " + TranslationLookup.GetValue("YearCensus")].ToString(), out i))
                             demography.YearCensus = i;
-                        if (int.TryParse(row[TranslationLookup.GetValue("YearProjections")].ToString(), out i))
-                            demography.YearProjections = i;
 
                         double d = 0;
                         if (double.TryParse(row["* " + TranslationLookup.GetValue("GrowthRate")].ToString(), NumberStyles.Any, cultureEn, out d))

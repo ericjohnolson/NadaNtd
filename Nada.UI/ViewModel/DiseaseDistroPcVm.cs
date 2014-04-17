@@ -44,7 +44,7 @@ namespace Nada.UI.ViewModel
         public ICalcIndicators Calculator { get { return calc; } }
         public AdminLevel Location { get { return adminLevel; } }
         public IndicatorEntityType EntityType { get { return IndicatorEntityType.DiseaseDistribution; } }
-        public List<KeyValuePair<string, string>> MetaData { get { return model.GetDemographyStats(); } }
+        public List<KeyValuePair<string, string>> MetaData { get { return null; } }
         public Dictionary<string, Indicator> Indicators { get { return model.Indicators; } }
         public List<IndicatorValue> IndicatorValues { get { return model.IndicatorValues; } }
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get { return model.IndicatorDropdownValues; } }

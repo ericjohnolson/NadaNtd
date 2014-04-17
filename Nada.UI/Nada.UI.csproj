@@ -16,7 +16,7 @@
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
@@ -32,7 +32,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>129</ApplicationRevision>
+    <ApplicationRevision>134</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -147,6 +147,12 @@
     </Compile>
     <Compile Include="Controls\AdminUnitChooser.Designer.cs">
       <DependentUpon>AdminUnitChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PickerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PickerControl.Designer.cs">
+      <DependentUpon>PickerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\NullableDatePicker.cs">
       <SubType>Component</SubType>
@@ -309,6 +315,18 @@
     </Compile>
     <Compile Include="View\Reports\CustomReport\SaveReport.Designer.cs">
       <DependentUpon>SaveReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\ApocExport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\ApocExport.Designer.cs">
+      <DependentUpon>ApocExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Standard\EliminationOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\Standard\EliminationOptions.Designer.cs">
+      <DependentUpon>EliminationOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="View\UserPasswordChange.cs">
       <SubType>Form</SubType>
@@ -490,6 +508,12 @@
     </Compile>
     <Compile Include="View\Wizard\DistrictSplitting\SplitReviewConfirm.Designer.cs">
       <DependentUpon>SplitReviewConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\Import\ImportStepListSelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Import\ImportStepListSelection.Designer.cs">
+      <DependentUpon>ImportStepListSelection.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Wizard\Import\ImportStepLists.cs">
       <SubType>UserControl</SubType>
@@ -746,6 +770,9 @@
     <EmbeddedResource Include="Controls\AdminUnitChooser.resx">
       <DependentUpon>AdminUnitChooser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PickerControl.resx">
+      <DependentUpon>PickerControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\H2LabelLight.resx">
       <DependentUpon>H2LabelLight.cs</DependentUpon>
     </EmbeddedResource>
@@ -828,6 +855,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\CustomReport\SaveReport.resx">
       <DependentUpon>SaveReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ExportWizard\ApocExport.resx">
+      <DependentUpon>ApocExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\Standard\EliminationOptions.resx">
+      <DependentUpon>EliminationOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserPasswordChange.resx">
       <DependentUpon>UserPasswordChange.cs</DependentUpon>
@@ -918,6 +951,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplitReviewConfirm.resx">
       <DependentUpon>SplitReviewConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Import\ImportStepListSelection.resx">
+      <DependentUpon>ImportStepListSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\Import\ImportStepLists.resx">
       <DependentUpon>ImportStepLists.cs</DependentUpon>
@@ -1052,10 +1088,16 @@
     <Content Include="DatabaseScripts\00NadaDatabaseBaseline.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.01.00.0003.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0002.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0001.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseScripts\ScriptDiffTest.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Exports\AFRO_CM_JRF.xls">
@@ -1208,32 +1250,32 @@
   <ItemGroup>
     <PublishFile Include="en-AU\Nada.Globalization.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="en-US\Nada.Globalization.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="fr-FR\Nada.Globalization.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>

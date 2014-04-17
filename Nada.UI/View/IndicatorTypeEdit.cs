@@ -68,7 +68,6 @@ namespace Nada.UI.View
             }
         }
 
-
         private void lvIndicators_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
         {
             e.Handled = true;
@@ -89,9 +88,9 @@ namespace Nada.UI.View
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-            if (!viewModel.IsValid())
+            if (string.IsNullOrEmpty(tbName.Text))
             {
-                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
+                MessageBox.Show(Translations.Name + " " +  Translations.IsRequired, Translations.ValidationErrorTitle);
                 return;
             }
 

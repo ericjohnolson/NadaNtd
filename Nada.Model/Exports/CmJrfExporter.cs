@@ -98,16 +98,14 @@ namespace Nada.Model.Exports
             AddToWorksheet(xlsWorksheet, indicators);
         }
 
-        private void AddIndValue(AdminLevelIndicators district, string location, string key, Microsoft.Office.Interop.Excel.Range rng,
+        protected void AddIndValue(AdminLevelIndicators district, string location, string key, Microsoft.Office.Interop.Excel.Range rng,
             Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, object missing, Func<AggregateIndicator, object, object> customAggRule,
             bool shouldTranslate)
         {
             // If district doesn't contain key
-            object value = null;
-            if (district.Indicators.ContainsKey(key))
-                value = IndicatorAggregator.Aggregate(district.Indicators[key], null);
-            else // compute key value
-                value = IndicatorAggregator.AggregateChildren(district.Children, key, null);
+            string value = district.Indicators[key].Value;
+            if (!district.Indicators.ContainsKey(key))
+                value = IndicatorAggregator.AggregateChildren(district.Children, key, null).Value;
 
             if (value != null)
             {

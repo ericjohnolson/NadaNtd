@@ -18,6 +18,7 @@ using System.IO;
 using System.Configuration;
 using Nada.Model.Repositories;
 using Nada.UI.Controls;
+using Nada.UI.View.Reports.Standard;
 
 namespace Nada.UI.View.Reports
 {
@@ -97,9 +98,13 @@ namespace Nada.UI.View.Reports
                 };
                 var delete = new H3Link { Text = Translations.Delete + "...", Margin = new Padding(0, 2, 0, 0) };
                 delete.ClickOverride += () => 
-                { 
-                    repo.DeleteCustomReport(report, ApplicationData.Instance.GetUserId());
-                    LoadSavedReports();
+                {
+                    DeleteConfirm confirm = new DeleteConfirm(Translations.Delete, Translations.DeleteConfirmMessage);
+                    if (confirm.ShowDialog() == DialogResult.OK)
+                    {
+                        repo.DeleteCustomReport(report, ApplicationData.Instance.GetUserId());
+                        LoadSavedReports();
+                    }
                 };
                 tbl.Controls.Add(name, 0, 0);
                 tbl.Controls.Add(edit, 1, 0);
@@ -147,18 +152,50 @@ namespace Nada.UI.View.Reports
             wiz.ShowDialog();
         }
 
-        private void h3Link2_ClickOverride()
+        private void lnkCmJrf_ClickOverride()
         {
             CmJrfExporter exporter = new CmJrfExporter();
             WizardForm wiz = new WizardForm(new ExportStep(exporter, exporter.ExportName), exporter.ExportName);
             wiz.OnFinish = () => { };
             wiz.ShowDialog();
         }
-
-        private void tblCustom_Paint(object sender, PaintEventArgs e)
+        
+        private void lnkApocReport_ClickOverride()
         {
-
+            WizardForm wiz = new WizardForm(new ApocExport(), Translations.ExportApocReport);
+            wiz.OnFinish = () => { };
+            wiz.ShowDialog();
         }
+
+        private void eliminationReport_ClickOverride()
+        {
+            SavedReport sr = new SavedReport { StandardReportOptions = new EliminationReportOptions() };
+            sr.ReportOptions.IsAllLocations = true;
+            sr.ReportOptions.IsCountryAggregation = true;
+            sr.ReportOptions.IsByLevelAggregation = false;
+            sr.ReportOptions.IsNoAggregation = false;
+            WizardForm wiz = new WizardForm(new EliminationOptions(sr), Translations.ReportProgressTowardsEliminiation);
+            wiz.OnFinish = () => { };
+            wiz.Height = 685;
+            wiz.OnRunReport = RunEliminationReport;
+            wiz.Show();
+        }
+
+        private void RunEliminationReport(SavedReport r)
+        {
+            CustomReportView report = new CustomReportView(r);
+            report.OnEditReport = EditEliminationReport;
+            report.Show();
+        }
+
+        private void EditEliminationReport(SavedReport r)
+        {
+            WizardForm wiz = new WizardForm(new EliminationOptions(r), Translations.ReportProgressTowardsEliminiation);
+            wiz.Height = 685;
+            wiz.OnRunReport = RunEliminationReport;
+            wiz.Show();
+        }
+
 
     }
 }

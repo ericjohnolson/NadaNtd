@@ -14,6 +14,7 @@ using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
 using Nada.UI.Base;
 using Nada.Model.Reports;
+using System.Drawing.Drawing2D;
 
 namespace Nada.UI.View.Reports.CustomReport
 {
@@ -50,6 +51,7 @@ namespace Nada.UI.View.Reports.CustomReport
             repo.Save(model, userid);
             OnSave();
             this.Close();
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

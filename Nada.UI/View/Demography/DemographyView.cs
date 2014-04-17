@@ -25,6 +25,7 @@ namespace Nada.UI.View.Demography
     public partial class DemographyView : BaseControl, IView
     {
         private AdminLevel adminLevel = null;
+        private AdminLevel adminLevelBoundToGlobalTree = null;
         private AdminLevelDemography model = null;
         private DemoRepository demo = null;
         public Action OnClose { get; set; }
@@ -60,6 +61,9 @@ namespace Nada.UI.View.Demography
         {
             if (!DesignMode)
             {
+                adminLevelBoundToGlobalTree = adminLevel;
+                adminLevel = Util.DeepClone<AdminLevel>(adminLevel);
+
                 Localizer.TranslateControl(this);
                 demo = new DemoRepository();
                 if (model == null) 
@@ -67,20 +71,38 @@ namespace Nada.UI.View.Demography
                     model = new AdminLevelDemography();
                     model.AdminLevelId = adminLevel.Id;
                 }
-                lblAdminLevel.Text = adminLevel.Name;
+
                 lblType.Text = Translations.Demography;
-                bsDemo.DataSource = model;
-                
+                   
                 StatusChanged(model.UpdatedBy);
 
                 if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
                 !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
                 {
+                    lnkEditAdminLevelUnit.Visible = false;
                     tblEdit.Visible = false;
                 }
+
+                bsDemo.DataSource = model;
+
+                BindAdminLevel();
             }
         }
 
+        private void BindAdminLevel()
+        {
+            lblAdminLevel.Text = adminLevel.Name;
+            if (adminLevel.LatWho.HasValue)
+                lblLat.Text = adminLevel.LatWho.ToString();
+            else
+                lblLat.Text = Translations.NA;
+            if(adminLevel.LngWho.HasValue)
+                lblLng.Text = adminLevel.LngWho.ToString();
+            else
+                lblLng.Text = Translations.NA;
+            lblLat.MakeBold();
+            lblLng.MakeBold();
+        }
 
         /// <summary>
         /// SAVE Method
@@ -122,6 +144,23 @@ namespace Nada.UI.View.Demography
             Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
             //HelpView help = new HelpView();
             //help.Show();
+        }
+
+        private void h3Link1_ClickOverride()
+        {
+            AdminLevelAdd al = new AdminLevelAdd(adminLevel);
+            al.OnSave += al_OnSave;
+            al.ShowDialog();
+
+        }
+
+        void al_OnSave()
+        {
+            BindAdminLevel();
+            adminLevelBoundToGlobalTree.Name = adminLevel.Name;
+            adminLevelBoundToGlobalTree.LatWho = adminLevel.LatWho;
+            adminLevelBoundToGlobalTree.LngWho = adminLevel.LngWho;
+            
         }
     }
 }

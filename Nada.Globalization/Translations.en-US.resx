@@ -1784,7 +1784,7 @@ Fixed / Mobile</value>
     <value>Loading...</value>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>Location:</value>
+    <value>Location</value>
   </data>
   <data name="LocationRequired" xml:space="preserve">
     <value>Please choose a location.</value>
@@ -2982,16 +2982,16 @@ Fixed / Mobile</value>
     <value>Number positive</value>
   </data>
   <data name="PostMDAI" xml:space="preserve">
-    <value>Post-MDA Surveillance TAS I</value>
+    <value>Post-MDA surveillance 1</value>
   </data>
   <data name="PostMDAII" xml:space="preserve">
-    <value>Post-MDA Surveillance TAS II</value>
+    <value>Post-MDA surveillance 2</value>
   </data>
   <data name="PostMdaTasI" xml:space="preserve">
-    <value>Post-MDA Surveillance TAS I</value>
+    <value>Post-MDA surveillance 1</value>
   </data>
   <data name="PostMdaTasII" xml:space="preserve">
-    <value>Post-MDA Surveillance TAS II</value>
+    <value>Post-MDA surveillance 2</value>
   </data>
   <data name="PreSchoolCases6" xml:space="preserve">
     <value>Pre-school age cases (less than 6 years old)</value>
@@ -4107,7 +4107,7 @@ Fixed / Mobile</value>
     <value>Length of stock out</value>
   </data>
   <data name="StopMDATAS" xml:space="preserve">
-    <value>Stop-MDA TAS</value>
+    <value>Stop MDA</value>
   </data>
   <data name="SubDistrictLevel" xml:space="preserve">
     <value>Sub-district level</value>
@@ -4212,7 +4212,7 @@ Fixed / Mobile</value>
     <value>Actual non-response rate - Absent %</value>
   </data>
   <data name="TASActualNonResponseRateInabilityToPerfo" xml:space="preserve">
-    <value>Actual non-response rate - unable to perform diagnostic test %</value>
+    <value>Actual non-response rate - inability to perform diagnostic test %</value>
   </data>
   <data name="TASActualNonResponseRateRefusalOrNoConse" xml:space="preserve">
     <value>Actual non-response rate - Refusal or no consent %</value>
@@ -5179,5 +5179,131 @@ Fixed / Mobile</value>
   </data>
   <data name="TasTotalNumPrimarySchools" xml:space="preserve">
     <value>If implementing TAS in schools, total number of primary schools in EU</value>
+  </data>
+  <data name="Persons" xml:space="preserve">
+    <value>Persons</value>
+  </data>
+  <data name="ReportProgressTowardsEliminiation" xml:space="preserve">
+    <value>Progress towards Elimination</value>
+  </data>
+  <data name="ChartBar" xml:space="preserve">
+    <value>Bar</value>
+  </data>
+  <data name="ChartLine" xml:space="preserve">
+    <value>Line</value>
+  </data>
+  <data name="EliminationAtRisk" xml:space="preserve">
+    <value>Number of persons at-risk</value>
+  </data>
+  <data name="EliminationEndemicDistricts" xml:space="preserve">
+    <value>Number of endemic {0} requiring PC</value>
+  </data>
+  <data name="EliminationLiving" xml:space="preserve">
+    <value>Number of persons living in areas that have achieved the criteria for stopping MDA</value>
+  </data>
+  <data name="EliminationStoppedDistricts" xml:space="preserve">
+    <value>Number of {0} that have achieved the criteria for stopping PC</value>
+  </data>
+  <data name="SaveReportOptions" xml:space="preserve">
+    <value>Save report options</value>
+  </data>
+  <data name="ExportTasCost" xml:space="preserve">
+    <value>Budgeted cost</value>
+  </data>
+  <data name="ExportTasDays" xml:space="preserve">
+    <value>Estimated number of survey days required</value>
+  </data>
+  <data name="ExportTasIctTests" xml:space="preserve">
+    <value>Number of ICT or Brugia Rapid tests required</value>
+  </data>
+  <data name="ExportTasSources" xml:space="preserve">
+    <value>Source(s) of funding</value>
+  </data>
+  <data name="ExportTasStartYear" xml:space="preserve">
+    <value>Planned starting month and year</value>
+  </data>
+  <data name="PcIntvLowerConfidence" xml:space="preserve">
+    <value>Lower confidence interval of surveyed coverage</value>
+  </data>
+  <data name="PcIntvSurveyedCoverage" xml:space="preserve">
+    <value>Surveyed coverage</value>
+  </data>
+  <data name="PcIntvUpperConfidence" xml:space="preserve">
+    <value>Upper confidence interval of surveyed coverage</value>
+  </data>
+  <data name="PcIntvLfAtRisk" xml:space="preserve">
+    <value>LF at-risk population</value>
+  </data>
+  <data name="PcIntvLfEpiCoverage" xml:space="preserve">
+    <value>LF Epi coverage</value>
+  </data>
+  <data name="PcIntvLfPopRecPc" xml:space="preserve">
+    <value>LF population requiring PC</value>
+  </data>
+  <data name="PcIntvOnchoAtRisk" xml:space="preserve">
+    <value>Oncho at-risk population</value>
+  </data>
+  <data name="PcIntvOnchoEpiCoverage" xml:space="preserve">
+    <value>Oncho Epi coverage</value>
+  </data>
+  <data name="PcIntvOnchoPopReqPc" xml:space="preserve">
+    <value>Oncho population requiring PC</value>
+  </data>
+  <data name="PcIntvOnchoProgramCov" xml:space="preserve">
+    <value>Oncho program coverage</value>
+  </data>
+  <data name="PcIntvSchAtRisk" xml:space="preserve">
+    <value>SCH total at-risk population</value>
+  </data>
+  <data name="PcIntvSchEpi" xml:space="preserve">
+    <value>SCH total Epi coverage</value>
+  </data>
+  <data name="PcIntvSchPopReqPc" xml:space="preserve">
+    <value>SCH population requiring PC</value>
+  </data>
+  <data name="PcIntvSchSacAtRisk" xml:space="preserve">
+    <value>SCH SAC at-risk population</value>
+  </data>
+  <data name="PcIntvSchSacEpi" xml:space="preserve">
+    <value>SCH SAC Epi coverage</value>
+  </data>
+  <data name="PcIntvSthAtRisk" xml:space="preserve">
+    <value>STH total at-risk population</value>
+  </data>
+  <data name="PcIntvSthEpiCoverage" xml:space="preserve">
+    <value>STH total Epi coverage</value>
+  </data>
+  <data name="PcIntvSthPopReqPc" xml:space="preserve">
+    <value>STH population requiring PC</value>
+  </data>
+  <data name="PcIntvSthPsacAtRisk" xml:space="preserve">
+    <value>STH PSAC at-risk population</value>
+  </data>
+  <data name="PcIntvSthPsacEpiCoverage" xml:space="preserve">
+    <value>STH PSAC Epi coverage</value>
+  </data>
+  <data name="PcIntvSthSacAtRisk" xml:space="preserve">
+    <value>STH SAC at-risk population</value>
+  </data>
+  <data name="PcIntvSthSacEpiCoverage" xml:space="preserve">
+    <value>STH SAC Epi coverage</value>
+  </data>
+  <data name="PcIntvTraAtRisk" xml:space="preserve">
+    <value>Trachoma at-risk population</value>
+  </data>
+  <data name="PcIntvTraEpi" xml:space="preserve">
+    <value>Trachoma EPI coverage</value>
+  </data>
+  <data name="PcIntvOnchoEpiCoverageOfOncho" xml:space="preserve">
+    <value>Oncho Epi coverage</value>
+  </data>
+  <data name="ExportApocReport" xml:space="preserve">
+    <value>APOC Report</value>
+  </data>
+  <data name="ImportListsSelect" xml:space="preserve">
+    <value>Please select the values necessary for this import</value>
+  </data>
+  <data name="ValidDropdown" xml:space="preserve">
+    <value>Invalid value, please select an item from the list of options.</value>
   </data>
 </root>

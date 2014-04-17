@@ -88,6 +88,7 @@ namespace Nada.Model.Repositories
                         Value = value,
                         AggType = reader.GetValueOrDefault<int>("AggTypeId"),
                         Year = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")),
+                        ReportedDate = reader.GetValueOrDefault<DateTime>("DateReported"),
                         IsCalcRelated = isCalcRelated,
                         ColumnTypeName = getColTypeName(reader),
                         TypeId = reader.GetValueOrDefault<int>("Tid"),
@@ -96,13 +97,7 @@ namespace Nada.Model.Repositories
                     };
                     // if the adminlevel already contains the indicator for that year, aggregate
                     if (dic[adminLevelId].Indicators.ContainsKey(indicatorKey))
-                    {
-                        object val = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[indicatorKey].Value);
-                        if(newIndicator.DataType == (int)IndicatorDataType.Date)
-                            dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : ((DateTime)val).ToString("MM/dd/yyyy");
-                        else
-                            dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : val.ToString();
-                    }
+                        dic[adminLevelId].Indicators[indicatorKey] = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[indicatorKey]);
                     else
                     {
                         dic[adminLevelId].Indicators.Add(indicatorKey, newIndicator);
@@ -147,6 +142,7 @@ namespace Nada.Model.Repositories
                         adminFilter = " and AdminLevels.Id in (" + String.Join(", ", options.SelectedAdminLevels.Select(a => a.Id.ToString()).ToArray()) + ") ";
                     OleDbCommand command = new OleDbCommand(@"Select 
                                 a.ID, 
+                                AdminLevels.Id as aID, 
                                 [DateDemographyData] as DateReported, 
                                 AdminLevels.DisplayName, 
                                 t.DisplayName as TName
@@ -171,8 +167,9 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
+                            // NEED TO FIGURE OUT IF I NEED TO AGGREGATE THE DEMOGRAPHY FOR THE CUSTOM REPORT... IF SO WTF?
                             DataRow dr = dt.NewRow();
-                            dr[Translations.ID] = reader.GetValueOrDefault<int>("ID");
+                            dr[Translations.ID] = reader.GetValueOrDefault<int>("aID");
                             dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
                             dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"), reader.GetValueOrDefault<string>("TName"));
                             dr[Translations.Year] = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported"));
@@ -207,7 +204,7 @@ namespace Nada.Model.Repositories
             string value = reader.GetValueOrDefault<string>("DynamicValue");
             if (value == null)
                 return null;
-            if (dataType == (int)IndicatorDataType.Multiselect)
+            if (dataType == (int)IndicatorDataType.Multiselect || dataType == (int)IndicatorDataType.DiseaseMultiselect)
                 value = value.Replace("|", ", ");
             else if (dataType == (int)IndicatorDataType.Partners)
             {
@@ -259,10 +256,8 @@ namespace Nada.Model.Repositories
 
             if (options.StartDate == DateTime.MinValue)
             {
-                return string.Format(" AND {0} >= cdate('{1}') AND {0} <= cdate('{2}') ", dateName,
-                    options.StartDate.ToShortDateString(),
+                return string.Format(" AND {0} <= cdate('{1}') ", dateName,
                     options.EndDate.ToShortDateString());
-                
             }
             else if (options.EndDate == DateTime.MinValue)
             {
@@ -271,7 +266,8 @@ namespace Nada.Model.Repositories
             }
             else
             {
-                return string.Format(" AND {0} <= cdate('{1}') ", dateName,
+                return string.Format(" AND {0} >= cdate('{1}') AND {0} <= cdate('{2}') ", dateName,
+                    options.StartDate.ToShortDateString(),
                     options.EndDate.ToShortDateString());
             }
         }
@@ -450,7 +446,7 @@ namespace Nada.Model.Repositories
             return indicators.OrderBy(r => r.Name).ToList();
         }
 
-        private static ReportIndicator CreateReportIndicator(int typeId, KeyValuePair<string, Indicator> i)
+        public static ReportIndicator CreateReportIndicator(int typeId, KeyValuePair<string, Indicator> i)
         {
             string name = i.Value.DisplayName;
             if (!i.Value.IsDisplayed)

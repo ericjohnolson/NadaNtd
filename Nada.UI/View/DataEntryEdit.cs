@@ -57,8 +57,11 @@ namespace Nada.UI.View.DiseaseDistribution
                 lblLocation.ForeColor = viewModel.FormColor;
                 lblAdminLevel.Text = viewModel.LocationName;
                 tbNotes.Text = viewModel.Notes;
-                if (viewModel.MetaData != null && viewModel.MetaData.Count > 0)
-                    indicatorControl1.LoadMetaData(viewModel.MetaData);
+                List<KeyValuePair<string, string>> metaData = viewModel.Calculator.GetMetaData(
+                    viewModel.Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => viewModel.CalculatorTypeId + i.Value.DisplayName), 
+                    viewModel.Location.Id);
+                if (metaData != null && metaData.Count > 0)
+                    indicatorControl1.LoadMetaData(metaData);
                 if (viewModel.Indicators != null && viewModel.Indicators.Count() > 0)
                     indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorValues, viewModel.IndicatorDropdownValues, viewModel.EntityType);
                 indicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;

@@ -15,25 +15,36 @@ namespace Nada.Model
     public class DistroImporter : ImporterBase, IImporter
     {
         public override IndicatorEntityType EntityType { get { return IndicatorEntityType.DiseaseDistribution; } }
-        public override string ImportName { get { return TranslationLookup.GetValue("DiseaseDistribution") + " " + TranslationLookup.GetValue("Import"); } }
+        public override string ImportName
+        {
+            get
+            {
+                if(cmType != null)
+                    return TranslationLookup.GetValue("DiseaseDistribution") + " " + TranslationLookup.GetValue("Import") + " - " + cmType.Disease.DisplayName;
+                else if (type != null)
+                    return TranslationLookup.GetValue("DiseaseDistribution") + " " + TranslationLookup.GetValue("Import") + " - " + type.Disease.DisplayName;
+                else 
+                    return TranslationLookup.GetValue("DiseaseDistribution") + " " + TranslationLookup.GetValue("Import");
+            }
+        }
         private DiseaseDistroPc type = null;
         private DiseaseDistroCm cmType = null;
         DiseaseRepository repo = new DiseaseRepository();
         protected override void SetSpecificType(int id)
         {
-           var d = repo.GetDiseaseById(id);
-           if (d.DiseaseType == Translations.CM)
-           {
-               cmType = repo.CreateCm((DiseaseType)d.Id);
-               Indicators = cmType.Indicators;
-               DropDownValues = cmType.IndicatorDropdownValues;
-           }
-           else
-           {
-               type = repo.Create((DiseaseType)d.Id);
-               Indicators = type.Indicators;
-               DropDownValues = type.IndicatorDropdownValues;
-           }
+            var d = repo.GetDiseaseById(id);
+            if (d.DiseaseType == Translations.CM)
+            {
+                cmType = repo.CreateCm((DiseaseType)d.Id);
+                Indicators = cmType.Indicators;
+                DropDownValues = cmType.IndicatorDropdownValues;
+            }
+            else
+            {
+                type = repo.Create((DiseaseType)d.Id);
+                Indicators = type.Indicators;
+                DropDownValues = type.IndicatorDropdownValues;
+            }
         }
 
         public override List<TypeListItem> GetAllTypes()

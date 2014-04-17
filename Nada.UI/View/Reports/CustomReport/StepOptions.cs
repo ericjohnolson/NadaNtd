@@ -43,7 +43,7 @@ namespace Nada.UI.View.Reports.CustomReport
             report.ReportOptions.StartDate = dtStart.Value;
             report.ReportOptions.EndDate = dtEnd.Value;
             report.ReportOptions.MonthYearStarts = Convert.ToInt32(cbMonths.SelectedValue);
-            OnSwitchStep(new StepLocations(report));
+            OnSwitchStep(new StepLocations(report, this));
         }
 
         public void DoFinish()

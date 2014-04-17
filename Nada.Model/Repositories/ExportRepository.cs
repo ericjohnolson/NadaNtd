@@ -14,7 +14,7 @@ using Nada.Model.Intervention;
 namespace Nada.Model.Repositories
 {
 
-    public class ExportRepository
+    public class ExportRepository : RepositoryBase
     {
         public List<AdminLevelIndicators> GetDistrictIndicatorTrees(int interventionTypeId, int year, int diseaseId, Func<AggregateIndicator, object, object> customAggRule)
         {
@@ -48,7 +48,6 @@ namespace Nada.Model.Repositories
             }
             return list.Where(a => a.IsDistrict).ToList();
         }
-
 
         private void AddIntvIndicators(int interventionTypeId, int year, Dictionary<int, AdminLevelIndicators> dic, OleDbCommand command,
             OleDbConnection connection, Func<AggregateIndicator, object, object> customAggRule)
@@ -222,10 +221,8 @@ namespace Nada.Model.Repositories
                         AggType = indicatorAggType
                     };
                 if (dic[adminLevelId].Indicators.ContainsKey(key))
-                {
-                    object val = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[key].Value);
-                    dic[adminLevelId].Indicators[key].Value = val == null ? "" : val.ToString();
-                }
+                    dic[adminLevelId].Indicators[key] = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[key]);
+                
                 else
                     dic[adminLevelId].Indicators.Add(key, newIndicator);
             }
@@ -266,7 +263,6 @@ namespace Nada.Model.Repositories
             }
             return questions;
         }
-
 
         public void UpdateExportQuestions(ExportJrfQuestions questions)
         {
@@ -551,6 +547,130 @@ namespace Nada.Model.Repositories
                 }
                 catch (Exception)
                 {
+                    throw;
+                }
+            }
+        }
+
+        public ExportType GetExportType(ExportTypeId id)
+        {
+            ExportType export = new ExportType { Id = (int)id };
+
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command  = new OleDbCommand(@"Select 
+                        ExportIndicators.ID,   
+                        ExportIndicators.DataTypeId,
+                        ExportIndicators.DisplayName,
+                        ExportIndicators.IsRequired,
+                        ExportIndicators.UpdatedAt, 
+                        aspnet_users.UserName,
+                        IndicatorDataTypes.DataType
+                        FROM ((ExportIndicators INNER JOIN aspnet_users ON ExportIndicators.UpdatedById = aspnet_users.UserId)
+                        INNER JOIN IndicatorDataTypes ON ExportIndicators.DataTypeId = IndicatorDataTypes.ID)
+                        WHERE ExportTypeId=@ExportTypeId
+                        ORDER BY SortOrder, ExportIndicators.ID", connection);
+                    command.Parameters.Add(new OleDbParameter("@ExportTypeId", id));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            export.Indicators.Add(reader.GetValueOrDefault<string>("DisplayName"),
+                                new Indicator
+                                {
+                                    Id = reader.GetValueOrDefault<int>("ID"),
+                                    DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
+                                    UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
+                                        reader.GetValueOrDefault<string>("UserName"),
+                                    DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+                                    IsRequired = reader.GetValueOrDefault<bool>("IsRequired"),
+                                    DataType = reader.GetValueOrDefault<string>("DataType")
+                                });
+                        }
+                        reader.Close();
+                    }
+
+                    command = new OleDbCommand(@"Select 
+                        ExportIndicatorValues.ID,   
+                        ExportIndicatorValues.IndicatorId,
+                        ExportIndicatorValues.DynamicValue,
+                        ExportIndicators.DisplayName
+                        FROM ExportIndicatorValues INNER JOIN ExportIndicators on ExportIndicatorValues.IndicatorId = ExportIndicators.ID
+                        WHERE ExportIndicatorValues.ExportTypeId = @ExportTypeId", connection);
+                    command.Parameters.Add(new OleDbParameter("@ExportTypeId", export.Id));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            export.IndicatorValues.Add(new IndicatorValue
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
+                                DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
+                                Indicator = export.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
+                            });
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return export;
+        }
+
+        public void Save(ExportType export, int userId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    command = new OleDbCommand(@"DELETE FROM ExportIndicatorValues WHERE ExportTypeId=@ExportTypeId", connection);
+                    command.Parameters.Add(new OleDbParameter("@ExportTypeId", export.Id));
+                    command.ExecuteNonQuery();
+
+                    foreach (IndicatorValue val in export.IndicatorValues)
+                    {
+                        command = new OleDbCommand(@"Insert Into ExportIndicatorValues (IndicatorId, ExportTypeId, DynamicValue, UpdatedById, UpdatedAt) VALUES
+                        (@IndicatorId, @ProcessId, @DynamicValue, @UpdatedById, @UpdatedAt)", connection);
+                        command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
+                        command.Parameters.Add(new OleDbParameter("@ExportTypeId", export.Id));
+                        command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
+                        command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.ExecuteNonQuery();
+                    }
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
                     throw;
                 }
             }

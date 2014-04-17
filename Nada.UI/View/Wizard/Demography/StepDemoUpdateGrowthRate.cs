@@ -91,6 +91,7 @@ namespace Nada.UI.View.Wizard
                 int max = als.Max(a => a.LevelNumber);
                 int userId = ApplicationData.Instance.GetUserId();
                 repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, max, vm.DateReported);
+                // TO QA, DOES THIS WORK ANYMORE?
                 repo.AggregateUp(aggLevel, vm.DateReported.Year, userId);
                 e.Result = "";
             }

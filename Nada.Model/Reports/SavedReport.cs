@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Web.Script.Serialization;
+using Nada.Globalization;
 using Nada.Model.Base;
 
 namespace Nada.Model.Reports
@@ -15,9 +16,12 @@ namespace Nada.Model.Reports
         public SavedReport()
         {
             ReportOptions = new ReportOptions();
+            TypeName = Translations.CustomReport;
         }
         public string DisplayName { get; set; }
+        public string TypeName { get; set; }
         public ReportOptions ReportOptions { get; set; }
+        public IStandardOptions StandardReportOptions { get; set; }
 
         public void Deserialize(string s)
         {
@@ -71,42 +75,5 @@ namespace Nada.Model.Reports
 
             return null;
         }
-
-        //public void Deserialize(byte[] b)
-        //{
-        //    try
-        //    {
-        //        using (var stream = new MemoryStream(b))
-        //        {
-        //            var formatter = new BinaryFormatter();
-        //            stream.Seek(0, SeekOrigin.Begin);
-        //            ReportOptions = (ReportOptions)formatter.Deserialize(stream);
-        //        }
-        //    }
-        //catch (Exception ex)
-        //{
-        //    log.Error("Deserialize Report Error", ex);
-        //}
-        //}
-
-        //public byte[] Serialize()
-        //{
-        //    try
-        //    {
-        //        using (var stream = new MemoryStream())
-        //        {
-        //            var formatter = new BinaryFormatter();
-        //            formatter.Serialize(stream, ReportOptions);
-        //            stream.Flush();
-        //            stream.Position = 0;
-        //            return stream.ToArray();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Error("Serialize Report Error", ex);
-        //    }
-        //    return null;
-        //}
     }
 }

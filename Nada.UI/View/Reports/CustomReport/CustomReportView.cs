@@ -43,42 +43,26 @@ namespace Nada.UI.View.Reports.CustomReport
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
+                cbChartType.SelectedItem = Translations.ChartBar;
+                if (report.TypeName != Translations.CustomReport)
+                    lnkSave.Visible = false;
+                lblTitle.Text = report.TypeName;
+                this.Text = report.TypeName;
                 CreateReport();
             }
         }
 
         private void CreateReport()
         {
-            currentResult = report.ReportOptions.ReportGenerator.Run(report.ReportOptions);
+            currentResult = report.ReportOptions.ReportGenerator.Run(report);
+            if(currentResult.DataTableResults.Columns.Contains(Translations.Location))
+                currentResult.DataTableResults.Columns.Remove(Translations.Location);
             grdReport.DataSource = currentResult.DataTableResults;
             LoadChart(currentResult);
         }
 
-        private void LoadChart(ReportResult result)
-        {
-            c1Chart1.ChartGroups[0].ChartData.SeriesList.Clear();
-            result.ChartData.Columns.Add("xaxis");
-            foreach (DataRow dr in result.ChartData.Rows)
-                dr["xaxis"] = dr[Translations.Location] + " - " + dr[Translations.Year];
-            DataView dv = result.ChartData.DefaultView;
-            dv.Sort = Translations.Year + ", " + Translations.Location;
 
-            // copy data from table to chart
-            int startColumn = result.ChartData.Columns.IndexOf(Translations.Year) + 1;
-            int seriesIndex = 0;
-            for (int i = startColumn; i < result.ChartData.Columns.Count; i++)
-            {
-                if (i == startColumn)
-                    BindSeries(c1Chart1, seriesIndex, dv, result.ChartData.Columns[i].ColumnName, "xaxis");
-                else if (result.ChartData.Columns[i].ColumnName == "xaxis")
-                    continue;
-                else
-                    BindSeries(c1Chart1, seriesIndex, dv, result.ChartData.Columns[i].ColumnName);
-                seriesIndex++;
-            }
-        }
-
-        private void h3Link1_ClickOverride()
+        private void editReportLink_ClickOverride()
         {
             this.Close();
             OnEditReport(report);
@@ -96,10 +80,11 @@ namespace Nada.UI.View.Reports.CustomReport
                     ws.Cells["A1"].LoadFromDataTable(currentResult.DataTableResults, true);
                     File.WriteAllBytes(saveFileDialog1.FileName, pck.GetAsByteArray());
                 }
+                System.Diagnostics.Process.Start(saveFileDialog1.FileName);
             }
         }
 
-        private void h3Link2_ClickOverride()
+        private void exportImage_ClickOverride()
         {
             if (currentResult.ChartData == null)
                 return;
@@ -121,7 +106,7 @@ namespace Nada.UI.View.Reports.CustomReport
             }
         }
 
-        private void h3Link3_ClickOverride()
+        private void saveReport_ClickOverride()
         {
             SaveReport saveReport = new SaveReport(report);
             saveReport.OnSave = reportSave;
@@ -135,6 +120,33 @@ namespace Nada.UI.View.Reports.CustomReport
         }
 
         #region chart helpers
+
+        private void LoadChart(ReportResult result)
+        {
+            c1Chart1.ChartGroups[0].ChartData.SeriesList.Clear();
+            result.ChartData.Columns.Add("xaxis");
+            foreach (DataRow dr in result.ChartData.Rows)
+                if (report.ReportOptions.IsCountryAggregation)
+                    dr["xaxis"] = dr[Translations.Year];
+                else
+                    dr["xaxis"] = dr[Translations.Location] + " - " + dr[Translations.Year];
+            DataView dv = result.ChartData.DefaultView;
+            dv.Sort = Translations.Year + ", " + Translations.Location;
+
+            // copy data from table to chart
+            int startColumn = result.ChartData.Columns.IndexOf(Translations.Year) + 1;
+            int seriesIndex = 0;
+            for (int i = startColumn; i < result.ChartData.Columns.Count; i++)
+            {
+                if (i == startColumn)
+                    BindSeries(c1Chart1, seriesIndex, dv, result.ChartData.Columns[i].ColumnName, "xaxis");
+                else if (result.ChartData.Columns[i].ColumnName == "xaxis")
+                    continue;
+                else
+                    BindSeries(c1Chart1, seriesIndex, dv, result.ChartData.Columns[i].ColumnName);
+                seriesIndex++;
+            }
+        }
 
         // copy data from a data source to the chart
         // c1c          chart
@@ -154,6 +166,9 @@ namespace Nada.UI.View.Reports.CustomReport
             ChartDataSeriesCollection coll = c1c.ChartGroups[0].ChartData.SeriesList;
             while (series >= coll.Count)
                 coll.AddNewSeries();
+            coll[series].LineStyle.Thickness = 2;
+            coll[series].SymbolStyle.Shape = SymbolShapeEnum.None;
+
 
             // copy series data
             if (list.Count == 0) return;
@@ -202,6 +217,14 @@ namespace Nada.UI.View.Reports.CustomReport
             BindSeries(c1c, series, dataSource, field, null);
         }
         #endregion
+
+        private void cbChartType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbChartType.SelectedItem.ToString() == Translations.ChartBar)
+                c1Chart1.ChartGroups[0].ChartType = Chart2DTypeEnum.Bar;
+            else
+                c1Chart1.ChartGroups[0].ChartType = Chart2DTypeEnum.XYPlot;
+        }
 
     }
 }

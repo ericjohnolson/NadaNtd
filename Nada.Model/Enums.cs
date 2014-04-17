@@ -22,7 +22,9 @@ namespace Nada.Model
         Calculated = 13,
         EvalSubDistrict = 14,
         LargeText = 15,
-        EvaluationSite = 16
+        EvaluationSite = 16,
+        DiseaseMultiselect = 17,
+        DrugPackageMulitselect = 18
     }
 
     public enum IndicatorAggType
@@ -31,7 +33,8 @@ namespace Nada.Model
         Min = 2,
         Max = 3,
         Combine = 4,
-        None = 5
+        None = 5,
+        Recent = 6
     }
 
     public enum IndicatorEntityType
@@ -46,6 +49,12 @@ namespace Nada.Model
         EvalSite = 8,
         Demo = 9, 
         Sae = 10
+    }
+
+    public enum NewYearType
+    {
+        SameAsPrevious = 1,
+        ApplyGrowthRate = 2
     }
 
     public enum StaticSurveyType
@@ -93,5 +102,12 @@ namespace Nada.Model
         Foodborne = 18,
         Taeniasis = 19,
         Custom = 20
+    }
+
+    public enum ExportTypeId
+    {
+        Jrf = 1,
+        CmJrf = 2,
+        Tas = 3
     }
 }

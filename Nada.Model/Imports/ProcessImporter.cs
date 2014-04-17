@@ -16,7 +16,17 @@ namespace Nada.Model
     public class ProcessImporter : ImporterBase, IImporter
     {
         public override IndicatorEntityType EntityType { get { return IndicatorEntityType.Process; } }
-        public override string ImportName { get { return TranslationLookup.GetValue("ProcessIndicators") + " " + TranslationLookup.GetValue("Import"); } }
+        public override string ImportName
+        {
+            get
+            {
+
+                if (type != null)
+                    return TranslationLookup.GetValue("ProcessIndicators") + " " + TranslationLookup.GetValue("Import") + " - " + type.TypeName;
+                else
+                    return TranslationLookup.GetValue("ProcessIndicators") + " " + TranslationLookup.GetValue("Import");
+            }
+        }
         private ProcessRepository repo = new ProcessRepository();
         private ProcessType type = null;
         public ProcessImporter()
@@ -25,9 +35,9 @@ namespace Nada.Model
         }
         protected override void SetSpecificType(int id)
         {
-           type = repo.GetProcessType(id);
-           Indicators = type.Indicators;
-           DropDownValues = type.IndicatorDropdownValues;
+            type = repo.GetProcessType(id);
+            Indicators = type.Indicators;
+            DropDownValues = type.IndicatorDropdownValues;
         }
 
         public override List<TypeListItem> GetAllTypes()

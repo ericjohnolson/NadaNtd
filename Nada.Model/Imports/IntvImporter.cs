@@ -17,8 +17,17 @@ namespace Nada.Model.Imports
         public override IndicatorEntityType EntityType { get { return IndicatorEntityType.Intervention; } }
         IntvRepository repo = new IntvRepository();
         private IntvType iType = null;
-        public IntvImporter() {  }
-        public override string ImportName { get { return TranslationLookup.GetValue("Interventions") + " " + TranslationLookup.GetValue("Import"); } }
+        public IntvImporter() { }
+        public override string ImportName
+        {
+            get
+            {
+                if (iType != null)
+                    return TranslationLookup.GetValue("Interventions") + " " + TranslationLookup.GetValue("Import") + " - " + iType.IntvTypeName;
+                else
+                    return TranslationLookup.GetValue("Interventions") + " " + TranslationLookup.GetValue("Import");
+            }
+        }
 
         public override List<TypeListItem> GetAllTypes()
         {

@@ -18,7 +18,6 @@ namespace Nada.Model
         public int AdminLevelId { get; set; }
         public DateTime DateDemographyData { get; set; }
         public Nullable<int> YearCensus { get; set; }
-        public Nullable<int> YearProjections { get; set; }
         public Nullable<double> GrowthRate { get; set; }
         public Nullable<double> PercentRural { get; set; }
         public Nullable<double> TotalPopulation { get; set; }
@@ -46,10 +45,6 @@ namespace Nada.Model
                         if (!YearCensus.HasValue)
                             error = Translations.Required;
                         else if (YearCensus.Value > 2100 || YearCensus.Value < 1900)
-                            error = Translations.ValidYear;
-                        break;
-                    case "YearProjections":
-                        if (YearProjections.HasValue && (YearProjections.Value > 2100 || YearProjections.Value < 1900))
                             error = Translations.ValidYear;
                         break;
                     case "GrowthRate":

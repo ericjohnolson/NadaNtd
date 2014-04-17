@@ -2969,18 +2969,6 @@
   <data name="Positive" xml:space="preserve">
     <value>Nombre de cas positifs</value>
   </data>
-  <data name="PostMDAI" xml:space="preserve">
-    <value>Enquête d'évaluation de la transmission I de surveillance post-TDM</value>
-  </data>
-  <data name="PostMDAII" xml:space="preserve">
-    <value>Enquête d'évaluation de la transmission II de surveillance post-TDM</value>
-  </data>
-  <data name="PostMdaTasI" xml:space="preserve">
-    <value>Enquête d'évaluation de la transmission I de surveillance post-TDM</value>
-  </data>
-  <data name="PostMdaTasII" xml:space="preserve">
-    <value>Enquête d'évaluation de la transmission II de surveillance post-TDM</value>
-  </data>
   <data name="PreSchoolCases6" xml:space="preserve">
     <value>Cas d'âge préscolaire (moins de 6 ans)</value>
   </data>
@@ -4093,9 +4081,6 @@
   </data>
   <data name="StockOutLength" xml:space="preserve">
     <value>Durée de l'épuisement du stock</value>
-  </data>
-  <data name="StopMDATAS" xml:space="preserve">
-    <value>Enquête d'évaluation de la transmission - arrêt du TDM</value>
   </data>
   <data name="SubDistrictLevel" xml:space="preserve">
     <value>Niveau du sous-district</value>

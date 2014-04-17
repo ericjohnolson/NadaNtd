@@ -9,22 +9,26 @@ namespace Nada.Model.Diseases
 {
     public class CalcDistro : CalcBase, ICalcIndicators
     {
-        
-        public override List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel)
+        public override List<KeyValuePair<string, string>> GetMetaData(IEnumerable<string> fields, int adminLevel)
         {
-            AdminLevelDemography recentDemo = null;
-            var demography = demoRepo.GetAdminLevelDemography(adminLevel);
-            var recentDemogInfo = demography.OrderByDescending(d => d.DateReported).FirstOrDefault();
-            if (recentDemogInfo != null)
-                recentDemo = demoRepo.GetDemoById(recentDemogInfo.Id);
+            var relatedValues = new Dictionary<string, string>();
+            AdminLevelDemography recentDemo = GetDemography(adminLevel, null);
             List<KeyValuePair<string, string>> results = new List<KeyValuePair<string, string>>();
-
             foreach (string field in fields)
-                results.Add(GetCalculatedValue(field, relatedValues, recentDemo));
+                results.Add(GetCalculatedValue(field, relatedValues, recentDemo, null));
             return results;
         }
 
-        public override KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo)
+        public override List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime? end)
+        {
+            AdminLevelDemography recentDemo = GetDemography(adminLevel, null);
+            List<KeyValuePair<string, string>> results = new List<KeyValuePair<string, string>>();
+            foreach (string field in fields)
+                results.Add(GetCalculatedValue(field, relatedValues, recentDemo, end));
+            return results;
+        }
+
+        public override KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime? end)
         {
             try
             {
@@ -115,7 +119,6 @@ namespace Nada.Model.Diseases
                     default:
                         return new KeyValuePair<string,string>(field,  Translations.NA);
                 }
-
             }
             catch (Exception)
             {
