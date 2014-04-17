@@ -439,6 +439,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date report generated.
+        /// </summary>
+        public static string ApocDateReportGenerated {
+            get {
+                return ResourceManager.GetString("ApocDateReportGenerated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NTD National Database.
         /// </summary>
         public static string ApplicationTitle {

@@ -5309,4 +5309,7 @@ Fixed / Mobile</value>
   <data name="ValidDropdown" xml:space="preserve">
     <value>Invalid value, please select an item from the list of options.</value>
   </data>
+  <data name="ApocDateReportGenerated" xml:space="preserve">
+    <value>Date report generated</value>
+  </data>
 </root>

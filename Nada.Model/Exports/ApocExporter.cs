@@ -35,9 +35,7 @@ namespace Nada.Model.Exports
                 object missing = System.Reflection.Missing.Value;
 
                 // Open workbook
-                xlsWorkbook = xlsApp.Workbooks.Open(Path.Combine(Environment.CurrentDirectory, @"Exports\AFRO_CM_JRF.xls"),
-                    missing, missing, missing, missing, missing, missing, missing,
-                    missing, missing, missing, missing, missing, missing, missing);
+                xlsWorkbook = xlsApp.Workbooks.Add(true);
 
                 var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
                 CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReporting);
@@ -45,8 +43,8 @@ namespace Nada.Model.Exports
                 List<AdminLevel> demography = new List<AdminLevel>();
                 List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, yearReporting, ref demography);
                 
-                //xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[2];
-                //AddContactsPage(xlsWorksheet, rng, questions, country);
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[1];
+                AddCountryPage(xlsWorksheet, rng, country);
                 //xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[3];
                 //AddCountryPage(xlsWorksheet, rng, demography, districtLevel.LevelNumber, questions, country, countryDemo);
                 //xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[11];
@@ -89,6 +87,12 @@ namespace Nada.Model.Exports
             {
                 return new ExportResult(ex.Message);
             }
+        }
+
+        private void AddCountryPage(excel.Worksheet xlsWorksheet, excel.Range rng, Country country)
+        {
+            AddValueToRange(xlsWorksheet, rng, "A1", TranslationLookup.GetValue("Country") + ": " + country.Name);
+            AddValueToRange(xlsWorksheet, rng, "A2", TranslationLookup.GetValue("ApocDateReportGenerated") + ": " + DateTime.Now.ToShortDateString());
         }
 
         private void AddIndicators(DiseaseType diseaseType, StaticIntvType intvType, int year, excel.Worksheet xlsWorksheet,
