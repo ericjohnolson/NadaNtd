@@ -57,8 +57,10 @@ namespace Nada.UI.View.DiseaseDistribution
                 lblLocation.ForeColor = viewModel.FormColor;
                 lblAdminLevel.Text = viewModel.LocationName;
                 tbNotes.Text = viewModel.Notes;
-                List<KeyValuePair<string, string>> metaData = viewModel.Calculator.GetMetaData(
-                    viewModel.Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => viewModel.CalculatorTypeId + i.Value.DisplayName), 
+                List<KeyValuePair<string, string>> metaData = new List<KeyValuePair<string, string>>();
+                if (viewModel.Calculator != null)
+                    metaData = viewModel.Calculator.GetMetaData(
+                    viewModel.Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => viewModel.CalculatorTypeId + i.Value.DisplayName),
                     viewModel.Location.Id);
                 if (metaData != null && metaData.Count > 0)
                     indicatorControl1.LoadMetaData(metaData);
@@ -100,7 +102,7 @@ namespace Nada.UI.View.DiseaseDistribution
             statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id, viewModel.CalculatorTypeId);
             c1Button1.Focus();
         }
-                
+
         /// <summary>
         /// SAVE Method
         /// </summary>
@@ -113,7 +115,7 @@ namespace Nada.UI.View.DiseaseDistribution
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
-            
+
             viewModel.DoSave(indicatorControl1.GetValues(), tbNotes.Text);
             OnClose();
         }
@@ -130,7 +132,7 @@ namespace Nada.UI.View.DiseaseDistribution
         {
             indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorDropdownValues, viewModel.EntityType);
         }
-        
+
         private void cancel_Click(object sender, EventArgs e)
         {
             OnClose();
