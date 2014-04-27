@@ -886,15 +886,21 @@ namespace Nada.Model.Repositories
         #endregion
 
         #region Demography
-        public void AggregateUp(AdminLevelType locationType, int yearDemo, int userId)
+        public void AggregateUp(AdminLevelType locationType, int yearDemo, int userId, double? growthRate)
         {
             try
             {
                 List<AdminLevel> list = new List<AdminLevel>();
                 var tree = GetAdminLevelTreeForDemography(locationType.LevelNumber, yearDemo, ref list);
                 var country = tree.FirstOrDefault();
-                country.CurrentDemography = IndicatorAggregator.AggregateTree(country);
+                if (!growthRate.HasValue)
+                {
+                    var demo = GetCountryDemoRecent();
+                    growthRate = demo.GrowthRate;
+                }
+                country.CurrentDemography = IndicatorAggregator.AggregateTree(country, growthRate);
                 BulkImportAggregatedDemo(tree, userId, locationType.LevelNumber);
+
             }
             catch (Exception)
             {
@@ -902,7 +908,7 @@ namespace Nada.Model.Repositories
             }
         }
 
-        public void ApplyGrowthRate(double growthRatePercent, int userId, AdminLevelType aggLevel, int maxLevels, DateTime dateReported)
+        public void ApplyGrowthRate(double growthRatePercent, int userId, AdminLevelType aggLevel, DateTime dateReported)
         {
             bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -915,36 +921,26 @@ namespace Nada.Model.Repositories
                     OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
                     command.ExecuteNonQuery();
                     transWasStarted = true;
-                    var growthRateDemonminator = 1 + (growthRatePercent / 100);
-                    var demo = GetCountryDemoRecent();
-                    int recentYear = demo.DateDemographyData.Year;
-                    demo.Id = 0;
-                    demo.GrowthRate = growthRatePercent;
-
-                    demo.DateDemographyData = dateReported;
-                    SaveCountryDemoTransactional(demo, userId, connection, command);
-
+                    var growthRateDemonminator = growthRatePercent / 100;
+                    
                     // Get Agg Level & Below and create new demo
-                    for (int i = aggLevel.LevelNumber; i <= maxLevels; i++)
+                    List<AdminLevelDemography> mostRecent = GetRecentDemographyByLevel(aggLevel.LevelNumber, command, connection);
+                    foreach (var d in mostRecent)
                     {
-                        List<AdminLevelDemography> existing = GetRecentDemographyByLevel(i, recentYear, command, connection);
-                        foreach (var d in existing)
-                        {
-                            d.Id = 0;
-                            d.DateDemographyData = dateReported;
-                            d.GrowthRate = growthRatePercent;
-                            if (d.Pop0Month.HasValue) d.Pop0Month = d.Pop0Month * growthRateDemonminator;
-                            if (d.Pop5yo.HasValue) d.Pop5yo = d.Pop5yo * growthRateDemonminator;
-                            if (d.PopAdult.HasValue) d.PopAdult = d.PopAdult * growthRateDemonminator;
-                            if (d.PopFemale.HasValue) d.PopFemale = d.PopFemale * growthRateDemonminator;
-                            if (d.PopMale.HasValue) d.PopMale = d.PopMale * growthRateDemonminator;
-                            if (d.PopPsac.HasValue) d.PopPsac = d.PopPsac * growthRateDemonminator;
-                            if (d.PopPsac.HasValue) d.PopSac = d.PopSac * growthRateDemonminator;
-                            if (d.PopPsac.HasValue) d.TotalPopulation = d.TotalPopulation * growthRateDemonminator;
-                            SaveAdminDemography(command, connection, d, userId);
-                        }
+                        d.Id = 0;
+                        d.DateDemographyData = dateReported;
+                        d.GrowthRate = growthRatePercent;
+                        if (d.Pop0Month.HasValue) d.Pop0Month = d.Pop0Month * growthRateDemonminator + d.Pop0Month;
+                        if (d.Pop5yo.HasValue) d.Pop5yo = d.Pop5yo * growthRateDemonminator + d.Pop5yo;
+                        if (d.PopAdult.HasValue) d.PopAdult = d.PopAdult * growthRateDemonminator + d.PopAdult;
+                        if (d.PopFemale.HasValue) d.PopFemale = d.PopFemale * growthRateDemonminator + d.PopFemale;
+                        if (d.PopMale.HasValue) d.PopMale = d.PopMale * growthRateDemonminator + d.PopMale;
+                        if (d.PopPsac.HasValue) d.PopPsac = d.PopPsac * growthRateDemonminator + d.PopPsac;
+                        if (d.PopPsac.HasValue) d.PopSac = d.PopSac * growthRateDemonminator + d.PopSac;
+                        if (d.PopPsac.HasValue) d.TotalPopulation = d.TotalPopulation * growthRateDemonminator + d.TotalPopulation;
+                        SaveAdminDemography(command, connection, d, userId);
                     }
-
+                    
                     // COMMIT TRANS
                     command = new OleDbCommand("COMMIT TRANSACTION", connection);
                     command.ExecuteNonQuery();
@@ -1021,9 +1017,8 @@ namespace Nada.Model.Repositories
             return demo;
         }
 
-        public AdminLevelDemography GetRecentDemography(int adminLevelId, DateTime? end)
+        public AdminLevelDemography GetRecentDemography(int adminLevelId, DateTime? start, DateTime? end)
         {
-            // REALLY YOU WANT ME TO DO SOME DEEP AGGREGATION ON THIS? WE NEVER DID BEFORE
             AdminLevelDemography demog = new AdminLevelDemography();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
@@ -1031,7 +1026,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 OleDbCommand command = new OleDbCommand(@"Select a.ID
                     FROM AdminLevelDemography a 
-                    WHERE AdminLevelId = @id and IsDeleted = 0 " + CreateDateRange(end)
+                    WHERE AdminLevelId = @id and IsDeleted = 0 " + CreateDateRange(start, end)
                     + " ORDER BY DateDemographyData Desc", connection);
                 command.Parameters.Add(new OleDbParameter("@id", adminLevelId));
                 using (OleDbDataReader reader = command.ExecuteReader())
@@ -1047,10 +1042,14 @@ namespace Nada.Model.Repositories
             return demog;
         }
 
-        private string CreateDateRange(DateTime? end)
+        private string CreateDateRange(DateTime? start, DateTime? end)
         {
-            if (end.HasValue)
-                return string.Format("AND DateDemographyData <= cdate('{0}')",  end.Value.ToShortDateString());
+            if (end.HasValue & start.HasValue)
+                return string.Format("AND (DateDemographyData >= cdate('{0}') AND DateDemographyData <= cdate('{1}'))", start.Value.ToShortDateString(), end.Value.AddDays(1).ToShortDateString());
+            else if (end.HasValue)
+                return string.Format("AND DateDemographyData <= cdate('{0}')", end.Value.AddDays(1).ToShortDateString());
+            else if (start.HasValue)
+                return string.Format("AND DateDemographyData >= cdate('{0}')", start.Value.ToShortDateString());
             return "";
         }
 
@@ -1133,6 +1132,30 @@ namespace Nada.Model.Repositories
             return demo;
         }
 
+        private List<AdminLevelDemography> GetRecentDemographyByLevel(int level, OleDbCommand command, OleDbConnection connection)
+        {
+            List<AdminLevelDemography> demo = new List<AdminLevelDemography>();
+            command = new OleDbCommand(
+                @"SELECT AdminLevels.Id as aid, MAX(a.DateDemographyData) as mdate
+                    FROM ((AdminLevelDemography a INNER JOIN AdminLevels on a.AdminLevelId = AdminLevels.ID)
+                            INNER JOIN AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID)
+                    WHERE AdminLevelTypes.AdminLevel>=@lvl 
+                    GROUP BY AdminLevels.Id", connection);
+            
+            command.Parameters.Add(new OleDbParameter("@lvl", level));
+            using (OleDbDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    AdminLevelDemography d = new AdminLevelDemography();
+                    GetDemoByUnitAndDate(d, reader.GetValueOrDefault<int>("aid"), reader.GetValueOrDefault<DateTime>("mdate"), connection, command);
+                    demo.Add(d);
+                }
+                reader.Close();
+            }
+            return demo;
+        }
+
         public AdminLevelDemography GetDemoByAdminLevelIdAndYear(int adminLevelid, int demoYear)
         {
             AdminLevelDemography demo = new AdminLevelDemography { DateDemographyData = new DateTime(demoYear, 1, 1), AdminLevelId = adminLevelid };
@@ -1206,6 +1229,47 @@ namespace Nada.Model.Repositories
                 {
                     reader.Read();
                     demo.Id = id;
+                    demo.AdminLevelId = reader.GetValueOrDefault<int>("AdminLevelId");
+                    demo.DateDemographyData = reader.GetValueOrDefault<DateTime>("DateDemographyData");
+                    demo.YearCensus = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
+                    demo.GrowthRate = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
+                    demo.PercentRural = reader.GetValueOrDefault<Nullable<double>>("PercentRural");
+                    demo.TotalPopulation = reader.GetValueOrDefault<Nullable<double>>("TotalPopulation");
+                    demo.Pop0Month = reader.GetValueOrDefault<Nullable<double>>("Pop0Month");
+                    demo.PopPsac = reader.GetValueOrDefault<Nullable<double>>("PopPsac");
+                    demo.PopSac = reader.GetValueOrDefault<Nullable<double>>("PopSac");
+                    demo.Pop5yo = reader.GetValueOrDefault<Nullable<double>>("Pop5yo");
+                    demo.PopAdult = reader.GetValueOrDefault<Nullable<double>>("PopAdult");
+                    demo.PopFemale = reader.GetValueOrDefault<Nullable<double>>("PopFemale");
+                    demo.PopMale = reader.GetValueOrDefault<Nullable<double>>("PopMale");
+                    demo.Notes = reader.GetValueOrDefault<string>("Notes");
+                    demo.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
+                    demo.UpdatedBy = GetAuditInfo(reader);
+
+                }
+                reader.Close();
+            }
+        }
+
+        private void GetDemoByUnitAndDate(AdminLevelDemography demo, int adminLevelUnitId, DateTime dateReported, OleDbConnection connection, OleDbCommand command)
+        {
+            command = new OleDbCommand(@"Select a.Id, a.AdminLevelId, a.DateDemographyData,
+                            a.YearCensus, a.GrowthRate, a.PercentRural, a.TotalPopulation, a.AdultPopulation, a.Pop0Month, a.PopPsac, 
+                            a.PopSac, a.Pop5yo, a.PopAdult, a.PopFemale, a.PopMale, a.Notes, a.UpdatedById, a.UpdatedAt, aspnet_Users.UserName, 
+                            AdminLevels.DisplayName, a.CreatedAt, c.UserName as CreatedBy
+                        FROM (((AdminLevelDemography a INNER JOIN aspnet_Users on a.UpdatedById = aspnet_Users.UserId)
+                            LEFT OUTER JOIN AdminLevels on a.AdminLevelId = AdminLevels.ID)
+                            INNER JOIN aspnet_Users c on a.CreatedById = c.UserId)
+                        WHERE AdminLevels.Id=@aid AND a.DateDemographyData=@DateReported
+                        ORDER BY a.Id DESC", connection);
+            command.Parameters.Add(new OleDbParameter("@aid", adminLevelUnitId));
+            command.Parameters.Add(new OleDbParameter("@DateReported", dateReported));
+            using (OleDbDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    demo.Id = reader.GetValueOrDefault<int>("Id");
                     demo.AdminLevelId = reader.GetValueOrDefault<int>("AdminLevelId");
                     demo.DateDemographyData = reader.GetValueOrDefault<DateTime>("DateDemographyData");
                     demo.YearCensus = reader.GetValueOrDefault<Nullable<int>>("YearCensus");

@@ -95,7 +95,7 @@ namespace Nada.UI.View
                     columnCount, labelRowIndex);
 
                 // Add val
-                string labelVal = item.Value;
+                string labelVal = string.IsNullOrEmpty(item.Value) ? Translations.NA : item.Value;
                 double d = 0;
                 if(double.TryParse(item.Value, out d))
                     labelVal = Convert.ToDouble(item.Value).ToString("N");
@@ -195,7 +195,7 @@ namespace Nada.UI.View
             int labelRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int controlRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int columnCount = 0;
-            foreach (var indicator in indicators.Values.Where(i => i.IsDisplayed).ToList())
+            foreach (var indicator in indicators.Values.Where(i => i.IsDisplayed && !i.IsDisabled).ToList())
             {
                 if (count % 2 == 0)
                 {
@@ -246,7 +246,8 @@ namespace Nada.UI.View
                     {
                         IndicatorId = indicator.Id,
                         Id = m.Id,
-                        DisplayName = m.Name
+                        DisplayName = m.Name, 
+                        TranslationKey = m.Id.ToString()
                     }).ToList());
             }
             if (indicator.DataTypeId == (int)IndicatorDataType.Partners)

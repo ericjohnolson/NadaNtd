@@ -122,7 +122,16 @@ namespace Nada.UI
 
         void updateWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            e.Result = settings.ShouldDemoUpdate();
+            try
+            {
+                e.Result = settings.ShouldDemoUpdate();
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error checking if system should update demography (updateWorker_DoWork). ", ex);
+                throw;
+            }
         }
 
         private void LoadDashboard(DashboardView dashboard)

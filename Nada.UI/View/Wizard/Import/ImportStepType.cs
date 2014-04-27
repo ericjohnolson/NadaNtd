@@ -103,6 +103,8 @@ namespace Nada.UI.View.Wizard
             }
             catch (Exception ex)
             {
+                Logger log = new Logger();
+                log.Error("Error uploading import file. ImportStepType:worker_DoWork. ", ex);
                 e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
             }
         }

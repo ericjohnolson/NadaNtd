@@ -91,9 +91,17 @@ namespace Nada.UI.View.Reports
 
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            ExportParams payload = (ExportParams)e.Argument;
-            exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Year);
-            Thread.Sleep(1000);
+            try
+            {
+                ExportParams payload = (ExportParams)e.Argument;
+                exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Year);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error creating APOC Report (worker_DoWork). ", ex);
+                throw;
+            }
         }
 
         void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

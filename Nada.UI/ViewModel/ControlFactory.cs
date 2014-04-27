@@ -138,10 +138,8 @@ namespace Nada.UI.ViewModel
             var container = new DynamicContainer { Indicator = indicator };
             var cntrl = new CheckBox { Name = "dynamicChk" + indicator.Id.ToString() };
             container.IsValid = () => { return true; };
-            bool isChecked = false;
-            if (Boolean.TryParse(val, out isChecked))
-                cntrl.Checked = isChecked;
-
+            cntrl.Checked = val == "1"; 
+            
             container.GetValue = () => { return Convert.ToInt32(cntrl.Checked).ToString(); };
             controlList.Add(container);
             return cntrl;
@@ -153,6 +151,7 @@ namespace Nada.UI.ViewModel
             List<IndicatorDropdownValue> availableValues = new List<IndicatorDropdownValue>();
             var container = new DynamicContainer { Indicator = indicator };
             var cntrl = new ComboBox { Name = "dynamicCombo" + indicator.Id.ToString(), Width = 220, Margin = new Padding(0, 5, 10, bottomPadding), DropDownStyle = ComboBoxStyle.DropDownList };
+            cntrl.MouseWheel += (s, e) => { ((HandledMouseEventArgs)e).Handled = true; };
 
             if (!indicator.IsRequired)
                 cntrl.Items.Add(new IndicatorDropdownValue { DisplayName = "", Id = -1 });
@@ -201,7 +200,7 @@ namespace Nada.UI.ViewModel
             else
                 return cntrl;
         }
-
+        
         public static Control CreateMulti(Indicator indicator, string val, ErrorProvider indicatorErrors, List<DynamicContainer> controlList,
             IndicatorEntityType entityType, List<IndicatorDropdownValue> dropdownKeys)
         {

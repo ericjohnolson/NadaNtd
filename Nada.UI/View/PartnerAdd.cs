@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Intervention;
 using Nada.Model.Repositories;
@@ -18,16 +19,19 @@ namespace Nada.UI.View
     {
         public event Action<Partner> OnSave = (e) => { };
         private Partner model = new Partner();
+        private List<Partner> existing = null;
 
-        public PartnerAdd()
+        public PartnerAdd(List<Partner> p)
             : base()
         {
+            existing = p;
             InitializeComponent();
         }
 
-        public PartnerAdd(Partner m)
+        public PartnerAdd(List<Partner> p, Partner m)
             : base()
         {
+            existing = p;
             model = m;
             InitializeComponent();
         }
@@ -44,6 +48,19 @@ namespace Nada.UI.View
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
+            if (!model.IsValid())
+            {
+                errorProvider1.DataSource = bsDistributionMethod;
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
+                return;
+            }
+
+            if (existing.FirstOrDefault(i => i.DisplayName.ToLower() == model.DisplayName.ToLower() && model != i) != null)
+            {
+                MessageBox.Show(string.Format(Translations.ValidationMustBeUnique, Translations.Name), Translations.ValidationErrorTitle);
+                return;
+            }
+
             bsDistributionMethod.EndEdit();
             IntvRepository r = new IntvRepository();
             int userid = ApplicationData.Instance.GetUserId();

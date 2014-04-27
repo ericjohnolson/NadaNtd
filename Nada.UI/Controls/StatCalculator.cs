@@ -33,7 +33,8 @@ namespace Nada.UI.Controls
             fieldLink1.Focus();
         }
 
-        public void DoCalc(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, int adminLevel, string typeId)
+
+        public void DoCalc(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, int adminLevel, string typeId, DateTime start, DateTime end)
         {
             this.SuspendLayout();
             tblIndicators.Controls.Clear();
@@ -42,7 +43,7 @@ namespace Nada.UI.Controls
             int controlRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int columnCount = 0;
 
-            var calculationResults = Calc.PerformCalculations(indicators, values, adminLevel, typeId);
+            var calculationResults = Calc.PerformCalculations(indicators, values, adminLevel, typeId, start, end);
             if (calculationResults.Count == 0)
                 this.Visible = false;
 

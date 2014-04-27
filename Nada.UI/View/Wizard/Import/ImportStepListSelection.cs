@@ -100,8 +100,17 @@ namespace Nada.UI.View.Wizard
 
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            WorkerPayload payload = (WorkerPayload)e.Argument;
-            options.Importer.CreateImportFile(payload.FileName, options.AdminLevels, options.AdminLevelType, options);
+            try
+            {
+                WorkerPayload payload = (WorkerPayload)e.Argument;
+                options.Importer.CreateImportFile(payload.FileName, options.AdminLevels, options.AdminLevelType, options);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error creating import file. ImportStepListSelection:worker_DoWork. ", ex);
+                throw;
+            }
         }
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

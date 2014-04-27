@@ -166,7 +166,7 @@ namespace Nada.Model
                 demo.Save(demos, userId);
 
                 if (doAggregate)
-                    demo.AggregateUp(locationType, dateReported.Year, userId);
+                    demo.AggregateUp(locationType, dateReported.Year, userId, null);
 
                 int rec = demos.Count;
                 return new ImportResult
@@ -220,19 +220,20 @@ namespace Nada.Model
             Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
             Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
             Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
+            Microsoft.Office.Interop.Excel.Worksheet xlsValidation;
             object oMissing = System.Reflection.Missing.Value;
+            validationRanges = new Dictionary<string, string>();
 
             //Create new workbook
             xlsWorkbook = xlsApp.Workbooks.Add(true);
 
-            // add hidden validation worksheet
-            xlsWorkbook.Worksheets.Add(oMissing, oMissing, oMissing, oMissing);
-            xlsValidation = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[2]);
-            xlsValidation.Name = validationSheetName;
-            xlsValidation.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
-
             //Get the first worksheet
             xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
+
+            // add hidden validation worksheet
+            xlsValidation = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets.Add(oMissing, xlsWorksheet, oMissing, oMissing);
+            xlsValidation.Name = validationSheetName;
+            xlsValidation.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
 
             // Add columns
             int iCol = 0;
@@ -436,7 +437,7 @@ namespace Nada.Model
                 demo.BulkImportAdminLevelsForLevel(levels, locationType.Id, userId);
 
                 if (doAggregate)
-                    demo.AggregateUp(locationType, dateReported.Year, userId); // Do I just use this year, what does it break?
+                    demo.AggregateUp(locationType, dateReported.Year, userId, null); // Do I just use this year, what does it break?
 
                 int rec = levels.Count;
                 return new ImportResult

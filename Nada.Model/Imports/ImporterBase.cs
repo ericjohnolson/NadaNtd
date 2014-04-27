@@ -4,6 +4,7 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using Excel;
@@ -24,7 +25,6 @@ namespace Nada.Model
         public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorDropdownValue> DropDownValues { get; set; }
         protected Dictionary<string, Indicator> translatedIndicators = new Dictionary<string, Indicator>();
-        protected Dictionary<int, Indicator> ColumnIdToIndicator = null;
         protected List<Partner> partners = new List<Partner>();
         protected List<string> selectedDiseases = new List<string>();
         private List<IndicatorDropdownValue> ezs = new List<IndicatorDropdownValue>();
@@ -38,8 +38,7 @@ namespace Nada.Model
         private ImportOptions options = null;
         protected int validationRow = 1;
         protected string validationSheetName = "ValidationLists";
-        protected Microsoft.Office.Interop.Excel.Worksheet xlsValidation;
-        protected Dictionary<string, string> validationRanges = new Dictionary<string, string>();
+        protected Dictionary<string, string> validationRanges;
         public void SetType(int id)
         {
             translatedIndicators = new Dictionary<string, Indicator>();
@@ -51,28 +50,41 @@ namespace Nada.Model
                 translatedIndicators.Add(TranslationLookup.GetValue(keyValue.Key, keyValue.Key), keyValue.Value);
         }
 
+        protected virtual void ReloadDropdownValues()
+        {
+
+        }
+
         public virtual void CreateImportFile(string filename, List<AdminLevel> adminLevels, AdminLevelType adminLevelType, ImportOptions opts)
         {
             options = opts;
+            ReloadDropdownValues();
             LoadRelatedLists();
             System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
             Microsoft.Office.Interop.Excel.Workbook xlsWorkbook;
+            Microsoft.Office.Interop.Excel.Workbooks xlsWorkbooks;
+            Microsoft.Office.Interop.Excel.Sheets xlsWorksheets;
             Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet;
+            Microsoft.Office.Interop.Excel.Worksheet xlsValidation;
             object oMissing = System.Reflection.Missing.Value;
+            validationRanges = new Dictionary<string, string>();
 
             //Create new workbook
-            xlsWorkbook = xlsApp.Workbooks.Add(true);
-
-            // add hidden validation worksheet
-            xlsWorkbook.Worksheets.Add(oMissing, oMissing, oMissing, oMissing);            
-            xlsValidation = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[2]);
-            xlsValidation.Name = validationSheetName;
-            xlsValidation.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
+            xlsWorkbooks = xlsApp.Workbooks;
+            xlsWorkbook = xlsWorkbooks.Add(true);
+            xlsWorksheets = xlsWorkbook.Worksheets;
 
             //Get the first worksheet
             xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
+
+            // add hidden validation worksheet
+
+            xlsValidation = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(oMissing, xlsWorksheet, oMissing, oMissing);
+            xlsValidation.Name = validationSheetName;
+            xlsValidation.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
+
 
             // row 1 column headers
             DemoRepository repo = new DemoRepository();
@@ -90,15 +102,26 @@ namespace Nada.Model
             {
                 if (item.Value.DataTypeId == (int)IndicatorDataType.SentinelSite || item.Value.IsCalculated || item.Value.IsMetaData)
                     continue;
-                //TODO TEST DATE FIELD? if (Indicators[key].DataTypeId == (int)IndicatorDataType.Date)
-                //    col = new DataColumn(TranslationLookup.GetValue(key, key), typeof(DateTime));
                 string isReq = "";
                 if (item.Value.IsRequired)
                     isReq = "* ";
 
-                xlsColCount++;
-                xlsWorksheet.Cells[1, xlsColCount] = isReq + TranslationLookup.GetValue(item.Key, item.Key);
-                ColumnIdToIndicator.Add(xlsColCount, item.Value);
+                // if the filtered list still has more than 7 possible multiselect values, do some weird shit.
+                if (options.IndicatorValuesSublist.ContainsKey(item.Value.DisplayName) && options.IndicatorValuesSublist[item.Value.DisplayName].Count > 6)
+                {
+                    int optionNumber = 1;
+                    foreach (string opt in options.IndicatorValuesSublist[item.Value.DisplayName])
+                    {
+                        xlsColCount++;
+                        xlsWorksheet.Cells[1, xlsColCount] = isReq + TranslationLookup.GetValue(item.Key, item.Key) + Translations.ImportSelectionOption + optionNumber;
+                        optionNumber++;
+                    }
+                }
+                else
+                {
+                    xlsColCount++;
+                    xlsWorksheet.Cells[1, xlsColCount] = isReq + TranslationLookup.GetValue(item.Key, item.Key);
+                }
             }
             xlsWorksheet.Cells[1, xlsColCount + 1] = TranslationLookup.GetValue("Notes");
 
@@ -121,7 +144,7 @@ namespace Nada.Model
                     if (Indicators[key].DataTypeId == (int)IndicatorDataType.SentinelSite || Indicators[key].IsCalculated || Indicators[key].IsMetaData)
                         continue;
                     colCount++;
-                    AddValueToCell(xlsWorksheet, xlsValidation, colCount, xlsRowCount, "", Indicators[key], oldCI);
+                    colCount = AddValueToCell(xlsWorksheet, xlsValidation, colCount, xlsRowCount, "", Indicators[key], oldCI);
                 }
                 xlsRowCount++;
             }
@@ -138,10 +161,12 @@ namespace Nada.Model
                 Microsoft.Office.Interop.Excel.XlSaveConflictResolution.xlUserResolution, true,
                 oMissing, oMissing, oMissing);
             xlsApp.Visible = true;
-            xlsWorksheet = null;
-            xlsValidation = null;
-            xlsWorkbook = null;
-            xlsApp = null;
+            Marshal.ReleaseComObject(xlsWorksheets);
+            Marshal.ReleaseComObject(xlsWorksheet);
+            Marshal.ReleaseComObject(xlsValidation);
+            Marshal.ReleaseComObject(xlsWorkbooks);
+            Marshal.ReleaseComObject(xlsWorkbook);
+            Marshal.ReleaseComObject(xlsApp);
             System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
         }
 
@@ -156,14 +181,28 @@ namespace Nada.Model
             return 0;
         }
 
-        private void AddValueToCell(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet validation, int c, int r, 
+        private int AddValueToCell(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet validation, int c, int r, 
             string value, Indicator indicator, CultureInfo currentCulture)
         {
             if (options.IndicatorValuesSublist.ContainsKey(indicator.DisplayName))
-                AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "", Util.ProduceEnumeration(options.IndicatorValuesSublist[indicator.DisplayName]), 
-                    currentCulture);
+            {
+                if (options.IndicatorValuesSublist[indicator.DisplayName].Count > 6)
+                {
+                    int optionNumber = 1;
+                    foreach (string opt in options.IndicatorValuesSublist[indicator.DisplayName])
+                    {
+                        AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "", options.IndicatorValuesSublist[indicator.DisplayName], currentCulture);
+                        c++; 
+                        optionNumber++;
+                    }
+                    c--; // remove last increment
+                }
+                else
+                    AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "", Util.ProduceEnumeration(options.IndicatorValuesSublist[indicator.DisplayName]),
+                        currentCulture);
+            }
             else if (indicator.DataTypeId == (int)IndicatorDataType.Partners)
-                AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "", Util.ProduceEnumeration(partners.Select(p => p.DisplayName).ToList()), 
+                AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "", Util.ProduceEnumeration(partners.Select(p => p.DisplayName).ToList()),
                     currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.EvaluationUnit)
                 AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "", eus.Select(p => p.DisplayName).ToList(), currentCulture);
@@ -187,6 +226,8 @@ namespace Nada.Model
                    currentCulture);
             else
                 xlsWorksheet.Cells[r, c] = value;
+
+            return c;
 
         }
 
@@ -237,24 +278,40 @@ namespace Nada.Model
 
         protected List<IndicatorValue> GetDynamicIndicatorValues(DataSet ds, DataRow row, ref string errors)
         {
+            Dictionary<string, IndicatorValue> multicolumnIndicators = new Dictionary<string, IndicatorValue>();
             List<IndicatorValue> inds = new List<IndicatorValue>();
             foreach (DataColumn col in ds.Tables[0].Columns)
             {
                 string indicatorName = col.ColumnName.Replace("* ", "");
+                bool hasMultipleCols = false;
+                if (indicatorName.Contains(Translations.ImportSelectionOption))
+                {
+                    hasMultipleCols = true;
+                    indicatorName = indicatorName.Replace(Translations.ImportSelectionOption, "^").Split('^')[0];
+                }
                 if (translatedIndicators.ContainsKey(indicatorName))
                 {
                     string val = row[col].ToString().Trim();
                     Indicator curInd = translatedIndicators[indicatorName];
-
-
                     errors += GetValueAndValidate(curInd, ref val, indicatorName);
 
-                    inds.Add(new IndicatorValue
+                    IndicatorValue ival = new IndicatorValue
+                        {
+                            IndicatorId = curInd.Id,
+                            DynamicValue = val,
+                            Indicator = curInd
+                        };
+
+                    if (!hasMultipleCols || !multicolumnIndicators.ContainsKey(indicatorName))
+                        inds.Add(ival);
+
+                    if (hasMultipleCols)
                     {
-                        IndicatorId = curInd.Id,
-                        DynamicValue = val,
-                        Indicator = curInd
-                    });
+                        if (multicolumnIndicators.ContainsKey(indicatorName))
+                            multicolumnIndicators[indicatorName].DynamicValue = multicolumnIndicators[indicatorName].DynamicValue + "|" + val;
+                        else
+                            multicolumnIndicators.Add(indicatorName, ival);
+                    }
                 }
             }
             return inds;
@@ -262,7 +319,6 @@ namespace Nada.Model
 
         private void LoadRelatedLists()
         {
-            ColumnIdToIndicator = new Dictionary<int, Indicator>();
             IntvRepository repo = new IntvRepository();
             partners = repo.GetPartners();
             months = GlobalizationUtil.GetAllMonths();

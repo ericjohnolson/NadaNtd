@@ -137,7 +137,7 @@ namespace Nada.UI.View
             var c = demo.GetCountry();
             c.Name = "Skipped Setup Country";
             demo.UpdateCountry(c, userId);
-            demo.Save(new CountryDemography { AdminLevelId = 1, DateDemographyData = new DateTime(year, 1, 1), TotalPopulation = 1, PopSac = 1, PercentAdult = 30, PercentPsac = 20, PercentSac = 50 },
+            demo.Save(new CountryDemography { AdminLevelId = 1, GrowthRate = 9.5, DateDemographyData = new DateTime(year, 1, 1), TotalPopulation = 1, PopSac = 1, PercentAdult = 30, PercentPsac = 20, PercentSac = 50 },
                 userId); 
             DiseaseRepository diseases = new DiseaseRepository();
             var availableDiseases = diseases.GetAvailableDiseases();

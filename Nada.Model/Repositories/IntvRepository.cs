@@ -452,12 +452,12 @@ namespace Nada.Model.Repositories
                         command.ExecuteNonQuery();
 
                         command = new OleDbCommand(@"SELECT Max(ID) FROM InterventionIndicators", connection);
-                        int yearId = (int)command.ExecuteScalar();
+                        indicator.Id = (int)command.ExecuteScalar();
 
                         command = new OleDbCommand(@"INSERT INTO InterventionTypes_to_Indicators (InterventionTypeId, IndicatorId
                             ) values (@InterventionTypeId, @IndicatorId)", connection);
                         command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
-                        command.Parameters.Add(new OleDbParameter("@IndicatorId", yearId));
+                        command.Parameters.Add(new OleDbParameter("@IndicatorId", indicator.Id));
                         command.ExecuteNonQuery();
                     }
 
@@ -696,6 +696,8 @@ namespace Nada.Model.Repositories
             {
                 while (reader.Read())
                 {
+                    if (!intv.IntvType.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
+                        continue;
                     intv.IndicatorValues.Add(new IndicatorValue
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),

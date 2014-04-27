@@ -56,19 +56,18 @@ namespace Nada.Model.Reports
         protected virtual ReportResult DoRun(ReportOptions options)
         {
             opts = options;
-            selectedCalcFields = opts.SelectedIndicators.Where(c => c.IsCalculated).ToList();
+            selectedCalcFields = opts.SelectedIndicators.Where(c => c.DataTypeId == (int)IndicatorDataType.Calculated).ToList();
             hasCalculations = selectedCalcFields.Count > 0;
-            ReportResult result = new ReportResult();
             repo.LoadRelatedLists();
             Init();
-            result.DataTableResults = CreateReport(options);
+            ReportResult result = CreateReport(options);
             result.ChartData = result.DataTableResults.Copy();
             return result;
         }
         
         protected virtual void AddStaticAggInd(CreateAggParams param) { }
 
-        public DataTable CreateReport(ReportOptions options)
+        public ReportResult CreateReport(ReportOptions options)
         {
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
             Dictionary<int, AdminLevelIndicators> dic = new Dictionary<int, AdminLevelIndicators>();
@@ -88,6 +87,7 @@ namespace Nada.Model.Reports
             }
 
             // Create table
+            ReportResult reportResult = new ReportResult();
             DataTable result = new DataTable();
             result.Columns.Add(new DataColumn(Translations.Location));
             result.Columns.Add(new DataColumn(Translations.Type));
@@ -129,8 +129,10 @@ namespace Nada.Model.Reports
 
                             string levelAndYear = level.Id + "_" + year;
 
-                            AggregateIndicator aggInd = level.Indicators[columnDef.Key];
-                            if (!level.Indicators.ContainsKey(columnDef.Key)) 
+                            AggregateIndicator aggInd = null;
+                            if(level.Indicators.ContainsKey(columnDef.Key))
+                                aggInd = level.Indicators[columnDef.Key];
+                            else 
                                 aggInd = IndicatorAggregator.AggregateChildren(level.Children, columnDef.Key, null); // level doesn't have it, aggregate children
 
                             if (aggInd == null)
@@ -145,26 +147,41 @@ namespace Nada.Model.Reports
             // Do calculated fields
             if (hasCalculations)
             {
+                string errors = "";
                 var fields = selectedCalcFields.Select(i => i.TypeId + i.Key).ToList();
                 foreach (ReportRow row in resultDic.Values)
                 {
+                    DateTime startDate = new DateTime(row.Year, options.MonthYearStarts, 1);
                     DateTime yearEndDate = new DateTime(row.Year, options.MonthYearStarts, 1).AddYears(1).AddDays(-1);
-                    var adminLevelDemo = calc.GetAdminLevelDemo(row.AdminLevelId, yearEndDate);
+                    var adminLevelDemo = calc.GetAdminLevelDemo(row.AdminLevelId, startDate, yearEndDate);
+                    if (adminLevelDemo.Id <= 0)
+                        errors += string.Format(Translations.ReportsNoDemographyInDateRange, row.AdminLevelName, startDate.ToShortDateString(), yearEndDate.ToShortDateString()) + Environment.NewLine;
                     foreach (var field in selectedCalcFields)
                     {
                         Dictionary<string, Dictionary<string, string>> relatedByType = CreateCalcRelatedValueDic(row.CalcRelated.Where(i => i.TypeId == field.TypeId));
-                        foreach (var related in relatedByType)
+
+                        if (relatedByType.Count > 0)
+                            foreach (var related in relatedByType)
+                            {
+                                var calcResult = calc.GetCalculatedValue(field.TypeId + field.Key, related.Value, adminLevelDemo, startDate, yearEndDate, ref errors);
+                                if (!result.Columns.Contains(calcResult.Key + related.Key))
+                                    result.Columns.Add(new DataColumn(calcResult.Key + related.Key));
+                                row.Row[calcResult.Key + related.Key] = calcResult.Value;
+                            }
+                        else // no related values for the calculation, this is for metadata values.
                         {
-                            var calcResult = calc.GetCalculatedValue(field.TypeId + field.Key, related.Value, adminLevelDemo, yearEndDate);
-                            if (!result.Columns.Contains(calcResult.Key + related.Key))
-                                result.Columns.Add(new DataColumn(calcResult.Key + related.Key));
-                            row.Row[calcResult.Key + related.Key] = calcResult.Value;
+                            var calcResult = calc.GetCalculatedValue(field.TypeId + field.Key, null, adminLevelDemo, startDate, yearEndDate, ref errors);
+                            if (!result.Columns.Contains(calcResult.Key))
+                                result.Columns.Add(new DataColumn(calcResult.Key));
+                            row.Row[calcResult.Key] = calcResult.Value;
                         }
                     }
                 }
+                reportResult.MetaDataWarning = errors;
             }
 
-            return result;
+            reportResult.DataTableResults = result;
+            return reportResult;
         }
 
         #region Shared Methods
@@ -192,7 +209,7 @@ namespace Nada.Model.Reports
                 DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
                 dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
                 result.Rows.Add(dr);
-                resultDic.Add(rowKey, new ReportRow { Row = dr, AdminLevelId = level.Id, Year = year });
+                resultDic.Add(rowKey, new ReportRow { Row = dr, AdminLevelId = level.Id, AdminLevelName = level.Name, Year = year });
             }
 
             // add column if it doesn't exist
@@ -340,23 +357,22 @@ namespace Nada.Model.Reports
             + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = " + entityTypeId
             + " AND InterventionTypes.ID in (" + String.Join(", ", options.SelectedIndicators.Select(i => i.TypeId.ToString()).Distinct().ToArray()) + ") "
             + ReportRepository.CreateYearFilter(options, "DateReported") + ReportRepository.CreateAdminFilter(options)
-            ;
-            // TEST NO GROUP BY, why group by?
-//            + @"
-//                        GROUP BY 
-//                        AdminLevels.ID, 
-//                        AdminLevels.DisplayName,
-//                        Interventions.ID, 
-//                        [DateReported], 
-//                        Interventions.PcIntvRoundNumber, 
-//                        InterventionTypes.InterventionTypeName,     
-//                        InterventionTypes.ID,      
-//                        InterventionIndicators.ID, 
-//                        InterventionIndicators.DisplayName, 
-//                        InterventionIndicators.IsDisplayed, 
-//                        InterventionIndicators.DataTypeId, 
-//                        InterventionIndicators.AggTypeId, 
-//                        InterventionIndicatorValues.DynamicValue";
+            // Group by is so that when multiple calcs reference the same indicator we only get it once.
+            +@"
+                        GROUP BY 
+                        AdminLevels.ID, 
+                        AdminLevels.DisplayName,
+                        Interventions.ID, 
+                        [DateReported], 
+                        Interventions.PcIntvRoundNumber, 
+                        InterventionTypes.InterventionTypeName,     
+                        InterventionTypes.ID,      
+                        InterventionIndicators.ID, 
+                        InterventionIndicators.DisplayName, 
+                        InterventionIndicators.IsDisplayed, 
+                        InterventionIndicators.DataTypeId, 
+                        InterventionIndicators.AggTypeId, 
+                        InterventionIndicatorValues.DynamicValue";
 
             repo.AddIndicatorsToAggregate(intv, options, dic, command, connection, getAggKey, getName, getType, sind, true);
 
@@ -382,21 +398,20 @@ namespace Nada.Model.Reports
                                IndicatorCalculations.IndicatorId in "
             + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
             + entityTypeId + ReportRepository.CreateYearFilter(options, "DateReported") + ReportRepository.CreateAdminFilter(options)
-            ;
-//            + @"
-//                        GROUP BY  
-//                        AdminLevels.ID, 
-//                        AdminLevels.DisplayName,
-//                        DiseaseDistributions.ID, 
-//                        DatePart('yyyy', [DateReported]), 
-//                        Diseases.DisplayName,       
-//                        Diseases.ID,   
-//                        DiseaseDistributionIndicators.ID, 
-//                        DiseaseDistributionIndicators.DisplayName, 
-//                        DiseaseDistributionIndicators.IsDisplayed, 
-//                        DiseaseDistributionIndicators.DataTypeId, 
-//                        DiseaseDistributionIndicators.AggTypeId, 
-//                        DiseaseDistributionIndicatorValues.DynamicValue";
+            + @"
+                        GROUP BY  
+                        AdminLevels.ID, 
+                        AdminLevels.DisplayName,
+                        DiseaseDistributions.ID, 
+                        [DateReported], 
+                        Diseases.DisplayName,       
+                        Diseases.ID,   
+                        DiseaseDistributionIndicators.ID, 
+                        DiseaseDistributionIndicators.DisplayName, 
+                        DiseaseDistributionIndicators.IsDisplayed, 
+                        DiseaseDistributionIndicators.DataTypeId, 
+                        DiseaseDistributionIndicators.AggTypeId, 
+                        DiseaseDistributionIndicatorValues.DynamicValue";
 
             repo.AddIndicatorsToAggregate(dd, options, dic, command, connection, getAggKey, getName, getType, sind, true);
 
@@ -423,21 +438,20 @@ namespace Nada.Model.Reports
                               IndicatorCalculations.IndicatorId in "
             + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
             + entityTypeId + ReportRepository.CreateYearFilter(options, "DateReported") + ReportRepository.CreateAdminFilter(options)
-            ;
-//            + @"
-//                        GROUP BY 
-//                        AdminLevels.ID, 
-//                        AdminLevels.DisplayName,
-//                        Surveys.ID, 
-//                        DatePart('yyyy', [DateReported]), 
-//                        SurveyTypes.SurveyTypeName,        
-//                        SurveyTypes.ID,      
-//                        SurveyIndicators.ID, 
-//                        SurveyIndicators.DisplayName, 
-//                        SurveyIndicators.IsDisplayed, 
-//                        SurveyIndicators.DataTypeId, 
-//                        SurveyIndicators.AggTypeId,    
-//                        SurveyIndicatorValues.DynamicValue";
+            + @"
+                        GROUP BY 
+                        AdminLevels.ID, 
+                        AdminLevels.DisplayName,
+                        Surveys.ID, 
+                        [DateReported], 
+                        SurveyTypes.SurveyTypeName,        
+                        SurveyTypes.ID,      
+                        SurveyIndicators.ID, 
+                        SurveyIndicators.DisplayName, 
+                        SurveyIndicators.IsDisplayed, 
+                        SurveyIndicators.DataTypeId, 
+                        SurveyIndicators.AggTypeId,    
+                        SurveyIndicatorValues.DynamicValue";
 
             repo.AddIndicatorsToAggregate(survey, options, dic, command, connection, getAggKey, getName, getType, sind, true);
         }

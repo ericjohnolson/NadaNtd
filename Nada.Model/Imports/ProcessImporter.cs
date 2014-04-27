@@ -22,7 +22,7 @@ namespace Nada.Model
             {
 
                 if (type != null)
-                    return TranslationLookup.GetValue("ProcessIndicators") + " " + TranslationLookup.GetValue("Import") + " - " + type.TypeName;
+                    return TranslationLookup.GetValue("ProcessIndicators") + " " + TranslationLookup.GetValue("Import") + " - " + type.TypeName.RemoveIllegalPathChars();
                 else
                     return TranslationLookup.GetValue("ProcessIndicators") + " " + TranslationLookup.GetValue("Import");
             }
@@ -37,6 +37,12 @@ namespace Nada.Model
         {
             type = repo.GetProcessType(id);
             Indicators = type.Indicators;
+            DropDownValues = type.IndicatorDropdownValues;
+        }
+
+        protected override void ReloadDropdownValues()
+        {
+            type = repo.GetProcessType(type.Id);
             DropDownValues = type.IndicatorDropdownValues;
         }
 
@@ -55,7 +61,8 @@ namespace Nada.Model
             List<ProcessBase> objs = new List<ProcessBase>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-
+                if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                    continue;
                 string objerrors = "";
                 var obj = repo.Create(type.Id);
                 obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);

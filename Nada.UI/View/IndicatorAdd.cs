@@ -12,6 +12,7 @@ using Nada.Model.Repositories;
 using Nada.Model.Survey;
 using Nada.UI.AppLogic;
 using Nada.UI.Base;
+using Nada.UI.ViewModel;
 
 namespace Nada.UI.View
 {
@@ -19,17 +20,20 @@ namespace Nada.UI.View
     {
         public event Action<Indicator> OnSave = (e) => { };
         private Indicator model = new Indicator();
+        private IEnumerable<Indicator> existingIndicators = null;
 
-        public IndicatorAdd() 
+        public IndicatorAdd(IEnumerable<Indicator> vm) 
             : base()
         {
+            existingIndicators = vm;
             InitializeComponent();
         }
 
-        public IndicatorAdd(Indicator m)
+        public IndicatorAdd(IEnumerable<Indicator> vm, Indicator m)
             : base()
         {
-            model = m;
+            existingIndicators = vm;
+            model = Util.DeepClone(m);
             InitializeComponent();
         }
 
@@ -62,6 +66,17 @@ namespace Nada.UI.View
             model.DataTypeId = Convert.ToInt32(comboBox1.SelectedValue);
             model.IsEdited = true;
             model.IsDisplayed = true;
+            if (!model.IsValid())
+            {
+                errorProvider1.DataSource = bsIndicator;
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
+                return;
+            }
+            if (existingIndicators.FirstOrDefault(i => TranslationLookup.GetValue(i.DisplayName, i.DisplayName).ToLower() == model.DisplayName.ToLower() && (model.Id <= 0 || model.Id != i.Id)) != null)
+            {
+                MessageBox.Show(string.Format(Translations.ValidationMustBeUnique, Translations.Name), Translations.ValidationErrorTitle);
+                return;
+            }
             bsIndicator.EndEdit();
             OnSave(model);
             this.Close();

@@ -59,8 +59,9 @@ namespace Nada.UI.View.Reports.CustomReport
                 currentResult.DataTableResults.Columns.Remove(Translations.Location);
             grdReport.DataSource = currentResult.DataTableResults;
             LoadChart(currentResult);
+            if (!string.IsNullOrEmpty(currentResult.MetaDataWarning))
+                MessageBox.Show(currentResult.MetaDataWarning, Translations.ValidationErrorTitle);
         }
-
 
         private void editReportLink_ClickOverride()
         {

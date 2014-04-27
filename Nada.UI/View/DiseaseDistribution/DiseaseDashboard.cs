@@ -78,7 +78,7 @@ namespace Nada.UI.View.Demography
                 tblEditProcess.Visible = false;
                 tblEditSurveys.Visible = false;
 
-                lvDemo.AllColumns[5].IsVisible = false; 
+                lvDemo.AllColumns[5].IsVisible = false;
                 lvDemo.RebuildColumns();
                 lvDiseaseDistro.AllColumns[4].IsVisible = false;
                 lvDiseaseDistro.RebuildColumns();
@@ -90,7 +90,7 @@ namespace Nada.UI.View.Demography
                 lvSurveys.RebuildColumns();
             }
         }
-        
+
         private void DoLoadView(IView view)
         {
             if (view == null)
@@ -121,7 +121,7 @@ namespace Nada.UI.View.Demography
             types.Insert(0, new IntvType { Id = -1, IntvTypeName = Translations.AddNewIntvType });
             types.Insert(0, new IntvType { Id = 0, IntvTypeName = Translations.PleaseSelect });
             cbIntvTypes.DataSource = types;
-            
+
             cbIntvTypes.DropDownWidth = BaseForm.GetDropdownWidth(types.Select(t => t.IntvTypeName));
         }
 
@@ -145,8 +145,17 @@ namespace Nada.UI.View.Demography
 
         void intvWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var f = (IFetchActivities)e.Argument;
-            e.Result = f.GetIntvs();
+            try
+            {
+                var f = (IFetchActivities)e.Argument;
+                e.Result = f.GetIntvs();
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error fetching dashboard interventions. ", ex);
+                throw;
+            }
         }
 
         private void lvIntvs_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
@@ -185,7 +194,7 @@ namespace Nada.UI.View.Demography
         {
             DoCollapse(btnIntervention, pnlIntv);
         }
-        
+
         #endregion
 
         #region Surveys
@@ -219,8 +228,17 @@ namespace Nada.UI.View.Demography
 
         void surveyWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var f = (IFetchActivities)e.Argument;
-            e.Result = f.GetSurveys();
+            try
+            {
+                var f = (IFetchActivities)e.Argument;
+                e.Result = f.GetSurveys();
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error fetching dashboard surveys. ", ex);
+                throw;
+            }
         }
 
         private void lvSurveys_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
@@ -268,7 +286,7 @@ namespace Nada.UI.View.Demography
             var types = fetcher.GetDiseases().OrderBy(t => t.DisplayName).ToList();
             types.Insert(0, new Disease { Id = 0, DisplayName = Translations.PleaseSelect });
             cbNewDiseaseDistro.DataSource = types;
-            cbNewDiseaseDistro.DropDownWidth = BaseForm.GetDropdownWidth(types.Select(t=>t.DisplayName));
+            cbNewDiseaseDistro.DropDownWidth = BaseForm.GetDropdownWidth(types.Select(t => t.DisplayName));
         }
 
         private void cbNewDiseaseDistro_SelectedIndexChanged(object sender, EventArgs e)
@@ -305,8 +323,17 @@ namespace Nada.UI.View.Demography
 
         void DiseaseDistroWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var f = (IFetchActivities)e.Argument;
-            e.Result = f.GetDiseaseDistros();
+            try
+            {
+                var f = (IFetchActivities)e.Argument;
+                e.Result = f.GetDiseaseDistros();
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error fetching dashboard distributions. ", ex);
+                throw;
+            }
         }
 
         private void lvDiseaseDistros_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
@@ -367,26 +394,35 @@ namespace Nada.UI.View.Demography
 
         void DemoWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var f = (IFetchActivities)e.Argument;
-            var demo = f.GetDemography();
-            SettingsRepository repo = new SettingsRepository();
-            var adminType = repo.GetAdminLevelTypeByLevel(adminLevel.LevelNumber);
-            bool canCrud = false;
-            if (adminType != null)
-                canCrud = adminType.IsDemographyAllowed;
-            if (canCrud)
+            try
             {
-                foreach (var d in demo)
+                var f = (IFetchActivities)e.Argument;
+                var demo = f.GetDemography();
+                SettingsRepository repo = new SettingsRepository();
+                var adminType = repo.GetAdminLevelTypeByLevel(adminLevel.LevelNumber);
+                bool canCrud = false;
+                if (adminType != null)
+                    canCrud = adminType.IsDemographyAllowed;
+                if (canCrud)
                 {
-                    d.CanView = true;
-                    d.CanDelete = true;
+                    foreach (var d in demo)
+                    {
+                        d.CanView = true;
+                        d.CanDelete = true;
+                    }
                 }
+                e.Result = new DemoPayload
+                {
+                    DemoList = demo,
+                    AllowAdd = canCrud
+                };
             }
-            e.Result = new DemoPayload
+            catch (Exception ex)
             {
-                DemoList = demo,
-                AllowAdd = canCrud
-            };
+                Logger log = new Logger();
+                log.Error("Error fetching dashboard demography. ", ex);
+                throw;
+            }
         }
         public class DemoPayload
         {
@@ -453,8 +489,17 @@ namespace Nada.UI.View.Demography
 
         void processWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var f = (IFetchActivities)e.Argument;
-            e.Result = f.GetProcesses();
+            try
+            {
+                var f = (IFetchActivities)e.Argument;
+                e.Result = f.GetProcesses();
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error fetching dashboard process indicators. ", ex);
+                throw;
+            }
         }
 
         private void lvProcess_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)

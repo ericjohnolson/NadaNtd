@@ -41,11 +41,11 @@ values (3,'ExportTasIctTests',5,1,0,26,NOW());
 
 UPDATE interventionindicators Set SortOrder=SortOrder * 100; 
 insert into interventionindicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
-values (1, 'PcIntvSurveyedCoverage', 1, 25100, 26, NOW(), 0, 0, 0, 0, 0, 0);
+values (2, 'PcIntvSurveyedCoverage', 1, 25100, 26, NOW(), 0, 0, 0, 0, 0, 0);
 insert into interventionindicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
-values (1, 'PcIntvUpperConfidence', 1, 25200, 26, NOW(), 0, 0, 0, 0, 0, 0);
+values (2, 'PcIntvUpperConfidence', 1, 25200, 26, NOW(), 0, 0, 0, 0, 0, 0);
 insert into interventionindicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
-values (1, 'PcIntvLowerConfidence', 1, 25300, 26, NOW(), 0, 0, 0, 0, 0, 0);
+values (2, 'PcIntvLowerConfidence', 1, 25300, 26, NOW(), 0, 0, 0, 0, 0, 0);
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 10, ID FROM interventionindicators where displayname = 'PcIntvSurveyedCoverage'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 11, ID FROM interventionindicators where displayname = 'PcIntvSurveyedCoverage'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 12, ID FROM interventionindicators where displayname = 'PcIntvSurveyedCoverage'; 
@@ -130,14 +130,7 @@ insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SE
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 16, ID FROM interventionindicators where displayname = 'PcIntvSthAtRisk'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 16, ID FROM interventionindicators where displayname = 'PcIntvSthPsacEpiCoverage'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 16, ID FROM interventionindicators where displayname = 'PcIntvSthSacEpiCoverage'; 
-insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 16, ID FROM interventionindicators where displayname = 'PcIntvSthEpiCoverage'; 
-insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'PcIntvSthPopReqPc'; 
-insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'PcIntvSthPsacAtRisk'; 
-insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'PcIntvSthSacAtRisk'; 
-insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'PcIntvSthAtRisk'; 
-insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'PcIntvSthPsacEpiCoverage'; 
-insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'PcIntvSthSacEpiCoverage'; 
-insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'PcIntvSthEpiCoverage'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 16, ID FROM interventionindicators where displayname = 'PcIntvSthEpiCoverage';
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'PcIntvLfAtRisk'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'PcIntvLfPopRecPc'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'PcIntvLfEpiCoverage'; 
@@ -203,7 +196,7 @@ insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SE
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 10, ID FROM interventionindicators where displayname = 'PcIntvOnchoProgramCov'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 19, ID FROM interventionindicators where displayname = 'PcIntvOnchoAtRisk'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 19, ID FROM interventionindicators where displayname = 'PcIntvOnchoPopReqPc'; 
-insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 19, ID FROM interventionindicators where displayname = 'PcIntvOnchoEpiCoverageOfOncho'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 19, ID FROM interventionindicators where displayname = 'PcIntvOnchoEpiCoverage'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 19, ID FROM interventionindicators where displayname = 'PcIntvSchAtRisk'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 19, ID FROM interventionindicators where displayname = 'PcIntvSchPopReqPc'; 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 19, ID FROM interventionindicators where displayname = 'PcIntvSchSacAtRisk'; 

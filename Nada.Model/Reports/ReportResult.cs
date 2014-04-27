@@ -11,5 +11,6 @@ namespace Nada.Model.Reports
         public DataTable DataTableResults { get; set; }
         public DataTable ChartData { get; set; }
         public List<ReportIndicator> ChartIndicators { get; set; }
+        public string MetaDataWarning { get; set; }
     }
 }

@@ -20,9 +20,9 @@ namespace Nada.Model
             get
             {
                 if(cmType != null)
-                    return TranslationLookup.GetValue("DiseaseDistribution") + " " + TranslationLookup.GetValue("Import") + " - " + cmType.Disease.DisplayName;
+                    return TranslationLookup.GetValue("DiseaseDistribution") + " " + TranslationLookup.GetValue("Import") + " - " + cmType.Disease.DisplayName.RemoveIllegalPathChars();
                 else if (type != null)
-                    return TranslationLookup.GetValue("DiseaseDistribution") + " " + TranslationLookup.GetValue("Import") + " - " + type.Disease.DisplayName;
+                    return TranslationLookup.GetValue("DiseaseDistribution") + " " + TranslationLookup.GetValue("Import") + " - " + type.Disease.DisplayName.RemoveIllegalPathChars();
                 else 
                     return TranslationLookup.GetValue("DiseaseDistribution") + " " + TranslationLookup.GetValue("Import");
             }
@@ -32,6 +32,8 @@ namespace Nada.Model
         DiseaseRepository repo = new DiseaseRepository();
         protected override void SetSpecificType(int id)
         {
+            cmType = null;
+            type = null;
             var d = repo.GetDiseaseById(id);
             if (d.DiseaseType == Translations.CM)
             {
@@ -43,6 +45,20 @@ namespace Nada.Model
             {
                 type = repo.Create((DiseaseType)d.Id);
                 Indicators = type.Indicators;
+                DropDownValues = type.IndicatorDropdownValues;
+            }
+        }
+
+        protected override void ReloadDropdownValues()
+        {
+            if (cmType != null)
+            {
+                cmType = repo.CreateCm((DiseaseType)cmType.Disease.Id);
+                DropDownValues = cmType.IndicatorDropdownValues;
+            }
+            else
+            {
+                type = repo.Create((DiseaseType)type.Disease.Id);
                 DropDownValues = type.IndicatorDropdownValues;
             }
         }
@@ -69,6 +85,8 @@ namespace Nada.Model
             List<DiseaseDistroPc> objs = new List<DiseaseDistroPc>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
+                if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                    continue;
                 string objerrors = "";
                 var obj = repo.Create((DiseaseType)type.Disease.Id);
                 obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
@@ -98,6 +116,9 @@ namespace Nada.Model
             List<DiseaseDistroCm> objs = new List<DiseaseDistroCm>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
+                if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                    continue;
+
                 string objerrors = "";
                 var obj = repo.CreateCm((DiseaseType)cmType.Disease.Id);
                 obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);

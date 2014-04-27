@@ -177,6 +177,8 @@ namespace Nada.UI.View.Wizard
             }
             catch (Exception ex)
             {
+                Logger log = new Logger();
+                log.Error("Error downloading admin level import. StepAdminLevelImport:worker_DoWork. ", ex);
                 e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
             }
         }
@@ -235,6 +237,8 @@ namespace Nada.UI.View.Wizard
             }
             catch (Exception ex)
             {
+                Logger log = new Logger();
+                log.Error("Error uploading admin level import. StepAdminLevelImport:worker_DoWork. ", ex);
                 e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
             }
         }

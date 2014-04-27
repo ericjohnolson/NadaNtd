@@ -71,13 +71,16 @@ namespace Nada.UI.View
         private void lvIndicators_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
         {
             e.Handled = true;
-            IndicatorAdd modal = new IndicatorAdd((Indicator)e.Model);
+            IndicatorAdd modal = new IndicatorAdd(viewModel.Indicators.Values, (Indicator)e.Model);
             modal.OnSave += edit_OnSave;
             modal.ShowDialog();
         }
 
         private void edit_OnSave(Indicator obj)
         {
+            Indicator old = viewModel.Indicators.Values.FirstOrDefault(i => i.Id == obj.Id);
+            viewModel.Indicators.Remove(old.DisplayName);
+            viewModel.Indicators.Add(obj.DisplayName, obj);
             lvIndicators.SetObjects(viewModel.Indicators.Values.Where(i => i.IsEditable));
         }
 
@@ -107,7 +110,7 @@ namespace Nada.UI.View
 
         private void fieldLink1_OnClick()
         {
-            IndicatorAdd modal = new IndicatorAdd();
+            IndicatorAdd modal = new IndicatorAdd(viewModel.Indicators.Values);
             modal.OnSave += add_OnSave;
             modal.ShowDialog();
         }

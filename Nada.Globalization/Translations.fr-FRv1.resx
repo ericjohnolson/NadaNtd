@@ -3146,9 +3146,6 @@
   <data name="SAEDetails" xml:space="preserve">
     <value>Détails</value>
   </data>
-  <data name="SAEDetails1" xml:space="preserve">
-    <value>Détails</value>
-  </data>
   <data name="SAEDidpatienttakealcoholwithin24hoursoftreatment" xml:space="preserve">
     <value>Le patient a-t-il consommé de l'alcool dans les 24 heures suivant ou précédant le traitement ?</value>
   </data>

@@ -9,16 +9,16 @@ namespace Nada.Model.Survey
 {
     public class CalcSurvey : CalcBase, ICalcIndicators
     {
-        public override List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime? end)
+        public override List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end)
         {
+            string errors = "";
             List<KeyValuePair<string, string>> results = new List<KeyValuePair<string, string>>();
-
             foreach (string field in fields)
-                results.Add(GetCalculatedValue(field, relatedValues, null, end));
+                results.Add(GetCalculatedValue(field, relatedValues, null, start, end, ref errors));
             return results;
         }
 
-        public override KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime? end)
+        public override KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
             try
             {

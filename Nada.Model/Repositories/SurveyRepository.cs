@@ -693,6 +693,7 @@ namespace Nada.Model.Repositories
                     command = new OleDbCommand("COMMIT TRANSACTION", connection);
                     command.ExecuteNonQuery();
                     transWasStarted = false;
+                    
                 }
                 catch (Exception)
                 {
@@ -911,6 +912,8 @@ namespace Nada.Model.Repositories
             {
                 while (reader.Read())
                 {
+                    if (!survey.TypeOfSurvey.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
+                        continue;
                     survey.IndicatorValues.Add(new IndicatorValue
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),

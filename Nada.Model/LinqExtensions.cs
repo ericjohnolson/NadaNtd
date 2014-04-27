@@ -5,6 +5,7 @@ using System.Text;
 using System.Linq.Expressions;
 using System.Data;
 using System.ComponentModel;
+using System.IO;
 
 namespace Nada.Model
 {
@@ -56,5 +57,16 @@ namespace Nada.Model
             catch { }
             return result;
         }
+        
+        public static string RemoveIllegalPathChars(this string orig) 
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+            foreach (char c in invalid)
+            {
+                orig = orig.Replace(c.ToString(), "");
+            }
+            return orig;
+        }
+
     }
 }

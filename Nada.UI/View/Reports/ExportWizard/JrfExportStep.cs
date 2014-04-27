@@ -120,9 +120,17 @@ namespace Nada.UI.View.Reports
 
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            ExportParams payload = (ExportParams)e.Argument;
-            exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Questions);
-            Thread.Sleep(1000);
+            try
+            {
+                ExportParams payload = (ExportParams)e.Argument;
+                exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Questions);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error creating PC JRF:worker_DoWork. ", ex);
+                throw;
+            }
         }
 
         void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

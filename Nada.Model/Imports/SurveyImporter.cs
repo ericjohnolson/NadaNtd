@@ -21,7 +21,7 @@ namespace Nada.Model.Imports
             get
             {
                 if (sType != null)
-                    return TranslationLookup.GetValue("Survey") + " " + TranslationLookup.GetValue("Import") + " - " + sType.SurveyTypeName;
+                    return TranslationLookup.GetValue("Survey") + " " + TranslationLookup.GetValue("Import") + " - " + sType.SurveyTypeName.RemoveIllegalPathChars();
                 else
                     return TranslationLookup.GetValue("Survey") + " " + TranslationLookup.GetValue("Import");
             }
@@ -35,7 +35,12 @@ namespace Nada.Model.Imports
             sType = repo.GetSurveyType(id);
             Indicators = sType.Indicators;
             DropDownValues = sType.IndicatorDropdownValues;
+        }
 
+        protected override void ReloadDropdownValues()
+        {
+            sType = repo.GetSurveyType(sType.Id);
+            DropDownValues = sType.IndicatorDropdownValues;
         }
 
         public override List<TypeListItem> GetAllTypes()
@@ -75,6 +80,8 @@ namespace Nada.Model.Imports
             List<SurveyBase> objs = new List<SurveyBase>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
+                if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                    continue;
                 string objerrors = "";
                 var obj = repo.CreateSurvey(sType.Id);
                 int adminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);

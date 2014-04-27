@@ -71,9 +71,17 @@ namespace Nada.UI.View.Wizard
 
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Thread.Sleep(1000);
-            SettingsRepository repo = new SettingsRepository();
-            e.Result = repo.RunSchemaChangeScripts((List<string>)e.Argument);
+            try
+            {
+                SettingsRepository repo = new SettingsRepository();
+                e.Result = repo.RunSchemaChangeScripts((List<string>)e.Argument);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error updating database. UpdateDb:worker_DoWork. ", ex);
+                e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
+            }
         }
 
         void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

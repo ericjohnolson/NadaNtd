@@ -32,6 +32,7 @@ namespace Nada.Model.Repositories
         public DataRow Row { get; set; }
         public List<AggregateIndicator> CalcRelated { get; set; }
         public int AdminLevelId { get; set; }
+        public string AdminLevelName { get; set; }
         public int Year { get; set; }
     }
 
@@ -167,7 +168,6 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            // NEED TO FIGURE OUT IF I NEED TO AGGREGATE THE DEMOGRAPHY FOR THE CUSTOM REPORT... IF SO WTF?
                             DataRow dr = dt.NewRow();
                             dr[Translations.ID] = reader.GetValueOrDefault<int>("aID");
                             dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");

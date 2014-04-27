@@ -50,6 +50,7 @@ namespace Nada.UI.View.Wizard
                 h3bLabel2.SetMaxWidth(300);
                 CountryDemography d = repo.GetCountryDemoRecent();
                 vm.GrowthRate = d.GrowthRate;
+                vm.DateReported = DateTime.Now;
                 bsVm.DataSource = vm;
             }
         }
@@ -88,15 +89,15 @@ namespace Nada.UI.View.Wizard
                 SettingsRepository settings = new SettingsRepository();
                 var als = settings.GetAllAdminLevels();
                 var aggLevel = als.FirstOrDefault(a => a.IsAggregatingLevel);
-                int max = als.Max(a => a.LevelNumber);
                 int userId = ApplicationData.Instance.GetUserId();
-                repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, max, vm.DateReported);
-                // TO QA, DOES THIS WORK ANYMORE?
-                repo.AggregateUp(aggLevel, vm.DateReported.Year, userId);
+                repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, vm.DateReported);
+                repo.AggregateUp(aggLevel, vm.DateReported.Year, userId, vm.GrowthRate.Value);
                 e.Result = "";
             }
             catch (Exception ex)
             {
+                Logger log = new Logger();
+                log.Error("Error updating demography for new year. StepDemoUpdateGrowthRate:worker_DoWork. ", ex);
                 e.Result = Translations.UnexpectedException + " " + ex.Message;
             }
         }

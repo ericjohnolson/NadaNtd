@@ -466,6 +466,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string Apply {
+            get {
+                return ResourceManager.GetString("Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply country growth rate to all administrative levels.
         /// </summary>
         public static string ApplyCountryGrowthRate {
@@ -1768,6 +1777,15 @@ namespace Nada.Globalization {
         public static string Date {
             get {
                 return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date range.
+        /// </summary>
+        public static string DateRange {
+            get {
+                return ResourceManager.GetString("DateRange", resourceCulture);
             }
         }
         
@@ -3901,6 +3919,15 @@ namespace Nada.Globalization {
         public static string ImportRecordsDontMatch {
             get {
                 return ResourceManager.GetString("ImportRecordsDontMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  | Selection .
+        /// </summary>
+        public static string ImportSelectionOption {
+            get {
+                return ResourceManager.GetString("ImportSelectionOption", resourceCulture);
             }
         }
         
@@ -9764,6 +9791,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No {3} disease distribution could be found for {0} in the date range {1} - {2}..
+        /// </summary>
+        public static string ReportsNoDdInDateRange {
+            get {
+                return ResourceManager.GetString("ReportsNoDdInDateRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No demography could be found for {0} in the date range {1} - {2}..
+        /// </summary>
+        public static string ReportsNoDemographyInDateRange {
+            get {
+                return ResourceManager.GetString("ReportsNoDemographyInDateRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Year report information applies to.
         /// </summary>
         public static string ReportYear {
@@ -10079,7 +10124,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details.
+        ///   Looks up a localized string similar to Treatment Details.
         /// </summary>
         public static string SAEDetails1 {
             get {
@@ -15196,6 +15241,24 @@ namespace Nada.Globalization {
         public static string ValidationErrorTitle {
             get {
                 return ResourceManager.GetString("ValidationErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be unique.
+        /// </summary>
+        public static string ValidationMustBeUnique {
+            get {
+                return ResourceManager.GetString("ValidationMustBeUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value cannot contain special characters - ampersand.
+        /// </summary>
+        public static string ValidationNoIllegalChars {
+            get {
+                return ResourceManager.GetString("ValidationNoIllegalChars", resourceCulture);
             }
         }
         

@@ -9288,15 +9288,6 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Détails.
-        /// </summary>
-        public static string SAEDetails1 {
-            get {
-                return ResourceManager.GetString("SAEDetails1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Le patient a-t-il consommé de l&apos;alcool dans les 24 heures suivant ou précédant le traitement ?.
         /// </summary>
         public static string SAEDidpatienttakealcoholwithin24hoursoftreatment {

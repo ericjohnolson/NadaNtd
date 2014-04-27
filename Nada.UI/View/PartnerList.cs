@@ -18,6 +18,7 @@ namespace Nada.UI.View
     {
         public event Action OnSave = () => { };
 
+        List<Partner> partners = null;
         IntvRepository repo = null;
         public PartnerList()
             : base()
@@ -31,7 +32,8 @@ namespace Nada.UI.View
             {
                 Localizer.TranslateControl(this);
                 repo = new IntvRepository();
-                lvDistros.SetObjects(repo.GetPartners());
+                partners = repo.GetPartners();
+                lvDistros.SetObjects(partners);
             }
         }
         
@@ -40,7 +42,7 @@ namespace Nada.UI.View
             e.Handled = true;
             if (e.Column.AspectName == "EditText")
             {
-                PartnerAdd form = new PartnerAdd((Partner)e.Model);
+                PartnerAdd form = new PartnerAdd(partners, (Partner)e.Model);
                 form.OnSave += form_OnSave;
                 form.ShowDialog();
             }
@@ -58,7 +60,8 @@ namespace Nada.UI.View
 
         void form_OnSave(Partner obj)
         {
-            lvDistros.SetObjects(repo.GetPartners());
+            partners = repo.GetPartners();
+            lvDistros.SetObjects(partners);
             OnSave();
         }
 
@@ -69,7 +72,7 @@ namespace Nada.UI.View
 
         private void fieldLink1_OnClick()
         {
-            PartnerAdd form = new PartnerAdd();
+            PartnerAdd form = new PartnerAdd(partners);
             form.OnSave += form_OnSave;
             form.ShowDialog();
         }

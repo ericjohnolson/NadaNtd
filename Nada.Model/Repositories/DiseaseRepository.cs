@@ -53,7 +53,7 @@ namespace Nada.Model.Repositories
             }
         }
 
-        public DiseaseDistroPc GetRecentDistro(int diseaseId, int adminlevelid, DateTime? end)
+        public DiseaseDistroPc GetRecentDistro(int diseaseId, int adminlevelid, DateTime start, DateTime end)
         {
             //  OH SHIT I THINK SHE WANTS ME TO DO A DEEP SEARCH ON THE RECENT DISTRIBUTION, NOT ADMIN LEVEL ID (WTF)
             DiseaseDistroPc dd = new DiseaseDistroPc();
@@ -190,6 +190,8 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
+                            if (!diseaseDistro.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
+                                continue;
                             diseaseDistro.IndicatorValues.Add(new IndicatorValue
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
@@ -363,6 +365,9 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
+                            if(!diseaseDistro.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
+                                continue;
+
                             diseaseDistro.IndicatorValues.Add(new IndicatorValue
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),

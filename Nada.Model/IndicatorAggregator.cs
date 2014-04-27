@@ -79,19 +79,20 @@ namespace Nada.Model
         {
             AggregateIndicator result = null;
             // THIS WAS AN ATTEMPT TO FIX THIS INDICATOR BY INDICATOR ISSUE ON THE REPORTS, not sure that is correct :(
-            if (ind.ReportedDate > existingValue.ReportedDate)
-                result = ind;
-            else
-                result = existingValue;
+            //if (existingValue == null || ind.ReportedDate > existingValue.ReportedDate)
+            //    result = ind;
+            //else
+            //    result = existingValue;
+
+            //else if (ind.DataType == (int)IndicatorAggType.Recent)
+            //{
+            //    // already handled above
+            //}
 
             if (existingValue == null)
                 result.Value = ind.Value;
             else if (ind.DataType == (int)IndicatorAggType.None)
                 result.Value = Translations.NA;
-            else if (ind.DataType == (int)IndicatorAggType.Recent)
-            {
-                // already handled above
-            }
             else if (ind.AggType == (int)IndicatorAggType.Combine && ind.DataType == (int)IndicatorDataType.Dropdown)
                 result.Value = existingValue + ", " + TranslationLookup.GetValue(ind.Value, ind.Value);
             else if (ind.AggType == (int)IndicatorAggType.Combine)
@@ -106,14 +107,13 @@ namespace Nada.Model
                 result.Value = AggregateString(ind, existingValue);
 
             return result;
-            //if (val.DataType == (int)IndicatorDataType.Date)
-            //    dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : ((DateTime)val).ToString("MM/dd/yyyy");
-            //else
-            //    dic[adminLevelId].Indicators[indicatorKey].Value = val == null ? "" : val.ToString();
         }
 
         public static object ParseValue(AggregateIndicator ind)
         {
+            if (ind.Value == null)
+                return "";
+
             if (ind.DataType == (int)IndicatorDataType.Number)
                 return Double.Parse(ind.Value);
             else if (ind.DataType == (int)IndicatorDataType.Date)
@@ -121,11 +121,13 @@ namespace Nada.Model
             else
                 return ind.Value;
         }
-        public static AdminLevelDemography AggregateTree(AdminLevel node)
+        public static AdminLevelDemography AggregateTree(AdminLevel node, double? growthRate)
         {
             if(node.Children.Count == 0)
                 return node.CurrentDemography;
 
+            if(growthRate.HasValue)
+                node.CurrentDemography.GrowthRate = growthRate.Value;
             node.CurrentDemography.Pop0Month = 0;
             node.CurrentDemography.PopPsac = 0;
             node.CurrentDemography.Pop5yo = 0;
@@ -136,7 +138,7 @@ namespace Nada.Model
             node.CurrentDemography.PopSac = 0;
             foreach (var child in node.Children)
             {
-                AdminLevelDemography childDemo = AggregateTree(child);
+                AdminLevelDemography childDemo = AggregateTree(child, growthRate);
                 //public int YearCensus { get; set; }
                 //public Nullable<int> YearProjections { get; set; }
                 //public double GrowthRate { get; set; }

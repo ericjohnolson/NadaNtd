@@ -88,14 +88,15 @@ namespace Nada.UI.View.Wizard
                 SettingsRepository settings = new SettingsRepository();
                 var als = settings.GetAllAdminLevels();
                 var aggLevel = als.FirstOrDefault(a => a.IsAggregatingLevel);
-                int max = als.Max(a => a.LevelNumber);
                 int userId = ApplicationData.Instance.GetUserId();
-                repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, max, vm.DateReported);
-                repo.AggregateUp(aggLevel, vm.DateReported.Year, userId);
+                repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, vm.DateReported);
+                repo.AggregateUp(aggLevel, vm.DateReported.Year, userId, vm.GrowthRate.Value);
                 e.Result = "";
             }
             catch (Exception ex)
             {
+                Logger log = new Logger();
+                log.Error("Error updating disease distribution for new year. StepDdUpdateGrowthRate:worker_DoWork. ", ex);
                 e.Result = Translations.UnexpectedException + " " + ex.Message;
             }
         }

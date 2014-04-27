@@ -30,6 +30,9 @@ namespace Nada.UI.View.DiseaseDistribution
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return viewModel.Title; } }
+        private DateTime start = DateTime.Now.AddYears(-1);
+        private DateTime end = DateTime.Now;
+
         public void SetFocus()
         {
             btnHelp.Focus();
@@ -54,16 +57,12 @@ namespace Nada.UI.View.DiseaseDistribution
             {
                 Localizer.TranslateControl(this);
                 tblTitle.Focus();
+                dtStart.Value = start;
+                dtEnd.Value = end;
                 lblLocation.ForeColor = viewModel.FormColor;
                 lblAdminLevel.Text = viewModel.LocationName;
                 tbNotes.Text = viewModel.Notes;
-                List<KeyValuePair<string, string>> metaData = new List<KeyValuePair<string, string>>();
-                if (viewModel.Calculator != null)
-                    metaData = viewModel.Calculator.GetMetaData(
-                    viewModel.Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => viewModel.CalculatorTypeId + i.Value.DisplayName),
-                    viewModel.Location.Id);
-                if (metaData != null && metaData.Count > 0)
-                    indicatorControl1.LoadMetaData(metaData);
+                LoadMetaData();
                 if (viewModel.Indicators != null && viewModel.Indicators.Count() > 0)
                     indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorValues, viewModel.IndicatorDropdownValues, viewModel.EntityType);
                 indicatorControl1.OnAddRemove += customIndicatorControl1_OnAddRemove;
@@ -97,9 +96,23 @@ namespace Nada.UI.View.DiseaseDistribution
             }
         }
 
+        private void LoadMetaData()
+        {
+            List<KeyValuePair<string, string>> metaData = new List<KeyValuePair<string, string>>();
+            if (viewModel.Calculator != null)
+                metaData = viewModel.Calculator.GetMetaData(
+                viewModel.Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => viewModel.CalculatorTypeId + i.Value.DisplayName),
+                viewModel.Location.Id, start, end);
+            if (metaData != null && metaData.Count > 0)
+            {
+                tblDateRange.Visible = true;
+                indicatorControl1.LoadMetaData(metaData);
+            }
+        }
+
         private void statCalculator1_OnCalc()
         {
-            statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id, viewModel.CalculatorTypeId);
+            statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id, viewModel.CalculatorTypeId, start, end);
             c1Button1.Focus();
         }
 
@@ -148,6 +161,19 @@ namespace Nada.UI.View.DiseaseDistribution
             Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
             //HelpView help = new HelpView();
             //help.Show();
+        }
+
+        private void h3Link3_ClickOverride()
+        {
+            start = dtStart.Value;
+            end = dtEnd.Value;
+            LoadMetaData();
+            statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id, viewModel.CalculatorTypeId, start, end);
+        }
+
+        private void dtStart_ValueChanged(object sender, EventArgs e)
+        {
+            dtEnd.Value = dtStart.Value.AddYears(1);
         }
     }
 }

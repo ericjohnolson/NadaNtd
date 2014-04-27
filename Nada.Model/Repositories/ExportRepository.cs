@@ -606,6 +606,8 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
+                            if (!export.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
+                                continue;
                             export.IndicatorValues.Add(new IndicatorValue
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),

@@ -33,7 +33,7 @@
             this.tb1 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.h3Label1 = new Nada.UI.Controls.H3Label();
+            this.h3Label1 = new Nada.UI.Controls.H3Required();
             this.h3Label2 = new Nada.UI.Controls.H3Label();
             this.hr1 = new Nada.UI.Controls.HR();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,8 +41,10 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.c1Button1 = new C1.Win.C1Input.C1Button();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsIndicator)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // bsIndicator
@@ -96,7 +98,7 @@
             this.h3Label1.Location = new System.Drawing.Point(31, 60);
             this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label1.Name = "h3Label1";
-            this.h3Label1.Size = new System.Drawing.Size(136, 18);
+            this.h3Label1.Size = new System.Drawing.Size(148, 15);
             this.h3Label1.TabIndex = 10;
             this.h3Label1.Tag = "CustomIndicatorName";
             this.h3Label1.Text = "Custom indicator name";
@@ -209,6 +211,11 @@
             this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
             this.c1Button2.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            // 
             // IndicatorAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -232,6 +239,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsIndicator)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,7 +251,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.BindingSource bsIndicator;
         private System.Windows.Forms.ComboBox comboBox1;
-        private Controls.H3Label h3Label1;
+        private Controls.H3Required h3Label1;
         private Controls.H3Label h3Label2;
         private Controls.HR hr1;
         private System.Windows.Forms.Label label3;
@@ -251,5 +259,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private C1.Win.C1Input.C1Button c1Button1;
         private C1.Win.C1Input.C1Button c1Button2;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

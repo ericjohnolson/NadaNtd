@@ -3177,7 +3177,7 @@
     <value>Détails</value>
   </data>
   <data name="SAEDetails1" xml:space="preserve">
-    <value>Détails</value>
+    <value>Treatment Details</value>
   </data>
   <data name="SAEDidpatienttakealcoholwithin24hoursoftreatment" xml:space="preserve">
     <value>Le patient a-t-il consommé de l'alcool dans les 24 heures suivant ou précédant le traitement ?</value>
@@ -5305,5 +5305,26 @@
   </data>
   <data name="ApocDateReportGenerated" xml:space="preserve">
     <value>Date report generated</value>
+  </data>
+  <data name="ValidationMustBeUnique" xml:space="preserve">
+    <value>{0} must be unique</value>
+  </data>
+  <data name="ValidationNoIllegalChars" xml:space="preserve">
+    <value>Value cannot contain special characters - ampersand</value>
+  </data>
+  <data name="ImportSelectionOption" xml:space="preserve">
+    <value> | Selection </value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Date range</value>
+  </data>
+  <data name="ReportsNoDdInDateRange" xml:space="preserve">
+    <value>No {3} disease distribution could be found for {0} in the date range {1} - {2}.</value>
+  </data>
+  <data name="ReportsNoDemographyInDateRange" xml:space="preserve">
+    <value>No demography could be found for {0} in the date range {1} - {2}.</value>
   </data>
 </root>

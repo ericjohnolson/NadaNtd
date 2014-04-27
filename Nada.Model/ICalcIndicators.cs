@@ -4,36 +4,37 @@ using System.Linq;
 using System.Text;
 using Nada.Globalization;
 using Nada.Model.Diseases;
+using Nada.Model.Reports;
 using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
     public interface ICalcIndicators
     {
-        List<KeyValuePair<string, string>> GetMetaData(IEnumerable<string> fields, int adminLevel);
+        List<KeyValuePair<string, string>> GetMetaData(IEnumerable<string> fields, int adminLevel, DateTime start, DateTime end);
         List<KeyValuePair<string, string>> PerformCalculations(Dictionary<string, Indicator> indicators, List<IndicatorValue> indicatorValues,
-            int adminLevel, string typeId);
-        List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime? end);
-        KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime? end);
-        AdminLevelDemography GetAdminLevelDemo(int adminLevelId, DateTime end);
+            int adminLevel, string typeId, DateTime start, DateTime end);
+        List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end);
+        KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors);
+        AdminLevelDemography GetAdminLevelDemo(int adminLevelId, DateTime start, DateTime end);
     }
 
     public class CalcBase : ICalcIndicators
     {
-        protected  DemoRepository demoRepo = new DemoRepository();
+        protected DemoRepository demoRepo = new DemoRepository();
 
-        public AdminLevelDemography GetAdminLevelDemo(int adminLevelId, DateTime end)
+        public AdminLevelDemography GetAdminLevelDemo(int adminLevelId, DateTime start, DateTime end)
         {
-            return GetDemography(adminLevelId, end);
+            return GetDemography(adminLevelId, start, end);
         }
 
-        public virtual List<KeyValuePair<string, string>> GetMetaData(IEnumerable<string> fields, int adminLevel)
+        public virtual List<KeyValuePair<string, string>> GetMetaData(IEnumerable<string> fields, int adminLevel, DateTime start, DateTime end)
         {
             return new List<KeyValuePair<string, string>>();
         }
 
-        public virtual List<KeyValuePair<string, string>> PerformCalculations(Dictionary<string, Indicator> indicators, List<IndicatorValue> indicatorValues, 
-            int adminLevel, string typeId)
+        public virtual List<KeyValuePair<string, string>> PerformCalculations(Dictionary<string, Indicator> indicators, List<IndicatorValue> indicatorValues,
+            int adminLevel, string typeId, DateTime start, DateTime end)
         {
             var calculations = indicators.Values.Where(i => i.IsCalculated);
             if (calculations.Count() == 0)
@@ -45,16 +46,16 @@ namespace Nada.Model
 
             return GetCalculatedValues(
                 calculations.Select(i => typeId + i.DisplayName).ToList(),
-                values, 
-                adminLevel, null);
+                values,
+                adminLevel, start, end);
         }
 
-        public virtual List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime? end)
+        public virtual List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end)
         {
             return new List<KeyValuePair<string, string>>();
         }
 
-        public virtual KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime? end)
+        public virtual KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
             return new KeyValuePair<string, string>();
         }
@@ -107,16 +108,49 @@ namespace Nada.Model
 
         public string GetValueOrDefault(string key, Dictionary<string, string> values)
         {
-            if(values.ContainsKey(key))
+            if (values.ContainsKey(key))
                 return values[key];
             return "";
         }
 
         #region Related Recent Objects
         protected DiseaseRepository drepo = new DiseaseRepository();
-        protected AdminLevelDemography GetDemography(int adminLevelId, DateTime? end)
+        protected AdminLevelDemography GetDemography(int adminLevelId, DateTime? start, DateTime? end)
         {
-            return demoRepo.GetRecentDemography(adminLevelId, end);
+            return demoRepo.GetRecentDemography(adminLevelId, start, end);
+        }
+
+        
+        protected string GetRecentDemographyIndicator(int adminLevelId, string indicatorName, DiseaseType diseaseType, DateTime start, DateTime end, ref string errors)
+        {
+            //SavedReport report = new SavedReport();
+            //DistributionReportGenerator gen = new DistributionReportGenerator();
+            //DiseaseRepository repo = new DiseaseRepository();
+            //DemoRepository demo = new DemoRepository();
+            //DiseaseDistroPc dd = repo.Create(diseaseType);
+            //report.ReportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+            //                   new KeyValuePair<string, Indicator>(indicatorName, dd.Indicators[indicatorName])));
+            //report.ReportOptions.StartDate = start;
+            //report.ReportOptions.EndDate = end;
+            //report.ReportOptions.IsByLevelAggregation = true;
+            //report.ReportOptions.IsCountryAggregation = false;
+            //report.ReportOptions.IsNoAggregation = false;
+            //report.ReportOptions.MonthYearStarts = 1;
+
+            //var adminlevel = demo.GetAdminLevelById(adminLevelId);
+            //report.ReportOptions.SelectedAdminLevels = new List<AdminLevel> {adminlevel};
+            //ReportResult result = gen.Run(report);
+
+            //string translatedIndicator = TranslationLookup.GetValue(indicatorName, indicatorName);
+            //if (result.DataTableResults.Columns.Contains(translatedIndicator) && result.DataTableResults.Rows.Count > 1)
+            //{
+            //    return result.DataTableResults.Rows[1][translatedIndicator].ToString();
+            //}
+            //string error = string.Format(Translations.ReportsNoDdInDateRange, adminlevel.Name, start.ToShortDateString(), end.ToShortDateString(), dd.Disease.DisplayName) + Environment.NewLine;
+            //if (!errors.Contains(error))
+            //    errors += error;
+            
+            return Translations.NA;
         }
 
         protected string GetIndicatorValue(DiseaseDistroPc dd, string indicatorName)
@@ -127,61 +161,33 @@ namespace Nada.Model
             else
                 return indicator.DynamicValue;
         }
-        protected DiseaseDistroPc _lfdd = null;
-        protected DateTime _lfEnd = DateTime.MaxValue;
-        protected DateTime _sthEnd = DateTime.MaxValue;
-        protected DateTime _schEnd = DateTime.MaxValue;
-        protected DateTime _tracEnd = DateTime.MaxValue;
-        protected DateTime _onchoEnd = DateTime.MaxValue;
-        protected string GetLfDd(int adminLevelId, string indicatorName, DateTime? end)
-        {
-            if (_lfdd == null || end.HasValue && end != _lfEnd || _lfEnd != DateTime.MaxValue)
-            {
-                _lfEnd = end.HasValue ? end.Value : DateTime.MaxValue;
-                _lfdd = drepo.GetRecentDistro((int)DiseaseType.Lf, adminLevelId, end);
-            }
-            return GetIndicatorValue(_lfdd, indicatorName);
-        }
-        protected DiseaseDistroPc _sthdd = null;
-        protected string GetSthDd(int adminLevelId, string indicatorName, DateTime? end)
-        {
-            if (_sthdd == null || end.HasValue && end != _sthEnd || _sthEnd != DateTime.MaxValue)
-            {
-                _sthEnd = end.HasValue ? end.Value : DateTime.MaxValue;
-                _sthdd = drepo.GetRecentDistro((int)DiseaseType.STH, adminLevelId, end);
-            }
-            return GetIndicatorValue(_sthdd, indicatorName);
-        }
-        protected DiseaseDistroPc _schdd = null;
-        protected string GetSchDd(int adminLevelId, string indicatorName, DateTime? end)
-        {
-            if (_schdd == null || end.HasValue && end != _schEnd || _schEnd != DateTime.MaxValue)
-            {
-                _schEnd = end.HasValue ? end.Value : DateTime.MaxValue;
-                _schdd = drepo.GetRecentDistro((int)DiseaseType.Schisto, adminLevelId, end);
-            }
-            return GetIndicatorValue(_schdd, indicatorName);
-        }
-        protected DiseaseDistroPc _onchodd = null;
-        protected string GetOnchoDd(int adminLevelId, string indicatorName, DateTime? end)
-        {
-            if (_onchodd == null|| end.HasValue && end != _onchoEnd || _onchoEnd != DateTime.MaxValue)
-            {
-                _onchoEnd = end.HasValue ? end.Value : DateTime.MaxValue;
-                _onchodd = drepo.GetRecentDistro((int)DiseaseType.Oncho, adminLevelId, end);
-            }
-            return GetIndicatorValue(_onchodd, indicatorName);
-        }
-        protected DiseaseDistroPc _tradd = null;
-        protected string GetTrachomaDd(int adminLevelId, string indicatorName, DateTime? end)
-        {
-            if (_tradd == null|| end.HasValue && end != _tracEnd || _tracEnd != DateTime.MaxValue)
-            {
-                _tracEnd = end.HasValue ? end.Value : DateTime.MaxValue;
-                _tradd = drepo.GetRecentDistro((int)DiseaseType.Trachoma, adminLevelId, end);
-            }
-            return GetIndicatorValue(_tradd, indicatorName);
-        }
+        //protected string GetLfDd(int adminLevelId, string indicatorName, DateTime start, DateTime end, ref string errors)
+        //{
+        //    var lfdd = drepo.GetRecentDistro((int)DiseaseType.Lf, adminLevelId, start, end);
+        //    return GetIndicatorValue(lfdd, indicatorName);
+        //}
+        //protected string GetSthDd(int adminLevelId, string indicatorName, DateTime start, DateTime end, ref string errors)
+        //{
+        //    var _sthdd = drepo.GetRecentDistro((int)DiseaseType.STH, adminLevelId, start, end);
+        //    return GetIndicatorValue(_sthdd, indicatorName);
+        //}
+        //protected string GetSchDd(int adminLevelId, string indicatorName, DateTime start, DateTime end, ref string errors)
+        //{
+        //    var _schdd = drepo.GetRecentDistro((int)DiseaseType.Schisto, adminLevelId, start, end);
+        //    return GetIndicatorValue(_schdd, indicatorName);
+        //}
+        //protected DiseaseDistroPc _onchodd = null;
+        //protected string GetOnchoDd(int adminLevelId, string indicatorName, DateTime start, DateTime end, ref string errors)
+        //{
+        //    var _onchodd = drepo.GetRecentDistro((int)DiseaseType.Oncho, adminLevelId, start, end);
+        //    return GetIndicatorValue(_onchodd, indicatorName);
+        //}
+        //protected DiseaseDistroPc _tradd = null;
+        //protected string GetTrachomaDd(int adminLevelId, string indicatorName, DateTime start, DateTime end, ref string errors)
+        //{
+        //    var _tradd = drepo.GetRecentDistro((int)DiseaseType.Trachoma, adminLevelId, start, end);
+        //    return GetIndicatorValue(_tradd, indicatorName);
+        //}
         #endregion
     }
 

@@ -23,7 +23,7 @@ namespace Nada.Model.Imports
             get
             {
                 if (iType != null)
-                    return TranslationLookup.GetValue("Interventions") + " " + TranslationLookup.GetValue("Import") + " - " + iType.IntvTypeName;
+                    return TranslationLookup.GetValue("Interventions") + " " + TranslationLookup.GetValue("Import") + " - " + iType.IntvTypeName.RemoveIllegalPathChars();
                 else
                     return TranslationLookup.GetValue("Interventions") + " " + TranslationLookup.GetValue("Import");
             }
@@ -45,12 +45,20 @@ namespace Nada.Model.Imports
             DropDownValues = iType.IndicatorDropdownValues;
         }
 
+        protected override void ReloadDropdownValues()
+        {
+            iType = repo.GetIntvType(iType.Id);
+            DropDownValues = iType.IndicatorDropdownValues;
+        }
+
         protected override ImportResult MapAndSaveObjects(DataSet ds, int userId)
         {
             string errorMessage = "";
             List<IntvBase> objs = new List<IntvBase>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
+                if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                    continue;
                 string objerrors = "";
                 IntvBase obj = repo.CreateIntv(iType.Id);
                 obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);

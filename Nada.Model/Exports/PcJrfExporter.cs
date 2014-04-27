@@ -87,8 +87,10 @@ namespace Nada.Model.Exports
             excel.Worksheet xlsWorksheet, object missing, bool shouldTranslate)
         {
             // If district doesn't contain key
-            string value = district.Indicators[key].Value;
-            if (!district.Indicators.ContainsKey(key))
+            string value = null;
+            if (district.Indicators.ContainsKey(key))
+                value = district.Indicators[key].Value;
+            else
                 value = IndicatorAggregator.AggregateChildren(district.Children, key, null).Value;
 
             if (value != null)

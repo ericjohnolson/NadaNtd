@@ -560,6 +560,8 @@ namespace Nada.Model.Repositories
             {
                 while (reader.Read())
                 {
+                    if (!Process.ProcessType.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
+                        continue;
                     Process.IndicatorValues.Add(new IndicatorValue
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),
