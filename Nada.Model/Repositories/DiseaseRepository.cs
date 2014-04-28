@@ -52,49 +52,7 @@ namespace Nada.Model.Repositories
                 }
             }
         }
-
-        public DiseaseDistroPc GetRecentDistro(int diseaseId, int adminlevelid, DateTime start, DateTime end)
-        {
-            //  OH SHIT I THINK SHE WANTS ME TO DO A DEEP SEARCH ON THE RECENT DISTRIBUTION, NOT ADMIN LEVEL ID (WTF)
-            DiseaseDistroPc dd = new DiseaseDistroPc();
-            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    OleDbCommand command = new OleDbCommand(@"Select 
-                        DiseaseDistributions.ID
-                        FROM DiseaseDistributions
-                        WHERE DiseaseDistributions.AdminLevelId=@AdminLevelId and DiseaseDistributions.DiseaseId=@DiseaseId AND DiseaseDistributions.IsDeleted = 0
-                        " + CreateDateRange(end) + " ORDER BY DiseaseDistributions.DateReported DESC", connection);
-                    command.Parameters.Add(new OleDbParameter("@AdminLevelId", adminlevelid));
-                    command.Parameters.Add(new OleDbParameter("@DiseaseId", diseaseId));
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            var id = reader.GetValueOrDefault<int>("ID");
-                            dd = GetDiseaseDistribution(id, diseaseId);
-                        }
-                        reader.Close();
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-            return dd;
-        }
-
-        private string CreateDateRange(DateTime? end)
-        {
-            if (end.HasValue)
-                return string.Format("AND DateReported <= cdate('{0}')", end.Value.ToShortDateString());
-            return "";
-        }
-
+        
         public List<DiseaseDistroDetails> GetAllForAdminLevel(int adminLevel)
         {
             List<DiseaseDistroDetails> distros = new List<DiseaseDistroDetails>();

@@ -120,36 +120,81 @@ namespace Nada.Model
             return demoRepo.GetRecentDemography(adminLevelId, start, end);
         }
 
-        
-        protected string GetRecentDemographyIndicator(int adminLevelId, string indicatorName, DiseaseType diseaseType, DateTime start, DateTime end, ref string errors)
+        protected Dictionary<string, AdminLevelIndicators> distroDict = new Dictionary<string, AdminLevelIndicators>();
+
+        protected string GetRecentDistroIndicator(int adminLevelId, string indicatorName, DiseaseType diseaseType, DateTime start, DateTime end, ref string errors)
         {
-            //SavedReport report = new SavedReport();
-            //DistributionReportGenerator gen = new DistributionReportGenerator();
-            //DiseaseRepository repo = new DiseaseRepository();
-            //DemoRepository demo = new DemoRepository();
-            //DiseaseDistroPc dd = repo.Create(diseaseType);
-            //report.ReportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
-            //                   new KeyValuePair<string, Indicator>(indicatorName, dd.Indicators[indicatorName])));
-            //report.ReportOptions.StartDate = start;
-            //report.ReportOptions.EndDate = end;
-            //report.ReportOptions.IsByLevelAggregation = true;
-            //report.ReportOptions.IsCountryAggregation = false;
-            //report.ReportOptions.IsNoAggregation = false;
-            //report.ReportOptions.MonthYearStarts = 1;
+            AdminLevelIndicators levelInds = null;
+            string key = adminLevelId + start.ToShortDateString() + end.ToShortDateString() + diseaseType.ToString();
+            if (distroDict.ContainsKey(key))
+                levelInds = distroDict[key];
+            else
+            {
+                ReportOptions options = new ReportOptions();
+                DistributionReportGenerator gen = new DistributionReportGenerator();
+                DiseaseRepository repo = new DiseaseRepository();
+                DemoRepository demo = new DemoRepository();
+                var disease = repo.GetDiseaseById((int)diseaseType);
+                DiseaseDistroPc dd = repo.Create(diseaseType);
+                if (diseaseType == DiseaseType.STH)
+                {
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                        new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 141, DisplayName = "DDSTHPopulationRequiringPc" })));
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                        new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 142, DisplayName = "DDSTHPsacAtRisk" })));
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                        new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 143, DisplayName = "DDSTHSacAtRisk" })));
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                        new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 140, DisplayName = "DDSTHPopulationAtRisk" })));
+                }
+                else if (diseaseType == DiseaseType.Lf)
+                {
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                    new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 98, DisplayName = "DDLFPopulationAtRisk" })));
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                        new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 99, DisplayName = "DDLFPopulationRequiringPc" })));
+                }
+                else if (diseaseType == DiseaseType.Oncho)
+                {
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                    new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 111, DisplayName = "DDOnchoPopulationAtRisk" })));
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                        new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 112, DisplayName = "DDOnchoPopulationRequiringPc" })));
+                }
+                else if (diseaseType == DiseaseType.Schisto)
+                {
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                        new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 125, DisplayName = "DDSchistoPopulationAtRisk" })));
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                        new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 126, DisplayName = "DDSchistoPopulationRequiringPc" })));
+                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                        new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 127, DisplayName = "DDSchistoSacAtRisk" })));
+                }
+                else if (diseaseType == DiseaseType.Trachoma)
+                options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator((int)diseaseType,
+                    new KeyValuePair<string, Indicator>(indicatorName, new Indicator { Id = 161, DisplayName = "DDTraPopulationAtRisk" })));
 
-            //var adminlevel = demo.GetAdminLevelById(adminLevelId);
-            //report.ReportOptions.SelectedAdminLevels = new List<AdminLevel> {adminlevel};
-            //ReportResult result = gen.Run(report);
+                options.StartDate = start;
+                options.EndDate = end;
+                options.MonthYearStarts = 1;
+                var adminlevel = demo.GetAdminLevelById(adminLevelId);
+                options.SelectedAdminLevels = new List<AdminLevel> { adminlevel };
+                options.IsNoAggregation = false;
+                options.IsByLevelAggregation = true;
+                options.IsAllLocations = false;
 
-            //string translatedIndicator = TranslationLookup.GetValue(indicatorName, indicatorName);
-            //if (result.DataTableResults.Columns.Contains(translatedIndicator) && result.DataTableResults.Rows.Count > 1)
-            //{
-            //    return result.DataTableResults.Rows[1][translatedIndicator].ToString();
-            //}
-            //string error = string.Format(Translations.ReportsNoDdInDateRange, adminlevel.Name, start.ToShortDateString(), end.ToShortDateString(), dd.Disease.DisplayName) + Environment.NewLine;
-            //if (!errors.Contains(error))
-            //    errors += error;
-            
+                levelInds = gen.GetRecentDiseaseDistribution(options);
+                levelInds.StartDate = start;
+                levelInds.EndDate = end;
+                levelInds.DiseaseName = disease.DisplayName;
+            }
+            if (levelInds.Indicators.ContainsKey(indicatorName))
+            {
+                return levelInds.Indicators[indicatorName].Value.ToString();
+            }
+            string error = string.Format(Translations.ReportsNoDdInDateRange, levelInds.Name, start.ToShortDateString(), end.ToShortDateString(), levelInds.DiseaseName) + Environment.NewLine;
+            if (!errors.Contains(error))
+                errors += error;
             return Translations.NA;
         }
 

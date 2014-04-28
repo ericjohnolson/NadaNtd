@@ -58,16 +58,16 @@ namespace Nada.Model.Repositories
 
         public void AddIndicatorsToAggregate(string cmdText, ReportOptions options, Dictionary<int, AdminLevelIndicators> dic, OleDbCommand command,
             OleDbConnection connection, Func<OleDbDataReader, bool, ReportOptions, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
-            Action<CreateAggParams> addStaticIndicators, bool isCalcRelated)
+            Action<CreateAggParams> addStaticIndicators, bool isCalcRelated, bool isDemoOrDistro)
         {
             command = new OleDbCommand(cmdText, connection);
 
-            FillDictionary(command, connection, dic, options, getKey, getName, getColTypeName, addStaticIndicators, isCalcRelated);
+            FillDictionary(command, connection, dic, options, getKey, getName, getColTypeName, addStaticIndicators, isCalcRelated, isDemoOrDistro);
         }
 
         private void FillDictionary(OleDbCommand command, OleDbConnection connection, Dictionary<int, AdminLevelIndicators> dic, ReportOptions options,
             Func<OleDbDataReader, bool, ReportOptions, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
-            Action<CreateAggParams> addStaticIndicators, bool isCalcRelated)
+            Action<CreateAggParams> addStaticIndicators, bool isCalcRelated, bool isDemoOrDistro)
         {
             using (OleDbDataReader reader = command.ExecuteReader())
             {
@@ -97,8 +97,15 @@ namespace Nada.Model.Repositories
                         FormId = reader.GetValueOrDefault<int>("ID")
                     };
                     // if the adminlevel already contains the indicator for that year, aggregate
-                    if (dic[adminLevelId].Indicators.ContainsKey(indicatorKey))
+                    if (dic[adminLevelId].Indicators.ContainsKey(indicatorKey) && !isDemoOrDistro)
+                    {
                         dic[adminLevelId].Indicators[indicatorKey] = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[indicatorKey]);
+                    }
+                    else if (dic[adminLevelId].Indicators.ContainsKey(indicatorKey) && isDemoOrDistro)
+                    {
+                        if (newIndicator.ReportedDate > dic[adminLevelId].Indicators[indicatorKey].ReportedDate)
+                            dic[adminLevelId].Indicators[indicatorKey] = newIndicator;
+                    }
                     else
                     {
                         dic[adminLevelId].Indicators.Add(indicatorKey, newIndicator);
@@ -172,7 +179,10 @@ namespace Nada.Model.Repositories
                             dr[Translations.ID] = reader.GetValueOrDefault<int>("aID");
                             dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
                             dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"), reader.GetValueOrDefault<string>("TName"));
-                            dr[Translations.Year] = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported"));
+                            int year = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")); 
+                            DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
+                            dr["YearNumber"] = year;
+                            dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
                             if (keys.ContainsKey("YearCensus")) dr[Translations.YearCensus] = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
                             if (keys.ContainsKey("YearProjections")) dr[Translations.YearProjections] = reader.GetValueOrDefault<Nullable<int>>("YearProjections");
                             if (keys.ContainsKey("GrowthRate")) dr[Translations.GrowthRate] = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");

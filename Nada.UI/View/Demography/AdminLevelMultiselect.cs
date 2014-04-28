@@ -74,9 +74,14 @@ namespace Nada.UI.View
             if (selectedLevels.Count == 0)
                 return;
 
-            cbLevels.SelectedItem = levels.FirstOrDefault(l => l.Id == selectedLevels.FirstOrDefault().AdminLevelTypeId);
+            var selectedLevel = levels.FirstOrDefault(l => l.Id == selectedLevels.FirstOrDefault().AdminLevelTypeId);
+            if (selectedLevel == null)
+                levels.FirstOrDefault();
+            cbLevels.SelectedItem = selectedLevel;
 
-            foreach (var item in available.Where(i => selectedLevels.Select(a => a.Id).Contains(i.Id)))
+            List<AdminLevel> s = available.Where(i => selectedLevels.Select(a => a.Id).Contains(i.Id)).ToList();
+
+            foreach (var item in s)
             {
                 var parent = GetParent(item, available, selected);
                 if (parent != null)

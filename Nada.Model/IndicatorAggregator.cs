@@ -34,6 +34,9 @@ namespace Nada.Model
         public int LevelNumber { get; set; }
         public bool IsDistrict { get; set; }
         public Dictionary<string, AggregateIndicator> Indicators { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string DiseaseName { get; set; }
     }
 
 
@@ -62,32 +65,22 @@ namespace Nada.Model
     {
         public static AggregateIndicator AggregateChildren(List<AdminLevelIndicators> list, string key, AggregateIndicator startResult)
         {
-            AggregateIndicator aggregation = startResult;
+            AggregateIndicator result = startResult;
             foreach (var level in list)
             {
                 if (level.Indicators.ContainsKey(key))
                 {
-                    aggregation = Aggregate(level.Indicators[key], aggregation);
+                    result = Aggregate(level.Indicators[key],  result);
                 }
                 else
-                    aggregation = AggregateChildren(level.Children, key, aggregation);
+                    result = AggregateChildren(level.Children, key, result);
             }
-            return aggregation;
+            return result;
         }
 
         public static AggregateIndicator Aggregate(AggregateIndicator ind, AggregateIndicator existingValue)
         {
-            AggregateIndicator result = null;
-            // THIS WAS AN ATTEMPT TO FIX THIS INDICATOR BY INDICATOR ISSUE ON THE REPORTS, not sure that is correct :(
-            //if (existingValue == null || ind.ReportedDate > existingValue.ReportedDate)
-            //    result = ind;
-            //else
-            //    result = existingValue;
-
-            //else if (ind.DataType == (int)IndicatorAggType.Recent)
-            //{
-            //    // already handled above
-            //}
+            AggregateIndicator result = existingValue == null ? ind : existingValue;
 
             if (existingValue == null)
                 result.Value = ind.Value;
