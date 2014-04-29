@@ -74,8 +74,8 @@ namespace Nada.Model.Reports
             }
 
             ReportResult result = gen.Run(report);
+
             // loop table, make sure column exists (with 0), sum other columns to good column and delete other columns if they have em.
-            
             result.DataTableResults.Columns.Add(new DataColumn(Translations.EliminationAtRisk));
             result.DataTableResults.Columns.Add(new DataColumn(Translations.EliminationLiving));
             foreach (DataRow row in result.DataTableResults.Rows)

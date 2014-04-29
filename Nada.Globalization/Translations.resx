@@ -5333,4 +5333,10 @@ Fixed / Mobile</value>
   <data name="ReportsNoDemographyInDateRange" xml:space="preserve">
     <value>No demography could be found for {0} in the date range {1} - {2}.</value>
   </data>
+  <data name="MetaDataDateRange" xml:space="preserve">
+    <value>Date range for above data</value>
+  </data>
+  <data name="ReportChoosenDd" xml:space="preserve">
+    <value>choosen</value>
+  </data>
 </root>

@@ -53,19 +53,12 @@
             this.nadaLabel2 = new Nada.UI.Controls.H3Label();
             this.nadaLabel1 = new Nada.UI.Controls.H3Label();
             this.adminLevelPickerControl2 = new Nada.UI.View.AdminLevelPickerControl();
-            this.tblDateRange = new System.Windows.Forms.TableLayoutPanel();
-            this.h3bLabel3 = new Nada.UI.Controls.H3bLabel();
-            this.h3Link3 = new Nada.UI.Controls.H3Link();
-            this.dtStart = new System.Windows.Forms.DateTimePicker();
-            this.dtEnd = new System.Windows.Forms.DateTimePicker();
-            this.h3bLabel1 = new Nada.UI.Controls.H3bLabel();
             this.tableLayoutPanel2.SuspendLayout();
             this.tblTitle.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tblEdit.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tblDateRange.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -216,7 +209,6 @@
             this.tableLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel5.Controls.Add(this.tblDateRange, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.hr5, 0, 8);
             this.tableLayoutPanel5.Controls.Add(this.hr4, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.tblEdit, 0, 9);
@@ -236,14 +228,14 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(931, 457);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(931, 424);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // hr5
             // 
             this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.hr5.ForeColor = System.Drawing.Color.Gray;
-            this.hr5.Location = new System.Drawing.Point(3, 354);
+            this.hr5.Location = new System.Drawing.Point(3, 321);
             this.hr5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.hr5.Name = "hr5";
             this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
@@ -255,7 +247,7 @@
             // 
             this.hr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
             this.hr4.ForeColor = System.Drawing.Color.Gray;
-            this.hr4.Location = new System.Drawing.Point(3, 129);
+            this.hr4.Location = new System.Drawing.Point(3, 96);
             this.hr4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
@@ -270,7 +262,7 @@
             this.tblEdit.ColumnCount = 1;
             this.tblEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblEdit.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tblEdit.Location = new System.Drawing.Point(3, 369);
+            this.tblEdit.Location = new System.Drawing.Point(3, 336);
             this.tblEdit.Name = "tblEdit";
             this.tblEdit.RowCount = 2;
             this.tblEdit.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -345,7 +337,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel3.Controls.Add(this.tbNotes, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.h3Label3, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 144);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 111);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -385,7 +377,7 @@
             this.indicatorControl1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.indicatorControl1.BackColor = System.Drawing.Color.White;
             this.indicatorControl1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.indicatorControl1.Location = new System.Drawing.Point(0, 39);
+            this.indicatorControl1.Location = new System.Drawing.Point(0, 6);
             this.indicatorControl1.Margin = new System.Windows.Forms.Padding(0);
             this.indicatorControl1.Name = "indicatorControl1";
             this.indicatorControl1.Size = new System.Drawing.Size(923, 80);
@@ -399,7 +391,7 @@
             this.statCalculator1.BackColor = System.Drawing.Color.White;
             this.statCalculator1.Calc = null;
             this.statCalculator1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statCalculator1.Location = new System.Drawing.Point(3, 286);
+            this.statCalculator1.Location = new System.Drawing.Point(3, 253);
             this.statCalculator1.Name = "statCalculator1";
             this.statCalculator1.Size = new System.Drawing.Size(925, 55);
             this.statCalculator1.TabIndex = 59;
@@ -446,97 +438,6 @@
             this.adminLevelPickerControl2.TabIndex = 0;
             this.adminLevelPickerControl2.TextColor = System.Drawing.SystemColors.ControlText;
             // 
-            // tblDateRange
-            // 
-            this.tblDateRange.AutoSize = true;
-            this.tblDateRange.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tblDateRange.ColumnCount = 5;
-            this.tblDateRange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblDateRange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblDateRange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblDateRange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblDateRange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblDateRange.Controls.Add(this.h3bLabel1, 2, 0);
-            this.tblDateRange.Controls.Add(this.h3bLabel3, 0, 0);
-            this.tblDateRange.Controls.Add(this.h3Link3, 4, 0);
-            this.tblDateRange.Controls.Add(this.dtStart, 1, 0);
-            this.tblDateRange.Controls.Add(this.dtEnd, 3, 0);
-            this.tblDateRange.Location = new System.Drawing.Point(3, 9);
-            this.tblDateRange.Name = "tblDateRange";
-            this.tblDateRange.RowCount = 1;
-            this.tblDateRange.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblDateRange.Size = new System.Drawing.Size(398, 27);
-            this.tblDateRange.TabIndex = 72;
-            this.tblDateRange.Visible = false;
-            // 
-            // h3bLabel3
-            // 
-            this.h3bLabel3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.h3bLabel3.AutoSize = true;
-            this.h3bLabel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel3.Location = new System.Drawing.Point(0, 5);
-            this.h3bLabel3.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel3.Name = "h3bLabel3";
-            this.h3bLabel3.Size = new System.Drawing.Size(70, 16);
-            this.h3bLabel3.TabIndex = 74;
-            this.h3bLabel3.Tag = "DateRange";
-            this.h3bLabel3.Text = "DateRange";
-            this.h3bLabel3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3Link3
-            // 
-            this.h3Link3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.h3Link3.AutoSize = true;
-            this.h3Link3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Link3.BackColor = System.Drawing.Color.Transparent;
-            this.h3Link3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.h3Link3.Location = new System.Drawing.Point(362, 6);
-            this.h3Link3.Margin = new System.Windows.Forms.Padding(0);
-            this.h3Link3.Name = "h3Link3";
-            this.h3Link3.Size = new System.Drawing.Size(36, 15);
-            this.h3Link3.TabIndex = 72;
-            this.h3Link3.Tag = "Apply";
-            this.h3Link3.Text = "Apply";
-            this.h3Link3.ClickOverride += new System.Action(this.h3Link3_ClickOverride);
-            // 
-            // dtStart
-            // 
-            this.dtStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtStart.Location = new System.Drawing.Point(73, 3);
-            this.dtStart.MaxDate = new System.DateTime(2050, 12, 31, 0, 0, 0, 0);
-            this.dtStart.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtStart.Name = "dtStart";
-            this.dtStart.Size = new System.Drawing.Size(130, 21);
-            this.dtStart.TabIndex = 75;
-            this.dtStart.ValueChanged += new System.EventHandler(this.dtStart_ValueChanged);
-            // 
-            // dtEnd
-            // 
-            this.dtEnd.Enabled = false;
-            this.dtEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtEnd.Location = new System.Drawing.Point(229, 3);
-            this.dtEnd.MaxDate = new System.DateTime(2050, 12, 31, 0, 0, 0, 0);
-            this.dtEnd.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtEnd.Name = "dtEnd";
-            this.dtEnd.Size = new System.Drawing.Size(130, 21);
-            this.dtEnd.TabIndex = 76;
-            // 
-            // h3bLabel1
-            // 
-            this.h3bLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.h3bLabel1.AutoSize = true;
-            this.h3bLabel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel1.Location = new System.Drawing.Point(210, 5);
-            this.h3bLabel1.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel1.Name = "h3bLabel1";
-            this.h3bLabel1.Size = new System.Drawing.Size(11, 16);
-            this.h3bLabel1.TabIndex = 75;
-            this.h3bLabel1.Tag = "";
-            this.h3bLabel1.Text = "-";
-            this.h3bLabel1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
             // DataEntryEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -555,7 +456,7 @@
             this.Controls.Add(this.nadaLabel1);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "DataEntryEdit";
-            this.Size = new System.Drawing.Size(946, 561);
+            this.Size = new System.Drawing.Size(946, 528);
             this.Load += new System.EventHandler(this.DataEntryEdit_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -569,8 +470,6 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.tblDateRange.ResumeLayout(false);
-            this.tblDateRange.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -603,11 +502,5 @@
         private System.Windows.Forms.Label lblLocation;
         private C1.Win.C1Input.C1Button c1Button2;
         private C1.Win.C1Input.C1Button c1Button1;
-        private System.Windows.Forms.TableLayoutPanel tblDateRange;
-        private Controls.H3bLabel h3bLabel3;
-        private Controls.H3Link h3Link3;
-        private Controls.H3bLabel h3bLabel1;
-        private System.Windows.Forms.DateTimePicker dtStart;
-        private System.Windows.Forms.DateTimePicker dtEnd;
     }
 }

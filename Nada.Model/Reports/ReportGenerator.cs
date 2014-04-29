@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
@@ -222,8 +223,19 @@ namespace Nada.Model.Reports
 
             if (indicator.Name != null && !indicator.IsCalcRelated)
             {
+                if (value == null || value.ToString().Length == 0)
+                    return;
+
                 if (indicator.DataType == (int)IndicatorDataType.Dropdown)
                     value = TranslationLookup.GetValue(value.ToString(), value.ToString());
+                if (indicator.DataType == (int)IndicatorDataType.YesNo)
+                    value = (value.ToString() == "1") ? Translations.Yes : Translations.No;
+                if (indicator.DataType == (int)IndicatorDataType.Month)
+                {
+                    int month = 1;
+                    if(int.TryParse(value.ToString(), out month))
+                        value = new DateTime(2000, month, 1).ToString("MMMM", CultureInfo.InvariantCulture);
+                }
                 resultDic[rowKey].Row[indicator.Name] = value;
             }
             else // Related to a calculated field

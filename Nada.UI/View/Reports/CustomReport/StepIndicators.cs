@@ -49,6 +49,12 @@ namespace Nada.UI.View.Reports.CustomReport
         {
             report.ReportOptions.SelectedIndicators = new List<ReportIndicator>();
             AddSelectedIndicators(report.ReportOptions.SelectedIndicators, report.ReportOptions.AvailableIndicators);
+            if (report.ReportOptions.SelectedIndicators.Count == 0)
+            {
+                MessageBox.Show(Translations.ValidationErrorAddIndicator, Translations.ValidationErrorTitle);
+                return;
+            }
+
             OnSwitchStep(new StepOptions(report));
         }
 

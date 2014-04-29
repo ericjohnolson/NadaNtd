@@ -22,8 +22,11 @@ namespace Nada.UI.View
         IndicatorEntityType entityType = IndicatorEntityType.DiseaseDistribution;
         SettingsRepository settings = new SettingsRepository();
         public event Action OnAddRemove = () => { };
+        public event Action OnRangeChange = () => { };
         private List<DynamicContainer> controlList = new List<DynamicContainer>();
         private List<IndicatorDropdownValue> dropdownKeys = new List<IndicatorDropdownValue>();
+        public DateTime start = DateTime.Now.AddYears(-1);
+        public DateTime end = DateTime.Now;
 
         public IndicatorControl()
             : base()
@@ -36,6 +39,8 @@ namespace Nada.UI.View
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
+                dtStart.Value = start;
+                dtEnd.Value = end;
                 tblMetaData.Visible = false;
                 tblTopControls.Visible = false;
                 DiseaseRepository diseases = new DiseaseRepository();
@@ -107,6 +112,8 @@ namespace Nada.UI.View
             }
             this.ResumeLayout();
             tblMetaData.Visible = true;
+            lblDateRange.Visible = true;
+            tblDateRange.Visible = true;
         }
 
         [Browsable(true)]
@@ -264,6 +271,17 @@ namespace Nada.UI.View
                 return ControlFactory.CreateText(indicator, val, indicatorErrors, controlList, 100, true);
             
             return ControlFactory.CreateText(indicator, val, indicatorErrors, controlList, 21, false);
+        }
+
+        private void h3Link3_ClickOverride()
+        {
+            start = dtStart.Value;
+            end = dtEnd.Value;
+        }
+
+        private void dtStart_ValueChanged(object sender, EventArgs e)
+        {
+            dtEnd.Value = dtStart.Value.AddYears(1);
         }
     }
 }

@@ -5867,6 +5867,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date range for above data.
+        /// </summary>
+        public static string MetaDataDateRange {
+            get {
+                return ResourceManager.GetString("MetaDataDateRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mf.
         /// </summary>
         public static string Mf {
@@ -9742,6 +9751,15 @@ namespace Nada.Globalization {
         public static string ReportBuilder {
             get {
                 return ResourceManager.GetString("ReportBuilder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to choosen.
+        /// </summary>
+        public static string ReportChoosenDd {
+            get {
+                return ResourceManager.GetString("ReportChoosenDd", resourceCulture);
             }
         }
         
