@@ -83,7 +83,7 @@ namespace Nada.UI.View.Wizard
             try
             {
                 RedistrictingExpert expert = new RedistrictingExpert();
-                e.Result = expert.DoMerge((RedistrictingOptions)e.Argument);
+                e.Result = expert.Run((RedistrictingOptions)e.Argument);
             }
             catch (Exception ex)
             {

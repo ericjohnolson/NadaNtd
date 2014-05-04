@@ -82,8 +82,7 @@ namespace Nada.UI.View.Wizard
                 if (options.SplitType == SplittingType.SplitCombine)
                 {
                     options.MergeDestination.Children.AddRange(selected);
-                    // HERE
-                    OnSwitchStep(new SplitCombineConfirm(options, this));
+                    ExecuteRedistricting();
                 }
                 else
                 {
@@ -92,8 +91,7 @@ namespace Nada.UI.View.Wizard
                         MessageBox.Show(Translations.SplitChildrenAllocatedError, Translations.ValidationErrorTitle);
                         return;
                     }
-                    // HERE!
-                    OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitConfirmReview));
+                    ExecuteRedistricting();
                 }
                 return;
             }
@@ -118,7 +116,12 @@ namespace Nada.UI.View.Wizard
             if (result.HasError)
                 OnSwitchStep(new MessageBoxStep(Translations.ErrorOccured, result.ErrorMessage, true, this));
             else
-                OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitMergeConfirmReview));
+            {
+                if (options.SplitType == SplittingType.SplitCombine)
+                    OnSwitchStep(new SplitCombineConfirm(options, this));
+                else
+                    OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitConfirmReview));
+            }
         }
 
         public void worker_DoWork(object sender, DoWorkEventArgs e)
@@ -126,7 +129,7 @@ namespace Nada.UI.View.Wizard
             try
             {
                 RedistrictingExpert expert = new RedistrictingExpert();
-                e.Result = expert.DoMerge((RedistrictingOptions)e.Argument);
+                e.Result = expert.Run((RedistrictingOptions)e.Argument);
             }
             catch (Exception ex)
             {

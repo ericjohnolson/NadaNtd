@@ -13,15 +13,31 @@ namespace Nada.Model.Demography
 
     public class RedistrictingExpert
     {
-        public RedistrictingResult DoSplit(RedistrictingOptions options)
+        public RedistrictingResult Run(RedistrictingOptions options)
+        {
+            if (options.SplitType == SplittingType.Merge)
+                return DoMerge(options);
+            if (options.SplitType == SplittingType.Split)
+                return DoSplit(options);
+
+            return DoSplitCombine(options);
+        }
+        private RedistrictingResult DoSplit(RedistrictingOptions options)
+        {
+            // CREATE TRANSACTION! nees to be transactional duh?
+
+            //Insert into redistricting table...
+
+            // Move districts over to new parents
+            // split all demography
+            // split all surveys & other items
+            return new RedistrictingResult();
+        }
+        private RedistrictingResult DoSplitCombine(RedistrictingOptions options)
         {
             return new RedistrictingResult();
         }
-        public RedistrictingResult DoSplitCombine(RedistrictingOptions options)
-        {
-            return new RedistrictingResult();
-        }
-        public RedistrictingResult DoMerge(RedistrictingOptions options)
+        private RedistrictingResult DoMerge(RedistrictingOptions options)
         {
             return new RedistrictingResult();
         }
