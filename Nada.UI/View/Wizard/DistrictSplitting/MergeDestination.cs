@@ -13,7 +13,7 @@ using Nada.Model.Repositories;
 using Nada.Model;
 using Nada.UI.Base;
 using Nada.Model.Imports;
-using Nada.UI.View.Wizard.DistrictSplitting;
+using Nada.Model.Demography;
 
 namespace Nada.UI.View.Wizard
 {
@@ -22,7 +22,7 @@ namespace Nada.UI.View.Wizard
         private IWizardStep prev = null;
         private DemoRepository repo = new DemoRepository();
         private SettingsRepository settings = new SettingsRepository();
-        private SplittingOptions options = null;
+        private RedistrictingOptions options = null;
         public Action OnFinish { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
@@ -34,7 +34,7 @@ namespace Nada.UI.View.Wizard
         public bool EnableFinish { get { return false; } }
         public string StepTitle { get { return Translations.Destination; } }
 
-        public MergeDestination(SplittingOptions o, IWizardStep p)
+        public MergeDestination(RedistrictingOptions o, IWizardStep p)
             : base()
         {
             options = o;
@@ -52,11 +52,45 @@ namespace Nada.UI.View.Wizard
             if (!adminUnitAdd1.IsValid())
                 return;
             options.MergeDestination = adminUnitAdd1.GetModel();
-            if(options.SplitType == SplittingType.Merge)
-                OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitMergeConfirmReview));
+            if (options.SplitType == SplittingType.Merge)
+            {
+            }
             else
                 OnSwitchStep(new SplittingAdminLevel(options));
 
+        }
+
+        public void ExecuteRedistricting()
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            OnSwitchStep(new WorkingStep(Translations.Running));
+            worker.RunWorkerAsync(options);
+        }
+
+        public void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            RedistrictingResult result = (RedistrictingResult)e.Result;
+            if (result.HasError)
+                OnSwitchStep(new MessageBoxStep(Translations.ErrorOccured, result.ErrorMessage, true, this));
+            else
+                OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitMergeConfirmReview));
+        }
+
+        public void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                RedistrictingExpert expert = new RedistrictingExpert();
+                e.Result = expert.DoMerge((RedistrictingOptions)e.Argument);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Exception occured when performing merge (MergeDestination:worker_DoWork).", ex);
+                e.Result = new RedistrictingResult { HasError = true, ErrorMessage = Translations.UnexpectedException + " " + ex.Message };
+            }
         }
 
         public void DoFinish()

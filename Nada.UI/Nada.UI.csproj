@@ -32,7 +32,6 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>144</ApplicationRevision>
     <ApplicationRevision>141</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
@@ -509,12 +508,17 @@
     <Compile Include="View\Wizard\DistrictSplitting\SplittingAdminLevel.Designer.cs">
       <DependentUpon>SplittingAdminLevel.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Wizard\DistrictSplitting\SplittingOptions.cs" />
     <Compile Include="View\Wizard\DistrictSplitting\SplitReviewConfirm.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Wizard\DistrictSplitting\SplitReviewConfirm.Designer.cs">
       <DependentUpon>SplitReviewConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\MessageBoxStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\MessageBoxStep.Designer.cs">
+      <DependentUpon>MessageBoxStep.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Wizard\Import\ImportStepListSelection.cs">
       <SubType>UserControl</SubType>
@@ -961,6 +965,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplitReviewConfirm.resx">
       <DependentUpon>SplitReviewConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\MessageBoxStep.resx">
+      <DependentUpon>MessageBoxStep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\Import\ImportStepListSelection.resx">
       <DependentUpon>ImportStepListSelection.cs</DependentUpon>

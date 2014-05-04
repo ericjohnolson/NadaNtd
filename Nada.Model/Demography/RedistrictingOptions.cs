@@ -5,9 +5,8 @@ using System.Text;
 using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Base;
-using Nada.UI.View.Demography;
 
-namespace Nada.UI.View.Wizard.DistrictSplitting
+namespace Nada.Model.Demography
 {
     public enum SplittingType
     {
@@ -22,15 +21,15 @@ namespace Nada.UI.View.Wizard.DistrictSplitting
         public double Percent { get; set; }
     }
 
-    public class SplittingOptions : NadaClass
+    public class RedistrictingOptions : NadaClass
     {
-        public SplittingOptions()
+        public RedistrictingOptions()
         {
             SplitDestinations = new List<AdminLevelAllocation>();
         }
+        public object Dashboard { get; set; }
         public AdminLevel Source { get; set; }
         public List<AdminLevelAllocation> SplitDestinations { get; set; }
-        public DiseaseDashboard Dashboard { get; set; }
         public SplittingType SplitType { get; set; }
         public Nullable<int> SplitIntoNumber { get; set; }
         public List<AdminLevel> SplitChildren { get; set; }

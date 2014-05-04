@@ -5342,4 +5342,10 @@ Fixed / Mobile</value>
   <data name="SplittingBackupMessage" xml:space="preserve">
     <value>Please click "Next" to backup your current database before continuing this process.</value>
   </data>
+  <data name="ReviewErrors" xml:space="preserve">
+    <value>Please review the errors and fix before continuing.</value>
+  </data>
+  <data name="Running" xml:space="preserve">
+    <value>Running...</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿namespace Nada.UI.View.Wizard
+﻿using Nada.Model.Demography;
+namespace Nada.UI.View.Wizard
 {
     partial class SplittingIntoNumber
     {
@@ -47,7 +48,7 @@
             // 
             // bsImportOptions
             // 
-            this.bsImportOptions.DataSource = typeof(Nada.UI.View.Wizard.DistrictSplitting.SplittingOptions);
+            this.bsImportOptions.DataSource = typeof(RedistrictingOptions);
             // 
             // lblHowMany
             // 

@@ -15,8 +15,8 @@ using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
 using Nada.UI.Base;
-using Nada.UI.View.Wizard.DistrictSplitting;
 using OfficeOpenXml;
+using Nada.Model.Demography;
 
 namespace Nada.UI.View.Wizard
 {
@@ -26,7 +26,7 @@ namespace Nada.UI.View.Wizard
         private int index = 0;
         private List<AdminLevel> available = new List<AdminLevel>();
         private List<AdminLevel> selected = new List<AdminLevel>();
-        private SplittingOptions options;
+        private RedistrictingOptions options;
         public Action OnFinish { get; set; }
 
         public Action<IWizardStep> OnSwitchStep { get; set; }
@@ -39,7 +39,7 @@ namespace Nada.UI.View.Wizard
         public bool EnableFinish { get { return false; } }
         public string StepTitle { get { return Translations.AdministrativeLevels; } }
 
-        public SplittingDemography(SplittingOptions o, int i)
+        public SplittingDemography(RedistrictingOptions o, int i)
             : base()
         {
             options = o;
@@ -82,6 +82,7 @@ namespace Nada.UI.View.Wizard
                 if (options.SplitType == SplittingType.SplitCombine)
                 {
                     options.MergeDestination.Children.AddRange(selected);
+                    // HERE
                     OnSwitchStep(new SplitCombineConfirm(options, this));
                 }
                 else
@@ -91,7 +92,7 @@ namespace Nada.UI.View.Wizard
                         MessageBox.Show(Translations.SplitChildrenAllocatedError, Translations.ValidationErrorTitle);
                         return;
                     }
-
+                    // HERE!
                     OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitConfirmReview));
                 }
                 return;
@@ -100,7 +101,39 @@ namespace Nada.UI.View.Wizard
             if (options.SplitType == SplittingType.SplitCombine)
                 options.MergeDestination.Children.AddRange(selected);
             OnSwitchStep(new SplittingDemography(options, index + 1));
+        }
 
+        public void ExecuteRedistricting()
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            OnSwitchStep(new WorkingStep(Translations.Running));
+            worker.RunWorkerAsync(options);
+        }
+
+        public void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            RedistrictingResult result = (RedistrictingResult)e.Result;
+            if (result.HasError)
+                OnSwitchStep(new MessageBoxStep(Translations.ErrorOccured, result.ErrorMessage, true, this));
+            else
+                OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitMergeConfirmReview));
+        }
+
+        public void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                RedistrictingExpert expert = new RedistrictingExpert();
+                e.Result = expert.DoMerge((RedistrictingOptions)e.Argument);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Exception occured when performing merge (MergeDestination:worker_DoWork).", ex);
+                e.Result = new RedistrictingResult { HasError = true, ErrorMessage = Translations.UnexpectedException + " " + ex.Message };
+            }
         }
 
         public void DoFinish()

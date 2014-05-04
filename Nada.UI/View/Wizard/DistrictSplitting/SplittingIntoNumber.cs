@@ -13,7 +13,7 @@ using Nada.Model.Repositories;
 using Nada.Model;
 using Nada.UI.Base;
 using Nada.Model.Imports;
-using Nada.UI.View.Wizard.DistrictSplitting;
+using Nada.Model.Demography;
 
 namespace Nada.UI.View.Wizard
 {
@@ -21,7 +21,7 @@ namespace Nada.UI.View.Wizard
     {
         private DemoRepository repo = new DemoRepository();
         private SettingsRepository settings = new SettingsRepository();
-        private SplittingOptions options = null;
+        private RedistrictingOptions options = null;
         public Action OnFinish { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
@@ -33,7 +33,7 @@ namespace Nada.UI.View.Wizard
         public bool EnableFinish { get { return false; } }
         public string StepTitle { get { return Translations.SplitHowMany; } }
 
-        public SplittingIntoNumber(SplittingOptions o)
+        public SplittingIntoNumber(RedistrictingOptions o)
             : base()
         {
             options = o;

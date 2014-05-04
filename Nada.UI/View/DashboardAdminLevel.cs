@@ -12,7 +12,6 @@ using Nada.Model.Diseases;
 using Nada.UI.AppLogic;
 using Nada.UI.Base;
 using Nada.UI.View.Wizard;
-using Nada.UI.View.Wizard.DistrictSplitting;
 using Nada.Globalization;
 
 namespace Nada.UI.View.Demography

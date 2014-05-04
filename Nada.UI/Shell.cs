@@ -27,8 +27,8 @@ using Nada.UI.View.Modals;
 using Nada.UI.View.Reports;
 using Nada.UI.View.Survey;
 using Nada.UI.View.Wizard;
-using Nada.UI.View.Wizard.DistrictSplitting;
 using Nada.UI.ViewModel;
+using Nada.Model.Demography;
 
 namespace Nada.UI
 {
@@ -323,7 +323,7 @@ namespace Nada.UI
             dash.LoadView = (v) => {  };
             dash.LoadForm = (v) => { LoadForm(v); };
             dash.StatusChanged = (s) => {  };
-            WizardForm wiz = new WizardForm(new BackupForRedistrict(new SplittingOptions { Dashboard = dash, SplitType = SplittingType.SplitCombine }),
+            WizardForm wiz = new WizardForm(new BackupForRedistrict(new RedistrictingOptions { Dashboard = dash, SplitType = SplittingType.SplitCombine }),
                 Translations.SplitCombineTitle);
             wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
             wiz.ShowDialog();
@@ -337,7 +337,7 @@ namespace Nada.UI
             dash.LoadView = (v) => { };
             dash.LoadForm = (v) => { LoadForm(v); };
             dash.StatusChanged = (s) => { };
-            WizardForm wiz = new WizardForm(new BackupForRedistrict(new SplittingOptions { Dashboard = dash, SplitType = SplittingType.Split }),
+            WizardForm wiz = new WizardForm(new BackupForRedistrict(new RedistrictingOptions { Dashboard = dash, SplitType = SplittingType.Split }),
                 Translations.SplittingTitle);
             wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
             wiz.ShowDialog();
@@ -351,7 +351,7 @@ namespace Nada.UI
             dash.LoadView = (v) => { };
             dash.LoadForm = (v) => { LoadForm(v); };
             dash.StatusChanged = (s) => { };
-            WizardForm wiz = new WizardForm(new BackupForRedistrict(new SplittingOptions { Dashboard = dash, SplitType = SplittingType.Merge }),
+            WizardForm wiz = new WizardForm(new BackupForRedistrict(new RedistrictingOptions { Dashboard = dash, SplitType = SplittingType.Merge }),
                 Translations.SplitMergeTitle);
             wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
             wiz.ShowDialog();

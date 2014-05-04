@@ -14,50 +14,61 @@ using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
 using Nada.UI.Base;
-using Nada.UI.ViewModel;
 using OfficeOpenXml;
-using Nada.Model.Demography;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class SplitReviewConfirm : BaseControl, IWizardStep
+    public partial class MessageBoxStep : BaseControl, IWizardStep
     {
-        private RedistrictingOptions options;
+        IWizardStep prev = null;
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
-        public bool ShowNext { get { return true; } }
-        public bool EnableNext { get { return true; } }
+        public bool ShowNext { get { return false; } }
+        public bool EnableNext { get { return false; } }
         public bool ShowPrev { get { return false; } }
         public bool EnablePrev { get { return false; } }
         public bool ShowFinish { get { return true; } }
         public bool EnableFinish { get { return true; } }
-        public string StepTitle { get { return Translations.SplitConfirmReviewTitle; } }
+        public string StepTitle { get; set; }
+        private string msg = "";
+        private bool wasError = false;
 
-        public SplitReviewConfirm(RedistrictingOptions o, string message)
+        public MessageBoxStep() 
             : base()
         {
-            options = o;
             InitializeComponent();
-            lblMessage.Text = message;
         }
-        
-        private void ImportOptions_Load(object sender, EventArgs e)
+
+        public MessageBoxStep(string title, string message, bool error, IWizardStep p)
+            : base()
+        {
+            wasError = error;
+            StepTitle = title;
+            msg = message;
+            prev = p;
+            InitializeComponent();
+        }
+
+        private void ImportStepResult_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
             {
-                lblMessage.SetMaxWidth(500);
+                Localizer.TranslateControl(this);
+                tbStatus.Text = msg;
+
+                if (wasError)
+                    MessageBox.Show(Translations.ReviewErrors, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public void DoPrev()
         {
-
+            OnSwitchStep(prev);
         }
 
         public void DoNext()
         {
-            OnSwitchStep(new SplitDistro(options, this));
         }
 
         public void DoFinish()
