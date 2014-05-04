@@ -5859,6 +5859,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View PowerPoint tutorial....
+        /// </summary>
+        public static string MenuViewTutorial {
+            get {
+                return ResourceManager.GetString("MenuViewTutorial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date range for above data.
         /// </summary>
         public static string MetaDataDateRange {

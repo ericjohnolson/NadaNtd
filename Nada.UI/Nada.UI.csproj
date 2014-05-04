@@ -32,7 +32,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>140</ApplicationRevision>
+    <ApplicationRevision>144</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -436,6 +436,12 @@
     <Compile Include="View\Wizard\DiseaseDistro\StepDdUpdateOptions.Designer.cs">
       <DependentUpon>StepDdUpdateOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\DistrictSplitting\BackupForRedistrict.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\DistrictSplitting\BackupForRedistrict.Designer.cs">
+      <DependentUpon>BackupForRedistrict.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\DistrictSplitting\SplitProcesses.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -677,10 +683,10 @@
     <Compile Include="Controls\AdminLevelPickerControl.Designer.cs">
       <DependentUpon>AdminLevelPickerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseDashboard.cs">
+    <Compile Include="View\DiseaseDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseDashboard.Designer.cs">
+    <Compile Include="View\DiseaseDashboard.Designer.cs">
       <DependentUpon>DiseaseDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DiseaseDistribution\DiseaseAdd.cs">
@@ -916,6 +922,9 @@
     <EmbeddedResource Include="View\Wizard\DiseaseDistro\StepDdUpdateOptions.resx">
       <DependentUpon>StepDdUpdateOptions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\DistrictSplitting\BackupForRedistrict.resx">
+      <DependentUpon>BackupForRedistrict.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplitProcesses.resx">
       <DependentUpon>SplitProcesses.cs</DependentUpon>
     </EmbeddedResource>
@@ -1036,7 +1045,7 @@
     <EmbeddedResource Include="Controls\AdminLevelPickerControl.resx">
       <DependentUpon>AdminLevelPickerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDashboard.resx">
+    <EmbeddedResource Include="View\DiseaseDashboard.resx">
       <DependentUpon>DiseaseDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseAdd.resx">
@@ -1086,6 +1095,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\00NadaDatabaseBaseline.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.01.00.0004.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0003.sql">

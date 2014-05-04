@@ -337,6 +337,7 @@
             this.menuNewYearDistroToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.menuNewYearDistroToolStripMenuItem.Tag = "MenuNewYearDistro";
             this.menuNewYearDistroToolStripMenuItem.Text = "MenuNewYearDistro";
+            this.menuNewYearDistroToolStripMenuItem.Visible = false;
             this.menuNewYearDistroToolStripMenuItem.Click += new System.EventHandler(this.menuNewYearDistroToolStripMenuItem_Click);
             // 
             // menuSplitDistrictToolStripMenuItem

@@ -12068,6 +12068,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup database before continuing.
+        /// </summary>
+        public static string SplittingBackup {
+            get {
+                return ResourceManager.GetString("SplittingBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please click &quot;Next&quot; to backup your current database before continuing this process..
+        /// </summary>
+        public static string SplittingBackupMessage {
+            get {
+                return ResourceManager.GetString("SplittingBackupMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string SplittingOptions {
@@ -12190,15 +12208,6 @@ namespace Nada.Globalization {
         public static string StartLink {
             get {
                 return ResourceManager.GetString("StartLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string StartMonthForReportYear {
-            get {
-                return ResourceManager.GetString("StartMonthForReportYear", resourceCulture);
             }
         }
         

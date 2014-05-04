@@ -66,7 +66,8 @@ namespace Nada.UI.ViewModel
             {
                 Name = "dynamicDt" + indicator.Id.ToString(),
                 Margin = new Padding(0, 5, 10, bottomPadding),
-                ShowClear = !indicator.IsRequired
+                ShowClear = !indicator.IsRequired,
+                Value = DateTime.Now
             };
             container.IsValid = () =>
             {

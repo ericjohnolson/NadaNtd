@@ -277,6 +277,7 @@ namespace Nada.UI.View
         {
             start = dtStart.Value;
             end = dtEnd.Value;
+            OnRangeChange();
         }
 
         private void dtStart_ValueChanged(object sender, EventArgs e)

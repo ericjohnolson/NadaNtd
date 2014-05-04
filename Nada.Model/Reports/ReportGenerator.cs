@@ -88,6 +88,7 @@ namespace Nada.Model.Reports
             // Create table
             ReportResult reportResult = new ReportResult();
             DataTable result = new DataTable();
+            result.Columns.Add(new DataColumn(Translations.ID));
             result.Columns.Add(new DataColumn(Translations.Location));
             result.Columns.Add(new DataColumn(Translations.Type));
             result.Columns.Add(new DataColumn(Translations.Year));
@@ -203,6 +204,7 @@ namespace Nada.Model.Reports
                     }
                     dr[parents[i].LevelName] = parents[i].Name;
                 }
+                dr[Translations.ID] = level.Id;
                 dr[Translations.Location] = level.Name;
                 dr[Translations.Type] = typeName;
                 DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);

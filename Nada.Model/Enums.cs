@@ -33,8 +33,17 @@ namespace Nada.Model
         Min = 2,
         Max = 3,
         Combine = 4,
-        None = 5,
-        Recent = 6
+        None = 5
+    }
+
+    public enum RedistrictingRule
+    {
+        None = 1,
+        Min = 2, // worst case with weighting
+        Max = 3, // best case with weighting
+        Combine = 4,
+        Sum = 5,
+        SplitByPercent = 6,
     }
 
     public enum IndicatorEntityType
@@ -110,4 +119,5 @@ namespace Nada.Model
         CmJrf = 2,
         Tas = 3
     }
+
 }

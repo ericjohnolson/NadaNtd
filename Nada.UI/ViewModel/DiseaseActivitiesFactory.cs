@@ -140,7 +140,14 @@ namespace Nada.UI.AppLogic
 
         #region Demo
         public List<DemoDetails> GetDemography() { return demos.GetAdminLevelDemography(adminLevel.Id); }
-        public void Delete(DemoDetails details, int userId) { demos.Delete(details, userId); }
+        public void Delete(DemoDetails details, int userId)
+        {
+            SettingsRepository settings = new SettingsRepository();
+            var type = settings.GetAdminLevelTypeByLevel(adminLevel.LevelNumber);
+            demos.Delete(details, userId);
+            if (type.IsAggregatingLevel)
+                demos.AggregateUp(type, details.DateReported, userId, null);
+        }
         public IView NewDemo()
         {
             return new DemographyView(adminLevel);

@@ -166,7 +166,7 @@ namespace Nada.Model
                 demo.Save(demos, userId);
 
                 if (doAggregate)
-                    demo.AggregateUp(locationType, dateReported.Year, userId, null);
+                    demo.AggregateUp(locationType, dateReported, userId, null);
 
                 int rec = demos.Count;
                 return new ImportResult
@@ -437,7 +437,7 @@ namespace Nada.Model
                 demo.BulkImportAdminLevelsForLevel(levels, locationType.Id, userId);
 
                 if (doAggregate)
-                    demo.AggregateUp(locationType, dateReported.Year, userId, null); // Do I just use this year, what does it break?
+                    demo.AggregateUp(locationType, dateReported, userId, null); 
 
                 int rec = levels.Count;
                 return new ImportResult

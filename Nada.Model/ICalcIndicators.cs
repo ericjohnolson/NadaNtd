@@ -176,7 +176,7 @@ namespace Nada.Model
 
                 options.StartDate = start;
                 options.EndDate = end;
-                options.MonthYearStarts = 1;
+                options.MonthYearStarts = start.Month;
                 var adminlevel = demo.GetAdminLevelById(adminLevelId);
                 options.SelectedAdminLevels = new List<AdminLevel> { adminlevel };
                 options.IsNoAggregation = false;
@@ -188,9 +188,12 @@ namespace Nada.Model
                 levelInds.EndDate = end;
                 levelInds.DiseaseName = disease.DisplayName;
             }
-            if (levelInds.Indicators.ContainsKey(indicatorName))
+            if (levelInds.Indicators.ContainsKey(indicatorName) )
             {
-                return levelInds.Indicators[indicatorName].Value.ToString();
+                if(!string.IsNullOrEmpty(levelInds.Indicators[indicatorName].Value))
+                    return levelInds.Indicators[indicatorName].Value.ToString();
+                else
+                    return "";
             }
             string error = string.Format(Translations.ReportsNoDdInDateRange, levelInds.Name, start.ToShortDateString(), end.ToShortDateString(), levelInds.DiseaseName) + Environment.NewLine;
             if (!errors.Contains(error))

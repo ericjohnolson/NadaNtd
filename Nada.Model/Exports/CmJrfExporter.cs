@@ -41,8 +41,9 @@ namespace Nada.Model.Exports
                 var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
                 CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReporting);
                 Country country = demo.GetCountry();
+                DateTime reportingYearStart = new DateTime(yearReporting, country.ReportingYearStartDate.Month, country.ReportingYearStartDate.Day);
                 List<AdminLevel> demography = new List<AdminLevel>();
-                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, yearReporting, ref demography);
+                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, reportingYearStart, ref demography);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[2];
                 AddContactsPage(xlsWorksheet, rng, questions, country);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[3];

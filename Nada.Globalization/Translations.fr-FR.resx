@@ -5333,4 +5333,13 @@
   <data name="ReportChoosenDd" xml:space="preserve">
     <value>choosen</value>
   </data>
+  <data name="MenuViewTutorial" xml:space="preserve">
+    <value>View PowerPoint tutorial...</value>
+  </data>
+  <data name="SplittingBackup" xml:space="preserve">
+    <value>Backup database before continuing</value>
+  </data>
+  <data name="SplittingBackupMessage" xml:space="preserve">
+    <value>Please click "Next" to backup your current database before continuing this process.</value>
+  </data>
 </root>

@@ -142,8 +142,8 @@ namespace Nada.Model
                 node.CurrentDemography.PopAdult += childDemo.PopAdult.HasValue ? childDemo.PopAdult.Value : 0;
                 node.CurrentDemography.PopFemale += childDemo.PopFemale.HasValue ? childDemo.PopFemale.Value : 0;
                 node.CurrentDemography.PopMale += childDemo.PopMale.HasValue ? childDemo.PopMale.Value : 0;
-                node.CurrentDemography.TotalPopulation += childDemo.TotalPopulation;
-                node.CurrentDemography.PopSac += childDemo.PopSac;
+                node.CurrentDemography.TotalPopulation += childDemo.TotalPopulation.HasValue ? childDemo.TotalPopulation.Value : 0;
+                node.CurrentDemography.PopSac += childDemo.PopSac.HasValue ? childDemo.PopSac.Value : 0;
             }
             return node.CurrentDemography;
         }
@@ -182,8 +182,14 @@ namespace Nada.Model
 
         private static string AggregateDouble(AggregateIndicator ind1, AggregateIndicator existingValue)
         {
-            double i1 = Double.Parse(ind1.Value);
-            double i2 = Double.Parse(existingValue.Value);
+            double i1 = 0, i2 = 0;
+            if (!Double.TryParse(ind1.Value, out i1) && !Double.TryParse(existingValue.Value, out i2))
+                return "";
+            if (!Double.TryParse(ind1.Value, out i1))
+                return i2.ToString();
+            if (!Double.TryParse(existingValue.Value, out i2))
+                return i1.ToString();
+
             if (ind1.AggType == (int)IndicatorAggType.Sum)
                 return (i1 + i2).ToString();
             if (ind1.AggType == (int)IndicatorAggType.Min)

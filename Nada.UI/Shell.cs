@@ -323,7 +323,7 @@ namespace Nada.UI
             dash.LoadView = (v) => {  };
             dash.LoadForm = (v) => { LoadForm(v); };
             dash.StatusChanged = (s) => {  };
-            WizardForm wiz = new WizardForm(new MergingSources(new SplittingOptions { Dashboard = dash, SplitType = SplittingType.SplitCombine }, Translations.SplitCombineSource),
+            WizardForm wiz = new WizardForm(new BackupForRedistrict(new SplittingOptions { Dashboard = dash, SplitType = SplittingType.SplitCombine }),
                 Translations.SplitCombineTitle);
             wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
             wiz.ShowDialog();
@@ -337,7 +337,7 @@ namespace Nada.UI
             dash.LoadView = (v) => { };
             dash.LoadForm = (v) => { LoadForm(v); };
             dash.StatusChanged = (s) => { };
-            WizardForm wiz = new WizardForm(new SplittingSource(new SplittingOptions { Dashboard = dash,  SplitType = SplittingType.Split }),
+            WizardForm wiz = new WizardForm(new BackupForRedistrict(new SplittingOptions { Dashboard = dash, SplitType = SplittingType.Split }),
                 Translations.SplittingTitle);
             wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
             wiz.ShowDialog();
@@ -351,7 +351,7 @@ namespace Nada.UI
             dash.LoadView = (v) => { };
             dash.LoadForm = (v) => { LoadForm(v); };
             dash.StatusChanged = (s) => { };
-            WizardForm wiz = new WizardForm(new MergingSources(new SplittingOptions { Dashboard = dash, SplitType = SplittingType.Merge }, Translations.SplitMergeSource),
+            WizardForm wiz = new WizardForm(new BackupForRedistrict(new SplittingOptions { Dashboard = dash, SplitType = SplittingType.Merge }),
                 Translations.SplitMergeTitle);
             wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
             wiz.ShowDialog();

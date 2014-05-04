@@ -243,8 +243,17 @@
   <data name="Anopheles" xml:space="preserve">
     <value>Anophèles</value>
   </data>
+  <data name="ApocDateReportGenerated" xml:space="preserve">
+    <value>Date report generated</value>
+  </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Base Nationale de données des MTN</value>
+  </data>
+  <data name="ApplicationUpdate" xml:space="preserve">
+    <value>Application update</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
   </data>
   <data name="ApplyCountryGrowthRate" xml:space="preserve">
     <value>Appliquer le taux de croissance du pays à tous les niveaux administratifs</value>
@@ -369,6 +378,15 @@
   <data name="ChangePassword" xml:space="preserve">
     <value>Modifier le mot de passe &gt;</value>
   </data>
+  <data name="Chart" xml:space="preserve">
+    <value>Chart</value>
+  </data>
+  <data name="ChartBar" xml:space="preserve">
+    <value>Bar</value>
+  </data>
+  <data name="ChartLine" xml:space="preserve">
+    <value>Line</value>
+  </data>
   <data name="Checkbox" xml:space="preserve">
     <value>Cocher la case</value>
   </data>
@@ -392,6 +410,9 @@
   </data>
   <data name="ChooseYourLanguage" xml:space="preserve">
     <value>Choisissez votre langue</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
   </data>
   <data name="ClofazAvail" xml:space="preserve">
     <value>Clofazimin en vrac disponible</value>
@@ -595,6 +616,9 @@
   <data name="CountrySettings" xml:space="preserve">
     <value>Paramètres du pays</value>
   </data>
+  <data name="CreateCopyOfErrorLogFile" xml:space="preserve">
+    <value>Create copy of error log file.</value>
+  </data>
   <data name="CreateImportFile" xml:space="preserve">
     <value>Créer un fichier d'importation</value>
   </data>
@@ -643,11 +667,32 @@
   <data name="DashboardPlaceholder" xml:space="preserve">
     <value>Espace réservé pour le tableau de bord/la mise en route</value>
   </data>
+  <data name="DatabaseScriptException" xml:space="preserve">
+    <value>Database script exception</value>
+  </data>
+  <data name="DatabaseScriptFailed" xml:space="preserve">
+    <value>Update failed french.</value>
+  </data>
+  <data name="DatabaseScripts" xml:space="preserve">
+    <value>You must update your database with the latest scripts before continuing.  Please click "Next" to start.</value>
+  </data>
+  <data name="DatabaseScriptsExecuting" xml:space="preserve">
+    <value>Executing database scripts...</value>
+  </data>
+  <data name="DatabaseScriptSuccess" xml:space="preserve">
+    <value>Database script successfully executed.</value>
+  </data>
+  <data name="DatabaseUpdate" xml:space="preserve">
+    <value>Database update</value>
+  </data>
   <data name="DataType" xml:space="preserve">
     <value>Type de données</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Date range</value>
   </data>
   <data name="DateReported" xml:space="preserve">
     <value>Start date data apply to</value>
@@ -1055,6 +1100,18 @@
   <data name="EligibleMalesTargeted" xml:space="preserve">
     <value>Nombre d'hommes éligibles ciblés</value>
   </data>
+  <data name="EliminationAtRisk" xml:space="preserve">
+    <value>Number of persons at-risk</value>
+  </data>
+  <data name="EliminationEndemicDistricts" xml:space="preserve">
+    <value>Number of endemic {0} requiring PC</value>
+  </data>
+  <data name="EliminationLiving" xml:space="preserve">
+    <value>Number of persons living in areas that have achieved the criteria for stopping MDA</value>
+  </data>
+  <data name="EliminationStoppedDistricts" xml:space="preserve">
+    <value>Number of {0} that have achieved the criteria for stopping PC</value>
+  </data>
   <data name="End0" xml:space="preserve">
     <value>0 - Non endémique au-dessus du seuil de traitement</value>
   </data>
@@ -1124,8 +1181,32 @@
   <data name="ExcelFiles" xml:space="preserve">
     <value>Fichiers Excel</value>
   </data>
+  <data name="ExportApocReport" xml:space="preserve">
+    <value>APOC Report</value>
+  </data>
+  <data name="ExportImage" xml:space="preserve">
+    <value>Export image</value>
+  </data>
   <data name="ExportingData" xml:space="preserve">
     <value>Exportation des données</value>
+  </data>
+  <data name="Exports" xml:space="preserve">
+    <value>Exports</value>
+  </data>
+  <data name="ExportTasCost" xml:space="preserve">
+    <value>Budgeted cost</value>
+  </data>
+  <data name="ExportTasDays" xml:space="preserve">
+    <value>Estimated number of survey days required</value>
+  </data>
+  <data name="ExportTasIctTests" xml:space="preserve">
+    <value>Number of ICT or Brugia Rapid tests required</value>
+  </data>
+  <data name="ExportTasSources" xml:space="preserve">
+    <value>Source(s) of funding</value>
+  </data>
+  <data name="ExportTasStartYear" xml:space="preserve">
+    <value>Planned starting month and year</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
     <value>Exporter vers Excel</value>
@@ -1316,11 +1397,17 @@
   <data name="ImportLists" xml:space="preserve">
     <value>Veuillez vérifier que toutes les listes liées disposent des valeurs nécessaires.</value>
   </data>
+  <data name="ImportListsSelect" xml:space="preserve">
+    <value>Please select the values necessary for this import</value>
+  </data>
   <data name="ImportNoDataError" xml:space="preserve">
     <value>Format de fichier invalide ou aucunes données dans le fichier</value>
   </data>
   <data name="ImportRecordsDontMatch" xml:space="preserve">
     <value>Les données importées ne correspondent pas au total escompté.  Escompté {0}, actuel {1}.</value>
+  </data>
+  <data name="ImportSelectionOption" xml:space="preserve">
+    <value> | Selection </value>
   </data>
   <data name="ImportSuccess" xml:space="preserve">
     <value>{0} nouveaux documents ajoutés avec succès !</value>
@@ -1399,6 +1486,45 @@
   </data>
   <data name="IntvMbd" xml:space="preserve">
     <value>Intervention au MBD</value>
+  </data>
+  <data name="IntvPkgALB" xml:space="preserve">
+    <value>ALB</value>
+  </data>
+  <data name="IntvPkgALB2forLF" xml:space="preserve">
+    <value>ALB x 2 for LF</value>
+  </data>
+  <data name="IntvPkgDECALB" xml:space="preserve">
+    <value>DEC + ALB</value>
+  </data>
+  <data name="IntvPkgIVM" xml:space="preserve">
+    <value>IVM</value>
+  </data>
+  <data name="IntvPkgIVMALB" xml:space="preserve">
+    <value>IVM + ALB</value>
+  </data>
+  <data name="IntvPkgMBD" xml:space="preserve">
+    <value>MBD</value>
+  </data>
+  <data name="IntvPkgPZQ" xml:space="preserve">
+    <value>PZQ</value>
+  </data>
+  <data name="IntvPkgPZQALB" xml:space="preserve">
+    <value>PZQ + ALB</value>
+  </data>
+  <data name="IntvPkgPZQIVMALB" xml:space="preserve">
+    <value>PZQ + IVM + ALB</value>
+  </data>
+  <data name="IntvPkgPZQMBD" xml:space="preserve">
+    <value>PZQ + MBD</value>
+  </data>
+  <data name="IntvPkgTEO" xml:space="preserve">
+    <value>TEO</value>
+  </data>
+  <data name="IntvPkgTEOZithro" xml:space="preserve">
+    <value>TEO + Zithro</value>
+  </data>
+  <data name="IntvPkgZithro" xml:space="preserve">
+    <value>Zithro</value>
   </data>
   <data name="IntvPzq" xml:space="preserve">
     <value>Intervention au PZQ</value>
@@ -1567,6 +1693,9 @@
   </data>
   <data name="LfEnd0" xml:space="preserve">
     <value>0 - Non endémique au-dessus du seuil de traitement</value>
+  </data>
+  <data name="LfEnd0b" xml:space="preserve">
+    <value>0 - Not endemic, not above treatment threshold</value>
   </data>
   <data name="LfEnd1" xml:space="preserve">
     <value>1 - Endémique au-dessus du seuil de traitement</value>
@@ -1921,6 +2050,12 @@
   </data>
   <data name="MenuViewHelp" xml:space="preserve">
     <value>Afficher l'aide...</value>
+  </data>
+  <data name="MenuViewTutorial" xml:space="preserve">
+    <value>View PowerPoint tutorial...</value>
+  </data>
+  <data name="MetaDataDateRange" xml:space="preserve">
+    <value>Date range for above data</value>
   </data>
   <data name="Mf" xml:space="preserve">
     <value>Mf</value>
@@ -2414,6 +2549,12 @@
   <data name="OnchoM" xml:space="preserve">
     <value>M - Non cartographié</value>
   </data>
+  <data name="OnchoMapEvaluationSite" xml:space="preserve">
+    <value>Evaluation Site</value>
+  </data>
+  <data name="OnchoMapSiteName" xml:space="preserve">
+    <value>Site Name</value>
+  </data>
   <data name="OnchoMapSurAgeRange" xml:space="preserve">
     <value>Tranche d'âge</value>
   </data>
@@ -2522,6 +2663,9 @@
   <data name="OnchoSurAttendanceRate" xml:space="preserve">
     <value>Taux de fréquentation</value>
   </data>
+  <data name="OnchoSurCatchingPoint" xml:space="preserve">
+    <value>Nom du point de capture</value>
+  </data>
   <data name="OnchoSurCmfl" xml:space="preserve">
     <value>CMFC</value>
   </data>
@@ -2531,8 +2675,17 @@
   <data name="OnchoSurEndDateOfSurvey" xml:space="preserve">
     <value>Date de fin de l'enquête</value>
   </data>
+  <data name="OnchoSurEntomological" xml:space="preserve">
+    <value>Onchocerciasis (River Blindness) Entomological survey</value>
+  </data>
   <data name="OnchoSurEntomologicalAssessmentConducted" xml:space="preserve">
     <value>Une évaluation entomologique a-t-elle été menée ?</value>
+  </data>
+  <data name="OnchoSurEvaluationSite" xml:space="preserve">
+    <value>Evaluation Site</value>
+  </data>
+  <data name="OnchoSurFliesDissected" xml:space="preserve">
+    <value>Nombre de simulies disséquées</value>
   </data>
   <data name="OnchoSurIfEcologicalAssessmentRiver" xml:space="preserve">
     <value>Si une évaluation écologique a été menée, nom du bassin fluvial</value>
@@ -2558,11 +2711,38 @@
   <data name="OnchoSurIfTestTypeIsNpPerWri" xml:space="preserve">
     <value>Si le test est une palpation des nodules, morbidité dermatologique - % de personnes souffrant de plissement de la peau (inélasticité)</value>
   </data>
+  <data name="OnchoSurInfectedFlies" xml:space="preserve">
+    <value>Nombre de simulies infectées</value>
+  </data>
+  <data name="OnchoSurInfectionRate" xml:space="preserve">
+    <value>Taux d'infestation</value>
+  </data>
+  <data name="OnchoSurInfectiveFlies" xml:space="preserve">
+    <value>Nombre de simulies infectieuses</value>
+  </data>
+  <data name="OnchoSurInfectiveLarvae" xml:space="preserve">
+    <value>Nombre de larves infectantes</value>
+  </data>
+  <data name="OnchoSurInfectivityRate" xml:space="preserve">
+    <value>Taux d'infectivité</value>
+  </data>
+  <data name="OnchoSurLat" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
   <data name="OnchoSurLatitude" xml:space="preserve">
     <value>Latitude</value>
   </data>
+  <data name="OnchoSurLng" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
   <data name="OnchoSurLongitude" xml:space="preserve">
     <value>Longitude</value>
+  </data>
+  <data name="OnchoSurMonth" xml:space="preserve">
+    <value>Mois de collecte des simulies</value>
+  </data>
+  <data name="OnchoSurNoFlies" xml:space="preserve">
+    <value>Nombre de simulies collectées</value>
   </data>
   <data name="OnchoSurNumberOfIndividualsExamined" xml:space="preserve">
     <value>Nombre de personnes examinées</value>
@@ -2573,14 +2753,38 @@
   <data name="OnchoSurNumberOfRoundsOfPcCompletedPrior" xml:space="preserve">
     <value>Nombre de tournées de CP terminées avant la mise en œuvre de l'enquête</value>
   </data>
+  <data name="OnchoSurParousFlies" xml:space="preserve">
+    <value>Nombre de simulies pares</value>
+  </data>
+  <data name="OnchoSurParousFliesDisected" xml:space="preserve">
+    <value>Number of parous flies dissected</value>
+  </data>
+  <data name="OnchoSurParousFliesInfected" xml:space="preserve">
+    <value>Number of parous flies infected</value>
+  </data>
+  <data name="OnchoSurParousRate" xml:space="preserve">
+    <value>Taux de parturité</value>
+  </data>
   <data name="OnchoSurPercentPositive" xml:space="preserve">
     <value>Pourcentage positifs</value>
+  </data>
+  <data name="OnchoSurProject" xml:space="preserve">
+    <value>Nom du projet</value>
   </data>
   <data name="OnchoSurRegistrationPopulation" xml:space="preserve">
     <value>Population enregistrée</value>
   </data>
   <data name="OnchoSurReportedPopulation" xml:space="preserve">
     <value>Population signalée</value>
+  </data>
+  <data name="OnchoSurRiver" xml:space="preserve">
+    <value>Nom de la rivière</value>
+  </data>
+  <data name="OnchoSurRiverBasin" xml:space="preserve">
+    <value>Nom du bassin fluvial</value>
+  </data>
+  <data name="OnchoSurSiteName" xml:space="preserve">
+    <value>Site Name</value>
   </data>
   <data name="OnchoSurStandardizedPrevelance" xml:space="preserve">
     <value>Prévalence standardisée</value>
@@ -2684,6 +2888,18 @@
   <data name="PcIntvLengthOfStockOut" xml:space="preserve">
     <value>Durée de l'épuisement des stocks</value>
   </data>
+  <data name="PcIntvLfAtRisk" xml:space="preserve">
+    <value>LF at-risk population</value>
+  </data>
+  <data name="PcIntvLfEpiCoverage" xml:space="preserve">
+    <value>LF Epi coverage</value>
+  </data>
+  <data name="PcIntvLfPopRecPc" xml:space="preserve">
+    <value>LF population requiring PC</value>
+  </data>
+  <data name="PcIntvLowerConfidence" xml:space="preserve">
+    <value>Lower confidence interval of surveyed coverage</value>
+  </data>
   <data name="PcIntvMalesTreatedProportion" xml:space="preserve">
     <value>Proportion des hommes traités</value>
   </data>
@@ -2741,6 +2957,21 @@
   <data name="PcIntvOfTotalTreatedForOncho" xml:space="preserve">
     <value>Du total, nombre traités pour l'onchocercose</value>
   </data>
+  <data name="PcIntvOnchoAtRisk" xml:space="preserve">
+    <value>Oncho at-risk population</value>
+  </data>
+  <data name="PcIntvOnchoEpiCoverage" xml:space="preserve">
+    <value>Oncho Epi coverage</value>
+  </data>
+  <data name="PcIntvOnchoEpiCoverageOfOncho" xml:space="preserve">
+    <value>Oncho Epi coverage</value>
+  </data>
+  <data name="PcIntvOnchoPopReqPc" xml:space="preserve">
+    <value>Oncho population requiring PC</value>
+  </data>
+  <data name="PcIntvOnchoProgramCov" xml:space="preserve">
+    <value>Oncho program coverage</value>
+  </data>
   <data name="PcIntvPartner" xml:space="preserve">
     <value>Partenaire</value>
   </data>
@@ -2759,14 +2990,62 @@
   <data name="PcIntvSacCoverage" xml:space="preserve">
     <value>Couverture des EAS</value>
   </data>
+  <data name="PcIntvSchAtRisk" xml:space="preserve">
+    <value>SCH total at-risk population</value>
+  </data>
+  <data name="PcIntvSchEpi" xml:space="preserve">
+    <value>SCH total Epi coverage</value>
+  </data>
+  <data name="PcIntvSchPopReqPc" xml:space="preserve">
+    <value>SCH population requiring PC</value>
+  </data>
+  <data name="PcIntvSchSacAtRisk" xml:space="preserve">
+    <value>SCH SAC at-risk population</value>
+  </data>
+  <data name="PcIntvSchSacEpi" xml:space="preserve">
+    <value>SCH SAC Epi coverage</value>
+  </data>
   <data name="PcIntvStartDateOfMda" xml:space="preserve">
     <value>Date de début du TDM</value>
+  </data>
+  <data name="PcIntvSthAtRisk" xml:space="preserve">
+    <value>STH total at-risk population</value>
+  </data>
+  <data name="PcIntvSthEpiCoverage" xml:space="preserve">
+    <value>STH total Epi coverage</value>
+  </data>
+  <data name="PcIntvSthPopReqPc" xml:space="preserve">
+    <value>STH population requiring PC</value>
+  </data>
+  <data name="PcIntvSthPsacAtRisk" xml:space="preserve">
+    <value>STH PSAC at-risk population</value>
+  </data>
+  <data name="PcIntvSthPsacEpiCoverage" xml:space="preserve">
+    <value>STH PSAC Epi coverage</value>
+  </data>
+  <data name="PcIntvSthSacAtRisk" xml:space="preserve">
+    <value>STH SAC at-risk population</value>
+  </data>
+  <data name="PcIntvSthSacEpiCoverage" xml:space="preserve">
+    <value>STH SAC Epi coverage</value>
   </data>
   <data name="PcIntvStockOutDrug" xml:space="preserve">
     <value>Médicament en rupture de stock</value>
   </data>
   <data name="PcIntvStockOutDuringMda" xml:space="preserve">
     <value>Y a-t-il eu une rupture de stocks durant le TDM ?</value>
+  </data>
+  <data name="PcIntvSurveyedCoverage" xml:space="preserve">
+    <value>Surveyed coverage</value>
+  </data>
+  <data name="PcIntvTraAtRisk" xml:space="preserve">
+    <value>Trachoma at-risk population</value>
+  </data>
+  <data name="PcIntvTraEpi" xml:space="preserve">
+    <value>Trachoma EPI coverage</value>
+  </data>
+  <data name="PcIntvUpperConfidence" xml:space="preserve">
+    <value>Upper confidence interval of surveyed coverage</value>
   </data>
   <data name="PcJrfForm" xml:space="preserve">
     <value>Formulaire de rapport commun de CP</value>
@@ -2942,6 +3221,9 @@
   <data name="PercentVl" xml:space="preserve">
     <value>% de cas de LV uniquement</value>
   </data>
+  <data name="Persons" xml:space="preserve">
+    <value>Persons</value>
+  </data>
   <data name="Phase1aEval" xml:space="preserve">
     <value>Phase évaluation 1a</value>
   </data>
@@ -3065,14 +3347,32 @@
   <data name="RemindLaterUpdateDemographyYear" xml:space="preserve">
     <value>Me rappeler lors du nouveau démarrage de mettre à jour les données démographiques pour la nouvelle année</value>
   </data>
+  <data name="ReportBuilder" xml:space="preserve">
+    <value>Report builder</value>
+  </data>
+  <data name="ReportChoosenDd" xml:space="preserve">
+    <value>choosen</value>
+  </data>
+  <data name="ReportingYearStartDate" xml:space="preserve">
+    <value>Start date of reporting year</value>
+  </data>
   <data name="ReportLocations" xml:space="preserve">
     <value>Sélectionner les localités</value>
   </data>
   <data name="ReportOptions" xml:space="preserve">
     <value>Options de rapport</value>
   </data>
+  <data name="ReportProgressTowardsEliminiation" xml:space="preserve">
+    <value>Progress towards Elimination</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Rapports</value>
+  </data>
+  <data name="ReportsNoDdInDateRange" xml:space="preserve">
+    <value>No {3} disease distribution could be found for {0} in the date range {1} - {2}.</value>
+  </data>
+  <data name="ReportsNoDemographyInDateRange" xml:space="preserve">
+    <value>No demography could be found for {0} in the date range {1} - {2}.</value>
   </data>
   <data name="ReportYear" xml:space="preserve">
     <value>Année pour laquelle s'appliquent les informations du rapport</value>
@@ -3085,6 +3385,9 @@
   </data>
   <data name="RestoreConfirm" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir restaurer la base de données ?</value>
+  </data>
+  <data name="RetrieveLogFile" xml:space="preserve">
+    <value>Retrieve log file</value>
   </data>
   <data name="RevertToEmergencyBackup" xml:space="preserve">
     <value>Restaurer la base de données pour sauvegarder la copie enregistrée lors de la dernière connexion.</value>
@@ -3394,6 +3697,9 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Sauvegarder</value>
+  </data>
+  <data name="SaveReportOptions" xml:space="preserve">
+    <value>Save report options</value>
   </data>
   <data name="Sch1" xml:space="preserve">
     <value>1 Faible prévalence (&gt;0 et &lt;10 %) suite à une cartographie initiale selon une méthode parasitologique </value>
@@ -3839,6 +4145,9 @@
   <data name="SpotCheckSiteName" xml:space="preserve">
     <value>Vérification ponctuelle du nom du site</value>
   </data>
+  <data name="StandardReports" xml:space="preserve">
+    <value>Standard reports</value>
+  </data>
   <data name="StartDate" xml:space="preserve">
     <value>Date de début</value>
   </data>
@@ -4205,6 +4514,9 @@
   <data name="Systematic" xml:space="preserve">
     <value>Systématique</value>
   </data>
+  <data name="Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
   <data name="Taeniasis" xml:space="preserve">
     <value>Téniase/Cysticercose</value>
   </data>
@@ -4253,8 +4565,14 @@
   <data name="TASEndDateOfSurvey" xml:space="preserve">
     <value>Date de fin de l'enquête</value>
   </data>
+  <data name="TasEstimatedNonResponseRate" xml:space="preserve">
+    <value>Estimated non-response rate</value>
+  </data>
   <data name="TASEuNetPrimarySchoolEnrolmentRate" xml:space="preserve">
     <value>Taux de fréquentation scolaire net dans le primaire pour l'UE</value>
+  </data>
+  <data name="TasGradesWithMajorityOf6yo" xml:space="preserve">
+    <value>If implementing TAS in schools, grade(s) with majority of 6-7 year olds</value>
   </data>
   <data name="TASLocationType" xml:space="preserve">
     <value>Type d'emplacement</value>
@@ -4316,11 +4634,23 @@
   <data name="TASTasObjective" xml:space="preserve">
     <value>Objectif de l'EET</value>
   </data>
+  <data name="TasTotal6yoInCommunities" xml:space="preserve">
+    <value>If implementing TAS in communities, total # of 6-7 year olds in EU</value>
+  </data>
+  <data name="TasTotalAreasInCommunities" xml:space="preserve">
+    <value>If implementing TAS in communities, total number of enumeration areas in EU</value>
+  </data>
   <data name="TASTotalEuAreaKm2" xml:space="preserve">
     <value>Superficie totale de l'UE (km2)</value>
   </data>
   <data name="TASTotalEuPopulation" xml:space="preserve">
     <value>Population totale de l'UE</value>
+  </data>
+  <data name="TasTotalNumChildrenInGrades" xml:space="preserve">
+    <value>If implementing TAS in schools, total number of children in selected grade(s) in EU</value>
+  </data>
+  <data name="TasTotalNumPrimarySchools" xml:space="preserve">
+    <value>If implementing TAS in schools, total number of primary schools in EU</value>
   </data>
   <data name="TasYearMonth" xml:space="preserve">
     <value>Mois/Année de l'enquête d'évaluation de la transmission prévue</value>
@@ -4483,6 +4813,18 @@
   </data>
   <data name="Training" xml:space="preserve">
     <value>Formation</value>
+  </data>
+  <data name="TrainingDiseases" xml:space="preserve">
+    <value>Disease(s) included in training</value>
+  </data>
+  <data name="TrainingDrugPackages" xml:space="preserve">
+    <value>Drugs package(s) included in training</value>
+  </data>
+  <data name="TrainingNumFemales" xml:space="preserve">
+    <value># females involved in distribution</value>
+  </data>
+  <data name="TrainingNumMales" xml:space="preserve">
+    <value># males involved in distribution</value>
   </data>
   <data name="TrainingYear" xml:space="preserve">
     <value>Année pour laquelle s'appliquent les informations relatives à la formation</value>
@@ -4763,8 +5105,14 @@
   <data name="UnknownEndemicity" xml:space="preserve">
     <value>Endémicité inconnue</value>
   </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Checking for updates french...</value>
+  </data>
   <data name="UpdateComplete" xml:space="preserve">
     <value>Mise à jour terminée</value>
+  </data>
+  <data name="UpdateCompleteErrors" xml:space="preserve">
+    <value>Update complete, please ensure there are no errors below</value>
   </data>
   <data name="UpdateDdForYear" xml:space="preserve">
     <value>Mettre à jour la distribution de la maladie pour une nouvelle année</value>
@@ -4784,8 +5132,20 @@
   <data name="UpdateException" xml:space="preserve">
     <value>Aucune mise à jour, veuillez vérifier l'accès Internet</value>
   </data>
+  <data name="UpdateExecute" xml:space="preserve">
+    <value>Run Update</value>
+  </data>
+  <data name="UpdateFound" xml:space="preserve">
+    <value>There is a new version of this application, would you like to update?</value>
+  </data>
+  <data name="UpdateNoInternet" xml:space="preserve">
+    <value>Please verify your internet connection is working and try again.</value>
+  </data>
   <data name="UpdateNone" xml:space="preserve">
     <value>Aucune mise à jour trouvée</value>
+  </data>
+  <data name="UpdateRestart" xml:space="preserve">
+    <value>The application has been upgraded, please restart.</value>
   </data>
   <data name="Updates" xml:space="preserve">
     <value>Mises à jour</value>
@@ -4823,8 +5183,17 @@
   <data name="ValidationErrorTitle" xml:space="preserve">
     <value>Erreur de validation</value>
   </data>
+  <data name="ValidationMustBeUnique" xml:space="preserve">
+    <value>{0} must be unique</value>
+  </data>
+  <data name="ValidationNoIllegalChars" xml:space="preserve">
+    <value>Value cannot contain special characters - ampersand</value>
+  </data>
   <data name="ValidationUserName" xml:space="preserve">
     <value>Le nom d'utilisateur doit être unique</value>
+  </data>
+  <data name="ValidDropdown" xml:space="preserve">
+    <value>Invalid value, please select an item from the list of options.</value>
   </data>
   <data name="ValidLatitude" xml:space="preserve">
     <value>La latitude doit se trouver entre -90° et 90°</value>
@@ -4966,371 +5335,5 @@
   </data>
   <data name="YesSentinelSite" xml:space="preserve">
     <value>Oui-Site sentinelle</value>
-  </data>
-  <data name="CreateCopyOfErrorLogFile" xml:space="preserve">
-    <value>Create copy of error log file.</value>
-  </data>
-  <data name="RetrieveLogFile" xml:space="preserve">
-    <value>Retrieve log file</value>
-  </data>
-  <data name="UpdateChecking" xml:space="preserve">
-    <value>Checking for updates french...</value>
-  </data>
-  <data name="UpdateExecute" xml:space="preserve">
-    <value>Run Update</value>
-  </data>
-  <data name="UpdateFound" xml:space="preserve">
-    <value>There is a new version of this application, would you like to update?</value>
-  </data>
-  <data name="UpdateNoInternet" xml:space="preserve">
-    <value>Please verify your internet connection is working and try again.</value>
-  </data>
-  <data name="UpdateRestart" xml:space="preserve">
-    <value>The application has been upgraded, please restart.</value>
-  </data>
-  <data name="ApplicationUpdate" xml:space="preserve">
-    <value>Application update</value>
-  </data>
-  <data name="DatabaseScriptException" xml:space="preserve">
-    <value>Database script exception</value>
-  </data>
-  <data name="DatabaseScriptFailed" xml:space="preserve">
-    <value>Update failed french.</value>
-  </data>
-  <data name="DatabaseScripts" xml:space="preserve">
-    <value>You must update your database with the latest scripts before continuing.  Please click "Next" to start.</value>
-  </data>
-  <data name="DatabaseScriptsExecuting" xml:space="preserve">
-    <value>Executing database scripts...</value>
-  </data>
-  <data name="DatabaseScriptSuccess" xml:space="preserve">
-    <value>Database script successfully executed.</value>
-  </data>
-  <data name="DatabaseUpdate" xml:space="preserve">
-    <value>Database update</value>
-  </data>
-  <data name="UpdateCompleteErrors" xml:space="preserve">
-    <value>Update complete, please ensure there are no errors below</value>
-  </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
-  </data>
-  <data name="IntvPkgALB" xml:space="preserve">
-    <value>ALB</value>
-  </data>
-  <data name="IntvPkgALB2forLF" xml:space="preserve">
-    <value>ALB x 2 for LF</value>
-  </data>
-  <data name="IntvPkgDECALB" xml:space="preserve">
-    <value>DEC + ALB</value>
-  </data>
-  <data name="IntvPkgIVM" xml:space="preserve">
-    <value>IVM</value>
-  </data>
-  <data name="IntvPkgIVMALB" xml:space="preserve">
-    <value>IVM + ALB</value>
-  </data>
-  <data name="IntvPkgMBD" xml:space="preserve">
-    <value>MBD</value>
-  </data>
-  <data name="IntvPkgPZQ" xml:space="preserve">
-    <value>PZQ</value>
-  </data>
-  <data name="IntvPkgPZQALB" xml:space="preserve">
-    <value>PZQ + ALB</value>
-  </data>
-  <data name="IntvPkgPZQIVMALB" xml:space="preserve">
-    <value>PZQ + IVM + ALB</value>
-  </data>
-  <data name="IntvPkgPZQMBD" xml:space="preserve">
-    <value>PZQ + MBD</value>
-  </data>
-  <data name="IntvPkgTEO" xml:space="preserve">
-    <value>TEO</value>
-  </data>
-  <data name="IntvPkgTEOZithro" xml:space="preserve">
-    <value>TEO + Zithro</value>
-  </data>
-  <data name="IntvPkgZithro" xml:space="preserve">
-    <value>Zithro</value>
-  </data>
-  <data name="LfEnd0b" xml:space="preserve">
-    <value>0 - Not endemic, not above treatment threshold</value>
-  </data>
-  <data name="OnchoMapEvaluationSite" xml:space="preserve">
-    <value>Evaluation Site</value>
-  </data>
-  <data name="OnchoMapSiteName" xml:space="preserve">
-    <value>Site Name</value>
-  </data>
-  <data name="OnchoSurEvaluationSite" xml:space="preserve">
-    <value>Evaluation Site</value>
-  </data>
-  <data name="OnchoSurSiteName" xml:space="preserve">
-    <value>Site Name</value>
-  </data>
-  <data name="TrainingDiseases" xml:space="preserve">
-    <value>Disease(s) included in training</value>
-  </data>
-  <data name="TrainingDrugPackages" xml:space="preserve">
-    <value>Drugs package(s) included in training</value>
-  </data>
-  <data name="TrainingNumFemales" xml:space="preserve">
-    <value># females involved in distribution</value>
-  </data>
-  <data name="TrainingNumMales" xml:space="preserve">
-    <value># males involved in distribution</value>
-  </data>
-  <data name="OnchoSurCatchingPoint" xml:space="preserve">
-    <value>Nom du point de capture</value>
-  </data>
-  <data name="OnchoSurEntomological" xml:space="preserve">
-    <value>Onchocerciasis (River Blindness) Entomological survey</value>
-  </data>
-  <data name="OnchoSurFliesDissected" xml:space="preserve">
-    <value>Nombre de simulies disséquées</value>
-  </data>
-  <data name="OnchoSurInfectedFlies" xml:space="preserve">
-    <value>Nombre de simulies infectées</value>
-  </data>
-  <data name="OnchoSurInfectionRate" xml:space="preserve">
-    <value>Taux d'infestation</value>
-  </data>
-  <data name="OnchoSurInfectiveFlies" xml:space="preserve">
-    <value>Nombre de simulies infectieuses</value>
-  </data>
-  <data name="OnchoSurInfectiveLarvae" xml:space="preserve">
-    <value>Nombre de larves infectantes</value>
-  </data>
-  <data name="OnchoSurInfectivityRate" xml:space="preserve">
-    <value>Taux d'infectivité</value>
-  </data>
-  <data name="OnchoSurLat" xml:space="preserve">
-    <value>Latitude</value>
-  </data>
-  <data name="OnchoSurLng" xml:space="preserve">
-    <value>Longitude</value>
-  </data>
-  <data name="OnchoSurMonth" xml:space="preserve">
-    <value>Mois de collecte des simulies</value>
-  </data>
-  <data name="OnchoSurNoFlies" xml:space="preserve">
-    <value>Nombre de simulies collectées</value>
-  </data>
-  <data name="OnchoSurParousFlies" xml:space="preserve">
-    <value>Nombre de simulies pares</value>
-  </data>
-  <data name="OnchoSurParousRate" xml:space="preserve">
-    <value>Taux de parturité</value>
-  </data>
-  <data name="OnchoSurProject" xml:space="preserve">
-    <value>Nom du projet</value>
-  </data>
-  <data name="OnchoSurRiver" xml:space="preserve">
-    <value>Nom de la rivière</value>
-  </data>
-  <data name="OnchoSurRiverBasin" xml:space="preserve">
-    <value>Nom du bassin fluvial</value>
-  </data>
-  <data name="Chart" xml:space="preserve">
-    <value>Chart</value>
-  </data>
-  <data name="ExportImage" xml:space="preserve">
-    <value>Export image</value>
-  </data>
-  <data name="Table" xml:space="preserve">
-    <value>Table</value>
-  </data>
-  <data name="Exports" xml:space="preserve">
-    <value>Exports</value>
-  </data>
-  <data name="ReportBuilder" xml:space="preserve">
-    <value>Report builder</value>
-  </data>
-  <data name="StandardReports" xml:space="preserve">
-    <value>Standard reports</value>
-  </data>
-  <data name="OnchoSurParousFliesDisected" xml:space="preserve">
-    <value>Number of parous flies dissected</value>
-  </data>
-  <data name="OnchoSurParousFliesInfected" xml:space="preserve">
-    <value>Number of parous flies infected</value>
-  </data>
-  <data name="ReportingYearStartDate" xml:space="preserve">
-    <value>Start date of reporting year</value>
-  </data>
-  <data name="TasEstimatedNonResponseRate" xml:space="preserve">
-    <value>Estimated non-response rate</value>
-  </data>
-  <data name="TasGradesWithMajorityOf6yo" xml:space="preserve">
-    <value>If implementing TAS in schools, grade(s) with majority of 6-7 year olds</value>
-  </data>
-  <data name="TasTotal6yoInCommunities" xml:space="preserve">
-    <value>If implementing TAS in communities, total # of 6-7 year olds in EU</value>
-  </data>
-  <data name="TasTotalAreasInCommunities" xml:space="preserve">
-    <value>If implementing TAS in communities, total number of enumeration areas in EU</value>
-  </data>
-  <data name="TasTotalNumChildrenInGrades" xml:space="preserve">
-    <value>If implementing TAS in schools, total number of children in selected grade(s) in EU</value>
-  </data>
-  <data name="TasTotalNumPrimarySchools" xml:space="preserve">
-    <value>If implementing TAS in schools, total number of primary schools in EU</value>
-  </data>
-  <data name="Persons" xml:space="preserve">
-    <value>Persons</value>
-  </data>
-  <data name="ReportProgressTowardsEliminiation" xml:space="preserve">
-    <value>Progress towards Elimination</value>
-  </data>
-  <data name="ChartBar" xml:space="preserve">
-    <value>Bar</value>
-  </data>
-  <data name="ChartLine" xml:space="preserve">
-    <value>Line</value>
-  </data>
-  <data name="EliminationAtRisk" xml:space="preserve">
-    <value>Number of persons at-risk</value>
-  </data>
-  <data name="EliminationEndemicDistricts" xml:space="preserve">
-    <value>Number of endemic {0} requiring PC</value>
-  </data>
-  <data name="EliminationLiving" xml:space="preserve">
-    <value>Number of persons living in areas that have achieved the criteria for stopping MDA</value>
-  </data>
-  <data name="EliminationStoppedDistricts" xml:space="preserve">
-    <value>Number of {0} that have achieved the criteria for stopping PC</value>
-  </data>
-  <data name="SaveReportOptions" xml:space="preserve">
-    <value>Save report options</value>
-  </data>
-  <data name="ExportTasCost" xml:space="preserve">
-    <value>Budgeted cost</value>
-  </data>
-  <data name="ExportTasDays" xml:space="preserve">
-    <value>Estimated number of survey days required</value>
-  </data>
-  <data name="ExportTasIctTests" xml:space="preserve">
-    <value>Number of ICT or Brugia Rapid tests required</value>
-  </data>
-  <data name="ExportTasSources" xml:space="preserve">
-    <value>Source(s) of funding</value>
-  </data>
-  <data name="ExportTasStartYear" xml:space="preserve">
-    <value>Planned starting month and year</value>
-  </data>
-  <data name="PcIntvLowerConfidence" xml:space="preserve">
-    <value>Lower confidence interval of surveyed coverage</value>
-  </data>
-  <data name="PcIntvSurveyedCoverage" xml:space="preserve">
-    <value>Surveyed coverage</value>
-  </data>
-  <data name="PcIntvUpperConfidence" xml:space="preserve">
-    <value>Upper confidence interval of surveyed coverage</value>
-  </data>
-  <data name="PcIntvLfAtRisk" xml:space="preserve">
-    <value>LF at-risk population</value>
-  </data>
-  <data name="PcIntvLfEpiCoverage" xml:space="preserve">
-    <value>LF Epi coverage</value>
-  </data>
-  <data name="PcIntvLfPopRecPc" xml:space="preserve">
-    <value>LF population requiring PC</value>
-  </data>
-  <data name="PcIntvOnchoAtRisk" xml:space="preserve">
-    <value>Oncho at-risk population</value>
-  </data>
-  <data name="PcIntvOnchoEpiCoverage" xml:space="preserve">
-    <value>Oncho Epi coverage</value>
-  </data>
-  <data name="PcIntvOnchoPopReqPc" xml:space="preserve">
-    <value>Oncho population requiring PC</value>
-  </data>
-  <data name="PcIntvOnchoProgramCov" xml:space="preserve">
-    <value>Oncho program coverage</value>
-  </data>
-  <data name="PcIntvSchAtRisk" xml:space="preserve">
-    <value>SCH total at-risk population</value>
-  </data>
-  <data name="PcIntvSchEpi" xml:space="preserve">
-    <value>SCH total Epi coverage</value>
-  </data>
-  <data name="PcIntvSchPopReqPc" xml:space="preserve">
-    <value>SCH population requiring PC</value>
-  </data>
-  <data name="PcIntvSchSacAtRisk" xml:space="preserve">
-    <value>SCH SAC at-risk population</value>
-  </data>
-  <data name="PcIntvSchSacEpi" xml:space="preserve">
-    <value>SCH SAC Epi coverage</value>
-  </data>
-  <data name="PcIntvSthAtRisk" xml:space="preserve">
-    <value>STH total at-risk population</value>
-  </data>
-  <data name="PcIntvSthEpiCoverage" xml:space="preserve">
-    <value>STH total Epi coverage</value>
-  </data>
-  <data name="PcIntvSthPopReqPc" xml:space="preserve">
-    <value>STH population requiring PC</value>
-  </data>
-  <data name="PcIntvSthPsacAtRisk" xml:space="preserve">
-    <value>STH PSAC at-risk population</value>
-  </data>
-  <data name="PcIntvSthPsacEpiCoverage" xml:space="preserve">
-    <value>STH PSAC Epi coverage</value>
-  </data>
-  <data name="PcIntvSthSacAtRisk" xml:space="preserve">
-    <value>STH SAC at-risk population</value>
-  </data>
-  <data name="PcIntvSthSacEpiCoverage" xml:space="preserve">
-    <value>STH SAC Epi coverage</value>
-  </data>
-  <data name="PcIntvTraAtRisk" xml:space="preserve">
-    <value>Trachoma at-risk population</value>
-  </data>
-  <data name="PcIntvTraEpi" xml:space="preserve">
-    <value>Trachoma EPI coverage</value>
-  </data>
-  <data name="PcIntvOnchoEpiCoverageOfOncho" xml:space="preserve">
-    <value>Oncho Epi coverage</value>
-  </data>
-  <data name="ExportApocReport" xml:space="preserve">
-    <value>APOC Report</value>
-  </data>
-  <data name="ImportListsSelect" xml:space="preserve">
-    <value>Please select the values necessary for this import</value>
-  </data>
-  <data name="ValidDropdown" xml:space="preserve">
-    <value>Invalid value, please select an item from the list of options.</value>
-  </data>
-  <data name="ApocDateReportGenerated" xml:space="preserve">
-    <value>Date report generated</value>
-  </data>
-  <data name="ValidationMustBeUnique" xml:space="preserve">
-    <value>{0} must be unique</value>
-  </data>
-  <data name="ValidationNoIllegalChars" xml:space="preserve">
-    <value>Value cannot contain special characters - ampersand</value>
-  </data>
-  <data name="ImportSelectionOption" xml:space="preserve">
-    <value> | Selection </value>
-  </data>
-  <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
-  </data>
-  <data name="DateRange" xml:space="preserve">
-    <value>Date range</value>
-  </data>
-  <data name="ReportsNoDdInDateRange" xml:space="preserve">
-    <value>No {3} disease distribution could be found for {0} in the date range {1} - {2}.</value>
-  </data>
-  <data name="ReportsNoDemographyInDateRange" xml:space="preserve">
-    <value>No demography could be found for {0} in the date range {1} - {2}.</value>
-  </data>
-  <data name="MetaDataDateRange" xml:space="preserve">
-    <value>Date range for above data</value>
-  </data>
-  <data name="ReportChoosenDd" xml:space="preserve">
-    <value>choosen</value>
   </data>
 </root>

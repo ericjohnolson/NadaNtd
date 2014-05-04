@@ -31,6 +31,7 @@ namespace Nada.UI.View.Demography
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return adminLevel.Name + " " + Translations.Demography; } }
+        private DateTime originalDate = DateTime.MinValue;
         public void SetFocus()
         {
             tbYearCensus.Focus();
@@ -66,11 +67,13 @@ namespace Nada.UI.View.Demography
 
                 Localizer.TranslateControl(this);
                 demo = new DemoRepository();
-                if (model == null) 
+                if (model == null)
                 {
                     model = new AdminLevelDemography();
                     model.AdminLevelId = adminLevel.Id;
                 }
+                else
+                    originalDate = model.DateDemographyData;
 
                 lblType.Text = Translations.Demography;
                    
@@ -123,8 +126,15 @@ namespace Nada.UI.View.Demography
             demo.Save(model, userId);
             SettingsRepository settings = new SettingsRepository();
             var type = settings.GetAdminLevelTypeByLevel(adminLevel.LevelNumber);
+            var country = demo.GetCountry();
+
             if (type.IsAggregatingLevel)
-                demo.AggregateUp(type, model.DateDemographyData.Year, userId, null);
+            {
+                demo.AggregateUp(type, model.DateDemographyData, userId, null);
+                if(Util.GetYearReported(country.ReportingYearStartDate.Month, originalDate) != Util.GetYearReported(country.ReportingYearStartDate.Month, model.DateDemographyData))
+                    demo.AggregateUp(type, originalDate, userId, null);
+
+            }
 
             OnClose();
         }

@@ -90,7 +90,7 @@ namespace Nada.UI.View.Wizard
                 var aggLevel = als.FirstOrDefault(a => a.IsAggregatingLevel);
                 int userId = ApplicationData.Instance.GetUserId();
                 repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, vm.DateReported);
-                repo.AggregateUp(aggLevel, vm.DateReported.Year, userId, vm.GrowthRate.Value);
+                repo.AggregateUp(aggLevel, vm.DateReported, userId, vm.GrowthRate.Value);
                 e.Result = "";
             }
             catch (Exception ex)
