@@ -178,6 +178,7 @@ namespace Nada.Model.Reports
             if (IsDemoOrDistro)
                 reportResult.MetaDataWarning += GetMissingRowsErrors(result, false);
 
+            result.Columns.Remove(Translations.ID);
             result.Columns.Remove("YearNumber");
             reportResult.DataTableResults = result;
             return reportResult;
