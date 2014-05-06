@@ -46,6 +46,13 @@ namespace Nada.Model
         SplitByPercent = 6,
     }
 
+    public enum RedistrictingRelationship
+    {
+        None = 0,
+        Mother = 1,
+        Daughter = 2
+    }
+
     public enum IndicatorEntityType
     {
         DiseaseDistribution = 1,

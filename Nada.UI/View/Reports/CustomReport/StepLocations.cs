@@ -44,9 +44,23 @@ namespace Nada.UI.View.Reports.CustomReport
             if (report.ReportOptions.IsNoAggregation && cbAllLocations.Checked)
                 report.ReportOptions.IsAllLocations = true;
             if (report.ReportOptions.IsNoAggregation)
+            {
                 report.ReportOptions.SelectedAdminLevels = pickerAllLocations.GetSelected();
+                if (report.ReportOptions.SelectedAdminLevels.Count == 0)
+                {
+                    MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
+                    return;
+                }
+            }
             else if (report.ReportOptions.IsByLevelAggregation)
+            {
                 report.ReportOptions.SelectedAdminLevels = levelPicker.GetSelectedAdminLevels();
+                if (report.ReportOptions.SelectedAdminLevels.Count == 0)
+                {
+                    MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
+                    return;
+                }
+            }
             else if (report.ReportOptions.IsCountryAggregation)
                 report.ReportOptions.SelectedAdminLevels = new List<AdminLevel> { new AdminLevel { Id = 1 } }; 
             OnRunReport(report);
@@ -79,12 +93,14 @@ namespace Nada.UI.View.Reports.CustomReport
                 {
                     cbAllLocations.Checked = report.ReportOptions.IsAllLocations;
                     tblListAllLocations.Visible = true;
+                    pickerAllLocations.ShowRedistricted(report.ReportOptions.ShowOnlyRedistrictedUnits);
                     if (!report.ReportOptions.IsAllLocations)
                         pickerAllLocations.SetSelected(report.ReportOptions.SelectedAdminLevels);
                 }
                 else if (report.ReportOptions.IsByLevelAggregation)
                 {
                     levelPicker.Visible = true;
+                    levelPicker.ShowRedistricted(report.ReportOptions.ShowOnlyRedistrictedUnits);
                     levelPicker.SetSelectedItems(report.ReportOptions.SelectedAdminLevels);
                 }
                 else

@@ -146,7 +146,8 @@ namespace Nada.UI.View.Wizard
             double percent = 0;
             if (double.TryParse((sender as TextBox).Text, out percent))
             {
-                labels[index].Text = Convert.ToDouble(totalPop.Value * percent).ToString("N");
+                double multiplier = percent / 100;
+                labels[index].Text = Convert.ToDouble(totalPop.Value * multiplier).ToString("N");
             }
         }
 

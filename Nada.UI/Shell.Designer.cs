@@ -346,6 +346,7 @@
             this.menuSplitDistrictToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.menuSplitDistrictToolStripMenuItem.Tag = "MenuSplitDistrict";
             this.menuSplitDistrictToolStripMenuItem.Text = "MenuSplitDistrict";
+            this.menuSplitDistrictToolStripMenuItem.Visible = false;
             this.menuSplitDistrictToolStripMenuItem.Click += new System.EventHandler(this.menuSplitDistrictToolStripMenuItem_Click);
             // 
             // menuMergeDistrictToolStripMenuItem
@@ -354,6 +355,7 @@
             this.menuMergeDistrictToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.menuMergeDistrictToolStripMenuItem.Tag = "MenuMergeDistrict";
             this.menuMergeDistrictToolStripMenuItem.Text = "MenuMergeDistrict";
+            this.menuMergeDistrictToolStripMenuItem.Visible = false;
             this.menuMergeDistrictToolStripMenuItem.Click += new System.EventHandler(this.menuMergeDistrictToolStripMenuItem_Click);
             // 
             // menuSplitCombineDistrictToolStripMenuItem
@@ -362,6 +364,7 @@
             this.menuSplitCombineDistrictToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.menuSplitCombineDistrictToolStripMenuItem.Tag = "MenuSplitCombineDistrict";
             this.menuSplitCombineDistrictToolStripMenuItem.Text = "MenuSplitCombineDistrict";
+            this.menuSplitCombineDistrictToolStripMenuItem.Visible = false;
             this.menuSplitCombineDistrictToolStripMenuItem.Click += new System.EventHandler(this.menuSplitCombineDistrictToolStripMenuItem_Click);
             // 
             // menuImportToolStripMenuItem

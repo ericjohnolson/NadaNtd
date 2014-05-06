@@ -24,12 +24,13 @@ namespace Nada.UI.View.Wizard
         bool wasSuccessful = false;
         IWizardStep prev = null;
         public Action OnFinish { get; set; }
+        public Action OnRestart { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
         public bool ShowNext { get { return false; } }
         public bool EnableNext { get { return false; } }
-        public bool ShowPrev { get { return true; } }
-        public bool EnablePrev { get { return true; } }
+        public bool ShowPrev { get { return false; } }
+        public bool EnablePrev { get { return false; } }
         public bool ShowFinish { get { return true; } }
         public bool EnableFinish { get { return true; } }
         public string StepTitle { get { return Translations.UpdateCompleteErrors; } }
@@ -40,11 +41,12 @@ namespace Nada.UI.View.Wizard
             InitializeComponent();
         }
 
-        public UpdateDbResult(bool s, string r, IWizardStep p)
+        public UpdateDbResult(bool s, string r, IWizardStep p, Action restart)
             : base()
         {
             result = r;
             wasSuccessful = s;
+            OnRestart = restart;
             prev = p;
             InitializeComponent();
         }
@@ -57,7 +59,10 @@ namespace Nada.UI.View.Wizard
                 tbStatus.Text = result;
 
                 if (!wasSuccessful)
+                {
                     MessageBox.Show(Translations.DatabaseScriptFailed, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    OnRestart();
+                }
             }
         }
 

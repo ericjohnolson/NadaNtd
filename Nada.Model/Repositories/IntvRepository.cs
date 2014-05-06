@@ -204,6 +204,7 @@ namespace Nada.Model.Repositories
                         InterventionIndicators.IsDisabled,
                         InterventionIndicators.IsEditable,
                         InterventionIndicators.IsDisplayed,
+                        InterventionIndicators.RedistrictRuleId,
                         IsCalculated,
                         CanAddValues,
                         InterventionIndicators.UpdatedAt, 
@@ -226,6 +227,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
+                                RedistrictRuleId = reader.GetValueOrDefault<int>("RedistrictRuleId"),
                                 UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),

@@ -1,6 +1,11 @@
 
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
 ALTER TABLE DiseaseDistributionIndicators ADD COLUMN NewYearType INTEGER;
 ALTER TABLE DiseaseDistributionIndicators ALTER COLUMN NewYearType SET DEFAULT 1;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+
 update diseasedistributionindicators set newyeartype=1;
 update diseasedistributionindicators set newyeartype=2 where id in (161, 162, 163, 140, 141, 142, 143, 144, 145, 125, 126, 127, 128, 129, 111, 112, 113, 98, 99, 100, 101);
 
@@ -96,8 +101,15 @@ insert into indicatordatatypes (DataType) values ('DrugPackageMultiselect');
 update interventionindicators set datatypeid = 17 where displayname = 'PcIntvDiseases';
 delete from interventiontypes_to_indicators where indicatorid=253;
 
+
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
 ALTER TABLE interventionindicators ADD COLUMN IsMetaData YESNO;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
 ALTER TABLE InterventionIndicators ADD COLUMN DiseaseId INTEGER;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
 ALTER TABLE InterventionIndicators ALTER COLUMN DiseaseId SET DEFAULT 0;
 update interventionindicators set diseaseid = 0;
 

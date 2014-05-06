@@ -68,7 +68,7 @@ namespace Nada.UI.View.Reports
             edit2.ClickOverride += () =>
             {
                 WizardForm wiz = new WizardForm(new StepCategory(), Translations.CustomReportBuilder);
-                wiz.Height = 685;
+                wiz.Height = 695;
                 wiz.OnRunReport = RunCustomReport;
                 wiz.Show();
             };
@@ -92,7 +92,7 @@ namespace Nada.UI.View.Reports
                 edit.ClickOverride += () =>
                 {
                     WizardForm wiz = new WizardForm(new StepIndicators(report), Translations.CustomReportBuilder);
-                    wiz.Height = 685;
+                    wiz.Height = 695;
                     wiz.OnRunReport = RunCustomReport;
                     wiz.Show();
                 };
@@ -139,7 +139,7 @@ namespace Nada.UI.View.Reports
         private void EditCustomReport(SavedReport r)
         {
             WizardForm wiz = new WizardForm(new StepIndicators(r), Translations.CustomReportBuilder);
-            wiz.Height = 685;
+            wiz.Height = 695;
             wiz.OnRunReport = RunCustomReport;
             wiz.Show();
         }

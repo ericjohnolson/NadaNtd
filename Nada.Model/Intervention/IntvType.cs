@@ -8,6 +8,7 @@ using Nada.Model.Base;
 
 namespace Nada.Model.Intervention
 {
+    [Serializable]
     public class IntvType : NadaClass, IHaveDynamicIndicators, IDataErrorInfo
     {
         public IntvType()

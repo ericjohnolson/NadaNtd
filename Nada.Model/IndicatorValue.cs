@@ -6,6 +6,7 @@ using Nada.Model.Base;
 
 namespace Nada.Model
 {
+    [Serializable]
     public class IndicatorValue : NadaClass
     {
         public int IndicatorId { get; set; }

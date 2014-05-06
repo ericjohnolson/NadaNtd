@@ -25,6 +25,7 @@ namespace Nada.UI.View.Wizard
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
+        public Action OnRestart { get; set; }
         public bool ShowNext { get { return true; } }
         public bool EnableNext { get { return true; } }
         public bool ShowPrev { get { return false; } }
@@ -39,10 +40,11 @@ namespace Nada.UI.View.Wizard
             InitializeComponent();
         }
 
-        public UpdateDb(List<string> f)
+        public UpdateDb(List<string> f, Action restart)
             : base()
         {
             filesToRun = f;
+            OnRestart = restart;
             InitializeComponent();
         }
 
@@ -93,7 +95,7 @@ namespace Nada.UI.View.Wizard
                 result = Translations.DatabaseScriptSuccess;
                 success = true;
             }
-            OnSwitchStep(new UpdateDbResult(success, result, this));
+            OnSwitchStep(new UpdateDbResult(success, result, this, OnRestart));
         }
 
         public void DoFinish()

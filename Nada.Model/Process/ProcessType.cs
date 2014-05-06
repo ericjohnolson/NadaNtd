@@ -8,6 +8,7 @@ using Nada.Model.Base;
 
 namespace Nada.Model.Process
 {
+    [Serializable]
     public class ProcessType : NadaClass, IHaveDynamicIndicators, IDataErrorInfo
     {
         public ProcessType()

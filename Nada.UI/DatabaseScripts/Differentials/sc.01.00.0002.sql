@@ -63,9 +63,8 @@ CREATE TABLE [EvaluationSites](
 
 Update SurveyTypes set HasMultipleLocations = -1 Where ID in (19, 13);
 
-insert into processindicators (SurveyTypeId, DisplayName,SortOrder,DataTypeId,CanAddValues,AggTypeId,IsRequired,IsDisabled,IsEditable,IsDisplayed,UpdatedById,UpdatedAt)
+insert into processindicators (ProcessTypeId, DisplayName,SortOrder,DataTypeId,CanAddValues,AggTypeId,IsRequired,IsDisabled,IsEditable,IsDisplayed,UpdatedById,UpdatedAt)
 values (7,'TrainingDrugPackages',4,6,0,4,-1,0,0,0,26,NOW());
-
 
 Insert into indicatordatatypes (DataType, HasValueList) values ('EvaluationSite', -1);
 
@@ -168,7 +167,13 @@ update surveyindicators set canaddvalues = 0 where id in (246, 249);
 Delete from IndicatorDropdownValues where indicatorid = 249 and entitytype = 3 and ID not in (269, 270, 271);
 Delete from IndicatorDropdownValues where indicatorid = 246 and entitytype = 3 and ID not in (329, 330);
 
+
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
 ALTER TABLE Country ADD COLUMN ReportingYearStartDate DATETIME;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+
 UPDATE Country SET ReportingYearStartDate = '1/1/2000';
 
 

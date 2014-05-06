@@ -557,6 +557,7 @@ namespace Nada.Model.Repositories
                         SurveyIndicators.IsDisabled,
                         SurveyIndicators.IsEditable,
                         SurveyIndicators.IsDisplayed,
+                        SurveyIndicators.RedistrictRuleId,
                         IsCalculated,
                         CanAddValues,
                         SurveyIndicators.UpdatedAt, 
@@ -576,6 +577,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
+                                RedistrictRuleId = reader.GetValueOrDefault<int>("RedistrictRuleId"),
                                 UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
@@ -822,7 +824,7 @@ namespace Nada.Model.Repositories
         #endregion
 
         #region Private Methods
-        private void SaveSurveyBase(OleDbCommand command, OleDbConnection connection, SurveyBase survey, int userId)
+        public void SaveSurveyBase(OleDbCommand command, OleDbConnection connection, SurveyBase survey, int userId)
         {
             survey.MapIndicatorsToProperties();
          

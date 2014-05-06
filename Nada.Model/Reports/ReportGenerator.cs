@@ -78,6 +78,12 @@ namespace Nada.Model.Reports
                 connection.Open();
                 OleDbCommand command = new OleDbCommand();
                 list = ExportRepository.GetAdminLevels(command, connection);
+
+                if (options.IsAllLocations && options.ShowOnlyRedistrictedUnits)
+                    list = list.Where(a => a.RedistrictIdForMother > 0).ToList();
+                else if(!options.ShowOnlyRedistrictedUnits)
+                    list = list.Where(a => a.RedistrictIdForMother == 0).ToList();
+
                 dic = list.ToDictionary(n => n.Id, n => n);
                 repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndKey, GetColName, GetColTypeName, AddStaticAggInd, false, IsDemoOrDistro);
                 if (hasCalculations)
@@ -184,7 +190,6 @@ namespace Nada.Model.Reports
             return reportResult;
         }
 
-        
         #region Shared Methods
         private void AddToTable(DataTable result, Dictionary<string, ReportRow> resultDic, AdminLevelIndicators level, int year, AggregateIndicator indicator,
             string rowKey, AggregateIndicator indValue, string typeName, ReportOptions options)
@@ -211,6 +216,16 @@ namespace Nada.Model.Reports
                 DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
                 dr["YearNumber"] = year;
                 dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
+
+                if (options.ShowRedistrictEvents)
+                {
+                    if (!result.Columns.Contains(Translations.RedistrictingNotes))
+                        result.Columns.Add(new DataColumn(Translations.RedistrictingNotes));
+                    if (level.RedistrictIdForDaughter > 0)
+                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingNote(level.RedistrictIdForDaughter);
+                }
+
+                // insert
                 result.Rows.Add(dr);
                 resultDic.Add(rowKey, new ReportRow { Row = dr, AdminLevelId = level.Id, AdminLevelName = level.Name, Year = year });
             }
@@ -905,12 +920,15 @@ namespace Nada.Model.Reports
             dataTable.Columns.Add(new DataColumn(Translations.Type));
             dataTable.Columns.Add(new DataColumn(Translations.Year));
             dataTable.Columns.Add(new DataColumn("YearNumber"));
+            dataTable.Columns.Add(new DataColumn("DaughterId"));
             foreach (var ind in options.SelectedIndicators)
                 dataTable.Columns.Add(new DataColumn(ind.Name));
+            
             result.DataTableResults = repo.CreateDemoReport(options, dataTable);
 
             foreach (DataRow dr in result.DataTableResults.Rows)
             {
+                // add location breadcrumb
                 int id = Convert.ToInt32(dr[Translations.ID]);
                 List<AdminLevel> parents = demo.GetAdminLevelParentNames(id);
                 for (int i = 0; i < parents.Count; i++)
@@ -923,6 +941,15 @@ namespace Nada.Model.Reports
                     }
                     dr[parents[i].LevelName] = parents[i].Name;
                 }
+                // add redistricting notes
+                if (options.ShowRedistrictEvents)
+                {
+                    if(!result.DataTableResults.Columns.Contains(Translations.RedistrictingNotes))
+                        result.DataTableResults.Columns.Add(new DataColumn(Translations.RedistrictingNotes));
+                    int daughterId = Convert.ToInt32(dr["DaughterId"]);
+                    if (daughterId > 0)
+                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingNote(daughterId);
+                }
             }
 
             result.MetaDataWarning = GetMissingRowsErrors(result.DataTableResults, true);
@@ -930,6 +957,7 @@ namespace Nada.Model.Reports
             result.ChartData = result.DataTableResults.Copy();
             result.DataTableResults.Columns.Remove(Translations.Location);
             result.DataTableResults.Columns.Remove("YearNumber");
+            result.DataTableResults.Columns.Remove("DaughterId");
             return result;
         }
     }

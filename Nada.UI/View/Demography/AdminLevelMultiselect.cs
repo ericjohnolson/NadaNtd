@@ -21,11 +21,19 @@ namespace Nada.UI.View
         private List<AdminLevel> available = new List<AdminLevel>();
         private List<AdminLevel> selected = new List<AdminLevel>();
         public AdminLevelType SelectedAdminLevelType { get; set; }
+        private bool showRedistricted = false;
+
 
         public AdminLevelMultiselect()
             : base()
         {
             InitializeComponent();
+        }
+
+        public void ShowRedistricted(bool s)
+        {
+            showRedistricted = s;
+            LoadTrees();
         }
 
         private void AdminLevelMultiselect_Load(object sender, EventArgs e)
@@ -76,7 +84,7 @@ namespace Nada.UI.View
 
             var selectedLevel = levels.FirstOrDefault(l => l.Id == selectedLevels.FirstOrDefault().AdminLevelTypeId);
             if (selectedLevel == null)
-                levels.FirstOrDefault();
+                selectedLevel = levels.FirstOrDefault();
             cbLevels.SelectedItem = selectedLevel;
 
             List<AdminLevel> s = available.Where(i => selectedLevels.Select(a => a.Id).Contains(i.Id)).ToList();
@@ -111,7 +119,7 @@ namespace Nada.UI.View
             if (cbLevels.SelectedItem == null)
                 return;
             SelectedAdminLevelType = (AdminLevelType)cbLevels.SelectedItem;
-            available = demography.GetAdminLevelTree(SelectedAdminLevelType.Id);
+            available = demography.GetAdminLevelTree(SelectedAdminLevelType.Id, showRedistricted);
             selected = new List<AdminLevel>();
             treeAvailable.SetObjects(available.OrderBy(i => i.Name).ToList());
             treeSelected.SetObjects(selected.OrderBy(i => i.Name).ToList());

@@ -10,9 +10,9 @@ namespace Nada.Model.Demography
 {
     public enum SplittingType
     {
-        Split,
-        Merge,
-        SplitCombine
+        Split = 1,
+        Merge = 2,
+        SplitCombine = 3
     }
 
     public class AdminLevelAllocation
@@ -35,6 +35,24 @@ namespace Nada.Model.Demography
         public List<AdminLevel> SplitChildren { get; set; }
         public List<AdminLevel> MergeSources { get; set; }
         public AdminLevel MergeDestination { get; set; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SplitType: " + SplitType.ToString() + " | ");
+            if (Source != null)
+                sb.Append("Source: " + Source.Name + " id: " + Source.Id + " | ");
+            if (MergeDestination != null)
+                sb.Append("MergeDestination: " + MergeDestination.Name + " id: " + MergeDestination.Id + " | ");
+            if (SplitDestinations != null && SplitDestinations.Count > 0)
+                foreach(var dest in SplitDestinations)
+                    sb.Append("SplitDestination: " + dest.Unit.Name + " id: " + dest.Unit.Id + " | ");
+            if (MergeSources != null && MergeSources.Count > 0)
+                foreach (var dest in MergeSources)
+                    sb.Append("MergeSource: " + dest.Name + " id: " + dest.Id + " | ");
+
+            return sb.ToString();
+        }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

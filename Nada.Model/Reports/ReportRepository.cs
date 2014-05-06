@@ -148,6 +148,8 @@ namespace Nada.Model.Repositories
                     string adminFilter = "";
                     if (options.IsByLevelAggregation || (options.IsNoAggregation && !options.IsAllLocations) || options.IsCountryAggregation)
                         adminFilter = " and AdminLevels.Id in (" + String.Join(", ", options.SelectedAdminLevels.Select(a => a.Id.ToString()).ToArray()) + ") ";
+                    else if (options.IsAllLocations && options.ShowOnlyRedistrictedUnits)
+                        adminFilter = " AND AdminLevels.RedistrictIdForMother > 0 ";
                     OleDbCommand command = new OleDbCommand(@"Select 
                                 a.ID, 
                                 AdminLevels.Id as aID, 
@@ -166,6 +168,7 @@ namespace Nada.Model.Repositories
                                 ,PopAdult 
                                 ,PopFemale 
                                 ,PopMale 
+                                ,RedistrictIdForDaughter
                             FROM ((AdminLevelDemography a INNER JOIN AdminLevels on a.AdminLevelId = AdminLevels.ID)
                                 INNER JOIN AdminLevelTypes t on t.Id = AdminLevels.AdminLevelTypeId)
                             WHERE a.IsDeleted = 0 " + CreateYearFilter(options, "DateDemographyData") +
@@ -182,6 +185,7 @@ namespace Nada.Model.Repositories
                             int year = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")); 
                             DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
                             dr["YearNumber"] = year;
+                            dr["DaughterId"] = reader.GetValueOrDefault<int>("RedistrictIdForDaughter");
                             dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
                             if (keys.ContainsKey("YearCensus")) dr[Translations.YearCensus] = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
                             if (keys.ContainsKey("YearProjections")) dr[Translations.YearProjections] = reader.GetValueOrDefault<Nullable<int>>("YearProjections");

@@ -28,6 +28,7 @@ namespace Nada.Model
         public string UrbanOrRural { get; set; }
         public AdminLevelDemography CurrentDemography { get; set; }
         public List<AdminLevel> Children { get; set; }
+        public int RedistrictIdForMother { get; set; }
         // Display Only
         public string LevelName { get; set; }
         public int LevelNumber { get; set; }

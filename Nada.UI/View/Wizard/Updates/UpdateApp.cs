@@ -103,13 +103,17 @@ namespace Nada.UI.View.Wizard
             else
                 result = Translations.UpdateException;
 
-            OnSwitchStep(new UpdateDbResult(success, result, this));
+            OnSwitchStep(new UpdateDbResult(success, result, this, DoRestart));
 
             if (success == true)
             {
                 MessageBox.Show(Translations.UpdateRestart);
                 OnRestart();
             }
+        }
+
+        public void DoRestart()
+        {
         }
 
         void updateWorker_DoWork(object sender, DoWorkEventArgs e)

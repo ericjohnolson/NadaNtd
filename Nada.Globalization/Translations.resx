@@ -5348,4 +5348,28 @@ Fixed / Mobile</value>
   <data name="Running" xml:space="preserve">
     <value>Running...</value>
   </data>
+  <data name="DatabaseScriptBackup" xml:space="preserve">
+    <value>Please revert to the most recent backup of your database: </value>
+  </data>
+  <data name="ShowRedistrictingEvents" xml:space="preserve">
+    <value>Show redistricting events</value>
+  </data>
+  <data name="RedistrictedAdminUnits" xml:space="preserve">
+    <value>Show only administrative units before redistricting</value>
+  </data>
+  <data name="RedistrictingInfo" xml:space="preserve">
+    <value>Redistricting Information</value>
+  </data>
+  <data name="RedistrictingMergeDesc" xml:space="preserve">
+    <value>Merged from {0} on {1}</value>
+  </data>
+  <data name="RedistrictingNotes" xml:space="preserve">
+    <value>Notes about redistricting</value>
+  </data>
+  <data name="RedistrictingSplitCombineDesc" xml:space="preserve">
+    <value>Split and combined from {0} on {1}</value>
+  </data>
+  <data name="RedistrictingSplitDesc" xml:space="preserve">
+    <value>Split from {0} on {1}</value>
+  </data>
 </root>

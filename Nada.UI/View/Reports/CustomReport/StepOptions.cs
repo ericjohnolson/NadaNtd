@@ -43,6 +43,8 @@ namespace Nada.UI.View.Reports.CustomReport
             report.ReportOptions.StartDate = dtStart.Value;
             report.ReportOptions.EndDate = dtEnd.Value;
             report.ReportOptions.MonthYearStarts = Convert.ToInt32(cbMonths.SelectedValue);
+            report.ReportOptions.ShowRedistrictEvents = checkBox1.Checked;
+            report.ReportOptions.ShowOnlyRedistrictedUnits = checkBox2.Checked;
             OnSwitchStep(new StepLocations(report, this));
         }
 
@@ -85,6 +87,8 @@ namespace Nada.UI.View.Reports.CustomReport
                 rbAggListAll.Checked = report.ReportOptions.IsNoAggregation;
                 rbAggCountry.Checked = report.ReportOptions.IsCountryAggregation;
                 rbAggLevel.Checked = report.ReportOptions.IsByLevelAggregation;
+                checkBox1.Checked = report.ReportOptions.ShowRedistrictEvents;
+                checkBox2.Checked = report.ReportOptions.ShowOnlyRedistrictedUnits;
 
                 if (report.ReportOptions.HideAggregation)
                 {
@@ -92,6 +96,16 @@ namespace Nada.UI.View.Reports.CustomReport
                     rbAggLevel.Visible = false;
                     rbAggListAll.Checked = true;
                 }
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            rbAggCountry.Enabled = !checkBox2.Checked;
+            rbAggLevel.Enabled = !checkBox2.Checked;
+            if (checkBox2.Checked && rbAggCountry.Checked)
+            {
+                rbAggListAll.Checked = true;
             }
         }
 

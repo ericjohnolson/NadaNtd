@@ -37,6 +37,9 @@ namespace Nada.Model
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string DiseaseName { get; set; }
+        public int RedistrictIdForDaughter { get; set; }
+        public int RedistrictIdForMother { get; set; }
+        
     }
 
 
@@ -114,6 +117,7 @@ namespace Nada.Model
             else
                 return ind.Value;
         }
+
         public static AdminLevelDemography AggregateTree(AdminLevel node, double? growthRate)
         {
             if(node.Children.Count == 0)
@@ -224,4 +228,7 @@ namespace Nada.Model
         }
 
     }
+
+
+
 }

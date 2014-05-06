@@ -19,12 +19,18 @@ namespace Nada.UI.View
         private SettingsRepository settings = null;
         private List<AdminLevel> available = new List<AdminLevel>();
         public List<AdminLevel> Selected = new List<AdminLevel>();
-
+        private bool showRedistricted = false;
 
         public AdminLevelMultiselectAny()
             : base()
         {
             InitializeComponent();
+        }
+
+        public void ShowRedistricted(bool s)
+        {
+            showRedistricted = s;
+            LoadAvailable();
         }
 
         public List<AdminLevel> GetSelected()
@@ -73,7 +79,7 @@ namespace Nada.UI.View
             if (cbLevels.SelectedItem == null)
                 return;
             var level = (AdminLevelType)cbLevels.SelectedItem;
-            available = demography.GetAdminLevelTree(level.Id);
+            available = demography.GetAdminLevelTree(level.Id, showRedistricted);
             treeAvailable.SetObjects(available.OrderBy(i => i.Name).ToList());
         }
 

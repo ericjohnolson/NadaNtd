@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using Nada.DA;
+using Nada.Globalization;
 using Nada.Model.Csv;
 using Nada.Model.Demography;
 
@@ -292,7 +293,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName,  AdminLevelTypes.AdminLevel
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE ParentId = @ParentId", connection);
+                    WHERE ParentId=@ParentId AND AdminLevels.IsDeleted=0 AND AdminLevels.RedistrictIdForMother=0", connection);
                 command.Parameters.Add(new OleDbParameter("@ParentId", parentId));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -321,7 +322,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, AdminLevelTypes.AdminLevel
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE AdminLevelTypes.AdminLevel = @LevelNumber", connection);
+                    WHERE AdminLevelTypes.AdminLevel = @LevelNumber AND AdminLevels.IsDeleted=0 AND AdminLevels.RedistrictIdForMother=0", connection);
                 command.Parameters.Add(new OleDbParameter("@LevelNumber", levelNumber));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -385,7 +386,7 @@ namespace Nada.Model.Repositories
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho,
                     AdminLevelTypes.AdminLevel
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE AdminLevels.IsDeleted = 0
+                    WHERE AdminLevels.IsDeleted = 0 AND AdminLevels.RedistrictIdForMother=0
                     ", connection); // WHERE ParentId > 0
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -413,6 +414,11 @@ namespace Nada.Model.Repositories
             return GetAdminLevelTree(levelTypeId, 1, false);
         }
 
+        public List<AdminLevel> GetAdminLevelTree(int levelTypeId, bool redistrictedOnly)
+        {
+            return GetAdminLevelTree(levelTypeId, 1, false, false, levelTypeId, redistrictedOnly);
+        }
+
         public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry)
         {
             return GetAdminLevelTree(levelTypeId, lowestLevel, includeCountry, false, 0);
@@ -420,15 +426,22 @@ namespace Nada.Model.Repositories
 
         public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry, bool allowSelect, int levelToSelect)
         {
+            return GetAdminLevelTree(levelTypeId, lowestLevel, includeCountry, allowSelect, levelToSelect, false);
+        }
+        public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry, bool allowSelect, int levelToSelect, bool onlyRedistricted)
+        {
             List<AdminLevel> list = new List<AdminLevel>();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
+                string redistrictedFilter = "AND AdminLevels.RedistrictIdForMother=0";
+                if (onlyRedistricted)
+                    redistrictedFilter = "AND AdminLevels.RedistrictIdForMother>=0";
                 connection.Open();
                 string cmd = @"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, 
-                    AdminLevelTypes.AdminLevel, AdminLevelTypes.ID as AdminLevelTypeId, AdminLevelTypes.DisplayName as LevelName
+                    AdminLevelTypes.AdminLevel, AdminLevelTypes.ID as AdminLevelTypeId, AdminLevelTypes.DisplayName as LevelName, RedistrictIdForMother
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE AdminLevelTypeId <= @AdminLevelTypeId AND AdminLevels.IsDeleted = 0";
+                    WHERE AdminLevelTypeId <= @AdminLevelTypeId AND AdminLevels.IsDeleted = 0 " + redistrictedFilter;
                 if (!includeCountry)
                     cmd += " AND ParentId > 0 ";
                 OleDbCommand command = new OleDbCommand(cmd, connection);
@@ -441,6 +454,7 @@ namespace Nada.Model.Repositories
                         {
                             Id = reader.GetValueOrDefault<int>("ID"),
                             ParentId = reader.GetValueOrDefault<Nullable<int>>("ParentId"),
+                            RedistrictIdForMother = reader.GetValueOrDefault<int>("RedistrictIdForMother"),
                             Name = reader.GetValueOrDefault<string>("DisplayName"),
                             LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
                             LevelName = reader.GetValueOrDefault<string>("LevelName"),
@@ -453,7 +467,7 @@ namespace Nada.Model.Repositories
                     reader.Close();
                 }
             }
-            return MakeTreeFromFlatList(list, lowestLevel, allowSelect, levelToSelect);
+            return MakeTreeFromFlatList(list, lowestLevel, allowSelect, levelToSelect, onlyRedistricted);
         }
 
         public List<AdminLevel> GetAdminLevelTreeForDemography(int level, DateTime demoDate, ref List<AdminLevel> list)
@@ -465,7 +479,7 @@ namespace Nada.Model.Repositories
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, 
                     AdminLevelTypes.AdminLevel, AdminLevelTypeId
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE AdminLevel <= @AdminLevel AND AdminLevels.IsDeleted = 0", connection);
+                    WHERE AdminLevel <= @AdminLevel AND AdminLevels.IsDeleted = 0 AND AdminLevels.RedistrictIdForMother=0", connection);
                 command.Parameters.Add(new OleDbParameter("@AdminLevel", level));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -505,7 +519,7 @@ namespace Nada.Model.Repositories
                 {
                     OleDbCommand command = new OleDbCommand(@"Select a.ParentId, a.DisplayName, t.DisplayName as TypeName
                     FROM AdminLevels a inner join adminleveltypes t on t.id = a.adminleveltypeid
-                    WHERE a.ID = @id", connection);
+                    WHERE a.ID = @id AND a.IsDeleted=0", connection);
                     command.Parameters.Add(new OleDbParameter("@id", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -551,8 +565,7 @@ namespace Nada.Model.Repositories
             return list;
         }
 
-
-        private List<AdminLevel> MakeTreeFromFlatList(IEnumerable<AdminLevel> flatList, int minRoot, bool allowSelect, int levelToSelect)
+        private List<AdminLevel> MakeTreeFromFlatList(IEnumerable<AdminLevel> flatList, int minRoot, bool allowSelect, int levelToSelect, bool onlyRedistricted)
         {
             var dic = flatList.ToDictionary(n => n.Id, n => n);
             var rootNodes = new List<AdminLevel>();
@@ -564,11 +577,23 @@ namespace Nada.Model.Repositories
                 if (node.ParentId.HasValue && node.ParentId.Value > minRoot)
                 {
                     AdminLevel parent = dic[node.ParentId.Value];
-                    parent.Children.Add(node);
+                    if (onlyRedistricted && node.AdminLevelTypeId == levelToSelect)
+                    {
+                        if (node.RedistrictIdForMother > 0)
+                            parent.Children.Add(node);
+                    }
+                    else
+                        parent.Children.Add(node);
                 }
                 else
                 {
-                    rootNodes.Add(node);
+                    if (onlyRedistricted && node.AdminLevelTypeId == levelToSelect)
+                    {
+                        if (node.RedistrictIdForMother > 0)
+                            rootNodes.Add(node);
+                    }
+                    else
+                        rootNodes.Add(node);
                 }
             }
             return rootNodes;
@@ -576,7 +601,7 @@ namespace Nada.Model.Repositories
 
         private List<AdminLevel> MakeTreeFromFlatList(IEnumerable<AdminLevel> flatList, int minRoot)
         {
-            return MakeTreeFromFlatList(flatList, minRoot, false, 0);
+            return MakeTreeFromFlatList(flatList, minRoot, false, 0, false);
         }
             
         public void AddChildren(AdminLevel parent, List<AdminLevel> children, AdminLevelType childType, int byUserId)
@@ -762,13 +787,13 @@ namespace Nada.Model.Repositories
                     if (filterBy != null)
                     {
                         command = new OleDbCommand(@"Select AdminLevels.ID, AdminLevels.DisplayName
-                            FROM AdminLevels WHERE ParentId=@ParentId AND IsDeleted=0", connection);
+                            FROM AdminLevels WHERE ParentId=@ParentId AND IsDeleted=0 AND RedistrictIdForMother=0", connection);
                         command.Parameters.Add(new OleDbParameter("@ParentId", filterBy.Id));
                     }
                     else if (parentType != null)
                     {
                         command = new OleDbCommand(@"Select AdminLevels.ID, AdminLevels.DisplayName
-                            FROM AdminLevels  WHERE AdminLevelTypeId = @AdminLevelTypeId AND IsDeleted=0", connection);
+                            FROM AdminLevels  WHERE AdminLevelTypeId = @AdminLevelTypeId AND IsDeleted=0 AND RedistrictIdForMother=0", connection);
                         command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", parentType.Id));
                     }
 
@@ -1438,7 +1463,7 @@ namespace Nada.Model.Repositories
             }
         }
 
-        private void SaveAdminDemography(OleDbCommand command, OleDbConnection connection, AdminLevelDemography demo, int userId)
+        public void SaveAdminDemography(OleDbCommand command, OleDbConnection connection, AdminLevelDemography demo, int userId)
         {
             if (demo.Id > 0)
                 command = new OleDbCommand(@"UPDATE AdminLevelDemography SET AdminLevelId=@AdminLevelId, DateDemographyData=@DateDemographyData,
@@ -1487,6 +1512,118 @@ namespace Nada.Model.Repositories
         }
         #endregion
 
+        #region Redistricting
+
+        public int InsertRedistrictingRecord(OleDbCommand command, OleDbConnection connection, RedistrictingOptions options, int userId)
+        {
+            command = new OleDbCommand(@"Insert Into RedistrictEvents (RedistrictTypeId, CreatedById, CreatedAt) VALUES
+                        (@RedistrictTypeId,  @CreatedById, @CreatedAt)", connection);
+            command.Parameters.Add(new OleDbParameter("@RedistrictTypeId", (int)options.SplitType));
+            command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+            command.ExecuteNonQuery();
+
+            command = new OleDbCommand(@"SELECT Max(ID) FROM RedistrictEvents", connection);
+            int id = (int)command.ExecuteScalar();
+            
+            return id;
+        }
+
+        public void InsertRedistrictUnit(OleDbCommand command, OleDbConnection connection, int userId, AdminLevel unit, int redistrictId, RedistrictingRelationship relationship, double percent)
+        {
+            command = new OleDbCommand(@"Insert Into RedistrictUnits (AdminLevelUnitId, RelationshipId, Percentage, RedistrictEventId) VALUES
+                        (@AdminLevelUnitId, @RelationshipId, @Percentage, @RedistrictEventId)", connection);
+            command.Parameters.Add(new OleDbParameter("@AdminLevelUnitId", unit.Id));
+            command.Parameters.Add(new OleDbParameter("@RelationshipId", (int)relationship));
+            command.Parameters.Add(new OleDbParameter("@Percentage", percent));
+            command.Parameters.Add(new OleDbParameter("@RedistrictEventId", redistrictId));
+            command.ExecuteNonQuery();
+
+            int motherId = 0, daughterId = 0;
+            if (relationship == RedistrictingRelationship.Mother)
+                motherId = redistrictId;
+            else
+            {
+                daughterId = redistrictId;
+                foreach (var child in unit.Children)
+                {
+                    command = new OleDbCommand(@"Update AdminLevels SET ParentId=@ParentId where ID = @AdminLevelId", connection);
+                    command.Parameters.Add(new OleDbParameter("@ParentId", unit.Id));
+                    command.Parameters.Add(new OleDbParameter("@AdminLevelId", child.Id));
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            command = new OleDbCommand(@"Update AdminLevels SET RedistrictIdForDaughter=@RedistrictIdForDaughter, RedistrictIdForMother=@RedistrictIdForMother
+                        where ID = @AdminLevelId", connection);
+            command.Parameters.Add(new OleDbParameter("@RedistrictIdForDaughter", daughterId));
+            command.Parameters.Add(new OleDbParameter("@RedistrictIdForMother", motherId));
+            command.Parameters.Add(new OleDbParameter("@AdminLevelId", unit.Id));
+            command.ExecuteNonQuery();
+        }
+
+        public void InsertRedistrictForm(OleDbCommand command, OleDbConnection connection, int userId, int redistrictId, int sourceId, int destId, IndicatorEntityType entityType)
+        {
+            command = new OleDbCommand(@"Insert Into RedistrictForms (EntityId, EntityTypeId, RelationshipId, RedistrictEventId) VALUES
+                        (@EntityId, @EntityTypeId, @RelationshipId, @RedistrictEventId)", connection);
+            command.Parameters.Add(new OleDbParameter("@EntityId", sourceId));
+            command.Parameters.Add(new OleDbParameter("@EntityTypeId", (int)entityType));
+            command.Parameters.Add(new OleDbParameter("@RelationshipId", (int)RedistrictingRelationship.Mother));
+            command.Parameters.Add(new OleDbParameter("@RedistrictEventId", redistrictId));
+            command.ExecuteNonQuery();
+
+            command = new OleDbCommand(@"Insert Into RedistrictForms (EntityId, EntityTypeId, RelationshipId, RedistrictEventId) VALUES
+                        (@EntityId, @EntityTypeId, @RelationshipId, @RedistrictEventId)", connection);
+            command.Parameters.Add(new OleDbParameter("@EntityId", destId));
+            command.Parameters.Add(new OleDbParameter("@EntityTypeId", (int)entityType));
+            command.Parameters.Add(new OleDbParameter("@RelationshipId", (int)RedistrictingRelationship.Daughter));
+            command.Parameters.Add(new OleDbParameter("@RedistrictEventId", redistrictId));
+            command.ExecuteNonQuery();
+        }
+
+        public string GetRedistrictingNote(int daughterId)
+        {
+            SplittingType type = SplittingType.SplitCombine;
+            List<string> names = new List<string>();
+            DateTime createdAt = DateTime.Now;
+
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select e.ID, e.CreatedAt, a.DisplayName, e.RedistrictTypeId
+                        FROM ((RedistrictEvents e INNER JOIN  RedistrictUnits u on e.ID = u.RedistrictEventId)
+                            INNER JOIN AdminLevels a on a.ID = u.AdminLevelUnitId)
+                        WHERE e.ID = @id AND u.RelationshipId = 1 ", connection);
+                    command.Parameters.Add(new OleDbParameter("@id", daughterId));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            type = (SplittingType)reader.GetValueOrDefault<int>("RedistrictTypeId");
+                            createdAt = reader.GetValueOrDefault<DateTime>("CreatedAt");
+                            names.Add(reader.GetValueOrDefault<string>("DisplayName"));
+                        }
+                    }
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            
+            if(type == SplittingType.Split)
+                return string.Format(TranslationLookup.GetValue("RedistrictingSplitDesc"), string.Join(", ", names.ToArray()), createdAt.ToShortDateString());
+            else if(type == SplittingType.Merge)
+                return string.Format(TranslationLookup.GetValue("RedistrictingMergeDesc"), string.Join(", ", names.ToArray()), createdAt.ToShortDateString());
+            else
+                return string.Format(TranslationLookup.GetValue("RedistrictingSplitCombineDesc"), string.Join(", ", names.ToArray()), createdAt.ToShortDateString());
+        }
+        #endregion
 
 
     }

@@ -7,6 +7,7 @@ using Nada.Model.Base;
 
 namespace Nada.Model.Diseases
 {
+    [Serializable]
     public class Disease : NadaClass
     {
         public Disease()

@@ -615,7 +615,8 @@ namespace Nada.Model.Repositories
                         UpdatedAt, 
                         UserName,
                         DataType, 
-                        NewYearType
+                        NewYearType,
+                        RedistrictRuleId
                         FROM ((DiseaseDistributionIndicators INNER JOIN aspnet_users ON DiseaseDistributionIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON DiseaseDistributionIndicators.DataTypeId = IndicatorDataTypes.ID)
                         WHERE DiseaseId=@DiseaseId AND IsDisabled=0 
@@ -630,6 +631,7 @@ namespace Nada.Model.Repositories
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
+                                RedistrictRuleId = reader.GetValueOrDefault<int>("RedistrictRuleId"),
                                 UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),

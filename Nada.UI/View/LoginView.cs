@@ -24,6 +24,7 @@ namespace Nada.UI.View
     {
         MemberRepository repo = new MemberRepository();
         private bool autoLogin = false;
+        private bool restartNeeded = false;
         public Action<string> StatusChanged { get; set; }
         public Action OnClose { get; set; }
         public Action OnRestart { get; set; }
@@ -55,10 +56,19 @@ namespace Nada.UI.View
             List<string> scriptsToRun = repo.GetSchemaChangeScripts(scriptsPath);
             if (scriptsToRun.Count > 0)
             {
-                WizardForm wiz = new WizardForm(new UpdateDb(scriptsToRun), Translations.Updates);
-                wiz.OnFinish += () => { };
+                WizardForm wiz = new WizardForm(new UpdateDb(scriptsToRun, DoRestart), Translations.Updates);
+                wiz.OnFinish += () => 
+                {
+                    if (restartNeeded)
+                        OnRestart();
+                };
                 wiz.ShowDialog();
             }
+        }
+
+        public void DoRestart()
+        {
+            restartNeeded = true;
         }
 
         public void DoLogin(string uid, string pwd)

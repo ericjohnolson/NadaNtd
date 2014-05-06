@@ -53,8 +53,7 @@ namespace Nada.UI.View.Wizard
                 return;
             options.MergeDestination = adminUnitAdd1.GetModel();
             if (options.SplitType == SplittingType.Merge)
-            {
-            }
+                ExecuteRedistricting();
             else
                 OnSwitchStep(new SplittingAdminLevel(options));
 
