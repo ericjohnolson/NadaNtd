@@ -2,6 +2,7 @@ Checklist For Releases:
 
 1. Make sure not developer mode.
 2. Make sure it doesn't auto update.
+3. update installation url and updates url
 
 QA:
 <add key="DeveloperMode" value="QA" />

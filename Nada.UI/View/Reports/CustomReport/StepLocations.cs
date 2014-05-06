@@ -46,23 +46,20 @@ namespace Nada.UI.View.Reports.CustomReport
             if (report.ReportOptions.IsNoAggregation)
             {
                 report.ReportOptions.SelectedAdminLevels = pickerAllLocations.GetSelected();
-                if (report.ReportOptions.SelectedAdminLevels.Count == 0)
-                {
-                    MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
-                    return;
-                }
             }
             else if (report.ReportOptions.IsByLevelAggregation)
             {
                 report.ReportOptions.SelectedAdminLevels = levelPicker.GetSelectedAdminLevels();
-                if (report.ReportOptions.SelectedAdminLevels.Count == 0)
-                {
-                    MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
-                    return;
-                }
             }
             else if (report.ReportOptions.IsCountryAggregation)
-                report.ReportOptions.SelectedAdminLevels = new List<AdminLevel> { new AdminLevel { Id = 1 } }; 
+                report.ReportOptions.SelectedAdminLevels = new List<AdminLevel> { new AdminLevel { Id = 1 } };
+
+            if (report.ReportOptions.SelectedAdminLevels.Count == 0 && !report.ReportOptions.IsAllLocations)
+            {
+                MessageBox.Show(Translations.LocationRequired, Translations.ValidationErrorTitle);
+                return;
+            }
+
             OnRunReport(report);
         }
 
