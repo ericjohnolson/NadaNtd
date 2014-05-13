@@ -48,7 +48,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(169, 19);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(174, 19);
             this.tableLayoutPanel2.TabIndex = 17;
             // 
             // h3Required1
@@ -74,10 +74,10 @@
             this.fieldLink1.Location = new System.Drawing.Point(114, 1);
             this.fieldLink1.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.fieldLink1.Name = "fieldLink1";
-            this.fieldLink1.Size = new System.Drawing.Size(55, 16);
+            this.fieldLink1.Size = new System.Drawing.Size(60, 16);
             this.fieldLink1.TabIndex = 18;
-            this.fieldLink1.Tag = "LinkSelect";
-            this.fieldLink1.Text = "Select...";
+            this.fieldLink1.Tag = "AddNew";
+            this.fieldLink1.Text = "AddNew";
             this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);
             // 
             // AdminUnitChooser
@@ -89,7 +89,7 @@
             this.Controls.Add(this.tableLayoutPanel2);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AdminUnitChooser";
-            this.Size = new System.Drawing.Size(175, 25);
+            this.Size = new System.Drawing.Size(180, 25);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);

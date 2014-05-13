@@ -229,6 +229,146 @@ namespace Nada.Model
 
     }
 
+    [Serializable]
+    public class IndicatorParser
+    {
+        public Dictionary<string, Indicator> Indicators { get; set; }
+        protected Dictionary<string, Indicator> translatedIndicators = new Dictionary<string, Indicator>();
+        protected List<Partner> partners = new List<Partner>();
+        private List<IndicatorDropdownValue> ezs = new List<IndicatorDropdownValue>();
+        private List<IndicatorDropdownValue> eus = new List<IndicatorDropdownValue>();
+        private List<IndicatorDropdownValue> ess = new List<IndicatorDropdownValue>();
+        private List<IndicatorDropdownValue> subdistricts = new List<IndicatorDropdownValue>();
+        protected List<MonthItem> months = new List<MonthItem>();
+        
+        public void LoadRelatedLists()
+        {
+            IntvRepository repo = new IntvRepository();
+            partners = repo.GetPartners();
+            months = GlobalizationUtil.GetAllMonths();
+            SettingsRepository settings = new SettingsRepository();
+            ezs = settings.GetEcologicalZones();
+            eus = settings.GetEvaluationUnits();
+            subdistricts = settings.GetEvalSubDistricts();
+            ess = settings.GetEvalSites();
+        }
 
+        public object Parse(int dataTypeId, int indicatorId, string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return null;
+
+            if (dataTypeId == (int)IndicatorDataType.Number)
+                return Double.Parse(value);
+            else if (dataTypeId == (int)IndicatorDataType.Date)
+                return DateTime.ParseExact(value, "MM/dd/yyyy", CultureInfo.InvariantCulture).ToShortDateString();
+            else if (dataTypeId == (int)IndicatorDataType.Partners)
+            {
+                List<string> values = new List<string>();
+                foreach (string id in value.Split('|'))
+                {
+                    int pId = 0;
+                    if (Int32.TryParse(id, out pId))
+                    {
+                        Partner partner = partners.FirstOrDefault(p => p.Id == pId);
+                        if (partner != null)
+                            values.Add(partner.DisplayName);
+                    }
+                }
+                if (values.Count > 0)
+                    return string.Join(Util.EnumerationDelinator, values.ToArray());
+                else
+                    return value;
+            }
+            else if (dataTypeId == (int)IndicatorDataType.EvaluationUnit)
+            {
+                int pId = 0;
+                if (Int32.TryParse(value, out pId))
+                {
+                    var eu = eus.FirstOrDefault(v => v.Id == pId);
+                    if (eu != null)
+                        return eu.DisplayName;
+                    else
+                        return value;
+                }
+                else
+                    return value;
+            }
+            else if (dataTypeId == (int)IndicatorDataType.EvaluationSite)
+            {
+                int pId = 0;
+                if (Int32.TryParse(value, out pId))
+                {
+                    var es = ess.FirstOrDefault(v => v.Id == pId);
+                    if (es != null)
+                        return es.DisplayName;
+                    else
+                        return value;
+                }
+                else
+                    return value;
+            }
+            else if (dataTypeId == (int)IndicatorDataType.EvalSubDistrict)
+            {
+                int pId = 0;
+                if (Int32.TryParse(value, out pId))
+                {
+                    var sd = subdistricts.FirstOrDefault(v => v.Id == pId);
+                    if (sd != null)
+                        return sd.DisplayName;
+                    else
+                        return value;
+                }
+                else
+                    return value;
+
+            }
+            else if (dataTypeId == (int)IndicatorDataType.EcologicalZone)
+            {
+                int pId = 0;
+                if (Int32.TryParse(value, out pId))
+                {
+                    var ez = ezs.FirstOrDefault(v => v.Id == pId);
+                    if (ez != null)
+                        return ez.DisplayName;
+                    else
+                        return value;
+                }
+                else
+                    return value;
+            }
+            else if (dataTypeId == (int)IndicatorDataType.Multiselect)
+            {
+                List<string> values = new List<string>();
+                foreach (string key in value.Split('|'))
+                    values.Add(TranslationLookup.GetValue(key, key));
+                return string.Join(Util.EnumerationDelinator, values.ToArray());
+            }
+            else if (dataTypeId == (int)IndicatorDataType.Dropdown)
+            {
+                return TranslationLookup.GetValue(value, value);
+            }
+            else if (dataTypeId == (int)IndicatorDataType.Month)
+            {
+                var monthItem = months.FirstOrDefault(v => v.Id == Convert.ToInt32(value));
+                if (monthItem != null)
+                    return monthItem.Name;
+
+            }
+            else if (dataTypeId == (int)IndicatorDataType.DiseaseMultiselect)
+            {
+                List<string> values = new List<string>();
+                foreach (string key in value.Split('|'))
+                    values.Add(TranslationLookup.GetValue(key, key));
+                
+                return string.Join(Util.EnumerationDelinator, values.ToArray());
+            }
+            else
+                return value;
+
+            return null;
+        }
+
+    }
 
 }

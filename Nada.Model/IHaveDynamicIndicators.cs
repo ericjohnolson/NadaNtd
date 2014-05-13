@@ -13,6 +13,11 @@ namespace Nada.Model
 
     public interface IHaveDynamicIndicatorValues
     {
+        int Id { get; set; }
         List<IndicatorValue> IndicatorValues { get; set; }
+        int GetFirstAdminLevelId();
+        string Notes { get; set; }
+        Boolean IsValid();
+        string GetAllErrors(bool showNames);
     }
 }

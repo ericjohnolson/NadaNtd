@@ -15,6 +15,7 @@ using Nada.UI.Base;
 using Nada.Model.Imports;
 using Nada.UI.Controls;
 using Nada.Model.Demography;
+using Nada.Model.Intervention;
 
 namespace Nada.UI.View.Wizard
 {
@@ -64,16 +65,35 @@ namespace Nada.UI.View.Wizard
             {
                 Localizer.TranslateControl(this);
 
-                IntvRepository repo = new IntvRepository();
+                Dictionary<int, IntvType> types = new Dictionary<int, IntvType>();
+                foreach (var form in options.Intvs)
+                    if (!types.ContainsKey(form.IntvType.Id))
+                        types.Add(form.IntvType.Id, form.IntvType);
 
-                foreach (var t in repo.GetAllTypes())
+                if (types.Count == 0)
+                    DoNext();
+
+                foreach (var t in types.Values)
                 {
                     var index = tblNewUnits.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
                     var lblName = new H3bLabel { AutoSize = true, Text = t.IntvTypeName, Margin = new Padding(0, 5, 10, 5) };
                     tblNewUnits.Controls.Add(lblName, 0, index);
 
                     var lnk = new H3Link { Text = Translations.DownloadImportFile, Margin = new Padding(0, 5, 10, 5) };
-                    tblNewUnits.Controls.Add(lnk, 1, index);
+                    tblNewUnits.Controls.Add(lnk, 1, index); 
+                    lnk.ClickOverride += () =>
+                    {
+                        List<IHaveDynamicIndicatorValues> forms = options.Intvs.Where(s => s.IntvType.Id == t.Id).Cast<IHaveDynamicIndicatorValues>().ToList();
+                        IntvImporter importer = new IntvImporter();
+                        importer.SetType(t.Id);
+                        var payload = new SplitDistro.WorkerPayload
+                        {
+                            FileName = t.IntvTypeName + "_" + options.SplitType.ToString() + DateTime.Now.ToString("yyyyMMdd") + ".xlsx",
+                            Importer = importer,
+                            Forms = forms
+                        };
+                        SplitDistro.CreateDownload(payload);
+                    };
                     var lnk2 = new H3Link { Text = Translations.UploadImportFile, Margin = new Padding(0, 5, 10, 5) };
                     tblNewUnits.Controls.Add(lnk2, 2, index);
                 }

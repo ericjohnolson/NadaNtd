@@ -65,7 +65,7 @@ namespace Nada.UI.View.Demography
             adminLevelAdd.ShowDialog();
         }
 
-        void adminLevelAdd_OnSave()
+        void adminLevelAdd_OnSave(AdminLevel a)
         {
             LoadAdminLevels();
         }

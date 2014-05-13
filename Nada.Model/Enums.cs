@@ -38,12 +38,12 @@ namespace Nada.Model
 
     public enum RedistrictingRule
     {
-        None = 1,
+        Blank = 1,
         Min = 2, // worst case with weighting
         Max = 3, // best case with weighting
-        Combine = 4,
+        Duplicate = 4,
         Sum = 5,
-        SplitByPercent = 6,
+        SplitByPercent = 6
     }
 
     public enum RedistrictingRelationship
@@ -82,7 +82,9 @@ namespace Nada.Model
         SthSentinel = 12,
         LfMapping = 16,
         SchMapping = 17,
-        SthMapping = 18
+        SthMapping = 18,
+        OnchoMapping = 19,
+        OnchoAssessment = 13
     }
 
     public enum StaticIntvType
@@ -95,9 +97,19 @@ namespace Nada.Model
         HatIntervention = 6,
         LeishIntervention = 7,
         BuruliUlcerIntv = 8,
-        YawsIntervention = 9
+        YawsIntervention = 9,
+        Ivm = 12,
+        IvmAlb = 10,
+        IvmPzq = 19,
+        IvmPzqAlb = 20,
+
     }
 
+    public enum StaticProcessType
+    {
+        PcTraining = 7,
+        SAEs = 9
+    }
     public enum DiseaseType
     {
         Lf = 3,

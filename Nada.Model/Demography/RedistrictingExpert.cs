@@ -5,6 +5,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
+using Nada.Model.Base;
+using Nada.Model.Diseases;
+using Nada.Model.Intervention;
+using Nada.Model.Process;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 
@@ -21,6 +25,9 @@ namespace Nada.Model.Demography
         private Logger logger = new Logger();
         private DemoRepository demoRepo = new DemoRepository();
         private SurveyRepository surveyRepo = new SurveyRepository();
+        private DiseaseRepository diseaseRepo = new DiseaseRepository();
+        private IntvRepository intvRepo = new IntvRepository();
+        private ProcessRepository processRepo = new ProcessRepository();
         private int userId = 0;
         public RedistrictingExpert()
         {
@@ -83,12 +90,27 @@ namespace Nada.Model.Demography
                 // split all demography
                 List<DemoDetails> demoDetails = demoRepo.GetAdminLevelDemography(options.Source.Id);
                 foreach (var deet in demoDetails)
-                    RedistributeDemography(deet, options.Source.Id, dest.Unit.Id, percentMultiplier, redistrictId, command, connection);
+                    SplitDemo(deet, options.Source.Id, dest.Unit.Id, percentMultiplier, redistrictId, command, connection);
                 // split all surveys 
                 List<SurveyDetails> surveys = surveyRepo.GetAllForAdminLevel(options.Source.Id);
                 foreach (var survey in surveys)
-                    RedistributeSurvey(survey, dest.Unit, percentMultiplier, redistrictId, command, connection);
-                
+                    options.Surveys.Add(SplitSurveys(survey, dest.Unit, percentMultiplier, redistrictId, command, connection));
+                // split all distros 
+                List<DiseaseDistroDetails> dds = diseaseRepo.GetAllForAdminLevel(options.Source.Id);
+                foreach (var dd in dds)
+                    if (dd.DiseaseType == "PC")
+                        options.DistrosPc.Add(SplitDdPc(dd, dest.Unit, percentMultiplier, redistrictId, command, connection));
+                    else
+                        options.DistrosCm.Add(SplitDdCm(dd, dest.Unit, percentMultiplier, redistrictId, command, connection));
+                // split all intvs 
+                List<IntvDetails> intvs = intvRepo.GetAllForAdminLevel(options.Source.Id);
+                foreach (var intv in intvs)
+                    options.Intvs.Add(SplitIntv(intv, dest.Unit, percentMultiplier, redistrictId, command, connection));
+                // split all surveys 
+                List<ProcessDetails> processes = processRepo.GetAllForAdminLevel(options.Source.Id);
+                foreach (var process in processes)
+                    options.Processes.Add(SplitProcesses(process, dest.Unit, percentMultiplier, redistrictId, command, connection));
+
             }
             return new RedistrictingResult();
         }
@@ -104,10 +126,10 @@ namespace Nada.Model.Demography
         }
 
         #region helpers
-        private void RedistributeDemography(DemoDetails details, int sourceId, int destId, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        private void SplitDemo(DemoDetails details, int sourceId, int destId, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
             var demography = demoRepo.GetDemoById(details.Id);
-            
+
             // make new
             var newDemography = Util.DeepClone(demography);
             newDemography.Id = 0;
@@ -126,20 +148,75 @@ namespace Nada.Model.Demography
             demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, demography.Id, newDemography.Id, IndicatorEntityType.Demo);
         }
 
-        private void RedistributeSurvey(SurveyDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        private SurveyBase SplitSurveys(SurveyDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
             var survey = surveyRepo.GetById(details.Id);
-            
             // make new
             var newSurvey = Util.DeepClone(survey);
             // Do notes newSurvey.Notes
             newSurvey.Id = 0;
             newSurvey.AdminLevels = new List<AdminLevel> { dest };
             newSurvey.IndicatorValues = RedistributeIndicators(survey.IndicatorValues, multiplier);
-            
             // save
             surveyRepo.SaveSurveyBase(command, connection, newSurvey, userId);
             demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, survey.Id, newSurvey.Id, IndicatorEntityType.Survey);
+            return newSurvey;
+        }
+
+        private DiseaseDistroPc SplitDdPc(DiseaseDistroDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {
+
+            var dd = diseaseRepo.GetDiseaseDistribution(details.Id, details.TypeId);
+            var newDd = Util.DeepClone(dd);
+            newDd.Id = 0;
+            newDd.AdminLevelId = dest.Id;
+            newDd.IndicatorValues = RedistributeIndicators(newDd.IndicatorValues, multiplier);
+            diseaseRepo.SavePc(newDd, userId, connection, command);
+            demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, dd.Id, newDd.Id, IndicatorEntityType.DiseaseDistribution);
+            return newDd;
+        }
+
+        private DiseaseDistroCm SplitDdCm(DiseaseDistroDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {
+            var dd = diseaseRepo.GetDiseaseDistributionCm(details.Id, details.TypeId);
+            var newDd = Util.DeepClone(dd);
+            newDd.Id = 0;
+            newDd.AdminLevelId = dest.Id;
+            newDd.IndicatorValues = RedistributeIndicators(newDd.IndicatorValues, multiplier);
+            diseaseRepo.SaveCm(newDd, userId, connection, command);
+            demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, dd.Id, newDd.Id, IndicatorEntityType.DiseaseDistribution);
+            return newDd;
+        }
+
+
+        private IntvBase SplitIntv(IntvDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {
+            var intv = intvRepo.GetById(details.Id);
+            // make new
+            var newIntv = Util.DeepClone(intv);
+            // Do notes newSurvey.Notes
+            newIntv.Id = 0;
+            newIntv.AdminLevelId = dest.Id;
+            newIntv.IndicatorValues = RedistributeIndicators(intv.IndicatorValues, multiplier);
+            // save
+            intvRepo.SaveIntvBase(command, connection, newIntv, userId);
+            demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, intv.Id, newIntv.Id, IndicatorEntityType.Intervention);
+            return newIntv;
+        }
+
+        private ProcessBase SplitProcesses(ProcessDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {
+            var process = processRepo.GetById(details.Id);
+            // make new
+            var newProcess = Util.DeepClone(process);
+            // Do notes newSurvey.Notes
+            newProcess.Id = 0;
+            newProcess.AdminLevelId = dest.Id;
+            newProcess.IndicatorValues = RedistributeIndicators(process.IndicatorValues, multiplier);
+            // save
+            processRepo.Save(command, connection, newProcess, userId);
+            demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, process.Id, newProcess.Id, IndicatorEntityType.Process);
+            return newProcess;
         }
 
         private List<IndicatorValue> RedistributeIndicators(List<IndicatorValue> existing, double percentage)
@@ -158,26 +235,15 @@ namespace Nada.Model.Demography
     {
         public static IndicatorValue Redistribute(IndicatorValue existingInd, double percentage)
         {
-            IndicatorValue result = new IndicatorValue();
+            IndicatorValue result = new IndicatorValue { CalcByRedistrict = true };
             result.Indicator = existingInd.Indicator;
             result.IndicatorId = existingInd.IndicatorId;
-            if (existingInd.Indicator.RedistrictRuleId == (int)RedistrictingRule.None)
+            if (existingInd.Indicator.RedistrictRuleId == (int)RedistrictingRule.Duplicate)
                 result.DynamicValue = existingInd.DynamicValue;
-            if (existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Number)
+            else if (existingInd.Indicator.RedistrictRuleId == (int)RedistrictingRule.Blank)
+                result.DynamicValue = "";
+            else if (existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Number)
                 result.DynamicValue = RedistributeDouble(existingInd, percentage);
-
-            //else if (ind.AggType == (int)IndicatorAggType.Combine && ind.DataType == (int)IndicatorDataType.Dropdown)
-            //    result.Value = existingValue + ", " + TranslationLookup.GetValue(ind.Value, ind.Value);
-            //else if (ind.AggType == (int)IndicatorAggType.Combine)
-            //    result.Value = existingValue + ", " + ind.Value;
-            //else if (ind.DataType == (int)IndicatorDataType.Number)
-            //    result.Value = AggregateDouble(ind, existingValue);
-            //else if (ind.DataType == (int)IndicatorDataType.Date)
-            //    result.Value = AggregateDate(ind, existingValue);
-            //else if (ind.DataType == (int)IndicatorDataType.Dropdown)
-            //    result.Value = AggregateDropdown(ind, existingValue);
-            //else
-            //    result.Value = AggregateString(ind, existingValue);
 
             return result;
         }
@@ -206,7 +272,7 @@ namespace Nada.Model.Demography
             else
                 return ind.Value;
         }
-        
+
         private static string AggregateDate(AggregateIndicator ind1, AggregateIndicator existingValue)
         {
             if (ind1.AggType == (int)IndicatorAggType.Sum)
@@ -239,7 +305,7 @@ namespace Nada.Model.Demography
             return "Invalid Aggregation Rule or Data Type";
         }
 
-     
+
 
         private static string AggregateDropdown(AggregateIndicator ind1, AggregateIndicator existingValue)
         {

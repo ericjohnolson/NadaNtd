@@ -65,7 +65,7 @@ namespace Nada.UI.View.Wizard
         private void LoadAdminLevels()
         {
             var levels = settings.GetAllAdminLevels();
-            var t = repo.GetAdminLevelTree(levels.OrderByDescending(l => l.LevelNumber).ToArray()[1].Id, 0, true, true, -1);
+            var t = repo.GetAdminLevelTree(levels.OrderByDescending(l => l.LevelNumber).First().Id, 0, true, true, -1);
             treeAvailable.CanExpandGetter = m => ((AdminLevel)m).Children.Count > 0;
             treeAvailable.ChildrenGetter = delegate(object m)
             {
@@ -79,18 +79,6 @@ namespace Nada.UI.View.Wizard
                 foreach (var l2 in l.Children)
                     treeAvailable.Expand(l2);
             }
-        }
-
-        private void lnkNew_ClickOverride()
-        {
-            var adminLevelAdd = new AdminLevelAdd();
-            adminLevelAdd.OnSave += adminLevelAdd_OnSave;
-            adminLevelAdd.ShowDialog();
-        }
-
-        void adminLevelAdd_OnSave()
-        {
-            LoadAdminLevels();
         }
 
         private void treeAvailable_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)

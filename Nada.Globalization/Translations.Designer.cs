@@ -304,6 +304,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administrative units.
+        /// </summary>
+        public static string AdminUnits {
+            get {
+                return ResourceManager.GetString("AdminUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adults in end of year prevalence.
         /// </summary>
         public static string AdultsAtEnd {
@@ -1705,6 +1714,15 @@ namespace Nada.Globalization {
         public static string DashboardPlaceholder {
             get {
                 return ResourceManager.GetString("DashboardPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data.
+        /// </summary>
+        public static string Data {
+            get {
+                return ResourceManager.GetString("Data", resourceCulture);
             }
         }
         
@@ -8216,6 +8234,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must select a parent for the new administrative level that is of type: {0}.
+        /// </summary>
+        public static string ParentLevelMustBeSame {
+            get {
+                return ResourceManager.GetString("ParentLevelMustBeSame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Partner.
         /// </summary>
         public static string Partner {
@@ -9746,6 +9773,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merged into {0} on {1}.
+        /// </summary>
+        public static string RedistrictingMergeInto {
+            get {
+                return ResourceManager.GetString("RedistrictingMergeInto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notes about redistricting.
         /// </summary>
         public static string RedistrictingNotes {
@@ -9764,11 +9800,29 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Split and combined into {0} on {1}.
+        /// </summary>
+        public static string RedistrictingSplitCombineInto {
+            get {
+                return ResourceManager.GetString("RedistrictingSplitCombineInto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Split from {0} on {1}.
         /// </summary>
         public static string RedistrictingSplitDesc {
             get {
                 return ResourceManager.GetString("RedistrictingSplitDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split into {0} on {1}.
+        /// </summary>
+        public static string RedistrictingSplitInto {
+            get {
+                return ResourceManager.GetString("RedistrictingSplitInto", resourceCulture);
             }
         }
         
@@ -10048,6 +10102,33 @@ namespace Nada.Globalization {
         public static string RoundsRecommendedByWho {
             get {
                 return ResourceManager.GetString("RoundsRecommendedByWho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must match all units before continuing.
+        /// </summary>
+        public static string RtiErrorMustMatchAll {
+            get {
+                return ResourceManager.GetString("RtiErrorMustMatchAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match your units with the Task Force system: {0}.
+        /// </summary>
+        public static string RtiMatchLevel {
+            get {
+                return ResourceManager.GetString("RtiMatchLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RTI Report.
+        /// </summary>
+        public static string RtiReports {
+            get {
+                return ResourceManager.GetString("RtiReports", resourceCulture);
             }
         }
         
@@ -15412,6 +15493,15 @@ namespace Nada.Globalization {
         public static string ValidLongitude {
             get {
                 return ResourceManager.GetString("ValidLongitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must be between {0} and {1}.
+        /// </summary>
+        public static string ValidNumberRange {
+            get {
+                return ResourceManager.GetString("ValidNumberRange", resourceCulture);
             }
         }
         

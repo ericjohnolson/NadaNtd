@@ -19,6 +19,10 @@ namespace Nada.Model.Diseases
             IndicatorDropdownValues = new List<IndicatorDropdownValue>();
         }
 
+        public int GetFirstAdminLevelId()
+        {
+            return AdminLevelId.Value;
+        }
         public Nullable<int> AdminLevelId { get; set; }
         public Disease Disease { get; set; }
         public string Notes { get; set; }

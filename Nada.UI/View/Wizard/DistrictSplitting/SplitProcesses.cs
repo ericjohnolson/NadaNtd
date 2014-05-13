@@ -15,6 +15,7 @@ using Nada.UI.Base;
 using Nada.Model.Imports;
 using Nada.UI.Controls;
 using Nada.Model.Demography;
+using Nada.Model.Process;
 
 namespace Nada.UI.View.Wizard
 {
@@ -64,9 +65,15 @@ namespace Nada.UI.View.Wizard
             {
                 Localizer.TranslateControl(this);
 
-                ProcessRepository repo = new ProcessRepository();
+                Dictionary<int, ProcessType> types = new Dictionary<int, ProcessType>();
+                foreach (var form in options.Processes)
+                    if (!types.ContainsKey(form.ProcessType.Id))
+                        types.Add(form.ProcessType.Id, form.ProcessType);
 
-                foreach (var t in repo.GetProcessTypes())
+                if (types.Count == 0)
+                    DoFinish();
+
+                foreach (var t in types.Values)
                 {
                     var index = tblNewUnits.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
                     var lblName = new H3bLabel { AutoSize = true, Text = t.TypeName, Margin = new Padding(0, 5, 10, 5) };
@@ -74,6 +81,19 @@ namespace Nada.UI.View.Wizard
 
                     var lnk = new H3Link { Text = Translations.DownloadImportFile, Margin = new Padding(0, 5, 10, 5) };
                     tblNewUnits.Controls.Add(lnk, 1, index);
+                    lnk.ClickOverride += () =>
+                    {
+                        List<IHaveDynamicIndicatorValues> forms = options.Processes.Where(s => s.ProcessType.Id == t.Id).Cast<IHaveDynamicIndicatorValues>().ToList();
+                        ProcessImporter importer = new ProcessImporter();
+                        importer.SetType(t.Id);
+                        var payload = new SplitDistro.WorkerPayload
+                        {
+                            FileName = t.TypeName + "_" + options.SplitType.ToString() + DateTime.Now.ToString("yyyyMMdd") + ".xlsx",
+                            Importer = importer,
+                            Forms = forms
+                        };
+                        SplitDistro.CreateDownload(payload);
+                    };
                     var lnk2 = new H3Link { Text = Translations.UploadImportFile, Margin = new Padding(0, 5, 10, 5) };
                     tblNewUnits.Controls.Add(lnk2, 2, index);
                 }

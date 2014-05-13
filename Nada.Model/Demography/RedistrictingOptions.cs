@@ -5,6 +5,9 @@ using System.Text;
 using Nada.Globalization;
 using Nada.Model;
 using Nada.Model.Base;
+using Nada.Model.Diseases;
+using Nada.Model.Intervention;
+using Nada.Model.Process;
 
 namespace Nada.Model.Demography
 {
@@ -26,6 +29,11 @@ namespace Nada.Model.Demography
         public RedistrictingOptions()
         {
             SplitDestinations = new List<AdminLevelAllocation>();
+            Surveys = new List<SurveyBase>();
+            Intvs = new List<IntvBase>();
+            Processes = new List<ProcessBase>();
+            DistrosCm = new List<DiseaseDistroCm>();
+            DistrosPc = new List<DiseaseDistroPc>();
         }
         public object Dashboard { get; set; }
         public AdminLevel Source { get; set; }
@@ -35,6 +43,11 @@ namespace Nada.Model.Demography
         public List<AdminLevel> SplitChildren { get; set; }
         public List<AdminLevel> MergeSources { get; set; }
         public AdminLevel MergeDestination { get; set; }
+        public List<DiseaseDistroPc> DistrosPc { get; set; }
+        public List<DiseaseDistroCm> DistrosCm { get; set; }
+        public List<SurveyBase> Surveys { get; set; }
+        public List<IntvBase> Intvs { get; set; }
+        public List<ProcessBase> Processes { get; set; }
 
         public override string ToString()
         {
@@ -65,8 +78,8 @@ namespace Nada.Model.Demography
                     case "SplitIntoNumber":
                         if (!SplitIntoNumber.HasValue)
                             error = Translations.Required;
-                        else if (SplitIntoNumber.Value < 0)
-                            error = Translations.MustBeGreaterThanZero;
+                        else if (SplitIntoNumber.Value < 0 || SplitIntoNumber.Value > 10)
+                            error = string.Format(Translations.ValidNumberRange, 1, 10);
                         break;
 
                     default: error = "";

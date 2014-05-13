@@ -57,15 +57,15 @@ namespace Nada.UI.View.Demography
         {
             IFetchActivities fetcher = new ActivityFetcher(adminLevel);
             DiseaseDashboard dash = new DiseaseDashboard(fetcher, adminLevel, false);
+           
             dash.ReloadView = (v) => { ReloadView(v); };
             dash.LoadView = (v) => { LoadView(v); };
             dash.LoadForm = (v) => { LoadForm(v); };
             dash.StatusChanged = (s) => { StatusChanged(s); };
 
             dash.LoadContent();
-            dash.Dock = DockStyle.Fill;
+            //dash.Dock = DockStyle.Fill;
             pnlLf.Controls.Add(dash);
         }
-
     }
 }

@@ -12,5 +12,6 @@ namespace Nada.Model
         public int IndicatorId { get; set; }
         public string DynamicValue { get; set; }
         public Indicator Indicator { get; set; }
+        public bool CalcByRedistrict { get; set; }
     }
 }

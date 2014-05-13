@@ -262,7 +262,7 @@
             this.hrTop.Margin = new System.Windows.Forms.Padding(6);
             this.hrTop.Name = "hrTop";
             this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(43)))), ((int)(((byte)(115)))));
-            this.hrTop.Size = new System.Drawing.Size(731, 6);
+            this.hrTop.Size = new System.Drawing.Size(731, 7);
             this.hrTop.TabIndex = 16;
             // 
             // tblTitle

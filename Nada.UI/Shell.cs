@@ -176,6 +176,7 @@ namespace Nada.UI
             pnlMain.Controls.Add((UserControl)currentView);
             hrTop.Visible = (view is DashboardView);
             mainMenu.Visible = (view is DashboardView);
+            hr2.Visible = (view is DashboardView);
         }
 
         private void view_StatusChanged(string status)
@@ -285,7 +286,7 @@ namespace Nada.UI
             adminLevelAdd.ShowDialog();
         }
 
-        private void adminLevelAdd_OnSave()
+        private void adminLevelAdd_OnSave(AdminLevel a)
         {
             LoadDashboard(new DashboardView());
         }
@@ -325,7 +326,11 @@ namespace Nada.UI
             dash.StatusChanged = (s) => {  };
             WizardForm wiz = new WizardForm(new BackupForRedistrict(new RedistrictingOptions { Dashboard = dash, SplitType = SplittingType.SplitCombine }),
                 Translations.SplitCombineTitle);
-            wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
+            wiz.OnFinish = import_OnSuccess;
+            wiz.OnClose = () =>
+            {
+                LoadDashboard(new DashboardView());
+            };
             wiz.ShowDialog();
         }
 
@@ -339,7 +344,11 @@ namespace Nada.UI
             dash.StatusChanged = (s) => { };
             WizardForm wiz = new WizardForm(new BackupForRedistrict(new RedistrictingOptions { Dashboard = dash, SplitType = SplittingType.Split }),
                 Translations.SplittingTitle);
-            wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
+            wiz.OnFinish = import_OnSuccess;
+            wiz.OnClose = () =>
+            {
+                LoadDashboard(new DashboardView());
+            };
             wiz.ShowDialog();
         }
 
@@ -353,7 +362,11 @@ namespace Nada.UI
             dash.StatusChanged = (s) => { };
             WizardForm wiz = new WizardForm(new BackupForRedistrict(new RedistrictingOptions { Dashboard = dash, SplitType = SplittingType.Merge }),
                 Translations.SplitMergeTitle);
-            wiz.OnFinish += () => { LoadDashboard(new DashboardView()); };
+            wiz.OnFinish = import_OnSuccess;
+            wiz.OnClose = () =>
+            {
+                LoadDashboard(new DashboardView());
+            };
             wiz.ShowDialog();
         }
 

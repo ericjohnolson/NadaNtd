@@ -334,7 +334,7 @@
             this.Name = "AdminLevelAdd";
             this.Tag = "AdminLevel";
             this.Text = "AdminLevel";
-            this.Load += new System.EventHandler(this.DistributionMethodAdd_Load);
+            this.Load += new System.EventHandler(this.AdminLevelAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeAvailable)).EndInit();

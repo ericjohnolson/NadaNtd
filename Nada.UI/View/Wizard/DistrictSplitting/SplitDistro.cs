@@ -15,6 +15,7 @@ using Nada.UI.Base;
 using Nada.Model.Imports;
 using Nada.UI.Controls;
 using Nada.Model.Demography;
+using Nada.Model.Diseases;
 
 namespace Nada.UI.View.Wizard
 {
@@ -64,10 +65,19 @@ namespace Nada.UI.View.Wizard
             {
                 Localizer.TranslateControl(this);
 
-                DiseaseRepository repo = new DiseaseRepository();
 
+                Dictionary<int, Disease> diseases = new Dictionary<int, Disease>();
+                foreach (var distro in options.DistrosCm)
+                    if (!diseases.ContainsKey(distro.Disease.Id))
+                        diseases.Add(distro.Disease.Id, distro.Disease);
+                foreach (var distro in options.DistrosPc)
+                    if (!diseases.ContainsKey(distro.Disease.Id))
+                        diseases.Add(distro.Disease.Id, distro.Disease);
 
-                foreach(var disease in repo.GetSelectedDiseases())
+                if (diseases.Count == 0)
+                    DoNext();
+
+                foreach (var disease in diseases.Values.OrderBy(d => d.DisplayName))
                 {
                     var index = tblNewUnits.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
                     var lblName = new H3bLabel { AutoSize = true, Text = disease.DisplayName, Margin = new Padding(0, 5, 10, 5) };
@@ -75,13 +85,138 @@ namespace Nada.UI.View.Wizard
 
                     var lnk = new H3Link { Text = Translations.DownloadImportFile, Margin = new Padding(0, 5, 10, 5) };
                     tblNewUnits.Controls.Add(lnk, 1, index);
+                    lnk.ClickOverride += () =>
+                    {
+                        List<IHaveDynamicIndicatorValues> forms = new List<IHaveDynamicIndicatorValues>();
+                        if (disease.DiseaseType == "CM")
+                            forms = options.DistrosCm.Where(d => d.Disease.Id == disease.Id).Cast<IHaveDynamicIndicatorValues>().ToList();
+                        else
+                            forms = options.DistrosPc.Where(d => d.Disease.Id == disease.Id).Cast<IHaveDynamicIndicatorValues>().ToList();
+                        DistroImporter importer = new DistroImporter();
+                        importer.SetType(disease.Id);
+                        var payload = new WorkerPayload
+                        {
+                            FileName = disease.DisplayName + "_" + options.SplitType.ToString() + DateTime.Now.ToString("yyyyMMdd") + ".xlsx",
+                            Importer = importer,
+                            Forms = forms
+                        };
+                        CreateDownload(payload);
+                    };
                     var lnk2 = new H3Link { Text = Translations.UploadImportFile, Margin = new Padding(0, 5, 10, 5) };
                     tblNewUnits.Controls.Add(lnk2, 2, index);
+                    lnk2.ClickOverride += () =>
+                    {
+                        Upload(disease);
+                    };
                 }
             }
         }
 
+        private void Upload(Disease disease)
+        {
+            List<IHaveDynamicIndicatorValues> forms = new List<IHaveDynamicIndicatorValues>();
+            if (disease.DiseaseType == "CM")
+                forms = options.DistrosCm.Where(d => d.Disease.Id == disease.Id).Cast<IHaveDynamicIndicatorValues>().ToList();
+            else
+                forms = options.DistrosPc.Where(d => d.Disease.Id == disease.Id).Cast<IHaveDynamicIndicatorValues>().ToList();
+            DistroImporter importer = new DistroImporter();
+            importer.SetType(disease.Id);
+            var payload = new WorkerPayload
+            {
+                Importer = importer,
+                Forms = forms
+            };
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = Translations.ExcelFiles + " (*.xlsx)|*.xlsx";
+            ofd.DefaultExt = ".xlsx";
 
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                OnSwitchStep(new WorkingStep(Translations.ImportingFile));
+                payload.FileName = ofd.FileName;
+                BackgroundWorker importerWorker = new BackgroundWorker();
+                importerWorker.DoWork += importerWorker_DoWork;
+                importerWorker.RunWorkerCompleted += importerWorker_RunWorkerCompleted;
+                importerWorker.RunWorkerAsync(payload);
+            }
+        }
+
+        void importerWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                int userId = ApplicationData.Instance.GetUserId();
+                WorkerPayload payload = (WorkerPayload)e.Argument;
+                ImportResult result = payload.Importer.UpdateData(payload.FileName, userId, payload.Forms);
+                if (result.WasSuccess)
+                {
+                    DiseaseRepository repo = new DiseaseRepository();
+                    if (payload.DiseaseType == "CM")
+                        repo.Save(result.Forms.Cast<DiseaseDistroCm>().ToList(), userId);
+                    else
+                        repo.Save(result.Forms.Cast<DiseaseDistroPc>().ToList(), userId);
+                }
+                e.Result = result;
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error creating splitting review file. SplitDistro:worker_DoWork. ", ex);
+                throw;
+            }
+        }
+
+        void importerWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ImportResult result = (ImportResult)e.Result;
+            if (result.WasSuccess)
+            {
+                OnSwitchStep(this);
+                MessageBox.Show(result.Message);
+            }
+            else
+                OnSwitchStep(new ImportStepResult(result, this, false));
+        }
+
+        public static void CreateDownload(WorkerPayload payload)
+        {
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = Translations.ExcelFiles + " (*.xlsx)|*.xlsx";
+            sfd.DefaultExt = ".xlsx";
+            sfd.FileName = payload.FileName;
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                payload.FileName = sfd.FileName;
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += worker_DoWork;
+                worker.RunWorkerAsync(payload);
+            }
+        }
+
+        static void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                WorkerPayload payload = (WorkerPayload)e.Argument;
+                payload.Importer.CreateUpdateFile(payload.FileName, payload.Forms);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error creating splitting review file. SplitDistro:worker_DoWork. ", ex);
+                throw;
+            }
+        }
+
+        public class WorkerPayload
+        {
+            public string FileName { get; set; }
+            public ImporterBase Importer { get; set; }
+            public List<IHaveDynamicIndicatorValues> Forms { get; set; }
+            public string DiseaseType { get; set; }
+        }
 
 
     }

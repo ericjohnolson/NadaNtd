@@ -265,7 +265,7 @@
             this.lblCustomIndicators.AutoSize = true;
             this.lblCustomIndicators.BackColor = System.Drawing.Color.Transparent;
             this.lblCustomIndicators.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomIndicators.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.lblCustomIndicators.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.lblCustomIndicators.Location = new System.Drawing.Point(-2, 1);
             this.lblCustomIndicators.Margin = new System.Windows.Forms.Padding(0);
             this.lblCustomIndicators.Name = "lblCustomIndicators";
@@ -275,14 +275,14 @@
             // 
             // hr1
             // 
-            this.hr1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.hr1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
             this.hr1.ForeColor = System.Drawing.Color.Gray;
             this.hr1.Location = new System.Drawing.Point(0, 0);
             this.hr1.Margin = new System.Windows.Forms.Padding(6);
             this.hr1.Name = "hr1";
-            this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
-            this.hr1.Size = new System.Drawing.Size(722, 6);
+            this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
+            this.hr1.Size = new System.Drawing.Size(920, 6);
             this.hr1.TabIndex = 16;
             // 
             // lblTitle
@@ -290,7 +290,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(95)))), ((int)(((byte)(39)))));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.lblTitle.Location = new System.Drawing.Point(21, 10);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(187, 28);
@@ -307,7 +307,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.hr1);
             this.Name = "SurveyTypeEdit";
-            this.Size = new System.Drawing.Size(722, 420);
+            this.Size = new System.Drawing.Size(920, 420);
             this.Tag = "SurveyInformation";
             this.Load += new System.EventHandler(this.SurveyTypeView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lvIndicators)).EndInit();

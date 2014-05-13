@@ -13,6 +13,7 @@ namespace Nada.Model
         {
         }
         public string Name { get; set; }
+        public string TaskForceName { get; set; }
         public DateTime ReportingYearStartDate { get; set; }
 
         #region IDataErrorInfo Members

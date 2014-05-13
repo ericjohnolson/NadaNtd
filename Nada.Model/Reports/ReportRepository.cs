@@ -77,7 +77,6 @@ namespace Nada.Model.Repositories
                     string indicatorKey = getKey(reader, options.IsNoAggregation, options) + isCalcRelated;
                     int adminLevelId = reader.GetValueOrDefault<int>("AID");
                     int dataType = reader.GetValueOrDefault<int>("DataTypeId");
-                    string value = GetDynamicValue(reader);
                     if (!dic.ContainsKey(adminLevelId))
                         continue;
                     var newIndicator = new AggregateIndicator
@@ -86,7 +85,7 @@ namespace Nada.Model.Repositories
                         Name = indicatorName,
                         Key = reader.GetValueOrDefault<string>("IndicatorName"),
                         DataType = dataType,
-                        Value = value,
+                        Value = reader.GetValueOrDefault<string>("DynamicValue"),
                         AggType = reader.GetValueOrDefault<int>("AggTypeId"),
                         Year = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")),
                         ReportedDate = reader.GetValueOrDefault<DateTime>("DateReported"),
@@ -169,6 +168,7 @@ namespace Nada.Model.Repositories
                                 ,PopFemale 
                                 ,PopMale 
                                 ,RedistrictIdForDaughter
+                                ,RedistrictIdForMother
                             FROM ((AdminLevelDemography a INNER JOIN AdminLevels on a.AdminLevelId = AdminLevels.ID)
                                 INNER JOIN AdminLevelTypes t on t.Id = AdminLevels.AdminLevelTypeId)
                             WHERE a.IsDeleted = 0 " + CreateYearFilter(options, "DateDemographyData") +
@@ -186,6 +186,7 @@ namespace Nada.Model.Repositories
                             DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
                             dr["YearNumber"] = year;
                             dr["DaughterId"] = reader.GetValueOrDefault<int>("RedistrictIdForDaughter");
+                            dr["MotherId"] = reader.GetValueOrDefault<int>("RedistrictIdForMother");
                             dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
                             if (keys.ContainsKey("YearCensus")) dr[Translations.YearCensus] = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
                             if (keys.ContainsKey("YearProjections")) dr[Translations.YearProjections] = reader.GetValueOrDefault<Nullable<int>>("YearProjections");
@@ -212,56 +213,56 @@ namespace Nada.Model.Repositories
             return dt;
         }
 
-        private string GetDynamicValue(OleDbDataReader reader)
-        {
-            int dataType = reader.GetValueOrDefault<int>("DataTypeId");
-            string value = reader.GetValueOrDefault<string>("DynamicValue");
-            if (value == null)
-                return null;
-            if (dataType == (int)IndicatorDataType.Multiselect || dataType == (int)IndicatorDataType.DiseaseMultiselect)
-                value = value.Replace("|", ", ");
-            else if (dataType == (int)IndicatorDataType.Partners)
-            {
-                List<string> names = new List<string>();
-                string[] vals = value.Split('|');
-                foreach (var partner in partners.Where(v => vals.Contains(v.Id.ToString())))
-                    names.Add(partner.DisplayName);
-                value = String.Join(", ", names.ToArray());
-            }
-            else if (dataType == (int)IndicatorDataType.EcologicalZone)
-            {
-                List<string> names = new List<string>();
-                string[] vals = value.Split('|');
-                foreach (var ez in ezs.Where(v => vals.Contains(v.Id.ToString())))
-                    names.Add(ez.DisplayName);
-                value = String.Join(", ", names.ToArray());
-            }
-            else if (dataType == (int)IndicatorDataType.EvaluationUnit)
-            {
-                List<string> names = new List<string>();
-                string[] vals = value.Split('|');
-                foreach (var eu in eus.Where(v => vals.Contains(v.Id.ToString())))
-                    names.Add(eu.DisplayName);
-                value = String.Join(", ", names.ToArray());
-            }
-            else if (dataType == (int)IndicatorDataType.EvalSubDistrict)
-            {
-                List<string> names = new List<string>();
-                string[] vals = value.Split('|');
-                foreach (var sd in subdistricts.Where(v => vals.Contains(v.Id.ToString())))
-                    names.Add(sd.DisplayName);
-                value = String.Join(", ", names.ToArray());
-            }
-            else if (dataType == (int)IndicatorDataType.EvaluationSite)
-            {
-                List<string> names = new List<string>();
-                string[] vals = value.Split('|');
-                foreach (var es in evalsites.Where(v => vals.Contains(v.Id.ToString())))
-                    names.Add(es.DisplayName);
-                value = String.Join(", ", names.ToArray());
-            }
-            return value;
-        }
+        //private string GetDynamicValue(OleDbDataReader reader)
+        //{
+        //    int dataType = reader.GetValueOrDefault<int>("DataTypeId");
+        //    string value = reader.GetValueOrDefault<string>("DynamicValue");
+        //    if (value == null)
+        //        return null;
+        //    if (dataType == (int)IndicatorDataType.Multiselect || dataType == (int)IndicatorDataType.DiseaseMultiselect)
+        //        value = value.Replace("|", ", ");
+        //    else if (dataType == (int)IndicatorDataType.Partners)
+        //    {
+        //        List<string> names = new List<string>();
+        //        string[] vals = value.Split('|');
+        //        foreach (var partner in partners.Where(v => vals.Contains(v.Id.ToString())))
+        //            names.Add(partner.DisplayName);
+        //        value = String.Join(", ", names.ToArray());
+        //    }
+        //    else if (dataType == (int)IndicatorDataType.EcologicalZone)
+        //    {
+        //        List<string> names = new List<string>();
+        //        string[] vals = value.Split('|');
+        //        foreach (var ez in ezs.Where(v => vals.Contains(v.Id.ToString())))
+        //            names.Add(ez.DisplayName);
+        //        value = String.Join(", ", names.ToArray());
+        //    }
+        //    else if (dataType == (int)IndicatorDataType.EvaluationUnit)
+        //    {
+        //        List<string> names = new List<string>();
+        //        string[] vals = value.Split('|');
+        //        foreach (var eu in eus.Where(v => vals.Contains(v.Id.ToString())))
+        //            names.Add(eu.DisplayName);
+        //        value = String.Join(", ", names.ToArray());
+        //    }
+        //    else if (dataType == (int)IndicatorDataType.EvalSubDistrict)
+        //    {
+        //        List<string> names = new List<string>();
+        //        string[] vals = value.Split('|');
+        //        foreach (var sd in subdistricts.Where(v => vals.Contains(v.Id.ToString())))
+        //            names.Add(sd.DisplayName);
+        //        value = String.Join(", ", names.ToArray());
+        //    }
+        //    else if (dataType == (int)IndicatorDataType.EvaluationSite)
+        //    {
+        //        List<string> names = new List<string>();
+        //        string[] vals = value.Split('|');
+        //        foreach (var es in evalsites.Where(v => vals.Contains(v.Id.ToString())))
+        //            names.Add(es.DisplayName);
+        //        value = String.Join(", ", names.ToArray());
+        //    }
+        //    return value;
+        //}
 
         public static string CreateYearFilter(ReportOptions options, string dateName)
         {

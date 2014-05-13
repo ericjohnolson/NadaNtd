@@ -179,8 +179,7 @@ namespace Nada.Model.Intervention
                 return new KeyValuePair<string, string>(Translations.PcIntvSchEpi, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSchistoPopulationAtRisk", DiseaseType.Schisto, start, end, ref errors)));
             if (field == intvTypeId + "PcIntvTraEpi")
                 return new KeyValuePair<string, string>(Translations.PcIntvTraEpi,
-                    GetPercentage(GetTotal(GetValueOrDefault(intvTypeId + "PcIntvNumTreatedZx", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumTreatedTeo", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumTreatedZxPos", relatedValues)),
-                        GetRecentDistroIndicator(adminLevelId, "DDTraPopulationAtRisk", DiseaseType.Trachoma, start, end, ref errors)));
+                    GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDTraPopulationAtRisk", DiseaseType.Trachoma, start, end, ref errors)));
 
             return new KeyValuePair<string, string>(null, null);
         }

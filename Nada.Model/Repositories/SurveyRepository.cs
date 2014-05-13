@@ -889,13 +889,14 @@ namespace Nada.Model.Repositories
 
             foreach (IndicatorValue val in survey.IndicatorValues)
             {
-                command = new OleDbCommand(@"Insert Into SurveyIndicatorValues (IndicatorId, SurveyId, DynamicValue, UpdatedById, UpdatedAt) VALUES
-                        (@IndicatorId, @SurveyId, @DynamicValue, @UpdatedById, @UpdatedAt)", connection);
+                command = new OleDbCommand(@"Insert Into SurveyIndicatorValues (IndicatorId, SurveyId, DynamicValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
+                        (@IndicatorId, @SurveyId, @DynamicValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
                 command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
                 command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
                 command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
                 command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                 command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                command.Parameters.Add(new OleDbParameter("@CalcByRedistrict", val.CalcByRedistrict));
                 command.ExecuteNonQuery();
             }
         }
@@ -906,7 +907,8 @@ namespace Nada.Model.Repositories
                         SurveyIndicatorValues.ID,   
                         SurveyIndicatorValues.IndicatorId,
                         SurveyIndicatorValues.DynamicValue,
-                        SurveyIndicators.DisplayName
+                        SurveyIndicators.DisplayName,
+                        SurveyIndicatorValues.CalcByRedistrict
                         FROM SurveyIndicatorValues INNER JOIN SurveyIndicators on SurveyIndicatorValues.IndicatorId = SurveyIndicators.ID
                         WHERE SurveyIndicatorValues.SurveyId = @SurveyId", connection);
             command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
@@ -921,6 +923,7 @@ namespace Nada.Model.Repositories
                         Id = reader.GetValueOrDefault<int>("ID"),
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
                         DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
+                        CalcByRedistrict = reader.GetValueOrDefault<bool>("CalcByRedistrict"),
                         Indicator = survey.TypeOfSurvey.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
                     });
                 }

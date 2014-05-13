@@ -21,6 +21,10 @@ namespace Nada.Model.Base
             AdminLevels = new List<AdminLevel>();
             SiteType = "Sentinel";
         }
+        public int GetFirstAdminLevelId()
+        {
+            return AdminLevels.FirstOrDefault().Id;
+        }
         public List<AdminLevel> AdminLevels { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

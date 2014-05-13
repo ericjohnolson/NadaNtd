@@ -95,6 +95,8 @@ namespace Nada.Model
             else
                 return dateReported.Year - 1;
         }
+
+        
         
     }
 }

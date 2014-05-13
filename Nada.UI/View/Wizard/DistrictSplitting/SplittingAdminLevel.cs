@@ -101,16 +101,17 @@ namespace Nada.UI.View.Wizard
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                int adminLevelType = 0;
+                int levelNumber = 0;
+                
                 if (options.SplitType == SplittingType.SplitCombine)
-                    adminLevelType = options.MergeSources[0].AdminLevelTypeId;
+                    levelNumber = options.MergeSources[0].LevelNumber;
                 else
-                    adminLevelType = options.Source.AdminLevelTypeId;
+                    levelNumber = options.Source.LevelNumber;
 
                 for (int i = 0; i < options.SplitIntoNumber.Value; i++)
                 {
                     var index = tblNewUnits.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
-                    var chooser = new AdminUnitChooser(adminLevelType);
+                    var chooser = new AdminUnitChooser(levelNumber);
                     chooser.Margin = new Padding(0, 5, 10, 5);
                     AdminLevel source = null;
                     if (options.SplitType == SplittingType.SplitCombine)

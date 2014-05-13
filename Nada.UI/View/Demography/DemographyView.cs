@@ -166,7 +166,7 @@ namespace Nada.UI.View.Demography
 
         }
 
-        void al_OnSave()
+        void al_OnSave(AdminLevel a)
         {
             BindAdminLevel();
             adminLevelBoundToGlobalTree.Name = adminLevel.Name;

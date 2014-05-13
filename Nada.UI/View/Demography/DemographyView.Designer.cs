@@ -258,7 +258,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(933, 658);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(920, 658);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // tableLayoutPanel14
@@ -606,13 +606,13 @@
             // 
             // hr5
             // 
-            this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hr5.ForeColor = System.Drawing.Color.Gray;
             this.hr5.Location = new System.Drawing.Point(0, 555);
             this.hr5.Margin = new System.Windows.Forms.Padding(0);
             this.hr5.Name = "hr5";
-            this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hr5.Size = new System.Drawing.Size(933, 1);
+            this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
+            this.hr5.Size = new System.Drawing.Size(920, 1);
             this.hr5.TabIndex = 8;
             this.hr5.TabStop = false;
             // 
@@ -628,31 +628,31 @@
             this.customIndicatorControl1.Size = new System.Drawing.Size(162, 48);
             this.customIndicatorControl1.TabIndex = 0;
             this.customIndicatorControl1.TabStop = false;
-            this.customIndicatorControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.customIndicatorControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.customIndicatorControl1.Visible = false;
             // 
             // hr4
             // 
-            this.hr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.hr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hr4.ForeColor = System.Drawing.Color.Gray;
             this.hr4.Location = new System.Drawing.Point(0, 485);
             this.hr4.Margin = new System.Windows.Forms.Padding(0);
             this.hr4.Name = "hr4";
-            this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hr4.Size = new System.Drawing.Size(933, 1);
+            this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
+            this.hr4.Size = new System.Drawing.Size(920, 1);
             this.hr4.TabIndex = 47;
             this.hr4.TabStop = false;
             this.hr4.Visible = false;
             // 
             // hr3
             // 
-            this.hr3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.hr3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hr3.ForeColor = System.Drawing.Color.Gray;
             this.hr3.Location = new System.Drawing.Point(0, 315);
             this.hr3.Margin = new System.Windows.Forms.Padding(0);
             this.hr3.Name = "hr3";
-            this.hr3.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hr3.Size = new System.Drawing.Size(933, 1);
+            this.hr3.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
+            this.hr3.Size = new System.Drawing.Size(920, 1);
             this.hr3.TabIndex = 52;
             this.hr3.TabStop = false;
             // 
@@ -704,14 +704,14 @@
             // 
             // hrTop
             // 
-            this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hrTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.hrTop.ForeColor = System.Drawing.Color.Gray;
             this.hrTop.Location = new System.Drawing.Point(0, 0);
             this.hrTop.Margin = new System.Windows.Forms.Padding(6);
             this.hrTop.Name = "hrTop";
-            this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hrTop.Size = new System.Drawing.Size(948, 6);
+            this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
+            this.hrTop.Size = new System.Drawing.Size(935, 7);
             this.hrTop.TabIndex = 56;
             this.hrTop.TabStop = false;
             // 
@@ -777,7 +777,7 @@
             this.lblAdminLevel.AutoSize = true;
             this.lblAdminLevel.BackColor = System.Drawing.Color.Transparent;
             this.lblAdminLevel.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdminLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.lblAdminLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.lblAdminLevel.Location = new System.Drawing.Point(0, 0);
             this.lblAdminLevel.Margin = new System.Windows.Forms.Padding(0);
             this.lblAdminLevel.Name = "lblAdminLevel";
@@ -791,7 +791,7 @@
             this.lblType.AutoSize = true;
             this.lblType.BackColor = System.Drawing.Color.Transparent;
             this.lblType.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.lblType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.lblType.Location = new System.Drawing.Point(124, 0);
             this.lblType.Margin = new System.Windows.Forms.Padding(0);
             this.lblType.Name = "lblType";
@@ -920,7 +920,7 @@
             this.Controls.Add(this.nadaLabel1);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "DemographyView";
-            this.Size = new System.Drawing.Size(948, 766);
+            this.Size = new System.Drawing.Size(935, 766);
             this.Load += new System.EventHandler(this.Demo_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();

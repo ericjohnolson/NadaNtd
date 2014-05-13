@@ -22,6 +22,7 @@ namespace Nada.UI.View.Wizard
     {
         ImportResult result = null;
         IWizardStep prev = null;
+        bool showFinish = true;
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
@@ -29,7 +30,7 @@ namespace Nada.UI.View.Wizard
         public bool EnableNext { get { return false; } }
         public bool ShowPrev { get { return true; } }
         public bool EnablePrev { get { return true; } }
-        public bool ShowFinish { get { return true; } }
+        public bool ShowFinish { get { return showFinish; } }
         public bool EnableFinish { get { return true; } }
         public string StepTitle { get { return Translations.ImportCompleteErrors; } }
 
@@ -42,6 +43,15 @@ namespace Nada.UI.View.Wizard
         public ImportStepResult(ImportResult r, IWizardStep p)
             : base()
         {
+            result = r;
+            prev = p;
+            InitializeComponent();
+        }
+
+        public ImportStepResult(ImportResult r, IWizardStep p, bool f)
+            : base()
+        {
+            showFinish = f;
             result = r;
             prev = p;
             InitializeComponent();

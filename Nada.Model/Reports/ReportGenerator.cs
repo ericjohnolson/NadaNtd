@@ -33,6 +33,8 @@ namespace Nada.Model.Reports
         protected List<ReportIndicator> selectedCalcFields = null;
         [NonSerialized]
         protected bool hasCalculations = false;
+        [NonSerialized]
+        protected IndicatorParser indicatorParser = new IndicatorParser();
         protected virtual string CmdText() { throw new NotImplementedException(); }
         protected virtual int EntityTypeId { get { return 0; } }
         protected virtual bool IsDemoOrDistro { get { return false; } }
@@ -71,6 +73,7 @@ namespace Nada.Model.Reports
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
             Dictionary<int, AdminLevelIndicators> dic = new Dictionary<int, AdminLevelIndicators>();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            indicatorParser.LoadRelatedLists(); ;
 
             // Get all indicators
             using (connection)
@@ -194,7 +197,8 @@ namespace Nada.Model.Reports
         private void AddToTable(DataTable result, Dictionary<string, ReportRow> resultDic, AdminLevelIndicators level, int year, AggregateIndicator indicator,
             string rowKey, AggregateIndicator indValue, string typeName, ReportOptions options)
         {
-            object value = IndicatorAggregator.ParseValue(indValue);
+            object value = indicatorParser.Parse(indicator.DataType, indicator.IndicatorId, indValue.Value);
+
             // Add row if it doesn't exist
             if (!resultDic.ContainsKey(rowKey))
             {
@@ -222,7 +226,9 @@ namespace Nada.Model.Reports
                     if (!result.Columns.Contains(Translations.RedistrictingNotes))
                         result.Columns.Add(new DataColumn(Translations.RedistrictingNotes));
                     if (level.RedistrictIdForDaughter > 0)
-                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingNote(level.RedistrictIdForDaughter);
+                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingDaughterNote(level.RedistrictIdForDaughter);
+                    else if (level.RedistrictIdForMother > 0)
+                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingMotherNote(level.RedistrictIdForMother);
                 }
 
                 // insert
@@ -244,16 +250,6 @@ namespace Nada.Model.Reports
                 if (value == null || value.ToString().Length == 0)
                     return;
 
-                if (indicator.DataType == (int)IndicatorDataType.Dropdown)
-                    value = TranslationLookup.GetValue(value.ToString(), value.ToString());
-                if (indicator.DataType == (int)IndicatorDataType.YesNo)
-                    value = (value.ToString() == "1") ? Translations.Yes : Translations.No;
-                if (indicator.DataType == (int)IndicatorDataType.Month)
-                {
-                    int month = 1;
-                    if(int.TryParse(value.ToString(), out month))
-                        value = new DateTime(2000, month, 1).ToString("MMMM", CultureInfo.InvariantCulture);
-                }
                 resultDic[rowKey].Row[indicator.Name] = value;
             }
             else // Related to a calculated field
@@ -834,7 +830,8 @@ namespace Nada.Model.Reports
             var vals = Util.DeepClone(level.Indicators);
             level.Indicators.Clear();
             foreach (var val in vals.Values)
-                level.Indicators.Add(val.Key, val);
+                if(!level.Indicators.ContainsKey(val.Key))
+                   level.Indicators.Add(val.Key, val);
             return level;
         }
     }
@@ -884,11 +881,20 @@ namespace Nada.Model.Reports
             string name = reader.GetValueOrDefault<string>("IndicatorName");
             if (!reader.GetValueOrDefault<bool>("IsDisplayed"))
                 name = TranslationLookup.GetValue(name);
+            string drug = reader.GetValueOrDefault<string>("SCMDrug");
+            if (!string.IsNullOrEmpty(drug))
+                drug = TranslationLookup.GetValue(drug, drug);
+            string cats = reader.GetValueOrDefault<string>("PCTrainTrainingCategory");
+            List<string> catList = new List<string>();
+            if (!string.IsNullOrEmpty(cats))
+                foreach(var c in cats.Split('|'))
+                    if (!string.IsNullOrEmpty(c))
+                        catList.Add(TranslationLookup.GetValue(c, c));
 
             return name + " - " +
                 GetTypeName(reader) +
-                GetValueOrBlank(reader.GetValueOrDefault<string>("SCMDrug"), " - ") +
-                GetValueOrBlank(reader.GetValueOrDefault<string>("PCTrainTrainingCategory"), " - ").Replace("|", ", ");
+                GetValueOrBlank(drug, " - ") +
+                GetValueOrBlank(string.Join(", ", catList.ToArray()), " - ");
         }
 
         protected override string GetColTypeName(OleDbDataReader reader)
@@ -921,6 +927,7 @@ namespace Nada.Model.Reports
             dataTable.Columns.Add(new DataColumn(Translations.Year));
             dataTable.Columns.Add(new DataColumn("YearNumber"));
             dataTable.Columns.Add(new DataColumn("DaughterId"));
+            dataTable.Columns.Add(new DataColumn("MotherId"));
             foreach (var ind in options.SelectedIndicators)
                 dataTable.Columns.Add(new DataColumn(ind.Name));
             
@@ -947,8 +954,11 @@ namespace Nada.Model.Reports
                     if(!result.DataTableResults.Columns.Contains(Translations.RedistrictingNotes))
                         result.DataTableResults.Columns.Add(new DataColumn(Translations.RedistrictingNotes));
                     int daughterId = Convert.ToInt32(dr["DaughterId"]);
+                    int motherId = Convert.ToInt32(dr["MotherId"]);
                     if (daughterId > 0)
-                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingNote(daughterId);
+                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingDaughterNote(daughterId);
+                    else if (motherId > 0)
+                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingMotherNote(motherId);
                 }
             }
 
@@ -958,6 +968,7 @@ namespace Nada.Model.Reports
             result.DataTableResults.Columns.Remove(Translations.Location);
             result.DataTableResults.Columns.Remove("YearNumber");
             result.DataTableResults.Columns.Remove("DaughterId");
+            result.DataTableResults.Columns.Remove("MotherId");
             return result;
         }
     }

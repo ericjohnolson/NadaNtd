@@ -504,7 +504,6 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel6.Size = new System.Drawing.Size(160, 14);
             this.tableLayoutPanel6.TabIndex = 72;
-            this.tableLayoutPanel6.Visible = false;
             // 
             // h3bLabel2
             // 

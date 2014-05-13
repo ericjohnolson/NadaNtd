@@ -75,6 +75,7 @@
             this.menuAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hrTop = new Nada.UI.Controls.HR();
             this.hr1 = new Nada.UI.Controls.HR();
+            this.hr2 = new Nada.UI.Controls.HR();
             this.statusStrip1.SuspendLayout();
             this.tsQuickLinks.SuspendLayout();
             this.pnlLeft.SuspendLayout();
@@ -111,10 +112,10 @@
             // 
             this.pnlMain.AutoScroll = true;
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 31);
+            this.pnlMain.Location = new System.Drawing.Point(0, 42);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1248, 799);
+            this.pnlMain.Size = new System.Drawing.Size(1248, 788);
             this.pnlMain.TabIndex = 3;
             // 
             // tsQuickLinks
@@ -346,7 +347,6 @@
             this.menuSplitDistrictToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.menuSplitDistrictToolStripMenuItem.Tag = "MenuSplitDistrict";
             this.menuSplitDistrictToolStripMenuItem.Text = "MenuSplitDistrict";
-            this.menuSplitDistrictToolStripMenuItem.Visible = false;
             this.menuSplitDistrictToolStripMenuItem.Click += new System.EventHandler(this.menuSplitDistrictToolStripMenuItem_Click);
             // 
             // menuMergeDistrictToolStripMenuItem
@@ -490,13 +490,13 @@
             // 
             // hrTop
             // 
-            this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hrTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.hrTop.ForeColor = System.Drawing.Color.Gray;
             this.hrTop.Location = new System.Drawing.Point(0, 1);
             this.hrTop.Margin = new System.Windows.Forms.Padding(0);
             this.hrTop.Name = "hrTop";
-            this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hrTop.Size = new System.Drawing.Size(1248, 6);
             this.hrTop.TabIndex = 60;
             // 
@@ -512,14 +512,27 @@
             this.hr1.Size = new System.Drawing.Size(1248, 1);
             this.hr1.TabIndex = 63;
             // 
+            // hr2
+            // 
+            this.hr2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.hr2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hr2.ForeColor = System.Drawing.Color.Gray;
+            this.hr2.Location = new System.Drawing.Point(0, 32);
+            this.hr2.Margin = new System.Windows.Forms.Padding(0);
+            this.hr2.Name = "hr2";
+            this.hr2.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.hr2.Size = new System.Drawing.Size(1248, 10);
+            this.hr2.TabIndex = 65;
+            // 
             // Shell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1248, 852);
-            this.Controls.Add(this.hr1);
             this.Controls.Add(this.pnlMain);
+            this.Controls.Add(this.hr2);
+            this.Controls.Add(this.hr1);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.hrTop);
             this.Controls.Add(this.pnlLeft);
@@ -589,6 +602,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuSplitDistrictToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuMergeDistrictToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuViewTutorialToolStripMenuItem;
+        private Controls.HR hr2;
     }
 }
 

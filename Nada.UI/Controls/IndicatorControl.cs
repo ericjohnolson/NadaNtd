@@ -125,6 +125,7 @@ namespace Nada.UI.View
             {
                 lblCustomIndicators.ForeColor = value;
                 hr4.BackColor = value;
+                hr1.BackColor = value;
             }
         }
 

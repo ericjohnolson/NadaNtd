@@ -628,7 +628,7 @@ namespace Nada.Model.Repositories
             return intv;
         }
 
-        private void SaveIntvBase(OleDbCommand command, OleDbConnection connection, IntvBase intv, int userId)
+        public void SaveIntvBase(OleDbCommand command, OleDbConnection connection, IntvBase intv, int userId)
         {
             if (intv.Id > 0)
                 command = new OleDbCommand(@"UPDATE Interventions SET InterventionTypeId=@InterventionTypeId, AdminLevelId=@AdminLevelId, DateReported=@DateReported,
@@ -673,13 +673,15 @@ namespace Nada.Model.Repositories
 
             foreach (IndicatorValue val in intv.IndicatorValues)
             {
-                command = new OleDbCommand(@"Insert Into InterventionIndicatorValues (IndicatorId, InterventionId, DynamicValue, UpdatedById, UpdatedAt) VALUES
-                        (@IndicatorId, @InterventionId, @DynamicValue, @UpdatedById, @UpdatedAt)", connection);
+                command = new OleDbCommand(@"Insert Into InterventionIndicatorValues (IndicatorId, InterventionId, DynamicValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
+                        (@IndicatorId, @InterventionId, @DynamicValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
                 command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
                 command.Parameters.Add(new OleDbParameter("@InterventionId", intv.Id));
                 command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
                 command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                 command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                command.Parameters.Add(new OleDbParameter("@CalcByRedistrict", val.CalcByRedistrict));
+                
                 command.ExecuteNonQuery();
             }
         }
@@ -690,7 +692,8 @@ namespace Nada.Model.Repositories
                         InterventionIndicatorValues.ID,   
                         InterventionIndicatorValues.IndicatorId,
                         InterventionIndicatorValues.DynamicValue,
-                        InterventionIndicators.DisplayName
+                        InterventionIndicators.DisplayName,
+                        InterventionIndicatorValues.CalcByRedistrict
                         FROM InterventionIndicatorValues INNER JOIN InterventionIndicators on InterventionIndicatorValues.IndicatorId = InterventionIndicators.ID
                         WHERE InterventionIndicatorValues.InterventionId = @InterventionId", connection);
             command.Parameters.Add(new OleDbParameter("@InterventionId", intv.Id));
@@ -705,6 +708,7 @@ namespace Nada.Model.Repositories
                         Id = reader.GetValueOrDefault<int>("ID"),
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
                         DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
+                        CalcByRedistrict = reader.GetValueOrDefault<bool>("CalcByRedistrict"),
                         Indicator = intv.IntvType.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
                     });
                 }

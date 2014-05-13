@@ -44,11 +44,10 @@ namespace Nada.UI.View.Wizard
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
-            this.errorProvider1.DataSource = this.bsImportOptions;
             // 
             // bsImportOptions
             // 
-            this.bsImportOptions.DataSource = typeof(RedistrictingOptions);
+            this.bsImportOptions.DataSource = typeof(Nada.Model.Demography.RedistrictingOptions);
             // 
             // lblHowMany
             // 

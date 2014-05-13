@@ -5372,4 +5372,34 @@ Fixed / Mobile</value>
   <data name="RedistrictingSplitDesc" xml:space="preserve">
     <value>Split from {0} on {1}</value>
   </data>
+  <data name="ParentLevelMustBeSame" xml:space="preserve">
+    <value>You must select a parent for the new administrative level that is of type: {0}</value>
+  </data>
+  <data name="RedistrictingMergeInto" xml:space="preserve">
+    <value>Merged into {0} on {1}</value>
+  </data>
+  <data name="RedistrictingSplitCombineInto" xml:space="preserve">
+    <value>Split and combined into {0} on {1}</value>
+  </data>
+  <data name="RedistrictingSplitInto" xml:space="preserve">
+    <value>Split into {0} on {1}</value>
+  </data>
+  <data name="ValidNumberRange" xml:space="preserve">
+    <value>Must be between {0} and {1}</value>
+  </data>
+  <data name="AdminUnits" xml:space="preserve">
+    <value>Administrative units</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="RtiErrorMustMatchAll" xml:space="preserve">
+    <value>Must match all units before continuing</value>
+  </data>
+  <data name="RtiMatchLevel" xml:space="preserve">
+    <value>Match your units with the Task Force system: {0}</value>
+  </data>
+  <data name="RtiReports" xml:space="preserve">
+    <value>RTI Report</value>
+  </data>
 </root>

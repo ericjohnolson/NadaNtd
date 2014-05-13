@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.c1SplitContainer1 = new C1.Win.C1SplitContainer.C1SplitContainer();
             this.c1SplitterPanel1 = new C1.Win.C1SplitContainer.C1SplitterPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblRecent = new System.Windows.Forms.Label();
             this.treeListView1 = new BrightIdeasSoftware.TreeListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -38,6 +40,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.c1SplitContainer1)).BeginInit();
             this.c1SplitContainer1.SuspendLayout();
             this.c1SplitterPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,6 +67,7 @@
             this.c1SplitterPanel1.AutoScroll = true;
             this.c1SplitterPanel1.BackColor = System.Drawing.Color.White;
             this.c1SplitterPanel1.Collapsible = true;
+            this.c1SplitterPanel1.Controls.Add(this.panel1);
             this.c1SplitterPanel1.Controls.Add(this.treeListView1);
             this.c1SplitterPanel1.Controls.Add(this.tableLayoutPanel1);
             this.c1SplitterPanel1.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Left;
@@ -75,6 +79,29 @@
             this.c1SplitterPanel1.TabIndex = 0;
             this.c1SplitterPanel1.Width = 286;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
+            this.panel1.Controls.Add(this.lblRecent);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(279, 31);
+            this.panel1.TabIndex = 13;
+            // 
+            // lblRecent
+            // 
+            this.lblRecent.AutoSize = true;
+            this.lblRecent.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecent.ForeColor = System.Drawing.Color.White;
+            this.lblRecent.Location = new System.Drawing.Point(13, 5);
+            this.lblRecent.Margin = new System.Windows.Forms.Padding(13, 5, 0, 5);
+            this.lblRecent.Name = "lblRecent";
+            this.lblRecent.Size = new System.Drawing.Size(63, 19);
+            this.lblRecent.TabIndex = 7;
+            this.lblRecent.Tag = "Location";
+            this.lblRecent.Text = "Location";
+            // 
             // treeListView1
             // 
             this.treeListView1.AllColumns.Add(this.olvColumn1);
@@ -82,16 +109,18 @@
             this.treeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn1});
             this.treeListView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treeListView1.Font = new System.Drawing.Font("Arial", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeListView1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeListView1.FullRowSelect = true;
             this.treeListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.treeListView1.Location = new System.Drawing.Point(11, 17);
-            this.treeListView1.Margin = new System.Windows.Forms.Padding(8);
+            this.treeListView1.HighlightBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.treeListView1.HighlightForegroundColor = System.Drawing.Color.White;
+            this.treeListView1.Location = new System.Drawing.Point(0, 37);
+            this.treeListView1.Margin = new System.Windows.Forms.Padding(0);
             this.treeListView1.MinimumSize = new System.Drawing.Size(250, 321);
             this.treeListView1.Name = "treeListView1";
             this.treeListView1.OwnerDraw = true;
             this.treeListView1.ShowGroups = false;
-            this.treeListView1.Size = new System.Drawing.Size(268, 703);
+            this.treeListView1.Size = new System.Drawing.Size(276, 681);
             this.treeListView1.TabIndex = 12;
             this.treeListView1.UseCompatibleStateImageBehavior = false;
             this.treeListView1.UseHyperlinks = true;
@@ -129,6 +158,7 @@
             // 
             // c1SplitterPanel2
             // 
+            this.c1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.c1SplitterPanel2.Height = 100;
             this.c1SplitterPanel2.Location = new System.Drawing.Point(287, 0);
             this.c1SplitterPanel2.Name = "c1SplitterPanel2";
@@ -149,6 +179,8 @@
             this.c1SplitContainer1.ResumeLayout(false);
             this.c1SplitterPanel1.ResumeLayout(false);
             this.c1SplitterPanel1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -162,6 +194,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private BrightIdeasSoftware.TreeListView treeListView1;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblRecent;
 
     }
 }

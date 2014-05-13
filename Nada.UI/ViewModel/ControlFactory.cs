@@ -24,7 +24,7 @@ namespace Nada.UI.ViewModel
 
     public class ControlFactory
     {
-        public static readonly int bottomPadding = 10;
+        public static readonly int bottomPadding = 15;
 
         public static Control CreateLabel(Indicator indicator, bool isStatic)
         {

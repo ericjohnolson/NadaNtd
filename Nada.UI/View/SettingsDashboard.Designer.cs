@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label21 = new System.Windows.Forms.Label();
             this.hrTop = new Nada.UI.Controls.HR();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -41,6 +42,10 @@
             this.adminLevelTypesControl1 = new Nada.UI.Controls.AdminLevelTypesControl();
             this.countryView1 = new Nada.UI.View.Demography.CountryView();
             this.pnlLf = new System.Windows.Forms.Panel();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.treeAvailable = new BrightIdeasSoftware.TreeListView();
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnSaveDiseases = new C1.Win.C1Input.C1Button();
             this.diseasePickerControl1 = new Nada.UI.View.DiseasePickerControl();
@@ -61,6 +66,8 @@
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeAvailable)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lvUsers)).BeginInit();
@@ -143,6 +150,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
@@ -174,7 +182,7 @@
             // 
             this.saveCountry.AutoSize = true;
             this.saveCountry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.saveCountry.Location = new System.Drawing.Point(11, 307);
+            this.saveCountry.Location = new System.Drawing.Point(11, 482);
             this.saveCountry.MinimumSize = new System.Drawing.Size(90, 27);
             this.saveCountry.Name = "saveCountry";
             this.saveCountry.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
@@ -231,11 +239,12 @@
             // 
             this.countryView1.AutoSize = true;
             this.countryView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.countryView1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.countryView1.BackColor = System.Drawing.Color.White;
             this.countryView1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.countryView1.Location = new System.Drawing.Point(8, 8);
             this.countryView1.Name = "countryView1";
-            this.countryView1.Size = new System.Drawing.Size(583, 56);
+            this.countryView1.Size = new System.Drawing.Size(589, 54);
             this.countryView1.TabIndex = 4;
             // 
             // pnlLf
@@ -247,6 +256,57 @@
             this.pnlLf.Name = "pnlLf";
             this.pnlLf.Size = new System.Drawing.Size(0, 0);
             this.pnlLf.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.treeAvailable);
+            this.tabPage5.Location = new System.Drawing.Point(4, 24);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(918, 529);
+            this.tabPage5.TabIndex = 5;
+            this.tabPage5.Text = "AdminUnits";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // treeAvailable
+            // 
+            this.treeAvailable.AllColumns.Add(this.olvColumn2);
+            this.treeAvailable.AllColumns.Add(this.olvColumn3);
+            this.treeAvailable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn2,
+            this.olvColumn3});
+            this.treeAvailable.Cursor = System.Windows.Forms.Cursors.Default;
+            this.treeAvailable.FullRowSelect = true;
+            this.treeAvailable.Location = new System.Drawing.Point(15, 34);
+            this.treeAvailable.Name = "treeAvailable";
+            this.treeAvailable.OwnerDraw = true;
+            this.treeAvailable.ShowGroups = false;
+            this.treeAvailable.Size = new System.Drawing.Size(890, 489);
+            this.treeAvailable.TabIndex = 50;
+            this.treeAvailable.UseCompatibleStateImageBehavior = false;
+            this.treeAvailable.UseHyperlinks = true;
+            this.treeAvailable.View = System.Windows.Forms.View.Details;
+            this.treeAvailable.VirtualMode = true;
+            this.treeAvailable.HyperlinkClicked += new System.EventHandler<BrightIdeasSoftware.HyperlinkClickedEventArgs>(this.treeAdminUnits_HyperlinkClicked);
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.AspectName = "Name";
+            this.olvColumn2.CellPadding = null;
+            this.olvColumn2.FillsFreeSpace = true;
+            this.olvColumn2.IsEditable = false;
+            this.olvColumn2.Tag = "Name";
+            this.olvColumn2.Text = "Name";
+            this.olvColumn2.Width = 441;
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "ViewText";
+            this.olvColumn3.CellPadding = null;
+            this.olvColumn3.Hyperlink = true;
+            this.olvColumn3.Tag = "Delete";
+            this.olvColumn3.Text = "Delete";
+            this.olvColumn3.Width = 117;
             // 
             // tabPage3
             // 
@@ -264,7 +324,7 @@
             // 
             this.btnSaveDiseases.AutoSize = true;
             this.btnSaveDiseases.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSaveDiseases.Location = new System.Drawing.Point(12, 450);
+            this.btnSaveDiseases.Location = new System.Drawing.Point(12, 483);
             this.btnSaveDiseases.MinimumSize = new System.Drawing.Size(90, 27);
             this.btnSaveDiseases.Name = "btnSaveDiseases";
             this.btnSaveDiseases.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
@@ -330,7 +390,7 @@
             this.lvUsers.Location = new System.Drawing.Point(12, 35);
             this.lvUsers.Name = "lvUsers";
             this.lvUsers.ShowGroups = false;
-            this.lvUsers.Size = new System.Drawing.Size(863, 471);
+            this.lvUsers.Size = new System.Drawing.Size(863, 459);
             this.lvUsers.TabIndex = 2;
             this.lvUsers.UseCompatibleStateImageBehavior = false;
             this.lvUsers.UseHyperlinks = true;
@@ -475,6 +535,8 @@
             this.tabPage2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeAvailable)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -518,5 +580,9 @@
         private Controls.H3bLabel h3bLabel3;
         private C1.Win.C1Input.C1Button btnSaveLog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.TabPage tabPage5;
+        private BrightIdeasSoftware.TreeListView treeAvailable;
+        private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvColumn3;
     }
 }

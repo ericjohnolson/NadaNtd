@@ -253,7 +253,6 @@
             this.checkBox1.Tag = "ShowRedistrictingEvents";
             this.checkBox1.Text = "ShowRedistrictingEvents";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Visible = false;
             // 
             // h3Label4
             // 
@@ -268,7 +267,6 @@
             this.h3Label4.Tag = "RedistrictingInfo";
             this.h3Label4.Text = "RedistrictingInfo";
             this.h3Label4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label4.Visible = false;
             // 
             // checkBox2
             // 
@@ -280,7 +278,6 @@
             this.checkBox2.Tag = "RedistrictedAdminUnits";
             this.checkBox2.Text = "RedistrictedAdminUnits";
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.Visible = false;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // StepOptions

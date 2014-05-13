@@ -97,6 +97,7 @@
     <Compile Include="Repositories\ProcessRepository.cs" />
     <Compile Include="Repositories\ExportRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="Repositories\TaskForceApi.cs" />
     <Compile Include="Survey\CalcSurvey.cs" />
     <Compile Include="Survey\SurveyDetails.cs" />
     <Compile Include="Demography\AdminLevel.cs" />

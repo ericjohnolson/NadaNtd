@@ -786,8 +786,13 @@ namespace Nada.Model.Repositories
         public string RunSchemaChangeScripts(List<string> files)
         {
             bool transWasStarted = false;
-            string backup = DatabaseData.Instance.FilePath.Replace(".accdb", DateTime.Now.Ticks + ".accdb");
-            File.Copy(DatabaseData.Instance.FilePath, backup, true);
+            string backup = "";
+            if (DatabaseData.Instance.FilePath != null)
+            {
+                backup = DatabaseData.Instance.FilePath.Replace(".accdb", DateTime.Now.Ticks + ".accdb");
+                File.Copy(DatabaseData.Instance.FilePath, backup, true);
+            }
+            
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
 
             using (connection)

@@ -33,5 +33,6 @@ namespace Nada.Model
         public bool WasSuccess { get; set; }
         public string Message { get; set; }
         public int Count { get; set; }
+        public List<IHaveDynamicIndicatorValues> Forms { get; set; }
     }
 }

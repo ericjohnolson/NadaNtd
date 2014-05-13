@@ -17,13 +17,13 @@ namespace Nada.UI.View
     public partial class AdminUnitChooser : BaseControl
     {
         private AdminLevel selected = null;
-        private int levelType = 0;
+        private int levelNumber = 0;
 
-        public AdminUnitChooser(int typeid)
+        public AdminUnitChooser(int levelNo)
             : base()
         {
             InitializeComponent();
-            levelType = typeid;
+            levelNumber = levelNo;
             h3Required1.SetMaxWidth(300);
             Localizer.TranslateControl(this);
         }
@@ -47,9 +47,9 @@ namespace Nada.UI.View
         }
         private void fieldLink1_OnClick()
         {
-            AdminLevelSelectAdd picker = new AdminLevelSelectAdd(levelType);
-            picker.OnSelect += picker_OnSelect;
-            picker.ShowDialog();
+            var adminLevelAdd = new AdminLevelAdd(levelNumber);
+            adminLevelAdd.OnSave += picker_OnSelect;
+            adminLevelAdd.ShowDialog();
         }
 
         void picker_OnSelect(Model.AdminLevel obj)

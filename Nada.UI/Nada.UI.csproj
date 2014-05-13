@@ -31,7 +31,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>154</ApplicationRevision>
+    <ApplicationRevision>157</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -146,6 +146,12 @@
     </Compile>
     <Compile Include="Controls\AdminUnitChooser.Designer.cs">
       <DependentUpon>AdminUnitChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AdminUnitMatcher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AdminUnitMatcher.Designer.cs">
+      <DependentUpon>AdminUnitMatcher.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\PickerControl.cs">
       <SubType>UserControl</SubType>
@@ -320,6 +326,18 @@
     </Compile>
     <Compile Include="View\Reports\ExportWizard\ApocExport.Designer.cs">
       <DependentUpon>ApocExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\TaskForceCountryStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\TaskForceCountryStep.Designer.cs">
+      <DependentUpon>TaskForceCountryStep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\TaskForceAdminLevelStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\TaskForceAdminLevelStep.Designer.cs">
+      <DependentUpon>TaskForceAdminLevelStep.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Reports\Standard\EliminationOptions.cs">
       <SubType>UserControl</SubType>
@@ -573,12 +591,6 @@
     <Compile Include="View\DataEntryEdit.Designer.cs">
       <DependentUpon>DataEntryEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseDistroEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\DiseaseDistribution\DiseaseDistroEdit.Designer.cs">
-      <DependentUpon>DiseaseDistroEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Reports\CustomReport\CustomReportView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -780,6 +792,9 @@
     <EmbeddedResource Include="Controls\AdminUnitChooser.resx">
       <DependentUpon>AdminUnitChooser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AdminUnitMatcher.resx">
+      <DependentUpon>AdminUnitMatcher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\PickerControl.resx">
       <DependentUpon>PickerControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -868,6 +883,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ExportWizard\ApocExport.resx">
       <DependentUpon>ApocExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ExportWizard\TaskForceCountryStep.resx">
+      <DependentUpon>TaskForceCountryStep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ExportWizard\TaskForceAdminLevelStep.resx">
+      <DependentUpon>TaskForceAdminLevelStep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\Standard\EliminationOptions.resx">
       <DependentUpon>EliminationOptions.cs</DependentUpon>
@@ -995,9 +1016,6 @@
     <EmbeddedResource Include="View\DataEntryEdit.resx">
       <DependentUpon>DataEntryEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\DiseaseDistribution\DiseaseDistroEdit.resx">
-      <DependentUpon>DiseaseDistroEdit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\CustomReport\CustomReportView.resx">
       <DependentUpon>CustomReportView.cs</DependentUpon>
     </EmbeddedResource>
@@ -1098,10 +1116,14 @@
       <DependentUpon>WorkingStep.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="BaselineNationalDatabase.accdb" />
+    <Content Include="checklistforbuild.txt" />
     <Content Include="DatabaseScripts\Differentials\00SchemaChangeLog.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\00NadaDatabaseBaseline.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.01.00.0010.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0004.sql">
@@ -1129,6 +1151,7 @@
     <None Include="Images\ntd.jpg" />
     <None Include="Images\rti.png" />
     <None Include="Images\who.png" />
+    <Content Include="Images\NaDa-interface-graph.png" />
     <Content Include="Images\SEARO.PNG" />
     <Content Include="Images\usaid.png" />
     <Content Include="Images\WPRO.PNG" />
@@ -1173,6 +1196,7 @@
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicators.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportOptions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.SavedReport.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Repositories.TaskForceAdminUnit.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Survey.LfMfPrevalence.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Survey.SentinelSite.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Survey.SurveyIndicator.datasource" />

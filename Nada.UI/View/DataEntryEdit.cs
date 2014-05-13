@@ -55,7 +55,6 @@ namespace Nada.UI.View.DiseaseDistribution
             {
                 Localizer.TranslateControl(this);
                 tblTitle.Focus();
-                lblLocation.ForeColor = viewModel.FormColor;
                 lblAdminLevel.Text = viewModel.LocationName;
                 tbNotes.Text = viewModel.Notes;
                 LoadMetaData();
@@ -67,13 +66,14 @@ namespace Nada.UI.View.DiseaseDistribution
                 // design
                 lblTitle.Text = TranslationLookup.GetValue(viewModel.Title, viewModel.Title);
                 lblDiseaseType.Text = TranslationLookup.GetValue(viewModel.TypeTitle, viewModel.TypeTitle);
-                lblTitle.ForeColor = viewModel.FormColor;
-                lblDiseaseType.ForeColor = viewModel.FormColor;
-                statCalculator1.TextColor = viewModel.FormColor;
-                indicatorControl1.TextColor = viewModel.FormColor;
-                hrTop.RuleColor = viewModel.FormColor;
-                hr4.RuleColor = viewModel.FormColor;
-                hr5.RuleColor = viewModel.FormColor;
+                lblLocation.ForeColor = Color.FromArgb(52, 100, 160);
+                lblTitle.ForeColor = Color.FromArgb(52, 100, 160);
+                lblDiseaseType.ForeColor = Color.FromArgb(52, 100, 160);
+                statCalculator1.TextColor = Color.FromArgb(52, 100, 160);
+                indicatorControl1.TextColor = Color.FromArgb(52, 100, 160);
+                hrTop.RuleColor = Color.FromArgb(52, 100, 160);
+                hr4.RuleColor = Color.FromArgb(52, 100, 160);
+                hr5.RuleColor = Color.FromArgb(52, 100, 160);
                 // calclulator
                 if (viewModel.Calculator != null)
                 {
@@ -88,7 +88,8 @@ namespace Nada.UI.View.DiseaseDistribution
                 if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
                 !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
                 {
-                    tblEdit.Visible = false;
+                    tblEditTop.Visible = false;
+                    tblEditBottom.Visible = false;
                 }
             }
         }
@@ -106,7 +107,7 @@ namespace Nada.UI.View.DiseaseDistribution
 
         private void statCalculator1_OnCalc()
         {
-            statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id, 
+            statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id,
                 viewModel.CalculatorTypeId, indicatorControl1.start, indicatorControl1.end);
             c1Button1.Focus();
         }

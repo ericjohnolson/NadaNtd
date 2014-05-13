@@ -65,6 +65,7 @@ namespace Nada.Model.Repositories
                     OleDbCommand command = new OleDbCommand(@"Select 
                         DiseaseDistributions.ID, 
                         Diseases.DisplayName as DiseaseName, 
+                        Diseases.DiseaseType as DiseaseType,
                         DiseaseDistributions.DiseaseId, 
                         DiseaseDistributions.DateReported, 
                         DiseaseDistributions.UpdatedAt, 
@@ -87,6 +88,7 @@ namespace Nada.Model.Repositories
                                 TypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseName"),
                                     reader.GetValueOrDefault<string>("DiseaseName")),
                                 TypeId = reader.GetValueOrDefault<int>("DiseaseId"),
+                                DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
                                 DateReported = reader.GetValueOrDefault<DateTime>("DateReported"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
@@ -140,7 +142,8 @@ namespace Nada.Model.Repositories
                         DiseaseDistributionIndicatorValues.ID,   
                         DiseaseDistributionIndicatorValues.IndicatorId,
                         DiseaseDistributionIndicatorValues.DynamicValue,
-                        DiseaseDistributionIndicators.DisplayName
+                        DiseaseDistributionIndicators.DisplayName,
+                        DiseaseDistributionIndicatorValues.CalcByRedistrict
                         FROM DiseaseDistributionIndicatorValues inner join DiseaseDistributionIndicators on DiseaseDistributionIndicatorValues.IndicatorId = DiseaseDistributionIndicators.ID
                         WHERE DiseaseDistributionId=@DiseaseDistributionId", connection);
                     command.Parameters.Add(new OleDbParameter("@DiseaseDistributionId", diseaseDistro.Id));
@@ -155,6 +158,7 @@ namespace Nada.Model.Repositories
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
                                 DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
+                                CalcByRedistrict = reader.GetValueOrDefault<bool>("CalcByRedistrict"),
                                 Indicator = diseaseDistro.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
                             });
                         }
@@ -246,7 +250,7 @@ namespace Nada.Model.Repositories
             }
         }
 
-        private void SavePc(DiseaseDistroPc distro, int userId, OleDbConnection connection, OleDbCommand command)
+        public void SavePc(DiseaseDistroPc distro, int userId, OleDbConnection connection, OleDbCommand command)
         {
             distro.MapIndicatorsToProperties();
             if (distro.Id > 0)
@@ -315,7 +319,8 @@ namespace Nada.Model.Repositories
                         DiseaseDistributionIndicatorValues.ID,   
                         DiseaseDistributionIndicatorValues.IndicatorId,
                         DiseaseDistributionIndicatorValues.DynamicValue,
-                        DiseaseDistributionIndicators.DisplayName
+                        DiseaseDistributionIndicators.DisplayName,
+                        DiseaseDistributionIndicatorValues.CalcByRedistrict
                         FROM DiseaseDistributionIndicatorValues inner join DiseaseDistributionIndicators on DiseaseDistributionIndicatorValues.IndicatorId = DiseaseDistributionIndicators.ID
                         WHERE DiseaseDistributionId=@DiseaseDistributionId", connection);
                     command.Parameters.Add(new OleDbParameter("@DiseaseDistributionId", diseaseDistro.Id));
@@ -331,6 +336,7 @@ namespace Nada.Model.Repositories
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
                                 DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
+                                CalcByRedistrict = reader.GetValueOrDefault<bool>("CalcByRedistrict"),
                                 Indicator = diseaseDistro.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
                             });
                         }
@@ -463,7 +469,7 @@ namespace Nada.Model.Repositories
             }
         }
 
-        private void SaveCm(DiseaseDistroCm distro, int userId, OleDbConnection connection, OleDbCommand command)
+        public void SaveCm(DiseaseDistroCm distro, int userId, OleDbConnection connection, OleDbCommand command)
         {
             distro.MapIndicatorsToProperties();
             if (distro.Id > 0)
@@ -578,13 +584,14 @@ namespace Nada.Model.Repositories
 
             foreach (IndicatorValue val in distro.IndicatorValues)
             {
-                command = new OleDbCommand(@"Insert Into DiseaseDistributionIndicatorValues (IndicatorId, DiseaseDistributionId, DynamicValue, UpdatedById, UpdatedAt) VALUES
-                        (@IndicatorId, @DiseaseDistributionId, @DynamicValue, @UpdatedById, @UpdatedAt)", connection);
+                command = new OleDbCommand(@"Insert Into DiseaseDistributionIndicatorValues (IndicatorId, DiseaseDistributionId, DynamicValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
+                        (@IndicatorId, @DiseaseDistributionId, @DynamicValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
                 command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
                 command.Parameters.Add(new OleDbParameter("@DiseaseDistributionId", id));
                 command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
                 command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                 command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                command.Parameters.Add(new OleDbParameter("@CalcByRedistrict", val.CalcByRedistrict));
                 command.ExecuteNonQuery();
             }
         }

@@ -58,10 +58,10 @@ namespace Nada.UI.View
                 tbName.Text = viewModel.Title;
                 if (viewModel.CanEditTypeName)
                     pnlName.Visible = true;
-                lblTitle.ForeColor = viewModel.FormColor;
-                lblDiseaseType.ForeColor = viewModel.FormColor;
-                lblCustomIndicators.ForeColor = viewModel.FormColor;
-                hrTop.RuleColor = viewModel.FormColor;
+                lblTitle.ForeColor = Color.FromArgb(52, 100, 160);
+                lblDiseaseType.ForeColor = Color.FromArgb(52, 100, 160);
+                lblCustomIndicators.ForeColor = Color.FromArgb(52, 100, 160);
+                hrTop.RuleColor = Color.FromArgb(52, 100, 160);
                 lblDiseaseType.Text = viewModel.TypeTitle;
                 lblTitle.Text = viewModel.Title;
 

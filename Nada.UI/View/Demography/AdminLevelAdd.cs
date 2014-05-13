@@ -17,10 +17,12 @@ namespace Nada.UI.View
 {
     public partial class AdminLevelAdd : BaseForm
     {
-        public event Action OnSave = () => { };
+        public event Action<AdminLevel> OnSave = (a) => { };
         private AdminLevel model = new AdminLevel();
         private DemoRepository repo = new DemoRepository();
         private SettingsRepository settings = new SettingsRepository();
+        private AdminLevelType parentType;
+        private int childLevel = 0;
 
         public AdminLevelAdd()
             : base()
@@ -35,7 +37,14 @@ namespace Nada.UI.View
             InitializeComponent();
         }
 
-        private void DistributionMethodAdd_Load(object sender, EventArgs e)
+        public AdminLevelAdd(int levelNumber)
+            : base()
+        {
+            childLevel = levelNumber;
+            InitializeComponent();
+        }
+
+        private void AdminLevelAdd_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
             {
@@ -54,8 +63,18 @@ namespace Nada.UI.View
                 Localizer.TranslateControl(this);
                 bindingSource1.DataSource = model;
 
-                var levels = settings.GetAllAdminLevels();
-                var t = repo.GetAdminLevelTree(levels.OrderByDescending(l => l.LevelNumber).ToArray()[1].Id, 0, true);
+                var levels = settings.GetAllAdminLevels().OrderByDescending(l => l.LevelNumber).ToList();
+                int levelTypeId = 0;
+                if (childLevel == 0)
+                    levelTypeId = levels.ToArray()[1].Id;
+                else
+                {
+                    var child = levels.FirstOrDefault(l => l.LevelNumber == childLevel);
+                    parentType = levels.ToArray()[levels.IndexOf(child) + 1];
+                    levelTypeId = parentType.Id;
+                }
+
+                var t = repo.GetAdminLevelTree(levelTypeId, 0, true);
                 treeAvailable.CanExpandGetter = m => ((AdminLevel)m).Children.Count > 0;
                 treeAvailable.ChildrenGetter = delegate(object m)
                 {
@@ -110,6 +129,12 @@ namespace Nada.UI.View
                 }
 
                 var parent = (treeAvailable.SelectedObjects.Cast<AdminLevel>().First() as AdminLevel);
+                if (parentType != null && parent.LevelNumber != parentType.LevelNumber)
+                {
+                    MessageBox.Show(string.Format(Translations.ParentLevelMustBeSame, parentType.DisplayName), Translations.ValidationErrorTitle);
+                    return;
+                }
+
                 model.ParentId = parent.Id;
                 var childLevel = settings.GetAdminLevelTypeByLevel(parent.LevelNumber + 1);
                 model.AdminLevelTypeId = childLevel.Id;
@@ -118,7 +143,7 @@ namespace Nada.UI.View
             bindingSource1.EndEdit();
             int userid = ApplicationData.Instance.GetUserId();
             repo.Save(model, userid);
-            OnSave();
+            OnSave(model);
             this.Close();
         }
 

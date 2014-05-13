@@ -52,7 +52,7 @@ namespace Nada.UI.ViewModel
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get { return model.IntvType.IndicatorDropdownValues; } }
         public string Title { get { return model.IntvType.IntvTypeName; } }
         public string TypeTitle { get { return model.IntvType.DiseaseType; } }
-        public Color FormColor { get { return Color.FromArgb(89, 136, 65); } }
+        public Color FormColor { get { return Color.FromArgb(52, 100, 160); } }
         public void AddSpecialControls(IndicatorControl cntrl) { }
 
         public bool IsValid()
