@@ -44,12 +44,14 @@
             this.h3Label1 = new Nada.UI.Controls.H3Required();
             this.h3Required3 = new Nada.UI.Controls.H3Required();
             this.h3Required2 = new Nada.UI.Controls.H3Required();
-            this.diseasesControl1 = new Nada.UI.Controls.DiseasesControl();
             this.cbEliminationType = new System.Windows.Forms.ComboBox();
+            this.cbDiseases = new System.Windows.Forms.ComboBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.monthItemBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -64,7 +66,7 @@
             this.tableLayoutPanel1.Controls.Add(this.dtEnd, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.cbMonths, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.h3Required1, 0, 6);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 183);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 91);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -159,12 +161,12 @@
             this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.cbDiseases, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.h3Label1, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.h3Required3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.h3Required2, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.diseasesControl1, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.cbEliminationType, 0, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -176,14 +178,14 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(453, 400);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(453, 308);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.rbAggLevel);
             this.panel1.Controls.Add(this.rbAggCountry);
-            this.panel1.Location = new System.Drawing.Point(3, 338);
+            this.panel1.Location = new System.Drawing.Point(3, 246);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(447, 59);
             this.panel1.TabIndex = 4;
@@ -217,7 +219,7 @@
             this.h3Label1.AutoSize = true;
             this.h3Label1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Label1.Location = new System.Drawing.Point(0, 320);
+            this.h3Label1.Location = new System.Drawing.Point(0, 228);
             this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label1.Name = "h3Label1";
             this.h3Label1.Size = new System.Drawing.Size(95, 15);
@@ -254,24 +256,30 @@
             this.h3Required2.Text = "Diseases";
             this.h3Required2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // diseasesControl1
-            // 
-            this.diseasesControl1.AutoSize = true;
-            this.diseasesControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.diseasesControl1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.diseasesControl1.Location = new System.Drawing.Point(3, 62);
-            this.diseasesControl1.Name = "diseasesControl1";
-            this.diseasesControl1.Size = new System.Drawing.Size(236, 115);
-            this.diseasesControl1.TabIndex = 12;
-            // 
             // cbEliminationType
             // 
+            this.cbEliminationType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEliminationType.FormattingEnabled = true;
             this.cbEliminationType.Location = new System.Drawing.Point(3, 18);
             this.cbEliminationType.Name = "cbEliminationType";
             this.cbEliminationType.Size = new System.Drawing.Size(254, 23);
             this.cbEliminationType.TabIndex = 13;
             this.cbEliminationType.SelectedIndexChanged += new System.EventHandler(this.cbEliminationType_SelectedIndexChanged);
+            // 
+            // cbDiseases
+            // 
+            this.cbDiseases.DataSource = this.bindingSource1;
+            this.cbDiseases.DisplayMember = "DisplayName";
+            this.cbDiseases.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDiseases.FormattingEnabled = true;
+            this.cbDiseases.Location = new System.Drawing.Point(3, 62);
+            this.cbDiseases.Name = "cbDiseases";
+            this.cbDiseases.Size = new System.Drawing.Size(254, 23);
+            this.cbDiseases.TabIndex = 14;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(Nada.Model.Diseases.Disease);
             // 
             // EliminationOptions
             // 
@@ -281,7 +289,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "EliminationOptions";
-            this.Size = new System.Drawing.Size(459, 406);
+            this.Size = new System.Drawing.Size(459, 314);
             this.Load += new System.EventHandler(this.StepOptions_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -290,6 +298,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,11 +317,12 @@
         private System.Windows.Forms.DateTimePicker dtEnd;
         private Controls.H3Required h3Required3;
         private Controls.H3Required h3Required2;
-        private Controls.DiseasesControl diseasesControl1;
         private System.Windows.Forms.ComboBox cbEliminationType;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton rbAggLevel;
         private System.Windows.Forms.RadioButton rbAggCountry;
         private Controls.H3Required h3Label1;
+        private System.Windows.Forms.ComboBox cbDiseases;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

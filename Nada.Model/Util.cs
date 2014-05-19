@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using Nada.Globalization;
@@ -23,7 +24,7 @@ namespace Nada.Model
                 return (T)formatter.Deserialize(ms);
             }
         }
-        
+
         public static Dictionary<string, IndicatorValue> CreateIndicatorValueDictionary(IHaveDynamicIndicatorValues i)
         {
             return CreateIndicatorValueDictionary(i.IndicatorValues);
@@ -96,6 +97,29 @@ namespace Nada.Model
                 return dateReported.Year - 1;
         }
 
+        public static bool HasInternetConnection()
+        {
+            var logger = new Logger();
+            try
+            {
+                string myAddress = "www.google.com";
+                IPAddress[] addresslist = Dns.GetHostAddresses(myAddress);
+
+                if (addresslist[0].ToString().Length > 6)
+                {
+                    return true;
+                }
+                else
+                    return false;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Exception checking HasInternetConnection", ex);
+                return false;
+            }
+
+        }
         
         
     }

@@ -30,6 +30,11 @@ namespace Nada.Model.Exports
             get { return Translations.PcJrfForm; }
         }
 
+        public ExportResult DoExport(string fileName, int userId, ExportType exportType)
+        {
+            throw new NotImplementedException();
+        }
+
         public ExportResult ExportData(string filePath, int userId, int year)
         {
             try

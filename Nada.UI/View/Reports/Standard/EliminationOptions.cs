@@ -13,6 +13,7 @@ using Nada.UI.Base;
 using Nada.UI.View.Reports.CustomReport;
 using Nada.Model.Repositories;
 using Nada.Model;
+using Nada.Model.Diseases;
 
 namespace Nada.UI.View.Reports.Standard
 {
@@ -39,6 +40,7 @@ namespace Nada.UI.View.Reports.Standard
         {
             report.ReportOptions.IsCountryAggregation = rbAggCountry.Checked;
             report.ReportOptions.IsByLevelAggregation = rbAggLevel.Checked;
+            report.ReportOptions.SelectedIndicators = new List<ReportIndicator>();
 
             report.ReportOptions.ReportGenerator = new EliminationPersonsReportGenerator();
             if (cbEliminationType.SelectedItem.ToString() == Translations.Persons)
@@ -54,7 +56,9 @@ namespace Nada.UI.View.Reports.Standard
                 report.ReportOptions.ReportGenerator = new EliminationDistrictsReportGenerator();
             }
 
-            options.Diseases = diseasesControl1.GetSelected();
+            options.Diseases = new List<Disease>();
+
+            options.Diseases.Add((Disease)cbDiseases.SelectedItem);
             report.ReportOptions.StartDate = dtStart.Value;
             report.ReportOptions.EndDate = dtEnd.Value;
             report.ReportOptions.MonthYearStarts = Convert.ToInt32(cbMonths.SelectedValue);
@@ -97,9 +101,16 @@ namespace Nada.UI.View.Reports.Standard
                     cbMonths.SelectedValue = report.ReportOptions.MonthYearStarts;
                 else
                     cbMonths.SelectedValue = 1;
+                
+                DiseaseRepository r = new DiseaseRepository();
+                var diseases = r.GetSelectedDiseases().Where(d => d.DiseaseType == Translations.PC).ToList();
+                bindingSource1.DataSource = diseases;
+                cbDiseases.DropDownWidth = BaseForm.GetDropdownWidth(diseases.Select(m => m.DisplayName));
+                if (options.Diseases.Count > 0)
+                    cbDiseases.SelectedItem = diseases.FirstOrDefault(d => d.Id == options.Diseases.First().Id);
+                else
+                    cbMonths.SelectedIndex = 0;
 
-                diseasesControl1.LoadAvailable(true);
-                diseasesControl1.LoadItems(options.Diseases);
                 SettingsRepository settings = new SettingsRepository();
                 options.DistrictType = settings.GetDistrictAdminLevel();
                 cbEliminationType.Items.Add(Translations.Persons);

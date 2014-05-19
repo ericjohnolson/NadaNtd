@@ -317,9 +317,11 @@ namespace Nada.Model
                         currentCulture);
             }
             else if (indicator.DataTypeId == (int)IndicatorDataType.Partners)
+            {
                 if (!isUpdate)
                     AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "", Util.ProduceEnumeration(partners.Select(p => p.DisplayName).ToList()),
                         currentCulture);
+            }
             else if (indicator.DataTypeId == (int)IndicatorDataType.EvaluationUnit)
                 AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "", eus.Select(p => p.DisplayName).ToList(), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.EvaluationSite)
@@ -329,19 +331,23 @@ namespace Nada.Model
             else if (indicator.DataTypeId == (int)IndicatorDataType.EcologicalZone)
                 AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "", ezs.Select(p => p.DisplayName).ToList(), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.Multiselect)
+            {
                 if (!isUpdate)
                     AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "",
                         Util.ProduceEnumeration(DropDownValues.Where(i => i.IndicatorId == indicator.Id).Select(p => p.DisplayName).ToList()), currentCulture);
+            }
             else if (indicator.DataTypeId == (int)IndicatorDataType.Dropdown)
                 AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "",
                     DropDownValues.Where(i => i.IndicatorId == indicator.Id).Select(p => p.DisplayName).ToList(), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.Month)
                 AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "", months.Select(p => p.Name).ToList(), currentCulture);
             else if (indicator.DataTypeId == (int)IndicatorDataType.DiseaseMultiselect)
+            {
                 if (!isUpdate)
                     AddDataValidation(xlsWorksheet, validation, Util.GetExcelColumnName(c), r, "", "",
                        Util.ProduceEnumeration(DropDownValues.Where(i => i.IndicatorId == indicator.Id && selectedDiseases.Contains(i.DisplayName)).Select(p => p.DisplayName).ToList()),
                        currentCulture);
+            }
             else
                 xlsWorksheet.Cells[r, c] = value;
 

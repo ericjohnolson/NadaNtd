@@ -196,6 +196,23 @@ namespace Nada.UI.View.Reports
             wiz.Show();
         }
 
+        private void h3Link5_ClickOverride()
+        {
+            WizardForm wiz = new WizardForm(new TaskForceCountryStep(), Translations.RtiReports);
+            wiz.OnFinish = () => { };
+            wiz.ShowDialog();
+        }
+
+        private void pcEpiExportClick_ClickOverride()
+        {
+            ExportRepository r = new ExportRepository();
+            ExportType t = r.GetExportType(ExportTypeId.PcEpi);
+            t.Exporter = new PcEpiExporter();
+            WizardForm wiz = new WizardForm(new GenericExportStep(t), Translations.ExportsPcEpiDataForm);
+            wiz.OnFinish = () => { };
+            wiz.ShowDialog();
+        }
+
 
     }
 }

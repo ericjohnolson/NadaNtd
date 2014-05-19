@@ -565,6 +565,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
+                    List<string> indicatorIds = new List<string>();
                     OleDbCommand command  = new OleDbCommand(@"Select 
                         ExportIndicators.ID,   
                         ExportIndicators.DataTypeId,
@@ -593,6 +594,7 @@ namespace Nada.Model.Repositories
                                     IsRequired = reader.GetValueOrDefault<bool>("IsRequired"),
                                     DataType = reader.GetValueOrDefault<string>("DataType")
                                 });
+                            indicatorIds.Add(reader.GetValueOrDefault<int>("ID").ToString());
                         }
                         reader.Close();
                     }
@@ -621,6 +623,9 @@ namespace Nada.Model.Repositories
                         }
                         reader.Close();
                     }
+
+                    export.IndicatorDropdownValues = GetIndicatorDropdownValues(connection, command, IndicatorEntityType.Export, indicatorIds);
+               
                 }
                 catch (Exception)
                 {

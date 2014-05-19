@@ -31,7 +31,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>157</ApplicationRevision>
+    <ApplicationRevision>160</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -303,6 +303,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Reports\ExportWizard\GenericExportStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\GenericExportStep.Designer.cs">
+      <DependentUpon>GenericExportStep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\TaskForceNoInternet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\TaskForceNoInternet.Designer.cs">
+      <DependentUpon>TaskForceNoInternet.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Demography\AdminLevelSelectAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -872,6 +884,12 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ExportWizard\GenericExportStep.resx">
+      <DependentUpon>GenericExportStep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ExportWizard\TaskForceNoInternet.resx">
+      <DependentUpon>TaskForceNoInternet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\AdminLevelSelectAdd.resx">
       <DependentUpon>AdminLevelSelectAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -1142,6 +1160,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Exports\AFRO_CM_JRF.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Exports\WHO_EPIRF_PC_NATDAT.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Images\logosplaceholder.gif" />

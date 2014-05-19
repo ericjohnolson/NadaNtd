@@ -57,7 +57,7 @@ namespace Nada.UI
                     lblDeveloperMode.Visible = true;
 
                 // Updates
-                if (UpdateApp.HasInternetConnection() && UpdateApp.HasUpdate())
+                if (Util.HasInternetConnection() && UpdateApp.HasUpdate())
                 {
                     WizardForm wiz = new WizardForm(new UpdateApp(RestartApp), Translations.Updates);
                     wiz.OnFinish += () => { };

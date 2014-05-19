@@ -1,4 +1,3 @@
-
 insert into indicatorcalculations (IndicatorId,EntityTypeId,RelatedIndicatorId,RelatedEntityTypeId) 
 VALUES (DLookup("ID", "InterventionIndicators", "DisplayName ='PcIntvTraEpi'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName ='PcIntvNumIndividualsTreated'"), 2);
 
@@ -246,14 +245,10 @@ INSERT INTO TaskForceCountries (TaskForceId, Name) values (999, 'Temporary');
 
 COMMIT TRANSACTION;
 BEGIN TRANSACTION;
-ALTER TABLE Country ADD COLUMN TaskForceName Text;
+ALTER TABLE Country ADD COLUMN TaskForceName Text NULL;
 COMMIT TRANSACTION;
 BEGIN TRANSACTION;
-COMMIT TRANSACTION;
-BEGIN TRANSACTION;
-ALTER TABLE AdminLevels ADD COLUMN TaskForceName Text;
-COMMIT TRANSACTION;
-BEGIN TRANSACTION;
+ALTER TABLE AdminLevels ADD COLUMN TaskForceName Text NULL;
 COMMIT TRANSACTION;
 BEGIN TRANSACTION;
 ALTER TABLE AdminLevels ADD COLUMN TaskForceId INTEGER;
@@ -261,6 +256,51 @@ COMMIT TRANSACTION;
 BEGIN TRANSACTION;
 ALTER TABLE AdminLevels ALTER COLUMN TaskForceId SET DEFAULT 0;
 UPDATE AdminLevels set TaskForceId=0;
+
+UPDATE SurveyIndicators Set SortOrder=SortOrder * 100 where SurveyTypeId = 10; 
+UPDATE SurveyIndicators Set SortOrder=SortOrder * 100 where SurveyTypeId = 16; 
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId, IsRequired,IsCalculated, CanAddValues, IsDisplayed,UpdatedById ,UpdatedAt) values('LFMapSurExaminedLympho',1910, 16, 2, 1, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId, IsRequired,IsCalculated, CanAddValues, IsDisplayed,UpdatedById ,UpdatedAt) values('LFMapSurExaminedHydro1',1920, 16, 2, 1, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId, IsRequired,IsCalculated, CanAddValues, IsDisplayed,UpdatedById ,UpdatedAt) values('LFSurExaminedLympho',1810, 10, 2, 1, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId, IsRequired,IsCalculated, CanAddValues, IsDisplayed,UpdatedById ,UpdatedAt) values('LFSurPosLympho',1820, 10, 2, 1, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId, IsRequired,IsCalculated, CanAddValues, IsDisplayed,UpdatedById ,UpdatedAt) values('LFSurExaminedHydro',1830, 10, 2, 1, 0, 0, 0, 0, 26, NOW());
+insert into surveyindicators ( DisplayName ,SortOrder, SurveyTypeId ,DataTypeId, AggTypeId, IsRequired,IsCalculated, CanAddValues, IsDisplayed,UpdatedById ,UpdatedAt) values('LFSurPosHydro',1840, 10, 2, 1, 0, 0, 0, 0, 26, NOW());
+
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('Year', 1, 4, 7,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('JrfEndemicLf', 2, 4, 5,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('JrfEndemicOncho', 3, 4, 5,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('JrfEndemicSth', 4, 4, 5,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('JrfEndemicSch', 5, 4, 5,-1,26,NOW());
+
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,1,'JrfEndemic','JrfEndemic',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicLf' and ExportTypeId = 4;
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,2,'JrfEndemicNoPc','JrfEndemicNoPc',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicLf' and ExportTypeId = 4;
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,3,'JrfEndemicNot','JrfEndemicNot',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicLf' and ExportTypeId = 4;
+
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,1,'JrfEndemic','JrfEndemic',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicOncho' and ExportTypeId = 4;
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,2,'JrfEndemicNoPc','JrfEndemicNoPc',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicOncho' and ExportTypeId = 4;
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,3,'JrfEndemicNot','JrfEndemicNot',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicOncho' and ExportTypeId = 4;
+
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,1,'JrfEndemic','JrfEndemic',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicSth' and ExportTypeId = 4;
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,2,'JrfEndemicNoPc','JrfEndemicNoPc',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicSth' and ExportTypeId = 4;
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,3,'JrfEndemicNot','JrfEndemicNot',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicSth' and ExportTypeId = 4;
+
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,1,'JrfEndemic','JrfEndemic',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicSch' and ExportTypeId = 4;
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,2,'JrfEndemicNoPc','JrfEndemicNoPc',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicSch' and ExportTypeId = 4;
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,11,3,'JrfEndemicNot','JrfEndemicNot',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicSch' and ExportTypeId = 4;
+
+
 
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]

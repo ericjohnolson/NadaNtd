@@ -69,7 +69,7 @@ namespace Nada.UI.View
 
             int rowIndex = tblTasks.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             tblTasks.Controls.Add(CreateLabel("1. " + Translations.StartUpStepCountry, status.HasEnteredCountrySettings), 0, rowIndex);
-            var ctrl = new H3Link { Text = status.HasEnteredCountrySettings ? Translations.EditLink : Translations.StartLink, Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5) };
+            var ctrl = new H3Link { Text = status.HasEnteredCountrySettings ? Translations.EditLink : Translations.StartLink, Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5), TextColor = Color.FromArgb(255, 255, 255) };
             ctrl.ClickOverride += () => { LoadWiz(new StepCountrySettings(demo.GetCountry())); };
             tblTasks.Controls.Add(ctrl, 1, rowIndex);
 
@@ -77,7 +77,7 @@ namespace Nada.UI.View
             tblTasks.Controls.Add(CreateLabel("2. " + Translations.StartUpStepDiseases, status.HasEnteredDiseaseDetails), 0, rowIndex);
             if (status.HasEnteredCountrySettings)
             {
-                var ctrl2 = new H3Link { Text = status.HasEnteredDiseaseDetails ? Translations.EditLink : Translations.StartLink, Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5) };
+                var ctrl2 = new H3Link { Text = status.HasEnteredDiseaseDetails ? Translations.EditLink : Translations.StartLink, Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5), TextColor = Color.FromArgb(255, 255, 255) };
                 ctrl2.ClickOverride += () => { LoadWiz(new StepDiseases()); };
                 tblTasks.Controls.Add(ctrl2, 1, rowIndex);
             }
@@ -89,7 +89,7 @@ namespace Nada.UI.View
                 tblTasks.Controls.Add(CreateLabel(stepCount + ". " + Translations.StartUpStepAdminLevels + al.LevelName, al.HasEntered), 0, rowIndex);
                 if(hasFinishedPrevStep)
                 {
-                    var ctrl3 = new H3Link { Text = al.HasEntered ? Translations.EditLink : Translations.StartLink, Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5) };
+                    var ctrl3 = new H3Link { Text = al.HasEntered ? Translations.EditLink : Translations.StartLink, Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5), TextColor = Color.FromArgb(255, 255, 255) };
                     int levelNumber = al.Level - 1;
                     ctrl3.ClickOverride += () => { LoadWiz(new StepAdminLevelImport(settings.GetNextLevel(levelNumber), null)); };
                     tblTasks.Controls.Add(ctrl3, 1, rowIndex);
@@ -101,8 +101,8 @@ namespace Nada.UI.View
 
             if (ConfigurationManager.AppSettings["DeveloperMode"] == "QA")
             {
-                rowIndex = tblTasks.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize }); 
-                var skipLink = new H3Link { Text = "Skip Start Up", Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5) };
+                rowIndex = tblTasks.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
+                var skipLink = new H3Link { Text = "Skip Start Up", Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5), TextColor = Color.FromArgb(255, 255, 255) };
                 skipLink.ClickOverride += skipLink_ClickOverride;
                 tblTasks.Controls.Add(skipLink, 0, rowIndex);
             }
@@ -117,7 +117,7 @@ namespace Nada.UI.View
             {
                 Text = name,
                 Name = "ciLabel_" + name,
-                TextColor = isComplete ? Color.FromArgb(190, 190, 190) : Color.FromArgb(23, 55, 93)
+                TextColor = isComplete ? Color.FromArgb(238, 238, 238) : Color.FromArgb(255, 255, 255)
             };
             lbl.SetMaxWidth(500);
             return lbl;
@@ -127,7 +127,7 @@ namespace Nada.UI.View
         {
             editLink.Visible = isComplete;
             startLink.Visible = !isComplete && CanStart;
-            lbl.ForeColor = isComplete ? Color.FromArgb(190, 190, 190) : Color.FromArgb(23, 55, 93);
+            lbl.ForeColor = isComplete ? Color.FromArgb(238, 238, 238) : Color.FromArgb(255, 255, 255);
         }
 
         void skipLink_ClickOverride()
@@ -153,7 +153,7 @@ namespace Nada.UI.View
             AdminLevelDemoUpdater update = new AdminLevelDemoUpdater(adminLevels.FirstOrDefault(a => a.DisplayName == "District"));
             update.ImportData("TestDistrictUpdate.xlsx", userId, new DateTime(2011, 1, 1), true);
             AdminLevelDemoImporter vilImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "Village"));
-            vilImporter.ImportData("TestVillages.xlsx", userId, true, false, 2, demo.GetAdminLevelById(2), new DateTime(year, 1, 1));
+            vilImporter.ImportData("TestVillages.xlsx", userId, true, false, 2, demo.GetAdminLevelById(3), new DateTime(year, 1, 1));
             CheckStatus();
         }
 

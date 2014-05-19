@@ -20,6 +20,11 @@ namespace Nada.Model.Exports
             get { return Translations.JrfCmNtds; }
         }
 
+        public ExportResult DoExport(string fileName, int userId, ExportType exportType)
+        {
+            throw new NotImplementedException();
+        }
+
         public ExportResult ExportData(string filePath, int userId, ExportCmJrfQuestions questions)
         {
             try

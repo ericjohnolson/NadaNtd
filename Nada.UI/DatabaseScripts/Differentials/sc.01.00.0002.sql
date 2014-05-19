@@ -63,9 +63,6 @@ CREATE TABLE [EvaluationSites](
 
 Update SurveyTypes set HasMultipleLocations = -1 Where ID in (19, 13);
 
-insert into processindicators (ProcessTypeId, DisplayName,SortOrder,DataTypeId,CanAddValues,AggTypeId,IsRequired,IsDisabled,IsEditable,IsDisplayed,UpdatedById,UpdatedAt)
-values (7,'TrainingDrugPackages',4,6,0,4,-1,0,0,0,26,NOW());
-
 Insert into indicatordatatypes (DataType, HasValueList) values ('EvaluationSite', -1);
 
 update surveyindicators set sortorder = -10 where id = 430;

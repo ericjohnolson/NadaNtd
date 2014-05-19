@@ -81,7 +81,6 @@
             this.olvColumn15 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn19 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn20 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.hrOverview = new Nada.UI.Controls.HR();
             this.tblHeader = new System.Windows.Forms.TableLayoutPanel();
             this.btnOverview = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
@@ -175,7 +174,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tblOverview, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tblSurveys, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tblIntv, 0, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 11);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 8);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -183,7 +182,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(788, 1763);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(788, 1791);
             this.tableLayoutPanel1.TabIndex = 60;
             // 
             // tbProcess
@@ -195,14 +194,14 @@
             this.tbProcess.Controls.Add(this.pnlProcess, 0, 3);
             this.tbProcess.Controls.Add(this.hrProcess, 0, 1);
             this.tbProcess.Controls.Add(this.tableLayoutPanel11, 0, 2);
-            this.tbProcess.Location = new System.Drawing.Point(3, 1405);
+            this.tbProcess.Location = new System.Drawing.Point(3, 1425);
             this.tbProcess.Name = "tbProcess";
             this.tbProcess.RowCount = 4;
             this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4F));
+            this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbProcess.Size = new System.Drawing.Size(780, 355);
+            this.tbProcess.Size = new System.Drawing.Size(780, 363);
             this.tbProcess.TabIndex = 62;
             // 
             // pnlProcess
@@ -214,7 +213,7 @@
             this.pnlProcess.Controls.Add(this.loadingProcess, 0, 1);
             this.pnlProcess.Controls.Add(this.pnlProcessDetails, 0, 0);
             this.pnlProcess.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlProcess.Location = new System.Drawing.Point(3, 51);
+            this.pnlProcess.Location = new System.Drawing.Point(3, 59);
             this.pnlProcess.Name = "pnlProcess";
             this.pnlProcess.RowCount = 2;
             this.pnlProcess.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -402,7 +401,7 @@
             this.tableLayoutPanel11.Controls.Add(this.btnProcess, 0, 0);
             this.tableLayoutPanel11.Controls.Add(this.label3, 1, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 17);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 25);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -446,14 +445,14 @@
             this.tblDiseaseDistro.Controls.Add(this.hrDisease, 0, 1);
             this.tblDiseaseDistro.Controls.Add(this.pnlDisease, 0, 3);
             this.tblDiseaseDistro.Controls.Add(this.tableLayoutPanel5, 0, 2);
-            this.tblDiseaseDistro.Location = new System.Drawing.Point(3, 326);
+            this.tblDiseaseDistro.Location = new System.Drawing.Point(3, 322);
             this.tblDiseaseDistro.Name = "tblDiseaseDistro";
             this.tblDiseaseDistro.RowCount = 4;
             this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4F));
+            this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblDiseaseDistro.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblDiseaseDistro.Size = new System.Drawing.Size(782, 349);
+            this.tblDiseaseDistro.Size = new System.Drawing.Size(782, 357);
             this.tblDiseaseDistro.TabIndex = 62;
             // 
             // hrDisease
@@ -462,7 +461,7 @@
             this.hrDisease.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hrDisease.ForeColor = System.Drawing.Color.Gray;
             this.hrDisease.Location = new System.Drawing.Point(1, 10);
-            this.hrDisease.Margin = new System.Windows.Forms.Padding(0);
+            this.hrDisease.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.hrDisease.Name = "hrDisease";
             this.hrDisease.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hrDisease.Size = new System.Drawing.Size(780, 1);
@@ -477,7 +476,7 @@
             this.pnlDisease.Controls.Add(this.loadingDistros, 0, 1);
             this.pnlDisease.Controls.Add(this.pnlDistroDetails, 0, 0);
             this.pnlDisease.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDisease.Location = new System.Drawing.Point(3, 51);
+            this.pnlDisease.Location = new System.Drawing.Point(3, 59);
             this.pnlDisease.Name = "pnlDisease";
             this.pnlDisease.RowCount = 2;
             this.pnlDisease.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -654,7 +653,7 @@
             this.tableLayoutPanel5.Controls.Add(this.btnDisease, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.label4, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 17);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 25);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -695,17 +694,15 @@
             this.tblOverview.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tblOverview.ColumnCount = 1;
             this.tblOverview.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblOverview.Controls.Add(this.pnlDemo, 0, 2);
-            this.tblOverview.Controls.Add(this.hrOverview, 0, 0);
-            this.tblOverview.Controls.Add(this.tblHeader, 0, 1);
+            this.tblOverview.Controls.Add(this.pnlDemo, 0, 1);
+            this.tblOverview.Controls.Add(this.tblHeader, 0, 0);
             this.tblOverview.Location = new System.Drawing.Point(3, 3);
             this.tblOverview.Name = "tblOverview";
-            this.tblOverview.RowCount = 3;
-            this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4F));
+            this.tblOverview.RowCount = 2;
             this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblOverview.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblOverview.Size = new System.Drawing.Size(780, 317);
+            this.tblOverview.Size = new System.Drawing.Size(779, 313);
             this.tblOverview.TabIndex = 60;
             // 
             // pnlDemo
@@ -717,12 +714,12 @@
             this.pnlDemo.Controls.Add(this.loadingDemos, 0, 1);
             this.pnlDemo.Controls.Add(this.pnlDemoDetails, 0, 0);
             this.pnlDemo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDemo.Location = new System.Drawing.Point(3, 41);
+            this.pnlDemo.Location = new System.Drawing.Point(3, 37);
             this.pnlDemo.Name = "pnlDemo";
             this.pnlDemo.RowCount = 2;
             this.pnlDemo.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlDemo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlDemo.Size = new System.Drawing.Size(774, 273);
+            this.pnlDemo.Size = new System.Drawing.Size(773, 273);
             this.pnlDemo.TabIndex = 23;
             this.pnlDemo.Visible = false;
             // 
@@ -777,6 +774,7 @@
             this.lnkAddDemo.TabIndex = 2;
             this.lnkAddDemo.Tag = "AddNewDemoLink";
             this.lnkAddDemo.Text = "AddNewDemoLink";
+            this.lnkAddDemo.TextColor = System.Drawing.Color.RoyalBlue;
             this.lnkAddDemo.ClickOverride += new System.Action(this.h3Link1_ClickOverride);
             // 
             // lvDemo
@@ -861,18 +859,6 @@
             this.olvColumn20.Tag = "Delete";
             this.olvColumn20.Text = "Delete";
             // 
-            // hrOverview
-            // 
-            this.hrOverview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
-            this.hrOverview.Dock = System.Windows.Forms.DockStyle.Top;
-            this.hrOverview.ForeColor = System.Drawing.Color.Gray;
-            this.hrOverview.Location = new System.Drawing.Point(0, 0);
-            this.hrOverview.Margin = new System.Windows.Forms.Padding(0);
-            this.hrOverview.Name = "hrOverview";
-            this.hrOverview.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
-            this.hrOverview.Size = new System.Drawing.Size(780, 1);
-            this.hrOverview.TabIndex = 21;
-            // 
             // tblHeader
             // 
             this.tblHeader.AutoSize = true;
@@ -884,11 +870,11 @@
             this.tblHeader.Controls.Add(this.btnOverview, 0, 0);
             this.tblHeader.Controls.Add(this.lblHeader, 1, 0);
             this.tblHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tblHeader.Location = new System.Drawing.Point(3, 7);
+            this.tblHeader.Location = new System.Drawing.Point(3, 3);
             this.tblHeader.Name = "tblHeader";
             this.tblHeader.RowCount = 1;
             this.tblHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblHeader.Size = new System.Drawing.Size(774, 28);
+            this.tblHeader.Size = new System.Drawing.Size(773, 28);
             this.tblHeader.TabIndex = 19;
             // 
             // btnOverview
@@ -928,14 +914,14 @@
             this.tblSurveys.Controls.Add(this.pnlSurvey, 0, 3);
             this.tblSurveys.Controls.Add(this.hrSurveys, 0, 1);
             this.tblSurveys.Controls.Add(this.tableLayoutPanel3, 0, 2);
-            this.tblSurveys.Location = new System.Drawing.Point(3, 681);
+            this.tblSurveys.Location = new System.Drawing.Point(3, 685);
             this.tblSurveys.Name = "tblSurveys";
             this.tblSurveys.RowCount = 4;
             this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4F));
+            this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblSurveys.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblSurveys.Size = new System.Drawing.Size(782, 357);
+            this.tblSurveys.Size = new System.Drawing.Size(782, 365);
             this.tblSurveys.TabIndex = 60;
             // 
             // pnlSurvey
@@ -947,7 +933,7 @@
             this.pnlSurvey.Controls.Add(this.pnlSurveyDetails, 0, 0);
             this.pnlSurvey.Controls.Add(this.loadingSurveys, 0, 1);
             this.pnlSurvey.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlSurvey.Location = new System.Drawing.Point(3, 51);
+            this.pnlSurvey.Location = new System.Drawing.Point(3, 59);
             this.pnlSurvey.Name = "pnlSurvey";
             this.pnlSurvey.RowCount = 2;
             this.pnlSurvey.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1135,7 +1121,7 @@
             this.tableLayoutPanel3.Controls.Add(this.btnSurvey, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 17);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 25);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1179,14 +1165,14 @@
             this.tblIntv.Controls.Add(this.pnlIntv, 0, 3);
             this.tblIntv.Controls.Add(this.hrIntv, 0, 1);
             this.tblIntv.Controls.Add(this.tableLayoutPanel4, 0, 2);
-            this.tblIntv.Location = new System.Drawing.Point(3, 1044);
+            this.tblIntv.Location = new System.Drawing.Point(3, 1056);
             this.tblIntv.Name = "tblIntv";
             this.tblIntv.RowCount = 4;
             this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4F));
+            this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblIntv.Size = new System.Drawing.Size(782, 355);
+            this.tblIntv.Size = new System.Drawing.Size(782, 363);
             this.tblIntv.TabIndex = 61;
             // 
             // pnlIntv
@@ -1198,7 +1184,7 @@
             this.pnlIntv.Controls.Add(this.loadingIntvs, 0, 1);
             this.pnlIntv.Controls.Add(this.pnlIntvDetails, 0, 0);
             this.pnlIntv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlIntv.Location = new System.Drawing.Point(3, 51);
+            this.pnlIntv.Location = new System.Drawing.Point(3, 59);
             this.pnlIntv.Name = "pnlIntv";
             this.pnlIntv.RowCount = 2;
             this.pnlIntv.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1385,7 +1371,7 @@
             this.tableLayoutPanel4.Controls.Add(this.btnIntervention, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 17);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 25);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1429,8 +1415,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DiseaseDashboard";
-            this.Padding = new System.Windows.Forms.Padding(8);
-            this.Size = new System.Drawing.Size(810, 1785);
+            this.Padding = new System.Windows.Forms.Padding(8, 5, 8, 8);
+            this.Size = new System.Drawing.Size(810, 1810);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tbProcess.ResumeLayout(false);
@@ -1520,7 +1506,6 @@
         private System.Windows.Forms.TableLayoutPanel tblHeader;
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.Button btnOverview;
-        private Controls.HR hrOverview;
         private System.Windows.Forms.TableLayoutPanel tblIntv;
         private System.Windows.Forms.TableLayoutPanel pnlIntv;
         private Controls.Loading loadingIntvs;

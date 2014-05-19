@@ -23,7 +23,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select Country.ID, DisplayName, ReportingYearStartDate, aspnet_Users.UserName, Country.UpdatedAt, TaskForceName 
+                OleDbCommand command = new OleDbCommand(@"Select Country.ID, DisplayName, ReportingYearStartDate, aspnet_Users.UserName, Country.UpdatedAt, Country.TaskForceName 
                     FROM ((Country INNER JOIN AdminLevels on Country.AdminLevelId = AdminLevels.ID)
                             INNER JOIN aspnet_Users on Country.UpdatedById = aspnet_Users.UserId)
                     WHERE AdminLevels.ID = @id", connection);
@@ -77,12 +77,12 @@ namespace Nada.Model.Repositories
                 {
                     throw;
                 }
-            } 
+            }
         }
 
         public CountryDemography GetCountryDemoByYear(int year)
         {
-            
+
             CountryDemography demo = new CountryDemography();
             demo.AdminLevelId = Convert.ToInt32(ConfigurationManager.AppSettings["CountryId"]);
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -322,7 +322,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, AdminLevelTypes.AdminLevel
+                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, AdminLevelTypes.AdminLevel, AdminLevels.TaskForceName, AdminLevels.TaskForceId
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE AdminLevelTypes.AdminLevel = @LevelNumber AND AdminLevels.IsDeleted=0 AND AdminLevels.RedistrictIdForMother=0", connection);
                 command.Parameters.Add(new OleDbParameter("@LevelNumber", levelNumber));
@@ -335,7 +335,9 @@ namespace Nada.Model.Repositories
                             Id = reader.GetValueOrDefault<int>("ID"),
                             ParentId = reader.GetValueOrDefault<Nullable<int>>("ParentId"),
                             Name = reader.GetValueOrDefault<string>("DisplayName"),
-                            LevelNumber = reader.GetValueOrDefault<int>("AdminLevel")
+                            LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
+                            TaskForceName = reader.GetValueOrDefault<string>("TaskForceName"),
+                            TaskForceId = reader.GetValueOrDefault<int>("TaskForceId"),
                         });
                     }
                     reader.Close();
@@ -577,7 +579,7 @@ namespace Nada.Model.Repositories
                     node.ViewText = viewText;
                 if (allowSelect && (levelToSelect != -1 && node.AdminLevelTypeId != levelToSelect))
                     node.ViewText = "";
-                if(node.LevelNumber == 0)
+                if (node.LevelNumber == 0)
                     node.ViewText = "";
 
                 if (node.ParentId.HasValue && node.ParentId.Value > minRoot)
@@ -609,7 +611,7 @@ namespace Nada.Model.Repositories
         {
             return MakeTreeFromFlatList(flatList, minRoot, false, 0, false, string.Empty);
         }
-            
+
         public void AddChildren(AdminLevel parent, List<AdminLevel> children, AdminLevelType childType, int byUserId)
         {
             bool transWasStarted = false;
@@ -807,7 +809,7 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            if(!parentIds.ContainsKey(reader.GetValueOrDefault<string>("DisplayName").ToLower()))
+                            if (!parentIds.ContainsKey(reader.GetValueOrDefault<string>("DisplayName").ToLower()))
                                 parentIds.Add(reader.GetValueOrDefault<string>("DisplayName").ToLower(), reader.GetValueOrDefault<int>("ID"));
                         }
                         reader.Close();
@@ -818,6 +820,50 @@ namespace Nada.Model.Repositories
                 }
                 catch (Exception)
                 {
+                    throw;
+                }
+            }
+        }
+
+        public void UpdateTaskForceData(AdminLevel model, int userid)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    command = new OleDbCommand(@"UPDATE AdminLevels set TaskForceName=@TaskForceName, TaskForceId=@TaskForceId, 
+                        UpdatedById=@updatedby, UpdatedAt=@updatedat WHERE ID=@ID", connection);
+                    command.Parameters.Add(new OleDbParameter("@TaskForceName", model.TaskForceName));
+                    command.Parameters.Add(new OleDbParameter("@TaskForceId", model.TaskForceId));
+                    command.Parameters.Add(new OleDbParameter("@updatedby", userid));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
+                    command.Parameters.Add(new OleDbParameter("@ID", model.Id));
+                    command.ExecuteNonQuery();
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
                     throw;
                 }
             }
@@ -955,7 +1001,7 @@ namespace Nada.Model.Repositories
                     command.ExecuteNonQuery();
                     transWasStarted = true;
                     var growthRateDemonminator = growthRatePercent / 100;
-                    
+
                     // Get Agg Level & Below and create new demo
                     List<AdminLevelDemography> mostRecent = GetRecentDemographyByLevel(aggLevel.LevelNumber, command, connection);
                     foreach (var d in mostRecent)
@@ -973,7 +1019,7 @@ namespace Nada.Model.Repositories
                         if (d.PopPsac.HasValue) d.TotalPopulation = d.TotalPopulation * growthRateDemonminator + d.TotalPopulation;
                         SaveAdminDemography(command, connection, d, userId);
                     }
-                    
+
                     // COMMIT TRANS
                     command = new OleDbCommand("COMMIT TRANSACTION", connection);
                     command.ExecuteNonQuery();
@@ -1097,7 +1143,7 @@ namespace Nada.Model.Repositories
             }
             return demog;
         }
-        
+
         public List<AdminLevelDemography> GetRecentDemography(int level, int recentYear)
         {
             List<AdminLevelDemography> recent = new List<AdminLevelDemography>();
@@ -1186,7 +1232,7 @@ namespace Nada.Model.Repositories
                             INNER JOIN AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID)
                     WHERE AdminLevelTypes.AdminLevel>=@lvl 
                     GROUP BY AdminLevels.Id", connection);
-            
+
             command.Parameters.Add(new OleDbParameter("@lvl", level));
             using (OleDbDataReader reader = command.ExecuteReader())
             {
@@ -1263,7 +1309,7 @@ namespace Nada.Model.Repositories
             int year = Util.GetYearReported(countryReportingYearStart.Month, currentDate);
             DateTime startDate = new DateTime(year, countryReportingYearStart.Month, countryReportingYearStart.Day);
             DateTime endDate = startDate.AddYears(1).AddDays(-1);
-            return string.Format(" AND DateDemographyData >= cdate('{0}') AND DateDemographyData <= cdate('{1}') ", 
+            return string.Format(" AND DateDemographyData >= cdate('{0}') AND DateDemographyData <= cdate('{1}') ",
                 startDate.ToShortDateString(),
                 endDate.ToShortDateString());
         }
@@ -1556,7 +1602,7 @@ namespace Nada.Model.Repositories
 
             command = new OleDbCommand(@"SELECT Max(ID) FROM RedistrictEvents", connection);
             int id = (int)command.ExecuteScalar();
-            
+
             return id;
         }
 
@@ -1646,10 +1692,10 @@ namespace Nada.Model.Repositories
                     throw;
                 }
             }
-            
-            if(type == SplittingType.Split)
+
+            if (type == SplittingType.Split)
                 return string.Format(TranslationLookup.GetValue("RedistrictingSplitDesc"), string.Join(", ", names.ToArray()), createdAt.ToShortDateString());
-            else if(type == SplittingType.Merge)
+            else if (type == SplittingType.Merge)
                 return string.Format(TranslationLookup.GetValue("RedistrictingMergeDesc"), string.Join(", ", names.ToArray()), createdAt.ToShortDateString());
             else
                 return string.Format(TranslationLookup.GetValue("RedistrictingSplitCombineDesc"), string.Join(", ", names.ToArray()), createdAt.ToShortDateString());

@@ -46,7 +46,7 @@ namespace Nada.UI.View.Reports
                 Localizer.TranslateControl(this);
                 country = demo.GetCountry();
                 if (!string.IsNullOrEmpty(country.TaskForceName))
-                    DoNext();
+                    DoNextStep();
                 TaskForceApi api = new TaskForceApi();
                 var taskForceCountries = api.GetAllCountries();
                 var tfCountry = taskForceCountries.FirstOrDefault(c => c.Name == country.Name);
@@ -55,9 +55,9 @@ namespace Nada.UI.View.Reports
                     country.TaskForceName = tfCountry.Name;
                     var userId = ApplicationData.Instance.GetUserId();
                     demo.UpdateCountry(country, userId);
-                    DoNext();
+                    DoNextStep();
                 }
-                adminUnitMatcher1 = new AdminUnitMatcher(new AdminLevel { Name = country.Name }, taskForceCountries);
+                adminUnitMatcher1.BindData(new AdminLevel { Name = country.Name }, taskForceCountries);
             }
         }
 
@@ -73,14 +73,75 @@ namespace Nada.UI.View.Reports
             }
 
             var unit = adminUnitMatcher1.GetSelected();
-            country.TaskForceName = unit.TaskForceName;
-            var userId = ApplicationData.Instance.GetUserId();
-            demo.UpdateCountry(country, userId);
+            country.TaskForceName = unit.Name;
 
-            // Show working dial while getting all the units
-
+            DoNextStep();
 
         }
+
+        private void DoNextStep()
+        {
+            if (Util.HasInternetConnection())
+            {
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += worker_DoWork;
+                worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+                worker.RunWorkerAsync(country.TaskForceName);
+                OnSwitchStep(new WorkingStep(Translations.RtiFetchingTaskForceNames));
+            }
+            else
+            {
+                TaskForceNoInternet confirm = new TaskForceNoInternet();
+                if (confirm.ShowDialog() == DialogResult.OK)
+                {
+                    if (confirm.IsSkipping())
+                    {
+                        OnSwitchStep(new WorkingStep("Generating RTI Reports"));
+                        return;
+                    }
+                }
+                OnFinish();
+            }
+        }
+
+        void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                TaskForceApi api = new TaskForceApi();
+                e.Result = api.GetAllDistricts((string)e.Argument);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error fetching country information from task force api. TaskForceCountryStep (worker_DoWork). ", ex);
+                e.Result = new TaskForceApiResult { WasSuccessful = false, ErrorMsg = Translations.UnexpectedException + " " + ex.Message };
+            }
+        }
+
+        void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            TaskForceApiResult result = (TaskForceApiResult)e.Result;
+            if (!result.WasSuccessful)
+            {
+                MessageBox.Show(result.ErrorMsg, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                OnFinish();
+                return;
+            }
+            if (result.Units.Count == 0)
+            {
+                MessageBox.Show(Translations.RtiNoData, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                OnSwitchStep(this);
+                return;
+            }
+
+            var userId = ApplicationData.Instance.GetUserId();
+            demo.UpdateCountry(country, userId);
+            SettingsRepository settings = new SettingsRepository();
+            List<AdminLevelType> levels = settings.GetAllAdminLevels();
+            OnSwitchStep(new TaskForceAdminLevelStep(levels, 0, result.Units));
+        }
+
         public void DoFinish()
         {
 

@@ -21,6 +21,7 @@ namespace Nada.UI.View
         List<string> selectedDiseases = new List<string>();
         IndicatorEntityType entityType = IndicatorEntityType.DiseaseDistribution;
         SettingsRepository settings = new SettingsRepository();
+        bool allowCustom = true;
         public event Action OnAddRemove = () => { };
         public event Action OnRangeChange = () => { };
         private List<DynamicContainer> controlList = new List<DynamicContainer>();
@@ -32,6 +33,20 @@ namespace Nada.UI.View
             : base()
         {
             InitializeComponent();
+        }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool AllowCustom
+        {
+            get { return allowCustom; }
+            set
+            {
+                allowCustom = value;
+                hr1.Visible = allowCustom;
+                hr4.Visible = allowCustom;
+                pnlCustom.Visible = allowCustom;
+            }
         }
 
         private void IndicatorControl_Load(object sender, EventArgs e)

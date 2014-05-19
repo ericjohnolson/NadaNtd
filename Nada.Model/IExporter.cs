@@ -12,6 +12,7 @@ namespace Nada.Model
     public interface IExporter
     {
         string ExportName { get; }
+        ExportResult DoExport(string fileName, int userId, ExportType exportType);
     }
 
     public class ExportParams

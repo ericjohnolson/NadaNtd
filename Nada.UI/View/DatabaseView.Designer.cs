@@ -105,7 +105,7 @@
             this.panel4.Location = new System.Drawing.Point(0, 62);
             this.panel4.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1083, 236);
+            this.panel4.Size = new System.Drawing.Size(1083, 246);
             this.panel4.TabIndex = 6;
             // 
             // panel1
@@ -119,7 +119,7 @@
             this.panel1.Location = new System.Drawing.Point(30, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(30, 10, 0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(359, 236);
+            this.panel1.Size = new System.Drawing.Size(359, 246);
             this.panel1.TabIndex = 62;
             // 
             // lblRecentFile
@@ -153,7 +153,7 @@
             this.tblDbChooser.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblDbChooser.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblDbChooser.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblDbChooser.Size = new System.Drawing.Size(96, 105);
+            this.tblDbChooser.Size = new System.Drawing.Size(96, 115);
             this.tblDbChooser.TabIndex = 62;
             // 
             // c1Button1
@@ -200,7 +200,7 @@
             this.lnkNew.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkNew.LinkColor = System.Drawing.Color.White;
             this.lnkNew.Location = new System.Drawing.Point(0, 71);
-            this.lnkNew.Margin = new System.Windows.Forms.Padding(0, 10, 0, 15);
+            this.lnkNew.Margin = new System.Windows.Forms.Padding(0, 10, 0, 25);
             this.lnkNew.Name = "lnkNew";
             this.lnkNew.Size = new System.Drawing.Size(96, 19);
             this.lnkNew.TabIndex = 4;
@@ -309,7 +309,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 8F);
             this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(35, 318);
+            this.label1.Location = new System.Drawing.Point(35, 328);
             this.label1.Margin = new System.Windows.Forms.Padding(35, 20, 0, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 14);
@@ -325,10 +325,10 @@
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(38, 352);
+            this.panel3.Location = new System.Drawing.Point(38, 362);
             this.panel3.Margin = new System.Windows.Forms.Padding(38, 0, 0, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1045, 371);
+            this.panel3.Size = new System.Drawing.Size(1045, 361);
             this.panel3.TabIndex = 64;
             // 
             // pictureBox6

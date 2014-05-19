@@ -33,7 +33,7 @@ namespace Nada.Model.Reports
                 switch (ReportOptions.EntityType)
                 {
                     case IndicatorEntityType.DiseaseDistribution:
-                        ReportOptions.ReportGenerator = new IntvReportGenerator();
+                        ReportOptions.ReportGenerator = new DistributionReportGenerator();
                         break;
                     case IndicatorEntityType.Intervention:
                         ReportOptions.ReportGenerator = new IntvReportGenerator();

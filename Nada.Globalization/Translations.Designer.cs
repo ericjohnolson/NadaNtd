@@ -3050,7 +3050,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of persons living in areas that have achieved the criteria for stopping MDA.
+        ///   Looks up a localized string similar to Number of persons living in areas that have achieved the criteria for stopping PC.
         /// </summary>
         public static string EliminationLiving {
             get {
@@ -3307,6 +3307,15 @@ namespace Nada.Globalization {
         public static string Exports {
             get {
                 return ResourceManager.GetString("Exports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PC epidemiologial data reporting form.
+        /// </summary>
+        public static string ExportsPcEpiDataForm {
+            get {
+                return ResourceManager.GetString("ExportsPcEpiDataForm", resourceCulture);
             }
         }
         
@@ -4940,6 +4949,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of individuals examined for Hydrocele.
+        /// </summary>
+        public static string LFMapSurExaminedHydro1 {
+            get {
+                return ResourceManager.GetString("LFMapSurExaminedHydro1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of individuals examined for Lymphoedema.
+        /// </summary>
+        public static string LFMapSurExaminedLympho {
+            get {
+                return ResourceManager.GetString("LFMapSurExaminedLympho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Latitude.
         /// </summary>
         public static string LFMapSurLatitude {
@@ -4985,7 +5012,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of cases of hydrocele.
+        ///   Looks up a localized string similar to Number of individuals positive for Hydrocele.
         /// </summary>
         public static string LFMapSurNumberOfCasesOfHydrocele {
             get {
@@ -4994,7 +5021,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of cases of lymphoedema.
+        ///   Looks up a localized string similar to Number of individuals positive for Lymphoedema.
         /// </summary>
         public static string LFMapSurNumberOfCasesOfLymphoedema {
             get {
@@ -5003,7 +5030,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of females examined.
+        ///   Looks up a localized string similar to Number of females examined for Mf/Ag.
         /// </summary>
         public static string LFMapSurNumberOfFemalesExamined {
             get {
@@ -5012,7 +5039,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of females positive.
+        ///   Looks up a localized string similar to Number of females positive for Mf/Ag.
         /// </summary>
         public static string LFMapSurNumberOfFemalesPositive {
             get {
@@ -5021,7 +5048,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of individuals examined.
+        ///   Looks up a localized string similar to Number of individuals examined for Mf/Ag.
         /// </summary>
         public static string LFMapSurNumberOfIndividualsExamined {
             get {
@@ -5030,7 +5057,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of individuals positive.
+        ///   Looks up a localized string similar to Number of individuals positive for Mf/Ag.
         /// </summary>
         public static string LFMapSurNumberOfIndividualsPositive {
             get {
@@ -5057,7 +5084,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of males examined.
+        ///   Looks up a localized string similar to Number of males examined for Mf/Ag.
         /// </summary>
         public static string LFMapSurNumberOfMalesExamined {
             get {
@@ -5066,7 +5093,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of males positive.
+        ///   Looks up a localized string similar to Number of males positive for Mf/Ag.
         /// </summary>
         public static string LFMapSurNumberOfMalesPositive {
             get {
@@ -5300,6 +5327,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of individuals examined for Hydrocele.
+        /// </summary>
+        public static string LFSurExaminedHydro {
+            get {
+                return ResourceManager.GetString("LFSurExaminedHydro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of individuals examined for Lymphoedema.
+        /// </summary>
+        public static string LFSurExaminedLympho {
+            get {
+                return ResourceManager.GetString("LFSurExaminedLympho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Latitude.
         /// </summary>
         public static string LFSurLatitude {
@@ -5327,7 +5372,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of individuals examined.
+        ///   Looks up a localized string similar to Number of individuals examined for Mf/Ag.
         /// </summary>
         public static string LFSurNumberOfIndividualsExamined {
             get {
@@ -5336,7 +5381,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of individuals positive.
+        ///   Looks up a localized string similar to Number of individuals positive for Mf/Ag.
         /// </summary>
         public static string LFSurNumberOfIndividualsPositive {
             get {
@@ -5372,11 +5417,29 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of individuals positive for Hydrocele.
+        /// </summary>
+        public static string LFSurPosHydro {
+            get {
+                return ResourceManager.GetString("LFSurPosHydro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to % positive.
         /// </summary>
         public static string LFSurPositive {
             get {
                 return ResourceManager.GetString("LFSurPositive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of individuals positive for Lymphoedema.
+        /// </summary>
+        public static string LFSurPosLympho {
+            get {
+                return ResourceManager.GetString("LFSurPosLympho", resourceCulture);
             }
         }
         
@@ -10106,11 +10169,29 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot Reconcile.
+        /// </summary>
+        public static string RtiCantReconcile {
+            get {
+                return ResourceManager.GetString("RtiCantReconcile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Must match all units before continuing.
         /// </summary>
         public static string RtiErrorMustMatchAll {
             get {
                 return ResourceManager.GetString("RtiErrorMustMatchAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fetching country information from Task Force system.
+        /// </summary>
+        public static string RtiFetchingTaskForceNames {
+            get {
+                return ResourceManager.GetString("RtiFetchingTaskForceNames", resourceCulture);
             }
         }
         
@@ -10124,11 +10205,47 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Task Force system has no data on that country, please double check your selection before continuing..
+        /// </summary>
+        public static string RtiNoData {
+            get {
+                return ResourceManager.GetString("RtiNoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RTI Report.
         /// </summary>
         public static string RtiReports {
             get {
                 return ResourceManager.GetString("RtiReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip administrative unit reconciliation.
+        /// </summary>
+        public static string RtiSkipReconcile {
+            get {
+                return ResourceManager.GetString("RtiSkipReconcile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An internet connection was not found. Please connect to the internet and try again, or check the box to skip reconciling your administrative units..
+        /// </summary>
+        public static string RtiTaskForceNoInternet {
+            get {
+                return ResourceManager.GetString("RtiTaskForceNoInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No results found when querying the Task Force system, please contact support..
+        /// </summary>
+        public static string RtiTaskForceNoResults {
+            get {
+                return ResourceManager.GetString("RtiTaskForceNoResults", resourceCulture);
             }
         }
         

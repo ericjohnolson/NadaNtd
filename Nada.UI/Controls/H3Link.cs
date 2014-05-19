@@ -39,5 +39,17 @@ namespace Nada.UI.Controls
         {
             ClickOverride();
         }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Color TextColor
+        {
+            get { return linkLabel1.LinkColor; }
+            set
+            {
+                linkLabel1.LinkColor = value;
+                linkLabel1.VisitedLinkColor = value;
+            }
+        }
     }
 }

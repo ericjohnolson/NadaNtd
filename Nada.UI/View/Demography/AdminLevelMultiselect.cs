@@ -231,7 +231,8 @@ namespace Nada.UI.View
             else
             {
                 AdminLevel parent = AdminLevel.Find(oldList, item.ParentId.Value);
-                parent.Children.Remove(item);
+                if(parent != null)
+                    parent.Children.Remove(item);
             }
         }
 

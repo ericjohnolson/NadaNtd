@@ -17,6 +17,8 @@ namespace Nada.Model.Exports
 
         public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
+        public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }
+        public IExporter Exporter { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]
@@ -34,17 +36,5 @@ namespace Nada.Model.Exports
         }
         #endregion
 
-
-        public List<IndicatorDropdownValue> IndicatorDropdownValues
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
     }
 }

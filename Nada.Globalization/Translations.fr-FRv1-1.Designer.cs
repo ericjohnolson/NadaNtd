@@ -4959,60 +4959,6 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nombre de cas d&apos;hydrocèles.
-        /// </summary>
-        public static string LFMapSurNumberOfCasesOfHydrocele {
-            get {
-                return ResourceManager.GetString("LFMapSurNumberOfCasesOfHydrocele", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre de cas de lymphœdèmes.
-        /// </summary>
-        public static string LFMapSurNumberOfCasesOfLymphoedema {
-            get {
-                return ResourceManager.GetString("LFMapSurNumberOfCasesOfLymphoedema", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre de femmes examinées.
-        /// </summary>
-        public static string LFMapSurNumberOfFemalesExamined {
-            get {
-                return ResourceManager.GetString("LFMapSurNumberOfFemalesExamined", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre de femmes positives.
-        /// </summary>
-        public static string LFMapSurNumberOfFemalesPositive {
-            get {
-                return ResourceManager.GetString("LFMapSurNumberOfFemalesPositive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre de personnes examinées.
-        /// </summary>
-        public static string LFMapSurNumberOfIndividualsExamined {
-            get {
-                return ResourceManager.GetString("LFMapSurNumberOfIndividualsExamined", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre de personnes positives.
-        /// </summary>
-        public static string LFMapSurNumberOfIndividualsPositive {
-            get {
-                return ResourceManager.GetString("LFMapSurNumberOfIndividualsPositive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Nombre de personnes testées.
         /// </summary>
         public static string LFMapSurNumberOfIndividualsSampled {
@@ -5027,24 +4973,6 @@ namespace Nada.Globalization {
         public static string LFMapSurNumberOfIndividualsWithNonRespon {
             get {
                 return ResourceManager.GetString("LFMapSurNumberOfIndividualsWithNonRespon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre d&apos;hommes examinés.
-        /// </summary>
-        public static string LFMapSurNumberOfMalesExamined {
-            get {
-                return ResourceManager.GetString("LFMapSurNumberOfMalesExamined", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre d&apos;hommes positifs.
-        /// </summary>
-        public static string LFMapSurNumberOfMalesPositive {
-            get {
-                return ResourceManager.GetString("LFMapSurNumberOfMalesPositive", resourceCulture);
             }
         }
         
@@ -5297,24 +5225,6 @@ namespace Nada.Globalization {
         public static string LFSurMeanDensity {
             get {
                 return ResourceManager.GetString("LFSurMeanDensity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre de personnes examinées.
-        /// </summary>
-        public static string LFSurNumberOfIndividualsExamined {
-            get {
-                return ResourceManager.GetString("LFSurNumberOfIndividualsExamined", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nombre de personnes positives.
-        /// </summary>
-        public static string LFSurNumberOfIndividualsPositive {
-            get {
-                return ResourceManager.GetString("LFSurNumberOfIndividualsPositive", resourceCulture);
             }
         }
         

@@ -45,8 +45,8 @@ namespace Nada.UI.View.Wizard
         public UpdateApp(Action restart)
             : base()
         {
-            hasUpdate = HasInternetConnection() && HasUpdate();
-            hasInternet = HasInternetConnection();
+            hasUpdate = Util.HasInternetConnection() && HasUpdate();
+            hasInternet = Util.HasInternetConnection();
             OnRestart = restart;
             InitializeComponent();
         }
@@ -145,29 +145,7 @@ namespace Nada.UI.View.Wizard
             OnFinish();
         }
 
-        public static bool HasInternetConnection()
-        {
-            var logger = new Logger();
-            try
-            {
-                string myAddress = "www.google.com";
-                IPAddress[] addresslist = Dns.GetHostAddresses(myAddress);
-
-                if (addresslist[0].ToString().Length > 6)
-                {
-                    return true;
-                }
-                else
-                    return false;
-
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Exception checking HasInternetConnection", ex);
-                return false;
-            }
-
-        }
+        
 
         public static bool HasUpdate()
         {

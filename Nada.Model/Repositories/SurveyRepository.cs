@@ -72,6 +72,46 @@ namespace Nada.Model.Repositories
             return surveys;
         }
 
+        public List<SurveyBase> GetByTypeForDateRange(List<int> surveyTypes, DateTime start, DateTime end)
+        {
+            List<SurveyBase> surveys = new List<SurveyBase>();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select 
+                        Surveys.ID 
+                        FROM ((((((Surveys INNER JOIN SurveyTypes on Surveys.SurveyTypeId = SurveyTypes.ID)
+                            INNER JOIN aspnet_Users on Surveys.UpdatedById = aspnet_Users.UserId)
+                            INNER JOIN Surveys_to_AdminLevels on Surveys.Id = Surveys_to_AdminLevels.SurveyId) 
+                            INNER JOIN AdminLevels on AdminLevels.Id = Surveys_to_AdminLevels.AdminLevelId) 
+                            INNER JOIN AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.Id) 
+                            INNER JOIN Diseases on SurveyTypes.DiseaseId = Diseases.ID) 
+                        WHERE AdminLevelTypes.IsDistrict=-1 and Surveys.IsDeleted = 0 and Surveys.SurveyTypeId in (" 
+                        + string.Join(",", surveyTypes.Select(i => i.ToString()).ToArray()) + ") " +
+                        @" and Surveys.DateReported >= @StartDate and Surveys.DateReported <= @EndDate 
+                        ORDER BY AdminLevels.DisplayName", connection);
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", start));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@EndDate", end));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            surveys.Add(GetSurvey<SurveyBase>(command, connection, reader.GetValueOrDefault<int>("ID")));
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return surveys;
+        }
+
         public void Delete(SurveyDetails survey, int userId)
         {
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -715,6 +755,83 @@ namespace Nada.Model.Repositories
         #endregion
 
         #region Misc
+        public List<SentinelSite> GetSitesForAdminLevel(IEnumerable<string> adminLevelIds)
+        {
+            List<SentinelSite> sites = new List<SentinelSite>();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select SentinelSites.ID, SentinelSites.SiteName, 
+                        SentinelSites.Lat, SentinelSites.Lng, SentinelSites.Notes
+                        FROM (SentinelSites INNER JOIN SentinelSites_to_AdminLevels ON SentinelSites_to_AdminLevels.SentinelSiteId = SentinelSites.ID)
+                        WHERE SentinelSites_to_AdminLevels.AdminLevelId in (" + String.Join(", ", adminLevelIds.ToArray()) + @")
+                        GROUP BY SentinelSites.ID, SentinelSites.SiteName, SentinelSites.Lat, SentinelSites.Lng, SentinelSites.Notes", connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            sites.Add(new SentinelSite
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                SiteName = reader.GetValueOrDefault<string>("SiteName"),
+                                Lat = reader.GetNullableDouble("Lat"),
+                                Lng = reader.GetNullableDouble("Lng"),
+                                Notes = reader.GetValueOrDefault<string>("Notes")
+                            });
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return sites;
+        }
+
+        public SentinelSite GetSiteById(int id)
+        {
+            SentinelSite site = new SentinelSite();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select SentinelSites.ID, SentinelSites.SiteName, 
+                        SentinelSites.Lat, SentinelSites.Lng, SentinelSites.Notes
+                        FROM SentinelSites
+                        WHERE SentinelSites.ID=@Id", connection);
+                    command.Parameters.Add(new OleDbParameter("@Id", id));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            site = new SentinelSite
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                SiteName = reader.GetValueOrDefault<string>("SiteName"),
+                                Lat = reader.GetNullableDouble("Lat"),
+                                Lng = reader.GetNullableDouble("Lng"),
+                                Notes = reader.GetValueOrDefault<string>("Notes")
+                            };
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return site;
+        }
+
         public SentinelSite Insert(SentinelSite site, int updatedById)
         {
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -783,44 +900,7 @@ namespace Nada.Model.Repositories
             }
         }
 
-        public List<SentinelSite> GetSitesForAdminLevel(IEnumerable<string> adminLevelIds)
-        {
-            List<SentinelSite> sites = new List<SentinelSite>();
-            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                try
-                {
-                    OleDbCommand command = new OleDbCommand(@"Select SentinelSites.ID, SentinelSites.SiteName, 
-                        SentinelSites.Lat, SentinelSites.Lng, SentinelSites.Notes
-                        FROM (SentinelSites INNER JOIN SentinelSites_to_AdminLevels ON SentinelSites_to_AdminLevels.SentinelSiteId = SentinelSites.ID)
-                        WHERE SentinelSites_to_AdminLevels.AdminLevelId in (" + String.Join(", ", adminLevelIds.ToArray()) + @")
-                        GROUP BY SentinelSites.ID, SentinelSites.SiteName, SentinelSites.Lat, SentinelSites.Lng, SentinelSites.Notes", connection);
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            sites.Add(new SentinelSite
-                            {
-                                Id = reader.GetValueOrDefault<int>("ID"),
-                                SiteName = reader.GetValueOrDefault<string>("SiteName"),
-                                Lat = reader.GetNullableDouble("Lat"),
-                                Lng = reader.GetNullableDouble("Lng"),
-                                Notes = reader.GetValueOrDefault<string>("Notes")
-                            });
-                        }
-                        reader.Close();
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-            return sites;
-        }
-
+     
         #endregion
 
         #region Private Methods

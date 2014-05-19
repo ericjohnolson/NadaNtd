@@ -34,6 +34,7 @@ namespace Nada.UI.View.Reports.CustomReport
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 bindingSource1.DataSource = model;
             }
         }

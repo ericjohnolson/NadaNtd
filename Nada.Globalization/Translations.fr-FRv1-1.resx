@@ -1751,35 +1751,11 @@
   <data name="LFMapSurMeanDensity" xml:space="preserve">
     <value>Densité moyenne</value>
   </data>
-  <data name="LFMapSurNumberOfCasesOfHydrocele" xml:space="preserve">
-    <value>Nombre de cas d'hydrocèles</value>
-  </data>
-  <data name="LFMapSurNumberOfCasesOfLymphoedema" xml:space="preserve">
-    <value>Nombre de cas de lymphœdèmes</value>
-  </data>
-  <data name="LFMapSurNumberOfFemalesExamined" xml:space="preserve">
-    <value>Nombre de femmes examinées</value>
-  </data>
-  <data name="LFMapSurNumberOfFemalesPositive" xml:space="preserve">
-    <value>Nombre de femmes positives</value>
-  </data>
-  <data name="LFMapSurNumberOfIndividualsExamined" xml:space="preserve">
-    <value>Nombre de personnes examinées</value>
-  </data>
-  <data name="LFMapSurNumberOfIndividualsPositive" xml:space="preserve">
-    <value>Nombre de personnes positives</value>
-  </data>
   <data name="LFMapSurNumberOfIndividualsSampled" xml:space="preserve">
     <value>Nombre de personnes testées</value>
   </data>
   <data name="LFMapSurNumberOfIndividualsWithNonRespon" xml:space="preserve">
     <value>Nombre de personnes n'ayant pas répondu</value>
-  </data>
-  <data name="LFMapSurNumberOfMalesExamined" xml:space="preserve">
-    <value>Nombre d'hommes examinés</value>
-  </data>
-  <data name="LFMapSurNumberOfMalesPositive" xml:space="preserve">
-    <value>Nombre d'hommes positifs</value>
   </data>
   <data name="LFMapSurPopulationLivingInMappingSites" xml:space="preserve">
     <value>Population vivant dans un(des) site(s) de cartographie</value>
@@ -1864,12 +1840,6 @@
   </data>
   <data name="LFSurMeanDensity" xml:space="preserve">
     <value>Densité moyenne</value>
-  </data>
-  <data name="LFSurNumberOfIndividualsExamined" xml:space="preserve">
-    <value>Nombre de personnes examinées</value>
-  </data>
-  <data name="LFSurNumberOfIndividualsPositive" xml:space="preserve">
-    <value>Nombre de personnes positives</value>
   </data>
   <data name="LFSurNumberOfIndividualsSampled" xml:space="preserve">
     <value>Nombre de personnes testées</value>

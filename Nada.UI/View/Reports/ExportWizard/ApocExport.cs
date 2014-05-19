@@ -100,12 +100,15 @@ namespace Nada.UI.View.Reports
             {
                 Logger log = new Logger();
                 log.Error("Error creating APOC Report (worker_DoWork). ", ex);
-                throw;
+                e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
             }
         }
 
         void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            ImportResult result = (ImportResult)e.Result;
+            if(!result.WasSuccess)
+                MessageBox.Show(result.Message, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
             OnFinish();
         }
     }

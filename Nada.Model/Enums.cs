@@ -64,7 +64,8 @@ namespace Nada.Model
         EvalSubDistrict = 7,
         EvalSite = 8,
         Demo = 9, 
-        Sae = 10
+        Sae = 10,
+        Export = 11
     }
 
     public enum NewYearType
@@ -89,9 +90,7 @@ namespace Nada.Model
 
     public enum StaticIntvType
     {
-        IvmAlbMda = 1,
-        LfLymphedemaMorbidity = 2,
-        LfHydroceleMorbidity = 3,
+        LfMorbidityManagement = 2,
         GuineaWormIntervention = 4,
         LeprosyIntervention = 5,
         HatIntervention = 6,
@@ -136,7 +135,8 @@ namespace Nada.Model
     {
         Jrf = 1,
         CmJrf = 2,
-        Tas = 3
+        Tas = 3,
+        PcEpi = 4
     }
 
 }

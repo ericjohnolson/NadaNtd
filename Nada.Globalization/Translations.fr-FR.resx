@@ -1623,22 +1623,22 @@
     <value>Densité moyenne</value>
   </data>
   <data name="LFMapSurNumberOfCasesOfHydrocele" xml:space="preserve">
-    <value>Nombre de cas d'hydrocèles</value>
+    <value>Number of individuals positive for Hydrocele</value>
   </data>
   <data name="LFMapSurNumberOfCasesOfLymphoedema" xml:space="preserve">
-    <value>Nombre de cas de lymphœdèmes</value>
+    <value>Number of individuals positive for Lymphoedema</value>
   </data>
   <data name="LFMapSurNumberOfFemalesExamined" xml:space="preserve">
-    <value>Nombre de femmes examinées</value>
+    <value>Number of females examined for Mf/Ag</value>
   </data>
   <data name="LFMapSurNumberOfFemalesPositive" xml:space="preserve">
-    <value>Nombre de femmes positives</value>
+    <value>Number of females positive for Mf/Ag</value>
   </data>
   <data name="LFMapSurNumberOfIndividualsExamined" xml:space="preserve">
-    <value>Nombre de personnes examinées</value>
+    <value>Number of individuals examined for Mf/Ag</value>
   </data>
   <data name="LFMapSurNumberOfIndividualsPositive" xml:space="preserve">
-    <value>Nombre de personnes positives</value>
+    <value>Number of individuals positive for Mf/Ag</value>
   </data>
   <data name="LFMapSurNumberOfIndividualsSampled" xml:space="preserve">
     <value>Nombre de personnes testées</value>
@@ -1647,10 +1647,10 @@
     <value>Nombre de personnes n'ayant pas répondu</value>
   </data>
   <data name="LFMapSurNumberOfMalesExamined" xml:space="preserve">
-    <value>Nombre d'hommes examinés</value>
+    <value>Number of males examined for Mf/Ag</value>
   </data>
   <data name="LFMapSurNumberOfMalesPositive" xml:space="preserve">
-    <value>Nombre d'hommes positifs</value>
+    <value>Number of males positive for Mf/Ag</value>
   </data>
   <data name="LFMapSurPopulationLivingInMappingSites" xml:space="preserve">
     <value>Population vivant dans un(des) site(s) de cartographie</value>
@@ -1737,10 +1737,10 @@
     <value>Densité moyenne</value>
   </data>
   <data name="LFSurNumberOfIndividualsExamined" xml:space="preserve">
-    <value>Nombre de personnes examinées</value>
+    <value>Number of individuals examined for Mf/Ag</value>
   </data>
   <data name="LFSurNumberOfIndividualsPositive" xml:space="preserve">
-    <value>Nombre de personnes positives</value>
+    <value>Number of individuals positive for Mf/Ag</value>
   </data>
   <data name="LFSurNumberOfIndividualsSampled" xml:space="preserve">
     <value>Nombre de personnes testées</value>
@@ -5196,7 +5196,7 @@
     <value>Number of endemic {0} requiring PC</value>
   </data>
   <data name="EliminationLiving" xml:space="preserve">
-    <value>Number of persons living in areas that have achieved the criteria for stopping MDA</value>
+    <value>Number of persons living in areas that have achieved the criteria for stopping PC</value>
   </data>
   <data name="EliminationStoppedDistricts" xml:space="preserve">
     <value>Number of {0} that have achieved the criteria for stopping PC</value>
@@ -5401,5 +5401,41 @@
   </data>
   <data name="RtiReports" xml:space="preserve">
     <value>RTI Report</value>
+  </data>
+  <data name="RtiCantReconcile" xml:space="preserve">
+    <value>Cannot Reconcile</value>
+  </data>
+  <data name="RtiFetchingTaskForceNames" xml:space="preserve">
+    <value>Fetching country information from Task Force system</value>
+  </data>
+  <data name="RtiNoData" xml:space="preserve">
+    <value>The Task Force system has no data on that country, please double check your selection before continuing.</value>
+  </data>
+  <data name="RtiSkipReconcile" xml:space="preserve">
+    <value>Skip administrative unit reconciliation</value>
+  </data>
+  <data name="RtiTaskForceNoResults" xml:space="preserve">
+    <value>No results found when querying the Task Force system, please contact support.</value>
+  </data>
+  <data name="ExportsPcEpiDataForm" xml:space="preserve">
+    <value>PC epidemiologial data reporting form</value>
+  </data>
+  <data name="LFMapSurExaminedHydro1" xml:space="preserve">
+    <value>Number of individuals examined for Hydrocele</value>
+  </data>
+  <data name="LFMapSurExaminedLympho" xml:space="preserve">
+    <value>Number of individuals examined for Lymphoedema</value>
+  </data>
+  <data name="LFSurExaminedHydro" xml:space="preserve">
+    <value>Number of individuals examined for Hydrocele</value>
+  </data>
+  <data name="LFSurExaminedLympho" xml:space="preserve">
+    <value>Number of individuals examined for Lymphoedema</value>
+  </data>
+  <data name="LFSurPosHydro" xml:space="preserve">
+    <value>Number of individuals positive for Hydrocele</value>
+  </data>
+  <data name="LFSurPosLympho" xml:space="preserve">
+    <value>Number of individuals positive for Lymphoedema</value>
   </data>
 </root>

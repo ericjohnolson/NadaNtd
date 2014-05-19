@@ -39,7 +39,7 @@
             this.tblTopControls = new System.Windows.Forms.TableLayoutPanel();
             this.hr4 = new Nada.UI.Controls.HR();
             this.lblDateRange = new Nada.UI.Controls.H3bLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlCustom = new System.Windows.Forms.Panel();
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.lblCustomIndicators = new System.Windows.Forms.Label();
             this.tblIndicators = new System.Windows.Forms.TableLayoutPanel();
@@ -49,7 +49,7 @@
             this.indicatorErrors = new System.Windows.Forms.ErrorProvider(this.components);
             this.tblContainer.SuspendLayout();
             this.tblDateRange.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnlCustom.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.indicatorErrors)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +65,7 @@
             this.tblContainer.Controls.Add(this.tblTopControls, 0, 4);
             this.tblContainer.Controls.Add(this.hr4, 0, 7);
             this.tblContainer.Controls.Add(this.lblDateRange, 0, 1);
-            this.tblContainer.Controls.Add(this.panel1, 0, 8);
+            this.tblContainer.Controls.Add(this.pnlCustom, 0, 8);
             this.tblContainer.Controls.Add(this.tblIndicators, 0, 9);
             this.tblContainer.Controls.Add(this.panel2, 0, 5);
             this.tblContainer.Controls.Add(this.tblMetaData, 0, 0);
@@ -83,7 +83,7 @@
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblContainer.Size = new System.Drawing.Size(920, 161);
+            this.tblContainer.Size = new System.Drawing.Size(920, 155);
             this.tblContainer.TabIndex = 2;
             // 
             // tblDateRange
@@ -100,7 +100,7 @@
             this.tblDateRange.Controls.Add(this.h3Link3, 4, 0);
             this.tblDateRange.Controls.Add(this.dtStart, 1, 0);
             this.tblDateRange.Controls.Add(this.dtEnd, 3, 0);
-            this.tblDateRange.Location = new System.Drawing.Point(3, 31);
+            this.tblDateRange.Location = new System.Drawing.Point(3, 25);
             this.tblDateRange.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.tblDateRange.Name = "tblDateRange";
             this.tblDateRange.RowCount = 1;
@@ -139,6 +139,7 @@
             this.h3Link3.TabIndex = 72;
             this.h3Link3.Tag = "Apply";
             this.h3Link3.Text = "Apply";
+            this.h3Link3.TextColor = System.Drawing.Color.RoyalBlue;
             this.h3Link3.ClickOverride += new System.Action(this.h3Link3_ClickOverride);
             // 
             // dtStart
@@ -167,7 +168,7 @@
             // 
             this.hr1.BackColor = System.Drawing.Color.DimGray;
             this.hr1.ForeColor = System.Drawing.Color.Gray;
-            this.hr1.Location = new System.Drawing.Point(0, 68);
+            this.hr1.Location = new System.Drawing.Point(0, 62);
             this.hr1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 15);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.DimGray;
@@ -185,7 +186,7 @@
             this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblTopControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblTopControls.Location = new System.Drawing.Point(3, 87);
+            this.tblTopControls.Location = new System.Drawing.Point(3, 81);
             this.tblTopControls.Name = "tblTopControls";
             this.tblTopControls.RowCount = 1;
             this.tblTopControls.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -196,7 +197,7 @@
             // 
             this.hr4.BackColor = System.Drawing.Color.DimGray;
             this.hr4.ForeColor = System.Drawing.Color.Gray;
-            this.hr4.Location = new System.Drawing.Point(0, 106);
+            this.hr4.Location = new System.Drawing.Point(0, 100);
             this.hr4.Margin = new System.Windows.Forms.Padding(0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.DimGray;
@@ -210,7 +211,8 @@
             this.lblDateRange.AutoSize = true;
             this.lblDateRange.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lblDateRange.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblDateRange.Location = new System.Drawing.Point(3, 9);
+            this.lblDateRange.Location = new System.Drawing.Point(0, 6);
+            this.lblDateRange.Margin = new System.Windows.Forms.Padding(0);
             this.lblDateRange.Name = "lblDateRange";
             this.lblDateRange.Size = new System.Drawing.Size(122, 16);
             this.lblDateRange.TabIndex = 74;
@@ -219,17 +221,17 @@
             this.lblDateRange.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblDateRange.Visible = false;
             // 
-            // panel1
+            // pnlCustom
             // 
-            this.panel1.AutoSize = true;
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.fieldLink1);
-            this.panel1.Controls.Add(this.lblCustomIndicators);
-            this.panel1.Location = new System.Drawing.Point(0, 116);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(159, 39);
-            this.panel1.TabIndex = 0;
+            this.pnlCustom.AutoSize = true;
+            this.pnlCustom.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlCustom.Controls.Add(this.fieldLink1);
+            this.pnlCustom.Controls.Add(this.lblCustomIndicators);
+            this.pnlCustom.Location = new System.Drawing.Point(0, 110);
+            this.pnlCustom.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlCustom.Name = "pnlCustom";
+            this.pnlCustom.Size = new System.Drawing.Size(159, 39);
+            this.pnlCustom.TabIndex = 0;
             // 
             // fieldLink1
             // 
@@ -268,7 +270,7 @@
             this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblIndicators.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tblIndicators.Location = new System.Drawing.Point(3, 158);
+            this.tblIndicators.Location = new System.Drawing.Point(3, 152);
             this.tblIndicators.Name = "tblIndicators";
             this.tblIndicators.RowCount = 1;
             this.tblIndicators.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -280,7 +282,7 @@
             this.panel2.AutoSize = true;
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.Controls.Add(this.tblStaticIndicators);
-            this.panel2.Location = new System.Drawing.Point(0, 90);
+            this.panel2.Location = new System.Drawing.Point(0, 84);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(52, 4);
@@ -338,14 +340,14 @@
             this.Controls.Add(this.tblContainer);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "IndicatorControl";
-            this.Size = new System.Drawing.Size(920, 161);
+            this.Size = new System.Drawing.Size(920, 155);
             this.Load += new System.EventHandler(this.IndicatorControl_Load);
             this.tblContainer.ResumeLayout(false);
             this.tblContainer.PerformLayout();
             this.tblDateRange.ResumeLayout(false);
             this.tblDateRange.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlCustom.ResumeLayout(false);
+            this.pnlCustom.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.indicatorErrors)).EndInit();
@@ -358,7 +360,7 @@
 
         private System.Windows.Forms.TableLayoutPanel tblIndicators;
         private System.Windows.Forms.TableLayoutPanel tblContainer;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlCustom;
         private Controls.FieldLink fieldLink1;
         private System.Windows.Forms.Label lblCustomIndicators;
         private System.Windows.Forms.ErrorProvider indicatorErrors;

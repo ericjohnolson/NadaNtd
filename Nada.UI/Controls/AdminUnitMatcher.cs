@@ -23,36 +23,53 @@ namespace Nada.UI.View
         public AdminUnitMatcher()
         {
             InitializeComponent();
-
         }
 
         public AdminUnitMatcher(AdminLevel e, List<TaskForceAdminUnit> u)
             : base()
         {
             InitializeComponent();
+            BindData(e, u);
+        }
+
+        public void BindData(AdminLevel e, List<TaskForceAdminUnit> u)
+        {
+            Localizer.TranslateControl(this);
             existing = e;
             taskForceUnits = u;
             h3Required1.SetMaxWidth(300);
             DemoRepository demo = new DemoRepository();
             var parentNames = demo.GetAdminLevelParentNames(existing.Id);
+            if (parentNames.Count == 0)
+                h3Required1.Text = e.Name;
+            else
+                h3Required1.Text = "";
             foreach (var pname in parentNames)
                 h3Required1.Text += pname.Name + " > ";
-            h3Required1.Text += existing.Name;
+
+            if (h3Required1.Text.EndsWith(" > "))
+                h3Required1.Text = h3Required1.Text.Substring(0, h3Required1.Text.LastIndexOf(" > "));
+
+            taskForceUnits.Insert(0, new TaskForceAdminUnit { Id = -1, Name = "" });
             bindingSource1.DataSource = taskForceUnits;
-            Localizer.TranslateControl(this);
+
+            if (taskForceUnits.Count > 0)
+                cbUnits.DropDownWidth = BaseForm.GetDropdownWidth(taskForceUnits.Select(a => a.Name));
         }
 
-        public AdminLevel GetSelected()
+        public TaskForceAdminUnit GetSelected()
         {
-            TaskForceAdminUnit selected = (TaskForceAdminUnit)cbUnits.SelectedItem;
-            existing.TaskForceId = selected.Id;
-            existing.TaskForceName = selected.Name;
+            return (TaskForceAdminUnit)cbUnits.SelectedItem;
+        }
+
+        public AdminLevel GetAdminUnit()
+        {
             return existing;
         }
 
         public bool IsValid()
         {
-            if(cbUnits.SelectedItem != null)
+            if(cbUnits.SelectedItem != null && ((TaskForceAdminUnit)cbUnits.SelectedItem).Id > 0)
                 return true;
             return false;
         }

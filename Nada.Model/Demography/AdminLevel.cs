@@ -30,7 +30,19 @@ namespace Nada.Model
         public List<AdminLevel> Children { get; set; }
         public int RedistrictIdForMother { get; set; }
         public int TaskForceId { get; set; }
-        public string TaskForceName { get; set; }
+        private string _taskForceName = "";
+        public string TaskForceName
+        {
+            get
+            {
+                return _taskForceName;
+            }
+            set
+            {
+                if (value != null)
+                    _taskForceName = value;
+            }
+        }
         // Display Only
         public string LevelName { get; set; }
         public int LevelNumber { get; set; }
