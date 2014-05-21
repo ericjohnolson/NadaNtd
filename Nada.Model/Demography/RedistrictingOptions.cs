@@ -48,6 +48,7 @@ namespace Nada.Model.Demography
         public List<SurveyBase> Surveys { get; set; }
         public List<IntvBase> Intvs { get; set; }
         public List<ProcessBase> Processes { get; set; }
+        public int YearStartMonth { get; set; }
 
         public override string ToString()
         {

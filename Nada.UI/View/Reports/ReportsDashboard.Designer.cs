@@ -32,9 +32,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.hrDisease = new Nada.UI.Controls.HR();
             this.hrTop = new Nada.UI.Controls.HR();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnHelp = new System.Windows.Forms.Button();
-            this.btnDash = new System.Windows.Forms.Button();
             this.hr1 = new Nada.UI.Controls.HR();
             this.label1 = new System.Windows.Forms.Label();
             this.tblCmJrf = new System.Windows.Forms.TableLayoutPanel();
@@ -44,6 +41,8 @@
             this.h3bLabel1 = new Nada.UI.Controls.H3bLabel();
             this.lnkPcJrfForm = new Nada.UI.Controls.H3Link();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.c1Button1 = new C1.Win.C1Input.C1Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel4 = new Nada.UI.Controls.H3bLabel();
@@ -64,10 +63,12 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
             this.h3Link1 = new Nada.UI.Controls.H3Link();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.c1Button2 = new C1.Win.C1Input.C1Button();
             this.tblCmJrf.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -75,6 +76,7 @@
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
             this.SuspendLayout();
             // 
             // label21
@@ -127,53 +129,6 @@
             this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hrTop.Size = new System.Drawing.Size(959, 6);
             this.hrTop.TabIndex = 57;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.AutoSize = true;
-            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.Controls.Add(this.btnHelp, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnDash, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(827, 6);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(104, 52);
-            this.tableLayoutPanel3.TabIndex = 67;
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.AutoSize = true;
-            this.btnHelp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnHelp.FlatAppearance.BorderSize = 0;
-            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHelp.Image = global::Nada.UI.Properties.Resources.button_help;
-            this.btnHelp.Location = new System.Drawing.Point(3, 3);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(46, 46);
-            this.btnHelp.TabIndex = 61;
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
-            // btnDash
-            // 
-            this.btnDash.AutoSize = true;
-            this.btnDash.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnDash.FlatAppearance.BorderSize = 0;
-            this.btnDash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDash.Image = global::Nada.UI.Properties.Resources.button_dashboard;
-            this.btnDash.Location = new System.Drawing.Point(55, 3);
-            this.btnDash.Name = "btnDash";
-            this.btnDash.Size = new System.Drawing.Size(46, 46);
-            this.btnDash.TabIndex = 60;
-            this.btnDash.UseVisualStyleBackColor = true;
-            this.btnDash.Click += new System.EventHandler(this.btnDash_Click);
             // 
             // hr1
             // 
@@ -302,6 +257,7 @@
             this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel11, 0, 9);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 8);
             this.tableLayoutPanel2.Controls.Add(this.hr2, 0, 7);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 6);
@@ -313,7 +269,7 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 5);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(18, 72);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 9;
+            this.tableLayoutPanel2.RowCount = 10;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -323,8 +279,46 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(905, 305);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(905, 410);
             this.tableLayoutPanel2.TabIndex = 72;
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel11.AutoSize = true;
+            this.tableLayoutPanel11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel11.ColumnCount = 3;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel11.Controls.Add(this.c1Button1, 2, 1);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(794, 308);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 3;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(108, 99);
+            this.tableLayoutPanel11.TabIndex = 73;
+            // 
+            // c1Button1
+            // 
+            this.c1Button1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.c1Button1.AutoSize = true;
+            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button1.Location = new System.Drawing.Point(15, 23);
+            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button1.Name = "c1Button1";
+            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button1.Size = new System.Drawing.Size(90, 27);
+            this.c1Button1.TabIndex = 2;
+            this.c1Button1.Tag = "Done";
+            this.c1Button1.Text = "Done";
+            this.c1Button1.UseVisualStyleBackColor = true;
+            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button1.Click += new System.EventHandler(this.c1Button1_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -644,26 +638,62 @@
             this.h3Link1.TextColor = System.Drawing.Color.RoyalBlue;
             this.h3Link1.ClickOverride += new System.Action(this.lnkApocReport_ClickOverride);
             // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.AutoSize = true;
+            this.tableLayoutPanel12.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel12.ColumnCount = 1;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel12.Controls.Add(this.c1Button2, 0, 0);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(824, 15);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 1;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(96, 33);
+            this.tableLayoutPanel12.TabIndex = 74;
+            // 
+            // c1Button2
+            // 
+            this.c1Button2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.c1Button2.AutoSize = true;
+            this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button2.Location = new System.Drawing.Point(3, 3);
+            this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button2.Name = "c1Button2";
+            this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button2.Size = new System.Drawing.Size(90, 27);
+            this.c1Button2.TabIndex = 2;
+            this.c1Button2.Tag = "Done";
+            this.c1Button2.Text = "Done";
+            this.c1Button2.UseVisualStyleBackColor = true;
+            this.c1Button2.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button2.Click += new System.EventHandler(this.c1Button2_Click);
+            // 
             // ReportsDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.tableLayoutPanel12);
             this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.hrTop);
             this.Name = "ReportsDashboard";
             this.Size = new System.Drawing.Size(959, 812);
             this.Load += new System.EventHandler(this.ReportsDashboard_Load);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tblCmJrf.ResumeLayout(false);
             this.tblCmJrf.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
@@ -678,6 +708,8 @@
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tableLayoutPanel12.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -687,11 +719,8 @@
 
         private Controls.HR hrTop;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.Button btnDash;
         private Controls.HR hrDisease;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private Controls.HR hr1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tblCmJrf;
@@ -721,5 +750,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private Controls.H3bLabel h3bLabel6;
         private Controls.H3Link h3Link6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
+        private C1.Win.C1Input.C1Button c1Button1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private C1.Win.C1Input.C1Button c1Button2;
     }
 }

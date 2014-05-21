@@ -31,7 +31,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>160</ApplicationRevision>
+    <ApplicationRevision>161</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -470,6 +470,12 @@
     </Compile>
     <Compile Include="View\Wizard\DistrictSplitting\BackupForRedistrict.Designer.cs">
       <DependentUpon>BackupForRedistrict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\DistrictSplitting\MergeYear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\DistrictSplitting\MergeYear.Designer.cs">
+      <DependentUpon>MergeYear.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Wizard\DistrictSplitting\SplitProcesses.cs">
       <SubType>UserControl</SubType>
@@ -967,6 +973,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\BackupForRedistrict.resx">
       <DependentUpon>BackupForRedistrict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\DistrictSplitting\MergeYear.resx">
+      <DependentUpon>MergeYear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplitProcesses.resx">
       <DependentUpon>SplitProcesses.cs</DependentUpon>

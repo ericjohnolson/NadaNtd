@@ -18,7 +18,7 @@ using Nada.Model.Demography;
 
 namespace Nada.UI.View.Wizard
 {
-    public partial class BackupForRedistrict : BaseControl, IWizardStep
+    public partial class MergeYear : BaseControl, IWizardStep
     {
         private DemoRepository repo = new DemoRepository();
         private SettingsRepository settings = new SettingsRepository();
@@ -32,9 +32,9 @@ namespace Nada.UI.View.Wizard
         public bool EnablePrev { get { return false; } }
         public bool ShowFinish { get { return false; } }
         public bool EnableFinish { get { return false; } }
-        public string StepTitle { get { return Translations.SplittingBackup; } }
+        public string StepTitle { get { return Translations.Year; } }
 
-        public BackupForRedistrict(RedistrictingOptions o)
+        public MergeYear(RedistrictingOptions o)
             : base()
         {
             options = o;
@@ -46,17 +46,12 @@ namespace Nada.UI.View.Wizard
         }
         public void DoNext()
         {
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                File.Copy(DatabaseData.Instance.FilePath, saveFileDialog1.FileName, true);
-                if (options.SplitType == SplittingType.SplitCombine)
-                    OnSwitchStep(new MergingSources(options, Translations.SplitCombineSource));
-                else if (options.SplitType == SplittingType.Split)
-                    OnSwitchStep(new SplittingSource(options));
-                else if (options.SplitType == SplittingType.Merge)
-                    OnSwitchStep(new MergeYear(options));
-            }
+            if (rbtnCalendar.Checked)
+                options.YearStartMonth = 1;
+            else
+                options.YearStartMonth = (int)comboBox1.SelectedValue;
 
+            OnSwitchStep(new MergingSources(options, Translations.SplitMergeSource));
         }
         public void DoFinish()
         {
@@ -68,11 +63,22 @@ namespace Nada.UI.View.Wizard
             {
                 lblMessage.SetMaxWidth(500);
                 Localizer.TranslateControl(this);
-                FileInfo fi = new FileInfo(DatabaseData.Instance.FilePath);
-                saveFileDialog1.InitialDirectory = fi.Directory.FullName;
-                saveFileDialog1.FileName = DatabaseData.Instance.FilePath.Replace(".accdb", "_Backup" + DateTime.Now.ToString("yyyyMMdd") + ".accdb");
-                
+                var months = GlobalizationUtil.GetAllMonths();
+                foreach (var month in months)
+                {
+                    DateTime start = new DateTime(2000, month.Id, 1);
+                    DateTime end = start.AddYears(1).AddDays(-1);
+                    month.Name = start.ToString("MMM") + " - " + end.ToString("MMM");
+                }
+                bindingSource1.DataSource = months;
+                comboBox1.DropDownWidth = BaseForm.GetDropdownWidth(months.Select(m => m.Name));
+                comboBox1.SelectedValue = 1;
             }
+        }
+
+        private void rbtnCustom_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBox1.Enabled = rbtnCustom.Checked;
         }
 
     }

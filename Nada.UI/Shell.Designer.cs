@@ -355,7 +355,6 @@
             this.menuMergeDistrictToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.menuMergeDistrictToolStripMenuItem.Tag = "MenuMergeDistrict";
             this.menuMergeDistrictToolStripMenuItem.Text = "MenuMergeDistrict";
-            this.menuMergeDistrictToolStripMenuItem.Visible = false;
             this.menuMergeDistrictToolStripMenuItem.Click += new System.EventHandler(this.menuMergeDistrictToolStripMenuItem_Click);
             // 
             // menuSplitCombineDistrictToolStripMenuItem

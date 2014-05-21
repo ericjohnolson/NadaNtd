@@ -216,7 +216,7 @@ namespace Nada.Model.Repositories
                         INNER JOIN InterventionTypes_to_Indicators ON InterventionTypes_to_Indicators.IndicatorId = InterventionIndicators.ID)
                         WHERE InterventionTypes_to_Indicators.InterventionTypeId=@InterventionTypeId AND IsDisabled=0 AND " +
                         "DiseaseId in (0," + String.Join(", ", selectedDiseases.Select(i => i.Id.ToString()).ToArray()) + ")" +
-                        "ORDER BY SortOrder, InterventionIndicators.ID", connection);
+                        "ORDER BY IsEditable DESC, SortOrder, InterventionIndicators.ID", connection);
                     command.Parameters.Add(new OleDbParameter("@InterventionTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {

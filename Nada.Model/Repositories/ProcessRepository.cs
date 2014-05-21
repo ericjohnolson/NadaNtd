@@ -335,7 +335,7 @@ namespace Nada.Model.Repositories
                         FROM ((ProcessIndicators INNER JOIN aspnet_users ON ProcessIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON ProcessIndicators.DataTypeId = IndicatorDataTypes.ID)
                         WHERE ProcessTypeId=@ProcessTypeId AND IsDisabled=0 
-                        ORDER BY SortOrder, ProcessIndicators.ID", connection);
+                        ORDER BY IsEditable DESC, SortOrder, ProcessIndicators.ID", connection);
                     command.Parameters.Add(new OleDbParameter("@ProcessTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {

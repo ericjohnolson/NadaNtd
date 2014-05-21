@@ -38,7 +38,7 @@ namespace Nada.UI.View.Reports
         {
             InitializeComponent();
         }
-        
+
         private void ExportWorkingStep_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
@@ -54,7 +54,7 @@ namespace Nada.UI.View.Reports
         {
             errorProvider1.SetError(textBox5, "");
         }
-        
+
         public void DoPrev()
         {
         }
@@ -94,21 +94,21 @@ namespace Nada.UI.View.Reports
             try
             {
                 ExportParams payload = (ExportParams)e.Argument;
-                exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Year);
+                e.Result = exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Year);
             }
             catch (Exception ex)
             {
                 Logger log = new Logger();
                 log.Error("Error creating APOC Report (worker_DoWork). ", ex);
-                e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
+                e.Result = new ExportResult(Translations.UnexpectedException + " " + ex.Message);
             }
         }
 
         void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            ImportResult result = (ImportResult)e.Result;
-            if(!result.WasSuccess)
-                MessageBox.Show(result.Message, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            ExportResult result = (ExportResult)e.Result;
+            if (!result.WasSuccess)
+                MessageBox.Show(result.ErrorMessage, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
             OnFinish();
         }
     }

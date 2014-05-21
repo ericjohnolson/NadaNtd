@@ -31,12 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.label21 = new System.Windows.Forms.Label();
             this.hrTop = new Nada.UI.Controls.HR();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnHelp = new System.Windows.Forms.Button();
-            this.btnDash = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.saveCountry = new C1.Win.C1Input.C1Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel1 = new Nada.UI.Controls.H3bLabel();
             this.adminLevelTypesControl1 = new Nada.UI.Controls.AdminLevelTypesControl();
@@ -47,7 +43,6 @@
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnSaveDiseases = new C1.Win.C1Input.C1Button();
             this.diseasePickerControl1 = new Nada.UI.View.DiseasePickerControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lnkAddUser = new Nada.UI.Controls.H3Link();
@@ -62,7 +57,9 @@
             this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.c1Button1 = new C1.Win.C1Input.C1Button();
+            this.c1Button3 = new C1.Win.C1Input.C1Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -72,6 +69,7 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lvUsers)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label21
@@ -100,53 +98,6 @@
             this.hrTop.Size = new System.Drawing.Size(1010, 6);
             this.hrTop.TabIndex = 57;
             // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.AutoSize = true;
-            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.Controls.Add(this.btnHelp, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnDash, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(878, 6);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(104, 52);
-            this.tableLayoutPanel3.TabIndex = 67;
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.AutoSize = true;
-            this.btnHelp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnHelp.FlatAppearance.BorderSize = 0;
-            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHelp.Image = global::Nada.UI.Properties.Resources.button_help;
-            this.btnHelp.Location = new System.Drawing.Point(3, 3);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(46, 46);
-            this.btnHelp.TabIndex = 61;
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
-            // btnDash
-            // 
-            this.btnDash.AutoSize = true;
-            this.btnDash.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnDash.FlatAppearance.BorderSize = 0;
-            this.btnDash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDash.Image = global::Nada.UI.Properties.Resources.button_dashboard;
-            this.btnDash.Location = new System.Drawing.Point(55, 3);
-            this.btnDash.Name = "btnDash";
-            this.btnDash.Size = new System.Drawing.Size(46, 46);
-            this.btnDash.TabIndex = 60;
-            this.btnDash.UseVisualStyleBackColor = true;
-            this.btnDash.Click += new System.EventHandler(this.btnDash_Click);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
@@ -165,7 +116,6 @@
             // tabPage2
             // 
             this.tabPage2.AutoScroll = true;
-            this.tabPage2.Controls.Add(this.saveCountry);
             this.tabPage2.Controls.Add(this.tableLayoutPanel1);
             this.tabPage2.Controls.Add(this.countryView1);
             this.tabPage2.Controls.Add(this.pnlLf);
@@ -177,23 +127,6 @@
             this.tabPage2.Tag = "";
             this.tabPage2.Text = "CountrySettings";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // saveCountry
-            // 
-            this.saveCountry.AutoSize = true;
-            this.saveCountry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.saveCountry.Location = new System.Drawing.Point(11, 482);
-            this.saveCountry.MinimumSize = new System.Drawing.Size(90, 27);
-            this.saveCountry.Name = "saveCountry";
-            this.saveCountry.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
-            this.saveCountry.Size = new System.Drawing.Size(90, 27);
-            this.saveCountry.TabIndex = 6;
-            this.saveCountry.Tag = "Save";
-            this.saveCountry.Text = "Save";
-            this.saveCountry.UseVisualStyleBackColor = true;
-            this.saveCountry.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
-            this.saveCountry.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
-            this.saveCountry.Click += new System.EventHandler(this.saveCountry_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -276,6 +209,7 @@
             this.olvColumn2,
             this.olvColumn3});
             this.treeAvailable.Cursor = System.Windows.Forms.Cursors.Default;
+            this.treeAvailable.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeAvailable.FullRowSelect = true;
             this.treeAvailable.Location = new System.Drawing.Point(15, 34);
             this.treeAvailable.Name = "treeAvailable";
@@ -304,13 +238,14 @@
             this.olvColumn3.AspectName = "ViewText";
             this.olvColumn3.CellPadding = null;
             this.olvColumn3.Hyperlink = true;
+            this.olvColumn3.FillsFreeSpace = true;
+            this.olvColumn3.IsEditable = false;
             this.olvColumn3.Tag = "Delete";
             this.olvColumn3.Text = "Delete";
             this.olvColumn3.Width = 117;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.btnSaveDiseases);
             this.tabPage3.Controls.Add(this.diseasePickerControl1);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
@@ -319,23 +254,6 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Diseases";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btnSaveDiseases
-            // 
-            this.btnSaveDiseases.AutoSize = true;
-            this.btnSaveDiseases.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSaveDiseases.Location = new System.Drawing.Point(12, 483);
-            this.btnSaveDiseases.MinimumSize = new System.Drawing.Size(90, 27);
-            this.btnSaveDiseases.Name = "btnSaveDiseases";
-            this.btnSaveDiseases.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
-            this.btnSaveDiseases.Size = new System.Drawing.Size(90, 27);
-            this.btnSaveDiseases.TabIndex = 69;
-            this.btnSaveDiseases.Tag = "Save";
-            this.btnSaveDiseases.Text = "Save";
-            this.btnSaveDiseases.UseVisualStyleBackColor = true;
-            this.btnSaveDiseases.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
-            this.btnSaveDiseases.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
-            this.btnSaveDiseases.Click += new System.EventHandler(this.btnSaveDiseases_Click);
             // 
             // diseasePickerControl1
             // 
@@ -373,6 +291,7 @@
             this.lnkAddUser.TabIndex = 69;
             this.lnkAddUser.Tag = "AddUserLink";
             this.lnkAddUser.Text = "AddUserLink";
+            this.lnkAddUser.TextColor = System.Drawing.Color.RoyalBlue;
             this.lnkAddUser.ClickOverride += new System.Action(this.lnkAddUser_ClickOverride);
             // 
             // lvUsers
@@ -515,21 +434,75 @@
             this.saveFileDialog1.FileName = "NationalDatabaseLog.log";
             this.saveFileDialog1.Filter = " (*.log)|*.log";
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.AutoSize = true;
+            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.c1Button1, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.c1Button3, 0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(740, 630);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(204, 79);
+            this.tableLayoutPanel4.TabIndex = 69;
+            // 
+            // c1Button1
+            // 
+            this.c1Button1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.c1Button1.AutoSize = true;
+            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button1.Location = new System.Drawing.Point(111, 3);
+            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button1.Name = "c1Button1";
+            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button1.Size = new System.Drawing.Size(90, 27);
+            this.c1Button1.TabIndex = 2;
+            this.c1Button1.Tag = "Save";
+            this.c1Button1.Text = "Save";
+            this.c1Button1.UseVisualStyleBackColor = true;
+            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button1.Click += new System.EventHandler(this.doSave_Click);
+            // 
+            // c1Button3
+            // 
+            this.c1Button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.c1Button3.AutoSize = true;
+            this.c1Button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button3.Location = new System.Drawing.Point(3, 3);
+            this.c1Button3.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button3.Name = "c1Button3";
+            this.c1Button3.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button3.Size = new System.Drawing.Size(90, 27);
+            this.c1Button3.TabIndex = 62;
+            this.c1Button3.Tag = "Cancel";
+            this.c1Button3.Text = "Cancel";
+            this.c1Button3.UseVisualStyleBackColor = true;
+            this.c1Button3.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button3.Click += new System.EventHandler(this.doCancel_Click);
+            // 
             // SettingsDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.hrTop);
             this.Name = "SettingsDashboard";
             this.Size = new System.Drawing.Size(1010, 812);
             this.Load += new System.EventHandler(this.Settings_Load);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -544,6 +517,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lvUsers)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -553,9 +528,6 @@
 
         private Controls.HR hrTop;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.Button btnDash;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel pnlLf;
@@ -575,8 +547,6 @@
         private System.Windows.Forms.TabPage tabPage4;
         private Controls.H3bLabel h3bLabel2;
         private C1.Win.C1Input.C1Button c1Button2;
-        private C1.Win.C1Input.C1Button saveCountry;
-        private C1.Win.C1Input.C1Button btnSaveDiseases;
         private Controls.H3bLabel h3bLabel3;
         private C1.Win.C1Input.C1Button btnSaveLog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
@@ -584,5 +554,8 @@
         private BrightIdeasSoftware.TreeListView treeAvailable;
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private C1.Win.C1Input.C1Button c1Button1;
+        private C1.Win.C1Input.C1Button c1Button3;
     }
 }

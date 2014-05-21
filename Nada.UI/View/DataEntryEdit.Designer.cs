@@ -35,7 +35,6 @@
             this.tblTitle = new System.Windows.Forms.TableLayoutPanel();
             this.lblDiseaseType = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnHelp = new System.Windows.Forms.Button();
             this.hrTop = new Nada.UI.Controls.HR();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tblEditBottom = new System.Windows.Forms.TableLayoutPanel();
@@ -54,7 +53,7 @@
             this.adminLevelPickerControl2 = new Nada.UI.View.AdminLevelPickerControl();
             this.tblEditTop = new System.Windows.Forms.TableLayoutPanel();
             this.c1Button3 = new C1.Win.C1Input.C1Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.c1Button4 = new C1.Win.C1Input.C1Button();
             this.tblReq = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2.SuspendLayout();
@@ -134,7 +133,7 @@
             this.tblTitle.Name = "tblTitle";
             this.tblTitle.RowCount = 1;
             this.tblTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblTitle.Size = new System.Drawing.Size(205, 30);
             this.tblTitle.TabIndex = 60;
             // 
@@ -166,27 +165,13 @@
             this.lblTitle.Tag = "";
             this.lblTitle.Text = "GenericDataEntry";
             // 
-            // btnHelp
-            // 
-            this.btnHelp.AutoSize = true;
-            this.btnHelp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnHelp.FlatAppearance.BorderSize = 0;
-            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHelp.Image = global::Nada.UI.Properties.Resources.button_help;
-            this.btnHelp.Location = new System.Drawing.Point(219, 3);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(46, 46);
-            this.btnHelp.TabIndex = 59;
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
             // hrTop
             // 
             this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hrTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.hrTop.ForeColor = System.Drawing.Color.Gray;
             this.hrTop.Location = new System.Drawing.Point(0, 0);
-            this.hrTop.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.hrTop.Margin = new System.Windows.Forms.Padding(6);
             this.hrTop.Name = "hrTop";
             this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hrTop.Size = new System.Drawing.Size(946, 7);
@@ -234,7 +219,7 @@
             this.tblEditBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tblEditBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tblEditBottom.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblEditBottom.Size = new System.Drawing.Size(931, 470);
+            this.tblEditBottom.Size = new System.Drawing.Size(931, 431);
             this.tblEditBottom.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -242,21 +227,20 @@
             this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel4.AutoSize = true;
             this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.Controls.Add(this.c1Button2, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnHelp, 4, 0);
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.c1Button1, 2, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(660, 369);
+            this.tableLayoutPanel4.Controls.Add(this.c1Button2, 0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(724, 349);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(268, 98);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(204, 79);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // c1Button2
@@ -264,7 +248,7 @@
             this.c1Button2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.c1Button2.AutoSize = true;
             this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button2.Location = new System.Drawing.Point(3, 12);
+            this.c1Button2.Location = new System.Drawing.Point(3, 3);
             this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
             this.c1Button2.Name = "c1Button2";
             this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
@@ -282,7 +266,7 @@
             this.c1Button1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.c1Button1.AutoSize = true;
             this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button1.Location = new System.Drawing.Point(111, 12);
+            this.c1Button1.Location = new System.Drawing.Point(111, 3);
             this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
             this.c1Button1.Name = "c1Button1";
             this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
@@ -299,7 +283,7 @@
             // 
             this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hr5.ForeColor = System.Drawing.Color.Gray;
-            this.hr5.Location = new System.Drawing.Point(3, 354);
+            this.hr5.Location = new System.Drawing.Point(3, 334);
             this.hr5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.hr5.Name = "hr5";
             this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
@@ -311,7 +295,7 @@
             // 
             this.hr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             this.hr4.ForeColor = System.Drawing.Color.Gray;
-            this.hr4.Location = new System.Drawing.Point(3, 129);
+            this.hr4.Location = new System.Drawing.Point(3, 109);
             this.hr4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.hr4.Name = "hr4";
             this.hr4.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
@@ -329,7 +313,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel3.Controls.Add(this.tbNotes, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.h3Label3, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 144);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 124);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -364,6 +348,7 @@
             // 
             // indicatorControl1
             // 
+            this.indicatorControl1.AllowCustom = true;
             this.indicatorControl1.AutoSize = true;
             this.indicatorControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.indicatorControl1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
@@ -372,7 +357,7 @@
             this.indicatorControl1.Location = new System.Drawing.Point(0, 6);
             this.indicatorControl1.Margin = new System.Windows.Forms.Padding(0);
             this.indicatorControl1.Name = "indicatorControl1";
-            this.indicatorControl1.Size = new System.Drawing.Size(920, 113);
+            this.indicatorControl1.Size = new System.Drawing.Size(920, 93);
             this.indicatorControl1.TabIndex = 58;
             this.indicatorControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
             // 
@@ -383,7 +368,7 @@
             this.statCalculator1.BackColor = System.Drawing.Color.White;
             this.statCalculator1.Calc = null;
             this.statCalculator1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statCalculator1.Location = new System.Drawing.Point(3, 286);
+            this.statCalculator1.Location = new System.Drawing.Point(3, 266);
             this.statCalculator1.Name = "statCalculator1";
             this.statCalculator1.Size = new System.Drawing.Size(925, 55);
             this.statCalculator1.TabIndex = 59;
@@ -441,9 +426,11 @@
             this.tblEditTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblEditTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tblEditTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblEditTop.Controls.Add(this.c1Button3, 0, 0);
-            this.tblEditTop.Controls.Add(this.button1, 4, 0);
-            this.tblEditTop.Controls.Add(this.c1Button4, 2, 0);
+            this.tblEditTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblEditTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblEditTop.Controls.Add(this.c1Button3, 2, 0);
+            this.tblEditTop.Controls.Add(this.c1Button4, 4, 0);
+            this.tblEditTop.Controls.Add(this.btnHelp, 0, 0);
             this.tblEditTop.Location = new System.Drawing.Point(672, 8);
             this.tblEditTop.Name = "tblEditTop";
             this.tblEditTop.RowCount = 1;
@@ -456,7 +443,7 @@
             this.c1Button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.c1Button3.AutoSize = true;
             this.c1Button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button3.Location = new System.Drawing.Point(3, 12);
+            this.c1Button3.Location = new System.Drawing.Point(67, 12);
             this.c1Button3.MinimumSize = new System.Drawing.Size(90, 27);
             this.c1Button3.Name = "c1Button3";
             this.c1Button3.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
@@ -469,26 +456,26 @@
             this.c1Button3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
             this.c1Button3.Click += new System.EventHandler(this.cancel_Click);
             // 
-            // button1
+            // btnHelp
             // 
-            this.button1.AutoSize = true;
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::Nada.UI.Properties.Resources.button_help;
-            this.button1.Location = new System.Drawing.Point(219, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(46, 46);
-            this.button1.TabIndex = 59;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnHelp_Click);
+            this.btnHelp.AutoSize = true;
+            this.btnHelp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Image = global::Nada.UI.Properties.Resources.button_help;
+            this.btnHelp.Location = new System.Drawing.Point(3, 3);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(46, 46);
+            this.btnHelp.TabIndex = 59;
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // c1Button4
             // 
             this.c1Button4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.c1Button4.AutoSize = true;
             this.c1Button4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button4.Location = new System.Drawing.Point(111, 12);
+            this.c1Button4.Location = new System.Drawing.Point(175, 12);
             this.c1Button4.MinimumSize = new System.Drawing.Size(90, 27);
             this.c1Button4.Name = "c1Button4";
             this.c1Button4.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
@@ -535,7 +522,7 @@
             this.Controls.Add(this.tblEditBottom);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "DataEntryEdit";
-            this.Size = new System.Drawing.Size(946, 574);
+            this.Size = new System.Drawing.Size(946, 535);
             this.Load += new System.EventHandler(this.DataEntryEdit_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -567,7 +554,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private Controls.HR hrTop;
         private Controls.HR hr5;
-        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TextBox tbNotes;
         private Controls.H3Label h3Label3;
@@ -585,7 +571,7 @@
         private System.Windows.Forms.TableLayoutPanel tblEditTop;
         private C1.Win.C1Input.C1Button c1Button3;
         private C1.Win.C1Input.C1Button c1Button4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.TableLayoutPanel tblReq;
     }
 }

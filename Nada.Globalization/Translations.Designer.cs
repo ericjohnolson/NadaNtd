@@ -754,6 +754,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calendar year.
+        /// </summary>
+        public static string CalendarYear {
+            get {
+                return ResourceManager.GetString("CalendarYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -1705,6 +1714,15 @@ namespace Nada.Globalization {
         public static string CustomReportBuilder {
             get {
                 return ResourceManager.GetString("CustomReportBuilder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom year.
+        /// </summary>
+        public static string CustomYear {
+            get {
+                return ResourceManager.GetString("CustomYear", resourceCulture);
             }
         }
         
@@ -10187,7 +10205,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fetching country information from Task Force system.
+        ///   Looks up a localized string similar to Fetching country information from RTI system.
         /// </summary>
         public static string RtiFetchingTaskForceNames {
             get {
@@ -10196,7 +10214,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Match your units with the Task Force system: {0}.
+        ///   Looks up a localized string similar to Match your units with the RTI system: {0}.
         /// </summary>
         public static string RtiMatchLevel {
             get {
@@ -10205,7 +10223,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Task Force system has no data on that country, please double check your selection before continuing..
+        ///   Looks up a localized string similar to The RTI system has no data on that country, please double check your selection before continuing..
         /// </summary>
         public static string RtiNoData {
             get {
@@ -10241,7 +10259,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No results found when querying the Task Force system, please contact support..
+        ///   Looks up a localized string similar to No results found when querying the RTI system, please contact support..
         /// </summary>
         public static string RtiTaskForceNoResults {
             get {
@@ -12370,6 +12388,15 @@ namespace Nada.Globalization {
         public static string SplittingBackupMessage {
             get {
                 return ResourceManager.GetString("SplittingBackupMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When merging administrative units, data will be combined within the same year. How would you like to define the year?.
+        /// </summary>
+        public static string SplittingMergeYear {
+            get {
+                return ResourceManager.GetString("SplittingMergeYear", resourceCulture);
             }
         }
         

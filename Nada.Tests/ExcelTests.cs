@@ -9,6 +9,7 @@ using Nada.Model.Repositories;
 using OfficeOpenXml;
 using System.Linq;
 using System.Data.OleDb;
+using Nada.Model.Process;
 
 namespace Nada.Tests
 {
@@ -28,7 +29,8 @@ namespace Nada.Tests
             ReportRepository repo = new ReportRepository();
             AddInds(table, repo.GetDemographyIndicators(), "Demography", IndicatorEntityType.Demo);
 
-            List<ReportIndicator> indicators = repo.GetDiseaseDistroIndicators();
+            List<ReportIndicator> indicators = new List<ReportIndicator>();
+            indicators = repo.GetDiseaseDistroIndicators();
             foreach (var cmpc in indicators)
                 foreach (var cat in cmpc.Children)
                     AddInds(table, cat.Children, cat.Name, IndicatorEntityType.DiseaseDistribution);
@@ -40,7 +42,7 @@ namespace Nada.Tests
             foreach (var cmpc in indicators)
                 foreach (var cat in cmpc.Children)
                     AddInds(table, cat.Children, cat.Name, IndicatorEntityType.Intervention);
-            indicators = repo.GetProcessIndicators();
+            indicators = repo.GetProcessIndicators().Where(i => i.TypeId == 9).ToList();
             foreach (var cmpc in indicators)
                 foreach (var cat in cmpc.Children)
                     AddInds(table, cat.Children, cat.Name, IndicatorEntityType.Process);
@@ -50,6 +52,63 @@ namespace Nada.Tests
                 ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
                 ws.Cells["A1"].LoadFromDataTable(table, true);
                 File.WriteAllBytes("C:\\SplittingIndicatorRules.xlsx", pck.GetAsByteArray());
+            }
+        }
+        
+        [TestMethod]
+        public void CanCreateSaeUpdateForm()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add(new DataColumn("Indicator Id"));
+            table.Columns.Add(new DataColumn("Type Id"));
+            table.Columns.Add(new DataColumn("Type Name"));
+            table.Columns.Add(new DataColumn("Form Name"));
+            table.Columns.Add(new DataColumn("Indicator Name"));
+            table.Columns.Add(new DataColumn("Rule"));
+            ProcessRepository repo = new ProcessRepository();
+
+            List<ReportIndicator> indicators = new List<ReportIndicator>();
+            
+            ProcessBase saes = repo.Create(9);
+            foreach (var i in saes.ProcessType.Indicators)
+                indicators.Add(ReportRepository.CreateReportIndicator(saes.ProcessType.Id, i));
+
+            AddInds(table, indicators, saes.ProcessType.TypeName, IndicatorEntityType.Process);
+
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
+                ws.Cells["A1"].LoadFromDataTable(table, true);
+                File.WriteAllBytes("C:\\SAE_SplittingIndicatorRules.xlsx", pck.GetAsByteArray());
+            }
+        }
+
+        [TestMethod]
+        public void CanCreateSaeOptionUpdateForm()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add(new DataColumn("Indicator Id"));
+            table.Columns.Add(new DataColumn("Type Id"));
+            table.Columns.Add(new DataColumn("Type Name"));
+            table.Columns.Add(new DataColumn("Form Name"));
+            table.Columns.Add(new DataColumn("Indicator Name"));
+            table.Columns.Add(new DataColumn("Indicator Option ID"));
+            table.Columns.Add(new DataColumn("Indicator Option"));
+            table.Columns.Add(new DataColumn("Weighted Rankings"));
+                
+            ProcessRepository repo = new ProcessRepository();
+            List<ReportIndicator> indicators = new List<ReportIndicator>();
+            ProcessBase saes = repo.Create(9);
+            foreach (var i in saes.ProcessType.Indicators)
+                indicators.Add(ReportRepository.CreateReportIndicator(saes.ProcessType.Id, i));
+
+            AddOptions(table, indicators.Where(x => x.DataTypeId == (int)IndicatorDataType.Dropdown), saes.ProcessType.TypeName, IndicatorEntityType.Process);
+
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
+                ws.Cells["A1"].LoadFromDataTable(table, true);
+                File.WriteAllBytes("C:\\SAE_IndicatorDropdownWeightedRules.xlsx", pck.GetAsByteArray());
             }
         }
 

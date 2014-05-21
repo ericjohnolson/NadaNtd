@@ -412,15 +412,10 @@ namespace Nada.Model.Repositories
             }
             return MakeTreeFromFlatList(list, 0);
         }
-
-        public List<AdminLevel> GetAdminLevelTree(int levelTypeId)
-        {
-            return GetAdminLevelTree(levelTypeId, 1, false);
-        }
-
+        
         public List<AdminLevel> GetAdminLevelTree(int levelTypeId, bool redistrictedOnly)
         {
-            return GetAdminLevelTree(levelTypeId, 1, false, false, levelTypeId, redistrictedOnly, string.Empty);
+            return GetAdminLevelTree(levelTypeId, 1, false, false, levelTypeId, redistrictedOnly, string.Empty, new List<AdminLevel>());
         }
 
         public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry)
@@ -430,11 +425,11 @@ namespace Nada.Model.Repositories
 
         public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry, bool allowSelect, int levelToSelect)
         {
-            return GetAdminLevelTree(levelTypeId, lowestLevel, includeCountry, allowSelect, levelToSelect, false, string.Empty);
+            return GetAdminLevelTree(levelTypeId, lowestLevel, includeCountry, allowSelect, levelToSelect, false, string.Empty, new List<AdminLevel>());
         }
-        public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry, bool allowSelect, int levelToSelect, bool onlyRedistricted, string viewText)
+
+        public List<AdminLevel> GetAdminLevelTree(int levelTypeId, int lowestLevel, bool includeCountry, bool allowSelect, int levelToSelect, bool onlyRedistricted, string viewText, List<AdminLevel> listReference)
         {
-            List<AdminLevel> list = new List<AdminLevel>();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
@@ -454,7 +449,7 @@ namespace Nada.Model.Repositories
                 {
                     while (reader.Read())
                     {
-                        list.Add(new AdminLevel
+                        listReference.Add(new AdminLevel
                         {
                             Id = reader.GetValueOrDefault<int>("ID"),
                             ParentId = reader.GetValueOrDefault<Nullable<int>>("ParentId"),
@@ -471,7 +466,7 @@ namespace Nada.Model.Repositories
                     reader.Close();
                 }
             }
-            return MakeTreeFromFlatList(list, lowestLevel, allowSelect, levelToSelect, onlyRedistricted, viewText);
+            return MakeTreeFromFlatList(listReference, lowestLevel, allowSelect, levelToSelect, onlyRedistricted, viewText);
         }
 
         public List<AdminLevel> GetAdminLevelTreeForDemography(int level, DateTime demoDate, ref List<AdminLevel> list)

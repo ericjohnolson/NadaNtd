@@ -92,7 +92,7 @@ namespace Nada.Model
             else if (ind.AggType == (int)IndicatorAggType.Combine && ind.DataType == (int)IndicatorDataType.Dropdown)
                 result.Value = existingValue + ", " + TranslationLookup.GetValue(ind.Value, ind.Value);
             else if (ind.AggType == (int)IndicatorAggType.Combine)
-                result.Value = existingValue + ", " + ind.Value;
+                result.Value = AggregateString(ind, existingValue);
             else if (ind.DataType == (int)IndicatorDataType.Number)
                 result.Value = AggregateDouble(ind, existingValue);
             else if (ind.DataType == (int)IndicatorDataType.Date)
@@ -103,19 +103,6 @@ namespace Nada.Model
                 result.Value = AggregateString(ind, existingValue);
 
             return result;
-        }
-
-        public static object ParseValue(AggregateIndicator ind)
-        {
-            if (ind.Value == null)
-                return "";
-
-            if (ind.DataType == (int)IndicatorDataType.Number)
-                return Double.Parse(ind.Value);
-            else if (ind.DataType == (int)IndicatorDataType.Date)
-                return DateTime.ParseExact(ind.Value, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            else
-                return ind.Value;
         }
 
         public static AdminLevelDemography AggregateTree(AdminLevel node, double? growthRate)
@@ -177,6 +164,11 @@ namespace Nada.Model
 
         private static string AggregateString(AggregateIndicator ind1, AggregateIndicator existingValue)
         {
+            if(string.IsNullOrEmpty(ind1.Value))
+                return existingValue.Value;
+            else if(string.IsNullOrEmpty(existingValue.Value))
+                return ind1.Value;
+
             if (ind1.AggType == (int)IndicatorAggType.Combine)
                 return existingValue.Value + ", " + ind1.Value;
             else if (ind1.AggType == (int)IndicatorAggType.None)
@@ -362,6 +354,13 @@ namespace Nada.Model
                     values.Add(TranslationLookup.GetValue(key, key));
                 
                 return string.Join(Util.EnumerationDelinator, values.ToArray());
+            }
+            else if (dataTypeId == (int)IndicatorDataType.YesNo)
+            {
+                if (value == "0")
+                    return TranslationLookup.GetValue("No", "No");
+                else
+                    return TranslationLookup.GetValue("Yes", "Yes");
             }
             else
                 return value;

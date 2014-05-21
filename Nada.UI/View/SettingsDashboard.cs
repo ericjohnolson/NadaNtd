@@ -113,40 +113,6 @@ namespace Nada.UI.View
             }
         }
 
-        private void saveCountry_Click(object sender, EventArgs e)
-        {
-            countryView1.DoValidate();
-            if (!country.IsValid())
-            {
-                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
-                return;
-            }
-            if (!adminLevelTypesControl1.HasDistrict())
-            {
-                MessageBox.Show(Translations.MustMakeDistrict, Translations.ValidationErrorTitle);
-                return;
-            }
-            if (!adminLevelTypesControl1.HasAggregatingLevel())
-            {
-                MessageBox.Show(Translations.MustMakeAggregatingLevel, Translations.ValidationErrorTitle);
-                return;
-            }
-
-            int userId = ApplicationData.Instance.GetUserId();
-            demo.UpdateCountry(country, userId);
-            OnClose();
-        }
-
-        private void btnSaveDiseases_Click(object sender, EventArgs e)
-        {
-            var selected = diseasePickerControl1.GetSelectedItems();
-            var available = diseasePickerControl1.GetUnselectedItems();
-            int userId = ApplicationData.Instance.GetUserId();
-            diseases.SaveSelectedDiseases(selected, true, userId);
-            diseases.SaveSelectedDiseases(available, false, userId);
-            OnClose();
-        }
-
         private void btnSaveLog_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -161,7 +127,15 @@ namespace Nada.UI.View
         private void LoadAdminUnits()
         {
             var levels = settings.GetAllAdminLevels();
-            var t = demo.GetAdminLevelTree(levels.OrderByDescending(l => l.LevelNumber).First().Id, 0, true, true, -1, false, Translations.Delete);
+            var units = new List<AdminLevel>();
+            var t = demo.GetAdminLevelTree(levels.OrderByDescending(l => l.LevelNumber).First().Id, 0, true, true, -1, false, Translations.Delete, units);
+
+            foreach (var u in units)
+            {
+                if (u.Children.Count > 0)
+                    u.ViewText = "";
+            }
+
             treeAvailable.CanExpandGetter = m => ((AdminLevel)m).Children.Count > 0;
             treeAvailable.ChildrenGetter = delegate(object m)
             {
@@ -188,6 +162,41 @@ namespace Nada.UI.View
                 demo.Delete((AdminLevel)e.Model, userId);
                 LoadAdminUnits();
             }
+        }
+
+        private void doSave_Click(object sender, EventArgs e)
+        {
+            countryView1.DoValidate();
+            if (!country.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
+                return;
+            }
+            if (!adminLevelTypesControl1.HasDistrict())
+            {
+                MessageBox.Show(Translations.MustMakeDistrict, Translations.ValidationErrorTitle);
+                return;
+            }
+            if (!adminLevelTypesControl1.HasAggregatingLevel())
+            {
+                MessageBox.Show(Translations.MustMakeAggregatingLevel, Translations.ValidationErrorTitle);
+                return;
+            }
+
+            int userId = ApplicationData.Instance.GetUserId();
+            demo.UpdateCountry(country, userId);
+         
+            var selected = diseasePickerControl1.GetSelectedItems();
+            var available = diseasePickerControl1.GetUnselectedItems();
+            diseases.SaveSelectedDiseases(selected, true, userId);
+            diseases.SaveSelectedDiseases(available, false, userId);
+            OnClose();
+        }
+
+        private void doCancel_Click(object sender, EventArgs e)
+        {
+
+            OnClose();
         }
     }
 }

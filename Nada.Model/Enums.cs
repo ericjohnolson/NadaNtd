@@ -107,7 +107,8 @@ namespace Nada.Model
     public enum StaticProcessType
     {
         PcTraining = 7,
-        SAEs = 9
+        SAEs = 9,
+        SCM = 8
     }
     public enum DiseaseType
     {

@@ -134,7 +134,7 @@ namespace Nada.Model.Exports
                 Marshal.ReleaseComObject(xlsWorkbook);
                 Marshal.ReleaseComObject(xlsApp);
                 System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
-                return new ExportResult();
+                return new ExportResult { WasSuccess = true };
 
             }
             catch (Exception ex)
@@ -377,9 +377,8 @@ namespace Nada.Model.Exports
 
         private ReportResult RunReport(excel.Worksheet xlsWorksheet, Dictionary<string, Indicator> indicators, ReportOptions options, IReportGenerator gen, int typeId)
         {
-            foreach (var indicator in indicators)
-                if (!indicator.Value.IsCalculated)
-                    options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(typeId, indicator));
+            foreach (var indicator in indicators.Where(i => !i.Value.IsMetaData && !i.Value.IsCalculated))
+                options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(typeId, indicator));
 
             ReportResult result = gen.Run(new SavedReport { ReportOptions = options });
             result.DataTableResults.Columns.Remove(Translations.Location);

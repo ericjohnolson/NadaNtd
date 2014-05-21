@@ -627,7 +627,7 @@ namespace Nada.Model.Repositories
                         FROM ((DiseaseDistributionIndicators INNER JOIN aspnet_users ON DiseaseDistributionIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON DiseaseDistributionIndicators.DataTypeId = IndicatorDataTypes.ID)
                         WHERE DiseaseId=@DiseaseId AND IsDisabled=0 
-                        ORDER BY SortOrder", connection);
+                        ORDER BY IsEditable DESC, SortOrder, DiseaseDistributionIndicators.ID", connection);
                     command.Parameters.Add(new OleDbParameter("@DiseaseId", diseaseId));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {

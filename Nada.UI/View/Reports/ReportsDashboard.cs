@@ -115,11 +115,6 @@ namespace Nada.UI.View.Reports
             tblReportBuilder.Visible = true;
         }
 
-        private void btnDash_Click(object sender, EventArgs e)
-        {
-            OnClose();
-        }
-
         private void btnHelp_Click(object sender, EventArgs e)
         {
             Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
@@ -211,6 +206,16 @@ namespace Nada.UI.View.Reports
             WizardForm wiz = new WizardForm(new GenericExportStep(t), Translations.ExportsPcEpiDataForm);
             wiz.OnFinish = () => { };
             wiz.ShowDialog();
+        }
+
+        private void c1Button2_Click(object sender, EventArgs e)
+        {
+            OnClose();
+        }
+
+        private void c1Button1_Click(object sender, EventArgs e)
+        {
+            OnClose();
         }
 
 

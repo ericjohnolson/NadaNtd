@@ -20,13 +20,13 @@ namespace Nada.Model
         public int NewYearTypeId { get; set; }
         public int RedistrictRuleId { get; set; }
         public bool CanAddValues { get; set; }
-        public string DisplayName { get; set; }
         public bool IsDisabled { get; set; }
         public bool IsEditable { get; set; }
         public bool IsRequired { get; set; }
         public bool IsDisplayed { get; set; }
         public bool IsCalculated { get; set; }
         public bool IsMetaData { get; set; }
+        public string DisplayName { get; set; }
 
         // Display only props
         public string DataType { get; set; }

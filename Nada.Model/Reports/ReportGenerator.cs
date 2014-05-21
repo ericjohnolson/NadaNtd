@@ -557,7 +557,8 @@ namespace Nada.Model.Reports
                               InterventionIndicators.Id in "
             + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray())
             + ") AND InterventionTypes.ID in (" + String.Join(", ", opts.SelectedIndicators.Select(i => i.TypeId.ToString()).Distinct().ToArray()) + ") "
-            + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts);
+            + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts)
+            + " ORDER BY IsEditable DESC, SortOrder";
         }
 
         protected override string GetIndKey(OleDbDataReader reader, bool isNotAgg, ReportOptions options)
@@ -668,7 +669,8 @@ namespace Nada.Model.Reports
                         WHERE Surveys.IsDeleted = 0 AND SurveyIndicators.Id in " + " (" +
                        String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") " +
                        staticConditional
-                       + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts);
+                       + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts)
+                        + " ORDER BY IsEditable DESC, SortOrder";
             else
                 return @"Select 
                         AdminLevels.ID as AID, 
@@ -696,7 +698,8 @@ namespace Nada.Model.Reports
                             LEFT OUTER JOIN SentinelSites on Surveys.SentinelSiteId = SentinelSites.ID)
                         WHERE Surveys.IsDeleted = 0 "
                     + staticConditional
-                    + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts);
+                    + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts)
+                     + " ORDER BY IsEditable DESC, SortOrder";
 
         }
 
@@ -784,7 +787,8 @@ namespace Nada.Model.Reports
                         WHERE DiseaseDistributions.IsDeleted = 0 AND  
                               DiseaseDistributionIndicators.Id in "
             + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") "
-            + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts);
+            + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts)
+             + " ORDER BY IsEditable DESC, SortOrder";
         }
 
         public AdminLevelIndicators GetRecentDiseaseDistribution(ReportOptions options)
@@ -863,7 +867,8 @@ namespace Nada.Model.Reports
                         WHERE Processes.IsDeleted = 0 AND  
                               ProcessIndicators.Id in "
             + " (" + String.Join(", ", opts.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ") "
-            + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts);
+            + ReportRepository.CreateYearFilter(opts, "DateReported") + ReportRepository.CreateAdminFilter(opts)
+             + " ORDER BY IsEditable DESC, SortOrder";
         }
 
         protected override string GetIndKey(OleDbDataReader reader, bool isNotAgg, ReportOptions options)

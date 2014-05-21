@@ -606,7 +606,7 @@ namespace Nada.Model.Repositories
                         FROM ((SurveyIndicators INNER JOIN aspnet_users ON SurveyIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON SurveyIndicators.DataTypeId = IndicatorDataTypes.ID)
                         WHERE SurveyTypeId=@SurveyTypeId AND IsDisabled=0 
-                        ORDER BY SortOrder,SurveyIndicators.ID", connection);
+                        ORDER BY IsEditable DESC, SortOrder,SurveyIndicators.ID", connection);
                     command.Parameters.Add(new OleDbParameter("@SurveyTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
