@@ -792,7 +792,7 @@ namespace Nada.Model.Repositories
                 backup = DatabaseData.Instance.FilePath.Replace(".accdb", DateTime.Now.Ticks + ".accdb");
                 File.Copy(DatabaseData.Instance.FilePath, backup, true);
             }
-            
+
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
 
             using (connection)
@@ -825,7 +825,9 @@ namespace Nada.Model.Repositories
                     command = new OleDbCommand("COMMIT TRANSACTION", connection);
                     command.ExecuteNonQuery();
                     transWasStarted = false;
-                    File.Delete(backup);
+
+                    if (!string.IsNullOrEmpty(backup))
+                        File.Delete(backup);
                     return "";
                 }
                 catch (Exception ex)
@@ -880,7 +882,7 @@ namespace Nada.Model.Repositories
                         RunSchemaChangeScripts(new List<string> { scriptsDirectory + "00SchemaChangeLog.sql" });
                         return GetSchemaChangeScripts(scriptsDirectory);
                     }
-                    logger.Error("Error GetSchemaChangeScripts: " + ex.Message, ex); 
+                    logger.Error("Error GetSchemaChangeScripts: " + ex.Message, ex);
                 }
                 return new List<string>();
             }

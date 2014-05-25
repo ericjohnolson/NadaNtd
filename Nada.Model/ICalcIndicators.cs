@@ -71,12 +71,12 @@ namespace Nada.Model
             return Translations.NA;
         }
 
-        public string GetPercentage(string numerator, string denominator)
+        public static string GetPercentage(string numerator, string denominator)
         {
             return GetPercentage(numerator, denominator, 100);
         }
 
-        public string GetPercentage(string numerator, string denominator, int multipler)
+        public static string GetPercentage(string numerator, string denominator, int multipler)
         {
             double n, d;
             if (!string.IsNullOrEmpty(numerator) && !string.IsNullOrEmpty(denominator) &&

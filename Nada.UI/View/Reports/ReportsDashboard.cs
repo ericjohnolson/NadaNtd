@@ -191,9 +191,9 @@ namespace Nada.UI.View.Reports
             wiz.Show();
         }
 
-        private void h3Link5_ClickOverride()
+        private void rtiWorkbooks_ClickOverride()
         {
-            WizardForm wiz = new WizardForm(new TaskForceCountryStep(), Translations.RtiReports);
+            WizardForm wiz = new WizardForm(new TaskForceCountryStep(), Translations.RtiCountryDiseaseWorkbook);
             wiz.OnFinish = () => { };
             wiz.ShowDialog();
         }

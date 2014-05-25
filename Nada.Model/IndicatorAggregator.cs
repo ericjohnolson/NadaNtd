@@ -49,7 +49,6 @@ namespace Nada.Model
         public int IndicatorId { get; set; }
         public int DataType { get; set; }
         public int AggType { get; set; }
-        public int WeightedValue { get; set; }
         public string Value { get; set; }
         public string Key { get; set; }
         public string Name { get; set; }
@@ -60,28 +59,29 @@ namespace Nada.Model
         public int FormId { get; set; }
         public string TypeName { get; set; }
         public DateTime ReportedDate { get; set; }
+        public int EntityTypeId { get; set; }
     }
 
 
     [Serializable]
     public static class IndicatorAggregator
     {
-        public static AggregateIndicator AggregateChildren(List<AdminLevelIndicators> list, string key, AggregateIndicator startResult)
+        public static AggregateIndicator AggregateChildren(List<AdminLevelIndicators> list, string key, AggregateIndicator startResult, List<IndicatorDropdownValue> dropdownOptions)
         {
             AggregateIndicator result = startResult;
             foreach (var level in list)
             {
                 if (level.Indicators.ContainsKey(key))
                 {
-                    result = Aggregate(level.Indicators[key],  result);
+                    result = Aggregate(level.Indicators[key],  result, dropdownOptions);
                 }
                 else
-                    result = AggregateChildren(level.Children, key, result);
+                    result = AggregateChildren(level.Children, key, result, dropdownOptions);
             }
             return result;
         }
 
-        public static AggregateIndicator Aggregate(AggregateIndicator ind, AggregateIndicator existingValue)
+        public static AggregateIndicator Aggregate(AggregateIndicator ind, AggregateIndicator existingValue, List<IndicatorDropdownValue> dropdownOptions)
         {
             AggregateIndicator result = existingValue == null ? ind : existingValue;
 
@@ -93,12 +93,12 @@ namespace Nada.Model
                 result.Value = existingValue + ", " + TranslationLookup.GetValue(ind.Value, ind.Value);
             else if (ind.AggType == (int)IndicatorAggType.Combine)
                 result.Value = AggregateString(ind, existingValue);
-            else if (ind.DataType == (int)IndicatorDataType.Number)
-                result.Value = AggregateDouble(ind, existingValue);
+            else if (ind.DataType == (int)IndicatorDataType.Number || ind.DataType == (int)IndicatorDataType.Month || ind.DataType == (int)IndicatorDataType.Year)
+                result.Value = AggregateNumber(ind, existingValue);
             else if (ind.DataType == (int)IndicatorDataType.Date)
                 result.Value = AggregateDate(ind, existingValue);
             else if (ind.DataType == (int)IndicatorDataType.Dropdown)
-                result.Value = AggregateDropdown(ind, existingValue);
+                result.Value = AggregateDropdown(ind, existingValue, dropdownOptions);
             else
                 result.Value = AggregateString(ind, existingValue);
 
@@ -176,7 +176,7 @@ namespace Nada.Model
             return "Invalid Aggregation Rule or Data Type";
         }
 
-        private static string AggregateDouble(AggregateIndicator ind1, AggregateIndicator existingValue)
+        private static string AggregateNumber(AggregateIndicator ind1, AggregateIndicator existingValue)
         {
             double i1 = 0, i2 = 0;
             if (!Double.TryParse(ind1.Value, out i1) && !Double.TryParse(existingValue.Value, out i2))
@@ -190,33 +190,51 @@ namespace Nada.Model
                 return (i1 + i2).ToString();
             if (ind1.AggType == (int)IndicatorAggType.Min)
                 if (i1 >= i2)
-                    return i2.ToString();
+                    return existingValue.Value;
                 else
-                    return i1.ToString();
+                    return ind1.Value;
             if (ind1.AggType == (int)IndicatorAggType.Max)
                 if (i1 >= i2)
-                    return i1.ToString();
+                    return ind1.Value;
                 else
-                    return i2.ToString();
-            return i1.ToString();
+                    return existingValue.Value;
+            return ind1.Value;
         }
 
-        private static string AggregateDropdown(AggregateIndicator ind1, AggregateIndicator existingValue)
+        private static string AggregateDropdown(AggregateIndicator ind1, AggregateIndicator existingValue, List<IndicatorDropdownValue> dropdownOptions)
         {
-            return ind1.Value;
-            //var ind2 = (AggregateIndicator)existingValue;
-            //if (ind1.AggType == (int)IndicatorAggType.Min)
-            //    if (ind1.WeightedV)
-            //        return (AggregateIndicator)existingValue;
-            //    else
-            //        return dt;
-            //if (ind1.AggType == (int)IndicatorAggType.Max)
-            //    if (dt >= (AggregateIndicator)existingValue)
-            //        return dt;
-            //    else
-            //        return (AggregateIndicator)existingValue;
+            if (string.IsNullOrEmpty(ind1.Value) && string.IsNullOrEmpty(existingValue.Value))
+                return "";
+            if (string.IsNullOrEmpty(ind1.Value))
+                return existingValue.Value;
+            if (string.IsNullOrEmpty(existingValue.Value))
+                return ind1.Value;
 
-            //return dt;
+            var ind1option = dropdownOptions.FirstOrDefault(i => i.IndicatorId == ind1.IndicatorId && (int)i.EntityType == ind1.EntityTypeId
+                && i.TranslationKey == ind1.Value);
+            var ind2option = dropdownOptions.FirstOrDefault(i => i.IndicatorId == existingValue.IndicatorId && (int)i.EntityType == existingValue.EntityTypeId
+                && i.TranslationKey == existingValue.Value);
+            if(ind1option == null)
+                return existingValue.Value;
+            if(ind2option == null)
+                return ind1.Value;
+
+            if (ind1.AggType == (int)IndicatorAggType.Min)
+            {
+                if(ind1option.WeightedValue <= ind2option.WeightedValue)
+                    return ind1.Value;
+                else
+                    return existingValue.Value;
+            }
+            if (ind1.AggType == (int)IndicatorAggType.Max)
+            {
+                if (ind1option.WeightedValue >= ind2option.WeightedValue)
+                    return ind1.Value;
+                else
+                    return existingValue.Value;
+            }
+
+            return TranslationLookup.GetValue("NA", "NA"); ;
         }
 
     }

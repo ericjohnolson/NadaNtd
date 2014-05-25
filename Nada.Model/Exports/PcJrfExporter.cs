@@ -46,9 +46,11 @@ namespace Nada.Model.Exports
                 var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
                 CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReported);
                 Country country = demo.GetCountry();
-                DateTime reportingYearStart = new DateTime(yearReported, country.ReportingYearStartDate.Month, country.ReportingYearStartDate.Day);
                 List<AdminLevel> demography = new List<AdminLevel>();
-                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, reportingYearStart, ref demography);
+
+                DateTime startDate = new DateTime(yearReported, country.ReportingYearStartDate.Month, country.ReportingYearStartDate.Day);
+                DateTime endDate = startDate.AddYears(1).AddDays(-1);
+                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, startDate, endDate, ref demography);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[1];
                 AddQuestions(xlsWorksheet, rng, questions, countryDemo, demography, districtLevel.LevelNumber, country);
                 // run macro to create district rows.
@@ -81,35 +83,6 @@ namespace Nada.Model.Exports
             }
         }
 
-        private void AddIndicators(DiseaseType diseaseType, StaticIntvType intvType, int year, excel.Worksheet xlsWorksheet,
-            Action<excel.Worksheet, List<AdminLevelIndicators>> AddToWorksheet,
-            Func<AggregateIndicator, object, object> customAggRule)
-        {
-            var indicators = repo.GetDistrictIndicatorTrees((int)intvType, year, (int)diseaseType, customAggRule);
-            AddToWorksheet(xlsWorksheet, indicators);
-        }
-
-        private void AddIndValue(AdminLevelIndicators district, string location, string key, excel.Range rng,
-            excel.Worksheet xlsWorksheet, object missing, bool shouldTranslate)
-        {
-            // If district doesn't contain key
-            string value = null;
-            if (district.Indicators.ContainsKey(key))
-                value = district.Indicators[key].Value;
-            else
-                value = IndicatorAggregator.AggregateChildren(district.Children, key, null).Value;
-
-            if (value != null)
-            {
-                rng = xlsWorksheet.get_Range(location, missing);
-                if (shouldTranslate)
-                    rng.Value = TranslationLookup.GetValue(value.ToString(), value.ToString());
-                else
-                    rng.Value = value;
-            }
-        }
-
-        #region Sheet Specific
         private void AddQuestions(excel.Worksheet xlsWorksheet, excel.Range rng,  ExportJrfQuestions questions, CountryDemography countryDemo,
                 List<AdminLevel> demography, int districtLevel, Country country)
         {
@@ -147,58 +120,6 @@ namespace Nada.Model.Exports
             }
         }
 
-        private void AddGwInds(excel.Worksheet xlsWorksheet, List<AdminLevelIndicators> districtIndicators)
-        {
-            excel.Range rng;
-            object missing = System.Reflection.Missing.Value;
-            int rowId = 9;
-            foreach (var district in districtIndicators)
-            {
-                rng = xlsWorksheet.get_Range("A" + rowId, missing);
-                rng.Value = district.Parent.Name;
-                rng = xlsWorksheet.get_Range("B" + rowId, missing);
-                rng.Value = district.Name;
-                AddIndValue(district, "C" + rowId, "EndemicityStatus28", rng, xlsWorksheet, missing, false);
-                AddIndValue(district, "D" + rowId, "NumVas67", rng, xlsWorksheet, missing, false);
-                AddIndValue(district, "E" + rowId, "VasReporting68", rng, xlsWorksheet, missing, false);
-                AddIndValue(district, "F" + rowId, "NumIdsr69", rng, xlsWorksheet, missing, false);
-                AddIndValue(district, "G" + rowId, "NumIdsrReporting70", rng, xlsWorksheet, missing, false);
-                AddIndValue(district, "H" + rowId, "NumRumors71", rng, xlsWorksheet, missing, false);
-                AddIndValue(district, "I" + rowId, "NumRumorsInvestigated72", rng, xlsWorksheet, missing, false);
-                AddIndValue(district, "J" + rowId, "NumClinical73", rng, xlsWorksheet, missing, false);
-                AddIndValue(district, "K" + rowId, "NumLab74", rng, xlsWorksheet, missing, false);
-                AddIndValue(district, "L" + rowId, "NumIndigenous75", rng, xlsWorksheet, missing, false);
-                AddIndValue(district, "N" + rowId, "NumVillageWithImported77", rng, xlsWorksheet, missing,  false);
-                AddIndValue(district, "O" + rowId, "NumCasesContained78", rng, xlsWorksheet, missing,  false);
-                AddIndValue(district, "P" + rowId, "NumCasesLost79", rng, xlsWorksheet, missing,  false);
-                AddIndValue(district, "Q" + rowId, "NumEndemicVillages80", rng, xlsWorksheet, missing,  false);
-                AddIndValue(district, "R" + rowId, "NumEndemicVillagesReporting81", rng, xlsWorksheet, missing,  false);
-                AddIndValue(district, "S" + rowId, "NumEndemicVillageWater82", rng, xlsWorksheet, missing,  false);
-                AddIndValue(district, "T" + rowId, "NumEndemicAbate83", rng, xlsWorksheet, missing,  false);
-                AddIndValue(district, "U" + rowId, "NumVillagesSafeWater84", rng, xlsWorksheet, missing,  false);
-
-                rowId++;
-            }
-
-            rng = null;
-        }
-
-        private object AggGwInd(AggregateIndicator ind1, object existingValue)
-        {
-            if (ind1.IndicatorId == 28)
-            {
-                if (ind1.Value == "Endemic" || existingValue.ToString() == "Endemic")
-                    return "Endemic";
-                if (ind1.Value == "EndemicityTbv" || existingValue.ToString() == "EndemicityTbv")
-                    return "EndemicityTbv";
-                return "NotEndemic";
-            }
-
-            return ind1.Value;
-        }
-
-        
-
-        #endregion
+       
     }
 }

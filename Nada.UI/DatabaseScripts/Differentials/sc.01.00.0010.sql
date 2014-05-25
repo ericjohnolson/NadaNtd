@@ -300,6 +300,45 @@ Select ID,11,2,'JrfEndemicNoPc','JrfEndemicNoPc',0,26,Now(),26,Now() from export
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
 Select ID,11,3,'JrfEndemicNot','JrfEndemicNot',0,26,Now(),26,Now() from exportindicators where displayname = 'JrfEndemicSch' and ExportTypeId = 4;
 
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE SurveyIndicators ADD COLUMN MergeRuleId INTEGER;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE SurveyIndicators ALTER COLUMN MergeRuleId SET DEFAULT 1;
+UPDATE SurveyIndicators set MergeRuleId=1;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE DiseaseDistributionIndicators ADD COLUMN MergeRuleId INTEGER;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE DiseaseDistributionIndicators ALTER COLUMN MergeRuleId SET DEFAULT 1;
+UPDATE DiseaseDistributionIndicators set MergeRuleId=1;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE InterventionIndicators ADD COLUMN MergeRuleId INTEGER;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE InterventionIndicators ALTER COLUMN MergeRuleId SET DEFAULT 1;
+UPDATE InterventionIndicators set MergeRuleId=1;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE ProcessIndicators ADD COLUMN MergeRuleId INTEGER;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE ProcessIndicators ALTER COLUMN MergeRuleId SET DEFAULT 1;
+UPDATE ProcessIndicators set MergeRuleId=1;
+
+
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('RtiName', 1, 5, 1,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('RtiTitle', 2, 5, 1,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('RtiProjectName', 3, 5, 1,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('RtiSubPartnerName', 4, 5, 1,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('RtiYearOfWorkbook', 5, 5, 7,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('RtiReportingPeriod', 6, 5, 1,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('RtiTotalDistrictsTreatedWithUsaid', 7, 5, 2,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('RtiDataCompleteness', 9, 5, 2,-1,26,NOW());
+insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('RtiTotalDistrictsComplete', 8, 5, 2,-1,26,NOW());
 
 
 INSERT INTO [SchemaChangeLog]

@@ -31,7 +31,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>161</ApplicationRevision>
+    <ApplicationRevision>162</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -303,6 +303,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Reports\ExportWizard\RtiExport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\RtiExport.Designer.cs">
+      <DependentUpon>RtiExport.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Reports\ExportWizard\GenericExportStep.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -890,6 +896,9 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ExportWizard\RtiExport.resx">
+      <DependentUpon>RtiExport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ExportWizard\GenericExportStep.resx">
       <DependentUpon>GenericExportStep.cs</DependentUpon>
     </EmbeddedResource>
@@ -1150,6 +1159,9 @@
     <Content Include="DatabaseScripts\00NadaDatabaseBaseline.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.01.00.0011.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0010.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1172,6 +1184,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Exports\WHO_EPIRF_PC_NATDAT.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Exports\Country_Disease_Workbook_v3.2.1_English_.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Images\logosplaceholder.gif" />
@@ -1208,6 +1223,7 @@
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportCmJrfQuestions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportContact.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportQuestions.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Exports.RtiWorkbooksExporter.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Imports.ImportOptions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Imports.TypeListItem.datasource" />
     <None Include="Properties\DataSources\Nada.Model.IndicatorDropdownValue.datasource" />

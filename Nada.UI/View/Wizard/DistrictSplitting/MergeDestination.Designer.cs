@@ -65,7 +65,7 @@
             this.adminUnitAdd1.Location = new System.Drawing.Point(3, 3);
             this.adminUnitAdd1.Name = "adminUnitAdd1";
             this.adminUnitAdd1.OnClose = null;
-            this.adminUnitAdd1.Size = new System.Drawing.Size(379, 371);
+            this.adminUnitAdd1.Size = new System.Drawing.Size(559, 387);
             this.adminUnitAdd1.StatusChanged = null;
             this.adminUnitAdd1.TabIndex = 0;
             // 
@@ -79,7 +79,7 @@
             this.Controls.Add(this.adminUnitAdd1);
             this.Margin = new System.Windows.Forms.Padding(23);
             this.Name = "MergeDestination";
-            this.Size = new System.Drawing.Size(399, 398);
+            this.Size = new System.Drawing.Size(571, 393);
             this.Load += new System.EventHandler(this.StepCategory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsImportOptions)).EndInit();

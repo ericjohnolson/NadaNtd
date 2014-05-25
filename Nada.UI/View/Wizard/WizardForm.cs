@@ -47,6 +47,7 @@ namespace Nada.UI.View
 
         private void LoadStep(IWizardStep step)
         {
+            currentStep = step;
             step.OnSwitchStep = (s) => { LoadStep(s); };
             step.OnRunReport = RunReport;
             step.OnFinish = DoFinish;
@@ -59,7 +60,6 @@ namespace Nada.UI.View
             btnFinish.Enabled = step.EnableFinish;
             pnlContent.Controls.Clear();
             pnlContent.Controls.Add((Control)step);
-            currentStep = step;
         }
 
         private void btnPrev_Click(object sender, EventArgs e)

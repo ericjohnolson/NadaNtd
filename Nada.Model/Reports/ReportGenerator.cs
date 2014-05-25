@@ -35,6 +35,8 @@ namespace Nada.Model.Reports
         protected bool hasCalculations = false;
         [NonSerialized]
         protected IndicatorParser indicatorParser = new IndicatorParser();
+        [NonSerialized]
+        protected List<IndicatorDropdownValue> dropdownOptions = new List<IndicatorDropdownValue>();
         protected virtual string CmdText() { throw new NotImplementedException(); }
         protected virtual int EntityTypeId { get { return 0; } }
         protected virtual bool IsDemoOrDistro { get { return false; } }
@@ -52,6 +54,7 @@ namespace Nada.Model.Reports
             repo = new ReportRepository();
             demo = new DemoRepository();
             selectedCalcFields = new List<ReportIndicator>();
+            dropdownOptions = repo.GetAllDropdownOptions();
             repo.LoadRelatedLists();
         }
 
@@ -73,7 +76,7 @@ namespace Nada.Model.Reports
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
             Dictionary<int, AdminLevelIndicators> dic = new Dictionary<int, AdminLevelIndicators>();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            indicatorParser.LoadRelatedLists(); ;
+            indicatorParser.LoadRelatedLists();
 
             // Get all indicators
             using (connection)
@@ -88,7 +91,7 @@ namespace Nada.Model.Reports
                     list = list.Where(a => a.RedistrictIdForMother == 0).ToList();
 
                 dic = list.ToDictionary(n => n.Id, n => n);
-                repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndKey, GetColName, GetColTypeName, AddStaticAggInd, false, IsDemoOrDistro);
+                repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndKey, GetColName, GetColTypeName, AddStaticAggInd, false, IsDemoOrDistro, EntityTypeId, dropdownOptions);
                 if (hasCalculations)
                     AddRelatedCalcIndicators(options, dic, command, connection, GetIndKey, GetColName, GetColTypeName,
                         AddStaticAggInd, EntityTypeId);
@@ -97,7 +100,7 @@ namespace Nada.Model.Reports
             // Create table
             ReportResult reportResult = new ReportResult();
             DataTable result = new DataTable();
-            result.Columns.Add(new DataColumn(Translations.ID));
+            result.Columns.Add(new DataColumn("ID"));
             result.Columns.Add(new DataColumn(Translations.Location));
             result.Columns.Add(new DataColumn(Translations.Type));
             result.Columns.Add(new DataColumn(Translations.Year));
@@ -137,7 +140,7 @@ namespace Nada.Model.Reports
                             if (level.Indicators.ContainsKey(columnDef.Key))
                                 aggInd = level.Indicators[columnDef.Key];
                             else
-                                aggInd = IndicatorAggregator.AggregateChildren(level.Children, columnDef.Key, null); // level doesn't have it, aggregate children
+                                aggInd = IndicatorAggregator.AggregateChildren(level.Children, columnDef.Key, null, dropdownOptions); // level doesn't have it, aggregate children
 
                             if (aggInd == null)
                                 continue;
@@ -187,7 +190,6 @@ namespace Nada.Model.Reports
             if (IsDemoOrDistro)
                 reportResult.MetaDataWarning += GetMissingRowsErrors(result, false);
 
-            result.Columns.Remove(Translations.ID);
             result.Columns.Remove("YearNumber");
             reportResult.DataTableResults = result;
             return reportResult;
@@ -214,7 +216,7 @@ namespace Nada.Model.Reports
                     }
                     dr[parents[i].LevelName] = parents[i].Name;
                 }
-                dr[Translations.ID] = level.Id;
+                dr["ID"] = level.Id;
                 dr[Translations.Location] = level.Name;
                 dr[Translations.Type] = typeName;
                 DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
@@ -399,7 +401,7 @@ namespace Nada.Model.Reports
                         InterventionIndicators.AggTypeId, 
                         InterventionIndicatorValues.DynamicValue";
 
-            repo.AddIndicatorsToAggregate(intv, options, dic, command, connection, getAggKey, getName, getType, sind, true, false);
+            repo.AddIndicatorsToAggregate(intv, options, dic, command, connection, getAggKey, getName, getType, sind, true, false, entityTypeId, dropdownOptions);
 
             string dd = @"Select 
                         AdminLevels.ID as AID, 
@@ -438,7 +440,7 @@ namespace Nada.Model.Reports
                         DiseaseDistributionIndicators.AggTypeId, 
                         DiseaseDistributionIndicatorValues.DynamicValue";
 
-            repo.AddIndicatorsToAggregate(dd, options, dic, command, connection, getAggKey, getName, getType, sind, true, true);
+            repo.AddIndicatorsToAggregate(dd, options, dic, command, connection, getAggKey, getName, getType, sind, true, true, entityTypeId, dropdownOptions);
 
             string survey = @"Select 
                         AdminLevels.ID as AID, 
@@ -478,7 +480,7 @@ namespace Nada.Model.Reports
                         SurveyIndicators.AggTypeId,    
                         SurveyIndicatorValues.DynamicValue";
 
-            repo.AddIndicatorsToAggregate(survey, options, dic, command, connection, getAggKey, getName, getType, sind, true, false);
+            repo.AddIndicatorsToAggregate(survey, options, dic, command, connection, getAggKey, getName, getType, sind, true, false, entityTypeId, dropdownOptions);
         }
 
         protected static List<int> GetSelectedYears(ReportOptions options)
@@ -504,7 +506,7 @@ namespace Nada.Model.Reports
 
             foreach (DataRow dr in result.Rows)
             {
-                int id = Convert.ToInt32(dr[Translations.ID]);
+                int id = Convert.ToInt32(dr["ID"]);
                 if (missingDictionary.ContainsKey(id.ToString() + dr["YearNumber"]))
                     missingDictionary.Remove(id.ToString() + dr["YearNumber"]);
             }
@@ -738,7 +740,8 @@ namespace Nada.Model.Reports
                     Year = Util.GetYearReported(param.Options.MonthYearStarts, param.Reader.GetValueOrDefault<DateTime>("DateReported")),
                     TypeName = param.Reader.GetValueOrDefault<string>("TName"),
                     IsCalcRelated = false,
-                    FormId = param.Reader.GetValueOrDefault<int>("ID")
+                    FormId = param.Reader.GetValueOrDefault<int>("ID"),
+                    EntityTypeId = (int)IndicatorEntityType.Survey
                 };
                 param.AdminLevel.Indicators.Add(key, ind);
 
@@ -806,7 +809,7 @@ namespace Nada.Model.Reports
                 OleDbCommand command = new OleDbCommand();
                 list = ExportRepository.GetAdminLevels(command, connection);
                 dic = list.ToDictionary(n => n.Id, n => n);
-                repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndKey, GetColName, GetColTypeName, AddStaticAggInd, false, true);
+                repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndKey, GetColName, GetColTypeName, AddStaticAggInd, false, true, EntityTypeId, dropdownOptions);
             }
             
             IndicatorListToTree(list, dic);
@@ -821,7 +824,7 @@ namespace Nada.Model.Reports
                 if (level.Indicators.ContainsKey(columnDef.Key))
                     aggInd = level.Indicators[columnDef.Key];
                 else
-                    aggInd = IndicatorAggregator.AggregateChildren(level.Children, columnDef.Key, null); // level doesn't have it, aggregate children
+                    aggInd = IndicatorAggregator.AggregateChildren(level.Children, columnDef.Key, null, dropdownOptions); // level doesn't have it, aggregate children
 
                 if (aggInd == null)
                     continue;
@@ -926,7 +929,7 @@ namespace Nada.Model.Reports
             opts = options;
             ReportResult result = new ReportResult();
             DataTable dataTable = new DataTable();
-            dataTable.Columns.Add(new DataColumn(Translations.ID));
+            dataTable.Columns.Add(new DataColumn("ID"));
             dataTable.Columns.Add(new DataColumn(Translations.Location));
             dataTable.Columns.Add(new DataColumn(Translations.Type));
             dataTable.Columns.Add(new DataColumn(Translations.Year));
@@ -941,7 +944,7 @@ namespace Nada.Model.Reports
             foreach (DataRow dr in result.DataTableResults.Rows)
             {
                 // add location breadcrumb
-                int id = Convert.ToInt32(dr[Translations.ID]);
+                int id = Convert.ToInt32(dr["ID"]);
                 List<AdminLevel> parents = demo.GetAdminLevelParentNames(id);
                 for (int i = 0; i < parents.Count; i++)
                 {
@@ -968,7 +971,7 @@ namespace Nada.Model.Reports
             }
 
             result.MetaDataWarning = GetMissingRowsErrors(result.DataTableResults, true);
-            result.DataTableResults.Columns.Remove(Translations.ID);
+            result.DataTableResults.Columns.Remove("ID");
             result.ChartData = result.DataTableResults.Copy();
             result.DataTableResults.Columns.Remove(Translations.Location);
             result.DataTableResults.Columns.Remove("YearNumber");

@@ -469,7 +469,7 @@ namespace Nada.Model.Repositories
             return MakeTreeFromFlatList(listReference, lowestLevel, allowSelect, levelToSelect, onlyRedistricted, viewText);
         }
 
-        public List<AdminLevel> GetAdminLevelTreeForDemography(int level, DateTime demoDate, ref List<AdminLevel> list)
+        public List<AdminLevel> GetAdminLevelTreeForDemography(int level, DateTime startDate, DateTime endDate, ref List<AdminLevel> list)
         {
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
@@ -495,7 +495,7 @@ namespace Nada.Model.Repositories
                             LngWho = reader.GetValueOrDefault<Nullable<double>>("LngWho"),
                             AdminLevelTypeId = reader.GetValueOrDefault<int>("AdminLevelTypeId")
                         };
-                        al.CurrentDemography = GetDemoByAdminLevelIdAndYear(al.Id, demoDate);
+                        al.CurrentDemography = GetDemoByAdminLevelIdAndYear(al.Id, startDate, endDate);
                         list.Add(al);
 
                     }
@@ -580,6 +580,7 @@ namespace Nada.Model.Repositories
                 if (node.ParentId.HasValue && node.ParentId.Value > minRoot)
                 {
                     AdminLevel parent = dic[node.ParentId.Value];
+                    node.Parent = parent;
                     if (onlyRedistricted && node.AdminLevelTypeId == levelToSelect)
                     {
                         if (node.RedistrictIdForMother > 0)
@@ -964,8 +965,12 @@ namespace Nada.Model.Repositories
         {
             try
             {
+                var c = GetCountry();
+                DateTime startDate = new DateTime(demoDate.Year, c.ReportingYearStartDate.Month, c.ReportingYearStartDate.Day);
+                DateTime endDate = startDate.AddYears(1).AddDays(-1);
+                
                 List<AdminLevel> list = new List<AdminLevel>();
-                var tree = GetAdminLevelTreeForDemography(locationType.LevelNumber, demoDate, ref list);
+                var tree = GetAdminLevelTreeForDemography(locationType.LevelNumber, startDate, endDate, ref list);
                 var country = tree.FirstOrDefault();
                 if (!growthRate.HasValue)
                 {
@@ -1242,10 +1247,9 @@ namespace Nada.Model.Repositories
             return demo;
         }
 
-        public AdminLevelDemography GetDemoByAdminLevelIdAndYear(int adminLevelid, DateTime demoDate)
+        public AdminLevelDemography GetDemoByAdminLevelIdAndYear(int adminLevelid, DateTime startDate, DateTime endDate)
         {
-            var country = GetCountry();
-            AdminLevelDemography demo = new AdminLevelDemography { DateDemographyData = demoDate, AdminLevelId = adminLevelid };
+            AdminLevelDemography demo = new AdminLevelDemography { DateDemographyData = startDate, AdminLevelId = adminLevelid };
             int id = 0;
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
@@ -1256,7 +1260,7 @@ namespace Nada.Model.Repositories
                     // START TRANS
                     OleDbCommand command = new OleDbCommand(@"Select ID
                         FROM AdminLevelDemography
-                        WHERE AdminLevelId = @id and IsDeleted = 0 " + CreateDemoYearRange(demoDate, country.ReportingYearStartDate)
+                        WHERE AdminLevelId = @id and IsDeleted = 0 " + CreateDemoYearRange(startDate, endDate)
                     + @"ORDER BY DateDemographyData DESC", connection);
                     command.Parameters.Add(new OleDbParameter("@id", adminLevelid));
                     using (OleDbDataReader reader = command.ExecuteReader())
@@ -1299,11 +1303,8 @@ namespace Nada.Model.Repositories
                 endDate.ToShortDateString());
         }
 
-        public static string CreateDemoYearRange(DateTime currentDate, DateTime countryReportingYearStart)
+        public static string CreateDemoYearRange(DateTime startDate, DateTime endDate)
         {
-            int year = Util.GetYearReported(countryReportingYearStart.Month, currentDate);
-            DateTime startDate = new DateTime(year, countryReportingYearStart.Month, countryReportingYearStart.Day);
-            DateTime endDate = startDate.AddYears(1).AddDays(-1);
             return string.Format(" AND DateDemographyData >= cdate('{0}') AND DateDemographyData <= cdate('{1}') ",
                 startDate.ToShortDateString(),
                 endDate.ToShortDateString());

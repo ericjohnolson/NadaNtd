@@ -10196,6 +10196,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RTI Country Disease Workbook.
+        /// </summary>
+        public static string RtiCountryDiseaseWorkbook {
+            get {
+                return ResourceManager.GetString("RtiCountryDiseaseWorkbook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data completeness (%).
+        /// </summary>
+        public static string RtiDataCompleteness {
+            get {
+                return ResourceManager.GetString("RtiDataCompleteness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Must match all units before continuing.
         /// </summary>
         public static string RtiErrorMustMatchAll {
@@ -10223,11 +10241,47 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string RtiName {
+            get {
+                return ResourceManager.GetString("RtiName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The RTI system has no data on that country, please double check your selection before continuing..
         /// </summary>
         public static string RtiNoData {
             get {
                 return ResourceManager.GetString("RtiNoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project name.
+        /// </summary>
+        public static string RtiProjectName {
+            get {
+                return ResourceManager.GetString("RtiProjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reporting level.
+        /// </summary>
+        public static string RtiReportingLevel {
+            get {
+                return ResourceManager.GetString("RtiReportingLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reporting period.
+        /// </summary>
+        public static string RtiReportingPeriod {
+            get {
+                return ResourceManager.GetString("RtiReportingPeriod", resourceCulture);
             }
         }
         
@@ -10250,6 +10304,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sub-partner name.
+        /// </summary>
+        public static string RtiSubPartnerName {
+            get {
+                return ResourceManager.GetString("RtiSubPartnerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An internet connection was not found. Please connect to the internet and try again, or check the box to skip reconciling your administrative units..
         /// </summary>
         public static string RtiTaskForceNoInternet {
@@ -10264,6 +10327,51 @@ namespace Nada.Globalization {
         public static string RtiTaskForceNoResults {
             get {
                 return ResourceManager.GetString("RtiTaskForceNoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string RtiTitle {
+            get {
+                return ResourceManager.GetString("RtiTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total # districts submitted complete treatment report.
+        /// </summary>
+        public static string RtiTotalDistrictsComplete {
+            get {
+                return ResourceManager.GetString("RtiTotalDistrictsComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total districts treated with USAID support.
+        /// </summary>
+        public static string RtiTotalDistrictsTreatedWithUsaid {
+            get {
+                return ResourceManager.GetString("RtiTotalDistrictsTreatedWithUsaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Workbook questions.
+        /// </summary>
+        public static string RtiWorkbookQuestions {
+            get {
+                return ResourceManager.GetString("RtiWorkbookQuestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year of workbook.
+        /// </summary>
+        public static string RtiYearOfWorkbook {
+            get {
+                return ResourceManager.GetString("RtiYearOfWorkbook", resourceCulture);
             }
         }
         

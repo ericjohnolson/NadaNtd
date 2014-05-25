@@ -589,7 +589,7 @@
             this.h3Link5.Tag = "NewLink";
             this.h3Link5.Text = "NewLink";
             this.h3Link5.TextColor = System.Drawing.Color.RoyalBlue;
-            this.h3Link5.ClickOverride += new System.Action(this.h3Link5_ClickOverride);
+            this.h3Link5.ClickOverride += new System.Action(this.rtiWorkbooks_ClickOverride);
             // 
             // tableLayoutPanel6
             // 
@@ -655,6 +655,7 @@
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(96, 33);
             this.tableLayoutPanel12.TabIndex = 74;
+            this.tableLayoutPanel12.Visible = false;
             // 
             // c1Button2
             // 

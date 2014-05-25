@@ -25,6 +25,11 @@ namespace Nada.Model.Exports
             get { return Translations.ExportsPcEpiDataForm; }
         }
 
+        public override string Extension
+        {
+            get { return "xls"; }
+        }
+
         public ExportResult DoExport(string fileName, int userId, ExportType exportType)
         {
             try

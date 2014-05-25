@@ -20,6 +20,7 @@ namespace Nada.Model
         }
         public string Name { get; set; }
         public Nullable<int> ParentId { get; set; }
+        public AdminLevel Parent { get; set; }
         public int AdminLevelTypeId { get; set; }
         public Nullable<double> LatWho { get; set; }
         public Nullable<double> LngWho { get; set; }

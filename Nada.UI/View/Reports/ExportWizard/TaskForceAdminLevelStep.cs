@@ -125,7 +125,7 @@ namespace Nada.UI.View.Reports
             int maxIndex = units.Max(u => u.LevelIndex);
             if (typeIndex == maxIndex)
             {
-                OnFinish();
+                OnSwitchStep(new RtiExport());
                 return;
             }
 

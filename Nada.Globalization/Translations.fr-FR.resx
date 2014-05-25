@@ -5444,6 +5444,42 @@
   <data name="CustomYear" xml:space="preserve">
     <value>Custom year</value>
   </data>
+  <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
+    <value>RTI Country Disease Workbook</value>
+  </data>
+  <data name="RtiDataCompleteness" xml:space="preserve">
+    <value>Data completeness (%)</value>
+  </data>
+  <data name="RtiName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="RtiProjectName" xml:space="preserve">
+    <value>Project name</value>
+  </data>
+  <data name="RtiReportingLevel" xml:space="preserve">
+    <value>Reporting level</value>
+  </data>
+  <data name="RtiReportingPeriod" xml:space="preserve">
+    <value>Reporting period</value>
+  </data>
+  <data name="RtiSubPartnerName" xml:space="preserve">
+    <value>Sub-partner name</value>
+  </data>
+  <data name="RtiTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="RtiTotalDistrictsComplete" xml:space="preserve">
+    <value>Total # districts submitted complete treatment report</value>
+  </data>
+  <data name="RtiTotalDistrictsTreatedWithUsaid" xml:space="preserve">
+    <value>Total districts treated with USAID support</value>
+  </data>
+  <data name="RtiWorkbookQuestions" xml:space="preserve">
+    <value>Workbook questions</value>
+  </data>
+  <data name="RtiYearOfWorkbook" xml:space="preserve">
+    <value>Year of workbook</value>
+  </data>
   <data name="SplittingMergeYear" xml:space="preserve">
     <value>When merging administrative units, data will be combined within the same year. How would you like to define the year?</value>
   </data>

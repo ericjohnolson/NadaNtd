@@ -32,6 +32,7 @@ namespace Nada.UI.View
         private string UserFilesPath = "";
         private string RecentFileName = "";
         private List<RecentFile> RecentFiles = new List<RecentFile>();
+        private RecentFile recentFile = null;
         public event Action OnFileSelected = () => { };
 
         public DatabaseView()
@@ -75,6 +76,7 @@ namespace Nada.UI.View
                 if (File.Exists(f.Path))
                 {
                     RecentFileName = f.Name.Trim();
+                    recentFile = f;
                     return true;
                 }
             }
@@ -95,7 +97,8 @@ namespace Nada.UI.View
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            OpenFile(RecentFiles.First().Path);
+            if(recentFile != null)
+                OpenFile(recentFile.Path);
         }
 
         private void lnkNew_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

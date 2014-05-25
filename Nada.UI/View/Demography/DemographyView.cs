@@ -83,7 +83,8 @@ namespace Nada.UI.View.Demography
                 !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
                 {
                     lnkEditAdminLevelUnit.Visible = false;
-                    tblEdit.Visible = false;
+                    btnTopSave.Visible = false;
+                    btnBottomSave.Visible = false;
                 }
 
                 bsDemo.DataSource = model;

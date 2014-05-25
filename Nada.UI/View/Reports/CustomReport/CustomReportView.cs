@@ -57,6 +57,8 @@ namespace Nada.UI.View.Reports.CustomReport
             currentResult = report.ReportOptions.ReportGenerator.Run(report);
             if(currentResult.DataTableResults.Columns.Contains(Translations.Location))
                 currentResult.DataTableResults.Columns.Remove(Translations.Location);
+            if (currentResult.DataTableResults.Columns.Contains("ID"))
+                currentResult.DataTableResults.Columns.Remove("ID");
             grdReport.DataSource = currentResult.DataTableResults;
             LoadChart(currentResult);
             if (!string.IsNullOrEmpty(currentResult.MetaDataWarning))

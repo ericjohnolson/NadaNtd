@@ -88,8 +88,8 @@ namespace Nada.UI.View.DiseaseDistribution
                 if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
                 !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
                 {
-                    tblEditTop.Visible = false;
-                    tblEditBottom.Visible = false;
+                    btnTopSave.Visible = false;
+                    btnBottomSave.Visible = false;
                 }
             }
         }
@@ -109,7 +109,7 @@ namespace Nada.UI.View.DiseaseDistribution
         {
             statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id,
                 viewModel.CalculatorTypeId, indicatorControl1.start, indicatorControl1.end);
-            c1Button1.Focus();
+            btnBottomSave.Focus();
         }
 
         /// <summary>

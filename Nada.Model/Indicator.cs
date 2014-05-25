@@ -19,6 +19,8 @@ namespace Nada.Model
         public int DataTypeId { get; set; }
         public int NewYearTypeId { get; set; }
         public int RedistrictRuleId { get; set; }
+        public int MergeRuleId { get; set; }
+        public int AggRuleId { get; set; }
         public bool CanAddValues { get; set; }
         public bool IsDisabled { get; set; }
         public bool IsEditable { get; set; }

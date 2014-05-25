@@ -58,16 +58,16 @@ namespace Nada.Model.Repositories
 
         public void AddIndicatorsToAggregate(string cmdText, ReportOptions options, Dictionary<int, AdminLevelIndicators> dic, OleDbCommand command,
             OleDbConnection connection, Func<OleDbDataReader, bool, ReportOptions, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
-            Action<CreateAggParams> addStaticIndicators, bool isCalcRelated, bool isDemoOrDistro)
+            Action<CreateAggParams> addStaticIndicators, bool isCalcRelated, bool isDemoOrDistro, int entityTypeId, List<IndicatorDropdownValue> dropdownOptions)
         {
             command = new OleDbCommand(cmdText, connection);
 
-            FillDictionary(command, connection, dic, options, getKey, getName, getColTypeName, addStaticIndicators, isCalcRelated, isDemoOrDistro);
+            FillDictionary(command, connection, dic, options, getKey, getName, getColTypeName, addStaticIndicators, isCalcRelated, isDemoOrDistro, entityTypeId, dropdownOptions);
         }
 
         private void FillDictionary(OleDbCommand command, OleDbConnection connection, Dictionary<int, AdminLevelIndicators> dic, ReportOptions options,
             Func<OleDbDataReader, bool, ReportOptions, string> getKey, Func<OleDbDataReader, string> getName, Func<OleDbDataReader, string> getColTypeName,
-            Action<CreateAggParams> addStaticIndicators, bool isCalcRelated, bool isDemoOrDistro)
+            Action<CreateAggParams> addStaticIndicators, bool isCalcRelated, bool isDemoOrDistro, int entityTypeId, List<IndicatorDropdownValue> dropdownOptions)
         {
             using (OleDbDataReader reader = command.ExecuteReader())
             {
@@ -93,12 +93,13 @@ namespace Nada.Model.Repositories
                         ColumnTypeName = getColTypeName(reader),
                         TypeId = reader.GetValueOrDefault<int>("Tid"),
                         TypeName = reader.GetValueOrDefault<string>("TName"),
-                        FormId = reader.GetValueOrDefault<int>("ID")
+                        FormId = reader.GetValueOrDefault<int>("ID"),
+                        EntityTypeId = entityTypeId
                     };
                     // if the adminlevel already contains the indicator for that year, aggregate
                     if (dic[adminLevelId].Indicators.ContainsKey(indicatorKey) && !isDemoOrDistro)
                     {
-                        dic[adminLevelId].Indicators[indicatorKey] = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[indicatorKey]);
+                        dic[adminLevelId].Indicators[indicatorKey] = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[indicatorKey], dropdownOptions);
                     }
                     else if (dic[adminLevelId].Indicators.ContainsKey(indicatorKey) && isDemoOrDistro)
                     {
@@ -179,7 +180,7 @@ namespace Nada.Model.Repositories
                         while (reader.Read())
                         {
                             DataRow dr = dt.NewRow();
-                            dr[Translations.ID] = reader.GetValueOrDefault<int>("aID");
+                            dr["ID"] = reader.GetValueOrDefault<int>("aID");
                             dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
                             dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"), reader.GetValueOrDefault<string>("TName"));
                             int year = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")); 
@@ -475,7 +476,8 @@ namespace Nada.Model.Repositories
                 IsCalculated = i.Value.IsCalculated,
                 IsStatic = !i.Value.IsEditable,
                 TypeId = typeId,
-                Key = i.Value.DisplayName
+                Key = i.Value.DisplayName,
+                AggregationRuleId = i.Value.AggRuleId
             };
         }
         #endregion

@@ -16,6 +16,7 @@ namespace Nada.Model
 
         public int IndicatorId { get; set; }
         public int SortOrder { get; set; }
+        public int WeightedValue { get; set; }
         public string DisplayName { get; set; }
         public string TranslationKey { get; set; }
         public IndicatorEntityType EntityType { get; set; }

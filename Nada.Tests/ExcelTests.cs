@@ -54,6 +54,45 @@ namespace Nada.Tests
                 File.WriteAllBytes("C:\\SplittingIndicatorRules.xlsx", pck.GetAsByteArray());
             }
         }
+
+        [TestMethod]
+        public void CanCreateAggregationUpdateForm()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add(new DataColumn("Indicator Id"));
+            table.Columns.Add(new DataColumn("Type Id"));
+            table.Columns.Add(new DataColumn("Type Name"));
+            table.Columns.Add(new DataColumn("Form Name"));
+            table.Columns.Add(new DataColumn("Indicator Name"));
+            table.Columns.Add(new DataColumn("Indicator Type"));
+            table.Columns.Add(new DataColumn("Aggregation Rule"));
+            ReportRepository repo = new ReportRepository();
+
+            List<ReportIndicator> indicators = new List<ReportIndicator>();
+            indicators = repo.GetDiseaseDistroIndicators();
+            foreach (var cmpc in indicators)
+                foreach (var cat in cmpc.Children)
+                    AddInds(table, cat.Children, cat.Name, IndicatorEntityType.DiseaseDistribution);
+            indicators = repo.GetSurveyIndicators();
+            foreach (var cmpc in indicators)
+                foreach (var cat in cmpc.Children)
+                    AddInds(table, cat.Children, cat.Name, IndicatorEntityType.Survey);
+            indicators = repo.GetIntvIndicators();
+            foreach (var cmpc in indicators)
+                foreach (var cat in cmpc.Children)
+                    AddInds(table, cat.Children, cat.Name, IndicatorEntityType.Intervention);
+            indicators = repo.GetProcessIndicators().Where(i => i.TypeId == 9).ToList();
+            foreach (var cmpc in indicators)
+                foreach (var cat in cmpc.Children)
+                    AddInds(table, cat.Children, cat.Name, IndicatorEntityType.Process);
+
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
+                ws.Cells["A1"].LoadFromDataTable(table, true);
+                File.WriteAllBytes("C:\\IndicatorAggregationRules.xlsx", pck.GetAsByteArray());
+            }
+        }
         
         [TestMethod]
         public void CanCreateSaeUpdateForm()
@@ -160,6 +199,10 @@ namespace Nada.Tests
                 dr["Type Name"] = type.ToString();
                 dr["Form Name"] = formName;
                 dr["Indicator Name"] = ind.Name;
+                if (table.Columns.Contains("Indicator Type"))
+                    dr["Indicator Type"] = ((IndicatorDataType)ind.DataTypeId).ToString();
+                if (table.Columns.Contains("Aggregation Rule"))
+                    dr["Aggregation Rule"] = ((IndicatorAggType)ind.AggregationRuleId).ToString();
                 table.Rows.Add(dr);
             }
         }

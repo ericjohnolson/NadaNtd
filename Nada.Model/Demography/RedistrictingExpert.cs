@@ -95,6 +95,7 @@ namespace Nada.Model.Demography
             Dictionary<string, List<IntvBase>> intvToMerge = new Dictionary<string, List<IntvBase>>();
             Dictionary<string, List<ProcessBase>> trainingToMerge = new Dictionary<string, List<ProcessBase>>();
             List<ProcessDetails> saes = new List<ProcessDetails>();
+            List<SurveyDetails> surveys = new List<SurveyDetails>();
             Dictionary<string, List<ProcessBase>> scmToMerge = new Dictionary<string, List<ProcessBase>>();
 
             #region Get forms to merge
@@ -151,6 +152,9 @@ namespace Nada.Model.Demography
                     else
                         intvToMerge.Add(key, new List<IntvBase> { form });
                 }
+                // Surveys 
+                List<SurveyDetails> survs = surveyRepo.GetAllForAdminLevel(source.Id);
+                surveys.AddRange(survs);
                 //PC training - merge for all in the year with the same category (KEY "YEAR_CAT")
                 List<ProcessDetails> allProcs = processRepo.GetAllForAdminLevel(source.Id);
                 foreach (var proc in allProcs.Where(p => p.TypeId == (int)StaticProcessType.PcTraining))
@@ -191,19 +195,19 @@ namespace Nada.Model.Demography
             demoRepo.InsertRedistrictUnit(command, connection, userId, options.MergeDestination, redistrictId, RedistrictingRelationship.Daughter, 0);
             foreach (var val in demographyToMerge.Values)
                 MergeDemo(val,  options.MergeDestination.Id, redistrictId, command, connection);
-            //foreach (var val in ddToMerge.Values)
-            //    if (val.First().DiseaseType == "PC")
-            //        options.DistrosPc.Add(SplitDdPc(dd, dest.Unit, percentMultiplier, redistrictId, command, connection));
-            //    else
-            //        options.DistrosCm.Add(SplitDdCm(dd, dest.Unit, percentMultiplier, redistrictId, command, connection));
+            foreach (var val in ddToMerge.Values)
+                if (val.First().DiseaseType == "PC")
+                    options.DistrosPc.Add(MergeDdPc(val, options.MergeDestination.Id, redistrictId, command, connection));
+                else
+                    options.DistrosCm.Add(MergeDdCm(val, options.MergeDestination.Id, redistrictId, command, connection));
             foreach (var val in intvToMerge.Values)
                 options.Intvs.Add(MergeIntv(val, options.MergeDestination.Id, redistrictId, command, connection));
-            //foreach (var val in trainingToMerge.Values)
-            //    options.Processes.Add(SplitProcesses(process, dest.Unit, percentMultiplier, redistrictId, command, connection));
-            //foreach (var val in scmToMerge.Values)
-            //    options.Processes.Add(SplitProcesses(process, dest.Unit, percentMultiplier, redistrictId, command, connection));
-            //foreach(var val in saes)
-            //    blah
+            foreach (var val in trainingToMerge.Values)
+                options.Processes.Add(MergeProcess(val, options.MergeDestination.Id, redistrictId, command, connection));
+            foreach (var val in scmToMerge.Values)
+                options.Processes.Add(MergeProcess(val, options.MergeDestination.Id, redistrictId, command, connection));
+            CopyAllProcesses(saes, options.MergeDestination.Id, redistrictId, command, connection);
+            CopyAllSurveys(surveys, options.MergeDestination, redistrictId, command, connection);
 
             return new RedistrictingResult();
         }
@@ -237,6 +241,7 @@ namespace Nada.Model.Demography
         private IntvBase MergeIntv(List<IntvBase> intvs, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
             IntvBase newIntv = null;
+            Dictionary<int, IndicatorValue> newInds = new Dictionary<int, IndicatorValue>();
             foreach (var intv in intvs)
             {
                 if (newIntv == null)
@@ -244,8 +249,9 @@ namespace Nada.Model.Demography
                 // Do notes newSurvey.Notes
                 newIntv.Id = 0;
                 newIntv.AdminLevelId = destId;
-                newIntv.IndicatorValues = MergeIndicators(intv.IndicatorValues, newIntv.IndicatorValues);
+                MergeIndicators(intv.IndicatorValues, newInds, IndicatorEntityType.Intervention, newIntv.IntvType.IndicatorDropdownValues);
             }
+            newIntv.IndicatorValues = newInds.Values.ToList();
             // save
             intvRepo.SaveIntvBase(command, connection, newIntv, userId);
             foreach (var i in intvs)
@@ -253,11 +259,111 @@ namespace Nada.Model.Demography
             return newIntv;
         }
 
-        private List<IndicatorValue> MergeIndicators(List<IndicatorValue> existing, List<IndicatorValue> newValues)
+        private DiseaseDistroCm MergeDdCm(List<DiseaseDistroDetails> toMerge, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
-            //foreach (var ind in existing)
-            //    newValues.Add(IndicatorRedistributor.Redistribute(ind, percentage));
-            return existing;
+            DiseaseDistroCm newForm = null;
+            Dictionary<int, IndicatorValue> newInds = new Dictionary<int, IndicatorValue>();
+            foreach (var form in toMerge)
+            {
+                var oldForm = diseaseRepo.GetDiseaseDistributionCm(form.Id, form.TypeId);
+                if (newForm == null)
+                    newForm = Util.DeepClone(oldForm);
+
+                newForm.Id = 0;
+                newForm.AdminLevelId = destId;
+                MergeIndicators(oldForm.IndicatorValues, newInds, IndicatorEntityType.DiseaseDistribution, newForm.IndicatorDropdownValues);
+            }
+            newForm.IndicatorValues = newInds.Values.ToList();
+            // save
+            diseaseRepo.SaveCm(newForm, userId, connection, command);
+            foreach (var i in toMerge)
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, i.Id, newForm.Id, IndicatorEntityType.DiseaseDistribution);
+            return newForm;
+        }
+
+        private DiseaseDistroPc MergeDdPc(List<DiseaseDistroDetails> toMerge, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {
+            DiseaseDistroPc newForm = null;
+            Dictionary<int, IndicatorValue> newInds = new Dictionary<int, IndicatorValue>();
+            foreach (var form in toMerge)
+            {
+                var oldForm = diseaseRepo.GetDiseaseDistribution(form.Id, form.TypeId);
+                if (newForm == null)
+                    newForm = Util.DeepClone(oldForm);
+
+                newForm.Id = 0;
+                newForm.AdminLevelId = destId;
+                MergeIndicators(oldForm.IndicatorValues, newInds, IndicatorEntityType.DiseaseDistribution, newForm.IndicatorDropdownValues);
+            }
+            newForm.IndicatorValues = newInds.Values.ToList();
+            // save
+            diseaseRepo.SavePc(newForm, userId, connection, command);
+            foreach (var i in toMerge)
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, i.Id, newForm.Id, IndicatorEntityType.DiseaseDistribution);
+            return newForm;
+        }
+
+        private ProcessBase MergeProcess(List<ProcessBase> toMerge, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {
+            ProcessBase newForm = null;
+            Dictionary<int, IndicatorValue> newInds = new Dictionary<int, IndicatorValue>();
+            foreach (var form in toMerge)
+            {
+                if (newForm == null)
+                    newForm = Util.DeepClone(form);
+
+                newForm.Id = 0;
+                newForm.AdminLevelId = destId;
+                MergeIndicators(form.IndicatorValues, newInds, IndicatorEntityType.Process, newForm.ProcessType.IndicatorDropdownValues);
+            }
+            newForm.IndicatorValues = newInds.Values.ToList();
+            // save
+            processRepo.Save(command, connection, newForm, userId);
+            foreach (var i in toMerge)
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, i.Id, newForm.Id, IndicatorEntityType.Process);
+            return newForm;
+        }
+
+        private void CopyAllProcesses(List<ProcessDetails> toMerge, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {
+            foreach (var form in toMerge)
+            {
+                var oldForm = processRepo.GetById(form.Id);
+                ProcessBase newForm = Util.DeepClone(oldForm);
+
+                newForm.Id = 0;
+                newForm.AdminLevelId = destId;
+                processRepo.Save(command, connection, newForm, userId);
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, form.Id, newForm.Id, IndicatorEntityType.Process);
+            }
+        }
+
+        private void CopyAllSurveys(List<SurveyDetails> toMerge, AdminLevel dest, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {
+            foreach (var form in toMerge)
+            {
+                var oldForm = surveyRepo.GetById(form.Id);
+                SurveyBase newForm = Util.DeepClone(oldForm);
+
+                newForm.Id = 0;
+                newForm.AdminLevels = new List<AdminLevel> { dest };
+                surveyRepo.SaveSurveyBase(command, connection, newForm, userId);
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, form.Id, newForm.Id, IndicatorEntityType.Survey);
+            }
+        }
+
+        private void MergeIndicators(List<IndicatorValue> existing, Dictionary<int, IndicatorValue> newValues, IndicatorEntityType entityType,
+            List<IndicatorDropdownValue> dropdownOptions)
+        {
+            foreach (var e in existing)
+            {
+                if (!newValues.ContainsKey(e.IndicatorId))
+                {
+                    newValues.Add(e.IndicatorId, e);
+                    continue;
+                }
+                newValues[e.IndicatorId] = IndicatorMerger.Merge(e, newValues[e.IndicatorId], dropdownOptions, entityType);
+            }
         }
         #endregion
 
@@ -395,15 +501,17 @@ namespace Nada.Model.Demography
         {
             List<IndicatorValue> newValues = new List<IndicatorValue>();
             foreach (var ind in existing)
-                newValues.Add(IndicatorRedistributor.Redistribute(ind, percentage));
+                newValues.Add(IndicatorSplitter.Redistribute(ind, percentage));
             return newValues;
         }
 
         #endregion
     }
 
+    
+
     [Serializable]
-    public static class IndicatorRedistributor
+    public static class IndicatorSplitter
     {
         public static IndicatorValue Redistribute(IndicatorValue existingInd, double percentage)
         {
@@ -412,89 +520,172 @@ namespace Nada.Model.Demography
             result.IndicatorId = existingInd.IndicatorId;
             if (existingInd.Indicator.RedistrictRuleId == (int)RedistrictingRule.Duplicate)
                 result.DynamicValue = existingInd.DynamicValue;
-            else if (existingInd.Indicator.RedistrictRuleId == (int)RedistrictingRule.Blank)
+            else if (existingInd.Indicator.RedistrictRuleId == (int)RedistrictingRule.SplitByPercent && existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Number)
+                result.DynamicValue = SplitByPercent(existingInd, percentage);
+            else // defaultblank/TBD
                 result.DynamicValue = "";
-            else if (existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Number)
-                result.DynamicValue = RedistributeDouble(existingInd, percentage);
-
+            
             return result;
         }
 
-        private static string RedistributeDouble(IndicatorValue existingValue, double percentage)
+        private static string SplitByPercent(IndicatorValue existingValue, double percentage)
         {
             double i1 = 0;
             if (!Double.TryParse(existingValue.DynamicValue, out i1))
                 return "";
 
-            if (existingValue.Indicator.RedistrictRuleId == (int)RedistrictingRule.SplitByPercent)
-                return (i1 * percentage).ToString();
+            return (i1 * percentage).ToString();
+        }
+    }
 
-            return i1.ToString();
+
+    //public enum MergingRule
+    //{
+    //    Min = 56,
+    //    Max = 55,
+    //    ListAll = 54,
+    //    Sum = 57,
+    //    WorstCase = 58, // Max number of weighting
+    //    BestCase = 51, // min number of weighting
+    //    Average = 50,
+    //}
+    [Serializable]
+    public static class IndicatorMerger
+    {
+        public static IndicatorValue Merge(IndicatorValue existingInd, IndicatorValue newInd, List<IndicatorDropdownValue> dropdownOptions, 
+            IndicatorEntityType entityType)
+        {
+            newInd.CalcByRedistrict = true;
+            newInd.Indicator = existingInd.Indicator;
+            newInd.IndicatorId = existingInd.IndicatorId;
+            if ((existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Number || existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Year || existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Month) 
+                && (existingInd.Indicator.MergeRuleId == (int)MergingRule.Average || existingInd.Indicator.MergeRuleId == (int)MergingRule.Min || 
+                existingInd.Indicator.MergeRuleId == (int)MergingRule.Max || existingInd.Indicator.MergeRuleId == (int)MergingRule.Sum))
+                newInd.DynamicValue = MergeNumber(existingInd, newInd, existingInd.Indicator.MergeRuleId);
+            else if (existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Date &&
+                (existingInd.Indicator.MergeRuleId == (int)MergingRule.Min || existingInd.Indicator.MergeRuleId == (int)MergingRule.Max))
+                newInd.DynamicValue = MergeDate(existingInd, newInd, existingInd.Indicator.MergeRuleId);
+            else if (existingInd.Indicator.MergeRuleId == (int)MergingRule.ListAll)
+                newInd.DynamicValue = Combine(existingInd, newInd);
+            else if (existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Dropdown &&
+                (existingInd.Indicator.MergeRuleId == (int)MergingRule.WorstCase || existingInd.Indicator.MergeRuleId == (int)MergingRule.BestCase))
+                newInd.DynamicValue = MergeDropdown(existingInd, newInd, dropdownOptions, entityType);
+            else //defaultblank/tbd/leaveblank53/leaveblank59
+                newInd.DynamicValue = "";
+
+            return newInd;
         }
 
-        public static object ParseValue(AggregateIndicator ind)
+        private static string MergeDate(IndicatorValue existingInd, IndicatorValue newInd, int ruleId)
         {
-            if (ind.Value == null)
+            if (string.IsNullOrEmpty(existingInd.DynamicValue) && string.IsNullOrEmpty(newInd.DynamicValue))
                 return "";
+            if (string.IsNullOrEmpty(existingInd.DynamicValue))
+                return newInd.DynamicValue;
+            if (string.IsNullOrEmpty(newInd.DynamicValue))
+                return existingInd.DynamicValue;
 
-            if (ind.DataType == (int)IndicatorDataType.Number)
-                return Double.Parse(ind.Value);
-            else if (ind.DataType == (int)IndicatorDataType.Date)
-                return DateTime.ParseExact(ind.Value, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            DateTime newDate = DateTime.ParseExact(newInd.DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            DateTime existing = DateTime.ParseExact(existingInd.DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+            if (ruleId == (int)MergingRule.Max)
+            {
+                if (existing >= newDate)
+                    return existing.ToString("MM/dd/yyyy");
+                else
+                    return newDate.ToString("MM/dd/yyyy");
+            }
             else
-                return ind.Value;
-        }
-
-        private static string AggregateDate(AggregateIndicator ind1, AggregateIndicator existingValue)
-        {
-            if (ind1.AggType == (int)IndicatorAggType.Sum)
-                return DateTime.MinValue.ToString("MM/dd/yyyy");
-            if (string.IsNullOrEmpty(ind1.Value))
-                return DateTime.MinValue.ToString("MM/dd/yyyy");
-
-            DateTime dt = DateTime.ParseExact(ind1.Value, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            DateTime existing = DateTime.ParseExact(existingValue.Value, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-
-            if (ind1.AggType == (int)IndicatorAggType.Min)
-                if (dt >= (DateTime)existing)
-                    return existing.ToString("MM/dd/yyyy");
-                else
-                    return dt.ToString("MM/dd/yyyy");
-            if (ind1.AggType == (int)IndicatorAggType.Max)
-                if (dt >= (DateTime)existing)
-                    return dt.ToString("MM/dd/yyyy");
+            {
+                if (newDate <= (DateTime)existing)
+                    return newDate.ToString("MM/dd/yyyy");
                 else
                     return existing.ToString("MM/dd/yyyy");
-            return dt.ToString("MM/dd/yyyy");
+            }
         }
 
-        private static string AggregateString(AggregateIndicator ind1, AggregateIndicator existingValue)
+        private static string MergeNumber(IndicatorValue existingInd, IndicatorValue newInd, int ruleId)
         {
-            if (ind1.AggType == (int)IndicatorAggType.Combine)
-                return existingValue.Value + ", " + ind1.Value;
-            else if (ind1.AggType == (int)IndicatorAggType.None)
-                return Translations.NA;
-            return "Invalid Aggregation Rule or Data Type";
+            double i1 = 0, i2 = 0;
+            if (!Double.TryParse(existingInd.DynamicValue, out i1) && !Double.TryParse(newInd.DynamicValue, out i2))
+                return "";
+            if (!Double.TryParse(existingInd.DynamicValue, out i1))
+                return newInd.DynamicValue;
+            if (!Double.TryParse(newInd.DynamicValue, out i2))
+                return existingInd.DynamicValue;
+
+            if (ruleId == (int)MergingRule.Min)
+            {
+                if (i1 >= i2)
+                    return newInd.DynamicValue;
+                else
+                    return existingInd.DynamicValue;
+            }
+            else if (ruleId == (int)MergingRule.Max)
+            {
+                if (i1 >= i2)
+                    return existingInd.DynamicValue;
+                else
+                    return newInd.DynamicValue;
+            }
+            else if (ruleId == (int)MergingRule.Average)
+            {
+                return ((i1 + i2)/2).ToString();
+            }
+            else
+                return (i1 + i2).ToString();
         }
 
-
-
-        private static string AggregateDropdown(AggregateIndicator ind1, AggregateIndicator existingValue)
+        private static string MergeDropdown(IndicatorValue existingInd, IndicatorValue newInd, List<IndicatorDropdownValue> dropdownOptions, IndicatorEntityType entityType)
         {
-            return ind1.Value;
-            //var ind2 = (AggregateIndicator)existingValue;
-            //if (ind1.AggType == (int)IndicatorAggType.Min)
-            //    if (ind1.WeightedV)
-            //        return (AggregateIndicator)existingValue;
-            //    else
-            //        return dt;
-            //if (ind1.AggType == (int)IndicatorAggType.Max)
-            //    if (dt >= (AggregateIndicator)existingValue)
-            //        return dt;
-            //    else
-            //        return (AggregateIndicator)existingValue;
+            if (string.IsNullOrEmpty(existingInd.DynamicValue) && string.IsNullOrEmpty(newInd.DynamicValue))
+                return "";
+            if (string.IsNullOrEmpty(newInd.DynamicValue))
+                return existingInd.DynamicValue;
+            if (string.IsNullOrEmpty(existingInd.DynamicValue))
+                return newInd.DynamicValue;
 
-            //return dt;
+            var ind1option = dropdownOptions.FirstOrDefault(i => i.IndicatorId == newInd.IndicatorId && i.EntityType == entityType
+                && i.TranslationKey == newInd.DynamicValue);
+            var ind2option = dropdownOptions.FirstOrDefault(i => i.IndicatorId == existingInd.IndicatorId && i.EntityType == entityType
+                && i.TranslationKey == existingInd.DynamicValue);
+            if (ind1option == null)
+                return existingInd.DynamicValue;
+            if (ind2option == null)
+                return newInd.DynamicValue;
+
+            if (newInd.Indicator.MergeRuleId == (int)MergingRule.BestCase)
+            {
+                if (ind1option.WeightedValue <= ind2option.WeightedValue)
+                    return newInd.DynamicValue;
+                else
+                    return existingInd.DynamicValue;
+            }
+            if (newInd.Indicator.MergeRuleId == (int)MergingRule.WorstCase)
+            {
+                if (ind1option.WeightedValue >= ind2option.WeightedValue)
+                    return newInd.DynamicValue;
+                else
+                    return existingInd.DynamicValue;
+            }
+
+            return TranslationLookup.GetValue("NA", "NA"); ;
+        }
+
+        private static string Combine(IndicatorValue existingInd, IndicatorValue newInd)
+        {
+            if (string.IsNullOrEmpty(existingInd.DynamicValue) && string.IsNullOrEmpty(newInd.DynamicValue))
+                return null;
+            if (string.IsNullOrEmpty(existingInd.DynamicValue))
+                return newInd.DynamicValue;
+            if (string.IsNullOrEmpty(newInd.DynamicValue))
+                return existingInd.DynamicValue;
+
+            if(existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Multiselect || existingInd.Indicator.DataTypeId == (int)IndicatorDataType.DiseaseMultiselect ||
+                existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Partners)
+                return existingInd.DynamicValue + "|" + newInd.DynamicValue;
+            else
+                return existingInd.DynamicValue + " " + newInd.DynamicValue;
         }
     }
 }

@@ -63,6 +63,7 @@
     <Compile Include="Demography\RedistrictingExpert.cs" />
     <Compile Include="Demography\RedistrictingOptions.cs" />
     <Compile Include="Exports\ApocExporter.cs" />
+    <Compile Include="Exports\RtiWorkbooksExporter.cs" />
     <Compile Include="Exports\PcEpiExporter.cs" />
     <Compile Include="Exports\ExportType.cs" />
     <Compile Include="Reports\IStandardOptions.cs" />

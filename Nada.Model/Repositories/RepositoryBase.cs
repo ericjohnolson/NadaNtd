@@ -20,7 +20,9 @@ namespace Nada.Model.Repositories
                         IndicatorId,
                         DropdownValue,
                         TranslationKey,
-                        SortOrder
+                        SortOrder,
+                        EntityType,
+                        WeightedValue
                         FROM IndicatorDropdownValues
                         WHERE (EntityType=@EntityType AND IndicatorId in (" + String.Join(", ", ids.ToArray()) +
                         ")) ORDER BY SortOrder", connection);
@@ -42,11 +44,57 @@ namespace Nada.Model.Repositories
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
                         SortOrder = reader.GetValueOrDefault<int>("SortOrder"), 
                         DisplayName = name,
-                        TranslationKey = transKey
+                        TranslationKey = transKey,
+                        EntityType = (IndicatorEntityType)reader.GetValueOrDefault<int>("EntityType"),
+                        WeightedValue = reader.GetValueOrDefault<int>("WeightedValue"),
                     });
                 }
                 reader.Close();
             }
+            return values;
+        }
+
+        public List<IndicatorDropdownValue> GetAllDropdownOptions()
+        {
+            List<IndicatorDropdownValue> values = new List<IndicatorDropdownValue>();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                OleDbCommand command = new OleDbCommand(@"Select
+                        ID,
+                        IndicatorId,
+                        DropdownValue,
+                        TranslationKey,
+                        SortOrder,
+                        WeightedValue,
+                        EntityType
+                        FROM IndicatorDropdownValues", connection);
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string name = reader.GetValueOrDefault<string>("DropdownValue");
+                        string transKey = reader.GetValueOrDefault<string>("TranslationKey");
+                        if (!string.IsNullOrEmpty(transKey))
+                            name = TranslationLookup.GetValue(transKey);
+                        else
+                            transKey = name;
+
+                        values.Add(new IndicatorDropdownValue
+                        {
+                            Id = reader.GetValueOrDefault<int>("ID"),
+                            IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
+                            SortOrder = reader.GetValueOrDefault<int>("SortOrder"),
+                            EntityType = (IndicatorEntityType)reader.GetValueOrDefault<int>("EntityType"),
+                            WeightedValue = reader.GetValueOrDefault<int>("WeightedValue"),
+                            DisplayName = name,
+                            TranslationKey = transKey
+                        });
+                    }
+                    reader.Close();
+                }
+            }   
             return values;
         }
 

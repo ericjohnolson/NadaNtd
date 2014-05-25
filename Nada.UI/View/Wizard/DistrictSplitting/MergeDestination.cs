@@ -49,9 +49,10 @@ namespace Nada.UI.View.Wizard
 
         public void DoNext()
         {
-            if (!adminUnitAdd1.IsValid())
+            var model = adminUnitAdd1.GetModel();
+            if (model.Id == 0)
                 return;
-            options.MergeDestination = adminUnitAdd1.GetModel();
+            options.MergeDestination = model;
             if (options.SplitType == SplittingType.Merge)
                 ExecuteRedistricting();
             else
@@ -101,7 +102,7 @@ namespace Nada.UI.View.Wizard
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                adminUnitAdd1.LoadLevel(options.MergeSources[0].AdminLevelTypeId);
+                adminUnitAdd1.LoadUnit(options.MergeSources[0].LevelNumber);
             }
         }
 

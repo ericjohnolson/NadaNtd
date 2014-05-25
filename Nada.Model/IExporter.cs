@@ -12,7 +12,10 @@ namespace Nada.Model
     public interface IExporter
     {
         string ExportName { get; }
+        string Extension { get; }
+        string GetYear(ExportType type);
         ExportResult DoExport(string fileName, int userId, ExportType exportType);
+
     }
 
     public class ExportParams
@@ -48,6 +51,14 @@ namespace Nada.Model
             rng.Value = value;
         }
 
-        
+        public virtual string Extension
+        {
+            get { return "xlsx"; }
+        }
+
+        public virtual string GetYear(ExportType exportType)
+        {
+            return "";
+        }
     }
 }

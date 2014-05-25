@@ -46,9 +46,11 @@ namespace Nada.Model.Exports
                 var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
                 CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReporting);
                 Country country = demo.GetCountry();
-                DateTime reportingYearStart = new DateTime(yearReporting, country.ReportingYearStartDate.Month, country.ReportingYearStartDate.Day);
                 List<AdminLevel> demography = new List<AdminLevel>();
-                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, reportingYearStart, ref demography);
+
+                DateTime startDate = new DateTime(yearReporting, country.ReportingYearStartDate.Month, country.ReportingYearStartDate.Day);
+                DateTime endDate = startDate.AddYears(1).AddDays(-1);
+                List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, startDate, endDate, ref demography);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[2];
                 AddContactsPage(xlsWorksheet, rng, questions, country);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[3];
@@ -113,7 +115,7 @@ namespace Nada.Model.Exports
             if(district.Indicators.ContainsKey(key))
                 value = district.Indicators[key].Value;
             else
-                value = IndicatorAggregator.AggregateChildren(district.Children, key, null).Value;
+                value = IndicatorAggregator.AggregateChildren(district.Children, key, null, new List<IndicatorDropdownValue>()).Value;
 
             if (value != null)
             {

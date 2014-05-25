@@ -25,13 +25,14 @@ namespace Nada.UI.View.Reports
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
         public Action OnFinish { get; set; }
+        string title = Translations.StartExport;
         public bool ShowNext { get { return false; } }
         public bool EnableNext { get { return false; } }
         public bool ShowPrev { get { return false; } }
         public bool EnablePrev { get { return false; } }
         public bool ShowFinish { get { return true; } }
         public bool EnableFinish { get { return true; } }
-        public string StepTitle { get { return Translations.StartExport; } }
+        public string StepTitle { get { return title; } }
 
         public GenericExportStep()
             : base()
@@ -46,13 +47,21 @@ namespace Nada.UI.View.Reports
             exportType = t;
         }
 
+        public GenericExportStep(ExportType t, string steptitle)
+            : base()
+        {
+            title = steptitle;
+            InitializeComponent();
+            exportType = t;
+        }
+
         private void ExportWorkingStep_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                this.saveFileDialog1.DefaultExt = "xls";
-                this.saveFileDialog1.Filter = "Excel (.xls)|*.xls";
+                this.saveFileDialog1.DefaultExt = exportType.Exporter.Extension;
+                this.saveFileDialog1.Filter = string.Format("Excel (.{0})|*.{1}", exportType.Exporter.Extension, exportType.Exporter.Extension);
                 indicatorControl1.LoadIndicators(exportType.Indicators, exportType.IndicatorValues, exportType.IndicatorDropdownValues, IndicatorEntityType.Export);
             }
         }
@@ -73,8 +82,8 @@ namespace Nada.UI.View.Reports
 
             exportType.IndicatorValues = indicatorControl1.GetValues();
             repo.Save(exportType, ApplicationData.Instance.GetUserId());
-
-            saveFileDialog1.FileName = exportType.Exporter.ExportName;
+            
+            saveFileDialog1.FileName = exportType.Exporter.ExportName + "_" + exportType.Exporter.GetYear(exportType);
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 BackgroundWorker worker = new BackgroundWorker();

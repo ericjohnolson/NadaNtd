@@ -7,23 +7,23 @@ namespace Nada.Model
 {
     public enum IndicatorDataType
     {
-        Text = 1,
-        Number = 2,
-        YesNo = 3,
-        Date = 4,
-        Dropdown = 5,
-        Multiselect = 6,
-        Year = 7,
-        Month = 8,
-        Partners = 9,
-        SentinelSite = 10,
-        EcologicalZone = 11,
-        EvaluationUnit = 12,
-        Calculated = 13,
-        EvalSubDistrict = 14,
-        LargeText = 15,
-        EvaluationSite = 16,
-        DiseaseMultiselect = 17,
+        Text = 1, // text
+        Number = 2, // number
+        YesNo = 3, // no merge/agg
+        Date = 4, // date
+        Dropdown = 5, // weighted
+        Multiselect = 6, // combine
+        Year = 7, // number
+        Month = 8, // number
+        Partners = 9, // combine
+        SentinelSite = 10, // no merge/agg
+        EcologicalZone = 11, // no merge/agg
+        EvaluationUnit = 12, // no merge/agg
+        Calculated = 13, // no merge/agg
+        EvalSubDistrict = 14, // no merge/agg
+        LargeText = 15, // text
+        EvaluationSite = 16, // no merge/agg
+        DiseaseMultiselect = 17, // combine
         DrugPackageMulitselect = 18
     }
 
@@ -38,12 +38,25 @@ namespace Nada.Model
 
     public enum RedistrictingRule
     {
-        Blank = 1,
-        Min = 2, // worst case with weighting
-        Max = 3, // best case with weighting
-        Duplicate = 4,
-        Sum = 5,
-        SplitByPercent = 6
+        DefaultBlank = 1,
+        Duplicate = 2,
+        TBD = 49,
+        SplitByPercent = 0
+    }
+
+    public enum MergingRule
+    {
+        DefaultBlank = 1,
+        Min = 56, 
+        Max = 55, 
+        ListAll = 54,
+        Sum = 57,
+        WorstCase = 58, // Max number of weighting
+        BestCase = 51, // min number of weighting
+        LeaveBlank53 = 53,
+        LeaveBlank59 = 59,
+        TBD = 99,
+        Average = 50,
     }
 
     public enum RedistrictingRelationship
@@ -85,7 +98,8 @@ namespace Nada.Model
         SchMapping = 17,
         SthMapping = 18,
         OnchoMapping = 19,
-        OnchoAssessment = 13
+        OnchoAssessment = 13,
+        LfTas = 15
     }
 
     public enum StaticIntvType
@@ -137,7 +151,8 @@ namespace Nada.Model
         Jrf = 1,
         CmJrf = 2,
         Tas = 3,
-        PcEpi = 4
+        PcEpi = 4,
+        RtiWorkbooks = 5
     }
 
 }

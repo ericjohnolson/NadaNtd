@@ -110,6 +110,64 @@ namespace Nada.Model.Repositories
             return interventions;
         }
 
+        public List<IntvDetails> GetAll(List<int> types, DateTime start, DateTime end)
+        {
+            List<IntvDetails> interventions = new List<IntvDetails>();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select 
+                        Interventions.ID, 
+                        InterventionTypes.InterventionTypeName, 
+                        Interventions.InterventionTypeId, 
+                        Interventions.DateReported,
+                        Interventions.StartDate, 
+                        Interventions.EndDate, 
+                        Interventions.UpdatedAt, 
+                        aspnet_Users.UserName, AdminLevels.DisplayName,
+                        created.UserName as CreatedBy, Interventions.CreatedAt
+                        FROM ((((Interventions INNER JOIN InterventionTypes on Interventions.InterventionTypeId = InterventionTypes.ID)
+                            INNER JOIN aspnet_Users on Interventions.UpdatedById = aspnet_Users.UserId)
+                            INNER JOIN AdminLevels on Interventions.AdminLevelId = AdminLevels.ID) 
+                            INNER JOIN aspnet_Users created on Interventions.CreatedById = created.UserId)
+                        WHERE Interventions.IsDeleted = 0 AND Interventions.DateReported >= @StartDate AND Interventions.DateReported <= @EndDate 
+                            AND Interventions.InterventionTypeId in (" + string.Join(",", types.Select(i => i.ToString()).ToArray()) +
+                        ") ORDER BY Interventions.StartDate ASC", connection);
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", start));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@EndDate", end));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            interventions.Add(new IntvDetails
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                TypeName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("InterventionTypeName"),
+                                    reader.GetValueOrDefault<string>("InterventionTypeName")),
+                                TypeId = reader.GetValueOrDefault<int>("InterventionTypeId"),
+                                AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
+                                DateReported = reader.GetValueOrDefault<DateTime>("DateReported"),
+                                StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
+                                EndDate = reader.GetValueOrDefault<Nullable<DateTime>>("EndDate"),
+                                UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
+                                UpdatedBy = GetAuditInfo(reader)
+
+                            });
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return interventions;
+        }
+
         public List<IntvType> GetAllTypes()
         {
             List<IntvType> intv = new List<IntvType>();
@@ -205,6 +263,8 @@ namespace Nada.Model.Repositories
                         InterventionIndicators.IsEditable,
                         InterventionIndicators.IsDisplayed,
                         InterventionIndicators.RedistrictRuleId,
+                        MergeRuleId,
+                        AggTypeId,
                         IsCalculated,
                         CanAddValues,
                         InterventionIndicators.UpdatedAt, 
@@ -228,6 +288,8 @@ namespace Nada.Model.Repositories
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
                                 RedistrictRuleId = reader.GetValueOrDefault<int>("RedistrictRuleId"),
+                                MergeRuleId = reader.GetValueOrDefault<int>("MergeRuleId"),
+                                AggRuleId = reader.GetValueOrDefault<int>("AggTypeId"),
                                 UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),

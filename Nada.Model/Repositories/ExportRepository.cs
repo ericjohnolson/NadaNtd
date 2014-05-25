@@ -224,8 +224,10 @@ namespace Nada.Model.Repositories
                         AggType = indicatorAggType
                     };
                 if (dic[adminLevelId].Indicators.ContainsKey(key))
-                    dic[adminLevelId].Indicators[key] = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[key]);
-                
+                {
+                    // only used in CM JRF doesn't need to aggregate the dropdownlists weighted values
+                    dic[adminLevelId].Indicators[key] = IndicatorAggregator.Aggregate(newIndicator, dic[adminLevelId].Indicators[key], new List<IndicatorDropdownValue>());
+                }
                 else
                     dic[adminLevelId].Indicators.Add(key, newIndicator);
             }

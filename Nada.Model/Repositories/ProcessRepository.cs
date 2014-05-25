@@ -330,6 +330,8 @@ namespace Nada.Model.Repositories
                         ProcessIndicators.CanAddValues,
                         ProcessIndicators.UpdatedAt, 
                         ProcessIndicators.RedistrictRuleId,
+                        MergeRuleId,
+                        AggTypeId,
                         aspnet_users.UserName,
                         IndicatorDataTypes.DataType
                         FROM ((ProcessIndicators INNER JOIN aspnet_users ON ProcessIndicators.UpdatedById = aspnet_users.UserId)
@@ -347,6 +349,8 @@ namespace Nada.Model.Repositories
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
                                 RedistrictRuleId = reader.GetValueOrDefault<int>("RedistrictRuleId"),
+                                MergeRuleId = reader.GetValueOrDefault<int>("MergeRuleId"),
+                                AggRuleId = reader.GetValueOrDefault<int>("AggTypeId"),
                                 UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),

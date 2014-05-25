@@ -598,6 +598,8 @@ namespace Nada.Model.Repositories
                         SurveyIndicators.IsEditable,
                         SurveyIndicators.IsDisplayed,
                         SurveyIndicators.RedistrictRuleId,
+                        MergeRuleId,
+                        AggTypeId,
                         IsCalculated,
                         CanAddValues,
                         SurveyIndicators.UpdatedAt, 
@@ -618,6 +620,8 @@ namespace Nada.Model.Repositories
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
                                 RedistrictRuleId = reader.GetValueOrDefault<int>("RedistrictRuleId"),
+                                MergeRuleId = reader.GetValueOrDefault<int>("MergeRuleId"),
+                                AggRuleId = reader.GetValueOrDefault<int>("AggTypeId"),
                                 UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
                                     reader.GetValueOrDefault<string>("UserName"),
                                 DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
