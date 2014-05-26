@@ -65,8 +65,7 @@ namespace Nada.Model.Exports
                 xlsWorkbook.Unprotect("NTDM&E101");
 
                 Country country = demo.GetCountry();
-                List<AdminLevel> reportingLevelUnits = new List<AdminLevel>();
-                demo.GetAdminLevelTreeForDemography(AdminLevelType.LevelNumber, StartDate, EndDate, ref reportingLevelUnits);
+                List<AdminLevel> reportingLevelUnits = demo.GetAdminUnitsWithParentsAndChildren(AdminLevelType.LevelNumber, StartDate, EndDate);
                 reportingLevelUnits = reportingLevelUnits.Where(d => d.LevelNumber == AdminLevelType.LevelNumber).OrderBy(a => a.Name).ToList();
                 var intvs = intvRepo.GetAll(new List<int> { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 }, StartDate, EndDate);
                 Dictionary<int, DataRow> aggIntvs = GetIntvsAggregatedToReportingLevel(StartDate, EndDate, reportingLevelUnits);
@@ -166,8 +165,8 @@ namespace Nada.Model.Exports
             int rowNum = 17;
             foreach (var demog in demography)
             {
-                AddValueToRange(xlsWorksheet, rng, "C" + rowNum, demog.Name);
-                AddValueToRange(xlsWorksheet, rng, "B" + rowNum, demog.Parent.Name);
+                AddValueToRange(xlsWorksheet, rng, "C" + rowNum, demog.TaskForceName);
+                AddValueToRange(xlsWorksheet, rng, "B" + rowNum, demog.Parent.TaskForceName);
                 if (demog.CurrentDemography.TotalPopulation.HasValue)
                     AddValueToRange(xlsWorksheet, rng, "D" + rowNum, demog.CurrentDemography.TotalPopulation.Value);
                 if (demog.CurrentDemography.PopPsac.HasValue)
@@ -186,6 +185,7 @@ namespace Nada.Model.Exports
         private void AddLf(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvAlb2", "IntvIvmAlb", "IntvDecAlb", "IntvIvmPzqAlb" };
+            List<int> typeIds = new List<int> { (int)StaticIntvType.Alb2, (int)StaticIntvType.IvmAlb, (int)StaticIntvType.DecAlb, (int)StaticIntvType.IvmPzqAlb };
             // Get LF Disease Distributions
             DiseaseDistroPc lf;
             Dictionary<int, DataRow> lfDd;
@@ -233,14 +233,22 @@ namespace Nada.Model.Exports
                         lfDd[unit.Id][TranslationLookup.GetValue("DDLFYearPcStarted") + " - " + lf.Disease.DisplayName]);
 
                 }
+                // MDA count
+                int mdas = 0, consecutive = 0;
+                CountMdas(typeIds, unit.Id, unit.Children.Select(c => c.Id).ToList(), out mdas, out consecutive, "LF");
+                AddValueToRange(xlsWorksheet, rng, "U" + rowCount, mdas);
+                AddValueToRange(xlsWorksheet, rng, "V" + rowCount, consecutive);
+
                 // INTVS
                 if (aggIntvs.ContainsKey(unit.Id))
                 {
                     List<string> typesToCalc = new List<string>();
-                    AddValueToRange(xlsWorksheet, rng, "Q" + rowCount,
-                        aggIntvs[unit.Id][TranslationLookup.GetValue("LFMMDPNumLymphoedemaPatients") + " - " + TranslationLookup.GetValue("LfMorbidityManagment")]);
-                    AddValueToRange(xlsWorksheet, rng, "R" + rowCount,
-                        aggIntvs[unit.Id][TranslationLookup.GetValue("LFMMDPNumHydroceleCases") + " - " + TranslationLookup.GetValue("LfMorbidityManagment")]);
+                    if(reportResultTable.Columns.Contains(TranslationLookup.GetValue("LFMMDPNumLymphoedemaPatients") + " - " + TranslationLookup.GetValue("LfMorbidityManagment")))
+                        AddValueToRange(xlsWorksheet, rng, "Q" + rowCount,
+                            aggIntvs[unit.Id][TranslationLookup.GetValue("LFMMDPNumLymphoedemaPatients") + " - " + TranslationLookup.GetValue("LfMorbidityManagment")]);
+                    if(reportResultTable.Columns.Contains(TranslationLookup.GetValue("LFMMDPNumHydroceleCases") + " - " + TranslationLookup.GetValue("LfMorbidityManagment")))
+                        AddValueToRange(xlsWorksheet, rng, "R" + rowCount,
+                            aggIntvs[unit.Id][TranslationLookup.GetValue("LFMMDPNumHydroceleCases") + " - " + TranslationLookup.GetValue("LfMorbidityManagment")]);
                     AddValueToRange(xlsWorksheet, rng, "AE" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 1, maxRoundNumber, "LF", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "AH" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 1, maxRoundNumber, "LF", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "AJ" + rowCount, GetIntFromRow("PcIntvPsacTreated", typesToCalc, aggIntvs[unit.Id], 1, maxRoundNumber, "LF", typeNames));
@@ -270,10 +278,11 @@ namespace Nada.Model.Exports
                 rowCount++;
             }
         }
-
+        
         private void AddOncho(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvIvmPzqAlb", "IntvIvmPzq", "IntvIvmAlb", "IntvIvm" };
+            List<int> typeIds = new List<int> { (int)StaticIntvType.IvmPzqAlb, (int)StaticIntvType.IvmPzq, (int)StaticIntvType.IvmAlb, (int)StaticIntvType.Ivm };
             // Get ONCHO Disease Distributions
             DiseaseDistroPc oncho;
             Dictionary<int, DataRow> onchoDd;
@@ -331,6 +340,13 @@ namespace Nada.Model.Exports
                     AddValueToRange(xlsWorksheet, rng, "Q" + rowCount,
                         onchoDd[unit.Id][TranslationLookup.GetValue("DDOnchoYearPcStarted") + " - " + oncho.Disease.DisplayName]);
                 }
+
+                // MDA count
+                int mdas = 0, consecutive = 0;
+                CountMdas(typeIds, unit.Id, unit.Children.Select(c => c.Id).ToList(), out mdas, out consecutive, "Oncho");
+                AddValueToRange(xlsWorksheet, rng, "R" + rowCount, mdas);
+                AddValueToRange(xlsWorksheet, rng, "S" + rowCount, consecutive);
+
                 // INTVS
                 if (aggIntvs.ContainsKey(unit.Id))
                 {
@@ -388,6 +404,7 @@ namespace Nada.Model.Exports
         private void AddSchisto(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvIvmPzqAlb", "IntvIvmPzq", "IntvPzq", "IntvPzqAlb", "IntvPzqMbd" };
+            List<int> typeIds = new List<int> { (int)StaticIntvType.IvmPzqAlb, (int)StaticIntvType.IvmPzq, (int)StaticIntvType.Pzq, (int)StaticIntvType.PzqAlb, (int)StaticIntvType.PzqMbd };
             // Get sch Disease Distributions
             DiseaseDistroPc sch;
             Dictionary<int, DataRow> schDd;
@@ -455,6 +472,11 @@ namespace Nada.Model.Exports
                     AddValueToRange(xlsWorksheet, rng, "Y" + rowCount,
                         schDd[unit.Id][TranslationLookup.GetValue("DDSchistoYearPcStarted") + " - " + sch.Disease.DisplayName]);
                 }
+                // MDA count
+                int mdas = 0, consecutive = 0;
+                CountMdas(typeIds, unit.Id, unit.Children.Select(c => c.Id).ToList(), out mdas, out consecutive, "Schisto");
+                AddValueToRange(xlsWorksheet, rng, "Z" + rowCount, mdas);
+                //AddValueToRange(xlsWorksheet, rng, "S" + rowCount, consecutive);
                 // INTVS
                 if (aggIntvs.ContainsKey(unit.Id))
                 {
@@ -492,6 +514,7 @@ namespace Nada.Model.Exports
         private void AddSth(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvIvmPzqAlb", "IntvIvmAlb", "IntvDecAlb", "IntvPzqAlb", "IntvPzqMbd", "IntvAlb", "IntvMbd" };
+            List<int> typeIds = new List<int> { (int)StaticIntvType.IvmPzqAlb, (int)StaticIntvType.IvmAlb, (int)StaticIntvType.DecAlb, (int)StaticIntvType.PzqAlb, (int)StaticIntvType.PzqMbd, (int)StaticIntvType.Alb, (int)StaticIntvType.Mbd };
             // Get sch Disease Distributions
             DiseaseDistroPc sth;
             Dictionary<int, DataRow> sthDd;
@@ -557,6 +580,11 @@ namespace Nada.Model.Exports
                     AddValueToRange(xlsWorksheet, rng, "Y" + rowCount,
                         sthDd[unit.Id][TranslationLookup.GetValue("DDSTHYearPcStarted") + " - " + sth.Disease.DisplayName]);
                 }
+                // MDA count
+                int mdas = 0, consecutive = 0;
+                CountMdas(typeIds, unit.Id, unit.Children.Select(c => c.Id).ToList(), out mdas, out consecutive, "STH");
+                AddValueToRange(xlsWorksheet, rng, "AA" + rowCount, mdas);
+                AddValueToRange(xlsWorksheet, rng, "AB" + rowCount, consecutive);
                 // INTVS
                 if (aggIntvs.ContainsKey(unit.Id))
                 {
@@ -619,6 +647,26 @@ namespace Nada.Model.Exports
         }
 
         #region Helpers
+        private void CountMdas(List<int> types, int parentId, List<int> childrenIds, out int mdas, out int consecutive, string diseaseName)
+        {
+            mdas = 0;
+            consecutive = 0;
+            childrenIds.Add(parentId);
+            var intvs = intvRepo.GetAll(types, childrenIds);
+            DateTime? lastDate = null;
+            foreach (var i in intvs)
+            {
+                if (!i.ValueDictionary.ContainsKey("PcIntvDiseases") || !i.ValueDictionary["PcIntvDiseases"].DynamicValue.Contains(diseaseName))
+                    return;
+
+                mdas++;
+
+                if (!lastDate.HasValue || lastDate.Value.MonthDifference(i.StartDate) > 15)
+                    consecutive = 0;
+                lastDate = i.StartDate;
+                consecutive++;
+            }
+        }
 
         private void GetDdForDisease(DateTime start, DateTime end, List<AdminLevel> demography, out DiseaseDistroPc ddType, out Dictionary<int, DataRow> dd, DiseaseType dType)
         {

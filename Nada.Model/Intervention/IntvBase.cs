@@ -27,18 +27,19 @@ namespace Nada.Model.Intervention
         public Nullable<int> PcIntvRoundNumber { get; set; }
         public string Notes { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
+        public Dictionary<string, IndicatorValue> ValueDictionary { get; set; }
         public virtual void MapIndicatorsToProperties()
         {
-            Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            DateReported = DateTime.ParseExact(inds["DateReported"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            if (inds.ContainsKey("PcIntvStartDateOfMda"))
-                StartDate = DateTime.ParseExact(inds["PcIntvStartDateOfMda"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            if (inds.ContainsKey("PcIntvEndDateOfMda") && !string.IsNullOrEmpty(inds["PcIntvEndDateOfMda"].DynamicValue))
-                EndDate = DateTime.ParseExact(inds["PcIntvEndDateOfMda"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
-            if (inds.ContainsKey("PcIntvRoundNumber"))
+            ValueDictionary = Util.CreateIndicatorValueDictionary(this);
+            DateReported = DateTime.ParseExact(ValueDictionary["DateReported"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            if (ValueDictionary.ContainsKey("PcIntvStartDateOfMda"))
+                StartDate = DateTime.ParseExact(ValueDictionary["PcIntvStartDateOfMda"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            if (ValueDictionary.ContainsKey("PcIntvEndDateOfMda") && !string.IsNullOrEmpty(ValueDictionary["PcIntvEndDateOfMda"].DynamicValue))
+                EndDate = DateTime.ParseExact(ValueDictionary["PcIntvEndDateOfMda"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            if (ValueDictionary.ContainsKey("PcIntvRoundNumber"))
             {
                 int round = 0;
-                int.TryParse(inds["PcIntvRoundNumber"].DynamicValue, out round);
+                int.TryParse(ValueDictionary["PcIntvRoundNumber"].DynamicValue, out round);
                 PcIntvRoundNumber = round;
             }
         }

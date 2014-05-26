@@ -51,6 +51,7 @@ namespace Nada.UI.View.Reports
                 var reportingType = allLevelTypes.First(t => t.IsDistrict);
                 exporter.AdminLevelType = reportingType;
                 bindingSource1.DataSource = allLevelTypes;
+                cbTypes.SelectedIndex = allLevelTypes.IndexOf(reportingType);
                 bindingSource2.DataSource = exporter;
             }
         }

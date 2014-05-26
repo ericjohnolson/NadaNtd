@@ -11,6 +11,25 @@ namespace Nada.Model
 {
     public static class NullSafeGetter
     {
+        public static int MonthDifference(this DateTime lValue, DateTime rValue)
+        {
+            return (lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year);
+        }
+
+        public static IEnumerable<T> Flatten<T>(
+        this IEnumerable<T> source,
+        Func<T, IEnumerable<T>> childrenSelector)
+        {
+            foreach (var item in source)
+            {
+                yield return item;
+                foreach (var child in childrenSelector(item).Flatten(childrenSelector))
+                {
+                    yield return child;
+                }
+            }
+        }
+
         public static void ForEach<T>(this IEnumerable<T> enumeration, Action<T> action)
         {
             foreach (T item in enumeration)

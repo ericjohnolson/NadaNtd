@@ -115,7 +115,16 @@ namespace Nada.Model
         IvmAlb = 10,
         IvmPzq = 19,
         IvmPzqAlb = 20,
-
+        DecAlb    = 11, 
+	    PzqAlb    = 13, 
+	    PzqMbd    = 14, 
+	    Pzq       = 15, 
+	    Alb       = 16, 
+	    Mbd       = 17, 
+	    Alb2      = 18, 
+	    Zithro    = 21, 
+	    Teo       = 22, 
+	    ZithroTeo = 23 
     }
 
     public enum StaticProcessType

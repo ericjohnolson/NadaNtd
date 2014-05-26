@@ -12,6 +12,7 @@ namespace Nada.Model
 {
     public static class Util
     {
+
         public static readonly string EnumerationDelinator = " & ";
         public static T DeepClone<T>(T obj)
         {

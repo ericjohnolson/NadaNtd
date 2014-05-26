@@ -608,6 +608,65 @@ namespace Nada.Model.Repositories
             return MakeTreeFromFlatList(flatList, minRoot, false, 0, false, string.Empty);
         }
 
+        public List<AdminLevel> GetAdminUnitsWithParentsAndChildren(int level, DateTime startDate, DateTime endDate)
+        {
+            List<AdminLevel> list = new List<AdminLevel>();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, 
+                    AdminLevelTypes.AdminLevel, AdminLevelTypeId, TaskForceName
+                    FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
+                    WHERE AdminLevels.IsDeleted = 0 AND AdminLevels.RedistrictIdForMother=0", connection);
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var al = new AdminLevel
+                        {
+                            Id = reader.GetValueOrDefault<int>("ID"),
+                            ParentId = reader.GetValueOrDefault<Nullable<int>>("ParentId"),
+                            Name = reader.GetValueOrDefault<string>("DisplayName"),
+                            TaskForceName = reader.GetValueOrDefault<string>("TaskForceName"),
+                            LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
+                            UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
+                            LatWho = reader.GetValueOrDefault<Nullable<double>>("LatWho"),
+                            LngWho = reader.GetValueOrDefault<Nullable<double>>("LngWho"),
+                            AdminLevelTypeId = reader.GetValueOrDefault<int>("AdminLevelTypeId")
+                        };
+                        al.CurrentDemography = GetDemoByAdminLevelIdAndYear(al.Id, startDate, endDate);
+                        list.Add(al);
+
+                    }
+                    reader.Close();
+                }
+            }
+            // Build tree
+            var dic = list.ToDictionary(n => n.Id, n => n);
+            var tree = new List<AdminLevel>();
+            foreach (var node in list)
+            {
+                if (node.ParentId.HasValue)
+                {
+                    AdminLevel parent = dic[node.ParentId.Value];
+                    node.Parent = parent;
+                    parent.Children.Add(node);
+                }
+                else
+                {
+                    tree.Add(node);
+                }
+            }
+            // only return required list and flatten children
+            List<AdminLevel> reportingLevels = list.Where(i => i.LevelNumber == level).ToList();
+            foreach (var u in reportingLevels)
+                u.Children = u.Children.Flatten(c => c.Children).ToList();
+            return reportingLevels;
+        }
+
+        
+
         public void AddChildren(AdminLevel parent, List<AdminLevel> children, AdminLevelType childType, int byUserId)
         {
             bool transWasStarted = false;
