@@ -5447,6 +5447,18 @@ Fixed / Mobile</value>
   <data name="CustomYear" xml:space="preserve">
     <value>Custom year</value>
   </data>
+  <data name="PcIntvOfTotalFemalesOncho" xml:space="preserve">
+    <value>Of total, # females treated for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalFemalesTargetedOncho" xml:space="preserve">
+    <value>Of total, # females targeted  for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalMalesOncho" xml:space="preserve">
+    <value>Of total, # males treated for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalMalesTargetedOncho" xml:space="preserve">
+    <value>Of total, # males targeted for oncho</value>
+  </data>
   <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
     <value>RTI Country Disease Workbook</value>
   </data>

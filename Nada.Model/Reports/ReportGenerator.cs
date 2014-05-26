@@ -22,6 +22,7 @@ namespace Nada.Model.Reports
     [Serializable]
     public class BaseReportGenerator : IReportGenerator
     {
+        [NonSerialized]
         protected ICalcIndicators calc = null;
         [NonSerialized]
         protected ReportRepository repo = null;
@@ -122,7 +123,9 @@ namespace Nada.Model.Reports
                 if (options.IsByLevelAggregation && options.SelectedAdminLevels.Count > 0)
                     selectedLevels = list.Where(a => options.SelectedAdminLevels.Select(s => s.Id).Contains(a.Id)).ToList();  // aggregate to level
 
-                List<int> years = GetSelectedYears(options);
+                List<int> years = new List<int> { 0 };
+                if(!options.IsGroupByRange)
+                    years = GetSelectedYears(options);
 
                 // AGGREGATE INDICATORS, PUT IN TABLE
                 foreach (var level in selectedLevels) // Each admin level
@@ -131,7 +134,7 @@ namespace Nada.Model.Reports
                     {
                         foreach (KeyValuePair<string, AggregateIndicator> columnDef in options.Columns) // each column
                         {
-                            if (columnDef.Value.Year != year)
+                            if (!options.IsGroupByRange && columnDef.Value.Year != year)
                                 continue;
 
                             string levelAndYear = level.Id + "_" + year;
@@ -158,8 +161,8 @@ namespace Nada.Model.Reports
                 var fields = selectedCalcFields.Select(i => i.TypeId + i.Key).ToList();
                 foreach (ReportRow row in resultDic.Values)
                 {
-                    DateTime startDate = new DateTime(row.Year, options.MonthYearStarts, 1);
-                    DateTime yearEndDate = new DateTime(row.Year, options.MonthYearStarts, 1).AddYears(1).AddDays(-1);
+                    DateTime startDate = options.IsGroupByRange ? options.StartDate : new DateTime(row.Year, options.MonthYearStarts, 1);
+                    DateTime yearEndDate = options.IsGroupByRange ? options.EndDate : new DateTime(row.Year, options.MonthYearStarts, 1).AddYears(1).AddDays(-1);
                     var adminLevelDemo = calc.GetAdminLevelDemo(row.AdminLevelId, startDate, yearEndDate);
                     if (adminLevelDemo.Id <= 0)
                         errors += string.Format(Translations.ReportsNoDemographyInDateRange, row.AdminLevelName, startDate.ToShortDateString(), yearEndDate.ToShortDateString()) + Environment.NewLine;
@@ -219,9 +222,12 @@ namespace Nada.Model.Reports
                 dr["ID"] = level.Id;
                 dr[Translations.Location] = level.Name;
                 dr[Translations.Type] = typeName;
-                DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
                 dr["YearNumber"] = year;
-                dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
+                if (year > 0)
+                {
+                    DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
+                    dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
+                }
 
                 if (options.ShowRedistrictEvents)
                 {
@@ -279,8 +285,8 @@ namespace Nada.Model.Reports
 
         protected virtual string GetIndKey(OleDbDataReader reader, bool isNotAgg, ReportOptions options)
         {
-            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" +
-                Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")) + "_" + reader.GetValueOrDefault<string>("TName");
+            int year = options.IsGroupByRange ? 0 : Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported"));
+            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + year + "_" + reader.GetValueOrDefault<string>("TName");
             if (isNotAgg)
                 return reader.GetValueOrDefault<int>("ID").ToString() + "_" + key;
             return key;
@@ -565,7 +571,8 @@ namespace Nada.Model.Reports
 
         protected override string GetIndKey(OleDbDataReader reader, bool isNotAgg, ReportOptions options)
         {
-            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")) + "_" +
+            int year = options.IsGroupByRange ? 0 : Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported"));
+            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + year + "_" +
                     reader.GetValueOrDefault<string>("TName") + GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), "_");
             if (isNotAgg)
                 return reader.GetValueOrDefault<int>("ID").ToString() + "_" + key;
@@ -876,7 +883,9 @@ namespace Nada.Model.Reports
 
         protected override string GetIndKey(OleDbDataReader reader, bool isNotAgg, ReportOptions options)
         {
-            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")) + "_" +
+            int year = options.IsGroupByRange ? 0 : Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported"));
+
+            string key = reader.GetValueOrDefault<int>("IndicatorId").ToString() + "_" + year + "_" +
                 reader.GetValueOrDefault<string>("TName") + GetValueOrBlank(reader.GetValueOrDefault<string>("SCMDrug"), "_") +
                 GetValueOrBlank(reader.GetValueOrDefault<string>("PCTrainTrainingCategory"), "_");
             if (isNotAgg)

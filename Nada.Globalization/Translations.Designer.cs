@@ -8675,6 +8675,42 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Of total, # females treated for oncho.
+        /// </summary>
+        public static string PcIntvOfTotalFemalesOncho {
+            get {
+                return ResourceManager.GetString("PcIntvOfTotalFemalesOncho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Of total, # females targeted  for oncho.
+        /// </summary>
+        public static string PcIntvOfTotalFemalesTargetedOncho {
+            get {
+                return ResourceManager.GetString("PcIntvOfTotalFemalesTargetedOncho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Of total, # males treated for oncho.
+        /// </summary>
+        public static string PcIntvOfTotalMalesOncho {
+            get {
+                return ResourceManager.GetString("PcIntvOfTotalMalesOncho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Of total, # males targeted for oncho.
+        /// </summary>
+        public static string PcIntvOfTotalMalesTargetedOncho {
+            get {
+                return ResourceManager.GetString("PcIntvOfTotalMalesTargetedOncho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Of total, targeted for oncho.
         /// </summary>
         public static string PcIntvOfTotalTargetedForOncho {

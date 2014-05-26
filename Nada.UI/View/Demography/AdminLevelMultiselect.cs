@@ -87,7 +87,9 @@ namespace Nada.UI.View
                 selectedLevel = levels.FirstOrDefault();
             cbLevels.SelectedItem = selectedLevel;
 
-            List<AdminLevel> s = available.Where(i => selectedLevels.Select(a => a.Id).Contains(i.Id)).ToList();
+            List<AdminLevel> s = new List<AdminLevel>();
+            foreach(var a in selectedLevels)
+                s.Add(AdminLevel.Find(available, a.Id));
 
             foreach (var item in s)
             {
@@ -195,7 +197,7 @@ namespace Nada.UI.View
 
         private AdminLevel GetParent(AdminLevel item, List<AdminLevel> oldList, List<AdminLevel> newList)
         {
-            // if it is parent add it
+            // if it is parent return
             if (item.LevelNumber == 1 || !item.ParentId.HasValue)
                 return item;
 

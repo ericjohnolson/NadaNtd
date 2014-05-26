@@ -81,18 +81,27 @@ namespace Nada.Model
             return result;
         }
 
+        // ALL VALUES SHOULD BE FORMATTED AND TRANSLATED BEFORE THIS METHOD
         public static AggregateIndicator Aggregate(AggregateIndicator ind, AggregateIndicator existingValue, List<IndicatorDropdownValue> dropdownOptions)
         {
             AggregateIndicator result = existingValue == null ? ind : existingValue;
-
-            if (existingValue == null)
+            
+            if (string.IsNullOrEmpty(ind.Value) && (existingValue == null || string.IsNullOrEmpty(existingValue.Value)))
+                result.Value = "";
+            else if (string.IsNullOrEmpty(ind.Value))
+                result.Value = existingValue.Value;
+            else if (existingValue == null || string.IsNullOrEmpty(existingValue.Value))
                 result.Value = ind.Value;
             else if (ind.DataType == (int)IndicatorAggType.None)
                 result.Value = Translations.NA;
-            else if (ind.AggType == (int)IndicatorAggType.Combine && ind.DataType == (int)IndicatorDataType.Dropdown)
-                result.Value = existingValue + ", " + TranslationLookup.GetValue(ind.Value, ind.Value);
-            else if (ind.AggType == (int)IndicatorAggType.Combine)
+            // you shouldn't be able to combine a dropdown.
+            //else if (ind.AggType == (int)IndicatorAggType.Combine && ind.DataType == (int)IndicatorDataType.Dropdown)
+            //    result.Value = existingValue + ", " + TranslationLookup.GetValue(ind.Value, ind.Value);
+            else if (ind.AggType == (int)IndicatorAggType.Combine && (ind.DataType == (int)IndicatorDataType.LargeText || ind.DataType == (int)IndicatorDataType.Text))
                 result.Value = AggregateString(ind, existingValue);
+            else if (ind.AggType == (int)IndicatorAggType.Combine && (ind.DataType == (int)IndicatorDataType.Multiselect || ind.DataType == (int)IndicatorDataType.DiseaseMultiselect ||
+                ind.DataType == (int)IndicatorDataType.Partners))
+                result.Value = AggregateMultiselect(ind, existingValue);
             else if (ind.DataType == (int)IndicatorDataType.Number || ind.DataType == (int)IndicatorDataType.Month || ind.DataType == (int)IndicatorDataType.Year)
                 result.Value = AggregateNumber(ind, existingValue);
             else if (ind.DataType == (int)IndicatorDataType.Date)
@@ -164,11 +173,6 @@ namespace Nada.Model
 
         private static string AggregateString(AggregateIndicator ind1, AggregateIndicator existingValue)
         {
-            if(string.IsNullOrEmpty(ind1.Value))
-                return existingValue.Value;
-            else if(string.IsNullOrEmpty(existingValue.Value))
-                return ind1.Value;
-
             if (ind1.AggType == (int)IndicatorAggType.Combine)
                 return existingValue.Value + ", " + ind1.Value;
             else if (ind1.AggType == (int)IndicatorAggType.None)
@@ -203,13 +207,6 @@ namespace Nada.Model
 
         private static string AggregateDropdown(AggregateIndicator ind1, AggregateIndicator existingValue, List<IndicatorDropdownValue> dropdownOptions)
         {
-            if (string.IsNullOrEmpty(ind1.Value) && string.IsNullOrEmpty(existingValue.Value))
-                return "";
-            if (string.IsNullOrEmpty(ind1.Value))
-                return existingValue.Value;
-            if (string.IsNullOrEmpty(existingValue.Value))
-                return ind1.Value;
-
             var ind1option = dropdownOptions.FirstOrDefault(i => i.IndicatorId == ind1.IndicatorId && (int)i.EntityType == ind1.EntityTypeId
                 && i.TranslationKey == ind1.Value);
             var ind2option = dropdownOptions.FirstOrDefault(i => i.IndicatorId == existingValue.IndicatorId && (int)i.EntityType == existingValue.EntityTypeId
@@ -234,7 +231,15 @@ namespace Nada.Model
                     return existingValue.Value;
             }
 
-            return TranslationLookup.GetValue("NA", "NA"); ;
+            return TranslationLookup.GetValue("NA", "NA");
+        }
+
+        private static string AggregateMultiselect(AggregateIndicator ind1, AggregateIndicator existingValue)
+        {
+            List<string> values1 = ind1.Value.Split('|').ToList();
+            List<string> values2 = existingValue.Value.Split('|').ToList();
+            values1.Union(values2);
+            return string.Join("|", values1.ToArray());
         }
 
     }

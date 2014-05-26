@@ -5483,4 +5483,16 @@ Fixed / Mobile</value>
   <data name="SplittingMergeYear" xml:space="preserve">
     <value>When merging administrative units, data will be combined within the same year. How would you like to define the year?</value>
   </data>
+  <data name="PcIntvOfTotalFemalesOncho" xml:space="preserve">
+    <value>Of total, # females treated for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalFemalesTargetedOncho" xml:space="preserve">
+    <value>Of total, # females targeted  for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalMalesOncho" xml:space="preserve">
+    <value>Of total, # males treated for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalMalesTargetedOncho" xml:space="preserve">
+    <value>Of total, # males targeted for oncho</value>
+  </data>
 </root>

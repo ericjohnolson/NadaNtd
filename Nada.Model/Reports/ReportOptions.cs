@@ -36,6 +36,7 @@ namespace Nada.Model.Reports
         public bool IsAllLocations { get; set; }
         public bool ShowRedistrictEvents { get; set; }
         public bool ShowOnlyRedistrictedUnits { get; set; }
+        public bool IsGroupByRange { get; set; }
 
         // UI show/hide
         public bool HideAggregation { get; set; }

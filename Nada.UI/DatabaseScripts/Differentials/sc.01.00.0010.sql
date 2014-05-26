@@ -341,6 +341,26 @@ insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRe
 insert into exportindicators (DisplayName,SortOrder,ExportTypeId,DataTypeId,IsRequired,UpdatedById,UpdatedAt) VALUES ('RtiTotalDistrictsComplete', 8, 5, 2,-1,26,NOW());
 
 
+
+insert into interventionindicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (2, 'PcIntvOfTotalFemalesTargetedOncho', 1, 13100, 26, NOW(), 0, 0, 0, 0, 0, 0);
+insert into interventionindicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (2, 'PcIntvOfTotalMalesTargetedOncho', 1, 13200, 26, NOW(), 0, 0, 0, 0, 0, 0);
+insert into interventionindicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (2, 'PcIntvOfTotalFemalesOncho', 1, 20100, 26, NOW(), 0, 0, 0, 0, 0, 0);
+insert into interventionindicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (2, 'PcIntvOfTotalMalesOncho', 1, 20200, 26, NOW(), 0, 0, 0, 0, 0, 0);
+
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 10, ID FROM interventionindicators where displayname = 'PcIntvOfTotalFemalesTargetedOncho'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 10, ID FROM interventionindicators where displayname = 'PcIntvOfTotalMalesTargetedOncho'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 10, ID FROM interventionindicators where displayname = 'PcIntvOfTotalFemalesOncho'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 10, ID FROM interventionindicators where displayname = 'PcIntvOfTotalMalesOncho'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 20, ID FROM interventionindicators where displayname = 'PcIntvOfTotalFemalesTargetedOncho'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 20, ID FROM interventionindicators where displayname = 'PcIntvOfTotalMalesTargetedOncho'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 20, ID FROM interventionindicators where displayname = 'PcIntvOfTotalFemalesOncho'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 20, ID FROM interventionindicators where displayname = 'PcIntvOfTotalMalesOncho'; 
+
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]

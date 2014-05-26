@@ -12,6 +12,7 @@ namespace Nada.Model
     [Serializable]
     public class AdminLevel : NadaClass, ICloneable
     {
+
         public AdminLevel()
         {
             Children = new List<AdminLevel>();
@@ -20,15 +21,12 @@ namespace Nada.Model
         }
         public string Name { get; set; }
         public Nullable<int> ParentId { get; set; }
-        public AdminLevel Parent { get; set; }
         public int AdminLevelTypeId { get; set; }
         public Nullable<double> LatWho { get; set; }
         public Nullable<double> LngWho { get; set; }
         public string BindingLat { get; set; }
         public string BindingLng { get; set; }
         public string UrbanOrRural { get; set; }
-        public AdminLevelDemography CurrentDemography { get; set; }
-        public List<AdminLevel> Children { get; set; }
         public int RedistrictIdForMother { get; set; }
         public int TaskForceId { get; set; }
         private string _taskForceName = "";
@@ -44,6 +42,27 @@ namespace Nada.Model
                     _taskForceName = value;
             }
         }
+
+        [NonSerialized]
+        private AdminLevel _parent;
+        public AdminLevel Parent { get { return _parent; } set { _parent = value; } }
+        [NonSerialized]
+        private AdminLevelDemography _currentDemo;
+        public AdminLevelDemography CurrentDemography { get { return _currentDemo; } set { _currentDemo = value; } }
+        [NonSerialized]
+        private List<AdminLevel> _childs = new List<AdminLevel>();
+        public List<AdminLevel> Children
+        {
+            get { return _childs; }
+            set
+            {
+                if (value != null)
+                    _childs = value;
+                else
+                    _childs = new List<AdminLevel>();
+            }
+        }
+
         // Display Only
         public string LevelName { get; set; }
         public int LevelNumber { get; set; }
@@ -110,8 +129,8 @@ namespace Nada.Model
 
         public IEnumerable<AdminLevel> GetNodeAndDescendants() // Note that this method is lazy
         {
-             return new[] { this }
-                    .Concat(Children.SelectMany(child => child.GetNodeAndDescendants()));    
+            return new[] { this }
+                   .Concat(Children.SelectMany(child => child.GetNodeAndDescendants()));
         }
 
         public static AdminLevel Find(List<AdminLevel> roots, int id)

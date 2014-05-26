@@ -1337,6 +1337,10 @@ UPDATE IndicatorDropdownValues SET WeightedValue=0 WHERE ID=412;
 
 
 
+
+update interventionindicators set aggtypeid = 4 where displayname = 'PcIntvDiseases';
+
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]
