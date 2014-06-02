@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label21 = new System.Windows.Forms.Label();
             this.hrTop = new Nada.UI.Controls.HR();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -38,10 +37,6 @@
             this.adminLevelTypesControl1 = new Nada.UI.Controls.AdminLevelTypesControl();
             this.countryView1 = new Nada.UI.View.Demography.CountryView();
             this.pnlLf = new System.Windows.Forms.Panel();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.treeAvailable = new BrightIdeasSoftware.TreeListView();
-            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.diseasePickerControl1 = new Nada.UI.View.DiseasePickerControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -63,8 +58,6 @@
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treeAvailable)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lvUsers)).BeginInit();
@@ -101,7 +94,6 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
@@ -189,60 +181,6 @@
             this.pnlLf.Name = "pnlLf";
             this.pnlLf.Size = new System.Drawing.Size(0, 0);
             this.pnlLf.TabIndex = 0;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.treeAvailable);
-            this.tabPage5.Location = new System.Drawing.Point(4, 24);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(918, 529);
-            this.tabPage5.TabIndex = 5;
-            this.tabPage5.Text = "AdminUnits";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // treeAvailable
-            // 
-            this.treeAvailable.AllColumns.Add(this.olvColumn2);
-            this.treeAvailable.AllColumns.Add(this.olvColumn3);
-            this.treeAvailable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColumn2,
-            this.olvColumn3});
-            this.treeAvailable.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treeAvailable.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeAvailable.FullRowSelect = true;
-            this.treeAvailable.Location = new System.Drawing.Point(15, 34);
-            this.treeAvailable.Name = "treeAvailable";
-            this.treeAvailable.OwnerDraw = true;
-            this.treeAvailable.ShowGroups = false;
-            this.treeAvailable.Size = new System.Drawing.Size(890, 489);
-            this.treeAvailable.TabIndex = 50;
-            this.treeAvailable.UseCompatibleStateImageBehavior = false;
-            this.treeAvailable.UseHyperlinks = true;
-            this.treeAvailable.View = System.Windows.Forms.View.Details;
-            this.treeAvailable.VirtualMode = true;
-            this.treeAvailable.HyperlinkClicked += new System.EventHandler<BrightIdeasSoftware.HyperlinkClickedEventArgs>(this.treeAdminUnits_HyperlinkClicked);
-            // 
-            // olvColumn2
-            // 
-            this.olvColumn2.AspectName = "Name";
-            this.olvColumn2.CellPadding = null;
-            this.olvColumn2.FillsFreeSpace = true;
-            this.olvColumn2.IsEditable = false;
-            this.olvColumn2.Tag = "Name";
-            this.olvColumn2.Text = "Name";
-            this.olvColumn2.Width = 441;
-            // 
-            // olvColumn3
-            // 
-            this.olvColumn3.AspectName = "ViewText";
-            this.olvColumn3.CellPadding = null;
-            this.olvColumn3.Hyperlink = true;
-            this.olvColumn3.FillsFreeSpace = true;
-            this.olvColumn3.IsEditable = false;
-            this.olvColumn3.Tag = "Delete";
-            this.olvColumn3.Text = "Delete";
-            this.olvColumn3.Width = 117;
             // 
             // tabPage3
             // 
@@ -508,8 +446,6 @@
             this.tabPage2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treeAvailable)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -550,10 +486,6 @@
         private Controls.H3bLabel h3bLabel3;
         private C1.Win.C1Input.C1Button btnSaveLog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.TabPage tabPage5;
-        private BrightIdeasSoftware.TreeListView treeAvailable;
-        private BrightIdeasSoftware.OLVColumn olvColumn2;
-        private BrightIdeasSoftware.OLVColumn olvColumn3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private C1.Win.C1Input.C1Button c1Button1;
         private C1.Win.C1Input.C1Button c1Button3;

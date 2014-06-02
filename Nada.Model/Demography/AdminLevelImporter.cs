@@ -18,10 +18,12 @@ namespace Nada.Model
     {
         AdminLevelType locationType = null;
         DemoRepository demo = new DemoRepository();
+        int? countryDemoId = null;
 
-        public AdminLevelDemoUpdater(AdminLevelType l)
+        public AdminLevelDemoUpdater(AdminLevelType l, int? cid)
             : base()
         {
+            countryDemoId = cid;
             locationType = l;
         }
 
@@ -155,7 +157,7 @@ namespace Nada.Model
 
                     var demographyErrors = !demography.IsValid() ? demography.GetAllErrors(true) : "";
                     if (!string.IsNullOrEmpty(demographyErrors))
-                        errorMessage += string.Format(TranslationLookup.GetValue("ImportErrors"), row[locationType.DisplayName], "", demographyErrors) + Environment.NewLine;
+                        errorMessage += string.Format(TranslationLookup.GetValue("ImportErrors"), row[locationType.DisplayName]) + demographyErrors + Environment.NewLine;
 
                     demos.Add(demography);
                 }
@@ -166,8 +168,8 @@ namespace Nada.Model
                 demo.Save(demos, userId);
 
                 if (doAggregate)
-                    demo.AggregateUp(locationType, dateReported, userId, null);
-
+                    demo.AggregateUp(locationType, dateReported, userId, null, countryDemoId);
+                
                 int rec = demos.Count;
                 return new ImportResult
                 {
@@ -193,10 +195,12 @@ namespace Nada.Model
         AdminLevelType dropdownBy = null;
         AdminLevel filterBy = null;
         List<string> dropdownValues = null;
+        int? countryDemoId = null;
 
-        public AdminLevelDemoImporter(AdminLevelType l)
+        public AdminLevelDemoImporter(AdminLevelType l, int? cid)
             : base()
         {
+            countryDemoId = cid;
             locationType = l;
         }
 
@@ -437,7 +441,7 @@ namespace Nada.Model
                 demo.BulkImportAdminLevelsForLevel(levels, locationType.Id, userId);
 
                 if (doAggregate)
-                    demo.AggregateUp(locationType, dateReported, userId, null); 
+                    demo.AggregateUp(locationType, dateReported, userId, null, countryDemoId); 
 
                 int rec = levels.Count;
                 return new ImportResult

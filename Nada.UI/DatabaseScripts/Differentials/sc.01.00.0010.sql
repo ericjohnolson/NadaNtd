@@ -361,6 +361,148 @@ insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SE
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 20, ID FROM interventionindicators where displayname = 'PcIntvOfTotalMalesOncho'; 
 
 
+insert into interventionindicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 2, ID FROM interventionindicators where displayname = 'Notes';
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 4, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 5, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 6, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 7, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 8, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 9, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 10, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 11, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 12, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 13, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 14, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 15, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 16, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 17, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 18, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 19, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 20, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 21, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 22, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 23, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 24, ID FROM interventionindicators where displayname = 'Notes'; 
+insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 25, ID FROM interventionindicators where displayname = 'Notes'; 
+
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (4, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (5, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (6, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (7, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (8, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (9, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (10, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (11, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (12, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (13, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (14, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (15, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (16, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (17, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (18, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (19, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (20, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (21, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+
+
+insert into ProcessIndicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues) 
+values (1, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0);
+insert into ProcessIndicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues) 
+values (2, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0);
+insert into ProcessIndicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues) 
+values (3, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0);
+insert into ProcessIndicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues) 
+values (4, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0);
+insert into ProcessIndicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues) 
+values (5, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0);
+insert into ProcessIndicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues) 
+values (6, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0);
+insert into ProcessIndicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues) 
+values (7, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0);
+insert into ProcessIndicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues) 
+values (8, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0);
+insert into ProcessIndicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues) 
+values (9, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0);
+
+
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (3, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (4, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (5, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (6, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (7, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (8, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (9, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (10, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (11, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (12, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (13, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (14, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (15, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (16, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (17, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (18, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (19, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues) 
+values (20, 15, 'Notes', 4, 100000, 26, NOW(), 0, 0, 0, -1, 0, 0);
+
+delete from indicatordropdownvalues where  EntityType = 4 AND IndicatorId = DLookup("ID", "ProcessIndicators", "DisplayName ='SAEWhichparasitichave'") AND DropdownValue = 'SaeUnknown';
+delete from indicatordropdownvalues where  EntityType = 4 AND IndicatorId = DLookup("ID", "ProcessIndicators", "DisplayName ='SAEWhichparasitichave'") AND DropdownValue = 'SaeYes';
+delete from indicatordropdownvalues where  EntityType = 4 AND IndicatorId = DLookup("ID", "ProcessIndicators", "DisplayName ='SAEWhichparasitichave'") AND DropdownValue = 'SaeNo';
+
+insert into processindicators (ProcessTypeId, DisplayName,SortOrder,DataTypeId,CanAddValues,AggTypeId,IsRequired,IsDisabled,IsEditable,IsDisplayed,UpdatedById,UpdatedAt)
+values (7,'PcTrainNewOrRefresh',80,5,0,4,0,0,0,0,26,NOW());
+insert into indicatordropdownvalues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
+Select ID, 4,1,'PcTrainNew','PcTrainNew',10,26,Now(),26,Now() from processindicators where displayname = 'PcTrainNewOrRefresh' and processtypeid = 7;
+insert into indicatordropdownvalues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
+Select ID, 4,2,'PcTrainRefresher','PcTrainRefresher',20,26,Now(),26,Now() from processindicators where displayname = 'PcTrainNewOrRefresh' and processtypeid = 7;
+insert into indicatordropdownvalues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) 
+Select ID, 4,3,'PcTrainUnknown','PcTrainUnknown',30,26,Now(),26,Now() from processindicators where displayname = 'PcTrainNewOrRefresh' and processtypeid = 7;
+
+
+
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE ExportCmJrfQuestions ADD COLUMN CmBudgetProportion INTEGER;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]

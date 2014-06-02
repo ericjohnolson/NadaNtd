@@ -695,6 +695,15 @@ namespace Nada.Model.Repositories
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                         command.ExecuteNonQuery();
+
+                        // Add notes
+                        command = new OleDbCommand(@"INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, AggTypeId, 
+                        DisplayName, IsRequired, IsDisabled, IsEditable, IsDisplayed, SortOrder,  UpdatedById, UpdatedAt) VALUES
+                        (@SurveyTypeId, 15, 4, 'Notes', 0, 0, 0, -1, 100000, @UpdatedById, @UpdatedAt)", connection);
+                        command.Parameters.Add(new OleDbParameter("@SurveyTypeId", model.Id));
+                        command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.ExecuteNonQuery();
                     }
 
                     foreach (var indicator in model.Indicators.Values.Where(i => i.Id > 0 && i.IsEdited))
@@ -911,6 +920,7 @@ namespace Nada.Model.Repositories
         public void SaveSurveyBase(OleDbCommand command, OleDbConnection connection, SurveyBase survey, int userId)
         {
             survey.MapIndicatorsToProperties();
+            survey.MapPropertiesToIndicators();
          
             if (survey.Id > 0)
                 command = new OleDbCommand(@"UPDATE Surveys SET SurveyTypeId=@SurveyTypeId, DateReported=@DateReported, StartDate=@StartDate,

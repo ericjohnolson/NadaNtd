@@ -131,11 +131,11 @@ namespace Nada.UI.View.Demography
 
             if (type.IsAggregatingLevel)
             {
-                demo.AggregateUp(type, model.DateDemographyData, userId, null);
+                demo.AggregateUp(type, model.DateDemographyData, userId, null, null);
                 if(originalDate != DateTime.MinValue &&
                     Util.GetYearReported(country.ReportingYearStartDate.Month, originalDate) != 
                     Util.GetYearReported(country.ReportingYearStartDate.Month, model.DateDemographyData))
-                    demo.AggregateUp(type, originalDate, userId, null);
+                    demo.AggregateUp(type, originalDate, userId, null, null);
 
             }
 

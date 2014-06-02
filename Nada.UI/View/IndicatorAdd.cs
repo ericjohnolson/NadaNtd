@@ -65,7 +65,7 @@ namespace Nada.UI.View
         {
             model.DataTypeId = Convert.ToInt32(comboBox1.SelectedValue);
             model.IsEdited = true;
-            model.IsDisplayed = true;
+            model.IsEditable = true;
             if (!model.IsValid())
             {
                 errorProvider1.DataSource = bsIndicator;

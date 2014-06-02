@@ -116,7 +116,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.Size = new System.Drawing.Size(650, 136);
-            this.tableLayoutPanel3.TabIndex = 8;
+            this.tableLayoutPanel3.TabIndex = 1;
             // 
             // textBox1
             // 
@@ -126,7 +126,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox1.Size = new System.Drawing.Size(644, 112);
-            this.textBox1.TabIndex = 1;
+            this.textBox1.TabIndex = 0;
             // 
             // h3Label3
             // 
@@ -201,7 +201,7 @@
             this.tblEdit.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblEdit.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tblEdit.Size = new System.Drawing.Size(216, 73);
-            this.tblEdit.TabIndex = 64;
+            this.tblEdit.TabIndex = 2;
             // 
             // c1Button1
             // 
@@ -213,7 +213,7 @@
             this.c1Button1.Name = "c1Button1";
             this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.c1Button1.Size = new System.Drawing.Size(90, 27);
-            this.c1Button1.TabIndex = 62;
+            this.c1Button1.TabIndex = 0;
             this.c1Button1.Tag = "Cancel";
             this.c1Button1.Text = "Cancel";
             this.c1Button1.UseVisualStyleBackColor = true;
@@ -231,7 +231,7 @@
             this.btnBottomSave.Name = "btnBottomSave";
             this.btnBottomSave.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnBottomSave.Size = new System.Drawing.Size(90, 27);
-            this.btnBottomSave.TabIndex = 2;
+            this.btnBottomSave.TabIndex = 1;
             this.btnBottomSave.Tag = "Save";
             this.btnBottomSave.Text = "Save";
             this.btnBottomSave.UseVisualStyleBackColor = true;
@@ -289,7 +289,7 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.Size = new System.Drawing.Size(569, 293);
-            this.tableLayoutPanel14.TabIndex = 1;
+            this.tableLayoutPanel14.TabIndex = 0;
             // 
             // lblYear
             // 
@@ -338,7 +338,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(299, 18);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(253, 21);
-            this.dateTimePicker1.TabIndex = 67;
+            this.dateTimePicker1.TabIndex = 1;
             // 
             // h3bLabel3
             // 
@@ -362,7 +362,7 @@
             this.textBox4.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(256, 21);
-            this.textBox4.TabIndex = 62;
+            this.textBox4.TabIndex = 2;
             // 
             // h3Required1
             // 
@@ -387,7 +387,7 @@
             this.textBox6.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(256, 21);
-            this.textBox6.TabIndex = 62;
+            this.textBox6.TabIndex = 3;
             // 
             // h3bLabel4
             // 
@@ -411,7 +411,7 @@
             this.textBox5.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(256, 21);
-            this.textBox5.TabIndex = 62;
+            this.textBox5.TabIndex = 4;
             // 
             // h3bLabel5
             // 
@@ -435,7 +435,7 @@
             this.textBox12.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(256, 21);
-            this.textBox12.TabIndex = 62;
+            this.textBox12.TabIndex = 5;
             // 
             // h3Required2
             // 
@@ -460,7 +460,7 @@
             this.textBox7.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(256, 21);
-            this.textBox7.TabIndex = 62;
+            this.textBox7.TabIndex = 6;
             // 
             // h3bLabel6
             // 
@@ -484,7 +484,7 @@
             this.textBox11.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(256, 21);
-            this.textBox11.TabIndex = 62;
+            this.textBox11.TabIndex = 7;
             // 
             // h3bLabel7
             // 
@@ -508,7 +508,7 @@
             this.textBox8.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(256, 21);
-            this.textBox8.TabIndex = 62;
+            this.textBox8.TabIndex = 8;
             // 
             // h3bLabel8
             // 
@@ -532,7 +532,7 @@
             this.textBox10.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(256, 21);
-            this.textBox10.TabIndex = 62;
+            this.textBox10.TabIndex = 9;
             // 
             // h3bLabel9
             // 
@@ -556,7 +556,7 @@
             this.textBox9.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(256, 21);
-            this.textBox9.TabIndex = 62;
+            this.textBox9.TabIndex = 10;
             // 
             // h3bLabel2
             // 
@@ -580,7 +580,7 @@
             this.textBox3.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(256, 21);
-            this.textBox3.TabIndex = 63;
+            this.textBox3.TabIndex = 11;
             // 
             // hr5
             // 
@@ -730,7 +730,7 @@
             this.lblAdminLevel.Margin = new System.Windows.Forms.Padding(0);
             this.lblAdminLevel.Name = "lblAdminLevel";
             this.lblAdminLevel.Size = new System.Drawing.Size(124, 30);
-            this.lblAdminLevel.TabIndex = 44;
+            this.lblAdminLevel.TabIndex = 0;
             this.lblAdminLevel.Tag = "AdminLevel";
             this.lblAdminLevel.Text = "AdminLevel";
             // 
@@ -744,7 +744,7 @@
             this.lblType.Margin = new System.Windows.Forms.Padding(0);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(129, 30);
-            this.lblType.TabIndex = 0;
+            this.lblType.TabIndex = 1;
             this.lblType.Tag = "Demography";
             this.lblType.Text = "Demography";
             // 
@@ -769,7 +769,7 @@
             this.tblIndicators.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblIndicators.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblIndicators.Size = new System.Drawing.Size(176, 32);
-            this.tblIndicators.TabIndex = 62;
+            this.tblIndicators.TabIndex = 2;
             // 
             // h3bLabel10
             // 
@@ -871,7 +871,7 @@
             this.tblEditTop.RowCount = 1;
             this.tblEditTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblEditTop.Size = new System.Drawing.Size(268, 52);
-            this.tblEditTop.TabIndex = 63;
+            this.tblEditTop.TabIndex = 3;
             // 
             // c1Button3
             // 
@@ -883,7 +883,7 @@
             this.c1Button3.Name = "c1Button3";
             this.c1Button3.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.c1Button3.Size = new System.Drawing.Size(90, 27);
-            this.c1Button3.TabIndex = 62;
+            this.c1Button3.TabIndex = 0;
             this.c1Button3.Tag = "Cancel";
             this.c1Button3.Text = "Cancel";
             this.c1Button3.UseVisualStyleBackColor = true;
@@ -901,7 +901,7 @@
             this.btnTopSave.Name = "btnTopSave";
             this.btnTopSave.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnTopSave.Size = new System.Drawing.Size(90, 27);
-            this.btnTopSave.TabIndex = 2;
+            this.btnTopSave.TabIndex = 1;
             this.btnTopSave.Tag = "Save";
             this.btnTopSave.Text = "Save";
             this.btnTopSave.UseVisualStyleBackColor = true;

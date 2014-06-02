@@ -155,13 +155,15 @@ namespace Nada.UI
             if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
             {
-                menuNewAdminLevelToolStripMenuItem.Visible = false;
+                menuNewAdminLevelToolStripMenuItem1.Visible = false;
+                menuDeleteAdminLevelToolStripMenuItem.Visible = false;
                 menuSettingsToolStripMenuItem.Visible = false;
                 menuImportToolStripMenuItem.Visible = false;
             }
             else
             {
-                menuNewAdminLevelToolStripMenuItem.Visible = true;
+                menuNewAdminLevelToolStripMenuItem1.Visible = true;
+                menuDeleteAdminLevelToolStripMenuItem.Visible = true;
                 menuSettingsToolStripMenuItem.Visible = true;
                 menuImportToolStripMenuItem.Visible = true;
             }
@@ -286,6 +288,13 @@ namespace Nada.UI
             adminLevelAdd.ShowDialog();
         }
 
+        private void menuDeleteAdminLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var auDelete = new AdminUnitDelete();
+            auDelete.OnSave += adminLevelAdd_OnSave;
+            auDelete.ShowDialog();
+        }
+
         private void adminLevelAdd_OnSave(AdminLevel a)
         {
             LoadDashboard(new DashboardView());
@@ -379,6 +388,7 @@ namespace Nada.UI
             };
             form.Show();
         }
+
 
 
     }

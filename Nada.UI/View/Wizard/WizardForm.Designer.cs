@@ -240,6 +240,7 @@
             this.ClientSize = new System.Drawing.Size(832, 620);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "WizardForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "CustomReport";
             this.Text = "CustomReport";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WizardForm_FormClosed);

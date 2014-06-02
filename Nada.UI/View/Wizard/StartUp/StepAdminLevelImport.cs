@@ -22,6 +22,7 @@ namespace Nada.UI.View.Wizard
     {
         string stepTitle = "";
         bool isDemoOnly = false;
+        int? countryDemoId = null;
         AdminLevelDemoImporter importer = null;
         AdminLevelDemoUpdater updater = null;
         DemoRepository repo = new DemoRepository();
@@ -46,21 +47,22 @@ namespace Nada.UI.View.Wizard
             InitializeComponent();
         }
 
-        public StepAdminLevelImport(AdminLevelType type, IWizardStep p)
+        public StepAdminLevelImport(AdminLevelType type, IWizardStep p, int? cid)
             : base()
         {
-            Init(type, p, false);
+            Init(type, p, false, cid);
         }
 
-        public StepAdminLevelImport(AdminLevelType type, IWizardStep p, bool demoOnly, DateTime d)
+        public StepAdminLevelImport(AdminLevelType type, IWizardStep p, bool demoOnly, DateTime d, int? cid)
             : base()
         {
             demoDate = d;
-            Init(type, p, demoOnly);
+            Init(type, p, demoOnly, cid);
         }
 
-        private void Init(AdminLevelType type, IWizardStep step, bool demoOnly)
+        private void Init(AdminLevelType type, IWizardStep step, bool demoOnly, int? cid)
         {
+            countryDemoId = cid;
             isDemoOnly = demoOnly;
             locationType = type;
             prev = step;
@@ -69,8 +71,8 @@ namespace Nada.UI.View.Wizard
             if (!isDemoOnly)
                 demoDate = demo.GetCountryDemoRecent().DateDemographyData;
             nextType = settings.GetNextLevel(locationType.LevelNumber);
-            importer = new AdminLevelDemoImporter(locationType);
-            updater = new AdminLevelDemoUpdater(locationType);
+            importer = new AdminLevelDemoImporter(locationType, countryDemoId);
+            updater = new AdminLevelDemoUpdater(locationType, countryDemoId);
             stepTitle = isDemoOnly ? Translations.UpdateDemography + " - " + locationType.DisplayName : Translations.ImportAdminLevels + locationType.DisplayName;
             InitializeComponent();
         }
@@ -120,7 +122,7 @@ namespace Nada.UI.View.Wizard
 
         public void DoNext()
         {
-            OnSwitchStep(new StepAdminLevelImport(nextType, this, isDemoOnly, demoDate));
+            OnSwitchStep(new StepAdminLevelImport(nextType, this, isDemoOnly, demoDate, countryDemoId));
         }
 
         public void DoFinish()

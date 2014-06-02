@@ -343,25 +343,28 @@ namespace Nada.Model.Repositories
                     {
                         while (reader.Read())
                         {
-                            process.Indicators.Add(reader.GetValueOrDefault<string>("DisplayName"),
-                                new Indicator
+                            if(!process.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
                             {
-                                Id = reader.GetValueOrDefault<int>("ID"),
-                                DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
-                                RedistrictRuleId = reader.GetValueOrDefault<int>("RedistrictRuleId"),
-                                MergeRuleId = reader.GetValueOrDefault<int>("MergeRuleId"),
-                                AggRuleId = reader.GetValueOrDefault<int>("AggTypeId"),
-                                UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
-                                    reader.GetValueOrDefault<string>("UserName"),
-                                DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                                IsRequired = reader.GetValueOrDefault<bool>("IsRequired"),
-                                IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
-                                IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
-                                IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
-                                CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
-                                DataType = reader.GetValueOrDefault<string>("DataType")
-                            });
-                            indicatorIds.Add(reader.GetValueOrDefault<int>("ID").ToString());
+                                process.Indicators.Add(reader.GetValueOrDefault<string>("DisplayName"),
+                                    new Indicator
+                                {
+                                    Id = reader.GetValueOrDefault<int>("ID"),
+                                    DataTypeId = reader.GetValueOrDefault<int>("DataTypeId"),
+                                    RedistrictRuleId = reader.GetValueOrDefault<int>("RedistrictRuleId"),
+                                    MergeRuleId = reader.GetValueOrDefault<int>("MergeRuleId"),
+                                    AggRuleId = reader.GetValueOrDefault<int>("AggTypeId"),
+                                    UpdatedBy = reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString() + " by " +
+                                        reader.GetValueOrDefault<string>("UserName"),
+                                    DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+                                    IsRequired = reader.GetValueOrDefault<bool>("IsRequired"),
+                                    IsDisabled = reader.GetValueOrDefault<bool>("IsDisabled"),
+                                    IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
+                                    IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
+                                    CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
+                                    DataType = reader.GetValueOrDefault<string>("DataType")
+                                });
+                                indicatorIds.Add(reader.GetValueOrDefault<int>("ID").ToString());
+                            }
                         }
                         reader.Close();
                     }
@@ -425,6 +428,16 @@ namespace Nada.Model.Repositories
                         command = new OleDbCommand(@"INSERT INTO ProcessIndicators (ProcessTypeId, DataTypeId, AggTypeId,
                             DisplayName, IsRequired, IsDisabled, IsEditable, IsDisplayed, SortOrder, UpdatedById, UpdatedAt) VALUES
                             (@ProcessTypeId, 4, 5, 'DateReported', -1, 0, 0, 0, -1, @UpdatedById, 
+                             @UpdatedAt)", connection);
+                        command.Parameters.Add(new OleDbParameter("@ProcessTypeId", model.Id));
+                        command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.ExecuteNonQuery();
+
+                        // Add notes
+                        command = new OleDbCommand(@"INSERT INTO ProcessIndicators (ProcessTypeId, DataTypeId, AggTypeId,
+                            DisplayName, IsRequired, IsDisabled, IsEditable, IsDisplayed, SortOrder, UpdatedById, UpdatedAt) VALUES
+                            (@ProcessTypeId, 15, 4, 'Notes', 0, 0, 0, -1, 100000, @UpdatedById, 
                              @UpdatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@ProcessTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
@@ -497,6 +510,7 @@ namespace Nada.Model.Repositories
         {
             // Mapping year reported
             process.MapIndicatorsToProperties();
+            process.MapPropertiesToIndicators();
 
             if (process.Id > 0)
                 command = new OleDbCommand(@"UPDATE processes SET ProcessTypeId=@ProcessTypeId, AdminLevelId=@AdminLevelId, DateReported=@DateReported,

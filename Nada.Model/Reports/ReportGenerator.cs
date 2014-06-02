@@ -84,13 +84,8 @@ namespace Nada.Model.Reports
             {
                 connection.Open();
                 OleDbCommand command = new OleDbCommand();
-                list = ExportRepository.GetAdminLevels(command, connection);
-
-                if (options.IsAllLocations && options.ShowOnlyRedistrictedUnits)
-                    list = list.Where(a => a.RedistrictIdForMother > 0).ToList();
-                else if(!options.ShowOnlyRedistrictedUnits)
-                    list = list.Where(a => a.RedistrictIdForMother == 0).ToList();
-
+                list = ExportRepository.GetAdminLevels(command, connection, options.IsAllLocations && options.ShowOnlyRedistrictedUnits);
+                
                 dic = list.ToDictionary(n => n.Id, n => n);
                 repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndKey, GetColName, GetColTypeName, AddStaticAggInd, false, IsDemoOrDistro, EntityTypeId, dropdownOptions);
                 if (hasCalculations)
@@ -229,15 +224,8 @@ namespace Nada.Model.Reports
                     dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
                 }
 
-                if (options.ShowRedistrictEvents)
-                {
-                    if (!result.Columns.Contains(Translations.RedistrictingNotes))
-                        result.Columns.Add(new DataColumn(Translations.RedistrictingNotes));
-                    if (level.RedistrictIdForDaughter > 0)
-                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingDaughterNote(level.RedistrictIdForDaughter);
-                    else if (level.RedistrictIdForMother > 0)
-                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingMotherNote(level.RedistrictIdForMother);
-                }
+                AddRedistrictingColumn(result, level, options, dr);
+                AddTypeSpecificColumns(result, level, options, dr, indValue);
 
                 // insert
                 result.Rows.Add(dr);
@@ -267,6 +255,8 @@ namespace Nada.Model.Reports
             }
         }
 
+        
+
         private Dictionary<string, Dictionary<string, string>> CreateCalcRelatedValueDic(IEnumerable<AggregateIndicator> list)
         {
             Dictionary<string, Dictionary<string, string>> dic = new Dictionary<string, Dictionary<string, string>>();
@@ -283,6 +273,21 @@ namespace Nada.Model.Reports
 
         protected virtual void Init() { }
 
+        protected virtual void AddTypeSpecificColumns(DataTable result, AdminLevelIndicators level, ReportOptions options, DataRow dr, AggregateIndicator indValue) { }
+
+        private void AddRedistrictingColumn(DataTable result, AdminLevelIndicators level, ReportOptions options, DataRow dr)
+        {
+            if (options.ShowRedistrictEvents)
+            {
+                if (!result.Columns.Contains(Translations.RedistrictingNotes))
+                    result.Columns.Add(new DataColumn(Translations.RedistrictingNotes));
+                if (level.RedistrictIdForDaughter > 0)
+                    dr[Translations.RedistrictingNotes] = demo.GetRedistrictingDaughterNote(level.RedistrictIdForDaughter);
+                else if (level.RedistrictIdForMother > 0)
+                    dr[Translations.RedistrictingNotes] = demo.GetRedistrictingMotherNote(level.RedistrictIdForMother);
+            }
+        }
+
         protected virtual string GetIndKey(OleDbDataReader reader, bool isNotAgg, ReportOptions options)
         {
             int year = options.IsGroupByRange ? 0 : Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported"));
@@ -295,8 +300,8 @@ namespace Nada.Model.Reports
         protected virtual string GetColName(OleDbDataReader reader)
         {
             string name = reader.GetValueOrDefault<string>("IndicatorName");
-            object isDisplayed = reader["IsDisplayed"];
-            if (!Convert.ToBoolean(isDisplayed))
+            object IsEditable = reader["IsEditable"];
+            if (!Convert.ToBoolean(IsEditable))
                 name = TranslationLookup.GetValue(name);
             if (name == Translations.NoTranslationFound || name.Length == 0)
                 return null;
@@ -376,7 +381,7 @@ namespace Nada.Model.Reports
                         InterventionTypes.ID as Tid,      
                         InterventionIndicators.ID as IndicatorId, 
                         InterventionIndicators.DisplayName as IndicatorName, 
-                        InterventionIndicators.IsDisplayed, 
+                        InterventionIndicators.IsEditable, 
                         InterventionIndicators.DataTypeId, 
                         InterventionIndicators.AggTypeId, 
                         InterventionIndicatorValues.DynamicValue
@@ -402,7 +407,7 @@ namespace Nada.Model.Reports
                         InterventionTypes.ID,      
                         InterventionIndicators.ID, 
                         InterventionIndicators.DisplayName, 
-                        InterventionIndicators.IsDisplayed, 
+                        InterventionIndicators.IsEditable, 
                         InterventionIndicators.DataTypeId, 
                         InterventionIndicators.AggTypeId, 
                         InterventionIndicatorValues.DynamicValue";
@@ -418,7 +423,7 @@ namespace Nada.Model.Reports
                         Diseases.ID as Tid,   
                         DiseaseDistributionIndicators.ID as IndicatorId, 
                         DiseaseDistributionIndicators.DisplayName as IndicatorName, 
-                        DiseaseDistributionIndicators.IsDisplayed, 
+                        DiseaseDistributionIndicators.IsEditable, 
                         DiseaseDistributionIndicators.DataTypeId, 
                         DiseaseDistributionIndicators.AggTypeId, 
                         DiseaseDistributionIndicatorValues.DynamicValue
@@ -441,7 +446,7 @@ namespace Nada.Model.Reports
                         Diseases.ID,   
                         DiseaseDistributionIndicators.ID, 
                         DiseaseDistributionIndicators.DisplayName, 
-                        DiseaseDistributionIndicators.IsDisplayed, 
+                        DiseaseDistributionIndicators.IsEditable, 
                         DiseaseDistributionIndicators.DataTypeId, 
                         DiseaseDistributionIndicators.AggTypeId, 
                         DiseaseDistributionIndicatorValues.DynamicValue";
@@ -457,7 +462,7 @@ namespace Nada.Model.Reports
                         SurveyTypes.ID as Tid,      
                         SurveyIndicators.ID as IndicatorId, 
                         SurveyIndicators.DisplayName as IndicatorName, 
-                        SurveyIndicators.IsDisplayed, 
+                        SurveyIndicators.IsEditable, 
                         SurveyIndicators.DataTypeId, 
                         SurveyIndicators.AggTypeId,    
                         SurveyIndicatorValues.DynamicValue
@@ -481,7 +486,7 @@ namespace Nada.Model.Reports
                         SurveyTypes.ID,      
                         SurveyIndicators.ID, 
                         SurveyIndicators.DisplayName, 
-                        SurveyIndicators.IsDisplayed, 
+                        SurveyIndicators.IsEditable, 
                         SurveyIndicators.DataTypeId, 
                         SurveyIndicators.AggTypeId,    
                         SurveyIndicatorValues.DynamicValue";
@@ -553,7 +558,7 @@ namespace Nada.Model.Reports
                         InterventionTypes.ID as Tid,      
                         InterventionIndicators.ID as IndicatorId, 
                         InterventionIndicators.DisplayName as IndicatorName, 
-                        InterventionIndicators.IsDisplayed, 
+                        InterventionIndicators.IsEditable, 
                         InterventionIndicators.DataTypeId, 
                         InterventionIndicators.AggTypeId, 
                         InterventionIndicatorValues.DynamicValue
@@ -582,7 +587,7 @@ namespace Nada.Model.Reports
         protected override string GetColName(OleDbDataReader reader)
         {
             string name = reader.GetValueOrDefault<string>("IndicatorName");
-            if (!reader.GetValueOrDefault<bool>("IsDisplayed"))
+            if (!reader.GetValueOrDefault<bool>("IsEditable"))
                 name = TranslationLookup.GetValue(name);
 
             return name + " - " +
@@ -600,6 +605,7 @@ namespace Nada.Model.Reports
     [Serializable]
     public class SurveyReportGenerator : BaseReportGenerator
     {
+        SurveyRepository surveyRepo = new SurveyRepository();
         protected override int EntityTypeId { get { return (int)IndicatorEntityType.Survey; } }
         protected override void Init()
         {
@@ -658,7 +664,7 @@ namespace Nada.Model.Reports
                         SurveyTypes.ID as Tid,      
                         SurveyIndicators.ID as IndicatorId, 
                         SurveyIndicators.DisplayName as IndicatorName, 
-                        SurveyIndicators.IsDisplayed, 
+                        SurveyIndicators.IsEditable, 
                         SurveyIndicators.DataTypeId, 
                         SurveyIndicators.AggTypeId,    
                         SurveyIndicatorValues.DynamicValue,
@@ -690,7 +696,7 @@ namespace Nada.Model.Reports
                         SurveyTypes.ID as Tid,       
                         0 as IndicatorId, 
                         '' as IndicatorName, 
-                        0 as IsDisplayed, 
+                        0 as IsEditable, 
                         1 as DataTypeId, 
                         1 as AggTypeId,    
                         '' as DynamicValue,
@@ -757,6 +763,17 @@ namespace Nada.Model.Reports
                     param.Options.Columns.Add(key, ind);
             }
         }
+
+        protected override void AddTypeSpecificColumns(DataTable result, AdminLevelIndicators level, ReportOptions options, DataRow dr, AggregateIndicator indValue)
+        {
+            var s = surveyRepo.GetById(indValue.FormId);
+            if (s.AdminLevels.Count > 1)
+            {
+                if (!result.Columns.Contains(Translations.AdminUnitsSurveyed))
+                    result.Columns.Add(new DataColumn(Translations.AdminUnitsSurveyed));
+                dr[Translations.AdminUnitsSurveyed] = string.Join(", ", s.AdminLevels.Select(a => a.Name).ToArray());
+            }
+        }
     }
 
     [Serializable]
@@ -786,7 +803,7 @@ namespace Nada.Model.Reports
                         Diseases.ID as Tid,       
                         DiseaseDistributionIndicators.ID as IndicatorId, 
                         DiseaseDistributionIndicators.DisplayName as IndicatorName, 
-                        DiseaseDistributionIndicators.IsDisplayed, 
+                        DiseaseDistributionIndicators.IsEditable, 
                         DiseaseDistributionIndicators.DataTypeId, 
                         DiseaseDistributionIndicators.AggTypeId, 
                         DiseaseDistributionIndicatorValues.DynamicValue
@@ -814,7 +831,7 @@ namespace Nada.Model.Reports
             {
                 connection.Open();
                 OleDbCommand command = new OleDbCommand();
-                list = ExportRepository.GetAdminLevels(command, connection);
+                list = ExportRepository.GetAdminLevels(command, connection, false);
                 dic = list.ToDictionary(n => n.Id, n => n);
                 repo.AddIndicatorsToAggregate(CmdText(), options, dic, command, connection, GetIndKey, GetColName, GetColTypeName, AddStaticAggInd, false, true, EntityTypeId, dropdownOptions);
             }
@@ -866,7 +883,7 @@ namespace Nada.Model.Reports
                         ProcessTypes.ID as Tid,        
                         ProcessIndicators.ID as IndicatorId, 
                         ProcessIndicators.DisplayName as IndicatorName, 
-                        ProcessIndicators.IsDisplayed, 
+                        ProcessIndicators.IsEditable, 
                         ProcessIndicators.DataTypeId, 
                         ProcessIndicators.AggTypeId, 
                         ProcessIndicatorValues.DynamicValue
@@ -896,7 +913,7 @@ namespace Nada.Model.Reports
         protected override string GetColName(OleDbDataReader reader)
         {
             string name = reader.GetValueOrDefault<string>("IndicatorName");
-            if (!reader.GetValueOrDefault<bool>("IsDisplayed"))
+            if (!reader.GetValueOrDefault<bool>("IsEditable"))
                 name = TranslationLookup.GetValue(name);
             string drug = reader.GetValueOrDefault<string>("SCMDrug");
             if (!string.IsNullOrEmpty(drug))

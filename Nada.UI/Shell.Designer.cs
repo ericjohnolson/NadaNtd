@@ -53,12 +53,15 @@
             this.menuExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEditSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuNewAdminLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuNewYearDemoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuNewYearDistroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administrativeUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuNewAdminLevelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDeleteAdminLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSplitDistrictToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMergeDistrictToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSplitCombineDistrictToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newYearUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuNewYearDemoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuNewYearDistroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDemographyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDiseaseDistributionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -238,6 +241,8 @@
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.menuSettingsToolStripMenuItem,
+            this.administrativeUnitsToolStripMenuItem,
+            this.newYearUpdatesToolStripMenuItem,
             this.menuImportToolStripMenuItem,
             this.menuReportsToolStripMenuItem,
             this.menuHelpToolStripMenuItem});
@@ -296,13 +301,7 @@
             // menuSettingsToolStripMenuItem
             // 
             this.menuSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuEditSettingsToolStripMenuItem,
-            this.menuNewAdminLevelToolStripMenuItem,
-            this.menuNewYearDemoToolStripMenuItem,
-            this.menuNewYearDistroToolStripMenuItem,
-            this.menuSplitDistrictToolStripMenuItem,
-            this.menuMergeDistrictToolStripMenuItem,
-            this.menuSplitCombineDistrictToolStripMenuItem});
+            this.menuEditSettingsToolStripMenuItem});
             this.menuSettingsToolStripMenuItem.Name = "menuSettingsToolStripMenuItem";
             this.menuSettingsToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
             this.menuSettingsToolStripMenuItem.Tag = "MenuSettings2";
@@ -311,35 +310,39 @@
             // menuEditSettingsToolStripMenuItem
             // 
             this.menuEditSettingsToolStripMenuItem.Name = "menuEditSettingsToolStripMenuItem";
-            this.menuEditSettingsToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.menuEditSettingsToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.menuEditSettingsToolStripMenuItem.Tag = "MenuEditSettings";
             this.menuEditSettingsToolStripMenuItem.Text = "MenuEditSettings";
             this.menuEditSettingsToolStripMenuItem.Click += new System.EventHandler(this.menuEditSettingsToolStripMenuItem_Click);
             // 
-            // menuNewAdminLevelToolStripMenuItem
+            // administrativeUnitsToolStripMenuItem
             // 
-            this.menuNewAdminLevelToolStripMenuItem.Name = "menuNewAdminLevelToolStripMenuItem";
-            this.menuNewAdminLevelToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.menuNewAdminLevelToolStripMenuItem.Tag = "MenuNewAdminLevel";
-            this.menuNewAdminLevelToolStripMenuItem.Text = "MenuNewAdminLevel";
-            this.menuNewAdminLevelToolStripMenuItem.Click += new System.EventHandler(this.menuNewAdminLevelToolStripMenuItem_Click);
+            this.administrativeUnitsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuNewAdminLevelToolStripMenuItem1,
+            this.menuDeleteAdminLevelToolStripMenuItem,
+            this.menuSplitDistrictToolStripMenuItem,
+            this.menuMergeDistrictToolStripMenuItem,
+            this.menuSplitCombineDistrictToolStripMenuItem});
+            this.administrativeUnitsToolStripMenuItem.Name = "administrativeUnitsToolStripMenuItem";
+            this.administrativeUnitsToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+            this.administrativeUnitsToolStripMenuItem.Tag = "AdministrativeUnits";
+            this.administrativeUnitsToolStripMenuItem.Text = "AdministrativeUnits";
             // 
-            // menuNewYearDemoToolStripMenuItem
+            // menuNewAdminLevelToolStripMenuItem1
             // 
-            this.menuNewYearDemoToolStripMenuItem.Name = "menuNewYearDemoToolStripMenuItem";
-            this.menuNewYearDemoToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.menuNewYearDemoToolStripMenuItem.Tag = "MenuNewYearDemo";
-            this.menuNewYearDemoToolStripMenuItem.Text = "MenuNewYearDemo";
-            this.menuNewYearDemoToolStripMenuItem.Click += new System.EventHandler(this.menuNewYearDemoToolStripMenuItem_Click);
+            this.menuNewAdminLevelToolStripMenuItem1.Name = "menuNewAdminLevelToolStripMenuItem1";
+            this.menuNewAdminLevelToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.menuNewAdminLevelToolStripMenuItem1.Tag = "MenuNewAdminLevel";
+            this.menuNewAdminLevelToolStripMenuItem1.Text = "MenuNewAdminLevel";
+            this.menuNewAdminLevelToolStripMenuItem1.Click += new System.EventHandler(this.menuNewAdminLevelToolStripMenuItem_Click);
             // 
-            // menuNewYearDistroToolStripMenuItem
+            // menuDeleteAdminLevelToolStripMenuItem
             // 
-            this.menuNewYearDistroToolStripMenuItem.Name = "menuNewYearDistroToolStripMenuItem";
-            this.menuNewYearDistroToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.menuNewYearDistroToolStripMenuItem.Tag = "MenuNewYearDistro";
-            this.menuNewYearDistroToolStripMenuItem.Text = "MenuNewYearDistro";
-            this.menuNewYearDistroToolStripMenuItem.Visible = false;
-            this.menuNewYearDistroToolStripMenuItem.Click += new System.EventHandler(this.menuNewYearDistroToolStripMenuItem_Click);
+            this.menuDeleteAdminLevelToolStripMenuItem.Name = "menuDeleteAdminLevelToolStripMenuItem";
+            this.menuDeleteAdminLevelToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.menuDeleteAdminLevelToolStripMenuItem.Tag = "MenuDeleteAdminLevel";
+            this.menuDeleteAdminLevelToolStripMenuItem.Text = "MenuDeleteAdminLevel";
+            this.menuDeleteAdminLevelToolStripMenuItem.Click += new System.EventHandler(this.menuDeleteAdminLevelToolStripMenuItem_Click);
             // 
             // menuSplitDistrictToolStripMenuItem
             // 
@@ -363,8 +366,34 @@
             this.menuSplitCombineDistrictToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.menuSplitCombineDistrictToolStripMenuItem.Tag = "MenuSplitCombineDistrict";
             this.menuSplitCombineDistrictToolStripMenuItem.Text = "MenuSplitCombineDistrict";
-            this.menuSplitCombineDistrictToolStripMenuItem.Visible = false;
             this.menuSplitCombineDistrictToolStripMenuItem.Click += new System.EventHandler(this.menuSplitCombineDistrictToolStripMenuItem_Click);
+            // 
+            // newYearUpdatesToolStripMenuItem
+            // 
+            this.newYearUpdatesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuNewYearDemoToolStripMenuItem,
+            this.menuNewYearDistroToolStripMenuItem});
+            this.newYearUpdatesToolStripMenuItem.Name = "newYearUpdatesToolStripMenuItem";
+            this.newYearUpdatesToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
+            this.newYearUpdatesToolStripMenuItem.Tag = "NewYearUpdates";
+            this.newYearUpdatesToolStripMenuItem.Text = "NewYearUpdates";
+            // 
+            // menuNewYearDemoToolStripMenuItem
+            // 
+            this.menuNewYearDemoToolStripMenuItem.Name = "menuNewYearDemoToolStripMenuItem";
+            this.menuNewYearDemoToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.menuNewYearDemoToolStripMenuItem.Tag = "MenuNewYearDemo";
+            this.menuNewYearDemoToolStripMenuItem.Text = "MenuNewYearDemo";
+            this.menuNewYearDemoToolStripMenuItem.Click += new System.EventHandler(this.menuNewYearDemoToolStripMenuItem_Click);
+            // 
+            // menuNewYearDistroToolStripMenuItem
+            // 
+            this.menuNewYearDistroToolStripMenuItem.Name = "menuNewYearDistroToolStripMenuItem";
+            this.menuNewYearDistroToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.menuNewYearDistroToolStripMenuItem.Tag = "MenuNewYearDistro";
+            this.menuNewYearDistroToolStripMenuItem.Text = "MenuNewYearDistro";
+            this.menuNewYearDistroToolStripMenuItem.Visible = false;
+            this.menuNewYearDistroToolStripMenuItem.Click += new System.EventHandler(this.menuNewYearDistroToolStripMenuItem_Click);
             // 
             // menuImportToolStripMenuItem
             // 
@@ -593,7 +622,6 @@
         private Controls.HR hrTop;
         private Controls.HR hr1;
         private System.Windows.Forms.ToolStripMenuItem menuSettingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuNewAdminLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuEditSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuNewYearDemoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuNewYearDistroToolStripMenuItem;
@@ -602,6 +630,10 @@
         private System.Windows.Forms.ToolStripMenuItem menuMergeDistrictToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuViewTutorialToolStripMenuItem;
         private Controls.HR hr2;
+        private System.Windows.Forms.ToolStripMenuItem administrativeUnitsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuNewAdminLevelToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem newYearUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuDeleteAdminLevelToolStripMenuItem;
     }
 }
 

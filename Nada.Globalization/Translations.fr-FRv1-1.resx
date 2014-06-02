@@ -1979,20 +1979,8 @@
   <data name="MenuIntv" xml:space="preserve">
     <value>Interventions...</value>
   </data>
-  <data name="MenuMergeDistrict" xml:space="preserve">
-    <value>Fusionner les unités administratives...</value>
-  </data>
   <data name="MenuNew" xml:space="preserve">
     <value>Nouveau...</value>
-  </data>
-  <data name="MenuNewAdminLevel" xml:space="preserve">
-    <value>Ajouter une nouvelle unité administrative...</value>
-  </data>
-  <data name="MenuNewYearDemo" xml:space="preserve">
-    <value>Ajouter des données démographiques pour une nouvelle année...</value>
-  </data>
-  <data name="MenuNewYearDistro" xml:space="preserve">
-    <value>Ajouter la distribution de la maladie pour une nouvelle année...</value>
   </data>
   <data name="MenuOpen" xml:space="preserve">
     <value>Ouvrir...</value>
@@ -2008,12 +1996,6 @@
   </data>
   <data name="MenuSettings2" xml:space="preserve">
     <value>Paramètres</value>
-  </data>
-  <data name="MenuSplitCombineDistrict" xml:space="preserve">
-    <value>Fractionner et combiner les unités administratives...</value>
-  </data>
-  <data name="MenuSplitDistrict" xml:space="preserve">
-    <value>Fractionner une unité administrative...</value>
   </data>
   <data name="MenuSurveys" xml:space="preserve">
     <value>Enquêtes...</value>
@@ -4063,9 +4045,6 @@
   </data>
   <data name="SplitCombineTitle" xml:space="preserve">
     <value>Fractionner et combiner les unités administratives</value>
-  </data>
-  <data name="SplitConfirmReview" xml:space="preserve">
-    <value>Toutes les autres données ont été réparties entre les nouvelles unités administratives. Veuillez cliquez sur « Suivant » pour examiner et modifier les données ou bien sur « Fini » si vous avez terminé.</value>
   </data>
   <data name="SplitConfirmReviewTitle" xml:space="preserve">
     <value>Redistribution terminée</value>

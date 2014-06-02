@@ -10,6 +10,7 @@ namespace Nada.UI.ViewModel
 {
     public class DemoUpdateViewModel : NadaClass
     {
+        public int CountryDemoId { get; set; }
         public Nullable<double> GrowthRate { get; set; }
         public DateTime DateReported { get; set; }
 

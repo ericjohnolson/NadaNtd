@@ -66,40 +66,7 @@ namespace Nada.UI.View.Wizard
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
-            OnSwitchStep(new WorkingStep(Translations.ApplyingGrowthRate));
-
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            worker.RunWorkerAsync();
-        }
-
-        void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(e.Result.ToString()))
-                OnSwitchStep(new StepDemoUpdateOptions(vm.DateReported));
-            else
-                MessageBox.Show(e.Result.ToString(), Translations.UnexpectedException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            try
-            {
-                SettingsRepository settings = new SettingsRepository();
-                var als = settings.GetAllAdminLevels();
-                var aggLevel = als.FirstOrDefault(a => a.IsAggregatingLevel);
-                int userId = ApplicationData.Instance.GetUserId();
-                repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, vm.DateReported);
-                repo.AggregateUp(aggLevel, vm.DateReported, userId, vm.GrowthRate.Value);
-                e.Result = "";
-            }
-            catch (Exception ex)
-            {
-                Logger log = new Logger();
-                log.Error("Error updating demography for new year. StepDemoUpdateGrowthRate:worker_DoWork. ", ex);
-                e.Result = Translations.UnexpectedException + " " + ex.Message;
-            }
+            OnSwitchStep(new StepDemoCountryDemo(this, vm));
         }
 
         public void DoFinish()

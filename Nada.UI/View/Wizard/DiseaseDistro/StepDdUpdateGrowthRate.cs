@@ -85,12 +85,13 @@ namespace Nada.UI.View.Wizard
         {
             try
             {
-                SettingsRepository settings = new SettingsRepository();
-                var als = settings.GetAllAdminLevels();
-                var aggLevel = als.FirstOrDefault(a => a.IsAggregatingLevel);
-                int userId = ApplicationData.Instance.GetUserId();
-                repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, vm.DateReported);
-                repo.AggregateUp(aggLevel, vm.DateReported, userId, vm.GrowthRate.Value);
+                // Disease distro not demo
+                //SettingsRepository settings = new SettingsRepository();
+                //var als = settings.GetAllAdminLevels();
+                //var aggLevel = als.FirstOrDefault(a => a.IsAggregatingLevel);
+                //int userId = ApplicationData.Instance.GetUserId();
+                //repo.ApplyGrowthRate(vm.GrowthRate.Value, userId, aggLevel, vm.DateReported);
+                //repo.AggregateUp(aggLevel, vm.DateReported, userId, vm.GrowthRate.Value);
                 e.Result = "";
             }
             catch (Exception ex)

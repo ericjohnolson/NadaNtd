@@ -30,6 +30,14 @@ namespace Nada.Model.Exports
             get { return "xls"; }
         }
 
+        public override string GetYear(ExportType exportType)
+        {
+            var ind = exportType.IndicatorValues.FirstOrDefault(i => i.Indicator.DisplayName == "Year");
+            if (ind != null)
+                return ind.DynamicValue;
+            return "";
+        }
+
         public ExportResult DoExport(string fileName, int userId, ExportType exportType)
         {
             try
@@ -169,6 +177,10 @@ namespace Nada.Model.Exports
                         xlsWorksheet.Cells[rowNumber, 5] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
                     else if (val.Indicator.DisplayName == "LFMapSurLongitude" && !string.IsNullOrEmpty(val.DynamicValue))
                         xlsWorksheet.Cells[rowNumber, 6] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
+                    else if (val.Indicator.DisplayName == "LFSurDateOfTheFirstRoundOfPc")
+                        xlsWorksheet.Cells[rowNumber, 7] = val.DynamicValue;
+                    else if (val.Indicator.DisplayName == "LFSurNumberOfRoundsOfPcCompletedPriorToS")
+                        xlsWorksheet.Cells[rowNumber, 8] = val.DynamicValue;
                     else if (val.Indicator.DisplayName == "LFMapSurTestType" || val.Indicator.DisplayName == "LFSurTestType")
                         xlsWorksheet.Cells[rowNumber, 9] = TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue);
                     else if (val.Indicator.DisplayName == "LFMapSurNumberOfIndividualsExamined" || val.Indicator.DisplayName == "LFSurNumberOfIndividualsExamined")
@@ -180,22 +192,23 @@ namespace Nada.Model.Exports
                         xlsWorksheet.Cells[rowNumber, 13] = val.DynamicValue;
                     // count
                     else if (val.Indicator.DisplayName == "LFSurCount" || val.Indicator.DisplayName == "LFMapSurCount")
-                        xlsWorksheet.Cells[rowNumber, 13] = val.DynamicValue;
+                        xlsWorksheet.Cells[rowNumber, 14] = val.DynamicValue;
                     // community load
                     else if (val.Indicator.DisplayName == "LFMapSurCommunityMfLoad" || val.Indicator.DisplayName == "LFSurCommunityMfLoad")
-                        xlsWorksheet.Cells[rowNumber, 13] = val.DynamicValue;
+                        xlsWorksheet.Cells[rowNumber, 15] = val.DynamicValue;
                     // ly peeps examined
                     else if (val.Indicator.DisplayName == "LFSurExaminedLympho" || val.Indicator.DisplayName == "LFMapSurExaminedLympho")
-                        xlsWorksheet.Cells[rowNumber, 13] = val.DynamicValue;
+                        xlsWorksheet.Cells[rowNumber, 16] = val.DynamicValue;
                     // ly peeps pos
                     else if (val.Indicator.DisplayName == "LFMapSurNumberOfCasesOfLymphoedema" || val.Indicator.DisplayName == "LFSurPosLympho")
-                        xlsWorksheet.Cells[rowNumber, 13] = val.DynamicValue;
+                        xlsWorksheet.Cells[rowNumber, 17] = val.DynamicValue;
                     // hy peeps examined
                     else if (val.Indicator.DisplayName == "LFSurExaminedHydro" || val.Indicator.DisplayName == "LFMapSurExaminedHydro1")
-                        xlsWorksheet.Cells[rowNumber, 13] = val.DynamicValue;
+                        xlsWorksheet.Cells[rowNumber, 19] = val.DynamicValue;
                     // hy peeps pos
                     else if (val.Indicator.DisplayName == "LFMapSurNumberOfCasesOfHydrocele" || val.Indicator.DisplayName == "LFSurPosHydro")
-                        xlsWorksheet.Cells[rowNumber, 13] = val.DynamicValue;
+                        xlsWorksheet.Cells[rowNumber, 20] = val.DynamicValue;
+
 
                 }
                 rowNumber++;

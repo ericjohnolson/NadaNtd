@@ -241,6 +241,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administrative units.
+        /// </summary>
+        public static string AdministrativeUnits {
+            get {
+                return ResourceManager.GetString("AdministrativeUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Administrative unit.
         /// </summary>
         public static string AdminLevel {
@@ -309,6 +318,15 @@ namespace Nada.Globalization {
         public static string AdminUnits {
             get {
                 return ResourceManager.GetString("AdminUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrative units surveyed.
+        /// </summary>
+        public static string AdminUnitsSurveyed {
+            get {
+                return ResourceManager.GetString("AdminUnitsSurveyed", resourceCulture);
             }
         }
         
@@ -1002,6 +1020,24 @@ namespace Nada.Globalization {
         public static string CmAnySupplyFunds {
             get {
                 return ResourceManager.GetString("CmAnySupplyFunds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Budget.
+        /// </summary>
+        public static string CmBudget {
+            get {
+                return ResourceManager.GetString("CmBudget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proportion of funds allocated to NTDs in the National Health Sector Budget (%).
+        /// </summary>
+        public static string CmBudgetProportion {
+            get {
+                return ResourceManager.GetString("CmBudgetProportion", resourceCulture);
             }
         }
         
@@ -5768,6 +5804,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete administrative units.
+        /// </summary>
+        public static string MenuDeleteAdminLevel {
+            get {
+                return ResourceManager.GetString("MenuDeleteAdminLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Demography....
         /// </summary>
         public static string MenuDemography {
@@ -5840,7 +5885,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merge administrative units....
+        ///   Looks up a localized string similar to Merge administrative units.
         /// </summary>
         public static string MenuMergeDistrict {
             get {
@@ -5858,7 +5903,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new administrative unit....
+        ///   Looks up a localized string similar to Add administrative units.
         /// </summary>
         public static string MenuNewAdminLevel {
             get {
@@ -5867,7 +5912,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add demography for new year....
+        ///   Looks up a localized string similar to Add demography for a new year.
         /// </summary>
         public static string MenuNewYearDemo {
             get {
@@ -5876,7 +5921,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add disease distribution for new year....
+        ///   Looks up a localized string similar to Add disease distribution for a new year.
         /// </summary>
         public static string MenuNewYearDistro {
             get {
@@ -5930,7 +5975,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Split &amp; combine administrative units....
+        ///   Looks up a localized string similar to Split/combine administrative units.
         /// </summary>
         public static string MenuSplitCombineDistrict {
             get {
@@ -5939,7 +5984,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Split administrative unit....
+        ///   Looks up a localized string similar to Split administrative units.
         /// </summary>
         public static string MenuSplitDistrict {
             get {
@@ -6232,6 +6277,15 @@ namespace Nada.Globalization {
         public static string NewLink {
             get {
                 return ResourceManager.GetString("NewLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New year updates.
+        /// </summary>
+        public static string NewYearUpdates {
+            get {
+                return ResourceManager.GetString("NewYearUpdates", resourceCulture);
             }
         }
         
@@ -9044,6 +9098,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string PcTrainNew {
+            get {
+                return ResourceManager.GetString("PcTrainNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New or Refresher.
+        /// </summary>
+        public static string PcTrainNewOrRefresh {
+            get {
+                return ResourceManager.GetString("PcTrainNewOrRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to # individuals targeted.
         /// </summary>
         public static string PCTrainNumIndividualsTargeted {
@@ -9080,11 +9152,29 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresher.
+        /// </summary>
+        public static string PcTrainRefresher {
+            get {
+                return ResourceManager.GetString("PcTrainRefresher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Training category.
         /// </summary>
         public static string PCTrainTrainingCategory {
             get {
                 return ResourceManager.GetString("PCTrainTrainingCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string PcTrainUnknown {
+            get {
+                return ResourceManager.GetString("PcTrainUnknown", resourceCulture);
             }
         }
         
@@ -12437,7 +12527,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All other data has been distributed between the new administrative units. Please click &quot;Next&quot; to review and make changes or &quot;Finish&quot; if done..
+        ///   Looks up a localized string similar to All other data has been distributed between the new administrative units. Please click &quot;Next&quot; to review and make changes..
         /// </summary>
         public static string SplitConfirmReview {
             get {
@@ -12545,6 +12635,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must allocate all SAEs to a new destination before continuing..
+        /// </summary>
+        public static string SplittingMustAllocateSaes {
+            get {
+                return ResourceManager.GetString("SplittingMustAllocateSaes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string SplittingOptions {
@@ -12554,11 +12653,29 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Split Percentages.
+        /// </summary>
+        public static string SplittingPercentages {
+            get {
+                return ResourceManager.GetString("SplittingPercentages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Performing district redistribution....
         /// </summary>
         public static string SplittingRedistributing {
             get {
                 return ResourceManager.GetString("SplittingRedistributing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split SAEs.
+        /// </summary>
+        public static string SplittingSaes {
+            get {
+                return ResourceManager.GetString("SplittingSaes", resourceCulture);
             }
         }
         
@@ -12577,6 +12694,15 @@ namespace Nada.Globalization {
         public static string SplittingSelectSource {
             get {
                 return ResourceManager.GetString("SplittingSelectSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Survey data from the parent districts was duplicated in all the daughter districts and should be reviewed..
+        /// </summary>
+        public static string SplittingSurveyWarning {
+            get {
+                return ResourceManager.GetString("SplittingSurveyWarning", resourceCulture);
             }
         }
         

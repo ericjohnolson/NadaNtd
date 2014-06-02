@@ -182,7 +182,7 @@ namespace Nada.UI.View
             int labelRowIndex = tblStaticIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int controlRowIndex = tblStaticIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int columnCount = 0;
-            foreach (var indicator in indicators.Values.Where(i => !i.IsDisplayed && !i.IsCalculated && !i.IsMetaData).ToList())
+            foreach (var indicator in indicators.Values.Where(i => !i.IsEditable && !i.IsDisplayed && !i.IsCalculated && !i.IsMetaData).ToList())
             {
                 if (indicator.DataTypeId == (int)IndicatorDataType.SentinelSite)
                     continue;
@@ -218,7 +218,7 @@ namespace Nada.UI.View
             int labelRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int controlRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int columnCount = 0;
-            foreach (var indicator in indicators.Values.Where(i => i.IsDisplayed && !i.IsDisabled).ToList())
+            foreach (var indicator in indicators.Values.Where(i => i.IsEditable && !i.IsDisplayed && !i.IsDisabled).ToList())
             {
                 if (count % 2 == 0)
                 {

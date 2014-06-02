@@ -1877,19 +1877,19 @@ Fixed / Mobile</value>
     <value>Interventions...</value>
   </data>
   <data name="MenuMergeDistrict" xml:space="preserve">
-    <value>Merge administrative units...</value>
+    <value>Merge administrative units</value>
   </data>
   <data name="MenuNew" xml:space="preserve">
     <value>New...</value>
   </data>
   <data name="MenuNewAdminLevel" xml:space="preserve">
-    <value>Add new administrative unit...</value>
+    <value>Add administrative units</value>
   </data>
   <data name="MenuNewYearDemo" xml:space="preserve">
-    <value>Add demography for new year...</value>
+    <value>Add demography for a new year</value>
   </data>
   <data name="MenuNewYearDistro" xml:space="preserve">
-    <value>Add disease distribution for new year...</value>
+    <value>Add disease distribution for a new year</value>
   </data>
   <data name="MenuOpen" xml:space="preserve">
     <value>Open...</value>
@@ -1907,10 +1907,10 @@ Fixed / Mobile</value>
     <value>Settings</value>
   </data>
   <data name="MenuSplitCombineDistrict" xml:space="preserve">
-    <value>Split &amp; combine administrative units...</value>
+    <value>Split/combine administrative units</value>
   </data>
   <data name="MenuSplitDistrict" xml:space="preserve">
-    <value>Split administrative unit...</value>
+    <value>Split administrative units</value>
   </data>
   <data name="MenuSurveys" xml:space="preserve">
     <value>Surveys...</value>
@@ -3783,7 +3783,7 @@ Fixed / Mobile</value>
     <value>Split and combine administrative units</value>
   </data>
   <data name="SplitConfirmReview" xml:space="preserve">
-    <value>All other data has been distributed between the new administrative units. Please click "Next" to review and make changes or "Finish" if done.</value>
+    <value>All other data has been distributed between the new administrative units. Please click "Next" to review and make changes.</value>
   </data>
   <data name="SplitConfirmReviewTitle" xml:space="preserve">
     <value>Completed redistribution</value>
@@ -5494,5 +5494,47 @@ Fixed / Mobile</value>
   </data>
   <data name="PcIntvOfTotalMalesTargetedOncho" xml:space="preserve">
     <value>Of total, # males targeted for oncho</value>
+  </data>
+  <data name="AdministrativeUnits" xml:space="preserve">
+    <value>Administrative units</value>
+  </data>
+  <data name="MenuDeleteAdminLevel" xml:space="preserve">
+    <value>Delete administrative units</value>
+  </data>
+  <data name="NewYearUpdates" xml:space="preserve">
+    <value>New year updates</value>
+  </data>
+  <data name="AdminUnitsSurveyed" xml:space="preserve">
+    <value>Administrative units surveyed</value>
+  </data>
+  <data name="PcTrainNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="PcTrainNewOrRefresh" xml:space="preserve">
+    <value>New or Refresher</value>
+  </data>
+  <data name="PcTrainRefresher" xml:space="preserve">
+    <value>Refresher</value>
+  </data>
+  <data name="PcTrainUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="CmBudget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="CmBudgetProportion" xml:space="preserve">
+    <value>Proportion of funds allocated to NTDs in the National Health Sector Budget (%)</value>
+  </data>
+  <data name="SplittingMustAllocateSaes" xml:space="preserve">
+    <value>Must allocate all SAEs to a new destination before continuing.</value>
+  </data>
+  <data name="SplittingPercentages" xml:space="preserve">
+    <value>Split Percentages</value>
+  </data>
+  <data name="SplittingSaes" xml:space="preserve">
+    <value>Split SAEs</value>
+  </data>
+  <data name="SplittingSurveyWarning" xml:space="preserve">
+    <value>Survey data from the parent districts was duplicated in all the daughter districts and should be reviewed.</value>
   </data>
 </root>

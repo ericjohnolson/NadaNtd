@@ -49,7 +49,6 @@ namespace Nada.UI.View
                 country = demo.GetCountry();
                 countryView1.LoadCountry(country, true);
                 diseasePickerControl1.LoadLists(true);
-                LoadAdminUnits();
             }
         }
 
@@ -121,46 +120,6 @@ namespace Nada.UI.View
                   System.Windows.Forms.Application.StartupPath, "NationalDatabaseLog.log");
                 File.Copy(sourceFilePath, saveFileDialog1.FileName, true);
                 System.Diagnostics.Process.Start("notepad.exe", saveFileDialog1.FileName);
-            }
-        }
-
-        private void LoadAdminUnits()
-        {
-            var levels = settings.GetAllAdminLevels();
-            var units = new List<AdminLevel>();
-            var t = demo.GetAdminLevelTree(levels.OrderByDescending(l => l.LevelNumber).First().Id, 0, true, true, -1, false, Translations.Delete, units);
-
-            foreach (var u in units)
-            {
-                if (u.Children.Count > 0)
-                    u.ViewText = "";
-            }
-
-            treeAvailable.CanExpandGetter = m => ((AdminLevel)m).Children.Count > 0;
-            treeAvailable.ChildrenGetter = delegate(object m)
-            {
-                return ((AdminLevel)m).Children;
-            };
-            treeAvailable.SetObjects(t);
-
-            foreach (var l in t)
-            {
-                treeAvailable.Expand(l);
-                foreach (var l2 in l.Children)
-                    treeAvailable.Expand(l2);
-            }
-        }
-
-        private void treeAdminUnits_HyperlinkClicked(object sender, BrightIdeasSoftware.HyperlinkClickedEventArgs e)
-        {
-            e.Handled = true;
-            int userId = ApplicationData.Instance.GetUserId();
-
-            DeleteConfirm confirm = new DeleteConfirm();
-            if (confirm.ShowDialog() == DialogResult.OK)
-            {
-                demo.Delete((AdminLevel)e.Model, userId);
-                LoadAdminUnits();
             }
         }
 

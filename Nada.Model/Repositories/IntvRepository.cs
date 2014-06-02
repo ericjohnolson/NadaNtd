@@ -383,8 +383,6 @@ namespace Nada.Model.Repositories
             return intv;
         }
 
-     
-
         public void Save(List<IntvBase> import, int userId)
         {
             bool transWasStarted = false;
@@ -401,7 +399,6 @@ namespace Nada.Model.Repositories
 
                     foreach (var intv in import)
                     {
-                        intv.MapIndicatorsToProperties();
                         SaveIntvBase(command, connection, intv, userId);
                     }
 
@@ -428,7 +425,6 @@ namespace Nada.Model.Repositories
 
         public void SaveBase(IntvBase intv, int userId)
         {
-            intv.MapIndicatorsToProperties();
             bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
@@ -524,6 +520,23 @@ namespace Nada.Model.Repositories
                             ) values (@InterventionTypeId, @IndicatorId)", connection);
                         command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@IndicatorId", yearId));
+                        command.ExecuteNonQuery();
+
+                        // Add Notes
+                        command = new OleDbCommand(@"INSERT INTO InterventionIndicators (InterventionTypeId, DataTypeId, AggTypeId, 
+                        DisplayName, IsRequired, IsDisabled, IsEditable, IsDisplayed, SortOrder, UpdatedById, UpdatedAt) VALUES
+                        (@InterventionTypeId, 15, 4, 'Notes', 0, 0, 0, -1, 100000, @UpdatedById, @UpdatedAt)", connection);
+                        command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
+                        command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.ExecuteNonQuery();
+                        command = new OleDbCommand(@"SELECT Max(ID) FROM InterventionIndicators", connection);
+                        int notesId = (int)command.ExecuteScalar();
+
+                        command = new OleDbCommand(@"INSERT INTO InterventionTypes_to_Indicators (InterventionTypeId, IndicatorId
+                            ) values (@InterventionTypeId, @IndicatorId)", connection);
+                        command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
+                        command.Parameters.Add(new OleDbParameter("@IndicatorId", notesId));
                         command.ExecuteNonQuery();
                     }
 
@@ -738,6 +751,8 @@ namespace Nada.Model.Repositories
 
         public void SaveIntvBase(OleDbCommand command, OleDbConnection connection, IntvBase intv, int userId)
         {
+            intv.MapIndicatorsToProperties();
+            intv.MapPropertiesToIndicators();
             if (intv.Id > 0)
                 command = new OleDbCommand(@"UPDATE Interventions SET InterventionTypeId=@InterventionTypeId, AdminLevelId=@AdminLevelId, DateReported=@DateReported,
                            PcIntvRoundNumber=@PcIntvRoundNumber, StartDate=@StartDate, EndDate=@EndDate, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);

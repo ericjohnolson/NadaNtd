@@ -59,7 +59,17 @@ namespace Nada.Model.Base
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
             DateReported = DateTime.ParseExact(inds["DateReported"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         }
-        public virtual void MapPropertiesToIndicators() { }
+        public virtual void MapPropertiesToIndicators()
+        {
+            Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
+            if (inds.ContainsKey("Notes"))
+                inds["Notes"].DynamicValue = Notes;
+            else
+            {
+                var indicator = TypeOfSurvey.Indicators["Notes"];
+                IndicatorValues.Add(new IndicatorValue { DynamicValue = Notes, Indicator = indicator, IndicatorId = indicator.Id });
+            }
+        }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

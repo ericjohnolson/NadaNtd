@@ -20,6 +20,7 @@ namespace Nada.UI.View.Wizard
 {
     public partial class StepDemoUpdateOptions : BaseControl, IWizardStep
     {
+        int countryDemoId;
         private DateTime demoDate { get; set; }
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
@@ -32,9 +33,10 @@ namespace Nada.UI.View.Wizard
         public bool EnableFinish { get { return true; } }
         public string StepTitle { get { return Translations.SelectDemoUpdateOption; } }
 
-        public StepDemoUpdateOptions(DateTime d)
+        public StepDemoUpdateOptions(DateTime d, int cid)
             : base()
         {
+            countryDemoId = cid;
             demoDate = d;
             InitializeComponent();
         }
@@ -57,7 +59,7 @@ namespace Nada.UI.View.Wizard
             SettingsRepository settings = new SettingsRepository();
             var als = settings.GetAllAdminLevels();
             var aggLevel = als.FirstOrDefault(a => a.IsAggregatingLevel);
-            OnSwitchStep(new StepAdminLevelImport(aggLevel, this, true, demoDate));
+            OnSwitchStep(new StepAdminLevelImport(aggLevel, this, true, demoDate, countryDemoId));
         }
 
         public void DoFinish()

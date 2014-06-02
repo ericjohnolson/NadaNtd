@@ -253,6 +253,7 @@ namespace Nada.Model.Repositories
         public void SavePc(DiseaseDistroPc distro, int userId, OleDbConnection connection, OleDbCommand command)
         {
             distro.MapIndicatorsToProperties();
+            distro.MapPropertiesToIndicators();
             if (distro.Id > 0)
                 command = new OleDbCommand(@"UPDATE DiseaseDistributions SET DiseaseId=@DiseaseId, AdminLevelId=@AdminLevelId,
                            DateReported=@DateReported, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
@@ -472,6 +473,7 @@ namespace Nada.Model.Repositories
         public void SaveCm(DiseaseDistroCm distro, int userId, OleDbConnection connection, OleDbCommand command)
         {
             distro.MapIndicatorsToProperties();
+            distro.MapPropertiesToIndicators();
             if (distro.Id > 0)
                 command = new OleDbCommand(@"UPDATE DiseaseDistributions SET DiseaseId=@DiseaseId, AdminLevelId=@AdminLevelId,
                             Notes=@Notes, DateReported=@DateReported, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
@@ -824,6 +826,13 @@ namespace Nada.Model.Repositories
                         // Insert Disease Distro Year Reported
                         command = new OleDbCommand(@"INSERT INTO DiseaseDistributionIndicators (DiseaseId, DisplayName, DataTypeId, AggTypeId, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, IsMetaData, CanAddValues, SortOrder, UpdatedById, UpdatedAt) VALUES
                             (@DiseaseId, 'DateReported', 4, 5, No, No, Yes, No, False, False, False, 1, @UpdatedById, @UpdatedAt)", connection);
+                        command.Parameters.Add(new OleDbParameter("@DiseaseId", disease.Id));
+                        command.Parameters.Add(new OleDbParameter("@UpdatedById", byUserId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.ExecuteNonQuery();
+                        // Insert Disease Distro Notes
+                        command = new OleDbCommand(@"INSERT INTO DiseaseDistributionIndicators (DiseaseId, DisplayName, DataTypeId, AggTypeId, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, IsMetaData, CanAddValues, SortOrder, UpdatedById, UpdatedAt) VALUES
+                            (@DiseaseId, 'Notes', 15, 4, No, No, No, Yes, False, False, False, 100000, @UpdatedById, @UpdatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@DiseaseId", disease.Id));
                         command.Parameters.Add(new OleDbParameter("@UpdatedById", byUserId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));

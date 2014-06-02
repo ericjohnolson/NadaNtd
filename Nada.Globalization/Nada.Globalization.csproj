@@ -93,6 +93,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Translations.en-AU.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Translations.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

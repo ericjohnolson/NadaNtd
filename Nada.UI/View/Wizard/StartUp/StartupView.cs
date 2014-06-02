@@ -82,6 +82,7 @@ namespace Nada.UI.View
                 tblTasks.Controls.Add(ctrl2, 1, rowIndex);
             }
             bool hasFinishedPrevStep = status.HasEnteredDiseaseDetails;
+            var countryDemo = demo.GetCountryDemoRecent();
             int stepCount = 3;
             foreach (var al in status.AdminLevelTypes)
             {
@@ -91,7 +92,7 @@ namespace Nada.UI.View
                 {
                     var ctrl3 = new H3Link { Text = al.HasEntered ? Translations.EditLink : Translations.StartLink, Anchor = AnchorStyles.Bottom | AnchorStyles.Left, Margin = new Padding(3, 3, 3, 5), TextColor = Color.FromArgb(255, 255, 255) };
                     int levelNumber = al.Level - 1;
-                    ctrl3.ClickOverride += () => { LoadWiz(new StepAdminLevelImport(settings.GetNextLevel(levelNumber), null)); };
+                    ctrl3.ClickOverride += () => { LoadWiz(new StepAdminLevelImport(settings.GetNextLevel(levelNumber), null, countryDemo.Id)); };
                     tblTasks.Controls.Add(ctrl3, 1, rowIndex);
                     hasFinishedPrevStep = al.HasEntered;
                 }
@@ -135,7 +136,7 @@ namespace Nada.UI.View
             int year = Convert.ToInt32(ConfigurationManager.AppSettings["SkipStartDemoYear"]);
             int userId = ApplicationData.Instance.GetUserId();
             var c = demo.GetCountry();
-            c.Name = "Skipped Setup Country";
+            c.Name = "Murkonia";
             demo.UpdateCountry(c, userId);
             demo.Save(new CountryDemography { AdminLevelId = 1, GrowthRate = 9.5, DateDemographyData = new DateTime(year, 1, 1), TotalPopulation = 1, PopSac = 1, PercentAdult = 30, PercentPsac = 20, PercentSac = 50 },
                 userId); 
@@ -146,14 +147,16 @@ namespace Nada.UI.View
             //Import stuff
             settings.Save(new AdminLevelType { DisplayName = "Village", LevelNumber = 3 }, userId);
             var adminLevels = settings.GetAllAdminLevels();
-            AdminLevelDemoImporter regImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "Region"));
-            regImporter.ImportData("TestRegions.xlsx", userId, false, false, 2, null, new DateTime(year, 1, 1));
-            AdminLevelDemoImporter disImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "District"));
-            disImporter.ImportData("TestDistricts.xlsx", userId, true, true, 4, null, new DateTime(year, 1, 1));
-            AdminLevelDemoUpdater update = new AdminLevelDemoUpdater(adminLevels.FirstOrDefault(a => a.DisplayName == "District"));
-            update.ImportData("TestDistrictUpdate.xlsx", userId, new DateTime(2011, 1, 1), true);
-            AdminLevelDemoImporter vilImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "Village"));
-            vilImporter.ImportData("TestVillages.xlsx", userId, true, false, 2, demo.GetAdminLevelById(3), new DateTime(year, 1, 1));
+            var region = adminLevels.FirstOrDefault(a => a.DisplayName == "Region");
+            region.DisplayName = "Province";
+            settings.Save(region, userId);
+            var countryDemo = demo.GetCountryDemoRecent();
+            AdminLevelDemoImporter regImporter = new AdminLevelDemoImporter(region, countryDemo.Id);
+            regImporter.ImportData("TestProvinces.xlsx", userId, false, false, 4, null, new DateTime(year, 1, 1));
+            AdminLevelDemoImporter disImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "District"), countryDemo.Id);
+            disImporter.ImportData("TestDistricts.xlsx", userId, true, true, 25, null, new DateTime(year, 1, 1));
+            AdminLevelDemoImporter vilImporter = new AdminLevelDemoImporter(adminLevels.FirstOrDefault(a => a.DisplayName == "Village"), countryDemo.Id);
+            vilImporter.ImportData("TestVillages.xlsx", userId, true, false, 13, demo.GetAdminLevelById(3), new DateTime(year, 1, 1));
             CheckStatus();
         }
 

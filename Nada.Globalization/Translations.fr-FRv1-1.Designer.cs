@@ -5643,47 +5643,11 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fusionner les unités administratives....
-        /// </summary>
-        public static string MenuMergeDistrict {
-            get {
-                return ResourceManager.GetString("MenuMergeDistrict", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Nouveau....
         /// </summary>
         public static string MenuNew {
             get {
                 return ResourceManager.GetString("MenuNew", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ajouter une nouvelle unité administrative....
-        /// </summary>
-        public static string MenuNewAdminLevel {
-            get {
-                return ResourceManager.GetString("MenuNewAdminLevel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ajouter des données démographiques pour une nouvelle année....
-        /// </summary>
-        public static string MenuNewYearDemo {
-            get {
-                return ResourceManager.GetString("MenuNewYearDemo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ajouter la distribution de la maladie pour une nouvelle année....
-        /// </summary>
-        public static string MenuNewYearDistro {
-            get {
-                return ResourceManager.GetString("MenuNewYearDistro", resourceCulture);
             }
         }
         
@@ -5729,24 +5693,6 @@ namespace Nada.Globalization {
         public static string MenuSettings2 {
             get {
                 return ResourceManager.GetString("MenuSettings2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fractionner et combiner les unités administratives....
-        /// </summary>
-        public static string MenuSplitCombineDistrict {
-            get {
-                return ResourceManager.GetString("MenuSplitCombineDistrict", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fractionner une unité administrative....
-        /// </summary>
-        public static string MenuSplitDistrict {
-            get {
-                return ResourceManager.GetString("MenuSplitDistrict", resourceCulture);
             }
         }
         
@@ -11894,15 +11840,6 @@ namespace Nada.Globalization {
         public static string SplitCombineTitle {
             get {
                 return ResourceManager.GetString("SplitCombineTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Toutes les autres données ont été réparties entre les nouvelles unités administratives. Veuillez cliquez sur « Suivant » pour examiner et modifier les données ou bien sur « Fini » si vous avez terminé..
-        /// </summary>
-        public static string SplitConfirmReview {
-            get {
-                return ResourceManager.GetString("SplitConfirmReview", resourceCulture);
             }
         }
         

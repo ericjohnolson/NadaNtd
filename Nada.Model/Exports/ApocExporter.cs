@@ -232,7 +232,7 @@ namespace Nada.Model.Exports
             IntvRepository repo = new IntvRepository();
             IntvType intv = repo.GetIntvType((int)StaticIntvType.IvmPzqAlb);
             IntvReportGenerator gen = new IntvReportGenerator();
-            AddReportToSheet(xlsWorksheet, intv.Indicators, options, gen, (int)StaticIntvType.IvmPzqAlb, intv.IntvTypeName);
+            AddReportToSheet(xlsWorksheet, intv.Indicators, options, gen, (int)StaticIntvType.IvmPzqAlb, intv.IntvTypeName, rng);
         }
 
         //Worksheet 8: IVM+PZQ Intervention
@@ -245,7 +245,7 @@ namespace Nada.Model.Exports
             IntvRepository repo = new IntvRepository();
             IntvType intv = repo.GetIntvType((int)StaticIntvType.IvmPzq);
             IntvReportGenerator gen = new IntvReportGenerator();
-            AddReportToSheet(xlsWorksheet, intv.Indicators, options, gen, (int)StaticIntvType.IvmPzq, intv.IntvTypeName);
+            AddReportToSheet(xlsWorksheet, intv.Indicators, options, gen, (int)StaticIntvType.IvmPzq, intv.IntvTypeName, rng);
         }
 
         //Worksheet 7: IVM+ALB Intervention
@@ -258,7 +258,7 @@ namespace Nada.Model.Exports
             IntvRepository repo = new IntvRepository();
             IntvType intv = repo.GetIntvType((int)StaticIntvType.IvmAlb);
             IntvReportGenerator gen = new IntvReportGenerator();
-            AddReportToSheet(xlsWorksheet, intv.Indicators, options, gen, (int)StaticIntvType.IvmAlb, intv.IntvTypeName);
+            AddReportToSheet(xlsWorksheet, intv.Indicators, options, gen, (int)StaticIntvType.IvmAlb, intv.IntvTypeName, rng);
         }
 
         //Worksheet 6: IVM Intervention
@@ -271,7 +271,7 @@ namespace Nada.Model.Exports
             IntvRepository repo = new IntvRepository();
             IntvType intv = repo.GetIntvType((int)StaticIntvType.Ivm);
             IntvReportGenerator gen = new IntvReportGenerator();
-            AddReportToSheet(xlsWorksheet, intv.Indicators, options, gen, (int)StaticIntvType.Ivm, intv.IntvTypeName);
+            AddReportToSheet(xlsWorksheet, intv.Indicators, options, gen, (int)StaticIntvType.Ivm, intv.IntvTypeName, rng);
         }
 
         //Worksheet 5: Assessment Survey
@@ -283,7 +283,7 @@ namespace Nada.Model.Exports
             SurveyRepository repo = new SurveyRepository();
             SurveyType survey = repo.GetSurveyType((int)StaticSurveyType.OnchoAssessment);
             SurveyReportGenerator gen = new SurveyReportGenerator();
-            AddReportToSheet(xlsWorksheet, survey.Indicators, options, gen, (int)StaticSurveyType.OnchoAssessment, survey.SurveyTypeName);
+            AddReportToSheet(xlsWorksheet, survey.Indicators, options, gen, (int)StaticSurveyType.OnchoAssessment, survey.SurveyTypeName, rng);
         }
 
         //Worksheet 4: Mapping Survey
@@ -295,7 +295,7 @@ namespace Nada.Model.Exports
             SurveyRepository repo = new SurveyRepository();
             SurveyType survey = repo.GetSurveyType((int)StaticSurveyType.OnchoMapping);
             SurveyReportGenerator gen = new SurveyReportGenerator();
-            AddReportToSheet(xlsWorksheet, survey.Indicators, options, gen, (int)StaticSurveyType.OnchoMapping, survey.SurveyTypeName);
+            AddReportToSheet(xlsWorksheet, survey.Indicators, options, gen, (int)StaticSurveyType.OnchoMapping, survey.SurveyTypeName, rng);
         }
 
         private void AddCountryPage(excel.Worksheet xlsWorksheet, excel.Range rng, Country country)
@@ -352,10 +352,10 @@ namespace Nada.Model.Exports
             ReportOptions options = new ReportOptions { MonthYearStarts = month, StartDate = start, EndDate = end, IsCountryAggregation = false, IsByLevelAggregation = true, IsAllLocations = false, IsNoAggregation = false };
             options.SelectedAdminLevels = districts;
             DistributionReportGenerator gen = new DistributionReportGenerator(); 
-            AddReportToSheet(xlsWorksheet, dd.Indicators, options, gen, disease.Id, disease.DisplayName);
+            AddReportToSheet(xlsWorksheet, dd.Indicators, options, gen, disease.Id, disease.DisplayName, rng);
         }
 
-        private void AddReportToSheet(excel.Worksheet xlsWorksheet, Dictionary<string, Indicator> indicators, ReportOptions options, IReportGenerator gen, int typeId, string typeName)
+        private void AddReportToSheet(excel.Worksheet xlsWorksheet, Dictionary<string, Indicator> indicators, ReportOptions options, IReportGenerator gen, int typeId, string typeName, excel.Range rng)
         {
             ReportResult result = RunReport(xlsWorksheet, indicators, options, gen, typeId);
             int headerCol = 1;
@@ -371,7 +371,10 @@ namespace Nada.Model.Exports
                 int colId = 1;
                 foreach (DataColumn col in result.DataTableResults.Columns)
                 {
-                    xlsWorksheet.Cells[rowId, colId] = dr[col];
+                    rng = (excel.Range)xlsWorksheet.Cells[rowId, colId]; 
+                    if (col.ColumnName.Contains(TranslationLookup.GetValue("OnchoMapSurAgeRange", "OnchoMapSurAgeRange")))
+                        rng.NumberFormat = "@";
+                    rng.Value = dr[col];
                     colId++;
                 }
                 rowId++;

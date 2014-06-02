@@ -35,7 +35,20 @@ namespace Nada.Model.Diseases
         {
             Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
             if (inds.ContainsKey("DateReported"))
-                DateReported = DateTime.ParseExact(inds["DateReported"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
+                DateReported = DateTime.ParseExact(inds["DateReported"].DynamicValue, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            //if (inds.ContainsKey("Notes"))
+            //    Notes = inds["Notes"].DynamicValue;
+        }
+        public virtual void MapPropertiesToIndicators()
+        {
+            Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
+            if (inds.ContainsKey("Notes"))
+                inds["Notes"].DynamicValue = Notes;
+            else
+            {
+                var indicator = Indicators["Notes"];
+                IndicatorValues.Add(new IndicatorValue { DynamicValue = Notes, Indicator = indicator, IndicatorId = indicator.Id });
+            }
         }
         
         #region IDataErrorInfo Members

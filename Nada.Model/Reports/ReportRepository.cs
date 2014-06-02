@@ -214,57 +214,6 @@ namespace Nada.Model.Repositories
             return dt;
         }
 
-        //private string GetDynamicValue(OleDbDataReader reader)
-        //{
-        //    int dataType = reader.GetValueOrDefault<int>("DataTypeId");
-        //    string value = reader.GetValueOrDefault<string>("DynamicValue");
-        //    if (value == null)
-        //        return null;
-        //    if (dataType == (int)IndicatorDataType.Multiselect || dataType == (int)IndicatorDataType.DiseaseMultiselect)
-        //        value = value.Replace("|", ", ");
-        //    else if (dataType == (int)IndicatorDataType.Partners)
-        //    {
-        //        List<string> names = new List<string>();
-        //        string[] vals = value.Split('|');
-        //        foreach (var partner in partners.Where(v => vals.Contains(v.Id.ToString())))
-        //            names.Add(partner.DisplayName);
-        //        value = String.Join(", ", names.ToArray());
-        //    }
-        //    else if (dataType == (int)IndicatorDataType.EcologicalZone)
-        //    {
-        //        List<string> names = new List<string>();
-        //        string[] vals = value.Split('|');
-        //        foreach (var ez in ezs.Where(v => vals.Contains(v.Id.ToString())))
-        //            names.Add(ez.DisplayName);
-        //        value = String.Join(", ", names.ToArray());
-        //    }
-        //    else if (dataType == (int)IndicatorDataType.EvaluationUnit)
-        //    {
-        //        List<string> names = new List<string>();
-        //        string[] vals = value.Split('|');
-        //        foreach (var eu in eus.Where(v => vals.Contains(v.Id.ToString())))
-        //            names.Add(eu.DisplayName);
-        //        value = String.Join(", ", names.ToArray());
-        //    }
-        //    else if (dataType == (int)IndicatorDataType.EvalSubDistrict)
-        //    {
-        //        List<string> names = new List<string>();
-        //        string[] vals = value.Split('|');
-        //        foreach (var sd in subdistricts.Where(v => vals.Contains(v.Id.ToString())))
-        //            names.Add(sd.DisplayName);
-        //        value = String.Join(", ", names.ToArray());
-        //    }
-        //    else if (dataType == (int)IndicatorDataType.EvaluationSite)
-        //    {
-        //        List<string> names = new List<string>();
-        //        string[] vals = value.Split('|');
-        //        foreach (var es in evalsites.Where(v => vals.Contains(v.Id.ToString())))
-        //            names.Add(es.DisplayName);
-        //        value = String.Join(", ", names.ToArray());
-        //    }
-        //    return value;
-        //}
-
         public static string CreateYearFilter(ReportOptions options, string dateName)
         {
             if(options.StartDate == DateTime.MinValue && options.EndDate == DateTime.MinValue)
@@ -464,20 +413,27 @@ namespace Nada.Model.Repositories
 
         public static ReportIndicator CreateReportIndicator(int typeId, KeyValuePair<string, Indicator> i)
         {
-            string name = i.Value.DisplayName;
-            if (!i.Value.IsDisplayed)
-                name = TranslationLookup.GetValue(i.Value.DisplayName, i.Value.DisplayName);
+            return CreateReportIndicator(typeId, i.Value);
+        }
+
+        public static ReportIndicator CreateReportIndicator(int typeId, Indicator i)
+        {
+            string name = i.DisplayName;
+            if (!i.IsEditable)
+                name = TranslationLookup.GetValue(i.DisplayName, i.DisplayName);
 
             return new ReportIndicator
             {
-                ID = i.Value.Id,
+                ID = i.Id,
                 Name = name,
-                DataTypeId = i.Value.DataTypeId,
-                IsCalculated = i.Value.IsCalculated,
-                IsStatic = !i.Value.IsEditable,
+                DataTypeId = i.DataTypeId,
+                IsCalculated = i.IsCalculated,
+                IsStatic = !i.IsEditable,
                 TypeId = typeId,
-                Key = i.Value.DisplayName,
-                AggregationRuleId = i.Value.AggRuleId
+                Key = i.DisplayName,
+                AggregationRuleId = i.AggRuleId,
+                SplitRule = i.RedistrictRuleId,
+                MergeRule = i.MergeRuleId
             };
         }
         #endregion

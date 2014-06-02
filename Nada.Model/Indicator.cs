@@ -13,7 +13,6 @@ namespace Nada.Model
         public Indicator()
         {
             DataType = Translations.Text;
-            IsEditable = true;
         }
 
         public int DataTypeId { get; set; }

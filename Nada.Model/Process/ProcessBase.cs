@@ -37,8 +37,17 @@ namespace Nada.Model.Process
                 SCMDrug = inds["SCMDrug"].DynamicValue;
             if (inds.ContainsKey("PCTrainTrainingCategory"))
                 PCTrainTrainingCategory = inds["PCTrainTrainingCategory"].DynamicValue;
-            
         }
-        public virtual void MapPropertiesToIndicators() { }
+        public virtual void MapPropertiesToIndicators()
+        {
+            Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
+            if (inds.ContainsKey("Notes"))
+                inds["Notes"].DynamicValue = Notes;
+            else
+            {
+                var indicator = ProcessType.Indicators["Notes"];
+                IndicatorValues.Add(new IndicatorValue { DynamicValue = Notes, Indicator = indicator, IndicatorId = indicator.Id });
+            }
+        }
     }
 }

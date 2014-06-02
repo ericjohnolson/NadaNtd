@@ -146,7 +146,7 @@ namespace Nada.UI.AppLogic
             var type = settings.GetAdminLevelTypeByLevel(adminLevel.LevelNumber);
             demos.Delete(details, userId);
             if (type.IsAggregatingLevel)
-                demos.AggregateUp(type, details.DateReported, userId, null);
+                demos.AggregateUp(type, details.DateReported, userId, null, null);
         }
         public IView NewDemo()
         {

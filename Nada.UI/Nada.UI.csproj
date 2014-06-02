@@ -31,7 +31,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>163</ApplicationRevision>
+    <ApplicationRevision>167</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -152,6 +152,12 @@
     </Compile>
     <Compile Include="Controls\AdminUnitMatcher.Designer.cs">
       <DependentUpon>AdminUnitMatcher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SaeMatcher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SaeMatcher.Designer.cs">
+      <DependentUpon>SaeMatcher.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\PickerControl.cs">
       <SubType>UserControl</SubType>
@@ -303,6 +309,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Demography\AdminUnitDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Demography\AdminUnitDelete.Designer.cs">
+      <DependentUpon>AdminUnitDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Reports\ExportWizard\RtiExport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -453,6 +465,12 @@
     <Compile Include="View\ViewForm.Designer.cs">
       <DependentUpon>ViewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\Demography\StepDemoCountryDemo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Demography\StepDemoCountryDemo.Designer.cs">
+      <DependentUpon>StepDemoCountryDemo.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\DiseaseDistro\StepDdReview.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -555,6 +573,12 @@
     <Compile Include="View\Wizard\DistrictSplitting\SplitReviewConfirm.Designer.cs">
       <DependentUpon>SplitReviewConfirm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\DistrictSplitting\SplittingSaes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\DistrictSplitting\SplittingSaes.Designer.cs">
+      <DependentUpon>SplittingSaes.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\MessageBoxStep.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -633,11 +657,11 @@
     <Compile Include="View\IndicatorTypeEdit.Designer.cs">
       <DependentUpon>IndicatorTypeEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Reports\ExportWizard\ExportStep.cs">
+    <Compile Include="View\Reports\ExportWizard\CmExportStep.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Reports\ExportWizard\ExportStep.Designer.cs">
-      <DependentUpon>ExportStep.cs</DependentUpon>
+    <Compile Include="View\Reports\ExportWizard\CmExportStep.Designer.cs">
+      <DependentUpon>CmExportStep.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Wizard\StartUp\StartupView.cs">
       <SubType>UserControl</SubType>
@@ -753,11 +777,11 @@
     <Compile Include="View\IndicatorAdd.Designer.cs">
       <DependentUpon>IndicatorAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomIndicatorControl.cs">
+    <Compile Include="Controls\DemoCustomIndicatorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CustomIndicatorControl.Designer.cs">
-      <DependentUpon>CustomIndicatorControl.cs</DependentUpon>
+    <Compile Include="Controls\DemoCustomIndicatorControl.Designer.cs">
+      <DependentUpon>DemoCustomIndicatorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DashboardAdminLevel.cs">
       <SubType>UserControl</SubType>
@@ -818,6 +842,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AdminUnitMatcher.resx">
       <DependentUpon>AdminUnitMatcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SaeMatcher.resx">
+      <DependentUpon>SaeMatcher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PickerControl.resx">
       <DependentUpon>PickerControl.cs</DependentUpon>
@@ -896,6 +923,9 @@
     <EmbeddedResource Include="Shell.resx">
       <DependentUpon>Shell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Demography\AdminUnitDelete.resx">
+      <DependentUpon>AdminUnitDelete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ExportWizard\RtiExport.resx">
       <DependentUpon>RtiExport.cs</DependentUpon>
     </EmbeddedResource>
@@ -971,6 +1001,9 @@
     <EmbeddedResource Include="View\ViewForm.resx">
       <DependentUpon>ViewForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Demography\StepDemoCountryDemo.resx">
+      <DependentUpon>StepDemoCountryDemo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\DiseaseDistro\StepDdReview.resx">
       <DependentUpon>StepDdReview.cs</DependentUpon>
     </EmbeddedResource>
@@ -1022,6 +1055,9 @@
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplitReviewConfirm.resx">
       <DependentUpon>SplitReviewConfirm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplittingSaes.resx">
+      <DependentUpon>SplittingSaes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\MessageBoxStep.resx">
       <DependentUpon>MessageBoxStep.cs</DependentUpon>
     </EmbeddedResource>
@@ -1058,8 +1094,8 @@
     <EmbeddedResource Include="View\IndicatorTypeEdit.resx">
       <DependentUpon>IndicatorTypeEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Reports\ExportWizard\ExportStep.resx">
-      <DependentUpon>ExportStep.cs</DependentUpon>
+    <EmbeddedResource Include="View\Reports\ExportWizard\CmExportStep.resx">
+      <DependentUpon>CmExportStep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\StartUp\StartupView.resx">
       <DependentUpon>StartupView.cs</DependentUpon>
@@ -1121,8 +1157,8 @@
     <EmbeddedResource Include="View\IndicatorAdd.resx">
       <DependentUpon>IndicatorAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CustomIndicatorControl.resx">
-      <DependentUpon>CustomIndicatorControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DemoCustomIndicatorControl.resx">
+      <DependentUpon>DemoCustomIndicatorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DashboardAdminLevel.resx">
       <DependentUpon>DashboardAdminLevel.cs</DependentUpon>
@@ -1200,9 +1236,6 @@
     <Content Include="Images\SEARO.PNG" />
     <Content Include="Images\usaid.png" />
     <Content Include="Images\WPRO.PNG" />
-    <Content Include="TestDistrictUpdate.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Exports\WHO_JRF_PC.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1265,9 +1298,6 @@
     <Content Include="TestDistricts.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestRegions.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="TestVillages.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1278,6 +1308,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="View\Help\tutorial.pptx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestProvinces.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
