@@ -40,6 +40,11 @@ namespace Nada.Model
         protected string validationSheetName = "ValidationLists";
         protected Dictionary<string, string> validationRanges;
         protected IndicatorParser valueParser = new IndicatorParser();
+
+        public virtual bool HasGroupedAdminLevels(ImportOptions opts)
+        {
+            return false;
+        }
         public void SetType(int id)
         {
             translatedIndicators = new Dictionary<string, Indicator>();

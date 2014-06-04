@@ -37,7 +37,7 @@ namespace Nada.Model.Diseases
                 switch (field)
                 {
                     case "11PercentNewChildren":
-                        return new KeyValuePair<string,string>(Translations.TotalNumChildNewCases,
+                        return new KeyValuePair<string, string>(Translations.PercentNewChildren,
                             GetPercentage(GetValueOrDefault("11TotalNumChildNewCases", relatedValues), GetValueOrDefault("11TotalNumNewCases", relatedValues)));
                     case "11PercentNewFemales":
                         return new KeyValuePair<string,string>(Translations.PercentNewFemales,  GetPercentage(GetValueOrDefault("11TotalNumFemaleNewCases", relatedValues), GetValueOrDefault("11TotalNumNewCases", relatedValues)));

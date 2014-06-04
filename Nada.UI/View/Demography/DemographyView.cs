@@ -32,6 +32,7 @@ namespace Nada.UI.View.Demography
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return adminLevel.Name + " " + Translations.Demography; } }
         private DateTime originalDate = DateTime.MinValue;
+        private bool canEdit = true;
         public void SetFocus()
         {
             tbYearCensus.Focus();
@@ -50,9 +51,10 @@ namespace Nada.UI.View.Demography
             InitializeComponent();
         }
 
-        public DemographyView(AdminLevelDemography d, AdminLevel a)
+        public DemographyView(AdminLevelDemography d, AdminLevel a, bool canViewEdit)
             : base()
         {
+            canEdit = canViewEdit;
             adminLevel = a;
             this.model = d;
             InitializeComponent();
@@ -79,8 +81,8 @@ namespace Nada.UI.View.Demography
                    
                 StatusChanged(model.UpdatedBy);
 
-                if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
-                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
+                if (!canEdit || (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
+                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin")))
                 {
                     lnkEditAdminLevelUnit.Visible = false;
                     btnTopSave.Visible = false;

@@ -51,7 +51,7 @@ namespace Nada.UI.View.Wizard
 
         public void DoNext()
         {
-            OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitConfirmReview));
+            OnSwitchStep(new SplittingDemography(options, true));
         }
 
         public void DoFinish()
@@ -75,7 +75,7 @@ namespace Nada.UI.View.Wizard
                     string pop = "0";
                     if (options.MergeSources[i].CurrentDemography.TotalPopulation.HasValue)
                         pop = Convert.ToDouble(options.MergeSources[i].CurrentDemography.TotalPopulation.Value * 
-                            options.SplitDestinations[i].Percent).ToString("N");
+                            (options.SplitDestinations[i].Percent / 100)).ToString("N");
                     var label = new H3bLabel { AutoSize = true, Text = pop, Margin = new Padding(0, 5, 10, 5) };
                     tblNewUnits.Controls.Add(label, 1, index);
                     string villages = "N/A";
@@ -86,9 +86,5 @@ namespace Nada.UI.View.Wizard
                 }
             }
         }
-
-
-
-
     }
 }

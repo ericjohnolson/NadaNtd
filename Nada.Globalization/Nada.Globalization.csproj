@@ -44,8 +44,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Translations.fr-FRv1.Designer.cs">
-      <DependentUpon>Translations.fr-FRv1.resx</DependentUpon>
+    <Compile Include="NewKeys.Designer.cs">
+      <DependentUpon>NewKeys.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
@@ -77,6 +77,11 @@
       <DesignTime>True</DesignTime>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Translations.pt-PT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Translations.pt-PT.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Translations.fr-FRv1-1.resx">
@@ -84,9 +89,9 @@
       <LastGenOutput>Translations.fr-FRv1-1.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Translations.fr-FRv1.resx">
+    <EmbeddedResource Include="NewKeys.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Translations.fr-FRv1.Designer.cs</LastGenOutput>
+      <LastGenOutput>NewKeys.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Translations.en-AU.resx">
@@ -105,6 +110,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Translations.fr-FR.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Translations.pt-PT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.pt-PT.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Translations.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

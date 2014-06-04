@@ -38,5 +38,7 @@ namespace Nada.Model.Reports
         public bool IsCalculated { get; set; }
         public int TypeId { get; set; }
         public int AggregationRuleId { get; set; }
+        public int MergeRule { get; set; }
+        public int SplitRule { get; set; }
     }
 }

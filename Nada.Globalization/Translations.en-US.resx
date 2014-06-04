@@ -5400,7 +5400,7 @@ Fixed / Mobile</value>
     <value>Match your units with the RTI system: {0}</value>
   </data>
   <data name="RtiReports" xml:space="preserve">
-    <value>RTI Report</value>
+    <value>Disease Workbook for USAID reporting</value>
   </data>
   <data name="RtiCantReconcile" xml:space="preserve">
     <value>Cannot Reconcile</value>
@@ -5536,5 +5536,20 @@ Fixed / Mobile</value>
   </data>
   <data name="SplittingSurveyWarning" xml:space="preserve">
     <value>Survey data from the parent districts was duplicated in all the daughter districts and should be reviewed.</value>
+  </data>
+  <data name="ExitWarning" xml:space="preserve">
+    <value>Are you sure you want to exit the National Database Template</value>
+  </data>
+  <data name="ExitWarningTitle" xml:space="preserve">
+    <value>Exiting Application</value>
+  </data>
+  <data name="ImportDemo" xml:space="preserve">
+    <value>Demography import</value>
+  </data>
+  <data name="UpdateDdAfterSavingSurvey" xml:space="preserve">
+    <value>Be sure to update disease distribution as appropriate incorporating the results of this survey</value>
+  </data>
+  <data name="UpdateDdAfterSavingSurveyTitle" xml:space="preserve">
+    <value>Update Disease Distribution</value>
   </data>
 </root>

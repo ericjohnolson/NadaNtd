@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
+using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using excel = Microsoft.Office.Interop.Excel;
 
@@ -47,14 +49,13 @@ namespace Nada.Model.Exports
                 CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReporting);
                 Country country = demo.GetCountry();
                 List<AdminLevel> demography = new List<AdminLevel>();
-
                 DateTime startDate = new DateTime(yearReporting, country.ReportingYearStartDate.Month, country.ReportingYearStartDate.Day);
                 DateTime endDate = startDate.AddYears(1).AddDays(-1);
                 List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, startDate, endDate, ref demography);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[2];
                 AddContactsPage(xlsWorksheet, rng, questions, country);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[3];
-                AddCountryPage(xlsWorksheet, rng, demography, districtLevel.LevelNumber, questions, country, countryDemo);
+                AddCountryPage(xlsWorksheet, rng, demography, districtLevel.LevelNumber, questions, country, countryDemo, startDate, endDate);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[11];
                 AddPlanningPage(xlsWorksheet, rng, questions);
 
@@ -88,7 +89,7 @@ namespace Nada.Model.Exports
                 xlsWorkbook = null;
                 xlsApp = null;
                 System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
-                return new ExportResult();
+                return new ExportResult { WasSuccess = true };
 
             }
             catch (Exception ex)
@@ -146,13 +147,152 @@ namespace Nada.Model.Exports
         }
 
         private void AddCountryPage(excel.Worksheet xlsWorksheet, excel.Range rng, List<AdminLevel> demography, int districtLevel, 
-            ExportCmJrfQuestions questions, Country country, CountryDemography cDemo)
+            ExportCmJrfQuestions questions, Country country, CountryDemography cDemo, DateTime start, DateTime end)
         {
+            var districts = demography.Where(d => d.LevelNumber == districtLevel).ToList();
             AddValueToRange(xlsWorksheet, rng, "B2", country.Name);
             AddValueToRange(xlsWorksheet, rng, "B3", questions.YearReporting.Value);
             if(cDemo.TotalPopulation.HasValue)
                 AddValueToRange(xlsWorksheet, rng, "F2", cDemo.TotalPopulation.Value);
-            AddValueToRange(xlsWorksheet, rng, "G3", demography.Where(d => d.LevelNumber == districtLevel).Count());
+            AddValueToRange(xlsWorksheet, rng, "G3", districts.Count);
+            if (questions.CmBudgetProportion.HasValue)
+                AddValueToRange(xlsWorksheet, rng, "F4", questions.CmBudgetProportion.Value);
+
+            // DISEASE DISTRO STATS
+            var ddDict = GetDd(start, end, districts);
+            double gEnd = 0, gNoEnd = 0, gEndPop = 0, lpEnd = 0, lpNoEnd = 0, lpEndPop = 0, lhEnd = 0, lhNoEnd = 0, lhEndPop = 0, bEnd = 0, bNoEnd = 0, bEndPop = 0, yEnd = 0, yNoEnd = 0, yEndPop = 0,
+                hEnd = 0, hNoEnd = 0, hEndPop = 0;
+            int rowId = 9;
+            foreach (var district in districts)
+            {
+                if (ddDict.ContainsKey(district.Id))
+                {
+                    string endG = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("Dracun")].ToString();
+                    if (endG == TranslationLookup.GetValue("Endemic"))
+                    {
+                        gEnd++;
+                        gEndPop += district.CurrentDemography.TotalPopulation.Value;
+                    }
+                    else if (endG == TranslationLookup.GetValue("NotEndemic"))
+                        gNoEnd++;
+
+                    string endLp = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("Leprosy")].ToString();
+                    if (endLp == TranslationLookup.GetValue("High"))
+                    {
+                        lpEnd++;
+                        lpEndPop += district.CurrentDemography.TotalPopulation.Value;
+                    }
+                    else if (endLp == TranslationLookup.GetValue("Low"))
+                        lpNoEnd++;
+
+                    string endH = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("HAT")].ToString();
+                    if (endH == TranslationLookup.GetValue("Endemic"))
+                    {
+                        hEnd++;
+                        hEndPop += district.CurrentDemography.TotalPopulation.Value;
+                    }
+                    else if (endH == TranslationLookup.GetValue("NotEndemic") || endH == TranslationLookup.GetValue("FormerlyEndemic"))
+                        hNoEnd++;
+
+                    string endLh = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("Leishmaniasis")].ToString();
+                    if (endLh == TranslationLookup.GetValue("Endemic"))
+                    {
+                        lhEnd++;
+                        lhEndPop += district.CurrentDemography.TotalPopulation.Value;
+                    }
+                    else if (endLh == TranslationLookup.GetValue("NotEndemic"))
+                        lhNoEnd++;
+
+                    string endB = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("BuruliUlcer")].ToString();
+                    if (endB == TranslationLookup.GetValue("Endemic"))
+                    {
+                        bEnd++;
+                        bEndPop += district.CurrentDemography.TotalPopulation.Value;
+                    }
+                    else if (endB == TranslationLookup.GetValue("NotEndemic"))
+                        bNoEnd++;
+
+                    string endY = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("YAWS")].ToString();
+                    if (endY == TranslationLookup.GetValue("Endemic"))
+                    {
+                        yEnd++;
+                        yEndPop += district.CurrentDemography.TotalPopulation.Value;
+                    }
+                    else if (endY == TranslationLookup.GetValue("NotEndemic"))
+                        yNoEnd++;
+                }
+                rowId++;
+            }
+
+            AddValueToRange(xlsWorksheet, rng, "B8", gEnd);
+            AddValueToRange(xlsWorksheet, rng, "C8", gNoEnd);
+            AddValueToRange(xlsWorksheet, rng, "D8", gEndPop);
+            AddValueToRange(xlsWorksheet, rng, "E8", gEnd);
+            AddValueToRange(xlsWorksheet, rng, "B9", lpEnd);
+            AddValueToRange(xlsWorksheet, rng, "C9", lpNoEnd);
+            AddValueToRange(xlsWorksheet, rng, "D9", lpEndPop);
+            AddValueToRange(xlsWorksheet, rng, "E9", lpEnd);
+            AddValueToRange(xlsWorksheet, rng, "B10", hEnd);
+            AddValueToRange(xlsWorksheet, rng, "C10", hNoEnd);
+            AddValueToRange(xlsWorksheet, rng, "D10", hEndPop);
+            AddValueToRange(xlsWorksheet, rng, "E10", hEnd);
+            AddValueToRange(xlsWorksheet, rng, "B11", lhEnd);
+            AddValueToRange(xlsWorksheet, rng, "C11", lhNoEnd);
+            AddValueToRange(xlsWorksheet, rng, "D11", lhEndPop);
+            AddValueToRange(xlsWorksheet, rng, "E11", lhEnd);
+            AddValueToRange(xlsWorksheet, rng, "B12", bEnd);
+            AddValueToRange(xlsWorksheet, rng, "C12", bNoEnd);
+            AddValueToRange(xlsWorksheet, rng, "D12", bEndPop);
+            AddValueToRange(xlsWorksheet, rng, "E12", bEnd);
+            AddValueToRange(xlsWorksheet, rng, "B13", yEnd);
+            AddValueToRange(xlsWorksheet, rng, "C13", yNoEnd);
+            AddValueToRange(xlsWorksheet, rng, "D13", yEndPop);
+            AddValueToRange(xlsWorksheet, rng, "E13", yEnd);
+        }
+
+        private Dictionary<int, DataRow> GetDd(DateTime start, DateTime end, List<AdminLevel> demography)
+        {
+            DiseaseRepository diseaseRepo = new DiseaseRepository();
+            Dictionary<int, DataRow> dd = new Dictionary<int, DataRow>();
+            ReportOptions options = new ReportOptions
+            {
+                MonthYearStarts = start.Month,
+                StartDate = start,
+                EndDate = end,
+                IsCountryAggregation = false,
+                IsByLevelAggregation = true,
+                IsAllLocations = false,
+                IsNoAggregation = false
+            };
+            options.SelectedAdminLevels = demography;
+            DistributionReportGenerator gen = new DistributionReportGenerator();
+            var gw = diseaseRepo.CreateCm(DiseaseType.GuineaWorm);
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(gw.Id, gw.Indicators["EndemicityStatus"]));
+            var lep = diseaseRepo.CreateCm(DiseaseType.Leprosy);
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lep.Id, lep.Indicators["EndemicityStatus"]));
+            var lei = diseaseRepo.CreateCm(DiseaseType.Leish);
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lei.Id, lei.Indicators["EndemicityStatus"]));
+            var hat = diseaseRepo.CreateCm(DiseaseType.Hat);
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(hat.Id, hat.Indicators["EndemicityStatus"]));
+            var b = diseaseRepo.CreateCm(DiseaseType.Buruli);
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(b.Id, b.Indicators["EndemicityStatus"]));
+            var y = diseaseRepo.CreateCm(DiseaseType.Yaws);
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(y.Id, y.Indicators["EndemicityStatus"]));
+
+            ReportResult ddResult = gen.Run(new SavedReport { ReportOptions = options });
+            dd = new Dictionary<int, DataRow>();
+            foreach (DataRow dr in ddResult.DataTableResults.Rows)
+            {
+                int id = 0;
+                if (int.TryParse(dr["ID"].ToString(), out id))
+                {
+                    if (dd.ContainsKey(id))
+                        dd[id] = dr;
+                    else
+                        dd.Add(id, dr);
+                }
+            }
+            return dd;
         }
 
         private void AddPlanningPage(excel.Worksheet xlsWorksheet, excel.Range rng, ExportCmJrfQuestions questions)
@@ -161,6 +301,7 @@ namespace Nada.Model.Exports
             AddValueToRange(xlsWorksheet, rng, "C6", questions.CmYearsMasterPlan);
             AddValueToRange(xlsWorksheet, rng, "C7", questions.CmBuget);
             AddValueToRange(xlsWorksheet, rng, "C8", questions.CmPercentFunded);
+
             AddValueToRange(xlsWorksheet, rng, "C9", questions.CmHaveAnnualOpPlan ? Translations.Yes : Translations.No);
             AddValueToRange(xlsWorksheet, rng, "C10", questions.CmDiseaseSpecOrNtdIntegrated);
             AddValueToRange(xlsWorksheet, rng, "C12", questions.CmBuHasPlan ? Translations.Yes : Translations.No);
@@ -205,7 +346,6 @@ namespace Nada.Model.Exports
             AddValueToRange(xlsWorksheet, rng, "C58", questions.CmHasSemesterMech ? Translations.Yes : Translations.No);
             AddValueToRange(xlsWorksheet, rng, "C59", questions.CmOtherMechs);
         }
-
 
         private void AddGwInds(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, List<AdminLevelIndicators> districtIndicators)
         {

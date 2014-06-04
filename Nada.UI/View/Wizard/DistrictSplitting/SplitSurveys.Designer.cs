@@ -73,7 +73,7 @@
             this.tblNewUnits.Size = new System.Drawing.Size(0, 0);
             this.tblNewUnits.TabIndex = 0;
             // 
-            // SplitDistro
+            // SplitSurveys
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -83,7 +83,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tblNewUnits);
             this.Margin = new System.Windows.Forms.Padding(23);
-            this.Name = "SplitDistro";
+            this.Name = "SplitSurveys";
             this.Size = new System.Drawing.Size(6, 6);
             this.Load += new System.EventHandler(this.StepCategory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

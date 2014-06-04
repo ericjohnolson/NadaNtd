@@ -22,6 +22,7 @@ namespace Nada.UI.View.Wizard
     {
         string stepTitle = "";
         bool isDemoOnly = false;
+        bool isSingleImport = false;
         int? countryDemoId = null;
         AdminLevelDemoImporter importer = null;
         AdminLevelDemoUpdater updater = null;
@@ -60,6 +61,14 @@ namespace Nada.UI.View.Wizard
             Init(type, p, demoOnly, cid);
         }
 
+        public StepAdminLevelImport(AdminLevelType type, IWizardStep p, DateTime d, bool isImport)
+            : base()
+        {
+            isSingleImport = isImport;
+            demoDate = d;
+            Init(type, p, true, null);
+        }
+
         private void Init(AdminLevelType type, IWizardStep step, bool demoOnly, int? cid)
         {
             countryDemoId = cid;
@@ -70,10 +79,15 @@ namespace Nada.UI.View.Wizard
             DemoRepository demo = new DemoRepository();
             if (!isDemoOnly)
                 demoDate = demo.GetCountryDemoRecent().DateDemographyData;
-            nextType = settings.GetNextLevel(locationType.LevelNumber);
-            importer = new AdminLevelDemoImporter(locationType, countryDemoId);
+            if (!isSingleImport)
+            {
+                nextType = settings.GetNextLevel(locationType.LevelNumber);
+                stepTitle = isDemoOnly ? Translations.UpdateDemography + " - " + locationType.DisplayName : Translations.ImportAdminLevels + locationType.DisplayName;
+                importer = new AdminLevelDemoImporter(locationType, countryDemoId);
+            }
+            else
+                stepTitle = Translations.Demography + " - " + locationType.DisplayName;
             updater = new AdminLevelDemoUpdater(locationType, countryDemoId);
-            stepTitle = isDemoOnly ? Translations.UpdateDemography + " - " + locationType.DisplayName : Translations.ImportAdminLevels + locationType.DisplayName;
             InitializeComponent();
         }
 
@@ -101,12 +115,6 @@ namespace Nada.UI.View.Wizard
                         if(levels.Count > 0)
                             cbImportFor.DropDownWidth = BaseForm.GetDropdownWidth(levels.Select(a => a.Name));
                     }
-
-                    //if (locationType.IsDemographyAllowed)
-                    //{
-                    //    lblYear.Visible = true;
-                    //    dateTimePicker1.Visible = true;
-                    //}
                 }
 
                 if (locationType.IsAggregatingLevel)
@@ -151,7 +159,8 @@ namespace Nada.UI.View.Wizard
                     FilteredBy = filteredBy,
                     RowCount = rows,
                     DateReported = dateReported,
-                    IsOnlyDemo = isDemoOnly
+                    IsOnlyDemo = isDemoOnly,
+                    IncludeData = !isSingleImport
                 });
             }
         }
@@ -172,7 +181,7 @@ namespace Nada.UI.View.Wizard
             {
                 Payload payload = (Payload)e.Argument;
                 if (payload.IsOnlyDemo)
-                    updater.CreateUpdateFile(payload.Filename);
+                    updater.CreateUpdateFile(payload.Filename, payload.IncludeData);
                 else
                     importer.CreateImportFile(payload.Filename, payload.DoDemography, payload.RowCount, payload.FilteredBy);
                 e.Result = new ImportResult { WasSuccess = true };
@@ -218,7 +227,7 @@ namespace Nada.UI.View.Wizard
             ImportResult result = (ImportResult)e.Result;
             tbStatus.Text = result.Message;
 
-            if (!result.WasSuccess) //MessageBox.Show(Translations.ImportComplete, Translations.ImportComplete);
+            if (!result.WasSuccess) 
                 MessageBox.Show(Translations.ImportFailed, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -279,6 +288,7 @@ namespace Nada.UI.View.Wizard
             public bool DoDemography { get; set; }
             public bool DoAggregate { get; set; }
             public bool IsOnlyDemo { get; set; }
+            public bool IncludeData { get; set; }
             public int RowCount { get; set; }
             public DateTime DateReported { get; set; }
             public AdminLevel FilteredBy { get; set; }

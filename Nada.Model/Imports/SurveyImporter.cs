@@ -30,6 +30,12 @@ namespace Nada.Model.Imports
         private SurveyType sType = null;
         public SurveyImporter() { }
 
+        public virtual bool HasGroupedAdminLevels(ImportOptions opts)
+        {
+            var t = repo.GetSurveyType(opts.TypeId.Value);
+            return t.HasMultipleLocations;
+        }
+
         protected override void SetSpecificType(int id)
         {
             sType = repo.GetSurveyType(id);

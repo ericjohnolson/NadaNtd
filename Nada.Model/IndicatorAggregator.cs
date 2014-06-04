@@ -68,7 +68,9 @@ namespace Nada.Model
     {
         public static AggregateIndicator AggregateChildren(List<AdminLevelIndicators> list, string key, AggregateIndicator startResult, List<IndicatorDropdownValue> dropdownOptions)
         {
-            AggregateIndicator result = startResult;
+            AggregateIndicator result = new AggregateIndicator();
+            if (startResult != null)
+                result = startResult;
             foreach (var level in list)
             {
                 if (level.Indicators.ContainsKey(key))
@@ -84,7 +86,7 @@ namespace Nada.Model
         // ALL VALUES SHOULD BE FORMATTED AND TRANSLATED BEFORE THIS METHOD
         public static AggregateIndicator Aggregate(AggregateIndicator ind, AggregateIndicator existingValue, List<IndicatorDropdownValue> dropdownOptions)
         {
-            AggregateIndicator result = existingValue == null ? ind : existingValue;
+            AggregateIndicator result = (existingValue == null || existingValue.Name == null) ? ind : existingValue;
             
             if (string.IsNullOrEmpty(ind.Value) && (existingValue == null || string.IsNullOrEmpty(existingValue.Value)))
                 result.Value = "";
@@ -92,11 +94,6 @@ namespace Nada.Model
                 result.Value = existingValue.Value;
             else if (existingValue == null || string.IsNullOrEmpty(existingValue.Value))
                 result.Value = ind.Value;
-            else if (ind.DataType == (int)IndicatorAggType.None)
-                result.Value = Translations.NA;
-            // you shouldn't be able to combine a dropdown.
-            //else if (ind.AggType == (int)IndicatorAggType.Combine && ind.DataType == (int)IndicatorDataType.Dropdown)
-            //    result.Value = existingValue + ", " + TranslationLookup.GetValue(ind.Value, ind.Value);
             else if (ind.AggType == (int)IndicatorAggType.Combine && (ind.DataType == (int)IndicatorDataType.LargeText || ind.DataType == (int)IndicatorDataType.Text))
                 result.Value = AggregateString(ind, existingValue);
             else if (ind.AggType == (int)IndicatorAggType.Combine && (ind.DataType == (int)IndicatorDataType.Multiselect || ind.DataType == (int)IndicatorDataType.DiseaseMultiselect ||
@@ -108,6 +105,8 @@ namespace Nada.Model
                 result.Value = AggregateDate(ind, existingValue);
             else if (ind.DataType == (int)IndicatorDataType.Dropdown)
                 result.Value = AggregateDropdown(ind, existingValue, dropdownOptions);
+            else if (ind.AggType == (int)IndicatorAggType.None)
+                result.Value = Translations.NA;
             else
                 result.Value = AggregateString(ind, existingValue);
 
@@ -207,6 +206,13 @@ namespace Nada.Model
 
         private static string AggregateDropdown(AggregateIndicator ind1, AggregateIndicator existingValue, List<IndicatorDropdownValue> dropdownOptions)
         {
+            if (ind1.AggType == (int)IndicatorAggType.Combine)
+            {
+                var existingVal = TranslationLookup.GetValue(existingValue.Value, existingValue.Value);
+                var newVal = TranslationLookup.GetValue(ind1.Value,ind1.Value);
+                return existingVal + ", " + newVal;
+            }
+
             var ind1option = dropdownOptions.FirstOrDefault(i => i.IndicatorId == ind1.IndicatorId && (int)i.EntityType == ind1.EntityTypeId
                 && i.TranslationKey == ind1.Value);
             var ind2option = dropdownOptions.FirstOrDefault(i => i.IndicatorId == existingValue.IndicatorId && (int)i.EntityType == existingValue.EntityTypeId
@@ -238,10 +244,9 @@ namespace Nada.Model
         {
             List<string> values1 = ind1.Value.Split('|').ToList();
             List<string> values2 = existingValue.Value.Split('|').ToList();
-            values1.Union(values2);
-            return string.Join("|", values1.ToArray());
+            var result = values1.Union(values2);
+            return string.Join("|", result.ToArray());
         }
-
     }
 
     [Serializable]

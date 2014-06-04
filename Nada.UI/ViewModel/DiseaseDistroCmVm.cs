@@ -12,7 +12,7 @@ using Nada.UI.View;
 
 namespace Nada.UI.ViewModel
 {
-    public class DiseaseDistroCmVm : IDataEntryVm
+    public class DiseaseDistroCmVm : ViewModelBase, IDataEntryVm
     {
         private AdminLevel adminLevel = null;
         private DiseaseDistroCm model = null;
@@ -61,7 +61,7 @@ namespace Nada.UI.ViewModel
         public void DoSave(List<IndicatorValue> indicatorValues, string notes)
         {
             model.Notes = notes;
-            model.IndicatorValues = indicatorValues;
+            model.IndicatorValues = ReconcileIndicators(model.IndicatorValues, indicatorValues); 
             r.Save(model, ApplicationData.Instance.GetUserId());
         }
 

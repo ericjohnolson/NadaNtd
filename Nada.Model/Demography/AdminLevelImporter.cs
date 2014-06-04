@@ -27,12 +27,16 @@ namespace Nada.Model
             locationType = l;
         }
 
-        public void CreateUpdateFile(string filename)
+        public void CreateUpdateFile(string filename, bool addData)
         {
             // Get data
             var cDemo = demo.GetCountryDemoRecent();
             var levels = demo.GetRecentDemography(locationType.LevelNumber, cDemo.DateDemographyData.Year);
-            DataTable data = CreateUpdateDataTable(levels);
+            DataTable data = new DataTable();
+            if (addData)
+                data = CreateUpdateDataTable(levels);
+            else
+                data = CreateInsertDataTable(locationType);
 
             // Create excel
             System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
@@ -61,6 +65,36 @@ namespace Nada.Model
             xlsWorkbook = null;
             xlsApp = null;
             System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
+        }
+
+        private DataTable CreateInsertDataTable(AdminLevelType type)
+        {
+            DataTable data = new System.Data.DataTable();
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
+            data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
+            data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("YearCensus")));
+            data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("GrowthRate")));
+            data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("TotalPopulation")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Pop0Month")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopPsac")));
+            data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("PopSac")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Pop5yo")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopAdult")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopFemale")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PopMale")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("PercentRural")));
+            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Notes")));
+
+            DemoRepository drepo = new DemoRepository();
+            var allUnits = drepo.GetAdminLevelByLevel(type.LevelNumber);
+            foreach (AdminLevel l in allUnits)
+            {
+                DataRow row = data.NewRow();
+                row[TranslationLookup.GetValue("Location") + "#"] = l.Id;
+                row[locationType.DisplayName] = l.Name;
+                data.Rows.Add(row);
+            }
+            return data;
         }
 
         protected DataTable CreateUpdateDataTable(List<AdminLevelDemography> levels)

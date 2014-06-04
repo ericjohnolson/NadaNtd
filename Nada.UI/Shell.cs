@@ -246,7 +246,12 @@ namespace Nada.UI
 
         private void menuDemographyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            StepDemoLevel step = new StepDemoLevel();
+            WizardForm wiz = new WizardForm(step, Translations.ImportDemo);
+            wiz.OnFinish = () => { LoadDashboard(new DashboardView()); };
+            step.OnSkip = () => { wiz.Close(); };
+            wiz.ShowDialog();
+
         }
 
         private void menuDiseaseDistributionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -387,6 +392,23 @@ namespace Nada.UI
                 form.Close();
             };
             form.Show();
+        }
+
+        private void Shell_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!System.Diagnostics.Debugger.IsAttached)
+            {
+                var result = MessageBox.Show(this, Translations.ExitWarning, Translations.ExitWarningTitle, MessageBoxButtons.OKCancel);
+                if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    e.Cancel = false;
+                }
+            }
+
         }
 
 

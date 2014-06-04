@@ -30,8 +30,8 @@ namespace Nada.UI.View.Wizard
         public bool EnableNext { get { return true; } }
         public bool ShowPrev { get { return false; } }
         public bool EnablePrev { get { return false; } }
-        public bool ShowFinish { get { return true; } }
-        public bool EnableFinish { get { return true; } }
+        public bool ShowFinish { get { return false; } }
+        public bool EnableFinish { get { return false; } }
         public string StepTitle { get { return Translations.SplitConfirmReviewTitle; } }
 
         public SplitReviewConfirm(RedistrictingOptions o, string message)
@@ -62,7 +62,6 @@ namespace Nada.UI.View.Wizard
 
         public void DoFinish()
         {
-            OnFinish();
         }
     }
 }

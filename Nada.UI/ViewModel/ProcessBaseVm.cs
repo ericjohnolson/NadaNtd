@@ -14,7 +14,7 @@ using Nada.UI.View;
 
 namespace Nada.UI.ViewModel
 {
-    public class ProcessBaseVm : IDataEntryVm
+    public class ProcessBaseVm : ViewModelBase, IDataEntryVm
     {
         private AdminLevel adminLevel = null;
         private ProcessBase model = null;
@@ -37,7 +37,14 @@ namespace Nada.UI.ViewModel
             adminLevel = a;
             calc = c;
         }
-        
+
+        public ProcessBaseVm(AdminLevel a, ProcessBase s, ICalcIndicators c)
+        {
+            this.model = s;
+            adminLevel = a;
+            calc = c;
+        }
+
         public string LocationName { get { return adminLevel.Name; } }
         public bool CanEditTypeName { get { return false; } }
         public string StatusMessage { get { return model.UpdatedBy; } }
@@ -63,7 +70,7 @@ namespace Nada.UI.ViewModel
         public void DoSave(List<IndicatorValue> indicatorValues, string notes)
         {
             model.Notes = notes;
-            model.IndicatorValues = indicatorValues;
+            model.IndicatorValues = ReconcileIndicators(model.IndicatorValues, indicatorValues); 
             r.Save(model, ApplicationData.Instance.GetUserId());
         }
 

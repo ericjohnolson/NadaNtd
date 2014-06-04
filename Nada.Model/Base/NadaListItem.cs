@@ -14,7 +14,7 @@ namespace Nada.Model.Base
         {
             get
             {
-                return Translations.View;
+                return Translations.ViewEdit;
             }
         }
 

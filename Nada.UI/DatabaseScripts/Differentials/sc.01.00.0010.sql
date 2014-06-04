@@ -503,6 +503,40 @@ ALTER TABLE ExportCmJrfQuestions ADD COLUMN CmBudgetProportion INTEGER;
 COMMIT TRANSACTION;
 BEGIN TRANSACTION;
 
+delete from diseasedistributionindicators where diseaseid = 6 and displayname = 'CaseFindingStrategy';
+delete from diseasedistributionindicators where diseaseid = 8 and displayname = 'CaseFindingStrategy';
+delete from diseasedistributionindicators where diseaseid = 9 and displayname = 'CaseFindingStrategy';
+
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE DiseaseDistributionIndicatorValues ADD COLUMN MemoValue Memo;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE InterventionIndicatorValues ADD COLUMN MemoValue Memo;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE SurveyIndicatorValues ADD COLUMN MemoValue Memo;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE ProcessIndicatorValues ADD COLUMN MemoValue Memo;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE AdminLevelDemography ALTER COLUMN Notes MEMO;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE DiseaseDistributions ALTER COLUMN Notes MEMO;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE Interventions ALTER COLUMN Notes MEMO;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE Surveys ALTER COLUMN Notes MEMO;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE Processes ALTER COLUMN Notes MEMO;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]

@@ -24,7 +24,6 @@ namespace Nada.Model.Process
         public Nullable<int> AdminLevelId { get; set; }
         public DateTime DateReported { get; set; }
         public ProcessType ProcessType { get; set; }
-        public string Notes { get; set; }
         public string PCTrainTrainingCategory { get; set; }
         public string SCMDrug { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
@@ -38,16 +37,10 @@ namespace Nada.Model.Process
             if (inds.ContainsKey("PCTrainTrainingCategory"))
                 PCTrainTrainingCategory = inds["PCTrainTrainingCategory"].DynamicValue;
         }
+
         public virtual void MapPropertiesToIndicators()
         {
-            Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            if (inds.ContainsKey("Notes"))
-                inds["Notes"].DynamicValue = Notes;
-            else
-            {
-                var indicator = ProcessType.Indicators["Notes"];
-                IndicatorValues.Add(new IndicatorValue { DynamicValue = Notes, Indicator = indicator, IndicatorId = indicator.Id });
-            }
+            ParseNotes(this, ProcessType.Indicators["Notes"]);
         }
     }
 }

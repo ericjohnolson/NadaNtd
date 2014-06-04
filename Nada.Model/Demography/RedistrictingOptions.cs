@@ -34,6 +34,7 @@ namespace Nada.Model.Demography
             Processes = new List<ProcessBase>();
             DistrosCm = new List<DiseaseDistroCm>();
             DistrosPc = new List<DiseaseDistroPc>();
+            Saes = new List<ProcessBase>();
         }
         public object Dashboard { get; set; }
         public AdminLevel Source { get; set; }
@@ -48,6 +49,7 @@ namespace Nada.Model.Demography
         public List<SurveyBase> Surveys { get; set; }
         public List<IntvBase> Intvs { get; set; }
         public List<ProcessBase> Processes { get; set; }
+        public List<ProcessBase> Saes { get; set; }
         public int YearStartMonth { get; set; }
 
         public override string ToString()

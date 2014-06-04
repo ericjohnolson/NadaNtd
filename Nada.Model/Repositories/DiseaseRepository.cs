@@ -92,7 +92,7 @@ namespace Nada.Model.Repositories
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
                                 DateReported = reader.GetValueOrDefault<DateTime>("DateReported"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
-                                UpdatedBy = GetAuditInfo(reader)
+                                UpdatedBy = GetAuditInfoUpdate(reader)
 
                             });
                         }
@@ -142,6 +142,7 @@ namespace Nada.Model.Repositories
                         DiseaseDistributionIndicatorValues.ID,   
                         DiseaseDistributionIndicatorValues.IndicatorId,
                         DiseaseDistributionIndicatorValues.DynamicValue,
+                        DiseaseDistributionIndicatorValues.MemoValue,
                         DiseaseDistributionIndicators.DisplayName,
                         DiseaseDistributionIndicatorValues.CalcByRedistrict
                         FROM DiseaseDistributionIndicatorValues inner join DiseaseDistributionIndicators on DiseaseDistributionIndicatorValues.IndicatorId = DiseaseDistributionIndicators.ID
@@ -153,13 +154,19 @@ namespace Nada.Model.Repositories
                         {
                             if (!diseaseDistro.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
                                 continue;
+
+                            var ind = diseaseDistro.Indicators[reader.GetValueOrDefault<string>("DisplayName")];
+                            string val = reader.GetValueOrDefault<string>("DynamicValue");
+                            if (ind.DataTypeId == (int)IndicatorDataType.LargeText && !string.IsNullOrEmpty(reader.GetValueOrDefault<string>("MemoValue")))
+                                val = reader.GetValueOrDefault<string>("MemoValue");
+
                             diseaseDistro.IndicatorValues.Add(new IndicatorValue
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
-                                DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
+                                DynamicValue = val,
                                 CalcByRedistrict = reader.GetValueOrDefault<bool>("CalcByRedistrict"),
-                                Indicator = diseaseDistro.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
+                                Indicator = ind
                             });
                         }
                         reader.Close();
@@ -320,6 +327,7 @@ namespace Nada.Model.Repositories
                         DiseaseDistributionIndicatorValues.ID,   
                         DiseaseDistributionIndicatorValues.IndicatorId,
                         DiseaseDistributionIndicatorValues.DynamicValue,
+                        DiseaseDistributionIndicatorValues.MemoValue,
                         DiseaseDistributionIndicators.DisplayName,
                         DiseaseDistributionIndicatorValues.CalcByRedistrict
                         FROM DiseaseDistributionIndicatorValues inner join DiseaseDistributionIndicators on DiseaseDistributionIndicatorValues.IndicatorId = DiseaseDistributionIndicators.ID
@@ -332,13 +340,17 @@ namespace Nada.Model.Repositories
                             if(!diseaseDistro.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
                                 continue;
 
+                            var ind = diseaseDistro.Indicators[reader.GetValueOrDefault<string>("DisplayName")];
+                            string val = reader.GetValueOrDefault<string>("DynamicValue");
+                            if (ind.DataTypeId == (int)IndicatorDataType.LargeText && !string.IsNullOrEmpty(reader.GetValueOrDefault<string>("MemoValue")))
+                                val = reader.GetValueOrDefault<string>("MemoValue");
                             diseaseDistro.IndicatorValues.Add(new IndicatorValue
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
                                 IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
-                                DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
+                                DynamicValue = val,
                                 CalcByRedistrict = reader.GetValueOrDefault<bool>("CalcByRedistrict"),
-                                Indicator = diseaseDistro.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
+                                Indicator = ind
                             });
                         }
                         reader.Close();
@@ -353,49 +365,6 @@ namespace Nada.Model.Repositories
             return diseaseDistro;
         }
 
-//        public DiseaseDistroCm GetDistroByAdminLevelYear(int adminLevel, int yearOfReporting, int diseaseType)
-//        {
-//            if (yearOfReporting <= 0 || adminLevel <= 0)
-//                return null;
-//            int did = -1;
-
-//            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-//            using (connection)
-//            {
-//                connection.Open();
-//                try
-//                {
-//                    OleDbCommand command = null;
-//                    command = new OleDbCommand(@"Select DiseaseDistributions.ID as did FROM 
-//                        ((DiseaseDistributions INNER JOIN DiseaseDistributionIndicatorValues on DiseaseDistributionIndicatorValues.DiseaseDistributionId = DiseaseDistributions.ID)
-//                            INNER JOIN DiseaseDistributionIndicators on DiseaseDistributionIndicators.ID = DiseaseDistributionIndicatorValues.IndicatorId)
-//                        WHERE DiseaseDistributions.AdminLevelId=@adminlevelId AND DiseaseDistributionIndicators.DisplayName = @yearName 
-//                        AND DiseaseDistributionIndicatorValues.DynamicValue = @year", connection);
-//                    command.Parameters.Add(new OleDbParameter("@adminlevelId", adminLevel));
-//                    command.Parameters.Add(new OleDbParameter("@yearName", "DiseaseYear"));
-//                    command.Parameters.Add(new OleDbParameter("@year", yearOfReporting));
-//                    using (OleDbDataReader reader = command.ExecuteReader())
-//                    {
-//                        if (reader.HasRows)
-//                        {
-//                            reader.Read();
-//                            did = reader.GetValueOrDefault<int>("did");
-//                        }
-//                        reader.Close();
-//                    }
-//                }
-//                catch (Exception)
-//                {
-//                    throw;
-//                }
-
-//                if (did <= 0)
-//                    return null;
-
-//                return GetDiseaseDistributionCm(did, diseaseType);
-//            }
-//        }
-        
         public void Save(List<DiseaseDistroCm> import, int userId)
         {
             bool transWasStarted = false;
@@ -586,17 +555,18 @@ namespace Nada.Model.Repositories
 
             foreach (IndicatorValue val in distro.IndicatorValues)
             {
-                command = new OleDbCommand(@"Insert Into DiseaseDistributionIndicatorValues (IndicatorId, DiseaseDistributionId, DynamicValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
-                        (@IndicatorId, @DiseaseDistributionId, @DynamicValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
+                command = new OleDbCommand(@"Insert Into DiseaseDistributionIndicatorValues (IndicatorId, DiseaseDistributionId, DynamicValue, MemoValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
+                        (@IndicatorId, @DiseaseDistributionId, @DynamicValue, @MemoValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
                 command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
-                command.Parameters.Add(new OleDbParameter("@DiseaseDistributionId", id));
-                command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
+                command.Parameters.Add(new OleDbParameter("@DiseaseDistributionId", id)); 
+                AddValueParam(command, val);
                 command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                 command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                 command.Parameters.Add(new OleDbParameter("@CalcByRedistrict", val.CalcByRedistrict));
                 command.ExecuteNonQuery();
             }
         }
+
         #endregion
 
         #region Disease

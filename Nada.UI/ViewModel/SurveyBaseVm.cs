@@ -16,7 +16,7 @@ using Nada.UI.View;
 
 namespace Nada.UI.ViewModel
 {
-    public class SurveyBaseVm : IDataEntryVm
+    public class SurveyBaseVm : ViewModelBase, IDataEntryVm
     {
         private AdminLevel adminLevel = null;
         private SurveyBase model = null;
@@ -91,12 +91,14 @@ namespace Nada.UI.ViewModel
             if (sitePicker != null)
                 sitePicker.EndEdit();
             model.Notes = notes;
-            model.IndicatorValues = indicatorValues;
+            model.IndicatorValues = ReconcileIndicators(model.IndicatorValues, indicatorValues); 
             bool isNew = model.Id < 1;
             r.SaveSurvey(model, ApplicationData.Instance.GetUserId());
             if (isNew && r.CopySentinelSiteSurvey(model, ApplicationData.Instance.GetUserId()))
                 MessageBox.Show(Translations.SurveyCopiedMessage, Translations.SurveyCopiedTitle);
+            MessageBox.Show(Translations.UpdateDdAfterSavingSurvey, Translations.UpdateDdAfterSavingSurveyTitle);
         }
+
 
         private void selector_OnSave(List<AdminLevel> obj)
         {

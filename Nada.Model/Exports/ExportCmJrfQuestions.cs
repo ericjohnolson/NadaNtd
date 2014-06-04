@@ -19,6 +19,7 @@ namespace Nada.Model.Exports
         public string CmYearsMasterPlan { get; set; }
         public Nullable<int> CmBuget { get; set; }
         public Nullable<double> CmPercentFunded { get; set; }
+        public Nullable<double> CmBudgetProportion { get; set; }
         public bool CmHaveAnnualOpPlan { get; set; }
         public string CmDiseaseSpecOrNtdIntegrated { get; set; }
         public bool CmBuHasPlan { get; set; }

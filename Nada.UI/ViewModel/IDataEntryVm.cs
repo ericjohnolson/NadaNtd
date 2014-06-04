@@ -24,7 +24,7 @@ namespace Nada.UI.ViewModel
         Dictionary<string, Indicator> Indicators { get; }
         List<IndicatorValue> IndicatorValues { get; }
         List<IndicatorDropdownValue> IndicatorDropdownValues { get; }
-        IndicatorEntityType EntityType { get;  }
+        IndicatorEntityType EntityType { get; }
 
         bool IsValid();
         void AddSpecialControls(IndicatorControl cntrl);
@@ -32,4 +32,28 @@ namespace Nada.UI.ViewModel
 
         void DoSaveType(string p);
     }
+
+    public class ViewModelBase
+    {
+        protected List<IndicatorValue> ReconcileIndicators(List<IndicatorValue> existingValues, List<IndicatorValue> newValues)
+        {
+            List<IndicatorValue> indsToAdd = new List<IndicatorValue>();
+            Dictionary<int, IndicatorValue> newDict = new Dictionary<int, IndicatorValue>();
+            foreach (var val in newValues)
+                newDict.Add(val.IndicatorId, val);
+
+            foreach (var val in existingValues)
+            {
+                if (!newDict.ContainsKey(val.IndicatorId))
+                    indsToAdd.Add(val);
+
+                if (newDict.ContainsKey(val.IndicatorId) && val.DynamicValue == newDict[val.IndicatorId].DynamicValue && val.CalcByRedistrict)
+                    newDict[val.IndicatorId].CalcByRedistrict = true;
+            }
+
+            newValues.AddRange(indsToAdd);
+            return newValues;
+        }
+    }
+
 }

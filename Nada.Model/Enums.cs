@@ -57,6 +57,7 @@ namespace Nada.Model
         LeaveBlank59 = 59,
         TBD = 99,
         Average = 50,
+        CaseFindingStrategy = 60
     }
 
     public enum RedistrictingRelationship

@@ -465,6 +465,12 @@
     <Compile Include="View\ViewForm.Designer.cs">
       <DependentUpon>ViewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\Demography\StepDemoLevel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Demography\StepDemoLevel.Designer.cs">
+      <DependentUpon>StepDemoLevel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\Demography\StepDemoCountryDemo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1000,6 +1006,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ViewForm.resx">
       <DependentUpon>ViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Demography\StepDemoLevel.resx">
+      <DependentUpon>StepDemoLevel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\Demography\StepDemoCountryDemo.resx">
       <DependentUpon>StepDemoCountryDemo.cs</DependentUpon>

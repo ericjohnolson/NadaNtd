@@ -22,7 +22,21 @@ namespace Nada.Model.Base
         public int UpdatedById { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public string Notes { get; set; }
 
+        protected void ParseNotes(IHaveDynamicIndicatorValues form, Indicator notesIndicator)
+        {
+            var notesInd = form.IndicatorValues.FirstOrDefault(i => i.Indicator.DisplayName == "Notes");
+            if (notesInd != null)
+            {
+                if (notesInd.CalcByRedistrict && notesInd.DynamicValue != Notes)
+                    notesInd.CalcByRedistrict = false;
+
+                notesInd.DynamicValue = Notes;
+            }
+            else
+                form.IndicatorValues.Add(new IndicatorValue { DynamicValue = Notes, Indicator = notesIndicator, IndicatorId = notesIndicator.Id });
+        }
 
         private List<string> GetPropertyNames()
         {

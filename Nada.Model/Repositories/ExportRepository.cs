@@ -16,6 +16,14 @@ namespace Nada.Model.Repositories
 
     public class ExportRepository : RepositoryBase
     {
+        /// <summary>
+        /// NEED TO REFACTOR THIS TO A REPORT
+        /// </summary>
+        /// <param name="interventionTypeId"></param>
+        /// <param name="year"></param>
+        /// <param name="diseaseId"></param>
+        /// <param name="customAggRule"></param>
+        /// <returns></returns>
         public List<AdminLevelIndicators> GetDistrictIndicatorTrees(int interventionTypeId, int year, int diseaseId, Func<AggregateIndicator, object, object> customAggRule)
         {
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
@@ -25,7 +33,7 @@ namespace Nada.Model.Repositories
             {
                 connection.Open();
                 OleDbCommand command = new OleDbCommand();
-                list = GetAdminLevels(command, connection);
+                list = GetAdminLevels(command, connection, false);
                 dic = list.ToDictionary(n => n.Id, n => n);
                 AddIntvIndicators(interventionTypeId, year, dic, command, connection, customAggRule);
                 AddSurveyIndicators(diseaseId, year, dic, command, connection, customAggRule);
@@ -176,14 +184,16 @@ namespace Nada.Model.Repositories
             }
         }
 
-        public static List<AdminLevelIndicators> GetAdminLevels(OleDbCommand command, OleDbConnection connection)
+        public static List<AdminLevelIndicators> GetAdminLevels(OleDbCommand command, OleDbConnection connection, bool getRedistricted)
         {
+            string filter = " WHERE AdminLevels.IsDeleted = 0 ";
+            if (getRedistricted)
+                filter = " WHERE AdminLevels.RedistrictIdForMother > 0 ";
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
             command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, AdminLevelTypes.AdminLevel, AdminLevelTypes.IsDistrict, 
                         AdminLevels.AdminLevelTypeId, AdminLevels.RedistrictIdForDaughter, AdminLevels.RedistrictIdForMother
-                    FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE AdminLevels.IsDeleted = 0
-                    ", connection);
+                    FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID 
+                    " + filter, connection);
             using (OleDbDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
@@ -355,6 +365,7 @@ namespace Nada.Model.Repositories
                     ,CmHasQuarterlyMech
                     ,CmHasSemesterMech
                     ,CmOtherMechs
+                    ,CmBudgetProportion
                     FROM ExportCmJrfQuestions 
                     WHERE ID = 1
                     ", connection);
@@ -369,6 +380,7 @@ namespace Nada.Model.Repositories
                         questions.CmYearsMasterPlan = reader.GetValueOrDefault<string>("CmYearsMasterPlan");
                         questions.CmBuget = reader.GetValueOrDefault<Nullable<int>>("CmBuget");
                         questions.CmPercentFunded = reader.GetNullableDouble("CmPercentFunded");
+                        questions.CmBudgetProportion = reader.GetNullableDouble("CmBudgetProportion");
                         questions.CmHaveAnnualOpPlan = reader.GetValueOrDefault<bool>("CmHaveAnnualOpPlan");
                         questions.CmDiseaseSpecOrNtdIntegrated = reader.GetValueOrDefault<string>("CmDiseaseSpecOrNtdIntegrated");
                         questions.CmBuHasPlan = reader.GetValueOrDefault<bool>("CmBuHasPlan");
@@ -486,7 +498,8 @@ namespace Nada.Model.Repositories
                             ,CmHasMonthlyMech=@CmHasMonthlyMech
                             ,CmHasQuarterlyMech=@CmHasQuarterlyMech
                             ,CmHasSemesterMech=@CmHasSemesterMech
-                            ,CmOtherMechs=@CmOtherMechs               
+                            ,CmOtherMechs=@CmOtherMechs          
+                            ,CmBudgetProportion=@CmBudgetProportion               
                         WHERE ID = @id", connection);
 
                     command.Parameters.Add(OleDbUtil.CreateNullableParam("@YearReporting", questions.YearReporting));
@@ -532,7 +545,8 @@ namespace Nada.Model.Repositories
                     command.Parameters.Add(new OleDbParameter("@CmHasMonthlyMech", questions.CmHasMonthlyMech));
                     command.Parameters.Add(new OleDbParameter("@CmHasQuarterlyMech", questions.CmHasQuarterlyMech));
                     command.Parameters.Add(new OleDbParameter("@CmHasSemesterMech", questions.CmHasSemesterMech));
-                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@CmOtherMechs", questions.CmOtherMechs));              
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@CmOtherMechs", questions.CmOtherMechs));
+                    command.Parameters.Add(OleDbUtil.CreateNullableParam("@CmBudgetProportion", questions.CmBudgetProportion));           
                     command.Parameters.Add(new OleDbParameter("@id", questions.Id));
                     command.ExecuteNonQuery();
 

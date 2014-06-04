@@ -108,7 +108,7 @@ namespace Nada.Model
 
         public string GetValueOrDefault(string key, Dictionary<string, string> values)
         {
-            if (values.ContainsKey(key))
+            if (values != null && values.ContainsKey(key))
                 return values[key];
             return "";
         }

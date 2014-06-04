@@ -407,7 +407,7 @@ namespace Nada.UI.View.Demography
                 {
                     foreach (var d in demo)
                     {
-                        d.CanView = true;
+                        d.CanViewEdit = true;
                         d.CanDelete = true;
                     }
                 }

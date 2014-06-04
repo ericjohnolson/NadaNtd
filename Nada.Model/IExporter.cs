@@ -271,6 +271,20 @@ namespace Nada.Model
             return TranslationLookup.GetValue(value.TranslationKey);
         }
 
+        protected string GetMaxIntFromStrings(string s1, string s2)
+        {
+            int i1 = 0, i2 = 0;
+            if (string.IsNullOrEmpty(s1))
+                return s2;
+            if (string.IsNullOrEmpty(s2))
+                return s1;
+            i1 = int.Parse(s1);
+            i2 = int.Parse(s2);
+            if (i1 > i2)
+                return s1;
+            return s2;
+        }
+
         protected string GetCombineFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames)
         {
             List<string> valueTypes = new List<string>();

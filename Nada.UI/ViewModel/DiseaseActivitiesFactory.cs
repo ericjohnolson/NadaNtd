@@ -156,7 +156,7 @@ namespace Nada.UI.AppLogic
         public IView GetDemo(DemoDetails details)
         {
             var demo = demos.GetDemoById(details.Id);
-            return new DemographyView(demo, adminLevel);
+            return new DemographyView(demo, adminLevel, details.CanViewEdit);
         }
 
         #endregion

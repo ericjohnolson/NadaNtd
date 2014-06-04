@@ -12,7 +12,7 @@ namespace Nada.Model
 {
     public static class Util
     {
-
+        public static readonly int MaxRounds = 5;
         public static readonly string EnumerationDelinator = " & ";
         public static T DeepClone<T>(T obj)
         {

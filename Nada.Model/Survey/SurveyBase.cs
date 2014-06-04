@@ -61,14 +61,7 @@ namespace Nada.Model.Base
         }
         public virtual void MapPropertiesToIndicators()
         {
-            Dictionary<string, IndicatorValue> inds = Util.CreateIndicatorValueDictionary(this);
-            if (inds.ContainsKey("Notes"))
-                inds["Notes"].DynamicValue = Notes;
-            else
-            {
-                var indicator = TypeOfSurvey.Indicators["Notes"];
-                IndicatorValues.Add(new IndicatorValue { DynamicValue = Notes, Indicator = indicator, IndicatorId = indicator.Id });
-            }
+            ParseNotes(this, TypeOfSurvey.Indicators["Notes"]);
         }
 
         #region IDataErrorInfo Members

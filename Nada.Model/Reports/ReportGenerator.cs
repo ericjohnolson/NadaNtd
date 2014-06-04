@@ -561,7 +561,8 @@ namespace Nada.Model.Reports
                         InterventionIndicators.IsEditable, 
                         InterventionIndicators.DataTypeId, 
                         InterventionIndicators.AggTypeId, 
-                        InterventionIndicatorValues.DynamicValue
+                        InterventionIndicatorValues.DynamicValue, 
+                        InterventionIndicatorValues.MemoValue
                         FROM ((((Interventions INNER JOIN InterventionTypes on Interventions.InterventionTypeId = InterventionTypes.ID)
                             INNER JOIN InterventionIndicatorValues on Interventions.Id = InterventionIndicatorValues.InterventionId)
                             INNER JOIN AdminLevels on Interventions.AdminLevelId = AdminLevels.ID) 
@@ -667,7 +668,8 @@ namespace Nada.Model.Reports
                         SurveyIndicators.IsEditable, 
                         SurveyIndicators.DataTypeId, 
                         SurveyIndicators.AggTypeId,    
-                        SurveyIndicatorValues.DynamicValue,
+                        SurveyIndicatorValues.DynamicValue, 
+                        SurveyIndicatorValues.MemoValue,
                         Surveys.SpotCheckName as IndSpotCheckName,
                         Surveys.SpotCheckLat as IndSpotCheckLat,
                         Surveys.SpotCheckLng as IndSpotCheckLng,
@@ -721,22 +723,22 @@ namespace Nada.Model.Reports
         protected override void AddStaticAggInd(CreateAggParams param)
         {
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckName) != null)
-                AddIndicatorAndColumn<string>("IndSpotCheckName", Translations.IndSpotCheckName, param);
+                AddStaticIndicatorAndColumn<string>("IndSpotCheckName", Translations.IndSpotCheckName, param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLat) != null)
-                AddIndicatorAndColumn<Nullable<double>>("IndSpotCheckLat", Translations.IndSpotCheckLat, param);
+                AddStaticIndicatorAndColumn<Nullable<double>>("IndSpotCheckLat", Translations.IndSpotCheckLat, param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLng) != null)
-                AddIndicatorAndColumn<Nullable<double>>("IndSpotCheckLng", Translations.IndSpotCheckLng, param);
+                AddStaticIndicatorAndColumn<Nullable<double>>("IndSpotCheckLng", Translations.IndSpotCheckLng, param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteName) != null)
-                AddIndicatorAndColumn<string>("IndSentinelSiteName", Translations.IndSentinelSiteName, param);
+                AddStaticIndicatorAndColumn<string>("IndSentinelSiteName", Translations.IndSentinelSiteName, param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLat) != null)
-                AddIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLat", Translations.IndSentinelSiteLat, param);
+                AddStaticIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLat", Translations.IndSentinelSiteLat, param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLng) != null)
-                AddIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLng", Translations.IndSentinelSiteLng, param);
+                AddStaticIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLng", Translations.IndSentinelSiteLng, param);
             if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.SiteType) != null)
-                AddIndicatorAndColumn<string>("SiteType", Translations.SiteType, param);
+                AddStaticIndicatorAndColumn<string>("SiteType", Translations.SiteType, param);
         }
 
-        private void AddIndicatorAndColumn<T>(string columnName, string transName, CreateAggParams param)
+        private void AddStaticIndicatorAndColumn<T>(string columnName, string transName, CreateAggParams param)
         {
             string key = columnName + "_" + Util.GetYearReported(param.Options.MonthYearStarts, param.Reader.GetValueOrDefault<DateTime>("DateReported")) + "_" + param.Reader.GetValueOrDefault<string>("TName");
             string displayName = transName + " - " + TranslationLookup.GetValue(param.Reader.GetValueOrDefault<string>("TName"));
@@ -806,7 +808,8 @@ namespace Nada.Model.Reports
                         DiseaseDistributionIndicators.IsEditable, 
                         DiseaseDistributionIndicators.DataTypeId, 
                         DiseaseDistributionIndicators.AggTypeId, 
-                        DiseaseDistributionIndicatorValues.DynamicValue
+                        DiseaseDistributionIndicatorValues.DynamicValue, 
+                        DiseaseDistributionIndicatorValues.MemoValue
                         FROM ((((DiseaseDistributions INNER JOIN Diseases on DiseaseDistributions.DiseaseId = Diseases.ID)
                             INNER JOIN DiseaseDistributionIndicatorValues on DiseaseDistributions.Id = DiseaseDistributionIndicatorValues.DiseaseDistributionId)
                             INNER JOIN AdminLevels on DiseaseDistributions.AdminLevelId = AdminLevels.ID) 
@@ -886,7 +889,8 @@ namespace Nada.Model.Reports
                         ProcessIndicators.IsEditable, 
                         ProcessIndicators.DataTypeId, 
                         ProcessIndicators.AggTypeId, 
-                        ProcessIndicatorValues.DynamicValue
+                        ProcessIndicatorValues.DynamicValue, 
+                        ProcessIndicatorValues.MemoValue
                         FROM ((((Processes INNER JOIN ProcessTypes on Processes.ProcessTypeId = ProcessTypes.ID)
                             INNER JOIN ProcessIndicatorValues on Processes.Id = ProcessIndicatorValues.ProcessId)
                             INNER JOIN AdminLevels on Processes.AdminLevelId = AdminLevels.ID) 

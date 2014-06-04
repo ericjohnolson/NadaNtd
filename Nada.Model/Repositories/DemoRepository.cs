@@ -1151,7 +1151,7 @@ namespace Nada.Model.Repositories
                             DateReported = reader.GetValueOrDefault<DateTime>("DateDemographyData"),
                             GrowthRate = reader.GetValueOrDefault<double>("GrowthRate"),
                             TotalPopulation = reader.GetValueOrDefault<double>("TotalPopulation"),
-                            UpdatedBy = GetAuditInfo(reader)
+                            UpdatedBy = GetAuditInfoUpdate(reader)
                         });
                     }
                     reader.Close();

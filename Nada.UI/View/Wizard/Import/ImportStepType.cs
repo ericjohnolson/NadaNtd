@@ -72,7 +72,10 @@ namespace Nada.UI.View.Wizard
         {
             if (!IsValid())
                 return;
-            OnSwitchStep(new ImportStepOptions(options, OnFinish));
+            if(options.Importer.HasGroupedAdminLevels(options))
+                OnSwitchStep(new ImportStepOptions(options, OnFinish));
+            else
+                OnSwitchStep(new ImportStepOptions(options, OnFinish));
         }
 
 

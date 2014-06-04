@@ -377,6 +377,7 @@
             this.newYearUpdatesToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
             this.newYearUpdatesToolStripMenuItem.Tag = "NewYearUpdates";
             this.newYearUpdatesToolStripMenuItem.Text = "NewYearUpdates";
+            this.newYearUpdatesToolStripMenuItem.Visible = false;
             // 
             // menuNewYearDemoToolStripMenuItem
             // 
@@ -410,7 +411,6 @@
             // 
             // menuDemographyToolStripMenuItem
             // 
-            this.menuDemographyToolStripMenuItem.Enabled = false;
             this.menuDemographyToolStripMenuItem.Name = "menuDemographyToolStripMenuItem";
             this.menuDemographyToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.menuDemographyToolStripMenuItem.Tag = "MenuDemography";
@@ -569,6 +569,7 @@
             this.Name = "Shell";
             this.Tag = "ApplicationTitle";
             this.Text = "ApplicationTitle";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Shell_FormClosing);
             this.Load += new System.EventHandler(this.Shell_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

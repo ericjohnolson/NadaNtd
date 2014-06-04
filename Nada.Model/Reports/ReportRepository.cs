@@ -79,13 +79,17 @@ namespace Nada.Model.Repositories
                     int dataType = reader.GetValueOrDefault<int>("DataTypeId");
                     if (!dic.ContainsKey(adminLevelId))
                         continue;
+                    string val = reader.GetValueOrDefault<string>("DynamicValue");
+                    if (dataType == (int)IndicatorDataType.LargeText && !string.IsNullOrEmpty(reader.GetValueOrDefault<string>("MemoValue")))
+                        val = reader.GetValueOrDefault<string>("MemoValue");
+
                     var newIndicator = new AggregateIndicator
                     {
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
                         Name = indicatorName,
                         Key = reader.GetValueOrDefault<string>("IndicatorName"),
                         DataType = dataType,
-                        Value = reader.GetValueOrDefault<string>("DynamicValue"),
+                        Value = val,
                         AggType = reader.GetValueOrDefault<int>("AggTypeId"),
                         Year = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")),
                         ReportedDate = reader.GetValueOrDefault<DateTime>("DateReported"),
@@ -201,6 +205,7 @@ namespace Nada.Model.Repositories
                             if (keys.ContainsKey("PopAdult")) dr[Translations.PopAdult] = reader.GetValueOrDefault<Nullable<double>>("PopAdult");
                             if (keys.ContainsKey("PopFemale")) dr[Translations.PopFemale] = reader.GetValueOrDefault<Nullable<double>>("PopFemale");
                             if (keys.ContainsKey("PopMale")) dr[Translations.PopMale] = reader.GetValueOrDefault<Nullable<double>>("PopMale");
+                            if (keys.ContainsKey("Notes")) dr[Translations.Notes] = reader.GetValueOrDefault<string>("Notes");
                             dt.Rows.Add(dr);
                         }
                         reader.Close();
@@ -407,6 +412,7 @@ namespace Nada.Model.Repositories
             indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("PopAdult"), DataTypeId = 2, Key = "PopAdult" });
             indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("PopFemale"), DataTypeId = 2, Key = "PopFemale" });
             indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("PopMale"), DataTypeId = 2, Key = "PopMale" });
+            indicators.Add(new ReportIndicator { ID = -1, Name = TranslationLookup.GetValue("Notes"), DataTypeId = 15, Key = "Notes" });
 
             return indicators.OrderBy(r => r.Name).ToList();
         }

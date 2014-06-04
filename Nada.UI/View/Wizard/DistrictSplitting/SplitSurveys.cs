@@ -65,6 +65,7 @@ namespace Nada.UI.View.Wizard
             {
                 Localizer.TranslateControl(this);
 
+
                 Dictionary<int, SurveyType> surveys = new Dictionary<int, SurveyType>();
                 foreach (var survey in options.Surveys)
                     if (!surveys.ContainsKey(survey.TypeOfSurvey.Id))
@@ -72,6 +73,9 @@ namespace Nada.UI.View.Wizard
 
                 if (surveys.Count == 0)
                     DoNext();
+
+                if (options.SplitType != SplittingType.Merge)
+                    MessageBox.Show(Translations.SplittingSurveyWarning, Translations.ValidationErrorTitle);
 
                 foreach (var t in surveys.Values)
                 {

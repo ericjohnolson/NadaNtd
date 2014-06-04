@@ -15,6 +15,7 @@ using Nada.UI.Base;
 using Nada.Model.Imports;
 using Nada.UI.Controls;
 using Nada.Model.Demography;
+using Nada.UI.View.Reports;
 
 namespace Nada.UI.View.Wizard
 {
@@ -41,7 +42,7 @@ namespace Nada.UI.View.Wizard
         public bool EnablePrev { get { return true; } }
         public bool ShowFinish { get { return false; } }
         public bool EnableFinish { get { return false; } }
-        public string StepTitle { get { return Translations.NewAdminUnits; } }
+        public string StepTitle { get { return Translations.SplittingPercentages; } }
 
         public SplittingAdminLevel(RedistrictingOptions o)
             : base()
@@ -116,6 +117,7 @@ namespace Nada.UI.View.Wizard
                     AdminLevel source = null;
                     if (options.SplitType == SplittingType.SplitCombine)
                     {
+                        chooser.HideNewLink();
                         chooser.Select(options.MergeSources[i], true);
                         options.MergeSources[i].Children = repo.GetAdminLevelChildren(options.MergeSources[i].Id);
                         options.MergeSources[i].CurrentDemography = repo.GetRecentDemography(options.MergeSources[i].Id);

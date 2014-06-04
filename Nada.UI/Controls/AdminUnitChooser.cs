@@ -35,6 +35,11 @@ namespace Nada.UI.View
             fieldLink1.Visible = hideSelect;
         }
 
+        public void HideNewLink()
+        {
+            fieldLink1.Hide();
+        }
+
         public void Select(int id)
         {
             DemoRepository repo = new DemoRepository();

@@ -9,6 +9,7 @@ namespace Nada.Model
 {
     public interface IImporter
     {
+        bool HasGroupedAdminLevels(ImportOptions opts);
         void SetType(int id);
         string ImportName { get; }
         void CreateImportFile(string filename, List<AdminLevel> adminLevels, AdminLevelType adminLevelType, ImportOptions opts);

@@ -13,13 +13,16 @@ namespace Nada.Model.Demography
         public DateTime DateReported { get; set; }
         public double TotalPopulation { get; set; }
         public double GrowthRate { get; set; }
-        public bool CanView { get; set; }
+        public bool CanViewEdit { get; set; }
         public bool CanDelete { get; set; }
         public override string View
         {
             get
             {
-                return CanView ? Translations.View : "";
+                if (CanViewEdit)
+                    return Translations.ViewEdit;
+                else
+                    return Translations.View;
             }
         }
 

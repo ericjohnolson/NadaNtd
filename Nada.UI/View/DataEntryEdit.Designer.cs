@@ -268,7 +268,6 @@
             // tbNotes
             // 
             this.tbNotes.Location = new System.Drawing.Point(3, 21);
-            this.tbNotes.MaxLength = 255;
             this.tbNotes.Multiline = true;
             this.tbNotes.Name = "tbNotes";
             this.tbNotes.ScrollBars = System.Windows.Forms.ScrollBars.Both;

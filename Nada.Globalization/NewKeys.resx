@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdministrativeUnits" xml:space="preserve">
+    <value>Administrative units</value>
+  </data>
+  <data name="AdminUnits" xml:space="preserve">
+    <value>Administrative units</value>
+  </data>
+  <data name="AdminUnitsSurveyed" xml:space="preserve">
+    <value>Administrative units surveyed</value>
+  </data>
+  <data name="CalendarYear" xml:space="preserve">
+    <value>Calendar year</value>
+  </data>
+  <data name="CmBudget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="CmBudgetProportion" xml:space="preserve">
+    <value>Proportion of funds allocated to NTDs in the National Health Sector Budget (%)</value>
+  </data>
+  <data name="CustomYear" xml:space="preserve">
+    <value>Custom year</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="DatabaseScriptBackup" xml:space="preserve">
+    <value>Please revert to the most recent backup of your database: </value>
+  </data>
+  <data name="EliminationLiving" xml:space="preserve">
+    <value>Number of persons living in areas that have achieved the criteria for stopping PC</value>
+  </data>
+  <data name="ExitWarning" xml:space="preserve">
+    <value>Are you sure you want to exit the National Database Template</value>
+  </data>
+  <data name="ExitWarningTitle" xml:space="preserve">
+    <value>Exiting Application</value>
+  </data>
+  <data name="ExportsPcEpiDataForm" xml:space="preserve">
+    <value>PC epidemiologial data reporting form</value>
+  </data>
+  <data name="ImportDemo" xml:space="preserve">
+    <value>Demography import</value>
+  </data>
+  <data name="LFMapSurExaminedHydro1" xml:space="preserve">
+    <value>Number of individuals examined for Hydrocele</value>
+  </data>
+  <data name="LFMapSurExaminedLympho" xml:space="preserve">
+    <value>Number of individuals examined for Lymphoedema</value>
+  </data>
+  <data name="LFMapSurNumberOfCasesOfHydrocele" xml:space="preserve">
+    <value>Number of individuals positive for Hydrocele</value>
+  </data>
+  <data name="LFMapSurNumberOfCasesOfLymphoedema" xml:space="preserve">
+    <value>Number of individuals positive for Lymphoedema</value>
+  </data>
+  <data name="LFMapSurNumberOfFemalesExamined" xml:space="preserve">
+    <value>Number of females examined for Mf/Ag</value>
+  </data>
+  <data name="LFMapSurNumberOfFemalesPositive" xml:space="preserve">
+    <value>Number of females positive for Mf/Ag</value>
+  </data>
+  <data name="LFMapSurNumberOfIndividualsExamined" xml:space="preserve">
+    <value>Number of individuals examined for Mf/Ag</value>
+  </data>
+  <data name="LFMapSurNumberOfIndividualsPositive" xml:space="preserve">
+    <value>Number of individuals positive for Mf/Ag</value>
+  </data>
+  <data name="LFMapSurNumberOfMalesExamined" xml:space="preserve">
+    <value>Number of males examined for Mf/Ag</value>
+  </data>
+  <data name="LFMapSurNumberOfMalesPositive" xml:space="preserve">
+    <value>Number of males positive for Mf/Ag</value>
+  </data>
+  <data name="LFSurExaminedHydro" xml:space="preserve">
+    <value>Number of individuals examined for Hydrocele</value>
+  </data>
+  <data name="LFSurExaminedLympho" xml:space="preserve">
+    <value>Number of individuals examined for Lymphoedema</value>
+  </data>
+  <data name="LFSurNumberOfIndividualsExamined" xml:space="preserve">
+    <value>Number of individuals examined for Mf/Ag</value>
+  </data>
+  <data name="LFSurNumberOfIndividualsPositive" xml:space="preserve">
+    <value>Number of individuals positive for Mf/Ag</value>
+  </data>
+  <data name="LFSurPosHydro" xml:space="preserve">
+    <value>Number of individuals positive for Hydrocele</value>
+  </data>
+  <data name="LFSurPosLympho" xml:space="preserve">
+    <value>Number of individuals positive for Lymphoedema</value>
+  </data>
+  <data name="MenuDeleteAdminLevel" xml:space="preserve">
+    <value>Delete administrative units</value>
+  </data>
+  <data name="MenuMergeDistrict" xml:space="preserve">
+    <value>Merge administrative units</value>
+  </data>
+  <data name="MenuNewAdminLevel" xml:space="preserve">
+    <value>Add administrative units</value>
+  </data>
+  <data name="MenuNewYearDemo" xml:space="preserve">
+    <value>Add demography for a new year</value>
+  </data>
+  <data name="MenuNewYearDistro" xml:space="preserve">
+    <value>Add disease distribution for a new year</value>
+  </data>
+  <data name="MenuSplitCombineDistrict" xml:space="preserve">
+    <value>Split/combine administrative units</value>
+  </data>
+  <data name="MenuSplitDistrict" xml:space="preserve">
+    <value>Split administrative units</value>
+  </data>
+  <data name="NewYearUpdates" xml:space="preserve">
+    <value>New year updates</value>
+  </data>
+  <data name="ParentLevelMustBeSame" xml:space="preserve">
+    <value>You must select a parent for the new administrative level that is of type: {0}</value>
+  </data>
+  <data name="PcIntvOfTotalFemalesOncho" xml:space="preserve">
+    <value>Of total, # females treated for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalFemalesTargetedOncho" xml:space="preserve">
+    <value>Of total, # females targeted  for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalMalesOncho" xml:space="preserve">
+    <value>Of total, # males treated for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalMalesTargetedOncho" xml:space="preserve">
+    <value>Of total, # males targeted for oncho</value>
+  </data>
+  <data name="PcTrainNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="PcTrainNewOrRefresh" xml:space="preserve">
+    <value>New or Refresher</value>
+  </data>
+  <data name="PcTrainRefresher" xml:space="preserve">
+    <value>Refresher</value>
+  </data>
+  <data name="PcTrainUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="RedistrictedAdminUnits" xml:space="preserve">
+    <value>Show only administrative units before redistricting</value>
+  </data>
+  <data name="RedistrictingInfo" xml:space="preserve">
+    <value>Redistricting Information</value>
+  </data>
+  <data name="RedistrictingMergeDesc" xml:space="preserve">
+    <value>Merged from {0} on {1}</value>
+  </data>
+  <data name="RedistrictingMergeInto" xml:space="preserve">
+    <value>Merged into {0} on {1}</value>
+  </data>
+  <data name="RedistrictingNotes" xml:space="preserve">
+    <value>Notes about redistricting</value>
+  </data>
+  <data name="RedistrictingSplitCombineDesc" xml:space="preserve">
+    <value>Split and combined from {0} on {1}</value>
+  </data>
+  <data name="RedistrictingSplitCombineInto" xml:space="preserve">
+    <value>Split and combined into {0} on {1}</value>
+  </data>
+  <data name="RedistrictingSplitDesc" xml:space="preserve">
+    <value>Split from {0} on {1}</value>
+  </data>
+  <data name="RedistrictingSplitInto" xml:space="preserve">
+    <value>Split into {0} on {1}</value>
+  </data>
+  <data name="ReviewErrors" xml:space="preserve">
+    <value>Please review the errors and fix before continuing.</value>
+  </data>
+  <data name="RtiCantReconcile" xml:space="preserve">
+    <value>Cannot Reconcile</value>
+  </data>
+  <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
+    <value>RTI Country Disease Workbook</value>
+  </data>
+  <data name="RtiDataCompleteness" xml:space="preserve">
+    <value>Data completeness (%)</value>
+  </data>
+  <data name="RtiErrorMustMatchAll" xml:space="preserve">
+    <value>Must match all units before continuing</value>
+  </data>
+  <data name="RtiFetchingTaskForceNames" xml:space="preserve">
+    <value>Fetching country information from RTI system</value>
+  </data>
+  <data name="RtiMatchLevel" xml:space="preserve">
+    <value>Match your units with the RTI system: {0}</value>
+  </data>
+  <data name="RtiName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="RtiNoData" xml:space="preserve">
+    <value>The RTI system has no data on that country, please double check your selection before continuing.</value>
+  </data>
+  <data name="RtiProjectName" xml:space="preserve">
+    <value>Project name</value>
+  </data>
+  <data name="RtiReportingLevel" xml:space="preserve">
+    <value>Reporting level</value>
+  </data>
+  <data name="RtiReportingPeriod" xml:space="preserve">
+    <value>Reporting period</value>
+  </data>
+  <data name="RtiReports" xml:space="preserve">
+    <value>Disease Workbook for USAID reporting</value>
+  </data>
+  <data name="RtiSkipReconcile" xml:space="preserve">
+    <value>Skip administrative unit reconciliation</value>
+  </data>
+  <data name="RtiSubPartnerName" xml:space="preserve">
+    <value>Sub-partner name</value>
+  </data>
+  <data name="RtiTaskForceNoResults" xml:space="preserve">
+    <value>No results found when querying the RTI system, please contact support.</value>
+  </data>
+  <data name="RtiTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="RtiTotalDistrictsComplete" xml:space="preserve">
+    <value>Total # districts submitted complete treatment report</value>
+  </data>
+  <data name="RtiTotalDistrictsTreatedWithUsaid" xml:space="preserve">
+    <value>Total districts treated with USAID support</value>
+  </data>
+  <data name="RtiWorkbookQuestions" xml:space="preserve">
+    <value>Workbook questions</value>
+  </data>
+  <data name="RtiYearOfWorkbook" xml:space="preserve">
+    <value>Year of workbook</value>
+  </data>
+  <data name="Running" xml:space="preserve">
+    <value>Running…</value>
+  </data>
+  <data name="ShowRedistrictingEvents" xml:space="preserve">
+    <value>Show redistricting events</value>
+  </data>
+  <data name="SplitConfirmReview" xml:space="preserve">
+    <value>All other data has been distributed between the new administrative units. Please click "Next" to review and make changes.</value>
+  </data>
+  <data name="SplittingBackup" xml:space="preserve">
+    <value>Backup database before continuing</value>
+  </data>
+  <data name="SplittingBackupMessage" xml:space="preserve">
+    <value>Please click "Next" to backup your current database before continuing this process.</value>
+  </data>
+  <data name="SplittingMergeYear" xml:space="preserve">
+    <value>When merging administrative units, data will be combined within the same year. How would you like to define the year?</value>
+  </data>
+  <data name="SplittingMustAllocateSaes" xml:space="preserve">
+    <value>Must allocate all SAEs to a new destination before continuing.</value>
+  </data>
+  <data name="SplittingPercentages" xml:space="preserve">
+    <value>Split Percentages</value>
+  </data>
+  <data name="SplittingSaes" xml:space="preserve">
+    <value>Split SAEs</value>
+  </data>
+  <data name="SplittingSurveyWarning" xml:space="preserve">
+    <value>Survey data from the parent districts was duplicated in all the daughter districts and should be reviewed.</value>
+  </data>
+  <data name="UpdateDdAfterSavingSurvey" xml:space="preserve">
+    <value>Be sure to update disease distribution as appropriate incorporating the results of this survey</value>
+  </data>
+  <data name="UpdateDdAfterSavingSurveyTitle" xml:space="preserve">
+    <value>Update Disease Distribution</value>
+  </data>
+  <data name="ValidNumberRange" xml:space="preserve">
+    <value>Must be between {0} and {1}</value>
+  </data>
+</root>

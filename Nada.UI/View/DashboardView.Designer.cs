@@ -97,10 +97,10 @@
             this.lblRecent.Location = new System.Drawing.Point(13, 5);
             this.lblRecent.Margin = new System.Windows.Forms.Padding(13, 5, 0, 5);
             this.lblRecent.Name = "lblRecent";
-            this.lblRecent.Size = new System.Drawing.Size(63, 19);
+            this.lblRecent.Size = new System.Drawing.Size(133, 19);
             this.lblRecent.TabIndex = 7;
-            this.lblRecent.Tag = "Location";
-            this.lblRecent.Text = "Location";
+            this.lblRecent.Tag = "AdministrativeUnits";
+            this.lblRecent.Text = "AdministrativeUnits";
             // 
             // treeListView1
             // 

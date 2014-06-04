@@ -48,7 +48,7 @@ namespace Nada.Model.Repositories
                                 AdminLevel = reader.GetValueOrDefault<string>("DisplayName"),
                                 DateReported = reader.GetValueOrDefault<DateTime>("DateReported"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString()
+                                UpdatedBy = GetAuditInfoUpdate(reader)
 
                             });
                         }
@@ -555,11 +555,11 @@ namespace Nada.Model.Repositories
 
             foreach (IndicatorValue val in Process.IndicatorValues)
             {
-                command = new OleDbCommand(@"Insert Into ProcessIndicatorValues (IndicatorId, ProcessId, DynamicValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
-                        (@IndicatorId, @ProcessId, @DynamicValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
+                command = new OleDbCommand(@"Insert Into ProcessIndicatorValues (IndicatorId, ProcessId, DynamicValue, MemoValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
+                        (@IndicatorId, @ProcessId, @DynamicValue, @MemoValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
                 command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
                 command.Parameters.Add(new OleDbParameter("@ProcessId", Process.Id));
-                command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
+                AddValueParam(command, val);
                 command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                 command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                 command.Parameters.Add(new OleDbParameter("@CalcByRedistrict", val.CalcByRedistrict));
@@ -573,6 +573,7 @@ namespace Nada.Model.Repositories
                         ProcessIndicatorValues.ID,   
                         ProcessIndicatorValues.IndicatorId,
                         ProcessIndicatorValues.DynamicValue,
+                        ProcessIndicatorValues.MemoValue,
                         ProcessIndicators.DisplayName,
                         ProcessIndicatorValues.CalcByRedistrict
                         FROM ProcessIndicatorValues INNER JOIN ProcessIndicators on ProcessIndicatorValues.IndicatorId = ProcessIndicators.ID
@@ -584,13 +585,17 @@ namespace Nada.Model.Repositories
                 {
                     if (!Process.ProcessType.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
                         continue;
+                    var ind = Process.ProcessType.Indicators[reader.GetValueOrDefault<string>("DisplayName")];
+                    string val = reader.GetValueOrDefault<string>("DynamicValue");
+                    if (ind.DataTypeId == (int)IndicatorDataType.LargeText && !string.IsNullOrEmpty(reader.GetValueOrDefault<string>("MemoValue")))
+                        val = reader.GetValueOrDefault<string>("MemoValue");
                     Process.IndicatorValues.Add(new IndicatorValue
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
-                        DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
+                        DynamicValue = val,
                         CalcByRedistrict = reader.GetValueOrDefault<bool>("CalcByRedistrict"),
-                        Indicator = Process.ProcessType.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
+                        Indicator = ind
                     });
                 }
                 reader.Close();

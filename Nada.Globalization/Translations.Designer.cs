@@ -3329,6 +3329,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to exit the National Database Template.
+        /// </summary>
+        public static string ExitWarning {
+            get {
+                return ResourceManager.GetString("ExitWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exiting Application.
+        /// </summary>
+        public static string ExitWarningTitle {
+            get {
+                return ResourceManager.GetString("ExitWarningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to APOC Report.
         /// </summary>
         public static string ExportApocReport {
@@ -3937,6 +3955,15 @@ namespace Nada.Globalization {
         public static string ImportData {
             get {
                 return ResourceManager.GetString("ImportData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Demography import.
+        /// </summary>
+        public static string ImportDemo {
+            get {
+                return ResourceManager.GetString("ImportDemo", resourceCulture);
             }
         }
         
@@ -10412,7 +10439,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RTI Report.
+        ///   Looks up a localized string similar to Disease Workbook for USAID reporting.
         /// </summary>
         public static string RtiReports {
             get {
@@ -15650,6 +15677,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Be sure to update disease distribution as appropriate incorporating the results of this survey.
+        /// </summary>
+        public static string UpdateDdAfterSavingSurvey {
+            get {
+                return ResourceManager.GetString("UpdateDdAfterSavingSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Disease Distribution.
+        /// </summary>
+        public static string UpdateDdAfterSavingSurveyTitle {
+            get {
+                return ResourceManager.GetString("UpdateDdAfterSavingSurveyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update disease distribution for new year.
         /// </summary>
         public static string UpdateDdForYear {
@@ -15979,6 +16024,15 @@ namespace Nada.Globalization {
         public static string View {
             get {
                 return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View/edit.
+        /// </summary>
+        public static string ViewEdit {
+            get {
+                return ResourceManager.GetString("ViewEdit", resourceCulture);
             }
         }
         

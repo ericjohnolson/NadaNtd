@@ -14,7 +14,7 @@ using Nada.UI.View;
 
 namespace Nada.UI.ViewModel
 {
-    public class IntvBaseVm : IDataEntryVm
+    public class IntvBaseVm : ViewModelBase, IDataEntryVm
     {
         private AdminLevel adminLevel = null;
         private IntvBase model = null;
@@ -63,7 +63,7 @@ namespace Nada.UI.ViewModel
         public void DoSave(List<IndicatorValue> indicatorValues, string notes)
         {
             model.Notes = notes;
-            model.IndicatorValues = indicatorValues;
+            model.IndicatorValues = ReconcileIndicators(model.IndicatorValues, indicatorValues); 
             r.SaveBase(model, ApplicationData.Instance.GetUserId());
         }
 

@@ -25,9 +25,14 @@ namespace Nada.Tests
             table.Columns.Add(new DataColumn("Type Name"));
             table.Columns.Add(new DataColumn("Form Name"));
             table.Columns.Add(new DataColumn("Indicator Name"));
-            table.Columns.Add(new DataColumn("Rule"));
+            table.Columns.Add(new DataColumn("Indicator Type"));
+            table.Columns.Add(new DataColumn("Aggregation Rule"));
+            table.Columns.Add(new DataColumn("Aggregation Rule ID"));
+            table.Columns.Add(new DataColumn("Merge Rule"));
+            table.Columns.Add(new DataColumn("Merge Rule ID"));
+            table.Columns.Add(new DataColumn("Split Rule"));
+            table.Columns.Add(new DataColumn("Split Rule ID"));
             ReportRepository repo = new ReportRepository();
-            AddInds(table, repo.GetDemographyIndicators(), "Demography", IndicatorEntityType.Demo);
 
             List<ReportIndicator> indicators = new List<ReportIndicator>();
             indicators = repo.GetDiseaseDistroIndicators();
@@ -42,16 +47,22 @@ namespace Nada.Tests
             foreach (var cmpc in indicators)
                 foreach (var cat in cmpc.Children)
                     AddInds(table, cat.Children, cat.Name, IndicatorEntityType.Intervention);
-            indicators = repo.GetProcessIndicators().Where(i => i.TypeId == 9).ToList();
+            indicators = repo.GetProcessIndicators();
             foreach (var cmpc in indicators)
                 foreach (var cat in cmpc.Children)
                     AddInds(table, cat.Children, cat.Name, IndicatorEntityType.Process);
+
+            ProcessRepository prepo = new ProcessRepository();
+            ProcessBase saes = prepo.Create(9);
+            foreach (var i in saes.ProcessType.Indicators)
+                indicators.Add(ReportRepository.CreateReportIndicator(saes.ProcessType.Id, i));
+            AddInds(table, indicators, saes.ProcessType.TypeName, IndicatorEntityType.Process);
 
             using (ExcelPackage pck = new ExcelPackage())
             {
                 ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
                 ws.Cells["A1"].LoadFromDataTable(table, true);
-                File.WriteAllBytes("C:\\SplittingIndicatorRules.xlsx", pck.GetAsByteArray());
+                File.WriteAllBytes("C:\\AllIndicatorRules.xlsx", pck.GetAsByteArray());
             }
         }
 
@@ -202,8 +213,21 @@ namespace Nada.Tests
                 if (table.Columns.Contains("Indicator Type"))
                     dr["Indicator Type"] = ((IndicatorDataType)ind.DataTypeId).ToString();
                 if (table.Columns.Contains("Aggregation Rule"))
+                {
                     dr["Aggregation Rule"] = ((IndicatorAggType)ind.AggregationRuleId).ToString();
-                table.Rows.Add(dr);
+                    dr["Aggregation Rule ID"] = (ind.AggregationRuleId).ToString();
+                }
+                if (table.Columns.Contains("Merge Rule"))
+                {
+                    dr["Merge Rule"] = ((MergingRule)ind.MergeRule).ToString();
+                    dr["Merge Rule ID"] = (ind.MergeRule).ToString();
+                }
+                if (table.Columns.Contains("Split Rule"))
+                {
+                    dr["Split Rule"] = ((RedistrictingRule)ind.SplitRule).ToString();
+                    dr["Split Rule ID"] = (ind.SplitRule).ToString();
+                }
+                            table.Rows.Add(dr);
             }
         }
 

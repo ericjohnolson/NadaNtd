@@ -339,7 +339,7 @@
             this.olvColumn22.IsEditable = false;
             this.olvColumn22.Tag = "Type";
             this.olvColumn22.Text = "Type";
-            this.olvColumn22.Width = 258;
+            this.olvColumn22.Width = 330;
             // 
             // olvColumn23
             // 
@@ -358,7 +358,7 @@
             this.olvColumn24.IsEditable = false;
             this.olvColumn24.Tag = "LastUpdate";
             this.olvColumn24.Text = "Last Update";
-            this.olvColumn24.Width = 279;
+            this.olvColumn24.Width = 168;
             // 
             // olvColumn25
             // 
@@ -368,7 +368,7 @@
             this.olvColumn25.IsEditable = false;
             this.olvColumn25.Tag = "View";
             this.olvColumn25.Text = "View";
-            this.olvColumn25.Width = 54;
+            this.olvColumn25.Width = 82;
             // 
             // olvColumn26
             // 
@@ -377,6 +377,7 @@
             this.olvColumn26.Hyperlink = true;
             this.olvColumn26.Tag = "Delete";
             this.olvColumn26.Text = "Delete";
+            this.olvColumn26.Width = 63;
             // 
             // hrProcess
             // 
@@ -602,7 +603,7 @@
             this.olvColumn13.IsEditable = false;
             this.olvColumn13.Tag = "Type";
             this.olvColumn13.Text = "Type";
-            this.olvColumn13.Width = 278;
+            this.olvColumn13.Width = 348;
             // 
             // olvColumn14
             // 
@@ -621,7 +622,7 @@
             this.olvColumn16.IsEditable = false;
             this.olvColumn16.Tag = "LastUpdate";
             this.olvColumn16.Text = "Last Update";
-            this.olvColumn16.Width = 250;
+            this.olvColumn16.Width = 153;
             // 
             // olvColumn17
             // 
@@ -631,7 +632,7 @@
             this.olvColumn17.IsEditable = false;
             this.olvColumn17.Tag = "View";
             this.olvColumn17.Text = "View";
-            this.olvColumn17.Width = 63;
+            this.olvColumn17.Width = 81;
             // 
             // olvColumn18
             // 
@@ -811,7 +812,7 @@
             this.olvColumn7.IsEditable = false;
             this.olvColumn7.Tag = "Date";
             this.olvColumn7.Text = "Date";
-            this.olvColumn7.Width = 93;
+            this.olvColumn7.Width = 75;
             // 
             // olvColumn4
             // 
@@ -821,7 +822,7 @@
             this.olvColumn4.IsEditable = false;
             this.olvColumn4.Tag = "TotalPopulation";
             this.olvColumn4.Text = "TotalPopulation";
-            this.olvColumn4.Width = 163;
+            this.olvColumn4.Width = 176;
             // 
             // olvColumn21
             // 
@@ -830,7 +831,7 @@
             this.olvColumn21.CellPadding = null;
             this.olvColumn21.Tag = "GrowthRate";
             this.olvColumn21.Text = "GrowthRate";
-            this.olvColumn21.Width = 100;
+            this.olvColumn21.Width = 185;
             // 
             // olvColumn15
             // 
@@ -839,7 +840,7 @@
             this.olvColumn15.IsEditable = false;
             this.olvColumn15.Tag = "LastUpdate";
             this.olvColumn15.Text = "Last Update";
-            this.olvColumn15.Width = 284;
+            this.olvColumn15.Width = 167;
             // 
             // olvColumn19
             // 
@@ -849,7 +850,7 @@
             this.olvColumn19.IsEditable = false;
             this.olvColumn19.Tag = "View";
             this.olvColumn19.Text = "View";
-            this.olvColumn19.Width = 54;
+            this.olvColumn19.Width = 88;
             // 
             // olvColumn20
             // 
@@ -1047,7 +1048,7 @@
             this.olvColumn5.IsEditable = false;
             this.olvColumn5.Tag = "Type";
             this.olvColumn5.Text = "Type";
-            this.olvColumn5.Width = 264;
+            this.olvColumn5.Width = 340;
             // 
             // olvColumn6
             // 
@@ -1057,7 +1058,7 @@
             this.olvColumn6.IsEditable = false;
             this.olvColumn6.Tag = "Date";
             this.olvColumn6.Text = "Date";
-            this.olvColumn6.Width = 124;
+            this.olvColumn6.Width = 105;
             // 
             // olvColumn8
             // 
@@ -1066,7 +1067,7 @@
             this.olvColumn8.IsEditable = false;
             this.olvColumn8.Tag = "LastUpdate";
             this.olvColumn8.Text = "Last Update";
-            this.olvColumn8.Width = 252;
+            this.olvColumn8.Width = 163;
             // 
             // olvColumn1
             // 
@@ -1076,7 +1077,7 @@
             this.olvColumn1.IsEditable = false;
             this.olvColumn1.Tag = "View";
             this.olvColumn1.Text = "View";
-            this.olvColumn1.Width = 54;
+            this.olvColumn1.Width = 80;
             // 
             // olvColumn11
             // 
@@ -1310,7 +1311,7 @@
             this.olvColumn2.IsEditable = false;
             this.olvColumn2.Tag = "Type";
             this.olvColumn2.Text = "Type";
-            this.olvColumn2.Width = 263;
+            this.olvColumn2.Width = 336;
             // 
             // olvColumn3
             // 
@@ -1329,7 +1330,7 @@
             this.olvColumn9.IsEditable = false;
             this.olvColumn9.Tag = "LastUpdate";
             this.olvColumn9.Text = "Last Update";
-            this.olvColumn9.Width = 271;
+            this.olvColumn9.Width = 171;
             // 
             // olvColumn10
             // 
@@ -1339,7 +1340,7 @@
             this.olvColumn10.IsEditable = false;
             this.olvColumn10.Tag = "View";
             this.olvColumn10.Text = "View";
-            this.olvColumn10.Width = 54;
+            this.olvColumn10.Width = 78;
             // 
             // olvColumn12
             // 

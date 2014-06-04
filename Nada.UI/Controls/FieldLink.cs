@@ -41,5 +41,10 @@ namespace Nada.UI.Controls
         {
             OnClick();
         }
+
+        public void Hide()
+        {
+            linkLabel1.Visible = false;
+        }
     }
 }

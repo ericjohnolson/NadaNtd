@@ -123,21 +123,21 @@ namespace Nada.UI.View.Reports
             try
             {
                 ExportParams payload = (ExportParams)e.Argument;
-                exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Questions);
+                e.Result = exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Questions);
             }
             catch (Exception ex)
             {
                 Logger log = new Logger();
                 log.Error("Error creating PC JRF:worker_DoWork. ", ex);
-                e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
+                e.Result = new ExportResult(Translations.UnexpectedException + " " + ex.Message);
             }
         }
 
         void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            ImportResult result = (ImportResult)e.Result;
+            ExportResult result = (ExportResult)e.Result;
             if (!result.WasSuccess)
-                MessageBox.Show(result.Message, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(result.ErrorMessage, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
             OnFinish();
         }
     }

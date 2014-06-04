@@ -167,7 +167,22 @@ namespace Nada.Model.Repositories
 
         public string GetAuditInfoUpdate(OleDbDataReader reader)
         {
-            return Translations.AuditUpdated + ": " + reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString();
+            return reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString();
+        }
+
+        protected static void AddValueParam(OleDbCommand command, IndicatorValue val)
+        {
+
+            if (val.Indicator.DataTypeId == (int)IndicatorDataType.LargeText)
+            {
+                command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", string.Empty));
+                command.Parameters.Add(OleDbUtil.CreateNullableParam("@MemoValue", val.DynamicValue));
+            }
+            else
+            {
+                command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
+                command.Parameters.Add(OleDbUtil.CreateNullableParam("@MemoValue", string.Empty));
+            }
         }
         
     }

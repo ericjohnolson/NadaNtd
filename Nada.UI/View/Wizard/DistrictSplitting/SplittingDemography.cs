@@ -17,6 +17,7 @@ using Nada.UI.AppLogic;
 using Nada.UI.Base;
 using OfficeOpenXml;
 using Nada.Model.Demography;
+using Nada.UI.View.Reports;
 
 namespace Nada.UI.View.Wizard
 {
@@ -38,6 +39,7 @@ namespace Nada.UI.View.Wizard
         public bool ShowFinish { get { return false; } }
         public bool EnableFinish { get { return false; } }
         public string StepTitle { get { return Translations.AdministrativeLevels; } }
+        bool doExecuteSplit = false;
 
         public SplittingDemography(RedistrictingOptions o, int i)
             : base()
@@ -47,11 +49,23 @@ namespace Nada.UI.View.Wizard
             InitializeComponent();
         }
 
+        public SplittingDemography(RedistrictingOptions o, bool run)
+            : base()
+        {
+            options = o;
+            index = 0;
+            doExecuteSplit = run;
+            InitializeComponent();
+        }
+
         private void ImportOptions_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
+                if (doExecuteSplit)
+                    ExecuteRedistricting();
+
                 if (options.SplitType == SplittingType.Split)
                 {
                     lblDestination.Text = options.SplitDestinations[index].Unit.Name;
@@ -76,28 +90,21 @@ namespace Nada.UI.View.Wizard
 
         public void DoNext()
         {
+            if (options.SplitType == SplittingType.SplitCombine)
+                options.MergeDestination.Children.AddRange(selected);
 
             if (options.SplitDestinations.Count() - 1 == index)
             {
-                if (options.SplitType == SplittingType.SplitCombine)
+                if (options.SplitType != SplittingType.SplitCombine && options.SplitChildren.Count != 0)
                 {
-                    options.MergeDestination.Children.AddRange(selected);
-                    ExecuteRedistricting();
+                    MessageBox.Show(Translations.SplitChildrenAllocatedError, Translations.ValidationErrorTitle);
+                    return;
                 }
-                else
-                {
-                    if (options.SplitChildren.Count != 0)
-                    {
-                        MessageBox.Show(Translations.SplitChildrenAllocatedError, Translations.ValidationErrorTitle);
-                        return;
-                    }
-                    ExecuteRedistricting();
-                }
+
+                OnSwitchStep(new SplittingSaes(options, this));
                 return;
             }
         
-            if (options.SplitType == SplittingType.SplitCombine)
-                options.MergeDestination.Children.AddRange(selected);
             OnSwitchStep(new SplittingDemography(options, index + 1));
         }
 
@@ -116,12 +123,7 @@ namespace Nada.UI.View.Wizard
             if (result.HasError)
                 OnSwitchStep(new MessageBoxStep(Translations.ErrorOccured, result.ErrorMessage, true, this));
             else
-            {
-                if (options.SplitType == SplittingType.SplitCombine)
-                    OnSwitchStep(new SplitCombineConfirm(options, this));
-                else
-                    OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitConfirmReview));
-            }
+                OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitConfirmReview));
         }
 
         public void worker_DoWork(object sender, DoWorkEventArgs e)

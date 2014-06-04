@@ -57,7 +57,7 @@ namespace Nada.Model.Repositories
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
                                 EndDate = reader.GetValueOrDefault<DateTime>("EndDate"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
-                                UpdatedBy = reader.GetValueOrDefault<string>("UserName") + " on " + reader.GetValueOrDefault<DateTime>("UpdatedAt").ToShortDateString()
+                                UpdatedBy = GetAuditInfoUpdate(reader)
 
                             });
                         }
@@ -235,7 +235,9 @@ namespace Nada.Model.Repositories
                     reader.Close();
                 }
                 DemoRepository demo = new DemoRepository();
-                command = new OleDbCommand(@"Select AdminLevelId FROM Surveys_to_AdminLevels WHERE SurveyId=@id", connection);
+                command = new OleDbCommand(@"Select AdminLevelId 
+                    FROM Surveys_to_AdminLevels INNER JOIN AdminLevels on AdminLevels.Id = Surveys_to_AdminLevels.AdminLevelId 
+                    WHERE AdminLevels.IsDeleted = 0 AND SurveyId=@id", connection);
                 command.Parameters.Add(new OleDbParameter("@id", surveyId));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -983,11 +985,11 @@ namespace Nada.Model.Repositories
 
             foreach (IndicatorValue val in survey.IndicatorValues)
             {
-                command = new OleDbCommand(@"Insert Into SurveyIndicatorValues (IndicatorId, SurveyId, DynamicValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
-                        (@IndicatorId, @SurveyId, @DynamicValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
+                command = new OleDbCommand(@"Insert Into SurveyIndicatorValues (IndicatorId, SurveyId, DynamicValue, MemoValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
+                        (@IndicatorId, @SurveyId, @DynamicValue, @MemoValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
                 command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
                 command.Parameters.Add(new OleDbParameter("@SurveyId", survey.Id));
-                command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
+                AddValueParam(command, val);
                 command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                 command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                 command.Parameters.Add(new OleDbParameter("@CalcByRedistrict", val.CalcByRedistrict));
@@ -1001,6 +1003,7 @@ namespace Nada.Model.Repositories
                         SurveyIndicatorValues.ID,   
                         SurveyIndicatorValues.IndicatorId,
                         SurveyIndicatorValues.DynamicValue,
+                        SurveyIndicatorValues.MemoValue,
                         SurveyIndicators.DisplayName,
                         SurveyIndicatorValues.CalcByRedistrict
                         FROM SurveyIndicatorValues INNER JOIN SurveyIndicators on SurveyIndicatorValues.IndicatorId = SurveyIndicators.ID
@@ -1012,13 +1015,17 @@ namespace Nada.Model.Repositories
                 {
                     if (!survey.TypeOfSurvey.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
                         continue;
+                    var ind = survey.TypeOfSurvey.Indicators[reader.GetValueOrDefault<string>("DisplayName")];
+                    string val = reader.GetValueOrDefault<string>("DynamicValue");
+                    if (ind.DataTypeId == (int)IndicatorDataType.LargeText && !string.IsNullOrEmpty(reader.GetValueOrDefault<string>("MemoValue")))
+                        val = reader.GetValueOrDefault<string>("MemoValue");
                     survey.IndicatorValues.Add(new IndicatorValue
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
-                        DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
+                        DynamicValue = val,
                         CalcByRedistrict = reader.GetValueOrDefault<bool>("CalcByRedistrict"),
-                        Indicator = survey.TypeOfSurvey.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
+                        Indicator = ind
                     });
                 }
                 reader.Close();

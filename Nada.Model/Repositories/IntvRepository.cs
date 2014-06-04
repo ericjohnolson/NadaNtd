@@ -95,7 +95,7 @@ namespace Nada.Model.Repositories
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
                                 EndDate = reader.GetValueOrDefault<Nullable<DateTime>>("EndDate"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
-                                UpdatedBy = GetAuditInfo(reader)
+                                UpdatedBy = GetAuditInfoUpdate(reader)
 
                             });
                         }
@@ -153,7 +153,7 @@ namespace Nada.Model.Repositories
                                 StartDate = reader.GetValueOrDefault<DateTime>("StartDate"),
                                 EndDate = reader.GetValueOrDefault<Nullable<DateTime>>("EndDate"),
                                 UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt"),
-                                UpdatedBy = GetAuditInfo(reader)
+                                UpdatedBy = GetAuditInfoUpdate(reader)
 
                             });
                         }
@@ -796,11 +796,11 @@ namespace Nada.Model.Repositories
 
             foreach (IndicatorValue val in intv.IndicatorValues)
             {
-                command = new OleDbCommand(@"Insert Into InterventionIndicatorValues (IndicatorId, InterventionId, DynamicValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
-                        (@IndicatorId, @InterventionId, @DynamicValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
+                command = new OleDbCommand(@"Insert Into InterventionIndicatorValues (IndicatorId, InterventionId, DynamicValue, MemoValue, UpdatedById, UpdatedAt, CalcByRedistrict) VALUES
+                        (@IndicatorId, @InterventionId, @DynamicValue, @MemoValue, @UpdatedById, @UpdatedAt, @CalcByRedistrict)", connection);
                 command.Parameters.Add(new OleDbParameter("@IndicatorId", val.IndicatorId));
                 command.Parameters.Add(new OleDbParameter("@InterventionId", intv.Id));
-                command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", val.DynamicValue));
+                AddValueParam(command, val);
                 command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
                 command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                 command.Parameters.Add(new OleDbParameter("@CalcByRedistrict", val.CalcByRedistrict));
@@ -815,6 +815,7 @@ namespace Nada.Model.Repositories
                         InterventionIndicatorValues.ID,   
                         InterventionIndicatorValues.IndicatorId,
                         InterventionIndicatorValues.DynamicValue,
+                        InterventionIndicatorValues.MemoValue,
                         InterventionIndicators.DisplayName,
                         InterventionIndicatorValues.CalcByRedistrict
                         FROM InterventionIndicatorValues INNER JOIN InterventionIndicators on InterventionIndicatorValues.IndicatorId = InterventionIndicators.ID
@@ -826,13 +827,18 @@ namespace Nada.Model.Repositories
                 {
                     if (!intv.IntvType.Indicators.ContainsKey(reader.GetValueOrDefault<string>("DisplayName")))
                         continue;
+
+                    var ind = intv.IntvType.Indicators[reader.GetValueOrDefault<string>("DisplayName")];
+                    string val = reader.GetValueOrDefault<string>("DynamicValue");
+                    if (ind.DataTypeId == (int)IndicatorDataType.LargeText && !string.IsNullOrEmpty(reader.GetValueOrDefault<string>("MemoValue")))
+                        val = reader.GetValueOrDefault<string>("MemoValue");
                     intv.IndicatorValues.Add(new IndicatorValue
                     {
                         Id = reader.GetValueOrDefault<int>("ID"),
                         IndicatorId = reader.GetValueOrDefault<int>("IndicatorId"),
-                        DynamicValue = reader.GetValueOrDefault<string>("DynamicValue"),
+                        DynamicValue = val,
                         CalcByRedistrict = reader.GetValueOrDefault<bool>("CalcByRedistrict"),
-                        Indicator = intv.IntvType.Indicators[reader.GetValueOrDefault<string>("DisplayName")]
+                        Indicator = ind
                     });
                 }
                 reader.Close();
