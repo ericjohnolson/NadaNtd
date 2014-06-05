@@ -169,6 +169,34 @@ namespace Nada.Model.Repositories
             return lvls;
         }
 
+        public List<AdminLevelType> GetAllAdminLevelsWithCountry()
+        {
+            List<AdminLevelType> lvls = new List<AdminLevelType>();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                string sql = @"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes 
+                    WHERE IsDeleted=0
+                    ORDER BY AdminLevel";
+                OleDbCommand command = new OleDbCommand(sql, connection);
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                        lvls.Add(new AdminLevelType
+                        {
+                            Id = reader.GetValueOrDefault<int>("ID"),
+                            DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+                            LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
+                            IsDistrict = reader.GetValueOrDefault<bool>("IsDistrict"),
+                            IsAggregatingLevel = reader.GetValueOrDefault<bool>("IsAggregatingLevel"),
+                        });
+                    reader.Close();
+                }
+            }
+            return lvls;
+        }
+
         public AdminLevelType GetDistrictAdminLevel()
         {
             AdminLevelType lvl = new AdminLevelType();

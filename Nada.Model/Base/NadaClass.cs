@@ -23,19 +23,22 @@ namespace Nada.Model.Base
         public string UpdatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }
         public string Notes { get; set; }
+        public bool IsRedistricted { get; set; }
 
         protected void ParseNotes(IHaveDynamicIndicatorValues form, Indicator notesIndicator)
         {
             var notesInd = form.IndicatorValues.FirstOrDefault(i => i.Indicator.DisplayName == "Notes");
             if (notesInd != null)
             {
-                if (notesInd.CalcByRedistrict && notesInd.DynamicValue != Notes)
+                if (IsRedistricted)
+                    notesInd.CalcByRedistrict = true;
+                else if (notesInd.CalcByRedistrict && notesInd.DynamicValue != Notes)
                     notesInd.CalcByRedistrict = false;
 
                 notesInd.DynamicValue = Notes;
             }
             else
-                form.IndicatorValues.Add(new IndicatorValue { DynamicValue = Notes, Indicator = notesIndicator, IndicatorId = notesIndicator.Id });
+                form.IndicatorValues.Add(new IndicatorValue { DynamicValue = Notes, Indicator = notesIndicator, IndicatorId = notesIndicator.Id, CalcByRedistrict = IsRedistricted });
         }
 
         private List<string> GetPropertyNames()

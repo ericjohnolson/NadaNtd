@@ -54,43 +54,10 @@ namespace Nada.UI.View.Wizard
                 return;
             options.MergeDestination = model;
             if (options.SplitType == SplittingType.Merge)
-                ExecuteRedistricting();
+                OnSwitchStep(new SplittingDemography(options, true));
             else
                 OnSwitchStep(new SplittingAdminLevel(options));
 
-        }
-
-        public void ExecuteRedistricting()
-        {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            OnSwitchStep(new WorkingStep(Translations.Running));
-            worker.RunWorkerAsync(options);
-        }
-
-        public void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            RedistrictingResult result = (RedistrictingResult)e.Result;
-            if (result.HasError)
-                OnSwitchStep(new MessageBoxStep(Translations.ErrorOccured, result.ErrorMessage, true, this));
-            else
-                OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitMergeConfirmReview));
-        }
-
-        public void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            try
-            {
-                RedistrictingExpert expert = new RedistrictingExpert();
-                e.Result = expert.Run((RedistrictingOptions)e.Argument);
-            }
-            catch (Exception ex)
-            {
-                Logger log = new Logger();
-                log.Error("Exception occured when performing merge (MergeDestination:worker_DoWork).", ex);
-                e.Result = new RedistrictingResult { HasError = true, ErrorMessage = Translations.UnexpectedException + " " + ex.Message };
-            }
         }
 
         public void DoFinish()

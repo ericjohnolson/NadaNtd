@@ -50,12 +50,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Translations.en-AU.Designer.cs">
-      <DependentUpon>Translations.en-AU.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="GlobalizationUtil.cs" />
     <Compile Include="DatabaseData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,12 +87,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NewKeys.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Translations.en-AU.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Translations.en-AU.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Translations.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

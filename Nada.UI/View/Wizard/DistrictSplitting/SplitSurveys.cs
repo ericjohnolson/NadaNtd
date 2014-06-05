@@ -72,7 +72,10 @@ namespace Nada.UI.View.Wizard
                         surveys.Add(survey.TypeOfSurvey.Id, survey.TypeOfSurvey);
 
                 if (surveys.Count == 0)
+                {
                     DoNext();
+                    return;
+                }
 
                 if (options.SplitType != SplittingType.Merge)
                     MessageBox.Show(Translations.SplittingSurveyWarning, Translations.ValidationErrorTitle);

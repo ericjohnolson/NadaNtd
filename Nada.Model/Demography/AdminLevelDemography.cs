@@ -28,7 +28,6 @@ namespace Nada.Model
         public Nullable<double> PopAdult { get; set; }
         public Nullable<double> PopFemale { get; set; }
         public Nullable<double> PopMale { get; set; }
-        public string Notes { get; set; }
         // display only
         public string NameDisplayOnly { get; set; }
 

@@ -35,7 +35,6 @@ namespace Nada.Model.Base
         public Nullable<double> Lat { get; set; }
         public Nullable<double> Lng { get; set; }
         public Nullable<int> SentinelSiteId { get; set; }
-        public string Notes { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
         public bool HasSentinelSite { get; set; }
         

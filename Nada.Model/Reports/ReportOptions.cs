@@ -28,7 +28,9 @@ namespace Nada.Model.Reports
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int MonthYearStarts { get; set; }
-        public BaseReportGenerator ReportGenerator { get; set; }
+        [NonSerialized]
+        private BaseReportGenerator reportGen = null;
+        public BaseReportGenerator ReportGenerator { get { return reportGen; } set { reportGen = value; } }
         public IndicatorEntityType EntityType { get; set; }
         public bool IsNoAggregation { get; set; }
         public bool IsCountryAggregation { get; set; }

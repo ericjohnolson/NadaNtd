@@ -97,7 +97,7 @@ namespace Nada.UI.View.Wizard
         {
         }
 
-        private void StepCategory_Load(object sender, EventArgs e)
+        private void SplittingAdminLevel_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
             {
@@ -112,6 +112,8 @@ namespace Nada.UI.View.Wizard
                 for (int i = 0; i < options.SplitIntoNumber.Value; i++)
                 {
                     var index = tblNewUnits.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
+
+                    var cntrl = new TextBox { Width = 100, Margin = new Padding(0, 5, 10, 5), Tag = i };
                     var chooser = new AdminUnitChooser(levelNumber);
                     chooser.Margin = new Padding(0, 5, 10, 5);
                     AdminLevel source = null;
@@ -123,15 +125,23 @@ namespace Nada.UI.View.Wizard
                         options.MergeSources[i].CurrentDemography = repo.GetRecentDemography(options.MergeSources[i].Id);
                         source = options.MergeSources[i];
                     }
-                    else
+                    else if (options.SplitType == SplittingType.Split)
+                    {
+                        if (options.SplitDestinations.Count() >= i + 1)
+                        {
+                            chooser.Select(options.SplitDestinations[i].Unit, true);
+                            cntrl.Text = options.SplitDestinations[i].Percent.ToString();
+                        }
                         source = options.Source;
+                    }
+
+                    // Add control to screen
                     choosers.Add(new ChooseAdminLevel { Chooser = chooser, Source = source });
                     tblNewUnits.Controls.Add(chooser, 0, index);
                     var label = new H3bLabel { AutoSize = true, Text = "0", Margin = new Padding(0, 5, 10, 5) };
                     label.MakeBold();
                     labels.Add(label);
                     tblNewUnits.Controls.Add(label, 2, index);
-                    var cntrl = new TextBox { Width = 100, Margin = new Padding(0, 5, 10, 5), Tag = i };
                     cntrl.TextChanged += cntrl_TextChanged;
                     percents.Add(cntrl);
                     tblNewUnits.Controls.Add(cntrl, 1, index);

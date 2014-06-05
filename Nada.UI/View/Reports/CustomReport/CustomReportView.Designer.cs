@@ -34,7 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lnkSave = new Nada.UI.Controls.H3Link();
-            this.h3Link1 = new Nada.UI.Controls.H3Link();
+            this.lnkEditReport = new Nada.UI.Controls.H3Link();
             this.lblTitle = new System.Windows.Forms.Label();
             this.hrTop = new Nada.UI.Controls.HR();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -117,7 +117,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.lnkSave, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.h3Link1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lnkEditReport, 1, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(752, 27);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -138,22 +138,24 @@
             this.lnkSave.TabIndex = 63;
             this.lnkSave.Tag = "SaveReportOptions";
             this.lnkSave.Text = "SaveReportOptions";
+            this.lnkSave.TextColor = System.Drawing.Color.RoyalBlue;
             this.lnkSave.ClickOverride += new System.Action(this.saveReport_ClickOverride);
             // 
-            // h3Link1
+            // lnkEditReport
             // 
-            this.h3Link1.AutoSize = true;
-            this.h3Link1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Link1.BackColor = System.Drawing.Color.Transparent;
-            this.h3Link1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.h3Link1.Location = new System.Drawing.Point(138, 0);
-            this.h3Link1.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.h3Link1.Name = "h3Link1";
-            this.h3Link1.Size = new System.Drawing.Size(108, 15);
-            this.h3Link1.TabIndex = 61;
-            this.h3Link1.Tag = "EditReportOptions";
-            this.h3Link1.Text = "EditReportOptions";
-            this.h3Link1.ClickOverride += new System.Action(this.editReportLink_ClickOverride);
+            this.lnkEditReport.AutoSize = true;
+            this.lnkEditReport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnkEditReport.BackColor = System.Drawing.Color.Transparent;
+            this.lnkEditReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkEditReport.Location = new System.Drawing.Point(138, 0);
+            this.lnkEditReport.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.lnkEditReport.Name = "lnkEditReport";
+            this.lnkEditReport.Size = new System.Drawing.Size(108, 15);
+            this.lnkEditReport.TabIndex = 61;
+            this.lnkEditReport.Tag = "EditReportOptions";
+            this.lnkEditReport.Text = "EditReportOptions";
+            this.lnkEditReport.TextColor = System.Drawing.Color.RoyalBlue;
+            this.lnkEditReport.ClickOverride += new System.Action(this.editReportLink_ClickOverride);
             // 
             // lblTitle
             // 
@@ -234,6 +236,7 @@
             this.lnkExport.TabIndex = 63;
             this.lnkExport.Tag = "ExportToExcel";
             this.lnkExport.Text = "ExportToExcel";
+            this.lnkExport.TextColor = System.Drawing.Color.RoyalBlue;
             this.lnkExport.ClickOverride += new System.Action(this.lnkExport_ClickOverride);
             // 
             // tabPage2
@@ -313,6 +316,7 @@
             this.h3Link2.TabIndex = 64;
             this.h3Link2.Tag = "ExportImage";
             this.h3Link2.Text = "ExportImage";
+            this.h3Link2.TextColor = System.Drawing.Color.RoyalBlue;
             this.h3Link2.ClickOverride += new System.Action(this.exportImage_ClickOverride);
             // 
             // cbChartType
@@ -373,7 +377,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblTitle;
         private Controls.HR hrTop;
-        private Controls.H3Link h3Link1;
+        private Controls.H3Link lnkEditReport;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Controls.H3Link lnkExport;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;

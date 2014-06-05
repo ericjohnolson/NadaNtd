@@ -25,7 +25,6 @@ namespace Nada.Model.Intervention
         public IntvType IntvType { get; set; }
         public DateTime DateReported { get; set; }
         public Nullable<int> PcIntvRoundNumber { get; set; }
-        public string Notes { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
         public Dictionary<string, IndicatorValue> ValueDictionary { get; set; }
         public virtual void MapIndicatorsToProperties()

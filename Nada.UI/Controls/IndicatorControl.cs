@@ -88,7 +88,7 @@ namespace Nada.UI.View
             var picker = new SentinelSitePickerControl();
             tblTopControls.Controls.Add(picker, 0, 0);
             int hrRow = tblTopControls.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
-            tblTopControls.Controls.Add(new HR { RuleColor = color, Margin = new Padding(0, 5, 0, 10) }, 0, hrRow);
+            tblTopControls.Controls.Add(new HR { RuleColor = color, Width = 780 }, 0, hrRow);
             return picker;
         }
 

@@ -71,7 +71,7 @@ namespace Nada.Model
         {
             DataTable data = new System.Data.DataTable();
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
-            data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
+            //data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("YearCensus")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("GrowthRate")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("TotalPopulation")));
@@ -90,8 +90,21 @@ namespace Nada.Model
             foreach (AdminLevel l in allUnits)
             {
                 DataRow row = data.NewRow();
-                row[TranslationLookup.GetValue("Location") + "#"] = l.Id;
-                row[locationType.DisplayName] = l.Name;
+                row[TranslationLookup.GetValue("Location") + "#"] = l.Id; 
+
+                List<AdminLevel> parents = demo.GetAdminLevelParentNames(l.Id);
+                for (int i = 0; i < parents.Count; i++)
+                {
+                    if (!data.Columns.Contains(parents[i].LevelName))
+                    {
+                        DataColumn dc = new DataColumn(parents[i].LevelName);
+                        data.Columns.Add(dc);
+                        dc.SetOrdinal(i + 1);
+                    }
+                    row[parents[i].LevelName] = parents[i].Name;
+                }
+                
+                //row[locationType.DisplayName] = l.Name;
                 data.Rows.Add(row);
             }
             return data;
@@ -102,7 +115,7 @@ namespace Nada.Model
             DataTable data = new System.Data.DataTable();
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("ID") + "#"));
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
-            data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
+            //data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("YearCensus")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("GrowthRate")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("TotalPopulation")));
@@ -122,9 +135,21 @@ namespace Nada.Model
                 DataRow row = data.NewRow();
                 row[TranslationLookup.GetValue("ID") + "#"] = l.Id;
                 row[TranslationLookup.GetValue("Location") + "#"] = l.AdminLevelId;
-                row[locationType.DisplayName] = l.NameDisplayOnly;
+
+                List<AdminLevel> parents = demo.GetAdminLevelParentNames(l.Id);
+                for (int i = 0; i < parents.Count; i++)
+                {
+                    if (!data.Columns.Contains(parents[i].LevelName))
+                    {
+                        DataColumn dc = new DataColumn(parents[i].LevelName);
+                        data.Columns.Add(dc);
+                        dc.SetOrdinal(i + 2);
+                    }
+                    row[parents[i].LevelName] = parents[i].Name;
+                }
+
+                //row[locationType.DisplayName] = l.NameDisplayOnly;
                 row["* " + TranslationLookup.GetValue("YearCensus")] = l.YearCensus;
-                //row[TranslationLookup.GetValue("YearProjections")] = l.YearProjections;
                 row["* " + TranslationLookup.GetValue("GrowthRate")] = l.GrowthRate;
                 row["* " + TranslationLookup.GetValue("TotalPopulation")] = l.TotalPopulation;
                 row[TranslationLookup.GetValue("Pop0Month")] = l.Pop0Month;

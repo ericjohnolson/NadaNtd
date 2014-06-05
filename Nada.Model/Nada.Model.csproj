@@ -66,6 +66,7 @@
     <Compile Include="Exports\RtiWorkbooksExporter.cs" />
     <Compile Include="Exports\PcEpiExporter.cs" />
     <Compile Include="Exports\ExportType.cs" />
+    <Compile Include="Reports\RedistrictingReportGenerator.cs" />
     <Compile Include="Reports\IStandardOptions.cs" />
     <Compile Include="Reports\SavedReport.cs" />
     <Compile Include="Demography\CountryDemography.cs" />

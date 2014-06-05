@@ -25,7 +25,6 @@ namespace Nada.Model.Diseases
         }
         public Nullable<int> AdminLevelId { get; set; }
         public Disease Disease { get; set; }
-        public string Notes { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }

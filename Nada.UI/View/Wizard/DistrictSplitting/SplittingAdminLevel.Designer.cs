@@ -133,7 +133,7 @@
             this.Margin = new System.Windows.Forms.Padding(23);
             this.Name = "SplittingAdminLevel";
             this.Size = new System.Drawing.Size(338, 25);
-            this.Load += new System.EventHandler(this.StepCategory_Load);
+            this.Load += new System.EventHandler(this.SplittingAdminLevel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsImportOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeListItemBindingSource)).EndInit();

@@ -51,7 +51,10 @@ namespace Nada.UI.View.Wizard
             else
                 options.YearStartMonth = (int)comboBox1.SelectedValue;
 
-            OnSwitchStep(new MergingSources(options, Translations.SplitMergeSource));
+            if (options.SplitType == SplittingType.SplitCombine)
+                OnSwitchStep(new MergingSources(options, Translations.SplitCombineSource));
+            else
+                OnSwitchStep(new MergingSources(options, Translations.SplitMergeSource));
         }
         public void DoFinish()
         {

@@ -481,9 +481,15 @@ namespace Nada.Model.Repositories
             }
             return MakeTreeFromFlatList(list, 0);
         }
-
         public List<AdminLevel> GetAdminLevelParentNames(int levelId)
         {
+            return GetAdminLevelParentNames(levelId, false);
+        }
+        public List<AdminLevel> GetAdminLevelParentNames(int levelId, bool showDeleted)
+        {
+            string filter = " AND a.IsDeleted=0";
+            if (showDeleted) filter = "";
+
             Nullable<int> id = levelId;
             List<AdminLevel> list = new List<AdminLevel>();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -495,7 +501,7 @@ namespace Nada.Model.Repositories
                 {
                     OleDbCommand command = new OleDbCommand(@"Select a.ParentId, a.DisplayName, t.DisplayName as TypeName
                     FROM AdminLevels a inner join adminleveltypes t on t.id = a.adminleveltypeid
-                    WHERE a.ID = @id AND a.IsDeleted=0", connection);
+                    WHERE a.ID = @id" + filter, connection);
                     command.Parameters.Add(new OleDbParameter("@id", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {

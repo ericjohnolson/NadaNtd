@@ -203,7 +203,7 @@ namespace Nada.Model.Reports
             if (!resultDic.ContainsKey(rowKey))
             {
                 DataRow dr = result.NewRow();
-                List<AdminLevel> parents = demo.GetAdminLevelParentNames(level.Id);
+                List<AdminLevel> parents = demo.GetAdminLevelParentNames(level.Id, options.ShowOnlyRedistrictedUnits);
                 for (int i = 0; i < parents.Count; i++)
                 {
                     if (!result.Columns.Contains(parents[i].LevelName))
@@ -254,8 +254,6 @@ namespace Nada.Model.Reports
                 resultDic[rowKey].CalcRelated.Add(indicator);
             }
         }
-
-        
 
         private Dictionary<string, Dictionary<string, string>> CreateCalcRelatedValueDic(IEnumerable<AggregateIndicator> list)
         {

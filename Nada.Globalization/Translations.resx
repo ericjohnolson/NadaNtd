@@ -1283,10 +1283,10 @@
     <value>Patients having fully scarred their lesions during the year</value>
   </data>
   <data name="PbAdultEnd" xml:space="preserve">
-    <value>PB Adults in end of year children</value>
+    <value>PB Adults in end of year adult prevalence</value>
   </data>
   <data name="PbChildEnd" xml:space="preserve">
-    <value>PB Children in end of year children</value>
+    <value>PB Children in end of year children prevalence</value>
   </data>
   <data name="PercentCasesActiveLeish" xml:space="preserve">
     <value>% cases actively found</value>
@@ -5557,5 +5557,44 @@ Fixed / Mobile</value>
   </data>
   <data name="ViewEdit" xml:space="preserve">
     <value>View/edit</value>
+  </data>
+  <data name="RedistEventDate" xml:space="preserve">
+    <value>Redistricting event date</value>
+  </data>
+  <data name="RedistLevel" xml:space="preserve">
+    <value>Administrative level</value>
+  </data>
+  <data name="RedistNewName" xml:space="preserve">
+    <value>New administrative unit name</value>
+  </data>
+  <data name="RedistNewParent" xml:space="preserve">
+    <value>New upper administrative unit name</value>
+  </data>
+  <data name="RedistNewPop" xml:space="preserve">
+    <value>Population in new unit at time of redistricting</value>
+  </data>
+  <data name="RedistOrigName" xml:space="preserve">
+    <value>Original administrative unit name</value>
+  </data>
+  <data name="RedistOrigParent" xml:space="preserve">
+    <value>Original upper administrative unit name</value>
+  </data>
+  <data name="RedistOrigPop" xml:space="preserve">
+    <value>Population at time of redistricting</value>
+  </data>
+  <data name="RedistrictingReport" xml:space="preserve">
+    <value>Redistricting report</value>
+  </data>
+  <data name="RedistrictTypeMerge" xml:space="preserve">
+    <value>Merge</value>
+  </data>
+  <data name="RedistrictTypeSplit" xml:space="preserve">
+    <value>Split</value>
+  </data>
+  <data name="RedistrictTypeSplitCombine" xml:space="preserve">
+    <value>Split/combine</value>
+  </data>
+  <data name="RedistType" xml:space="preserve">
+    <value>Type of redistricting</value>
   </data>
 </root>

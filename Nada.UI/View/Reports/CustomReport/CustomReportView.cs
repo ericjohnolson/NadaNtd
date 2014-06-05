@@ -46,6 +46,8 @@ namespace Nada.UI.View.Reports.CustomReport
                 cbChartType.SelectedItem = Translations.ChartBar;
                 if (report.TypeName != Translations.CustomReport)
                     lnkSave.Visible = false;
+                if (OnEditReport == null)
+                    lnkEditReport.Visible = false;
                 lblTitle.Text = report.TypeName;
                 this.Text = report.TypeName;
                 CreateReport();
@@ -126,6 +128,12 @@ namespace Nada.UI.View.Reports.CustomReport
 
         private void LoadChart(ReportResult result)
         {
+            if (result.ChartData == null)
+            {
+                tabControl1.TabPages.RemoveAt(1);
+                return;
+            }
+
             c1Chart1.ChartGroups[0].ChartData.SeriesList.Clear();
             result.ChartData.Columns.Add("xaxis");
             foreach (DataRow dr in result.ChartData.Rows)

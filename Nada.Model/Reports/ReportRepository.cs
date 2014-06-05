@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using Nada.DA;
 using Nada.Globalization;
+using Nada.Model.Demography;
 using Nada.Model.Diseases;
 using Nada.Model.Process;
 using Nada.Model.Reports;
@@ -174,6 +175,7 @@ namespace Nada.Model.Repositories
                                 ,PopMale 
                                 ,RedistrictIdForDaughter
                                 ,RedistrictIdForMother
+                                ,Notes
                             FROM ((AdminLevelDemography a INNER JOIN AdminLevels on a.AdminLevelId = AdminLevels.ID)
                                 INNER JOIN AdminLevelTypes t on t.Id = AdminLevels.AdminLevelTypeId)
                             WHERE a.IsDeleted = 0 " + CreateYearFilter(options, "DateDemographyData") +
@@ -579,6 +581,112 @@ namespace Nada.Model.Repositories
         }
         #endregion
 
+        #region Redistricting Report
+        public DataTable RunRedistrictingReport()
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add(new DataColumn(Translations.RedistOrigName));
+            dataTable.Columns.Add(new DataColumn(Translations.RedistOrigPop));
+            dataTable.Columns.Add(new DataColumn(Translations.RedistLevel));
+            dataTable.Columns.Add(new DataColumn(Translations.RedistOrigParent));
+            dataTable.Columns.Add(new DataColumn(Translations.RedistNewName));
+            dataTable.Columns.Add(new DataColumn(Translations.RedistNewPop));
+            dataTable.Columns.Add(new DataColumn(Translations.RedistNewParent));
+            dataTable.Columns.Add(new DataColumn(Translations.RedistType));
+            dataTable.Columns.Add(new DataColumn(Translations.RedistEventDate));
+            dataTable.Columns.Add(new DataColumn(Translations.ID));
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select ID, CreatedAt, RedistrictTypeId
+                        FROM RedistrictEvents 
+                        ORDER BY CreatedAt DESC", connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetValueOrDefault<int>("ID");
+                            DateTime date = reader.GetValueOrDefault<DateTime>("CreatedAt");
+                            SplittingType t = (SplittingType)reader.GetValueOrDefault<int>("RedistrictTypeId");
+                            List<RedistrictedReportUnit> daughters = new List<RedistrictedReportUnit>();
+                            List<RedistrictedReportUnit> mothers = new List<RedistrictedReportUnit>();
+                            string typeName = "";
 
+                            command = new OleDbCommand(@"Select a.DisplayName as AName, p.DisplayName as PName, u.RelationshipId, t.DisplayName as TName
+                                FROM (((RedistrictUnits u INNER JOIN  AdminLevels a on a.ID = u.AdminLevelUnitId)
+                                    INNER JOIN AdminLevels p on a.ParentId = p.ID)
+                                    INNER JOIN AdminLevelTypes t on a.AdminLevelTypeId = t.ID)
+                                WHERE u.RedistrictEventID = @id", connection);
+                            command.Parameters.Add(new OleDbParameter("@id", id));
+                            using (OleDbDataReader reader2 = command.ExecuteReader())
+                            {
+                                while (reader2.Read())
+                                {
+                                    typeName = reader2.GetValueOrDefault<string>("TName");
+                                    if (RedistrictingRelationship.Daughter == (RedistrictingRelationship)reader2.GetValueOrDefault<int>("RelationshipId"))
+                                        daughters.Add(new RedistrictedReportUnit { Name = reader2.GetValueOrDefault<string>("AName"), Parent = reader2.GetValueOrDefault<string>("PName") });
+                                    else if (RedistrictingRelationship.Mother == (RedistrictingRelationship)reader2.GetValueOrDefault<int>("RelationshipId"))
+                                        mothers.Add(new RedistrictedReportUnit { Name = reader2.GetValueOrDefault<string>("AName"), Parent = reader2.GetValueOrDefault<string>("PName") });
+                                }
+                            }
+
+                            if (t == SplittingType.Split)
+                            {
+                                var source = mothers.FirstOrDefault();
+                                foreach (var dest in daughters)
+                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeSplit, date, typeName, id);
+                            }
+                            else if (t == SplittingType.Merge)
+                            {
+                                var dest = daughters.FirstOrDefault();
+                                foreach (var source in mothers)
+                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeMerge, date, typeName, id);
+                            }
+                            else // splitcomb
+                            {
+                                var dest = daughters.FirstOrDefault();
+                                foreach (var source in mothers)
+                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeSplitCombine, date, typeName, id);
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return dataTable;
+        }
+
+        public class RedistrictedReportUnit
+        {
+            public string Name { get; set; }
+            public string Parent { get; set; }
+            public int Pop { get; set; }
+        }
+
+        private void AddRedistrictingReportRow(DataTable report, RedistrictedReportUnit oldUnit, RedistrictedReportUnit newUnit, string typeName, 
+            DateTime date, string levelName, int id)
+        {
+            DataRow dr = report.NewRow();
+            dr[Translations.RedistOrigName] = oldUnit.Name;
+            //dr[Translations.RedistOrigPop] = oldUnit.Pop;
+            dr[Translations.RedistLevel] = levelName;
+            dr[Translations.RedistOrigParent] = oldUnit.Parent;
+            dr[Translations.RedistNewName] = newUnit.Name;
+            //dr[Translations.RedistNewPop] = oldUnit.Name;
+            dr[Translations.RedistNewParent] = newUnit.Parent;
+            dr[Translations.RedistType] = typeName;
+            dr[Translations.RedistEventDate] = date.ToShortDateString() + " " + date.ToShortTimeString();
+            dr[Translations.ID] = id;
+
+            report.Rows.Add(dr);
+        }
+        #endregion
     }
 }

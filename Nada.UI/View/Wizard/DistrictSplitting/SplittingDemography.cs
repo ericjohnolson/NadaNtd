@@ -90,9 +90,6 @@ namespace Nada.UI.View.Wizard
 
         public void DoNext()
         {
-            if (options.SplitType == SplittingType.SplitCombine)
-                options.MergeDestination.Children.AddRange(selected);
-
             if (options.SplitDestinations.Count() - 1 == index)
             {
                 if (options.SplitType != SplittingType.SplitCombine && options.SplitChildren.Count != 0)
@@ -151,13 +148,12 @@ namespace Nada.UI.View.Wizard
             if (options.SplitType == SplittingType.Split)
             {
                 available = options.SplitChildren;
-                selected = new List<AdminLevel>();
-                options.SplitDestinations[index].Unit.Children = selected;
+                selected = options.SplitDestinations[index].Unit.Children;
             }
             else
             {
                 available = options.MergeSources[index].Children;
-                selected = new List<AdminLevel>();
+                selected = options.MergeDestination.Children;
             }
             ReloadLists();
         }

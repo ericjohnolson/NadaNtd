@@ -82,7 +82,7 @@
             this.tblContainer.RowCount = 2;
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblContainer.Size = new System.Drawing.Size(933, 63);
+            this.tblContainer.Size = new System.Drawing.Size(869, 63);
             this.tblContainer.TabIndex = 1;
             // 
             // h3Required8
@@ -104,9 +104,9 @@
             // tbLng
             // 
             this.tbLng.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSurvey, "Lng", true));
-            this.tbLng.Location = new System.Drawing.Point(789, 21);
+            this.tbLng.Location = new System.Drawing.Point(753, 21);
             this.tbLng.Name = "tbLng";
-            this.tbLng.Size = new System.Drawing.Size(118, 20);
+            this.tbLng.Size = new System.Drawing.Size(90, 20);
             this.tbLng.TabIndex = 3;
             // 
             // bsSurvey
@@ -151,7 +151,7 @@
             this.lblLng.AutoSize = true;
             this.lblLng.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lblLng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblLng.Location = new System.Drawing.Point(786, 0);
+            this.lblLng.Location = new System.Drawing.Point(750, 0);
             this.lblLng.Margin = new System.Windows.Forms.Padding(0);
             this.lblLng.Name = "lblLng";
             this.lblLng.Size = new System.Drawing.Size(62, 18);
@@ -166,7 +166,7 @@
             this.tbLat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSurvey, "Lat", true));
             this.tbLat.Location = new System.Drawing.Point(645, 21);
             this.tbLat.Name = "tbLat";
-            this.tbLat.Size = new System.Drawing.Size(126, 20);
+            this.tbLat.Size = new System.Drawing.Size(90, 20);
             this.tbLat.TabIndex = 2;
             // 
             // cbSiteType
@@ -275,7 +275,7 @@
             this.Controls.Add(this.tblContainer);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "SentinelSitePickerControl";
-            this.Size = new System.Drawing.Size(933, 63);
+            this.Size = new System.Drawing.Size(869, 63);
             this.Load += new System.EventHandler(this.SentinelSitePickerControl_Load);
             this.tblContainer.ResumeLayout(false);
             this.tblContainer.PerformLayout();

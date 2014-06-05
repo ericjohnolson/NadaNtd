@@ -218,6 +218,14 @@ namespace Nada.UI.View.Reports
             OnClose();
         }
 
-
+        private void redistrictingReport_ClickOverride()
+        {
+            SavedReport r = new SavedReport();
+            r.ReportOptions = new ReportOptions();
+            r.ReportOptions.ReportGenerator = new RedistrictingReportGenerator();
+            CustomReportView report = new CustomReportView(r);
+            report.OnEditReport = null;
+            report.Show();
+        }
     }
 }

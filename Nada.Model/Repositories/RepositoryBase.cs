@@ -172,7 +172,6 @@ namespace Nada.Model.Repositories
 
         protected static void AddValueParam(OleDbCommand command, IndicatorValue val)
         {
-
             if (val.Indicator.DataTypeId == (int)IndicatorDataType.LargeText)
             {
                 command.Parameters.Add(OleDbUtil.CreateNullableParam("@DynamicValue", string.Empty));
@@ -184,6 +183,5 @@ namespace Nada.Model.Repositories
                 command.Parameters.Add(OleDbUtil.CreateNullableParam("@MemoValue", string.Empty));
             }
         }
-        
     }
 }

@@ -484,6 +484,78 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Redistricting event date.
+        /// </summary>
+        public static string RedistEventDate {
+            get {
+                return ResourceManager.GetString("RedistEventDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrative level.
+        /// </summary>
+        public static string RedistLevel {
+            get {
+                return ResourceManager.GetString("RedistLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New administrative unit name.
+        /// </summary>
+        public static string RedistNewName {
+            get {
+                return ResourceManager.GetString("RedistNewName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New upper administrative unit name.
+        /// </summary>
+        public static string RedistNewParent {
+            get {
+                return ResourceManager.GetString("RedistNewParent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Population in new unit at time of redistricting.
+        /// </summary>
+        public static string RedistNewPop {
+            get {
+                return ResourceManager.GetString("RedistNewPop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original administrative unit name.
+        /// </summary>
+        public static string RedistOrigName {
+            get {
+                return ResourceManager.GetString("RedistOrigName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original upper administrative unit name.
+        /// </summary>
+        public static string RedistOrigParent {
+            get {
+                return ResourceManager.GetString("RedistOrigParent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Population at time of redistricting.
+        /// </summary>
+        public static string RedistOrigPop {
+            get {
+                return ResourceManager.GetString("RedistOrigPop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show only administrative units before redistricting.
         /// </summary>
         public static string RedistrictedAdminUnits {
@@ -529,6 +601,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Redistricting report.
+        /// </summary>
+        public static string RedistrictingReport {
+            get {
+                return ResourceManager.GetString("RedistrictingReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Split and combined from {0} on {1}.
         /// </summary>
         public static string RedistrictingSplitCombineDesc {
@@ -561,6 +642,42 @@ namespace Nada.Globalization {
         public static string RedistrictingSplitInto {
             get {
                 return ResourceManager.GetString("RedistrictingSplitInto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge.
+        /// </summary>
+        public static string RedistrictTypeMerge {
+            get {
+                return ResourceManager.GetString("RedistrictTypeMerge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split.
+        /// </summary>
+        public static string RedistrictTypeSplit {
+            get {
+                return ResourceManager.GetString("RedistrictTypeSplit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split/combine.
+        /// </summary>
+        public static string RedistrictTypeSplitCombine {
+            get {
+                return ResourceManager.GetString("RedistrictTypeSplitCombine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of redistricting.
+        /// </summary>
+        public static string RedistType {
+            get {
+                return ResourceManager.GetString("RedistType", resourceCulture);
             }
         }
         

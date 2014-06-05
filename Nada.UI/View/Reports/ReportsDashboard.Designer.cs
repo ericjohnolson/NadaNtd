@@ -47,22 +47,22 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel4 = new Nada.UI.Controls.H3bLabel();
             this.h3Link4 = new Nada.UI.Controls.H3Link();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.h3bLabel3 = new Nada.UI.Controls.H3bLabel();
-            this.h3Link3 = new Nada.UI.Controls.H3Link();
             this.hr2 = new Nada.UI.Controls.HR();
             this.label2 = new System.Windows.Forms.Label();
             this.tblReportBuilder = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.h3bLabel6 = new Nada.UI.Controls.H3bLabel();
-            this.h3Link6 = new Nada.UI.Controls.H3Link();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.h3bLabel7 = new Nada.UI.Controls.H3bLabel();
+            this.h3Link7 = new Nada.UI.Controls.H3Link();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel5 = new Nada.UI.Controls.H3bLabel();
             this.h3Link5 = new Nada.UI.Controls.H3Link();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
             this.h3Link1 = new Nada.UI.Controls.H3Link();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.h3bLabel6 = new Nada.UI.Controls.H3bLabel();
+            this.h3Link6 = new Nada.UI.Controls.H3Link();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
             this.tblCmJrf.SuspendLayout();
@@ -71,11 +71,11 @@
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -325,15 +325,15 @@
             this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel8, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel7, 0, 1);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 251);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(268, 46);
             this.tableLayoutPanel4.TabIndex = 76;
             // 
@@ -385,53 +385,6 @@
             this.h3Link4.TextColor = System.Drawing.Color.RoyalBlue;
             this.h3Link4.ClickOverride += new System.Action(this.eliminationReport_ClickOverride);
             // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.AutoSize = true;
-            this.tableLayoutPanel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel7.Controls.Add(this.h3bLabel3, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.h3Link3, 1, 0);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 26);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(118, 17);
-            this.tableLayoutPanel7.TabIndex = 71;
-            this.tableLayoutPanel7.Visible = false;
-            // 
-            // h3bLabel3
-            // 
-            this.h3bLabel3.AutoSize = true;
-            this.h3bLabel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel3.Location = new System.Drawing.Point(0, 0);
-            this.h3bLabel3.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel3.Name = "h3bLabel3";
-            this.h3bLabel3.Size = new System.Drawing.Size(63, 16);
-            this.h3bLabel3.TabIndex = 74;
-            this.h3bLabel3.Tag = "PcJrfForm";
-            this.h3bLabel3.Text = "PcJrfForm";
-            this.h3bLabel3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3Link3
-            // 
-            this.h3Link3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3Link3.AutoSize = true;
-            this.h3Link3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Link3.BackColor = System.Drawing.Color.Transparent;
-            this.h3Link3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.h3Link3.Location = new System.Drawing.Point(63, 2);
-            this.h3Link3.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.h3Link3.Name = "h3Link3";
-            this.h3Link3.Size = new System.Drawing.Size(55, 15);
-            this.h3Link3.TabIndex = 72;
-            this.h3Link3.Tag = "NewLink";
-            this.h3Link3.Text = "NewLink";
-            this.h3Link3.TextColor = System.Drawing.Color.RoyalBlue;
-            // 
             // hr2
             // 
             this.hr2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
@@ -479,11 +432,11 @@
             this.tableLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel10, 0, 4);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel9, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel9, 0, 4);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 3);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel1, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.tblCmJrf, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel10, 0, 2);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 88);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -496,52 +449,52 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(196, 115);
             this.tableLayoutPanel5.TabIndex = 75;
             // 
-            // tableLayoutPanel10
+            // tableLayoutPanel3
             // 
-            this.tableLayoutPanel10.AutoSize = true;
-            this.tableLayoutPanel10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel10.Controls.Add(this.h3bLabel6, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.h3Link6, 1, 0);
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 95);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(190, 17);
-            this.tableLayoutPanel10.TabIndex = 74;
+            this.tableLayoutPanel3.AutoSize = true;
+            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.Controls.Add(this.h3bLabel7, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.h3Link7, 1, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 26);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(168, 17);
+            this.tableLayoutPanel3.TabIndex = 75;
             // 
-            // h3bLabel6
+            // h3bLabel7
             // 
-            this.h3bLabel6.AutoSize = true;
-            this.h3bLabel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel6.Location = new System.Drawing.Point(0, 0);
-            this.h3bLabel6.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel6.Name = "h3bLabel6";
-            this.h3bLabel6.Size = new System.Drawing.Size(135, 16);
-            this.h3bLabel6.TabIndex = 74;
-            this.h3bLabel6.Tag = "ExportsPcEpiDataForm";
-            this.h3bLabel6.Text = "ExportsPcEpiDataForm";
-            this.h3bLabel6.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel7.AutoSize = true;
+            this.h3bLabel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel7.Location = new System.Drawing.Point(0, 0);
+            this.h3bLabel7.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel7.Name = "h3bLabel7";
+            this.h3bLabel7.Size = new System.Drawing.Size(113, 16);
+            this.h3bLabel7.TabIndex = 74;
+            this.h3bLabel7.Tag = "RedistrictingReport";
+            this.h3bLabel7.Text = "RedistrictingReport";
+            this.h3bLabel7.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // h3Link6
+            // h3Link7
             // 
-            this.h3Link6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3Link6.AutoSize = true;
-            this.h3Link6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Link6.BackColor = System.Drawing.Color.Transparent;
-            this.h3Link6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.h3Link6.Location = new System.Drawing.Point(135, 2);
-            this.h3Link6.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.h3Link6.Name = "h3Link6";
-            this.h3Link6.Size = new System.Drawing.Size(55, 15);
-            this.h3Link6.TabIndex = 72;
-            this.h3Link6.Tag = "NewLink";
-            this.h3Link6.Text = "NewLink";
-            this.h3Link6.TextColor = System.Drawing.Color.RoyalBlue;
-            this.h3Link6.ClickOverride += new System.Action(this.pcEpiExportClick_ClickOverride);
+            this.h3Link7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3Link7.AutoSize = true;
+            this.h3Link7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Link7.BackColor = System.Drawing.Color.Transparent;
+            this.h3Link7.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.h3Link7.Location = new System.Drawing.Point(113, 2);
+            this.h3Link7.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.h3Link7.Name = "h3Link7";
+            this.h3Link7.Size = new System.Drawing.Size(55, 15);
+            this.h3Link7.TabIndex = 72;
+            this.h3Link7.Tag = "NewLink";
+            this.h3Link7.Text = "NewLink";
+            this.h3Link7.TextColor = System.Drawing.Color.RoyalBlue;
+            this.h3Link7.ClickOverride += new System.Action(this.redistrictingReport_ClickOverride);
             // 
             // tableLayoutPanel9
             // 
@@ -552,7 +505,7 @@
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel9.Controls.Add(this.h3bLabel5, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.h3Link5, 1, 0);
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 72);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 95);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -599,7 +552,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel6.Controls.Add(this.h3bLabel2, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.h3Link1, 1, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 49);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 72);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -636,6 +589,53 @@
             this.h3Link1.Text = "NewLink";
             this.h3Link1.TextColor = System.Drawing.Color.RoyalBlue;
             this.h3Link1.ClickOverride += new System.Action(this.lnkApocReport_ClickOverride);
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.AutoSize = true;
+            this.tableLayoutPanel10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel10.Controls.Add(this.h3bLabel6, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.h3Link6, 1, 0);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 49);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(190, 17);
+            this.tableLayoutPanel10.TabIndex = 74;
+            // 
+            // h3bLabel6
+            // 
+            this.h3bLabel6.AutoSize = true;
+            this.h3bLabel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel6.Location = new System.Drawing.Point(0, 0);
+            this.h3bLabel6.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel6.Name = "h3bLabel6";
+            this.h3bLabel6.Size = new System.Drawing.Size(135, 16);
+            this.h3bLabel6.TabIndex = 74;
+            this.h3bLabel6.Tag = "ExportsPcEpiDataForm";
+            this.h3bLabel6.Text = "ExportsPcEpiDataForm";
+            this.h3bLabel6.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3Link6
+            // 
+            this.h3Link6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3Link6.AutoSize = true;
+            this.h3Link6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Link6.BackColor = System.Drawing.Color.Transparent;
+            this.h3Link6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.h3Link6.Location = new System.Drawing.Point(135, 2);
+            this.h3Link6.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.h3Link6.Name = "h3Link6";
+            this.h3Link6.Size = new System.Drawing.Size(55, 15);
+            this.h3Link6.TabIndex = 72;
+            this.h3Link6.Tag = "NewLink";
+            this.h3Link6.Text = "NewLink";
+            this.h3Link6.TextColor = System.Drawing.Color.RoyalBlue;
+            this.h3Link6.ClickOverride += new System.Action(this.pcEpiExportClick_ClickOverride);
             // 
             // tableLayoutPanel12
             // 
@@ -698,16 +698,16 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
-            this.tableLayoutPanel10.ResumeLayout(false);
-            this.tableLayoutPanel10.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
             this.ResumeLayout(false);
@@ -735,9 +735,6 @@
         private System.Windows.Forms.TableLayoutPanel tblReportBuilder;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        private Controls.H3bLabel h3bLabel3;
-        private Controls.H3Link h3Link3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private Controls.H3bLabel h3bLabel4;
         private Controls.H3Link h3Link4;
@@ -754,5 +751,8 @@
         private C1.Win.C1Input.C1Button c1Button1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private C1.Win.C1Input.C1Button c1Button2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private Controls.H3bLabel h3bLabel7;
+        private Controls.H3Link h3Link7;
     }
 }

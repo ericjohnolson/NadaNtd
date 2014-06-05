@@ -88,8 +88,12 @@ namespace Nada.UI.View
             cbLevels.SelectedItem = selectedLevel;
 
             List<AdminLevel> s = new List<AdminLevel>();
-            foreach(var a in selectedLevels)
-                s.Add(AdminLevel.Find(available, a.Id));
+            foreach (var a in selectedLevels)
+            {
+                var unit = AdminLevel.Find(available, a.Id);
+                if(unit != null)
+                    s.Add(unit);
+            }
 
             foreach (var item in s)
             {

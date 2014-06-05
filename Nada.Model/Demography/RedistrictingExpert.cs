@@ -94,7 +94,7 @@ namespace Nada.Model.Demography
             int redistrictId = demoRepo.InsertRedistrictingRecord(command, connection, options, userId);
             foreach (var source in options.SplitDestinations)
             {
-                demoRepo.InsertRedistrictUnit(command, connection, userId, source.Unit, redistrictId, RedistrictingRelationship.Mother, 0, false);
+                demoRepo.InsertRedistrictUnit(command, connection, userId, source.Unit, redistrictId, RedistrictingRelationship.Mother, source.Percent, false);
 
                 List<AdminLevelDemography> demos = new List<AdminLevelDemography>();
                 List<DiseaseDistroCm> ddCms = new List<DiseaseDistroCm>();
@@ -144,7 +144,9 @@ namespace Nada.Model.Demography
                 List<IntvBase> intvs = new List<IntvBase>();
                 List<SurveyBase> survs = new List<SurveyBase>();
                 List<ProcessBase> procs = new List<ProcessBase>();
-                demoRepo.InsertRedistrictUnit(command, connection, userId, source, redistrictId, RedistrictingRelationship.Mother, 0, true);
+                demoRepo.InsertRedistrictUnit(command, connection, userId, source, redistrictId, RedistrictingRelationship.Mother, 100, true);
+                // add all children to merge destination
+                options.MergeDestination.Children.AddRange(demoRepo.GetAdminLevelChildren(source.Id));
                 // Gather all the necessary forms
                 List<DemoDetails> demoDetails = demoRepo.GetAdminLevelDemography(source.Id);
                 foreach (var demoDetail in demoDetails)
@@ -339,27 +341,28 @@ namespace Nada.Model.Demography
 
         private IntvBase MergeIntv(List<IntvBase> intvs, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
-            IntvBase newIntv = null;
+            IntvBase newForm = null;
             Dictionary<int, IndicatorValue> newInds = new Dictionary<int, IndicatorValue>();
             foreach (var form in intvs)
             {
-                if (newIntv == null)
+                if (newForm == null)
                 {
-                    newIntv = Util.DeepClone(form);
-                    newIntv.Id = 0;
-                    newIntv.AdminLevelId = destId;
+                    newForm = Util.DeepClone(form);
+                    newForm.Id = 0;
+                    newForm.AdminLevelId = destId;
+                    newForm.IsRedistricted = true;
                 }
                 else
-                    newIntv.Notes = MergeNotes(newIntv.Notes, form.Notes);
+                    newForm.Notes = MergeNotes(newForm.Notes, form.Notes);
 
-                MergeIndicators(form.IndicatorValues, newInds, IndicatorEntityType.Intervention, newIntv.IntvType.IndicatorDropdownValues);
+                MergeIndicators(form.IndicatorValues, newInds, IndicatorEntityType.Intervention, newForm.IntvType.IndicatorDropdownValues);
             }
-            newIntv.IndicatorValues = newInds.Values.ToList();
+            newForm.IndicatorValues = newInds.Values.ToList();
             // save
-            intvRepo.SaveIntvBase(command, connection, newIntv, userId);
+            intvRepo.SaveIntvBase(command, connection, newForm, userId);
             foreach (var i in intvs)
-                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, i.Id, newIntv.Id, IndicatorEntityType.Intervention);
-            return newIntv;
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, i.Id, newForm.Id, IndicatorEntityType.Intervention);
+            return newForm;
         }
 
         private DiseaseDistroCm MergeDdCm(List<DiseaseDistroCm> toMerge, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
@@ -373,6 +376,7 @@ namespace Nada.Model.Demography
                     newForm = Util.DeepClone(form);
                     newForm.Id = 0;
                     newForm.AdminLevelId = destId;
+                    newForm.IsRedistricted = true;
                 }
                 else
                     newForm.Notes = MergeNotes(newForm.Notes, form.Notes);
@@ -397,6 +401,7 @@ namespace Nada.Model.Demography
                     newForm = Util.DeepClone(form);
                     newForm.Id = 0;
                     newForm.AdminLevelId = destId;
+                    newForm.IsRedistricted = true;
                 }
                 else
                     newForm.Notes = MergeNotes(newForm.Notes, form.Notes);
@@ -422,6 +427,7 @@ namespace Nada.Model.Demography
                     newForm = Util.DeepClone(form);
                     newForm.Id = 0;
                     newForm.AdminLevelId = destId;
+                    newForm.IsRedistricted = true;
                 }
                 else
                     newForm.Notes = MergeNotes(newForm.Notes, form.Notes);
@@ -443,6 +449,7 @@ namespace Nada.Model.Demography
                 ProcessBase newForm = Util.DeepClone(oldForm);
 
                 newForm.Id = 0;
+                newForm.IsRedistricted = true;
                 newForm.AdminLevelId = destId;
                 processRepo.Save(command, connection, newForm, userId);
                 demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, oldForm.Id, newForm.Id, IndicatorEntityType.Process);
@@ -456,6 +463,7 @@ namespace Nada.Model.Demography
                 SurveyBase newForm = Util.DeepClone(oldForm);
 
                 newForm.Id = 0;
+                newForm.IsRedistricted = true;
                 newForm.AdminLevels.Add(dest);
                 surveyRepo.SaveSurveyBase(command, connection, newForm, userId);
                 opts.Surveys.Add(newForm);
@@ -534,18 +542,7 @@ namespace Nada.Model.Demography
                 options.Processes.Add(SplitProcesses(procsMerge, process, dest, percentMultiplier, redistrictId, command, connection));
 
         }
-
-        private void SaveSplitSaes(List<ProcessBase> list, int redistrictId, OleDbCommand command, OleDbConnection connection)
-        {
-            foreach (var sae in list)
-            {
-                var newSae = Util.DeepClone(sae);
-                newSae.Id = 0;
-                processRepo.Save(command, connection, newSae, userId);
-                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, sae.Id, newSae.Id, IndicatorEntityType.Sae);
-            }
-        }
-
+        
         private AdminLevelDemography SplitDemo(List<AdminLevelDemography> toMerge, DemoDetails details, int destId, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
             var demography = demoRepo.GetDemoById(details.Id);
@@ -581,105 +578,119 @@ namespace Nada.Model.Demography
         {
             var survey = surveyRepo.GetById(details.Id);
             // make new
-            var newSurvey = Util.DeepClone(survey);
-            if (!newSurvey.AdminLevels.Select(a => a.Id).Contains(dest.Id))
+            var newForm = Util.DeepClone(survey);
+            if (!newForm.AdminLevels.Select(a => a.Id).Contains(dest.Id))
             {
-                newSurvey.Id = 0;
-                newSurvey.AdminLevels.Add(dest);
-                newSurvey.AdminLevels.RemoveAll(a => a.Id == source.Id);
+                newForm.Id = 0;
+                newForm.IsRedistricted = true;
+                newForm.AdminLevels.Add(dest);
+                newForm.AdminLevels.RemoveAll(a => a.Id == source.Id);
             }
 
             if (toMerge == null)
             {
-                surveyRepo.SaveSurveyBase(command, connection, newSurvey, userId);
-                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, survey.Id, newSurvey.Id, IndicatorEntityType.Survey);
+                surveyRepo.SaveSurveyBase(command, connection, newForm, userId);
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, survey.Id, newForm.Id, IndicatorEntityType.Survey);
             }
             else
-                toMerge.Add(newSurvey);
-            return newSurvey;
+                toMerge.Add(newForm);
+            return newForm;
         }
 
         private DiseaseDistroPc SplitDdPc(List<DiseaseDistroPc> toMerge, DiseaseDistroDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
             var dd = diseaseRepo.GetDiseaseDistribution(details.Id, details.TypeId);
-            var newDd = Util.DeepClone(dd);
-            if (newDd.AdminLevelId != dest.Id)
+            var newForm = Util.DeepClone(dd);
+            if (newForm.AdminLevelId != dest.Id)
             {
-                newDd.Id = 0;
-                newDd.AdminLevelId = dest.Id;
+                newForm.Id = 0;
+                newForm.IsRedistricted = true;
+                newForm.AdminLevelId = dest.Id;
             }
-            newDd.IndicatorValues = RedistributeIndicators(newDd.IndicatorValues, multiplier);
+            newForm.IndicatorValues = RedistributeIndicators(newForm.IndicatorValues, multiplier);
             if (toMerge == null)
             {
-                diseaseRepo.SavePc(newDd, userId, connection, command);
-                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, dd.Id, newDd.Id, IndicatorEntityType.DiseaseDistribution);
+                diseaseRepo.SavePc(newForm, userId, connection, command);
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, dd.Id, newForm.Id, IndicatorEntityType.DiseaseDistribution);
             }
             else
-                toMerge.Add(newDd);
-            return newDd;
+                toMerge.Add(newForm);
+            return newForm;
         }
 
         private DiseaseDistroCm SplitDdCm(List<DiseaseDistroCm> toMerge, DiseaseDistroDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
             var dd = diseaseRepo.GetDiseaseDistributionCm(details.Id, details.TypeId);
-            var newDd = Util.DeepClone(dd);
-            if (newDd.AdminLevelId != dest.Id)
+            var newForm = Util.DeepClone(dd);
+            if (newForm.AdminLevelId != dest.Id)
             {
-                newDd.Id = 0;
-                newDd.AdminLevelId = dest.Id;
+                newForm.Id = 0;
+                newForm.IsRedistricted = true;
+                newForm.AdminLevelId = dest.Id;
             }
-            newDd.IndicatorValues = RedistributeIndicators(newDd.IndicatorValues, multiplier);
+            newForm.IndicatorValues = RedistributeIndicators(newForm.IndicatorValues, multiplier);
             if (toMerge == null)
             {
-                diseaseRepo.SaveCm(newDd, userId, connection, command);
-                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, dd.Id, newDd.Id, IndicatorEntityType.DiseaseDistribution);
+                diseaseRepo.SaveCm(newForm, userId, connection, command);
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, dd.Id, newForm.Id, IndicatorEntityType.DiseaseDistribution);
             }
             else
-                toMerge.Add(newDd);
-            return newDd;
+                toMerge.Add(newForm);
+            return newForm;
         }
-
 
         private IntvBase SplitIntv(List<IntvBase> toMerge, IntvDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
             var intv = intvRepo.GetById(details.Id);
-            // make new
-            var newIntv = Util.DeepClone(intv);
-            if (newIntv.AdminLevelId != dest.Id)
+            var newForm = Util.DeepClone(intv);
+            if (newForm.AdminLevelId != dest.Id)
             {
-                newIntv.Id = 0;
-                newIntv.AdminLevelId = dest.Id;
+                newForm.Id = 0;
+                newForm.IsRedistricted = true;
+                newForm.AdminLevelId = dest.Id;
             }
-            newIntv.IndicatorValues = RedistributeIndicators(intv.IndicatorValues, multiplier);
+            newForm.IndicatorValues = RedistributeIndicators(intv.IndicatorValues, multiplier);
             if (toMerge == null)
             {
-                intvRepo.SaveIntvBase(command, connection, newIntv, userId);
-                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, intv.Id, newIntv.Id, IndicatorEntityType.Intervention);
+                intvRepo.SaveIntvBase(command, connection, newForm, userId);
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, intv.Id, newForm.Id, IndicatorEntityType.Intervention);
             }
             else
-                toMerge.Add(newIntv);
-            return newIntv;
+                toMerge.Add(newForm);
+            return newForm;
         }
 
         private ProcessBase SplitProcesses(List<ProcessBase> toMerge, ProcessDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
             var process = processRepo.GetById(details.Id);
-            // make new
-            var newProcess = Util.DeepClone(process);
-            if (newProcess.AdminLevelId != dest.Id)
+            var newForm = Util.DeepClone(process);
+            if (newForm.AdminLevelId != dest.Id)
             {
-                newProcess.Id = 0;
-                newProcess.AdminLevelId = dest.Id;
+                newForm.Id = 0;
+                newForm.IsRedistricted = true;
+                newForm.AdminLevelId = dest.Id;
             }
-            newProcess.IndicatorValues = RedistributeIndicators(process.IndicatorValues, multiplier);
+            newForm.IndicatorValues = RedistributeIndicators(process.IndicatorValues, multiplier);
             if (toMerge == null)
             {
-                processRepo.Save(command, connection, newProcess, userId);
-                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, process.Id, newProcess.Id, IndicatorEntityType.Process);
+                processRepo.Save(command, connection, newForm, userId);
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, process.Id, newForm.Id, IndicatorEntityType.Process);
             }
             else
-                toMerge.Add(newProcess);
-            return newProcess;
+                toMerge.Add(newForm);
+            return newForm;
+        }
+        
+        private void SaveSplitSaes(List<ProcessBase> list, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {
+            foreach (var sae in list)
+            {
+                var newForm = Util.DeepClone(sae);
+                newForm.Id = 0;
+                newForm.IsRedistricted = true;
+                processRepo.Save(command, connection, newForm, userId);
+                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, sae.Id, newForm.Id, IndicatorEntityType.Sae);
+            }
         }
 
         private List<IndicatorValue> RedistributeIndicators(List<IndicatorValue> existing, double percentage)
