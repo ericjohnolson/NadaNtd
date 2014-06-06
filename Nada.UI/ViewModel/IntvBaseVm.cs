@@ -69,7 +69,8 @@ namespace Nada.UI.ViewModel
 
         public void DoSaveType(string name)
         {
-            model.IntvType.IntvTypeName = name;
+            if(!string.IsNullOrEmpty(name))
+                model.IntvType.IntvTypeName = name;
             int currentUser = ApplicationData.Instance.GetUserId();
             r.Save(model.IntvType, currentUser);
         }

@@ -167,59 +167,12 @@ namespace Nada.Model.Exports
             {
                 if (ddDict.ContainsKey(district.Id))
                 {
-                    string endG = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("Dracun")].ToString();
-                    if (endG == TranslationLookup.GetValue("Endemic"))
-                    {
-                        gEnd++;
-                        gEndPop += district.CurrentDemography.TotalPopulation.Value;
-                    }
-                    else if (endG == TranslationLookup.GetValue("NotEndemic"))
-                        gNoEnd++;
-
-                    string endLp = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("Leprosy")].ToString();
-                    if (endLp == TranslationLookup.GetValue("High"))
-                    {
-                        lpEnd++;
-                        lpEndPop += district.CurrentDemography.TotalPopulation.Value;
-                    }
-                    else if (endLp == TranslationLookup.GetValue("Low"))
-                        lpNoEnd++;
-
-                    string endH = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("HAT")].ToString();
-                    if (endH == TranslationLookup.GetValue("Endemic"))
-                    {
-                        hEnd++;
-                        hEndPop += district.CurrentDemography.TotalPopulation.Value;
-                    }
-                    else if (endH == TranslationLookup.GetValue("NotEndemic") || endH == TranslationLookup.GetValue("FormerlyEndemic"))
-                        hNoEnd++;
-
-                    string endLh = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("Leishmaniasis")].ToString();
-                    if (endLh == TranslationLookup.GetValue("Endemic"))
-                    {
-                        lhEnd++;
-                        lhEndPop += district.CurrentDemography.TotalPopulation.Value;
-                    }
-                    else if (endLh == TranslationLookup.GetValue("NotEndemic"))
-                        lhNoEnd++;
-
-                    string endB = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("BuruliUlcer")].ToString();
-                    if (endB == TranslationLookup.GetValue("Endemic"))
-                    {
-                        bEnd++;
-                        bEndPop += district.CurrentDemography.TotalPopulation.Value;
-                    }
-                    else if (endB == TranslationLookup.GetValue("NotEndemic"))
-                        bNoEnd++;
-
-                    string endY = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue("YAWS")].ToString();
-                    if (endY == TranslationLookup.GetValue("Endemic"))
-                    {
-                        yEnd++;
-                        yEndPop += district.CurrentDemography.TotalPopulation.Value;
-                    }
-                    else if (endY == TranslationLookup.GetValue("NotEndemic"))
-                        yNoEnd++;
+                    ParseEndemicity(ddDict, ref gEnd, ref gNoEnd, ref gEndPop, district, "Dracun", "Endemic", "NotEndemic", null);
+                    ParseEndemicity(ddDict, ref lpEnd, ref lpNoEnd, ref lpEndPop, district, "Leprosy", "High", "Low", null);
+                    ParseEndemicity(ddDict, ref hEnd, ref hNoEnd, ref hEndPop, district, "HAT", "Endemic", "NotEndemic", "FormerlyEndemic");
+                    ParseEndemicity(ddDict, ref lhEnd, ref lhNoEnd, ref lhEndPop, district, "Leishmaniasis", "Endemic", "NotEndemic", null);
+                    ParseEndemicity(ddDict, ref bEnd, ref bNoEnd, ref bEndPop, district, "BuruliUlcer", "Endemic", "NotEndemic", null);
+                    ParseEndemicity(ddDict, ref yEnd, ref yNoEnd, ref yEndPop, district, "YAWS", "Endemic", "NotEndemic", null);
                 }
                 rowId++;
             }
@@ -248,6 +201,23 @@ namespace Nada.Model.Exports
             AddValueToRange(xlsWorksheet, rng, "C13", yNoEnd);
             AddValueToRange(xlsWorksheet, rng, "D13", yEndPop);
             AddValueToRange(xlsWorksheet, rng, "E13", yEnd);
+        }
+
+        private static void ParseEndemicity(Dictionary<int, DataRow> ddDict, ref double end, ref double noEnd, ref double endPop, AdminLevel district, string diseaseKey, 
+            string keyEndemic, string keyNotEndemic, string keyNotEndemic2)
+        {
+            if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue(diseaseKey)))
+            {
+                string endemicity = ddDict[district.Id][TranslationLookup.GetValue("EndemicityStatus") + " - " + TranslationLookup.GetValue(diseaseKey)].ToString();
+                if (endemicity == TranslationLookup.GetValue(keyEndemic))
+                {
+                    end++;
+                    endPop += district.CurrentDemography.TotalPopulation.Value;
+                }
+                else if (endemicity == TranslationLookup.GetValue(keyNotEndemic) || 
+                    (!string.IsNullOrEmpty(keyNotEndemic2) && endemicity == TranslationLookup.GetValue(keyNotEndemic2)))
+                    noEnd++;
+            }
         }
 
         private Dictionary<int, DataRow> GetDd(DateTime start, DateTime end, List<AdminLevel> demography)

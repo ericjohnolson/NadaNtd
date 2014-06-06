@@ -76,7 +76,8 @@ namespace Nada.UI.ViewModel
 
         public void DoSaveType(string name)
         {
-            model.ProcessType.TypeName = name;
+            if (!string.IsNullOrEmpty(name))
+             model.ProcessType.TypeName = name;
             int currentUser = ApplicationData.Instance.GetUserId();
             r.Save(model.ProcessType, currentUser);
         }

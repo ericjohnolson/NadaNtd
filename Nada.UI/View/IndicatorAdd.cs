@@ -72,7 +72,7 @@ namespace Nada.UI.View
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
-            if (existingIndicators.FirstOrDefault(i => TranslationLookup.GetValue(i.DisplayName, i.DisplayName).ToLower() == model.DisplayName.ToLower() && (model.Id <= 0 || model.Id != i.Id)) != null)
+            if (existingIndicators.FirstOrDefault(i => TranslationLookup.GetValue(i.DisplayName, i.DisplayName).ToLower() == model.DisplayName.ToLower() && model.Id != i.Id) != null)
             {
                 MessageBox.Show(string.Format(Translations.ValidationMustBeUnique, Translations.Name), Translations.ValidationErrorTitle);
                 return;

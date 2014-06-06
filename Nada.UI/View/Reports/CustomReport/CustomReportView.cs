@@ -48,6 +48,7 @@ namespace Nada.UI.View.Reports.CustomReport
                     lnkSave.Visible = false;
                 if (OnEditReport == null)
                     lnkEditReport.Visible = false;
+                
                 lblTitle.Text = report.TypeName;
                 this.Text = report.TypeName;
                 CreateReport();
@@ -81,9 +82,15 @@ namespace Nada.UI.View.Reports.CustomReport
             {
                 using (ExcelPackage pck = new ExcelPackage())
                 {
-                    ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
-                    ws.Cells["A1"].LoadFromDataTable(currentResult.DataTableResults, true);
-                    File.WriteAllBytes(saveFileDialog1.FileName, pck.GetAsByteArray());
+                    try
+                    {
+                        ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
+                        ws.Cells["A1"].LoadFromDataTable(currentResult.DataTableResults, true);
+                        File.WriteAllBytes(saveFileDialog1.FileName, pck.GetAsByteArray());
+                    }
+                    catch (IOException)
+                    {
+                    }
                 }
                 System.Diagnostics.Process.Start(saveFileDialog1.FileName);
             }

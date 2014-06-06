@@ -544,7 +544,7 @@ namespace Nada.Model.Repositories
                     {
                         command = new OleDbCommand(@"UPDATE InterventionIndicators SET InterventionTypeId=@InterventionTypeId, DataTypeId=@DataTypeId,
                         DisplayName=@DisplayName, IsRequired=@IsRequired, IsDisabled=@IsDisabled, 
-                        IsEditable=@IsEditable, UpdatedById=@UpdateById, UpdatedAt=@UpdatedAt 
+                        IsEditable=@IsEditable, IsDisplayed=@IsDisplayed, UpdatedById=@UpdateById, UpdatedAt=@UpdatedAt 
                         WHERE ID = @id", connection);
                         command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@DataTypeId", indicator.DataTypeId));
@@ -552,6 +552,7 @@ namespace Nada.Model.Repositories
                         command.Parameters.Add(new OleDbParameter("@IsRequired", indicator.IsRequired));
                         command.Parameters.Add(new OleDbParameter("@IsDisabled", indicator.IsDisabled));
                         command.Parameters.Add(new OleDbParameter("@IsEditable", true));
+                        command.Parameters.Add(new OleDbParameter("@IsDisplayed", false));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                         command.Parameters.Add(new OleDbParameter("@id", indicator.Id));
@@ -561,8 +562,8 @@ namespace Nada.Model.Repositories
                     foreach (var indicator in model.Indicators.Values.Where(i => i.Id <= 0 && i.IsEdited))
                     {
                         command = new OleDbCommand(@"INSERT INTO InterventionIndicators (InterventionTypeId, DataTypeId, 
-                        DisplayName, IsRequired, IsDisabled, IsEditable, UpdatedById, UpdatedAt) VALUES
-                        (@InterventionTypeId, @DataTypeId, @DisplayName, @IsRequired, @IsDisabled, @IsEditable, @UpdatedById, 
+                        DisplayName, IsRequired, IsDisabled, IsEditable, IsDisplayed, UpdatedById, UpdatedAt) VALUES
+                        (@InterventionTypeId, @DataTypeId, @DisplayName, @IsRequired, @IsDisabled, @IsEditable, @IsDisplayed, @UpdatedById, 
                          @UpdatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@InterventionTypeId", model.Id));
                         command.Parameters.Add(new OleDbParameter("@DataTypeId", indicator.DataTypeId));
@@ -570,6 +571,7 @@ namespace Nada.Model.Repositories
                         command.Parameters.Add(new OleDbParameter("@IsRequired", indicator.IsRequired));
                         command.Parameters.Add(new OleDbParameter("@IsDisabled", indicator.IsDisabled));
                         command.Parameters.Add(new OleDbParameter("@IsEditable", true));
+                        command.Parameters.Add(new OleDbParameter("@IsDisplayed", false));
                         command.Parameters.Add(new OleDbParameter("@UpdateById", userId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                         command.ExecuteNonQuery();

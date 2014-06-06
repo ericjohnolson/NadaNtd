@@ -103,7 +103,7 @@ namespace Nada.UI.View.Reports.CustomReport
         {
             rbAggCountry.Enabled = !checkBox2.Checked;
             rbAggLevel.Enabled = !checkBox2.Checked;
-            if (checkBox2.Checked && rbAggCountry.Checked)
+            if (checkBox2.Checked && (rbAggCountry.Checked || rbAggLevel.Checked))
             {
                 rbAggListAll.Checked = true;
             }

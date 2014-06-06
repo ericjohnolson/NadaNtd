@@ -1000,11 +1000,11 @@ namespace Nada.Model.Reports
 
             result.MetaDataWarning = GetMissingRowsErrors(result.DataTableResults, true);
             result.DataTableResults.Columns.Remove("ID");
-            result.ChartData = result.DataTableResults.Copy();
-            result.DataTableResults.Columns.Remove(Translations.Location);
             result.DataTableResults.Columns.Remove("YearNumber");
             result.DataTableResults.Columns.Remove("DaughterId");
             result.DataTableResults.Columns.Remove("MotherId");
+            result.ChartData = result.DataTableResults.Copy();
+            result.DataTableResults.Columns.Remove(Translations.Location);
             return result;
         }
     }

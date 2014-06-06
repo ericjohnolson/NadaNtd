@@ -187,6 +187,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Important note: Survey imports only work for surveys that take place in just one administrative unit at a time. If any of your surveys take place in more than one administrative unit at a time (for example, an Ecological Zone spanning multiple districts), those surveys need to be entered directly into the forms. They will not record properly if entered here in imports..
+        /// </summary>
+        public static string ImportSurveyWarning {
+            get {
+                return ResourceManager.GetString("ImportSurveyWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of individuals examined for Hydrocele.
         /// </summary>
         public static string LFMapSurExaminedHydro1 {

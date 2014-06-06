@@ -220,7 +220,7 @@ namespace Nada.UI.View.Reports
 
         private void redistrictingReport_ClickOverride()
         {
-            SavedReport r = new SavedReport();
+            SavedReport r = new SavedReport { TypeName = Translations.RedistrictingReport };
             r.ReportOptions = new ReportOptions();
             r.ReportOptions.ReportGenerator = new RedistrictingReportGenerator();
             CustomReportView report = new CustomReportView(r);

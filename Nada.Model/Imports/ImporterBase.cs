@@ -143,7 +143,7 @@ namespace Nada.Model
                     xlsWorksheet.Cells[1, xlsColCount] = isReq + TranslationLookup.GetValue(item.Key, item.Key);
                 }
             }
-            xlsWorksheet.Cells[1, xlsColCount + 1] = TranslationLookup.GetValue("Notes");
+            //xlsWorksheet.Cells[1, xlsColCount + 1] = TranslationLookup.GetValue("Notes");
 
             // row 2+ admin levels
             int xlsRowCount = 2;
@@ -236,7 +236,7 @@ namespace Nada.Model
                 xlsColCount++;
                 xlsWorksheet.Cells[1, xlsColCount] = isReq + TranslationLookup.GetValue(item.Key, item.Key);
             }
-            xlsWorksheet.Cells[1, xlsColCount + 1] = TranslationLookup.GetValue("Notes");
+            //xlsWorksheet.Cells[1, xlsColCount + 1] = TranslationLookup.GetValue("Notes");
 
             // row 2+ admin levels
             DemoRepository repo = new DemoRepository();

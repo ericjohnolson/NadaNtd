@@ -107,7 +107,8 @@ namespace Nada.UI.ViewModel
 
         public void DoSaveType(string name)
         {
-            model.TypeOfSurvey.SurveyTypeName = name;
+            if (!string.IsNullOrEmpty(name))
+                model.TypeOfSurvey.SurveyTypeName = name;
             int currentUser = ApplicationData.Instance.GetUserId();
             r.Save(model.TypeOfSurvey, currentUser);
         }

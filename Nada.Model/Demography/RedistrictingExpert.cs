@@ -36,6 +36,8 @@ namespace Nada.Model.Demography
         public RedistrictingResult Run(RedistrictingOptions options)
         {
             RedistrictingResult result = new RedistrictingResult();
+            return result;
+
             bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
@@ -100,17 +102,20 @@ namespace Nada.Model.Demography
                 List<DiseaseDistroCm> ddCms = new List<DiseaseDistroCm>();
                 List<DiseaseDistroPc> ddPcs = new List<DiseaseDistroPc>();
                 List<IntvBase> intvs = new List<IntvBase>();
-                List<SurveyBase> survs = new List<SurveyBase>();
+                // WHAT TO DO ABOUT SURVEYS?
+                // List<SurveyBase> survs = new List<SurveyBase>();
                 List<ProcessBase> procs = new List<ProcessBase>();
                 // split off portion
                 SplitSourceToDestination(options, command, connection, redistrictId, options.MergeDestination, source.Unit, source.Percent,
-                    demos, ddCms, ddPcs, intvs, survs, procs);
+                    demos, ddCms, ddPcs, intvs,  procs);
                 AddToMergingDictionaries(options, demographyToMerge, ddCmToMerge, ddPcToMerge, intvToMerge, trainingToMerge, processesToCopyAll,
-                    surveys, scmToMerge, demos, ddCms, ddPcs, intvs, survs, procs);
+                    surveys, scmToMerge, demos, ddCms, ddPcs, intvs, new List<SurveyBase>(), procs);
                 // adjust actual unit
                 SplitSourceToDestination(options, command, connection, redistrictId, source.Unit, source.Unit, 100 - source.Percent,
-                    null, null, null, null, null, null);
+                    null, null, null, null, null);
             }
+            // do different for surveys
+
             var processesNoSaes = processesToCopyAll.Where(p => p.ProcessType.Id != (int)StaticProcessType.SAEs).ToList();
             MergeIntoNewUnit(options, command, connection, redistrictId, demographyToMerge, ddCmToMerge, ddPcToMerge, intvToMerge, trainingToMerge,
                 processesNoSaes, surveys, scmToMerge);
@@ -505,26 +510,27 @@ namespace Nada.Model.Demography
             foreach (var dest in options.SplitDestinations)
             {
                 demoRepo.InsertRedistrictUnit(command, connection, userId, dest.Unit, redistrictId, RedistrictingRelationship.Daughter, dest.Percent, false);
-                SplitSourceToDestination(options, command, connection, redistrictId, dest.Unit, options.Source, dest.Percent, null, null, null, null, null,
+                SplitSourceToDestination(options, command, connection, redistrictId, dest.Unit, options.Source, dest.Percent, null, null, null, null,
                     null);
             }
+            // copy all surveys into new groups 
+            //List<SurveyDetails> surveys = surveyRepo.GetAllForAdminLevel(options.Source.Id);
+            //foreach (var survey in surveys)
+            //    options.Surveys.Add(SplitSurveys(survey, options.Source, options.SplitDestinations,  redistrictId, command, connection));
+
             SaveSplitSaes(options.Saes, redistrictId, command, connection);
             return new RedistrictingResult();
         }
 
         private void SplitSourceToDestination(RedistrictingOptions options, OleDbCommand command, OleDbConnection connection, int redistrictId, AdminLevel dest,
             AdminLevel source, double percent, List<AdminLevelDemography> demosToMerge, List<DiseaseDistroCm> ddCmMerge, List<DiseaseDistroPc> ddPcMerge,
-            List<IntvBase> intvMerge, List<SurveyBase> survsMerge, List<ProcessBase> procsMerge)
+            List<IntvBase> intvMerge, List<ProcessBase> procsMerge)
         {
             double percentMultiplier = (percent / 100);
             // split all demography
             List<DemoDetails> demoDetails = demoRepo.GetAdminLevelDemography(source.Id);
             foreach (var deet in demoDetails)
                 SplitDemo(demosToMerge, deet, dest.Id, percentMultiplier, redistrictId, command, connection);
-            // split all surveys 
-            List<SurveyDetails> surveys = surveyRepo.GetAllForAdminLevel(source.Id);
-            foreach (var survey in surveys)
-                options.Surveys.Add(SplitSurveys(survsMerge, survey, source, dest, percentMultiplier, redistrictId, command, connection));
             // split all distros 
             List<DiseaseDistroDetails> dds = diseaseRepo.GetAllForAdminLevel(source.Id);
             foreach (var dd in dds)
@@ -574,28 +580,32 @@ namespace Nada.Model.Demography
             return newDemography;
         }
 
-        private SurveyBase SplitSurveys(List<SurveyBase> toMerge, SurveyDetails details, AdminLevel source, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
-        {
-            var survey = surveyRepo.GetById(details.Id);
-            // make new
-            var newForm = Util.DeepClone(survey);
-            if (!newForm.AdminLevels.Select(a => a.Id).Contains(dest.Id))
-            {
-                newForm.Id = 0;
-                newForm.IsRedistricted = true;
-                newForm.AdminLevels.Add(dest);
-                newForm.AdminLevels.RemoveAll(a => a.Id == source.Id);
-            }
+        //private SurveyBase SplitSurveys(SurveyDetails details, AdminLevel source, List<AdminLevelAllocation> dests, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        //{
+       
+        //    // so i am supposed to remove the old destination and put in the new destinations
+        //    // and save
+        //    // and have an old survey archived w/ the old unit... can I remove the 
+        //    var survey = surveyRepo.GetById(details.Id);
+        //    // make new
+        //    var newForm = Util.DeepClone(survey);
+        //    if (!newForm.AdminLevels.Select(a => a.Id).Contains(dest.Id))
+        //    {
+        //        newForm.Id = 0;
+        //        newForm.IsRedistricted = true;
+        //        newForm.AdminLevels.Add(dest);
+        //        newForm.AdminLevels.RemoveAll(a => a.Id == source.Id);
+        //    }
 
-            if (toMerge == null)
-            {
-                surveyRepo.SaveSurveyBase(command, connection, newForm, userId);
-                demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, survey.Id, newForm.Id, IndicatorEntityType.Survey);
-            }
-            else
-                toMerge.Add(newForm);
-            return newForm;
-        }
+        //    //if (toMerge == null)
+        //    //{
+        //        surveyRepo.SaveSurveyBase(command, connection, newForm, userId);
+        //        demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, survey.Id, newForm.Id, IndicatorEntityType.Survey);
+        //    //}
+        //    //else
+        //    //    toMerge.Add(newForm);
+        //    return newForm;
+        //}
 
         private DiseaseDistroPc SplitDdPc(List<DiseaseDistroPc> toMerge, DiseaseDistroDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {

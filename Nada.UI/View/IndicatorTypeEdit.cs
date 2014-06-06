@@ -105,6 +105,7 @@ namespace Nada.UI.View
         void add_OnSave(Indicator obj)
         {
             viewModel.Indicators.Add(obj.DisplayName, obj);
+            viewModel.DoSaveType(null);
             lvIndicators.SetObjects(viewModel.Indicators.Values.Where(i => i.IsEditable));
         }
 

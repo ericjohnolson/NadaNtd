@@ -5597,4 +5597,7 @@ Fixed / Mobile</value>
   <data name="RedistType" xml:space="preserve">
     <value>Type of redistricting</value>
   </data>
+  <data name="ImportSurveyWarning" xml:space="preserve">
+    <value>Important note: Survey imports only work for surveys that take place in just one administrative unit at a time. If any of your surveys take place in more than one administrative unit at a time (for example, an Ecological Zone spanning multiple districts), those surveys need to be entered directly into the forms. They will not record properly if entered here in imports.</value>
+  </data>
 </root>
