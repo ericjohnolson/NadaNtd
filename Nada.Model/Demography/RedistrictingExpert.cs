@@ -36,7 +36,7 @@ namespace Nada.Model.Demography
         public RedistrictingResult Run(RedistrictingOptions options)
         {
             RedistrictingResult result = new RedistrictingResult();
-            return result;
+            //return result;
 
             bool transWasStarted = false;
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);

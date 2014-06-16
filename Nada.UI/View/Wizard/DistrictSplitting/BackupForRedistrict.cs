@@ -64,7 +64,7 @@ namespace Nada.UI.View.Wizard
         {
             if (!DesignMode)
             {
-                MessageBox.Show("This feature is still under development and only for demonstration purposes. You should not use it with actual National Database Template files");
+                //MessageBox.Show("This feature is still under development and only for demonstration purposes. You should not use it with actual National Database Template files");
                 lblMessage.SetMaxWidth(500);
                 Localizer.TranslateControl(this);
                 FileInfo fi = new FileInfo(DatabaseData.Instance.FilePath);
