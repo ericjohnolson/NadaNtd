@@ -171,12 +171,12 @@ namespace Nada.UI.AppLogic
             if (type.Id < 1)
                 return null;
 
-            return new DataEntryEdit(new ProcessBaseVm(adminLevel, type.Id, null));
+            return new DataEntryEdit(new ProcessBaseVm(adminLevel, type.Id, new CalcProcess()));
         }
 
         public IView GetProcess(ProcessDetails details)
         {
-            return new DataEntryEdit(new ProcessBaseVm(adminLevel, details, null));
+            return new DataEntryEdit(new ProcessBaseVm(adminLevel, details, new CalcProcess()));
         }
         #endregion
     }

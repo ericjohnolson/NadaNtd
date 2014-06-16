@@ -165,6 +165,5 @@ namespace Nada.UI.View.DiseaseDistribution
             statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id, viewModel.CalculatorTypeId,
                 indicatorControl1.start, indicatorControl1.end);
         }
-
     }
 }

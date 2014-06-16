@@ -91,18 +91,12 @@ namespace Nada.UI.View.Reports
             }
             else
             {
-                TaskForceNoInternet confirm = new TaskForceNoInternet();
-                if (confirm.ShowDialog() == DialogResult.OK)
-                {
-                    if (confirm.IsSkipping())
-                    {
-                        OnSwitchStep(new WorkingStep("Generating RTI Reports"));
-                        return;
-                    }
-                }
+                if (TrySkip())
+                    return;
                 OnFinish();
             }
         }
+
 
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -132,6 +126,9 @@ namespace Nada.UI.View.Reports
             {
                 MessageBox.Show(Translations.RtiNoData, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 OnSwitchStep(this);
+
+                if (TrySkip())
+                    return;
                 return;
             }
 
@@ -145,6 +142,20 @@ namespace Nada.UI.View.Reports
         public void DoFinish()
         {
 
+        }
+
+        private bool TrySkip()
+        {
+            TaskForceNoInternet confirm = new TaskForceNoInternet();
+            if (confirm.ShowDialog() == DialogResult.OK)
+            {
+                if (confirm.IsSkipping())
+                {
+                    OnSwitchStep(new RtiExport());
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

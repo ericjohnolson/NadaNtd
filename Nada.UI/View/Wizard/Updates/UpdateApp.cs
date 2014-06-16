@@ -87,7 +87,7 @@ namespace Nada.UI.View.Wizard
             bgWorker.RunWorkerCompleted += updateWorker_RunWorkerCompleted;
             bgWorker.RunWorkerAsync();
 
-            OnSwitchStep(new WorkingStep(Translations.Updating));
+            OnSwitchStep(new WorkingStep(Translations.UpdatingMightTake));
         }
 
         void updateWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

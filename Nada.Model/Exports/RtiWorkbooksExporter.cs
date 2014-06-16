@@ -28,7 +28,6 @@ namespace Nada.Model.Exports
         IntvRepository intvRepo = new IntvRepository();
         DiseaseRepository diseaseRepo = new DiseaseRepository();
         SurveyRepository surveyRepo = new SurveyRepository();
-        int reportYear = DateTime.Now.Year;
 
         public string ExportName
         {
@@ -37,18 +36,15 @@ namespace Nada.Model.Exports
 
         public override string GetYear(ExportType exportType)
         {
-            var ind = exportType.IndicatorValues.FirstOrDefault(i => i.Indicator.DisplayName == "RtiYearOfWorkbook");
-            if (ind != null)
-                return ind.DynamicValue;
-            return "";
+            return StartDate.Year.ToString() + "-" + EndDate.Year.ToString();
         }
 
         public ExportResult DoExport(string fileName, int userId, ExportType exportType)
         {
             try
             {
-                System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
-                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                //System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
+                //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
                 excel.Application xlsApp = new excel.ApplicationClass();
                 xlsApp.DisplayAlerts = false;
                 excel.Workbook xlsWorkbook;
@@ -56,7 +52,7 @@ namespace Nada.Model.Exports
                 excel.Range rng = null;
                 object missing = System.Reflection.Missing.Value;
 
-                xlsWorkbook = xlsApp.Workbooks.Open(Path.Combine(Environment.CurrentDirectory, @"Exports\Country_Disease_Workbook_v3.2.1_English_.xlsx"),
+                xlsWorkbook = xlsApp.Workbooks.Open(Path.Combine(Environment.CurrentDirectory, @"Exports\" + TranslationLookup.GetValue("RtiWorkbookLocation", "RtiWorkbookLocation")),
                     missing, missing, missing, missing, missing, missing, missing,
                     missing, missing, missing, missing, missing, missing, missing);
                 xlsWorkbook.Unprotect("NTDM&E101");
@@ -69,29 +65,34 @@ namespace Nada.Model.Exports
                 var intvs = intvRepo.GetAll(new List<int> { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 }, StartDate, EndDate);
                 Dictionary<int, DataRow> aggIntvs = GetIntvsAggregatedToReportingLevel(StartDate, EndDate, reportingLevelUnits);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["Country"];
+    
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabCountry", "RtiTabCountry")];
                 xlsWorksheet.Unprotect("NTDM&E101");
-                AddInfo(xlsWorksheet, rng, country, exportType, ref reportYear, reportingLevelUnits.Count, intvs);
+                AddInfo(xlsWorksheet, rng, country, exportType, reportingLevelUnits.Count, intvs);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["Demography"];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabDemo", "RtiTabDemo")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddDemo(xlsWorksheet, rng, reportingLevelUnits, countryDemo);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["LF"];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabLf", "RtiTabLf")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddLf(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["Oncho"];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabOncho", "RtiTabOncho")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddOncho(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["Schisto"];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabSch", "RtiTabSch")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddSchisto(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["STH"];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabSth", "RtiTabSth")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddSth(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
+
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabTra", "RtiTabTra")];
+                xlsWorksheet.Unprotect("NTDM&E101");
+                //AddSth(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
 
                 xlsWorkbook.SaveAs(fileName, excel.XlFileFormat.xlOpenXMLWorkbook, missing,
                     missing, false, false, excel.XlSaveAsAccessMode.xlNoChange,
@@ -104,7 +105,7 @@ namespace Nada.Model.Exports
                 Marshal.ReleaseComObject(xlsWorksheet);
                 Marshal.ReleaseComObject(xlsWorkbook);
                 Marshal.ReleaseComObject(xlsApp);
-                System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
+                //System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
                 return new ExportResult { WasSuccess = true };
 
             }
@@ -114,7 +115,7 @@ namespace Nada.Model.Exports
             }
         }
 
-        private void AddInfo(excel.Worksheet xlsWorksheet, excel.Range rng, Country country, ExportType exportType, ref int year, int districtCount,
+        private void AddInfo(excel.Worksheet xlsWorksheet, excel.Range rng, Country country, ExportType exportType, int districtCount,
             List<IntvDetails> intvs)
         {
             AddValueToRange(xlsWorksheet, rng, "C7", country.Name);
@@ -136,20 +137,17 @@ namespace Nada.Model.Exports
             foreach (var val in exportType.IndicatorValues)
             {
                 if (val.Indicator.DisplayName == "RtiYearOfWorkbook")
-                {
-                    year = Convert.ToInt32(val.DynamicValue);
-                    AddValueToRange(xlsWorksheet, rng, "C11", val.DynamicValue);
-                }
+                    AddValueToRange(xlsWorksheet, rng, "C11", TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue));
                 if (val.Indicator.DisplayName == "RtiName")
                     AddValueToRange(xlsWorksheet, rng, "C5", val.DynamicValue);
                 if (val.Indicator.DisplayName == "RtiTitle")
                     AddValueToRange(xlsWorksheet, rng, "C6", val.DynamicValue);
                 if (val.Indicator.DisplayName == "RtiProjectName")
-                    AddValueToRange(xlsWorksheet, rng, "C8", val.DynamicValue);
+                    AddValueToRange(xlsWorksheet, rng, "C8", TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue));
                 if (val.Indicator.DisplayName == "RtiSubPartnerName")
                     AddValueToRange(xlsWorksheet, rng, "C9", val.DynamicValue);
                 if (val.Indicator.DisplayName == "RtiReportingPeriod")
-                    AddValueToRange(xlsWorksheet, rng, "C14", val.DynamicValue);
+                    AddValueToRange(xlsWorksheet, rng, "C14", TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue));
                 if (val.Indicator.DisplayName == "RtiTotalDistrictsTreatedWithUsaid")
                     AddValueToRange(xlsWorksheet, rng, "C16", val.DynamicValue);
                 if (val.Indicator.DisplayName == "RtiTotalDistrictsComplete")
@@ -211,24 +209,23 @@ namespace Nada.Model.Exports
             foreach (var unit in demography)
             {
                 // SURVEYS
-                var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
-                if (mostRecentSurvey != null)
-                {
-                    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
-                        AddLfPercentPositive(xlsWorksheet, rng, rowCount, mostRecentSurvey, "LFSurNumberOfIndividualsPositive", "LFSurNumberOfIndividualsExamined");
-                    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
-                        AddLfPercentPositive(xlsWorksheet, rng, rowCount, mostRecentSurvey, "LFMapSurNumberOfIndividualsPositive", "LFMapSurNumberOfIndividualsExamined");
-                    AddTypeOfLfSurveySite(xlsWorksheet, rng, rowCount, mostRecentSurvey);
-                }
+                //var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
+                //if (mostRecentSurvey != null)
+                //{
+                //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
+                //        AddLfPercentPositive(xlsWorksheet, rng, rowCount, mostRecentSurvey, "LFSurNumberOfIndividualsPositive", "LFSurNumberOfIndividualsExamined");
+                //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
+                //        AddLfPercentPositive(xlsWorksheet, rng, rowCount, mostRecentSurvey, "LFMapSurNumberOfIndividualsPositive", "LFMapSurNumberOfIndividualsExamined");
+                //    AddTypeOfLfSurveySite(xlsWorksheet, rng, rowCount, mostRecentSurvey);
+                //}
                 // DISEASE DISTRO
                 if (lfDd.ContainsKey(unit.Id))
                 {
-                    string endemicity = lfDd[unit.Id][TranslationLookup.GetValue("DDLFDiseaseDistributionPcInterventions") + " - " + lf.Disease.DisplayName].ToString();
-                    endemicity = endemicity.Substring(0, endemicity.IndexOf(" - ") + 1);
+                    string endemicity = ParseLfDdEnd(lfDd[unit.Id][TranslationLookup.GetValue("DDLFDiseaseDistributionPcInterventions") + " - " + lf.Disease.DisplayName].ToString());
                     AddValueToRange(xlsWorksheet, rng, "F" + rowCount, endemicity);
 
                     AddValueToRange(xlsWorksheet, rng, "J" + rowCount,
-                        lfDd[unit.Id][TranslationLookup.GetValue("DDLFObjectiveOfPlannedTas") + " - " + lf.Disease.DisplayName]);
+                        ParseTasObjective(lfDd[unit.Id][TranslationLookup.GetValue("DDLFObjectiveOfPlannedTas") + " - " + lf.Disease.DisplayName].ToString()));
                     AddValueToRange(xlsWorksheet, rng, "K" + rowCount,
                         lfDd[unit.Id][TranslationLookup.GetValue("DDLFMonthOfPlannedTas") + " - " + lf.Disease.DisplayName]);
                     AddValueToRange(xlsWorksheet, rng, "L" + rowCount,
@@ -331,15 +328,16 @@ namespace Nada.Model.Exports
                 //        AddLfPercentPositive(xlsWorksheet, rng, rowCount, mostRecentSurvey, "LFSurNumberOfIndividualsPositive", "LFSurNumberOfIndividualsExamined");
                 //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
                 //        AddLfPercentPositive(xlsWorksheet, rng, rowCount, mostRecentSurvey, "LFMapSurNumberOfIndividualsPositive", "LFMapSurNumberOfIndividualsExamined");
-                //    AddTypeOfLfSurveySite(xlsWorksheet, rng, rowCount, mostRecentSurvey);
+                // Add survey type
+                //  AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetTestType("LfTestType", mostRecentSurvey);
                 //}
 
                 // DISEASE DISTRO
                 if (onchoDd.ContainsKey(unit.Id))
                 {
-                    string endemicity = onchoDd[unit.Id][TranslationLookup.GetValue("DDOnchoDiseaseDistributionPcInterventio") + " - " + oncho.Disease.DisplayName].ToString();
-                    endemicity = endemicity.Substring(0, endemicity.IndexOf(" - ") + 1);
+                    string endemicity = ParseLfDdEnd(onchoDd[unit.Id][TranslationLookup.GetValue("DDOnchoDiseaseDistributionPcInterventio") + " - " + oncho.Disease.DisplayName].ToString());
                     AddValueToRange(xlsWorksheet, rng, "G" + rowCount, endemicity);
+
                     AddValueToRange(xlsWorksheet, rng, "K" + rowCount,
                         onchoDd[unit.Id][TranslationLookup.GetValue("DDOnchoPopulationAtRisk") + " - " + oncho.Disease.DisplayName]);
                     AddValueToRange(xlsWorksheet, rng, "L" + rowCount,
@@ -443,29 +441,28 @@ namespace Nada.Model.Exports
                 // SURVEYS
                 if (level != null && !string.IsNullOrEmpty(level.DisplayName))
                     AddValueToRange(xlsWorksheet, rng, "G" + rowCount, level.DisplayName);
-                var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
-                if (mostRecentSurvey != null)
-                {
-                    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, mostRecentSurvey.DateReported.Year);
-                    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
-                    {
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHSurPrevalenceOfIntestinalSchistosomeI", "I");
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHSurProportionOfHeavyIntensityIntestin", "J");
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHSurTestType", "L");
-                    }
-                    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
-                    {
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHMapSurPrevalenceOfIntestinalSchistoso", "I");
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHMapSurProportionOfHeavyIntensityIntes", "J");
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHMapSurTestType", "L");
-                    }
-                }
+                //var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
+                //if (mostRecentSurvey != null)
+                //{
+                //    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, mostRecentSurvey.DateReported.Year);
+                //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
+                //    {
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHSurPrevalenceOfIntestinalSchistosomeI", "I");
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHSurProportionOfHeavyIntensityIntestin", "J");
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHSurTestType", "L");
+                //    }
+                //    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
+                //    {
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHMapSurPrevalenceOfIntestinalSchistoso", "I");
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHMapSurProportionOfHeavyIntensityIntes", "J");
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHMapSurTestType", "L");
+                //    }
+                //}
 
                 // DISEASE DISTRO
                 if (schDd.ContainsKey(unit.Id))
                 {
-                    string endemicity = schDd[unit.Id][TranslationLookup.GetValue("DDSchistoDiseaseDistributionPcIntervent") + " - " + sch.Disease.DisplayName].ToString();
-                    endemicity = endemicity.Substring(0, endemicity.IndexOf(" - ") + 1);
+                    string endemicity = ParseSchEnd(schDd[unit.Id][TranslationLookup.GetValue("DDSchistoDiseaseDistributionPcIntervent") + " - " + sch.Disease.DisplayName].ToString());
                     AddValueToRange(xlsWorksheet, rng, "H" + rowCount, endemicity);
                     AddValueToRange(xlsWorksheet, rng, "P" + rowCount,
                         schDd[unit.Id][TranslationLookup.GetValue("DDSchistoPopulationAtRisk") + " - " + sch.Disease.DisplayName]);
@@ -482,9 +479,9 @@ namespace Nada.Model.Exports
                     AddValueToRange(xlsWorksheet, rng, "U" + rowCount,
                         schDd[unit.Id][TranslationLookup.GetValue("DDSchistoYearDeterminedThatAchievedCrite") + " - " + sch.Disease.DisplayName]);
                     AddValueToRange(xlsWorksheet, rng, "V" + rowCount,
-                        schDd[unit.Id][TranslationLookup.GetValue("DDSchistoNumPcRoundsYearRecommendedByWh") + " - " + sch.Disease.DisplayName]);
+                        ParseSchistoFrequency(schDd[unit.Id][TranslationLookup.GetValue("DDSchistoNumPcRoundsYearRecommendedByWh") + " - " + sch.Disease.DisplayName].ToString()));
                     AddValueToRange(xlsWorksheet, rng, "W" + rowCount,
-                        schDd[unit.Id][TranslationLookup.GetValue("DDSchistoNumPcRoundsYearCurrentlyImplem") + " - " + sch.Disease.DisplayName]);
+                        ParseSchistoFrequency(schDd[unit.Id][TranslationLookup.GetValue("DDSchistoNumPcRoundsYearCurrentlyImplem") + " - " + sch.Disease.DisplayName].ToString()));
                     AddValueToRange(xlsWorksheet, rng, "Y" + rowCount,
                         schDd[unit.Id][TranslationLookup.GetValue("DDSchistoYearPcStarted") + " - " + sch.Disease.DisplayName]);
                 }
@@ -551,31 +548,28 @@ namespace Nada.Model.Exports
             foreach (var unit in demography)
             {
                 // SURVEYS
-                if (level != null && !string.IsNullOrEmpty(level.DisplayName))
-                    AddValueToRange(xlsWorksheet, rng, "G" + rowCount, level.DisplayName);
-                var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
-                if (mostRecentSurvey != null)
-                {
-                    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, mostRecentSurvey.DateReported.Year);
-                    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
-                    {
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHSurPositiveOverall", "I");
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHSurOverallProportionOfHeavyIntensity", "J");
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHSurTestType", "L");
-                    }
-                    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
-                    {
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHMapSurSurPerPositiveOverall", "I");
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHMapSurSurOverallProportionOfHeavyIntensity", "J");
-                        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHMapSurSurTestType", "L");
-                    }
-                }
+                //var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
+                //if (mostRecentSurvey != null)
+                //{
+                //    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, mostRecentSurvey.DateReported.Year);
+                //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
+                //    {
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHSurPositiveOverall", "I");
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHSurOverallProportionOfHeavyIntensity", "J");
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHSurTestType", "L");
+                //    }
+                //    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
+                //    {
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHMapSurSurPerPositiveOverall", "I");
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHMapSurSurOverallProportionOfHeavyIntensity", "J");
+                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHMapSurSurTestType", "L");
+                //    }
+                //}
 
                 // DISEASE DISTRO
                 if (sthDd.ContainsKey(unit.Id))
                 {
-                    string endemicity = sthDd[unit.Id][TranslationLookup.GetValue("DDSTHDiseaseDistributionPcInterventions") + " - " + sth.Disease.DisplayName].ToString();
-                    endemicity = endemicity.Substring(0, endemicity.IndexOf(" - ") + 1);
+                    string endemicity = ParseSthEnd(sthDd[unit.Id][TranslationLookup.GetValue("DDSTHDiseaseDistributionPcInterventions") + " - " + sth.Disease.DisplayName].ToString());
                     AddValueToRange(xlsWorksheet, rng, "H" + rowCount, endemicity);
                     AddValueToRange(xlsWorksheet, rng, "P" + rowCount,
                         sthDd[unit.Id][TranslationLookup.GetValue("DDSTHPopulationAtRisk") + " - " + sth.Disease.DisplayName]);
@@ -590,9 +584,9 @@ namespace Nada.Model.Exports
                     AddValueToRange(xlsWorksheet, rng, "U" + rowCount,
                         sthDd[unit.Id][TranslationLookup.GetValue("DDSTHYearDeterminedThatAchievedCriteriaF") + " - " + sth.Disease.DisplayName]);
                     AddValueToRange(xlsWorksheet, rng, "V" + rowCount,
-                        sthDd[unit.Id][TranslationLookup.GetValue("DDSTHNumPcRoundsYearRecommendedByWhoGui") + " - " + sth.Disease.DisplayName]);
+                        ParseSthFrequency(sthDd[unit.Id][TranslationLookup.GetValue("DDSTHNumPcRoundsYearRecommendedByWhoGui") + " - " + sth.Disease.DisplayName].ToString()));
                     AddValueToRange(xlsWorksheet, rng, "W" + rowCount,
-                        sthDd[unit.Id][TranslationLookup.GetValue("DDSTHNumPcRoundsYearCurrentlyImplemente") + " - " + sth.Disease.DisplayName]);
+                        ParseSthFrequency(sthDd[unit.Id][TranslationLookup.GetValue("DDSTHNumPcRoundsYearCurrentlyImplemente") + " - " + sth.Disease.DisplayName].ToString()));
                     AddValueToRange(xlsWorksheet, rng, "Y" + rowCount,
                         sthDd[unit.Id][TranslationLookup.GetValue("DDSTHYearPcStarted") + " - " + sth.Disease.DisplayName]);
                 }
@@ -663,6 +657,183 @@ namespace Nada.Model.Exports
             }
         }
 
+        private void AddTrachoma(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
+        {
+            List<string> typeNames = new List<string> { "IntvZithroTeo" };
+            List<int> typeIds = new List<int> { (int)StaticIntvType.ZithroTeo };
+            // Get sch Disease Distributions
+            DiseaseDistroPc tra;
+            Dictionary<int, DataRow> traDd;
+            GetDdForDisease(start, end, demography, out tra, out traDd, DiseaseType.Trachoma);
+
+            // get one thing from one thing
+            Dictionary<int, DataRow> subDistrictEligible = GetEligibleInSubdistricts(start, end);
+
+            var surveys = surveyRepo.GetByTypeForDateRange(
+                new List<int> { (int)StaticSurveyType.TrachomaImpact }, StartDate, EndDate);
+
+            int rowCount = 21;
+            foreach (var unit in demography)
+            {
+                // Surveys
+                var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
+                if (mostRecentSurvey != null)
+                {
+                    AddTraLevelToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "TraSurLevelOfAntibioticTreatmentRequired", "R");
+                }
+                // DISEASE DISTRO
+                if (traDd.ContainsKey(unit.Id))
+                {
+                    string endemicity = ParseTrachomaEnd(traDd[unit.Id][TranslationLookup.GetValue("DDTraDiseaseDistributionPcInterventions") + " - " + tra.Disease.DisplayName].ToString());
+                    AddValueToRange(xlsWorksheet, rng, "F" + rowCount, endemicity);
+                    AddValueToRange(xlsWorksheet, rng, "J" + rowCount,
+                        traDd[unit.Id][TranslationLookup.GetValue("DDTraTrichiasisBacklog") + " - " + tra.Disease.DisplayName]);
+
+                    DateTime datePlanned = DateTime.ParseExact(traDd[unit.Id][TranslationLookup.GetValue("DDTraYearOfPlannedTrachomaImpactSurvey") + " - " + tra.Disease.DisplayName].ToString(),
+                        "M/d/yyyy", CultureInfo.InvariantCulture);
+                    AddValueToRange(xlsWorksheet, rng, "O" + rowCount, datePlanned.ToString("MMMM"));
+                    AddValueToRange(xlsWorksheet, rng, "P" + rowCount, datePlanned.Year);
+                    AddValueToRange(xlsWorksheet, rng, "Q" + rowCount,
+                        traDd[unit.Id][TranslationLookup.GetValue("DDTraPopulationAtRisk") + " - " + tra.Disease.DisplayName]);
+                    
+                    string achievedCriteria = traDd[unit.Id][TranslationLookup.GetValue("DDTraAchievedCriteria") + " - " + tra.Disease.DisplayName].ToString();
+                    if(achievedCriteria == TranslationLookup.GetValue("Yes"))
+                        AddValueToRange(xlsWorksheet, rng, "T" + rowCount, achievedCriteria);
+                    AddValueToRange(xlsWorksheet, rng, "U" + rowCount,
+                       traDd[unit.Id][TranslationLookup.GetValue("DDTraYearDeterminedThatAchievedCriteriaF") + " - " + tra.Disease.DisplayName]);
+                    AddValueToRange(xlsWorksheet, rng, "V" + rowCount,
+                       traDd[unit.Id][TranslationLookup.GetValue("DDTraPopulationLivingInAreasDistrict") + " - " + tra.Disease.DisplayName]);
+                    AddValueToRange(xlsWorksheet, rng, "W" + rowCount,
+                       traDd[unit.Id][TranslationLookup.GetValue("DDTraYearAchievedUiga") + " - " + tra.Disease.DisplayName]);
+                    AddValueToRange(xlsWorksheet, rng, "X" + rowCount,
+                       traDd[unit.Id][TranslationLookup.GetValue("DDTraPopulationLivingInAreasSubDistrict") + " - " + tra.Disease.DisplayName]);
+                }
+                // MDA count
+                int mdas = 0, consecutive = 0;
+                CountMdas(typeIds, unit.Id, unit.Children.Select(c => c.Id).ToList(), out mdas, out consecutive, "Trachoma");
+                AddValueToRange(xlsWorksheet, rng, "AA" + rowCount, mdas);
+                AddValueToRange(xlsWorksheet, rng, "AB" + rowCount, consecutive);
+                // INTVS
+                if (aggIntvs.ContainsKey(unit.Id))
+                {
+                    List<string> typesToCalc = new List<string>();
+                    // currently implementing at district or subdistrict
+                    string aggEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                    if (subDistrictEligible.ContainsKey(unit.Id))
+                    {
+                        string belowDistrictEligible =  GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, subDistrictEligible[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                        if(!string.IsNullOrEmpty(belowDistrictEligible))
+                            AddValueToRange(xlsWorksheet, rng, "S" + rowCount, TranslationLookup.GetValue("RtiSubDistrict", "RtiSubDistrict"));
+                    }
+                    else if (!string.IsNullOrEmpty(aggEligible))
+                        AddValueToRange(xlsWorksheet, rng, "S" + rowCount, TranslationLookup.GetValue("RtiDistrict", "RtiDistrict"));
+
+                    
+                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, Util.MaxRounds, "Trachoma", typeNames);
+                    if (startMda.HasValue)
+                    {
+                        AddValueToRange(xlsWorksheet, rng, "AE" + rowCount, startMda.Value.ToString("MMMM"));
+                        AddValueToRange(xlsWorksheet, rng, "AF" + rowCount, startMda.Value.Year);
+                    }
+                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", typesToCalc, aggIntvs[unit.Id], true, 1, Util.MaxRounds, "Trachoma", typeNames);
+                    if (endMda.HasValue)
+                    {
+                        AddValueToRange(xlsWorksheet, rng, "AG" + rowCount, endMda.Value.ToString("MMMM"));
+                        AddValueToRange(xlsWorksheet, rng, "AH" + rowCount, endMda.Value.Year);
+                    }
+
+                    AddValueToRange(xlsWorksheet, rng, "AK" + rowCount, aggEligible);
+                    AddValueToRange(xlsWorksheet, rng, "AN" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
+                    
+                    // Types based off these?
+                    // teo
+                    string teo =  GetIntFromRow("PcIntvNumTreatedTeo", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                    AddValueToRange(xlsWorksheet, rng, "AP" + rowCount, teo);
+                    // zithro  
+                    int zxTotal = 0;
+                    string zx = GetIntFromRow("PcIntvNumTreatedZx", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                    string zxPos = GetIntFromRow("PcIntvNumTreatedZxPos", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                    if (!string.IsNullOrEmpty(zx))
+                        zxTotal += int.Parse(zx);
+                    if (!string.IsNullOrEmpty(zxPos))
+                        zxTotal += int.Parse(zxPos);
+                    AddValueToRange(xlsWorksheet, rng, "AR" + rowCount, zxTotal);
+                    
+                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AV" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AX" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 1, Util.MaxRounds, "Trachoma", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AZ" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 1, Util.MaxRounds, "Trachoma", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
+
+                    if(!string.IsNullOrEmpty(teo) && zxTotal > 0)
+                        AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, "Zithro+Tetra");
+                    else if (!string.IsNullOrEmpty(teo))
+                        AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, "Tetra");
+                    if (zxTotal > 0)
+                        AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, "Zithro");
+
+                    AddValueToRange(xlsWorksheet, rng, "BG" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
+                }
+
+                rowCount++;
+            }
+        }
+
+        protected Dictionary<int, DataRow> GetEligibleInSubdistricts(DateTime start, DateTime end)
+        {
+            IntvRepository iRepo = new IntvRepository();
+            ReportOptions options = new ReportOptions
+            {
+                MonthYearStarts = start.Month,
+                StartDate = start,
+                EndDate = end,
+                IsCountryAggregation = false,
+                IsByLevelAggregation = true,
+                IsAllLocations = false,
+                IsNoAggregation = false,
+                IsGroupByRange = true,
+
+            };
+
+            var childType = settings.GetAllAdminLevels().Where(a => a.LevelNumber > AdminLevelType.LevelNumber).OrderBy(l=>l.LevelNumber).FirstOrDefault();
+            if(childType == null)
+                return new Dictionary<int, DataRow>();
+
+            options.SelectedAdminLevels =  demo.GetAdminLevelByLevel(childType.LevelNumber);
+            IntvReportGenerator gen = new IntvReportGenerator();
+
+            IntvType iType = iRepo.GetIntvType(23);
+            var eligible = iType.Indicators.FirstOrDefault(i => i.Value.DisplayName == "PcIntvNumEligibleIndividualsTargeted");
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(iType.Id, eligible.Value));
+            ReportResult ddResult = gen.Run(new SavedReport { ReportOptions = options });
+            Dictionary<int, DataRow> intvData = new Dictionary<int, DataRow>();
+            foreach (DataRow dr in ddResult.DataTableResults.Rows)
+            {
+                int id = 0;
+                if (int.TryParse(dr["ID"].ToString(), out id))
+                {
+                    if (intvData.ContainsKey(id))
+                        intvData[id] = dr;
+                    else
+                        intvData.Add(id, dr);
+                }
+            }
+            return intvData;
+        }
+        
+        private void AddTraLevelToRange(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey, string indName, string colName)
+        {
+            var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == indName);
+            if (ind != null && !string.IsNullOrEmpty(ind.DynamicValue))
+            {
+                if(ind.DynamicValue == "TraSurDistLevel")
+                    AddValueToRange(xlsWorksheet, rng, colName + rowCount, TranslationLookup.GetValue("RtiDistrict", "RtiDistrict"));
+                else if (ind.DynamicValue == "TraSurSubDistLevel")
+                    AddValueToRange(xlsWorksheet, rng, colName + rowCount, TranslationLookup.GetValue("RtiSubDistrict", "RtiSubDistrict"));
+            }
+        }
+
+
         #region Helpers
         private void CountMdas(List<int> types, int parentId, List<int> childrenIds, out int mdas, out int consecutive, string diseaseName)
         {
@@ -717,47 +888,6 @@ namespace Nada.Model.Exports
             }
         }
 
-      
-        private void AddTypeOfLfSurveySite(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey)
-        {
-            string typeName = "";
-            if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
-            {
-                var testType = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFSurTestType");
-                if (testType != null)
-                {
-                    if (mostRecentSurvey.HasSentinelSite)
-                        typeName = "SS ";
-                    else
-                        typeName = "SC ";
-                    if (testType.DynamicValue == "MF")
-                        typeName += "(mf)";
-                    else
-                        typeName += "(Ag)";
-                }
-            }
-            else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
-            {
-                var testType = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurTestType");
-                var isSentinel = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurWillTheSitesAlsoServeAsASentin");
-                if (testType != null && isSentinel != null)
-                {
-                    if (isSentinel.DynamicValue == "YesSentinelSite")
-                        typeName = "SS ";
-                    else
-                        typeName = "SC ";
-                    if (testType.DynamicValue == "MF")
-                        typeName += "(mf)";
-                    else
-                        typeName += "(Ag)";
-                }
-            }
-            else
-                typeName = "TAS";
-
-            AddValueToRange(xlsWorksheet, rng, "G" + rowCount, typeName);
-        }
-
         private void AddLfPercentPositive(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey, string posName, string examinedName)
         {
             var pos = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == posName);
@@ -777,6 +907,198 @@ namespace Nada.Model.Exports
             if (ind != null && !string.IsNullOrEmpty(ind.DynamicValue))
                 AddValueToRange(xlsWorksheet, rng, colName + rowCount, ind.DynamicValue);
         }
+        #endregion
+
+        #region Indicator Parsers
+
+        private string ParseLfDdEnd(string end)
+        {
+            if (end == TranslationLookup.GetValue("LfEnd0b"))
+                return TranslationLookup.GetValue("RtiLfDd0", "RtiLfDd0");
+            if (end == TranslationLookup.GetValue("LfEnd1"))
+                return TranslationLookup.GetValue("RtiLfDd1", "RtiLfDd1");
+            if (end == TranslationLookup.GetValue("LfEndM"))
+                return TranslationLookup.GetValue("RtiLfDdM", "RtiLfDdM");
+            if (end == TranslationLookup.GetValue("LfEndNs"))
+                return TranslationLookup.GetValue("RtiLfDdNs", "RtiLfDdNs");
+            if (end == TranslationLookup.GetValue("LfEnd100"))
+                return TranslationLookup.GetValue("RtiLfDd100", "RtiLfDd100");
+
+            return TranslationLookup.GetValue("RtiLfDdPending", "RtiLfDdPending");
+        }
+
+        private string ParseTasObjective(string tas)
+        {
+            if (tas == TranslationLookup.GetValue("LfPostMdaTas1"))
+                return TranslationLookup.GetValue("RtiPostMda1", "RtiPostMda1");
+            if (tas == TranslationLookup.GetValue("LfPostMdaTas2"))
+                return TranslationLookup.GetValue("RtiPostMda2", "RtiPostMda2");
+
+            return TranslationLookup.GetValue("RtiStopMda", "RtiStopMda");
+        }
+
+        private void AddTypeOfLfSurveySite(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey)
+        {
+            string typeName = "";
+            if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
+            {
+                var testType = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFSurTestType");
+                if (testType != null)
+                {
+                    if (mostRecentSurvey.HasSentinelSite && testType.DynamicValue == "MF")
+                        typeName = TranslationLookup.GetValue("RtiSsMf", "RtiSsMf");
+                    else if (mostRecentSurvey.HasSentinelSite)
+                        typeName = TranslationLookup.GetValue("RtiSsAg", "RtiSsAg");
+                    else if (testType.DynamicValue == "MF")
+                        typeName = TranslationLookup.GetValue("RtiScMf", "RtiScMf");
+                    else
+                        typeName = TranslationLookup.GetValue("RtiScAg", "RtiScAg");
+                }
+            }
+            else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
+            {
+                var testType = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurTestType");
+                var isSentinel = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurWillTheSitesAlsoServeAsASentin");
+                if (testType != null && isSentinel != null)
+                {
+                    if (isSentinel.DynamicValue == "YesSentinelSite" && testType.DynamicValue == "MF")
+                        typeName = TranslationLookup.GetValue("RtiSsMf", "RtiSsMf");
+                    else if (isSentinel.DynamicValue == "YesSentinelSite")
+                        typeName = TranslationLookup.GetValue("RtiSsAg", "RtiSsAg");
+                    else if (testType.DynamicValue == "MF")
+                        typeName = TranslationLookup.GetValue("RtiScMf", "RtiScMf");
+                    else
+                        typeName = TranslationLookup.GetValue("RtiScAg", "RtiScAg");
+                }
+            }
+            else
+                typeName = TranslationLookup.GetValue("RtiTas", "RtiTas");
+
+            AddValueToRange(xlsWorksheet, rng, "G" + rowCount, typeName);
+        }
+
+        private string GetTestType(string indName, SurveyBase mostRecentSurvey)
+        {
+            var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFSurTestType");
+            if (ind != null)
+                return ind.DynamicValue;
+            else
+                return "";
+        }
+
+        private string ParseSchistoFrequency(string freq)
+        {
+            if (freq == TranslationLookup.GetValue("xyear2"))
+                return TranslationLookup.GetValue("RtiSchMdaD", "RtiSchMdaD");
+            if (freq == TranslationLookup.GetValue("xyear1every2"))
+                return TranslationLookup.GetValue("RtiSchMdaB", "RtiSchMdaB");
+            if (freq == TranslationLookup.GetValue("xyear1every3"))
+                return TranslationLookup.GetValue("RtiSchMdaC", "RtiSchMdaC");
+            if (freq == TranslationLookup.GetValue("xyear1"))
+                return TranslationLookup.GetValue("RtiSchMdaA", "RtiSchMdaA");
+
+            return TranslationLookup.GetValue("RtiSchMdaNone", "RtiSchMdaNone");
+
+        }
+
+        private string ParseSthFrequency(string freq)
+        {
+            if (freq == TranslationLookup.GetValue("xyear2"))
+                return TranslationLookup.GetValue("RtiSchMdaA", "RtiSchMdaA");
+            if (freq == TranslationLookup.GetValue("xyear1every2"))
+                return TranslationLookup.GetValue("RtiSchMdaC", "RtiSchMdaC");
+            if (freq == TranslationLookup.GetValue("xyear3"))
+                return TranslationLookup.GetValue("RtiSchMdaD", "RtiSchMdaD");
+            if (freq == TranslationLookup.GetValue("xyear1"))
+                return TranslationLookup.GetValue("RtiSchMdaB", "RtiSchMdaB");
+
+            return TranslationLookup.GetValue("RtiSchMdaNone", "RtiSchMdaNone");
+        }
+
+        private string ParseSchEnd(string end)
+        {
+            if (end == TranslationLookup.GetValue("SchistoM"))
+                return TranslationLookup.GetValue("RtiSchM", "RtiSchM");
+            if (end == TranslationLookup.GetValue("SchNs"))
+                return TranslationLookup.GetValue("RtiSchNs", "RtiSchNs");
+            if (end == TranslationLookup.GetValue("Scho0"))
+                return TranslationLookup.GetValue("RtiSch0", "RtiSch0");
+            if (end == TranslationLookup.GetValue("Sch1"))
+                return TranslationLookup.GetValue("RtiSch1", "RtiSch1");
+            if (end == TranslationLookup.GetValue("Sch2") || end == TranslationLookup.GetValue("Sch2b"))
+                return TranslationLookup.GetValue("RtiSch2", "RtiSch2");
+            if (end == TranslationLookup.GetValue("Sch2a"))
+                return TranslationLookup.GetValue("RtiSch2a", "RtiSch2a");
+            if (end == TranslationLookup.GetValue("Sch3") || end == TranslationLookup.GetValue("Sch3b"))
+                return TranslationLookup.GetValue("RtiSch3", "RtiSch3");
+            if (end == TranslationLookup.GetValue("Sch3a"))
+                return TranslationLookup.GetValue("RtiSch3a", "RtiSch3a");
+            if (end == TranslationLookup.GetValue("Sch10"))
+                return TranslationLookup.GetValue("RtiSch10", "RtiSch10");
+            if (end == TranslationLookup.GetValue("Sch20"))
+                return TranslationLookup.GetValue("RtiSch20", "RtiSch20");
+            if (end == TranslationLookup.GetValue("Sch30"))
+                return TranslationLookup.GetValue("RtiSch30", "RtiSch30");
+            if (end == TranslationLookup.GetValue("Sch40"))
+                return TranslationLookup.GetValue("RtiSch40", "RtiSch40");
+            if (end == TranslationLookup.GetValue("Sch100"))
+                return TranslationLookup.GetValue("RtiSch100", "RtiSch100");
+
+            return TranslationLookup.GetValue("RtiSchPending", "RtiSchPending");
+        }
+
+        private string ParseSthEnd(string end)
+        {
+            if (end == TranslationLookup.GetValue("SthM"))
+                return TranslationLookup.GetValue("RtiSchM", "RtiSchM");
+            if (end == TranslationLookup.GetValue("SthNs"))
+                return TranslationLookup.GetValue("RtiSchNs", "RtiSchNs");
+            if (end == TranslationLookup.GetValue("Sth0"))
+                return TranslationLookup.GetValue("RtiSch0", "RtiSch0");
+            if (end == TranslationLookup.GetValue("Sth1"))
+                return TranslationLookup.GetValue("RtiSch1", "RtiSch1");
+            if (end == TranslationLookup.GetValue("Sth2"))
+                return TranslationLookup.GetValue("RtiSch2", "RtiSch2");
+            if (end == TranslationLookup.GetValue("Sth3"))
+                return TranslationLookup.GetValue("RtiSch3", "RtiSch3");
+            if (end == TranslationLookup.GetValue("Sth10"))
+                return TranslationLookup.GetValue("RtiSch10", "RtiSch10");
+            if (end == TranslationLookup.GetValue("Sth20"))
+                return TranslationLookup.GetValue("RtiSch20", "RtiSch20");
+            if (end == TranslationLookup.GetValue("Sth30"))
+                return TranslationLookup.GetValue("RtiSch30", "RtiSch30");
+            if (end == TranslationLookup.GetValue("Sth40"))
+                return TranslationLookup.GetValue("RtiSch40", "RtiSch40");
+            if (end == TranslationLookup.GetValue("Sth100"))
+                return TranslationLookup.GetValue("RtiSch100", "RtiSch100");
+
+            return TranslationLookup.GetValue("RtiSchPending", "RtiSchPending");
+        }
+
+        private string ParseTrachomaEnd(string end)
+        {
+            if (end == TranslationLookup.GetValue("TraM"))
+                return TranslationLookup.GetValue("RtiTraM", "RtiTraM");
+            if (end == TranslationLookup.GetValue("TraNs"))
+                return TranslationLookup.GetValue("RtiTraNs", "RtiTraNs");
+            if (end == TranslationLookup.GetValue("Tra0"))
+                return TranslationLookup.GetValue("RtiTra0", "RtiTra0");
+            if (end == TranslationLookup.GetValue("Tra1"))
+                return TranslationLookup.GetValue("RtiTra1", "RtiTra1");
+            if (end == TranslationLookup.GetValue("Tra2"))
+                return TranslationLookup.GetValue("RtiTra2", "RtiTra2");
+            if (end == TranslationLookup.GetValue("Tra3"))
+                return TranslationLookup.GetValue("RtiTra3", "RtiTra3");
+            if (end == TranslationLookup.GetValue("Tra4"))
+                return TranslationLookup.GetValue("RtiTra4", "RtiTra4");
+            if (end == TranslationLookup.GetValue("Tra5"))
+                return TranslationLookup.GetValue("RtiTra5", "RtiTra5");
+            if (end == TranslationLookup.GetValue("Tra100"))
+                return TranslationLookup.GetValue("RtiTra100", "RtiTra100");
+
+            return TranslationLookup.GetValue("RtiTraPending", "RtiTraPending");
+        }
+
         #endregion
     }
 }

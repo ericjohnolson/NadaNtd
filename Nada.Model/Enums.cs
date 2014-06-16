@@ -100,7 +100,8 @@ namespace Nada.Model
         SthMapping = 18,
         OnchoMapping = 19,
         OnchoAssessment = 13,
-        LfTas = 15
+        LfTas = 15,
+        TrachomaImpact = 14
     }
 
     public enum StaticIntvType

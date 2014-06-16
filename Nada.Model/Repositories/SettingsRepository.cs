@@ -840,7 +840,7 @@ namespace Nada.Model.Repositories
                         string[] commands = script.Split(';');
                         foreach (string cmdText in commands)
                         {
-                            if (cmdText.Trim().Length == 0)
+                            if (cmdText.Trim().Length == 0 || cmdText.TrimStart().StartsWith("--"))
                                 continue;
 
                             command = new OleDbCommand(cmdText, connection);

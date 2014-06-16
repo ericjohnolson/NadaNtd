@@ -1,8 +1,10 @@
 Checklist For Releases:
 
-1. Make sure not developer mode.
-2. Make sure it doesn't auto update.
-3. update installation url and updates url
+1. App.config: Make sure not developer mode.
+2. Installation Folder URL: update installation url 
+3. Updates... > Make sure it doesn't auto update.
+4. Updates... > different URL
+5. Options... > Deployment > Auto create webpage file
 
 QA:
 <add key="DeveloperMode" value="QA" />

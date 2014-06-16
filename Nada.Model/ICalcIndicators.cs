@@ -106,6 +106,17 @@ namespace Nada.Model
             return Translations.NA;
         }
 
+        public string GetDifferences(params string[] itemsToSubtract)
+        {
+            double total = 0;
+            double parsed = 0;
+            foreach (string v in itemsToSubtract)
+                if (double.TryParse(v, out parsed))
+                    total -= parsed;
+
+            return string.Format("{0:0.00}", total);
+        }
+
         public string GetValueOrDefault(string key, Dictionary<string, string> values)
         {
             if (values != null && values.ContainsKey(key))

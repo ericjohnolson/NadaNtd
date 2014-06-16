@@ -66,6 +66,8 @@ namespace Nada.UI.View
                 saveFileDialog1.DefaultExt = ".accdb";
                 label1.MaximumSize = new Size(900, 0);
                 label1.AutoSize = true;
+
+
             }
         }
 
