@@ -324,6 +324,11 @@ namespace Nada.Model
                         {
                             AddDataValidation(xlsWorksheet, xlsValidation, Util.GetExcelColumnName(i), r, dropdownBy.DisplayName, TranslationLookup.GetValue("PleaseSelect"), dropdownValues, oldCI);
                         }
+
+                        if (data.Columns[i - 1].ColumnName == TranslationLookup.GetValue("UrbanOrRural"))
+                            AddDataValidation(xlsWorksheet, xlsValidation, Util.GetExcelColumnName(i), r, TranslationLookup.GetValue("UrbanOrRural"), TranslationLookup.GetValue("PleaseSelect"), 
+                                new List<string> { TranslationLookup.GetValue("AdminUnitUrban"),  TranslationLookup.GetValue("AdminUnitRural"),  TranslationLookup.GetValue("AdminUnitPeriRural")}, oldCI);
+                        
                         if (importDemography)
                         {
                             if (data.Columns[i - 1].ColumnName == "* " + TranslationLookup.GetValue("YearCensus"))

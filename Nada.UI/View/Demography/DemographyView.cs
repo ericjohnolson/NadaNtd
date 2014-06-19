@@ -135,8 +135,8 @@ namespace Nada.UI.View.Demography
             {
                 demo.AggregateUp(type, model.DateDemographyData, userId, null, null);
                 if(originalDate != DateTime.MinValue &&
-                    Util.GetYearReported(country.ReportingYearStartDate.Month, originalDate) != 
-                    Util.GetYearReported(country.ReportingYearStartDate.Month, model.DateDemographyData))
+                    Util.GetYearReported(1, originalDate) != 
+                    Util.GetYearReported(1, model.DateDemographyData))
                     demo.AggregateUp(type, originalDate, userId, null, null);
 
             }

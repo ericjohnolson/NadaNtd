@@ -19,7 +19,7 @@ namespace Nada.UI.ViewModel
         private AdminLevel adminLevel = null;
         private ProcessBase model = null;
         private ProcessRepository r = null;
-        private ICalcIndicators calc = null;
+        private ICalcIndicators calc = new CalcProcess();
 
         public ProcessBaseVm(AdminLevel a, int typeId, ICalcIndicators c)
         {

@@ -38,12 +38,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Translations.fr-FRv1-1.Designer.cs">
-      <DependentUpon>Translations.fr-FRv1-1.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="NewKeys.Designer.cs">
       <DependentUpon>NewKeys.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -78,11 +72,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Translations.fr-FRv1-1.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Translations.fr-FRv1-1.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="NewKeys.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NewKeys.Designer.cs</LastGenOutput>

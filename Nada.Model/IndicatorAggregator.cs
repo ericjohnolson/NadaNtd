@@ -131,10 +131,14 @@ namespace Nada.Model
             foreach (var child in node.Children)
             {
                 AdminLevelDemography childDemo = AggregateTree(child, growthRate);
-                //public int YearCensus { get; set; }
-                //public Nullable<int> YearProjections { get; set; }
-                //public double GrowthRate { get; set; }
-                //public double PercentRural { get; set; }
+
+                if((!node.CurrentDemography.YearCensus.HasValue || node.CurrentDemography.YearCensus == 0) && childDemo.YearCensus.HasValue)
+                    node.CurrentDemography.YearCensus = childDemo.YearCensus.Value;
+                if (!node.CurrentDemography.GrowthRate.HasValue && childDemo.GrowthRate.HasValue)
+                    node.CurrentDemography.YearCensus = childDemo.YearCensus.Value;
+                if((!node.CurrentDemography.PercentRural.HasValue || node.CurrentDemography.PercentRural == 0) && childDemo.PercentRural.HasValue)
+                    node.CurrentDemography.PercentRural = childDemo.PercentRural.Value;
+
                 node.CurrentDemography.Pop0Month += childDemo.Pop0Month.HasValue ? childDemo.Pop0Month.Value : 0;
                 node.CurrentDemography.PopPsac += childDemo.PopPsac.HasValue ? childDemo.PopPsac.Value : 0;
                 node.CurrentDemography.Pop5yo += childDemo.Pop5yo.HasValue ? childDemo.Pop5yo.Value : 0;

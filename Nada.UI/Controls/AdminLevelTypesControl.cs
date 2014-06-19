@@ -31,6 +31,8 @@ namespace Nada.UI.Controls
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
+                lblAggLevel.SetMaxWidth(550);
+                lblReportingLevel.SetMaxWidth(550);
                 maxLevelsAllowed = Convert.ToInt32(ConfigurationManager.AppSettings["MaxLevelsAllowed"]);
                 r = new SettingsRepository();
                 RefreshList();

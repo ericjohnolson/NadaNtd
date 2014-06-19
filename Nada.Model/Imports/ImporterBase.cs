@@ -114,8 +114,8 @@ namespace Nada.Model
             for (int i = 0; i < names.Count; i++)
                 xlsWorksheet.Cells[1, 2 + i] = names[i];
             int locationCount = names.Count + 1;
-            int xlsColCount = names.Count + 1;
-            xlsColCount += AddTypeSpecific(xlsWorksheet);
+            int xlsColCount = names.Count + 1; // add one for id;
+            xlsColCount = AddTypeSpecific(xlsWorksheet, xlsColCount);
             int colCountAfterStatic = xlsColCount;
 
             foreach (var item in Indicators)
@@ -222,7 +222,7 @@ namespace Nada.Model
             xlsWorksheet.Cells[1, 2] = TranslationLookup.GetValue("Location");
             int locationCount = 2;
             int xlsColCount = 2;
-            xlsColCount += AddTypeSpecific(xlsWorksheet);
+            xlsColCount = AddTypeSpecific(xlsWorksheet, xlsColCount);
             int colCountAfterStatic = xlsColCount;
 
             foreach (var item in Indicators)
@@ -296,9 +296,9 @@ namespace Nada.Model
 
         }
 
-        protected virtual int AddTypeSpecific(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet)
+        protected virtual int AddTypeSpecific(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int startIndex)
         {
-            return 0;
+            return startIndex;
         }
 
         protected int AddValueToCell(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet validation, int c, int r,

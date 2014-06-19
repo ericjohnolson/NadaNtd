@@ -37,6 +37,7 @@ namespace Nada.UI
         {
             if (!DesignMode)
             {
+                h3bLabel1.SetMaxWidth(400);
                 Localizer.TranslateControl(this);
             }
 

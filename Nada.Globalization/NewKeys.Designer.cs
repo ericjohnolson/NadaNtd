@@ -61,11 +61,58 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The template for the Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices, the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases. 
+        ///
+        ///The National Database Template was developed by Iota Ink:  Jennifer Einberg, Project Manager; Eric Olson, Developer; Jennifer Fox, Graphic Designer [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string AboutDisclaimer {
+            get {
+                return ResourceManager.GetString("AboutDisclaimer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About Integrated NTD Database.
+        /// </summary>
+        public static string AboutMenu {
+            get {
+                return ResourceManager.GetString("AboutMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Administrative units.
         /// </summary>
         public static string AdministrativeUnits {
             get {
                 return ResourceManager.GetString("AdministrativeUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrative unit above level you are adding..
+        /// </summary>
+        public static string AdminUnitParent {
+            get {
+                return ResourceManager.GetString("AdminUnitParent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Peri-rural.
+        /// </summary>
+        public static string AdminUnitPeriRural {
+            get {
+                return ResourceManager.GetString("AdminUnitPeriRural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rural.
+        /// </summary>
+        public static string AdminUnitRural {
+            get {
+                return ResourceManager.GetString("AdminUnitRural", resourceCulture);
             }
         }
         
@@ -84,6 +131,24 @@ namespace Nada.Globalization {
         public static string AdminUnitsSurveyed {
             get {
                 return ResourceManager.GetString("AdminUnitsSurveyed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Urban.
+        /// </summary>
+        public static string AdminUnitUrban {
+            get {
+                return ResourceManager.GetString("AdminUnitUrban", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Integrated NTD Database.
+        /// </summary>
+        public static string ApplicationTitle {
+            get {
+                return ResourceManager.GetString("ApplicationTitle", resourceCulture);
             }
         }
         
@@ -111,6 +176,15 @@ namespace Nada.Globalization {
         public static string CmBudgetProportion {
             get {
                 return ResourceManager.GetString("CmBudgetProportion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country Statistics.
+        /// </summary>
+        public static string CountryStatistics {
+            get {
+                return ResourceManager.GetString("CountryStatistics", resourceCulture);
             }
         }
         
@@ -232,7 +306,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to exit the National Database Template.
+        ///   Looks up a localized string similar to Are you sure you want to exit the Integrated NTD Database?.
         /// </summary>
         public static string ExitWarning {
             get {
@@ -255,6 +329,15 @@ namespace Nada.Globalization {
         public static string ExportsPcEpiDataForm {
             get {
                 return ResourceManager.GetString("ExportsPcEpiDataForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ecological zone description, if applicable.
+        /// </summary>
+        public static string EzName {
+            get {
+                return ResourceManager.GetString("EzName", resourceCulture);
             }
         }
         
@@ -484,11 +567,209 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The template for the Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in cooperation with the World Health Organization (WHO) and its regional offices, the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases..
+        /// </summary>
+        public static string NadaIntro {
+            get {
+                return ResourceManager.GetString("NadaIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Integrated NTD Database.
+        /// </summary>
+        public static string NationalDatabaseTemplate {
+            get {
+                return ResourceManager.GetString("NationalDatabaseTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New year updates.
         /// </summary>
         public static string NewYearUpdates {
             get {
                 return ResourceManager.GetString("NewYearUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of mapping.
+        /// </summary>
+        public static string OnchoMapSurTypeOfMapping {
+            get {
+                return ResourceManager.GetString("OnchoMapSurTypeOfMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Annual Biting Rates (ABR).
+        /// </summary>
+        public static string OnchoSurEntAbr {
+            get {
+                return ResourceManager.GetString("OnchoSurEntAbr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Annual Transmission Potential (ATP) (the average number of infective stage parasites an individual is exposed to in a year).
+        /// </summary>
+        public static string OnchoSurEntAtp {
+            get {
+                return ResourceManager.GetString("OnchoSurEntAtp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Corrected infection rate (PCR) - per 1,000 parous flies.
+        /// </summary>
+        public static string OnchoSurEntCorrectedInfectionRatePcr {
+            get {
+                return ResourceManager.GetString("OnchoSurEntCorrectedInfectionRatePcr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Infection rate (Dissection) - per 1,000 parous flies.
+        /// </summary>
+        public static string OnchoSurEntInfectionRateDissection {
+            get {
+                return ResourceManager.GetString("OnchoSurEntInfectionRateDissection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly Biting Rates.
+        /// </summary>
+        public static string OnchoSurEntMbr {
+            get {
+                return ResourceManager.GetString("OnchoSurEntMbr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly Transmission Potential.
+        /// </summary>
+        public static string OnchoSurEntMtp {
+            get {
+                return ResourceManager.GetString("OnchoSurEntMtp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taxonomic identification - Cytotaxonomy (Chromosomal).
+        /// </summary>
+        public static string OnchoSurEntTaxoCyto {
+            get {
+                return ResourceManager.GetString("OnchoSurEntTaxoCyto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forest.
+        /// </summary>
+        public static string OnchoSurEntTaxoForest {
+            get {
+                return ResourceManager.GetString("OnchoSurEntTaxoForest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forest and Savannah.
+        /// </summary>
+        public static string OnchoSurEntTaxoForestSav {
+            get {
+                return ResourceManager.GetString("OnchoSurEntTaxoForestSav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taxonomic identification - Morphology.
+        /// </summary>
+        public static string OnchoSurEntTaxonomic {
+            get {
+                return ResourceManager.GetString("OnchoSurEntTaxonomic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Savannah.
+        /// </summary>
+        public static string OnchoSurEntTaxoSavannah {
+            get {
+                return ResourceManager.GetString("OnchoSurEntTaxoSavannah", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test Technique.
+        /// </summary>
+        public static string OnchoSurEntTestTech {
+            get {
+                return ResourceManager.GetString("OnchoSurEntTestTech", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chromosomal identification.
+        /// </summary>
+        public static string OnchoSurEntTestTechChromo {
+            get {
+                return ResourceManager.GetString("OnchoSurEntTestTechChromo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dissection.
+        /// </summary>
+        public static string OnchoSurEntTestTechDiss {
+            get {
+                return ResourceManager.GetString("OnchoSurEntTestTechDiss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PCR Pool Screening.
+        /// </summary>
+        public static string OnchoSurEntTestTechPcr {
+            get {
+                return ResourceManager.GetString("OnchoSurEntTestTechPcr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trapping.
+        /// </summary>
+        public static string OnchoSurEntTestTechTrap {
+            get {
+                return ResourceManager.GetString("OnchoSurEntTestTechTrap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of mapping.
+        /// </summary>
+        public static string OnchoSurTypeOfMapping {
+            get {
+                return ResourceManager.GetString("OnchoSurTypeOfMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REMO.
+        /// </summary>
+        public static string OnchoSurTypeRemo {
+            get {
+                return ResourceManager.GetString("OnchoSurTypeRemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delineation mapping.
+        /// </summary>
+        public static string OnchSurTypeDelineation {
+            get {
+                return ResourceManager.GetString("OnchSurTypeDelineation", resourceCulture);
             }
         }
         
@@ -1087,6 +1368,42 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of individuals positive for haematuria in urine.
+        /// </summary>
+        public static string SCHMapSurNumberOfIndividualsPositiveForH {
+            get {
+                return ResourceManager.GetString("SCHMapSurNumberOfIndividualsPositiveForH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of individuals positive for schistosomal parasite eggs in urine.
+        /// </summary>
+        public static string SCHMapSurNumPosSchParasite {
+            get {
+                return ResourceManager.GetString("SCHMapSurNumPosSchParasite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of individuals positive for haematuria in urine.
+        /// </summary>
+        public static string SCHSurNumberOfIndividualsPositiveForHaem {
+            get {
+                return ResourceManager.GetString("SCHSurNumberOfIndividualsPositiveForHaem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of individuals positive for schistosomal parasite eggs in urine.
+        /// </summary>
+        public static string SCHSurNumPosSchParasite {
+            get {
+                return ResourceManager.GetString("SCHSurNumPosSchParasite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paracetamol.
         /// </summary>
         public static string ScmDrpPara {
@@ -1119,6 +1436,24 @@ namespace Nada.Globalization {
         public static string ScmTypeOfInventory {
             get {
                 return ResourceManager.GetString("ScmTypeOfInventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aggregating level: Demography values from this level will total up to higher administrative units. Complete demography data needs to be entered for all of the units at this administrative level..
+        /// </summary>
+        public static string SettingsAggLevelDesc {
+            get {
+                return ResourceManager.GetString("SettingsAggLevelDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reporting level: WHO and partner reports will automatically be generated for administrative units at this level. Typically this is the “District” or second administrative level..
+        /// </summary>
+        public static string SettingsReportingLevelDesc {
+            get {
+                return ResourceManager.GetString("SettingsReportingLevelDesc", resourceCulture);
             }
         }
         
@@ -1204,11 +1539,47 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Have you finished entering all the administrative units for this level?.
+        /// </summary>
+        public static string StartUpFinishedAllUnits {
+            get {
+                return ResourceManager.GetString("StartUpFinishedAllUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sub-district.
         /// </summary>
         public static string SubDistrict {
             get {
                 return ResourceManager.GetString("SubDistrict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Critical cutoff decision.
+        /// </summary>
+        public static string TASCriticalCutoff {
+            get {
+                return ResourceManager.GetString("TASCriticalCutoff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Above treatment threshold - fail.
+        /// </summary>
+        public static string TASCutoffFail {
+            get {
+                return ResourceManager.GetString("TASCutoffFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Below treatment threshold - pass.
+        /// </summary>
+        public static string TASCutoffPass {
+            get {
+                return ResourceManager.GetString("TASCutoffPass", resourceCulture);
             }
         }
         

@@ -200,10 +200,10 @@
             this.lblParent.Location = new System.Drawing.Point(0, 96);
             this.lblParent.Margin = new System.Windows.Forms.Padding(0);
             this.lblParent.Name = "lblParent";
-            this.lblParent.Size = new System.Drawing.Size(43, 18);
+            this.lblParent.Size = new System.Drawing.Size(100, 18);
             this.lblParent.TabIndex = 49;
-            this.lblParent.Tag = "Parent";
-            this.lblParent.Text = "Parent";
+            this.lblParent.Tag = "AdminUnitParent";
+            this.lblParent.Text = "AdminUnitParent";
             this.lblParent.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
             // errorProvider1

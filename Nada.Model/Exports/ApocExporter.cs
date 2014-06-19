@@ -41,7 +41,7 @@ namespace Nada.Model.Exports
             {
                 int yearReporting = year;
                 country = demo.GetCountry();
-                DateTime start = new DateTime(year, country.ReportingYearStartDate.Month, country.ReportingYearStartDate.Day);
+                DateTime start = new DateTime(year, 1, 1);
                 DateTime end = start.AddYears(1).AddDays(-1);
                 DiseaseRepository repo = new DiseaseRepository();
                 DiseaseDistroPc dd = repo.Create(DiseaseType.Oncho);
@@ -72,10 +72,11 @@ namespace Nada.Model.Exports
                 xlsWorksheets = xlsWorkbook.Worksheets;
 
                 var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
+
                 CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReporting);
                 List<AdminLevel> demography = new List<AdminLevel>();
 
-                DateTime startDate = new DateTime(yearReporting, country.ReportingYearStartDate.Month, country.ReportingYearStartDate.Day);
+                DateTime startDate = new DateTime(yearReporting, 1, 1);
                 DateTime endDate = startDate.AddYears(1).AddDays(-1);
 
                 demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, startDate, endDate, ref demography);
@@ -89,31 +90,31 @@ namespace Nada.Model.Exports
                 AddDemoPage(xlsDemo, rng, demography, districtLevel);
                 xls3 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xlsDemo, missing, missing);
                 xls3.Name = TranslationLookup.GetValue("DiseaseDistribution");
-                AddDdPage(xls3, rng, demography, start, end, country.ReportingYearStartDate.Month, dd);
+                AddDdPage(xls3, rng, demography, start, end, 1, dd);
                 xls4 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xls3, missing, missing);
                 xls4.Name = TranslationLookup.GetValue("SurOnchoMapping").Replace(TranslationLookup.GetValue("Oncho") + " ", "");
-                Add4(xls4, rng, demography, start, end, country.ReportingYearStartDate.Month);
+                Add4(xls4, rng, demography, start, end, 1);
                 xls5 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xls4, missing, missing);
                 xls5.Name = TranslationLookup.GetValue("SurOnchoAssesments").Replace(TranslationLookup.GetValue("Oncho") + " ", "");
-                Add5(xls5, rng, demography, start, end, country.ReportingYearStartDate.Month);
+                Add5(xls5, rng, demography, start, end, 1);
                 xls6 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xls5, missing, missing);
                 xls6.Name = TranslationLookup.GetValue("IntvIvm");
-                Add6(xls6, rng, demography, start, end, country.ReportingYearStartDate.Month);
+                Add6(xls6, rng, demography, start, end, 1);
                 xls7 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xls6, missing, missing);
                 xls7.Name = TranslationLookup.GetValue("IntvIvmAlb");
-                Add7(xls7, rng, demography, start, end, country.ReportingYearStartDate.Month);
+                Add7(xls7, rng, demography, start, end, 1);
                 xls8 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xls7, missing, missing);
                 xls8.Name = TranslationLookup.GetValue("IntvIvmPzq");
-                Add8(xls8, rng, demography, start, end, country.ReportingYearStartDate.Month);
+                Add8(xls8, rng, demography, start, end, 1);
                 xls9 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xls8, missing, missing);
                 xls9.Name = TranslationLookup.GetValue("IntvIvmPzqAlb");
-                Add9(xls9, rng, demography, start, end, country.ReportingYearStartDate.Month);
+                Add9(xls9, rng, demography, start, end, 1);
                 xls10 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xls9, missing, missing);
                 xls10.Name = TranslationLookup.GetValue("SAEs");
-                Add10(xls10, rng, demography, start, end, country.ReportingYearStartDate.Month);
+                Add10(xls10, rng, demography, start, end, 1);
                 xls11 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xls10, missing, missing);
                 xls11.Name = TranslationLookup.GetValue("PcTraining");
-                Add11(xls11, rng, demography, start, end, country.ReportingYearStartDate.Month);
+                Add11(xls11, rng, demography, start, end,1);
 
                 xlsApp.DisplayAlerts = false;
                 xlsWorkbook.SaveAs(filePath, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, missing,

@@ -26,13 +26,13 @@
     <InstallUrl>http://nadaqa.ericdidit.com/</InstallUrl>
     <SupportUrl>http://supporturl.com</SupportUrl>
     <ErrorReportUrl>http://errorurl.com</ErrorReportUrl>
-    <ProductName>National Database Template</ProductName>
-    <PublisherName>Iota Ink</PublisherName>
+    <ProductName>Integrated NTD Database</ProductName>
+    <PublisherName>Integrated NTD Database</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>190</ApplicationRevision>
+    <ApplicationRevision>194</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

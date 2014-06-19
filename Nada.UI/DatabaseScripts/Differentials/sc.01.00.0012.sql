@@ -55,8 +55,8 @@ update surveyindicators set IsDisabled = -1 where surveytypeid = 14 and displayn
 update surveyindicators set IsDisabled = -1 where surveytypeid = 14 and displayname = 'TraSurTargetSampleSize';
 delete from interventiontypes where ID in (21, 22);
 delete from interventiontypes_to_diseases where interventiontypeid in (21, 22);
-delete from interventiontypes_to_indicators where indicatorId = 227;
-delete from interventiontypes_to_indicators where indicatorId = 228;
+delete from interventiontypes_to_indicators where indicatorId = 227 AND InterventionTypeId=23;
+delete from interventiontypes_to_indicators where indicatorId = 228 AND InterventionTypeId=23;
 delete from interventiontypes_to_indicators where interventiontypeid = 24 AND NOT indicatorId in (399,325);
 
 
@@ -127,7 +127,7 @@ Select ID,1,2,'SubDistrict','SubDistrict',10,26,Now(),26,Now() from DiseaseDistr
 
 insert into DiseaseDistributionIndicators (DiseaseId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
 IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
-values (13, 5, 'DDTraAllTf', 3, 130, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 58);
+values (13, 5, 'DDTraAllTf', 3, 165, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 58);
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
 Select ID,1,1,'Yes','Yes',10,26,Now(),26,Now() from DiseaseDistributionIndicators where displayname = 'DDTraAllTf';
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
@@ -160,6 +160,8 @@ values (13, 2, 'DDTraTrichiasisBacklog', 1, 150, 26, NOW(), 0, 0, 0, 0, 0, 0, 0,
 
 -- Trachoma Mapping Changes;
 
+update SurveyIndicators set IsDisabled = -1 where surveytypeid = 20 and displayname = 'TraMapSurEndemicity';
+
 update SurveyIndicators set sortorder = 60 where surveytypeid = 20 and displayname = 'TraMapSurEndDateOfSurvey';
 update SurveyIndicators set sortorder = 190 where surveytypeid = 20 and displayname = 'Partners';
 update SurveyIndicators set sortorder = 50 where surveytypeid = 20 and displayname = 'TraMapSurStartDateOfSurvey';
@@ -184,7 +186,6 @@ insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownVa
 Select ID,3,3,'TraMapSurTargetedMda','TraMapSurTargetedMda',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurLevelOfAntibioticTreatmentRequi';
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
 Select ID,3,4,'TraMapSurNoAReq','TraMapSurNoAReq',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurLevelOfAntibioticTreatmentRequi';
-
 insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
 IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
 values (20, 2, 'TraMapSurNoClusters', 5, 70, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 1);
@@ -214,23 +215,23 @@ insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, 
 IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
 values (20, 5, 'TraMapSurActiveTrachomaIndicator', 5, 110, 26, NOW(), 0, 0, -1, 0, 0, 0, 2, 1);
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,1,'TraMapSurTfAlone','TraMapSurTfAlone',0,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator';
+Select ID,3,1,'TraMapSurTfAlone','TraMapSurTfAlone',0,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator' and surveytypeid=20;
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,2,'TraMapSurTiAlone','TraMapSurTiAlone',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator';
+Select ID,3,2,'TraMapSurTiAlone','TraMapSurTiAlone',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator' and surveytypeid=20;
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,3,'TraMapSurTfTi','TraMapSurTfTi',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator';
+Select ID,3,3,'TraMapSurTfTi','TraMapSurTfTi',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator' and surveytypeid=20;
 
 insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
 IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
 values (20, 5, 'TraMapSurTtInd', 5, 130, 26, NOW(), 0, 0, 0, 0, 0, -1, 2, 1);
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,1,'TraMapSurMaleFemale15yo','TraMapSurMaleFemale15yo',0,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd';
+Select ID,3,1,'TraMapSurMaleFemale15yo','TraMapSurMaleFemale15yo',0,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd' and surveytypeid=20;
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
 Select ID,3,2,'TraMapSurFemale15yo','TraMapSurFemale15yo',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd';
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,3,'TraMapSurMaleFemale40yo','TraMapSurMaleFemale40yo',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd';
+Select ID,3,3,'TraMapSurMaleFemale40yo','TraMapSurMaleFemale40yo',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd' and surveytypeid=20;
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,4,'TraMapSurFemale40yo','TraMapSurFemale40yo',4,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd';
+Select ID,3,4,'TraMapSurFemale40yo','TraMapSurFemale40yo',4,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd' and surveytypeid=20;
 
 
 -- Tra Impact;
@@ -289,23 +290,23 @@ insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, 
 IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
 values (14, 5, 'TraMapSurActiveTrachomaIndicator', 5, 100, 26, NOW(), 0, 0, -1, 0, 0, 0, 2, 1);
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,1,'TraMapSurTfAlone','TraMapSurTfAlone',0,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator';
+Select ID,3,1,'TraMapSurTfAlone','TraMapSurTfAlone',0,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator' and surveytypeid=14;
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,2,'TraMapSurTiAlone','TraMapSurTiAlone',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator';
+Select ID,3,2,'TraMapSurTiAlone','TraMapSurTiAlone',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator' and surveytypeid=14;
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,3,'TraMapSurTfTi','TraMapSurTfTi',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator';
+Select ID,3,3,'TraMapSurTfTi','TraMapSurTfTi',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurActiveTrachomaIndicator' and surveytypeid=14;
 
 insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
 IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
 values (14, 5, 'TraMapSurTtInd', 5, 120, 26, NOW(), 0, 0, 0, 0, 0, -1, 2, 1);
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,1,'TraMapSurMaleFemale15yo','TraMapSurMaleFemale15yo',0,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd';
+Select ID,3,1,'TraMapSurMaleFemale15yo','TraMapSurMaleFemale15yo',0,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd' and surveytypeid=14;
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,2,'TraMapSurFemale15yo','TraMapSurFemale15yo',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd';
+Select ID,3,2,'TraMapSurFemale15yo','TraMapSurFemale15yo',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd' and surveytypeid=14;
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,3,'TraMapSurMaleFemale40yo','TraMapSurMaleFemale40yo',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd';
+Select ID,3,3,'TraMapSurMaleFemale40yo','TraMapSurMaleFemale40yo',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd' and surveytypeid=14;
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,4,'TraMapSurFemale40yo','TraMapSurFemale40yo',4,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd';
+Select ID,3,4,'TraMapSurFemale40yo','TraMapSurFemale40yo',4,26,Now(),26,Now() from SurveyIndicators where displayname = 'TraMapSurTtInd' and surveytypeid=14;
 
 
 -- Intv Zith + Teo;
@@ -347,7 +348,7 @@ values (2, 'PcIntvTsPercentWithPostOpTt', 2, 90, 26, NOW(), 0, 0, 0, 0, 0, 0, 2,
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 24, ID FROM interventionindicators where displayname = 'PcIntvTsPercentWithPostOpTt'; 
 
 insert into interventionindicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
-values (5, 'PcIntvTsEval', 3, 80, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 58);
+values (5, 'PcIntvTsEval', 3, 80, 26, NOW(), 0, 0, -1, 0, 0, 0, 2, 58);
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 24, ID FROM interventionindicators where displayname = 'PcIntvTsEval'; 
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
 Select ID,2,1,'Yes','Yes',0,26,Now(),26,Now() from interventionindicators where displayname = 'PcIntvTsEval';
@@ -363,9 +364,9 @@ INSERT INTO ProcessTypes_to_diseases (ProcessTypeId, DiseaseId) Select ID, 13 fr
 insert into processindicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues, RedistrictRuleId, MergeRuleId) 
 Select ID, 4, 'DateReported', 5, 0, 26, NOW(), 0, 0, -1, 0, 0,  2, 55 from ProcessTypes where typename = 'TriTraining';
 insert into processindicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues, RedistrictRuleId, MergeRuleId) 
-Select ID, 5, 'TriTrainingTrainerName', 4, 10, 26, NOW(), 0, 0, -1, 0, -1,  2, 54 from ProcessTypes where typename = 'TriTraining';
+Select ID, 1, 'TriTrainingTrainerName', 4, 10, 26, NOW(), 0, 0, -1, 0, 0,  2, 54 from ProcessTypes where typename = 'TriTraining';
 insert into processindicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues, RedistrictRuleId, MergeRuleId) 
-Select ID, 5, 'TriTrainingSurgeonName', 4, 40, 26, NOW(), 0, 0, 0, 0, -1,  2, 54 from ProcessTypes where typename = 'TriTraining';
+Select ID, 1, 'TriTrainingSurgeonName', 4, 40, 26, NOW(), 0, 0, 0, 0, 0,  2, 54 from ProcessTypes where typename = 'TriTraining';
 
 insert into processindicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed,  CanAddValues, RedistrictRuleId, MergeRuleId) 
 Select ID, 6, 'TriTrainingType', 4, 20, 26, NOW(), 0, 0, 0, 0,  -1, 2, 54 from ProcessTypes where typename = 'TriTraining';
@@ -398,7 +399,7 @@ insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownVa
 Select ID,4,2,'No','No',10,26,Now(),26,Now() from processindicators where displayname = 'TriTrainingWasCertified';
 
 insert into processindicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues, RedistrictRuleId, MergeRuleId) 
-Select ID, 15, 'Notes', 4, 500, 26, NOW(), 0, 0, 0, 0, 0,  1, 1 from ProcessTypes where typename = 'TriTraining';
+Select ID, 15, 'Notes', 4, 500, 26, NOW(), 0, 0, 0, -1, 0,  1, 1 from ProcessTypes where typename = 'TriTraining';
 
 -- New process type: TT AIOs;
 
@@ -408,7 +409,7 @@ INSERT INTO ProcessTypes_to_diseases (ProcessTypeId, DiseaseId) Select ID, 13 fr
 insert into processindicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues, RedistrictRuleId, MergeRuleId) 
 Select ID, 4, 'DateReported', 5, 0, 26, NOW(), 0, 0, -1, 0, 0,  2, 55 from ProcessTypes where typename = 'TtAios';
 insert into processindicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues, RedistrictRuleId, MergeRuleId) 
-Select ID, 15, 'Notes', 4, 500, 26, NOW(), 0, 0, 0, 0, 0,  1, 1 from ProcessTypes where typename = 'TtAios';
+Select ID, 15, 'Notes', 4, 500, 26, NOW(), 0, 0, 0, -1, 0,  1, 1 from ProcessTypes where typename = 'TtAios';
 
 insert into processindicators (ProcessTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, CanAddValues, RedistrictRuleId, MergeRuleId) 
 Select ID, 2, 'TtAios2014', 1, 10, 26, NOW(), 0, 0, 0, 0, 0,  0, 57 from ProcessTypes where typename = 'TtAios';
@@ -427,8 +428,16 @@ Select ID, 2, 'TtAios2020', 1, 70, 26, NOW(), 0, 0, 0, 0, 0,  0, 57 from Process
 
 -- SCM;
 
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE processindicators ADD COLUMN IsCalculated YesNo;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE processindicators ALTER COLUMN IsCalculated SET DEFAULT 0;
+UPDATE processindicators set IsCalculated=0;
+
+update processindicators set DataTypeId = 13, IsCalculated=-1 where displayname = 'SCMRemaining';
 update processindicators set sortorder = sortorder * 10 where processtypeid = 8;
-update processindicators set DataTypeId = 13 where displayname = 'SCMRemaining';
 update processindicators set sortorder = 115 where displayname = 'SCMExpiredDrugs';
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
 Select ID,4,1,'ScmDrpPara','ScmDrpPara',0,26,Now(),26,Now() from processindicators where displayname = 'SCMDrug';
@@ -442,6 +451,124 @@ Select ID,4,2,'ScmTheoreticalCount','ScmTheoreticalCount',10,26,Now(),26,Now() f
 
 
 -- END TRACHOMA CHANGES;
+
+-- Other indicator changes HIGH;
+
+
+update surveyindicators set IsDisabled = -1 where surveytypeid = 16 and displayname = 'LFMapSurCount';
+update surveyindicators set IsDisabled = -1 where surveytypeid = 19 and displayname = 'OnchoMapSurSurveyType';
+update processindicators set IsRequired = 0 where processtypeid = 9 and displayname = 'SAEIfdeathdateofdeath';
+update surveyindicators set IsRequired = 0 where surveytypeid = 19 and displayname = 'OnchoMapSurDateOfTheLastTreatment';
+update surveyindicators set IsRequired = 0 where surveytypeid = 17 and displayname = 'EzName';
+update surveyindicators set IsRequired = 0 where surveytypeid = 11 and displayname = 'EzName';
+update surveyindicators set IsRequired = 0 where surveytypeid = 12 and displayname = 'EzName';
+update surveyindicators set IsRequired = 0 where surveytypeid = 18 and displayname = 'EzName';
+update surveyindicators set IsRequired = 0 where surveytypeid = 17 and displayname = 'SCHMapSurNumberOfIndividualsPositiveForH';
+update surveyindicators set IsRequired = 0 where surveytypeid = 17 and displayname = 'SCHMapSurNumberOfIndividualsPositiveForI';
+update surveyindicators set IsRequired = 0 where surveytypeid = 11 and displayname = 'SCHSurNumberOfIndividualsPositiveForHaem';
+update surveyindicators set IsRequired = 0 where surveytypeid = 11 and displayname = 'SCHSurNumberOfIndividualsPositiveForInte';
+
+-- medium changes;
+
+update surveyindicators set IsDisabled = -1 where surveytypeid = 16 and displayname = 'LFMapSurNumberOfIndividualsSampled';
+update surveyindicators set IsDisabled = -1 where surveytypeid = 10 and displayname = 'LFSurNumberOfIndividualsSampled';
+update surveyindicators set IsDisabled = -1 where surveytypeid = 15 and displayname = 'TASSiteName';
+update surveyindicators set IsDisabled = -1 where surveytypeid = 17 and displayname = 'SCHMapSurNumberOfIndividualsSampled';
+update surveyindicators set IsDisabled = -1 where surveytypeid = 11 and displayname = 'SCHSurNumberOfIndividualsSampled';
+update surveyindicators set IsDisabled = -1 where surveytypeid = 18 and displayname = 'STHMapSurSurNumberOfIndividualsSampled';
+update surveyindicators set IsDisabled = -1 where surveytypeid = 12 and displayname = 'STHSurNumberOfIndividualsSampled';
+
+-- new tas;
+ 
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (15, 5, 'TASCriticalCutoff', 5, 2850, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 58);
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,1,'TASCutoffFail','TASCutoffFail',20,26,Now(),26,Now() from SurveyIndicators where displayname = 'TASCriticalCutoff';
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,2,'TASCutoffPass','TASCutoffPass',10,26,Now(),26,Now() from SurveyIndicators where displayname = 'TASCriticalCutoff';
+
+
+-- new oncho entomological survey indicators;
+
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (21, 2, 'OnchoSurEntAbr', 5, 121, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 54);
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (21, 2, 'OnchoSurEntMbr', 5, 122, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 54);
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (21, 2, 'OnchoSurEntAtp', 5, 123, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 54);
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (21, 2, 'OnchoSurEntMtp', 5, 124, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 54);
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (21, 2, 'OnchoSurEntInfectionRateDissection', 5, 125, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 54);
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (21, 2, 'OnchoSurEntCorrectedInfectionRatePcr', 5, 126, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 54);
+
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (21, 6, 'OnchoSurEntTestTech', 5, 62, 26, NOW(), 0, 0, 0, 0, 0, -1, 2, 54);
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,1,'OnchoSurEntTestTechPcr','OnchoSurEntTestTechPcr',1,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoSurEntTestTech';
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,2,'OnchoSurEntTestTechDiss','OnchoSurEntTestTechDiss',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoSurEntTestTech';
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,3,'OnchoSurEntTestTechChromo','OnchoSurEntTestTechChromo',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoSurEntTestTech';
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,4,'OnchoSurEntTestTechTrap','OnchoSurEntTestTechTrap',4,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoSurEntTestTech';
+
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (21, 5, 'OnchoSurEntTaxonomic', 5, 64, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 54);
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,1,'OnchoSurEntTaxoForest','OnchoSurEntTaxoForest',1,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoSurEntTaxonomic';
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,2,'OnchoSurEntTaxoSavannah','OnchoSurEntTaxoSavannah',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoSurEntTaxonomic';
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,3,'OnchoSurEntTaxoForestSav','OnchoSurEntTaxoForestSav',3,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoSurEntTaxonomic';
+
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (21, 1, 'OnchoSurEntTaxoCyto', 5, 66, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 54);
+
+
+-- new mapping indicators;
+
+update surveyindicators set sortorder = sortorder * 10 where surveytypeid = 13;
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (13, 5, 'OnchoSurTypeOfMapping', 5, 85, 26, NOW(), 0, 0, 0, 0, 0, -1, 2, 54);
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,1,'OnchoSurTypeRemo','OnchoSurTypeRemo',1,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoSurTypeOfMapping';
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,2,'OnchSurTypeDelineation','OnchSurTypeDelineation',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoSurTypeOfMapping';
+
+update surveyindicators set sortorder = sortorder * 10 where surveytypeid = 19;
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (19, 5, 'OnchoMapSurTypeOfMapping', 5, 85, 26, NOW(), 0, 0, 0, 0, 0, -1, 2, 54);
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,1,'OnchoSurTypeRemo','OnchoSurTypeRemo',1,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoMapSurTypeOfMapping';
+insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
+Select ID,3,2,'OnchSurTypeDelineation','OnchSurTypeDelineation',2,26,Now(),26,Now() from SurveyIndicators where displayname = 'OnchoMapSurTypeOfMapping';
+
+update surveyindicators set sortorder = sortorder * 10 where surveytypeid = 17;
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (17, 2, 'SCHMapSurNumPosSchParasite', 5, 145, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 57);
+
+update surveyindicators set sortorder = sortorder * 10 where surveytypeid = 11;
+insert into SurveyIndicators (surveytypeid, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, 
+IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) 
+values (11, 2, 'SCHSurNumPosSchParasite', 5, 135, 26, NOW(), 0, 0, 0, 0, 0, 0, 2, 57);
+
+
+
 
 
 INSERT INTO [SchemaChangeLog]

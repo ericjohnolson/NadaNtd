@@ -50,10 +50,10 @@ namespace Nada.Model.Exports
                     missing, missing, missing, missing, missing, missing, missing);
 
                 var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
-                CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReported);
+                CountryDemography countryStats = demo.GetCountryLevelStatsRecent();
                 Country country = demo.GetCountry();
                 List<AdminLevel> demography = new List<AdminLevel>();
-                DateTime startDate = new DateTime(yearReported, country.ReportingYearStartDate.Month, country.ReportingYearStartDate.Day);
+                DateTime startDate = new DateTime(yearReported, 1, 1);
                 DateTime endDate = startDate.AddYears(1).AddDays(-1);
                 List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, startDate, endDate, ref demography);
 
@@ -63,7 +63,7 @@ namespace Nada.Model.Exports
                 // Info page
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[1];
                 xlsWorksheet.Unprotect();
-                AddQuestions(xlsWorksheet, rng, questions, countryDemo, demography, districtLevel.LevelNumber, country);
+                AddQuestions(xlsWorksheet, rng, questions, countryStats, demography, districtLevel.LevelNumber, country);
                 // run macro to create district rows.
                 xlsApp.DisplayAlerts = false;
                 xlsApp.Run("Sheet1.DISTRICT");
@@ -82,6 +82,7 @@ namespace Nada.Model.Exports
                 AddMDA3(xlsWorkbook, xlsWorksheet, xlsSummary, rng, reportingLevelUnits, aggIntvs);
                 AddMDA2(xlsWorkbook, xlsWorksheet, xlsSummary, rng, reportingLevelUnits, aggIntvs);
                 AddMDA1(xlsWorkbook, xlsWorksheet, xlsSummary, rng, reportingLevelUnits, aggIntvs);
+                AddDistricts(xlsWorkbook, xlsWorksheet, xlsSummary, rng, reportingLevelUnits, aggIntvs);
 
                 xlsWorkbook.SaveAs(filePath, excel.XlFileFormat.xlOpenXMLWorkbook, missing,
                     missing, false, false, excel.XlSaveAsAccessMode.xlNoChange,
@@ -143,23 +144,26 @@ namespace Nada.Model.Exports
                 // DISEASE DISTRO
                 if (ddDict.ContainsKey(district.Id))
                 {
-                    string sthEnd = ddDict[district.Id][TranslationLookup.GetValue("DDSTHDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("STH")].ToString();
-                    string schEnd = ddDict[district.Id][TranslationLookup.GetValue("DDSchistoDiseaseDistributionPcIntervent") + " - " + TranslationLookup.GetValue("Schisto")].ToString();
-                    string lfEnd = ddDict[district.Id][TranslationLookup.GetValue("DDLFDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("LF")].ToString();
-                    string onchoEnd = ddDict[district.Id][TranslationLookup.GetValue("DDOnchoDiseaseDistributionPcInterventio") + " - " + TranslationLookup.GetValue("Oncho")].ToString();
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDLFDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("LF")))
+                        AddValueToRange(xlsWorksheet, rng, "H" + rowId, TranslateEndemicity(DiseaseType.Lf, ddDict[district.Id][TranslationLookup.GetValue("DDLFDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("LF")].ToString()));
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDOnchoDiseaseDistributionPcInterventio") + " - " + TranslationLookup.GetValue("Oncho")))
+                        AddValueToRange(xlsWorksheet, rng, "I" + rowId, TranslateEndemicity(DiseaseType.Oncho, ddDict[district.Id][TranslationLookup.GetValue("DDOnchoDiseaseDistributionPcInterventio") + " - " + TranslationLookup.GetValue("Oncho")].ToString()));
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDSTHDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("STH")))
+                        AddValueToRange(xlsWorksheet, rng, "J" + rowId, TranslateEndemicity(DiseaseType.STH, ddDict[district.Id][TranslationLookup.GetValue("DDSTHDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("STH")].ToString()));
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDSchistoDiseaseDistributionPcIntervent") + " - " + TranslationLookup.GetValue("Schisto")))
+                        AddValueToRange(xlsWorksheet, rng, "K" + rowId, TranslateEndemicity(DiseaseType.Schisto, ddDict[district.Id][TranslationLookup.GetValue("DDSchistoDiseaseDistributionPcIntervent") + " - " + TranslationLookup.GetValue("Schisto")].ToString()));
 
-                    AddValueToRange(xlsWorksheet, rng, "H" + rowId, TranslateEndemicity(DiseaseType.Lf, lfEnd));
-                    AddValueToRange(xlsWorksheet, rng, "I" + rowId, TranslateEndemicity(DiseaseType.Oncho, onchoEnd));
-                    AddValueToRange(xlsWorksheet, rng, "J" + rowId, TranslateEndemicity(DiseaseType.STH, sthEnd));
-                    AddValueToRange(xlsWorksheet, rng, "K" + rowId, TranslateEndemicity(DiseaseType.Schisto, schEnd));
-
-                    AddValueToRange(xlsWorksheet, rng, "P" + rowId,
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDLFNumPcRoundsYearRecommendedByWhoGuid") + " - " + TranslationLookup.GetValue("LF")))
+                        AddValueToRange(xlsWorksheet, rng, "P" + rowId,
                         ddDict[district.Id][TranslationLookup.GetValue("DDLFNumPcRoundsYearRecommendedByWhoGuid") + " - " + TranslationLookup.GetValue("LF")]);
-                    AddValueToRange(xlsWorksheet, rng, "Q" + rowId,
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDOnchoNumPcRoundsYearRecommendedByWhoG") + " - " + TranslationLookup.GetValue("Oncho")))
+                        AddValueToRange(xlsWorksheet, rng, "Q" + rowId,
                         ddDict[district.Id][TranslationLookup.GetValue("DDOnchoNumPcRoundsYearRecommendedByWhoG") + " - " + TranslationLookup.GetValue("Oncho")]);
-                    AddValueToRange(xlsWorksheet, rng, "R" + rowId,
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDSTHNumPcRoundsYearRecommendedByWhoGui") + " - " + TranslationLookup.GetValue("STH")))
+                        AddValueToRange(xlsWorksheet, rng, "R" + rowId,
                        ddDict[district.Id][TranslationLookup.GetValue("DDSTHNumPcRoundsYearRecommendedByWhoGui") + " - " + TranslationLookup.GetValue("STH")]);
-                    AddValueToRange(xlsWorksheet, rng, "S" + rowId,
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDSchistoNumPcRoundsYearRecommendedByWh") + " - " + TranslationLookup.GetValue("Schisto")))
+                        AddValueToRange(xlsWorksheet, rng, "S" + rowId,
                        ddDict[district.Id][TranslationLookup.GetValue("DDSchistoNumPcRoundsYearRecommendedByWh") + " - " + TranslationLookup.GetValue("Schisto")]);
                 }
                 rowId++;
@@ -322,17 +326,16 @@ namespace Nada.Model.Exports
                     if (aggIntvs.ContainsKey(unit.Id))
                     {
 
-                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
-                        if (startMda.HasValue)
-                            AddValueToRange(xlsWorksheet, rng, "E" + rowCount, startMda.Value.ToString("MM/dd/yyyy"));
 
                         AddValueToRange(xlsWorksheet, rng, "I" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
                         AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
 
                         string sacTarg = GetIntFromRow("PcIntvNumSacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames);
                         string adultsTarg = GetIntFromRow("PcIntvNumAdultsTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames);
+                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
                         if (i == 1)
                         {
+                            startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, 2, null, typeNames);
                             AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, null, typeNames));
                             AddValueToRange(xlsWorksheet, rng, "M" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, null, typeNames));
 
@@ -341,6 +344,9 @@ namespace Nada.Model.Exports
                             sacTarg = GetMaxIntFromStrings(sacTarg, sacTarg2);
                             adultsTarg = GetMaxIntFromStrings(adultsTarg, adultsTarg2);
                         }
+
+                        if (startMda.HasValue)
+                            AddValueToRange(xlsWorksheet, rng, "E" + rowCount, startMda.Value.ToString("MM/dd/yyyy"));
 
                         AddValueToRange(xlsWorksheet, rng, "F" + rowCount, sacTarg);
                         AddValueToRange(xlsWorksheet, rng, "G" + rowCount, adultsTarg);
@@ -467,6 +473,35 @@ namespace Nada.Model.Exports
             }
         }
 
+        private void AddDistricts(excel.Workbook xlsWorkbook, excel.Worksheet xlsWorksheet, excel.Worksheet xlsSummary, excel.Range rng, List<AdminLevel> reportingUnits, Dictionary<int, DataRow> aggIntvs)
+        {
+            List<string> typeNames = new List<string> { "IntvAlb2", "IntvIvmPzqAlb", "IntvIvmAlb", "IntvDecAlb", "IntvIvm", "IntvIvmPzq", "IntvPzq", "IntvPzqAlb", "IntvPzqMbd", "IntvAlb", "IntvMbd" };
+            List<string> typesToCalc = new List<string>();
+            xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["DISTRICT"];
+
+            int rowCount = 9;
+            foreach (var unit in reportingUnits)
+            {
+                if (aggIntvs.ContainsKey(unit.Id))
+                {
+                    // LF
+                    AddValueToRange(xlsWorksheet, rng, "E" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "F" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    // Oncho
+                    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Oncho", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Oncho", typeNames));
+                    // STH
+                    AddValueToRange(xlsWorksheet, rng, "Q" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "R" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "STH", typeNames));
+                    // Schisto
+                    AddValueToRange(xlsWorksheet, rng, "W" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "X" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                
+                }
+                rowCount++;
+            }
+        }
+
         private bool HasRoundNumber(List<AdminLevel> reportingUnits, Dictionary<int, DataRow> aggIntvs, List<string> typeNames, List<string> typesToCalc, int i)
         {
             foreach (var unit in reportingUnits)
@@ -527,7 +562,9 @@ namespace Nada.Model.Exports
 
         private string TranslateEndemicity(DiseaseType t, string end)
         {
-            end = end.Substring(0, end.IndexOf(" - ") + 1).ToUpper();
+            var ends = end.Split(' ');
+            if (ends.Count() > 0)
+                end = ends[0].Trim().ToUpper();
             if (t == DiseaseType.Lf || t == DiseaseType.Oncho)
             {
                 switch (end)

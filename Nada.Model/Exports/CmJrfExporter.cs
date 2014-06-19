@@ -49,7 +49,7 @@ namespace Nada.Model.Exports
                 CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReporting);
                 Country country = demo.GetCountry();
                 List<AdminLevel> demography = new List<AdminLevel>();
-                DateTime startDate = new DateTime(yearReporting, country.ReportingYearStartDate.Month, country.ReportingYearStartDate.Day);
+                DateTime startDate = new DateTime(yearReporting, 1, 1);
                 DateTime endDate = startDate.AddYears(1).AddDays(-1);
                 List<AdminLevel> tree = demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, startDate, endDate, ref demography);
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[2];

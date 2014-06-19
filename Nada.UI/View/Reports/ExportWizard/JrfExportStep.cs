@@ -54,6 +54,8 @@ namespace Nada.UI.View.Reports
             if (!DesignMode)
             {
                 questions = repo.GetExportQuestions();
+                if (!questions.JrfYearReporting.HasValue || questions.JrfYearReporting.Value == 0)
+                    questions.JrfYearReporting = DateTime.Now.Year;
                 Localizer.TranslateControl(this);
                 h3bLabel1.SetMaxWidth(500);
                 h3bLabel2.SetMaxWidth(500);

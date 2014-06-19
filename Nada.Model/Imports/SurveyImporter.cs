@@ -58,16 +58,20 @@ namespace Nada.Model.Imports
             }).ToList();
         }
 
-        protected override int AddTypeSpecific(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet)
+        protected override int AddTypeSpecific(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int startIndex)
         {
             if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null)
-                return 0;
+                return startIndex;
 
-            xlsWorksheet.Cells[1, 3] = TranslationLookup.GetValue("IndSentinelSiteName");
-            xlsWorksheet.Cells[1, 4] = TranslationLookup.GetValue("IndSpotCheckName");
-            xlsWorksheet.Cells[1, 5] = TranslationLookup.GetValue("IndSpotCheckLat");
-            xlsWorksheet.Cells[1, 6] = TranslationLookup.GetValue("IndSpotCheckLng");
-            return 4;
+            startIndex++;
+            xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSentinelSiteName");
+            startIndex++;
+            xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSpotCheckName");
+            startIndex++;
+            xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSpotCheckLat");
+            startIndex++;
+            xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSpotCheckLng");
+            return startIndex;
         }
 
         protected override void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation, 

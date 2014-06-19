@@ -330,6 +330,7 @@ namespace Nada.Model.Repositories
                         ProcessIndicators.CanAddValues,
                         ProcessIndicators.UpdatedAt, 
                         ProcessIndicators.RedistrictRuleId,
+                        ProcessIndicators.IsCalculated,
                         MergeRuleId,
                         AggTypeId,
                         aspnet_users.UserName,
@@ -361,7 +362,8 @@ namespace Nada.Model.Repositories
                                     IsEditable = reader.GetValueOrDefault<bool>("IsEditable"),
                                     IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
                                     CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
-                                    DataType = reader.GetValueOrDefault<string>("DataType")
+                                    DataType = reader.GetValueOrDefault<string>("DataType"),
+                                    IsCalculated = reader.GetValueOrDefault<bool>("IsCalculated")
                                 });
                                 indicatorIds.Add(reader.GetValueOrDefault<int>("ID").ToString());
                             }

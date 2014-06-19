@@ -55,6 +55,8 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.c1Button1 = new C1.Win.C1Input.C1Button();
             this.c1Button3 = new C1.Win.C1Input.C1Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.countryDemographyView1 = new Nada.UI.View.Demography.CountryDemographyView();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -63,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lvUsers)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label21
@@ -94,6 +97,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
@@ -133,7 +137,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(592, 206);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(592, 269);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // h3bLabel1
@@ -157,7 +161,7 @@
             this.adminLevelTypesControl1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adminLevelTypesControl1.Location = new System.Drawing.Point(3, 19);
             this.adminLevelTypesControl1.Name = "adminLevelTypesControl1";
-            this.adminLevelTypesControl1.Size = new System.Drawing.Size(586, 184);
+            this.adminLevelTypesControl1.Size = new System.Drawing.Size(586, 247);
             this.adminLevelTypesControl1.TabIndex = 1;
             // 
             // countryView1
@@ -169,7 +173,7 @@
             this.countryView1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.countryView1.Location = new System.Drawing.Point(8, 8);
             this.countryView1.Name = "countryView1";
-            this.countryView1.Size = new System.Drawing.Size(589, 54);
+            this.countryView1.Size = new System.Drawing.Size(305, 54);
             this.countryView1.TabIndex = 4;
             // 
             // pnlLf
@@ -428,6 +432,27 @@
             this.c1Button3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
             this.c1Button3.Click += new System.EventHandler(this.doCancel_Click);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.countryDemographyView1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 24);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(918, 529);
+            this.tabPage5.TabIndex = 5;
+            this.tabPage5.Text = "CountryStatistics";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // countryDemographyView1
+            // 
+            this.countryDemographyView1.AutoSize = true;
+            this.countryDemographyView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.countryDemographyView1.BackColor = System.Drawing.Color.White;
+            this.countryDemographyView1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.countryDemographyView1.Location = new System.Drawing.Point(13, 12);
+            this.countryDemographyView1.Name = "countryDemographyView1";
+            this.countryDemographyView1.Size = new System.Drawing.Size(575, 348);
+            this.countryDemographyView1.TabIndex = 0;
+            // 
             // SettingsDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -455,6 +480,8 @@
             this.tabPage4.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -489,5 +516,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private C1.Win.C1Input.C1Button c1Button1;
         private C1.Win.C1Input.C1Button c1Button3;
+        private System.Windows.Forms.TabPage tabPage5;
+        private Demography.CountryDemographyView countryDemographyView1;
     }
 }

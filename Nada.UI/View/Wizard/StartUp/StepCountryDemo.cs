@@ -78,6 +78,5 @@ namespace Nada.UI.View.Wizard
             demo.Save(model, userId);
             return true;
         }
-
     }
 }

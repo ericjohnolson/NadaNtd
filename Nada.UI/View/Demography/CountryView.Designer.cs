@@ -88,6 +88,7 @@
             this.lbl2.Tag = "ReportingYearStartDate";
             this.lbl2.Text = "ReportingYearStartDate";
             this.lbl2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lbl2.Visible = false;
             // 
             // lbl1
             // 
@@ -120,12 +121,12 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsCountry, "ReportingYearStartDate", true));
             this.dateTimePicker1.Location = new System.Drawing.Point(302, 18);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(256, 21);
             this.dateTimePicker1.TabIndex = 60;
+            this.dateTimePicker1.Visible = false;
             // 
             // monthItemBindingSource
             // 

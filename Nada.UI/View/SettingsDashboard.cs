@@ -22,6 +22,7 @@ namespace Nada.UI.View
     public partial class SettingsDashboard : BaseControl, IView
     {
         private Country country = null;
+        private CountryDemography countryStats = null;
         private MemberRepository members = new MemberRepository();
         private SettingsRepository settings = new SettingsRepository();
         private DiseaseRepository diseases = new DiseaseRepository();
@@ -48,6 +49,8 @@ namespace Nada.UI.View
                 lvUsers.SetObjects(members.GetAllUsers());
                 country = demo.GetCountry();
                 countryView1.LoadCountry(country, true);
+                countryStats = demo.GetCountryLevelStatsRecent();
+                countryDemographyView1.LoadDemo(countryStats);
                 diseasePickerControl1.LoadLists(true);
             }
         }
@@ -131,6 +134,12 @@ namespace Nada.UI.View
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
             }
+            countryDemographyView1.DoValidate();
+            if (!countryStats.IsValid())
+            {
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
+                return;
+            }
             if (!adminLevelTypesControl1.HasDistrict())
             {
                 MessageBox.Show(Translations.MustMakeDistrict, Translations.ValidationErrorTitle);
@@ -144,7 +153,7 @@ namespace Nada.UI.View
 
             int userId = ApplicationData.Instance.GetUserId();
             demo.UpdateCountry(country, userId);
-         
+            demo.Save(countryStats, userId);
             var selected = diseasePickerControl1.GetSelectedItems();
             var available = diseasePickerControl1.GetUnselectedItems();
             diseases.SaveSelectedDiseases(selected, true, userId);

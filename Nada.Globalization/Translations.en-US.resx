@@ -121,7 +121,7 @@
     <value>About</value>
   </data>
   <data name="AboutMenu" xml:space="preserve">
-    <value>About National Database Template</value>
+    <value>About Integrated NTD Database</value>
   </data>
   <data name="AccessFiles" xml:space="preserve">
     <value>Access files</value>
@@ -244,7 +244,7 @@
     <value>Anopheles</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>NTD National Database</value>
+    <value>Integrated NTD Database</value>
   </data>
   <data name="ApplyCountryGrowthRate" xml:space="preserve">
     <value>Apply country growth rate to all administrative levels</value>
@@ -863,7 +863,7 @@ Fixed / Mobile</value>
     <value>Population living in areas that have achieved criteria for stopping district-level PC for trachoma</value>
   </data>
   <data name="DDTraPopulationLivingInAreasSubDistrict" xml:space="preserve">
-    <value>Population living in areas that have achieved UIG-A at the sub-district level  MDA for trachoma</value>
+    <value>Population living in areas that have achieved UIG-A</value>
   </data>
   <data name="DDTraSacPopulation" xml:space="preserve">
     <value>SAC population</value>
@@ -1127,7 +1127,7 @@ Fixed / Mobile</value>
     <value>Export to excel</value>
   </data>
   <data name="EzName" xml:space="preserve">
-    <value>Ecological Zone Name</value>
+    <value>Ecological zone description, if applicable</value>
   </data>
   <data name="FatalityRate" xml:space="preserve">
     <value>Fatality rate</value>
@@ -1976,13 +1976,13 @@ Fixed / Mobile</value>
     <value>N/A</value>
   </data>
   <data name="NadaIntro" xml:space="preserve">
-    <value>The template for the NTD National Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in cooperation with the World Health Organization (WHO) and its regional offices, the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.</value>
+    <value>The template for the Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in cooperation with the World Health Organization (WHO) and its regional offices, the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="NationalDatabaseTemplate" xml:space="preserve">
-    <value>National Database</value>
+    <value>Integrated NTD Database</value>
   </data>
   <data name="Necator" xml:space="preserve">
     <value>Necator americanus (hookworm)</value>
@@ -3459,7 +3459,7 @@ Fixed / Mobile</value>
     <value>Number of individuals examined for urinary schistosomes</value>
   </data>
   <data name="SCHMapSurNumberOfIndividualsPositiveForH" xml:space="preserve">
-    <value>Number of individuals positive for haematuria or schistosomal parasite eggs in urine</value>
+    <value>Number of individuals positive for haematuria in urine</value>
   </data>
   <data name="SCHMapSurNumberOfIndividualsPositiveForI" xml:space="preserve">
     <value>Number of individuals positive for intestinal schistosome infection</value>
@@ -3537,7 +3537,7 @@ Fixed / Mobile</value>
     <value>Number of individuals examined for urinary schistosomes</value>
   </data>
   <data name="SCHSurNumberOfIndividualsPositiveForHaem" xml:space="preserve">
-    <value>Number of individuals positive for haematuria or schistosomal parasite eggs in urine</value>
+    <value>Number of individuals positive for haematuria in urine</value>
   </data>
   <data name="SCHSurNumberOfIndividualsPositiveForInte" xml:space="preserve">
     <value>Number of individuals positive for intestinal schistosome infection</value>
@@ -5538,7 +5538,7 @@ Fixed / Mobile</value>
     <value>Survey data from the parent districts was duplicated in all the daughter districts and should be reviewed.</value>
   </data>
   <data name="ExitWarning" xml:space="preserve">
-    <value>Are you sure you want to exit the National Database Template</value>
+    <value>Are you sure you want to exit the Integrated NTD Database?</value>
   </data>
   <data name="ExitWarningTitle" xml:space="preserve">
     <value>Exiting Application</value>
@@ -6016,5 +6016,109 @@ Fixed / Mobile</value>
   </data>
   <data name="RtiWorkbookLocation" xml:space="preserve">
     <value>Country_Disease_Workbook_v3.2.1_English_.xlsx</value>
+  </data>
+  <data name="AboutDisclaimer" xml:space="preserve">
+    <value>The template for the Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices, the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases. 
+
+The National Database Template was developed by Iota Ink:  Jennifer Einberg, Project Manager; Eric Olson, Developer; Jennifer Fox, Graphic Designer; Nick Cherf, QA Specialist; Michelle Fellows, Technical Writer.</value>
+  </data>
+  <data name="AdminUnitParent" xml:space="preserve">
+    <value>Administrative unit above level you are adding.</value>
+  </data>
+  <data name="AdminUnitPeriRural" xml:space="preserve">
+    <value>Peri-rural</value>
+  </data>
+  <data name="AdminUnitRural" xml:space="preserve">
+    <value>Rural</value>
+  </data>
+  <data name="AdminUnitUrban" xml:space="preserve">
+    <value>Urban</value>
+  </data>
+  <data name="CountryStatistics" xml:space="preserve">
+    <value>Country Statistics</value>
+  </data>
+  <data name="OnchoMapSurTypeOfMapping" xml:space="preserve">
+    <value>Type of mapping</value>
+  </data>
+  <data name="OnchoSurEntAbr" xml:space="preserve">
+    <value>Annual Biting Rates (ABR)</value>
+  </data>
+  <data name="OnchoSurEntAtp" xml:space="preserve">
+    <value>Annual Transmission Potential (ATP) (the average number of infective stage parasites an individual is exposed to in a year)</value>
+  </data>
+  <data name="OnchoSurEntCorrectedInfectionRatePcr" xml:space="preserve">
+    <value>Corrected infection rate (PCR) - per 1,000 parous flies</value>
+  </data>
+  <data name="OnchoSurEntInfectionRateDissection" xml:space="preserve">
+    <value>Infection rate (Dissection) - per 1,000 parous flies</value>
+  </data>
+  <data name="OnchoSurEntMbr" xml:space="preserve">
+    <value>Monthly Biting Rates</value>
+  </data>
+  <data name="OnchoSurEntMtp" xml:space="preserve">
+    <value>Monthly Transmission Potential</value>
+  </data>
+  <data name="OnchoSurEntTaxoCyto" xml:space="preserve">
+    <value>Taxonomic identification - Cytotaxonomy (Chromosomal)</value>
+  </data>
+  <data name="OnchoSurEntTaxoForest" xml:space="preserve">
+    <value>Forest</value>
+  </data>
+  <data name="OnchoSurEntTaxoForestSav" xml:space="preserve">
+    <value>Forest and Savannah</value>
+  </data>
+  <data name="OnchoSurEntTaxonomic" xml:space="preserve">
+    <value>Taxonomic identification - Morphology</value>
+  </data>
+  <data name="OnchoSurEntTaxoSavannah" xml:space="preserve">
+    <value>Savannah</value>
+  </data>
+  <data name="OnchoSurEntTestTech" xml:space="preserve">
+    <value>Test Technique</value>
+  </data>
+  <data name="OnchoSurEntTestTechChromo" xml:space="preserve">
+    <value>Chromosomal identification</value>
+  </data>
+  <data name="OnchoSurEntTestTechDiss" xml:space="preserve">
+    <value>Dissection</value>
+  </data>
+  <data name="OnchoSurEntTestTechPcr" xml:space="preserve">
+    <value>PCR Pool Screening</value>
+  </data>
+  <data name="OnchoSurEntTestTechTrap" xml:space="preserve">
+    <value>Trapping</value>
+  </data>
+  <data name="OnchoSurTypeOfMapping" xml:space="preserve">
+    <value>Type of mapping</value>
+  </data>
+  <data name="OnchoSurTypeRemo" xml:space="preserve">
+    <value>REMO</value>
+  </data>
+  <data name="OnchSurTypeDelineation" xml:space="preserve">
+    <value>Delineation mapping</value>
+  </data>
+  <data name="SCHMapSurNumPosSchParasite" xml:space="preserve">
+    <value>Number of individuals positive for schistosomal parasite eggs in urine</value>
+  </data>
+  <data name="SCHSurNumPosSchParasite" xml:space="preserve">
+    <value>Number of individuals positive for schistosomal parasite eggs in urine</value>
+  </data>
+  <data name="SettingsAggLevelDesc" xml:space="preserve">
+    <value>Aggregating level: Demography values from this level will total up to higher administrative units. Complete demography data needs to be entered for all of the units at this administrative level.</value>
+  </data>
+  <data name="SettingsReportingLevelDesc" xml:space="preserve">
+    <value>Reporting level: WHO and partner reports will automatically be generated for administrative units at this level. Typically this is the “District” or second administrative level.</value>
+  </data>
+  <data name="StartUpFinishedAllUnits" xml:space="preserve">
+    <value>Have you finished entering all the administrative units for this level?</value>
+  </data>
+  <data name="TASCriticalCutoff" xml:space="preserve">
+    <value>Critical cutoff decision</value>
+  </data>
+  <data name="TASCutoffFail" xml:space="preserve">
+    <value>Above treatment threshold - fail</value>
+  </data>
+  <data name="TASCutoffPass" xml:space="preserve">
+    <value>Below treatment threshold - pass</value>
   </data>
 </root>

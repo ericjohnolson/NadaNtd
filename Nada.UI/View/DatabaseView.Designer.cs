@@ -38,7 +38,6 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lnkNew = new System.Windows.Forms.LinkLabel();
             this.tblTitle = new System.Windows.Forms.TableLayoutPanel();
-            this.lblType = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -217,7 +216,6 @@
             this.tblTitle.ColumnCount = 2;
             this.tblTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblTitle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tblTitle.Controls.Add(this.lblType, 0, 0);
             this.tblTitle.Controls.Add(this.lblTitle, 1, 0);
             this.tblTitle.Location = new System.Drawing.Point(0, 0);
             this.tblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -225,33 +223,19 @@
             this.tblTitle.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.tblTitle.RowCount = 1;
             this.tblTitle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblTitle.Size = new System.Drawing.Size(348, 62);
+            this.tblTitle.Size = new System.Drawing.Size(312, 62);
             this.tblTitle.TabIndex = 61;
-            // 
-            // lblType
-            // 
-            this.lblType.AutoSize = true;
-            this.lblType.BackColor = System.Drawing.Color.Transparent;
-            this.lblType.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblType.ForeColor = System.Drawing.Color.White;
-            this.lblType.Location = new System.Drawing.Point(0, 15);
-            this.lblType.Margin = new System.Windows.Forms.Padding(0);
-            this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(63, 32);
-            this.lblType.TabIndex = 44;
-            this.lblType.Tag = "NTD";
-            this.lblType.Text = "NTD";
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(63, 15);
+            this.lblTitle.Location = new System.Drawing.Point(0, 15);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(285, 32);
+            this.lblTitle.Size = new System.Drawing.Size(312, 32);
             this.lblTitle.TabIndex = 62;
             this.lblTitle.Tag = "NationalDatabaseTemplate";
             this.lblTitle.Text = "NationalDatabaseTemplate";
@@ -454,7 +438,6 @@
         private System.Windows.Forms.TableLayoutPanel tblContents;
         private System.Windows.Forms.TableLayoutPanel tblTitle;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbLanguages;

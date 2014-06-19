@@ -23,7 +23,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select Country.ID, DisplayName, ReportingYearStartDate, aspnet_Users.UserName, Country.UpdatedAt, Country.TaskForceName 
+                OleDbCommand command = new OleDbCommand(@"Select Country.ID, DisplayName, aspnet_Users.UserName, Country.UpdatedAt, Country.TaskForceName 
                     FROM ((Country INNER JOIN AdminLevels on Country.AdminLevelId = AdminLevels.ID)
                             INNER JOIN aspnet_Users on Country.UpdatedById = aspnet_Users.UserId)
                     WHERE AdminLevels.ID = @id", connection);
@@ -37,7 +37,6 @@ namespace Nada.Model.Repositories
                         {
                             Id = reader.GetValueOrDefault<int>("ID"),
                             Name = reader.GetValueOrDefault<string>("DisplayName"),
-                            ReportingYearStartDate = reader.GetValueOrDefault<DateTime>("ReportingYearStartDate"),
                             UpdatedBy = GetAuditInfoUpdate(reader),
                             TaskForceName = reader.GetValueOrDefault<string>("TaskForceName"),
                         };
@@ -57,9 +56,8 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Update Country set ReportingYearStartDate=@ReportingYearStartDate, MonthYearStarts=1,
+                    OleDbCommand command = new OleDbCommand(@"Update Country set MonthYearStarts=1,
                          UpdatedById=@updatedby, UpdatedAt=@updatedat, TaskForceName=@TaskForceName WHERE ID = @id", connection);
-                    command.Parameters.Add(new OleDbParameter("@ReportingYearStartDate", country.ReportingYearStartDate));
                     command.Parameters.Add(new OleDbParameter("@updatedby", byUserId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
                     command.Parameters.Add(new OleDbParameter("@TaskForceName", country.TaskForceName));
@@ -154,6 +152,33 @@ namespace Nada.Model.Repositories
                 }
             }
             return demo;
+        }
+
+        public CountryDemography GetCountryLevelStatsRecent()
+        {
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+
+                CountryDemography demo = new CountryDemography();
+
+                OleDbCommand command = new OleDbCommand(@"Select AdminLevelDemographyId
+                        FROM CountryDemography 
+                        ORDER BY AdminLevelDemographyId DESC", connection);
+
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        int id = reader.GetValueOrDefault<int>("AdminLevelDemographyId");
+                        demo = GetCountryDemoById(command, connection, id);
+                    }
+                    reader.Close();
+                }
+                return demo;
+            }
         }
 
         public CountryDemography GetCountryDemoById(int demoId)
@@ -1008,7 +1033,7 @@ namespace Nada.Model.Repositories
             try
             {
                 var c = GetCountry();
-                DateTime startDate = new DateTime(demoDate.Year, c.ReportingYearStartDate.Month, c.ReportingYearStartDate.Day);
+                DateTime startDate = new DateTime(demoDate.Year, 1, 1);
                 DateTime endDate = startDate.AddYears(1).AddDays(-1);
                 
                 List<AdminLevel> list = new List<AdminLevel>();
@@ -1342,8 +1367,7 @@ namespace Nada.Model.Repositories
 
         public string CreateDemoYearRange(int year)
         {
-            DateTime countryReportingYearStart = GetCountry().ReportingYearStartDate;
-            DateTime startDate = new DateTime(year, countryReportingYearStart.Month, countryReportingYearStart.Day);
+            DateTime startDate = new DateTime(year, 1, 1);
             DateTime endDate = startDate.AddYears(1).AddDays(-1);
             return string.Format(" AND DateDemographyData >= cdate('{0}') AND DateDemographyData <= cdate('{1}') ",
                 startDate.ToShortDateString(),

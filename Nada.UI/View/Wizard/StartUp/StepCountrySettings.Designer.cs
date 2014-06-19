@@ -39,11 +39,12 @@
             // 
             this.countryView1.AutoSize = true;
             this.countryView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.countryView1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.countryView1.BackColor = System.Drawing.Color.White;
             this.countryView1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.countryView1.Location = new System.Drawing.Point(3, 3);
             this.countryView1.Name = "countryView1";
-            this.countryView1.Size = new System.Drawing.Size(583, 56);
+            this.countryView1.Size = new System.Drawing.Size(305, 54);
             this.countryView1.TabIndex = 0;
             // 
             // adminLevelTypesControl1
@@ -53,7 +54,7 @@
             this.adminLevelTypesControl1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adminLevelTypesControl1.Location = new System.Drawing.Point(3, 19);
             this.adminLevelTypesControl1.Name = "adminLevelTypesControl1";
-            this.adminLevelTypesControl1.Size = new System.Drawing.Size(586, 184);
+            this.adminLevelTypesControl1.Size = new System.Drawing.Size(586, 262);
             this.adminLevelTypesControl1.TabIndex = 1;
             // 
             // h3bLabel1
@@ -78,24 +79,25 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.h3bLabel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.adminLevelTypesControl1, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 89);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 63);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(592, 206);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(592, 284);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // StepCountrySettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.countryView1);
             this.Name = "StepCountrySettings";
-            this.Size = new System.Drawing.Size(670, 359);
+            this.Size = new System.Drawing.Size(601, 350);
             this.Load += new System.EventHandler(this.ImportOptions_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

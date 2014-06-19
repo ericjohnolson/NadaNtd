@@ -26,9 +26,7 @@ namespace Nada.Model
                     _taskForceName = value;
             }
         }
-
-        public DateTime ReportingYearStartDate { get; set; }
-
+        
         #region IDataErrorInfo Members
         public override string this[string columnName]
         {

@@ -130,12 +130,29 @@ namespace Nada.UI.View.Wizard
 
         public void DoNext()
         {
-            OnSwitchStep(new StepAdminLevelImport(nextType, this, isDemoOnly, demoDate, countryDemoId));
+            if (ConfirmNext())
+                OnSwitchStep(new StepAdminLevelImport(nextType, this, isDemoOnly, demoDate, countryDemoId));
+            
         }
 
         public void DoFinish()
         {
-            OnFinish();
+            if (ConfirmNext())
+                OnFinish();
+        }
+
+        private bool ConfirmNext()
+        {
+            if (locationType.LevelNumber > 2)
+            {
+                var result = MessageBox.Show(this, Translations.StartUpFinishedAllUnits, Translations.Confirm, MessageBoxButtons.YesNo);
+                if (result == DialogResult.No)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private void btnDownload_Click(object sender, EventArgs e)
