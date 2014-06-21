@@ -49,7 +49,7 @@ namespace Nada.UI.ViewModel
         public bool CanEditTypeName { get { return false; } }
         public string StatusMessage { get { return model.UpdatedBy; } }
         public string Notes { get { return model.Notes; } }
-        public string CalculatorTypeId { get { return ""; } }
+        public string CalculatorTypeId { get { return model.ProcessType.Id.ToString(); } }
         public ICalcIndicators Calculator { get { return calc; } }
         public AdminLevel Location { get { return adminLevel; } }
         public IndicatorEntityType EntityType { get { return IndicatorEntityType.Process; } }

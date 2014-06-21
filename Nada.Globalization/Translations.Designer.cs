@@ -70,9 +70,11 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The template for the Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices, the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases. 
+        ///   Looks up a localized string similar to The Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices (AFR, SEAR, WPR), the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.
         ///
-        ///The National Database Template was developed by Iota Ink:  Jennifer Einberg, Project Manager; Eric Olson, Developer; Jennifer Fox, Graphic Designer [rest of string was truncated]&quot;;.
+        ///The Integrated NTD Database was developed by Iota Ink:
+        ///Jennifer Einberg, Project Manager; Eric Olson, Developer; 
+        ///Jennifer Fox, Graphic Designer;  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string AboutDisclaimer {
             get {

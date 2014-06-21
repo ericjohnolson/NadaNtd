@@ -55,7 +55,7 @@ namespace Nada.Model
             object missing = System.Reflection.Missing.Value;
             rng = xlsWorksheet.get_Range(cell, missing);
             rng.Value = value;
-            
+
         }
 
         public virtual string Extension
@@ -124,15 +124,14 @@ namespace Nada.Model
                 options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(iType.Id, indicator));
         }
 
-
         protected string GetIntFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames, string albIndicator)
         {
-            List<IntVal> intVals = new List<IntVal>();
-            for (int i = startRound; i <= endRound; i++)
+            int sumOfTypes = 0;
+            List<string> types = new List<string>();
+            foreach (var tname in typeNames)
             {
-                IntVal iVal = new IntVal();
-
-                foreach (var tname in typeNames)
+                int? max = null;
+                for (int i = startRound; i <= endRound; i++)
                 {
                     string diseaseCol = TranslationLookup.GetValue("PcIntvDiseases") + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
                     string indicatorCol = "";
@@ -140,69 +139,65 @@ namespace Nada.Model
                         indicatorCol = TranslationLookup.GetValue(albIndicator) + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
                     else
                         indicatorCol = TranslationLookup.GetValue(indicatorName) + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
-
                     if (dr.Table.Columns.Contains(diseaseCol))
                     {
-                        // make sure disease treated has LF
-                        if (dr[diseaseCol].ToString().Contains(TranslationLookup.GetValue(diseaseType)) && dr.Table.Columns.Contains(indicatorCol))
+                        // make sure disease type treated
+                        if ((string.IsNullOrEmpty(diseaseType) || dr[diseaseCol].ToString().Contains(TranslationLookup.GetValue(diseaseType)))
+                            && dr.Table.Columns.Contains(indicatorCol))
                         {
                             int v = 0;
-                            if (int.TryParse(dr[indicatorCol].ToString(), out v))
-                            {
-                                iVal.Value += v;
-                                iVal.TypeNames.Add(tname);
-                            }
+                            if (int.TryParse(dr[indicatorCol].ToString(), out v) && (!max.HasValue || max.Value < v))
+                                max = v;
                         }
                     }
                 }
-                if (iVal.TypeNames.Count > 0)
-                    intVals.Add(iVal);
+                if (max.HasValue)
+                {
+                    sumOfTypes += max.Value;
+                    types.Add(tname);
+                }
             }
 
-            // MAX between rounds
-            var val = intVals.OrderByDescending(i => i.Value).FirstOrDefault();
-            if (val == null)
+            if (types.Count == 0)
                 return "";
-            intvTypes = intvTypes.Union(val.TypeNames).ToList();
-            return val.Value.ToString();
+            intvTypes = intvTypes.Union(types).ToList();
+            return sumOfTypes.ToString();
         }
 
         protected string GetIntFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames)
         {
-            List<IntVal> intVals = new List<IntVal>();
-            for (int i = startRound; i <= endRound; i++)
+            int sumOfTypes = 0;
+            List<string> types = new List<string>();
+            foreach (var tname in typeNames)
             {
-                IntVal iVal = new IntVal();
-
-                foreach (var tname in typeNames)
+                int? max = null;
+                for (int i = startRound; i <= endRound; i++)
                 {
                     string diseaseCol = TranslationLookup.GetValue("PcIntvDiseases") + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
                     string indicatorCol = TranslationLookup.GetValue(indicatorName) + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
                     if (dr.Table.Columns.Contains(diseaseCol))
                     {
-                        // make sure disease treated has LF
-                        if ((string.IsNullOrEmpty(diseaseType) || dr[diseaseCol].ToString().Contains(TranslationLookup.GetValue(diseaseType))) 
+                        // make sure disease type treated
+                        if ((string.IsNullOrEmpty(diseaseType) || dr[diseaseCol].ToString().Contains(TranslationLookup.GetValue(diseaseType)))
                             && dr.Table.Columns.Contains(indicatorCol))
                         {
                             int v = 0;
-                            if (int.TryParse(dr[indicatorCol].ToString(), out v))
-                            {
-                                iVal.Value += v;
-                                iVal.TypeNames.Add(tname);
-                            }
+                            if (int.TryParse(dr[indicatorCol].ToString(), out v) && (!max.HasValue || max.Value < v))
+                                max = v;
                         }
                     }
                 }
-                if (iVal.TypeNames.Count > 0)
-                    intVals.Add(iVal);
+                if (max.HasValue)
+                {
+                    sumOfTypes += max.Value;
+                    types.Add(tname);
+                }
             }
 
-            // MAX between rounds
-            var val = intVals.OrderByDescending(i => i.Value).FirstOrDefault();
-            if (val == null)
+            if (types.Count == 0)
                 return "";
-            intvTypes = intvTypes.Union(val.TypeNames).ToList();
-            return val.Value.ToString();
+            intvTypes = intvTypes.Union(types).ToList();
+            return sumOfTypes.ToString();
         }
 
         protected DateTime? GetDateFromRow(string indicatorName, List<string> intvTypes, DataRow dr, bool isGreaterThan, int startRound, int endRound, string diseaseType, List<string> typeNames)
@@ -218,7 +213,7 @@ namespace Nada.Model
                     if (dr.Table.Columns.Contains(diseaseCol))
                     {
                         // make sure disease treated has LF
-                        if ((string.IsNullOrEmpty(diseaseType) || dr[diseaseCol].ToString().Contains(TranslationLookup.GetValue(diseaseType))) 
+                        if ((string.IsNullOrEmpty(diseaseType) || dr[diseaseCol].ToString().Contains(TranslationLookup.GetValue(diseaseType)))
                             && dr.Table.Columns.Contains(indicatorCol) && !string.IsNullOrEmpty(dr[indicatorCol].ToString()))
                         {
                             DateTime newDt = DateTime.ParseExact(dr[indicatorCol].ToString(), "M/d/yyyy", CultureInfo.InvariantCulture);
@@ -270,21 +265,7 @@ namespace Nada.Model
             intvTypes = intvTypes.Union(new List<string> { valueType }).ToList();
             return TranslationLookup.GetValue(value.TranslationKey);
         }
-
-        protected string GetMaxIntFromStrings(string s1, string s2)
-        {
-            int i1 = 0, i2 = 0;
-            if (string.IsNullOrEmpty(s1))
-                return s2;
-            if (string.IsNullOrEmpty(s2))
-                return s1;
-            i1 = int.Parse(s1);
-            i2 = int.Parse(s2);
-            if (i1 > i2)
-                return s1;
-            return s2;
-        }
-
+        
         protected string GetCombineFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames)
         {
             List<string> valueTypes = new List<string>();
@@ -316,6 +297,20 @@ namespace Nada.Model
                 return "";
             intvTypes = intvTypes.Union(valueTypes).ToList();
             return string.Join(", ", values.ToArray());
+        }
+
+        protected string GetMaxIntFromStrings(string s1, string s2)
+        {
+            int i1 = 0, i2 = 0;
+            if (string.IsNullOrEmpty(s1))
+                return s2;
+            if (string.IsNullOrEmpty(s2))
+                return s1;
+            i1 = int.Parse(s1);
+            i2 = int.Parse(s2);
+            if (i1 > i2)
+                return s1;
+            return s2;
         }
 
     }

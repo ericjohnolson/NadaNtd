@@ -36,6 +36,8 @@ namespace Nada.Model.Reports
         public bool IsCategory { get; set; }
         public bool IsChecked { get; set; }
         public bool IsCalculated { get; set; }
+        public bool IsDisabled { get; set; }
+        public bool IsRequired { get; set; }
         public int TypeId { get; set; }
         public int AggregationRuleId { get; set; }
         public int MergeRule { get; set; }

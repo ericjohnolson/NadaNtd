@@ -29,15 +29,12 @@ namespace Nada.UI.View.Demography
                 var months = GlobalizationUtil.GetAllMonths();
                 monthItemBindingSource.DataSource = months;
                 lbl1.SetMaxWidth(370);
-                lbl2.SetMaxWidth(370);
 
             }
         }
 
         public void LoadCountry(Country country, bool showDate)
         {
-            lbl2.Visible = showDate;
-            dateTimePicker1.Visible = showDate;
             model = country;
             bsCountry.DataSource = model;
         }

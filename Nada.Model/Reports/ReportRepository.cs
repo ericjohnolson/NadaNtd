@@ -441,7 +441,9 @@ namespace Nada.Model.Repositories
                 Key = i.DisplayName,
                 AggregationRuleId = i.AggRuleId,
                 SplitRule = i.RedistrictRuleId,
-                MergeRule = i.MergeRuleId
+                MergeRule = i.MergeRuleId,
+                IsDisabled = i.IsDisabled,
+                IsRequired = i.IsRequired
             };
         }
         #endregion

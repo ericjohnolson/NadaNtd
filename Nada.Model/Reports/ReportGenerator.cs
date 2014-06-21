@@ -8,6 +8,7 @@ using System.Text;
 using Nada.Globalization;
 using Nada.Model.Diseases;
 using Nada.Model.Intervention;
+using Nada.Model.Process;
 using Nada.Model.Repositories;
 using Nada.Model.Survey;
 
@@ -490,6 +491,49 @@ namespace Nada.Model.Reports
                         SurveyIndicatorValues.DynamicValue";
 
             repo.AddIndicatorsToAggregate(survey, options, dic, command, connection, getAggKey, getName, getType, sind, true, false, entityTypeId, dropdownOptions);
+
+            string process = @"Select 
+                        AdminLevels.ID as AID, 
+                        AdminLevels.DisplayName,
+                        Processes.ID, 
+                        [DateReported], 
+                        Processes.SCMDrug, 
+                        Processes.PCTrainTrainingCategory, 
+                        ProcessTypes.TypeName as TName,        
+                        ProcessTypes.ID as Tid,      
+                        ProcessIndicators.ID as IndicatorId, 
+                        ProcessIndicators.DisplayName as IndicatorName, 
+                        ProcessIndicators.IsEditable, 
+                        ProcessIndicators.DataTypeId, 
+                        ProcessIndicators.AggTypeId,    
+                        ProcessIndicatorValues.DynamicValue
+                        FROM (((((Processes INNER JOIN ProcessTypes on Processes.ProcessTypeId = ProcessTypes.ID)
+                            INNER JOIN ProcessIndicatorValues on Processes.Id = ProcessIndicatorValues.ProcessId)
+                            INNER JOIN AdminLevels on Processes.AdminLevelId = AdminLevels.ID) 
+                            INNER JOIN ProcessIndicators on ProcessIndicators.ID = ProcessIndicatorValues.IndicatorId)
+                            INNER JOIN IndicatorCalculations on ProcessIndicators.ID = IndicatorCalculations.RelatedIndicatorId) 
+                        WHERE Processes.IsDeleted = 0 AND IndicatorCalculations.RelatedEntityTypeId = 4 AND 
+                              IndicatorCalculations.IndicatorId in "
+            + " (" + String.Join(", ", options.SelectedIndicators.Select(s => s.ID.ToString()).ToArray()) + ")  AND IndicatorCalculations.EntityTypeId = "
+            + entityTypeId + ReportRepository.CreateYearFilter(options, "DateReported") + ReportRepository.CreateAdminFilter(options)
+            + @"
+                        GROUP BY 
+                        AdminLevels.ID, 
+                        AdminLevels.DisplayName,
+                        Processes.ID, 
+                        [DateReported], 
+                        Processes.SCMDrug, 
+                        Processes.PCTrainTrainingCategory, 
+                        ProcessTypes.TypeName,        
+                        ProcessTypes.ID,      
+                        ProcessIndicators.ID, 
+                        ProcessIndicators.DisplayName, 
+                        ProcessIndicators.IsEditable, 
+                        ProcessIndicators.DataTypeId, 
+                        ProcessIndicators.AggTypeId,    
+                        ProcessIndicatorValues.DynamicValue";
+
+            repo.AddIndicatorsToAggregate(process, options, dic, command, connection, getAggKey, getName, getType, sind, true, false, entityTypeId, dropdownOptions);
         }
 
         protected static List<int> GetSelectedYears(ReportOptions options)
@@ -531,6 +575,23 @@ namespace Nada.Model.Reports
                     warnings += string.Format(Translations.ReportsNoDdInDateRange, unitName, start.ToShortDateString(), end.ToShortDateString(), Translations.ReportChoosenDd) + Environment.NewLine;
             }
             return warnings;
+        }
+
+        protected void AddRequiredIndicator(int typeId, int indicatorId)
+        {
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.TypeId == typeId) != null && opts.SelectedIndicators.FirstOrDefault(x => x.ID == indicatorId) == null)
+                FindAndAddIndicator(indicatorId, typeId);
+        }
+
+        protected void FindAndAddIndicator(int indicatorId, int typeId)
+        {
+            var reportType = opts.AvailableIndicators[0].Children.FirstOrDefault(t => t.ID == typeId);
+            if (reportType != null)
+            {
+                var ind = reportType.Children.FirstOrDefault(v => v.ID == indicatorId);
+                if (ind != null)
+                    opts.SelectedIndicators.Add(ind);
+            }
         }
         #endregion
     }
@@ -618,22 +679,6 @@ namespace Nada.Model.Reports
             AddRequiredIndicator(15, 415);
         }
 
-        private void AddRequiredIndicator(int typeId, int indicatorId)
-        {
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.TypeId == typeId) != null && opts.SelectedIndicators.FirstOrDefault(x => x.ID == indicatorId) == null)
-                FindAndAddIndicator(indicatorId, typeId);
-        }
-
-        private void FindAndAddIndicator(int indicatorId, int typeId)
-        {
-            var reportType = opts.AvailableIndicators[0].Children.FirstOrDefault(t => t.ID == typeId);
-            if (reportType != null)
-            {
-                var ind = reportType.Children.FirstOrDefault(v => v.ID == indicatorId);
-                if (ind != null)
-                    opts.SelectedIndicators.Add(ind);
-            }
-        }
 
         protected override string CmdText()
         {
@@ -871,6 +916,12 @@ namespace Nada.Model.Reports
     [Serializable]
     public class ProcessReportGenerator : BaseReportGenerator
     {
+        protected override int EntityTypeId { get { return (int)IndicatorEntityType.Process; } }
+        protected override void Init()
+        {
+            calc = new CalcProcess();
+        }
+
         protected override string CmdText()
         {
             return @"Select 
@@ -935,9 +986,18 @@ namespace Nada.Model.Reports
 
         protected override string GetColTypeName(OleDbDataReader reader)
         {
+            string drug = reader.GetValueOrDefault<string>("SCMDrug");
+            if (!string.IsNullOrEmpty(drug))
+                drug = TranslationLookup.GetValue(drug, drug);
+            string cats = reader.GetValueOrDefault<string>("PCTrainTrainingCategory");
+            List<string> catList = new List<string>();
+            if (!string.IsNullOrEmpty(cats))
+                foreach (var c in cats.Split('|'))
+                    if (!string.IsNullOrEmpty(c))
+                        catList.Add(TranslationLookup.GetValue(c, c));
             return " - " + GetTypeName(reader) +
-                GetValueOrBlank(reader.GetValueOrDefault<string>("SCMDrug"), " - ") +
-                GetValueOrBlank(reader.GetValueOrDefault<string>("PCTrainTrainingCategory"), " - ").Replace("|", ", ");
+                GetValueOrBlank(drug, " - ") +
+                GetValueOrBlank(string.Join(", ", catList.ToArray()), " - ");
         }
     }
 

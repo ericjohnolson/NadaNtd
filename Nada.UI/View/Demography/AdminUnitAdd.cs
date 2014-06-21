@@ -63,6 +63,7 @@ namespace Nada.UI.View.Demography
 
             Localizer.TranslateControl(this);
             bindingSource1.DataSource = model;
+            lblParent.SetMaxWidth(500);
 
             var levels = settings.GetAllAdminLevelsWithCountry().OrderByDescending(l => l.LevelNumber).ToList();
             int levelTypeId = 0;

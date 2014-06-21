@@ -33,14 +33,16 @@ namespace Nada.Model
         Min = 2,
         Max = 3,
         Combine = 4,
-        None = 5
+        None = 5,
+        Average = 6,
+        Other = 99
     }
 
     public enum RedistrictingRule
     {
         DefaultBlank = 1,
         Duplicate = 2,
-        TBD = 49,
+        Other = 49,
         SplitByPercent = 0
     }
 
@@ -53,7 +55,7 @@ namespace Nada.Model
         Sum = 57,
         WorstCase = 58, // Max number of weighting
         BestCase = 51, // min number of weighting
-        LeaveBlank53 = 53,
+        Other = 53,
         LeaveBlank59 = 59,
         TBD = 99,
         Average = 50,

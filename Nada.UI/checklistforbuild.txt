@@ -1,5 +1,7 @@
 Checklist For Releases:
 
+1a. put in release mode
+1b. check the cpu build type
 1. App.config: Make sure not developer mode.
 2. Installation Folder URL: update installation url 
 3. Updates... > Make sure it doesn't auto update.

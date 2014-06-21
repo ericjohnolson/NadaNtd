@@ -21,11 +21,13 @@ namespace Nada.Tests
         {
             DataTable table = new DataTable();
             table.Columns.Add(new DataColumn("Indicator Id"));
+            //table.Columns.Add(new DataColumn("IsDisabled"));
             table.Columns.Add(new DataColumn("Type Id"));
             table.Columns.Add(new DataColumn("Type Name"));
             table.Columns.Add(new DataColumn("Form Name"));
             table.Columns.Add(new DataColumn("Indicator Name"));
             table.Columns.Add(new DataColumn("Indicator Type"));
+            table.Columns.Add(new DataColumn("Is Required"));
             table.Columns.Add(new DataColumn("Aggregation Rule"));
             table.Columns.Add(new DataColumn("Aggregation Rule ID"));
             table.Columns.Add(new DataColumn("Merge Rule"));
@@ -63,6 +65,50 @@ namespace Nada.Tests
                 ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
                 ws.Cells["A1"].LoadFromDataTable(table, true);
                 File.WriteAllBytes("C:\\AllIndicatorRules.xlsx", pck.GetAsByteArray());
+            }
+        }
+
+        [TestMethod]
+        public void CanCreateIndicatorOptionUpdateForm()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add(new DataColumn("Indicator Id"));
+            table.Columns.Add(new DataColumn("Type Id"));
+            table.Columns.Add(new DataColumn("Type Name"));
+            table.Columns.Add(new DataColumn("Form Name"));
+            table.Columns.Add(new DataColumn("Indicator Name"));
+            table.Columns.Add(new DataColumn("Indicator Option ID"));
+            table.Columns.Add(new DataColumn("Indicator Option"));
+            table.Columns.Add(new DataColumn("Weighted Rankings"));
+            ReportRepository repo = new ReportRepository();
+            List<ReportIndicator> indicators = repo.GetDiseaseDistroIndicators();
+            foreach (var cmpc in indicators)
+                foreach (var cat in cmpc.Children)
+                    AddOptions(table, cat.Children.Where(x => x.DataTypeId == (int)IndicatorDataType.Dropdown), cat.Name, IndicatorEntityType.DiseaseDistribution);
+            indicators = repo.GetSurveyIndicators();
+            foreach (var cmpc in indicators)
+                foreach (var cat in cmpc.Children)
+                    AddOptions(table, cat.Children.Where(x => x.DataTypeId == (int)IndicatorDataType.Dropdown), cat.Name, IndicatorEntityType.Survey);
+            indicators = repo.GetIntvIndicators();
+            foreach (var cmpc in indicators)
+                foreach (var cat in cmpc.Children)
+                    AddOptions(table, cat.Children.Where(x => x.DataTypeId == (int)IndicatorDataType.Dropdown), cat.Name, IndicatorEntityType.Intervention);
+            indicators = repo.GetProcessIndicators();
+            foreach (var cmpc in indicators)
+                foreach (var cat in cmpc.Children)
+                    AddOptions(table, cat.Children.Where(x => x.DataTypeId == (int)IndicatorDataType.Dropdown), cat.Name, IndicatorEntityType.Process);
+
+            ProcessRepository prepo = new ProcessRepository();
+            ProcessBase saes = prepo.Create(9);
+            foreach (var i in saes.ProcessType.Indicators)
+                indicators.Add(ReportRepository.CreateReportIndicator(saes.ProcessType.Id, i));
+            AddOptions(table, indicators.Where(x => x.DataTypeId == (int)IndicatorDataType.Dropdown), saes.ProcessType.TypeName, IndicatorEntityType.Process);
+
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
+                ws.Cells["A1"].LoadFromDataTable(table, true);
+                File.WriteAllBytes("C:\\IndicatorDropdownWeightedRules.xlsx", pck.GetAsByteArray());
             }
         }
 
@@ -162,43 +208,6 @@ namespace Nada.Tests
             }
         }
 
-        [TestMethod]
-        public void CanCreateIndicatorOptionUpdateForm()
-        {
-            DataTable table = new DataTable();
-            table.Columns.Add(new DataColumn("Indicator Id"));
-            table.Columns.Add(new DataColumn("Type Id"));
-            table.Columns.Add(new DataColumn("Type Name"));
-            table.Columns.Add(new DataColumn("Form Name"));
-            table.Columns.Add(new DataColumn("Indicator Name"));
-            table.Columns.Add(new DataColumn("Indicator Option ID"));
-            table.Columns.Add(new DataColumn("Indicator Option"));
-            table.Columns.Add(new DataColumn("Weighted Rankings"));
-            ReportRepository repo = new ReportRepository();
-            List<ReportIndicator> indicators = repo.GetDiseaseDistroIndicators();
-            foreach (var cmpc in indicators)
-                foreach (var cat in cmpc.Children)
-                    AddOptions(table, cat.Children.Where(x => x.DataTypeId == (int)IndicatorDataType.Dropdown), cat.Name, IndicatorEntityType.DiseaseDistribution);
-            indicators = repo.GetSurveyIndicators();
-            foreach (var cmpc in indicators)
-                foreach (var cat in cmpc.Children)
-                    AddOptions(table, cat.Children.Where(x => x.DataTypeId == (int)IndicatorDataType.Dropdown), cat.Name, IndicatorEntityType.Survey);
-            indicators = repo.GetIntvIndicators();
-            foreach (var cmpc in indicators)
-                foreach (var cat in cmpc.Children)
-                    AddOptions(table, cat.Children.Where(x => x.DataTypeId == (int)IndicatorDataType.Dropdown), cat.Name, IndicatorEntityType.Intervention);
-            indicators = repo.GetProcessIndicators();
-            foreach (var cmpc in indicators)
-                foreach (var cat in cmpc.Children)
-                    AddOptions(table, cat.Children.Where(x => x.DataTypeId == (int)IndicatorDataType.Dropdown), cat.Name, IndicatorEntityType.Process);
-
-            using (ExcelPackage pck = new ExcelPackage())
-            {
-                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
-                ws.Cells["A1"].LoadFromDataTable(table, true);
-                File.WriteAllBytes("C:\\IndicatorDropdownWeightedRules.xlsx", pck.GetAsByteArray());
-            }
-        }
 
         private void AddInds(DataTable table, List<ReportIndicator> indicators, string formName, IndicatorEntityType type)
         {
@@ -212,6 +221,11 @@ namespace Nada.Tests
                 dr["Indicator Name"] = ind.Name;
                 if (table.Columns.Contains("Indicator Type"))
                     dr["Indicator Type"] = ((IndicatorDataType)ind.DataTypeId).ToString();
+                if (table.Columns.Contains("IsDisabled"))
+                    dr["IsDisabled"] = ind.IsDisabled.ToString();
+                if (table.Columns.Contains("Is Required"))
+                    dr["Is Required"] = ind.IsRequired.ToString();
+                
                 if (table.Columns.Contains("Aggregation Rule"))
                 {
                     dr["Aggregation Rule"] = ((IndicatorAggType)ind.AggregationRuleId).ToString();

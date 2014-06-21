@@ -957,13 +957,13 @@
     <value>Objectif ultime d'intervention pour la chirurgie du trichiasis</value>
   </data>
   <data name="DDTraYearDeterminedThatAchievedCriteriaF" xml:space="preserve">
-    <value>Année d'achèvement des critères d'arrêt de la CP (niveau du district)</value>
+    <value>Date of planned impact assessment</value>
   </data>
   <data name="DDTraYearDiseaseDistributionInformationA" xml:space="preserve">
     <value>Année pour laquelle s’appliquent les informations  relatives  à la  distribution de la maladie</value>
   </data>
   <data name="DDTraYearOfPlannedTrachomaImpactSurvey" xml:space="preserve">
-    <value>Année  prévue pour l'étude d'impact du trachome</value>
+    <value>Year of planned trachoma impact survey</value>
   </data>
   <data name="DDTraYearPcStarted" xml:space="preserve">
     <value>Année de début de la CP</value>
@@ -1134,9 +1134,6 @@
     <value>Nombre de {0} endémiques nécessitant une CP</value>
   </data>
   <data name="EliminationLiving" xml:space="preserve">
-    <value>Nombre de personnes vivant dans des zones ayant atteint les critères d'arrêt du TMM</value>
-  </data>
-  <data name="EliminationLiving1" xml:space="preserve">
     <value>Number of persons living in areas that have achieved the criteria for stopping PC</value>
   </data>
   <data name="EliminationStoppedDistricts" xml:space="preserve">
@@ -1800,39 +1797,21 @@
     <value>Densité moyenne</value>
   </data>
   <data name="LFMapSurNumberOfCasesOfHydrocele" xml:space="preserve">
-    <value>Nombre de cas d'hydrocèles</value>
-  </data>
-  <data name="LFMapSurNumberOfCasesOfHydrocele1" xml:space="preserve">
     <value>Number of individuals positive for Hydrocele</value>
   </data>
   <data name="LFMapSurNumberOfCasesOfLymphoedema" xml:space="preserve">
-    <value>Nombre de cas de lymphœdèmes</value>
-  </data>
-  <data name="LFMapSurNumberOfCasesOfLymphoedema1" xml:space="preserve">
     <value>Number of individuals positive for Lymphoedema</value>
   </data>
   <data name="LFMapSurNumberOfFemalesExamined" xml:space="preserve">
-    <value>Nombre de femmes examinées</value>
-  </data>
-  <data name="LFMapSurNumberOfFemalesExamined1" xml:space="preserve">
     <value>Number of females examined for Mf/Ag</value>
   </data>
   <data name="LFMapSurNumberOfFemalesPositive" xml:space="preserve">
-    <value>Nombre de femmes positives</value>
-  </data>
-  <data name="LFMapSurNumberOfFemalesPositive1" xml:space="preserve">
     <value>Number of females positive for Mf/Ag</value>
   </data>
   <data name="LFMapSurNumberOfIndividualsExamined" xml:space="preserve">
-    <value>Nombre de personnes examinées</value>
-  </data>
-  <data name="LFMapSurNumberOfIndividualsExamined1" xml:space="preserve">
     <value>Number of individuals examined for Mf/Ag</value>
   </data>
   <data name="LFMapSurNumberOfIndividualsPositive" xml:space="preserve">
-    <value>Nombre de personnes positives</value>
-  </data>
-  <data name="LFMapSurNumberOfIndividualsPositive1" xml:space="preserve">
     <value>Number of individuals positive for Mf/Ag</value>
   </data>
   <data name="LFMapSurNumberOfIndividualsSampled" xml:space="preserve">
@@ -1842,15 +1821,9 @@
     <value>Nombre de personnes n'ayant pas répondu</value>
   </data>
   <data name="LFMapSurNumberOfMalesExamined" xml:space="preserve">
-    <value>Nombre d'hommes examinés</value>
-  </data>
-  <data name="LFMapSurNumberOfMalesExamined1" xml:space="preserve">
     <value>Number of males examined for Mf/Ag</value>
   </data>
   <data name="LFMapSurNumberOfMalesPositive" xml:space="preserve">
-    <value>Nombre d'hommes positifs</value>
-  </data>
-  <data name="LFMapSurNumberOfMalesPositive1" xml:space="preserve">
     <value>Number of males positive for Mf/Ag</value>
   </data>
   <data name="LFMapSurPopulationLivingInMappingSites" xml:space="preserve">
@@ -1944,15 +1917,9 @@
     <value>Densité moyenne</value>
   </data>
   <data name="LFSurNumberOfIndividualsExamined" xml:space="preserve">
-    <value>Nombre de personnes examinées</value>
-  </data>
-  <data name="LFSurNumberOfIndividualsExamined1" xml:space="preserve">
     <value>Number of individuals examined for Mf/Ag</value>
   </data>
   <data name="LFSurNumberOfIndividualsPositive" xml:space="preserve">
-    <value>Nombre de personnes positives</value>
-  </data>
-  <data name="LFSurNumberOfIndividualsPositive1" xml:space="preserve">
     <value>Number of individuals positive for Mf/Ag</value>
   </data>
   <data name="LFSurNumberOfIndividualsSampled" xml:space="preserve">
@@ -2103,30 +2070,18 @@
     <value>Interventions...</value>
   </data>
   <data name="MenuMergeDistrict" xml:space="preserve">
-    <value>Fusionner les unités administratives...</value>
-  </data>
-  <data name="MenuMergeDistrict1" xml:space="preserve">
     <value>Merge administrative units</value>
   </data>
   <data name="MenuNew" xml:space="preserve">
     <value>Nouveau...</value>
   </data>
   <data name="MenuNewAdminLevel" xml:space="preserve">
-    <value>Ajouter une nouvelle unité administrative...</value>
-  </data>
-  <data name="MenuNewAdminLevel1" xml:space="preserve">
     <value>Add administrative units</value>
   </data>
   <data name="MenuNewYearDemo" xml:space="preserve">
-    <value>Ajouter des données démographiques pour une nouvelle année...</value>
-  </data>
-  <data name="MenuNewYearDemo1" xml:space="preserve">
     <value>Add demography for a new year</value>
   </data>
   <data name="MenuNewYearDistro" xml:space="preserve">
-    <value>Ajouter la distribution de la maladie pour une nouvelle année...</value>
-  </data>
-  <data name="MenuNewYearDistro1" xml:space="preserve">
     <value>Add disease distribution for a new year</value>
   </data>
   <data name="MenuOpen" xml:space="preserve">
@@ -2145,15 +2100,9 @@
     <value>Paramètres</value>
   </data>
   <data name="MenuSplitCombineDistrict" xml:space="preserve">
-    <value>Fractionner et combiner les unités administratives...</value>
-  </data>
-  <data name="MenuSplitCombineDistrict1" xml:space="preserve">
     <value>Split/combine administrative units</value>
   </data>
   <data name="MenuSplitDistrict" xml:space="preserve">
-    <value>Fractionner une unité administrative...</value>
-  </data>
-  <data name="MenuSplitDistrict1" xml:space="preserve">
     <value>Split administrative units</value>
   </data>
   <data name="MenuSurveys" xml:space="preserve">
@@ -4332,9 +4281,6 @@
     <value>Fractionner et combiner les unités administratives</value>
   </data>
   <data name="SplitConfirmReview" xml:space="preserve">
-    <value>Toutes les autres données ont été réparties entre les nouvelles unités administratives. Veuillez cliquez sur « Suivant » pour examiner et modifier les données ou bien sur « Fini » si vous avez terminé.</value>
-  </data>
-  <data name="SplitConfirmReview1" xml:space="preserve">
     <value>All other data has been distributed between the new administrative units. Please click "Next" to review and make changes.</value>
   </data>
   <data name="SplitConfirmReviewTitle" xml:space="preserve">
@@ -5672,12 +5618,6 @@
   <data name="DDTraYearAchievedUiga" xml:space="preserve">
     <value>Year achieved UIG-A</value>
   </data>
-  <data name="DDTraYearDeterminedThatAchievedCriteriaF1" xml:space="preserve">
-    <value>Date of planned impact assessment</value>
-  </data>
-  <data name="DDTraYearOfPlannedTrachomaImpactSurvey1" xml:space="preserve">
-    <value>Year of planned trachoma impact survey</value>
-  </data>
   <data name="PcIntvTraDrugPos" xml:space="preserve">
     <value>Zithromax POS</value>
   </data>
@@ -6078,9 +6018,11 @@
     <value>Country_Disease Workbook_v3.2.1_French.xlsx</value>
   </data>
   <data name="AboutDisclaimer" xml:space="preserve">
-    <value>The template for the Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices, the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases. 
+    <value>The Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices (AFR, SEAR, WPR), the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.
 
-The National Database Template was developed by Iota Ink:  Jennifer Einberg, Project Manager; Eric Olson, Developer; Jennifer Fox, Graphic Designer; Nick Cherf, QA Specialist; Michelle Fellows, Technical Writer.</value>
+The Integrated NTD Database was developed by Iota Ink:
+Jennifer Einberg, Project Manager; Eric Olson, Developer; 
+Jennifer Fox, Graphic Designer; Nick Cherf, QA Specialist; Michelle Fellows, Technical Writer</value>
   </data>
   <data name="AdminUnitParent" xml:space="preserve">
     <value>Administrative unit above level you are adding.</value>

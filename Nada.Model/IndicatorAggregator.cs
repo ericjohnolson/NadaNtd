@@ -94,6 +94,8 @@ namespace Nada.Model
                 result.Value = existingValue.Value;
             else if (existingValue == null || string.IsNullOrEmpty(existingValue.Value))
                 result.Value = ind.Value;
+            else if (ind.AggType == (int)IndicatorAggType.Average) // Need to fix average rule? How the fuck are we going to do that? wtf.
+                result.Value = "";
             else if (ind.AggType == (int)IndicatorAggType.Combine && (ind.DataType == (int)IndicatorDataType.LargeText || ind.DataType == (int)IndicatorDataType.Text))
                 result.Value = AggregateString(ind, existingValue);
             else if (ind.AggType == (int)IndicatorAggType.Combine && (ind.DataType == (int)IndicatorDataType.Multiselect || ind.DataType == (int)IndicatorDataType.DiseaseMultiselect ||
