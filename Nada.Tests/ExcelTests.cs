@@ -79,7 +79,7 @@ namespace Nada.Tests
             table.Columns.Add(new DataColumn("Indicator Name"));
             table.Columns.Add(new DataColumn("Indicator Option ID"));
             table.Columns.Add(new DataColumn("Indicator Option"));
-            table.Columns.Add(new DataColumn("Weighted Rankings"));
+            table.Columns.Add(new DataColumn("Weighted Ranking"));
             ReportRepository repo = new ReportRepository();
             List<ReportIndicator> indicators = repo.GetDiseaseDistroIndicators();
             foreach (var cmpc in indicators)
@@ -259,6 +259,7 @@ namespace Nada.Tests
                     dr["Indicator Name"] = ind.Name;
                     dr["Indicator Option ID"] = val.Id;
                     dr["Indicator Option"] = val.DisplayName;
+                    dr["Weighted Ranking"] = val.WeightedValue;
                     table.Rows.Add(dr);
                 }
             }
