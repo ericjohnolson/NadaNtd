@@ -1,4 +1,4 @@
-Checklist For Releases:
+Checklist For Releases: (NEED TO WRITE UP STEPS BETTER FOR WEB VS CD VERSION).
 
 1a. put in release mode
 1b. check the cpu build type
