@@ -38,6 +38,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Translations.id-ID.Designer.cs">
+      <DependentUpon>Translations.id-ID.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="NewKeys.Designer.cs">
       <DependentUpon>NewKeys.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -72,6 +77,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Translations.id-ID.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.id-ID.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewKeys.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NewKeys.Designer.cs</LastGenOutput>

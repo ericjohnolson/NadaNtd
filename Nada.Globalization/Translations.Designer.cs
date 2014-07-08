@@ -71,10 +71,9 @@ namespace Nada.Globalization {
         
         /// <summary>
         ///   Looks up a localized string similar to The Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices (AFR, SEAR, WPR), the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.
-        ///
         ///The Integrated NTD Database was developed by Iota Ink:
         ///Jennifer Einberg, Project Manager; Eric Olson, Developer; 
-        ///Jennifer Fox, Graphic Designer;  [rest of string was truncated]&quot;;.
+        ///Jennifer Fox, Graphic Designer; Ni [rest of string was truncated]&quot;;.
         /// </summary>
         public static string AboutDisclaimer {
             get {
@@ -731,7 +730,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of participants to training sessions.
+        ///   Looks up a localized string similar to Number of people trained.
         /// </summary>
         public static string BUTrainNumberOfParticipantsToTrainingSes {
             get {
@@ -749,7 +748,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of training sessions hold.
+        ///   Looks up a localized string similar to Number of training sessions held.
         /// </summary>
         public static string BUTrainNumberOfTrainingSessionsHold {
             get {
@@ -1974,7 +1973,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to High-risk adults at-risk.
+        ///   Looks up a localized string similar to Adults at-risk.
         /// </summary>
         public static string DDLFHighRiskAdultsAtRisk {
             get {
@@ -2073,7 +2072,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year determined that achieved criteria for stopping PC (district-level).
+        ///   Looks up a localized string similar to Year determined that achieved criteria for stopping PC.
         /// </summary>
         public static string DDLFYearDeterminedThatAchievedCriteriaFo {
             get {
@@ -2208,7 +2207,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year determined that achieved criteria for stopping PC (district-level).
+        ///   Looks up a localized string similar to Year determined that achieved criteria for stopping PC.
         /// </summary>
         public static string DDOnchoYearDeterminedThatAchievedCriteri {
             get {
@@ -2334,7 +2333,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year determined that achieved criteria for stopping PC (district-level).
+        ///   Looks up a localized string similar to Year determined that achieved criteria for stopping PC.
         /// </summary>
         public static string DDSchistoYearDeterminedThatAchievedCrite {
             get {
@@ -2478,7 +2477,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year determined that achieved criteria for stopping PC (district-level).
+        ///   Looks up a localized string similar to Year determined that achieved criteria for stopping PC.
         /// </summary>
         public static string DDSTHYearDeterminedThatAchievedCriteriaF {
             get {
@@ -3810,7 +3809,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of participants to training sessions.
+        ///   Looks up a localized string similar to Number of people trained.
         /// </summary>
         public static string GWTrainNumberOfParticipantsToTrainingSessions {
             get {
@@ -3828,7 +3827,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of training sessions hold.
+        ///   Looks up a localized string similar to Number of training sessions held.
         /// </summary>
         public static string GWTrainNumberOfTrainingSessionsHold {
             get {
@@ -3900,7 +3899,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of participants to HAT training sessions.
+        ///   Looks up a localized string similar to Number of people trained.
         /// </summary>
         public static string HATTrainNumberOfParticipantsToHatTrainin {
             get {
@@ -3918,7 +3917,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of training sessions for HAT hold.
+        ///   Looks up a localized string similar to Number of training sessions for HAT held.
         /// </summary>
         public static string HATTrainNumberOfTrainingSessionsForHatHo {
             get {
@@ -3968,6 +3967,15 @@ namespace Nada.Globalization {
         public static string Help {
             get {
                 return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /View/Help/EN/help.chm.
+        /// </summary>
+        public static string HelpFile {
+            get {
+                return ResourceManager.GetString("HelpFile", resourceCulture);
             }
         }
         
@@ -4827,7 +4835,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of participants to training sessions.
+        ///   Looks up a localized string similar to Number of people trained.
         /// </summary>
         public static string LeishTrainNumberOfParticipantsToTraining {
             get {
@@ -4845,7 +4853,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of training sessions hold.
+        ///   Looks up a localized string similar to Number of training sessions held.
         /// </summary>
         public static string LeishTrainNumberOfTrainingSessionsHold {
             get {
@@ -4917,7 +4925,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of participants to training sessions.
+        ///   Looks up a localized string similar to Number of people trained.
         /// </summary>
         public static string LeprosyTrainNumberOfParticipantsToTraini {
             get {
@@ -4935,7 +4943,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of training sessions hold.
+        ///   Looks up a localized string similar to Number of training sessions held.
         /// </summary>
         public static string LeprosyTrainNumberOfTrainingSessionsHold {
             get {
@@ -5151,7 +5159,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Endemity.
+        ///   Looks up a localized string similar to Endemicity.
         /// </summary>
         public static string LFMapSurEndemity {
             get {
@@ -9561,7 +9569,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # individuals targeted.
+        ///   Looks up a localized string similar to # individuals targeted for training.
         /// </summary>
         public static string PCTrainNumIndividualsTargeted {
             get {
@@ -11055,7 +11063,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string RtiLfDd0 {
             get {
@@ -11199,7 +11207,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string RtiSch0 {
             get {
@@ -11550,7 +11558,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string RtiTra0 {
             get {
@@ -12657,7 +12665,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Endemity.
+        ///   Looks up a localized string similar to Endemicity.
         /// </summary>
         public static string SCHMapSurEndemity {
             get {
@@ -12756,7 +12764,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Prevalence of any haemuaturia or parasite eggs in urine.
+        ///   Looks up a localized string similar to Prevalence of any haemuaturia in urine.
         /// </summary>
         public static string SCHMapSurPrevalenceOfAnyHaemuaturiaOrPar {
             get {
@@ -12774,7 +12782,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of heavy intensity intestinal schistosomal infections.
+        ///   Looks up a localized string similar to Number of heavy intensity intestinal schistosomal infections.
         /// </summary>
         public static string SCHMapSurProportionOfHeavyIntensityIntes {
             get {
@@ -12783,7 +12791,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of heavy intensity urinary schistosomal infections.
+        ///   Looks up a localized string similar to Number of heavy intensity urinary schistosomal infections.
         /// </summary>
         public static string SCHMapSurProportionOfHeavyIntensityUrina {
             get {
@@ -12792,7 +12800,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of moderate intensity intestinal schistosomal infections.
+        ///   Looks up a localized string similar to Number of moderate intensity intestinal schistosomal infections.
         /// </summary>
         public static string SCHMapSurProportionOfModerateIntensityIn {
             get {
@@ -12801,7 +12809,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of moderate intensity urinary schistosomal infections.
+        ///   Looks up a localized string similar to Number of moderate intensity urinary schistosomal infections.
         /// </summary>
         public static string SCHMapSurProportionOfModerateIntensityUr {
             get {
@@ -13008,7 +13016,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Prevalence of any haemuaturia or parasite eggs in urine.
+        ///   Looks up a localized string similar to Prevalence of any haemuaturia in urine.
         /// </summary>
         public static string SCHSurPrevalenceOfAnyHaemuaturiaOrParasi {
             get {
@@ -13026,7 +13034,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of heavy intensity intestinal schistosomal infections.
+        ///   Looks up a localized string similar to Number of heavy intensity intestinal schistosomal infections.
         /// </summary>
         public static string SCHSurProportionOfHeavyIntensityIntestin {
             get {
@@ -13035,7 +13043,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of heavy intensity urinary schistosomal infections.
+        ///   Looks up a localized string similar to Number of heavy intensity urinary schistosomal infections.
         /// </summary>
         public static string SCHSurProportionOfHeavyIntensityUrinaryS {
             get {
@@ -13044,7 +13052,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of moderate intensity intestinal schistosomal infections.
+        ///   Looks up a localized string similar to Number of moderate intensity intestinal schistosomal infections.
         /// </summary>
         public static string SCHSurProportionOfModerateIntensityIntes {
             get {
@@ -13053,7 +13061,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of moderate intensity urinary schistosomal infections.
+        ///   Looks up a localized string similar to Number of moderate intensity urinary schistosomal infections.
         /// </summary>
         public static string SCHSurProportionOfModerateIntensityUrina {
             get {
@@ -14214,7 +14222,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Endemity.
+        ///   Looks up a localized string similar to Endemicity.
         /// </summary>
         public static string STHMapSurSurEndemity {
             get {
@@ -14394,7 +14402,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of heavy intensity of infection - Ascaris.
+        ///   Looks up a localized string similar to Number of heavy intensity of infection - Ascaris.
         /// </summary>
         public static string STHMapSurSurProportionOfHeavyIntensityOfInAS {
             get {
@@ -14403,7 +14411,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of heavy intensity of infection - Trichuris.
+        ///   Looks up a localized string similar to Number of heavy intensity of infection - Trichuris.
         /// </summary>
         public static string STHMapSurSurProportionOfHeavyIntensityOfInfecti {
             get {
@@ -14412,7 +14420,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of heavy intensity of infection- Hookworm.
+        ///   Looks up a localized string similar to Number of heavy intensity of infection- Hookworm.
         /// </summary>
         public static string STHMapSurSurProportionOfHeavyIntensityOfInHook {
             get {
@@ -14421,7 +14429,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of moderate intensity of infection - Ascaris.
+        ///   Looks up a localized string similar to Number of moderate intensity of infection - Ascaris.
         /// </summary>
         public static string STHMapSurSurProportionOfModerateIntensityOfInAS {
             get {
@@ -14430,7 +14438,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of moderate intensity of infection - Trichuris.
+        ///   Looks up a localized string similar to Number of moderate intensity of infection - Trichuris.
         /// </summary>
         public static string STHMapSurSurProportionOfModerateIntensityOfInfe {
             get {
@@ -14439,7 +14447,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of moderate intensity of infection- Hookworm.
+        ///   Looks up a localized string similar to Number of moderate intensity of infection- Hookworm.
         /// </summary>
         public static string STHMapSurSurProportionOfModerateIntensityOfInHook {
             get {
@@ -14700,7 +14708,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of heavy intensity of infection- Hookworm.
+        ///   Looks up a localized string similar to Number of heavy intensity of infection- Hookworm.
         /// </summary>
         public static string STHSurProportionOfHeavyIntensityHook {
             get {
@@ -14709,7 +14717,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of heavy intensity of infection - Ascaris.
+        ///   Looks up a localized string similar to Number of heavy intensity of infection - Ascaris.
         /// </summary>
         public static string STHSurProportionOfHeavyIntensityOfAsc {
             get {
@@ -14718,7 +14726,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of heavy intensity of infection - Trichuris.
+        ///   Looks up a localized string similar to Number of heavy intensity of infection - Trichuris.
         /// </summary>
         public static string STHSurProportionOfHeavyIntensityOfTri {
             get {
@@ -14727,7 +14735,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of moderate intensity of infection - Ascaris.
+        ///   Looks up a localized string similar to Number of moderate intensity of infection - Ascaris.
         /// </summary>
         public static string STHSurProportionOfModerateIntensityAsc {
             get {
@@ -14736,7 +14744,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of moderate intensity of infection- Hookworm.
+        ///   Looks up a localized string similar to Number of moderate intensity of infection- Hookworm.
         /// </summary>
         public static string STHSurProportionOfModerateIntensityHook {
             get {
@@ -14745,7 +14753,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proportion of moderate intensity of infection - Trichuris.
+        ///   Looks up a localized string similar to Number of moderate intensity of infection - Trichuris.
         /// </summary>
         public static string STHSurProportionOfModerateIntensityTri {
             get {
@@ -15141,7 +15149,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actual non-response rate - Absent %.
+        ///   Looks up a localized string similar to Actual non-response rate - Absent.
         /// </summary>
         public static string TASActualNonResponseRateAbsent {
             get {
@@ -15150,7 +15158,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actual non-response rate - inability to perform diagnostic test %.
+        ///   Looks up a localized string similar to Actual non-response rate - inability to perform diagnostic test.
         /// </summary>
         public static string TASActualNonResponseRateInabilityToPerfo {
             get {
@@ -15159,7 +15167,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actual non-response rate - Refusal or no consent %.
+        ///   Looks up a localized string similar to Actual non-response rate - Refusal or no consent .
         /// </summary>
         public static string TASActualNonResponseRateRefusalOrNoConse {
             get {
@@ -16050,7 +16058,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # females involved in distribution.
+        ///   Looks up a localized string similar to # females involved in drug distribution.
         /// </summary>
         public static string TrainingNumFemales {
             get {
@@ -16059,7 +16067,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # males involved in distribution.
+        ///   Looks up a localized string similar to # males involved in drug distribution.
         /// </summary>
         public static string TrainingNumMales {
             get {
@@ -17292,6 +17300,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /View/Help/TrainingPPT_061614_en.pptx.
+        /// </summary>
+        public static string TutorialFile {
+            get {
+                return ResourceManager.GetString("TutorialFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
         public static string Type {
@@ -17868,7 +17885,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of participants to training sessions.
+        ///   Looks up a localized string similar to Number of people trained.
         /// </summary>
         public static string YawsTrainNumberOfParticipantsToTrainingS {
             get {
@@ -17886,7 +17903,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of training sessions hold.
+        ///   Looks up a localized string similar to Number of training sessions held.
         /// </summary>
         public static string YawsTrainNumberOfTrainingSessionsHold {
             get {

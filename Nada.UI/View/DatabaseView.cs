@@ -208,7 +208,7 @@ namespace Nada.UI.View
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
+            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + Translations.HelpFile);
             //HelpView help = new HelpView();
             //help.Show();
         }

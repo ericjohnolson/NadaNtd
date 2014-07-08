@@ -85,11 +85,5 @@ namespace Nada.UI.View
             DoLogin(tbUid.Text, tbPwd.Text);
         }
 
-        private void btnHelp_Click(object sender, EventArgs e)
-        {
-            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
-            //HelpView help = new HelpView();
-            //help.Show();
-        }
     }
 }

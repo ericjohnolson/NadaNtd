@@ -214,14 +214,14 @@ namespace Nada.UI
 
         private void menuViewHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["HelpFile"]);
+            Help.ShowHelp(this, "file:///" + Directory.GetCurrentDirectory() + Translations.HelpFile);
             //HelpView help = new HelpView();
             //help.Show();
         }
 
         private void menuViewTutorialToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string file = "file:///" + Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["TutorialFile"];
+            string file = "file:///" + Directory.GetCurrentDirectory() + Translations.TutorialFile;
             System.Diagnostics.Process.Start(file);
         }
 

@@ -120,6 +120,12 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AboutDisclaimer" xml:space="preserve">
+    <value>The Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices (AFR, SEAR, WPR), the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.
+The Integrated NTD Database was developed by Iota Ink:
+Jennifer Einberg, Project Manager; Eric Olson, Developer; 
+Jennifer Fox, Graphic Designer; Nick Cherf, QA Specialist; Michelle Fellows, Technical Writer</value>
+  </data>
   <data name="AboutMenu" xml:space="preserve">
     <value>About Integrated NTD Database</value>
   </data>
@@ -177,6 +183,9 @@
   <data name="AdministrativeLevels" xml:space="preserve">
     <value>Administrative levels</value>
   </data>
+  <data name="AdministrativeUnits" xml:space="preserve">
+    <value>Administrative units</value>
+  </data>
   <data name="AdminLevel" xml:space="preserve">
     <value>Administrative unit</value>
   </data>
@@ -197,6 +206,24 @@
   </data>
   <data name="AdminLevelTypeEditAdd" xml:space="preserve">
     <value>Edit or Add Administrative Levels</value>
+  </data>
+  <data name="AdminUnitParent" xml:space="preserve">
+    <value>Administrative unit above level you are adding.</value>
+  </data>
+  <data name="AdminUnitPeriRural" xml:space="preserve">
+    <value>Peri-rural</value>
+  </data>
+  <data name="AdminUnitRural" xml:space="preserve">
+    <value>Rural</value>
+  </data>
+  <data name="AdminUnits" xml:space="preserve">
+    <value>Administrative units</value>
+  </data>
+  <data name="AdminUnitsSurveyed" xml:space="preserve">
+    <value>Administrative units surveyed</value>
+  </data>
+  <data name="AdminUnitUrban" xml:space="preserve">
+    <value>Urban</value>
   </data>
   <data name="AdultsAtEnd" xml:space="preserve">
     <value>Adults in end of year prevalence</value>
@@ -243,8 +270,17 @@
   <data name="Anopheles" xml:space="preserve">
     <value>Anopheles</value>
   </data>
+  <data name="ApocDateReportGenerated" xml:space="preserve">
+    <value>Date report generated</value>
+  </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Integrated NTD Database</value>
+  </data>
+  <data name="ApplicationUpdate" xml:space="preserve">
+    <value>Application update</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
   </data>
   <data name="ApplyCountryGrowthRate" xml:space="preserve">
     <value>Apply country growth rate to all administrative levels</value>
@@ -307,13 +343,13 @@
     <value>Buruli ulcer training</value>
   </data>
   <data name="BUTrainNumberOfParticipantsToTrainingSes" xml:space="preserve">
-    <value>Number of participants to training sessions</value>
+    <value>Number of people trained</value>
   </data>
   <data name="BUTrainNumberOfSupervisionVisitsSchedule" xml:space="preserve">
     <value>Number of supervision visits scheduled per year</value>
   </data>
   <data name="BUTrainNumberOfTrainingSessionsHold" xml:space="preserve">
-    <value>Number of training sessions hold</value>
+    <value>Number of training sessions held</value>
   </data>
   <data name="BUTrainPercentageOfHealthFacilitiesHavin" xml:space="preserve">
     <value>Percentage of health facilities having at least one trained staff for Buruli ulcer control programme</value>
@@ -335,6 +371,9 @@
   </data>
   <data name="CalculationError" xml:space="preserve">
     <value>Calculation error occured</value>
+  </data>
+  <data name="CalendarYear" xml:space="preserve">
+    <value>Calendar year</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -369,6 +408,15 @@
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password &gt;</value>
   </data>
+  <data name="Chart" xml:space="preserve">
+    <value>Chart</value>
+  </data>
+  <data name="ChartBar" xml:space="preserve">
+    <value>Bar</value>
+  </data>
+  <data name="ChartLine" xml:space="preserve">
+    <value>Line</value>
+  </data>
   <data name="Checkbox" xml:space="preserve">
     <value>Check box</value>
   </data>
@@ -393,6 +441,9 @@
   <data name="ChooseYourLanguage" xml:space="preserve">
     <value>Choose your language</value>
   </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="ClofazAvail" xml:space="preserve">
     <value>Loose clofazimin availability</value>
   </data>
@@ -404,6 +455,12 @@
   </data>
   <data name="CmAnySupplyFunds" xml:space="preserve">
     <value>Is there any provision of funds to cover the costs of medicine storage, handling and supply from National level to District level? </value>
+  </data>
+  <data name="CmBudget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="CmBudgetProportion" xml:space="preserve">
+    <value>Proportion of funds allocated to NTDs in the National Health Sector Budget (%)</value>
   </data>
   <data name="CmBuget" xml:space="preserve">
     <value>What is the overall budget of the NTD Master Plan?</value>
@@ -595,6 +652,12 @@ Fixed / Mobile</value>
   <data name="CountrySettings" xml:space="preserve">
     <value>Country Settings</value>
   </data>
+  <data name="CountryStatistics" xml:space="preserve">
+    <value>Country Statistics</value>
+  </data>
+  <data name="CreateCopyOfErrorLogFile" xml:space="preserve">
+    <value>Create copy of error log file.</value>
+  </data>
   <data name="CreateImportFile" xml:space="preserve">
     <value>Create Import File</value>
   </data>
@@ -640,14 +703,47 @@ Fixed / Mobile</value>
   <data name="CustomReportBuilder" xml:space="preserve">
     <value>Custom Report Builder</value>
   </data>
+  <data name="CustomYear" xml:space="preserve">
+    <value>Custom year</value>
+  </data>
   <data name="DashboardPlaceholder" xml:space="preserve">
     <value>Dashboard/Getting Stared Placeholder</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="DatabaseScriptBackup" xml:space="preserve">
+    <value>Please revert to the most recent backup of your database: </value>
+  </data>
+  <data name="DatabaseScriptException" xml:space="preserve">
+    <value>Database script exception</value>
+  </data>
+  <data name="DatabaseScriptFailed" xml:space="preserve">
+    <value>Update failed.</value>
+  </data>
+  <data name="DatabaseScripts" xml:space="preserve">
+    <value>You must update your database with the latest scripts before continuing.  Please click "Next" to start.</value>
+  </data>
+  <data name="DatabaseScriptsExecuting" xml:space="preserve">
+    <value>Executing database scripts...</value>
+  </data>
+  <data name="DatabaseScriptSuccess" xml:space="preserve">
+    <value>Database script successfully executed.</value>
+  </data>
+  <data name="DatabaseUpdate" xml:space="preserve">
+    <value>Database update</value>
   </data>
   <data name="DataType" xml:space="preserve">
     <value>Data type</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Date range</value>
+  </data>
+  <data name="DateReported" xml:space="preserve">
+    <value>Start date data apply to</value>
   </data>
   <data name="days14" xml:space="preserve">
     <value>3-14 days</value>
@@ -662,7 +758,7 @@ Fixed / Mobile</value>
     <value>Disease Distribution: PC interventions</value>
   </data>
   <data name="DDLFHighRiskAdultsAtRisk" xml:space="preserve">
-    <value>High-risk adults at-risk</value>
+    <value>Adults at-risk</value>
   </data>
   <data name="DDLFMonthOfPlannedTas" xml:space="preserve">
     <value>Month of planned TAS</value>
@@ -695,7 +791,7 @@ Fixed / Mobile</value>
     <value>Total population</value>
   </data>
   <data name="DDLFYearDeterminedThatAchievedCriteriaFo" xml:space="preserve">
-    <value>Year determined that achieved criteria for stopping PC (district-level)</value>
+    <value>Year determined that achieved criteria for stopping PC</value>
   </data>
   <data name="DDLFYearDiseaseDistributionInformationAp" xml:space="preserve">
     <value>Year disease distribution information applies to</value>
@@ -740,7 +836,7 @@ Fixed / Mobile</value>
     <value>Total population</value>
   </data>
   <data name="DDOnchoYearDeterminedThatAchievedCriteri" xml:space="preserve">
-    <value>Year determined that achieved criteria for stopping PC (district-level)</value>
+    <value>Year determined that achieved criteria for stopping PC</value>
   </data>
   <data name="DDOnchoYearDiseaseDistributionInformatio" xml:space="preserve">
     <value>Year disease distribution information applies to</value>
@@ -782,7 +878,7 @@ Fixed / Mobile</value>
     <value>Total population</value>
   </data>
   <data name="DDSchistoYearDeterminedThatAchievedCrite" xml:space="preserve">
-    <value>Year determined that achieved criteria for stopping PC (district-level)</value>
+    <value>Year determined that achieved criteria for stopping PC</value>
   </data>
   <data name="DDSchistoYearDiseaseDistributionInformat" xml:space="preserve">
     <value>Year disease distribution information applies to</value>
@@ -830,7 +926,7 @@ Fixed / Mobile</value>
     <value>Total population</value>
   </data>
   <data name="DDSTHYearDeterminedThatAchievedCriteriaF" xml:space="preserve">
-    <value>Year determined that achieved criteria for stopping PC (district-level)</value>
+    <value>Year determined that achieved criteria for stopping PC</value>
   </data>
   <data name="DDSTHYearDiseaseDistributionInformationA" xml:space="preserve">
     <value>Year disease distribution information applies to</value>
@@ -838,14 +934,29 @@ Fixed / Mobile</value>
   <data name="DDSTHYearPcStarted" xml:space="preserve">
     <value>Year PC started</value>
   </data>
+  <data name="DDTraAchievedCriteria" xml:space="preserve">
+    <value>Achieved criteria for stopping district-level MDA for trachoma?</value>
+  </data>
   <data name="DDTraAdultPopulation" xml:space="preserve">
     <value>Adult population</value>
+  </data>
+  <data name="DDTraAllTf" xml:space="preserve">
+    <value>Is all or part of the area under surveillance for TF?</value>
+  </data>
+  <data name="DDTraAllTt" xml:space="preserve">
+    <value>Is all or part of the area under surveillance for TT?</value>
   </data>
   <data name="DDTraDiseaseDistributionPcInterventions" xml:space="preserve">
     <value>Disease Distribution: PC interventions</value>
   </data>
   <data name="DDTraDiseaseDistributionTrichiasisSurge" xml:space="preserve">
     <value>Disease Distribution: Trichiasis Surgery</value>
+  </data>
+  <data name="DDTraLevelCurrent" xml:space="preserve">
+    <value>Current level of implementation (district or sub-district)</value>
+  </data>
+  <data name="DDTraLevelRecWho" xml:space="preserve">
+    <value>Level of implementation recommended based on WHO guidelines (district or sub-district)</value>
   </data>
   <data name="DDTraMonthOfPlannedTrachomaImpactSurvey" xml:space="preserve">
     <value>Month of planned trachoma impact survey</value>
@@ -871,6 +982,9 @@ Fixed / Mobile</value>
   <data name="DDTraTotalPopulation" xml:space="preserve">
     <value>Total population</value>
   </data>
+  <data name="DDTraTrichiasisBacklog" xml:space="preserve">
+    <value>Trichiasis backlog</value>
+  </data>
   <data name="DDTraTrichiasisSurgeryBacklog" xml:space="preserve">
     <value>Trichiasis surgery backlog</value>
   </data>
@@ -879,6 +993,9 @@ Fixed / Mobile</value>
   </data>
   <data name="DDTraUltimateInterventionGoalForTrichias" xml:space="preserve">
     <value>Ultimate intervention goal for trichiasis surgery</value>
+  </data>
+  <data name="DDTraYearAchievedUiga" xml:space="preserve">
+    <value>Year achieved UIG-A</value>
   </data>
   <data name="DDTraYearDeterminedThatAchievedCriteriaF" xml:space="preserve">
     <value>Year achieved criteria for stopping PC at the district level</value>
@@ -1051,6 +1168,18 @@ Fixed / Mobile</value>
   <data name="EligibleMalesTargeted" xml:space="preserve">
     <value># Eligible males targeted</value>
   </data>
+  <data name="EliminationAtRisk" xml:space="preserve">
+    <value>Number of persons at-risk</value>
+  </data>
+  <data name="EliminationEndemicDistricts" xml:space="preserve">
+    <value>Number of endemic {0} requiring PC</value>
+  </data>
+  <data name="EliminationLiving" xml:space="preserve">
+    <value>Number of persons living in areas that have achieved the criteria for stopping PC</value>
+  </data>
+  <data name="EliminationStoppedDistricts" xml:space="preserve">
+    <value>Number of {0} that have achieved the criteria for stopping PC</value>
+  </data>
   <data name="End0" xml:space="preserve">
     <value>0 - Not endemic above treatment threshold</value>
   </data>
@@ -1120,8 +1249,41 @@ Fixed / Mobile</value>
   <data name="ExcelFiles" xml:space="preserve">
     <value>Excel files</value>
   </data>
+  <data name="ExitWarning" xml:space="preserve">
+    <value>Are you sure you want to exit the Integrated NTD Database?</value>
+  </data>
+  <data name="ExitWarningTitle" xml:space="preserve">
+    <value>Exiting Application</value>
+  </data>
+  <data name="ExportApocReport" xml:space="preserve">
+    <value>APOC Report</value>
+  </data>
+  <data name="ExportImage" xml:space="preserve">
+    <value>Export image</value>
+  </data>
   <data name="ExportingData" xml:space="preserve">
     <value>Exporting data</value>
+  </data>
+  <data name="Exports" xml:space="preserve">
+    <value>Exports</value>
+  </data>
+  <data name="ExportsPcEpiDataForm" xml:space="preserve">
+    <value>PC epidemiologial data reporting form</value>
+  </data>
+  <data name="ExportTasCost" xml:space="preserve">
+    <value>Budgeted cost</value>
+  </data>
+  <data name="ExportTasDays" xml:space="preserve">
+    <value>Estimated number of survey days required</value>
+  </data>
+  <data name="ExportTasIctTests" xml:space="preserve">
+    <value>Number of ICT or Brugia Rapid tests required</value>
+  </data>
+  <data name="ExportTasSources" xml:space="preserve">
+    <value>Source(s) of funding</value>
+  </data>
+  <data name="ExportTasStartYear" xml:space="preserve">
+    <value>Planned starting month and year</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
     <value>Export to excel</value>
@@ -1208,13 +1370,13 @@ Fixed / Mobile</value>
     <value>Guinea worm training</value>
   </data>
   <data name="GWTrainNumberOfParticipantsToTrainingSessions" xml:space="preserve">
-    <value>Number of participants to training sessions</value>
+    <value>Number of people trained</value>
   </data>
   <data name="GWTrainNumberOfSupervisionVisitsScheduledPerYea" xml:space="preserve">
     <value>Number of supervision visits scheduled per year</value>
   </data>
   <data name="GWTrainNumberOfTrainingSessionsHold" xml:space="preserve">
-    <value>Number of training sessions hold</value>
+    <value>Number of training sessions held</value>
   </data>
   <data name="GWTrainPercentageOfHealthFacilitiesHavingAtLeas" xml:space="preserve">
     <value>Percentage of health facilities having at least one trained staff for Guinea Worm elimination programme</value>
@@ -1238,13 +1400,13 @@ Fixed / Mobile</value>
     <value>HAT training</value>
   </data>
   <data name="HATTrainNumberOfParticipantsToHatTrainin" xml:space="preserve">
-    <value>Number of participants to HAT training sessions</value>
+    <value>Number of people trained</value>
   </data>
   <data name="HATTrainNumberOfSupervisionVisitsSchedul" xml:space="preserve">
     <value>Number of supervision visits scheduled per year</value>
   </data>
   <data name="HATTrainNumberOfTrainingSessionsForHatHo" xml:space="preserve">
-    <value>Number of training sessions for HAT hold</value>
+    <value>Number of training sessions for HAT held</value>
   </data>
   <data name="HATTrainPercentageOfHealthFacilitiesHavi" xml:space="preserve">
     <value>Percentage of health facilities having at least one trained staff for leprosy elimination programme</value>
@@ -1260,6 +1422,9 @@ Fixed / Mobile</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
+  </data>
+  <data name="HelpFile" xml:space="preserve">
+    <value>/View/Help/EN/help.chm</value>
   </data>
   <data name="High" xml:space="preserve">
     <value>High</value>
@@ -1297,6 +1462,9 @@ Fixed / Mobile</value>
   <data name="ImportData" xml:space="preserve">
     <value>Import new data</value>
   </data>
+  <data name="ImportDemo" xml:space="preserve">
+    <value>Demography import</value>
+  </data>
   <data name="ImportErrorHeader" xml:space="preserve">
     <value>Please fix the errors before continuing the import:</value>
   </data>
@@ -1312,17 +1480,26 @@ Fixed / Mobile</value>
   <data name="ImportLists" xml:space="preserve">
     <value>Please verify that all related lists have the necessary values</value>
   </data>
+  <data name="ImportListsSelect" xml:space="preserve">
+    <value>Please select the values necessary for this import</value>
+  </data>
   <data name="ImportNoDataError" xml:space="preserve">
     <value>The file was an incorrect format or had no data</value>
   </data>
   <data name="ImportRecordsDontMatch" xml:space="preserve">
     <value>Import records don't match expected count.  Expected {0}, actual {1}.</value>
   </data>
+  <data name="ImportSelectionOption" xml:space="preserve">
+    <value> | Selection </value>
+  </data>
   <data name="ImportSuccess" xml:space="preserve">
     <value>Successfully added {0} new records!</value>
   </data>
   <data name="ImportSumUp" xml:space="preserve">
     <value>Import and sum up to upper levels</value>
+  </data>
+  <data name="ImportSurveyWarning" xml:space="preserve">
+    <value>Important note: Survey imports only work for surveys that take place in just one administrative unit at a time. If any of your surveys take place in more than one administrative unit at a time (for example, an Ecological Zone spanning multiple districts), those surveys need to be entered directly into the forms. They will not record properly if entered here in imports.</value>
   </data>
   <data name="IndicatorValue" xml:space="preserve">
     <value>Indicator value</value>
@@ -1395,6 +1572,45 @@ Fixed / Mobile</value>
   </data>
   <data name="IntvMbd" xml:space="preserve">
     <value>MBD Intervention</value>
+  </data>
+  <data name="IntvPkgALB" xml:space="preserve">
+    <value>ALB</value>
+  </data>
+  <data name="IntvPkgALB2forLF" xml:space="preserve">
+    <value>ALB x 2 for LF</value>
+  </data>
+  <data name="IntvPkgDECALB" xml:space="preserve">
+    <value>DEC + ALB</value>
+  </data>
+  <data name="IntvPkgIVM" xml:space="preserve">
+    <value>IVM</value>
+  </data>
+  <data name="IntvPkgIVMALB" xml:space="preserve">
+    <value>IVM + ALB</value>
+  </data>
+  <data name="IntvPkgMBD" xml:space="preserve">
+    <value>MBD</value>
+  </data>
+  <data name="IntvPkgPZQ" xml:space="preserve">
+    <value>PZQ</value>
+  </data>
+  <data name="IntvPkgPZQALB" xml:space="preserve">
+    <value>PZQ + ALB</value>
+  </data>
+  <data name="IntvPkgPZQIVMALB" xml:space="preserve">
+    <value>PZQ + IVM + ALB</value>
+  </data>
+  <data name="IntvPkgPZQMBD" xml:space="preserve">
+    <value>PZQ + MBD</value>
+  </data>
+  <data name="IntvPkgTEO" xml:space="preserve">
+    <value>TEO</value>
+  </data>
+  <data name="IntvPkgTEOZithro" xml:space="preserve">
+    <value>TEO + Zithro</value>
+  </data>
+  <data name="IntvPkgZithro" xml:space="preserve">
+    <value>Zithro</value>
   </data>
   <data name="IntvPzq" xml:space="preserve">
     <value>PZQ Intervention</value>
@@ -1496,13 +1712,13 @@ Fixed / Mobile</value>
     <value>Leishmaniasis training</value>
   </data>
   <data name="LeishTrainNumberOfParticipantsToTraining" xml:space="preserve">
-    <value>Number of participants to training sessions</value>
+    <value>Number of people trained</value>
   </data>
   <data name="LeishTrainNumberOfSupervisionVisitsSched" xml:space="preserve">
     <value>Number of supervision visits scheduled per year</value>
   </data>
   <data name="LeishTrainNumberOfTrainingSessionsHold" xml:space="preserve">
-    <value>Number of training sessions hold</value>
+    <value>Number of training sessions held</value>
   </data>
   <data name="LeishTrainPercentageOfHealthFacilitiesHa" xml:space="preserve">
     <value>Percentage of health facilities having at least one trained staff for Leishmaniasis elimination programme</value>
@@ -1526,13 +1742,13 @@ Fixed / Mobile</value>
     <value>Leprosy training</value>
   </data>
   <data name="LeprosyTrainNumberOfParticipantsToTraini" xml:space="preserve">
-    <value>Number of participants to training sessions</value>
+    <value>Number of people trained</value>
   </data>
   <data name="LeprosyTrainNumberOfSupervisionVisitsSch" xml:space="preserve">
     <value>Number of supervision visits scheduled per year</value>
   </data>
   <data name="LeprosyTrainNumberOfTrainingSessionsHold" xml:space="preserve">
-    <value>Number of training sessions hold</value>
+    <value>Number of training sessions held</value>
   </data>
   <data name="LeprosyTrainPercentageOfHealthFacilities" xml:space="preserve">
     <value>Percentage of health facilities having at least one trained staff for leprosy elimination programme</value>
@@ -1563,6 +1779,9 @@ Fixed / Mobile</value>
   </data>
   <data name="LfEnd0" xml:space="preserve">
     <value>0 - Not endemic above treatment threshold</value>
+  </data>
+  <data name="LfEnd0b" xml:space="preserve">
+    <value>0 - Not endemic, not above treatment threshold</value>
   </data>
   <data name="LfEnd1" xml:space="preserve">
     <value>1 - Endemic above treatment threshold</value>
@@ -1601,7 +1820,13 @@ Fixed / Mobile</value>
     <value>End date of survey</value>
   </data>
   <data name="LFMapSurEndemity" xml:space="preserve">
-    <value>Endemity</value>
+    <value>Endemicity</value>
+  </data>
+  <data name="LFMapSurExaminedHydro1" xml:space="preserve">
+    <value>Number of individuals examined for Hydrocele</value>
+  </data>
+  <data name="LFMapSurExaminedLympho" xml:space="preserve">
+    <value>Number of individuals examined for Lymphoedema</value>
   </data>
   <data name="LFMapSurLatitude" xml:space="preserve">
     <value>Latitude</value>
@@ -1723,6 +1948,12 @@ Fixed / Mobile</value>
   <data name="LFSurEndDateOfSurvey" xml:space="preserve">
     <value>End date of survey</value>
   </data>
+  <data name="LFSurExaminedHydro" xml:space="preserve">
+    <value>Number of individuals examined for Hydrocele</value>
+  </data>
+  <data name="LFSurExaminedLympho" xml:space="preserve">
+    <value>Number of individuals examined for Lymphoedema</value>
+  </data>
   <data name="LFSurLatitude" xml:space="preserve">
     <value>Latitude</value>
   </data>
@@ -1747,8 +1978,14 @@ Fixed / Mobile</value>
   <data name="LFSurNumberOfRoundsOfPcCompletedPriorToS" xml:space="preserve">
     <value>Number of rounds of PC  completed prior to survey implementation</value>
   </data>
+  <data name="LFSurPosHydro" xml:space="preserve">
+    <value>Number of individuals positive for Hydrocele</value>
+  </data>
   <data name="LFSurPositive" xml:space="preserve">
     <value>% positive</value>
+  </data>
+  <data name="LFSurPosLympho" xml:space="preserve">
+    <value>Number of individuals positive for Lymphoedema</value>
   </data>
   <data name="LFSurSiteName" xml:space="preserve">
     <value>Site name</value>
@@ -1852,6 +2089,9 @@ Fixed / Mobile</value>
   <data name="MenuCheckForUpdates" xml:space="preserve">
     <value>Check for updates...</value>
   </data>
+  <data name="MenuDeleteAdminLevel" xml:space="preserve">
+    <value>Delete administrative units</value>
+  </data>
   <data name="MenuDemography" xml:space="preserve">
     <value>Demography...</value>
   </data>
@@ -1917,6 +2157,12 @@ Fixed / Mobile</value>
   </data>
   <data name="MenuViewHelp" xml:space="preserve">
     <value>View Help...</value>
+  </data>
+  <data name="MenuViewTutorial" xml:space="preserve">
+    <value>View PowerPoint tutorial...</value>
+  </data>
+  <data name="MetaDataDateRange" xml:space="preserve">
+    <value>Date range for above data</value>
   </data>
   <data name="Mf" xml:space="preserve">
     <value>Mf</value>
@@ -2001,6 +2247,9 @@ Fixed / Mobile</value>
   </data>
   <data name="NewLink" xml:space="preserve">
     <value>New...</value>
+  </data>
+  <data name="NewYearUpdates" xml:space="preserve">
+    <value>New year updates</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Next</value>
@@ -2410,6 +2659,12 @@ Fixed / Mobile</value>
   <data name="OnchoM" xml:space="preserve">
     <value>M Not mapped</value>
   </data>
+  <data name="OnchoMapEvaluationSite" xml:space="preserve">
+    <value>Evaluation Site</value>
+  </data>
+  <data name="OnchoMapSiteName" xml:space="preserve">
+    <value>Site Name</value>
+  </data>
   <data name="OnchoMapSurAgeRange" xml:space="preserve">
     <value>Age range</value>
   </data>
@@ -2491,6 +2746,9 @@ Fixed / Mobile</value>
   <data name="OnchoMapSurTestType" xml:space="preserve">
     <value>Test type</value>
   </data>
+  <data name="OnchoMapSurTypeOfMapping" xml:space="preserve">
+    <value>Type of mapping</value>
+  </data>
   <data name="OnchoNotSuspect" xml:space="preserve">
     <value>Not mapped but not suspected</value>
   </data>
@@ -2518,6 +2776,9 @@ Fixed / Mobile</value>
   <data name="OnchoSurAttendanceRate" xml:space="preserve">
     <value>Attendance rate</value>
   </data>
+  <data name="OnchoSurCatchingPoint" xml:space="preserve">
+    <value>Name of the catching point</value>
+  </data>
   <data name="OnchoSurCmfl" xml:space="preserve">
     <value>CMFL</value>
   </data>
@@ -2527,8 +2788,65 @@ Fixed / Mobile</value>
   <data name="OnchoSurEndDateOfSurvey" xml:space="preserve">
     <value>End date of survey</value>
   </data>
+  <data name="OnchoSurEntAbr" xml:space="preserve">
+    <value>Annual Biting Rates (ABR)</value>
+  </data>
+  <data name="OnchoSurEntAtp" xml:space="preserve">
+    <value>Annual Transmission Potential (ATP) (the average number of infective stage parasites an individual is exposed to in a year)</value>
+  </data>
+  <data name="OnchoSurEntCorrectedInfectionRatePcr" xml:space="preserve">
+    <value>Corrected infection rate (PCR) - per 1,000 parous flies</value>
+  </data>
+  <data name="OnchoSurEntInfectionRateDissection" xml:space="preserve">
+    <value>Infection rate (Dissection) - per 1,000 parous flies</value>
+  </data>
+  <data name="OnchoSurEntMbr" xml:space="preserve">
+    <value>Monthly Biting Rates</value>
+  </data>
+  <data name="OnchoSurEntMtp" xml:space="preserve">
+    <value>Monthly Transmission Potential</value>
+  </data>
+  <data name="OnchoSurEntomological" xml:space="preserve">
+    <value>Onchocerciasis (River Blindness) Entomological survey</value>
+  </data>
   <data name="OnchoSurEntomologicalAssessmentConducted" xml:space="preserve">
     <value>Entomological assessment conducted?</value>
+  </data>
+  <data name="OnchoSurEntTaxoCyto" xml:space="preserve">
+    <value>Taxonomic identification - Cytotaxonomy (Chromosomal)</value>
+  </data>
+  <data name="OnchoSurEntTaxoForest" xml:space="preserve">
+    <value>Forest</value>
+  </data>
+  <data name="OnchoSurEntTaxoForestSav" xml:space="preserve">
+    <value>Forest and Savannah</value>
+  </data>
+  <data name="OnchoSurEntTaxonomic" xml:space="preserve">
+    <value>Taxonomic identification - Morphology</value>
+  </data>
+  <data name="OnchoSurEntTaxoSavannah" xml:space="preserve">
+    <value>Savannah</value>
+  </data>
+  <data name="OnchoSurEntTestTech" xml:space="preserve">
+    <value>Test Technique</value>
+  </data>
+  <data name="OnchoSurEntTestTechChromo" xml:space="preserve">
+    <value>Chromosomal identification</value>
+  </data>
+  <data name="OnchoSurEntTestTechDiss" xml:space="preserve">
+    <value>Dissection</value>
+  </data>
+  <data name="OnchoSurEntTestTechPcr" xml:space="preserve">
+    <value>PCR Pool Screening</value>
+  </data>
+  <data name="OnchoSurEntTestTechTrap" xml:space="preserve">
+    <value>Trapping</value>
+  </data>
+  <data name="OnchoSurEvaluationSite" xml:space="preserve">
+    <value>Evaluation Site</value>
+  </data>
+  <data name="OnchoSurFliesDissected" xml:space="preserve">
+    <value>Number of flies dissected</value>
   </data>
   <data name="OnchoSurIfEcologicalAssessmentRiver" xml:space="preserve">
     <value>if ecological assessment conducted, then name of River Basin</value>
@@ -2554,11 +2872,38 @@ Fixed / Mobile</value>
   <data name="OnchoSurIfTestTypeIsNpPerWri" xml:space="preserve">
     <value>If test type is nodule palpation, dermatological morbidity - % of individuals with wrinkling (inelasticity)</value>
   </data>
+  <data name="OnchoSurInfectedFlies" xml:space="preserve">
+    <value>Number of infected flies</value>
+  </data>
+  <data name="OnchoSurInfectionRate" xml:space="preserve">
+    <value>Infection rate</value>
+  </data>
+  <data name="OnchoSurInfectiveFlies" xml:space="preserve">
+    <value>Number of infective flies</value>
+  </data>
+  <data name="OnchoSurInfectiveLarvae" xml:space="preserve">
+    <value>Number of infective larvae</value>
+  </data>
+  <data name="OnchoSurInfectivityRate" xml:space="preserve">
+    <value>Infectivity rate</value>
+  </data>
+  <data name="OnchoSurLat" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
   <data name="OnchoSurLatitude" xml:space="preserve">
     <value>Latitude</value>
   </data>
+  <data name="OnchoSurLng" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
   <data name="OnchoSurLongitude" xml:space="preserve">
     <value>Longitude</value>
+  </data>
+  <data name="OnchoSurMonth" xml:space="preserve">
+    <value>Month of flies collection</value>
+  </data>
+  <data name="OnchoSurNoFlies" xml:space="preserve">
+    <value>Number of flies collected</value>
   </data>
   <data name="OnchoSurNumberOfIndividualsExamined" xml:space="preserve">
     <value>Number of individuals examined</value>
@@ -2569,14 +2914,38 @@ Fixed / Mobile</value>
   <data name="OnchoSurNumberOfRoundsOfPcCompletedPrior" xml:space="preserve">
     <value>Number of rounds of PC completed prior to survey implementation</value>
   </data>
+  <data name="OnchoSurParousFlies" xml:space="preserve">
+    <value>Number of parous flies</value>
+  </data>
+  <data name="OnchoSurParousFliesDisected" xml:space="preserve">
+    <value>Number of parous flies dissected</value>
+  </data>
+  <data name="OnchoSurParousFliesInfected" xml:space="preserve">
+    <value>Number of parous flies infected</value>
+  </data>
+  <data name="OnchoSurParousRate" xml:space="preserve">
+    <value>Parous rate</value>
+  </data>
   <data name="OnchoSurPercentPositive" xml:space="preserve">
     <value>Percent Positive</value>
+  </data>
+  <data name="OnchoSurProject" xml:space="preserve">
+    <value>Name of the project</value>
   </data>
   <data name="OnchoSurRegistrationPopulation" xml:space="preserve">
     <value>Registration population</value>
   </data>
   <data name="OnchoSurReportedPopulation" xml:space="preserve">
     <value>Reported population</value>
+  </data>
+  <data name="OnchoSurRiver" xml:space="preserve">
+    <value>Name of river</value>
+  </data>
+  <data name="OnchoSurRiverBasin" xml:space="preserve">
+    <value>Name of river basin</value>
+  </data>
+  <data name="OnchoSurSiteName" xml:space="preserve">
+    <value>Site Name</value>
   </data>
   <data name="OnchoSurStandardizedPrevelance" xml:space="preserve">
     <value>Standardized prevelance</value>
@@ -2593,8 +2962,20 @@ Fixed / Mobile</value>
   <data name="OnchoSurTestType" xml:space="preserve">
     <value>Test type</value>
   </data>
+  <data name="OnchoSurTypeOfMapping" xml:space="preserve">
+    <value>Type of mapping</value>
+  </data>
+  <data name="OnchoSurTypeRemo" xml:space="preserve">
+    <value>REMO</value>
+  </data>
+  <data name="OnchSurTypeDelineation" xml:space="preserve">
+    <value>Delineation mapping</value>
+  </data>
   <data name="OopsProblem" xml:space="preserve">
     <value>Oops,there was a problem!</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
   </data>
   <data name="Option" xml:space="preserve">
     <value>Option</value>
@@ -2607,7 +2988,6 @@ Fixed / Mobile</value>
   </data>
   <data name="OtherMedsLeprosy" xml:space="preserve">
     <value>Other medicines for leprosy patients****</value>
-    <comment>string</comment>
   </data>
   <data name="OtherNtds" xml:space="preserve">
     <value>Other NTDs</value>
@@ -2623,6 +3003,9 @@ Fixed / Mobile</value>
   </data>
   <data name="ParentIsRequired" xml:space="preserve">
     <value>You must select a parent for the new administrative level</value>
+  </data>
+  <data name="ParentLevelMustBeSame" xml:space="preserve">
+    <value>You must select a parent for the new administrative level that is of type: {0}</value>
   </data>
   <data name="Partner" xml:space="preserve">
     <value>Partner</value>
@@ -2678,6 +3061,18 @@ Fixed / Mobile</value>
   <data name="PcIntvLengthOfStockOut" xml:space="preserve">
     <value>Length of stock-out</value>
   </data>
+  <data name="PcIntvLfAtRisk" xml:space="preserve">
+    <value>LF at-risk population</value>
+  </data>
+  <data name="PcIntvLfEpiCoverage" xml:space="preserve">
+    <value>LF Epi coverage</value>
+  </data>
+  <data name="PcIntvLfPopRecPc" xml:space="preserve">
+    <value>LF population requiring PC</value>
+  </data>
+  <data name="PcIntvLowerConfidence" xml:space="preserve">
+    <value>Lower confidence interval of surveyed coverage</value>
+  </data>
   <data name="PcIntvMalesTreatedProportion" xml:space="preserve">
     <value>Males treated proportion</value>
   </data>
@@ -2729,11 +3124,38 @@ Fixed / Mobile</value>
   <data name="PcIntvNumTreatedZxPos" xml:space="preserve">
     <value># Persons treated with Zx POS</value>
   </data>
+  <data name="PcIntvOfTotalFemalesOncho" xml:space="preserve">
+    <value>Of total, # females treated for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalFemalesTargetedOncho" xml:space="preserve">
+    <value>Of total, # females targeted  for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalMalesOncho" xml:space="preserve">
+    <value>Of total, # males treated for oncho</value>
+  </data>
+  <data name="PcIntvOfTotalMalesTargetedOncho" xml:space="preserve">
+    <value>Of total, # males targeted for oncho</value>
+  </data>
   <data name="PcIntvOfTotalTargetedForOncho" xml:space="preserve">
     <value>Of total, targeted for oncho</value>
   </data>
   <data name="PcIntvOfTotalTreatedForOncho" xml:space="preserve">
     <value>Of total, treated for oncho</value>
+  </data>
+  <data name="PcIntvOnchoAtRisk" xml:space="preserve">
+    <value>Oncho at-risk population</value>
+  </data>
+  <data name="PcIntvOnchoEpiCoverage" xml:space="preserve">
+    <value>Oncho Epi coverage</value>
+  </data>
+  <data name="PcIntvOnchoEpiCoverageOfOncho" xml:space="preserve">
+    <value>Oncho Epi coverage</value>
+  </data>
+  <data name="PcIntvOnchoPopReqPc" xml:space="preserve">
+    <value>Oncho population requiring PC</value>
+  </data>
+  <data name="PcIntvOnchoProgramCov" xml:space="preserve">
+    <value>Oncho program coverage</value>
   </data>
   <data name="PcIntvPartner" xml:space="preserve">
     <value>Partner</value>
@@ -2753,14 +3175,98 @@ Fixed / Mobile</value>
   <data name="PcIntvSacCoverage" xml:space="preserve">
     <value>SAC coverage</value>
   </data>
+  <data name="PcIntvSchAtRisk" xml:space="preserve">
+    <value>SCH total at-risk population</value>
+  </data>
+  <data name="PcIntvSchEpi" xml:space="preserve">
+    <value>SCH total Epi coverage</value>
+  </data>
+  <data name="PcIntvSchPopReqPc" xml:space="preserve">
+    <value>SCH population requiring PC</value>
+  </data>
+  <data name="PcIntvSchSacAtRisk" xml:space="preserve">
+    <value>SCH SAC at-risk population</value>
+  </data>
+  <data name="PcIntvSchSacEpi" xml:space="preserve">
+    <value>SCH SAC Epi coverage</value>
+  </data>
   <data name="PcIntvStartDateOfMda" xml:space="preserve">
     <value>Start date of MDA</value>
+  </data>
+  <data name="PcIntvSthAtRisk" xml:space="preserve">
+    <value>STH total at-risk population</value>
+  </data>
+  <data name="PcIntvSthEpiCoverage" xml:space="preserve">
+    <value>STH total Epi coverage</value>
+  </data>
+  <data name="PcIntvSthPopReqPc" xml:space="preserve">
+    <value>STH population requiring PC</value>
+  </data>
+  <data name="PcIntvSthPsacAtRisk" xml:space="preserve">
+    <value>STH PSAC at-risk population</value>
+  </data>
+  <data name="PcIntvSthPsacEpiCoverage" xml:space="preserve">
+    <value>STH PSAC Epi coverage</value>
+  </data>
+  <data name="PcIntvSthSacAtRisk" xml:space="preserve">
+    <value>STH SAC at-risk population</value>
+  </data>
+  <data name="PcIntvSthSacEpiCoverage" xml:space="preserve">
+    <value>STH SAC Epi coverage</value>
   </data>
   <data name="PcIntvStockOutDrug" xml:space="preserve">
     <value>Stock-out drug</value>
   </data>
   <data name="PcIntvStockOutDuringMda" xml:space="preserve">
     <value>Stock-out during MDA?</value>
+  </data>
+  <data name="PcIntvSurveyedCoverage" xml:space="preserve">
+    <value>Surveyed coverage</value>
+  </data>
+  <data name="PcIntvTraAtRisk" xml:space="preserve">
+    <value>Trachoma at-risk population</value>
+  </data>
+  <data name="PcIntvTraDrugPos" xml:space="preserve">
+    <value>Zithromax POS</value>
+  </data>
+  <data name="PcIntvTraDrugTeo" xml:space="preserve">
+    <value>TEO</value>
+  </data>
+  <data name="PcIntvTraDrugZith" xml:space="preserve">
+    <value>Zithromax Tablets</value>
+  </data>
+  <data name="PcIntvTraEpi" xml:space="preserve">
+    <value>Trachoma EPI coverage</value>
+  </data>
+  <data name="PcIntvTsEval" xml:space="preserve">
+    <value>Has the patient been evaluated at least 3 months post-surgery?</value>
+  </data>
+  <data name="PcIntvTsNumFemales" xml:space="preserve">
+    <value>Number of females operated</value>
+  </data>
+  <data name="PcIntvTsNumKits" xml:space="preserve">
+    <value>Number of complete kits available</value>
+  </data>
+  <data name="PcIntvTsNumMales" xml:space="preserve">
+    <value>Number of males operated</value>
+  </data>
+  <data name="PcIntvTsNumOperated" xml:space="preserve">
+    <value>Total Number of people operated during reporting period</value>
+  </data>
+  <data name="PcIntvTsNumTt" xml:space="preserve">
+    <value>Number of TT patients refusing surgery during reporting period</value>
+  </data>
+  <data name="PcIntvTsPercentWithPostOpTt" xml:space="preserve">
+    <value>Of patients followed-up after surgery, what percentage were found with post-operative TT?</value>
+  </data>
+  <data name="PcIntvTsTtToTeo" xml:space="preserve">
+    <value>In what proportion of TT operations was TEO given postoperatively?</value>
+  </data>
+  <data name="PcIntvTsTtToZithro" xml:space="preserve">
+    <value>In what proportion of TT operations was azithromycin given postoperatively?</value>
+  </data>
+  <data name="PcIntvUpperConfidence" xml:space="preserve">
+    <value>Upper confidence interval of surveyed coverage</value>
   </data>
   <data name="PcJrfForm" xml:space="preserve">
     <value>PC Joint Reporting Form</value>
@@ -2777,8 +3283,14 @@ Fixed / Mobile</value>
   <data name="PcTraining" xml:space="preserve">
     <value>PC Training</value>
   </data>
+  <data name="PcTrainNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="PcTrainNewOrRefresh" xml:space="preserve">
+    <value>New or Refresher</value>
+  </data>
   <data name="PCTrainNumIndividualsTargeted" xml:space="preserve">
-    <value># individuals targeted</value>
+    <value># individuals targeted for training</value>
   </data>
   <data name="PCTrainNumIndividualsTrainedFemales" xml:space="preserve">
     <value># individuals trained - females</value>
@@ -2789,8 +3301,14 @@ Fixed / Mobile</value>
   <data name="PCTrainNumIndividualsTrainedTotal" xml:space="preserve">
     <value># individuals trained - total</value>
   </data>
+  <data name="PcTrainRefresher" xml:space="preserve">
+    <value>Refresher</value>
+  </data>
   <data name="PCTrainTrainingCategory" xml:space="preserve">
     <value>Training category</value>
+  </data>
+  <data name="PcTrainUnknown" xml:space="preserve">
+    <value>Unknown</value>
   </data>
   <data name="Percent5yo" xml:space="preserve">
     <value>% &lt;5 year old of total population</value>
@@ -2936,6 +3454,9 @@ Fixed / Mobile</value>
   <data name="PercentVl" xml:space="preserve">
     <value>% only VL cases</value>
   </data>
+  <data name="Persons" xml:space="preserve">
+    <value>Persons</value>
+  </data>
   <data name="Phase1aEval" xml:space="preserve">
     <value>Phase 1a evaluation</value>
   </data>
@@ -3044,8 +3565,74 @@ Fixed / Mobile</value>
   <data name="RecentFile" xml:space="preserve">
     <value>Recent file: </value>
   </data>
+  <data name="RedistEventDate" xml:space="preserve">
+    <value>Redistricting event date</value>
+  </data>
+  <data name="RedistLevel" xml:space="preserve">
+    <value>Administrative level</value>
+  </data>
+  <data name="RedistNewName" xml:space="preserve">
+    <value>New administrative unit name</value>
+  </data>
+  <data name="RedistNewParent" xml:space="preserve">
+    <value>New upper administrative unit name</value>
+  </data>
+  <data name="RedistNewPop" xml:space="preserve">
+    <value>Population in new unit at time of redistricting</value>
+  </data>
+  <data name="RedistOrigName" xml:space="preserve">
+    <value>Original administrative unit name</value>
+  </data>
+  <data name="RedistOrigParent" xml:space="preserve">
+    <value>Original upper administrative unit name</value>
+  </data>
+  <data name="RedistOrigPop" xml:space="preserve">
+    <value>Population at time of redistricting</value>
+  </data>
   <data name="RedistributionSettings" xml:space="preserve">
     <value>Redistribution settings</value>
+  </data>
+  <data name="RedistrictedAdminUnits" xml:space="preserve">
+    <value>Show only administrative units before redistricting</value>
+  </data>
+  <data name="RedistrictingInfo" xml:space="preserve">
+    <value>Redistricting Information</value>
+  </data>
+  <data name="RedistrictingMergeDesc" xml:space="preserve">
+    <value>Merged from {0} on {1}</value>
+  </data>
+  <data name="RedistrictingMergeInto" xml:space="preserve">
+    <value>Merged into {0} on {1}</value>
+  </data>
+  <data name="RedistrictingNotes" xml:space="preserve">
+    <value>Notes about redistricting</value>
+  </data>
+  <data name="RedistrictingReport" xml:space="preserve">
+    <value>Redistricting report</value>
+  </data>
+  <data name="RedistrictingSplitCombineDesc" xml:space="preserve">
+    <value>Split and combined from {0} on {1}</value>
+  </data>
+  <data name="RedistrictingSplitCombineInto" xml:space="preserve">
+    <value>Split and combined into {0} on {1}</value>
+  </data>
+  <data name="RedistrictingSplitDesc" xml:space="preserve">
+    <value>Split from {0} on {1}</value>
+  </data>
+  <data name="RedistrictingSplitInto" xml:space="preserve">
+    <value>Split into {0} on {1}</value>
+  </data>
+  <data name="RedistrictTypeMerge" xml:space="preserve">
+    <value>Merge</value>
+  </data>
+  <data name="RedistrictTypeSplit" xml:space="preserve">
+    <value>Split</value>
+  </data>
+  <data name="RedistrictTypeSplitCombine" xml:space="preserve">
+    <value>Split/combine</value>
+  </data>
+  <data name="RedistType" xml:space="preserve">
+    <value>Type of redistricting</value>
   </data>
   <data name="Region" xml:space="preserve">
     <value>Region</value>
@@ -3059,14 +3646,32 @@ Fixed / Mobile</value>
   <data name="RemindLaterUpdateDemographyYear" xml:space="preserve">
     <value>Remind me at next start up to update demography for new year</value>
   </data>
+  <data name="ReportBuilder" xml:space="preserve">
+    <value>Report builder</value>
+  </data>
+  <data name="ReportChoosenDd" xml:space="preserve">
+    <value>choosen</value>
+  </data>
+  <data name="ReportingYearStartDate" xml:space="preserve">
+    <value>Start date of reporting year</value>
+  </data>
   <data name="ReportLocations" xml:space="preserve">
     <value>Select locations</value>
   </data>
   <data name="ReportOptions" xml:space="preserve">
     <value>Report options</value>
   </data>
+  <data name="ReportProgressTowardsEliminiation" xml:space="preserve">
+    <value>Progress towards Elimination</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Reports</value>
+  </data>
+  <data name="ReportsNoDdInDateRange" xml:space="preserve">
+    <value>No {3} disease distribution could be found for {0} in the date range {1} - {2}.</value>
+  </data>
+  <data name="ReportsNoDemographyInDateRange" xml:space="preserve">
+    <value>No demography could be found for {0} in the date range {1} - {2}.</value>
   </data>
   <data name="ReportYear" xml:space="preserve">
     <value>Year report information applies to</value>
@@ -3080,11 +3685,17 @@ Fixed / Mobile</value>
   <data name="RestoreConfirm" xml:space="preserve">
     <value>Are you sure you want to restore the database?</value>
   </data>
+  <data name="RetrieveLogFile" xml:space="preserve">
+    <value>Retrieve log file</value>
+  </data>
   <data name="RevertToEmergencyBackup" xml:space="preserve">
     <value>Restore database to backup copy saved at last login.</value>
   </data>
   <data name="ReviewAndConfirm" xml:space="preserve">
     <value>Review and confirm</value>
+  </data>
+  <data name="ReviewErrors" xml:space="preserve">
+    <value>Please review the errors and fix before continuing.</value>
   </data>
   <data name="RoleAdmin" xml:space="preserve">
     <value>Administrator</value>
@@ -3115,6 +3726,273 @@ Fixed / Mobile</value>
   </data>
   <data name="RoundsRecommendedByWho" xml:space="preserve">
     <value># PC rounds/year recommended by WHO guidelines</value>
+  </data>
+  <data name="RtiCantReconcile" xml:space="preserve">
+    <value>Cannot Reconcile</value>
+  </data>
+  <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
+    <value>RTI Country Disease Workbook</value>
+  </data>
+  <data name="RtiDataCompleteness" xml:space="preserve">
+    <value>Data completeness (%)</value>
+  </data>
+  <data name="RtiDistrict" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="RtiDrp1stSar" xml:space="preserve">
+    <value>1st SAR (October-March)</value>
+  </data>
+  <data name="RtiDrp2ndSar" xml:space="preserve">
+    <value>2nd SAR (October-September)</value>
+  </data>
+  <data name="RtiDrpEndAfrica" xml:space="preserve">
+    <value>END in Africa</value>
+  </data>
+  <data name="RtiDrpEndAsia" xml:space="preserve">
+    <value>END in Asia</value>
+  </data>
+  <data name="RtiDrpEnvision" xml:space="preserve">
+    <value>ENVISION</value>
+  </data>
+  <data name="RtiDrpFy12" xml:space="preserve">
+    <value>FY12 (October 2011 - September 2012)</value>
+  </data>
+  <data name="RtiDrpFy13" xml:space="preserve">
+    <value>FY13 (October 2012 - September 2013)</value>
+  </data>
+  <data name="RtiDrpFy14" xml:space="preserve">
+    <value>FY14 (October 2013 - September 2014)</value>
+  </data>
+  <data name="RtiDrpFy15" xml:space="preserve">
+    <value>FY15 (October 2014 - September 2015)</value>
+  </data>
+  <data name="RtiDrpFy16" xml:space="preserve">
+    <value>FY16 (October 2015 - September 2016)</value>
+  </data>
+  <data name="RtiDrpMidYear" xml:space="preserve">
+    <value>Mid-year MDA data submission</value>
+  </data>
+  <data name="RtiDrpOther" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="RtiDrpUsaid" xml:space="preserve">
+    <value>USAID-supported APOC</value>
+  </data>
+  <data name="RtiDrpWorkPlanning" xml:space="preserve">
+    <value>Work Planning</value>
+  </data>
+  <data name="RtiErrorMustMatchAll" xml:space="preserve">
+    <value>Must match all units before continuing</value>
+  </data>
+  <data name="RtiFetchingTaskForceNames" xml:space="preserve">
+    <value>Fetching country information from RTI system</value>
+  </data>
+  <data name="RtiLfDd0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RtiLfDd1" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="RtiLfDd100" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="RtiLfDdM" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="RtiLfDdNs" xml:space="preserve">
+    <value>NS</value>
+  </data>
+  <data name="RtiLfDdPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="RtiMatchLevel" xml:space="preserve">
+    <value>Match your units with the RTI system: {0}</value>
+  </data>
+  <data name="RtiName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="RtiNoData" xml:space="preserve">
+    <value>The RTI system has no data on that country, please double check your selection before continuing.</value>
+  </data>
+  <data name="RtiPostMda1" xml:space="preserve">
+    <value>Post-MDA Surveillance TAS I</value>
+  </data>
+  <data name="RtiPostMda2" xml:space="preserve">
+    <value>Post-MDA Surveillance TAS II</value>
+  </data>
+  <data name="RtiProjectName" xml:space="preserve">
+    <value>Project name</value>
+  </data>
+  <data name="RtiReportingLevel" xml:space="preserve">
+    <value>Reporting level</value>
+  </data>
+  <data name="RtiReportingPeriod" xml:space="preserve">
+    <value>Reporting period</value>
+  </data>
+  <data name="RtiReports" xml:space="preserve">
+    <value>Disease Workbook for USAID reporting</value>
+  </data>
+  <data name="RtiScAg" xml:space="preserve">
+    <value>SC (Ag)</value>
+  </data>
+  <data name="RtiSch0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RtiSch1" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="RtiSch10" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="RtiSch100" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="RtiSch2" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="RtiSch20" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="RtiSch2a" xml:space="preserve">
+    <value>2A</value>
+  </data>
+  <data name="RtiSch3" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="RtiSch30" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="RtiSch3a" xml:space="preserve">
+    <value>3A</value>
+  </data>
+  <data name="RtiSch40" xml:space="preserve">
+    <value>40</value>
+  </data>
+  <data name="RtiSchM" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="RtiSchMdaA" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="RtiSchMdaB" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="RtiSchMdaC" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="RtiSchMdaD" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="RtiSchMdaNone" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="RtiSchNs" xml:space="preserve">
+    <value>NS</value>
+  </data>
+  <data name="RtiSchPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="RtiScMf" xml:space="preserve">
+    <value>SC (mf)</value>
+  </data>
+  <data name="RtiSkipReconcile" xml:space="preserve">
+    <value>Skip administrative unit reconciliation</value>
+  </data>
+  <data name="RtiSsAg" xml:space="preserve">
+    <value>SS (Ag)</value>
+  </data>
+  <data name="RtiSsMf" xml:space="preserve">
+    <value>SS (mf)</value>
+  </data>
+  <data name="RtiStopMda" xml:space="preserve">
+    <value>Stop-MDA TAS</value>
+  </data>
+  <data name="RtiSubDistrict" xml:space="preserve">
+    <value>Sub-District</value>
+  </data>
+  <data name="RtiSubPartnerName" xml:space="preserve">
+    <value>Sub-partner name</value>
+  </data>
+  <data name="RtiTabCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="RtiTabDemo" xml:space="preserve">
+    <value>Demography</value>
+  </data>
+  <data name="RtiTabLf" xml:space="preserve">
+    <value>LF</value>
+  </data>
+  <data name="RtiTabOncho" xml:space="preserve">
+    <value>Oncho</value>
+  </data>
+  <data name="RtiTabSch" xml:space="preserve">
+    <value>Schisto</value>
+  </data>
+  <data name="RtiTabSth" xml:space="preserve">
+    <value>STH</value>
+  </data>
+  <data name="RtiTabTra" xml:space="preserve">
+    <value>Trachoma</value>
+  </data>
+  <data name="RtiTas" xml:space="preserve">
+    <value>TAS</value>
+  </data>
+  <data name="RtiTaskForceNoInternet" xml:space="preserve">
+    <value>An internet connection was not found. Please connect to the internet and try again, or check the box to skip reconciling your administrative units.</value>
+  </data>
+  <data name="RtiTaskForceNoResults" xml:space="preserve">
+    <value>No results found when querying the RTI system, please contact support.</value>
+  </data>
+  <data name="RtiTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="RtiTotalDistrictsComplete" xml:space="preserve">
+    <value>Total # districts submitted complete treatment report</value>
+  </data>
+  <data name="RtiTotalDistrictsTreatedWithUsaid" xml:space="preserve">
+    <value>Total districts treated with USAID support</value>
+  </data>
+  <data name="RtiTra0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RtiTra1" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="RtiTra100" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="RtiTra2" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="RtiTra3" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="RtiTra4" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="RtiTra5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="RtiTraM" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="RtiTraNs" xml:space="preserve">
+    <value>NS</value>
+  </data>
+  <data name="RtiTraPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="RtiWorkbookLocation" xml:space="preserve">
+    <value>Country_Disease_Workbook_v3.2.1_English_.xlsx</value>
+  </data>
+  <data name="RtiWorkbookQuestions" xml:space="preserve">
+    <value>Workbook questions</value>
+  </data>
+  <data name="RtiYearOfWorkbook" xml:space="preserve">
+    <value>Year of workbook</value>
+  </data>
+  <data name="Running" xml:space="preserve">
+    <value>Running...</value>
   </data>
   <data name="SacCoverage" xml:space="preserve">
     <value>SAC coverage</value>
@@ -3389,6 +4267,9 @@ Fixed / Mobile</value>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="SaveReportOptions" xml:space="preserve">
+    <value>Save report options</value>
+  </data>
   <data name="Sch1" xml:space="preserve">
     <value>1 Low prevalence (&gt;0 and &lt;10%) upon initial mapping by parasitological method</value>
   </data>
@@ -3441,7 +4322,7 @@ Fixed / Mobile</value>
     <value>End date of survey</value>
   </data>
   <data name="SCHMapSurEndemity" xml:space="preserve">
-    <value>Endemity</value>
+    <value>Endemicity</value>
   </data>
   <data name="SCHMapSurLatitude" xml:space="preserve">
     <value>Latitude</value>
@@ -3470,23 +4351,26 @@ Fixed / Mobile</value>
   <data name="SCHMapSurNumberOfIndividualsWithNonRespo" xml:space="preserve">
     <value>Number of individuals with non-response</value>
   </data>
+  <data name="SCHMapSurNumPosSchParasite" xml:space="preserve">
+    <value>Number of individuals positive for schistosomal parasite eggs in urine</value>
+  </data>
   <data name="SCHMapSurPrevalenceOfAnyHaemuaturiaOrPar" xml:space="preserve">
-    <value>Prevalence of any haemuaturia or parasite eggs in urine</value>
+    <value>Prevalence of any haemuaturia in urine</value>
   </data>
   <data name="SCHMapSurPrevalenceOfIntestinalSchistoso" xml:space="preserve">
     <value>Prevalence of intestinal schistosome infections</value>
   </data>
   <data name="SCHMapSurProportionOfHeavyIntensityIntes" xml:space="preserve">
-    <value>Proportion of heavy intensity intestinal schistosomal infections</value>
+    <value>Number of heavy intensity intestinal schistosomal infections</value>
   </data>
   <data name="SCHMapSurProportionOfHeavyIntensityUrina" xml:space="preserve">
-    <value>Proportion of heavy intensity urinary schistosomal infections</value>
+    <value>Number of heavy intensity urinary schistosomal infections</value>
   </data>
   <data name="SCHMapSurProportionOfModerateIntensityIn" xml:space="preserve">
-    <value>Proportion of moderate intensity intestinal schistosomal infections</value>
+    <value>Number of moderate intensity intestinal schistosomal infections</value>
   </data>
   <data name="SCHMapSurProportionOfModerateIntensityUr" xml:space="preserve">
-    <value>Proportion of moderate intensity urinary schistosomal infections</value>
+    <value>Number of moderate intensity urinary schistosomal infections</value>
   </data>
   <data name="SCHMapSurSiteNames" xml:space="preserve">
     <value>Site name(s)</value>
@@ -3551,23 +4435,26 @@ Fixed / Mobile</value>
   <data name="SCHSurNumberOfRoundsOfPcCompletedPriorTo" xml:space="preserve">
     <value>Number of rounds of PC  completed prior to survey implementation</value>
   </data>
+  <data name="SCHSurNumPosSchParasite" xml:space="preserve">
+    <value>Number of individuals positive for schistosomal parasite eggs in urine</value>
+  </data>
   <data name="SCHSurPrevalenceOfAnyHaemuaturiaOrParasi" xml:space="preserve">
-    <value>Prevalence of any haemuaturia or parasite eggs in urine</value>
+    <value>Prevalence of any haemuaturia in urine</value>
   </data>
   <data name="SCHSurPrevalenceOfIntestinalSchistosomeI" xml:space="preserve">
     <value>Prevalence of intestinal schistosome infections</value>
   </data>
   <data name="SCHSurProportionOfHeavyIntensityIntestin" xml:space="preserve">
-    <value>Proportion of heavy intensity intestinal schistosomal infections</value>
+    <value>Number of heavy intensity intestinal schistosomal infections</value>
   </data>
   <data name="SCHSurProportionOfHeavyIntensityUrinaryS" xml:space="preserve">
-    <value>Proportion of heavy intensity urinary schistosomal infections</value>
+    <value>Number of heavy intensity urinary schistosomal infections</value>
   </data>
   <data name="SCHSurProportionOfModerateIntensityIntes" xml:space="preserve">
-    <value>Proportion of moderate intensity intestinal schistosomal infections</value>
+    <value>Number of moderate intensity intestinal schistosomal infections</value>
   </data>
   <data name="SCHSurProportionOfModerateIntensityUrina" xml:space="preserve">
-    <value>Proportion of moderate intensity urinary schistosomal infections</value>
+    <value>Number of moderate intensity urinary schistosomal infections</value>
   </data>
   <data name="SCHSurStartDateOfSurvey" xml:space="preserve">
     <value>Start date of survey</value>
@@ -3623,6 +4510,9 @@ Fixed / Mobile</value>
   <data name="ScmDrpMdb" xml:space="preserve">
     <value>MBD</value>
   </data>
+  <data name="ScmDrpPara" xml:space="preserve">
+    <value>Paracetamol</value>
+  </data>
   <data name="ScmDrpPzq" xml:space="preserve">
     <value>PZQ</value>
   </data>
@@ -3656,6 +4546,9 @@ Fixed / Mobile</value>
   <data name="SCMNumRemainingSealedBottles" xml:space="preserve">
     <value># remaining sealed bottles </value>
   </data>
+  <data name="ScmPhysicalCount" xml:space="preserve">
+    <value>Physical Count</value>
+  </data>
   <data name="SCMReceived" xml:space="preserve">
     <value>Quantitiy received</value>
   </data>
@@ -3668,6 +4561,9 @@ Fixed / Mobile</value>
   <data name="SCMStolen" xml:space="preserve">
     <value>Number stolen</value>
   </data>
+  <data name="ScmTheoreticalCount" xml:space="preserve">
+    <value>Theoretical Count</value>
+  </data>
   <data name="SCMTimePeriodForInventory" xml:space="preserve">
     <value>Time period for inventory</value>
   </data>
@@ -3676,6 +4572,9 @@ Fixed / Mobile</value>
   </data>
   <data name="SCMTransferredToAnotherDistrict" xml:space="preserve">
     <value>Quantity transferred to another district</value>
+  </data>
+  <data name="ScmTypeOfInventory" xml:space="preserve">
+    <value>Type of Inventory</value>
   </data>
   <data name="SCMUnit" xml:space="preserve">
     <value>Unit</value>
@@ -3728,6 +4627,12 @@ Fixed / Mobile</value>
   <data name="SentinelSpotSurvey" xml:space="preserve">
     <value>Sentinel/Spot Check Site Survey</value>
   </data>
+  <data name="SettingsAggLevelDesc" xml:space="preserve">
+    <value>Aggregating level: Demography values from this level will total up to higher administrative units. Complete demography data needs to be entered for all of the units at this administrative level.</value>
+  </data>
+  <data name="SettingsReportingLevelDesc" xml:space="preserve">
+    <value>Reporting level: WHO and partner reports will automatically be generated for administrative units at this level. Typically this is the “District” or second administrative level.</value>
+  </data>
   <data name="SevereAdverseEffects" xml:space="preserve">
     <value>Severe adverse effects</value>
   </data>
@@ -3736,6 +4641,9 @@ Fixed / Mobile</value>
   </data>
   <data name="Shaematobium" xml:space="preserve">
     <value>S. haematobium</value>
+  </data>
+  <data name="ShowRedistrictingEvents" xml:space="preserve">
+    <value>Show redistricting events</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign In</value>
@@ -3809,17 +4717,38 @@ Fixed / Mobile</value>
   <data name="SplitPercentsValid" xml:space="preserve">
     <value>Percentage must be between 0 and 100</value>
   </data>
+  <data name="SplittingBackup" xml:space="preserve">
+    <value>Backup database before continuing</value>
+  </data>
+  <data name="SplittingBackupMessage" xml:space="preserve">
+    <value>Please click "Next" to backup your current database before continuing this process.</value>
+  </data>
+  <data name="SplittingMergeYear" xml:space="preserve">
+    <value>When merging administrative units, data will be combined within the same year. How would you like to define the year?</value>
+  </data>
+  <data name="SplittingMustAllocateSaes" xml:space="preserve">
+    <value>Must allocate all SAEs to a new destination before continuing.</value>
+  </data>
   <data name="SplittingOptions" xml:space="preserve">
     <value>Options</value>
   </data>
+  <data name="SplittingPercentages" xml:space="preserve">
+    <value>Split Percentages</value>
+  </data>
   <data name="SplittingRedistributing" xml:space="preserve">
     <value>Performing district redistribution...</value>
+  </data>
+  <data name="SplittingSaes" xml:space="preserve">
+    <value>Split SAEs</value>
   </data>
   <data name="SplittingSelectDistrict" xml:space="preserve">
     <value>Select the district you are redistributing to</value>
   </data>
   <data name="SplittingSelectSource" xml:space="preserve">
     <value>Select the administrative units you are splitting</value>
+  </data>
+  <data name="SplittingSurveyWarning" xml:space="preserve">
+    <value>Survey data from the parent districts was duplicated in all the daughter districts and should be reviewed.</value>
   </data>
   <data name="SplittingTitle" xml:space="preserve">
     <value>Split administrative unit</value>
@@ -3832,6 +4761,9 @@ Fixed / Mobile</value>
   </data>
   <data name="SpotCheckSiteName" xml:space="preserve">
     <value>Spot Check Site Name</value>
+  </data>
+  <data name="StandardReports" xml:space="preserve">
+    <value>Standard reports</value>
   </data>
   <data name="StartDate" xml:space="preserve">
     <value>Start date</value>
@@ -3850,6 +4782,9 @@ Fixed / Mobile</value>
   </data>
   <data name="StartMonthOfReportingYear" xml:space="preserve">
     <value>Start month of reporting year</value>
+  </data>
+  <data name="StartUpFinishedAllUnits" xml:space="preserve">
+    <value>Have you finished entering all the administrative units for this level?</value>
   </data>
   <data name="StartUpStepAdminLevels" xml:space="preserve">
     <value>Edit or add administrative levels: </value>
@@ -3906,7 +4841,7 @@ Fixed / Mobile</value>
     <value>End date of survey</value>
   </data>
   <data name="STHMapSurSurEndemity" xml:space="preserve">
-    <value>Endemity</value>
+    <value>Endemicity</value>
   </data>
   <data name="STHMapSurSurLatitude" xml:space="preserve">
     <value>Latitude</value>
@@ -3966,22 +4901,22 @@ Fixed / Mobile</value>
     <value>% positive - Trichuris</value>
   </data>
   <data name="STHMapSurSurProportionOfHeavyIntensityOfInAS" xml:space="preserve">
-    <value>Proportion of heavy intensity of infection - Ascaris</value>
+    <value>Number of heavy intensity of infection - Ascaris</value>
   </data>
   <data name="STHMapSurSurProportionOfHeavyIntensityOfInfecti" xml:space="preserve">
-    <value>Proportion of heavy intensity of infection - Trichuris</value>
+    <value>Number of heavy intensity of infection - Trichuris</value>
   </data>
   <data name="STHMapSurSurProportionOfHeavyIntensityOfInHook" xml:space="preserve">
-    <value>Proportion of heavy intensity of infection- Hookworm</value>
+    <value>Number of heavy intensity of infection- Hookworm</value>
   </data>
   <data name="STHMapSurSurProportionOfModerateIntensityOfInAS" xml:space="preserve">
-    <value>Proportion of moderate intensity of infection - Ascaris</value>
+    <value>Number of moderate intensity of infection - Ascaris</value>
   </data>
   <data name="STHMapSurSurProportionOfModerateIntensityOfInfe" xml:space="preserve">
-    <value>Proportion of moderate intensity of infection - Trichuris</value>
+    <value>Number of moderate intensity of infection - Trichuris</value>
   </data>
   <data name="STHMapSurSurProportionOfModerateIntensityOfInHook" xml:space="preserve">
-    <value>Proportion of moderate intensity of infection- Hookworm</value>
+    <value>Number of moderate intensity of infection- Hookworm</value>
   </data>
   <data name="STHMapSurSurSiteNames" xml:space="preserve">
     <value>Site name(s)</value>
@@ -4068,22 +5003,22 @@ Fixed / Mobile</value>
     <value>% positive - Trichuris</value>
   </data>
   <data name="STHSurProportionOfHeavyIntensityHook" xml:space="preserve">
-    <value>Proportion of heavy intensity of infection- Hookworm</value>
+    <value>Number of heavy intensity of infection- Hookworm</value>
   </data>
   <data name="STHSurProportionOfHeavyIntensityOfAsc" xml:space="preserve">
-    <value>Proportion of heavy intensity of infection - Ascaris</value>
+    <value>Number of heavy intensity of infection - Ascaris</value>
   </data>
   <data name="STHSurProportionOfHeavyIntensityOfTri" xml:space="preserve">
-    <value>Proportion of heavy intensity of infection - Trichuris</value>
+    <value>Number of heavy intensity of infection - Trichuris</value>
   </data>
   <data name="STHSurProportionOfModerateIntensityAsc" xml:space="preserve">
-    <value>Proportion of moderate intensity of infection - Ascaris</value>
+    <value>Number of moderate intensity of infection - Ascaris</value>
   </data>
   <data name="STHSurProportionOfModerateIntensityHook" xml:space="preserve">
-    <value>Proportion of moderate intensity of infection- Hookworm</value>
+    <value>Number of moderate intensity of infection- Hookworm</value>
   </data>
   <data name="STHSurProportionOfModerateIntensityTri" xml:space="preserve">
-    <value>Proportion of moderate intensity of infection - Trichuris</value>
+    <value>Number of moderate intensity of infection - Trichuris</value>
   </data>
   <data name="STHSurStartDateOfSurvey" xml:space="preserve">
     <value>Start date of survey</value>
@@ -4108,6 +5043,9 @@ Fixed / Mobile</value>
   </data>
   <data name="StopMDATAS" xml:space="preserve">
     <value>Stop MDA</value>
+  </data>
+  <data name="SubDistrict" xml:space="preserve">
+    <value>Sub-district</value>
   </data>
   <data name="SubDistrictLevel" xml:space="preserve">
     <value>Sub-district level</value>
@@ -4199,6 +5137,9 @@ Fixed / Mobile</value>
   <data name="Systematic" xml:space="preserve">
     <value>Systematic</value>
   </data>
+  <data name="Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
   <data name="Taeniasis" xml:space="preserve">
     <value>Taeniasis/Cysticercosis</value>
   </data>
@@ -4209,13 +5150,13 @@ Fixed / Mobile</value>
     <value>TAS</value>
   </data>
   <data name="TASActualNonResponseRateAbsent" xml:space="preserve">
-    <value>Actual non-response rate - Absent %</value>
+    <value>Actual non-response rate - Absent</value>
   </data>
   <data name="TASActualNonResponseRateInabilityToPerfo" xml:space="preserve">
-    <value>Actual non-response rate - inability to perform diagnostic test %</value>
+    <value>Actual non-response rate - inability to perform diagnostic test</value>
   </data>
   <data name="TASActualNonResponseRateRefusalOrNoConse" xml:space="preserve">
-    <value>Actual non-response rate - Refusal or no consent %</value>
+    <value>Actual non-response rate - Refusal or no consent </value>
   </data>
   <data name="TASActualNonResponseRateTotal" xml:space="preserve">
     <value>Actual non-response rate - total</value>
@@ -4235,8 +5176,17 @@ Fixed / Mobile</value>
   <data name="TASAgeRange" xml:space="preserve">
     <value>Age range</value>
   </data>
+  <data name="TASCriticalCutoff" xml:space="preserve">
+    <value>Critical cutoff decision</value>
+  </data>
   <data name="TASCriticalCutoffValue" xml:space="preserve">
     <value>Critical cutoff value</value>
+  </data>
+  <data name="TASCutoffFail" xml:space="preserve">
+    <value>Above treatment threshold - fail</value>
+  </data>
+  <data name="TASCutoffPass" xml:space="preserve">
+    <value>Below treatment threshold - pass</value>
   </data>
   <data name="TASDiagnosticTest" xml:space="preserve">
     <value>Diagnostic test</value>
@@ -4247,8 +5197,14 @@ Fixed / Mobile</value>
   <data name="TASEndDateOfSurvey" xml:space="preserve">
     <value>End date of survey</value>
   </data>
+  <data name="TasEstimatedNonResponseRate" xml:space="preserve">
+    <value>Estimated non-response rate</value>
+  </data>
   <data name="TASEuNetPrimarySchoolEnrolmentRate" xml:space="preserve">
     <value>EU net primary school enrollment rate</value>
+  </data>
+  <data name="TasGradesWithMajorityOf6yo" xml:space="preserve">
+    <value>If implementing TAS in schools, grade(s) with majority of 6-7 year olds</value>
   </data>
   <data name="TASLocationType" xml:space="preserve">
     <value>Location type</value>
@@ -4310,11 +5266,23 @@ Fixed / Mobile</value>
   <data name="TASTasObjective" xml:space="preserve">
     <value>TAS objective</value>
   </data>
+  <data name="TasTotal6yoInCommunities" xml:space="preserve">
+    <value>If implementing TAS in communities, total # of 6-7 year olds in EU</value>
+  </data>
+  <data name="TasTotalAreasInCommunities" xml:space="preserve">
+    <value>If implementing TAS in communities, total number of enumeration areas in EU</value>
+  </data>
   <data name="TASTotalEuAreaKm2" xml:space="preserve">
     <value>Total EU area (km2)</value>
   </data>
   <data name="TASTotalEuPopulation" xml:space="preserve">
     <value>Total EU population</value>
+  </data>
+  <data name="TasTotalNumChildrenInGrades" xml:space="preserve">
+    <value>If implementing TAS in schools, total number of children in selected grade(s) in EU</value>
+  </data>
+  <data name="TasTotalNumPrimarySchools" xml:space="preserve">
+    <value>If implementing TAS in schools, total number of primary schools in EU</value>
   </data>
   <data name="TasYearMonth" xml:space="preserve">
     <value>Month/Year of planned TAS</value>
@@ -4478,11 +5446,32 @@ Fixed / Mobile</value>
   <data name="Training" xml:space="preserve">
     <value>Training</value>
   </data>
+  <data name="TrainingDiseases" xml:space="preserve">
+    <value>Disease(s) included in training</value>
+  </data>
+  <data name="TrainingDrugPackages" xml:space="preserve">
+    <value>Drugs package(s) included in training</value>
+  </data>
+  <data name="TrainingNumFemales" xml:space="preserve">
+    <value># females involved in drug distribution</value>
+  </data>
+  <data name="TrainingNumMales" xml:space="preserve">
+    <value># males involved in drug distribution</value>
+  </data>
   <data name="TrainingYear" xml:space="preserve">
     <value>Year training information applies to</value>
   </data>
   <data name="TraM" xml:space="preserve">
     <value>M Not yet mapped</value>
+  </data>
+  <data name="TraMapSur15yo" xml:space="preserve">
+    <value># 15+ year old adults surveyed</value>
+  </data>
+  <data name="TraMapSur1to9yo" xml:space="preserve">
+    <value># 1-9 year old children surveyed</value>
+  </data>
+  <data name="TraMapSurActiveTrachomaIndicator" xml:space="preserve">
+    <value>Active Trachoma Indicator</value>
   </data>
   <data name="TraMapSurAgeGroupSurveyed" xml:space="preserve">
     <value>Age group surveyed</value>
@@ -4490,17 +5479,41 @@ Fixed / Mobile</value>
   <data name="TraMapSurClinicalSignAssessed" xml:space="preserve">
     <value>Clinical sign assessed</value>
   </data>
+  <data name="TraMapSurDistLevelMda" xml:space="preserve">
+    <value>District-level MDA</value>
+  </data>
   <data name="TraMapSurEndDateOfSurvey" xml:space="preserve">
     <value>End date of survey</value>
   </data>
   <data name="TraMapSurEndemicity" xml:space="preserve">
     <value>Endemicity</value>
   </data>
+  <data name="TraMapSurFandE" xml:space="preserve">
+    <value>F&amp;E: % of children with clean faces</value>
+  </data>
+  <data name="TraMapSurFemale15yo" xml:space="preserve">
+    <value>Females 15+ years</value>
+  </data>
+  <data name="TraMapSurFemale40yo" xml:space="preserve">
+    <value>Females 40+ years</value>
+  </data>
   <data name="TraMapSurGenderSurveyed" xml:space="preserve">
     <value>Gender surveyed</value>
   </data>
   <data name="TraMapSurLevelOfAntibioticTreatmentRequi" xml:space="preserve">
     <value>Level of antibiotic treatment required</value>
+  </data>
+  <data name="TraMapSurMaleFemale15yo" xml:space="preserve">
+    <value>Male &amp; Female 15+ years</value>
+  </data>
+  <data name="TraMapSurMaleFemale40yo" xml:space="preserve">
+    <value>Male &amp; Female 40+ years</value>
+  </data>
+  <data name="TraMapSurNoAReq" xml:space="preserve">
+    <value>No A required, consider F&amp;E</value>
+  </data>
+  <data name="TraMapSurNoClusters" xml:space="preserve">
+    <value>Number of clusters sampled</value>
   </data>
   <data name="TraMapSurNumberOfIndividualsExamined" xml:space="preserve">
     <value>Number of individuals examined - CO</value>
@@ -4559,11 +5572,26 @@ Fixed / Mobile</value>
   <data name="TraMapSurPerWithClinicalSignTt" xml:space="preserve">
     <value>% with clinical sign - TT</value>
   </data>
+  <data name="TraMapSurPrevalenceActive" xml:space="preserve">
+    <value>Prevalence of Active Trachoma (%TF)</value>
+  </data>
+  <data name="TraMapSurPrevTt" xml:space="preserve">
+    <value>Prevalence of Trachoma Trichiasis (%TT)</value>
+  </data>
   <data name="TraMapSurSiteNames" xml:space="preserve">
     <value>Site name(s)</value>
   </data>
   <data name="TraMapSurStartDateOfSurvey" xml:space="preserve">
     <value>Start date of survey</value>
+  </data>
+  <data name="TraMapSurSubDistMda" xml:space="preserve">
+    <value>Sub-district level MDA</value>
+  </data>
+  <data name="TraMapSurSurgery01pop" xml:space="preserve">
+    <value>Surgery: 0.01% of population (year of survey)</value>
+  </data>
+  <data name="TraMapSurSurgeryNumTt" xml:space="preserve">
+    <value>Surgery: Number of TT cases in children &lt;15 years</value>
   </data>
   <data name="TraMapSurSurveyPower" xml:space="preserve">
     <value>Survey power</value>
@@ -4571,8 +5599,23 @@ Fixed / Mobile</value>
   <data name="TraMapSurSurveyType" xml:space="preserve">
     <value>Survey type</value>
   </data>
+  <data name="TraMapSurTargetedMda" xml:space="preserve">
+    <value>Targeted MDA</value>
+  </data>
   <data name="TraMapSurTargetSampleSize" xml:space="preserve">
     <value>Target sample size</value>
+  </data>
+  <data name="TraMapSurTfAlone" xml:space="preserve">
+    <value>TF-Alone</value>
+  </data>
+  <data name="TraMapSurTfTi" xml:space="preserve">
+    <value>TF&amp;TI</value>
+  </data>
+  <data name="TraMapSurTiAlone" xml:space="preserve">
+    <value>TI-Alone</value>
+  </data>
+  <data name="TraMapSurTtInd" xml:space="preserve">
+    <value>TT Indicator</value>
   </data>
   <data name="TraNs" xml:space="preserve">
     <value>NS Not mapped but not suspected</value>
@@ -4591,6 +5634,9 @@ Fixed / Mobile</value>
   </data>
   <data name="TraSurDateOfTheFirstRoundOfDistributionO" xml:space="preserve">
     <value>Date of the first round of distribution of A (year)</value>
+  </data>
+  <data name="TraSurDistLevel" xml:space="preserve">
+    <value>District-level MDA</value>
   </data>
   <data name="TraSurEndDateOfSurvey" xml:space="preserve">
     <value>End date of survey</value>
@@ -4646,17 +5692,26 @@ Fixed / Mobile</value>
   <data name="TraSurOfNationalBlindness" xml:space="preserve">
     <value>% of National blindness</value>
   </data>
+  <data name="TraSurPostMda" xml:space="preserve">
+    <value>Post-MDA surveillance</value>
+  </data>
   <data name="TraSurSiteNames" xml:space="preserve">
     <value>Site name(s)</value>
   </data>
   <data name="TraSurStartDateOfSurvey" xml:space="preserve">
     <value>Start date of survey</value>
   </data>
+  <data name="TraSurSubDistLevel" xml:space="preserve">
+    <value>Sub-district level MDA</value>
+  </data>
   <data name="TraSurSurveyPower" xml:space="preserve">
     <value>Survey power</value>
   </data>
   <data name="TraSurSurveyType" xml:space="preserve">
     <value>Survey type</value>
+  </data>
+  <data name="TraSurTargetedMda" xml:space="preserve">
+    <value>Targeted MDA</value>
   </data>
   <data name="TraSurTargetSampleSize" xml:space="preserve">
     <value>Target sample size</value>
@@ -4687,6 +5742,48 @@ Fixed / Mobile</value>
   </data>
   <data name="Trichuris" xml:space="preserve">
     <value>Trichuris trichiura (whipworm)</value>
+  </data>
+  <data name="TriTraining" xml:space="preserve">
+    <value>Trichiasis Surgeon Training</value>
+  </data>
+  <data name="TriTrainingBltr" xml:space="preserve">
+    <value>BLTR</value>
+  </data>
+  <data name="TriTrainingCertification" xml:space="preserve">
+    <value>Certification</value>
+  </data>
+  <data name="TriTrainingEyeCareWorker" xml:space="preserve">
+    <value>Eye care worker</value>
+  </data>
+  <data name="TriTrainingHealthWorker" xml:space="preserve">
+    <value>Health worker</value>
+  </data>
+  <data name="TriTrainingMethod" xml:space="preserve">
+    <value>Surgical method taught</value>
+  </data>
+  <data name="TriTrainingNewSurgeon" xml:space="preserve">
+    <value>New surgeon</value>
+  </data>
+  <data name="TriTrainingQualifications" xml:space="preserve">
+    <value>TT Surgeon Qualifications</value>
+  </data>
+  <data name="TriTrainingRefresher" xml:space="preserve">
+    <value>Refresher</value>
+  </data>
+  <data name="TriTrainingSurgeonName" xml:space="preserve">
+    <value>Name of TT Surgeon (the 2 indicators below should be associated with the surgeon name)</value>
+  </data>
+  <data name="TriTrainingTrabut" xml:space="preserve">
+    <value>Trabut</value>
+  </data>
+  <data name="TriTrainingTrainerName" xml:space="preserve">
+    <value>Name of TT Surgeon Trainer</value>
+  </data>
+  <data name="TriTrainingType" xml:space="preserve">
+    <value>Type of training</value>
+  </data>
+  <data name="TriTrainingWasCertified" xml:space="preserve">
+    <value>Was the surgeon certified using WHO guidelines?</value>
   </data>
   <data name="Ts" xml:space="preserve">
     <value>TS</value>
@@ -4745,6 +5842,33 @@ Fixed / Mobile</value>
   <data name="Tt" xml:space="preserve">
     <value>TT</value>
   </data>
+  <data name="TtAios" xml:space="preserve">
+    <value>TT AIOs</value>
+  </data>
+  <data name="TtAios2014" xml:space="preserve">
+    <value>2014 Annual Intervention Objective</value>
+  </data>
+  <data name="TtAios2015" xml:space="preserve">
+    <value>2015 Annual Intervention Objective</value>
+  </data>
+  <data name="TtAios2016" xml:space="preserve">
+    <value>2016 Annual Intervention Objective</value>
+  </data>
+  <data name="TtAios2017" xml:space="preserve">
+    <value>2017 Annual Intervention Objective</value>
+  </data>
+  <data name="TtAios2018" xml:space="preserve">
+    <value>2018 Annual Intervention Objective</value>
+  </data>
+  <data name="TtAios2019" xml:space="preserve">
+    <value>2019 Annual Intervention Objective</value>
+  </data>
+  <data name="TtAios2020" xml:space="preserve">
+    <value>2020 Annual Intervention Objective</value>
+  </data>
+  <data name="TutorialFile" xml:space="preserve">
+    <value>/View/Help/TrainingPPT_061614_en.pptx</value>
+  </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
@@ -4757,8 +5881,20 @@ Fixed / Mobile</value>
   <data name="UnknownEndemicity" xml:space="preserve">
     <value>Unknown endemicity</value>
   </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Checking for updates...</value>
+  </data>
   <data name="UpdateComplete" xml:space="preserve">
     <value>Update completed</value>
+  </data>
+  <data name="UpdateCompleteErrors" xml:space="preserve">
+    <value>Update complete, please ensure there are no errors below</value>
+  </data>
+  <data name="UpdateDdAfterSavingSurvey" xml:space="preserve">
+    <value>Be sure to update disease distribution as appropriate incorporating the results of this survey</value>
+  </data>
+  <data name="UpdateDdAfterSavingSurveyTitle" xml:space="preserve">
+    <value>Update Disease Distribution</value>
   </data>
   <data name="UpdateDdForYear" xml:space="preserve">
     <value>Update disease distribution for new year</value>
@@ -4778,8 +5914,20 @@ Fixed / Mobile</value>
   <data name="UpdateException" xml:space="preserve">
     <value>No update found, please ensure internet access</value>
   </data>
+  <data name="UpdateExecute" xml:space="preserve">
+    <value>Run Update</value>
+  </data>
+  <data name="UpdateFound" xml:space="preserve">
+    <value>There is a new version of this application, would you like to update?</value>
+  </data>
+  <data name="UpdateNoInternet" xml:space="preserve">
+    <value>Please verify your internet connection is working and try again.</value>
+  </data>
   <data name="UpdateNone" xml:space="preserve">
     <value>No update found</value>
+  </data>
+  <data name="UpdateRestart" xml:space="preserve">
+    <value>The application has been upgraded, please restart.</value>
   </data>
   <data name="Updates" xml:space="preserve">
     <value>Updates</value>
@@ -4789,6 +5937,9 @@ Fixed / Mobile</value>
   </data>
   <data name="Updating" xml:space="preserve">
     <value>Updating</value>
+  </data>
+  <data name="UpdatingMightTake" xml:space="preserve">
+    <value>The application is now updating. This process might take a few minutes.</value>
   </data>
   <data name="UploadFile" xml:space="preserve">
     <value>Upload File</value>
@@ -4817,14 +5968,26 @@ Fixed / Mobile</value>
   <data name="ValidationErrorTitle" xml:space="preserve">
     <value>Validation error</value>
   </data>
+  <data name="ValidationMustBeUnique" xml:space="preserve">
+    <value>{0} must be unique</value>
+  </data>
+  <data name="ValidationNoIllegalChars" xml:space="preserve">
+    <value>Value cannot contain special characters - ampersand</value>
+  </data>
   <data name="ValidationUserName" xml:space="preserve">
     <value>Username must be unique</value>
+  </data>
+  <data name="ValidDropdown" xml:space="preserve">
+    <value>Invalid value, please select an item from the list of options.</value>
   </data>
   <data name="ValidLatitude" xml:space="preserve">
     <value>Latitude must be between -90° and 90°</value>
   </data>
   <data name="ValidLongitude" xml:space="preserve">
     <value>Longitude must be between -180° and 180°</value>
+  </data>
+  <data name="ValidNumberRange" xml:space="preserve">
+    <value>Must be between {0} and {1}</value>
   </data>
   <data name="ValidRoundsMda" xml:space="preserve">
     <value>Must be between 0 and 20</value>
@@ -4846,6 +6009,9 @@ Fixed / Mobile</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>View</value>
+  </data>
+  <data name="ViewEdit" xml:space="preserve">
+    <value>View/edit</value>
   </data>
   <data name="ViewHelp" xml:space="preserve">
     <value>View Help</value>
@@ -4896,13 +6062,13 @@ Fixed / Mobile</value>
     <value>Yaws training</value>
   </data>
   <data name="YawsTrainNumberOfParticipantsToTrainingS" xml:space="preserve">
-    <value>Number of participants to training sessions</value>
+    <value>Number of people trained</value>
   </data>
   <data name="YawsTrainNumberOfSupervisionVisitsSchedu" xml:space="preserve">
     <value>Number of supervision visits scheduled per year</value>
   </data>
   <data name="YawsTrainNumberOfTrainingSessionsHold" xml:space="preserve">
-    <value>Number of training sessions hold</value>
+    <value>Number of training sessions held</value>
   </data>
   <data name="YawsTrainPercentageOfHealthFacilitiesHav" xml:space="preserve">
     <value>Percentage of health facilities having at least one trained staff for yaws elimination programme</value>
@@ -4960,1167 +6126,5 @@ Fixed / Mobile</value>
   </data>
   <data name="YesSentinelSite" xml:space="preserve">
     <value>Yes-Sentinel site</value>
-  </data>
-  <data name="MenuViewTutorial" xml:space="preserve">
-    <value>View PowerPoint tutorial...</value>
-  </data>
-  <data name="DateReported" xml:space="preserve">
-    <value>Start date data apply to</value>
-  </data>
-  <data name="Open" xml:space="preserve">
-    <value>Open</value>
-  </data>
-  <data name="CreateCopyOfErrorLogFile" xml:space="preserve">
-    <value>Create copy of error log file.</value>
-  </data>
-  <data name="RetrieveLogFile" xml:space="preserve">
-    <value>Retrieve log file</value>
-  </data>
-  <data name="UpdateChecking" xml:space="preserve">
-    <value>Checking for updates...</value>
-  </data>
-  <data name="UpdateExecute" xml:space="preserve">
-    <value>Run Update</value>
-  </data>
-  <data name="UpdateFound" xml:space="preserve">
-    <value>There is a new version of this application, would you like to update?</value>
-  </data>
-  <data name="UpdateNoInternet" xml:space="preserve">
-    <value>Please verify your internet connection is working and try again.</value>
-  </data>
-  <data name="UpdateRestart" xml:space="preserve">
-    <value>The application has been upgraded, please restart.</value>
-  </data>
-  <data name="ApplicationUpdate" xml:space="preserve">
-    <value>Application update</value>
-  </data>
-  <data name="DatabaseScriptException" xml:space="preserve">
-    <value>Database script exception</value>
-  </data>
-  <data name="DatabaseScriptFailed" xml:space="preserve">
-    <value>Update failed.</value>
-  </data>
-  <data name="DatabaseScripts" xml:space="preserve">
-    <value>You must update your database with the latest scripts before continuing.  Please click "Next" to start.</value>
-  </data>
-  <data name="DatabaseScriptsExecuting" xml:space="preserve">
-    <value>Executing database scripts...</value>
-  </data>
-  <data name="DatabaseScriptSuccess" xml:space="preserve">
-    <value>Database script successfully executed.</value>
-  </data>
-  <data name="DatabaseUpdate" xml:space="preserve">
-    <value>Database update</value>
-  </data>
-  <data name="UpdateCompleteErrors" xml:space="preserve">
-    <value>Update complete, please ensure there are no errors below</value>
-  </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
-  </data>
-  <data name="IntvPkgALB" xml:space="preserve">
-    <value>ALB</value>
-  </data>
-  <data name="IntvPkgALB2forLF" xml:space="preserve">
-    <value>ALB x 2 for LF</value>
-  </data>
-  <data name="IntvPkgDECALB" xml:space="preserve">
-    <value>DEC + ALB</value>
-  </data>
-  <data name="IntvPkgIVM" xml:space="preserve">
-    <value>IVM</value>
-  </data>
-  <data name="IntvPkgIVMALB" xml:space="preserve">
-    <value>IVM + ALB</value>
-  </data>
-  <data name="IntvPkgMBD" xml:space="preserve">
-    <value>MBD</value>
-  </data>
-  <data name="IntvPkgPZQ" xml:space="preserve">
-    <value>PZQ</value>
-  </data>
-  <data name="IntvPkgPZQALB" xml:space="preserve">
-    <value>PZQ + ALB</value>
-  </data>
-  <data name="IntvPkgPZQIVMALB" xml:space="preserve">
-    <value>PZQ + IVM + ALB</value>
-  </data>
-  <data name="IntvPkgPZQMBD" xml:space="preserve">
-    <value>PZQ + MBD</value>
-  </data>
-  <data name="IntvPkgTEO" xml:space="preserve">
-    <value>TEO</value>
-  </data>
-  <data name="IntvPkgTEOZithro" xml:space="preserve">
-    <value>TEO + Zithro</value>
-  </data>
-  <data name="IntvPkgZithro" xml:space="preserve">
-    <value>Zithro</value>
-  </data>
-  <data name="LfEnd0b" xml:space="preserve">
-    <value>0 - Not endemic, not above treatment threshold</value>
-  </data>
-  <data name="OnchoMapEvaluationSite" xml:space="preserve">
-    <value>Evaluation Site</value>
-  </data>
-  <data name="OnchoMapSiteName" xml:space="preserve">
-    <value>Site Name</value>
-  </data>
-  <data name="OnchoSurEvaluationSite" xml:space="preserve">
-    <value>Evaluation Site</value>
-  </data>
-  <data name="OnchoSurSiteName" xml:space="preserve">
-    <value>Site Name</value>
-  </data>
-  <data name="TrainingDiseases" xml:space="preserve">
-    <value>Disease(s) included in training</value>
-  </data>
-  <data name="TrainingDrugPackages" xml:space="preserve">
-    <value>Drugs package(s) included in training</value>
-  </data>
-  <data name="TrainingNumFemales" xml:space="preserve">
-    <value># females involved in distribution</value>
-  </data>
-  <data name="TrainingNumMales" xml:space="preserve">
-    <value># males involved in distribution</value>
-  </data>
-  <data name="OnchoSurCatchingPoint" xml:space="preserve">
-    <value>Name of the catching point</value>
-  </data>
-  <data name="OnchoSurEntomological" xml:space="preserve">
-    <value>Onchocerciasis (River Blindness) Entomological survey</value>
-  </data>
-  <data name="OnchoSurFliesDissected" xml:space="preserve">
-    <value>Number of flies dissected</value>
-  </data>
-  <data name="OnchoSurInfectedFlies" xml:space="preserve">
-    <value>Number of infected flies</value>
-  </data>
-  <data name="OnchoSurInfectionRate" xml:space="preserve">
-    <value>Infection rate</value>
-  </data>
-  <data name="OnchoSurInfectiveFlies" xml:space="preserve">
-    <value>Number of infective flies</value>
-  </data>
-  <data name="OnchoSurInfectiveLarvae" xml:space="preserve">
-    <value>Number of infective larvae</value>
-  </data>
-  <data name="OnchoSurInfectivityRate" xml:space="preserve">
-    <value>Infectivity rate</value>
-  </data>
-  <data name="OnchoSurLat" xml:space="preserve">
-    <value>Latitude</value>
-  </data>
-  <data name="OnchoSurLng" xml:space="preserve">
-    <value>Longitude</value>
-  </data>
-  <data name="OnchoSurMonth" xml:space="preserve">
-    <value>Month of flies collection</value>
-  </data>
-  <data name="OnchoSurNoFlies" xml:space="preserve">
-    <value>Number of flies collected</value>
-  </data>
-  <data name="OnchoSurParousFlies" xml:space="preserve">
-    <value>Number of parous flies</value>
-  </data>
-  <data name="OnchoSurParousRate" xml:space="preserve">
-    <value>Parous rate</value>
-  </data>
-  <data name="OnchoSurProject" xml:space="preserve">
-    <value>Name of the project</value>
-  </data>
-  <data name="OnchoSurRiver" xml:space="preserve">
-    <value>Name of river</value>
-  </data>
-  <data name="OnchoSurRiverBasin" xml:space="preserve">
-    <value>Name of river basin</value>
-  </data>
-  <data name="Chart" xml:space="preserve">
-    <value>Chart</value>
-  </data>
-  <data name="ExportImage" xml:space="preserve">
-    <value>Export image</value>
-  </data>
-  <data name="Table" xml:space="preserve">
-    <value>Table</value>
-  </data>
-  <data name="Exports" xml:space="preserve">
-    <value>Exports</value>
-  </data>
-  <data name="ReportBuilder" xml:space="preserve">
-    <value>Report builder</value>
-  </data>
-  <data name="StandardReports" xml:space="preserve">
-    <value>Standard reports</value>
-  </data>
-  <data name="OnchoSurParousFliesDisected" xml:space="preserve">
-    <value>Number of parous flies dissected</value>
-  </data>
-  <data name="OnchoSurParousFliesInfected" xml:space="preserve">
-    <value>Number of parous flies infected</value>
-  </data>
-  <data name="ReportingYearStartDate" xml:space="preserve">
-    <value>Start date of reporting year</value>
-  </data>
-  <data name="TasEstimatedNonResponseRate" xml:space="preserve">
-    <value>Estimated non-response rate</value>
-  </data>
-  <data name="TasGradesWithMajorityOf6yo" xml:space="preserve">
-    <value>If implementing TAS in schools, grade(s) with majority of 6-7 year olds</value>
-  </data>
-  <data name="TasTotal6yoInCommunities" xml:space="preserve">
-    <value>If implementing TAS in communities, total # of 6-7 year olds in EU</value>
-  </data>
-  <data name="TasTotalAreasInCommunities" xml:space="preserve">
-    <value>If implementing TAS in communities, total number of enumeration areas in EU</value>
-  </data>
-  <data name="TasTotalNumChildrenInGrades" xml:space="preserve">
-    <value>If implementing TAS in schools, total number of children in selected grade(s) in EU</value>
-  </data>
-  <data name="TasTotalNumPrimarySchools" xml:space="preserve">
-    <value>If implementing TAS in schools, total number of primary schools in EU</value>
-  </data>
-  <data name="Persons" xml:space="preserve">
-    <value>Persons</value>
-  </data>
-  <data name="ReportProgressTowardsEliminiation" xml:space="preserve">
-    <value>Progress towards Elimination</value>
-  </data>
-  <data name="ChartBar" xml:space="preserve">
-    <value>Bar</value>
-  </data>
-  <data name="ChartLine" xml:space="preserve">
-    <value>Line</value>
-  </data>
-  <data name="EliminationAtRisk" xml:space="preserve">
-    <value>Number of persons at-risk</value>
-  </data>
-  <data name="EliminationEndemicDistricts" xml:space="preserve">
-    <value>Number of endemic {0} requiring PC</value>
-  </data>
-  <data name="EliminationLiving" xml:space="preserve">
-    <value>Number of persons living in areas that have achieved the criteria for stopping PC</value>
-  </data>
-  <data name="EliminationStoppedDistricts" xml:space="preserve">
-    <value>Number of {0} that have achieved the criteria for stopping PC</value>
-  </data>
-  <data name="SaveReportOptions" xml:space="preserve">
-    <value>Save report options</value>
-  </data>
-  <data name="ExportTasCost" xml:space="preserve">
-    <value>Budgeted cost</value>
-  </data>
-  <data name="ExportTasDays" xml:space="preserve">
-    <value>Estimated number of survey days required</value>
-  </data>
-  <data name="ExportTasIctTests" xml:space="preserve">
-    <value>Number of ICT or Brugia Rapid tests required</value>
-  </data>
-  <data name="ExportTasSources" xml:space="preserve">
-    <value>Source(s) of funding</value>
-  </data>
-  <data name="ExportTasStartYear" xml:space="preserve">
-    <value>Planned starting month and year</value>
-  </data>
-  <data name="PcIntvLowerConfidence" xml:space="preserve">
-    <value>Lower confidence interval of surveyed coverage</value>
-  </data>
-  <data name="PcIntvSurveyedCoverage" xml:space="preserve">
-    <value>Surveyed coverage</value>
-  </data>
-  <data name="PcIntvUpperConfidence" xml:space="preserve">
-    <value>Upper confidence interval of surveyed coverage</value>
-  </data>
-  <data name="PcIntvLfAtRisk" xml:space="preserve">
-    <value>LF at-risk population</value>
-  </data>
-  <data name="PcIntvLfEpiCoverage" xml:space="preserve">
-    <value>LF Epi coverage</value>
-  </data>
-  <data name="PcIntvLfPopRecPc" xml:space="preserve">
-    <value>LF population requiring PC</value>
-  </data>
-  <data name="PcIntvOnchoAtRisk" xml:space="preserve">
-    <value>Oncho at-risk population</value>
-  </data>
-  <data name="PcIntvOnchoEpiCoverage" xml:space="preserve">
-    <value>Oncho Epi coverage</value>
-  </data>
-  <data name="PcIntvOnchoPopReqPc" xml:space="preserve">
-    <value>Oncho population requiring PC</value>
-  </data>
-  <data name="PcIntvOnchoProgramCov" xml:space="preserve">
-    <value>Oncho program coverage</value>
-  </data>
-  <data name="PcIntvSchAtRisk" xml:space="preserve">
-    <value>SCH total at-risk population</value>
-  </data>
-  <data name="PcIntvSchEpi" xml:space="preserve">
-    <value>SCH total Epi coverage</value>
-  </data>
-  <data name="PcIntvSchPopReqPc" xml:space="preserve">
-    <value>SCH population requiring PC</value>
-  </data>
-  <data name="PcIntvSchSacAtRisk" xml:space="preserve">
-    <value>SCH SAC at-risk population</value>
-  </data>
-  <data name="PcIntvSchSacEpi" xml:space="preserve">
-    <value>SCH SAC Epi coverage</value>
-  </data>
-  <data name="PcIntvSthAtRisk" xml:space="preserve">
-    <value>STH total at-risk population</value>
-  </data>
-  <data name="PcIntvSthEpiCoverage" xml:space="preserve">
-    <value>STH total Epi coverage</value>
-  </data>
-  <data name="PcIntvSthPopReqPc" xml:space="preserve">
-    <value>STH population requiring PC</value>
-  </data>
-  <data name="PcIntvSthPsacAtRisk" xml:space="preserve">
-    <value>STH PSAC at-risk population</value>
-  </data>
-  <data name="PcIntvSthPsacEpiCoverage" xml:space="preserve">
-    <value>STH PSAC Epi coverage</value>
-  </data>
-  <data name="PcIntvSthSacAtRisk" xml:space="preserve">
-    <value>STH SAC at-risk population</value>
-  </data>
-  <data name="PcIntvSthSacEpiCoverage" xml:space="preserve">
-    <value>STH SAC Epi coverage</value>
-  </data>
-  <data name="PcIntvTraAtRisk" xml:space="preserve">
-    <value>Trachoma at-risk population</value>
-  </data>
-  <data name="PcIntvTraEpi" xml:space="preserve">
-    <value>Trachoma EPI coverage</value>
-  </data>
-  <data name="PcIntvOnchoEpiCoverageOfOncho" xml:space="preserve">
-    <value>Oncho Epi coverage</value>
-  </data>
-  <data name="ExportApocReport" xml:space="preserve">
-    <value>APOC Report</value>
-  </data>
-  <data name="ImportListsSelect" xml:space="preserve">
-    <value>Please select the values necessary for this import</value>
-  </data>
-  <data name="ValidDropdown" xml:space="preserve">
-    <value>Invalid value, please select an item from the list of options.</value>
-  </data>
-  <data name="ApocDateReportGenerated" xml:space="preserve">
-    <value>Date report generated</value>
-  </data>
-  <data name="ValidationMustBeUnique" xml:space="preserve">
-    <value>{0} must be unique</value>
-  </data>
-  <data name="ValidationNoIllegalChars" xml:space="preserve">
-    <value>Value cannot contain special characters - ampersand</value>
-  </data>
-  <data name="ImportSelectionOption" xml:space="preserve">
-    <value> | Selection </value>
-  </data>
-  <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
-  </data>
-  <data name="DateRange" xml:space="preserve">
-    <value>Date range</value>
-  </data>
-  <data name="ReportsNoDdInDateRange" xml:space="preserve">
-    <value>No {3} disease distribution could be found for {0} in the date range {1} - {2}.</value>
-  </data>
-  <data name="ReportsNoDemographyInDateRange" xml:space="preserve">
-    <value>No demography could be found for {0} in the date range {1} - {2}.</value>
-  </data>
-  <data name="MetaDataDateRange" xml:space="preserve">
-    <value>Date range for above data</value>
-  </data>
-  <data name="ReportChoosenDd" xml:space="preserve">
-    <value>choosen</value>
-  </data>
-  <data name="SplittingBackup" xml:space="preserve">
-    <value>Backup database before continuing</value>
-  </data>
-  <data name="SplittingBackupMessage" xml:space="preserve">
-    <value>Please click "Next" to backup your current database before continuing this process.</value>
-  </data>
-  <data name="ReviewErrors" xml:space="preserve">
-    <value>Please review the errors and fix before continuing.</value>
-  </data>
-  <data name="Running" xml:space="preserve">
-    <value>Running...</value>
-  </data>
-  <data name="DatabaseScriptBackup" xml:space="preserve">
-    <value>Please revert to the most recent backup of your database: </value>
-  </data>
-  <data name="ShowRedistrictingEvents" xml:space="preserve">
-    <value>Show redistricting events</value>
-  </data>
-  <data name="RedistrictedAdminUnits" xml:space="preserve">
-    <value>Show only administrative units before redistricting</value>
-  </data>
-  <data name="RedistrictingInfo" xml:space="preserve">
-    <value>Redistricting Information</value>
-  </data>
-  <data name="RedistrictingMergeDesc" xml:space="preserve">
-    <value>Merged from {0} on {1}</value>
-  </data>
-  <data name="RedistrictingNotes" xml:space="preserve">
-    <value>Notes about redistricting</value>
-  </data>
-  <data name="RedistrictingSplitCombineDesc" xml:space="preserve">
-    <value>Split and combined from {0} on {1}</value>
-  </data>
-  <data name="RedistrictingSplitDesc" xml:space="preserve">
-    <value>Split from {0} on {1}</value>
-  </data>
-  <data name="ParentLevelMustBeSame" xml:space="preserve">
-    <value>You must select a parent for the new administrative level that is of type: {0}</value>
-  </data>
-  <data name="RedistrictingMergeInto" xml:space="preserve">
-    <value>Merged into {0} on {1}</value>
-  </data>
-  <data name="RedistrictingSplitCombineInto" xml:space="preserve">
-    <value>Split and combined into {0} on {1}</value>
-  </data>
-  <data name="RedistrictingSplitInto" xml:space="preserve">
-    <value>Split into {0} on {1}</value>
-  </data>
-  <data name="ValidNumberRange" xml:space="preserve">
-    <value>Must be between {0} and {1}</value>
-  </data>
-  <data name="AdminUnits" xml:space="preserve">
-    <value>Administrative units</value>
-  </data>
-  <data name="Data" xml:space="preserve">
-    <value>Data</value>
-  </data>
-  <data name="RtiErrorMustMatchAll" xml:space="preserve">
-    <value>Must match all units before continuing</value>
-  </data>
-  <data name="RtiMatchLevel" xml:space="preserve">
-    <value>Match your units with the RTI system: {0}</value>
-  </data>
-  <data name="RtiReports" xml:space="preserve">
-    <value>Disease Workbook for USAID reporting</value>
-  </data>
-  <data name="RtiCantReconcile" xml:space="preserve">
-    <value>Cannot Reconcile</value>
-  </data>
-  <data name="RtiFetchingTaskForceNames" xml:space="preserve">
-    <value>Fetching country information from RTI system</value>
-  </data>
-  <data name="RtiNoData" xml:space="preserve">
-    <value>The RTI system has no data on that country, please double check your selection before continuing.</value>
-  </data>
-  <data name="RtiSkipReconcile" xml:space="preserve">
-    <value>Skip administrative unit reconciliation</value>
-  </data>
-  <data name="RtiTaskForceNoResults" xml:space="preserve">
-    <value>No results found when querying the RTI system, please contact support.</value>
-  </data>
-  <data name="ExportsPcEpiDataForm" xml:space="preserve">
-    <value>PC epidemiologial data reporting form</value>
-  </data>
-  <data name="LFMapSurExaminedHydro1" xml:space="preserve">
-    <value>Number of individuals examined for Hydrocele</value>
-  </data>
-  <data name="LFMapSurExaminedLympho" xml:space="preserve">
-    <value>Number of individuals examined for Lymphoedema</value>
-  </data>
-  <data name="LFSurExaminedHydro" xml:space="preserve">
-    <value>Number of individuals examined for Hydrocele</value>
-  </data>
-  <data name="LFSurExaminedLympho" xml:space="preserve">
-    <value>Number of individuals examined for Lymphoedema</value>
-  </data>
-  <data name="LFSurPosHydro" xml:space="preserve">
-    <value>Number of individuals positive for Hydrocele</value>
-  </data>
-  <data name="LFSurPosLympho" xml:space="preserve">
-    <value>Number of individuals positive for Lymphoedema</value>
-  </data>
-  <data name="CalendarYear" xml:space="preserve">
-    <value>Calendar year</value>
-  </data>
-  <data name="CustomYear" xml:space="preserve">
-    <value>Custom year</value>
-  </data>
-  <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
-    <value>RTI Country Disease Workbook</value>
-  </data>
-  <data name="RtiDataCompleteness" xml:space="preserve">
-    <value>Data completeness (%)</value>
-  </data>
-  <data name="RtiName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="RtiProjectName" xml:space="preserve">
-    <value>Project name</value>
-  </data>
-  <data name="RtiReportingLevel" xml:space="preserve">
-    <value>Reporting level</value>
-  </data>
-  <data name="RtiReportingPeriod" xml:space="preserve">
-    <value>Reporting period</value>
-  </data>
-  <data name="RtiSubPartnerName" xml:space="preserve">
-    <value>Sub-partner name</value>
-  </data>
-  <data name="RtiTitle" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="RtiTotalDistrictsComplete" xml:space="preserve">
-    <value>Total # districts submitted complete treatment report</value>
-  </data>
-  <data name="RtiTotalDistrictsTreatedWithUsaid" xml:space="preserve">
-    <value>Total districts treated with USAID support</value>
-  </data>
-  <data name="RtiWorkbookQuestions" xml:space="preserve">
-    <value>Workbook questions</value>
-  </data>
-  <data name="RtiYearOfWorkbook" xml:space="preserve">
-    <value>Year of workbook</value>
-  </data>
-  <data name="SplittingMergeYear" xml:space="preserve">
-    <value>When merging administrative units, data will be combined within the same year. How would you like to define the year?</value>
-  </data>
-  <data name="PcIntvOfTotalFemalesOncho" xml:space="preserve">
-    <value>Of total, # females treated for oncho</value>
-  </data>
-  <data name="PcIntvOfTotalFemalesTargetedOncho" xml:space="preserve">
-    <value>Of total, # females targeted  for oncho</value>
-  </data>
-  <data name="PcIntvOfTotalMalesOncho" xml:space="preserve">
-    <value>Of total, # males treated for oncho</value>
-  </data>
-  <data name="PcIntvOfTotalMalesTargetedOncho" xml:space="preserve">
-    <value>Of total, # males targeted for oncho</value>
-  </data>
-  <data name="AdministrativeUnits" xml:space="preserve">
-    <value>Administrative units</value>
-  </data>
-  <data name="MenuDeleteAdminLevel" xml:space="preserve">
-    <value>Delete administrative units</value>
-  </data>
-  <data name="NewYearUpdates" xml:space="preserve">
-    <value>New year updates</value>
-  </data>
-  <data name="AdminUnitsSurveyed" xml:space="preserve">
-    <value>Administrative units surveyed</value>
-  </data>
-  <data name="PcTrainNew" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="PcTrainNewOrRefresh" xml:space="preserve">
-    <value>New or Refresher</value>
-  </data>
-  <data name="PcTrainRefresher" xml:space="preserve">
-    <value>Refresher</value>
-  </data>
-  <data name="PcTrainUnknown" xml:space="preserve">
-    <value>Unknown</value>
-  </data>
-  <data name="CmBudget" xml:space="preserve">
-    <value>Budget</value>
-  </data>
-  <data name="CmBudgetProportion" xml:space="preserve">
-    <value>Proportion of funds allocated to NTDs in the National Health Sector Budget (%)</value>
-  </data>
-  <data name="SplittingMustAllocateSaes" xml:space="preserve">
-    <value>Must allocate all SAEs to a new destination before continuing.</value>
-  </data>
-  <data name="SplittingPercentages" xml:space="preserve">
-    <value>Split Percentages</value>
-  </data>
-  <data name="SplittingSaes" xml:space="preserve">
-    <value>Split SAEs</value>
-  </data>
-  <data name="SplittingSurveyWarning" xml:space="preserve">
-    <value>Survey data from the parent districts was duplicated in all the daughter districts and should be reviewed.</value>
-  </data>
-  <data name="ExitWarning" xml:space="preserve">
-    <value>Are you sure you want to exit the Integrated NTD Database?</value>
-  </data>
-  <data name="ExitWarningTitle" xml:space="preserve">
-    <value>Exiting Application</value>
-  </data>
-  <data name="ImportDemo" xml:space="preserve">
-    <value>Demography import</value>
-  </data>
-  <data name="UpdateDdAfterSavingSurvey" xml:space="preserve">
-    <value>Be sure to update disease distribution as appropriate incorporating the results of this survey</value>
-  </data>
-  <data name="UpdateDdAfterSavingSurveyTitle" xml:space="preserve">
-    <value>Update Disease Distribution</value>
-  </data>
-  <data name="RedistEventDate" xml:space="preserve">
-    <value>Redistricting event date</value>
-  </data>
-  <data name="RedistLevel" xml:space="preserve">
-    <value>Administrative level</value>
-  </data>
-  <data name="RedistNewName" xml:space="preserve">
-    <value>New administrative unit name</value>
-  </data>
-  <data name="RedistNewParent" xml:space="preserve">
-    <value>New upper administrative unit name</value>
-  </data>
-  <data name="RedistNewPop" xml:space="preserve">
-    <value>Population in new unit at time of redistricting</value>
-  </data>
-  <data name="RedistOrigName" xml:space="preserve">
-    <value>Original administrative unit name</value>
-  </data>
-  <data name="RedistOrigParent" xml:space="preserve">
-    <value>Original upper administrative unit name</value>
-  </data>
-  <data name="RedistOrigPop" xml:space="preserve">
-    <value>Population at time of redistricting</value>
-  </data>
-  <data name="RedistrictingReport" xml:space="preserve">
-    <value>Redistricting report</value>
-  </data>
-  <data name="RedistrictTypeMerge" xml:space="preserve">
-    <value>Merge</value>
-  </data>
-  <data name="RedistrictTypeSplit" xml:space="preserve">
-    <value>Split</value>
-  </data>
-  <data name="RedistrictTypeSplitCombine" xml:space="preserve">
-    <value>Split/combine</value>
-  </data>
-  <data name="RedistType" xml:space="preserve">
-    <value>Type of redistricting</value>
-  </data>
-  <data name="ImportSurveyWarning" xml:space="preserve">
-    <value>Important note: Survey imports only work for surveys that take place in just one administrative unit at a time. If any of your surveys take place in more than one administrative unit at a time (for example, an Ecological Zone spanning multiple districts), those surveys need to be entered directly into the forms. They will not record properly if entered here in imports.</value>
-  </data>
-  <data name="UpdatingMightTake" xml:space="preserve">
-    <value>The application is now updating. This process might take a few minutes.</value>
-  </data>
-  <data name="DDTraAchievedCriteria" xml:space="preserve">
-    <value>Achieved criteria for stopping district-level MDA for trachoma?</value>
-  </data>
-  <data name="DDTraAllTf" xml:space="preserve">
-    <value>Is all or part of the area under surveillance for TF?</value>
-  </data>
-  <data name="DDTraAllTt" xml:space="preserve">
-    <value>Is all or part of the area under surveillance for TT?</value>
-  </data>
-  <data name="DDTraLevelCurrent" xml:space="preserve">
-    <value>Current level of implementation (district or sub-district)</value>
-  </data>
-  <data name="DDTraLevelRecWho" xml:space="preserve">
-    <value>Level of implementation recommended based on WHO guidelines (district or sub-district)</value>
-  </data>
-  <data name="DDTraTrichiasisBacklog" xml:space="preserve">
-    <value>Trichiasis backlog</value>
-  </data>
-  <data name="DDTraYearAchievedUiga" xml:space="preserve">
-    <value>Year achieved UIG-A</value>
-  </data>
-  <data name="PcIntvTraDrugPos" xml:space="preserve">
-    <value>Zithromax POS</value>
-  </data>
-  <data name="PcIntvTraDrugTeo" xml:space="preserve">
-    <value>TEO</value>
-  </data>
-  <data name="PcIntvTraDrugZith" xml:space="preserve">
-    <value>Zithromax Tablets</value>
-  </data>
-  <data name="PcIntvTsEval" xml:space="preserve">
-    <value>Has the patient been evaluated at least 3 months post-surgery?</value>
-  </data>
-  <data name="PcIntvTsNumFemales" xml:space="preserve">
-    <value>Number of females operated</value>
-  </data>
-  <data name="PcIntvTsNumKits" xml:space="preserve">
-    <value>Number of complete kits available</value>
-  </data>
-  <data name="PcIntvTsNumMales" xml:space="preserve">
-    <value>Number of males operated</value>
-  </data>
-  <data name="PcIntvTsNumOperated" xml:space="preserve">
-    <value>Total Number of people operated during reporting period</value>
-  </data>
-  <data name="PcIntvTsNumTt" xml:space="preserve">
-    <value>Number of TT patients refusing surgery during reporting period</value>
-  </data>
-  <data name="PcIntvTsPercentWithPostOpTt" xml:space="preserve">
-    <value>Of patients followed-up after surgery, what percentage were found with post-operative TT?</value>
-  </data>
-  <data name="PcIntvTsTtToTeo" xml:space="preserve">
-    <value>In what proportion of TT operations was TEO given postoperatively?</value>
-  </data>
-  <data name="PcIntvTsTtToZithro" xml:space="preserve">
-    <value>In what proportion of TT operations was azithromycin given postoperatively?</value>
-  </data>
-  <data name="RtiTaskForceNoInternet" xml:space="preserve">
-    <value>An internet connection was not found. Please connect to the internet and try again, or check the box to skip reconciling your administrative units.</value>
-  </data>
-  <data name="ScmDrpPara" xml:space="preserve">
-    <value>Paracetamol</value>
-  </data>
-  <data name="ScmPhysicalCount" xml:space="preserve">
-    <value>Physical Count</value>
-  </data>
-  <data name="ScmTheoreticalCount" xml:space="preserve">
-    <value>Theoretical Count</value>
-  </data>
-  <data name="ScmTypeOfInventory" xml:space="preserve">
-    <value>Type of Inventory</value>
-  </data>
-  <data name="SubDistrict" xml:space="preserve">
-    <value>Sub-district</value>
-  </data>
-  <data name="TraMapSur15yo" xml:space="preserve">
-    <value># 15+ year old adults surveyed</value>
-  </data>
-  <data name="TraMapSur1to9yo" xml:space="preserve">
-    <value># 1-9 year old children surveyed</value>
-  </data>
-  <data name="TraMapSurActiveTrachomaIndicator" xml:space="preserve">
-    <value>Active Trachoma Indicator</value>
-  </data>
-  <data name="TraMapSurDistLevelMda" xml:space="preserve">
-    <value>District-level MDA</value>
-  </data>
-  <data name="TraMapSurFandE" xml:space="preserve">
-    <value>F&amp;E: % of children with clean faces</value>
-  </data>
-  <data name="TraMapSurFemale15yo" xml:space="preserve">
-    <value>Females 15+ years</value>
-  </data>
-  <data name="TraMapSurFemale40yo" xml:space="preserve">
-    <value>Females 40+ years</value>
-  </data>
-  <data name="TraMapSurMaleFemale15yo" xml:space="preserve">
-    <value>Male &amp; Female 15+ years</value>
-  </data>
-  <data name="TraMapSurMaleFemale40yo" xml:space="preserve">
-    <value>Male &amp; Female 40+ years</value>
-  </data>
-  <data name="TraMapSurNoAReq" xml:space="preserve">
-    <value>No A required, consider F&amp;E</value>
-  </data>
-  <data name="TraMapSurNoClusters" xml:space="preserve">
-    <value>Number of clusters sampled</value>
-  </data>
-  <data name="TraMapSurPrevalenceActive" xml:space="preserve">
-    <value>Prevalence of Active Trachoma (%TF)</value>
-  </data>
-  <data name="TraMapSurPrevTt" xml:space="preserve">
-    <value>Prevalence of Trachoma Trichiasis (%TT)</value>
-  </data>
-  <data name="TraMapSurSubDistMda" xml:space="preserve">
-    <value>Sub-district level MDA</value>
-  </data>
-  <data name="TraMapSurSurgery01pop" xml:space="preserve">
-    <value>Surgery: 0.01% of population (year of survey)</value>
-  </data>
-  <data name="TraMapSurSurgeryNumTt" xml:space="preserve">
-    <value>Surgery: Number of TT cases in children &lt;15 years</value>
-  </data>
-  <data name="TraMapSurTargetedMda" xml:space="preserve">
-    <value>Targeted MDA</value>
-  </data>
-  <data name="TraMapSurTfAlone" xml:space="preserve">
-    <value>TF-Alone</value>
-  </data>
-  <data name="TraMapSurTfTi" xml:space="preserve">
-    <value>TF&amp;TI</value>
-  </data>
-  <data name="TraMapSurTiAlone" xml:space="preserve">
-    <value>TI-Alone</value>
-  </data>
-  <data name="TraMapSurTtInd" xml:space="preserve">
-    <value>TT Indicator</value>
-  </data>
-  <data name="TraSurDistLevel" xml:space="preserve">
-    <value>District-level MDA</value>
-  </data>
-  <data name="TraSurPostMda" xml:space="preserve">
-    <value>Post-MDA surveillance</value>
-  </data>
-  <data name="TraSurSubDistLevel" xml:space="preserve">
-    <value>Sub-district level MDA</value>
-  </data>
-  <data name="TraSurTargetedMda" xml:space="preserve">
-    <value>Targeted MDA</value>
-  </data>
-  <data name="TriTraining" xml:space="preserve">
-    <value>Trichiasis Surgeon Training</value>
-  </data>
-  <data name="TriTrainingBltr" xml:space="preserve">
-    <value>BLTR</value>
-  </data>
-  <data name="TriTrainingCertification" xml:space="preserve">
-    <value>Certification</value>
-  </data>
-  <data name="TriTrainingEyeCareWorker" xml:space="preserve">
-    <value>Eye care worker</value>
-  </data>
-  <data name="TriTrainingHealthWorker" xml:space="preserve">
-    <value>Health worker</value>
-  </data>
-  <data name="TriTrainingMethod" xml:space="preserve">
-    <value>Surgical method taught</value>
-  </data>
-  <data name="TriTrainingNewSurgeon" xml:space="preserve">
-    <value>New surgeon</value>
-  </data>
-  <data name="TriTrainingQualifications" xml:space="preserve">
-    <value>TT Surgeon Qualifications</value>
-  </data>
-  <data name="TriTrainingRefresher" xml:space="preserve">
-    <value>Refresher</value>
-  </data>
-  <data name="TriTrainingSurgeonName" xml:space="preserve">
-    <value>Name of TT Surgeon (the 2 indicators below should be associated with the surgeon name)</value>
-  </data>
-  <data name="TriTrainingTrabut" xml:space="preserve">
-    <value>Trabut</value>
-  </data>
-  <data name="TriTrainingTrainerName" xml:space="preserve">
-    <value>Name of TT Surgeon Trainer</value>
-  </data>
-  <data name="TriTrainingType" xml:space="preserve">
-    <value>Type of training</value>
-  </data>
-  <data name="TriTrainingWasCertified" xml:space="preserve">
-    <value>Was the surgeon certified using WHO guidelines?</value>
-  </data>
-  <data name="TtAios" xml:space="preserve">
-    <value>TT AIOs</value>
-  </data>
-  <data name="TtAios2014" xml:space="preserve">
-    <value>2014 Annual Intervention Objective</value>
-  </data>
-  <data name="TtAios2015" xml:space="preserve">
-    <value>2015 Annual Intervention Objective</value>
-  </data>
-  <data name="TtAios2016" xml:space="preserve">
-    <value>2016 Annual Intervention Objective</value>
-  </data>
-  <data name="TtAios2017" xml:space="preserve">
-    <value>2017 Annual Intervention Objective</value>
-  </data>
-  <data name="TtAios2018" xml:space="preserve">
-    <value>2018 Annual Intervention Objective</value>
-  </data>
-  <data name="TtAios2019" xml:space="preserve">
-    <value>2019 Annual Intervention Objective</value>
-  </data>
-  <data name="TtAios2020" xml:space="preserve">
-    <value>2020 Annual Intervention Objective</value>
-  </data>
-  <data name="ViewEdit" xml:space="preserve">
-    <value>View/edit</value>
-  </data>
-  <data name="RtiDistrict" xml:space="preserve">
-    <value>District</value>
-  </data>
-  <data name="RtiDrp1stSar" xml:space="preserve">
-    <value>1st SAR (October-March)</value>
-  </data>
-  <data name="RtiDrp2ndSar" xml:space="preserve">
-    <value>2nd SAR (October-September)</value>
-  </data>
-  <data name="RtiDrpEndAfrica" xml:space="preserve">
-    <value>END in Africa</value>
-  </data>
-  <data name="RtiDrpEndAsia" xml:space="preserve">
-    <value>END in Asia</value>
-  </data>
-  <data name="RtiDrpEnvision" xml:space="preserve">
-    <value>ENVISION</value>
-  </data>
-  <data name="RtiDrpFy12" xml:space="preserve">
-    <value>FY12 (October 2011 - September 2012)</value>
-  </data>
-  <data name="RtiDrpFy13" xml:space="preserve">
-    <value>FY13 (October 2012 - September 2013)</value>
-  </data>
-  <data name="RtiDrpFy14" xml:space="preserve">
-    <value>FY14 (October 2013 - September 2014)</value>
-  </data>
-  <data name="RtiDrpFy15" xml:space="preserve">
-    <value>FY15 (October 2014 - September 2015)</value>
-  </data>
-  <data name="RtiDrpFy16" xml:space="preserve">
-    <value>FY16 (October 2015 - September 2016)</value>
-  </data>
-  <data name="RtiDrpMidYear" xml:space="preserve">
-    <value>Mid-year MDA data submission</value>
-  </data>
-  <data name="RtiDrpOther" xml:space="preserve">
-    <value>Other</value>
-  </data>
-  <data name="RtiDrpUsaid" xml:space="preserve">
-    <value>USAID-supported APOC</value>
-  </data>
-  <data name="RtiDrpWorkPlanning" xml:space="preserve">
-    <value>Work Planning</value>
-  </data>
-  <data name="RtiLfDd0" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="RtiLfDd1" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="RtiLfDd100" xml:space="preserve">
-    <value>100</value>
-  </data>
-  <data name="RtiLfDdM" xml:space="preserve">
-    <value>M</value>
-  </data>
-  <data name="RtiLfDdNs" xml:space="preserve">
-    <value>NS</value>
-  </data>
-  <data name="RtiLfDdPending" xml:space="preserve">
-    <value>Pending</value>
-  </data>
-  <data name="RtiPostMda1" xml:space="preserve">
-    <value>Post-MDA Surveillance TAS I</value>
-  </data>
-  <data name="RtiPostMda2" xml:space="preserve">
-    <value>Post-MDA Surveillance TAS II</value>
-  </data>
-  <data name="RtiScAg" xml:space="preserve">
-    <value>SC (Ag)</value>
-  </data>
-  <data name="RtiSch0" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="RtiSch1" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="RtiSch10" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="RtiSch100" xml:space="preserve">
-    <value>100</value>
-  </data>
-  <data name="RtiSch2" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="RtiSch20" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="RtiSch2a" xml:space="preserve">
-    <value>2A</value>
-  </data>
-  <data name="RtiSch3" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="RtiSch30" xml:space="preserve">
-    <value>30</value>
-  </data>
-  <data name="RtiSch3a" xml:space="preserve">
-    <value>3A</value>
-  </data>
-  <data name="RtiSch40" xml:space="preserve">
-    <value>40</value>
-  </data>
-  <data name="RtiSchM" xml:space="preserve">
-    <value>M</value>
-  </data>
-  <data name="RtiSchMdaA" xml:space="preserve">
-    <value>A</value>
-  </data>
-  <data name="RtiSchMdaB" xml:space="preserve">
-    <value>B</value>
-  </data>
-  <data name="RtiSchMdaC" xml:space="preserve">
-    <value>C</value>
-  </data>
-  <data name="RtiSchMdaD" xml:space="preserve">
-    <value>D</value>
-  </data>
-  <data name="RtiSchMdaNone" xml:space="preserve">
-    <value>None</value>
-  </data>
-  <data name="RtiSchNs" xml:space="preserve">
-    <value>NS</value>
-  </data>
-  <data name="RtiSchPending" xml:space="preserve">
-    <value>Pending</value>
-  </data>
-  <data name="RtiScMf" xml:space="preserve">
-    <value>SC (mf)</value>
-  </data>
-  <data name="RtiSsAg" xml:space="preserve">
-    <value>SS (Ag)</value>
-  </data>
-  <data name="RtiSsMf" xml:space="preserve">
-    <value>SS (mf)</value>
-  </data>
-  <data name="RtiStopMda" xml:space="preserve">
-    <value>Stop-MDA TAS</value>
-  </data>
-  <data name="RtiSubDistrict" xml:space="preserve">
-    <value>Sub-District</value>
-  </data>
-  <data name="RtiTabCountry" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="RtiTabDemo" xml:space="preserve">
-    <value>Demography</value>
-  </data>
-  <data name="RtiTabLf" xml:space="preserve">
-    <value>LF</value>
-  </data>
-  <data name="RtiTabOncho" xml:space="preserve">
-    <value>Oncho</value>
-  </data>
-  <data name="RtiTabSch" xml:space="preserve">
-    <value>Schisto</value>
-  </data>
-  <data name="RtiTabSth" xml:space="preserve">
-    <value>STH</value>
-  </data>
-  <data name="RtiTabTra" xml:space="preserve">
-    <value>Trachoma</value>
-  </data>
-  <data name="RtiTas" xml:space="preserve">
-    <value>TAS</value>
-  </data>
-  <data name="RtiTra0" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="RtiTra1" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="RtiTra100" xml:space="preserve">
-    <value>100</value>
-  </data>
-  <data name="RtiTra2" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="RtiTra3" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="RtiTra4" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="RtiTra5" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="RtiTraM" xml:space="preserve">
-    <value>M</value>
-  </data>
-  <data name="RtiTraNs" xml:space="preserve">
-    <value>NS</value>
-  </data>
-  <data name="RtiTraPending" xml:space="preserve">
-    <value>Pending</value>
-  </data>
-  <data name="RtiWorkbookLocation" xml:space="preserve">
-    <value>Country_Disease_Workbook_v3.2.1_English_.xlsx</value>
-  </data>
-  <data name="AboutDisclaimer" xml:space="preserve">
-    <value>The Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices (AFR, SEAR, WPR), the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.
-
-The Integrated NTD Database was developed by Iota Ink:
-Jennifer Einberg, Project Manager; Eric Olson, Developer; 
-Jennifer Fox, Graphic Designer; Nick Cherf, QA Specialist; Michelle Fellows, Technical Writer</value>
-  </data>
-  <data name="AdminUnitParent" xml:space="preserve">
-    <value>Administrative unit above level you are adding.</value>
-  </data>
-  <data name="AdminUnitPeriRural" xml:space="preserve">
-    <value>Peri-rural</value>
-  </data>
-  <data name="AdminUnitRural" xml:space="preserve">
-    <value>Rural</value>
-  </data>
-  <data name="AdminUnitUrban" xml:space="preserve">
-    <value>Urban</value>
-  </data>
-  <data name="CountryStatistics" xml:space="preserve">
-    <value>Country Statistics</value>
-  </data>
-  <data name="OnchoMapSurTypeOfMapping" xml:space="preserve">
-    <value>Type of mapping</value>
-  </data>
-  <data name="OnchoSurEntAbr" xml:space="preserve">
-    <value>Annual Biting Rates (ABR)</value>
-  </data>
-  <data name="OnchoSurEntAtp" xml:space="preserve">
-    <value>Annual Transmission Potential (ATP) (the average number of infective stage parasites an individual is exposed to in a year)</value>
-  </data>
-  <data name="OnchoSurEntCorrectedInfectionRatePcr" xml:space="preserve">
-    <value>Corrected infection rate (PCR) - per 1,000 parous flies</value>
-  </data>
-  <data name="OnchoSurEntInfectionRateDissection" xml:space="preserve">
-    <value>Infection rate (Dissection) - per 1,000 parous flies</value>
-  </data>
-  <data name="OnchoSurEntMbr" xml:space="preserve">
-    <value>Monthly Biting Rates</value>
-  </data>
-  <data name="OnchoSurEntMtp" xml:space="preserve">
-    <value>Monthly Transmission Potential</value>
-  </data>
-  <data name="OnchoSurEntTaxoCyto" xml:space="preserve">
-    <value>Taxonomic identification - Cytotaxonomy (Chromosomal)</value>
-  </data>
-  <data name="OnchoSurEntTaxoForest" xml:space="preserve">
-    <value>Forest</value>
-  </data>
-  <data name="OnchoSurEntTaxoForestSav" xml:space="preserve">
-    <value>Forest and Savannah</value>
-  </data>
-  <data name="OnchoSurEntTaxonomic" xml:space="preserve">
-    <value>Taxonomic identification - Morphology</value>
-  </data>
-  <data name="OnchoSurEntTaxoSavannah" xml:space="preserve">
-    <value>Savannah</value>
-  </data>
-  <data name="OnchoSurEntTestTech" xml:space="preserve">
-    <value>Test Technique</value>
-  </data>
-  <data name="OnchoSurEntTestTechChromo" xml:space="preserve">
-    <value>Chromosomal identification</value>
-  </data>
-  <data name="OnchoSurEntTestTechDiss" xml:space="preserve">
-    <value>Dissection</value>
-  </data>
-  <data name="OnchoSurEntTestTechPcr" xml:space="preserve">
-    <value>PCR Pool Screening</value>
-  </data>
-  <data name="OnchoSurEntTestTechTrap" xml:space="preserve">
-    <value>Trapping</value>
-  </data>
-  <data name="OnchoSurTypeOfMapping" xml:space="preserve">
-    <value>Type of mapping</value>
-  </data>
-  <data name="OnchoSurTypeRemo" xml:space="preserve">
-    <value>REMO</value>
-  </data>
-  <data name="OnchSurTypeDelineation" xml:space="preserve">
-    <value>Delineation mapping</value>
-  </data>
-  <data name="SCHMapSurNumPosSchParasite" xml:space="preserve">
-    <value>Number of individuals positive for schistosomal parasite eggs in urine</value>
-  </data>
-  <data name="SCHSurNumPosSchParasite" xml:space="preserve">
-    <value>Number of individuals positive for schistosomal parasite eggs in urine</value>
-  </data>
-  <data name="SettingsAggLevelDesc" xml:space="preserve">
-    <value>Aggregating level: Demography values from this level will total up to higher administrative units. Complete demography data needs to be entered for all of the units at this administrative level.</value>
-  </data>
-  <data name="SettingsReportingLevelDesc" xml:space="preserve">
-    <value>Reporting level: WHO and partner reports will automatically be generated for administrative units at this level. Typically this is the “District” or second administrative level.</value>
-  </data>
-  <data name="StartUpFinishedAllUnits" xml:space="preserve">
-    <value>Have you finished entering all the administrative units for this level?</value>
-  </data>
-  <data name="TASCriticalCutoff" xml:space="preserve">
-    <value>Critical cutoff decision</value>
-  </data>
-  <data name="TASCutoffFail" xml:space="preserve">
-    <value>Above treatment threshold - fail</value>
-  </data>
-  <data name="TASCutoffPass" xml:space="preserve">
-    <value>Below treatment threshold - pass</value>
   </data>
 </root>
