@@ -17,3 +17,12 @@ Prod:
 <add key="DeveloperMode" value="PR" />
 1. http://apps.who.int/neglected_diseases/ntddata/ntd_database/
 2. http://apps.who.int/neglected_diseases/ntddata/ntd_database/x64/
+
+
+New Environment Requirements:
+
+1. Install component one (ask jennifer)
+2. Get code from 
+3. Installation
+4. .net framework 3.5
+5. Visual Studio 2013
