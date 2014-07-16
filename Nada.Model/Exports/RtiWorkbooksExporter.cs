@@ -65,7 +65,7 @@ namespace Nada.Model.Exports
                 var intvs = intvRepo.GetAll(new List<int> { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 }, StartDate, EndDate);
                 Dictionary<int, DataRow> aggIntvs = GetIntvsAggregatedToReportingLevel(StartDate, EndDate, reportingLevelUnits);
 
-    
+
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabCountry", "RtiTabCountry")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddInfo(xlsWorksheet, rng, country, exportType, reportingLevelUnits.Count, intvs);
@@ -92,7 +92,7 @@ namespace Nada.Model.Exports
 
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabTra", "RtiTabTra")];
                 xlsWorksheet.Unprotect("NTDM&E101");
-                //AddSth(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
+                AddTrachoma(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
 
                 xlsWorkbook.SaveAs(fileName, excel.XlFileFormat.xlOpenXMLWorkbook, missing,
                     missing, false, false, excel.XlSaveAsAccessMode.xlNoChange,
@@ -689,15 +689,18 @@ namespace Nada.Model.Exports
                     AddValueToRange(xlsWorksheet, rng, "J" + rowCount,
                         traDd[unit.Id][TranslationLookup.GetValue("DDTraTrichiasisBacklog") + " - " + tra.Disease.DisplayName]);
 
-                    DateTime datePlanned = DateTime.ParseExact(traDd[unit.Id][TranslationLookup.GetValue("DDTraYearOfPlannedTrachomaImpactSurvey") + " - " + tra.Disease.DisplayName].ToString(),
-                        "M/d/yyyy", CultureInfo.InvariantCulture);
-                    AddValueToRange(xlsWorksheet, rng, "O" + rowCount, datePlanned.ToString("MMMM"));
-                    AddValueToRange(xlsWorksheet, rng, "P" + rowCount, datePlanned.Year);
+                    DateTime datePlanned;
+                    if (DateTime.TryParseExact(traDd[unit.Id][TranslationLookup.GetValue("DDTraYearOfPlannedTrachomaImpactSurvey") + " - " + tra.Disease.DisplayName].ToString(),
+                        "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out datePlanned))
+                    {
+                        AddValueToRange(xlsWorksheet, rng, "O" + rowCount, datePlanned.ToString("MMMM"));
+                        AddValueToRange(xlsWorksheet, rng, "P" + rowCount, datePlanned.Year);
+                    }
                     AddValueToRange(xlsWorksheet, rng, "Q" + rowCount,
-                        traDd[unit.Id][TranslationLookup.GetValue("DDTraPopulationAtRisk") + " - " + tra.Disease.DisplayName]);
-                    
+                    traDd[unit.Id][TranslationLookup.GetValue("DDTraPopulationAtRisk") + " - " + tra.Disease.DisplayName]);
+
                     string achievedCriteria = traDd[unit.Id][TranslationLookup.GetValue("DDTraAchievedCriteria") + " - " + tra.Disease.DisplayName].ToString();
-                    if(achievedCriteria == TranslationLookup.GetValue("Yes"))
+                    if (achievedCriteria == TranslationLookup.GetValue("Yes"))
                         AddValueToRange(xlsWorksheet, rng, "T" + rowCount, achievedCriteria);
                     AddValueToRange(xlsWorksheet, rng, "U" + rowCount,
                        traDd[unit.Id][TranslationLookup.GetValue("DDTraYearDeterminedThatAchievedCriteriaF") + " - " + tra.Disease.DisplayName]);
@@ -721,14 +724,14 @@ namespace Nada.Model.Exports
                     string aggEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
                     if (subDistrictEligible.ContainsKey(unit.Id))
                     {
-                        string belowDistrictEligible =  GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, subDistrictEligible[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
-                        if(!string.IsNullOrEmpty(belowDistrictEligible))
+                        string belowDistrictEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, subDistrictEligible[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                        if (!string.IsNullOrEmpty(belowDistrictEligible))
                             AddValueToRange(xlsWorksheet, rng, "S" + rowCount, TranslationLookup.GetValue("RtiSubDistrict", "RtiSubDistrict"));
                     }
                     else if (!string.IsNullOrEmpty(aggEligible))
                         AddValueToRange(xlsWorksheet, rng, "S" + rowCount, TranslationLookup.GetValue("RtiDistrict", "RtiDistrict"));
 
-                    
+
                     DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, Util.MaxRounds, "Trachoma", typeNames);
                     if (startMda.HasValue)
                     {
@@ -744,10 +747,10 @@ namespace Nada.Model.Exports
 
                     AddValueToRange(xlsWorksheet, rng, "AK" + rowCount, aggEligible);
                     AddValueToRange(xlsWorksheet, rng, "AN" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
-                    
+
                     // Types based off these?
                     // teo
-                    string teo =  GetIntFromRow("PcIntvNumTreatedTeo", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                    string teo = GetIntFromRow("PcIntvNumTreatedTeo", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
                     AddValueToRange(xlsWorksheet, rng, "AP" + rowCount, teo);
                     // zithro  
                     int zxTotal = 0;
@@ -758,14 +761,14 @@ namespace Nada.Model.Exports
                     if (!string.IsNullOrEmpty(zxPos))
                         zxTotal += int.Parse(zxPos);
                     AddValueToRange(xlsWorksheet, rng, "AR" + rowCount, zxTotal);
-                    
+
                     AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "AV" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "AX" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 1, Util.MaxRounds, "Trachoma", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "AZ" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 1, Util.MaxRounds, "Trachoma", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
 
-                    if(!string.IsNullOrEmpty(teo) && zxTotal > 0)
+                    if (!string.IsNullOrEmpty(teo) && zxTotal > 0)
                         AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, "Zithro+Tetra");
                     else if (!string.IsNullOrEmpty(teo))
                         AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, "Tetra");
@@ -795,11 +798,11 @@ namespace Nada.Model.Exports
 
             };
 
-            var childType = settings.GetAllAdminLevels().Where(a => a.LevelNumber > AdminLevelType.LevelNumber).OrderBy(l=>l.LevelNumber).FirstOrDefault();
-            if(childType == null)
+            var childType = settings.GetAllAdminLevels().Where(a => a.LevelNumber > AdminLevelType.LevelNumber).OrderBy(l => l.LevelNumber).FirstOrDefault();
+            if (childType == null)
                 return new Dictionary<int, DataRow>();
 
-            options.SelectedAdminLevels =  demo.GetAdminLevelByLevel(childType.LevelNumber);
+            options.SelectedAdminLevels = demo.GetAdminLevelByLevel(childType.LevelNumber);
             IntvReportGenerator gen = new IntvReportGenerator();
 
             IntvType iType = iRepo.GetIntvType(23);
@@ -820,13 +823,13 @@ namespace Nada.Model.Exports
             }
             return intvData;
         }
-        
+
         private void AddTraLevelToRange(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey, string indName, string colName)
         {
             var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == indName);
             if (ind != null && !string.IsNullOrEmpty(ind.DynamicValue))
             {
-                if(ind.DynamicValue == "TraSurDistLevel")
+                if (ind.DynamicValue == "TraSurDistLevel")
                     AddValueToRange(xlsWorksheet, rng, colName + rowCount, TranslationLookup.GetValue("RtiDistrict", "RtiDistrict"));
                 else if (ind.DynamicValue == "TraSurSubDistLevel")
                     AddValueToRange(xlsWorksheet, rng, colName + rowCount, TranslationLookup.GetValue("RtiSubDistrict", "RtiSubDistrict"));
