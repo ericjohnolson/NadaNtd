@@ -33,6 +33,8 @@
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>205</ApplicationRevision>
+    <ApplicationRevision>204</ApplicationRevision>
+    <ApplicationRevision>200</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1260,6 +1262,7 @@
     <Content Include="Exports\WHO_JRF_PC.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Nada.UI_TemporaryKey.pfx" />
     <None Include="nadasha1.p12" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\Nada.Globalization.MonthItem.datasource" />
