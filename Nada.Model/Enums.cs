@@ -30,15 +30,15 @@ namespace Nada.Model
     public enum IndicatorAggType
     {
         Sum = 1,
-        Min = 2,
-        Max = 3,
-        Combine = 4,
-        None = 5,
+        Min = 2, // best case
+        Max = 3, // worst case
+        Combine = 4, // List all
+        None = 5, // if they  don't provide one
         Average = 6,
         Other = 99
     }
 
-    public enum RedistrictingRule
+    public enum RedistrictingRule // Splitting Rule
     {
         DefaultBlank = 1,
         Duplicate = 2,

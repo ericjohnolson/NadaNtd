@@ -6127,4 +6127,37 @@ Fixed / Mobile</value>
   <data name="YesSentinelSite" xml:space="preserve">
     <value>Yes-Sentinel site</value>
   </data>
+  <data name="DDPTS" xml:space="preserve">
+    <value>Is this area under PTS (post treatment surveillance)?</value>
+  </data>
+  <data name="IntvFemaleSac" xml:space="preserve">
+    <value># female SAC treated</value>
+  </data>
+  <data name="IntvMaleSac" xml:space="preserve">
+    <value># male SAC treated</value>
+  </data>
+  <data name="SchMappingTypeOfSite" xml:space="preserve">
+    <value>Type of site</value>
+  </data>
+  <data name="SchSentinelDatePc" xml:space="preserve">
+    <value>Date of most recent PC</value>
+  </data>
+  <data name="SchSentinelTypeSite" xml:space="preserve">
+    <value>Type of site</value>
+  </data>
+  <data name="SthMappingTypeSite" xml:space="preserve">
+    <value>Type of site</value>
+  </data>
+  <data name="SthSpotCheckDatePc" xml:space="preserve">
+    <value>Date of most recent PC</value>
+  </data>
+  <data name="SthSpotCheckTypeSite" xml:space="preserve">
+    <value>Type of site</value>
+  </data>
+  <data name="TasActualNonResponse" xml:space="preserve">
+    <value>Actual non-response rate - total (%)</value>
+  </data>
+  <data name="TasNumNoTreatment" xml:space="preserve">
+    <value>Number of LF endemic districts surrounding this Evaluation Unit that haven't started treatment</value>
+  </data>
 </root>

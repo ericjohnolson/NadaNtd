@@ -59,5 +59,104 @@ namespace Nada.Globalization {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is this area under PTS (post treatment surveillance)?.
+        /// </summary>
+        public static string DDPTS {
+            get {
+                return ResourceManager.GetString("DDPTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # female SAC treated.
+        /// </summary>
+        public static string IntvFemaleSac {
+            get {
+                return ResourceManager.GetString("IntvFemaleSac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # male SAC treated.
+        /// </summary>
+        public static string IntvMaleSac {
+            get {
+                return ResourceManager.GetString("IntvMaleSac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of site.
+        /// </summary>
+        public static string SchMappingTypeOfSite {
+            get {
+                return ResourceManager.GetString("SchMappingTypeOfSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of most recent PC.
+        /// </summary>
+        public static string SchSentinelDatePc {
+            get {
+                return ResourceManager.GetString("SchSentinelDatePc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of site.
+        /// </summary>
+        public static string SchSentinelTypeSite {
+            get {
+                return ResourceManager.GetString("SchSentinelTypeSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of site.
+        /// </summary>
+        public static string SthMappingTypeSite {
+            get {
+                return ResourceManager.GetString("SthMappingTypeSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of most recent PC.
+        /// </summary>
+        public static string SthSpotCheckDatePc {
+            get {
+                return ResourceManager.GetString("SthSpotCheckDatePc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of site.
+        /// </summary>
+        public static string SthSpotCheckTypeSite {
+            get {
+                return ResourceManager.GetString("SthSpotCheckTypeSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actual non-response rate - total (%).
+        /// </summary>
+        public static string TasActualNonResponse {
+            get {
+                return ResourceManager.GetString("TasActualNonResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of LF endemic districts surrounding this Evaluation Unit that haven&apos;t started treatment.
+        /// </summary>
+        public static string TasNumNoTreatment {
+            get {
+                return ResourceManager.GetString("TasNumNoTreatment", resourceCulture);
+            }
+        }
     }
 }
