@@ -366,6 +366,7 @@
             this.menuSplitCombineDistrictToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.menuSplitCombineDistrictToolStripMenuItem.Tag = "MenuSplitCombineDistrict";
             this.menuSplitCombineDistrictToolStripMenuItem.Text = "MenuSplitCombineDistrict";
+            this.menuSplitCombineDistrictToolStripMenuItem.Visible = false;
             this.menuSplitCombineDistrictToolStripMenuItem.Click += new System.EventHandler(this.menuSplitCombineDistrictToolStripMenuItem_Click);
             // 
             // newYearUpdatesToolStripMenuItem

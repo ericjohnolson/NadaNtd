@@ -35,6 +35,7 @@
     <ApplicationRevision>205</ApplicationRevision>
     <ApplicationRevision>204</ApplicationRevision>
     <ApplicationRevision>200</ApplicationRevision>
+    <ApplicationRevision>201</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -106,10 +107,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Solution Items\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\Solution Items\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="ObjectListView">
       <HintPath>..\Solution Items\ObjectListView.dll</HintPath>
@@ -1262,7 +1261,6 @@
     <Content Include="Exports\WHO_JRF_PC.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Nada.UI_TemporaryKey.pfx" />
     <None Include="nadasha1.p12" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\Nada.Globalization.MonthItem.datasource" />
