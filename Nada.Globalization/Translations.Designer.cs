@@ -10919,7 +10919,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RTI Country Disease Workbook.
+        ///   Looks up a localized string similar to Disease Workbook for USAID Reporting.
         /// </summary>
         public static string RtiCountryDiseaseWorkbook {
             get {

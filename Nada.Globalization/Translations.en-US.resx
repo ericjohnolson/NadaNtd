@@ -3731,7 +3731,7 @@ Fixed / Mobile</value>
     <value>Cannot Reconcile</value>
   </data>
   <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
-    <value>RTI Country Disease Workbook</value>
+    <value>Disease Workbook for USAID Reporting</value>
   </data>
   <data name="RtiDataCompleteness" xml:space="preserve">
     <value>Data completeness (%)</value>
