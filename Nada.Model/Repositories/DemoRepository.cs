@@ -1660,11 +1660,12 @@ namespace Nada.Model.Repositories
 
         public int InsertRedistrictingRecord(OleDbCommand command, OleDbConnection connection, RedistrictingOptions options, int userId)
         {
-            command = new OleDbCommand(@"Insert Into RedistrictEvents (RedistrictTypeId, CreatedById, CreatedAt) VALUES
-                        (@RedistrictTypeId,  @CreatedById, @CreatedAt)", connection);
+            command = new OleDbCommand(@"Insert Into RedistrictEvents (RedistrictTypeId, CreatedById, CreatedAt, RedistrictDate) VALUES
+                        (@RedistrictTypeId,  @CreatedById, @CreatedAt, @RedistrictDate)", connection);
             command.Parameters.Add(new OleDbParameter("@RedistrictTypeId", (int)options.SplitType));
             command.Parameters.Add(new OleDbParameter("@CreatedById", userId));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@CreatedAt", DateTime.Now));
+            command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@RedistrictDate", options.RedistrictDate));
             command.ExecuteNonQuery();
 
             command = new OleDbCommand(@"SELECT Max(ID) FROM RedistrictEvents", connection);
@@ -1816,7 +1817,140 @@ namespace Nada.Model.Repositories
             else
                 return string.Format(TranslationLookup.GetValue("RedistrictingSplitCombineInto"), string.Join(", ", names.ToArray()), createdAt.ToShortDateString());
         }
+
+        public List<Indicator> GetCustomIndicatorsWithoutRedistrictingRules(SplittingType type)
+        {
+            List<Indicator> indicators = new List<Indicator>();
+
+            string typeWhere = "";
+            if (type == SplittingType.Merge)
+                typeWhere = " AND MergeRuleId = 1";
+            else if (type == SplittingType.Split)
+                typeWhere = " AND RedistrictRuleId = 1";
+            else
+                typeWhere = " AND (MergeRuleId = 1 OR RedistrictRuleId = 1)";
+
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = command = new OleDbCommand(@"Select 
+                        InterventionIndicators.ID,   
+                        InterventionIndicators.DisplayName,
+                        InterventionTypes.InterventionTypeName as TName,                  
+                        InterventionIndicators.RedistrictRuleId,
+                        InterventionIndicators.MergeRuleId
+                        FROM ((InterventionIndicators INNER JOIN InterventionTypes_to_Indicators ON InterventionTypes_to_Indicators.IndicatorId = InterventionIndicators.ID)
+                            INNER JOIN InterventionTypes on InterventionTypes_to_Indicators.InterventionTypeId = InterventionTypes.Id)
+                        WHERE IsEditable=-1 AND IsDisabled=0" + typeWhere, connection);
+                    AddCustomIndicators(indicators, command, IndicatorEntityType.Intervention);
+
+                    // process
+                    command = command = new OleDbCommand(@"Select 
+                        ProcessIndicators.ID,   
+                        ProcessIndicators.DisplayName,
+                        ProcessTypes.TypeName as TName,                  
+                        ProcessIndicators.RedistrictRuleId,
+                        ProcessIndicators.MergeRuleId
+                        FROM ProcessIndicators INNER JOIN ProcessTypes on ProcessIndicators.ProcessTypeId = ProcessTypes.Id
+                        WHERE IsEditable=-1 AND IsDisabled=0" + typeWhere, connection);
+                    AddCustomIndicators(indicators, command, IndicatorEntityType.Process);
+                    // Survey
+                    command = command = new OleDbCommand(@"Select 
+                        SurveyIndicators.ID,   
+                        SurveyIndicators.DisplayName,
+                        SurveyTypes.SurveyTypeName as TName,                  
+                        SurveyIndicators.RedistrictRuleId,
+                        SurveyIndicators.MergeRuleId
+                        FROM SurveyIndicators INNER JOIN SurveyTypes on SurveyIndicators.SurveyTypeId = SurveyTypes.Id
+                        WHERE IsEditable=-1 AND IsDisabled=0" + typeWhere, connection);
+                    AddCustomIndicators(indicators, command, IndicatorEntityType.Survey);
+                    // distro
+                    command = command = new OleDbCommand(@"Select 
+                        DiseaseDistributionIndicators.ID,   
+                        DiseaseDistributionIndicators.DisplayName,
+                        Diseases.DisplayName as TName,                  
+                        DiseaseDistributionIndicators.RedistrictRuleId,
+                        DiseaseDistributionIndicators.MergeRuleId
+                        FROM DiseaseDistributionIndicators INNER JOIN Diseases on DiseaseDistributionIndicators.DiseaseId = Diseases.Id
+                        WHERE IsEditable=-1 AND IsDisabled=0" + typeWhere, connection);
+                    AddCustomIndicators(indicators, command, IndicatorEntityType.DiseaseDistribution);
+
+
+
+
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            return indicators;
+        }
+
+        private static void AddCustomIndicators(List<Indicator> indicators, OleDbCommand command, IndicatorEntityType entityType)
+        {
+            using (OleDbDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    indicators.Add(new Indicator
+                    {
+                        Id = reader.GetValueOrDefault<int>("ID"),
+                        RedistrictRuleId = reader.GetValueOrDefault<int>("RedistrictRuleId"),
+                        MergeRuleId = reader.GetValueOrDefault<int>("MergeRuleId"),
+                        DisplayName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"),
+                        reader.GetValueOrDefault<string>("TName")) + " > " + reader.GetValueOrDefault<string>("DisplayName"),
+                        DataTypeId = (int)entityType
+                    });
+                }
+                reader.Close();
+            }
+        }
+
+        public void SaveCustomIndicatorRules(List<Indicator> inds)
+        {
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    foreach (Indicator ind in inds)
+                    {
+                        OleDbCommand command = null;
+                        if (ind.DataTypeId == (int)IndicatorEntityType.Intervention)
+                            command = new OleDbCommand(@"Update InterventionIndicators SET RedistrictRuleId=@RedistrictRuleId, MergeRuleId=@MergeRuleId 
+                                where ID = @ID", connection);
+                        else if (ind.DataTypeId == (int)IndicatorEntityType.Process)
+                            command = new OleDbCommand(@"Update ProcessIndicators SET RedistrictRuleId=@RedistrictRuleId, MergeRuleId=@MergeRuleId 
+                                where ID = @ID", connection);
+                        else if (ind.DataTypeId == (int)IndicatorEntityType.Survey)
+                            command = new OleDbCommand(@"Update SurveyIndicators SET RedistrictRuleId=@RedistrictRuleId, MergeRuleId=@MergeRuleId 
+                                where ID = @ID", connection);
+                        else if (ind.DataTypeId == (int)IndicatorEntityType.DiseaseDistribution)
+                            command = new OleDbCommand(@"Update DiseaseDistributionIndicators SET RedistrictRuleId=@RedistrictRuleId, MergeRuleId=@MergeRuleId 
+                                where ID = @ID", connection);
+
+                        command.Parameters.Add(new OleDbParameter("@RedistrictRuleId", ind.RedistrictRuleId));
+                        command.Parameters.Add(new OleDbParameter("@MergeRuleId", ind.MergeRuleId));
+                        command.Parameters.Add(new OleDbParameter("@ID", ind.Id));
+                        command.ExecuteNonQuery();
+                    }
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
         #endregion
+
 
 
     }

@@ -505,6 +505,18 @@
     <Compile Include="View\Wizard\DistrictSplitting\BackupForRedistrict.Designer.cs">
       <DependentUpon>BackupForRedistrict.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\DistrictSplitting\RedistrictRules.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\DistrictSplitting\RedistrictRules.Designer.cs">
+      <DependentUpon>RedistrictRules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\DistrictSplitting\SplitDate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\DistrictSplitting\SplitDate.Designer.cs">
+      <DependentUpon>SplitDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\DistrictSplitting\MergeYear.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1029,6 +1041,12 @@
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\BackupForRedistrict.resx">
       <DependentUpon>BackupForRedistrict.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\DistrictSplitting\RedistrictRules.resx">
+      <DependentUpon>RedistrictRules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplitDate.resx">
+      <DependentUpon>SplitDate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\MergeYear.resx">
       <DependentUpon>MergeYear.cs</DependentUpon>
     </EmbeddedResource>
@@ -1208,6 +1226,9 @@
     <Content Include="DatabaseScripts\00NadaDatabaseBaseline.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.01.00.0014.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0012.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1270,6 +1291,7 @@
     <None Include="Properties\DataSources\Nada.Model.Base.SurveyBase.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Country.datasource" />
     <None Include="Properties\DataSources\Nada.Model.CountryDemography.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Demography.RedistrictingOptions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Disease.datasource" />
     <None Include="Properties\DataSources\Nada.Model.DiseaseDistribution.datasource" />
     <None Include="Properties\DataSources\Nada.Model.DiseasePopulation.datasource" />

@@ -17,10 +17,7 @@ namespace Nada.Model.Process
             DateReported = DateTime.Now;
             IndicatorValues = new List<IndicatorValue>();
         }
-        public int GetFirstAdminLevelId()
-        {
-            return AdminLevelId.Value;
-        }
+        
         public Nullable<int> AdminLevelId { get; set; }
         public DateTime DateReported { get; set; }
         public ProcessType ProcessType { get; set; }

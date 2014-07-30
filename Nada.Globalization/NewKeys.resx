@@ -117,4 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ImportUpdateSuccess" xml:space="preserve">
+    <value>Successfully updated {0} forms!</value>
+  </data>
+  <data name="RedistrictDate" xml:space="preserve">
+    <value>Date redistricting occurred</value>
+  </data>
+  <data name="RedistrictRuleMerge" xml:space="preserve">
+    <value>Merging rule</value>
+  </data>
+  <data name="RedistrictRuleSplit" xml:space="preserve">
+    <value>Splitting rule</value>
+  </data>
+  <data name="RedistrictRuleSplitCombine" xml:space="preserve">
+    <value>Split/combine rule</value>
+  </data>
+  <data name="RedistrictSurveyNote" xml:space="preserve">
+    <value>*** Redistricted, original administrative units survey occured in: {0}</value>
+  </data>
+  <data name="SplittingMustAllocateRules" xml:space="preserve">
+    <value>Must assign all rules before continuing.</value>
+  </data>
 </root>

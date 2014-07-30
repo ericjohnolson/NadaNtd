@@ -35,7 +35,9 @@ namespace Nada.Model.Demography
             DistrosCm = new List<DiseaseDistroCm>();
             DistrosPc = new List<DiseaseDistroPc>();
             Saes = new List<ProcessBase>();
+            RedistrictDate = DateTime.Now;
         }
+        public DateTime RedistrictDate { get; set; }
         public object Dashboard { get; set; }
         public AdminLevel Source { get; set; }
         public List<AdminLevelAllocation> SplitDestinations { get; set; }
@@ -84,7 +86,7 @@ namespace Nada.Model.Demography
                         else if (SplitIntoNumber.Value < 0 || SplitIntoNumber.Value > 10)
                             error = string.Format(Translations.ValidNumberRange, 1, 10);
                         break;
-
+                        
                     default: error = "";
                         break;
                 }

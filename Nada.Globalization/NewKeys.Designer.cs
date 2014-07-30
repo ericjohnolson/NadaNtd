@@ -59,5 +59,68 @@ namespace Nada.Globalization {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully updated {0} forms!.
+        /// </summary>
+        public static string ImportUpdateSuccess {
+            get {
+                return ResourceManager.GetString("ImportUpdateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date redistricting occurred.
+        /// </summary>
+        public static string RedistrictDate {
+            get {
+                return ResourceManager.GetString("RedistrictDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merging rule.
+        /// </summary>
+        public static string RedistrictRuleMerge {
+            get {
+                return ResourceManager.GetString("RedistrictRuleMerge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Splitting rule.
+        /// </summary>
+        public static string RedistrictRuleSplit {
+            get {
+                return ResourceManager.GetString("RedistrictRuleSplit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split/combine rule.
+        /// </summary>
+        public static string RedistrictRuleSplitCombine {
+            get {
+                return ResourceManager.GetString("RedistrictRuleSplitCombine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *** Redistricted, original administrative units survey occured in: {0}.
+        /// </summary>
+        public static string RedistrictSurveyNote {
+            get {
+                return ResourceManager.GetString("RedistrictSurveyNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must assign all rules before continuing..
+        /// </summary>
+        public static string SplittingMustAllocateRules {
+            get {
+                return ResourceManager.GetString("SplittingMustAllocateRules", resourceCulture);
+            }
+        }
     }
 }

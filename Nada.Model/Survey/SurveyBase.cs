@@ -21,10 +21,14 @@ namespace Nada.Model.Base
             AdminLevels = new List<AdminLevel>();
             SiteType = "Sentinel";
         }
-        public int GetFirstAdminLevelId()
+        public Nullable<int> AdminLevelId
         {
-            return AdminLevels.FirstOrDefault().Id;
+            get
+            {
+                return AdminLevels.FirstOrDefault().Id;
+            }
         }
+
         public List<AdminLevel> AdminLevels { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -37,7 +41,7 @@ namespace Nada.Model.Base
         public Nullable<int> SentinelSiteId { get; set; }
         public List<IndicatorValue> IndicatorValues { get; set; }
         public bool HasSentinelSite { get; set; }
-        
+
         public SurveyBase CreateCopy(int newTypeId, int roundsId, int surveyTimingId, string roundsName, string timingName)
         {
             SurveyRepository repo = new SurveyRepository();

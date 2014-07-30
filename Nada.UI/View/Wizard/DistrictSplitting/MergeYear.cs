@@ -60,7 +60,7 @@ namespace Nada.UI.View.Wizard
         {
         }
 
-        private void BackupForRedistricting_Load(object sender, EventArgs e)
+        private void MergeYear_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
             {

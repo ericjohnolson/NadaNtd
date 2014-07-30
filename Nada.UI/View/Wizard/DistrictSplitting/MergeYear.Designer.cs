@@ -140,7 +140,7 @@
             this.Margin = new System.Windows.Forms.Padding(23);
             this.Name = "MergeYear";
             this.Size = new System.Drawing.Size(145, 107);
-            this.Load += new System.EventHandler(this.BackupForRedistricting_Load);
+            this.Load += new System.EventHandler(this.MergeYear_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();

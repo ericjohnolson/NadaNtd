@@ -30,10 +30,16 @@ namespace Nada.Model.Imports
         private SurveyType sType = null;
         public SurveyImporter() { }
 
-        public virtual bool HasGroupedAdminLevels(ImportOptions opts)
+        public override bool HasGroupedAdminLevels(ImportOptions opts)
         {
             var t = repo.GetSurveyType(opts.TypeId.Value);
             return t.HasMultipleLocations;
+        }
+
+        protected override string GetAdminLevelName(AdminLevel adminLevel, IHaveDynamicIndicatorValues form)
+        {
+            SurveyBase survey = (SurveyBase)form;
+            return string.Join(", ", survey.AdminLevels.Select(a => a.Name).ToArray());
         }
 
         protected override void SetSpecificType(int id)

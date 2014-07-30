@@ -16,6 +16,7 @@ using Nada.Model.Imports;
 using Nada.UI.Controls;
 using Nada.Model.Demography;
 using Nada.Model.Survey;
+using Nada.Model.Base;
 
 namespace Nada.UI.View.Wizard
 {
@@ -104,8 +105,72 @@ namespace Nada.UI.View.Wizard
 
                     var lnk2 = new H3Link { Text = Translations.UploadImportFile, Margin = new Padding(0, 5, 10, 5) };
                     tblNewUnits.Controls.Add(lnk2, 2, index);
+                    lnk2.ClickOverride += () =>
+                    {
+                        Upload(t);
+                    };
                 }
             }
+        }
+
+        private void Upload(SurveyType stype)
+        {
+            List<IHaveDynamicIndicatorValues> forms = new List<IHaveDynamicIndicatorValues>();
+            forms = options.Surveys.Where(d => d.TypeOfSurvey.Id == stype.Id).Cast<IHaveDynamicIndicatorValues>().ToList();
+            SurveyImporter importer = new SurveyImporter();
+            importer.SetType(stype.Id);
+            var payload = new Nada.UI.View.Wizard.SplitDistro.WorkerPayload
+            {
+                Importer = importer,
+                Forms = forms,
+            };
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = Translations.ExcelFiles + " (*.xlsx)|*.xlsx";
+            ofd.DefaultExt = ".xlsx";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                OnSwitchStep(new WorkingStep(Translations.ImportingFile));
+                payload.FileName = ofd.FileName;
+                BackgroundWorker importerWorker = new BackgroundWorker();
+                importerWorker.DoWork += importerWorker_DoWork;
+                importerWorker.RunWorkerCompleted += importerWorker_RunWorkerCompleted;
+                importerWorker.RunWorkerAsync(payload);
+            }
+        }
+
+        void importerWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                int userId = ApplicationData.Instance.GetUserId();
+                Nada.UI.View.Wizard.SplitDistro.WorkerPayload payload = (Nada.UI.View.Wizard.SplitDistro.WorkerPayload)e.Argument;
+                ImportResult result = payload.Importer.UpdateData(payload.FileName, userId, payload.Forms);
+                if (result.WasSuccess)
+                {
+                    SurveyRepository repo = new SurveyRepository();
+                    repo.Save(result.Forms.Cast<SurveyBase>().ToList(), userId);
+                }
+                e.Result = result;
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error updating survey forms during split. SplitSurveys:importerWorker_DoWork. ", ex);
+                throw;
+            }
+        }
+
+        void importerWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ImportResult result = (ImportResult)e.Result;
+            if (result.WasSuccess)
+            {
+                OnSwitchStep(this);
+                MessageBox.Show(result.Message);
+            }
+            else
+                OnSwitchStep(new ImportStepResult(result, this, false));
         }
 
 

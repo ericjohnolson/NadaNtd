@@ -44,6 +44,9 @@
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.c1Button1 = new C1.Win.C1Input.C1Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.h3bLabel7 = new Nada.UI.Controls.H3bLabel();
+            this.h3Link7 = new Nada.UI.Controls.H3Link();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel4 = new Nada.UI.Controls.H3bLabel();
             this.h3Link4 = new Nada.UI.Controls.H3Link();
@@ -51,9 +54,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tblReportBuilder = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.h3bLabel7 = new Nada.UI.Controls.H3bLabel();
-            this.h3Link7 = new Nada.UI.Controls.H3Link();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel5 = new Nada.UI.Controls.H3bLabel();
             this.h3Link5 = new Nada.UI.Controls.H3Link();
@@ -70,9 +70,9 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -337,6 +337,53 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(268, 46);
             this.tableLayoutPanel4.TabIndex = 76;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.AutoSize = true;
+            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.Controls.Add(this.h3bLabel7, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.h3Link7, 1, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 26);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(168, 17);
+            this.tableLayoutPanel3.TabIndex = 75;
+            // 
+            // h3bLabel7
+            // 
+            this.h3bLabel7.AutoSize = true;
+            this.h3bLabel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel7.Location = new System.Drawing.Point(0, 0);
+            this.h3bLabel7.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel7.Name = "h3bLabel7";
+            this.h3bLabel7.Size = new System.Drawing.Size(113, 16);
+            this.h3bLabel7.TabIndex = 74;
+            this.h3bLabel7.Tag = "RedistrictingReport";
+            this.h3bLabel7.Text = "RedistrictingReport";
+            this.h3bLabel7.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3Link7
+            // 
+            this.h3Link7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3Link7.AutoSize = true;
+            this.h3Link7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Link7.BackColor = System.Drawing.Color.Transparent;
+            this.h3Link7.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.h3Link7.Location = new System.Drawing.Point(113, 2);
+            this.h3Link7.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.h3Link7.Name = "h3Link7";
+            this.h3Link7.Size = new System.Drawing.Size(55, 15);
+            this.h3Link7.TabIndex = 72;
+            this.h3Link7.Tag = "NewLink";
+            this.h3Link7.Text = "NewLink";
+            this.h3Link7.TextColor = System.Drawing.Color.RoyalBlue;
+            this.h3Link7.ClickOverride += new System.Action(this.redistrictingReport_ClickOverride);
+            // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.AutoSize = true;
@@ -448,53 +495,6 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.Size = new System.Drawing.Size(196, 115);
             this.tableLayoutPanel5.TabIndex = 75;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.AutoSize = true;
-            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.Controls.Add(this.h3bLabel7, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.h3Link7, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 26);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(168, 17);
-            this.tableLayoutPanel3.TabIndex = 75;
-            // 
-            // h3bLabel7
-            // 
-            this.h3bLabel7.AutoSize = true;
-            this.h3bLabel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3bLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel7.Location = new System.Drawing.Point(0, 0);
-            this.h3bLabel7.Margin = new System.Windows.Forms.Padding(0);
-            this.h3bLabel7.Name = "h3bLabel7";
-            this.h3bLabel7.Size = new System.Drawing.Size(113, 16);
-            this.h3bLabel7.TabIndex = 74;
-            this.h3bLabel7.Tag = "RedistrictingReport";
-            this.h3bLabel7.Text = "RedistrictingReport";
-            this.h3bLabel7.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // h3Link7
-            // 
-            this.h3Link7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.h3Link7.AutoSize = true;
-            this.h3Link7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Link7.BackColor = System.Drawing.Color.Transparent;
-            this.h3Link7.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.h3Link7.Location = new System.Drawing.Point(113, 2);
-            this.h3Link7.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.h3Link7.Name = "h3Link7";
-            this.h3Link7.Size = new System.Drawing.Size(55, 15);
-            this.h3Link7.TabIndex = 72;
-            this.h3Link7.Tag = "NewLink";
-            this.h3Link7.Text = "NewLink";
-            this.h3Link7.TextColor = System.Drawing.Color.RoyalBlue;
-            this.h3Link7.ClickOverride += new System.Action(this.redistrictingReport_ClickOverride);
             // 
             // tableLayoutPanel9
             // 
@@ -696,12 +696,12 @@
             this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);

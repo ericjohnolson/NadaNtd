@@ -49,10 +49,7 @@ namespace Nada.UI.View.Wizard
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 File.Copy(DatabaseData.Instance.FilePath, saveFileDialog1.FileName, true);
-                if (options.SplitType == SplittingType.Split)
-                    OnSwitchStep(new SplittingSource(options));
-                else 
-                    OnSwitchStep(new MergeYear(options));
+                OnSwitchStep(new RedistrictRules(options));
             }
 
         }
