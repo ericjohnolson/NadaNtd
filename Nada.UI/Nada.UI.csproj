@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>http://nadaqa.iotaink.com/</PublishUrl>
+    <PublishUrl>publish\x32\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,6 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://nadaqa.iotaink.com/</InstallUrl>
     <SupportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</SupportUrl>
     <ErrorReportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</ErrorReportUrl>
     <ProductName>Integrated NTD Database</ProductName>
