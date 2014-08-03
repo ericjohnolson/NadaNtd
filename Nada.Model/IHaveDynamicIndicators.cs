@@ -15,9 +15,9 @@ namespace Nada.Model
     {
         int Id { get; set; }
         List<IndicatorValue> IndicatorValues { get; set; }
-        int GetFirstAdminLevelId();
         string Notes { get; set; }
         Boolean IsValid();
         string GetAllErrors(bool showNames);
+        Nullable<int> AdminLevelId { get;  }
     }
 }

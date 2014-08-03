@@ -587,6 +587,7 @@ namespace Nada.Model.Repositories
         public DataTable RunRedistrictingReport()
         {
             DataTable dataTable = new DataTable();
+            dataTable.Columns.Add(new DataColumn(Translations.RedistrictDate));
             dataTable.Columns.Add(new DataColumn(Translations.RedistOrigName));
             dataTable.Columns.Add(new DataColumn(Translations.RedistOrigPop));
             dataTable.Columns.Add(new DataColumn(Translations.RedistLevel));
@@ -611,6 +612,7 @@ namespace Nada.Model.Repositories
                         while (reader.Read())
                         {
                             int id = reader.GetValueOrDefault<int>("ID");
+                            Nullable<DateTime> redistrictDate = reader.GetValueOrDefault<Nullable<DateTime>>("RedistrictDate");
                             DateTime date = reader.GetValueOrDefault<DateTime>("CreatedAt");
                             SplittingType t = (SplittingType)reader.GetValueOrDefault<int>("RedistrictTypeId");
                             List<RedistrictedReportUnit> daughters = new List<RedistrictedReportUnit>();
@@ -639,19 +641,19 @@ namespace Nada.Model.Repositories
                             {
                                 var source = mothers.FirstOrDefault();
                                 foreach (var dest in daughters)
-                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeSplit, date, typeName, id);
+                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeSplit, date, typeName, id, redistrictDate);
                             }
                             else if (t == SplittingType.Merge)
                             {
                                 var dest = daughters.FirstOrDefault();
                                 foreach (var source in mothers)
-                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeMerge, date, typeName, id);
+                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeMerge, date, typeName, id, redistrictDate);
                             }
                             else // splitcomb
                             {
                                 var dest = daughters.FirstOrDefault();
                                 foreach (var source in mothers)
-                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeSplitCombine, date, typeName, id);
+                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeSplitCombine, date, typeName, id, redistrictDate);
                             }
                         }
                     }
@@ -673,9 +675,11 @@ namespace Nada.Model.Repositories
         }
 
         private void AddRedistrictingReportRow(DataTable report, RedistrictedReportUnit oldUnit, RedistrictedReportUnit newUnit, string typeName, 
-            DateTime date, string levelName, int id)
+            DateTime date, string levelName, int id, Nullable<DateTime> redistrictDate)
         {
             DataRow dr = report.NewRow();
+            if(redistrictDate.HasValue)
+                dr[Translations.RedistrictDate] = redistrictDate.Value.ToShortDateString() + " " + redistrictDate.Value.ToShortTimeString();
             dr[Translations.RedistOrigName] = oldUnit.Name;
             //dr[Translations.RedistOrigPop] = oldUnit.Pop;
             dr[Translations.RedistLevel] = levelName;

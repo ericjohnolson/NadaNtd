@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Nada.Globalization;
 using Nada.Model.Base;
+using Nada.Model.Repositories;
 
 namespace Nada.Model.Diseases
 {
@@ -18,10 +19,7 @@ namespace Nada.Model.Diseases
             IndicatorDropdownValues = new List<IndicatorDropdownValue>();
         }
 
-        public int GetFirstAdminLevelId()
-        {
-            return AdminLevelId.Value;
-        }
+
         public Nullable<int> AdminLevelId { get; set; }
         public Disease Disease { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }

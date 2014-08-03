@@ -227,5 +227,6 @@ namespace Nada.UI.View.Reports
             report.OnEditReport = null;
             report.Show();
         }
+
     }
 }

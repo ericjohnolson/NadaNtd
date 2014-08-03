@@ -514,9 +514,9 @@ namespace Nada.Model.Demography
                     null);
             }
             // copy all surveys into new groups 
-            //List<SurveyDetails> surveys = surveyRepo.GetAllForAdminLevel(options.Source.Id);
-            //foreach (var survey in surveys)
-            //    options.Surveys.Add(SplitSurveys(survey, options.Source, options.SplitDestinations,  redistrictId, command, connection));
+            List<SurveyDetails> surveys = surveyRepo.GetAllForAdminLevel(options.Source.Id);
+            foreach (var survey in surveys)
+                options.Surveys.Add(SplitSurveys(survey, options.Source, options.SplitDestinations, redistrictId, command, connection));
 
             SaveSplitSaes(options.Saes, redistrictId, command, connection);
             return new RedistrictingResult();
@@ -580,32 +580,29 @@ namespace Nada.Model.Demography
             return newDemography;
         }
 
-        //private SurveyBase SplitSurveys(SurveyDetails details, AdminLevel source, List<AdminLevelAllocation> dests, int redistrictId, OleDbCommand command, OleDbConnection connection)
-        //{
-       
-        //    // so i am supposed to remove the old destination and put in the new destinations
-        //    // and save
-        //    // and have an old survey archived w/ the old unit... can I remove the 
-        //    var survey = surveyRepo.GetById(details.Id);
-        //    // make new
-        //    var newForm = Util.DeepClone(survey);
-        //    if (!newForm.AdminLevels.Select(a => a.Id).Contains(dest.Id))
-        //    {
-        //        newForm.Id = 0;
-        //        newForm.IsRedistricted = true;
-        //        newForm.AdminLevels.Add(dest);
-        //        newForm.AdminLevels.RemoveAll(a => a.Id == source.Id);
-        //    }
+        private SurveyBase SplitSurveys(SurveyDetails details, AdminLevel source, List<AdminLevelAllocation> dests, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {
 
-        //    //if (toMerge == null)
-        //    //{
-        //        surveyRepo.SaveSurveyBase(command, connection, newForm, userId);
-        //        demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, survey.Id, newForm.Id, IndicatorEntityType.Survey);
-        //    //}
-        //    //else
-        //    //    toMerge.Add(newForm);
-        //    return newForm;
-        //}
+            var oldSurvey = surveyRepo.GetById(details.Id);
+            // make new
+            var newForm = Util.DeepClone(oldSurvey);
+            // save old with only original unit
+            oldSurvey.Notes += string.Format(Translations.RedistrictSurveyNote, string.Join(", ", oldSurvey.AdminLevels.Select(s => s.Name).ToArray()));
+            oldSurvey.AdminLevels = new List<AdminLevel> { source };
+            surveyRepo.SaveSurveyBase(command, connection, oldSurvey, userId);
+
+            // add new units
+            // We used to make sure it didn't exist in the destination yet? dont get it, must be split combine... if (!newForm.AdminLevels.Select(a => a.Id).Contains(dest.Id))
+            newForm.Id = 0;
+            newForm.IsRedistricted = true;
+            newForm.AdminLevels.RemoveAll(a => a.Id == source.Id);
+            newForm.AdminLevels.AddRange(dests.Select(a => a.Unit));
+
+            surveyRepo.SaveSurveyBase(command, connection, newForm, userId);
+            demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, oldSurvey.Id, newForm.Id, IndicatorEntityType.Survey);
+            
+            return newForm;
+        }
 
         private DiseaseDistroPc SplitDdPc(List<DiseaseDistroPc> toMerge, DiseaseDistroDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {

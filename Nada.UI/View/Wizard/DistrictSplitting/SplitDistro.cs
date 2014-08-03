@@ -124,7 +124,8 @@ namespace Nada.UI.View.Wizard
             var payload = new WorkerPayload
             {
                 Importer = importer,
-                Forms = forms
+                Forms = forms, 
+                DiseaseType = disease.DiseaseType
             };
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = Translations.ExcelFiles + " (*.xlsx)|*.xlsx";
@@ -161,7 +162,7 @@ namespace Nada.UI.View.Wizard
             catch (Exception ex)
             {
                 Logger log = new Logger();
-                log.Error("Error creating splitting review file. SplitDistro:worker_DoWork. ", ex);
+                log.Error("Error updating distribution forms during split. SplitDistro:importerWorker_DoWork. ", ex);
                 throw;
             }
         }

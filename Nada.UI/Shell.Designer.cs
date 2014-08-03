@@ -90,7 +90,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblDeveloperMode,
             this.tsLastUpdated});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 830);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 760);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1248, 22);
@@ -118,7 +118,7 @@
             this.pnlMain.Location = new System.Drawing.Point(0, 42);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1248, 788);
+            this.pnlMain.Size = new System.Drawing.Size(1248, 718);
             this.pnlMain.TabIndex = 3;
             // 
             // tsQuickLinks
@@ -224,7 +224,7 @@
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 1);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(0, 829);
+            this.pnlLeft.Size = new System.Drawing.Size(0, 759);
             this.pnlLeft.TabIndex = 1;
             // 
             // kryptonBorderEdge2
@@ -366,6 +366,7 @@
             this.menuSplitCombineDistrictToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.menuSplitCombineDistrictToolStripMenuItem.Tag = "MenuSplitCombineDistrict";
             this.menuSplitCombineDistrictToolStripMenuItem.Text = "MenuSplitCombineDistrict";
+            this.menuSplitCombineDistrictToolStripMenuItem.Visible = false;
             this.menuSplitCombineDistrictToolStripMenuItem.Click += new System.EventHandler(this.menuSplitCombineDistrictToolStripMenuItem_Click);
             // 
             // newYearUpdatesToolStripMenuItem
@@ -557,7 +558,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1248, 852);
+            this.ClientSize = new System.Drawing.Size(1248, 782);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.hr2);
             this.Controls.Add(this.hr1);

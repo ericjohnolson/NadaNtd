@@ -243,9 +243,10 @@ namespace Nada.Model
             int xlsRowCount = 2;
             foreach (var form in forms)
             {
-                var adminLevel = repo.GetAdminLevelById(form.GetFirstAdminLevelId());
+
+                var adminLevel = repo.GetAdminLevelById(form.AdminLevelId.Value);
                 xlsWorksheet.Cells[xlsRowCount, 1] = form.Id;
-                xlsWorksheet.Cells[xlsRowCount, 2] = adminLevel.Name;
+                xlsWorksheet.Cells[xlsRowCount, 2] = GetAdminLevelName(adminLevel, form);
                 AddTypeSpecificLists(xlsWorksheet, xlsValidation, adminLevel.Id, xlsRowCount, oldCI, locationCount);
                 int colCount = colCountAfterStatic;
                 foreach (var key in Indicators.Keys)
@@ -283,6 +284,11 @@ namespace Nada.Model
             Marshal.ReleaseComObject(xlsWorkbook);
             Marshal.ReleaseComObject(xlsApp);
             System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
+        }
+
+        protected virtual string GetAdminLevelName(AdminLevel adminLevel, IHaveDynamicIndicatorValues form)
+        {
+            return adminLevel.Name;
         }
 
         protected virtual int FillData(System.Globalization.CultureInfo oldCI, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation, int locationCount, int colCountAfterStatic, int xlsRowCount)
@@ -425,7 +431,7 @@ namespace Nada.Model
                 {
                     WasSuccess = true,
                     Count = existing.Count,
-                    Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), existing.Count),
+                    Message = string.Format(TranslationLookup.GetValue("ImportUpdateSuccess"), existing.Count),
                     Forms = existing
                 };
             }
