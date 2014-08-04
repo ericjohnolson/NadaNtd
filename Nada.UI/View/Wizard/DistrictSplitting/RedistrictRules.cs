@@ -32,7 +32,7 @@ namespace Nada.UI.View.Wizard
         public bool EnablePrev { get { return true; } }
         public bool ShowFinish { get { return false; } }
         public bool EnableFinish { get { return false; } }
-        public string StepTitle { get { return Translations.SplittingSaes; } }
+        public string StepTitle { get { return Translations.RedistrictingRulesSplit; } }
         private DemoRepository demo = new DemoRepository();
         private List<DynamicContainer> containers = new List<DynamicContainer>();
         RedistrictingOptions options;
@@ -52,21 +52,17 @@ namespace Nada.UI.View.Wizard
 
                 if (options.SplitType == SplittingType.Split)
                 {
-                    var vals = new List<IndicatorDropdownValue>();
-                    foreach (RedistrictingRule rule in (RedistrictingRule[])Enum.GetValues(typeof(RedistrictingRule)))
-                        vals.Add(new IndicatorDropdownValue { DisplayName = rule.ToString(), WeightedValue = (int)rule });
-
                     lblIndicatorType.Text = Translations.RedistrictRuleSplit;
-                    AddRuleControls(demo.GetCustomIndicatorsWithoutRedistrictingRules(options.SplitType), vals);
+                    AddRuleControls(demo.GetCustomIndicatorsWithoutRedistrictingRules(options.SplitType), options.SplitType);
                 }
-                else if (options.SplitType == SplittingType.Merge)
-                {
-                    var vals = new List<IndicatorDropdownValue>();
-                    foreach (MergingRule rule in (MergingRule[])Enum.GetValues(typeof(MergingRule)))
-                        vals.Add(new IndicatorDropdownValue { DisplayName = rule.ToString(), WeightedValue = (int)rule });
-                    lblIndicatorType.Text = Translations.RedistrictRuleMerge;
-                    AddRuleControls(demo.GetCustomIndicatorsWithoutRedistrictingRules(options.SplitType), vals);
-                }
+                //else if (options.SplitType == SplittingType.Merge)
+                //{
+                //    var vals = new List<IndicatorDropdownValue>();
+                //    foreach (MergingRule rule in (MergingRule[])Enum.GetValues(typeof(MergingRule)))
+                //        vals.Add(new IndicatorDropdownValue { DisplayName = rule.ToString(), WeightedValue = (int)rule });
+                //    lblIndicatorType.Text = Translations.RedistrictRuleMerge;
+                //    AddRuleControls(demo.GetCustomIndicatorsWithoutRedistrictingRules(options.SplitType), vals);
+                //}
                 //else
                 //{
                 //    lblIndicatorType.Text = Translations.RedistrictRuleSplitCombine;
@@ -78,9 +74,8 @@ namespace Nada.UI.View.Wizard
             }
         }
 
-        private void AddRuleControls(List<Indicator> indicators, List<IndicatorDropdownValue> values)
+        private void AddRuleControls(List<Indicator> indicators, SplittingType splitType)
         {
-
             for (int i = 0; i < indicators.Count; i++)
             {
                 var index = tblNewUnits.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
@@ -89,9 +84,25 @@ namespace Nada.UI.View.Wizard
                 var label = new H3bLabel { AutoSize = true, Text = indicators[i].DisplayName, Margin = new Padding(0, 5, 10, 5) };
                 label.MakeBold();
                 tblNewUnits.Controls.Add(label, 0, index);
-                var cntrl = CreateDropdown(indicators[i], values);
+                var cntrl = CreateDropdown(indicators[i], GetRuleValues(splitType, indicators[i].DataTypeId));
                 tblNewUnits.Controls.Add(cntrl, 1, index);
             }
+        }
+
+        private List<IndicatorDropdownValue> GetRuleValues(SplittingType splitType, int dataTypeId)
+        {
+            var vals = new List<IndicatorDropdownValue>();
+             
+            if (options.SplitType == SplittingType.Split)
+            {
+                if(dataTypeId == (int)IndicatorDataType.Number)
+                    vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleSplitByPercent, WeightedValue = (int)RedistrictingRule.SplitByPercent });
+                vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleDefaultBlank, WeightedValue = (int)RedistrictingRule.DefaultBlank });
+                vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleDuplicate, WeightedValue = (int)RedistrictingRule.Duplicate });
+                vals.OrderBy(v => v.DisplayName).ToList();
+            }
+
+            return vals;
         }
 
         public void DoPrev()

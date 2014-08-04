@@ -16,8 +16,8 @@ namespace Nada.Tests
         public void DoUpdateDatabase()
         {
             SettingsRepository repo = new SettingsRepository();
-            List<string> filesToRun = new List<string> { @"C:\Users\jed\Source\Repos\NadaNTD\Nada.UI\DatabaseScripts\ScriptDiffTest.sql" };
-            //List<string> filesToRun = new List<string> { @"C:\Development\Nada\NadaNtd\Nada.UI\DatabaseScripts\ScriptDiffTest.sql" };
+            //List<string> filesToRun = new List<string> { @"C:\Users\jed\Source\Repos\NadaNTD\Nada.UI\DatabaseScripts\ScriptDiffTest.sql" };
+            List<string> filesToRun = new List<string> { @"C:\Development\Nada\NadaNtd\Nada.UI\DatabaseScripts\ScriptDiffTest.sql" };
             string result = repo.RunSchemaChangeScripts(filesToRun);
 
             Assert.IsTrue(result.Length == 0);

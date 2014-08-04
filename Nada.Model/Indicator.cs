@@ -28,6 +28,7 @@ namespace Nada.Model
         public bool IsCalculated { get; set; }
         public bool IsMetaData { get; set; }
         public string DisplayName { get; set; }
+        public int EntityId { get; set; }
 
         // Display only props
         public string DataType { get; set; }

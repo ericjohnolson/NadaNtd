@@ -515,8 +515,9 @@ namespace Nada.Model.Demography
             }
             // copy all surveys into new groups 
             List<SurveyDetails> surveys = surveyRepo.GetAllForAdminLevel(options.Source.Id);
+            var newSites = SplitSentinelSites(options.Source, options.SplitDestinations, command, connection);
             foreach (var survey in surveys)
-                options.Surveys.Add(SplitSurveys(survey, options.Source, options.SplitDestinations, redistrictId, command, connection));
+                options.Surveys.Add(SplitSurveys(survey, options.Source, options.SplitDestinations, redistrictId, command, connection, newSites));
 
             SaveSplitSaes(options.Saes, redistrictId, command, connection);
             return new RedistrictingResult();
@@ -580,10 +581,11 @@ namespace Nada.Model.Demography
             return newDemography;
         }
 
-        private SurveyBase SplitSurveys(SurveyDetails details, AdminLevel source, List<AdminLevelAllocation> dests, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        private SurveyBase SplitSurveys(SurveyDetails details, AdminLevel source, List<AdminLevelAllocation> dests, int redistrictId, OleDbCommand command, 
+            OleDbConnection connection, Dictionary<int, SentinelSite> newSites)
         {
-
             var oldSurvey = surveyRepo.GetById(details.Id);
+
             // make new
             var newForm = Util.DeepClone(oldSurvey);
             // save old with only original unit
@@ -597,11 +599,32 @@ namespace Nada.Model.Demography
             newForm.IsRedistricted = true;
             newForm.AdminLevels.RemoveAll(a => a.Id == source.Id);
             newForm.AdminLevels.AddRange(dests.Select(a => a.Unit));
+            if (oldSurvey.SentinelSiteId.HasValue && oldSurvey.SentinelSiteId > 0)
+                newForm.SentinelSiteId = newSites[oldSurvey.SentinelSiteId.Value].Id;
 
             surveyRepo.SaveSurveyBase(command, connection, newForm, userId);
             demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, oldSurvey.Id, newForm.Id, IndicatorEntityType.Survey);
             
             return newForm;
+        }
+
+        private Dictionary<int, SentinelSite> SplitSentinelSites(AdminLevel source, List<AdminLevelAllocation> dests, OleDbCommand command, OleDbConnection connection)
+        {
+            Dictionary<int, SentinelSite> newSites = new Dictionary<int, SentinelSite>();
+            var sites = surveyRepo.GetSitesForAdminLevel(new List<string> { source.Id.ToString() });
+            foreach (var site in sites)
+            {
+                var newSite = Util.DeepClone(site);
+                // remove other admin levels
+                site.AdminLevels = new List<AdminLevel> { source };
+                surveyRepo.Update(site, userId, connection, command);
+                // update admin levels to new dests
+                newSite.Id = 0;
+                newSite.AdminLevels.RemoveAll(a => a.Id == source.Id);
+                newSite.AdminLevels.AddRange(dests.Select(a => a.Unit));
+                newSites.Add(site.Id, surveyRepo.Insert(newSite, userId, connection, command));
+            }
+            return newSites;
         }
 
         private DiseaseDistroPc SplitDdPc(List<DiseaseDistroPc> toMerge, DiseaseDistroDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)

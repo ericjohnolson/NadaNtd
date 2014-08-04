@@ -10577,6 +10577,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set redistricting rules for custom indicators.
+        /// </summary>
+        public static string RedistrictingRulesSplit {
+            get {
+                return ResourceManager.GetString("RedistrictingRulesSplit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Split and combined from {0} on {1}.
         /// </summary>
         public static string RedistrictingSplitCombineDesc {
@@ -10613,6 +10622,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leave blank.
+        /// </summary>
+        public static string RedistrictRuleDefaultBlank {
+            get {
+                return ResourceManager.GetString("RedistrictRuleDefaultBlank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate.
+        /// </summary>
+        public static string RedistrictRuleDuplicate {
+            get {
+                return ResourceManager.GetString("RedistrictRuleDuplicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Merging rule.
         /// </summary>
         public static string RedistrictRuleMerge {
@@ -10627,6 +10654,15 @@ namespace Nada.Globalization {
         public static string RedistrictRuleSplit {
             get {
                 return ResourceManager.GetString("RedistrictRuleSplit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split by percentage of population.
+        /// </summary>
+        public static string RedistrictRuleSplitByPercent {
+            get {
+                return ResourceManager.GetString("RedistrictRuleSplitByPercent", resourceCulture);
             }
         }
         

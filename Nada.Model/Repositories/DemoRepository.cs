@@ -1841,7 +1841,8 @@ namespace Nada.Model.Repositories
                         InterventionIndicators.DisplayName,
                         InterventionTypes.InterventionTypeName as TName,                  
                         InterventionIndicators.RedistrictRuleId,
-                        InterventionIndicators.MergeRuleId
+                        InterventionIndicators.MergeRuleId,
+                        InterventionIndicators.DataTypeId
                         FROM ((InterventionIndicators INNER JOIN InterventionTypes_to_Indicators ON InterventionTypes_to_Indicators.IndicatorId = InterventionIndicators.ID)
                             INNER JOIN InterventionTypes on InterventionTypes_to_Indicators.InterventionTypeId = InterventionTypes.Id)
                         WHERE IsEditable=-1 AND IsDisabled=0" + typeWhere, connection);
@@ -1853,7 +1854,8 @@ namespace Nada.Model.Repositories
                         ProcessIndicators.DisplayName,
                         ProcessTypes.TypeName as TName,                  
                         ProcessIndicators.RedistrictRuleId,
-                        ProcessIndicators.MergeRuleId
+                        ProcessIndicators.MergeRuleId,
+                        ProcessIndicators.DataTypeId
                         FROM ProcessIndicators INNER JOIN ProcessTypes on ProcessIndicators.ProcessTypeId = ProcessTypes.Id
                         WHERE IsEditable=-1 AND IsDisabled=0" + typeWhere, connection);
                     AddCustomIndicators(indicators, command, IndicatorEntityType.Process);
@@ -1863,7 +1865,8 @@ namespace Nada.Model.Repositories
                         SurveyIndicators.DisplayName,
                         SurveyTypes.SurveyTypeName as TName,                  
                         SurveyIndicators.RedistrictRuleId,
-                        SurveyIndicators.MergeRuleId
+                        SurveyIndicators.MergeRuleId,
+                        SurveyIndicators.DataTypeId
                         FROM SurveyIndicators INNER JOIN SurveyTypes on SurveyIndicators.SurveyTypeId = SurveyTypes.Id
                         WHERE IsEditable=-1 AND IsDisabled=0" + typeWhere, connection);
                     AddCustomIndicators(indicators, command, IndicatorEntityType.Survey);
@@ -1873,7 +1876,8 @@ namespace Nada.Model.Repositories
                         DiseaseDistributionIndicators.DisplayName,
                         Diseases.DisplayName as TName,                  
                         DiseaseDistributionIndicators.RedistrictRuleId,
-                        DiseaseDistributionIndicators.MergeRuleId
+                        DiseaseDistributionIndicators.MergeRuleId,
+                        DiseaseDistributionIndicators.DataTypeId
                         FROM DiseaseDistributionIndicators INNER JOIN Diseases on DiseaseDistributionIndicators.DiseaseId = Diseases.Id
                         WHERE IsEditable=-1 AND IsDisabled=0" + typeWhere, connection);
                     AddCustomIndicators(indicators, command, IndicatorEntityType.DiseaseDistribution);
@@ -1905,7 +1909,8 @@ namespace Nada.Model.Repositories
                         MergeRuleId = reader.GetValueOrDefault<int>("MergeRuleId"),
                         DisplayName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"),
                         reader.GetValueOrDefault<string>("TName")) + " > " + reader.GetValueOrDefault<string>("DisplayName"),
-                        DataTypeId = (int)entityType
+                        EntityId = (int)entityType,
+                        DataTypeId = reader.GetValueOrDefault<int>("DataTypeId")
                     });
                 }
                 reader.Close();
@@ -1923,16 +1928,16 @@ namespace Nada.Model.Repositories
                     foreach (Indicator ind in inds)
                     {
                         OleDbCommand command = null;
-                        if (ind.DataTypeId == (int)IndicatorEntityType.Intervention)
+                        if (ind.EntityId == (int)IndicatorEntityType.Intervention)
                             command = new OleDbCommand(@"Update InterventionIndicators SET RedistrictRuleId=@RedistrictRuleId, MergeRuleId=@MergeRuleId 
                                 where ID = @ID", connection);
-                        else if (ind.DataTypeId == (int)IndicatorEntityType.Process)
+                        else if (ind.EntityId == (int)IndicatorEntityType.Process)
                             command = new OleDbCommand(@"Update ProcessIndicators SET RedistrictRuleId=@RedistrictRuleId, MergeRuleId=@MergeRuleId 
                                 where ID = @ID", connection);
-                        else if (ind.DataTypeId == (int)IndicatorEntityType.Survey)
+                        else if (ind.EntityId == (int)IndicatorEntityType.Survey)
                             command = new OleDbCommand(@"Update SurveyIndicators SET RedistrictRuleId=@RedistrictRuleId, MergeRuleId=@MergeRuleId 
                                 where ID = @ID", connection);
-                        else if (ind.DataTypeId == (int)IndicatorEntityType.DiseaseDistribution)
+                        else if (ind.EntityId == (int)IndicatorEntityType.DiseaseDistribution)
                             command = new OleDbCommand(@"Update DiseaseDistributionIndicators SET RedistrictRuleId=@RedistrictRuleId, MergeRuleId=@MergeRuleId 
                                 where ID = @ID", connection);
 
