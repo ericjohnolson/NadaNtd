@@ -885,7 +885,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand("Select top 1 ScriptName from SchemaChangeLog Order By ID DESC", connection);
+                    OleDbCommand command = new OleDbCommand("Select top 1 ScriptName from SchemaChangeLog Order By MajorReleaseNumber, MinorReleaseNumber, PointReleaseNumber DESC", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
