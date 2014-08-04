@@ -96,7 +96,7 @@ namespace Nada.UI.View.Wizard
                         importer.SetType(disease.Id);
                         var payload = new WorkerPayload
                         {
-                            FileName = disease.DisplayName + "_" + options.SplitType.ToString() + DateTime.Now.ToString("yyyyMMdd") + ".xlsx",
+                            FileName = Util.CleanFilename(disease.DisplayName) + "_" + options.SplitType.ToString() + DateTime.Now.ToString("yyyyMMdd") + ".xlsx",
                             Importer = importer,
                             Forms = forms
                         };

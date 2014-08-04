@@ -604,7 +604,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select ID, CreatedAt, RedistrictTypeId
+                    OleDbCommand command = new OleDbCommand(@"Select ID, CreatedAt, RedistrictTypeId, RedistrictDate
                         FROM RedistrictEvents 
                         ORDER BY CreatedAt DESC", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())

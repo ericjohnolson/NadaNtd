@@ -223,5 +223,14 @@ namespace Nada.Globalization {
                 return ResourceManager.GetString("SplittingMustAllocateRules", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name must not contain special characters: &amp;&amp;.
+        /// </summary>
+        public static string ValidNameSpecialChars {
+            get {
+                return ResourceManager.GetString("ValidNameSpecialChars", resourceCulture);
+            }
+        }
     }
 }

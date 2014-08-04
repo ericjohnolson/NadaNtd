@@ -79,6 +79,8 @@ namespace Nada.Model
                     case "Name":
                         if (string.IsNullOrEmpty(Name))
                             error = Translations.Required;
+                        else if (Name.Contains("&"))
+                            error = Translations.ValidNameSpecialChars;
                         break;
                     case "AdminLevelTypeId":
                         if (AdminLevelTypeId < 0)

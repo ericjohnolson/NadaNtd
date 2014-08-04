@@ -261,7 +261,6 @@ namespace Nada.Model
                     colCount++;
                     colCount = AddValueToCell(xlsWorksheet, xlsValidation, colCount, xlsRowCount, value, Indicators[key], oldCI, true);
                 }
-                xlsWorksheet.Cells[xlsRowCount, colCount] = form.Notes;
                 xlsRowCount++;
             }
 

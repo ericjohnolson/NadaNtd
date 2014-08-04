@@ -121,11 +121,11 @@
     <value>À propos</value>
   </data>
   <data name="AboutDisclaimer" xml:space="preserve">
-    <value>La base de données intégrée pour les MTN  a été développé par RTI International, avec le financement de l’USAID, en collaboration avec l’OMS et ses bureaux régionaux (AFR, SEAR, WPR), le programme africain pour le contrôle de l’onchocercose (APOC), et le centre pour les maladies tropicales négligées.
+    <value>La base de données intégrée des données MTN  a été développé par RTI International, avec le financement de l’USAID, en collaboration avec l’OMS et ses bureaux régionaux (AFR, SEAR, WPR), le programme africain pour le contrôle de l’onchocercose (APOC), et le centre pour les maladies tropicales négligées.
 La base de données intégrée a été développé par Iota Ink : Jennifer Einberg, gestionnaire du projet ; Eric Olson, développeur ; Jennifer Fox, graphiste ; Nick Cherf, spécialiste d’assurance de qualité ; Michelle Fellows, rédacteur technique.</value>
   </data>
   <data name="AboutMenu" xml:space="preserve">
-    <value>À propos de la base de donnees integrées pour les MTN</value>
+    <value>À propos de la base de données intégrée des données MTN</value>
   </data>
   <data name="AccessFiles" xml:space="preserve">
     <value>Accéder aux fichiers</value>
@@ -272,7 +272,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Date de création du rapport</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Base de donnees integrées pour les MTN</value>
+    <value>Base de données intégrée des données MTN</value>
   </data>
   <data name="ApplicationUpdate" xml:space="preserve">
     <value>Mise à jour du logiciel.</value>
@@ -1422,9 +1422,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="Help" xml:space="preserve">
     <value>Aide</value>
   </data>
-  <data name="HelpFile" xml:space="preserve">
-    <value>/View/Help/FR/help.chm</value>
-  </data>
   <data name="High" xml:space="preserve">
     <value>Élevé</value>
   </data>
@@ -2089,7 +2086,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Rechercher les mises à jour …</value>
   </data>
   <data name="MenuDeleteAdminLevel" xml:space="preserve">
-    <value>Supprimer les unités administratives</value>
+    <value>Supprimer des unités administratives</value>
   </data>
   <data name="MenuDemography" xml:space="preserve">
     <value>Démographie...</value>
@@ -2116,13 +2113,13 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Interventions...</value>
   </data>
   <data name="MenuMergeDistrict" xml:space="preserve">
-    <value>Fusionner les unités administratives</value>
+    <value>Fusionner des unités administratives</value>
   </data>
   <data name="MenuNew" xml:space="preserve">
     <value>Nouveau...</value>
   </data>
   <data name="MenuNewAdminLevel" xml:space="preserve">
-    <value>Ajouter les unités administratives</value>
+    <value>Ajouter des unités administratives</value>
   </data>
   <data name="MenuNewYearDemo" xml:space="preserve">
     <value>Ajouter des données démographiques pour une nouvelle année</value>
@@ -2146,10 +2143,10 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Paramètres</value>
   </data>
   <data name="MenuSplitCombineDistrict" xml:space="preserve">
-    <value>Diviser/fusionner les unités administratives</value>
+    <value>Fractionner/combiner des unités administratives</value>
   </data>
   <data name="MenuSplitDistrict" xml:space="preserve">
-    <value>Diviser les unités administratives</value>
+    <value>Fractionner des unités administratives</value>
   </data>
   <data name="MenuSurveys" xml:space="preserve">
     <value>Enquêtes...</value>
@@ -2158,7 +2155,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Afficher l'aide...</value>
   </data>
   <data name="MenuViewTutorial" xml:space="preserve">
-    <value>View PowerPoint tutorial...</value>
+    <value>Afficher le didacticiel PowerPoint</value>
   </data>
   <data name="MetaDataDateRange" xml:space="preserve">
     <value>Plage de dates pour les données ci-dessus mentionnées</value>
@@ -2221,13 +2218,13 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>N/D</value>
   </data>
   <data name="NadaIntro" xml:space="preserve">
-    <value>La modèle pour la base de données intégrée pour les MTN a été développée par RTI International sous le projet d’ENVISION, avec le financement de l’USAID, en coopération avec l’OMS et ses bureaux régionaux, le programme africain pour le contrôle de l’onchocercose (APOC), et le centre pour les maladies tropicale négligées.</value>
+    <value>La modèle pour la base de données intégrée des données MTN a été développée par RTI International sous le projet d’ENVISION, avec le financement de l’USAID, en coopération avec l’OMS et ses bureaux régionaux, le programme africain pour le contrôle de l’onchocercose (APOC), et le centre pour les maladies tropicale négligées.</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
   </data>
   <data name="NationalDatabaseTemplate" xml:space="preserve">
-    <value>Base de donnees integrées pour les MTN</value>
+    <value>Base de données intégrée des données MTN</value>
   </data>
   <data name="Necator" xml:space="preserve">
     <value>Necator americanus (ankylostome)</value>
@@ -3628,7 +3625,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Diviser</value>
   </data>
   <data name="RedistrictTypeSplitCombine" xml:space="preserve">
-    <value>Diviser/combiner</value>
+    <value>Fractionner/combiner</value>
   </data>
   <data name="RedistType" xml:space="preserve">
     <value>Type de redécoupage</value>
@@ -4705,7 +4702,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Sélectionnez les unités administratives que vous allez fusionner</value>
   </data>
   <data name="SplitMergeTitle" xml:space="preserve">
-    <value>Fusionner les unités administratives</value>
+    <value>Fusionner des unités administratives</value>
   </data>
   <data name="SplitPercentsRequired" xml:space="preserve">
     <value>Tous les pourcentages sont requis</value>
@@ -5864,9 +5861,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="TtAios2020" xml:space="preserve">
     <value>Objectif annuel d'intervention : 2020</value>
-  </data>
-  <data name="TutorialFile" xml:space="preserve">
-    <value>/View/Help/TrainingPPT_061614_en.pptx</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>

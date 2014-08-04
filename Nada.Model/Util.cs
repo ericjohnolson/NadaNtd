@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.RegularExpressions;
 using Nada.Globalization;
 
 namespace Nada.Model
@@ -24,6 +25,13 @@ namespace Nada.Model
 
                 return (T)formatter.Deserialize(ms);
             }
+        }
+
+        public static string CleanFilename(string source)
+        {
+            string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+            Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+            return r.Replace(source, "");
         }
 
         public static Dictionary<string, IndicatorValue> CreateIndicatorValueDictionary(IHaveDynamicIndicatorValues i)

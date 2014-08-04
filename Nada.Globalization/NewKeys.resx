@@ -170,4 +170,7 @@
   <data name="SplittingMustAllocateRules" xml:space="preserve">
     <value>Must assign all rules before continuing.</value>
   </data>
+  <data name="ValidNameSpecialChars" xml:space="preserve">
+    <value>Name must not contain special characters: &amp;&amp;</value>
+  </data>
 </root>

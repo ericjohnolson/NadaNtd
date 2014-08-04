@@ -88,7 +88,7 @@ namespace Nada.UI.View.Wizard
                         importer.SetType(t.Id);
                         var payload = new SplitDistro.WorkerPayload
                         {
-                            FileName = t.IntvTypeName + "_" + options.SplitType.ToString() + DateTime.Now.ToString("yyyyMMdd") + ".xlsx",
+                            FileName = Util.CleanFilename(t.IntvTypeName) + "_" + options.SplitType.ToString() + DateTime.Now.ToString("yyyyMMdd") + ".xlsx",
                             Importer = importer,
                             Forms = forms
                         };
