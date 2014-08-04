@@ -149,6 +149,7 @@
   </data>
   <data name="TasNumNoTreatment" xml:space="preserve">
     <value>Number of LF endemic districts surrounding this Evaluation Unit that haven't started treatment</value>
+  </data>
   <data name="ImportUpdateSuccess" xml:space="preserve">
     <value>Successfully updated {0} forms!</value>
   </data>
