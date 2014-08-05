@@ -248,6 +248,7 @@ namespace Nada.Model
                 xlsWorksheet.Cells[xlsRowCount, 1] = form.Id;
                 xlsWorksheet.Cells[xlsRowCount, 2] = GetAdminLevelName(adminLevel, form);
                 AddTypeSpecificLists(xlsWorksheet, xlsValidation, adminLevel.Id, xlsRowCount, oldCI, locationCount);
+                AddTypeSpecificListValues(xlsWorksheet, xlsValidation, adminLevel.Id, xlsRowCount, oldCI, locationCount, form);
                 int colCount = colCountAfterStatic;
                 foreach (var key in Indicators.Keys)
                 {
@@ -290,13 +291,19 @@ namespace Nada.Model
             return adminLevel.Name;
         }
 
-        protected virtual int FillData(System.Globalization.CultureInfo oldCI, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation, int locationCount, int colCountAfterStatic, int xlsRowCount)
+        protected virtual int FillData(System.Globalization.CultureInfo oldCI, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, 
+            Microsoft.Office.Interop.Excel.Worksheet xlsValidation, int locationCount, int colCountAfterStatic, int xlsRowCount)
         {
             return xlsRowCount;
         }
 
         protected virtual void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation,
             int adminLevelId, int r, CultureInfo currentCulture, int colCount)
+        {
+
+        }
+        protected virtual void AddTypeSpecificListValues(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation,
+            int adminLevelId, int r, CultureInfo currentCulture, int colCount, IHaveDynamicIndicatorValues form)
         {
 
         }

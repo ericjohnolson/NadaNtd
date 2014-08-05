@@ -28,6 +28,11 @@ namespace Nada.Model.Imports
         }
         private SurveyRepository repo = new SurveyRepository();
         private SurveyType sType = null;
+        private int siteColumnIndex = 0;
+        private int spotColumnIndex = 0;
+        private int latColumnIndex = 0;
+        private int lngColumnIndex = 0; 
+
         public SurveyImporter() { }
 
         public override bool HasGroupedAdminLevels(ImportOptions opts)
@@ -71,12 +76,16 @@ namespace Nada.Model.Imports
 
             startIndex++;
             xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSentinelSiteName");
+            siteColumnIndex = startIndex;
             startIndex++;
             xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSpotCheckName");
+            spotColumnIndex = startIndex;
             startIndex++;
             xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSpotCheckLat");
+            latColumnIndex = startIndex;
             startIndex++;
             xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSpotCheckLng");
+            lngColumnIndex = startIndex;
             return startIndex;
         }
 
@@ -88,6 +97,27 @@ namespace Nada.Model.Imports
             var sites = repo.GetSitesForAdminLevel(new List<string> { adminLevelId.ToString() });
             if (sites.Count > 0)
                 AddDataValidation(xlsWorksheet, xlsValidation, Util.GetExcelColumnName(colCount + 1), r, "", "", sites.Select(p => p.SiteName).ToList(), currentCulture);
+        }
+
+        protected override void AddTypeSpecificListValues(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation,
+            int adminLevelId, int r, CultureInfo currentCulture, int colCount, IHaveDynamicIndicatorValues form)
+        {
+            if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null)
+                return;
+
+            SurveyBase sur = (SurveyBase)form;
+
+            if (sur.SentinelSiteId.HasValue && sur.SentinelSiteId.Value > 0)
+            {
+                var site = repo.GetSiteById(sur.SentinelSiteId.Value);
+                xlsWorksheet.Cells[r, siteColumnIndex] = site.SiteName;
+            }
+            else
+            {
+                xlsWorksheet.Cells[r, spotColumnIndex] = sur.SpotCheckName;
+                xlsWorksheet.Cells[r, lngColumnIndex] = sur.Lng;
+                xlsWorksheet.Cells[r, latColumnIndex] = sur.Lat;
+            }
         }
 
         protected override ImportResult MapAndSaveObjects(DataSet ds, int userId)
