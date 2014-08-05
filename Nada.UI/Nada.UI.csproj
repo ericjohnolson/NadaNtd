@@ -1390,27 +1390,16 @@
     <Content Include="View\Help\EN\Image%289%29.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="View\Help\FR\Image%284%29.bmp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="View\Help\FR\picture1.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="View\Help\FR\picture10.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="View\Help\FR\picture2.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="View\Help\FR\picture3.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="View\Help\FR\picture4.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="View\Help\FR\picture5.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="View\Help\FR\astoria.png" />
+    <Content Include="View\Help\FR\browse.png" />
+    <Content Include="View\Help\FR\calcuated.png" />
+    <Content Include="View\Help\FR\create.png" />
+    <Content Include="View\Help\FR\custom indicaotrs.PNG" />
+    <Content Include="View\Help\FR\custom.png" />
+    <Content Include="View\Help\FR\diseases.png" />
+    <Content Include="View\Help\FR\install.PNG" />
+    <Content Include="View\Help\FR\open.png" />
+    <Content Include="View\Help\FR\signin.png" />
     <Content Include="View\Help\ID\Image%281%29.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1537,6 +1526,7 @@
     <Content Include="View\Help\PT\help.chm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="View\Help\TrainingPPT_080814_French.pptx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

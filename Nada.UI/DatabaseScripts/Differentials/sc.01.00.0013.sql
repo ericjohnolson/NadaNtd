@@ -50,7 +50,7 @@ UPDATE SurveyIndicators SET SortOrder = SortOrder * 10 WHERE SurveyTypeId = 18;
 INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) VALUES (18, 6, 'SthMappingTypeSite',4,55, 26, NOW(), 0, 0, 0, 0,0,-1,2,54);
 
 UPDATE SurveyIndicators SET SortOrder = SortOrder * 10 WHERE SurveyTypeId = 12;
-INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) VALUES (12, 4, 'SthSpotCheckDatePc',5,15, 26, NOW(), 0, 0, 0, 0,0,0,49,53);
+INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) VALUES (12, 4, 'SthSpotCheckDatePc',5,25, 26, NOW(), 0, 0, 0, 0,0,0,49,53);
 INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) VALUES (12, 6, 'SthSpotCheckTypeSite',4,45, 26, NOW(), 0, 0, 0, 0,0,-1,2,54);
 
 

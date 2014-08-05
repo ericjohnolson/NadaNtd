@@ -251,6 +251,9 @@ namespace Nada.Tests
             {
                 foreach (var val in GetValues(type, ind.ID))
                 {
+                    if (ind.ID == 0)
+                        continue;
+
                     var dr = table.NewRow();
                     dr["Indicator Id"] = ind.ID;
                     dr["Type Id"] = (int)type;

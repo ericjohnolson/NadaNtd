@@ -41,40 +41,7 @@ namespace Nada.Model
         protected Dictionary<string, string> validationRanges;
         protected IndicatorParser valueParser = new IndicatorParser();
 
-        public virtual bool HasGroupedAdminLevels(ImportOptions opts)
-        {
-            return false;
-        }
-        public void SetType(int id)
-        {
-            translatedIndicators = new Dictionary<string, Indicator>();
-            SetSpecificType(id);
-            if (Indicators == null)
-                throw new ArgumentException("Need to override SetSpecificType and set Indicators for import type");
-
-            foreach (var keyValue in Indicators)
-                translatedIndicators.Add(TranslationLookup.GetValue(keyValue.Key, keyValue.Key), keyValue.Value);
-        }
-
-        protected void LoadRelatedLists()
-        {
-            IntvRepository repo = new IntvRepository();
-            partners = repo.GetPartners();
-            months = GlobalizationUtil.GetAllMonths();
-            SettingsRepository settings = new SettingsRepository();
-            ezs = settings.GetEcologicalZones();
-            eus = settings.GetEvaluationUnits();
-            subdistricts = settings.GetEvalSubDistricts();
-            ess = settings.GetEvalSites();
-            DiseaseRepository diseases = new DiseaseRepository();
-            selectedDiseases = diseases.GetSelectedDiseases().Select(d => d.DisplayName).ToList();
-            valueParser.LoadRelatedLists();
-        }
-        protected virtual void ReloadDropdownValues()
-        {
-
-        }
-
+        #region Public methods
         public virtual void CreateImportFile(string filename, List<AdminLevel> adminLevels, AdminLevelType adminLevelType, ImportOptions opts)
         {
             options = opts;
@@ -189,6 +156,23 @@ namespace Nada.Model
             Marshal.ReleaseComObject(xlsApp);
             System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
         }
+ 
+        public virtual ImportResult ImportData(string filePath, int userId)
+        {
+            LoadRelatedLists();
+            try
+            {
+                DataSet ds = LoadDataFromFile(filePath);
+
+                if (ds.Tables.Count == 0)
+                    return new ImportResult(TranslationLookup.GetValue("NoDataFound"));
+                return MapAndSaveObjects(ds, userId);
+            }
+            catch (Exception ex)
+            {
+                return new ImportResult(TranslationLookup.GetValue("UnexpectedException") + ex.Message);
+            }
+        }
 
         public void CreateUpdateFile(string filename, List<IHaveDynamicIndicatorValues> forms)
         {
@@ -285,13 +269,193 @@ namespace Nada.Model
             Marshal.ReleaseComObject(xlsApp);
             System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
         }
+       
+        public ImportResult UpdateData(string filePath, int userId, List<IHaveDynamicIndicatorValues> existing)
+        {
+            LoadRelatedLists();
+            try
+            {
+                DataSet ds = LoadDataFromFile(filePath);
+
+                if (ds.Tables.Count == 0)
+                    return new ImportResult(TranslationLookup.GetValue("NoDataFound"));
+                string errorMessage = "";
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                        continue;
+                    string objerrors = "";
+                    int id = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
+                    var form = existing.FirstOrDefault(f => f.Id == id);
+                    form.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
+                    UpdateTypeSpecificValues(form, row, ref objerrors);
+
+                    // Validation
+                    List<IndicatorValue> values = GetDynamicIndicatorValues(ds, row, ref objerrors);
+                    foreach (var val in values)
+                    {
+                        var existingVal = form.IndicatorValues.FirstOrDefault(v => v.IndicatorId == val.IndicatorId);
+                        if (existingVal.DynamicValue != val.DynamicValue)
+                        {
+                            existingVal.CalcByRedistrict = false;
+                            existingVal.DynamicValue = val.DynamicValue;
+                        }
+                    }
+
+                    objerrors += !form.IsValid() ? form.GetAllErrors(true) : "";
+                    errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("ID")].ToString());
+                }
+
+                if (!string.IsNullOrEmpty(errorMessage))
+                    return new ImportResult(CreateErrorMessage(errorMessage));
+
+                return new ImportResult
+                {
+                    WasSuccess = true,
+                    Count = existing.Count,
+                    Message = string.Format(TranslationLookup.GetValue("ImportUpdateSuccess"), existing.Count),
+                    Forms = existing
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ImportResult(TranslationLookup.GetValue("UnexpectedException") + ex.Message);
+            }
+        }
+
+        public void SetType(int id)
+        {
+            translatedIndicators = new Dictionary<string, Indicator>();
+            SetSpecificType(id);
+            if (Indicators == null)
+                throw new ArgumentException("Need to override SetSpecificType and set Indicators for import type");
+
+            foreach (var keyValue in Indicators)
+                translatedIndicators.Add(TranslationLookup.GetValue(keyValue.Key, keyValue.Key), keyValue.Value);
+        }
+
+        public virtual bool HasGroupedAdminLevels(ImportOptions opts)
+        {
+            return false;
+        }
+
+        public void AddTableToWorksheet(DataTable data, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet)
+        {
+            // Add columns
+            int iCol = 0;
+            foreach (DataColumn c in data.Columns)
+            {
+                iCol++;
+                xlsWorksheet.Cells[1, iCol] = c.ColumnName;
+            }
+
+            // Add rows
+            int iRow = 0;
+            foreach (DataRow r in data.Rows)
+            {
+                iRow++;
+
+                for (int i = 1; i < data.Columns.Count + 1; i++)
+                {
+                    if (iRow == 1)
+                    {
+                        // Add the header the first time through 
+                        xlsWorksheet.Cells[iRow, i] = data.Columns[i - 1].ColumnName;
+                    }
+
+                    if (r[1].ToString() != "")
+                    {
+                        xlsWorksheet.Cells[iRow + 1, i] = r[i - 1].ToString();
+                    }
+                }
+            }
+
+            var last = xlsWorksheet.Cells.SpecialCells(Microsoft.Office.Interop.Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
+            var range = xlsWorksheet.get_Range("A1", last);
+            range.Columns.AutoFit();
+        }
+
+        /// <summary>
+        /// Adds a small Infobox and a Validation with restriction (only these values will be selectable) to the specified cell.
+        /// </summary>
+        /// <param name="worksheet">The excel-sheet</param>
+        /// <param name="rowNr">1-based row index of the cell that will contain the validation</param>
+        /// <param name="columnNr">1-based column index of the cell that will contain the validation</param>
+        /// <param name="title">Title of the Infobox</param>
+        /// <param name="message">Message in the Infobox</param>
+        /// <param name="validationValues">List of available values for selection of the cell. No other value, than this list is allowed to be used.</param>
+        /// <exception cref="Exception">Thrown, if an error occurs, or the worksheet was null.</exception>
+        public void AddDataValidation(Microsoft.Office.Interop.Excel.Worksheet worksheet, Microsoft.Office.Interop.Excel.Worksheet validationWorksheet, string col, int row,
+            string title, string message, List<string> validationValues, CultureInfo currentCulture)
+        {
+            if (validationValues == null || validationValues.Count == 0)
+                return;
+            //If the message-string is too long (more than 255 characters, prune it)
+            if (message.Length > 255)
+                message = message.Substring(0, 254);
+
+            try
+            {
+                if (!validationRanges.ContainsKey(col))
+                {
+                    var valStart = validationRow;
+                    foreach (var val in validationValues)
+                    {
+                        validationWorksheet.Cells[validationRow, "A"] = val;
+                        validationRow++;
+                    }
+                    validationRanges.Add(col, string.Format("={0}!$A{1}:$A{2}", validationSheetName, valStart, validationRow - 1));
+                }
+                #region old validation
+                //The validation requires a ';'-separated list of values, that goes as the restrictions-parameter.
+                //Fold the list, so you can add it as restriction. (Result is "Value1;Value2;Value3")
+                //If you use another separation-character (e.g in US) change the ; appropriately (e.g. to the ,)
+
+                //string values = "";
+                //if (currentCulture.TwoLetterISOLanguageName == "en")
+                //    values = string.Join(",", validationValues.ToArray());
+                //else
+                //    values = string.Join(";", validationValues.ToArray());
+                #endregion
+
+                //Select the specified cell
+                Microsoft.Office.Interop.Excel.Range cell = (Microsoft.Office.Interop.Excel.Range)worksheet.get_Range(col + row, col + row);
+                //Delete any previous validation
+                cell.Validation.Delete();
+                //Add the validation, that only allowes selection of provided values.
+                cell.Validation.Add(Microsoft.Office.Interop.Excel.XlDVType.xlValidateList,
+                    Microsoft.Office.Interop.Excel.XlDVAlertStyle.xlValidAlertStop,
+                    Type.Missing,
+                    validationRanges[col], Type.Missing);
+                cell.Validation.IgnoreBlank = true;
+                //Optional put a message there
+                cell.Validation.InputTitle = title;
+                cell.Validation.InputMessage = message;
+
+            }
+            catch (Exception exception)
+            {
+                //This part should not be reached, but is used for stability-reasons
+                throw new Exception(String.Format("Error when adding a Validation with restriction to the specified cell Row:{0}, Column:{1}, Message: {2}", row, col, message), exception);
+
+            }
+        }
+        #endregion
+
+        #region protected Virtual/Template functions
+        protected virtual void AddSpecificRows(DataTable dataTable) { }
+
+        protected virtual void ReloadDropdownValues()
+        {
+
+        }
 
         protected virtual string GetAdminLevelName(AdminLevel adminLevel, IHaveDynamicIndicatorValues form)
         {
             return adminLevel.Name;
         }
 
-        protected virtual int FillData(System.Globalization.CultureInfo oldCI, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, 
+        protected virtual int FillData(System.Globalization.CultureInfo oldCI, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet,
             Microsoft.Office.Interop.Excel.Worksheet xlsValidation, int locationCount, int colCountAfterStatic, int xlsRowCount)
         {
             return xlsRowCount;
@@ -302,6 +466,7 @@ namespace Nada.Model
         {
 
         }
+
         protected virtual void AddTypeSpecificListValues(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation,
             int adminLevelId, int r, CultureInfo currentCulture, int colCount, IHaveDynamicIndicatorValues form)
         {
@@ -311,6 +476,31 @@ namespace Nada.Model
         protected virtual int AddTypeSpecific(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, int startIndex)
         {
             return startIndex;
+        }
+        
+        protected virtual ImportResult MapAndSaveObjects(DataSet ds, int userId)
+        {
+            throw new NotImplementedException();
+        }
+        
+        protected virtual void UpdateTypeSpecificValues(IHaveDynamicIndicatorValues form, DataRow row, ref string objerrors)
+        { }
+        #endregion
+
+        #region Private Methods
+        protected void LoadRelatedLists()
+        {
+            IntvRepository repo = new IntvRepository();
+            partners = repo.GetPartners();
+            months = GlobalizationUtil.GetAllMonths();
+            SettingsRepository settings = new SettingsRepository();
+            ezs = settings.GetEcologicalZones();
+            eus = settings.GetEvaluationUnits();
+            subdistricts = settings.GetEvalSubDistricts();
+            ess = settings.GetEvalSites();
+            DiseaseRepository diseases = new DiseaseRepository();
+            selectedDiseases = diseases.GetSelectedDiseases().Select(d => d.DisplayName).ToList();
+            valueParser.LoadRelatedLists();
         }
 
         protected int AddValueToCell(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet validation, int c, int r,
@@ -372,84 +562,11 @@ namespace Nada.Model
             if (!string.IsNullOrEmpty(value))
             {
                 object parsedVal = valueParser.Parse(indicator.DataTypeId, indicator.Id, value);
-                if(parsedVal != null)
+                if (parsedVal != null)
                     xlsWorksheet.Cells[r, c] = parsedVal;
-            }   
+            }
 
             return c;
-        }
-
-        public virtual ImportResult ImportData(string filePath, int userId)
-        {
-            LoadRelatedLists();
-            try
-            {
-                DataSet ds = LoadDataFromFile(filePath);
-
-                if (ds.Tables.Count == 0)
-                    return new ImportResult(TranslationLookup.GetValue("NoDataFound"));
-                return MapAndSaveObjects(ds, userId);
-            }
-            catch (Exception ex)
-            {
-                return new ImportResult(TranslationLookup.GetValue("UnexpectedException") + ex.Message);
-            }
-        }
-
-        public ImportResult UpdateData(string filePath, int userId, List<IHaveDynamicIndicatorValues> existing)
-        {
-            LoadRelatedLists();
-            try
-            {
-                DataSet ds = LoadDataFromFile(filePath);
-
-                if (ds.Tables.Count == 0)
-                    return new ImportResult(TranslationLookup.GetValue("NoDataFound"));
-                string errorMessage = "";
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
-                        continue;
-                    string objerrors = "";
-                    int id = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
-                    var form = existing.FirstOrDefault(f => f.Id == id);
-                    form.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
-                    // Validation
-                    List<IndicatorValue> values = GetDynamicIndicatorValues(ds, row, ref objerrors);
-                    foreach (var val in values)
-                    {
-                        var existingVal = form.IndicatorValues.FirstOrDefault(v => v.IndicatorId == val.IndicatorId);
-                        if (existingVal.DynamicValue != val.DynamicValue)
-                        {
-                            existingVal.CalcByRedistrict = false;
-                            existingVal.DynamicValue = val.DynamicValue;
-                        }
-                    }
-
-                    objerrors += !form.IsValid() ? form.GetAllErrors(true) : "";
-                    errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("ID")].ToString());
-                }
-
-                if (!string.IsNullOrEmpty(errorMessage))
-                    return new ImportResult(CreateErrorMessage(errorMessage));
-
-                return new ImportResult
-                {
-                    WasSuccess = true,
-                    Count = existing.Count,
-                    Message = string.Format(TranslationLookup.GetValue("ImportUpdateSuccess"), existing.Count),
-                    Forms = existing
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ImportResult(TranslationLookup.GetValue("UnexpectedException") + ex.Message);
-            }
-        }
-
-        protected virtual ImportResult MapAndSaveObjects(DataSet ds, int userId)
-        {
-            throw new NotImplementedException();
         }
 
         protected DataSet LoadDataFromFile(string filePath)
@@ -495,11 +612,11 @@ namespace Nada.Model
                     errors += GetValueAndValidate(curInd, ref val, indicatorName);
 
                     IndicatorValue ival = new IndicatorValue
-                        {
-                            IndicatorId = curInd.Id,
-                            DynamicValue = val,
-                            Indicator = curInd
-                        };
+                    {
+                        IndicatorId = curInd.Id,
+                        DynamicValue = val,
+                        Indicator = curInd
+                    };
 
                     if (!hasMultipleCols || !multicolumnIndicators.ContainsKey(indicatorName))
                         inds.Add(ival);
@@ -515,8 +632,6 @@ namespace Nada.Model
             }
             return inds;
         }
-
-        
 
         protected string GetValueAndValidate(Indicator indicator, ref string val, string name)
         {
@@ -641,83 +756,6 @@ namespace Nada.Model
 
             return "";
         }
-        /// <summary>
-        /// Adds a small Infobox and a Validation with restriction (only these values will be selectable) to the specified cell.
-        /// </summary>
-        /// <param name="worksheet">The excel-sheet</param>
-        /// <param name="rowNr">1-based row index of the cell that will contain the validation</param>
-        /// <param name="columnNr">1-based column index of the cell that will contain the validation</param>
-        /// <param name="title">Title of the Infobox</param>
-        /// <param name="message">Message in the Infobox</param>
-        /// <param name="validationValues">List of available values for selection of the cell. No other value, than this list is allowed to be used.</param>
-        /// <exception cref="Exception">Thrown, if an error occurs, or the worksheet was null.</exception>
-        public void AddDataValidation(Microsoft.Office.Interop.Excel.Worksheet worksheet, Microsoft.Office.Interop.Excel.Worksheet validationWorksheet, string col, int row,
-            string title, string message, List<string> validationValues, CultureInfo currentCulture)
-        {
-            if (validationValues == null || validationValues.Count == 0)
-                return;
-            //If the message-string is too long (more than 255 characters, prune it)
-            if (message.Length > 255)
-                message = message.Substring(0, 254);
-
-            try
-            {
-                if (!validationRanges.ContainsKey(col))
-                {
-                    var valStart = validationRow;
-                    foreach (var val in validationValues)
-                    {
-                        validationWorksheet.Cells[validationRow, "A"] = val;
-                        validationRow++;
-                    }
-                    validationRanges.Add(col, string.Format("={0}!$A{1}:$A{2}", validationSheetName, valStart, validationRow - 1));
-                }
-                #region old validation
-                //The validation requires a ';'-separated list of values, that goes as the restrictions-parameter.
-                //Fold the list, so you can add it as restriction. (Result is "Value1;Value2;Value3")
-                //If you use another separation-character (e.g in US) change the ; appropriately (e.g. to the ,)
-
-                //string values = "";
-                //if (currentCulture.TwoLetterISOLanguageName == "en")
-                //    values = string.Join(",", validationValues.ToArray());
-                //else
-                //    values = string.Join(";", validationValues.ToArray());
-                #endregion
-
-                //Select the specified cell
-                Microsoft.Office.Interop.Excel.Range cell = (Microsoft.Office.Interop.Excel.Range)worksheet.get_Range(col + row, col + row);
-                //Delete any previous validation
-                cell.Validation.Delete();
-                //Add the validation, that only allowes selection of provided values.
-                cell.Validation.Add(Microsoft.Office.Interop.Excel.XlDVType.xlValidateList,
-                    Microsoft.Office.Interop.Excel.XlDVAlertStyle.xlValidAlertStop,
-                    Type.Missing,
-                    validationRanges[col], Type.Missing);
-                cell.Validation.IgnoreBlank = true;
-                //Optional put a message there
-                cell.Validation.InputTitle = title;
-                cell.Validation.InputMessage = message;
-
-            }
-            catch (Exception exception)
-            {
-                //This part should not be reached, but is used for stability-reasons
-                throw new Exception(String.Format("Error when adding a Validation with restriction to the specified cell Row:{0}, Column:{1}, Message: {2}", row, col, message), exception);
-
-            }
-        }
-
-        #region Data Table Specific
-
-        //protected virtual DataTable GetDataTable()
-        //{
-        //    DataTable data = new System.Data.DataTable();
-        //    data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
-        //    data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location")));
-        //    AddDynamicIndicators(data);
-        //    data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Notes")));
-        //    return data;
-        //}
 
         private void AddDynamicIndicators(DataTable dataTable)
         {
@@ -732,59 +770,7 @@ namespace Nada.Model
                 dataTable.Columns.Add(col);
             }
         }
-
-        protected virtual void AddSpecificRows(DataTable dataTable) { }
-
-        //public void AddDataToWorksheet(DataTable data, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, List<AdminLevel> rows)
-        //{
-        //    // Add rows to data table
-        //    foreach (AdminLevel l in rows)
-        //    {
-        //        DataRow row = data.NewRow();
-        //        row[TranslationLookup.GetValue("Location") + "#"] = l.Id;
-        //        row[TranslationLookup.GetValue("Location")] = l.Name;
-        //        data.Rows.Add(row);
-        //    }
-
-        //    AddTableToWorksheet(data, xlsWorksheet);
-        //}
-
-        public void AddTableToWorksheet(DataTable data, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet)
-        {
-            // Add columns
-            int iCol = 0;
-            foreach (DataColumn c in data.Columns)
-            {
-                iCol++;
-                xlsWorksheet.Cells[1, iCol] = c.ColumnName;
-            }
-
-            // Add rows
-            int iRow = 0;
-            foreach (DataRow r in data.Rows)
-            {
-                iRow++;
-
-                for (int i = 1; i < data.Columns.Count + 1; i++)
-                {
-                    if (iRow == 1)
-                    {
-                        // Add the header the first time through 
-                        xlsWorksheet.Cells[iRow, i] = data.Columns[i - 1].ColumnName;
-                    }
-
-                    if (r[1].ToString() != "")
-                    {
-                        xlsWorksheet.Cells[iRow + 1, i] = r[i - 1].ToString();
-                    }
-                }
-            }
-
-            var last = xlsWorksheet.Cells.SpecialCells(Microsoft.Office.Interop.Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
-            var range = xlsWorksheet.get_Range("A1", last);
-            range.Columns.AutoFit();
-        }
-
+        
         protected string CreateErrorMessage(string errorMessage)
         {
             return TranslationLookup.GetValue("ImportErrorHeader") + Environment.NewLine + "--------" + Environment.NewLine + errorMessage;
@@ -798,5 +784,6 @@ namespace Nada.Model
             return "";
         }
         #endregion
+
     }
 }

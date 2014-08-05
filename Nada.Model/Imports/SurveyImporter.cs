@@ -31,7 +31,7 @@ namespace Nada.Model.Imports
         private int siteColumnIndex = 0;
         private int spotColumnIndex = 0;
         private int latColumnIndex = 0;
-        private int lngColumnIndex = 0; 
+        private int lngColumnIndex = 0;
 
         public SurveyImporter() { }
 
@@ -89,7 +89,7 @@ namespace Nada.Model.Imports
             return startIndex;
         }
 
-        protected override void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation, 
+        protected override void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation,
             int adminLevelId, int r, CultureInfo currentCulture, int colCount)
         {
             if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null)
@@ -119,6 +119,42 @@ namespace Nada.Model.Imports
                 xlsWorksheet.Cells[r, latColumnIndex] = sur.Lat;
             }
         }
+
+        protected override void UpdateTypeSpecificValues(IHaveDynamicIndicatorValues form, DataRow row, ref string objerrors)
+        {
+            if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null)
+                return;
+
+            SurveyBase survey = (SurveyBase)form;
+
+            survey.HasSentinelSite = true;
+            if (string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSentinelSiteName")].ToString()))
+            {
+                survey.SiteType = TranslationLookup.GetValue("SpotCheck");
+                survey.SpotCheckName = row[TranslationLookup.GetValue("IndSpotCheckName")].ToString();
+
+                double d;
+                if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString()) && double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString(), out d))
+                    survey.Lat = d;
+                else
+                    objerrors += TranslationLookup.GetValue("ValidLatitude") + Environment.NewLine;
+                if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString()) && double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString(), out d))
+                    survey.Lng = d;
+                else
+                    objerrors += TranslationLookup.GetValue("ValidLongitude") + Environment.NewLine;
+            }
+            else
+            {
+                survey.SiteType = TranslationLookup.GetValue("Sentinel");
+                var sites = repo.GetSitesForAdminLevel(survey.AdminLevels.Select(a => a.Id.ToString()));
+                var site = sites.FirstOrDefault(s => s.SiteName == row[TranslationLookup.GetValue("IndSentinelSiteName")].ToString());
+                if (site != null)
+                    survey.SentinelSiteId = site.Id;
+                else
+                    objerrors += TranslationLookup.GetValue("ValidSentinelSite") + Environment.NewLine;
+            }
+        }
+
 
         protected override ImportResult MapAndSaveObjects(DataSet ds, int userId)
         {

@@ -48,6 +48,7 @@ namespace Nada.UI.View
         {
             if (!DesignMode)
             {
+                Localizer.TranslateControl(this);
                 if (model.Id > 0)
                     adminUnitAdd1.LoadUnit(model);
                 else
