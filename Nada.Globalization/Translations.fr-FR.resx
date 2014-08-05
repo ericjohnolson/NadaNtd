@@ -6120,4 +6120,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="YesSentinelSite" xml:space="preserve">
     <value>Oui-Site sentinelle</value>
   </data>
+  <data name="TutorialFile" xml:space="preserve">
+    <value>/View/Help/TrainingPPT_080814_French.pptx</value>
+  </data>
 </root>
