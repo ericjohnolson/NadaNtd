@@ -178,6 +178,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language to generate Disease Workbook for USAID Reporting.
+        /// </summary>
+        public static string RtiExportLanguage {
+            get {
+                return ResourceManager.GetString("RtiExportLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type of site.
         /// </summary>
         public static string SchMappingTypeOfSite {

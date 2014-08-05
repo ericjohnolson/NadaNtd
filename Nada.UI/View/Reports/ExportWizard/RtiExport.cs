@@ -15,6 +15,8 @@ using System.Threading;
 using Nada.UI.Base;
 using Nada.Model.Repositories;
 using Nada.Model.Exports;
+using System.Globalization;
+using System.Configuration;
 
 namespace Nada.UI.View.Reports
 {
@@ -38,11 +40,13 @@ namespace Nada.UI.View.Reports
             InitializeComponent();
         }
 
-        private void ExportWorkingStep_Load(object sender, EventArgs e)
+        private void RtiExport_Load(object sender, EventArgs e)
         {
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
+                lblRtiLanguage.SetMaxWidth(400);
+                
                 SettingsRepository repo = new SettingsRepository();
                 exporter = new RtiWorkbooksExporter();
                 exporter.StartDate = DateTime.Now.AddYears(-1);
@@ -53,6 +57,18 @@ namespace Nada.UI.View.Reports
                 bindingSource1.DataSource = allLevelTypes;
                 cbTypes.SelectedIndex = allLevelTypes.IndexOf(reportingType);
                 bindingSource2.DataSource = exporter;
+                List<string> languages = ConfigurationManager.AppSettings["SupportedLanguages"].Split('|').ToList();
+                List<Language> langz = languages.Select(l => new Language
+                {
+                    IsoCode = l.Split(';')[0],
+                    Name = l.Split(';')[1]
+                }).ToList();
+                bsLanguages.DataSource = langz;
+                if (langz.FirstOrDefault(x => x.IsoCode == Thread.CurrentThread.CurrentCulture.Name) != null)
+                    cbLanguages.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;
+                else
+                    cbLanguages.SelectedValue = "en-US";
+                  
             }
         }
 
@@ -64,12 +80,15 @@ namespace Nada.UI.View.Reports
             bindingSource1.EndEdit();
             ExportRepository r = new ExportRepository();
             ExportType exportType = r.GetExportType(ExportTypeId.RtiWorkbooks);
+            exporter.ExportCulture = new CultureInfo(cbLanguages.SelectedValue.ToString());
             exportType.Exporter = exporter;
+           
             OnSwitchStep(new GenericExportStep(exportType, Translations.RtiWorkbookQuestions));
         }
         public void DoFinish()
         {
         }
+
 
     }
 }

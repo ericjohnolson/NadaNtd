@@ -186,4 +186,7 @@
   <data name="RedistrictRuleSplitByPercent" xml:space="preserve">
     <value>Split by percentage of population</value>
   </data>
+  <data name="RtiExportLanguage" xml:space="preserve">
+    <value>Language to generate Disease Workbook for USAID Reporting</value>
+  </data>
 </root>
