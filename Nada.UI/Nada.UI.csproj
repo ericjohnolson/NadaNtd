@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>publish\x32\</PublishUrl>
+    <PublishUrl>publish\x64\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://nadaqa.iotaink.com/</InstallUrl>
+    <InstallUrl>http://apps.who.int/neglected_diseases/ntddata/ntd_database/x64/</InstallUrl>
+    <UpdateUrl>http://apps.who.int/neglected_diseases/ntddata/ntd_database/x64/</UpdateUrl>
     <SupportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</SupportUrl>
     <ErrorReportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</ErrorReportUrl>
     <ProductName>Integrated NTD Database</ProductName>
@@ -31,7 +32,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>208</ApplicationRevision>
+    <ApplicationRevision>212</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1390,16 +1391,36 @@
     <Content Include="View\Help\EN\Image%289%29.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="View\Help\FR\astoria.png" />
-    <Content Include="View\Help\FR\browse.png" />
-    <Content Include="View\Help\FR\calcuated.png" />
-    <Content Include="View\Help\FR\create.png" />
-    <Content Include="View\Help\FR\custom indicaotrs.PNG" />
-    <Content Include="View\Help\FR\custom.png" />
-    <Content Include="View\Help\FR\diseases.png" />
-    <Content Include="View\Help\FR\install.PNG" />
-    <Content Include="View\Help\FR\open.png" />
-    <Content Include="View\Help\FR\signin.png" />
+    <Content Include="View\Help\FR\astoria.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\Help\FR\browse.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\Help\FR\calcuated.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\Help\FR\create.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\Help\FR\custom indicaotrs.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\Help\FR\custom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\Help\FR\diseases.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\Help\FR\install.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\Help\FR\open.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\Help\FR\signin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="View\Help\ID\Image%281%29.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1526,7 +1547,9 @@
     <Content Include="View\Help\PT\help.chm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="View\Help\TrainingPPT_080814_French.pptx" />
+    <Content Include="View\Help\TrainingPPT_080814_French.pptx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
