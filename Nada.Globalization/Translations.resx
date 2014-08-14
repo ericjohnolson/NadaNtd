@@ -6211,4 +6211,7 @@ Fixed / Mobile</value>
   <data name="RedistrictRuleSum" xml:space="preserve">
     <value>Sum</value>
   </data>
+  <data name="RtiExportLanguage" xml:space="preserve">
+    <value>Language to generate Disease Workbook for USAID Reporting</value>
+  </data>
 </root>

@@ -21,6 +21,7 @@ namespace Nada.Model.Exports
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public AdminLevelType AdminLevelType { get; set; }
+        public CultureInfo ExportCulture { get; set; }
 
         SettingsRepository settings = new SettingsRepository();
         DemoRepository demo = new DemoRepository();
@@ -28,6 +29,7 @@ namespace Nada.Model.Exports
         IntvRepository intvRepo = new IntvRepository();
         DiseaseRepository diseaseRepo = new DiseaseRepository();
         SurveyRepository surveyRepo = new SurveyRepository();
+        TranslationLookupInstance transLookup = null;
 
         public string ExportName
         {
@@ -43,8 +45,9 @@ namespace Nada.Model.Exports
         {
             try
             {
-                //System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
-                //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                transLookup = new TranslationLookupInstance(ExportCulture); // TODO: use this in the appropriate place for the workbook export, but not the report builder
+                System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
                 excel.Application xlsApp = new excel.ApplicationClass();
                 xlsApp.DisplayAlerts = false;
                 excel.Workbook xlsWorkbook;
@@ -105,7 +108,7 @@ namespace Nada.Model.Exports
                 Marshal.ReleaseComObject(xlsWorksheet);
                 Marshal.ReleaseComObject(xlsWorkbook);
                 Marshal.ReleaseComObject(xlsApp);
-                //System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
                 return new ExportResult { WasSuccess = true };
 
             }
@@ -335,7 +338,7 @@ namespace Nada.Model.Exports
                 // DISEASE DISTRO
                 if (onchoDd.ContainsKey(unit.Id))
                 {
-                    string endemicity = ParseLfDdEnd(onchoDd[unit.Id][TranslationLookup.GetValue("DDOnchoDiseaseDistributionPcInterventio") + " - " + oncho.Disease.DisplayName].ToString());
+                    string endemicity = ParseOnchoDdEndo(onchoDd[unit.Id][TranslationLookup.GetValue("DDOnchoDiseaseDistributionPcInterventio") + " - " + oncho.Disease.DisplayName].ToString());
                     AddValueToRange(xlsWorksheet, rng, "G" + rowCount, endemicity);
 
                     AddValueToRange(xlsWorksheet, rng, "K" + rowCount,
@@ -930,6 +933,21 @@ namespace Nada.Model.Exports
             return TranslationLookup.GetValue("RtiLfDdPending", "RtiLfDdPending");
         }
 
+        private string ParseOnchoDdEndo(string endo)
+        {
+            if (endo == TranslationLookup.GetValue("Oncho0"))
+                return TranslationLookup.GetValue("RtiLfDd0", "RtiLfDd0");
+            if (endo == TranslationLookup.GetValue("Oncho1"))
+                return TranslationLookup.GetValue("RtiLfDd1", "RtiLfDd1");
+            if (endo == TranslationLookup.GetValue("OnchoM"))
+                return TranslationLookup.GetValue("RtiLfDdM", "RtiLfDdM");
+            if (endo == TranslationLookup.GetValue("OnchoNs"))
+                return TranslationLookup.GetValue("RtiLfDdNs", "RtiLfDdNs");
+            if (endo == TranslationLookup.GetValue("Oncho100"))
+                return TranslationLookup.GetValue("RtiLfDd100", "RtiLfDd100");
+
+            return TranslationLookup.GetValue("RtiLfDdPending", "RtiLfDdPending");
+        }
         private string ParseTasObjective(string tas)
         {
             if (tas == TranslationLookup.GetValue("LfPostMdaTas1"))

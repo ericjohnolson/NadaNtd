@@ -59,4 +59,35 @@ namespace Nada.Globalization
         }
     }
 
+    public class TranslationLookupInstance
+    {
+        private static ResourceManager rm = null;
+        private static List<string> keys = null;
+        private static CultureInfo initializedCulture = null;
+
+        public TranslationLookupInstance(CultureInfo culture)
+        {
+            rm = new ResourceManager("Nada.Globalization.Translations", typeof(GlobalizationUtil).Assembly);
+            keys = new List<string>();
+
+            initializedCulture = culture;
+            ResourceSet set = rm.GetResourceSet(culture, true, true);
+            foreach (DictionaryEntry o in set)
+            {
+                keys.Add((string)o.Key);
+            }
+        }
+
+        public string GetValue(string key)
+        {
+            return GetValue(key, Translations.NoTranslationFound);
+        }
+
+        public string GetValue(string key, string def)
+        {
+            if (key != null && rm != null && !string.IsNullOrEmpty(key.ToString()) && keys.Contains(key))
+                return rm.GetString(key, initializedCulture);
+            return def;
+        }
+    }
 }

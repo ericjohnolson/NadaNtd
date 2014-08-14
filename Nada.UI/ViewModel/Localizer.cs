@@ -21,15 +21,20 @@ namespace Nada.UI.AppLogic
     {
         public static List<Language> SupportedLanguages { get; set; }
 
-        public static void Initialize()
+        public static List<Language> GetSupportedLanguages()
         {
-            TranslationLookup.Initialize();
             List<string> langz = ConfigurationManager.AppSettings["SupportedLanguages"].Split('|').ToList();
-            SupportedLanguages = langz.Select(l => new Language
+            return langz.Select(l => new Language
             {
                 IsoCode = l.Split(';')[0],
                 Name = l.Split(';')[1]
             }).ToList();
+        }
+
+        public static void Initialize()
+        {
+            TranslationLookup.Initialize();
+            SupportedLanguages = GetSupportedLanguages();
         }
 
         public static void SetCulture(CultureInfo cultureInfo)

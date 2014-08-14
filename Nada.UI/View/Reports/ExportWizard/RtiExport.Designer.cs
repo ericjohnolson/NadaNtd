@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblRtiLanguage = new Nada.UI.Controls.H3Required();
+            this.cbLanguages = new System.Windows.Forms.ComboBox();
+            this.bsLanguages = new System.Windows.Forms.BindingSource(this.components);
             this.h3Label2 = new Nada.UI.Controls.H3Required();
             this.h3Label3 = new Nada.UI.Controls.H3Required();
             this.dtStart = new System.Windows.Forms.DateTimePicker();
@@ -40,6 +43,7 @@
             this.h3Required1 = new Nada.UI.Controls.H3Required();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,6 +57,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.lblRtiLanguage, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.cbLanguages, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.h3Label2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.h3Label3, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.dtStart, 0, 3);
@@ -61,7 +67,7 @@
             this.tableLayoutPanel1.Controls.Add(this.h3Required1, 0, 6);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowCount = 10;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -70,8 +76,43 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(279, 134);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(279, 184);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // lblRtiLanguage
+            // 
+            this.lblRtiLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblRtiLanguage.AutoSize = true;
+            this.lblRtiLanguage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lblRtiLanguage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblRtiLanguage.Location = new System.Drawing.Point(0, 134);
+            this.lblRtiLanguage.Margin = new System.Windows.Forms.Padding(0);
+            this.lblRtiLanguage.Name = "lblRtiLanguage";
+            this.lblRtiLanguage.Size = new System.Drawing.Size(124, 15);
+            this.lblRtiLanguage.TabIndex = 8;
+            this.lblRtiLanguage.TabStop = false;
+            this.lblRtiLanguage.Tag = "RtiExportLanguage";
+            this.lblRtiLanguage.Text = "RitExportLanguage";
+            this.lblRtiLanguage.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // cbLanguages
+            // 
+            this.cbLanguages.DataSource = this.bsLanguages;
+            this.cbLanguages.DisplayMember = "Name";
+            this.cbLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLanguages.FormattingEnabled = true;
+            this.cbLanguages.Location = new System.Drawing.Point(3, 155);
+            this.cbLanguages.Margin = new System.Windows.Forms.Padding(3, 6, 25, 6);
+            this.cbLanguages.Name = "cbLanguages";
+            this.cbLanguages.Size = new System.Drawing.Size(251, 23);
+            this.cbLanguages.TabIndex = 9;
+            this.cbLanguages.ValueMember = "IsoCode";
+            // 
+            // bsLanguages
+            // 
+            this.bsLanguages.DataSource = typeof(Nada.Model.Language);
             // 
             // h3Label2
             // 
@@ -159,10 +200,11 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "RtiExport";
             this.Size = new System.Drawing.Size(365, 250);
-            this.Load += new System.EventHandler(this.ExportWorkingStep_Load);
+            this.Load += new System.EventHandler(this.RtiExport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -180,6 +222,9 @@
         private System.Windows.Forms.ComboBox cbTypes;
         private Controls.H3Required h3Required1;
         private System.Windows.Forms.BindingSource bindingSource2;
+        private Controls.H3Required lblRtiLanguage;
+        private System.Windows.Forms.ComboBox cbLanguages;
+        private System.Windows.Forms.BindingSource bsLanguages;
 
 
     }
