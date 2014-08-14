@@ -1,22 +1,31 @@
-Checklist For Releases: (NEED TO WRITE UP STEPS BETTER FOR WEB VS CD VERSION).
+Checklist For Releasing to Web (NEED TO WRITE UP STEPS BETTER FOR CD VERSION).
 
-1a. put in release mode
-1b. check the cpu build type
-1. App.config: Make sure not developer mode.
-2. Installation Folder URL: update installation url 
-3. Updates... > Make sure it doesn't auto update.
-4. Updates... > different URL
-5. Options... > Deployment > Auto create webpage file
-
-QA:
-<add key="DeveloperMode" value="QA" />
-1. http://nadaqa.ericdidit.com/
-2. http://nadaqa.ericdidit.com/x64/
-
-Prod:
-<add key="DeveloperMode" value="PR" />
-1. http://apps.who.int/neglected_diseases/ntddata/ntd_database/
-2. http://apps.who.int/neglected_diseases/ntddata/ntd_database/x64/
+1. put in release mode (Dropdown box is located on toolbar)
+2. check the cpu build type (Nada.UI -> Properties -> Build)
+3. Make sure App.config developer mode is set to PR not QA. (Nada.UI -> App.Config -> <add key="DeveloperMode" value="PR" />)
+4. Publish Location (Nada.UI -> Properties -> Publish -> Publish Folder Location)
+	- 32-bit = publish\x32\
+	- 64-bit = publish\x64\
+	- CD 32-bit = publish\CDx32\
+	- CD 64-bit = publish\CDx64\
+4. Installation Folder URL (Nada.UI -> Properties -> Publish -> Installation Folder URL)
+	- QA 32-bit = http://nadaqa.iotaink.com/
+	- QA 64-bit = http://nadaqa.iotaink.com/x64/
+	- WHO 32-bit = http://apps.who.int/neglected_diseases/ntddata/ntd_database/
+	- WHO 64-bit = http://apps.who.int/neglected_diseases/ntddata/ntd_database/x64/
+	- CD 32-bit = publish\CDx32\
+	- CD 64-bit = publish\CDx64\
+6. Update Location (Nada.UI -> Properties -> Publish -> Updates... > Update Location)
+	- QA 32-bit = http://nadaqa.iotaink.com/
+	- QA 64-bit = http://nadaqa.iotaink.com/x64/
+	- WHO 32-bit = http://apps.who.int/neglected_diseases/ntddata/ntd_database/
+	- WHO 64-bit = http://apps.who.int/neglected_diseases/ntddata/ntd_database/x64/
+	- CD 32-bit = blank
+	- CD 64-bit = blank
+5. Make sure it doesn't auto update (Nada.UI -> Properties -> Publish -> Updates... > Uncheck "this application should check for updates")
+7. Update Location (Nada.UI -> Properties -> Publish -> Options... > Deployment > check "Auto create webpage file..." )
+	- Note this is only important when publishing to the web.
+8. Run Publish Wizard.
 
 
 New Environment Requirements:

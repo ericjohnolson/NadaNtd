@@ -8,13 +8,17 @@ using Nada.Model.Base;
 
 namespace Nada.Model.Survey
 {
+    [Serializable]
     public class SentinelSite : NadaClass, IDataErrorInfo
     {
+        public SentinelSite()
+        {
+            AdminLevels = new List<AdminLevel>();
+        }
         public List<AdminLevel> AdminLevels { get; set; }
         public string SiteName { get; set; }
         public Nullable<double> Lat { get; set; }
         public Nullable<double> Lng { get; set; }
-        public string Notes { get; set; }
         public string SelectText { get { return "Select"; } }
 
         #region IDataErrorInfo Members

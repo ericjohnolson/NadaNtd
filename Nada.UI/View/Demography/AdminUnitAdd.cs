@@ -115,6 +115,8 @@ namespace Nada.UI.View.Demography
 
             if (string.IsNullOrEmpty(tbName.Text))
                 errorProvider1.SetError(tbName, Translations.Required);
+            else if (tbName.Text.Contains("&"))
+                errorProvider1.SetError(tbName, Translations.ValidNameSpecialChars);
 
             if (!model.IsValid())
             {
