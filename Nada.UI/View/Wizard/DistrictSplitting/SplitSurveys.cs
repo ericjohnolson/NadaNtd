@@ -72,14 +72,13 @@ namespace Nada.UI.View.Wizard
                     if (!surveys.ContainsKey(survey.TypeOfSurvey.Id))
                         surveys.Add(survey.TypeOfSurvey.Id, survey.TypeOfSurvey);
 
-                if (surveys.Count == 0)
+                if (surveys.Count == 0 || options.SplitType == SplittingType.Merge)
                 {
                     DoNext();
                     return;
                 }
 
-                if (options.SplitType != SplittingType.Merge)
-                    MessageBox.Show(Translations.SplittingSurveyWarning, Translations.ValidationErrorTitle);
+                MessageBox.Show(Translations.SplittingSurveyWarning, Translations.ValidationErrorTitle);
 
                 foreach (var t in surveys.Values)
                 {

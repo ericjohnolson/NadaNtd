@@ -115,6 +115,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Average.
+        /// </summary>
+        public static string RedistrictRuleAverage {
+            get {
+                return ResourceManager.GetString("RedistrictRuleAverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave blank.
         /// </summary>
         public static string RedistrictRuleDefaultBlank {
@@ -133,11 +142,38 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Combine.
+        /// </summary>
+        public static string RedistrictRuleListAll {
+            get {
+                return ResourceManager.GetString("RedistrictRuleListAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max.
+        /// </summary>
+        public static string RedistrictRuleMax {
+            get {
+                return ResourceManager.GetString("RedistrictRuleMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Merging rule.
         /// </summary>
         public static string RedistrictRuleMerge {
             get {
                 return ResourceManager.GetString("RedistrictRuleMerge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min.
+        /// </summary>
+        public static string RedistrictRuleMin {
+            get {
+                return ResourceManager.GetString("RedistrictRuleMin", resourceCulture);
             }
         }
         
@@ -165,6 +201,15 @@ namespace Nada.Globalization {
         public static string RedistrictRuleSplitCombine {
             get {
                 return ResourceManager.GetString("RedistrictRuleSplitCombine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sum.
+        /// </summary>
+        public static string RedistrictRuleSum {
+            get {
+                return ResourceManager.GetString("RedistrictRuleSum", resourceCulture);
             }
         }
         

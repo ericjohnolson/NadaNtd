@@ -308,8 +308,8 @@ namespace Nada.Model.Demography
                 options.Processes.Add(MergeProcess(val, options.MergeDestination.Id, redistrictId, command, connection));
             foreach (var val in scmToMerge.Values)
                 options.Processes.Add(MergeProcess(val, options.MergeDestination.Id, redistrictId, command, connection));
-            CopyAllProcesses(processesToCopyAll, options.MergeDestination.Id, redistrictId, command, connection);
-            CopyAllSurveys(options, surveys, options.MergeDestination, redistrictId, command, connection);
+            MergeProcesses(processesToCopyAll, options.MergeDestination.Id, redistrictId, command, connection);
+            MergeSurveys(options, surveys, options.MergeDestination, redistrictId, command, connection);
 
         }
 
@@ -447,7 +447,7 @@ namespace Nada.Model.Demography
             return newForm;
         }
 
-        private void CopyAllProcesses(List<ProcessBase> toMerge, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        private void MergeProcesses(List<ProcessBase> toMerge, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
             foreach (var oldForm in toMerge)
             {
@@ -461,14 +461,19 @@ namespace Nada.Model.Demography
             }
         }
 
-        private void CopyAllSurveys(RedistrictingOptions opts, List<SurveyBase> toMerge, AdminLevel dest, int redistrictId, OleDbCommand command, OleDbConnection connection)
-        {
+        private void MergeSurveys(RedistrictingOptions opts, List<SurveyBase> toMerge, AdminLevel dest, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        {   
             foreach (var oldForm in toMerge)
             {
                 SurveyBase newForm = Util.DeepClone(oldForm);
+                // remove all but merge sources
+                oldForm.AdminLevels.RemoveAll(a => !opts.MergeSources.Select(s => s.Id).Contains(a.Id));
+                surveyRepo.SaveSurveyBase(command, connection, oldForm, userId);
 
                 newForm.Id = 0;
                 newForm.IsRedistricted = true;
+                // remove all the old admin levels
+                newForm.AdminLevels.RemoveAll(a => opts.MergeSources.Select(s => s.Id).Contains(a.Id));
                 newForm.AdminLevels.Add(dest);
                 surveyRepo.SaveSurveyBase(command, connection, newForm, userId);
                 opts.Surveys.Add(newForm);
@@ -784,7 +789,7 @@ namespace Nada.Model.Demography
             else if (existingInd.Indicator.MergeRuleId == (int)MergingRule.ListAll)
                 newInd.DynamicValue = Combine(existingInd, newInd);
             else if (existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Dropdown &&
-                (existingInd.Indicator.MergeRuleId == (int)MergingRule.WorstCase || existingInd.Indicator.MergeRuleId == (int)MergingRule.BestCase))
+                (existingInd.Indicator.MergeRuleId == (int)MergingRule.WorstCase || existingInd.Indicator.MergeRuleId == (int)MergingRule.BestCase || existingInd.Indicator.MergeRuleId == (int)MergingRule.Other))
                 newInd.DynamicValue = MergeDropdown(existingInd, newInd, dropdownOptions, entityType);
             else //defaultblank/tbd/leaveblank53/leaveblank59
                 newInd.DynamicValue = "";
@@ -886,6 +891,9 @@ namespace Nada.Model.Demography
                 return existingInd.DynamicValue;
             if (string.IsNullOrEmpty(existingInd.DynamicValue))
                 return newInd.DynamicValue;
+            // Training category other rule
+            if (existingInd.DynamicValue == newInd.DynamicValue)
+                return newInd.DynamicValue;
 
             var ind1option = dropdownOptions.FirstOrDefault(i => i.IndicatorId == newInd.IndicatorId && i.EntityType == entityType
                 && i.TranslationKey == newInd.DynamicValue);
@@ -925,7 +933,15 @@ namespace Nada.Model.Demography
 
             if (existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Multiselect || existingInd.Indicator.DataTypeId == (int)IndicatorDataType.DiseaseMultiselect ||
                 existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Partners)
-                return existingInd.DynamicValue + "|" + newInd.DynamicValue;
+            {
+                var vals = existingInd.DynamicValue.Split('|').ToList();
+                var newVals = newInd.DynamicValue.Split('|');
+                foreach (string newVal in newVals)
+                    if (!vals.Contains(newVal))
+                        vals.Add(newVal);
+
+                return string.Join("|", vals.ToArray()); 
+            }
             else
                 return existingInd.DynamicValue + " " + newInd.DynamicValue;
         }

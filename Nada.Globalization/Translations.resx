@@ -6196,4 +6196,19 @@ Fixed / Mobile</value>
   <data name="RedistrictRuleSplitByPercent" xml:space="preserve">
     <value>Split by percentage of population</value>
   </data>
+  <data name="RedistrictRuleAverage" xml:space="preserve">
+    <value>Average</value>
+  </data>
+  <data name="RedistrictRuleListAll" xml:space="preserve">
+    <value>Combine</value>
+  </data>
+  <data name="RedistrictRuleMax" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="RedistrictRuleMin" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="RedistrictRuleSum" xml:space="preserve">
+    <value>Sum</value>
+  </data>
 </root>

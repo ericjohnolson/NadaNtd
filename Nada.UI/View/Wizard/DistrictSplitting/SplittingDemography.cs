@@ -120,7 +120,7 @@ namespace Nada.UI.View.Wizard
             if (result.HasError)
                 OnSwitchStep(new MessageBoxStep(Translations.ErrorOccured, result.ErrorMessage, true, this));
             else
-                OnSwitchStep(new SplitReviewConfirm(options, Translations.SplitConfirmReview));
+                OnSwitchStep(new SplitReviewConfirm(options));
         }
 
         public void worker_DoWork(object sender, DoWorkEventArgs e)

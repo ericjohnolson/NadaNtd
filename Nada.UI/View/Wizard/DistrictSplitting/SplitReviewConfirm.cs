@@ -26,20 +26,25 @@ namespace Nada.UI.View.Wizard
         public Action OnFinish { get; set; }
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
-        public bool ShowNext { get { return true; } }
+        public bool ShowNext { get { return showNext; } }
         public bool EnableNext { get { return true; } }
         public bool ShowPrev { get { return false; } }
         public bool EnablePrev { get { return false; } }
-        public bool ShowFinish { get { return false; } }
-        public bool EnableFinish { get { return false; } }
+        public bool ShowFinish { get { return showFinish; } }
+        public bool EnableFinish { get { return true; } }
         public string StepTitle { get { return Translations.SplitConfirmReviewTitle; } }
 
-        public SplitReviewConfirm(RedistrictingOptions o, string message)
+        bool showNext = true;
+        bool showFinish = false;
+        string message = "";
+
+        public SplitReviewConfirm(RedistrictingOptions o)
             : base()
         {
             options = o;
+            message = Translations.SplitConfirmReview;
+            
             InitializeComponent();
-            lblMessage.Text = message;
         }
         
         private void ImportOptions_Load(object sender, EventArgs e)
@@ -47,6 +52,8 @@ namespace Nada.UI.View.Wizard
             if (!DesignMode)
             {
                 lblMessage.SetMaxWidth(500);
+                lblMessage.Text = message;
+
             }
         }
 

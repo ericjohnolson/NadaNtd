@@ -24,7 +24,6 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://nadaqa.iotaink.com/</InstallUrl>
-    <UpdateUrl>http://apps.who.int/neglected_diseases/ntddata/ntd_database/x64/</UpdateUrl>
     <SupportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</SupportUrl>
     <ErrorReportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</ErrorReportUrl>
     <ProductName>Integrated NTD Database</ProductName>
@@ -32,7 +31,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>213</ApplicationRevision>
+    <ApplicationRevision>214</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1221,6 +1220,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\00NadaDatabaseBaseline.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.01.00.0015.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0013.sql" />

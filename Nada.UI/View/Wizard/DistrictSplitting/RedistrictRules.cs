@@ -55,19 +55,11 @@ namespace Nada.UI.View.Wizard
                     lblIndicatorType.Text = Translations.RedistrictRuleSplit;
                     AddRuleControls(demo.GetCustomIndicatorsWithoutRedistrictingRules(options.SplitType), options.SplitType);
                 }
-                //else if (options.SplitType == SplittingType.Merge)
-                //{
-                //    var vals = new List<IndicatorDropdownValue>();
-                //    foreach (MergingRule rule in (MergingRule[])Enum.GetValues(typeof(MergingRule)))
-                //        vals.Add(new IndicatorDropdownValue { DisplayName = rule.ToString(), WeightedValue = (int)rule });
-                //    lblIndicatorType.Text = Translations.RedistrictRuleMerge;
-                //    AddRuleControls(demo.GetCustomIndicatorsWithoutRedistrictingRules(options.SplitType), vals);
-                //}
-                //else
-                //{
-                //    lblIndicatorType.Text = Translations.RedistrictRuleSplitCombine;
-                //    AddRuleControls(demo.GetCustomIndicatorsWithoutRedistrictingRules(options.SplitType), new List<IndicatorDropdownValue>());
-                //}
+                else if (options.SplitType == SplittingType.Merge)
+                {
+                    lblIndicatorType.Text = Translations.RedistrictRuleMerge;
+                    AddRuleControls(demo.GetCustomIndicatorsWithoutRedistrictingRules(options.SplitType), options.SplitType);
+                }
 
                 if (containers.Count() == 0)
                     DoNextStep();
@@ -92,13 +84,33 @@ namespace Nada.UI.View.Wizard
         private List<IndicatorDropdownValue> GetRuleValues(SplittingType splitType, int dataTypeId)
         {
             var vals = new List<IndicatorDropdownValue>();
-             
+
             if (options.SplitType == SplittingType.Split)
             {
-                if(dataTypeId == (int)IndicatorDataType.Number)
+                if (dataTypeId == (int)IndicatorDataType.Number)
                     vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleSplitByPercent, WeightedValue = (int)RedistrictingRule.SplitByPercent });
                 vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleDefaultBlank, WeightedValue = (int)RedistrictingRule.DefaultBlank });
                 vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleDuplicate, WeightedValue = (int)RedistrictingRule.Duplicate });
+                vals.OrderBy(v => v.DisplayName).ToList();
+            }
+            else if (options.SplitType == SplittingType.Merge)
+            {
+                if (dataTypeId == (int)IndicatorDataType.Number || dataTypeId == (int)IndicatorDataType.Year)
+                {
+                    vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleMin, WeightedValue = (int)MergingRule.Min });
+                    vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleMax, WeightedValue = (int)MergingRule.Max });
+                    if (dataTypeId == (int)IndicatorDataType.Number)
+                    {
+                        vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleAverage, WeightedValue = (int)MergingRule.Average });
+                        vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleSum, WeightedValue = (int)MergingRule.Sum });
+                    }
+                }
+                else if (dataTypeId == (int)IndicatorDataType.Text || dataTypeId == (int)IndicatorDataType.LargeText || dataTypeId == (int)IndicatorDataType.Multiselect)
+                {
+                    vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleListAll, WeightedValue = (int)MergingRule.ListAll });
+                }
+
+                vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleDefaultBlank, WeightedValue = (int)MergingRule.DefaultBlank });
                 vals.OrderBy(v => v.DisplayName).ToList();
             }
 
@@ -121,7 +133,11 @@ namespace Nada.UI.View.Wizard
             List<Indicator> indicators = new List<Indicator>();
             foreach (DynamicContainer m in containers)
             {
-                m.Indicator.RedistrictRuleId = Convert.ToInt32(m.GetValue());
+                if (options.SplitType == SplittingType.Split)
+                    m.Indicator.RedistrictRuleId = Convert.ToInt32(m.GetValue());
+                else if (options.SplitType == SplittingType.Merge)
+                    m.Indicator.MergeRuleId = Convert.ToInt32(m.GetValue());
+                
                 indicators.Add(m.Indicator);
             }
             demo.SaveCustomIndicatorRules(indicators);

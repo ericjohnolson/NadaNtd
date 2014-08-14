@@ -645,7 +645,9 @@ namespace Nada.Model
             switch (indicator.DataTypeId)
             {
                 case (int)IndicatorDataType.Date:
-                    if (val.Length > 0 && !DateTime.TryParse(val, out dt))
+                    if (string.IsNullOrEmpty(val))
+                        return val;
+                    else if (val.Length > 0 && !DateTime.TryParse(val, out dt))
                         return name + ": " + TranslationLookup.GetValue("MustBeDate") + Environment.NewLine;
                     else
                         val = dt.ToString("MM/dd/yyyy");
