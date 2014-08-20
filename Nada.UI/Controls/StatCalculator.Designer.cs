@@ -35,6 +35,7 @@
             this.lblCustomIndicators = new System.Windows.Forms.Label();
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.tblIndicators = new System.Windows.Forms.TableLayoutPanel();
+            this.lblCalculating = new Nada.UI.Controls.H3bLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -49,16 +50,17 @@
             this.tableLayoutPanel1.Controls.Add(this.hr4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tblIndicators, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lblCalculating, 0, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(919, 55);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(919, 75);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // hr4
@@ -149,6 +151,20 @@
             this.tblIndicators.Size = new System.Drawing.Size(23, 0);
             this.tblIndicators.TabIndex = 0;
             // 
+            // lblCalculating
+            // 
+            this.lblCalculating.AutoSize = true;
+            this.lblCalculating.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lblCalculating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblCalculating.Location = new System.Drawing.Point(0, 55);
+            this.lblCalculating.Margin = new System.Windows.Forms.Padding(0);
+            this.lblCalculating.Name = "lblCalculating";
+            this.lblCalculating.Size = new System.Drawing.Size(119, 16);
+            this.lblCalculating.TabIndex = 49;
+            this.lblCalculating.Tag = "CalculatingStatistics";
+            this.lblCalculating.Text = "CalculatingStatistics";
+            this.lblCalculating.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
             // StatCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -158,7 +174,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "StatCalculator";
-            this.Size = new System.Drawing.Size(919, 55);
+            this.Size = new System.Drawing.Size(919, 75);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -179,5 +195,6 @@
         private System.Windows.Forms.TableLayoutPanel tblIndicators;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private FieldLink fieldLink1;
+        private H3bLabel lblCalculating;
     }
 }

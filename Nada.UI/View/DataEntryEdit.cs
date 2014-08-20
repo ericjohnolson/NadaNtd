@@ -96,11 +96,36 @@ namespace Nada.UI.View.DiseaseDistribution
 
         private void LoadMetaData()
         {
-            List<KeyValuePair<string, string>> metaData = new List<KeyValuePair<string, string>>();
-            if (viewModel.Calculator != null)
-                metaData = viewModel.Calculator.GetMetaData(
-                viewModel.Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => viewModel.CalculatorTypeId + i.Value.DisplayName),
-                viewModel.Location.Id, indicatorControl1.start, indicatorControl1.end);
+            indicatorControl1.SetMetaDataLoading(true);
+            BackgroundWorker metaDataFetcher = new BackgroundWorker();
+            metaDataFetcher.DoWork += metaDataFetcher_DoWork;
+            metaDataFetcher.RunWorkerCompleted += metaDataFetcher_RunWorkerCompleted;
+            metaDataFetcher.RunWorkerAsync();
+        }
+
+        void metaDataFetcher_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                List<KeyValuePair<string, string>> metaData = new List<KeyValuePair<string, string>>();
+                if (viewModel.Calculator != null)
+                    metaData = viewModel.Calculator.GetMetaData(
+                    viewModel.Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => viewModel.CalculatorTypeId + i.Value.DisplayName),
+                    viewModel.Location.Id, indicatorControl1.start, indicatorControl1.end);
+                e.Result = metaData;
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error metaDataFetcher_DoWork. ", ex);
+                throw;
+            }
+        }
+
+        void metaDataFetcher_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            indicatorControl1.SetMetaDataLoading(false);
+            List<KeyValuePair<string, string>> metaData = (List<KeyValuePair<string, string>>)e.Result;
             if (metaData != null && metaData.Count > 0)
                 indicatorControl1.LoadMetaData(metaData);
         }

@@ -61,6 +61,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculating statistics....
+        /// </summary>
+        public static string CalculatingStatistics {
+            get {
+                return ResourceManager.GetString("CalculatingStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is this area under PTS (post treatment surveillance)?.
         /// </summary>
         public static string DDPTS {
@@ -93,6 +102,15 @@ namespace Nada.Globalization {
         public static string IntvMaleSac {
             get {
                 return ResourceManager.GetString("IntvMaleSac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading meta data....
+        /// </summary>
+        public static string MetaDataLoading {
+            get {
+                return ResourceManager.GetString("MetaDataLoading", resourceCulture);
             }
         }
         
@@ -219,6 +237,15 @@ namespace Nada.Globalization {
         public static string RedistrictSurveyNote {
             get {
                 return ResourceManager.GetString("RedistrictSurveyNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must assign each location only one time.
+        /// </summary>
+        public static string RtiErrorMustBeUnique {
+            get {
+                return ResourceManager.GetString("RtiErrorMustBeUnique", resourceCulture);
             }
         }
         

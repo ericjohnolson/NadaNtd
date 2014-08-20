@@ -12,6 +12,8 @@ using Nada.UI.Base;
 
 namespace Nada.UI.Controls
 {
+   
+
     public partial class StatCalculator : BaseControl
     {
         public ICalcIndicators Calc { get; set; }
@@ -33,9 +35,35 @@ namespace Nada.UI.Controls
             fieldLink1.Focus();
         }
 
-
         public void DoCalc(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, int adminLevel, string typeId, DateTime start, DateTime end)
         {
+            lblCalculating.Visible = true;
+            BackgroundWorker calcWorker = new BackgroundWorker();
+            calcWorker.RunWorkerCompleted += calcWorker_RunWorkerCompleted;
+            calcWorker.DoWork += calcWorker_DoWork;
+            calcWorker.RunWorkerAsync(new CalcWorkerPayload { AdminLevel = adminLevel, End = end, Indicators = indicators, Start = start, TypeId = typeId, Values = values });
+        }
+
+        void calcWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                CalcWorkerPayload payload = (CalcWorkerPayload)e.Argument;
+                e.Result =  Calc.PerformCalculations(payload.Indicators, payload.Values, payload.AdminLevel, payload.TypeId, payload.Start, payload.End);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error calcWorker_DoWork. ", ex);
+                throw;
+            }
+        }
+
+        void calcWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            List<KeyValuePair<string, string>> calculationResults = (List<KeyValuePair<string, string>>)e.Result;
+
+            tblIndicators.Visible = false;
             this.SuspendLayout();
             tblIndicators.Controls.Clear();
             int count = 0;
@@ -43,7 +71,6 @@ namespace Nada.UI.Controls
             int controlRowIndex = tblIndicators.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
             int columnCount = 0;
 
-            var calculationResults = Calc.PerformCalculations(indicators, values, adminLevel, typeId, start, end);
             if (calculationResults.Count == 0)
                 this.Visible = false;
 
@@ -71,6 +98,8 @@ namespace Nada.UI.Controls
             }
 
             this.ResumeLayout();
+            tblIndicators.Visible = true;
+            lblCalculating.Visible = false;
         }
 
         [Browsable(true)]
@@ -84,6 +113,15 @@ namespace Nada.UI.Controls
                 hr4.BackColor = value;
             }
         }
+    }
 
+    public class CalcWorkerPayload
+    {
+        public Dictionary<string, Indicator> Indicators { get; set; }
+        public List<IndicatorValue> Values { get; set; }
+        public int AdminLevel { get; set; }
+        public string TypeId { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
     }
 }

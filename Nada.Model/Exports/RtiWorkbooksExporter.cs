@@ -55,7 +55,7 @@ namespace Nada.Model.Exports
                 excel.Range rng = null;
                 object missing = System.Reflection.Missing.Value;
 
-                xlsWorkbook = xlsApp.Workbooks.Open(Path.Combine(Environment.CurrentDirectory, @"Exports\" + TranslationLookup.GetValue("RtiWorkbookLocation", "RtiWorkbookLocation")),
+                xlsWorkbook = xlsApp.Workbooks.Open(Path.Combine(Environment.CurrentDirectory, @"Exports\" + transLookup.GetValue("RtiWorkbookLocation", "RtiWorkbookLocation")),
                     missing, missing, missing, missing, missing, missing, missing,
                     missing, missing, missing, missing, missing, missing, missing);
                 xlsWorkbook.Unprotect("NTDM&E101");
@@ -69,31 +69,31 @@ namespace Nada.Model.Exports
                 Dictionary<int, DataRow> aggIntvs = GetIntvsAggregatedToReportingLevel(StartDate, EndDate, reportingLevelUnits);
 
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabCountry", "RtiTabCountry")];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[transLookup.GetValue("RtiTabCountry", "RtiTabCountry")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddInfo(xlsWorksheet, rng, country, exportType, reportingLevelUnits.Count, intvs);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabDemo", "RtiTabDemo")];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[transLookup.GetValue("RtiTabDemo", "RtiTabDemo")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddDemo(xlsWorksheet, rng, reportingLevelUnits, countryDemo);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabLf", "RtiTabLf")];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[transLookup.GetValue("RtiTabLf", "RtiTabLf")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddLf(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabOncho", "RtiTabOncho")];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[transLookup.GetValue("RtiTabOncho", "RtiTabOncho")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddOncho(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabSch", "RtiTabSch")];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[transLookup.GetValue("RtiTabSch", "RtiTabSch")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddSchisto(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabSth", "RtiTabSth")];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[transLookup.GetValue("RtiTabSth", "RtiTabSth")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddSth(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
 
-                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[TranslationLookup.GetValue("RtiTabTra", "RtiTabTra")];
+                xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets[transLookup.GetValue("RtiTabTra", "RtiTabTra")];
                 xlsWorksheet.Unprotect("NTDM&E101");
                 AddTrachoma(xlsWorksheet, rng, StartDate, EndDate, reportingLevelUnits, aggIntvs);
 
@@ -140,17 +140,17 @@ namespace Nada.Model.Exports
             foreach (var val in exportType.IndicatorValues)
             {
                 if (val.Indicator.DisplayName == "RtiYearOfWorkbook")
-                    AddValueToRange(xlsWorksheet, rng, "C11", TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue));
+                    AddValueToRange(xlsWorksheet, rng, "C11", transLookup.GetValue(val.DynamicValue, val.DynamicValue));
                 if (val.Indicator.DisplayName == "RtiName")
                     AddValueToRange(xlsWorksheet, rng, "C5", val.DynamicValue);
                 if (val.Indicator.DisplayName == "RtiTitle")
                     AddValueToRange(xlsWorksheet, rng, "C6", val.DynamicValue);
                 if (val.Indicator.DisplayName == "RtiProjectName")
-                    AddValueToRange(xlsWorksheet, rng, "C8", TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue));
+                    AddValueToRange(xlsWorksheet, rng, "C8", transLookup.GetValue(val.DynamicValue, val.DynamicValue));
                 if (val.Indicator.DisplayName == "RtiSubPartnerName")
                     AddValueToRange(xlsWorksheet, rng, "C9", val.DynamicValue);
                 if (val.Indicator.DisplayName == "RtiReportingPeriod")
-                    AddValueToRange(xlsWorksheet, rng, "C14", TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue));
+                    AddValueToRange(xlsWorksheet, rng, "C14", transLookup.GetValue(val.DynamicValue, val.DynamicValue));
                 if (val.Indicator.DisplayName == "RtiTotalDistrictsTreatedWithUsaid")
                     AddValueToRange(xlsWorksheet, rng, "C16", val.DynamicValue);
                 if (val.Indicator.DisplayName == "RtiTotalDistrictsComplete")
@@ -534,7 +534,7 @@ namespace Nada.Model.Exports
             // Get sch Disease Distributions
             DiseaseDistroPc sth;
             Dictionary<int, DataRow> sthDd;
-            GetDdForDisease(start, end, demography, out sth, out sthDd, DiseaseType.Schisto);
+            GetDdForDisease(start, end, demography, out sth, out sthDd, DiseaseType.STH);
 
             // Get sch Surveys
             var surveys = surveyRepo.GetByTypeForDateRange(
@@ -785,59 +785,7 @@ namespace Nada.Model.Exports
             }
         }
 
-        protected Dictionary<int, DataRow> GetEligibleInSubdistricts(DateTime start, DateTime end)
-        {
-            IntvRepository iRepo = new IntvRepository();
-            ReportOptions options = new ReportOptions
-            {
-                MonthYearStarts = start.Month,
-                StartDate = start,
-                EndDate = end,
-                IsCountryAggregation = false,
-                IsByLevelAggregation = true,
-                IsAllLocations = false,
-                IsNoAggregation = false,
-                IsGroupByRange = true,
-
-            };
-
-            var childType = settings.GetAllAdminLevels().Where(a => a.LevelNumber > AdminLevelType.LevelNumber).OrderBy(l => l.LevelNumber).FirstOrDefault();
-            if (childType == null)
-                return new Dictionary<int, DataRow>();
-
-            options.SelectedAdminLevels = demo.GetAdminLevelByLevel(childType.LevelNumber);
-            IntvReportGenerator gen = new IntvReportGenerator();
-
-            IntvType iType = iRepo.GetIntvType(23);
-            var eligible = iType.Indicators.FirstOrDefault(i => i.Value.DisplayName == "PcIntvNumEligibleIndividualsTargeted");
-            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(iType.Id, eligible.Value));
-            ReportResult ddResult = gen.Run(new SavedReport { ReportOptions = options });
-            Dictionary<int, DataRow> intvData = new Dictionary<int, DataRow>();
-            foreach (DataRow dr in ddResult.DataTableResults.Rows)
-            {
-                int id = 0;
-                if (int.TryParse(dr["ID"].ToString(), out id))
-                {
-                    if (intvData.ContainsKey(id))
-                        intvData[id] = dr;
-                    else
-                        intvData.Add(id, dr);
-                }
-            }
-            return intvData;
-        }
-
-        private void AddTraLevelToRange(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey, string indName, string colName)
-        {
-            var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == indName);
-            if (ind != null && !string.IsNullOrEmpty(ind.DynamicValue))
-            {
-                if (ind.DynamicValue == "TraSurDistLevel")
-                    AddValueToRange(xlsWorksheet, rng, colName + rowCount, TranslationLookup.GetValue("RtiDistrict", "RtiDistrict"));
-                else if (ind.DynamicValue == "TraSurSubDistLevel")
-                    AddValueToRange(xlsWorksheet, rng, colName + rowCount, TranslationLookup.GetValue("RtiSubDistrict", "RtiSubDistrict"));
-            }
-        }
+       
 
 
         #region Helpers
@@ -913,49 +861,102 @@ namespace Nada.Model.Exports
             if (ind != null && !string.IsNullOrEmpty(ind.DynamicValue))
                 AddValueToRange(xlsWorksheet, rng, colName + rowCount, ind.DynamicValue);
         }
+
+        protected Dictionary<int, DataRow> GetEligibleInSubdistricts(DateTime start, DateTime end)
+        {
+            IntvRepository iRepo = new IntvRepository();
+            ReportOptions options = new ReportOptions
+            {
+                MonthYearStarts = start.Month,
+                StartDate = start,
+                EndDate = end,
+                IsCountryAggregation = false,
+                IsByLevelAggregation = true,
+                IsAllLocations = false,
+                IsNoAggregation = false,
+                IsGroupByRange = true,
+
+            };
+
+            var childType = settings.GetAllAdminLevels().Where(a => a.LevelNumber > AdminLevelType.LevelNumber).OrderBy(l => l.LevelNumber).FirstOrDefault();
+            if (childType == null)
+                return new Dictionary<int, DataRow>();
+
+            options.SelectedAdminLevels = demo.GetAdminLevelByLevel(childType.LevelNumber);
+            IntvReportGenerator gen = new IntvReportGenerator();
+
+            IntvType iType = iRepo.GetIntvType(23);
+            var eligible = iType.Indicators.FirstOrDefault(i => i.Value.DisplayName == "PcIntvNumEligibleIndividualsTargeted");
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(iType.Id, eligible.Value));
+            ReportResult ddResult = gen.Run(new SavedReport { ReportOptions = options });
+            Dictionary<int, DataRow> intvData = new Dictionary<int, DataRow>();
+            foreach (DataRow dr in ddResult.DataTableResults.Rows)
+            {
+                int id = 0;
+                if (int.TryParse(dr["ID"].ToString(), out id))
+                {
+                    if (intvData.ContainsKey(id))
+                        intvData[id] = dr;
+                    else
+                        intvData.Add(id, dr);
+                }
+            }
+            return intvData;
+        }
+
+        private void AddTraLevelToRange(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey, string indName, string colName)
+        {
+            var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == indName);
+            if (ind != null && !string.IsNullOrEmpty(ind.DynamicValue))
+            {
+                if (ind.DynamicValue == "TraSurDistLevel")
+                    AddValueToRange(xlsWorksheet, rng, colName + rowCount, TranslationLookup.GetValue("RtiDistrict", "RtiDistrict"));
+                else if (ind.DynamicValue == "TraSurSubDistLevel")
+                    AddValueToRange(xlsWorksheet, rng, colName + rowCount, TranslationLookup.GetValue("RtiSubDistrict", "RtiSubDistrict"));
+            }
+        }
         #endregion
 
         #region Indicator Parsers
-
         private string ParseLfDdEnd(string end)
         {
             if (end == TranslationLookup.GetValue("LfEnd0b"))
-                return TranslationLookup.GetValue("RtiLfDd0", "RtiLfDd0");
+                return transLookup.GetValue("RtiLfDd0", "RtiLfDd0");
             if (end == TranslationLookup.GetValue("LfEnd1"))
-                return TranslationLookup.GetValue("RtiLfDd1", "RtiLfDd1");
+                return transLookup.GetValue("RtiLfDd1", "RtiLfDd1");
             if (end == TranslationLookup.GetValue("LfEndM"))
-                return TranslationLookup.GetValue("RtiLfDdM", "RtiLfDdM");
+                return transLookup.GetValue("RtiLfDdM", "RtiLfDdM");
             if (end == TranslationLookup.GetValue("LfEndNs"))
-                return TranslationLookup.GetValue("RtiLfDdNs", "RtiLfDdNs");
+                return transLookup.GetValue("RtiLfDdNs", "RtiLfDdNs");
             if (end == TranslationLookup.GetValue("LfEnd100"))
-                return TranslationLookup.GetValue("RtiLfDd100", "RtiLfDd100");
+                return transLookup.GetValue("RtiLfDd100", "RtiLfDd100");
 
-            return TranslationLookup.GetValue("RtiLfDdPending", "RtiLfDdPending");
+            return transLookup.GetValue("RtiLfDdPending", "RtiLfDdPending");
         }
 
         private string ParseOnchoDdEndo(string endo)
         {
             if (endo == TranslationLookup.GetValue("Oncho0"))
-                return TranslationLookup.GetValue("RtiLfDd0", "RtiLfDd0");
+                return transLookup.GetValue("RtiLfDd0", "RtiLfDd0");
             if (endo == TranslationLookup.GetValue("Oncho1"))
-                return TranslationLookup.GetValue("RtiLfDd1", "RtiLfDd1");
+                return transLookup.GetValue("RtiLfDd1", "RtiLfDd1");
             if (endo == TranslationLookup.GetValue("OnchoM"))
-                return TranslationLookup.GetValue("RtiLfDdM", "RtiLfDdM");
+                return transLookup.GetValue("RtiLfDdM", "RtiLfDdM");
             if (endo == TranslationLookup.GetValue("OnchoNs"))
-                return TranslationLookup.GetValue("RtiLfDdNs", "RtiLfDdNs");
+                return transLookup.GetValue("RtiLfDdNs", "RtiLfDdNs");
             if (endo == TranslationLookup.GetValue("Oncho100"))
-                return TranslationLookup.GetValue("RtiLfDd100", "RtiLfDd100");
+                return transLookup.GetValue("RtiLfDd100", "RtiLfDd100");
 
-            return TranslationLookup.GetValue("RtiLfDdPending", "RtiLfDdPending");
+            return transLookup.GetValue("RtiLfDdPending", "RtiLfDdPending");
         }
         private string ParseTasObjective(string tas)
         {
             if (tas == TranslationLookup.GetValue("LfPostMdaTas1"))
-                return TranslationLookup.GetValue("RtiPostMda1", "RtiPostMda1");
+                return transLookup.GetValue("RtiPostMda1", "RtiPostMda1");
             if (tas == TranslationLookup.GetValue("LfPostMdaTas2"))
-                return TranslationLookup.GetValue("RtiPostMda2", "RtiPostMda2");
+                return transLookup.GetValue("RtiPostMda2", "RtiPostMda2");
 
-            return TranslationLookup.GetValue("RtiStopMda", "RtiStopMda");
+            return transLookup.GetValue("RtiStopMda", "RtiStopMda");
         }
 
         private void AddTypeOfLfSurveySite(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey)
@@ -967,13 +968,13 @@ namespace Nada.Model.Exports
                 if (testType != null)
                 {
                     if (mostRecentSurvey.HasSentinelSite && testType.DynamicValue == "MF")
-                        typeName = TranslationLookup.GetValue("RtiSsMf", "RtiSsMf");
+                        typeName = transLookup.GetValue("RtiSsMf", "RtiSsMf");
                     else if (mostRecentSurvey.HasSentinelSite)
-                        typeName = TranslationLookup.GetValue("RtiSsAg", "RtiSsAg");
+                        typeName = transLookup.GetValue("RtiSsAg", "RtiSsAg");
                     else if (testType.DynamicValue == "MF")
-                        typeName = TranslationLookup.GetValue("RtiScMf", "RtiScMf");
+                        typeName = transLookup.GetValue("RtiScMf", "RtiScMf");
                     else
-                        typeName = TranslationLookup.GetValue("RtiScAg", "RtiScAg");
+                        typeName = transLookup.GetValue("RtiScAg", "RtiScAg");
                 }
             }
             else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
@@ -983,17 +984,17 @@ namespace Nada.Model.Exports
                 if (testType != null && isSentinel != null)
                 {
                     if (isSentinel.DynamicValue == "YesSentinelSite" && testType.DynamicValue == "MF")
-                        typeName = TranslationLookup.GetValue("RtiSsMf", "RtiSsMf");
+                        typeName = transLookup.GetValue("RtiSsMf", "RtiSsMf");
                     else if (isSentinel.DynamicValue == "YesSentinelSite")
-                        typeName = TranslationLookup.GetValue("RtiSsAg", "RtiSsAg");
+                        typeName = transLookup.GetValue("RtiSsAg", "RtiSsAg");
                     else if (testType.DynamicValue == "MF")
-                        typeName = TranslationLookup.GetValue("RtiScMf", "RtiScMf");
+                        typeName = transLookup.GetValue("RtiScMf", "RtiScMf");
                     else
-                        typeName = TranslationLookup.GetValue("RtiScAg", "RtiScAg");
+                        typeName = transLookup.GetValue("RtiScAg", "RtiScAg");
                 }
             }
             else
-                typeName = TranslationLookup.GetValue("RtiTas", "RtiTas");
+                typeName = transLookup.GetValue("RtiTas", "RtiTas");
 
             AddValueToRange(xlsWorksheet, rng, "G" + rowCount, typeName);
         }
@@ -1010,114 +1011,114 @@ namespace Nada.Model.Exports
         private string ParseSchistoFrequency(string freq)
         {
             if (freq == TranslationLookup.GetValue("xyear2"))
-                return TranslationLookup.GetValue("RtiSchMdaD", "RtiSchMdaD");
+                return transLookup.GetValue("RtiSchMdaD", "RtiSchMdaD");
             if (freq == TranslationLookup.GetValue("xyear1every2"))
-                return TranslationLookup.GetValue("RtiSchMdaB", "RtiSchMdaB");
+                return transLookup.GetValue("RtiSchMdaB", "RtiSchMdaB");
             if (freq == TranslationLookup.GetValue("xyear1every3"))
-                return TranslationLookup.GetValue("RtiSchMdaC", "RtiSchMdaC");
+                return transLookup.GetValue("RtiSchMdaC", "RtiSchMdaC");
             if (freq == TranslationLookup.GetValue("xyear1"))
-                return TranslationLookup.GetValue("RtiSchMdaA", "RtiSchMdaA");
+                return transLookup.GetValue("RtiSchMdaA", "RtiSchMdaA");
 
-            return TranslationLookup.GetValue("RtiSchMdaNone", "RtiSchMdaNone");
+            return transLookup.GetValue("RtiSchMdaNone", "RtiSchMdaNone");
 
         }
 
         private string ParseSthFrequency(string freq)
         {
             if (freq == TranslationLookup.GetValue("xyear2"))
-                return TranslationLookup.GetValue("RtiSchMdaA", "RtiSchMdaA");
+                return transLookup.GetValue("RtiSchMdaA", "RtiSchMdaA");
             if (freq == TranslationLookup.GetValue("xyear1every2"))
-                return TranslationLookup.GetValue("RtiSchMdaC", "RtiSchMdaC");
+                return transLookup.GetValue("RtiSchMdaC", "RtiSchMdaC");
             if (freq == TranslationLookup.GetValue("xyear3"))
-                return TranslationLookup.GetValue("RtiSchMdaD", "RtiSchMdaD");
+                return transLookup.GetValue("RtiSchMdaD", "RtiSchMdaD");
             if (freq == TranslationLookup.GetValue("xyear1"))
-                return TranslationLookup.GetValue("RtiSchMdaB", "RtiSchMdaB");
+                return transLookup.GetValue("RtiSchMdaB", "RtiSchMdaB");
 
-            return TranslationLookup.GetValue("RtiSchMdaNone", "RtiSchMdaNone");
+            return transLookup.GetValue("RtiSchMdaNone", "RtiSchMdaNone");
         }
 
         private string ParseSchEnd(string end)
         {
             if (end == TranslationLookup.GetValue("SchistoM"))
-                return TranslationLookup.GetValue("RtiSchM", "RtiSchM");
+                return transLookup.GetValue("RtiSchM", "RtiSchM");
             if (end == TranslationLookup.GetValue("SchNs"))
-                return TranslationLookup.GetValue("RtiSchNs", "RtiSchNs");
+                return transLookup.GetValue("RtiSchNs", "RtiSchNs");
             if (end == TranslationLookup.GetValue("Scho0"))
-                return TranslationLookup.GetValue("RtiSch0", "RtiSch0");
+                return transLookup.GetValue("RtiSch0", "RtiSch0");
             if (end == TranslationLookup.GetValue("Sch1"))
-                return TranslationLookup.GetValue("RtiSch1", "RtiSch1");
+                return transLookup.GetValue("RtiSch1", "RtiSch1");
             if (end == TranslationLookup.GetValue("Sch2") || end == TranslationLookup.GetValue("Sch2b"))
-                return TranslationLookup.GetValue("RtiSch2", "RtiSch2");
+                return transLookup.GetValue("RtiSch2", "RtiSch2");
             if (end == TranslationLookup.GetValue("Sch2a"))
-                return TranslationLookup.GetValue("RtiSch2a", "RtiSch2a");
+                return transLookup.GetValue("RtiSch2a", "RtiSch2a");
             if (end == TranslationLookup.GetValue("Sch3") || end == TranslationLookup.GetValue("Sch3b"))
-                return TranslationLookup.GetValue("RtiSch3", "RtiSch3");
+                return transLookup.GetValue("RtiSch3", "RtiSch3");
             if (end == TranslationLookup.GetValue("Sch3a"))
-                return TranslationLookup.GetValue("RtiSch3a", "RtiSch3a");
+                return transLookup.GetValue("RtiSch3a", "RtiSch3a");
             if (end == TranslationLookup.GetValue("Sch10"))
-                return TranslationLookup.GetValue("RtiSch10", "RtiSch10");
+                return transLookup.GetValue("RtiSch10", "RtiSch10");
             if (end == TranslationLookup.GetValue("Sch20"))
-                return TranslationLookup.GetValue("RtiSch20", "RtiSch20");
+                return transLookup.GetValue("RtiSch20", "RtiSch20");
             if (end == TranslationLookup.GetValue("Sch30"))
-                return TranslationLookup.GetValue("RtiSch30", "RtiSch30");
+                return transLookup.GetValue("RtiSch30", "RtiSch30");
             if (end == TranslationLookup.GetValue("Sch40"))
-                return TranslationLookup.GetValue("RtiSch40", "RtiSch40");
+                return transLookup.GetValue("RtiSch40", "RtiSch40");
             if (end == TranslationLookup.GetValue("Sch100"))
-                return TranslationLookup.GetValue("RtiSch100", "RtiSch100");
+                return transLookup.GetValue("RtiSch100", "RtiSch100");
 
-            return TranslationLookup.GetValue("RtiSchPending", "RtiSchPending");
+            return transLookup.GetValue("RtiSchPending", "RtiSchPending");
         }
 
         private string ParseSthEnd(string end)
         {
             if (end == TranslationLookup.GetValue("SthM"))
-                return TranslationLookup.GetValue("RtiSchM", "RtiSchM");
+                return transLookup.GetValue("RtiSchM", "RtiSchM");
             if (end == TranslationLookup.GetValue("SthNs"))
-                return TranslationLookup.GetValue("RtiSchNs", "RtiSchNs");
+                return transLookup.GetValue("RtiSchNs", "RtiSchNs");
             if (end == TranslationLookup.GetValue("Sth0"))
-                return TranslationLookup.GetValue("RtiSch0", "RtiSch0");
+                return transLookup.GetValue("RtiSch0", "RtiSch0");
             if (end == TranslationLookup.GetValue("Sth1"))
-                return TranslationLookup.GetValue("RtiSch1", "RtiSch1");
+                return transLookup.GetValue("RtiSch1", "RtiSch1");
             if (end == TranslationLookup.GetValue("Sth2"))
-                return TranslationLookup.GetValue("RtiSch2", "RtiSch2");
+                return transLookup.GetValue("RtiSch2", "RtiSch2");
             if (end == TranslationLookup.GetValue("Sth3"))
-                return TranslationLookup.GetValue("RtiSch3", "RtiSch3");
+                return transLookup.GetValue("RtiSch3", "RtiSch3");
             if (end == TranslationLookup.GetValue("Sth10"))
-                return TranslationLookup.GetValue("RtiSch10", "RtiSch10");
+                return transLookup.GetValue("RtiSch10", "RtiSch10");
             if (end == TranslationLookup.GetValue("Sth20"))
-                return TranslationLookup.GetValue("RtiSch20", "RtiSch20");
+                return transLookup.GetValue("RtiSch20", "RtiSch20");
             if (end == TranslationLookup.GetValue("Sth30"))
-                return TranslationLookup.GetValue("RtiSch30", "RtiSch30");
+                return transLookup.GetValue("RtiSch30", "RtiSch30");
             if (end == TranslationLookup.GetValue("Sth40"))
-                return TranslationLookup.GetValue("RtiSch40", "RtiSch40");
+                return transLookup.GetValue("RtiSch40", "RtiSch40");
             if (end == TranslationLookup.GetValue("Sth100"))
-                return TranslationLookup.GetValue("RtiSch100", "RtiSch100");
+                return transLookup.GetValue("RtiSch100", "RtiSch100");
 
-            return TranslationLookup.GetValue("RtiSchPending", "RtiSchPending");
+            return transLookup.GetValue("RtiSchPending", "RtiSchPending");
         }
 
         private string ParseTrachomaEnd(string end)
         {
             if (end == TranslationLookup.GetValue("TraM"))
-                return TranslationLookup.GetValue("RtiTraM", "RtiTraM");
+                return transLookup.GetValue("RtiTraM", "RtiTraM");
             if (end == TranslationLookup.GetValue("TraNs"))
-                return TranslationLookup.GetValue("RtiTraNs", "RtiTraNs");
+                return transLookup.GetValue("RtiTraNs", "RtiTraNs");
             if (end == TranslationLookup.GetValue("Tra0"))
-                return TranslationLookup.GetValue("RtiTra0", "RtiTra0");
+                return transLookup.GetValue("RtiTra0", "RtiTra0");
             if (end == TranslationLookup.GetValue("Tra1"))
-                return TranslationLookup.GetValue("RtiTra1", "RtiTra1");
+                return transLookup.GetValue("RtiTra1", "RtiTra1");
             if (end == TranslationLookup.GetValue("Tra2"))
-                return TranslationLookup.GetValue("RtiTra2", "RtiTra2");
+                return transLookup.GetValue("RtiTra2", "RtiTra2");
             if (end == TranslationLookup.GetValue("Tra3"))
-                return TranslationLookup.GetValue("RtiTra3", "RtiTra3");
+                return transLookup.GetValue("RtiTra3", "RtiTra3");
             if (end == TranslationLookup.GetValue("Tra4"))
-                return TranslationLookup.GetValue("RtiTra4", "RtiTra4");
+                return transLookup.GetValue("RtiTra4", "RtiTra4");
             if (end == TranslationLookup.GetValue("Tra5"))
-                return TranslationLookup.GetValue("RtiTra5", "RtiTra5");
+                return transLookup.GetValue("RtiTra5", "RtiTra5");
             if (end == TranslationLookup.GetValue("Tra100"))
-                return TranslationLookup.GetValue("RtiTra100", "RtiTra100");
+                return transLookup.GetValue("RtiTra100", "RtiTra100");
 
-            return TranslationLookup.GetValue("RtiTraPending", "RtiTraPending");
+            return transLookup.GetValue("RtiTraPending", "RtiTraPending");
         }
 
         #endregion

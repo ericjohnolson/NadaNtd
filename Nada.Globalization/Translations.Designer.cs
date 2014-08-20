@@ -811,6 +811,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculating statistics....
+        /// </summary>
+        public static string CalculatingStatistics {
+            get {
+                return ResourceManager.GetString("CalculatingStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calculation error occured.
         /// </summary>
         public static string CalculationError {
@@ -6230,6 +6239,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading meta data....
+        /// </summary>
+        public static string MetaDataLoading {
+            get {
+                return ResourceManager.GetString("MetaDataLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mf.
         /// </summary>
         public static string Mf {
@@ -11203,6 +11221,15 @@ namespace Nada.Globalization {
         public static string RtiDrpWorkPlanning {
             get {
                 return ResourceManager.GetString("RtiDrpWorkPlanning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must assign each location only one time.
+        /// </summary>
+        public static string RtiErrorMustBeUnique {
+            get {
+                return ResourceManager.GetString("RtiErrorMustBeUnique", resourceCulture);
             }
         }
         

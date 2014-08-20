@@ -92,8 +92,14 @@ namespace Nada.UI.View
             return picker;
         }
 
+        public void SetMetaDataLoading(bool visibility)
+        {
+            lblMetaDataLoading.Visible = visibility;
+        }
+
         public void LoadMetaData(List<KeyValuePair<string, string>> values)
         {
+            tblMetaData.Visible = false;
             this.SuspendLayout();
             tblMetaData.Controls.Clear();
             int count = 0;

@@ -202,6 +202,15 @@
     <value>Sum</value>
   </data>
   <data name="RtiExportLanguage" xml:space="preserve">
-	<value>Language to generate Disease Workbook for USAID Reporting</value>
+    <value>Language to generate Disease Workbook for USAID Reporting</value>
+  </data>
+  <data name="CalculatingStatistics" xml:space="preserve">
+    <value>Calculating statistics...</value>
+  </data>
+  <data name="MetaDataLoading" xml:space="preserve">
+    <value>Loading meta data...</value>
+  </data>
+  <data name="RtiErrorMustBeUnique" xml:space="preserve">
+    <value>Must assign each location only one time</value>
   </data>
 </root>
