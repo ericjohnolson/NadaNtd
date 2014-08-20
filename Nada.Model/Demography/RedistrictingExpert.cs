@@ -308,7 +308,7 @@ namespace Nada.Model.Demography
                 options.Processes.Add(MergeProcess(val, options.MergeDestination.Id, redistrictId, command, connection));
             foreach (var val in scmToMerge.Values)
                 options.Processes.Add(MergeProcess(val, options.MergeDestination.Id, redistrictId, command, connection));
-            MergeProcesses(processesToCopyAll, options.MergeDestination.Id, redistrictId, command, connection);
+            MergeProcesses(options, processesToCopyAll, options.MergeDestination.Id, redistrictId, command, connection);
             MergeSurveys(options, surveys, options.MergeDestination, redistrictId, command, connection);
 
         }
@@ -447,7 +447,7 @@ namespace Nada.Model.Demography
             return newForm;
         }
 
-        private void MergeProcesses(List<ProcessBase> toMerge, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
+        private void MergeProcesses(RedistrictingOptions opts, List<ProcessBase> toMerge, int destId, int redistrictId, OleDbCommand command, OleDbConnection connection)
         {
             foreach (var oldForm in toMerge)
             {
@@ -458,6 +458,7 @@ namespace Nada.Model.Demography
                 newForm.AdminLevelId = destId;
                 processRepo.Save(command, connection, newForm, userId);
                 demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, oldForm.Id, newForm.Id, IndicatorEntityType.Process);
+                opts.Processes.Add(newForm);
             }
         }
 

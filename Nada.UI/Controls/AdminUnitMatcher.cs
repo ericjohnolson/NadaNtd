@@ -53,7 +53,7 @@ namespace Nada.UI.View
             taskForceUnits.Insert(0, new TaskForceAdminUnit { Id = -1, Name = "" });
             bindingSource1.DataSource = taskForceUnits;
 
-            if (taskForceUnits.Count > 0)
+            if (taskForceUnits.Count > 1)
                 cbUnits.DropDownWidth = BaseForm.GetDropdownWidth(taskForceUnits.Select(a => a.Name));
         }
 
@@ -67,10 +67,13 @@ namespace Nada.UI.View
             return existing;
         }
 
-        public bool IsValid()
+        public bool IsValid(List<int> selectedIds)
         {
-            if(cbUnits.SelectedItem != null && ((TaskForceAdminUnit)cbUnits.SelectedItem).Id > 0)
+            if (cbUnits.SelectedItem != null && ((TaskForceAdminUnit)cbUnits.SelectedItem).Id > 0)
+            {
+                selectedIds.Add(((TaskForceAdminUnit)cbUnits.SelectedItem).Id);
                 return true;
+            }
             return false;
         }
 

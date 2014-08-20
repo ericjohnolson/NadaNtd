@@ -36,6 +36,7 @@ namespace Nada.UI.View.Reports
         private List<AdminLevelType> types;
         private int typeIndex = 0;
         private List<AdminUnitMatcher> matchers = new List<AdminUnitMatcher>();
+        private List<int> existingIds = new List<int>();
 
         public TaskForceAdminLevelStep()
             : base()
@@ -74,6 +75,7 @@ namespace Nada.UI.View.Reports
                     // has value
                     if (!string.IsNullOrEmpty(u.TaskForceName))
                     {
+                        existingIds.Add(u.TaskForceId);
                         var existing = available.FirstOrDefault(f => f.Id == u.TaskForceId);
                         existing.NadaId = u.Id;
                         continue;
@@ -106,10 +108,17 @@ namespace Nada.UI.View.Reports
 
         public void DoNext()
         {
-            var invalid = matchers.FirstOrDefault(m => !m.IsValid());
+            var selectedIds = new List<int>();
+            selectedIds.AddRange(existingIds);
+            var invalid = matchers.FirstOrDefault(m => !m.IsValid(selectedIds));
             if (invalid != null)
             {
                 MessageBox.Show(Translations.RtiErrorMustMatchAll, Translations.ValidationErrorTitle);
+                return;
+            }
+            if (selectedIds.Distinct().Count() != selectedIds.Count())
+            {
+                MessageBox.Show(Translations.RtiErrorMustBeUnique, Translations.ValidationErrorTitle);
                 return;
             }
 

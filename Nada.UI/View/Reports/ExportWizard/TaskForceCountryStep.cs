@@ -66,7 +66,7 @@ namespace Nada.UI.View.Reports
         }
         public void DoNext()
         {
-            if (!adminUnitMatcher1.IsValid())
+            if (!adminUnitMatcher1.IsValid(new List<int>()))
             {
                 MessageBox.Show(Translations.RtiErrorMustMatchAll, Translations.ValidationErrorTitle);
                 return;
