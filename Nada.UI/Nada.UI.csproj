@@ -1222,6 +1222,9 @@
     <Content Include="DatabaseScripts\00NadaDatabaseBaseline.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.01.00.0016.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0015.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
