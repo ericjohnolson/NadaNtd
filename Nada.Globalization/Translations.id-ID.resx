@@ -6124,4 +6124,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="YesSentinelSite" xml:space="preserve">
     <value>Ya - Desa Sentinel</value>
   </data>
+  <data name="UtilSplitAnd" xml:space="preserve">
+    <value>dan</value>
+  </data>
 </root>

@@ -129,6 +129,15 @@ namespace Nada.Model
             }
 
         }
+
+        public static List<string> SplitCommonList(string val)
+        {
+            List<string> result = new List<string>();
+            val = val.Replace(" " + TranslationLookup.GetValue("UtilSplitAnd") + " ", ",");
+            foreach(var v in val.Split(','))
+                result.Add(v.Trim());
+            return result;
+        }
         
         
     }

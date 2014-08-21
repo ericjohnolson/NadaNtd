@@ -50,6 +50,15 @@ namespace Nada.Model
     {
         protected List<IndicatorDropdownValue> dropdownValues = new List<IndicatorDropdownValue>();
 
+        protected void AddIntvIndicators(ReportOptions options, int typeId, IntvRepository iRepo)
+        {
+            IntvType iType = iRepo.GetIntvType(typeId);
+            if (typeId == 10)
+                dropdownValues = iType.IndicatorDropdownValues;
+            foreach (var indicator in iType.Indicators.Where(i => i.Value.DataTypeId != (int)IndicatorDataType.Calculated))
+                options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(iType.Id, indicator));
+        }
+
         protected void AddValueToRange(excel.Worksheet xlsWorksheet, excel.Range rng, string cell, object value)
         {
             object missing = System.Reflection.Missing.Value;
@@ -66,17 +75,6 @@ namespace Nada.Model
         public virtual string GetYear(ExportType exportType)
         {
             return "";
-        }
-
-        private class IntVal
-        {
-            public IntVal()
-            {
-                Value = 0;
-                TypeNames = new List<string>();
-            }
-            public List<string> TypeNames { get; set; }
-            public int Value { get; set; }
         }
 
         protected Dictionary<int, DataRow> GetIntvsAggregatedToReportingLevel(DateTime start, DateTime end, List<AdminLevel> units)
@@ -115,14 +113,6 @@ namespace Nada.Model
             return intvData;
         }
 
-        protected void AddIntvIndicators(ReportOptions options, int typeId, IntvRepository iRepo)
-        {
-            IntvType iType = iRepo.GetIntvType(typeId);
-            if (typeId == 10)
-                dropdownValues = iType.IndicatorDropdownValues;
-            foreach (var indicator in iType.Indicators.Where(i => i.Value.DataTypeId != (int)IndicatorDataType.Calculated))
-                options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(iType.Id, indicator));
-        }
 
         protected string GetIntFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames, string albIndicator)
         {
@@ -164,7 +154,7 @@ namespace Nada.Model
             return sumOfTypes.ToString();
         }
 
-        protected string GetIntFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames)
+        protected string GetIntFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
         {
             int sumOfTypes = 0;
             List<string> types = new List<string>();
@@ -173,8 +163,14 @@ namespace Nada.Model
                 int? max = null;
                 for (int i = startRound; i <= endRound; i++)
                 {
-                    string diseaseCol = TranslationLookup.GetValue("PcIntvDiseases") + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
-                    string indicatorCol = TranslationLookup.GetValue(indicatorName) + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
+                    string diseaseCol = TranslationLookup.GetValue("PcIntvDiseases") + " - " + TranslationLookup.GetValue(tname);
+                    string indicatorCol = TranslationLookup.GetValue(indicatorName) + " - " + TranslationLookup.GetValue(tname);
+                    if (hasRounds)
+                    {
+                        diseaseCol += string.Format(" - {0} ", Translations.Round) + i;
+                        indicatorCol += string.Format(" - {0} ", Translations.Round) + i;
+                    }
+
                     if (dr.Table.Columns.Contains(diseaseCol))
                     {
                         // make sure disease type treated
@@ -200,7 +196,7 @@ namespace Nada.Model
             return sumOfTypes.ToString();
         }
 
-        protected DateTime? GetDateFromRow(string indicatorName, List<string> intvTypes, DataRow dr, bool isGreaterThan, int startRound, int endRound, string diseaseType, List<string> typeNames)
+        protected DateTime? GetDateFromRow(string indicatorName, List<string> intvTypes, DataRow dr, bool isGreaterThan, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
         {
             string valueType = "";
             DateTime? value = null;
@@ -208,8 +204,13 @@ namespace Nada.Model
             {
                 foreach (var tname in typeNames)
                 {
-                    string diseaseCol = TranslationLookup.GetValue("PcIntvDiseases") + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
-                    string indicatorCol = TranslationLookup.GetValue(indicatorName) + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
+                    string diseaseCol = TranslationLookup.GetValue("PcIntvDiseases") + " - " + TranslationLookup.GetValue(tname);
+                    string indicatorCol = TranslationLookup.GetValue(indicatorName) + " - " + TranslationLookup.GetValue(tname);
+                    if (hasRounds)
+                    {
+                        diseaseCol += string.Format(" - {0} ", Translations.Round) + i;
+                        indicatorCol += string.Format(" - {0} ", Translations.Round) + i;
+                    }
                     if (dr.Table.Columns.Contains(diseaseCol))
                     {
                         // make sure disease treated has LF
@@ -232,7 +233,7 @@ namespace Nada.Model
             return value;
         }
 
-        protected string GetDropdownFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int indId, int startRound, int endRound, string diseaseType, List<string> typeNames)
+        protected string GetDropdownFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int indId, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
         {
             string valueType = "";
             IndicatorDropdownValue value = null;
@@ -241,8 +242,13 @@ namespace Nada.Model
             {
                 foreach (var tname in typeNames)
                 {
-                    string diseaseCol = TranslationLookup.GetValue("PcIntvDiseases") + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
-                    string indicatorCol = TranslationLookup.GetValue(indicatorName) + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
+                    string diseaseCol = TranslationLookup.GetValue("PcIntvDiseases") + " - " + TranslationLookup.GetValue(tname);
+                    string indicatorCol = TranslationLookup.GetValue(indicatorName) + " - " + TranslationLookup.GetValue(tname);
+                    if (hasRounds)
+                    {
+                        diseaseCol += string.Format(" - {0} ", Translations.Round) + i;
+                        indicatorCol += string.Format(" - {0} ", Translations.Round) + i;
+                    }
                     if (dr.Table.Columns.Contains(diseaseCol))
                     {
                         // make sure disease treated has LF
@@ -265,8 +271,8 @@ namespace Nada.Model
             intvTypes = intvTypes.Union(new List<string> { valueType }).ToList();
             return TranslationLookup.GetValue(value.TranslationKey);
         }
-        
-        protected string GetCombineFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames)
+
+        protected string GetCombineFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
         {
             List<string> valueTypes = new List<string>();
             List<string> values = new List<string>();
@@ -274,18 +280,24 @@ namespace Nada.Model
             {
                 foreach (var tname in typeNames)
                 {
-                    string diseaseCol = TranslationLookup.GetValue("PcIntvDiseases") + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
-                    string indicatorCol = TranslationLookup.GetValue(indicatorName) + " - " + TranslationLookup.GetValue(tname) + string.Format(" - {0} ", Translations.Round) + i;
+                    string diseaseCol = TranslationLookup.GetValue("PcIntvDiseases") + " - " + TranslationLookup.GetValue(tname);
+                    string indicatorCol = TranslationLookup.GetValue(indicatorName) + " - " + TranslationLookup.GetValue(tname);
+                    if (hasRounds)
+                    {
+                        diseaseCol += string.Format(" - {0} ", Translations.Round) + i;
+                        indicatorCol += string.Format(" - {0} ", Translations.Round) + i;
+                    }
                     if (dr.Table.Columns.Contains(diseaseCol))
                     {
                         // make sure disease treated has LF
                         if (dr[diseaseCol].ToString().Contains(TranslationLookup.GetValue(diseaseType)) && dr.Table.Columns.Contains(indicatorCol))
                         {
-
                             if (!string.IsNullOrEmpty(dr[indicatorCol].ToString()))
                             {
-                                if (!values.Contains(dr[indicatorCol].ToString()))
-                                    values.Add(dr[indicatorCol].ToString());
+                                var indicatorValues = Util.SplitCommonList(dr[indicatorCol].ToString());
+                                foreach(var v in indicatorValues)
+                                    if (!values.Contains(v))
+                                        values.Add(v);
                                 valueTypes.Add(tname);
                             }
                         }
@@ -311,6 +323,26 @@ namespace Nada.Model
             if (i1 > i2)
                 return s1;
             return s2;
+        }
+
+        protected void RemoveDataValidation(excel.Worksheet xlsWorksheet, excel.Range rng, string cell)
+        {
+            object missing = System.Reflection.Missing.Value;
+            //Select the specified cell
+            rng = (Microsoft.Office.Interop.Excel.Range)xlsWorksheet.get_Range(cell, missing);
+            //Delete any previous validation
+            rng.Validation.Delete();
+        }
+
+        private class IntVal
+        {
+            public IntVal()
+            {
+                Value = 0;
+                TypeNames = new List<string>();
+            }
+            public List<string> TypeNames { get; set; }
+            public int Value { get; set; }
         }
 
     }

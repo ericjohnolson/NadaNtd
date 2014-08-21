@@ -115,6 +115,60 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of individuals who refused to be examined.
+        /// </summary>
+        public static string OnchoSurNumRefused {
+            get {
+                return ResourceManager.GetString("OnchoSurNumRefused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Batch reference number (drug and batch numbers).
+        /// </summary>
+        public static string PcIntvBatchRefNum {
+            get {
+                return ResourceManager.GetString("PcIntvBatchRefNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mode of distribution.
+        /// </summary>
+        public static string PcIntvModeDistribution {
+            get {
+                return ResourceManager.GetString("PcIntvModeDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Community-based.
+        /// </summary>
+        public static string PcIntvModeDistributionCommunity {
+            get {
+                return ResourceManager.GetString("PcIntvModeDistributionCommunity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fixed point.
+        /// </summary>
+        public static string PcIntvModeDistributionFixed {
+            get {
+                return ResourceManager.GetString("PcIntvModeDistributionFixed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to School-based.
+        /// </summary>
+        public static string PcIntvModeDistributionSchool {
+            get {
+                return ResourceManager.GetString("PcIntvModeDistributionSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date redistricting occurred.
         /// </summary>
         public static string RedistrictDate {
@@ -259,6 +313,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prevalence of any parasite eggs in urine.
+        /// </summary>
+        public static string SchMappingPrevalenceEggsInUrine {
+            get {
+                return ResourceManager.GetString("SchMappingPrevalenceEggsInUrine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type of site.
         /// </summary>
         public static string SchMappingTypeOfSite {
@@ -277,11 +340,29 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prevalence of any parasite eggs in urine.
+        /// </summary>
+        public static string SchSentinelPrevalenceEggsInUrine {
+            get {
+                return ResourceManager.GetString("SchSentinelPrevalenceEggsInUrine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type of site.
         /// </summary>
         public static string SchSentinelTypeSite {
             get {
                 return ResourceManager.GetString("SchSentinelTypeSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is this survey a part of cohort study?.
+        /// </summary>
+        public static string SchSentinenlIsPartOfCohort {
+            get {
+                return ResourceManager.GetString("SchSentinenlIsPartOfCohort", resourceCulture);
             }
         }
         
@@ -300,6 +381,15 @@ namespace Nada.Globalization {
         public static string SthMappingTypeSite {
             get {
                 return ResourceManager.GetString("SthMappingTypeSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is this survey a part of cohort study?.
+        /// </summary>
+        public static string SthSentinelIsPartOfCohort {
+            get {
+                return ResourceManager.GetString("SthSentinelIsPartOfCohort", resourceCulture);
             }
         }
         

@@ -284,7 +284,9 @@ namespace Nada.Model.Exports
                         AddValueToRange(xlsWorksheet, rng, "AA" + rowCount, endMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "AB" + rowCount, endMda.Value.Year);
                     }
-                    AddValueToRange(xlsWorksheet, rng, "X" + rowCount, string.Join(", ", typesToCalc.ToArray()));
+
+                    RemoveDataValidation(xlsWorksheet, rng, "X" + rowCount);
+                    AddValueToRange(xlsWorksheet, rng, "X" + rowCount, TranslateMdaType(typesToCalc));
 
                 }
 
@@ -406,12 +408,12 @@ namespace Nada.Model.Exports
                     AddValueToRange(xlsWorksheet, rng, "BF" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames, "PcIntvOfTotalFemalesOncho"));
                     AddValueToRange(xlsWorksheet, rng, "BH" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames, "PcIntvOfTotalMalesOncho"));
                     AddValueToRange(xlsWorksheet, rng, "BJ" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 2, 2, "Oncho", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BL" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 252, 2, 1, "Oncho", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BL" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 2, 2, "Oncho", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "BK" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, string.Join(", ", typesToCalc.ToArray()));
-
                     AddValueToRange(xlsWorksheet, rng, "BS" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Oncho", typeNames));
 
+                    RemoveDataValidation(xlsWorksheet, rng, "AT" + rowCount);
+                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, TranslateMdaType(typesToCalc));
                 }
 
                 rowCount++;
@@ -518,9 +520,10 @@ namespace Nada.Model.Exports
                     AddValueToRange(xlsWorksheet, rng, "AX" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 1, Util.MaxRounds, "Schisto", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "AZ" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 1, Util.MaxRounds, "Schisto", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
-
-                    AddValueToRange(xlsWorksheet, rng, "AB" + rowCount, string.Join(", ", typesToCalc.ToArray()));
                     AddValueToRange(xlsWorksheet, rng, "BG" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+
+                    RemoveDataValidation(xlsWorksheet, rng, "AB" + rowCount);
+                    AddValueToRange(xlsWorksheet, rng, "AB" + rowCount, TranslateMdaType(typesToCalc));
                 }
 
                 rowCount++;
@@ -649,17 +652,18 @@ namespace Nada.Model.Exports
                     AddValueToRange(xlsWorksheet, rng, "CG" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "CI" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "CK" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 2, 2, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "CM" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 252, 2, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "CM" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 2, 2, "STH", typeNames));
                     AddValueToRange(xlsWorksheet, rng, "CL" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BL" + rowCount, string.Join(", ", typesToCalc.ToArray()));
-
                     AddValueToRange(xlsWorksheet, rng, "CT" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "STH", typeNames));
+
+                    RemoveDataValidation(xlsWorksheet, rng, "BL" + rowCount);
+                    AddValueToRange(xlsWorksheet, rng, "BL" + rowCount, TranslateMdaType(typesToCalc));
                 }
 
                 rowCount++;
             }
         }
-
+        
         private void AddTrachoma(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvZithroTeo" };
@@ -724,10 +728,10 @@ namespace Nada.Model.Exports
                 {
                     List<string> typesToCalc = new List<string>();
                     // currently implementing at district or subdistrict
-                    string aggEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                    string aggEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
                     if (subDistrictEligible.ContainsKey(unit.Id))
                     {
-                        string belowDistrictEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, subDistrictEligible[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                        string belowDistrictEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, subDistrictEligible[unit.Id], 1, 1, "Trachoma", typeNames, false);
                         if (!string.IsNullOrEmpty(belowDistrictEligible))
                             AddValueToRange(xlsWorksheet, rng, "S" + rowCount, TranslationLookup.GetValue("RtiSubDistrict", "RtiSubDistrict"));
                     }
@@ -735,13 +739,13 @@ namespace Nada.Model.Exports
                         AddValueToRange(xlsWorksheet, rng, "S" + rowCount, TranslationLookup.GetValue("RtiDistrict", "RtiDistrict"));
 
 
-                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, Util.MaxRounds, "Trachoma", typeNames);
+                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, 1, "Trachoma", typeNames, false);
                     if (startMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AE" + rowCount, startMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "AF" + rowCount, startMda.Value.Year);
                     }
-                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", typesToCalc, aggIntvs[unit.Id], true, 1, Util.MaxRounds, "Trachoma", typeNames);
+                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", typesToCalc, aggIntvs[unit.Id], true, 1, 1, "Trachoma", typeNames, false);
                     if (endMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AG" + rowCount, endMda.Value.ToString("MMMM"));
@@ -749,27 +753,27 @@ namespace Nada.Model.Exports
                     }
 
                     AddValueToRange(xlsWorksheet, rng, "AK" + rowCount, aggEligible);
-                    AddValueToRange(xlsWorksheet, rng, "AN" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AN" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
 
                     // Types based off these?
                     // teo
-                    string teo = GetIntFromRow("PcIntvNumTreatedTeo", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                    string teo = GetIntFromRow("PcIntvNumTreatedTeo", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
                     AddValueToRange(xlsWorksheet, rng, "AP" + rowCount, teo);
                     // zithro  
                     int zxTotal = 0;
-                    string zx = GetIntFromRow("PcIntvNumTreatedZx", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
-                    string zxPos = GetIntFromRow("PcIntvNumTreatedZxPos", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames);
+                    string zx = GetIntFromRow("PcIntvNumTreatedZx", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
+                    string zxPos = GetIntFromRow("PcIntvNumTreatedZxPos", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
                     if (!string.IsNullOrEmpty(zx))
                         zxTotal += int.Parse(zx);
                     if (!string.IsNullOrEmpty(zxPos))
                         zxTotal += int.Parse(zxPos);
                     AddValueToRange(xlsWorksheet, rng, "AR" + rowCount, zxTotal);
 
-                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AV" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AX" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 1, Util.MaxRounds, "Trachoma", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AZ" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 1, Util.MaxRounds, "Trachoma", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "AV" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "AX" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "AZ" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
 
                     if (!string.IsNullOrEmpty(teo) && zxTotal > 0)
                         AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, "Zithro+Tetra");
@@ -778,16 +782,13 @@ namespace Nada.Model.Exports
                     if (zxTotal > 0)
                         AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, "Zithro");
 
-                    AddValueToRange(xlsWorksheet, rng, "BG" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Trachoma", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BG" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
                 }
 
                 rowCount++;
             }
         }
-
-       
-
-
+        
         #region Helpers
         private void CountMdas(List<int> types, int parentId, List<int> childrenIds, out int mdas, out int consecutive, string diseaseName)
         {
@@ -1120,7 +1121,14 @@ namespace Nada.Model.Exports
 
             return transLookup.GetValue("RtiTraPending", "RtiTraPending");
         }
-
+        
+        private string TranslateMdaType(List<string> typesToCalc)
+        {
+            List<string> translatedTypes = new List<string>();
+            foreach (var t in typesToCalc)
+                translatedTypes.Add(transLookup.GetValue(t, t));
+            return string.Join(", ", translatedTypes.ToArray());
+        }
         #endregion
     }
 }

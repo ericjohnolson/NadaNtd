@@ -124,6 +124,8 @@ namespace Nada.UI.View.DiseaseDistribution
 
         void metaDataFetcher_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (this.IsDisposed)
+                return;
             indicatorControl1.SetMetaDataLoading(false);
             List<KeyValuePair<string, string>> metaData = (List<KeyValuePair<string, string>>)e.Result;
             if (metaData != null && metaData.Count > 0)

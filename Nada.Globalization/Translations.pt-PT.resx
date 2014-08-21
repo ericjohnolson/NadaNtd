@@ -6124,4 +6124,7 @@ Fixo / móvel </value>
   <data name="YesSentinelSite" xml:space="preserve">
     <value>Sim -Local Sentinela</value>
   </data>
+  <data name="UtilSplitAnd" xml:space="preserve">
+    <value>e</value>
+  </data>
 </root>

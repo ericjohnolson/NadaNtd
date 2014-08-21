@@ -61,6 +61,9 @@ namespace Nada.UI.Controls
 
         void calcWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (this.IsDisposed)
+                return;
+
             List<KeyValuePair<string, string>> calculationResults = (List<KeyValuePair<string, string>>)e.Result;
 
             tblIndicators.Visible = false;

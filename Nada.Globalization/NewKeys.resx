@@ -213,4 +213,34 @@
   <data name="RtiErrorMustBeUnique" xml:space="preserve">
     <value>Must assign each location only one time</value>
   </data>
+  <data name="OnchoSurNumRefused" xml:space="preserve">
+    <value>Number of individuals who refused to be examined</value>
+  </data>
+  <data name="PcIntvBatchRefNum" xml:space="preserve">
+    <value>Batch reference number (drug and batch numbers)</value>
+  </data>
+  <data name="PcIntvModeDistribution" xml:space="preserve">
+    <value>Mode of distribution</value>
+  </data>
+  <data name="PcIntvModeDistributionCommunity" xml:space="preserve">
+    <value>Community-based</value>
+  </data>
+  <data name="PcIntvModeDistributionFixed" xml:space="preserve">
+    <value>Fixed point</value>
+  </data>
+  <data name="PcIntvModeDistributionSchool" xml:space="preserve">
+    <value>School-based</value>
+  </data>
+  <data name="SchMappingPrevalenceEggsInUrine" xml:space="preserve">
+    <value>Prevalence of any parasite eggs in urine</value>
+  </data>
+  <data name="SchSentinelPrevalenceEggsInUrine" xml:space="preserve">
+    <value>Prevalence of any parasite eggs in urine</value>
+  </data>
+  <data name="SchSentinenlIsPartOfCohort" xml:space="preserve">
+    <value>Is this survey a part of cohort study?</value>
+  </data>
+  <data name="SthSentinelIsPartOfCohort" xml:space="preserve">
+    <value>Is this survey a part of cohort study?</value>
+  </data>
 </root>
