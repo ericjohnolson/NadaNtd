@@ -52,12 +52,12 @@ namespace Nada.Model
         {
             List<string> enumerations = new List<string>();
             for (int i = 0; i < (1 << source.Count); i++)
-                enumerations.Add(string.Join(EnumerationDelinator, constructSetFromBits(i).Select(n => source[n]).ToArray()));
+                enumerations.Add(string.Join(EnumerationDelinator, ConstructSetFromBits(i).Select(n => source[n]).ToArray()));
             enumerations.RemoveAt(0);
             return enumerations;
         }
 
-        private static IEnumerable<int> constructSetFromBits(int i)
+        private static IEnumerable<int> ConstructSetFromBits(int i)
         {
             for (int n = 0; i != 0; i /= 2, n++)
             {

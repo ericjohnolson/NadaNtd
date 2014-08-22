@@ -22,11 +22,12 @@ using System.Web.Security;
 using System.IO;
 using System.Configuration;
 
-namespace Nada.UI.View.DiseaseDistribution
+namespace Nada.UI.View
 {
     public partial class DataEntryEdit : BaseControl, IView
     {
         private IDataEntryVm viewModel = null;
+        private bool setFocusBottomOnCalc = false;
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return viewModel.Title; } }
@@ -79,7 +80,7 @@ namespace Nada.UI.View.DiseaseDistribution
                 {
                     statCalculator1.Calc = viewModel.Calculator;
                     statCalculator1.OnCalc += statCalculator1_OnCalc;
-                    statCalculator1_OnCalc();
+                    DoCalc(false);
                 }
                 else
                     statCalculator1.Visible = false;
@@ -94,6 +95,7 @@ namespace Nada.UI.View.DiseaseDistribution
             }
         }
 
+        // NEED to add spinner while this is happening so not so much blinking like crazy... only once? (yeah right right?)
         private void LoadMetaData()
         {
             indicatorControl1.SetMetaDataLoading(true);
@@ -129,14 +131,23 @@ namespace Nada.UI.View.DiseaseDistribution
             indicatorControl1.SetMetaDataLoading(false);
             List<KeyValuePair<string, string>> metaData = (List<KeyValuePair<string, string>>)e.Result;
             if (metaData != null && metaData.Count > 0)
+            {
+                //Point scrollPosition = ((Panel)this.Parent).AutoScrollPosition;
                 indicatorControl1.LoadMetaData(metaData);
+                //((Panel)this.Parent).AutoScrollPosition = scrollPosition;
+            }
         }
 
         private void statCalculator1_OnCalc()
         {
+            DoCalc(true);
+        }
+
+        private void DoCalc(bool setFocusBottom)
+        {
+            setFocusBottomOnCalc = setFocusBottom;
             statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id,
-                viewModel.CalculatorTypeId, indicatorControl1.start, indicatorControl1.end);
-            btnBottomSave.Focus();
+                viewModel.CalculatorTypeId, indicatorControl1.start, indicatorControl1.end, DoFocusAfterCalc);
         }
 
         /// <summary>
@@ -190,7 +201,24 @@ namespace Nada.UI.View.DiseaseDistribution
         {
             LoadMetaData();
             statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id, viewModel.CalculatorTypeId,
-                indicatorControl1.start, indicatorControl1.end);
+                indicatorControl1.start, indicatorControl1.end, DoFocusAfterCalc);
+        }
+
+        public void DoFocusAfterCalc()
+        {
+            if (setFocusBottomOnCalc)
+                btnBottomSave.Focus();
+        }
+
+        public static Control FindFocusedControl(Control control)
+        {
+            var container = control as ContainerControl;
+            while (container != null)
+            {
+                control = container.ActiveControl;
+                container = control as ContainerControl;
+            }
+            return control;
         }
     }
 }

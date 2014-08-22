@@ -9,22 +9,24 @@ using System.Windows.Forms;
 using Nada.Model;
 using Nada.Globalization;
 using Nada.UI.Base;
+using Nada.UI.View;
 
 namespace Nada.UI.Controls
 {
-   
+
 
     public partial class StatCalculator : BaseControl
     {
         public ICalcIndicators Calc { get; set; }
         public event Action OnCalc = () => { };
+        public Action OnFocus { get; set; }
 
         public StatCalculator()
             : base()
         {
             InitializeComponent();
         }
-        
+
         private void fieldLink1_OnClick()
         {
             OnCalc();
@@ -35,13 +37,23 @@ namespace Nada.UI.Controls
             fieldLink1.Focus();
         }
 
-        public void DoCalc(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, int adminLevel, string typeId, DateTime start, DateTime end)
+        public void DoCalc(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, int adminLevel, string typeId, DateTime start, 
+            DateTime end, Action doFocus)
         {
+            OnFocus = doFocus;
             lblCalculating.Visible = true;
             BackgroundWorker calcWorker = new BackgroundWorker();
             calcWorker.RunWorkerCompleted += calcWorker_RunWorkerCompleted;
             calcWorker.DoWork += calcWorker_DoWork;
-            calcWorker.RunWorkerAsync(new CalcWorkerPayload { AdminLevel = adminLevel, End = end, Indicators = indicators, Start = start, TypeId = typeId, Values = values });
+            calcWorker.RunWorkerAsync(new CalcWorkerPayload
+            {
+                AdminLevel = adminLevel,
+                End = end,
+                Indicators = indicators,
+                Start = start,
+                TypeId = typeId,
+                Values = values
+            });
         }
 
         void calcWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -49,7 +61,7 @@ namespace Nada.UI.Controls
             try
             {
                 CalcWorkerPayload payload = (CalcWorkerPayload)e.Argument;
-                e.Result =  Calc.PerformCalculations(payload.Indicators, payload.Values, payload.AdminLevel, payload.TypeId, payload.Start, payload.End);
+                e.Result = Calc.PerformCalculations(payload.Indicators, payload.Values, payload.AdminLevel, payload.TypeId, payload.Start, payload.End);
             }
             catch (Exception ex)
             {
@@ -103,6 +115,7 @@ namespace Nada.UI.Controls
             this.ResumeLayout();
             tblIndicators.Visible = true;
             lblCalculating.Visible = false;
+            OnFocus();
         }
 
         [Browsable(true)]

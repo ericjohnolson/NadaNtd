@@ -12,7 +12,6 @@ using Nada.UI.Base;
 using Nada.UI.View.Demography;
 using Nada.UI.AppLogic;
 using Nada.Model.Process;
-using Nada.UI.View.DiseaseDistribution;
 using Nada.UI.ViewModel;
 
 namespace Nada.UI.View

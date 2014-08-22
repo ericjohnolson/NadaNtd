@@ -1,4 +1,4 @@
-﻿namespace Nada.UI.View.DiseaseDistribution
+﻿namespace Nada.UI.View
 {
     partial class DataEntryEdit
     {

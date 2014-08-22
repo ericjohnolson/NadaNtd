@@ -21,7 +21,6 @@ using Nada.UI.AppLogic;
 using Nada.UI.Base;
 using Nada.UI.View;
 using Nada.UI.View.Demography;
-using Nada.UI.View.DiseaseDistribution;
 using Nada.UI.View.Intervention;
 using Nada.UI.View.Modals;
 using Nada.UI.View.Reports;

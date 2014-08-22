@@ -941,7 +941,7 @@ Fixo / móvel </value>
     <value>Toda ou parte da área esta sob vigilância de TF?</value>
   </data>
   <data name="DDTraAllTt" xml:space="preserve">
-    <value>Toda ou parte da área esta sob vigilância de TF?</value>
+    <value>Toda ou parte da área esta sob vigilância de TT?</value>
   </data>
   <data name="DDTraDiseaseDistributionPcInterventions" xml:space="preserve">
     <value>Distribuição da doença : intervenções da PC</value>
