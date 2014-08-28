@@ -5629,7 +5629,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Signe clinique évalué</value>
   </data>
   <data name="TraSurDateOfTheFirstRoundOfDistributionO" xml:space="preserve">
-    <value>Date de la première tournée de distribution de l'A (année)</value>
+    <value>Année du premier tour de la distribution des antibiotiques</value>
   </data>
   <data name="TraSurDistLevel" xml:space="preserve">
     <value>TDM au niveau de district</value>

@@ -261,24 +261,24 @@ namespace Nada.Model.Exports
                     if (aggIntvs[unit.Id].Table.Columns.Contains(TranslationLookup.GetValue("LFMMDPNumHydroceleCases") + " - " + TranslationLookup.GetValue("LfMorbidityManagment")))
                         AddValueToRange(xlsWorksheet, rng, "R" + rowCount,
                             aggIntvs[unit.Id][TranslationLookup.GetValue("LFMMDPNumHydroceleCases") + " - " + TranslationLookup.GetValue("LfMorbidityManagment")]);
-                    AddValueToRange(xlsWorksheet, rng, "AE" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AH" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AJ" + rowCount, GetIntFromRow("PcIntvPsacTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AL" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AN" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AP" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AR" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 1, Util.MaxRounds, "LF", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 1, Util.MaxRounds, "LF", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AS" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BA" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AE" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AH" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AJ" + rowCount, GetIntFromRow("PcIntvPsacTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AL" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AN" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AP" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AR" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", ref typesToCalc, aggIntvs[unit.Id], 249, 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", ref typesToCalc, aggIntvs[unit.Id], 251, 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AS" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BA" + rowCount, GetCombineFromRow("Notes", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
 
-                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, Util.MaxRounds, "LF", typeNames);
+                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, 1, Util.MaxRounds, "LF", typeNames);
                     if (startMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "Y" + rowCount, startMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "Z" + rowCount, startMda.Value.Year);
                     }
-                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", typesToCalc, aggIntvs[unit.Id], true, 1, Util.MaxRounds, "LF", typeNames);
+                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", ref typesToCalc, aggIntvs[unit.Id], true, 1, Util.MaxRounds, "LF", typeNames);
                     if (endMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AA" + rowCount, endMda.Value.ToString("MMMM"));
@@ -368,49 +368,51 @@ namespace Nada.Model.Exports
                 {
                     // ROUND 1
                     List<string> typesToCalc = new List<string>();
-                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, 1, "Oncho", typeNames);
+                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, 1, 1, "Oncho", typeNames);
                     if (startMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "V" + rowCount, startMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "W" + rowCount, startMda.Value.Year);
                     }
-                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", typesToCalc, aggIntvs[unit.Id], true, 1, 1, "Oncho", typeNames);
+                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", ref typesToCalc, aggIntvs[unit.Id], true, 1, 1, "Oncho", typeNames);
                     if (endMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "X" + rowCount, endMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "Y" + rowCount, endMda.Value.Year);
                     }
-                    AddValueToRange(xlsWorksheet, rng, "AB" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 1, 1, "Oncho", typeNames, "PcIntvOfTotalTargetedForOncho"));
-                    AddValueToRange(xlsWorksheet, rng, "AE" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "Oncho", typeNames, "PcIntvOfTotalTreatedForOncho"));
-                    AddValueToRange(xlsWorksheet, rng, "AG" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "Oncho", typeNames, "PcIntvOfTotalFemalesOncho"));
-                    AddValueToRange(xlsWorksheet, rng, "AI" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "Oncho", typeNames, "PcIntvOfTotalMalesOncho"));
-                    AddValueToRange(xlsWorksheet, rng, "AK" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 1, 1, "Oncho", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AM" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 1, 1, "Oncho", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AL" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 1, 1, "Oncho", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "U" + rowCount, string.Join(", ", typesToCalc.ToArray()));
+                    AddValueToRange(xlsWorksheet, rng, "AB" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Oncho", typeNames, "PcIntvOfTotalTargetedForOncho"));
+                    AddValueToRange(xlsWorksheet, rng, "AE" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Oncho", typeNames, "PcIntvOfTotalTreatedForOncho"));
+                    AddValueToRange(xlsWorksheet, rng, "AG" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Oncho", typeNames, "PcIntvOfTotalFemalesOncho"));
+                    AddValueToRange(xlsWorksheet, rng, "AI" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Oncho", typeNames, "PcIntvOfTotalMalesOncho"));
+                    AddValueToRange(xlsWorksheet, rng, "AK" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", ref typesToCalc, aggIntvs[unit.Id], 249, 1, 1, "Oncho", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AM" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", ref typesToCalc, aggIntvs[unit.Id], 251, 1, 1, "Oncho", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AL" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Oncho", typeNames));
+
+                    RemoveDataValidation(xlsWorksheet, rng, "U" + rowCount);
+                    AddValueToRange(xlsWorksheet, rng, "U" + rowCount, TranslateMdaType(typesToCalc));
 
                     // ROUND 2
                     typesToCalc = new List<string>();
-                    startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 2, 2, "Oncho", typeNames);
+                    startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, 2, 2, "Oncho", typeNames);
                     if (startMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AU" + rowCount, startMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "AV" + rowCount, startMda.Value.Year);
                     }
-                    endMda = GetDateFromRow("PcIntvEndDateOfMda", typesToCalc, aggIntvs[unit.Id], true, 2, 2, "Oncho", typeNames);
+                    endMda = GetDateFromRow("PcIntvEndDateOfMda", ref typesToCalc, aggIntvs[unit.Id], true, 2, 2, "Oncho", typeNames);
                     if (endMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AW" + rowCount, endMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "AX" + rowCount, endMda.Value.Year);
                     }
-                    AddValueToRange(xlsWorksheet, rng, "BA" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames, "PcIntvOfTotalTargetedForOncho"));
-                    AddValueToRange(xlsWorksheet, rng, "BD" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames, "PcIntvOfTotalTreatedForOncho"));
-                    AddValueToRange(xlsWorksheet, rng, "BF" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames, "PcIntvOfTotalFemalesOncho"));
-                    AddValueToRange(xlsWorksheet, rng, "BH" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames, "PcIntvOfTotalMalesOncho"));
-                    AddValueToRange(xlsWorksheet, rng, "BJ" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 2, 2, "Oncho", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BL" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 2, 2, "Oncho", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BK" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BS" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Oncho", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BA" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", ref typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames, "PcIntvOfTotalTargetedForOncho"));
+                    AddValueToRange(xlsWorksheet, rng, "BD" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", ref typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames, "PcIntvOfTotalTreatedForOncho"));
+                    AddValueToRange(xlsWorksheet, rng, "BF" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames, "PcIntvOfTotalFemalesOncho"));
+                    AddValueToRange(xlsWorksheet, rng, "BH" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames, "PcIntvOfTotalMalesOncho"));
+                    AddValueToRange(xlsWorksheet, rng, "BJ" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", ref typesToCalc, aggIntvs[unit.Id], 249, 2, 2, "Oncho", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BL" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", ref typesToCalc, aggIntvs[unit.Id], 251, 2, 2, "Oncho", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BK" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", ref typesToCalc, aggIntvs[unit.Id], 2, 2, "Oncho", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BS" + rowCount, GetCombineFromRow("Notes", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Oncho", typeNames));
 
                     RemoveDataValidation(xlsWorksheet, rng, "AT" + rowCount);
                     AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, TranslateMdaType(typesToCalc));
@@ -499,28 +501,28 @@ namespace Nada.Model.Exports
                 if (aggIntvs.ContainsKey(unit.Id))
                 {
                     List<string> typesToCalc = new List<string>();
-                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, Util.MaxRounds, "Schisto", typeNames);
+                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, 1, Util.MaxRounds, "Schisto", typeNames);
                     if (startMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AC" + rowCount, startMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, startMda.Value.Year);
                     }
-                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", typesToCalc, aggIntvs[unit.Id], true, 1, Util.MaxRounds, "Schisto", typeNames);
+                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", ref typesToCalc, aggIntvs[unit.Id], true, 1, Util.MaxRounds, "Schisto", typeNames);
                     if (endMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AE" + rowCount, endMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "AF" + rowCount, endMda.Value.Year);
                     }
-                    AddValueToRange(xlsWorksheet, rng, "AI" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AN" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AP" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AR" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AV" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AX" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 1, Util.MaxRounds, "Schisto", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AZ" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 1, Util.MaxRounds, "Schisto", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BG" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AI" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AN" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AP" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AR" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AV" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AX" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", ref typesToCalc, aggIntvs[unit.Id], 249, 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AZ" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", ref typesToCalc, aggIntvs[unit.Id], 251, 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BG" + rowCount, GetCombineFromRow("Notes", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
 
                     RemoveDataValidation(xlsWorksheet, rng, "AB" + rowCount);
                     AddValueToRange(xlsWorksheet, rng, "AB" + rowCount, TranslateMdaType(typesToCalc));
@@ -606,55 +608,57 @@ namespace Nada.Model.Exports
                 {
                     // ROUND 1
                     List<string> typesToCalc = new List<string>();
-                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, 1, "STH", typeNames);
+                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, 1, 1, "STH", typeNames);
                     if (startMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AE" + rowCount, startMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "AF" + rowCount, startMda.Value.Year);
                     }
-                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", typesToCalc, aggIntvs[unit.Id], true, 1, 1, "STH", typeNames);
+                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", ref typesToCalc, aggIntvs[unit.Id], true, 1, 1, "STH", typeNames);
                     if (endMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AG" + rowCount, endMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "AH" + rowCount, endMda.Value.Year);
                     }
-                    AddValueToRange(xlsWorksheet, rng, "AK" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AQ" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AS" + rowCount, GetIntFromRow("PcIntvPsacTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AU" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AW" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BA" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BC" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BE" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BD" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, string.Join(", ", typesToCalc.ToArray()));
+                    AddValueToRange(xlsWorksheet, rng, "AK" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AQ" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AS" + rowCount, GetIntFromRow("PcIntvPsacTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AU" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AW" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BA" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BC" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", ref typesToCalc, aggIntvs[unit.Id], 249, 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BE" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", ref typesToCalc, aggIntvs[unit.Id], 251, 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BD" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+
+                    RemoveDataValidation(xlsWorksheet, rng, "AD" + rowCount);
+                    AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, TranslateMdaType(typesToCalc));
 
                     // ROUND 2
                     typesToCalc = new List<string>();
-                    startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 2, 2, "STH", typeNames);
+                    startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, 2, 2, "STH", typeNames);
                     if (startMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "BM" + rowCount, startMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "BN" + rowCount, startMda.Value.Year);
                     }
-                    endMda = GetDateFromRow("PcIntvEndDateOfMda", typesToCalc, aggIntvs[unit.Id], true, 2, 2, "STH", typeNames);
+                    endMda = GetDateFromRow("PcIntvEndDateOfMda", ref typesToCalc, aggIntvs[unit.Id], true, 2, 2, "STH", typeNames);
                     if (endMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "BO" + rowCount, endMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "BP" + rowCount, endMda.Value.Year);
                     }
-                    AddValueToRange(xlsWorksheet, rng, "BS" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "BY" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "CA" + rowCount, GetIntFromRow("PcIntvPsacTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "CC" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "CE" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "CG" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "CI" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "CK" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 2, 2, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "CM" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 2, 2, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "CL" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "CT" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BS" + rowCount, GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", ref typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "BY" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", ref typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "CA" + rowCount, GetIntFromRow("PcIntvPsacTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "CC" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "CE" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "CG" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "CI" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "CK" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", ref typesToCalc, aggIntvs[unit.Id], 249, 2, 2, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "CM" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", ref typesToCalc, aggIntvs[unit.Id], 251, 2, 2, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "CL" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", ref typesToCalc, aggIntvs[unit.Id], 2, 2, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "CT" + rowCount, GetCombineFromRow("Notes", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "STH", typeNames));
 
                     RemoveDataValidation(xlsWorksheet, rng, "BL" + rowCount);
                     AddValueToRange(xlsWorksheet, rng, "BL" + rowCount, TranslateMdaType(typesToCalc));
@@ -728,10 +732,10 @@ namespace Nada.Model.Exports
                 {
                     List<string> typesToCalc = new List<string>();
                     // currently implementing at district or subdistrict
-                    string aggEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
+                    string aggEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
                     if (subDistrictEligible.ContainsKey(unit.Id))
                     {
-                        string belowDistrictEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", typesToCalc, subDistrictEligible[unit.Id], 1, 1, "Trachoma", typeNames, false);
+                        string belowDistrictEligible = GetIntFromRow("PcIntvNumEligibleIndividualsTargeted", ref typesToCalc, subDistrictEligible[unit.Id], 1, 1, "Trachoma", typeNames, false);
                         if (!string.IsNullOrEmpty(belowDistrictEligible))
                             AddValueToRange(xlsWorksheet, rng, "S" + rowCount, TranslationLookup.GetValue("RtiSubDistrict", "RtiSubDistrict"));
                     }
@@ -739,13 +743,13 @@ namespace Nada.Model.Exports
                         AddValueToRange(xlsWorksheet, rng, "S" + rowCount, TranslationLookup.GetValue("RtiDistrict", "RtiDistrict"));
 
 
-                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, 1, "Trachoma", typeNames, false);
+                    DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, 1, 1, "Trachoma", typeNames, false);
                     if (startMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AE" + rowCount, startMda.Value.ToString("MMMM"));
                         AddValueToRange(xlsWorksheet, rng, "AF" + rowCount, startMda.Value.Year);
                     }
-                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", typesToCalc, aggIntvs[unit.Id], true, 1, 1, "Trachoma", typeNames, false);
+                    DateTime? endMda = GetDateFromRow("PcIntvEndDateOfMda", ref typesToCalc, aggIntvs[unit.Id], true, 1, 1, "Trachoma", typeNames, false);
                     if (endMda.HasValue)
                     {
                         AddValueToRange(xlsWorksheet, rng, "AG" + rowCount, endMda.Value.ToString("MMMM"));
@@ -753,36 +757,38 @@ namespace Nada.Model.Exports
                     }
 
                     AddValueToRange(xlsWorksheet, rng, "AK" + rowCount, aggEligible);
-                    AddValueToRange(xlsWorksheet, rng, "AN" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "AN" + rowCount, GetIntFromRow("PcIntvNumIndividualsTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
 
                     // Types based off these?
                     // teo
-                    string teo = GetIntFromRow("PcIntvNumTreatedTeo", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
+                    string teo = GetIntFromRow("PcIntvNumTreatedTeo", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
                     AddValueToRange(xlsWorksheet, rng, "AP" + rowCount, teo);
                     // zithro  
                     int zxTotal = 0;
-                    string zx = GetIntFromRow("PcIntvNumTreatedZx", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
-                    string zxPos = GetIntFromRow("PcIntvNumTreatedZxPos", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
+                    string zx = GetIntFromRow("PcIntvNumTreatedZx", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
+                    string zxPos = GetIntFromRow("PcIntvNumTreatedZxPos", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false);
                     if (!string.IsNullOrEmpty(zx))
                         zxTotal += int.Parse(zx);
                     if (!string.IsNullOrEmpty(zxPos))
                         zxTotal += int.Parse(zxPos);
                     AddValueToRange(xlsWorksheet, rng, "AR" + rowCount, zxTotal);
 
-                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
-                    AddValueToRange(xlsWorksheet, rng, "AV" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
-                    AddValueToRange(xlsWorksheet, rng, "AX" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", typesToCalc, aggIntvs[unit.Id], 249, 1, 1, "Trachoma", typeNames, false));
-                    AddValueToRange(xlsWorksheet, rng, "AZ" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", typesToCalc, aggIntvs[unit.Id], 251, 1, 1, "Trachoma", typeNames, false));
-                    AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "AT" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "AV" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "AX" + rowCount, GetDropdownFromRow("PcIntvStockOutDuringMda", ref typesToCalc, aggIntvs[unit.Id], 249, 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "AZ" + rowCount, GetDropdownFromRow("PcIntvLengthOfStockOut", ref typesToCalc, aggIntvs[unit.Id], 251, 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "AY" + rowCount, GetCombineFromRow("PcIntvStockOutDrug", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
 
+
+                    RemoveDataValidation(xlsWorksheet, rng, "AD" + rowCount);
                     if (!string.IsNullOrEmpty(teo) && zxTotal > 0)
                         AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, "Zithro+Tetra");
                     else if (!string.IsNullOrEmpty(teo))
                         AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, "Tetra");
-                    if (zxTotal > 0)
+                    else if (zxTotal > 0)
                         AddValueToRange(xlsWorksheet, rng, "AD" + rowCount, "Zithro");
 
-                    AddValueToRange(xlsWorksheet, rng, "BG" + rowCount, GetCombineFromRow("Notes", typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
+                    AddValueToRange(xlsWorksheet, rng, "BG" + rowCount, GetCombineFromRow("Notes", ref typesToCalc, aggIntvs[unit.Id], 1, 1, "Trachoma", typeNames, false));
                 }
 
                 rowCount++;

@@ -63,6 +63,7 @@ namespace Nada.UI.View.Reports
                     IsoCode = l.Split(';')[0],
                     Name = l.Split(';')[1]
                 }).ToList();
+                langz.RemoveAll(l => l.IsoCode == "id-ID");
                 bsLanguages.DataSource = langz;
                 if (langz.FirstOrDefault(x => x.IsoCode == Thread.CurrentThread.CurrentCulture.Name) != null)
                     cbLanguages.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;

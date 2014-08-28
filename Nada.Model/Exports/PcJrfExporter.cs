@@ -196,14 +196,14 @@ namespace Nada.Model.Exports
                 {
                     if (aggIntvs.ContainsKey(unit.Id))
                     {
-                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumPsacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "I" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvPsacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "M" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumPsacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "I" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvPsacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "M" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
 
-                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
+                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
                         if (startMda.HasValue)
                             AddValueToRange(xlsWorksheet, rng, "F" + rowCount, startMda.Value.ToString("MM/dd/yyyy"));
 
@@ -225,7 +225,7 @@ namespace Nada.Model.Exports
 
             for (int i = Util.MaxRounds; i >= 1; i--)
             {
-                if (!HasRoundNumber(reportingUnits, aggIntvs, typeNames, typesToCalc, i))
+                if (!HasRoundNumber(reportingUnits, aggIntvs, typeNames,  typesToCalc, i))
                     continue;
 
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["T1"];
@@ -240,16 +240,16 @@ namespace Nada.Model.Exports
                 {
                     if (aggIntvs.ContainsKey(unit.Id))
                     {
-                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumPsacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "I" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumPsacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "I" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
 
-                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvPsacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "M" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "N" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvPsacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "M" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "N" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
 
-                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
+                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
                         if (startMda.HasValue)
                             AddValueToRange(xlsWorksheet, rng, "F" + rowCount, startMda.Value.ToString("MM/dd/yyyy"));
 
@@ -270,7 +270,7 @@ namespace Nada.Model.Exports
 
             for (int i = Util.MaxRounds; i >= 1; i--)
             {
-                if (!HasRoundNumber(reportingUnits, aggIntvs, typeNames, typesToCalc, i))
+                if (!HasRoundNumber(reportingUnits, aggIntvs, typeNames,  typesToCalc, i))
                     continue;
 
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["T2"];
@@ -285,14 +285,14 @@ namespace Nada.Model.Exports
                 {
                     if (aggIntvs.ContainsKey(unit.Id))
                     {
-                        AddValueToRange(xlsWorksheet, rng, "F" + rowCount, GetIntFromRow("PcIntvNumPsacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvPsacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "F" + rowCount, GetIntFromRow("PcIntvNumPsacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvPsacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
 
-                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
+                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
                         if (startMda.HasValue)
                             AddValueToRange(xlsWorksheet, rng, "E" + rowCount, startMda.Value.ToString("MM/dd/yyyy"));
                     }
@@ -310,7 +310,7 @@ namespace Nada.Model.Exports
 
             for (int i = Util.MaxRounds; i >= 1; i--)
             {
-                if (i == 2 || !HasRoundNumber(reportingUnits, aggIntvs, typeNames, typesToCalc, i))
+                if (i == 2 || !HasRoundNumber(reportingUnits, aggIntvs, typeNames,  typesToCalc, i))
                     continue;
 
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["MDA3"];
@@ -327,20 +327,20 @@ namespace Nada.Model.Exports
                     {
 
 
-                        AddValueToRange(xlsWorksheet, rng, "I" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "I" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
 
-                        string sacTarg = GetIntFromRow("PcIntvNumSacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames);
-                        string adultsTarg = GetIntFromRow("PcIntvNumAdultsTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames);
-                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
+                        string sacTarg = GetIntFromRow("PcIntvNumSacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames);
+                        string adultsTarg = GetIntFromRow("PcIntvNumAdultsTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames);
+                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
                         if (i == 1)
                         {
-                            startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, 1, 2, null, typeNames);
-                            AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, null, typeNames));
-                            AddValueToRange(xlsWorksheet, rng, "M" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], 2, 2, null, typeNames));
+                            startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, 1, 2, null, typeNames);
+                            AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], 2, 2, null, typeNames));
+                            AddValueToRange(xlsWorksheet, rng, "M" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], 2, 2, null, typeNames));
 
-                            string sacTarg2 = GetIntFromRow("PcIntvNumSacTargeted", typesToCalc, aggIntvs[unit.Id], 2, 2, null, typeNames);
-                            string adultsTarg2 = GetIntFromRow("PcIntvNumAdultsTargeted", typesToCalc, aggIntvs[unit.Id], 2, 2, null, typeNames);
+                            string sacTarg2 = GetIntFromRow("PcIntvNumSacTargeted", ref typesToCalc, aggIntvs[unit.Id], 2, 2, null, typeNames);
+                            string adultsTarg2 = GetIntFromRow("PcIntvNumAdultsTargeted", ref typesToCalc, aggIntvs[unit.Id], 2, 2, null, typeNames);
                             sacTarg = GetMaxIntFromStrings(sacTarg, sacTarg2);
                             adultsTarg = GetMaxIntFromStrings(adultsTarg, adultsTarg2);
                         }
@@ -365,7 +365,7 @@ namespace Nada.Model.Exports
 
             for (int i = Util.MaxRounds; i >= 1; i--)
             {
-                if (!HasRoundNumber(reportingUnits, aggIntvs, typeNames, typesToCalc, i))
+                if (!HasRoundNumber(reportingUnits, aggIntvs, typeNames,  typesToCalc, i))
                     continue;
 
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["MDA2"];
@@ -380,14 +380,14 @@ namespace Nada.Model.Exports
                 {
                     if (aggIntvs.ContainsKey(unit.Id))
                     {
-                        AddValueToRange(xlsWorksheet, rng, "F" + rowCount, GetIntFromRow("PcIntvNumPsacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvPsacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "F" + rowCount, GetIntFromRow("PcIntvNumPsacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvPsacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
 
-                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
+                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
                         if (startMda.HasValue)
                             AddValueToRange(xlsWorksheet, rng, "E" + rowCount, startMda.Value.ToString("MM/dd/yyyy"));
 
@@ -404,7 +404,7 @@ namespace Nada.Model.Exports
 
             for (int i = Util.MaxRounds; i >= 1; i--)
             {
-                if (!HasRoundNumber(reportingUnits, aggIntvs, typeNames, typesToCalc, i))
+                if (!HasRoundNumber(reportingUnits, aggIntvs, typeNames,  typesToCalc, i))
                     continue;
 
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["MDA1"];
@@ -420,12 +420,12 @@ namespace Nada.Model.Exports
                 {
                     if (aggIntvs.ContainsKey(unit.Id))
                     {
-                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
 
-                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
+                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
                         if (startMda.HasValue)
                             AddValueToRange(xlsWorksheet, rng, "E" + rowCount, startMda.Value.ToString("MM/dd/yyyy"));
                     }
@@ -441,7 +441,7 @@ namespace Nada.Model.Exports
 
             for (int i = Util.MaxRounds; i >= 1; i--)
             {
-                if (!HasRoundNumber(reportingUnits, aggIntvs, typeNames, typesToCalc, i))
+                if (!HasRoundNumber(reportingUnits, aggIntvs, typeNames,  typesToCalc, i))
                     continue;
 
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Sheets["MDA4"];
@@ -456,14 +456,14 @@ namespace Nada.Model.Exports
                 {
                     if (aggIntvs.ContainsKey(unit.Id))
                     {
-                        AddValueToRange(xlsWorksheet, rng, "F" + rowCount, GetIntFromRow("PcIntvNumPsacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvPsacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumSacTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
-                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "F" + rowCount, GetIntFromRow("PcIntvNumPsacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, GetIntFromRow("PcIntvNumSacTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, GetIntFromRow("PcIntvNumAdultsTargeted", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetIntFromRow("PcIntvPsacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumSacTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
+                        AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumAdultsTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames));
 
-                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
+                        DateTime? startMda = GetDateFromRow("PcIntvStartDateOfMda", ref typesToCalc, aggIntvs[unit.Id], false, i, i, null, typeNames);
                         if (startMda.HasValue)
                             AddValueToRange(xlsWorksheet, rng, "E" + rowCount, startMda.Value.ToString("MM/dd/yyyy"));
 
@@ -485,17 +485,17 @@ namespace Nada.Model.Exports
                 if (aggIntvs.ContainsKey(unit.Id))
                 {
                     // LF
-                    AddValueToRange(xlsWorksheet, rng, "E" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "F" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "E" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "F" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "LF", typeNames));
                     // Oncho
-                    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Oncho", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Oncho", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Oncho", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "L" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Oncho", typeNames));
                     // STH
-                    AddValueToRange(xlsWorksheet, rng, "Q" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "STH", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "R" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "Q" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "STH", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "R" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "STH", typeNames));
                     // Schisto
-                    AddValueToRange(xlsWorksheet, rng, "W" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
-                    AddValueToRange(xlsWorksheet, rng, "X" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "W" + rowCount, GetIntFromRow("PcIntvNumMalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
+                    AddValueToRange(xlsWorksheet, rng, "X" + rowCount, GetIntFromRow("PcIntvNumFemalesTreated", ref typesToCalc, aggIntvs[unit.Id], 1, Util.MaxRounds, "Schisto", typeNames));
                 
                 }
                 rowCount++;
@@ -508,7 +508,7 @@ namespace Nada.Model.Exports
             {
                 if (aggIntvs.ContainsKey(unit.Id))
                 {
-                    string treated = GetIntFromRow("PcIntvNumIndividualsTreated", typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames);
+                    string treated = GetIntFromRow("PcIntvNumIndividualsTreated", ref typesToCalc, aggIntvs[unit.Id], i, i, null, typeNames);
                     if (!string.IsNullOrEmpty(treated))
                         return true;
                 }

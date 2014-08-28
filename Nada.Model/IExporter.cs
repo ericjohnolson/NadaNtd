@@ -114,7 +114,7 @@ namespace Nada.Model
         }
 
 
-        protected string GetIntFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames, string albIndicator)
+        protected string GetIntFromRow(string indicatorName, ref List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames, string albIndicator)
         {
             int sumOfTypes = 0;
             List<string> types = new List<string>();
@@ -154,7 +154,7 @@ namespace Nada.Model
             return sumOfTypes.ToString();
         }
 
-        protected string GetIntFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
+        protected string GetIntFromRow(string indicatorName, ref List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
         {
             int sumOfTypes = 0;
             List<string> types = new List<string>();
@@ -196,7 +196,7 @@ namespace Nada.Model
             return sumOfTypes.ToString();
         }
 
-        protected DateTime? GetDateFromRow(string indicatorName, List<string> intvTypes, DataRow dr, bool isGreaterThan, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
+        protected DateTime? GetDateFromRow(string indicatorName, ref List<string> intvTypes, DataRow dr, bool isGreaterThan, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
         {
             string valueType = "";
             DateTime? value = null;
@@ -233,7 +233,7 @@ namespace Nada.Model
             return value;
         }
 
-        protected string GetDropdownFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int indId, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
+        protected string GetDropdownFromRow(string indicatorName, ref List<string> intvTypes, DataRow dr, int indId, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
         {
             string valueType = "";
             IndicatorDropdownValue value = null;
@@ -272,7 +272,7 @@ namespace Nada.Model
             return TranslationLookup.GetValue(value.TranslationKey);
         }
 
-        protected string GetCombineFromRow(string indicatorName, List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
+        protected string GetCombineFromRow(string indicatorName, ref List<string> intvTypes, DataRow dr, int startRound, int endRound, string diseaseType, List<string> typeNames, bool hasRounds = true)
         {
             List<string> valueTypes = new List<string>();
             List<string> values = new List<string>();

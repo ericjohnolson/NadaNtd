@@ -5630,7 +5630,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
     <value>Tanda klinis yang diperiksa</value>
   </data>
   <data name="TraSurDateOfTheFirstRoundOfDistributionO" xml:space="preserve">
-    <value>Tanggal putaran pertama distribusi A (tahun)</value>
+    <value>Tahun putaran pertama distribusi Antibiotik</value>
   </data>
   <data name="TraSurDistLevel" xml:space="preserve">
     <value>POMP tingkat Kabupaten</value>

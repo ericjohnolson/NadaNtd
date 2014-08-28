@@ -5630,7 +5630,7 @@ Fixo / móvel </value>
     <value>Sinal clínico avaliado</value>
   </data>
   <data name="TraSurDateOfTheFirstRoundOfDistributionO" xml:space="preserve">
-    <value>Data da primeira rodada de distribuição de A ( ano)</value>
+    <value>Ano da primeira ronda da distribuição de antibióticos</value>
   </data>
   <data name="TraSurDistLevel" xml:space="preserve">
     <value>CTM a nível distrital</value>

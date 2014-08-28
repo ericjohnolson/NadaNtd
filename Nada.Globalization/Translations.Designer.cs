@@ -16967,7 +16967,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date of the first round of distribution of A (year).
+        ///   Looks up a localized string similar to Year of the first round of distribution of Antibiotics.
         /// </summary>
         public static string TraSurDateOfTheFirstRoundOfDistributionO {
             get {

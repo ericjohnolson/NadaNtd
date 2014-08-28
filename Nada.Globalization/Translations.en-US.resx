@@ -5633,7 +5633,7 @@ Fixed / Mobile</value>
     <value>Clinical sign assessed</value>
   </data>
   <data name="TraSurDateOfTheFirstRoundOfDistributionO" xml:space="preserve">
-    <value>Date of the first round of distribution of A (year)</value>
+    <value>Year of the first round of distribution of Antibiotics</value>
   </data>
   <data name="TraSurDistLevel" xml:space="preserve">
     <value>District-level MDA</value>

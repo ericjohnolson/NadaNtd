@@ -57,20 +57,22 @@ INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, 
 
 INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) VALUES (11, 5, 'SchSentinenlIsPartOfCohort',5,43, 26, NOW(), 0, 0, 0, 0,0,0,2,51);
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,1,'Yes','Yes',10,26,Now(),26,Now() from InterventionIndicators where displayname = 'SchSentinenlIsPartOfCohort';
+Select ID,3,1,'Yes','Yes',10,26,Now(),26,Now() from SurveyIndicators where displayname = 'SchSentinenlIsPartOfCohort';
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,2,'No','No',20,26,Now(),26,Now() from InterventionIndicators where displayname = 'SchSentinenlIsPartOfCohort';
+Select ID,3,2,'No','No',20,26,Now(),26,Now() from SurveyIndicators where displayname = 'SchSentinenlIsPartOfCohort';
 
 INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) VALUES (12, 5, 'SthSentinelIsPartOfCohort',5,43, 26, NOW(), 0, 0, 0, 0,0,0,2,51);
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,1,'Yes','Yes',10,26,Now(),26,Now() from InterventionIndicators where displayname = 'SthSentinelIsPartOfCohort';
+Select ID,3,1,'Yes','Yes',10,26,Now(),26,Now() from SurveyIndicators where displayname = 'SthSentinelIsPartOfCohort';
 insert into indicatordropdownvalues (IndicatorId,EntityType,SortOrder,DropdownValue,TranslationKey,WeightedValue,UpdatedById,UpdatedAt,CreatedById,CreatedAt) 
-Select ID,3,2,'No','No',20,26,Now(),26,Now() from InterventionIndicators where displayname = 'SthSentinelIsPartOfCohort';
+Select ID,3,2,'No','No',20,26,Now(),26,Now() from SurveyIndicators where displayname = 'SthSentinelIsPartOfCohort';
 
 INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) VALUES (11, 13, 'SchSentinelPrevalenceEggsInUrine',5,-10, 26, NOW(), 0, 0, 0, 0,-1,0,2,54);
 update surveyindicators set sortorder = -20 where displayname = 'SCHSurPrevalenceOfAnyHaemuaturiaOrParasi';
 
 INSERT INTO SurveyIndicators (SurveyTypeId, DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, RedistrictRuleId, MergeRuleId) VALUES (17, 13, 'SchMappingPrevalenceEggsInUrine',5,175, 26, NOW(), 0, 0, 0, 0,-1,0,2,54);
+
+update surveyindicators set datatypeid = 7 where displayname = 'TraSurDateOfTheFirstRoundOfDistributionO';
 
 
 INSERT INTO [SchemaChangeLog]
