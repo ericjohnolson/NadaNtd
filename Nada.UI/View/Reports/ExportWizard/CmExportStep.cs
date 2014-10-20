@@ -15,6 +15,7 @@ using System.Threading;
 using Nada.UI.Base;
 using Nada.Model.Exports;
 using Nada.Model.Repositories;
+using System.Globalization;
 
 namespace Nada.UI.View.Reports
 {
@@ -56,10 +57,19 @@ namespace Nada.UI.View.Reports
                 Localizer.TranslateControl(this);
                 questions = repo.GetCmExportQuestions();
                 h3bLabel1.SetMaxWidth(500);
+                h3Required1.SetMaxWidth(400);
                 this.saveFileDialog1.DefaultExt = "xlsx";
                 this.saveFileDialog1.Filter = "Excel (.xlsx)|*.xlsx";
                 bindingSource1.DataSource = questions;
                 exportContactBindingSource.DataSource = questions.Contacts;
+                List<Language> langz = new List<Language>();
+                langz.Add(new Language { IsoCode = "en-US", Name = "English" });
+                langz.Add(new Language { IsoCode = "fr-FR", Name = "Français" });
+                bsLanguages.DataSource = langz;
+                if (langz.FirstOrDefault(x => x.IsoCode == Thread.CurrentThread.CurrentCulture.Name) != null)
+                    cbLanguages.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;
+                else
+                    cbLanguages.SelectedValue = "en-US";
             }
         }
 
@@ -102,6 +112,7 @@ namespace Nada.UI.View.Reports
             }
             bindingSource1.EndEdit();
             repo.UpdateCmExportQuestions(questions);
+            questions.ExportCulture = new CultureInfo(cbLanguages.SelectedValue.ToString());
 
             saveFileDialog1.FileName = title + " " + questions.YearReporting.Value;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)

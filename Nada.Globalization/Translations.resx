@@ -6256,4 +6256,7 @@ Fixed / Mobile</value>
   <data name="SthSentinelIsPartOfCohort" xml:space="preserve">
     <value>Is this survey a part of cohort study?</value>
   </data>
+  <data name="CmJrfExportFileName" xml:space="preserve">
+    <value>Exports\AFRO_CM_JRF.xls</value>
+  </data>
 </root>

@@ -72,7 +72,7 @@ namespace Nada.Model.Repositories
             return surveys;
         }
 
-        public List<SurveyBase> GetByTypeForDateRange(List<int> surveyTypes, DateTime start, DateTime end)
+        public List<SurveyBase> GetByTypeForDistrictsInDateRange(List<int> surveyTypes, DateTime start, DateTime end)
         {
             List<SurveyBase> surveys = new List<SurveyBase>();
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -90,6 +90,46 @@ namespace Nada.Model.Repositories
                             INNER JOIN AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.Id) 
                             INNER JOIN Diseases on SurveyTypes.DiseaseId = Diseases.ID) 
                         WHERE AdminLevelTypes.IsDistrict=-1 and Surveys.IsDeleted = 0 and Surveys.SurveyTypeId in ("
+                        + string.Join(",", surveyTypes.Select(i => i.ToString()).ToArray()) + ") " +
+                        @" and Surveys.DateReported >= @StartDate and Surveys.DateReported <= @EndDate 
+                        ORDER BY AdminLevels.DisplayName", connection);
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", start));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@EndDate", end));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            surveys.Add(GetSurvey<SurveyBase>(command, connection, reader.GetValueOrDefault<int>("ID")));
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return surveys;
+        }
+
+        public List<SurveyBase> GetByTypeInDateRange(List<int> surveyTypes, DateTime start, DateTime end)
+        {
+            List<SurveyBase> surveys = new List<SurveyBase>();
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select 
+                        Surveys.ID 
+                        FROM ((((((Surveys INNER JOIN SurveyTypes on Surveys.SurveyTypeId = SurveyTypes.ID)
+                            INNER JOIN aspnet_Users on Surveys.UpdatedById = aspnet_Users.UserId)
+                            INNER JOIN Surveys_to_AdminLevels on Surveys.Id = Surveys_to_AdminLevels.SurveyId) 
+                            INNER JOIN AdminLevels on AdminLevels.Id = Surveys_to_AdminLevels.AdminLevelId) 
+                            INNER JOIN AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.Id) 
+                            INNER JOIN Diseases on SurveyTypes.DiseaseId = Diseases.ID) 
+                        WHERE Surveys.IsDeleted = 0 and Surveys.SurveyTypeId in ("
                         + string.Join(",", surveyTypes.Select(i => i.ToString()).ToArray()) + ") " +
                         @" and Surveys.DateReported >= @StartDate and Surveys.DateReported <= @EndDate 
                         ORDER BY AdminLevels.DisplayName", connection);

@@ -16,6 +16,7 @@ namespace Nada.Model.Exports
         SettingsRepository settings = new SettingsRepository();
         DemoRepository demo = new DemoRepository();
         ExportRepository repo = new ExportRepository();
+        TranslationLookupInstance exportLangLookup = null;
 
         public string ExportName
         {
@@ -31,7 +32,8 @@ namespace Nada.Model.Exports
         {
             try
             {
-                int yearReporting = questions.YearReporting.Value;
+                int yearReporting = questions.YearReporting.Value; 
+                exportLangLookup = new TranslationLookupInstance(questions.ExportCulture); 
                 System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
                 Microsoft.Office.Interop.Excel.Application xlsApp = new Microsoft.Office.Interop.Excel.ApplicationClass();
@@ -41,7 +43,7 @@ namespace Nada.Model.Exports
                 object missing = System.Reflection.Missing.Value;
 
                 // Open workbook
-                xlsWorkbook = xlsApp.Workbooks.Open(Path.Combine(Environment.CurrentDirectory, @"Exports\AFRO_CM_JRF.xls"),
+                xlsWorkbook = xlsApp.Workbooks.Open(Path.Combine(Environment.CurrentDirectory, exportLangLookup.GetValue("CmJrfExportFileName")),
                     missing, missing, missing, missing, missing, missing, missing,
                     missing, missing, missing, missing, missing, missing, missing);
 

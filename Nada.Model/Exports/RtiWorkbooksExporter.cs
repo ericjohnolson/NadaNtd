@@ -45,7 +45,7 @@ namespace Nada.Model.Exports
         {
             try
             {
-                transLookup = new TranslationLookupInstance(ExportCulture); // TODO: use this in the appropriate place for the workbook export, but not the report builder
+                transLookup = new TranslationLookupInstance(ExportCulture); 
                 System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
                 excel.Application xlsApp = new excel.ApplicationClass();
@@ -204,23 +204,9 @@ namespace Nada.Model.Exports
             Dictionary<int, DataRow> lfDd;
             GetDdForDisease(start, end, demography, out lf, out lfDd, DiseaseType.Lf);
 
-            // Get Lf Surveys
-            var surveys = surveyRepo.GetByTypeForDateRange(
-                new List<int> { (int)StaticSurveyType.LfMapping, (int)StaticSurveyType.LfSentinel, (int)StaticSurveyType.LfTas }, StartDate, EndDate);
-
             int rowCount = 16;
             foreach (var unit in demography)
             {
-                // SURVEYS
-                //var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
-                //if (mostRecentSurvey != null)
-                //{
-                //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
-                //        AddLfPercentPositive(xlsWorksheet, rng, rowCount, mostRecentSurvey, "LFSurNumberOfIndividualsPositive", "LFSurNumberOfIndividualsExamined");
-                //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
-                //        AddLfPercentPositive(xlsWorksheet, rng, rowCount, mostRecentSurvey, "LFMapSurNumberOfIndividualsPositive", "LFMapSurNumberOfIndividualsExamined");
-                //    AddTypeOfLfSurveySite(xlsWorksheet, rng, rowCount, mostRecentSurvey);
-                //}
                 // DISEASE DISTRO
                 if (lfDd.ContainsKey(unit.Id))
                 {
@@ -303,8 +289,8 @@ namespace Nada.Model.Exports
             Dictionary<int, DataRow> onchoDd;
             GetDdForDisease(start, end, demography, out oncho, out onchoDd, DiseaseType.Oncho);
 
-            // Get ONCHO Surveys
-            var surveys = surveyRepo.GetByTypeForDateRange(
+            // Get ONCHO Surveys 
+            var surveys = surveyRepo.GetByTypeInDateRange(
                 new List<int> { (int)StaticSurveyType.OnchoMapping, (int)StaticSurveyType.OnchoAssessment }, StartDate, EndDate);
             int maxLvl = 0;
             foreach (var s in surveys)
@@ -432,7 +418,7 @@ namespace Nada.Model.Exports
             GetDdForDisease(start, end, demography, out sch, out schDd, DiseaseType.Schisto);
 
             // Get sch Surveys
-            var surveys = surveyRepo.GetByTypeForDateRange(
+            var surveys = surveyRepo.GetByTypeInDateRange(
                 new List<int> { (int)StaticSurveyType.SchistoSentinel, (int)StaticSurveyType.SchMapping }, StartDate, EndDate);
             int maxLvl = 0;
             foreach (var s in surveys)
@@ -541,38 +527,9 @@ namespace Nada.Model.Exports
             Dictionary<int, DataRow> sthDd;
             GetDdForDisease(start, end, demography, out sth, out sthDd, DiseaseType.STH);
 
-            // Get sch Surveys
-            var surveys = surveyRepo.GetByTypeForDateRange(
-                new List<int> { (int)StaticSurveyType.SthMapping, (int)StaticSurveyType.SthSentinel }, StartDate, EndDate);
-            int maxLvl = 0;
-            foreach (var s in surveys)
-            {
-                if (maxLvl < s.AdminLevels.Max(a => a.LevelNumber))
-                    maxLvl = s.AdminLevels.Max(a => a.LevelNumber);
-            }
-            var level = settings.GetAdminLevelTypeByLevel(maxLvl);
-
             int rowCount = 18;
             foreach (var unit in demography)
             {
-                // SURVEYS
-                //var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
-                //if (mostRecentSurvey != null)
-                //{
-                //    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, mostRecentSurvey.DateReported.Year);
-                //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
-                //    {
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHSurPositiveOverall", "I");
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHSurOverallProportionOfHeavyIntensity", "J");
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHSurTestType", "L");
-                //    }
-                //    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
-                //    {
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHMapSurSurPerPositiveOverall", "I");
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHMapSurSurOverallProportionOfHeavyIntensity", "J");
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "STHMapSurSurTestType", "L");
-                //    }
-                //}
 
                 // DISEASE DISTRO
                 if (sthDd.ContainsKey(unit.Id))
@@ -680,7 +637,7 @@ namespace Nada.Model.Exports
             // get one thing from one thing
             Dictionary<int, DataRow> subDistrictEligible = GetEligibleInSubdistricts(start, end);
 
-            var surveys = surveyRepo.GetByTypeForDateRange(
+            var surveys = surveyRepo.GetByTypeForDistrictsInDateRange(
                 new List<int> { (int)StaticSurveyType.TrachomaImpact }, StartDate, EndDate);
 
             int rowCount = 21;

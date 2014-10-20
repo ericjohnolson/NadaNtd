@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>publish\x64\</PublishUrl>
+    <PublishUrl>publish\x32\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://apps.who.int/neglected_diseases/ntddata/ntd_database/x64/</InstallUrl>
+    <InstallUrl>http://nadaqa.iotaink.com/</InstallUrl>
     <SupportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</SupportUrl>
     <ErrorReportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</ErrorReportUrl>
     <ProductName>Integrated NTD Database</ProductName>
@@ -1269,6 +1269,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Exports\Country_Disease Workbook_v3.2.1_Portuguese.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Exports\AFRO_CM_JRF_French.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Images\logosplaceholder.gif" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Nada.Globalization;
@@ -14,6 +15,7 @@ namespace Nada.Model.Exports
         {
             Contacts = new List<ExportContact>();
         }
+        public CultureInfo ExportCulture { get; set; }
         public Nullable<int> YearReporting { get; set; }
         public bool CmHaveMasterPlan { get; set; }
         public string CmYearsMasterPlan { get; set; }

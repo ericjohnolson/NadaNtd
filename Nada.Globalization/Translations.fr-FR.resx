@@ -6129,4 +6129,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="UtilSplitAnd" xml:space="preserve">
     <value>et</value>
   </data>
+  <data name="CmJrfExportFileName" xml:space="preserve">
+    <value>Exports\AFRO_CM_JRF_French.xls</value>
+  </data>
 </root>

@@ -138,7 +138,7 @@ namespace Nada.Model.Exports
                 }
             }
 
-            var lfSurveys = surveys.GetByTypeForDateRange(new List<int> { (int)StaticSurveyType.LfMapping, (int)StaticSurveyType.LfSentinel }, start, end);
+            var lfSurveys = surveys.GetByTypeForDistrictsInDateRange(new List<int> { (int)StaticSurveyType.LfMapping, (int)StaticSurveyType.LfSentinel }, start, end);
             int rowNumber = 15;
             foreach (SurveyBase survey in lfSurveys)
             {
@@ -245,7 +245,7 @@ namespace Nada.Model.Exports
         {
             SurveyRepository repo = new SurveyRepository();
             int rowCount = 0;
-            var surveys = repo.GetByTypeForDateRange(new List<int> { (int)StaticSurveyType.OnchoAssessment, (int)StaticSurveyType.OnchoMapping }, start, end);
+            var surveys = repo.GetByTypeForDistrictsInDateRange(new List<int> { (int)StaticSurveyType.OnchoAssessment, (int)StaticSurveyType.OnchoMapping }, start, end);
             int rowNumber = 8;
             foreach (SurveyBase survey in surveys)
             {
@@ -289,7 +289,7 @@ namespace Nada.Model.Exports
         {
             SurveyRepository repo = new SurveyRepository();
             int rowCount = 0;
-            var surveys = repo.GetByTypeForDateRange(new List<int> { (int)StaticSurveyType.SthSentinel, (int)StaticSurveyType.SthMapping }, start, end);
+            var surveys = repo.GetByTypeForDistrictsInDateRange(new List<int> { (int)StaticSurveyType.SthSentinel, (int)StaticSurveyType.SthMapping }, start, end);
             int rowNumber = 8;
 
             foreach (SurveyBase survey in surveys)
@@ -376,7 +376,7 @@ namespace Nada.Model.Exports
         {
             SurveyRepository repo = new SurveyRepository();
             int rowCount = 0;
-            var surveys = repo.GetByTypeForDateRange(new List<int> { (int)StaticSurveyType.SchistoSentinel, (int)StaticSurveyType.SchMapping }, start, end);
+            var surveys = repo.GetByTypeForDistrictsInDateRange(new List<int> { (int)StaticSurveyType.SchistoSentinel, (int)StaticSurveyType.SchMapping }, start, end);
             int rowNumber = 8;
 
             foreach (SurveyBase survey in surveys)

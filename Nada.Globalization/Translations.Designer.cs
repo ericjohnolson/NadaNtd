@@ -1460,6 +1460,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exports\AFRO_CM_JRF.xls.
+        /// </summary>
+        public static string CmJrfExportFileName {
+            get {
+                return ResourceManager.GetString("CmJrfExportFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leishmaniasis.
         /// </summary>
         public static string CmLeishHasPlan {
