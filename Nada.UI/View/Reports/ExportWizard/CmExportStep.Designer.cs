@@ -63,6 +63,9 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.h3Required1 = new Nada.UI.Controls.H3Required();
+            this.cbLanguages = new System.Windows.Forms.ComboBox();
+            this.bsLanguages = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel7 = new Nada.UI.Controls.H3bLabel();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -118,9 +121,6 @@
             this.h3bLabel14 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel13 = new Nada.UI.Controls.H3bLabel();
-            this.h3Required1 = new Nada.UI.Controls.H3Required();
-            this.cbLanguages = new System.Windows.Forms.ComboBox();
-            this.bsLanguages = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -130,6 +130,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -138,7 +139,6 @@
             this.tableLayoutPanel11.SuspendLayout();
             this.tblContainer.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).BeginInit();
             this.SuspendLayout();
             // 
             // h3bLabel1
@@ -544,17 +544,50 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(413, 82);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(397, 82);
             this.tableLayoutPanel5.TabIndex = 27;
             // 
             // textBox5
             // 
             this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "YearReporting", true));
-            this.textBox5.Location = new System.Drawing.Point(137, 38);
+            this.textBox5.Location = new System.Drawing.Point(121, 38);
             this.textBox5.Margin = new System.Windows.Forms.Padding(3, 3, 25, 3);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(154, 21);
             this.textBox5.TabIndex = 70;
+            // 
+            // h3Required1
+            // 
+            this.h3Required1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.h3Required1.AutoSize = true;
+            this.h3Required1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Required1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Required1.Location = new System.Drawing.Point(0, 10);
+            this.h3Required1.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.h3Required1.Name = "h3Required1";
+            this.h3Required1.Size = new System.Drawing.Size(108, 15);
+            this.h3Required1.TabIndex = 71;
+            this.h3Required1.TabStop = false;
+            this.h3Required1.Tag = "CmJrfLanguage";
+            this.h3Required1.Text = "CmJrfLanguage";
+            this.h3Required1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // cbLanguages
+            // 
+            this.cbLanguages.DataSource = this.bsLanguages;
+            this.cbLanguages.DisplayMember = "Name";
+            this.cbLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLanguages.FormattingEnabled = true;
+            this.cbLanguages.Location = new System.Drawing.Point(121, 6);
+            this.cbLanguages.Margin = new System.Windows.Forms.Padding(3, 6, 25, 6);
+            this.cbLanguages.Name = "cbLanguages";
+            this.cbLanguages.Size = new System.Drawing.Size(251, 23);
+            this.cbLanguages.TabIndex = 72;
+            this.cbLanguages.ValueMember = "IsoCode";
+            // 
+            // bsLanguages
+            // 
+            this.bsLanguages.DataSource = typeof(Nada.Model.Language);
             // 
             // tableLayoutPanel6
             // 
@@ -1451,39 +1484,6 @@
             this.h3bLabel13.Text = "CmIfSpecWhichNtdPlan";
             this.h3bLabel13.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // h3Required1
-            // 
-            this.h3Required1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.h3Required1.AutoSize = true;
-            this.h3Required1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.h3Required1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3Required1.Location = new System.Drawing.Point(0, 10);
-            this.h3Required1.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.h3Required1.Name = "h3Required1";
-            this.h3Required1.Size = new System.Drawing.Size(124, 15);
-            this.h3Required1.TabIndex = 71;
-            this.h3Required1.TabStop = false;
-            this.h3Required1.Tag = "RtiExportLanguage";
-            this.h3Required1.Text = "RitExportLanguage";
-            this.h3Required1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // cbLanguages
-            // 
-            this.cbLanguages.DataSource = this.bsLanguages;
-            this.cbLanguages.DisplayMember = "Name";
-            this.cbLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLanguages.FormattingEnabled = true;
-            this.cbLanguages.Location = new System.Drawing.Point(137, 6);
-            this.cbLanguages.Margin = new System.Windows.Forms.Padding(3, 6, 25, 6);
-            this.cbLanguages.Name = "cbLanguages";
-            this.cbLanguages.Size = new System.Drawing.Size(251, 23);
-            this.cbLanguages.TabIndex = 72;
-            this.cbLanguages.ValueMember = "IsoCode";
-            // 
-            // bsLanguages
-            // 
-            this.bsLanguages.DataSource = typeof(Nada.Model.Language);
-            // 
             // ExportStep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1509,6 +1509,7 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).EndInit();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
@@ -1525,7 +1526,6 @@
             this.tblContainer.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLanguages)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

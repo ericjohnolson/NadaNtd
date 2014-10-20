@@ -6132,4 +6132,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="CmJrfExportFileName" xml:space="preserve">
     <value>Exports\AFRO_CM_JRF_French.xls</value>
   </data>
+  <data name="CmJrfLanguage" xml:space="preserve">
+    <value>Language to generate Formulaire de rapport commun de PC</value>
+  </data>
 </root>

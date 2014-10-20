@@ -1469,6 +1469,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language to generate CM Joint Reporting Form.
+        /// </summary>
+        public static string CmJrfLanguage {
+            get {
+                return ResourceManager.GetString("CmJrfLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leishmaniasis.
         /// </summary>
         public static string CmLeishHasPlan {
