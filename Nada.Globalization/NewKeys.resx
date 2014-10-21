@@ -243,7 +243,4 @@
   <data name="SthSentinelIsPartOfCohort" xml:space="preserve">
     <value>Is this survey a part of cohort study?</value>
   </data>
-  <data name="CmJrfLanguage" xml:space="preserve">
-    <value>Language to generate CM Joint Reporting Form</value>
-  </data>
 </root>

@@ -1469,7 +1469,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language to generate CM Joint Reporting Form.
+        ///   Looks up a localized string similar to Language of the report.
         /// </summary>
         public static string CmJrfLanguage {
             get {

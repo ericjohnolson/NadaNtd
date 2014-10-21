@@ -6127,4 +6127,7 @@ Fixo / móvel </value>
   <data name="UtilSplitAnd" xml:space="preserve">
     <value>e</value>
   </data>
+  <data name="CmJrfLanguage" xml:space="preserve">
+    <value>Língua do Relatório</value>
+  </data>
 </root>

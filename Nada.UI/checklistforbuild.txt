@@ -4,7 +4,7 @@ Checklist For Releasing to Web (NEED TO WRITE UP STEPS BETTER FOR CD VERSION).
 2. check the cpu build type (Nada.UI -> Properties -> Build)
 3. Make sure App.config developer mode is set to PR not QA. (Nada.UI -> App.Config -> <add key="DeveloperMode" value="PR" />)
 4. Publish Location (Nada.UI -> Properties -> Publish -> Publish Folder Location)
-	- 32-bit = publish\x32\
+	- 32-bit = publish\x32_who\
 	- 64-bit = publish\x64\
 	- CD 32-bit = publish\CDx32\
 	- CD 64-bit = publish\CDx64\

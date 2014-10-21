@@ -6127,4 +6127,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="UtilSplitAnd" xml:space="preserve">
     <value>dan</value>
   </data>
+  <data name="CmJrfLanguage" xml:space="preserve">
+    <value>Bahasa laporan</value>
+  </data>
 </root>
