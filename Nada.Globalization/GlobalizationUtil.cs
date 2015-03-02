@@ -89,5 +89,7 @@ namespace Nada.Globalization
                 return rm.GetString(key, initializedCulture);
             return def;
         }
+
+        public List<string> Keys { get { return keys; } }
     }
 }

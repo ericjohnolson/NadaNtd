@@ -5,17 +5,17 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1479C267-0906-4A9B-8840-9ADF4D2B42A4}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nada.UI</RootNamespace>
     <AssemblyName>NationalDatabaseTemplate</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <PublishUrl>publish\x32\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
+    <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -23,7 +23,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>http://apps.who.int/neglected_diseases/ntddata/ntd_database/x64/</UpdateUrl>
+    <InstallUrl>http://apps.who.int/neglected_diseases/ntddata/ntd_database/</InstallUrl>
+    <UpdateUrl>http://apps.who.int/neglected_diseases/ntddata/ntd_database/</UpdateUrl>
     <SupportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</SupportUrl>
     <ErrorReportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</ErrorReportUrl>
     <ProductName>Integrated NTD Database</ProductName>
@@ -39,7 +40,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -67,14 +68,31 @@
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <ManifestCertificateThumbprint>00763D74EA5F38BFEF13BA1D28F3686D92158DEB</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>Nada.UI_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_x86|AnyCPU'">
+    <OutputPath>bin\Release_x86\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_x86|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release_x86\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="C1.Win.C1Chart.2, Version=2.0.20132.23225, Culture=neutral, PublicKeyToken=a22e16972c085838, processorArchitecture=MSIL" />
@@ -1274,6 +1292,9 @@
     <Content Include="Exports\AFRO_CM_JRF_French.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="App - Copy.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Images\logosplaceholder.gif" />
     <None Include="Images\afro.gif" />
     <None Include="Images\apoc.jpg" />

@@ -38,4 +38,8 @@ New Environment Requirements:
 6. Windows 7
 7. Select nadasha1.p12 certificate file (in project settings > publish) and put in pwd: iotaink1one!
 
+Releasing the application with MageUI.exe
+
+1. open mageui.exe: C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\mageui.exe
+
 

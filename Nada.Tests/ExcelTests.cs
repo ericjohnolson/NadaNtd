@@ -10,12 +10,66 @@ using OfficeOpenXml;
 using System.Linq;
 using System.Data.OleDb;
 using Nada.Model.Process;
+using Nada.Globalization;
+using System.Globalization;
 
 namespace Nada.Tests
 {
     [TestClass]
     public class ExcelTests : BaseTest
     {
+        [TestMethod]
+        public void CanCreateTranslationKeys()
+        {
+            DataTable table = new DataTable();
+            Dictionary<string, DataRow> rowDict = new Dictionary<string, DataRow>();
+            table.Columns.Add(new DataColumn("Key"));
+            table.Columns.Add(new DataColumn("English Phrase"));
+            table.Columns.Add(new DataColumn("French Phrase"));
+            table.Columns.Add(new DataColumn("Portuguese Phrase"));
+            table.Columns.Add(new DataColumn("Bahasa Phrase"));
+
+            // id-ID;Bahasa|en-US;English|fr-FR;Français|pt-PT;Português"
+
+            var english = new TranslationLookupInstance(new CultureInfo("en-US"));
+            foreach(var key in english.Keys)
+            {
+                var dr = table.NewRow();
+                dr["Key"] = key;
+                dr["English Phrase"] = english.GetValue(key);
+                table.Rows.Add(dr);
+                rowDict.Add(key, dr);
+            }
+
+            var french = new TranslationLookupInstance(new CultureInfo("fr-FR"));
+            foreach (var key in english.Keys)
+            {
+                var dr = rowDict[key];
+                dr["French Phrase"] = french.GetValue(key);
+            }
+            var port = new TranslationLookupInstance(new CultureInfo("pt-PT"));
+            foreach (var key in english.Keys)
+            {
+                var dr = rowDict[key];
+                dr["Portuguese Phrase"] = port.GetValue(key);
+            }
+           
+            var bahasa = new TranslationLookupInstance(new CultureInfo("id-ID"));
+            foreach (var key in english.Keys)
+            {
+                var dr = rowDict[key];
+                dr["Bahasa Phrase"] = bahasa.GetValue(key);
+            }
+            
+
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
+                ws.Cells["A1"].LoadFromDataTable(table, true);
+                File.WriteAllBytes(string.Format(@"C:\Users\Eric\Desktop\Iota Ink\TranslationKeys_{0}.xlsx", DateTime.Now.ToString("yyyyMMdd")), pck.GetAsByteArray());
+            }
+        }
+
         [TestMethod]
         public void CanCreateIndicatorUpdateForm()
         {
