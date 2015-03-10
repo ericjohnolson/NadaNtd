@@ -268,7 +268,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
                 var instance = repo.CreateIntv(t.Id);
                 foreach (var i in instance.IntvType.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.IntvTypeName));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -277,7 +277,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
                 var instance = repo.CreateIntv(t.Id);
                 foreach (var i in instance.IntvType.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.IntvTypeName));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -286,6 +286,11 @@ namespace Nada.Model.Repositories
         }
 
         public List<ReportIndicator> GetSurveyIndicators()
+        {
+            return GetSurveyIndicators(true);
+        }
+
+        public List<ReportIndicator> GetSurveyIndicators(bool addStaticFields)
         {
             List<ReportIndicator> indicators = new List<ReportIndicator>();
             SurveyRepository repo = new SurveyRepository();
@@ -298,7 +303,7 @@ namespace Nada.Model.Repositories
             {
                 var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true, ID = t.Id };
                 var instance = repo.CreateSurvey(t.Id);
-                if (t.Id == (int)StaticSurveyType.LfSentinel || t.Id == (int)StaticSurveyType.SchistoSentinel || t.Id == (int)StaticSurveyType.SthSentinel)
+                if (addStaticFields && (t.Id == (int)StaticSurveyType.LfSentinel || t.Id == (int)StaticSurveyType.SchistoSentinel || t.Id == (int)StaticSurveyType.SthSentinel))
                 {
                     cat.Children.Add(new ReportIndicator { Name = Translations.IndSentinelSiteName });
                     cat.Children.Add(new ReportIndicator { Name = Translations.IndSentinelSiteLat });
@@ -311,7 +316,7 @@ namespace Nada.Model.Repositories
 
                 foreach (var i in instance.TypeOfSurvey.Indicators)
                     if (i.Value.DataTypeId != (int)IndicatorDataType.SentinelSite)
-                        cat.Children.Add(CreateReportIndicator(t.Id, i));
+                        cat.Children.Add(CreateReportIndicator(t.Id, i, t.SurveyTypeName));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -320,7 +325,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true };
                 var instance = repo.CreateSurvey(t.Id);
                 foreach (var i in instance.TypeOfSurvey.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.SurveyTypeName));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -342,7 +347,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
                 var instance = repo.Create(t.Id);
                 foreach (var i in instance.ProcessType.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.TypeName));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -351,7 +356,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
                 var instance = repo.Create(t.Id);
                 foreach (var i in instance.ProcessType.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.TypeName));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -360,7 +365,7 @@ namespace Nada.Model.Repositories
             ProcessBase saes = repo.Create(9);
             var saeCat = new ReportIndicator { Name = saes.ProcessType.TypeName, IsCategory = true };
             foreach (var i in saes.ProcessType.Indicators)
-                saeCat.Children.Add(CreateReportIndicator(saes.ProcessType.Id, i));
+                saeCat.Children.Add(CreateReportIndicator(saes.ProcessType.Id, i, saes.ProcessType.TypeName));
             saeCat.Children = saeCat.Children.OrderBy(c => c.Name).ToList();
             indicators.Add(saeCat);
 
@@ -381,7 +386,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
                 DiseaseDistroPc dd = repo.Create((DiseaseType)t.Id);
                 foreach (var i in dd.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.DisplayName));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -390,7 +395,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
                 DiseaseDistroCm dd = repo.CreateCm((DiseaseType)t.Id);
                 foreach (var i in dd.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.DisplayName));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -421,10 +426,20 @@ namespace Nada.Model.Repositories
 
         public static ReportIndicator CreateReportIndicator(int typeId, KeyValuePair<string, Indicator> i)
         {
-            return CreateReportIndicator(typeId, i.Value);
+            return CreateReportIndicator(typeId, i.Value, "");
+        }
+        
+        public static ReportIndicator CreateReportIndicator(int typeId, Indicator i)
+        {
+            return CreateReportIndicator(typeId, i, "");
         }
 
-        public static ReportIndicator CreateReportIndicator(int typeId, Indicator i)
+        public static ReportIndicator CreateReportIndicator(int typeId, KeyValuePair<string, Indicator> i, string formName)
+        {
+            return CreateReportIndicator(typeId, i.Value, formName);
+        }
+
+        public static ReportIndicator CreateReportIndicator(int typeId, Indicator i, string formName)
         {
             string name = i.DisplayName;
             if (!i.IsEditable)
@@ -443,7 +458,9 @@ namespace Nada.Model.Repositories
                 SplitRule = i.RedistrictRuleId,
                 MergeRule = i.MergeRuleId,
                 IsDisabled = i.IsDisabled,
-                IsRequired = i.IsRequired
+                IsRequired = i.IsRequired,
+                FormName = formName,
+                SortOrder = i.SortOrder
             };
         }
         #endregion
@@ -679,7 +696,7 @@ namespace Nada.Model.Repositories
         {
             DataRow dr = report.NewRow();
             if(redistrictDate.HasValue)
-                dr[Translations.RedistrictDate] = redistrictDate.Value.ToShortDateString() + " " + redistrictDate.Value.ToShortTimeString();
+                dr[Translations.RedistrictDate] = redistrictDate.Value.ToShortDateString();
             dr[Translations.RedistOrigName] = oldUnit.Name;
             //dr[Translations.RedistOrigPop] = oldUnit.Pop;
             dr[Translations.RedistLevel] = levelName;
@@ -688,7 +705,7 @@ namespace Nada.Model.Repositories
             //dr[Translations.RedistNewPop] = oldUnit.Name;
             dr[Translations.RedistNewParent] = newUnit.Parent;
             dr[Translations.RedistType] = typeName;
-            dr[Translations.RedistEventDate] = date.ToShortDateString() + " " + date.ToShortTimeString();
+            dr[Translations.RedistEventDate] = date.ToShortDateString();
             dr[Translations.ID] = id;
 
             report.Rows.Add(dr);

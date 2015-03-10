@@ -79,6 +79,7 @@
             this.hrTop = new Nada.UI.Controls.HR();
             this.hr1 = new Nada.UI.Controls.HR();
             this.hr2 = new Nada.UI.Controls.HR();
+            this.menuIndicatorManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tsQuickLinks.SuspendLayout();
             this.pnlLeft.SuspendLayout();
@@ -301,7 +302,8 @@
             // menuSettingsToolStripMenuItem
             // 
             this.menuSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuEditSettingsToolStripMenuItem});
+            this.menuEditSettingsToolStripMenuItem,
+            this.menuIndicatorManagementToolStripMenuItem});
             this.menuSettingsToolStripMenuItem.Name = "menuSettingsToolStripMenuItem";
             this.menuSettingsToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
             this.menuSettingsToolStripMenuItem.Tag = "MenuSettings2";
@@ -310,7 +312,7 @@
             // menuEditSettingsToolStripMenuItem
             // 
             this.menuEditSettingsToolStripMenuItem.Name = "menuEditSettingsToolStripMenuItem";
-            this.menuEditSettingsToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.menuEditSettingsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.menuEditSettingsToolStripMenuItem.Tag = "MenuEditSettings";
             this.menuEditSettingsToolStripMenuItem.Text = "MenuEditSettings";
             this.menuEditSettingsToolStripMenuItem.Click += new System.EventHandler(this.menuEditSettingsToolStripMenuItem_Click);
@@ -553,6 +555,14 @@
             this.hr2.Size = new System.Drawing.Size(1248, 10);
             this.hr2.TabIndex = 65;
             // 
+            // menuIndicatorManagementToolStripMenuItem
+            // 
+            this.menuIndicatorManagementToolStripMenuItem.Name = "menuIndicatorManagementToolStripMenuItem";
+            this.menuIndicatorManagementToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.menuIndicatorManagementToolStripMenuItem.Tag = "MenuIndicatorManagement";
+            this.menuIndicatorManagementToolStripMenuItem.Text = "MenuIndicatorManagement";
+            this.menuIndicatorManagementToolStripMenuItem.Click += new System.EventHandler(this.menuIndicatorManagementToolStripMenuItem_Click);
+            // 
             // Shell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -636,6 +646,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuNewAdminLevelToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem newYearUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuDeleteAdminLevelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuIndicatorManagementToolStripMenuItem;
     }
 }
 

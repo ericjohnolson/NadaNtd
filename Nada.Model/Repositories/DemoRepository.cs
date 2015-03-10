@@ -1744,7 +1744,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select e.ID, e.CreatedAt, a.DisplayName, e.RedistrictTypeId
+                    OleDbCommand command = new OleDbCommand(@"Select e.ID, e.RedistrictDate, a.DisplayName, e.RedistrictTypeId
                         FROM ((RedistrictEvents e INNER JOIN  RedistrictUnits u on e.ID = u.RedistrictEventId)
                             INNER JOIN AdminLevels a on a.ID = u.AdminLevelUnitId)
                         WHERE e.ID = @id AND u.RelationshipId = 1 ", connection);
@@ -1755,7 +1755,7 @@ namespace Nada.Model.Repositories
                         {
                             reader.Read();
                             type = (SplittingType)reader.GetValueOrDefault<int>("RedistrictTypeId");
-                            createdAt = reader.GetValueOrDefault<DateTime>("CreatedAt");
+                            createdAt = reader.GetValueOrDefault<DateTime>("RedistrictDate");
                             names.Add(reader.GetValueOrDefault<string>("DisplayName"));
                         }
                     }
@@ -1787,7 +1787,7 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"Select e.ID, e.CreatedAt, a.DisplayName, e.RedistrictTypeId
+                    OleDbCommand command = new OleDbCommand(@"Select e.ID, e.RedistrictDate, a.DisplayName, e.RedistrictTypeId
                         FROM ((RedistrictEvents e INNER JOIN  RedistrictUnits u on e.ID = u.RedistrictEventId)
                             INNER JOIN AdminLevels a on a.ID = u.AdminLevelUnitId)
                         WHERE e.ID = @id AND u.RelationshipId = 2 ", connection);
@@ -1798,7 +1798,7 @@ namespace Nada.Model.Repositories
                         {
                             reader.Read();
                             type = (SplittingType)reader.GetValueOrDefault<int>("RedistrictTypeId");
-                            createdAt = reader.GetValueOrDefault<DateTime>("CreatedAt");
+                            createdAt = reader.GetValueOrDefault<DateTime>("RedistrictDate");
                             names.Add(reader.GetValueOrDefault<string>("DisplayName"));
                         }
                     }

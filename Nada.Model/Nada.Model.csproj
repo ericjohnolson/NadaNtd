@@ -55,6 +55,9 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>..\Solution Items\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Excel">
       <HintPath>..\Solution Items\Excel.dll</HintPath>
     </Reference>
@@ -93,6 +96,7 @@
     <Compile Include="Exports\RtiWorkbooksExporter.cs" />
     <Compile Include="Exports\PcEpiExporter.cs" />
     <Compile Include="Exports\ExportType.cs" />
+    <Compile Include="IndicatorManager.cs" />
     <Compile Include="Process\CalcProcess.cs" />
     <Compile Include="Reports\RedistrictingReportGenerator.cs" />
     <Compile Include="Reports\IStandardOptions.cs" />

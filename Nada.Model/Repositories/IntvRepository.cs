@@ -316,12 +316,13 @@ namespace Nada.Model.Repositories
                         InterventionIndicators.UpdatedAt, 
                         aspnet_users.UserName,
                         IndicatorDataTypes.DataType,
-                        InterventionIndicators.IsMetaData
+                        InterventionIndicators.IsMetaData,
+                        InterventionIndicators.SortOrder
                         FROM (((InterventionIndicators INNER JOIN aspnet_users ON InterventionIndicators.UpdatedById = aspnet_users.UserId)
                         INNER JOIN IndicatorDataTypes ON InterventionIndicators.DataTypeId = IndicatorDataTypes.ID)
                         INNER JOIN InterventionTypes_to_Indicators ON InterventionTypes_to_Indicators.IndicatorId = InterventionIndicators.ID)
                         WHERE InterventionTypes_to_Indicators.InterventionTypeId=@InterventionTypeId AND IsDisabled=0 AND " +
-                        "DiseaseId in (0," + String.Join(", ", selectedDiseases.Select(i => i.Id.ToString()).ToArray()) + ")" +
+                        "DiseaseId in (0," + String.Join(", ", selectedDiseases.Select(i => i.Id.ToString()).ToArray()) + ") " +
                         "ORDER BY IsEditable DESC, SortOrder, InterventionIndicators.ID", connection);
                     command.Parameters.Add(new OleDbParameter("@InterventionTypeId", id));
                     using (OleDbDataReader reader = command.ExecuteReader())
@@ -346,7 +347,8 @@ namespace Nada.Model.Repositories
                                 IsCalculated = reader.GetValueOrDefault<bool>("IsCalculated"),
                                 CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
                                 DataType = reader.GetValueOrDefault<string>("DataType"),
-                                IsMetaData = reader.GetValueOrDefault<bool>("IsMetaData")
+                                IsMetaData = reader.GetValueOrDefault<bool>("IsMetaData"),
+                                SortOrder = reader.GetValueOrDefault<int>("SortOrder")
                             });
                             indicatorIds.Add(reader.GetValueOrDefault<int>("ID").ToString());
                         }

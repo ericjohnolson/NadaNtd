@@ -38,7 +38,7 @@ namespace Nada.Model
         private ImportOptions options = new ImportOptions();
         protected int validationRow = 1;
         protected string validationSheetName = "ValidationLists";
-        protected Dictionary<string, string> validationRanges;
+        protected Dictionary<string, string> validationRanges = new Dictionary<string,string>();
         protected IndicatorParser valueParser = new IndicatorParser();
 
         #region Public methods
@@ -569,7 +569,7 @@ namespace Nada.Model
             return c;
         }
 
-        protected DataSet LoadDataFromFile(string filePath)
+        public static DataSet LoadDataFromFile(string filePath)
         {
             DataSet ds = null;
             using (FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read))

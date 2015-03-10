@@ -74,51 +74,62 @@ namespace Nada.Model.Repositories
         public TaskForceApiResult GetAllDistricts(string countryName)
         {
             Dictionary<string, TaskForceAdminUnit> units = new Dictionary<string, TaskForceAdminUnit>();
-            string json = GetJson("https://gtmp.linkssystem.org/api/districts?admin0=" + HttpUtility.UrlEncode(countryName));
-            if (!string.IsNullOrEmpty(json))
+            int pageSize = 100;
+            int pageNo = 0;
+            List<TfJsonDistrict> districts = new List<TfJsonDistrict> { new TfJsonDistrict() };
+
+            while (districts.Count > 0)
             {
-                List<TfJsonDistrict> districts = DeserializeJson<List<TfJsonDistrict>>(json);
-                
-                foreach (var d in districts)
+                string json = GetJson(string.Format("https://gtmp.linkssystem.org/api/districts?admin0={0}&limit={1}&offset={2}", HttpUtility.UrlEncode(countryName), pageSize, pageNo * pageSize));
+                if (!string.IsNullOrEmpty(json))
                 {
-                    if (d.admin1id.HasValue && !units.ContainsKey(d.admin1id.Value + "l1"))
-                    {
-                        units.Add(d.admin1id.Value + "l1",
-                            new TaskForceAdminUnit
-                            {
-                                LevelIndex = 0,
-                                Id = d.admin1id.Value,
-                                Name = d.admin1
-                            });
-                    }
 
-                    if (d.admin2id.HasValue && !units.ContainsKey(d.admin2id.Value + "l2"))
+                    districts = DeserializeJson<List<TfJsonDistrict>>(json);
+                    foreach (var d in districts)
                     {
-                        units.Add(d.admin2id.Value + "l2",
-                            new TaskForceAdminUnit
-                            {
-                                LevelIndex = 1,
-                                Parent = units[d.admin1id.Value + "l1"],
-                                Id = d.admin2id.Value,
-                                Name = d.admin2
-                            });
-                    }
+                        if (d.admin1id.HasValue && !units.ContainsKey(d.admin1id.Value + "l1"))
+                        {
+                            units.Add(d.admin1id.Value + "l1",
+                                new TaskForceAdminUnit
+                                {
+                                    LevelIndex = 0,
+                                    Id = d.admin1id.Value,
+                                    Name = d.admin1
+                                });
+                        }
 
-                    if (d.admin3id.HasValue && !units.ContainsKey(d.admin3id.Value + "l3"))
-                    {
-                        units.Add(d.admin3id.Value + "l3",
-                               new TaskForceAdminUnit
-                               {
-                                   LevelIndex = 2,
-                                   Parent = units[d.admin2id.Value + "l2"],
-                                   Id = d.admin3id.Value,
-                                   Name = d.admin3
-                               });
+                        if (d.admin2id.HasValue && !units.ContainsKey(d.admin2id.Value + "l2"))
+                        {
+                            units.Add(d.admin2id.Value + "l2",
+                                new TaskForceAdminUnit
+                                {
+                                    LevelIndex = 1,
+                                    Parent = units[d.admin1id.Value + "l1"],
+                                    Id = d.admin2id.Value,
+                                    Name = d.admin2
+                                });
+                        }
+
+                        if (d.admin3id.HasValue && !units.ContainsKey(d.admin3id.Value + "l3"))
+                        {
+                            units.Add(d.admin3id.Value + "l3",
+                                   new TaskForceAdminUnit
+                                   {
+                                       LevelIndex = 2,
+                                       Parent = units[d.admin2id.Value + "l2"],
+                                       Id = d.admin3id.Value,
+                                       Name = d.admin3
+                                   });
+                        }
                     }
                 }
-
-                return new TaskForceApiResult { WasSuccessful = true, Units = units.Values.ToList() };
+                else
+                    districts = new List<TfJsonDistrict>();
+                pageNo++;
             }
+
+            if(units.Count > 0)
+                return new TaskForceApiResult { WasSuccessful = true, Units = units.Values.ToList() };
             return new TaskForceApiResult { WasSuccessful = false, ErrorMsg = TranslationLookup.GetValue("RtiTaskForceNoResults", "RtiTaskForceNoResults") };
         }
 

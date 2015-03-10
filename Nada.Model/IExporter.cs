@@ -135,8 +135,11 @@ namespace Nada.Model
                             && dr.Table.Columns.Contains(indicatorCol))
                         {
                             int v = 0;
+                            double v2 = 0;
                             if (int.TryParse(dr[indicatorCol].ToString(), out v) && (!max.HasValue || max.Value < v))
                                 max = v;
+                            else if (double.TryParse(dr[indicatorCol].ToString(), out v2) && (!max.HasValue || max.Value < v))
+                                max = Convert.ToInt32(v2);
                         }
                     }
                 }
@@ -177,8 +180,11 @@ namespace Nada.Model
                             && dr.Table.Columns.Contains(indicatorCol))
                         {
                             int v = 0;
+                            double v2 = 0;
                             if (int.TryParse(dr[indicatorCol].ToString(), out v) && (!max.HasValue || max.Value < v))
                                 max = v;
+                            else if (double.TryParse(dr[indicatorCol].ToString(), out v2) && (!max.HasValue || max.Value < v))
+                                max = Convert.ToInt32(v2);
                         }
                     }
                 }

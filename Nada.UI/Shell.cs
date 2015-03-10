@@ -28,6 +28,7 @@ using Nada.UI.View.Survey;
 using Nada.UI.View.Wizard;
 using Nada.UI.ViewModel;
 using Nada.Model.Demography;
+using Nada.UI.View.Wizard.IndicatorManagement;
 
 namespace Nada.UI
 {
@@ -151,6 +152,8 @@ namespace Nada.UI
         private void SetPermissions()
         {
             menuEditSettingsToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
+            menuIndicatorManagementToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDbAdmin");
+            
             if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
             {
@@ -310,7 +313,6 @@ namespace Nada.UI
             var dashboard = new SettingsDashboard();
             LoadView(dashboard);
         }
-        #endregion
 
         private void menuNewYearDemoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -334,10 +336,10 @@ namespace Nada.UI
         {
             SettingsRepository repo = new SettingsRepository();
             DiseaseDashboard dash = new DiseaseDashboard(true);
-            dash.ReloadView = (v) => {  };
-            dash.LoadView = (v) => {  };
+            dash.ReloadView = (v) => { };
+            dash.LoadView = (v) => { };
             dash.LoadForm = (v) => { LoadForm(v); };
-            dash.StatusChanged = (s) => {  };
+            dash.StatusChanged = (s) => { };
             WizardForm wiz = new WizardForm(new BackupForRedistrict(new RedistrictingOptions { Dashboard = dash, SplitType = SplittingType.SplitCombine }),
                 Translations.SplitCombineTitle);
             wiz.OnFinish = import_OnSuccess;
@@ -384,6 +386,24 @@ namespace Nada.UI
             wiz.ShowDialog();
         }
 
+        private void menuIndicatorManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DiseaseDashboard dash = new DiseaseDashboard(true);
+            dash.ReloadView = (v) => { };
+            dash.LoadView = (v) => { };
+            dash.LoadForm = (v) => { LoadForm(v); };
+            dash.StatusChanged = (s) => { };
+            WizardForm wiz = new WizardForm(new IndStepType(), Translations.MenuIndicatorManagement);
+            wiz.OnFinish = import_OnSuccess;
+            wiz.OnClose = () =>
+            {
+                LoadDashboard(new DashboardView());
+            };
+            wiz.ShowDialog();
+        }
+        #endregion
+        
+
         private void LoadForm(IView v)
         {
             ViewForm form = new ViewForm(v);
@@ -410,6 +430,7 @@ namespace Nada.UI
             }
 
         }
+
 
     }
 }

@@ -29,6 +29,7 @@ namespace Nada.Model
         public bool IsMetaData { get; set; }
         public string DisplayName { get; set; }
         public int EntityId { get; set; }
+        public int SortOrder { get; set; }
 
         // Display only props
         public string DataType { get; set; }

@@ -1268,7 +1268,7 @@ Fixed / Mobile</value>
     <value>Exports</value>
   </data>
   <data name="ExportsPcEpiDataForm" xml:space="preserve">
-    <value>PC epidemiologial data reporting form</value>
+    <value>PC epidemiological data reporting form</value>
   </data>
   <data name="ExportTasCost" xml:space="preserve">
     <value>Budgeted cost</value>
@@ -6261,5 +6261,23 @@ Fixed / Mobile</value>
   </data>
   <data name="CmJrfLanguage" xml:space="preserve">
     <value>Language of the report</value>
+  </data>
+  <data name="CreateNewForm" xml:space="preserve">
+    <value>Create new form</value>
+  </data>
+  <data name="IndFormType" xml:space="preserve">
+    <value>Form type</value>
+  </data>
+  <data name="MenuIndicatorManagement" xml:space="preserve">
+    <value>Indicator management</value>
+  </data>
+  <data name="RoleDbAdmin" xml:space="preserve">
+    <value>Database Administrator</value>
+  </data>
+  <data name="CreatingUpdateFiles" xml:space="preserve">
+    <value>Creating update files</value>
+  </data>
+  <data name="IndicatorUpdatesValidated" xml:space="preserve">
+    <value>Changes have been validated, please make sure there are no errors.</value>
   </data>
 </root>

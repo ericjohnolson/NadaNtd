@@ -640,6 +640,7 @@ namespace Nada.Model.Repositories
                         SurveyIndicators.IsEditable,
                         SurveyIndicators.IsDisplayed,
                         SurveyIndicators.RedistrictRuleId,
+                        SurveyIndicators.SortOrder,
                         MergeRuleId,
                         AggTypeId,
                         IsCalculated,
@@ -673,7 +674,8 @@ namespace Nada.Model.Repositories
                                 IsDisplayed = reader.GetValueOrDefault<bool>("IsDisplayed"),
                                 IsCalculated = reader.GetValueOrDefault<bool>("IsCalculated"),
                                 CanAddValues = reader.GetValueOrDefault<bool>("CanAddValues"),
-                                DataType = reader.GetValueOrDefault<string>("DataType")
+                                DataType = reader.GetValueOrDefault<string>("DataType"),
+                                SortOrder = reader.GetValueOrDefault<int>("SortOrder")
                             });
                             indicatorIds.Add(reader.GetValueOrDefault<int>("ID").ToString());
                         }

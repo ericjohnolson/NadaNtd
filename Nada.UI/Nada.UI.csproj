@@ -615,6 +615,30 @@
     <Compile Include="View\Wizard\DistrictSplitting\SplittingSaes.Designer.cs">
       <DependentUpon>SplittingSaes.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\IndicatorManagement\IndStepResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\IndicatorManagement\IndStepResult.Designer.cs">
+      <DependentUpon>IndStepResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\IndicatorManagement\IndStepType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\IndicatorManagement\IndStepType.Designer.cs">
+      <DependentUpon>IndStepType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\IndicatorManagement\IndStepCategory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\IndicatorManagement\IndStepCategory.Designer.cs">
+      <DependentUpon>IndStepCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\IndicatorManagement\IndStepIndicators.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\IndicatorManagement\IndStepIndicators.Designer.cs">
+      <DependentUpon>IndStepIndicators.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\MessageBoxStep.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1103,6 +1127,18 @@
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplittingSaes.resx">
       <DependentUpon>SplittingSaes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\IndicatorManagement\IndStepResult.resx">
+      <DependentUpon>IndStepResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\IndicatorManagement\IndStepType.resx">
+      <DependentUpon>IndStepType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\IndicatorManagement\IndStepCategory.resx">
+      <DependentUpon>IndStepCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\IndicatorManagement\IndStepIndicators.resx">
+      <DependentUpon>IndStepIndicators.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\MessageBoxStep.resx">
       <DependentUpon>MessageBoxStep.cs</DependentUpon>
     </EmbeddedResource>
@@ -1266,6 +1302,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0001.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.02.00.0001.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DatabaseScripts\Differentials\sc.01.00.0016.sql">

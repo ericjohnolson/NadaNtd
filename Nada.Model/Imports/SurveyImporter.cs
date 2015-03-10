@@ -134,14 +134,17 @@ namespace Nada.Model.Imports
                 survey.SpotCheckName = row[TranslationLookup.GetValue("IndSpotCheckName")].ToString();
 
                 double d;
-                if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString()) && double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString(), out d))
-                    survey.Lat = d;
-                else
-                    objerrors += TranslationLookup.GetValue("ValidLatitude") + Environment.NewLine;
-                if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString()) && double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString(), out d))
-                    survey.Lng = d;
-                else
-                    objerrors += TranslationLookup.GetValue("ValidLongitude") + Environment.NewLine;
+                if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString()))
+                    if (double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString(), out d))
+                        survey.Lat = d;
+                    else
+                        objerrors += TranslationLookup.GetValue("ValidLatitude") + Environment.NewLine;
+
+                if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString()))
+                    if (double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString(), out d))
+                        survey.Lng = d;
+                    else
+                        objerrors += TranslationLookup.GetValue("ValidLongitude") + Environment.NewLine;
             }
             else
             {
@@ -179,14 +182,16 @@ namespace Nada.Model.Imports
                         obj.SpotCheckName = row[TranslationLookup.GetValue("IndSpotCheckName")].ToString();
 
                         double d;
-                        if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString()) && double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString(), out d))
-                            obj.Lat = d;
-                        else
-                            objerrors += TranslationLookup.GetValue("ValidLatitude") + Environment.NewLine;
-                        if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString()) && double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString(), out d))
-                            obj.Lng = d;
-                        else
-                            objerrors += TranslationLookup.GetValue("ValidLongitude") + Environment.NewLine;
+                        if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString()))
+                            if (double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLat")].ToString(), out d))
+                                obj.Lat = d;
+                            else
+                                objerrors += TranslationLookup.GetValue("ValidLatitude") + Environment.NewLine;
+                        if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString()))
+                            if (double.TryParse(row[TranslationLookup.GetValue("IndSpotCheckLng")].ToString(), out d))
+                                obj.Lng = d;
+                            else
+                                objerrors += TranslationLookup.GetValue("ValidLongitude") + Environment.NewLine;
                     }
                     else
                     {
