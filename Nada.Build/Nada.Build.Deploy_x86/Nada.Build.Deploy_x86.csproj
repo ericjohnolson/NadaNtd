@@ -61,7 +61,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -83,6 +85,46 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Content Include="..\..\Nada.UI\Exports\AFRO_CM_JRF.xls">
+      <Link>Exports\AFRO_CM_JRF.xls</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\Exports\AFRO_CM_JRF_French.xls">
+      <Link>Exports\AFRO_CM_JRF_French.xls</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\Exports\Country_Disease Workbook_v3.2.1_French.xlsx">
+      <Link>Exports\Country_Disease Workbook_v3.2.1_French.xlsx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\Exports\Country_Disease Workbook_v3.2.1_Portuguese.xlsx">
+      <Link>Exports\Country_Disease Workbook_v3.2.1_Portuguese.xlsx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\Exports\Country_Disease_Workbook_v3.2.1_English_.xlsx">
+      <Link>Exports\Country_Disease_Workbook_v3.2.1_English_.xlsx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\Exports\WHO_EPIRF_PC_NATDAT.xls">
+      <Link>Exports\WHO_EPIRF_PC_NATDAT.xls</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\Exports\WHO_JRF_PC.xls">
+      <Link>Exports\WHO_JRF_PC.xls</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\TestDistricts.xlsx">
+      <Link>TestDistricts.xlsx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\TestProvinces.xlsx">
+      <Link>TestProvinces.xlsx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\TestVillages.xlsx">
+      <Link>TestVillages.xlsx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -126,6 +168,73 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\00NadaDatabaseBaseline.sql">
+      <Link>DatabaseScripts\00NadaDatabaseBaseline.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\00SchemaChangeLog.sql">
+      <Link>DatabaseScripts\Differentials\00SchemaChangeLog.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0001.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0001.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0002.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0002.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0003.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0003.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0004.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0004.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0010.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0010.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0011.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0011.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0012.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0012.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0013.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0013.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0014.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0014.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0015.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0015.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.01.00.0016.sql">
+      <Link>DatabaseScripts\Differentials\sc.01.00.0016.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.02.00.0001.sql">
+      <Link>DatabaseScripts\Differentials\sc.02.00.0001.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\ScriptDiffTest.sql">
+      <Link>DatabaseScripts\ScriptDiffTest.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\NewNationalDatabaseTemplate.accdb">
+      <Link>NewNationalDatabaseTemplate.accdb</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
