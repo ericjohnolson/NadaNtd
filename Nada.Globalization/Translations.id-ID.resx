@@ -3562,9 +3562,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="RecentFile" xml:space="preserve">
     <value>Berkas terbaru:</value>
   </data>
-  <data name="RedistEventDate" xml:space="preserve">
-    <value>Tanggal pemekaran</value>
-  </data>
   <data name="RedistLevel" xml:space="preserve">
     <value>Tingkat daerah Administratif</value>
   </data>

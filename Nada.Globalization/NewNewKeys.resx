@@ -123,6 +123,9 @@
   <data name="CreatingUpdateFiles" xml:space="preserve">
     <value>Creating update files</value>
   </data>
+  <data name="EditAdministrativeUnit" xml:space="preserve">
+    <value>Edit administrative unit &gt;</value>
+  </data>
   <data name="IndFormType" xml:space="preserve">
     <value>Form type</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="MenuIndicatorManagement" xml:space="preserve">
     <value>Indicator management</value>
+  </data>
+  <data name="RedistEventDate" xml:space="preserve">
+    <value>Date redistricting documented in database</value>
   </data>
   <data name="RoleDbAdmin" xml:space="preserve">
     <value>Database Administrator</value>

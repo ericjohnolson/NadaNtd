@@ -3565,9 +3565,6 @@ Fixed / Mobile</value>
   <data name="RecentFile" xml:space="preserve">
     <value>Recent file: </value>
   </data>
-  <data name="RedistEventDate" xml:space="preserve">
-    <value>Redistricting event date</value>
-  </data>
   <data name="RedistLevel" xml:space="preserve">
     <value>Administrative level</value>
   </data>
@@ -6279,5 +6276,11 @@ Fixed / Mobile</value>
   </data>
   <data name="IndicatorUpdatesValidated" xml:space="preserve">
     <value>Changes have been validated, please make sure there are no errors.</value>
+  </data>
+  <data name="EditAdministrativeUnit" xml:space="preserve">
+    <value>Edit administrative unit &gt;</value>
+  </data>
+  <data name="RedistEventDate" xml:space="preserve">
+    <value>Date redistricting documented in database</value>
   </data>
 </root>

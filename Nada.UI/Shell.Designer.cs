@@ -53,6 +53,7 @@
             this.menuExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEditSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuIndicatorManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrativeUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuNewAdminLevelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDeleteAdminLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +80,6 @@
             this.hrTop = new Nada.UI.Controls.HR();
             this.hr1 = new Nada.UI.Controls.HR();
             this.hr2 = new Nada.UI.Controls.HR();
-            this.menuIndicatorManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tsQuickLinks.SuspendLayout();
             this.pnlLeft.SuspendLayout();
@@ -317,6 +317,14 @@
             this.menuEditSettingsToolStripMenuItem.Text = "MenuEditSettings";
             this.menuEditSettingsToolStripMenuItem.Click += new System.EventHandler(this.menuEditSettingsToolStripMenuItem_Click);
             // 
+            // menuIndicatorManagementToolStripMenuItem
+            // 
+            this.menuIndicatorManagementToolStripMenuItem.Name = "menuIndicatorManagementToolStripMenuItem";
+            this.menuIndicatorManagementToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.menuIndicatorManagementToolStripMenuItem.Tag = "MenuIndicatorManagement";
+            this.menuIndicatorManagementToolStripMenuItem.Text = "MenuIndicatorManagement";
+            this.menuIndicatorManagementToolStripMenuItem.Click += new System.EventHandler(this.menuIndicatorManagementToolStripMenuItem_Click);
+            // 
             // administrativeUnitsToolStripMenuItem
             // 
             this.administrativeUnitsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -404,9 +412,9 @@
             this.menuImportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuDemographyToolStripMenuItem,
             this.menuDiseaseDistributionsToolStripMenuItem,
+            this.menuSurveysToolStripMenuItem,
             this.menuIntvToolStripMenuItem,
-            this.menuProcessToolStripMenuItem,
-            this.menuSurveysToolStripMenuItem});
+            this.menuProcessToolStripMenuItem});
             this.menuImportToolStripMenuItem.Name = "menuImportToolStripMenuItem";
             this.menuImportToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.menuImportToolStripMenuItem.Tag = "MenuImport";
@@ -554,14 +562,6 @@
             this.hr2.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr2.Size = new System.Drawing.Size(1248, 10);
             this.hr2.TabIndex = 65;
-            // 
-            // menuIndicatorManagementToolStripMenuItem
-            // 
-            this.menuIndicatorManagementToolStripMenuItem.Name = "menuIndicatorManagementToolStripMenuItem";
-            this.menuIndicatorManagementToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.menuIndicatorManagementToolStripMenuItem.Tag = "MenuIndicatorManagement";
-            this.menuIndicatorManagementToolStripMenuItem.Text = "MenuIndicatorManagement";
-            this.menuIndicatorManagementToolStripMenuItem.Click += new System.EventHandler(this.menuIndicatorManagementToolStripMenuItem_Click);
             // 
             // Shell
             // 

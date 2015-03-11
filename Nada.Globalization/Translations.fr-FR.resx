@@ -3561,9 +3561,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="RecentFile" xml:space="preserve">
     <value>Fichier récent : </value>
   </data>
-  <data name="RedistEventDate" xml:space="preserve">
-    <value>Date de l'évènement du redécoupage</value>
-  </data>
   <data name="RedistLevel" xml:space="preserve">
     <value>Niveau administratif</value>
   </data>

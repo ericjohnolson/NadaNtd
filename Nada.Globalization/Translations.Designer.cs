@@ -3224,6 +3224,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit administrative unit &gt;.
+        /// </summary>
+        public static string EditAdministrativeUnit {
+            get {
+                return ResourceManager.GetString("EditAdministrativeUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit....
         /// </summary>
         public static string EditLink {
@@ -10568,7 +10577,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Redistricting event date.
+        ///   Looks up a localized string similar to Date redistricting documented in database.
         /// </summary>
         public static string RedistEventDate {
             get {

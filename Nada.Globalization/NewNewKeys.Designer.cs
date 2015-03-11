@@ -79,6 +79,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit administrative unit &gt;.
+        /// </summary>
+        public static string EditAdministrativeUnit {
+            get {
+                return ResourceManager.GetString("EditAdministrativeUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Form type.
         /// </summary>
         public static string IndFormType {
@@ -102,6 +111,15 @@ namespace Nada.Globalization {
         public static string MenuIndicatorManagement {
             get {
                 return ResourceManager.GetString("MenuIndicatorManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date redistricting documented in database.
+        /// </summary>
+        public static string RedistEventDate {
+            get {
+                return ResourceManager.GetString("RedistEventDate", resourceCulture);
             }
         }
         

@@ -3562,9 +3562,6 @@ Fixo / móvel </value>
   <data name="RecentFile" xml:space="preserve">
     <value>Arquivo recente:</value>
   </data>
-  <data name="RedistEventDate" xml:space="preserve">
-    <value>Datas de evento por distrito</value>
-  </data>
   <data name="RedistLevel" xml:space="preserve">
     <value>Nível administrativo</value>
   </data>

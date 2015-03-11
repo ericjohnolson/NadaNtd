@@ -49,7 +49,7 @@
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.h3bLabel12 = new Nada.UI.Controls.H3bLabel();
             this.textBox14 = new System.Windows.Forms.TextBox();
-            this.h3bLabel14 = new Nada.UI.Controls.H3bLabel();
+            this.h3bLabel14 = new Nada.UI.Controls.H3Required();
             this.textBox21 = new System.Windows.Forms.TextBox();
             this.h3bLabel13 = new Nada.UI.Controls.H3bLabel();
             this.textBox16 = new System.Windows.Forms.TextBox();
@@ -360,10 +360,10 @@
             this.h3bLabel14.AutoSize = true;
             this.h3bLabel14.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3bLabel14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel14.Location = new System.Drawing.Point(296, 146);
+            this.h3bLabel14.Location = new System.Drawing.Point(296, 147);
             this.h3bLabel14.Margin = new System.Windows.Forms.Padding(0);
             this.h3bLabel14.Name = "h3bLabel14";
-            this.h3bLabel14.Size = new System.Drawing.Size(70, 16);
+            this.h3bLabel14.Size = new System.Drawing.Size(82, 15);
             this.h3bLabel14.TabIndex = 65;
             this.h3bLabel14.TabStop = false;
             this.h3bLabel14.Tag = "PercentSac";
@@ -465,6 +465,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel14);
             this.Name = "CountryDemographyView";
@@ -502,7 +503,7 @@
         private Controls.H3bLabel h3bLabel17;
         private Controls.H3bLabel h3bLabel16;
         private Controls.H3bLabel h3bLabel15;
-        private Controls.H3bLabel h3bLabel14;
+        private Controls.H3Required h3bLabel14;
         private Controls.H3bLabel h3bLabel13;
         private Controls.H3bLabel h3bLabel12;
         private Controls.H3bLabel h3bLabel11;

@@ -382,6 +382,7 @@ namespace Nada.UI.View.Demography
 
 
             lnkAddDemo.Visible = result.AllowAdd;
+            lnkEditUnit.Visible = !result.AllowAdd && adminLevel.LevelNumber > 0;
             loadingDemos.Visible = false;
             pnlDistroDetails.Visible = true;
 
@@ -389,6 +390,7 @@ namespace Nada.UI.View.Demography
                 !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
             {
                 lnkAddDemo.Visible = false;
+                lnkEditUnit.Visible = false;
             }
         }
 
@@ -455,6 +457,19 @@ namespace Nada.UI.View.Demography
         {
             IView view = fetcher.NewDemo();
             DoLoadView(view);
+        }
+
+        private void lnkEditUnit_ClickOverride()
+        {
+            AdminLevelAdd al = new AdminLevelAdd(adminLevel);
+            al.OnSave += al_OnSave;
+            al.ShowDialog();
+        }
+
+        void al_OnSave(AdminLevel a)
+        {
+            ReloadView(adminLevel);
+
         }
         #endregion
 
@@ -538,6 +553,7 @@ namespace Nada.UI.View.Demography
             DoCollapse(btnProcess, pnlProcess);
         }
         #endregion
+
 
     }
 }
