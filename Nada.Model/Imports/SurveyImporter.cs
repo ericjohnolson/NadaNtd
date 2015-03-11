@@ -165,11 +165,11 @@ namespace Nada.Model.Imports
             List<SurveyBase> objs = new List<SurveyBase>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                if (row["* " +TranslationLookup.GetValue("ID")] == null || row["* " + TranslationLookup.GetValue("ID")].ToString().Length == 0)
                     continue;
                 string objerrors = "";
                 var obj = repo.CreateSurvey(sType.Id);
-                int adminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
+                int adminLevelId = Convert.ToInt32(row["* " + TranslationLookup.GetValue("ID")]);
                 obj.AdminLevels = new List<AdminLevel> { new AdminLevel { Id = adminLevelId } };
 
                 // CHECK FOR SENTINEL SITES/SPOTCHECK
@@ -211,7 +211,7 @@ namespace Nada.Model.Imports
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("ID")].ToString());
+                errorMessage += GetObjectErrors(objerrors, row["* " + TranslationLookup.GetValue("ID")].ToString());
                 objs.Add(obj);
             }
 

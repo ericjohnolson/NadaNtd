@@ -70,7 +70,7 @@ namespace Nada.Model
         private DataTable CreateInsertDataTable(AdminLevelType type)
         {
             DataTable data = new System.Data.DataTable();
-            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
+            data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("Location") + "#"));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("YearCensus")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("GrowthRate")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("TotalPopulation")));
@@ -89,14 +89,14 @@ namespace Nada.Model
             foreach (AdminLevel l in allUnits)
             {
                 DataRow row = data.NewRow();
-                row[TranslationLookup.GetValue("Location") + "#"] = l.Id; 
+                row["* " + TranslationLookup.GetValue("Location") + "#"] = l.Id; 
 
                 List<AdminLevel> parents = demo.GetAdminLevelParentNames(l.Id);
                 for (int i = 0; i < parents.Count; i++)
                 {
-                    if (!data.Columns.Contains(parents[i].LevelName))
+                    if (!data.Columns.Contains("* " + parents[i].LevelName))
                     {
-                        DataColumn dc = new DataColumn(parents[i].LevelName);
+                        DataColumn dc = new DataColumn("* " + parents[i].LevelName);
                         data.Columns.Add(dc);
                         dc.SetOrdinal(i + 1);
                     }
@@ -111,8 +111,8 @@ namespace Nada.Model
         protected DataTable CreateUpdateDataTable(List<AdminLevelDemography> levels)
         {
             DataTable data = new System.Data.DataTable();
-            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("ID") + "#"));
-            data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
+            data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("ID") + "#"));
+            data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("Location") + "#"));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("YearCensus")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("GrowthRate")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("TotalPopulation")));
@@ -130,15 +130,15 @@ namespace Nada.Model
             foreach (AdminLevelDemography l in levels)
             {
                 DataRow row = data.NewRow();
-                row[TranslationLookup.GetValue("ID") + "#"] = l.Id;
-                row[TranslationLookup.GetValue("Location") + "#"] = l.AdminLevelId;
+                row["* " + TranslationLookup.GetValue("ID") + "#"] = l.Id;
+                row["* " + TranslationLookup.GetValue("Location") + "#"] = l.AdminLevelId;
 
                 List<AdminLevel> parents = demo.GetAdminLevelParentNames(l.Id);
                 for (int i = 0; i < parents.Count; i++)
                 {
-                    if (!data.Columns.Contains(parents[i].LevelName))
+                    if (!data.Columns.Contains("* " + parents[i].LevelName))
                     {
-                        DataColumn dc = new DataColumn(parents[i].LevelName);
+                        DataColumn dc = new DataColumn("* " + parents[i].LevelName);
                         data.Columns.Add(dc);
                         dc.SetOrdinal(i + 2);
                     }
@@ -177,9 +177,9 @@ namespace Nada.Model
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     var demography = new AdminLevelDemography();
-                    if (ds.Tables[0].Columns.Contains(TranslationLookup.GetValue("ID") + "#"))
-                        demography.Id = Convert.ToInt32(row[TranslationLookup.GetValue("ID") + "#"]);
-                    demography.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("Location") + "#"]);
+                    if (ds.Tables[0].Columns.Contains("* " + TranslationLookup.GetValue("ID") + "#"))
+                        demography.Id = Convert.ToInt32(row["* " + TranslationLookup.GetValue("ID") + "#"]);
+                    demography.AdminLevelId = Convert.ToInt32(row["* " + TranslationLookup.GetValue("Location") + "#"]);
                     demography.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                     demography.DateDemographyData = dateReported;
                     // need to do the required validation, do all and then show errors

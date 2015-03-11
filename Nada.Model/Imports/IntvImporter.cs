@@ -57,16 +57,16 @@ namespace Nada.Model.Imports
             List<IntvBase> objs = new List<IntvBase>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                if (row["* " + TranslationLookup.GetValue("ID")] == null || row["* " + TranslationLookup.GetValue("ID")].ToString().Length == 0)
                     continue;
                 string objerrors = "";
                 IntvBase obj = repo.CreateIntv(iType.Id);
-                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
+                obj.AdminLevelId = Convert.ToInt32(row["* " + TranslationLookup.GetValue("ID")]);
                 obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("ID")].ToString());
+                errorMessage += GetObjectErrors(objerrors, row["* " + TranslationLookup.GetValue("ID")].ToString());
                 objs.Add(obj);
             }
 

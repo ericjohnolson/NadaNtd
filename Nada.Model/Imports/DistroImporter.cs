@@ -86,16 +86,16 @@ namespace Nada.Model
             List<DiseaseDistroPc> objs = new List<DiseaseDistroPc>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                if (row["* " + TranslationLookup.GetValue("ID")] == null || row["* " + TranslationLookup.GetValue("ID")].ToString().Length == 0)
                     continue;
                 string objerrors = "";
                 var obj = repo.Create((DiseaseType)type.Disease.Id);
-                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
+                obj.AdminLevelId = Convert.ToInt32(row["* " + TranslationLookup.GetValue("ID")]);
                 obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("ID")].ToString());
+                errorMessage += GetObjectErrors(objerrors, row["* " + TranslationLookup.GetValue("ID")].ToString());
                 objs.Add(obj);
             }
 
@@ -117,17 +117,17 @@ namespace Nada.Model
             List<DiseaseDistroCm> objs = new List<DiseaseDistroCm>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                if (row["* " + TranslationLookup.GetValue("ID")] == null || row["* " + TranslationLookup.GetValue("ID")].ToString().Length == 0)
                     continue;
 
                 string objerrors = "";
                 var obj = repo.CreateCm((DiseaseType)cmType.Disease.Id);
-                obj.AdminLevelId = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
+                obj.AdminLevelId = Convert.ToInt32(row["* " + TranslationLookup.GetValue("ID")]);
                 obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("ID")].ToString());
+                errorMessage += GetObjectErrors(objerrors, row["* " + TranslationLookup.GetValue("ID")].ToString());
                 objs.Add(obj);
             }
 

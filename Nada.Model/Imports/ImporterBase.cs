@@ -77,9 +77,9 @@ namespace Nada.Model
             DemoRepository repo = new DemoRepository();
             List<string> names = repo.GetAdminLevelTypeNames(adminLevelType.Id);
 
-            xlsWorksheet.Cells[1, 1] = TranslationLookup.GetValue("ID");
+            xlsWorksheet.Cells[1, 1] = "* " + TranslationLookup.GetValue("ID");
             for (int i = 0; i < names.Count; i++)
-                xlsWorksheet.Cells[1, 2 + i] = names[i];
+                xlsWorksheet.Cells[1, 2 + i] = "* " + names[i];
             int locationCount = names.Count + 1;
             int xlsColCount = names.Count + 1; // add one for id;
             xlsColCount = AddTypeSpecific(xlsWorksheet, xlsColCount);
@@ -202,8 +202,8 @@ namespace Nada.Model
             xlsValidation.Name = validationSheetName;
             xlsValidation.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
 
-            xlsWorksheet.Cells[1, 1] = TranslationLookup.GetValue("ID");
-            xlsWorksheet.Cells[1, 2] = TranslationLookup.GetValue("Location");
+            xlsWorksheet.Cells[1, 1] = "* " + TranslationLookup.GetValue("ID");
+            xlsWorksheet.Cells[1, 2] = "* " + TranslationLookup.GetValue("Location");
             int locationCount = 2;
             int xlsColCount = 2;
             xlsColCount = AddTypeSpecific(xlsWorksheet, xlsColCount);
@@ -282,10 +282,10 @@ namespace Nada.Model
                 string errorMessage = "";
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    if (row[TranslationLookup.GetValue("ID")] == null || row[TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                    if (row["* " + TranslationLookup.GetValue("ID")] == null || row["* " + TranslationLookup.GetValue("ID")].ToString().Length == 0)
                         continue;
                     string objerrors = "";
-                    int id = Convert.ToInt32(row[TranslationLookup.GetValue("ID")]);
+                    int id = Convert.ToInt32(row["* " + TranslationLookup.GetValue("ID")]);
                     var form = existing.FirstOrDefault(f => f.Id == id);
                     form.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
                     UpdateTypeSpecificValues(form, row, ref objerrors);
@@ -303,7 +303,7 @@ namespace Nada.Model
                     }
 
                     objerrors += !form.IsValid() ? form.GetAllErrors(true) : "";
-                    errorMessage += GetObjectErrors(objerrors, row[TranslationLookup.GetValue("ID")].ToString());
+                    errorMessage += GetObjectErrors(objerrors, row["* " + TranslationLookup.GetValue("ID")].ToString());
                 }
 
                 if (!string.IsNullOrEmpty(errorMessage))
