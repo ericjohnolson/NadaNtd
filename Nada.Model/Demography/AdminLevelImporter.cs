@@ -71,7 +71,6 @@ namespace Nada.Model
         {
             DataTable data = new System.Data.DataTable();
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
-            //data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("YearCensus")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("GrowthRate")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("TotalPopulation")));
@@ -101,10 +100,9 @@ namespace Nada.Model
                         data.Columns.Add(dc);
                         dc.SetOrdinal(i + 1);
                     }
-                    row[parents[i].LevelName] = parents[i].Name;
+                    row["* " + parents[i].LevelName] = parents[i].Name;
                 }
                 
-                //row[locationType.DisplayName] = l.Name;
                 data.Rows.Add(row);
             }
             return data;
@@ -115,7 +113,6 @@ namespace Nada.Model
             DataTable data = new System.Data.DataTable();
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("ID") + "#"));
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("Location") + "#"));
-            //data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("YearCensus")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("GrowthRate")));
             data.Columns.Add(new System.Data.DataColumn("* " + TranslationLookup.GetValue("TotalPopulation")));
@@ -145,10 +142,9 @@ namespace Nada.Model
                         data.Columns.Add(dc);
                         dc.SetOrdinal(i + 2);
                     }
-                    row[parents[i].LevelName] = parents[i].Name;
+                    row["* " + parents[i].LevelName] = parents[i].Name;
                 }
 
-                //row[locationType.DisplayName] = l.NameDisplayOnly;
                 row["* " + TranslationLookup.GetValue("YearCensus")] = l.YearCensus;
                 row["* " + TranslationLookup.GetValue("GrowthRate")] = l.GrowthRate;
                 row["* " + TranslationLookup.GetValue("TotalPopulation")] = l.TotalPopulation;
@@ -216,7 +212,7 @@ namespace Nada.Model
 
                     var demographyErrors = !demography.IsValid() ? demography.GetAllErrors(true) : "";
                     if (!string.IsNullOrEmpty(demographyErrors))
-                        errorMessage += string.Format(TranslationLookup.GetValue("ImportErrors"), row[locationType.DisplayName]) + demographyErrors + Environment.NewLine;
+                        errorMessage += string.Format(TranslationLookup.GetValue("ImportErrors"), row["* " + locationType.DisplayName]) + demographyErrors + Environment.NewLine;
 
                     demos.Add(demography);
                 }
@@ -378,12 +374,12 @@ namespace Nada.Model
             DataTable data = new System.Data.DataTable();
 
             if (filterByType != null)
-                data.Columns.Add(new System.Data.DataColumn(filterByType.DisplayName));
+                data.Columns.Add(new System.Data.DataColumn("* " + filterByType.DisplayName));
 
             if (dropdownBy != null)
-                data.Columns.Add(new System.Data.DataColumn(dropdownBy.DisplayName));
+                data.Columns.Add(new System.Data.DataColumn("* " + dropdownBy.DisplayName));
 
-            data.Columns.Add(new System.Data.DataColumn(locationType.DisplayName));
+            data.Columns.Add(new System.Data.DataColumn("* " + locationType.DisplayName));
             data.Columns.Add(new System.Data.DataColumn(TranslationLookup.GetValue("AltSpellingNames")));
             if (isDemo)
             {
@@ -429,14 +425,14 @@ namespace Nada.Model
                 {
                     int parentId = 1;
                     if (parentIds.Count > 0)
-                        if (parentIds.ContainsKey(row[dropdownBy.DisplayName].ToString().Trim().ToLower()))
-                            parentId = parentIds[row[dropdownBy.DisplayName].ToString().Trim().ToLower()];
+                        if (parentIds.ContainsKey(row["* " + dropdownBy.DisplayName].ToString().Trim().ToLower()))
+                            parentId = parentIds[row["* " + dropdownBy.DisplayName].ToString().Trim().ToLower()];
 
                     var adminLevel = new AdminLevel
                     {
                         AdminLevelTypeId = locationType.Id,
                         LevelNumber = locationType.LevelNumber,
-                        Name = row[locationType.DisplayName].ToString(),
+                        Name = row["* " + locationType.DisplayName].ToString(),
                         UrbanOrRural = row[TranslationLookup.GetValue("UrbanOrRural")].ToString(),
                         ParentId = parentId,
                         CurrentDemography = null
