@@ -28,6 +28,7 @@ namespace Nada.Model
         public string BindingLng { get; set; }
         public string UrbanOrRural { get; set; }
         public int RedistrictIdForMother { get; set; }
+        public int SortOrder { get; set; }
         public int TaskForceId { get; set; }
         private string _taskForceName = "";
         public string TaskForceName

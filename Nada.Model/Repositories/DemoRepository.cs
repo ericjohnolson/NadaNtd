@@ -297,7 +297,8 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName,  AdminLevelTypes.AdminLevel
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE ParentId=@ParentId AND AdminLevels.IsDeleted=0", connection);
+                    WHERE ParentId=@ParentId AND AdminLevels.IsDeleted=0
+                    ORDER BY AdminLevels.SortOrder, AdminLevels.DisplayName ", connection);
                 command.Parameters.Add(new OleDbParameter("@ParentId", parentId));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -326,7 +327,8 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, AdminLevelTypes.AdminLevel, AdminLevels.TaskForceName, AdminLevels.TaskForceId
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE AdminLevelTypes.AdminLevel = @LevelNumber AND AdminLevels.IsDeleted=0", connection);
+                    WHERE AdminLevelTypes.AdminLevel = @LevelNumber AND AdminLevels.IsDeleted=0
+                    ORDER BY AdminLevels.SortOrder, AdminLevels.DisplayName ", connection);
                 command.Parameters.Add(new OleDbParameter("@LevelNumber", levelNumber));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -390,9 +392,10 @@ namespace Nada.Model.Repositories
             {
                 connection.Open();
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho,
-                    AdminLevelTypes.AdminLevel
+                    AdminLevelTypes.AdminLevel, AdminLevels.SortOrder
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE AdminLevels.IsDeleted = 0
+                    ORDER BY AdminLevelTypes.AdminLevel, AdminLevels.SortOrder, AdminLevels.DisplayName 
                     ", connection); // WHERE ParentId > 0
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -407,6 +410,7 @@ namespace Nada.Model.Repositories
                             UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
                             LatWho = reader.GetValueOrDefault<double>("LatWho"),
                             LngWho = reader.GetValueOrDefault<double>("LngWho"),
+                            SortOrder = reader.GetValueOrDefault<int>("SortOrder"),
                         });
                     }
                     reader.Close();
@@ -439,12 +443,13 @@ namespace Nada.Model.Repositories
                 if (onlyRedistricted)
                     redistrictedFilter = " AND AdminLevels.RedistrictIdForMother>=0";
                 connection.Open();
-                string cmd = @"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, 
+                string cmd = @"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, AdminLevels.SortOrder, 
                     AdminLevelTypes.AdminLevel, AdminLevelTypes.ID as AdminLevelTypeId, AdminLevelTypes.DisplayName as LevelName, RedistrictIdForMother
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE AdminLevelTypeId <= @AdminLevelTypeId " + redistrictedFilter;
                 if (!includeCountry)
-                    cmd += " AND ParentId > 0 ";
+                    cmd += " AND ParentId > 0";
+                cmd += " ORDER BY AdminLevelTypes.AdminLevel, AdminLevels.SortOrder, AdminLevels.DisplayName ";
                 OleDbCommand command = new OleDbCommand(cmd, connection);
                 command.Parameters.Add(new OleDbParameter("@AdminLevelTypeId", levelTypeId));
                 using (OleDbDataReader reader = command.ExecuteReader())
@@ -463,6 +468,7 @@ namespace Nada.Model.Repositories
                             UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
                             LatWho = reader.GetValueOrDefault<double>("LatWho"),
                             LngWho = reader.GetValueOrDefault<double>("LngWho"),
+                            SortOrder = reader.GetValueOrDefault<int>("SortOrder"),
                         });
                     }
                     reader.Close();
@@ -478,9 +484,10 @@ namespace Nada.Model.Repositories
             {
                 connection.Open();
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, 
-                    AdminLevelTypes.AdminLevel, AdminLevelTypeId
+                    AdminLevelTypes.AdminLevel, AdminLevels.SortOrder, AdminLevelTypeId
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE AdminLevel <= @AdminLevel AND AdminLevels.IsDeleted = 0 ", connection);
+                    WHERE AdminLevel <= @AdminLevel AND AdminLevels.IsDeleted = 0 
+                    ORDER BY AdminLevelTypes.AdminLevel, AdminLevels.SortOrder, AdminLevels.DisplayName ", connection);
                 command.Parameters.Add(new OleDbParameter("@AdminLevel", level));
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
@@ -495,7 +502,8 @@ namespace Nada.Model.Repositories
                             UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
                             LatWho = reader.GetValueOrDefault<Nullable<double>>("LatWho"),
                             LngWho = reader.GetValueOrDefault<Nullable<double>>("LngWho"),
-                            AdminLevelTypeId = reader.GetValueOrDefault<int>("AdminLevelTypeId")
+                            AdminLevelTypeId = reader.GetValueOrDefault<int>("AdminLevelTypeId"),
+                            SortOrder = reader.GetValueOrDefault<int>("SortOrder"),
                         };
                         al.CurrentDemography = GetDemoByAdminLevelIdAndYear(al.Id, startDate, endDate);
                         list.Add(al);
@@ -572,6 +580,7 @@ namespace Nada.Model.Repositories
             return list;
         }
 
+        // TODO: Do i need to change this to do the sort properly? i feel like it could be jacked?
         private List<AdminLevel> MakeTreeFromFlatList(IEnumerable<AdminLevel> flatList, int minRoot, bool allowSelect, int levelToSelect, bool onlyRedistricted, string viewText)
         {
             var dic = flatList.ToDictionary(n => n.Id, n => n);
@@ -624,9 +633,10 @@ namespace Nada.Model.Repositories
             {
                 connection.Open();
                 OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, 
-                    AdminLevelTypes.AdminLevel, AdminLevelTypeId, TaskForceName
+                    AdminLevelTypes.AdminLevel, AdminLevels.SortOrder, AdminLevelTypeId, TaskForceName
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
-                    WHERE AdminLevels.IsDeleted = 0 ", connection);
+                    WHERE AdminLevels.IsDeleted = 0 
+                    ORDER BY AdminLevels.SortOrder, AdminLevels.DisplayName ", connection);
                 using (OleDbDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -641,7 +651,8 @@ namespace Nada.Model.Repositories
                             UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
                             LatWho = reader.GetValueOrDefault<Nullable<double>>("LatWho"),
                             LngWho = reader.GetValueOrDefault<Nullable<double>>("LngWho"),
-                            AdminLevelTypeId = reader.GetValueOrDefault<int>("AdminLevelTypeId")
+                            AdminLevelTypeId = reader.GetValueOrDefault<int>("AdminLevelTypeId"),
+                            SortOrder = reader.GetValueOrDefault<int>("SortOrder"),
                         };
                         al.CurrentDemography = GetDemoByAdminLevelIdAndYear(al.Id, startDate, endDate);
                         list.Add(al);
@@ -672,8 +683,6 @@ namespace Nada.Model.Repositories
                 u.Children = u.Children.Flatten(c => c.Children).ToList();
             return reportingLevels;
         }
-
-        
 
         public void AddChildren(AdminLevel parent, List<AdminLevel> children, AdminLevelType childType, int byUserId)
         {
