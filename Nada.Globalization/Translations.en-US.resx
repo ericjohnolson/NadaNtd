@@ -6283,4 +6283,10 @@ Fixed / Mobile</value>
   <data name="RedistEventDate" xml:space="preserve">
     <value>Date redistricting documented in database</value>
   </data>
+  <data name="MenuReorderAdminLevel" xml:space="preserve">
+    <value>Order administrative units</value>
+  </data>
+  <data name="DragToReorder" xml:space="preserve">
+    <value>Drag and drop administrative units to reorder</value>
+  </data>
 </root>

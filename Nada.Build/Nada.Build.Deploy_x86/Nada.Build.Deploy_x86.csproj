@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nada.Deploy_x86</RootNamespace>
-    <AssemblyName>Nada.Deploy_x86</AssemblyName>
+    <AssemblyName>NationalDatabaseTemplate</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -33,7 +33,7 @@
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -63,10 +63,13 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>7AFC406A1C6D6D2C4DD44521DCDDFD721369F73C</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DF061BF542567F734667E589F079D3100049D1FE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>nada-sha1-2015.pfx</ManifestKeyFile>
+    <ManifestKeyFile>nadasha15yr.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -84,6 +87,186 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="..\..\nada.ui\view\help\en\Image%281%29.bmp">
+      <Link>Help\EN\Image%281%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%281%29.png">
+      <Link>Help\EN\Image%281%29.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%2810%29.bmp">
+      <Link>Help\EN\Image%2810%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%2811%29.bmp">
+      <Link>Help\EN\Image%2811%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%2812%29.bmp">
+      <Link>Help\EN\Image%2812%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%2813%29.bmp">
+      <Link>Help\EN\Image%2813%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%282%29.bmp">
+      <Link>Help\EN\Image%282%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%282%29.png">
+      <Link>Help\EN\Image%282%29.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%283%29.bmp">
+      <Link>Help\EN\Image%283%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%284%29.bmp">
+      <Link>Help\EN\Image%284%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%285%29.bmp">
+      <Link>Help\EN\Image%285%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%286%29.bmp">
+      <Link>Help\EN\Image%286%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%287%29.bmp">
+      <Link>Help\EN\Image%287%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%288%29.bmp">
+      <Link>Help\EN\Image%288%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\en\Image%289%29.bmp">
+      <Link>Help\EN\Image%289%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\fr\astoria.png">
+      <Link>Help\FR\astoria.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\fr\browse.png">
+      <Link>Help\FR\browse.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\fr\calcuated.png">
+      <Link>Help\FR\calcuated.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\fr\create.png">
+      <Link>Help\FR\create.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\fr\custom indicaotrs.PNG">
+      <Link>Help\FR\custom indicaotrs.PNG</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\fr\custom.png">
+      <Link>Help\FR\custom.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\fr\diseases.png">
+      <Link>Help\FR\diseases.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\fr\install.PNG">
+      <Link>Help\FR\install.PNG</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\fr\open.png">
+      <Link>Help\FR\open.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\fr\signin.png">
+      <Link>Help\FR\signin.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\id\Image%281%29.png">
+      <Link>Help\ID\Image%281%29.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\id\Image%284%29.bmp">
+      <Link>Help\ID\Image%284%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\id\Picture1.png">
+      <Link>Help\ID\Picture1.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\id\Picture10.png">
+      <Link>Help\ID\Picture10.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\id\Picture11.png">
+      <Link>Help\ID\Picture11.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\id\Picture5.png">
+      <Link>Help\ID\Picture5.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\id\Picture6.png">
+      <Link>Help\ID\Picture6.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\id\Picture7.png">
+      <Link>Help\ID\Picture7.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\id\Picture8.png">
+      <Link>Help\ID\Picture8.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\id\Picture9.png">
+      <Link>Help\ID\Picture9.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%281%29.bmp">
+      <Link>Help\PT\Image%281%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%281%29.png">
+      <Link>Help\PT\Image%281%29.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%2810%29.bmp">
+      <Link>Help\PT\Image%2810%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%2811%29.bmp">
+      <Link>Help\PT\Image%2811%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%2812%29.bmp">
+      <Link>Help\PT\Image%2812%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%2813%29.bmp">
+      <Link>Help\PT\Image%2813%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%282%29.bmp">
+      <Link>Help\PT\Image%282%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%282%29.png">
+      <Link>Help\PT\Image%282%29.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%283%29.bmp">
+      <Link>Help\PT\Image%283%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%284%29.bmp">
+      <Link>Help\PT\Image%284%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%285%29.bmp">
+      <Link>Help\PT\Image%285%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%286%29.bmp">
+      <Link>Help\PT\Image%286%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%287%29.bmp">
+      <Link>Help\PT\Image%287%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%288%29.bmp">
+      <Link>Help\PT\Image%288%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Image%289%29.bmp">
+      <Link>Help\PT\Image%289%29.bmp</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Picture1%281%29.png">
+      <Link>Help\PT\Picture1%281%29.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Picture1.png">
+      <Link>Help\PT\Picture1.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Picture10.png">
+      <Link>Help\PT\Picture10.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Picture11.png">
+      <Link>Help\PT\Picture11.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\picture12.png">
+      <Link>Help\PT\picture12.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\picture14.png">
+      <Link>Help\PT\picture14.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Picture2.png">
+      <Link>Help\PT\Picture2.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Picture3.png">
+      <Link>Help\PT\Picture3.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Picture4.png">
+      <Link>Help\PT\Picture4.png</Link>
+    </Content>
+    <Content Include="..\..\nada.ui\view\help\pt\Picture6.png">
+      <Link>Help\PT\Picture6.png</Link>
+    </Content>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -134,10 +317,35 @@
       <Link>TestVillages.xlsx</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="..\..\nada.ui\view\help\en\help.chm">
+      <Link>Help\EN\help.chm</Link>
+    </None>
+    <None Include="..\..\nada.ui\view\help\fr\help.chm">
+      <Link>Help\FR\help.chm</Link>
+    </None>
+    <None Include="..\..\nada.ui\view\help\id\help.chm">
+      <Link>Help\ID\help.chm</Link>
+    </None>
+    <None Include="..\..\nada.ui\view\help\pt\help.chm">
+      <Link>Help\PT\help.chm</Link>
+    </None>
+    <None Include="..\..\nada.ui\view\help\TrainingPPT_0601614_pt.pptx">
+      <Link>Help\TrainingPPT_0601614_pt.pptx</Link>
+    </None>
+    <None Include="..\..\nada.ui\view\help\TrainingPPT_061614_en.pptx">
+      <Link>Help\TrainingPPT_061614_en.pptx</Link>
+    </None>
+    <None Include="..\..\nada.ui\view\help\TrainingPPT_070614_id.pptx">
+      <Link>Help\TrainingPPT_070614_id.pptx</Link>
+    </None>
+    <None Include="..\..\nada.ui\view\help\TrainingPPT_080814_French.pptx">
+      <Link>Help\TrainingPPT_080814_French.pptx</Link>
+    </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="nada-sha1-2015.pfx" />
+    <None Include="nadasha15yr.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -175,6 +383,11 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>

@@ -3026,6 +3026,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drag and drop administrative units to reorder.
+        /// </summary>
+        public static string DragToReorder {
+            get {
+                return ResourceManager.GetString("DragToReorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ALB.
         /// </summary>
         public static string DrpAlb {
@@ -6226,6 +6235,15 @@ namespace Nada.Globalization {
         public static string MenuProcess {
             get {
                 return ResourceManager.GetString("MenuProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order administrative units.
+        /// </summary>
+        public static string MenuReorderAdminLevel {
+            get {
+                return ResourceManager.GetString("MenuReorderAdminLevel", resourceCulture);
             }
         }
         

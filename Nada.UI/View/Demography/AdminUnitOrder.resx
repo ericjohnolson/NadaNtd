@@ -117,34 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreateNewForm" xml:space="preserve">
-    <value>Create new form</value>
-  </data>
-  <data name="CreatingUpdateFiles" xml:space="preserve">
-    <value>Creating update files</value>
-  </data>
-  <data name="DragToReorder" xml:space="preserve">
-    <value>Drag and drop administrative units to reorder</value>
-  </data>
-  <data name="EditAdministrativeUnit" xml:space="preserve">
-    <value>Edit administrative unit &gt;</value>
-  </data>
-  <data name="IndFormType" xml:space="preserve">
-    <value>Form type</value>
-  </data>
-  <data name="IndicatorUpdatesValidated" xml:space="preserve">
-    <value>Changes have been validated, please make sure there are no errors.</value>
-  </data>
-  <data name="MenuIndicatorManagement" xml:space="preserve">
-    <value>Indicator management</value>
-  </data>
-  <data name="MenuReorderAdminLevel" xml:space="preserve">
-    <value>Order administrative units</value>
-  </data>
-  <data name="RedistEventDate" xml:space="preserve">
-    <value>Date redistricting documented in database</value>
-  </data>
-  <data name="RoleDbAdmin" xml:space="preserve">
-    <value>Database Administrator</value>
-  </data>
 </root>

@@ -81,8 +81,14 @@ namespace Nada.UI.View.Demography
                    
                 StatusChanged(model.UpdatedBy);
 
-                if (!canEdit || (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
-                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin")))
+                if (!canEdit)
+                {
+                    btnTopSave.Visible = false;
+                    btnBottomSave.Visible = false;
+                }
+
+                if(!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
+                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
                 {
                     lnkEditAdminLevelUnit.Visible = false;
                     btnTopSave.Visible = false;
@@ -102,7 +108,7 @@ namespace Nada.UI.View.Demography
                 lblLat.Text = adminLevel.LatWho.ToString();
             else
                 lblLat.Text = Translations.NA;
-            if(adminLevel.LngWho.HasValue)
+            if (adminLevel.LngWho.HasValue)
                 lblLng.Text = adminLevel.LngWho.ToString();
             else
                 lblLng.Text = Translations.NA;
@@ -124,7 +130,7 @@ namespace Nada.UI.View.Demography
             }
 
             bsDemo.EndEdit();
-            
+
             int userId = ApplicationData.Instance.GetUserId();
             demo.Save(model, userId);
             SettingsRepository settings = new SettingsRepository();
@@ -134,8 +140,8 @@ namespace Nada.UI.View.Demography
             if (type.IsAggregatingLevel)
             {
                 demo.AggregateUp(type, model.DateDemographyData, userId, null, null);
-                if(originalDate != DateTime.MinValue &&
-                    Util.GetYearReported(1, originalDate) != 
+                if (originalDate != DateTime.MinValue &&
+                    Util.GetYearReported(1, originalDate) !=
                     Util.GetYearReported(1, model.DateDemographyData))
                     demo.AggregateUp(type, originalDate, userId, null, null);
 
@@ -175,7 +181,7 @@ namespace Nada.UI.View.Demography
             adminLevelBoundToGlobalTree.Name = adminLevel.Name;
             adminLevelBoundToGlobalTree.LatWho = adminLevel.LatWho;
             adminLevelBoundToGlobalTree.LngWho = adminLevel.LngWho;
-            
+
         }
     }
 }

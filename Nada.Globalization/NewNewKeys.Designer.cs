@@ -79,6 +79,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drag and drop administrative units to reorder.
+        /// </summary>
+        public static string DragToReorder {
+            get {
+                return ResourceManager.GetString("DragToReorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit administrative unit &gt;.
         /// </summary>
         public static string EditAdministrativeUnit {
@@ -111,6 +120,15 @@ namespace Nada.Globalization {
         public static string MenuIndicatorManagement {
             get {
                 return ResourceManager.GetString("MenuIndicatorManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order administrative units.
+        /// </summary>
+        public static string MenuReorderAdminLevel {
+            get {
+                return ResourceManager.GetString("MenuReorderAdminLevel", resourceCulture);
             }
         }
         

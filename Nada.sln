@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Solution Items\nada-sha1-2015.p12 = Solution Items\nada-sha1-2015.p12
 		Solution Items\nada-sha1-2015.pfx = Solution Items\nada-sha1-2015.pfx
 		Solution Items\nadasha1.p12 = Solution Items\nadasha1.p12
+		Solution Items\nadasha15yr.pfx = Solution Items\nadasha15yr.pfx
 		Solution Items\ObjectListView.dll = Solution Items\ObjectListView.dll
 		Solution Items\private-2015.key = Solution Items\private-2015.key
 	EndProjectSection

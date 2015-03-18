@@ -798,7 +798,7 @@ namespace Nada.Model.Repositories
                     command.ExecuteNonQuery();
                     transWasStarted = true;
 
-                    command = new OleDbCommand(@"Update AdminLevels set IsDeleted=1, UpdatedBy=@UpdatedBy, 
+                    command = new OleDbCommand(@"Update AdminLevels set IsDeleted=1, UpdatedById=@UpdatedBy, 
                     UpdatedAt=@UpdatedAt WHERE ID > 1", connection);
                     command.Parameters.Add(new OleDbParameter("@UpdatedBy", byUserId));
                     command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
@@ -827,6 +827,52 @@ namespace Nada.Model.Repositories
                             ParentId = regions[row["Region"].ToString()]
                         };
                         InsertAdminLevelHelper(command, district, connection, byUserId);
+                    }
+
+                    // COMMIT TRANS
+                    command = new OleDbCommand("COMMIT TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = false;
+                }
+                catch (Exception)
+                {
+                    if (transWasStarted)
+                    {
+                        try
+                        {
+                            OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch { }
+                    }
+                    throw;
+                }
+            }
+        }
+
+        public void ReorderAdminUnits(List<AdminLevel> toUpdate, int byUserId)
+        {
+            bool transWasStarted = false;
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // START TRANS
+                    OleDbCommand command = new OleDbCommand("BEGIN TRANSACTION", connection);
+                    command.ExecuteNonQuery();
+                    transWasStarted = true;
+
+                    foreach (var unit in toUpdate)
+                    {
+                        command = new OleDbCommand(@"Update AdminLevels set SortOrder=@SortOrder, UpdatedById=@UpdatedBy, 
+                            UpdatedAt=@UpdatedAt WHERE ID=@ID", connection);
+                        command.Parameters.Add(new OleDbParameter("@SortOrder", unit.SortOrder));
+                        command.Parameters.Add(new OleDbParameter("@UpdatedBy", byUserId));
+                        command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                        command.Parameters.Add(new OleDbParameter("@ID", unit.Id));
+                        command.ExecuteNonQuery();
                     }
 
                     // COMMIT TRANS
@@ -1967,5 +2013,7 @@ namespace Nada.Model.Repositories
 
 
 
+
+        
     }
 }

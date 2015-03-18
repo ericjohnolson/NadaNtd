@@ -66,9 +66,9 @@
             this.menuImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDemographyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDiseaseDistributionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSurveysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuIntvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSurveysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +80,7 @@
             this.hrTop = new Nada.UI.Controls.HR();
             this.hr1 = new Nada.UI.Controls.HR();
             this.hr2 = new Nada.UI.Controls.HR();
+            this.menuReorderAdminLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tsQuickLinks.SuspendLayout();
             this.pnlLeft.SuspendLayout();
@@ -330,6 +331,7 @@
             this.administrativeUnitsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuNewAdminLevelToolStripMenuItem1,
             this.menuDeleteAdminLevelToolStripMenuItem,
+            this.menuReorderAdminLevelToolStripMenuItem,
             this.menuSplitDistrictToolStripMenuItem,
             this.menuMergeDistrictToolStripMenuItem,
             this.menuSplitCombineDistrictToolStripMenuItem});
@@ -436,6 +438,14 @@
             this.menuDiseaseDistributionsToolStripMenuItem.Text = "MenuDiseaseDistributions";
             this.menuDiseaseDistributionsToolStripMenuItem.Click += new System.EventHandler(this.menuDiseaseDistributionsToolStripMenuItem_Click);
             // 
+            // menuSurveysToolStripMenuItem
+            // 
+            this.menuSurveysToolStripMenuItem.Name = "menuSurveysToolStripMenuItem";
+            this.menuSurveysToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.menuSurveysToolStripMenuItem.Tag = "MenuSurveys";
+            this.menuSurveysToolStripMenuItem.Text = "MenuSurveys";
+            this.menuSurveysToolStripMenuItem.Click += new System.EventHandler(this.menuSurveysToolStripMenuItem_Click);
+            // 
             // menuIntvToolStripMenuItem
             // 
             this.menuIntvToolStripMenuItem.Name = "menuIntvToolStripMenuItem";
@@ -451,14 +461,6 @@
             this.menuProcessToolStripMenuItem.Tag = "MenuProcess";
             this.menuProcessToolStripMenuItem.Text = "MenuProcess";
             this.menuProcessToolStripMenuItem.Click += new System.EventHandler(this.menuProcessToolStripMenuItem_Click);
-            // 
-            // menuSurveysToolStripMenuItem
-            // 
-            this.menuSurveysToolStripMenuItem.Name = "menuSurveysToolStripMenuItem";
-            this.menuSurveysToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.menuSurveysToolStripMenuItem.Tag = "MenuSurveys";
-            this.menuSurveysToolStripMenuItem.Text = "MenuSurveys";
-            this.menuSurveysToolStripMenuItem.Click += new System.EventHandler(this.menuSurveysToolStripMenuItem_Click);
             // 
             // menuReportsToolStripMenuItem
             // 
@@ -563,6 +565,14 @@
             this.hr2.Size = new System.Drawing.Size(1248, 10);
             this.hr2.TabIndex = 65;
             // 
+            // menuReorderAdminLevelToolStripMenuItem
+            // 
+            this.menuReorderAdminLevelToolStripMenuItem.Name = "menuReorderAdminLevelToolStripMenuItem";
+            this.menuReorderAdminLevelToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.menuReorderAdminLevelToolStripMenuItem.Tag = "MenuReorderAdminLevel";
+            this.menuReorderAdminLevelToolStripMenuItem.Text = "MenuReorderAdminLevel";
+            this.menuReorderAdminLevelToolStripMenuItem.Click += new System.EventHandler(this.menuReorderAdminLevelToolStripMenuItem_Click);
+            // 
             // Shell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -647,6 +657,7 @@
         private System.Windows.Forms.ToolStripMenuItem newYearUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuDeleteAdminLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuIndicatorManagementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuReorderAdminLevelToolStripMenuItem;
     }
 }
 

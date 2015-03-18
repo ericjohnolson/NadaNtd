@@ -401,6 +401,13 @@ namespace Nada.UI
             };
             wiz.ShowDialog();
         }
+
+        private void menuReorderAdminLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var auOrder = new AdminUnitOrder();
+            auOrder.OnSave += adminLevelAdd_OnSave;
+            auOrder.ShowDialog();
+        }
         #endregion
         
 
