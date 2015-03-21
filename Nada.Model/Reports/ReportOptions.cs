@@ -32,6 +32,7 @@ namespace Nada.Model.Reports
         private BaseReportGenerator reportGen = null;
         public BaseReportGenerator ReportGenerator { get { return reportGen; } set { reportGen = value; } }
         public IndicatorEntityType EntityType { get; set; }
+        public string CategoryName { get; set; }
         public bool IsNoAggregation { get; set; }
         public bool IsCountryAggregation { get; set; }
         public bool IsByLevelAggregation { get; set; }

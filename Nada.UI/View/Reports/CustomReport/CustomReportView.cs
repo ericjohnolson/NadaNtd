@@ -15,6 +15,7 @@ using Nada.Globalization;
 using C1.Win.C1Chart;
 using System.Collections;
 using Nada.Model.Repositories;
+using System.Globalization;
 
 namespace Nada.UI.View.Reports.CustomReport
 {
@@ -84,8 +85,11 @@ namespace Nada.UI.View.Reports.CustomReport
                 {
                     try
                     {
+                        DataTable dtExport = currentResult.DataTableResults.Copy();
+                        if (report.TypeName == Translations.CustomReport)
+                            AddFootnote(dtExport);
                         ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
-                        ws.Cells["A1"].LoadFromDataTable(currentResult.DataTableResults, true);
+                        ws.Cells["A1"].LoadFromDataTable(dtExport, true);
                         File.WriteAllBytes(saveFileDialog1.FileName, pck.GetAsByteArray());
                     }
                     catch (IOException)
@@ -129,6 +133,52 @@ namespace Nada.UI.View.Reports.CustomReport
         {
             OnSave();
             this.Close();
+        }
+
+        private void AddFootnote(DataTable dataTable)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                var row = dataTable.NewRow();
+                dataTable.Rows.Add(row);
+            }
+
+            DemoRepository demo = new DemoRepository();
+            var country = demo.GetCountry();
+            var name = dataTable.NewRow();
+            name[0] = country.Name + " " + DateTime.Now.ToString("yyyy-MM-dd");
+            dataTable.Rows.Add(name);
+            var daterange = dataTable.NewRow();
+            daterange[0] = Translations.DateRange + ": " + report.ReportOptions.StartDate.ToString("yyyy-MM-dd") + " -- " + report.ReportOptions.EndDate.ToString("yyyy-MM-dd");
+            dataTable.Rows.Add(daterange);
+            var startmonth = dataTable.NewRow();
+            startmonth[0] = Translations.StartMonthOfReportingYear + ": " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(report.ReportOptions.MonthYearStarts) ;
+            dataTable.Rows.Add(startmonth);
+            var cat = dataTable.NewRow();
+            cat[0] = Translations.Category + ": " + report.ReportOptions.CategoryName;
+            dataTable.Rows.Add(cat);
+            
+            // Add diseases selected in report?
+            if(report.ReportOptions.EntityType != Model.IndicatorEntityType.Demo)
+            {
+            }
+
+            var agg = dataTable.NewRow();
+            if(report.ReportOptions.IsByLevelAggregation)
+                agg[0] = Translations.AggregatedBy + ": " + Translations.AggLevel;
+            else if (report.ReportOptions.IsCountryAggregation)
+                agg[0] = Translations.AggregatedBy + ": " + Translations.AggCountry;
+            else 
+                agg[0] = Translations.AggregatedBy + ": " + Translations.AggListAll;
+            dataTable.Rows.Add(agg);
+
+            //[Only administrative units before redistricting] (only show if checked)
+            if(report.ReportOptions.ShowOnlyRedistrictedUnits)
+            {
+                var redist = dataTable.NewRow();
+                redist[0] = Translations.RedistrictedAdminUnits;
+                dataTable.Rows.Add(redist);
+            }
         }
 
         #region chart helpers
@@ -234,7 +284,6 @@ namespace Nada.UI.View.Reports.CustomReport
         {
             BindSeries(c1c, series, dataSource, field, null);
         }
-        #endregion
 
         private void cbChartType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -243,6 +292,7 @@ namespace Nada.UI.View.Reports.CustomReport
             else
                 c1Chart1.ChartGroups[0].ChartType = Chart2DTypeEnum.XYPlot;
         }
+        #endregion
 
     }
 }

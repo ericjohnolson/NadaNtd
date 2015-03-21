@@ -39,6 +39,7 @@ namespace Nada.UI.View.Reports.CustomReport
             ReportRepository repo = new ReportRepository();
             report.ReportOptions.ShowDiseasesOption = false;
             report.ReportOptions.EntityType = Model.IndicatorEntityType.Demo;
+            report.ReportOptions.CategoryName = Translations.Demography;
             report.ReportOptions.ReportGenerator = new DemoReportGenerator();
             report.ReportOptions.AvailableIndicators = repo.GetDemographyIndicators();
             OnSwitchStep(new StepIndicators(report));
@@ -49,8 +50,9 @@ namespace Nada.UI.View.Reports.CustomReport
             ReportRepository repo = new ReportRepository();
             report.ReportOptions.ShowDiseasesOption = false;
             report.ReportOptions.EntityType = Model.IndicatorEntityType.Sae;
+            report.ReportOptions.CategoryName = Translations.SAEs;
             report.ReportOptions.ReportGenerator = null; //new SurveyReportGenerator();
-           report.ReportOptions.AvailableIndicators = null; // repo.GetSurveyIndicators();
+            report.ReportOptions.AvailableIndicators = null; // repo.GetSurveyIndicators();
             OnSwitchStep(new StepIndicators(report));
         }
 
@@ -59,8 +61,9 @@ namespace Nada.UI.View.Reports.CustomReport
             ReportRepository repo = new ReportRepository();
             report.ReportOptions.ShowDiseasesOption = false;
             report.ReportOptions.EntityType = Model.IndicatorEntityType.DiseaseDistribution;
-           report.ReportOptions.ReportGenerator = new DistributionReportGenerator();
-           report.ReportOptions.AvailableIndicators = repo.GetDiseaseDistroIndicators();
+            report.ReportOptions.CategoryName = Translations.DiseaseDistribution;
+            report.ReportOptions.ReportGenerator = new DistributionReportGenerator();
+            report.ReportOptions.AvailableIndicators = repo.GetDiseaseDistroIndicators();
             OnSwitchStep(new StepIndicators(report));
         }
 
@@ -69,9 +72,10 @@ namespace Nada.UI.View.Reports.CustomReport
             ReportRepository repo = new ReportRepository();
             report.ReportOptions.ShowDiseasesOption = false;
             report.ReportOptions.EntityType = Model.IndicatorEntityType.Survey;
-           report.ReportOptions.ReportGenerator = new SurveyReportGenerator();
-           report.ReportOptions.AvailableIndicators = repo.GetSurveyIndicators();
-           report.ReportOptions.HideAggregation = true;
+            report.ReportOptions.CategoryName = Translations.Surveys;
+            report.ReportOptions.ReportGenerator = new SurveyReportGenerator();
+            report.ReportOptions.AvailableIndicators = repo.GetSurveyIndicators();
+            report.ReportOptions.HideAggregation = true;
             OnSwitchStep(new StepIndicators(report));
         }
 
@@ -80,8 +84,9 @@ namespace Nada.UI.View.Reports.CustomReport
             ReportRepository repo = new ReportRepository();
             report.ReportOptions.ShowDiseasesOption = true;
             report.ReportOptions.EntityType = Model.IndicatorEntityType.Intervention;
-           report.ReportOptions.ReportGenerator = new IntvReportGenerator();
-           report.ReportOptions.AvailableIndicators = repo.GetIntvIndicators();
+            report.ReportOptions.CategoryName = Translations.Interventions;
+            report.ReportOptions.ReportGenerator = new IntvReportGenerator();
+            report.ReportOptions.AvailableIndicators = repo.GetIntvIndicators();
             OnSwitchStep(new StepIndicators(report));
         }
 
@@ -90,8 +95,9 @@ namespace Nada.UI.View.Reports.CustomReport
             ReportRepository repo = new ReportRepository();
             report.ReportOptions.ShowDiseasesOption = false;
             report.ReportOptions.EntityType = Model.IndicatorEntityType.Process;
-           report.ReportOptions.ReportGenerator = new ProcessReportGenerator();
-           report.ReportOptions.AvailableIndicators = repo.GetProcessIndicators();
+            report.ReportOptions.CategoryName = Translations.ProcessIndicators;
+            report.ReportOptions.ReportGenerator = new ProcessReportGenerator();
+            report.ReportOptions.AvailableIndicators = repo.GetProcessIndicators();
             OnSwitchStep(new StepIndicators(report));
         }
 
@@ -107,7 +113,7 @@ namespace Nada.UI.View.Reports.CustomReport
 
         private void StepCategory_Load(object sender, EventArgs e)
         {
-            if(!DesignMode)
+            if (!DesignMode)
                 Localizer.TranslateControl(this);
         }
 

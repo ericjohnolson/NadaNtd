@@ -6289,4 +6289,7 @@ Fixed / Mobile</value>
   <data name="DragToReorder" xml:space="preserve">
     <value>Drag and drop administrative units to reorder</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
 </root>
