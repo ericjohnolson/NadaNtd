@@ -45,15 +45,7 @@ namespace Nada.UI.View.Wizard.IndicatorManagement
         {
             result = r;
             prev = p;
-            InitializeComponent();
-        }
-
-        public IndStepResult(IndicatorUpdateResult r, IWizardStep p, bool f)
-            : base()
-        {
-            showFinish = f;
-            result = r;
-            prev = p;
+            showFinish = result.WasSuccess;
             InitializeComponent();
         }
 

@@ -127,7 +127,7 @@ namespace Nada.UI.View
             SelectedAdminLevelType = (AdminLevelType)cbLevels.SelectedItem;
             available = demography.GetAdminLevelTree(SelectedAdminLevelType.Id, showRedistricted);
             selected = new List<AdminLevel>();
-            treeAvailable.SetObjects(available.OrderBy(i => i.Name).ToList());
+            treeAvailable.SetObjects(available.ToList());
             treeSelected.SetObjects(selected.OrderBy(i => i.Name).ToList());
         }
 

@@ -242,6 +242,9 @@
     <Compile Include="Controls\StatCalculator.Designer.cs">
       <DependentUpon>StatCalculator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TriStateTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ViewModel\ControlFactory.cs" />
     <Compile Include="ViewModel\DdUpdateViewModel.cs" />
     <Compile Include="ViewModel\ProcessBaseVm.cs" />

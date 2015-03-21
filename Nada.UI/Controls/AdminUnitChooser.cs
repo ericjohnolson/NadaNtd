@@ -37,7 +37,7 @@ namespace Nada.UI.View
 
         public void HideNewLink()
         {
-            fieldLink1.Hide();
+            fieldLink1.HideLink();
         }
 
         public void Select(int id)

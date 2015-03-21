@@ -114,7 +114,7 @@ namespace Nada.Model
 
             // row 2+ admin levels
             int xlsRowCount = 2;
-            foreach (AdminLevel l in adminLevels)
+            foreach (AdminLevel l in adminLevels.OrderBy(a => a.SortOrder))
             {
                 xlsWorksheet.Cells[xlsRowCount, 1] = l.Id;
                 List<AdminLevel> parents = repo.GetAdminLevelParentNames(l.Id);

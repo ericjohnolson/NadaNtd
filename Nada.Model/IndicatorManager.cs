@@ -423,8 +423,12 @@ namespace Nada.Model
         private IndicatorUpdate ParseAndValidate(DataRow dr, ref string error, List<KeyValuePair<string, int>> formTypes)
         {
             IndicatorUpdate indicator = new IndicatorUpdate();
+            int indicatorId = 0;
             if (!string.IsNullOrEmpty(dr["Indicator Id"].ToString()))
-                indicator.Id = Convert.ToInt32(dr["Indicator Id"]);
+                if (!int.TryParse(dr["Indicator ID"].ToString(), out indicatorId))
+                    error += "Indicator ID: " + TranslationLookup.GetValue("MustBeNumber") + Environment.NewLine;
+                else
+                    indicator.Id = indicatorId;
 
             if (string.IsNullOrEmpty(dr["Type ID"].ToString()))
                 error += "Type ID: " + TranslationLookup.GetValue("IsRequired") + Environment.NewLine;

@@ -418,7 +418,7 @@ namespace Nada.Model.Repositories
             }
             return MakeTreeFromFlatList(list, 0);
         }
-        
+
         public List<AdminLevel> GetAdminLevelTree(int levelTypeId, bool redistrictedOnly)
         {
             return GetAdminLevelTree(levelTypeId, 1, false, false, levelTypeId, redistrictedOnly, string.Empty, new List<AdminLevel>());
@@ -514,10 +514,12 @@ namespace Nada.Model.Repositories
             }
             return MakeTreeFromFlatList(list, 0);
         }
+
         public List<AdminLevel> GetAdminLevelParentNames(int levelId)
         {
             return GetAdminLevelParentNames(levelId, false);
         }
+
         public List<AdminLevel> GetAdminLevelParentNames(int levelId, bool showDeleted)
         {
             string filter = " AND a.IsDeleted=0";
@@ -1090,7 +1092,7 @@ namespace Nada.Model.Repositories
                 var c = GetCountry();
                 DateTime startDate = new DateTime(demoDate.Year, 1, 1);
                 DateTime endDate = startDate.AddYears(1).AddDays(-1);
-                
+
                 List<AdminLevel> list = new List<AdminLevel>();
                 var tree = GetAdminLevelTreeForDemography(locationType.LevelNumber, startDate, endDate, ref list);
                 var country = tree.FirstOrDefault();
@@ -1101,7 +1103,7 @@ namespace Nada.Model.Repositories
                     countryDemo = GetCountryDemoRecent();
                 if (!growthRate.HasValue)
                     growthRate = countryDemo.GrowthRate;
-                
+
                 country.CurrentDemography = IndicatorAggregator.AggregateTree(country, growthRate);
                 if (countryDemoId.HasValue)
                     country.CurrentDemography.Id = countryDemoId.Value;
@@ -1248,25 +1250,30 @@ namespace Nada.Model.Repositories
 
         public AdminLevelDemography GetRecentDemography(int adminLevelId, DateTime? start, DateTime? end)
         {
-            AdminLevelDemography demog = new AdminLevelDemography { AdminLevelId = adminLevelId };
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select a.ID
+                return GetRecentDemography(adminLevelId, start, end, connection);
+            }
+        }
+
+        public AdminLevelDemography GetRecentDemography(int adminLevelId, DateTime? start, DateTime? end, OleDbConnection connection)
+        {
+            AdminLevelDemography demog = new AdminLevelDemography { AdminLevelId = adminLevelId };
+            OleDbCommand command = new OleDbCommand(@"Select a.ID
                     FROM AdminLevelDemography a 
                     WHERE AdminLevelId = @id and IsDeleted = 0 " + CreateDateRange(start, end)
                     + " ORDER BY DateDemographyData Desc", connection);
-                command.Parameters.Add(new OleDbParameter("@id", adminLevelId));
-                using (OleDbDataReader reader = command.ExecuteReader())
+            command.Parameters.Add(new OleDbParameter("@id", adminLevelId));
+            using (OleDbDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
                 {
-                    if (reader.Read())
-                    {
-                        int id = reader.GetValueOrDefault<int>("ID");
-                        GetDemoById(demog, id, connection, command);
-                    }
-                    reader.Close();
+                    int id = reader.GetValueOrDefault<int>("ID");
+                    GetDemoById(demog, id, connection, command);
                 }
+                reader.Close();
             }
             return demog;
         }
@@ -1729,7 +1736,7 @@ namespace Nada.Model.Repositories
             return id;
         }
 
-        public void InsertRedistrictUnit(OleDbCommand command, OleDbConnection connection, int userId, AdminLevel unit, int redistrictId, 
+        public void InsertRedistrictUnit(OleDbCommand command, OleDbConnection connection, int userId, AdminLevel unit, int redistrictId,
             RedistrictingRelationship relationship, double percent, bool isDeleted)
         {
             command = new OleDbCommand(@"Insert Into RedistrictUnits (AdminLevelUnitId, RelationshipId, Percentage, RedistrictEventId) VALUES
@@ -1748,7 +1755,7 @@ namespace Nada.Model.Repositories
                 command.Parameters.Add(new OleDbParameter("@IsDeleted", isDeleted));
                 command.Parameters.Add(new OleDbParameter("@AdminLevelId", unit.Id));
                 command.ExecuteNonQuery();
-            
+
             }
             else // for daughters add the new admin levels
             {
@@ -2014,6 +2021,6 @@ namespace Nada.Model.Repositories
 
 
 
-        
+
     }
 }

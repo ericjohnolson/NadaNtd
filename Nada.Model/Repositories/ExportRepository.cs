@@ -193,7 +193,8 @@ namespace Nada.Model.Repositories
             command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, AdminLevelTypes.AdminLevel, AdminLevelTypes.IsDistrict, 
                         AdminLevels.AdminLevelTypeId, AdminLevels.RedistrictIdForDaughter, AdminLevels.RedistrictIdForMother
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID 
-                    " + filter, connection);
+                    " + filter +
+                    "Order By AdminLevelTypes.AdminLevel, AdminLevels.SortOrder ", connection);
             using (OleDbDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())

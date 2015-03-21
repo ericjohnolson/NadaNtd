@@ -25,6 +25,7 @@ namespace Nada.Model.Reports
             Children = new List<ReportIndicator>();
             ParentId = 0;
         }
+        public string UniqueId { get { return TypeId + "-" + Key; } }
         public string Name { get; set; }
         public string Key { get; set; }
         public int ID { get; set; }

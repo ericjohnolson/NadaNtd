@@ -42,7 +42,7 @@ namespace Nada.UI.Controls
             OnClick();
         }
 
-        public void Hide()
+        public void HideLink()
         {
             linkLabel1.Visible = false;
         }

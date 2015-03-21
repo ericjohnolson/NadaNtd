@@ -15,6 +15,8 @@ namespace Nada.UI.View.Reports.CustomReport
 {
     public partial class StepIndicators : BaseControl, IWizardStep
     {
+        private Dictionary<string, ReportIndicator> SelectedDict = new Dictionary<string, ReportIndicator>();
+        private Dictionary<string, ReportIndicator> AvailableDict = new Dictionary<string, ReportIndicator>();
         private SavedReport report = null;
         public StepIndicators()
             : base()
@@ -29,6 +31,49 @@ namespace Nada.UI.View.Reports.CustomReport
             InitializeComponent();
         }
 
+        private void StepIndicators_Load(object sender, EventArgs e)
+        {
+            if (!DesignMode)
+            {
+                Localizer.TranslateControl(this);
+                foreach (var selected in report.ReportOptions.SelectedIndicators)
+                    SelectedDict.Add(selected.UniqueId, selected);
+                LoadTree(triStateTreeView1.Nodes, report.ReportOptions.AvailableIndicators);
+                LoadSelectedIndicators(triStateTreeView1.Nodes);
+
+            }
+        }
+
+        private void LoadTree(TreeNodeCollection parentNodes, List<ReportIndicator> list)
+        {
+            foreach (var ind in list)
+            {
+                TreeNode tn = new TreeNode(ind.Name);
+                if (!ind.IsCategory)
+                    tn.Tag = ind;
+                if (ind.Children.Count > 0)
+                    LoadTree(tn.Nodes, ind.Children);
+                
+                tn.StateImageIndex = (int)RikTheVeggie.TriStateTreeView.CheckedState.UnChecked;
+                parentNodes.Add(tn);
+            }
+        }
+
+        private void LoadSelectedIndicators(TreeNodeCollection parentNodes)
+        {
+            foreach (TreeNode node in parentNodes)
+            {
+                if (node.Nodes.Count > 0)
+                    LoadSelectedIndicators(node.Nodes);
+                
+                if(node.Tag != null && SelectedDict.ContainsKey((node.Tag as ReportIndicator).UniqueId))
+                {
+                    node.StateImageIndex = (int)RikTheVeggie.TriStateTreeView.CheckedState.Checked;
+                    triStateTreeView1.UpdateParentState(node.Parent);
+                }
+            }
+        }
+
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
         public Action OnFinish { get; set; }
@@ -39,7 +84,7 @@ namespace Nada.UI.View.Reports.CustomReport
         public bool ShowFinish { get { return false; } }
         public bool EnableFinish { get { return false; } }
         public string StepTitle { get { return Translations.SelectIndicators; } }
-
+        
         public void DoPrev()
         {
             OnSwitchStep(new StepCategory());
@@ -48,7 +93,7 @@ namespace Nada.UI.View.Reports.CustomReport
         public void DoNext()
         {
             report.ReportOptions.SelectedIndicators = new List<ReportIndicator>();
-            AddSelectedIndicators(report.ReportOptions.SelectedIndicators, report.ReportOptions.AvailableIndicators);
+            AddSelectedIndicators(report.ReportOptions.SelectedIndicators, triStateTreeView1.Nodes);
             if (report.ReportOptions.SelectedIndicators.Count == 0)
             {
                 MessageBox.Show(Translations.ValidationErrorAddIndicator, Translations.ValidationErrorTitle);
@@ -62,53 +107,19 @@ namespace Nada.UI.View.Reports.CustomReport
         {
         }
 
-        private void StepIndicators_Load(object sender, EventArgs e)
+        private void AddSelectedIndicators(List<ReportIndicator> indicators, TreeNodeCollection parentNodes)
         {
-            if (!DesignMode)
+            foreach (TreeNode node in parentNodes)
             {
-                Localizer.TranslateControl(this);
-                LoadTree(report.ReportOptions.AvailableIndicators);
-                //LoadTree(options.AvailableIndicators, this.treeView.Nodes);
+                if (node.StateImageIndex == (int)RikTheVeggie.TriStateTreeView.CheckedState.Checked && node.Tag != null)
+                    indicators.Add((ReportIndicator)node.Tag);
+
+                if (node.Nodes.Count > 0)
+                    AddSelectedIndicators(indicators, node.Nodes);
             }
         }
 
-        //private void LoadTree(List<ReportIndicator> list, TreeNodeCollection tree)
-        //{
-        //    foreach (ReportIndicator ind in list)
-        //    {
-        //        TreeNode node = new TreeNode { Text = ind.Name, Tag = ind };
-        //        tree.Add(node);
-        //        if (ind.Children.Count > 0)
-        //            LoadTree(ind.Children, node.Nodes);
-        //    }
-        //}
-
-        private void AddSelectedIndicators(List<ReportIndicator> indicators, List<ReportIndicator> nodes)
-        {
-            foreach (var node in nodes)
-            {
-                if (node.IsChecked && !node.IsCategory)
-                    indicators.Add(node);
-
-                if (node.Children.Count > 0)
-                    AddSelectedIndicators(indicators, node.Children);
-            }
-        }
-
-        public void LoadTree(List<ReportIndicator> list)
-        {
-            treeListView1.ClearObjects();
-            treeListView1.CanExpandGetter = model => ((ReportIndicator)model).Children.Count > 0;
-            treeListView1.ChildrenGetter = delegate(object model)
-            {
-                return ((ReportIndicator)model).Children;
-            };
-            treeListView1.SetObjects(list);
-            
-            for(int i = list.Count - 1; i >= 0; i--)
-                treeListView1.Expand(list[i]);
-            
-        }
+       
         
     }
 }

@@ -53,7 +53,7 @@ namespace Nada.UI.View.Wizard.IndicatorManagement
         public void DoFinish()
         {
             opts.SelectedIndicators = new List<ReportIndicator>();
-            AddSelectedIndicators(opts.SelectedIndicators, opts.AvailableIndicators);
+            AddSelectedIndicators(opts.SelectedIndicators, triStateTreeView1.Nodes);
             if (opts.SelectedIndicators.Count == 0)
             {
                 MessageBox.Show(Translations.ValidationErrorAddIndicator, Translations.ValidationErrorTitle);
@@ -104,35 +104,35 @@ namespace Nada.UI.View.Wizard.IndicatorManagement
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                LoadTree(opts.AvailableIndicators);
+                LoadTree(triStateTreeView1.Nodes, opts.AvailableIndicators);
             }
         }
 
-        private void AddSelectedIndicators(List<ReportIndicator> indicators, List<ReportIndicator> nodes)
+        private void AddSelectedIndicators(List<ReportIndicator> indicators, TreeNodeCollection parentNodes)
         {
-            foreach (var node in nodes)
+            foreach (TreeNode node in parentNodes)
             {
-                if (node.IsChecked && !node.IsCategory)
-                    indicators.Add(node);
+                if (node.StateImageIndex == (int)RikTheVeggie.TriStateTreeView.CheckedState.Checked && node.Tag != null)
+                    indicators.Add((ReportIndicator)node.Tag);
 
-                if (node.Children.Count > 0)
-                    AddSelectedIndicators(indicators, node.Children);
+                if (node.Nodes.Count > 0)
+                    AddSelectedIndicators(indicators, node.Nodes);
             }
         }
 
-        public void LoadTree(List<ReportIndicator> list)
+        private void LoadTree(TreeNodeCollection parentNodes, List<ReportIndicator> list)
         {
-            treeListView1.ClearObjects();
-            treeListView1.CanExpandGetter = model => ((ReportIndicator)model).Children.Count > 0;
-            treeListView1.ChildrenGetter = delegate(object model)
+            foreach (var ind in list)
             {
-                return ((ReportIndicator)model).Children;
-            };
-            treeListView1.SetObjects(list);
-            
-            for(int i = list.Count - 1; i >= 0; i--)
-                treeListView1.Expand(list[i]);
-            
+                TreeNode tn = new TreeNode(ind.Name);
+                if (!ind.IsCategory)
+                    tn.Tag = ind;
+                if (ind.Children.Count > 0)
+                    LoadTree(tn.Nodes, ind.Children);
+
+                tn.StateImageIndex = (int)RikTheVeggie.TriStateTreeView.CheckedState.UnChecked;
+                parentNodes.Add(tn);
+            }
         }
         
     }
