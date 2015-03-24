@@ -20,6 +20,7 @@ namespace Nada.Model
         public int LevelNumber { get; set; }
         public string DisplayName { get; set; }
         public string EditText { get { return Translations.View; } }
+        public string ImportText { get { return Translations.Import; } }
         public string DeleteText { get { return Translations.Delete; } }
         
         public string IsDistrictText

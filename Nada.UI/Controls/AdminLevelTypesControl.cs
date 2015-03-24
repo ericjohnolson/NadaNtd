@@ -12,6 +12,8 @@ using Nada.Model;
 using Nada.UI.AppLogic;
 using System.Configuration;
 using Nada.UI.Base;
+using Nada.Globalization;
+using Nada.UI.View.Wizard;
 
 namespace Nada.UI.Controls
 {
@@ -61,6 +63,13 @@ namespace Nada.UI.Controls
             {
                 r.Delete((AdminLevelType)e.Model, ApplicationData.Instance.GetUserId());
                 RefreshList();
+            }
+            else if (e.Column.AspectName == "ImportText")
+            {
+                WizardForm wiz = new WizardForm(new StepAdminLevelImport((AdminLevelType)e.Model, null, null), Translations.Import);
+                wiz.OnFinish = () => { };
+                wiz.OnClose = () => { };
+                wiz.ShowDialog();
             }
         }
 

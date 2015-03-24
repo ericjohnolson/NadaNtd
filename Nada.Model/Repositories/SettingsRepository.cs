@@ -166,6 +166,12 @@ namespace Nada.Model.Repositories
                     reader.Close();
                 }
             }
+
+            var aggLevel = lvls.FirstOrDefault(l => l.IsAggregatingLevel);
+            foreach(var al in lvls)
+                if (aggLevel == null || al.LevelNumber >= aggLevel.LevelNumber)
+                    al.IsDemographyAllowed = true;
+
             return lvls;
         }
 

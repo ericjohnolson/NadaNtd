@@ -35,6 +35,7 @@
             this.IsDistrictText = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn14 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
             this.partnerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -52,12 +53,14 @@
             this.lvLevels.AllColumns.Add(this.IsDistrictText);
             this.lvLevels.AllColumns.Add(this.olvColumn1);
             this.lvLevels.AllColumns.Add(this.olvColumn14);
+            this.lvLevels.AllColumns.Add(this.olvColumn4);
             this.lvLevels.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn3,
             this.olvColumn2,
             this.IsDistrictText,
             this.olvColumn1,
-            this.olvColumn14});
+            this.olvColumn14,
+            this.olvColumn4});
             this.lvLevels.Cursor = System.Windows.Forms.Cursors.Default;
             this.lvLevels.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvLevels.Location = new System.Drawing.Point(0, 0);
@@ -85,7 +88,7 @@
             this.olvColumn2.IsEditable = false;
             this.olvColumn2.Tag = "Name";
             this.olvColumn2.Text = "Name";
-            this.olvColumn2.Width = 229;
+            this.olvColumn2.Width = 200;
             // 
             // IsDistrictText
             // 
@@ -108,6 +111,14 @@
             this.olvColumn14.IsEditable = false;
             this.olvColumn14.Text = "Edit";
             this.olvColumn14.Width = 51;
+            // 
+            // olvColumn4
+            // 
+            this.olvColumn4.AspectName = "ImportText";
+            this.olvColumn4.CellPadding = null;
+            this.olvColumn4.Hyperlink = true;
+            this.olvColumn4.IsEditable = false;
+            this.olvColumn4.Text = "Import";
             // 
             // fieldLink1
             // 
@@ -208,6 +219,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private H3bLabel lblAggLevel;
         private H3bLabel lblReportingLevel;
+        private BrightIdeasSoftware.OLVColumn olvColumn4;
 
     }
 }
