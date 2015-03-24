@@ -19,7 +19,6 @@ namespace Nada.Model.Reports
         ReportResult Run(SavedReport report);
     }
 
-
     [Serializable]
     public class BaseReportGenerator : IReportGenerator
     {
