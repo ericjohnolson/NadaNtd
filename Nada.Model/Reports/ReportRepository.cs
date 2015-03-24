@@ -179,7 +179,8 @@ namespace Nada.Model.Repositories
                             FROM ((AdminLevelDemography a INNER JOIN AdminLevels on a.AdminLevelId = AdminLevels.ID)
                                 INNER JOIN AdminLevelTypes t on t.Id = AdminLevels.AdminLevelTypeId)
                             WHERE a.IsDeleted = 0 " + CreateYearFilter(options, "DateDemographyData") +
-                            adminFilter
+                            adminFilter +
+                            "ORDER BY  t.AdminLevel, AdminLevels.SortOrder "
                         , connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
