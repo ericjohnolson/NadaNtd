@@ -29,6 +29,14 @@ namespace Nada.Model.Base
             }
         }
 
+        public int SortOrder
+        {
+            get
+            {
+                return AdminLevels.OrderBy(a => a.SortOrder).First().SortOrder;
+            }
+        }
+
         public List<AdminLevel> AdminLevels { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

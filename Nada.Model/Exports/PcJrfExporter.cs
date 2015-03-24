@@ -131,7 +131,7 @@ namespace Nada.Model.Exports
 
         private void AddDemo(excel.Worksheet xlsWorksheet, excel.Range rng, List<AdminLevel> demography, int districtLevel, DateTime start, DateTime end)
         {
-            var districts = demography.Where(d => d.LevelNumber == districtLevel).ToList();
+            var districts = demography.Where(d => d.LevelNumber == districtLevel).OrderBy(d => d.SortOrder).ToList();
             var ddDict = GetDd(start, end, districts);
             int rowId = 9;
             foreach (var district in districts)

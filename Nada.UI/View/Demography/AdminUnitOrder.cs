@@ -215,22 +215,22 @@ namespace Nada.UI.View.Demography
         {
             // Need to iterate the loop and save the new sort orders!
             List<AdminLevel> toUpdate = new List<AdminLevel>();
-            int order = 1;
-            ReorderTree(treeAvailable.Objects.Cast<AdminLevel>(), order, toUpdate);
+            newSortOrder = 1;
+            ReorderTree(treeAvailable.Objects.Cast<AdminLevel>(), toUpdate);
             demo.ReorderAdminUnits(toUpdate, ApplicationData.Instance.GetUserId());
             OnSave(null);
             this.Close();
         }
-
-        private void ReorderTree(IEnumerable<AdminLevel> adminUnits, int order, List<AdminLevel> toUpdate)
+        private int newSortOrder = 1;
+        private void ReorderTree(IEnumerable<AdminLevel> adminUnits, List<AdminLevel> toUpdate)
         {
             foreach(var unit in adminUnits)
             {
-                unit.SortOrder = order;
+                unit.SortOrder = newSortOrder;
                 toUpdate.Add(unit);
-                order++;
+                newSortOrder = newSortOrder + 1;
                 if (unit.Children.Count > 0)
-                    ReorderTree(unit.Children, order, toUpdate);
+                    ReorderTree(unit.Children, toUpdate);
             }
         }
 

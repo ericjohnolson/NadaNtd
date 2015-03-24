@@ -16,7 +16,7 @@ using System.Globalization;
 namespace Nada.Tests
 {
     [TestClass]
-    public class ExcelTests : BaseTest
+    public class ExcelWorksheetGeneration : BaseTest
     {
         [TestMethod]
         public void CanCreateTranslationKeys()

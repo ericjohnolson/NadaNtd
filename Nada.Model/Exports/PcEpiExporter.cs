@@ -140,7 +140,7 @@ namespace Nada.Model.Exports
 
             var lfSurveys = surveys.GetByTypeForDistrictsInDateRange(new List<int> { (int)StaticSurveyType.LfMapping, (int)StaticSurveyType.LfSentinel }, start, end);
             int rowNumber = 15;
-            foreach (SurveyBase survey in lfSurveys)
+            foreach (SurveyBase survey in lfSurveys.OrderBy(s => s.SortOrder))
             {
                 var adminLevel = survey.AdminLevels.First();
                 xlsWorksheet.Cells[rowNumber, 1] = adminLevel.Name;
@@ -247,7 +247,7 @@ namespace Nada.Model.Exports
             int rowCount = 0;
             var surveys = repo.GetByTypeForDistrictsInDateRange(new List<int> { (int)StaticSurveyType.OnchoAssessment, (int)StaticSurveyType.OnchoMapping }, start, end);
             int rowNumber = 8;
-            foreach (SurveyBase survey in surveys)
+            foreach (SurveyBase survey in surveys.OrderBy(s => s.SortOrder))
             {
                 foreach (AdminLevel unit in survey.AdminLevels)
                 {
@@ -292,7 +292,7 @@ namespace Nada.Model.Exports
             var surveys = repo.GetByTypeForDistrictsInDateRange(new List<int> { (int)StaticSurveyType.SthSentinel, (int)StaticSurveyType.SthMapping }, start, end);
             int rowNumber = 8;
 
-            foreach (SurveyBase survey in surveys)
+            foreach (SurveyBase survey in surveys.OrderBy(s => s.SortOrder))
             {
                 if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
                 {
@@ -379,7 +379,7 @@ namespace Nada.Model.Exports
             var surveys = repo.GetByTypeForDistrictsInDateRange(new List<int> { (int)StaticSurveyType.SchistoSentinel, (int)StaticSurveyType.SchMapping }, start, end);
             int rowNumber = 8;
 
-            foreach (SurveyBase survey in surveys)
+            foreach (SurveyBase survey in surveys.OrderBy(s => s.SortOrder))
             {
                 if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
                 {

@@ -80,7 +80,7 @@ namespace Nada.Model.Exports
                 DateTime endDate = startDate.AddYears(1).AddDays(-1);
 
                 demo.GetAdminLevelTreeForDemography(districtLevel.LevelNumber, startDate, endDate, ref demography);
-                demography = demography.Where(d => d.LevelNumber == districtLevel.LevelNumber).OrderBy(a => a.Name).ToList();
+                demography = demography.Where(d => d.LevelNumber == districtLevel.LevelNumber).ToList();
 
                 xlsCountry = (excel.Worksheet)xlsWorkbook.Worksheets[1];
                 xlsCountry.Name = TranslationLookup.GetValue("Country");

@@ -357,7 +357,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho,
+                OleDbCommand command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, UrbanOrRural, LatWho, LngWho, AdminLevels.SortOrder,
                     AdminLevelTypes.AdminLevel, AdminLevelTypes.DisplayName as LevelName
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID
                     WHERE AdminLevels.ID = @id", connection);
@@ -376,6 +376,7 @@ namespace Nada.Model.Repositories
                             UrbanOrRural = reader.GetValueOrDefault<string>("UrbanOrRural"),
                             LatWho = reader.GetValueOrDefault<double>("LatWho"),
                             LngWho = reader.GetValueOrDefault<double>("LngWho"),
+                            SortOrder = reader.GetValueOrDefault<int>("SortOrder"),
                         };
                     }
                     reader.Close();

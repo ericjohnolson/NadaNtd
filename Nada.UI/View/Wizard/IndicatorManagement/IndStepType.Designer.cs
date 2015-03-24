@@ -48,6 +48,7 @@
             this.h3Link1.Tag = "CreateNewForm";
             this.h3Link1.Text = "Create new form";
             this.h3Link1.TextColor = System.Drawing.Color.RoyalBlue;
+            this.h3Link1.Visible = false;
             this.h3Link1.ClickOverride += new System.Action(this.h3Link1_ClickOverride);
             // 
             // lnkUpload
