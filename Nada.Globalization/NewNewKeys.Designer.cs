@@ -59,5 +59,50 @@ namespace Nada.Globalization {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new survey name &gt;.
+        /// </summary>
+        public static string AddSurveyLink {
+            get {
+                return ResourceManager.GetString("AddSurveyLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple administrative units per survey.
+        /// </summary>
+        public static string ImportMultiAuPerSurvey {
+            get {
+                return ResourceManager.GetString("ImportMultiAuPerSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to import surveys that took place in:.
+        /// </summary>
+        public static string ImportMultiSurveysQuestion {
+            get {
+                return ResourceManager.GetString("ImportMultiSurveysQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please add a temporary name for each survey that will be in your import.
+        /// </summary>
+        public static string ImportMultiUnits {
+            get {
+                return ResourceManager.GetString("ImportMultiUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One administrative unit per survey.
+        /// </summary>
+        public static string ImportOneAuPerSurvey {
+            get {
+                return ResourceManager.GetString("ImportOneAuPerSurvey", resourceCulture);
+            }
+        }
     }
 }

@@ -626,6 +626,18 @@
     <Compile Include="View\Wizard\DistrictSplitting\SplittingSaes.Designer.cs">
       <DependentUpon>SplittingSaes.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\Import\ImportStepMultiAuLabels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Import\ImportStepMultiAuLabels.Designer.cs">
+      <DependentUpon>ImportStepMultiAuLabels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Wizard\Import\ImportStepMultiUnits.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Import\ImportStepMultiUnits.Designer.cs">
+      <DependentUpon>ImportStepMultiUnits.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\IndicatorManagement\IndStepResult.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1140,6 +1152,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplittingSaes.resx">
       <DependentUpon>SplittingSaes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Import\ImportStepMultiAuLabels.resx">
+      <DependentUpon>ImportStepMultiAuLabels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Import\ImportStepMultiUnits.resx">
+      <DependentUpon>ImportStepMultiUnits.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\IndicatorManagement\IndStepResult.resx">
       <DependentUpon>IndStepResult.cs</DependentUpon>

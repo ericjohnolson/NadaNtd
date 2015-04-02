@@ -273,7 +273,7 @@ namespace Nada.UI
 
         private void menuSurveysToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Translations.ImportSurveyWarning);
+            //MessageBox.Show(Translations.ImportSurveyWarning);
             LoadImporter(new SurveyImporter());
         }
 

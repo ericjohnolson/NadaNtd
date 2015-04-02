@@ -67,17 +67,19 @@ namespace Nada.Model
             xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)(xlsWorkbook.Worksheets[1]);
 
             // add hidden validation worksheet
-
             xlsValidation = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(oMissing, xlsWorksheet, oMissing, oMissing);
             xlsValidation.Name = validationSheetName;
             xlsValidation.Visible = Microsoft.Office.Interop.Excel.XlSheetVisibility.xlSheetHidden;
 
-
             // row 1 column headers
             DemoRepository repo = new DemoRepository();
-            List<string> names = repo.GetAdminLevelTypeNames(adminLevelType.Id);
+            List<string> names = adminLevelType == null? new List<string>() : repo.GetAdminLevelTypeNames(adminLevelType.Id);
 
-            xlsWorksheet.Cells[1, 1] = "* " + TranslationLookup.GetValue("ID");
+            if (options.SurveyNames.Count > 0) // Multiple admin units for surveys
+                xlsWorksheet.Cells[1, 1] = "* " + TranslationLookup.GetValue("SurveyName");
+            else
+                xlsWorksheet.Cells[1, 1] = "* " + TranslationLookup.GetValue("ID");
+            
             for (int i = 0; i < names.Count; i++)
                 xlsWorksheet.Cells[1, 2 + i] = "* " + names[i];
             int locationCount = names.Count + 1;
@@ -114,26 +116,30 @@ namespace Nada.Model
 
             // row 2+ admin levels
             int xlsRowCount = 2;
-            foreach (AdminLevel l in adminLevels.OrderBy(a => a.SortOrder))
+            if (options.SurveyNames.Count > 0) // Multiple admin units for surveys
             {
-                xlsWorksheet.Cells[xlsRowCount, 1] = l.Id;
-                List<AdminLevel> parents = repo.GetAdminLevelParentNames(l.Id);
-                int aCol = 2;
-                foreach (AdminLevel adminlevel in parents)
+                foreach (var survey in options.SurveyNames.OrderBy(a => a.DisplayName))
                 {
-                    xlsWorksheet.Cells[xlsRowCount, aCol] = adminlevel.Name;
-                    aCol++;
+                    xlsWorksheet.Cells[xlsRowCount, 1] = survey.DisplayName;
+                    AddTypeSpecificLists(xlsWorksheet, xlsValidation, 0, xlsRowCount, oldCI, locationCount);
+                    xlsRowCount = AddIndicatorColumns(oldCI, xlsWorksheet, xlsValidation, colCountAfterStatic, xlsRowCount);
                 }
-                AddTypeSpecificLists(xlsWorksheet, xlsValidation, l.Id, xlsRowCount, oldCI, locationCount);
-                int colCount = colCountAfterStatic;
-                foreach (var key in Indicators.Keys)
+            }
+            else
+            {
+                foreach (AdminLevel l in adminLevels.OrderBy(a => a.SortOrder))
                 {
-                    if (Indicators[key].DataTypeId == (int)IndicatorDataType.SentinelSite || Indicators[key].IsCalculated || Indicators[key].IsMetaData)
-                        continue;
-                    colCount++;
-                    colCount = AddValueToCell(xlsWorksheet, xlsValidation, colCount, xlsRowCount, "", Indicators[key], oldCI, false);
+                    xlsWorksheet.Cells[xlsRowCount, 1] = l.Id;
+                    List<AdminLevel> parents = repo.GetAdminLevelParentNames(l.Id);
+                    int aCol = 2;
+                    foreach (AdminLevel adminlevel in parents)
+                    {
+                        xlsWorksheet.Cells[xlsRowCount, aCol] = adminlevel.Name;
+                        aCol++;
+                    }
+                    AddTypeSpecificLists(xlsWorksheet, xlsValidation, l.Id, xlsRowCount, oldCI, locationCount);
+                    xlsRowCount = AddIndicatorColumns(oldCI, xlsWorksheet, xlsValidation, colCountAfterStatic, xlsRowCount);
                 }
-                xlsRowCount++;
             }
 
             // Auto fit
@@ -156,7 +162,7 @@ namespace Nada.Model
             Marshal.ReleaseComObject(xlsApp);
             System.Threading.Thread.CurrentThread.CurrentCulture = oldCI;
         }
- 
+         
         public virtual ImportResult ImportData(string filePath, int userId)
         {
             LoadRelatedLists();
@@ -440,6 +446,29 @@ namespace Nada.Model
 
             }
         }
+
+        public static DataSet LoadDataFromFile(string filePath)
+        {
+            DataSet ds = null;
+            using (FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+            {
+                if (filePath.EndsWith(".xlsx"))
+                    using (IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream))
+                    {
+                        excelReader.IsFirstRowAsColumnNames = true;
+                        ds = excelReader.AsDataSet();
+                        excelReader.Close();
+                    }
+                else
+                    using (IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream))
+                    {
+                        excelReader.IsFirstRowAsColumnNames = true;
+                        ds = excelReader.AsDataSet();
+                        excelReader.Close();
+                    }
+            }
+            return ds;
+        }
         #endregion
 
         #region protected Virtual/Template functions
@@ -501,6 +530,20 @@ namespace Nada.Model
             DiseaseRepository diseases = new DiseaseRepository();
             selectedDiseases = diseases.GetSelectedDiseases().Select(d => d.DisplayName).ToList();
             valueParser.LoadRelatedLists();
+        }
+
+        private int AddIndicatorColumns(CultureInfo oldCI, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation, int colCountAfterStatic, int xlsRowCount)
+        {
+            int colCount = colCountAfterStatic;
+            foreach (var key in Indicators.Keys)
+            {
+                if (Indicators[key].DataTypeId == (int)IndicatorDataType.SentinelSite || Indicators[key].IsCalculated || Indicators[key].IsMetaData)
+                    continue;
+                colCount++;
+                colCount = AddValueToCell(xlsWorksheet, xlsValidation, colCount, xlsRowCount, "", Indicators[key], oldCI, false);
+            }
+            xlsRowCount++;
+            return xlsRowCount;
         }
 
         protected int AddValueToCell(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet validation, int c, int r,
@@ -567,29 +610,6 @@ namespace Nada.Model
             }
 
             return c;
-        }
-
-        public static DataSet LoadDataFromFile(string filePath)
-        {
-            DataSet ds = null;
-            using (FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
-            {
-                if (filePath.EndsWith(".xlsx"))
-                    using (IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream))
-                    {
-                        excelReader.IsFirstRowAsColumnNames = true;
-                        ds = excelReader.AsDataSet();
-                        excelReader.Close();
-                    }
-                else
-                    using (IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream))
-                    {
-                        excelReader.IsFirstRowAsColumnNames = true;
-                        ds = excelReader.AsDataSet();
-                        excelReader.Close();
-                    }
-            }
-            return ds;
         }
 
         protected List<IndicatorValue> GetDynamicIndicatorValues(DataSet ds, DataRow row, ref string errors)

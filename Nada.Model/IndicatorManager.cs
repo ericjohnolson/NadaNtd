@@ -113,7 +113,7 @@ namespace Nada.Model
             xlsWorksheet.Cells[1, 11] = "Aggregation Rule"; // Drop down
             xlsWorksheet.Cells[1, 12] = "Merge Rule"; // Drop down
             xlsWorksheet.Cells[1, 13] = "Split Rule"; // Drop down
-            xlsWorksheet.Cells[1, 14] = "Sort Order"; 
+            xlsWorksheet.Cells[1, 14] = "Sort Order";
 
             // row 2+ indicators
             int xlsRowCount = 2;
@@ -202,11 +202,11 @@ namespace Nada.Model
                     command.ExecuteNonQuery();
                     transWasStarted = true;
                     int rowCount = 1;
-                    List<KeyValuePair<string, int>> formTypes = new List<KeyValuePair<string,int>>();
+                    List<KeyValuePair<string, int>> formTypes = new List<KeyValuePair<string, int>>();
 
                     foreach (DataRow row in ds.Tables[0].Rows)
                     {
-                        if (row[0] == "Indicator ID")
+                        if (row[0].ToString() == "Indicator ID")
                             continue;
 
                         if (formTypes.Count() == 0)
@@ -223,9 +223,9 @@ namespace Nada.Model
                             string tableName = GetTableName(indicator);
                             try
                             {
-                                if(indicator.Id > 0) 
-                                   DoUpdate(indicator, sqlStatements, connection, tableName);
-                                else 
+                                if (indicator.Id > 0)
+                                    DoUpdate(indicator, sqlStatements, connection, tableName);
+                                else
                                     DoInsert(indicator, sqlStatements, connection, tableName);
                             }
                             catch (Exception ex)
@@ -236,7 +236,6 @@ namespace Nada.Model
 
                         rowCount++;
                     }
-
 
                     // COMMIT TRANS
                     OleDbCommand cmd = new OleDbCommand("ROLLBACK TRANSACTION", connection);
@@ -279,7 +278,7 @@ namespace Nada.Model
 
             switch (ind.EntityType)
             {
-                    // 
+                // 
                 case IndicatorEntityType.DiseaseDistribution:
                     insertSql = string.Format("insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values ({0}, {1}, {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, 0, {5}, {6}, {7});;",
                         ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.FormId, ind.SplitRuleId, ind.MergeRuleId);
@@ -305,7 +304,7 @@ namespace Nada.Model
             updateCmd.ExecuteNonQuery();
             sqlStatements.Add(insertSql);
 
-            if(ind.EntityType == IndicatorEntityType.Intervention)
+            if (ind.EntityType == IndicatorEntityType.Intervention)
             {
                 string joinToForm = string.Format("insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT {0}, ID FROM interventionindicators where displayname = {1};", ind.FormId, ind.Key);
                 OleDbCommand joinCmd = new OleDbCommand(joinToForm, connection);
@@ -410,7 +409,7 @@ namespace Nada.Model
                         ProcessRepository pRepo = new ProcessRepository();
                         result = pRepo.GetProcessTypes().Select(d => new KeyValuePair<string, int>(d.TypeName, d.Id)).ToList();
                         break;
-                }        
+                }
             }
             return result;
         }
@@ -494,7 +493,7 @@ namespace Nada.Model
                     isRequired = false;
                 else
                     error += "Is Required: " + "Must be TRUE or FALSE " + Environment.NewLine;
-            
+
                 indicator.IsRequired = isRequired;
             }
 
@@ -516,7 +515,7 @@ namespace Nada.Model
                 else
                     error += "Form Name: " + "Must be a value from the drop down list " + Environment.NewLine;
             }
-            
+
             return indicator;
         }
     }

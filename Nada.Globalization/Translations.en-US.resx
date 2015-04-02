@@ -6292,4 +6292,19 @@ Fixed / Mobile</value>
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="AddSurveyLink" xml:space="preserve">
+    <value>Add new survey name &gt;</value>
+  </data>
+  <data name="ImportMultiAuPerSurvey" xml:space="preserve">
+    <value>Multiple administrative units per survey</value>
+  </data>
+  <data name="ImportMultiSurveysQuestion" xml:space="preserve">
+    <value>Would you like to import surveys that took place in:</value>
+  </data>
+  <data name="ImportMultiUnits" xml:space="preserve">
+    <value>Please add a temporary name for each survey that will be in your import</value>
+  </data>
+  <data name="ImportOneAuPerSurvey" xml:space="preserve">
+    <value>One administrative unit per survey</value>
+  </data>
 </root>

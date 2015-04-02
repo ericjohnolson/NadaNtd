@@ -27,6 +27,7 @@ namespace Nada.Model.Imports
         public List<AdminLevel> AdminLevels { get; set; }
         public AdminLevelType AdminLevelType { get; set; }
         public Dictionary<string, List<string>> IndicatorValuesSublist { get; set; }
+        public List<IndicatorDropdownValue> SurveyNames { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

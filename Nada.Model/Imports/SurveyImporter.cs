@@ -92,7 +92,7 @@ namespace Nada.Model.Imports
         protected override void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation,
             int adminLevelId, int r, CultureInfo currentCulture, int colCount)
         {
-            if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null)
+            if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null || adminLevelId == 0)
                 return;
             var sites = repo.GetSitesForAdminLevel(new List<string> { adminLevelId.ToString() });
             if (sites.Count > 0)

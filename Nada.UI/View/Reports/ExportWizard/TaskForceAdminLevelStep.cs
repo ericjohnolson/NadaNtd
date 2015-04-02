@@ -81,7 +81,7 @@ namespace Nada.UI.View.Reports
                         continue;
                     }
 
-                    var match = available.FirstOrDefault(a => a.Name == u.Name);
+                    var match = available.FirstOrDefault(a => a.Name.ToLower() == u.Name.ToLower());
                     if (match != null)
                     {
                         SaveMatch(match, u, demo);

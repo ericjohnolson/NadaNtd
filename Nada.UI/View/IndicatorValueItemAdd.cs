@@ -56,16 +56,17 @@ namespace Nada.UI.View
             RepositoryBase r = new RepositoryBase();
             int userid = ApplicationData.Instance.GetUserId();
 
-            if (model.EntityType == IndicatorEntityType.EcologicalZone)
-                s.SaveEz(model, userid);
-            if (model.EntityType == IndicatorEntityType.EvalSubDistrict)
-                s.SaveEvalSubDistrict(model, userid);
-            else if (model.EntityType == IndicatorEntityType.EvaluationUnit)
-                s.SaveEu(model, userid);
-            else if (model.EntityType == IndicatorEntityType.EvalSite)
-                s.SaveEvalSite(model, userid);
-            else
-                r.Save(model, userid);
+            if(model.EntityType != IndicatorEntityType.Export)
+                if (model.EntityType == IndicatorEntityType.EcologicalZone)
+                    s.SaveEz(model, userid);
+                if (model.EntityType == IndicatorEntityType.EvalSubDistrict)
+                    s.SaveEvalSubDistrict(model, userid);
+                else if (model.EntityType == IndicatorEntityType.EvaluationUnit)
+                    s.SaveEu(model, userid);
+                else if (model.EntityType == IndicatorEntityType.EvalSite)
+                    s.SaveEvalSite(model, userid);
+                else
+                    r.Save(model, userid);
             OnSave(model);
             this.Close();
         }
