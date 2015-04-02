@@ -28,17 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label21 = new System.Windows.Forms.Label();
-            this.hrTop = new Nada.UI.Controls.HR();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.c1Button1 = new C1.Win.C1Input.C1Button();
+            this.c1Button3 = new C1.Win.C1Input.C1Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.countryDemographyView1 = new Nada.UI.View.Demography.CountryDemographyView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.h3bLabel1 = new Nada.UI.Controls.H3bLabel();
             this.adminLevelTypesControl1 = new Nada.UI.Controls.AdminLevelTypesControl();
             this.countryView1 = new Nada.UI.View.Demography.CountryView();
             this.pnlLf = new System.Windows.Forms.Panel();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.countryDemographyView1 = new Nada.UI.View.Demography.CountryDemographyView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.diseasePickerControl1 = new Nada.UI.View.DiseasePickerControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -53,46 +55,80 @@
             this.btnSaveLog = new C1.Win.C1Input.C1Button();
             this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.c1Button1 = new C1.Win.C1Input.C1Button();
-            this.c1Button3 = new C1.Win.C1Input.C1Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.hrTop = new Nada.UI.Controls.HR();
+            this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lvUsers)).BeginInit();
             this.tabPage4.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label21
+            // saveFileDialog1
             // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.label21.Location = new System.Drawing.Point(13, 14);
-            this.label21.Margin = new System.Windows.Forms.Padding(0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(81, 30);
-            this.label21.TabIndex = 58;
-            this.label21.Tag = "Settings";
-            this.label21.Text = "Settings";
+            this.saveFileDialog1.DefaultExt = "log";
+            this.saveFileDialog1.FileName = "NationalDatabaseLog.log";
+            this.saveFileDialog1.Filter = " (*.log)|*.log";
             // 
-            // hrTop
+            // tableLayoutPanel4
             // 
-            this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hrTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.hrTop.ForeColor = System.Drawing.Color.Gray;
-            this.hrTop.Location = new System.Drawing.Point(0, 0);
-            this.hrTop.Margin = new System.Windows.Forms.Padding(6);
-            this.hrTop.Name = "hrTop";
-            this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.hrTop.Size = new System.Drawing.Size(1010, 6);
-            this.hrTop.TabIndex = 57;
+            this.tableLayoutPanel4.AutoSize = true;
+            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.c1Button1, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.c1Button3, 0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(740, 630);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(204, 79);
+            this.tableLayoutPanel4.TabIndex = 69;
+            // 
+            // c1Button1
+            // 
+            this.c1Button1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.c1Button1.AutoSize = true;
+            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button1.Location = new System.Drawing.Point(111, 3);
+            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button1.Name = "c1Button1";
+            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button1.Size = new System.Drawing.Size(90, 27);
+            this.c1Button1.TabIndex = 2;
+            this.c1Button1.Tag = "Save";
+            this.c1Button1.Text = "Save";
+            this.c1Button1.UseVisualStyleBackColor = true;
+            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
+            this.c1Button1.Click += new System.EventHandler(this.doSave_Click);
+            // 
+            // c1Button3
+            // 
+            this.c1Button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.c1Button3.AutoSize = true;
+            this.c1Button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.c1Button3.Location = new System.Drawing.Point(3, 3);
+            this.c1Button3.MinimumSize = new System.Drawing.Size(90, 27);
+            this.c1Button3.Name = "c1Button3";
+            this.c1Button3.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.c1Button3.Size = new System.Drawing.Size(90, 27);
+            this.c1Button3.TabIndex = 62;
+            this.c1Button3.Tag = "Cancel";
+            this.c1Button3.Text = "Cancel";
+            this.c1Button3.UseVisualStyleBackColor = true;
+            this.c1Button3.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
+            this.c1Button3.Click += new System.EventHandler(this.doCancel_Click);
             // 
             // tabControl1
             // 
@@ -108,6 +144,29 @@
             this.tabControl1.Size = new System.Drawing.Size(926, 557);
             this.tabControl1.TabIndex = 68;
             this.tabControl1.Tag = "";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.countryDemographyView1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 24);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(918, 529);
+            this.tabPage5.TabIndex = 5;
+            this.tabPage5.Tag = "CountryStatistics";
+            this.tabPage5.Text = "CountryStatistics";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // countryDemographyView1
+            // 
+            this.countryDemographyView1.AutoSize = true;
+            this.countryDemographyView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.countryDemographyView1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.countryDemographyView1.BackColor = System.Drawing.Color.White;
+            this.countryDemographyView1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.countryDemographyView1.Location = new System.Drawing.Point(13, 12);
+            this.countryDemographyView1.Name = "countryDemographyView1";
+            this.countryDemographyView1.Size = new System.Drawing.Size(575, 348);
+            this.countryDemographyView1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -185,28 +244,6 @@
             this.pnlLf.Name = "pnlLf";
             this.pnlLf.Size = new System.Drawing.Size(0, 0);
             this.pnlLf.TabIndex = 0;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.countryDemographyView1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 24);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(918, 529);
-            this.tabPage5.TabIndex = 5;
-            this.tabPage5.Tag = "CountryStatistics";
-            this.tabPage5.Text = "CountryStatistics";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // countryDemographyView1
-            // 
-            this.countryDemographyView1.AutoSize = true;
-            this.countryDemographyView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.countryDemographyView1.BackColor = System.Drawing.Color.White;
-            this.countryDemographyView1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countryDemographyView1.Location = new System.Drawing.Point(13, 12);
-            this.countryDemographyView1.Name = "countryDemographyView1";
-            this.countryDemographyView1.Size = new System.Drawing.Size(575, 348);
-            this.countryDemographyView1.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -392,67 +429,31 @@
             this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Black;
             this.c1Button2.Click += new System.EventHandler(this.c1Button2_Click);
             // 
-            // saveFileDialog1
+            // label21
             // 
-            this.saveFileDialog1.DefaultExt = "log";
-            this.saveFileDialog1.FileName = "NationalDatabaseLog.log";
-            this.saveFileDialog1.Filter = " (*.log)|*.log";
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.label21.Location = new System.Drawing.Point(13, 14);
+            this.label21.Margin = new System.Windows.Forms.Padding(0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(81, 30);
+            this.label21.TabIndex = 58;
+            this.label21.Tag = "Settings";
+            this.label21.Text = "Settings";
             // 
-            // tableLayoutPanel4
+            // hrTop
             // 
-            this.tableLayoutPanel4.AutoSize = true;
-            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.c1Button1, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.c1Button3, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(740, 630);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(204, 79);
-            this.tableLayoutPanel4.TabIndex = 69;
-            // 
-            // c1Button1
-            // 
-            this.c1Button1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.c1Button1.AutoSize = true;
-            this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button1.Location = new System.Drawing.Point(111, 3);
-            this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
-            this.c1Button1.Name = "c1Button1";
-            this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
-            this.c1Button1.Size = new System.Drawing.Size(90, 27);
-            this.c1Button1.TabIndex = 2;
-            this.c1Button1.Tag = "Save";
-            this.c1Button1.Text = "Save";
-            this.c1Button1.UseVisualStyleBackColor = true;
-            this.c1Button1.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
-            this.c1Button1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
-            this.c1Button1.Click += new System.EventHandler(this.doSave_Click);
-            // 
-            // c1Button3
-            // 
-            this.c1Button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.c1Button3.AutoSize = true;
-            this.c1Button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button3.Location = new System.Drawing.Point(3, 3);
-            this.c1Button3.MinimumSize = new System.Drawing.Size(90, 27);
-            this.c1Button3.Name = "c1Button3";
-            this.c1Button3.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
-            this.c1Button3.Size = new System.Drawing.Size(90, 27);
-            this.c1Button3.TabIndex = 62;
-            this.c1Button3.Tag = "Cancel";
-            this.c1Button3.Text = "Cancel";
-            this.c1Button3.UseVisualStyleBackColor = true;
-            this.c1Button3.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
-            this.c1Button3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
-            this.c1Button3.Click += new System.EventHandler(this.doCancel_Click);
+            this.hrTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.hrTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hrTop.ForeColor = System.Drawing.Color.Gray;
+            this.hrTop.Location = new System.Drawing.Point(0, 0);
+            this.hrTop.Margin = new System.Windows.Forms.Padding(6);
+            this.hrTop.Name = "hrTop";
+            this.hrTop.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
+            this.hrTop.Size = new System.Drawing.Size(1010, 6);
+            this.hrTop.TabIndex = 57;
             // 
             // SettingsDashboard
             // 
@@ -467,13 +468,15 @@
             this.Name = "SettingsDashboard";
             this.Size = new System.Drawing.Size(1010, 812);
             this.Load += new System.EventHandler(this.Settings_Load);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -481,8 +484,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lvUsers)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

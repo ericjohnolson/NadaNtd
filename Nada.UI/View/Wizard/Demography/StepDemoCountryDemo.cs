@@ -48,12 +48,8 @@ namespace Nada.UI.View.Wizard
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
-                model = repo.GetCountryDemoRecent();
                 // NEW YEAR, new demo
-                model.Id = 0;
-                model.GrowthRate = vm.GrowthRate;
-                model.DateDemographyData = vm.DateReported;
-                countryDemographyView1.LoadDemo(model);
+                countryDemographyView1.SetNewYear(vm.GrowthRate, vm.DateReported);
             }
         }
 
@@ -83,7 +79,8 @@ namespace Nada.UI.View.Wizard
         private bool SaveDemo()
         {
             countryDemographyView1.DoValidate();
-            if (!model.IsValid())
+            model = countryDemographyView1.GetDemo();
+            if (!model.IsValid() || !countryDemographyView1.IsValid())
             {
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return false;
