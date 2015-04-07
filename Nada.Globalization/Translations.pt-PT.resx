@@ -6127,4 +6127,130 @@ Fixo / móvel </value>
   <data name="CmJrfLanguage" xml:space="preserve">
     <value>Língua do Relatório</value>
   </data>
+  <data name="CalculatingStatistics" xml:space="preserve">
+    <value>Calculating statistics...</value>
+  </data>
+  <data name="DDPTS" xml:space="preserve">
+    <value>Is this area under PTS (post treatment surveillance)?</value>
+  </data>
+  <data name="ImportUpdateSuccess" xml:space="preserve">
+    <value>Successfully updated {0} forms!</value>
+  </data>
+  <data name="IntvFemaleSac" xml:space="preserve">
+    <value># female SAC treated</value>
+  </data>
+  <data name="IntvMaleSac" xml:space="preserve">
+    <value># male SAC treated</value>
+  </data>
+  <data name="MetaDataLoading" xml:space="preserve">
+    <value>Loading meta data...</value>
+  </data>
+  <data name="OnchoSurNumRefused" xml:space="preserve">
+    <value>Number of individuals who refused to be examined</value>
+  </data>
+  <data name="PcIntvBatchRefNum" xml:space="preserve">
+    <value>Batch reference number (drug and batch numbers)</value>
+  </data>
+  <data name="PcIntvModeDistribution" xml:space="preserve">
+    <value>Mode of distribution</value>
+  </data>
+  <data name="PcIntvModeDistributionCommunity" xml:space="preserve">
+    <value>Community-based</value>
+  </data>
+  <data name="PcIntvModeDistributionFixed" xml:space="preserve">
+    <value>Fixed point</value>
+  </data>
+  <data name="PcIntvModeDistributionSchool" xml:space="preserve">
+    <value>School-based</value>
+  </data>
+  <data name="RedistrictDate" xml:space="preserve">
+    <value>Date redistricting occurred</value>
+  </data>
+  <data name="RedistrictingRulesSplit" xml:space="preserve">
+    <value>Set redistricting rules for custom indicators</value>
+  </data>
+  <data name="RedistrictRuleAverage" xml:space="preserve">
+    <value>Average</value>
+  </data>
+  <data name="RedistrictRuleDefaultBlank" xml:space="preserve">
+    <value>Leave blank</value>
+  </data>
+  <data name="RedistrictRuleDuplicate" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="RedistrictRuleListAll" xml:space="preserve">
+    <value>Combine</value>
+  </data>
+  <data name="RedistrictRuleMax" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="RedistrictRuleMerge" xml:space="preserve">
+    <value>Merging rule</value>
+  </data>
+  <data name="RedistrictRuleMin" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="RedistrictRuleSplit" xml:space="preserve">
+    <value>Splitting rule</value>
+  </data>
+  <data name="RedistrictRuleSplitByPercent" xml:space="preserve">
+    <value>Split by percentage of population</value>
+  </data>
+  <data name="RedistrictRuleSplitCombine" xml:space="preserve">
+    <value>Split/combine rule</value>
+  </data>
+  <data name="RedistrictRuleSum" xml:space="preserve">
+    <value>Sum</value>
+  </data>
+  <data name="RedistrictSurveyNote" xml:space="preserve">
+    <value>*** Redistricted, original administrative units survey occured in: {0}</value>
+  </data>
+  <data name="RtiErrorMustBeUnique" xml:space="preserve">
+    <value>Must assign each location only one time</value>
+  </data>
+  <data name="RtiExportLanguage" xml:space="preserve">
+    <value>Language to generate Disease Workbook for USAID Reporting</value>
+  </data>
+  <data name="SchMappingPrevalenceEggsInUrine" xml:space="preserve">
+    <value>Prevalence of any parasite eggs in urine</value>
+  </data>
+  <data name="SchMappingTypeOfSite" xml:space="preserve">
+    <value>Type of site</value>
+  </data>
+  <data name="SchSentinelDatePc" xml:space="preserve">
+    <value>Date of most recent PC</value>
+  </data>
+  <data name="SchSentinelPrevalenceEggsInUrine" xml:space="preserve">
+    <value>Prevalence of any parasite eggs in urine</value>
+  </data>
+  <data name="SchSentinelTypeSite" xml:space="preserve">
+    <value>Type of site</value>
+  </data>
+  <data name="SchSentinenlIsPartOfCohort" xml:space="preserve">
+    <value>Is this survey a part of cohort study?</value>
+  </data>
+  <data name="SplittingMustAllocateRules" xml:space="preserve">
+    <value>Must assign all rules before continuing.</value>
+  </data>
+  <data name="SthMappingTypeSite" xml:space="preserve">
+    <value>Type of site</value>
+  </data>
+  <data name="SthSentinelIsPartOfCohort" xml:space="preserve">
+    <value>Is this survey a part of cohort study?</value>
+  </data>
+  <data name="SthSpotCheckDatePc" xml:space="preserve">
+    <value>Date of most recent PC</value>
+  </data>
+  <data name="SthSpotCheckTypeSite" xml:space="preserve">
+    <value>Type of site</value>
+  </data>
+  <data name="TasActualNonResponse" xml:space="preserve">
+    <value>Actual non-response rate - total (%)</value>
+  </data>
+  <data name="TasNumNoTreatment" xml:space="preserve">
+    <value>Number of LF endemic districts surrounding this Evaluation Unit that haven't started treatment</value>
+  </data>
+  <data name="ValidNameSpecialChars" xml:space="preserve">
+    <value>Name must not contain special characters: &amp;&amp;</value>
+  </data>
 </root>
