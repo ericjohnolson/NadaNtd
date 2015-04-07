@@ -49,8 +49,6 @@ namespace Nada.UI.View
                 lvUsers.SetObjects(members.GetAllUsers());
                 country = demo.GetCountry();
                 countryView1.LoadCountry(country, true);
-                countryStats = demo.GetCountryLevelStatsRecent();
-                countryDemographyView1.LoadDemo(countryStats);
                 diseasePickerControl1.LoadLists(true);
             }
         }
@@ -135,7 +133,8 @@ namespace Nada.UI.View
                 return;
             }
             countryDemographyView1.DoValidate();
-            if (!countryStats.IsValid())
+            countryStats = countryDemographyView1.GetDemo();
+            if (!countryStats.IsValid() || !countryDemographyView1.IsValid())
             {
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;

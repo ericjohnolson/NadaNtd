@@ -31,7 +31,7 @@ namespace Nada.Model
                         if (!YearCensus.HasValue)
                             error = Translations.Required;
                         else if (YearCensus.Value > 2100 || YearCensus.Value < 1900)
-                            error = Translations.ValidYear;
+                                error = Translations.ValidYear;
                         break;
                     case "GrowthRate":
                         if (!GrowthRate.HasValue)

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Nada.Model;
 using Nada.Globalization;
 using Nada.UI.Base;
+using Nada.Model.Repositories;
 
 namespace Nada.UI.View.Demography
 {
@@ -28,24 +29,38 @@ namespace Nada.UI.View.Demography
             {
                 h3Required3.SetMaxWidth(370);
                 lblYear.SetMaxWidth(370);
-            }
-        }
 
-        public void LoadDemo(CountryDemography country)
-        {
-            model = country;
-            bsCountry.DataSource = model;
+                DemoRepository demo = new DemoRepository();
+                model = demo.GetCountryLevelStatsRecent();
+                bsCountryDemo.DataSource = model;
+            }
         }
 
         public CountryDemography GetDemo()
         {
-            bsCountry.EndEdit();
+            bsCountryDemo.EndEdit();
             return model;
         }
 
         public void DoValidate()
         {
-            errorProvider1.DataSource = bsCountry;
+            countryDemoErrors.DataSource = bsCountryDemo;
+        }
+
+        public void SetNewYear(double? growthRate, DateTime dateReported)
+        {
+            model.GrowthRate = growthRate;
+            model.DateDemographyData = dateReported;
+        }
+
+        public bool IsValid()
+        {
+            foreach(Control cntrl in tableLayoutPanel14.Controls)
+            {
+                if (!string.IsNullOrEmpty(countryDemoErrors.GetError(cntrl)))
+                    return false;
+            }
+            return true;
         }
     }
 }

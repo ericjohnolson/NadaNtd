@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox20 = new System.Windows.Forms.TextBox();
-            this.bsCountry = new System.Windows.Forms.BindingSource(this.components);
+            this.bsCountryDemo = new System.Windows.Forms.BindingSource(this.components);
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.h3bLabel16 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel15 = new Nada.UI.Controls.H3bLabel();
@@ -57,10 +57,10 @@
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.h3bLabel17 = new Nada.UI.Controls.H3bLabel();
             this.textBox18 = new System.Windows.Forms.TextBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.countryDemoErrors = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCountryDemo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.countryDemoErrors)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel14
@@ -127,20 +127,20 @@
             // 
             // textBox20
             // 
-            this.textBox20.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentFemale", true));
+            this.textBox20.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "PercentFemale", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox20.Location = new System.Drawing.Point(0, 266);
             this.textBox20.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(256, 21);
             this.textBox20.TabIndex = 10;
             // 
-            // bsCountry
+            // bsCountryDemo
             // 
-            this.bsCountry.DataSource = typeof(Nada.Model.CountryDemography);
+            this.bsCountryDemo.DataSource = typeof(Nada.Model.CountryDemography);
             // 
             // textBox17
             // 
-            this.textBox17.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentMale", true));
+            this.textBox17.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "PercentMale", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox17.Location = new System.Drawing.Point(296, 266);
             this.textBox17.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox17.Name = "textBox17";
@@ -197,7 +197,7 @@
             // 
             // tbNumEligibleTargeted
             // 
-            this.tbNumEligibleTargeted.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "YearCensus", true));
+            this.tbNumEligibleTargeted.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "YearCensus", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tbNumEligibleTargeted.Location = new System.Drawing.Point(0, 21);
             this.tbNumEligibleTargeted.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.tbNumEligibleTargeted.Name = "tbNumEligibleTargeted";
@@ -223,7 +223,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "dd MMMM";
-            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsCountry, "DateDemographyData", true));
+            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsCountryDemo, "DateDemographyData", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dateTimePicker1.Location = new System.Drawing.Point(299, 18);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(253, 21);
@@ -247,7 +247,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "GrowthRate", true));
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "GrowthRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox4.Location = new System.Drawing.Point(0, 70);
             this.textBox4.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox4.Name = "textBox4";
@@ -272,7 +272,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "AgeRangePsac", true));
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "AgeRangePsac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox1.Location = new System.Drawing.Point(296, 70);
             this.textBox1.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox1.Name = "textBox1";
@@ -297,7 +297,7 @@
             // 
             // textBox13
             // 
-            this.textBox13.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "AgeRangeSac", true));
+            this.textBox13.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "AgeRangeSac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox13.Location = new System.Drawing.Point(0, 119);
             this.textBox13.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox13.Name = "textBox13";
@@ -322,7 +322,7 @@
             // 
             // textBox15
             // 
-            this.textBox15.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "Percent6mos", true));
+            this.textBox15.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "Percent6mos", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox15.Location = new System.Drawing.Point(296, 119);
             this.textBox15.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox15.Name = "textBox15";
@@ -347,7 +347,7 @@
             // 
             // textBox14
             // 
-            this.textBox14.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentPsac", true));
+            this.textBox14.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "PercentPsac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox14.Location = new System.Drawing.Point(0, 168);
             this.textBox14.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox14.Name = "textBox14";
@@ -372,7 +372,7 @@
             // 
             // textBox21
             // 
-            this.textBox21.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentSac", true));
+            this.textBox21.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "PercentSac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox21.Location = new System.Drawing.Point(296, 168);
             this.textBox21.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox21.Name = "textBox21";
@@ -397,7 +397,7 @@
             // 
             // textBox16
             // 
-            this.textBox16.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "Percent5yo", true));
+            this.textBox16.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "Percent5yo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox16.Location = new System.Drawing.Point(0, 217);
             this.textBox16.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox16.Name = "textBox16";
@@ -422,7 +422,7 @@
             // 
             // textBox19
             // 
-            this.textBox19.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentAdult", true));
+            this.textBox19.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "PercentAdult", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox19.Location = new System.Drawing.Point(296, 217);
             this.textBox19.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox19.Name = "textBox19";
@@ -447,17 +447,18 @@
             // 
             // textBox18
             // 
-            this.textBox18.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "PercentRural", true));
+            this.textBox18.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "PercentRural", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox18.Location = new System.Drawing.Point(0, 315);
             this.textBox18.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(256, 21);
             this.textBox18.TabIndex = 12;
             // 
-            // errorProvider1
+            // countryDemoErrors
             // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
+            this.countryDemoErrors.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.countryDemoErrors.ContainerControl = this;
+            this.countryDemoErrors.DataSource = this.bsCountryDemo;
             // 
             // CountryDemographyView
             // 
@@ -465,7 +466,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel14);
             this.Name = "CountryDemographyView";
@@ -473,8 +474,8 @@
             this.Load += new System.EventHandler(this.CountryView_Load);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCountryDemo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.countryDemoErrors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -482,7 +483,7 @@
 
         #endregion
 
-        private System.Windows.Forms.BindingSource bsCountry;
+        private System.Windows.Forms.BindingSource bsCountryDemo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
         private Controls.H3Required h3Required3;
         private System.Windows.Forms.TextBox textBox4;
@@ -509,7 +510,7 @@
         private Controls.H3bLabel h3bLabel11;
         private Controls.H3bLabel h3bLabel10;
         private Controls.H3bLabel h3bLabel2;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider countryDemoErrors;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
