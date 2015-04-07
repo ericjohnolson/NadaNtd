@@ -85,14 +85,28 @@ namespace Nada.UI.View.Wizard
                 return;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                int userId = ApplicationData.Instance.GetUserId();
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-                worker.DoWork += worker_DoWork;
+                DataSet ds = ImporterBase.LoadDataFromFile(openFileDialog1.FileName);
+                if (options.Importer is SurveyImporter && ds.Tables[0].Columns.Contains("* " + Translations.SurveyName))
+                {
+                    Dictionary<string, List<AdminLevel>> surveyNameDict = new Dictionary<string, List<AdminLevel>>();
+                    foreach (DataRow row in ds.Tables[0].Rows)
+                        if (row["* " + Translations.SurveyName] != null && row["* " + Translations.SurveyName].ToString().Length > 0)
+                            surveyNameDict.Add(row["* " + Translations.SurveyName].ToString(), new List<AdminLevel>());
 
-                worker.RunWorkerAsync(new WorkerPayload { FileName = openFileDialog1.FileName, UserId = userId });
-
-                OnSwitchStep(new WorkingStep(Translations.ImportingFile));
+                    if (surveyNameDict.Keys.Count <= 0)
+                        OnSwitchStep(new ImportStepResult(new ImportResult(Translations.ImportNoDataError), this));
+                    else
+                        OnSwitchStep(new ImportStepSurveyNameUnits(options, this, openFileDialog1.FileName, surveyNameDict, 0));
+                }
+                else
+                {
+                    int userId = ApplicationData.Instance.GetUserId();
+                    BackgroundWorker worker = new BackgroundWorker();
+                    worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+                    worker.DoWork += worker_DoWork;
+                    worker.RunWorkerAsync(new WorkerPayload { FileName = openFileDialog1.FileName, UserId = userId });
+                    OnSwitchStep(new WorkingStep(Translations.ImportingFile));
+                }
             }
         }
 

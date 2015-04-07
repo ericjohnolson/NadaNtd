@@ -55,6 +55,7 @@
             this.lnkDownload.TabIndex = 0;
             this.lnkDownload.Tag = "CreateImportFile";
             this.lnkDownload.Text = "CreateImportFile";
+            this.lnkDownload.TextColor = System.Drawing.Color.RoyalBlue;
             this.lnkDownload.ClickOverride += new System.Action(this.lnkDownload_ClickOverride);
             // 
             // lnkUpload
@@ -70,11 +71,8 @@
             this.lnkUpload.TabIndex = 1;
             this.lnkUpload.Tag = "UploadFile";
             this.lnkUpload.Text = "UploadFile";
+            this.lnkUpload.TextColor = System.Drawing.Color.RoyalBlue;
             this.lnkUpload.ClickOverride += new System.Action(this.lnkUpload_ClickOverride);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // h3Label1
             // 
@@ -84,7 +82,7 @@
             this.h3Label1.Location = new System.Drawing.Point(0, 0);
             this.h3Label1.Margin = new System.Windows.Forms.Padding(0);
             this.h3Label1.Name = "h3Label1";
-            this.h3Label1.Size = new System.Drawing.Size(32, 18);
+            this.h3Label1.Size = new System.Drawing.Size(44, 15);
             this.h3Label1.TabIndex = 21;
             this.h3Label1.Tag = "Type";
             this.h3Label1.Text = "Type";

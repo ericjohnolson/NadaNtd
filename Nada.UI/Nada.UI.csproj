@@ -638,6 +638,12 @@
     <Compile Include="View\Wizard\Import\ImportStepMultiUnits.Designer.cs">
       <DependentUpon>ImportStepMultiUnits.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\Import\ImportStepSurveyNameUnits.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Import\ImportStepSurveyNameUnits.Designer.cs">
+      <DependentUpon>ImportStepSurveyNameUnits.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\IndicatorManagement\IndStepResult.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1158,6 +1164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\Import\ImportStepMultiUnits.resx">
       <DependentUpon>ImportStepMultiUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Import\ImportStepSurveyNameUnits.resx">
+      <DependentUpon>ImportStepSurveyNameUnits.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\IndicatorManagement\IndStepResult.resx">
       <DependentUpon>IndStepResult.cs</DependentUpon>

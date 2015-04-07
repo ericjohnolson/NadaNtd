@@ -157,20 +157,32 @@ namespace Nada.Model.Imports
                     objerrors += TranslationLookup.GetValue("ValidSentinelSite") + Environment.NewLine;
             }
         }
-
-
+        
         protected override ImportResult MapAndSaveObjects(DataSet ds, int userId)
         {
+            string rowId = "";
             string errorMessage = "";
             List<SurveyBase> objs = new List<SurveyBase>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                if (row["* " +TranslationLookup.GetValue("ID")] == null || row["* " + TranslationLookup.GetValue("ID")].ToString().Length == 0)
-                    continue;
                 string objerrors = "";
                 var obj = repo.CreateSurvey(sType.Id);
-                int adminLevelId = Convert.ToInt32(row["* " + TranslationLookup.GetValue("ID")]);
-                obj.AdminLevels = new List<AdminLevel> { new AdminLevel { Id = adminLevelId } };
+
+                if (NamesToAdminUnits == null)
+                {
+                    if (row["* " + TranslationLookup.GetValue("ID")] == null || row["* " + TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                        continue;
+                    rowId = row["* " + TranslationLookup.GetValue("ID")].ToString();
+                    int adminLevelId = Convert.ToInt32(row["* " + TranslationLookup.GetValue("ID")]);
+                    obj.AdminLevels = new List<AdminLevel> { new AdminLevel { Id = adminLevelId } };
+                }
+                else
+                {
+                    rowId = row["* " + TranslationLookup.GetValue("SurveyName")].ToString();
+                    if (!NamesToAdminUnits.ContainsKey(rowId))
+                        continue;
+                    obj.AdminLevels = NamesToAdminUnits[rowId];
+                }
 
                 // CHECK FOR SENTINEL SITES/SPOTCHECK
                 if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) != null)
@@ -196,13 +208,12 @@ namespace Nada.Model.Imports
                     else
                     {
                         obj.SiteType = TranslationLookup.GetValue("Sentinel");
-                        var sites = repo.GetSitesForAdminLevel(new List<string> { adminLevelId.ToString() });
+                        var sites = repo.GetSitesForAdminLevel(new List<string> { obj.AdminLevelId.Value.ToString() });
                         var site = sites.FirstOrDefault(s => s.SiteName == row[TranslationLookup.GetValue("IndSentinelSiteName")].ToString());
                         if (site != null)
                             obj.SentinelSiteId = site.Id;
                         else
                             objerrors += TranslationLookup.GetValue("ValidSentinelSite") + Environment.NewLine;
-
                     }
                 }
 
@@ -211,7 +222,7 @@ namespace Nada.Model.Imports
                 // Validation
                 obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
                 objerrors += !obj.IsValid() ? obj.GetAllErrors(true) : "";
-                errorMessage += GetObjectErrors(objerrors, row["* " + TranslationLookup.GetValue("ID")].ToString());
+                errorMessage += GetObjectErrors(objerrors, rowId);
                 objs.Add(obj);
             }
 
@@ -227,8 +238,6 @@ namespace Nada.Model.Imports
                 Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), objs.Count)
             };
         }
-
-
+    
     }
-
 }

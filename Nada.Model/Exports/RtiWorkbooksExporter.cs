@@ -45,7 +45,7 @@ namespace Nada.Model.Exports
         {
             try
             {
-                transLookup = new TranslationLookupInstance(ExportCulture); 
+                transLookup = new TranslationLookupInstance(ExportCulture);
                 System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
                 excel.Application xlsApp = new excel.ApplicationClass();
@@ -199,6 +199,10 @@ namespace Nada.Model.Exports
         {
             List<string> typeNames = new List<string> { "IntvAlb2", "IntvIvmAlb", "IntvDecAlb", "IntvIvmPzqAlb" };
             List<int> typeIds = new List<int> { (int)StaticIntvType.Alb2, (int)StaticIntvType.IvmAlb, (int)StaticIntvType.DecAlb, (int)StaticIntvType.IvmPzqAlb };
+            // Get LF Surveys 
+            var surveys = surveyRepo.GetByTypeInDateRange(
+                new List<int> { (int)StaticSurveyType.LfMapping, (int)StaticSurveyType.LfSentinel, (int)StaticSurveyType.LfTas }, StartDate, EndDate);
+            
             // Get LF Disease Distributions
             DiseaseDistroPc lf;
             Dictionary<int, DataRow> lfDd;
@@ -207,6 +211,24 @@ namespace Nada.Model.Exports
             int rowCount = 16;
             foreach (var unit in demography)
             {
+                // Surveys
+                var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
+                if (mostRecentSurvey != null)
+                {
+                    string percent = null;
+                    int year = 0;
+                    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
+                        percent = GetPercentPositive(mostRecentSurvey, "LFSurNumberOfIndividualsPositive", "LFSurNumberOfIndividualsExamined", out year);
+                    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
+                        percent = GetPercentPositive(mostRecentSurvey, "LFMapSurNumberOfIndividualsPositive", "LFMapSurNumberOfIndividualsExamined", out year);
+                    if (mostRecentSurvey.TypeOfSurvey.Id != (int)StaticSurveyType.LfTas)
+                    {
+                        AddValueToRange(xlsWorksheet, rng, "G" + rowCount, percent);
+                        AddValueToRange(xlsWorksheet, rng, "H" + rowCount, year);
+                    }
+                    AddTypeOfLfSurveySite(xlsWorksheet, rng, rowCount, mostRecentSurvey);
+                }
+
                 // DISEASE DISTRO
                 if (lfDd.ContainsKey(unit.Id))
                 {
@@ -279,7 +301,7 @@ namespace Nada.Model.Exports
                 rowCount++;
             }
         }
-
+        
         private void AddOncho(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvIvmPzqAlb", "IntvIvmPzq", "IntvIvmAlb", "IntvIvm" };
@@ -312,16 +334,31 @@ namespace Nada.Model.Exports
                 // SURVEYS
                 if (level != null && !string.IsNullOrEmpty(level.DisplayName))
                     AddValueToRange(xlsWorksheet, rng, "F" + rowCount, level.DisplayName);
-                //var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
-                //if (mostRecentSurvey != null)
-                //{
-                //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
-                //        AddLfPercentPositive(xlsWorksheet, rng, rowCount, mostRecentSurvey, "LFSurNumberOfIndividualsPositive", "LFSurNumberOfIndividualsExamined");
-                //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
-                //        AddLfPercentPositive(xlsWorksheet, rng, rowCount, mostRecentSurvey, "LFMapSurNumberOfIndividualsPositive", "LFMapSurNumberOfIndividualsExamined");
-                // Add survey type
-                //  AddValueToRange(xlsWorksheet, rng, "J" + rowCount, GetTestType("LfTestType", mostRecentSurvey);
-                //}
+           
+                var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
+                if (mostRecentSurvey != null)
+                {
+                    string testType = null;
+                    string percent = null;
+                    int year = 0;
+                    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.OnchoAssessment)
+                    {
+                        var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "OnchoSurTestType");
+                        if (ind != null)
+                            testType = ind.DynamicValue;
+                        percent = GetPercentPositive(mostRecentSurvey, "OnchoSurNumberOfIndividualsPositive", "OnchoSurNumberOfIndividualsExamined", out year);
+                    }
+                    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.OnchoMapping)
+                    {
+                        var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "OnchoMapSurTestType");
+                        if (ind != null)
+                            testType = ind.DynamicValue;
+                        percent = GetPercentPositive(mostRecentSurvey, "OnchoMapSurNumberOfIndividualsPositive", "OnchoMapSurNumberOfIndividualsExamined", out year);
+                    }
+                    AddValueToRange(xlsWorksheet, rng, "H" + rowCount, percent);
+                    AddValueToRange(xlsWorksheet, rng, "I" + rowCount, year);
+                    AddValueToRange(xlsWorksheet, rng, "J" + rowCount, testType);
+                }
 
                 // DISEASE DISTRO
                 if (onchoDd.ContainsKey(unit.Id))
@@ -434,23 +471,33 @@ namespace Nada.Model.Exports
                 // SURVEYS
                 if (level != null && !string.IsNullOrEmpty(level.DisplayName))
                     AddValueToRange(xlsWorksheet, rng, "G" + rowCount, level.DisplayName);
-                //var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
-                //if (mostRecentSurvey != null)
-                //{
-                //    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, mostRecentSurvey.DateReported.Year);
-                //    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
-                //    {
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHSurPrevalenceOfIntestinalSchistosomeI", "I");
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHSurProportionOfHeavyIntensityIntestin", "J");
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHSurTestType", "L");
-                //    }
-                //    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
-                //    {
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHMapSurPrevalenceOfIntestinalSchistoso", "I");
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHMapSurProportionOfHeavyIntensityIntes", "J");
-                //        AddIndicatorToRange(xlsWorksheet, rng, rowCount, mostRecentSurvey, "SCHMapSurTestType", "L");
-                //    }
-                //}
+               
+                var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
+                if (mostRecentSurvey != null)
+                {
+                    string testType = null;
+                    string prevIntestinal = null;
+                    string proportionHeavy = "";
+                    int year = 0;
+                    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
+                    {
+                        var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "SCHSurTestType");
+                        if (ind != null)
+                            testType = ind.DynamicValue;
+                        prevIntestinal = GetPercentPositive(mostRecentSurvey, "SCHSurNumberOfIndividualsPositiveForInte", "SCHSurNumberOfIndividualsExaminedForInte", out year);
+                    }
+                    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
+                    {
+                        var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "SCHMapSurTestType");
+                        if (ind != null)
+                            testType = ind.DynamicValue;
+                        prevIntestinal = GetPercentPositive(mostRecentSurvey, "SCHMapSurNumberOfIndividualsPositiveForI", "SCHMapSurNumberOfIndividualsExaminedForI", out year);
+                    }
+                    AddValueToRange(xlsWorksheet, rng, "I" + rowCount, prevIntestinal);
+                    AddValueToRange(xlsWorksheet, rng, "J" + rowCount, proportionHeavy);
+                    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, mostRecentSurvey.DateReported.Year);
+                    AddValueToRange(xlsWorksheet, rng, "L" + rowCount, testType);
+                }
 
                 // DISEASE DISTRO
                 if (schDd.ContainsKey(unit.Id))
@@ -527,9 +574,46 @@ namespace Nada.Model.Exports
             Dictionary<int, DataRow> sthDd;
             GetDdForDisease(start, end, demography, out sth, out sthDd, DiseaseType.STH);
 
+            // Get STH Surveys
+            var surveys = surveyRepo.GetByTypeInDateRange(
+                new List<int> { (int)StaticSurveyType.SthMapping, (int)StaticSurveyType.SthSentinel }, StartDate, EndDate);
+
             int rowCount = 18;
             foreach (var unit in demography)
             {
+                // SURVEYS
+                var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
+                if (mostRecentSurvey != null)
+                {
+                    string testType = null;
+                    string percent = null;
+                    string proportionHeavy = "";
+                    int year = 0;
+                    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
+                    {
+                        var testind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHSurTestType");
+                        if (testind != null)
+                            testType = testind.DynamicValue;
+                        var propInd = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHSurOverallProportionOfHeavyIntensity");
+                        if (propInd != null)
+                            proportionHeavy = propInd.DynamicValue;
+                        percent = GetPercentPositive(mostRecentSurvey, "STHSurNumberOfIndividualsPositiveOverall", "STHSurNumberOfIndividualsExaminedOverall", out year);
+                    }
+                    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
+                    {
+                        var testind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHMapSurSurTestType");
+                        if (testind != null)
+                            testType = testind.DynamicValue;
+                        var propInd = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHMapSurSurOverallProportionOfHeavyIntensity");
+                        if (propInd != null)
+                            proportionHeavy = propInd.DynamicValue;
+                        percent = GetPercentPositive(mostRecentSurvey, "STHMapSurSurNumberOfIndividualsPositiveOverall", "STHMapSurSurNumberOfIndividualsExaminedOverall", out year);
+                    }
+                    AddValueToRange(xlsWorksheet, rng, "I" + rowCount, percent);
+                    AddValueToRange(xlsWorksheet, rng, "J" + rowCount, proportionHeavy);
+                    AddValueToRange(xlsWorksheet, rng, "K" + rowCount, mostRecentSurvey.DateReported.Year);
+                    AddValueToRange(xlsWorksheet, rng, "L" + rowCount, testType);
+                }
 
                 // DISEASE DISTRO
                 if (sthDd.ContainsKey(unit.Id))
@@ -624,7 +708,7 @@ namespace Nada.Model.Exports
                 rowCount++;
             }
         }
-        
+
         private void AddTrachoma(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvZithroTeo" };
@@ -751,8 +835,63 @@ namespace Nada.Model.Exports
                 rowCount++;
             }
         }
-        
+
         #region Helpers
+        private void AddTypeOfLfSurveySite(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey)
+        {
+            string typeName = "";
+            if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
+            {
+                var testType = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFSurTestType");
+                if (testType != null)
+                {
+                    if (mostRecentSurvey.SentinelSiteId.HasValue && testType.DynamicValue == "MF")
+                        typeName = transLookup.GetValue("RtiSsMf", "RtiSsMf");
+                    else if (mostRecentSurvey.SentinelSiteId.HasValue)
+                        typeName = transLookup.GetValue("RtiSsAg", "RtiSsAg");
+                    else if (testType.DynamicValue == "MF")
+                        typeName = transLookup.GetValue("RtiScMf", "RtiScMf");
+                    else
+                        typeName = transLookup.GetValue("RtiScAg", "RtiScAg");
+                }
+            }
+            else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
+            {
+                var testType = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurTestType");
+                var isSentinel = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurWillTheSitesAlsoServeAsASentin");
+                if (testType != null && isSentinel != null)
+                {
+                    if (isSentinel.DynamicValue == "YesSentinelSite" && testType.DynamicValue == "MF")
+                        typeName = transLookup.GetValue("RtiSsMf", "RtiSsMf");
+                    else if (isSentinel.DynamicValue == "YesSentinelSite")
+                        typeName = transLookup.GetValue("RtiSsAg", "RtiSsAg");
+                    else if (testType.DynamicValue == "MF")
+                        typeName = transLookup.GetValue("RtiScMf", "RtiScMf");
+                    else
+                        typeName = transLookup.GetValue("RtiScAg", "RtiScAg");
+                }
+            }
+            else
+                typeName = transLookup.GetValue("RtiTas", "RtiTas");
+
+            AddValueToRange(xlsWorksheet, rng, "I" + rowCount, typeName);
+        }
+
+        private string GetPercentPositive(SurveyBase mostRecentSurvey, string posName, string examinedName, out int year)
+        {
+            string percent = "";
+            var pos = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == posName);
+            var examined = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == examinedName);
+            if (pos != null && examined != null)
+            {
+                percent = CalcBase.GetPercentage(pos.DynamicValue, examined.DynamicValue, 1);
+                if (percent == Translations.NA)
+                    percent = "";
+            }
+            year = mostRecentSurvey.DateReported.Year;
+            return percent;
+        }
+     
         private void CountMdas(List<int> types, int parentId, List<int> childrenIds, out int mdas, out int consecutive, string diseaseName)
         {
             mdas = 0;
@@ -805,20 +944,7 @@ namespace Nada.Model.Exports
                 }
             }
         }
-
-        private void AddLfPercentPositive(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey, string posName, string examinedName)
-        {
-            var pos = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == posName);
-            var examined = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == examinedName);
-            if (pos != null && examined != null)
-            {
-                string percent = CalcBase.GetPercentage(pos.DynamicValue, examined.DynamicValue);
-                if (percent != Translations.NA)
-                    AddValueToRange(xlsWorksheet, rng, "G" + rowCount, percent);
-            }
-            AddValueToRange(xlsWorksheet, rng, "H" + rowCount, mostRecentSurvey.DateReported.Year);
-        }
-
+        
         private void AddIndicatorToRange(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey, string indName, string colName)
         {
             var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == indName);
@@ -913,6 +1039,7 @@ namespace Nada.Model.Exports
 
             return transLookup.GetValue("RtiLfDdPending", "RtiLfDdPending");
         }
+
         private string ParseTasObjective(string tas)
         {
             if (tas == TranslationLookup.GetValue("LfPostMdaTas1"))
@@ -922,56 +1049,7 @@ namespace Nada.Model.Exports
 
             return transLookup.GetValue("RtiStopMda", "RtiStopMda");
         }
-
-        private void AddTypeOfLfSurveySite(excel.Worksheet xlsWorksheet, excel.Range rng, int rowCount, SurveyBase mostRecentSurvey)
-        {
-            string typeName = "";
-            if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
-            {
-                var testType = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFSurTestType");
-                if (testType != null)
-                {
-                    if (mostRecentSurvey.HasSentinelSite && testType.DynamicValue == "MF")
-                        typeName = transLookup.GetValue("RtiSsMf", "RtiSsMf");
-                    else if (mostRecentSurvey.HasSentinelSite)
-                        typeName = transLookup.GetValue("RtiSsAg", "RtiSsAg");
-                    else if (testType.DynamicValue == "MF")
-                        typeName = transLookup.GetValue("RtiScMf", "RtiScMf");
-                    else
-                        typeName = transLookup.GetValue("RtiScAg", "RtiScAg");
-                }
-            }
-            else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
-            {
-                var testType = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurTestType");
-                var isSentinel = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurWillTheSitesAlsoServeAsASentin");
-                if (testType != null && isSentinel != null)
-                {
-                    if (isSentinel.DynamicValue == "YesSentinelSite" && testType.DynamicValue == "MF")
-                        typeName = transLookup.GetValue("RtiSsMf", "RtiSsMf");
-                    else if (isSentinel.DynamicValue == "YesSentinelSite")
-                        typeName = transLookup.GetValue("RtiSsAg", "RtiSsAg");
-                    else if (testType.DynamicValue == "MF")
-                        typeName = transLookup.GetValue("RtiScMf", "RtiScMf");
-                    else
-                        typeName = transLookup.GetValue("RtiScAg", "RtiScAg");
-                }
-            }
-            else
-                typeName = transLookup.GetValue("RtiTas", "RtiTas");
-
-            AddValueToRange(xlsWorksheet, rng, "G" + rowCount, typeName);
-        }
-
-        private string GetTestType(string indName, SurveyBase mostRecentSurvey)
-        {
-            var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFSurTestType");
-            if (ind != null)
-                return ind.DynamicValue;
-            else
-                return "";
-        }
-
+   
         private string ParseSchistoFrequency(string freq)
         {
             if (freq == TranslationLookup.GetValue("xyear2"))
@@ -1084,7 +1162,7 @@ namespace Nada.Model.Exports
 
             return transLookup.GetValue("RtiTraPending", "RtiTraPending");
         }
-        
+
         private string TranslateMdaType(List<string> typesToCalc)
         {
             List<string> translatedTypes = new List<string>();

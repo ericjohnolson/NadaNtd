@@ -14,6 +14,7 @@ namespace Nada.Model
         string ImportName { get; }
         void CreateImportFile(string filename, List<AdminLevel> adminLevels, AdminLevelType adminLevelType, ImportOptions opts);
         ImportResult ImportData(string filePath, int userId);
+        ImportResult ImportWithMulitpleAdminUnits(string filePath, int userId, Dictionary<string, List<AdminLevel>> namesToAdminUnits);
         List<TypeListItem> GetAllTypes();
         Dictionary<string, Indicator> Indicators { get; set; }
         List<IndicatorDropdownValue> DropDownValues { get; set; }

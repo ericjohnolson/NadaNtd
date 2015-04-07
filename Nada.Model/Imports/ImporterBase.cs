@@ -40,6 +40,7 @@ namespace Nada.Model
         protected string validationSheetName = "ValidationLists";
         protected Dictionary<string, string> validationRanges = new Dictionary<string,string>();
         protected IndicatorParser valueParser = new IndicatorParser();
+        protected Dictionary<string, List<AdminLevel>> NamesToAdminUnits;
 
         #region Public methods
         public virtual void CreateImportFile(string filename, List<AdminLevel> adminLevels, AdminLevelType adminLevelType, ImportOptions opts)
@@ -178,6 +179,12 @@ namespace Nada.Model
             {
                 return new ImportResult(TranslationLookup.GetValue("UnexpectedException") + ex.Message);
             }
+        }
+
+        public virtual ImportResult ImportWithMulitpleAdminUnits(string filePath, int userId, Dictionary<string, List<AdminLevel>> namesToAdminUnits)
+        {
+            NamesToAdminUnits = namesToAdminUnits;
+            return ImportData(filePath, userId);
         }
 
         public void CreateUpdateFile(string filename, List<IHaveDynamicIndicatorValues> forms)
