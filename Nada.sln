@@ -49,6 +49,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nada.Build.Deploy_x86", "Na
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nada.Build.Qa", "Nada.Build\Nada.Build.Qa\Nada.Build.Qa.csproj", "{312F4888-D724-42A1-B2FF-6D45092C59BA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nada.Utilities", "Nada.Utilities", "{179CEEDC-05E5-480E-964B-E629BA701963}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nada.Utilities.DeveloperUtil", "Nada.Utilities\Nada.Utilities.DeveloperUtil\Nada.Utilities.DeveloperUtil.csproj", "{CE888D0F-AD8C-4114-90DD-5BE4936EE385}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +145,16 @@ Global
 		{312F4888-D724-42A1-B2FF-6D45092C59BA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{312F4888-D724-42A1-B2FF-6D45092C59BA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{312F4888-D724-42A1-B2FF-6D45092C59BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,5 +164,6 @@ Global
 		{C1D3C62B-3627-4554-A9D8-AF7446005869} = {C8EA909B-32CB-4510-8D3E-1769F7D3FA6A}
 		{48B80CC9-E1B7-4C82-A331-E4EBE1CBC86D} = {C8EA909B-32CB-4510-8D3E-1769F7D3FA6A}
 		{312F4888-D724-42A1-B2FF-6D45092C59BA} = {C8EA909B-32CB-4510-8D3E-1769F7D3FA6A}
+		{CE888D0F-AD8C-4114-90DD-5BE4936EE385} = {179CEEDC-05E5-480E-964B-E629BA701963}
 	EndGlobalSection
 EndGlobal
