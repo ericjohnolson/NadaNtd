@@ -1407,6 +1407,7 @@
     <None Include="Properties\DataSources\Nada.Model.DiseasePopulation.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Diseases.Disease.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Diseases.DiseaseDistro.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.ExportParams.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportCmJrfQuestions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportContact.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportQuestions.datasource" />
@@ -1425,6 +1426,7 @@
     <None Include="Properties\DataSources\Nada.Model.Member.datasource" />
     <None Include="Properties\DataSources\Nada.Model.PopGroup.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Process.ProcessType.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Reports.EliminationReportOptions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicator.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicators.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportOptions.datasource" />

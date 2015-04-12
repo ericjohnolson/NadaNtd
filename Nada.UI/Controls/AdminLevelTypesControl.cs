@@ -34,7 +34,6 @@ namespace Nada.UI.Controls
             {
                 Localizer.TranslateControl(this);
                 lblAggLevel.SetMaxWidth(550);
-                lblReportingLevel.SetMaxWidth(550);
                 maxLevelsAllowed = Convert.ToInt32(ConfigurationManager.AppSettings["MaxLevelsAllowed"]);
                 r = new SettingsRepository();
                 RefreshList();
@@ -79,11 +78,6 @@ namespace Nada.UI.Controls
             lvLevels.SetObjects(types);
             if (types.Max(a => a.LevelNumber) >= maxLevelsAllowed)
                 fieldLink1.Visible = false;
-        }
-
-        public bool HasDistrict()
-        {
-            return (types.FirstOrDefault(t => t.IsDistrict) != null);
         }
 
         public bool HasAggregatingLevel()

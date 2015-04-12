@@ -148,7 +148,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                string sql = @"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes 
+                string sql = @"Select ID, DisplayName, AdminLevel, IsAggregatingLevel from AdminLevelTypes 
                     WHERE AdminLevel > 0 AND IsDeleted=0
                     ORDER BY AdminLevel";
                 OleDbCommand command = new OleDbCommand(sql, connection);
@@ -160,7 +160,6 @@ namespace Nada.Model.Repositories
                             Id = reader.GetValueOrDefault<int>("ID"),
                             DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
                             LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
-                            IsDistrict = reader.GetValueOrDefault<bool>("IsDistrict"),
                             IsAggregatingLevel = reader.GetValueOrDefault<bool>("IsAggregatingLevel"),
                         });
                     reader.Close();
@@ -182,7 +181,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                string sql = @"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes 
+                string sql = @"Select ID, DisplayName, AdminLevel,  IsAggregatingLevel from AdminLevelTypes 
                     WHERE IsDeleted=0
                     ORDER BY AdminLevel";
                 OleDbCommand command = new OleDbCommand(sql, connection);
@@ -194,7 +193,6 @@ namespace Nada.Model.Repositories
                             Id = reader.GetValueOrDefault<int>("ID"),
                             DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
                             LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
-                            IsDistrict = reader.GetValueOrDefault<bool>("IsDistrict"),
                             IsAggregatingLevel = reader.GetValueOrDefault<bool>("IsAggregatingLevel"),
                         });
                     reader.Close();
@@ -203,32 +201,31 @@ namespace Nada.Model.Repositories
             return lvls;
         }
 
-        public AdminLevelType GetDistrictAdminLevel()
-        {
-            AdminLevelType lvl = new AdminLevelType();
-            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
-            using (connection)
-            {
-                connection.Open();
-                string sql = @"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes 
-                    WHERE AdminLevel > 0 AND IsDeleted=0 AND IsDistrict=-1";
-                OleDbCommand command = new OleDbCommand(sql, connection);
-                using (OleDbDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                        lvl = new AdminLevelType
-                        {
-                            Id = reader.GetValueOrDefault<int>("ID"),
-                            DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
-                            LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
-                            IsDistrict = reader.GetValueOrDefault<bool>("IsDistrict"),
-                            IsAggregatingLevel = reader.GetValueOrDefault<bool>("IsAggregatingLevel"),
-                        };
-                    reader.Close();
-                }
-            }
-            return lvl;
-        }
+//        public AdminLevelType GetDistrictAdminLevel()
+//        {
+//            AdminLevelType lvl = new AdminLevelType();
+//            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+//            using (connection)
+//            {
+//                connection.Open();
+//                string sql = @"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes 
+//                    WHERE AdminLevel > 0 AND IsDeleted=0 AND IsDistrict=-1";
+//                OleDbCommand command = new OleDbCommand(sql, connection);
+//                using (OleDbDataReader reader = command.ExecuteReader())
+//                {
+//                    while (reader.Read())
+//                        lvl = new AdminLevelType
+//                        {
+//                            Id = reader.GetValueOrDefault<int>("ID"),
+//                            DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
+//                            LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
+//                            IsAggregatingLevel = reader.GetValueOrDefault<bool>("IsAggregatingLevel"),
+//                        };
+//                    reader.Close();
+//                }
+//            }
+//            return lvl;
+//        }
 
         public AdminLevelType GetAdminLevelTypeByLevel(int level)
         {
@@ -237,7 +234,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes 
+                OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, AdminLevel,  IsAggregatingLevel from AdminLevelTypes 
                     WHERE AdminLevel > 0 AND IsDeleted=0 AND AdminLevel = @level", connection);
                 command.Parameters.Add(new OleDbParameter("@level", level));
                 using (OleDbDataReader reader = command.ExecuteReader())
@@ -250,7 +247,6 @@ namespace Nada.Model.Repositories
                             Id = reader.GetValueOrDefault<int>("ID"),
                             DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
                             LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
-                            IsDistrict = reader.GetValueOrDefault<bool>("IsDistrict"),
                             IsAggregatingLevel = reader.GetValueOrDefault<bool>("IsAggregatingLevel"),
                         };
                     }
@@ -286,7 +282,7 @@ namespace Nada.Model.Repositories
             using (connection)
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel from AdminLevelTypes 
+                OleDbCommand command = new OleDbCommand(@"Select ID, DisplayName, AdminLevel, IsAggregatingLevel from AdminLevelTypes 
                     WHERE AdminLevel > 0 AND IsDeleted=0 AND AdminLevel > @id
                     ORDER BY AdminLevel", connection);
                 command.Parameters.Add(new OleDbParameter("@id", levelNumber));
@@ -300,7 +296,6 @@ namespace Nada.Model.Repositories
                             Id = reader.GetValueOrDefault<int>("ID"),
                             DisplayName = reader.GetValueOrDefault<string>("DisplayName"),
                             LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
-                            IsDistrict = reader.GetValueOrDefault<bool>("IsDistrict"),
                             IsAggregatingLevel = reader.GetValueOrDefault<bool>("IsAggregatingLevel"),
                         };
                     }
@@ -361,11 +356,6 @@ namespace Nada.Model.Repositories
                 {
                     OleDbCommand command = null;
 
-                    if (adminLevel.IsDistrict)
-                    {
-                        command = new OleDbCommand(@"Update AdminLevelTypes set IsDistrict=0", connection);
-                        command.ExecuteNonQuery();
-                    }
 
                     if (adminLevel.IsAggregatingLevel)
                     {
@@ -375,11 +365,10 @@ namespace Nada.Model.Repositories
 
                     if (adminLevel.Id > 0)
                     {
-                        command = new OleDbCommand(@"Update AdminLevelTypes set DisplayName=@name, AdminLevel=@AdminLevel, IsDistrict=@IsDistrict, 
+                        command = new OleDbCommand(@"Update AdminLevelTypes set DisplayName=@name, AdminLevel=@AdminLevel,  
                         IsAggregatingLevel=@IsAggregatingLevel, UpdatedById=@updatedby, UpdatedAt=@updatedat WHERE ID = @id", connection);
                         command.Parameters.Add(new OleDbParameter("@name", adminLevel.DisplayName));
                         command.Parameters.Add(new OleDbParameter("@AdminLevel", adminLevel.LevelNumber));
-                        command.Parameters.Add(new OleDbParameter("@IsDistrict", adminLevel.IsDistrict));
                         command.Parameters.Add(new OleDbParameter("@IsAggregatingLevel", adminLevel.IsAggregatingLevel));
                         command.Parameters.Add(new OleDbParameter("@updatedby", byUserId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@updatedat", DateTime.Now));
@@ -389,12 +378,11 @@ namespace Nada.Model.Repositories
                     else
                     {
                         // INSERT 
-                        command = new OleDbCommand(@"INSERT INTO AdminLevelTypes (DisplayName, AdminLevel, IsDistrict, IsAggregatingLevel,
+                        command = new OleDbCommand(@"INSERT INTO AdminLevelTypes (DisplayName, AdminLevel,  IsAggregatingLevel,
                             UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
-                            (@DisplayName, @AdminLevel, @IsDistrict, @IsAggregatingLevel, @UpdatedBy, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
+                            (@DisplayName, @AdminLevel, @IsAggregatingLevel, @UpdatedBy, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
                         command.Parameters.Add(new OleDbParameter("@DisplayName", adminLevel.DisplayName));
                         command.Parameters.Add(new OleDbParameter("@AdminLevel", adminLevel.LevelNumber));
-                        command.Parameters.Add(new OleDbParameter("@IsDistrict", adminLevel.IsDistrict));
                         command.Parameters.Add(new OleDbParameter("@IsAggregatingLevel", adminLevel.IsAggregatingLevel));
                         command.Parameters.Add(new OleDbParameter("@UpdatedById", byUserId));
                         command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));

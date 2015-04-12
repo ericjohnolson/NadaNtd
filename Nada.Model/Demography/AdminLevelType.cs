@@ -11,10 +11,8 @@ namespace Nada.Model
     {
         public AdminLevelType()
         {
-            IsDistrict = false;
         }
 
-        public bool IsDistrict { get; set; }
         public bool IsAggregatingLevel { get; set; }
         public bool IsDemographyAllowed { get; set; }
         public int LevelNumber { get; set; }
@@ -23,16 +21,6 @@ namespace Nada.Model
         public string ImportText { get { return Translations.Import; } }
         public string DeleteText { get { return Translations.Delete; } }
         
-        public string IsDistrictText
-        {
-            get
-            {
-                if (IsDistrict)
-                    return Translations.DistrictAdminLevel;
-                else
-                    return "";
-            }
-        }
         public string IsAggText
         {
             get

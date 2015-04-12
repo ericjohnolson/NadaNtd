@@ -81,11 +81,6 @@ namespace Nada.UI.View.Wizard
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return false;
             }
-            if (!adminLevelTypesControl1.HasDistrict())
-            {
-                MessageBox.Show(Translations.MustMakeDistrict, Translations.ValidationErrorTitle);
-                return false;
-            }
             if (!adminLevelTypesControl1.HasAggregatingLevel())
             {
                 MessageBox.Show(Translations.MustMakeAggregatingLevel, Translations.ValidationErrorTitle);

@@ -42,8 +42,12 @@
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.cbTypes = new System.Windows.Forms.ComboBox();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.h3Required1 = new Nada.UI.Controls.H3Required();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // h3bLabel1
@@ -186,12 +190,47 @@
             this.textBox5.Size = new System.Drawing.Size(230, 21);
             this.textBox5.TabIndex = 71;
             // 
+            // cbTypes
+            // 
+            this.cbTypes.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bindingSource1, "AdminLevelType", true));
+            this.cbTypes.DataSource = this.bindingSource2;
+            this.cbTypes.DisplayMember = "DisplayName";
+            this.cbTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTypes.FormattingEnabled = true;
+            this.cbTypes.Location = new System.Drawing.Point(5, 255);
+            this.cbTypes.Margin = new System.Windows.Forms.Padding(3, 6, 25, 6);
+            this.cbTypes.Name = "cbTypes";
+            this.cbTypes.Size = new System.Drawing.Size(230, 23);
+            this.cbTypes.TabIndex = 72;
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(Nada.Model.AdminLevelType);
+            // 
+            // h3Required1
+            // 
+            this.h3Required1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3Required1.AutoSize = true;
+            this.h3Required1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Required1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Required1.Location = new System.Drawing.Point(5, 234);
+            this.h3Required1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Required1.Name = "h3Required1";
+            this.h3Required1.Size = new System.Drawing.Size(117, 15);
+            this.h3Required1.TabIndex = 73;
+            this.h3Required1.TabStop = false;
+            this.h3Required1.Tag = "RtiReportingLevel";
+            this.h3Required1.Text = "RtiReportingLevel";
+            this.h3Required1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
             // JrfExportStep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.h3Required1);
+            this.Controls.Add(this.cbTypes);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.comboBox3);
@@ -203,10 +242,11 @@
             this.Controls.Add(this.h3bLabel2);
             this.Controls.Add(this.h3bLabel1);
             this.Name = "JrfExportStep";
-            this.Size = new System.Drawing.Size(365, 250);
+            this.Size = new System.Drawing.Size(365, 319);
             this.Load += new System.EventHandler(this.ExportWorkingStep_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,6 +267,9 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ComboBox cbTypes;
+        private Controls.H3Required h3Required1;
+        private System.Windows.Forms.BindingSource bindingSource2;
 
 
     }

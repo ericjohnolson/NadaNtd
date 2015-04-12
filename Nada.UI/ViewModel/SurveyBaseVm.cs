@@ -88,15 +88,22 @@ namespace Nada.UI.ViewModel
 
         public void DoSave(List<IndicatorValue> indicatorValues, string notes)
         {
-            if (sitePicker != null)
-                sitePicker.EndEdit();
+            DoSave(indicatorValues, notes, true);
+        }
+
+        public void DoSave(List<IndicatorValue> indicatorValues, string notes, bool persist)
+        {
             model.Notes = notes;
-            model.IndicatorValues = ReconcileIndicators(model.IndicatorValues, indicatorValues); 
-            bool isNew = model.Id < 1;
-            r.SaveSurvey(model, ApplicationData.Instance.GetUserId());
-            if (isNew && r.CopySentinelSiteSurvey(model, ApplicationData.Instance.GetUserId()))
-                MessageBox.Show(Translations.SurveyCopiedMessage, Translations.SurveyCopiedTitle);
-            MessageBox.Show(Translations.UpdateDdAfterSavingSurvey, Translations.UpdateDdAfterSavingSurveyTitle);
+            model.IndicatorValues = ReconcileIndicators(model.IndicatorValues, indicatorValues);
+
+            if (persist)
+            {
+                bool isNew = model.Id < 1;
+                r.SaveSurvey(model, ApplicationData.Instance.GetUserId());
+                if (isNew && r.CopySentinelSiteSurvey(model, ApplicationData.Instance.GetUserId()))
+                    MessageBox.Show(Translations.SurveyCopiedMessage, Translations.SurveyCopiedTitle);
+                MessageBox.Show(Translations.UpdateDdAfterSavingSurvey, Translations.UpdateDdAfterSavingSurveyTitle);
+            }
         }
 
 

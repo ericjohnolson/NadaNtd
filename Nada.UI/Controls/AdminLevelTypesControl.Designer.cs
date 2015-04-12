@@ -32,7 +32,6 @@
             this.lvLevels = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.IsDistrictText = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn14 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -40,7 +39,6 @@
             this.partnerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblAggLevel = new Nada.UI.Controls.H3bLabel();
-            this.lblReportingLevel = new Nada.UI.Controls.H3bLabel();
             ((System.ComponentModel.ISupportInitialize)(this.lvLevels)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnerBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -50,14 +48,12 @@
             // 
             this.lvLevels.AllColumns.Add(this.olvColumn3);
             this.lvLevels.AllColumns.Add(this.olvColumn2);
-            this.lvLevels.AllColumns.Add(this.IsDistrictText);
             this.lvLevels.AllColumns.Add(this.olvColumn1);
             this.lvLevels.AllColumns.Add(this.olvColumn14);
             this.lvLevels.AllColumns.Add(this.olvColumn4);
             this.lvLevels.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn3,
             this.olvColumn2,
-            this.IsDistrictText,
             this.olvColumn1,
             this.olvColumn14,
             this.olvColumn4});
@@ -89,13 +85,6 @@
             this.olvColumn2.Tag = "Name";
             this.olvColumn2.Text = "Name";
             this.olvColumn2.Width = 200;
-            // 
-            // IsDistrictText
-            // 
-            this.IsDistrictText.AspectName = "IsDistrictText";
-            this.IsDistrictText.CellPadding = null;
-            this.IsDistrictText.Tag = "IsDistrict";
-            this.IsDistrictText.Width = 68;
             // 
             // olvColumn1
             // 
@@ -146,7 +135,6 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.lblAggLevel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblReportingLevel, 0, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 187);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -154,7 +142,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(164, 57);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(131, 41);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // lblAggLevel
@@ -171,20 +159,6 @@
             this.lblAggLevel.Text = "SettingsAggLevelDesc";
             this.lblAggLevel.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // lblReportingLevel
-            // 
-            this.lblReportingLevel.AutoSize = true;
-            this.lblReportingLevel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lblReportingLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblReportingLevel.Location = new System.Drawing.Point(0, 41);
-            this.lblReportingLevel.Margin = new System.Windows.Forms.Padding(0);
-            this.lblReportingLevel.Name = "lblReportingLevel";
-            this.lblReportingLevel.Size = new System.Drawing.Size(164, 16);
-            this.lblReportingLevel.TabIndex = 7;
-            this.lblReportingLevel.Tag = "SettingsReportingLevelDesc";
-            this.lblReportingLevel.Text = "SettingsReportingLevelDesc";
-            this.lblReportingLevel.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
             // AdminLevelTypesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -195,7 +169,7 @@
             this.Controls.Add(this.lvLevels);
             this.Controls.Add(this.fieldLink1);
             this.Name = "AdminLevelTypesControl";
-            this.Size = new System.Drawing.Size(586, 247);
+            this.Size = new System.Drawing.Size(586, 231);
             this.Load += new System.EventHandler(this.AdminLevelTypesControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lvLevels)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnerBindingSource)).EndInit();
@@ -214,11 +188,9 @@
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvColumn14;
         private BrightIdeasSoftware.OLVColumn olvColumn3;
-        private BrightIdeasSoftware.OLVColumn IsDistrictText;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private H3bLabel lblAggLevel;
-        private H3bLabel lblReportingLevel;
         private BrightIdeasSoftware.OLVColumn olvColumn4;
 
     }

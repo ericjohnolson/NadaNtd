@@ -24,7 +24,7 @@ namespace Nada.Model.Repositories
         /// <param name="diseaseId"></param>
         /// <param name="customAggRule"></param>
         /// <returns></returns>
-        public List<AdminLevelIndicators> GetDistrictIndicatorTrees(int interventionTypeId, int year, int diseaseId, Func<AggregateIndicator, object, object> customAggRule)
+        public List<AdminLevelIndicators> GetDistrictIndicatorTrees(int interventionTypeId, int year, int diseaseId, Func<AggregateIndicator, object, object> customAggRule, int reportingLevel)
         {
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
             Dictionary<int, AdminLevelIndicators> dic = new Dictionary<int, AdminLevelIndicators>();
@@ -54,7 +54,7 @@ namespace Nada.Model.Repositories
                     rootNodes.Add(node);
                 }
             }
-            return list.Where(a => a.IsDistrict).ToList();
+            return list.Where(a => a.LevelNumber == reportingLevel).ToList();
         }
 
         private void AddIntvIndicators(int interventionTypeId, int year, Dictionary<int, AdminLevelIndicators> dic, OleDbCommand command,
@@ -190,7 +190,7 @@ namespace Nada.Model.Repositories
             if (getRedistricted)
                 filter = " WHERE AdminLevels.RedistrictIdForMother > 0 ";
             List<AdminLevelIndicators> list = new List<AdminLevelIndicators>();
-            command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, AdminLevelTypes.AdminLevel, AdminLevelTypes.IsDistrict, 
+            command = new OleDbCommand(@"Select AdminLevels.ID, ParentId, AdminLevels.DisplayName, AdminLevelTypes.AdminLevel,  
                         AdminLevels.AdminLevelTypeId, AdminLevels.RedistrictIdForDaughter, AdminLevels.RedistrictIdForMother
                     FROM AdminLevels inner join AdminLevelTypes on AdminLevels.AdminLevelTypeId = AdminLevelTypes.ID 
                     " + filter +
@@ -206,7 +206,6 @@ namespace Nada.Model.Repositories
                         ParentId = reader.GetValueOrDefault<Nullable<int>>("ParentId"),
                         Name = reader.GetValueOrDefault<string>("DisplayName"),
                         LevelNumber = reader.GetValueOrDefault<int>("AdminLevel"),
-                        IsDistrict = reader.GetValueOrDefault<bool>("IsDistrict"),
                         RedistrictIdForDaughter = reader.GetValueOrDefault<int>("RedistrictIdForDaughter"),
                         RedistrictIdForMother = reader.GetValueOrDefault<int>("RedistrictIdForMother")
                     });

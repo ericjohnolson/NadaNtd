@@ -20,8 +20,10 @@ namespace Nada.UI.View.Reports
 {
     public partial class ApocExport : BaseControl, IWizardStep
     {
+        SettingsRepository settings = new SettingsRepository();
         ApocExporter exporter = new ApocExporter();
         string title = Translations.ExportApocReport;
+        ExportParams questions = new ExportParams();
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
         public Action OnFinish { get; set; }
@@ -47,6 +49,12 @@ namespace Nada.UI.View.Reports
                 h3bLabel1.SetMaxWidth(500);
                 this.saveFileDialog1.DefaultExt = "xlsx";
                 this.saveFileDialog1.Filter = "Excel (.xlsx)|*.xlsx";
+                    
+                var allLevelTypes = settings.GetAllAdminLevels();
+                var reportingType = allLevelTypes.First();
+                questions.AdminLevelType = reportingType;
+                bindingSource2.DataSource = allLevelTypes;
+                bindingSource1.DataSource = questions;
             }
         }
 
@@ -63,20 +71,6 @@ namespace Nada.UI.View.Reports
         }
         public void DoFinish()
         {
-            int year = 0;
-            if (string.IsNullOrEmpty(textBox5.Text) || !int.TryParse(textBox5.Text, out year))
-            {
-                errorProvider1.SetError(textBox5, Translations.Required);
-                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
-                return;
-            }
-            if (year > 2100 || year < 1900)
-            {
-                errorProvider1.SetError(textBox5, Translations.ValidYear);
-                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
-                return;
-            }
-
             bindingSource1.EndEdit();
             saveFileDialog1.FileName = title + "-" + textBox5.Text;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -84,7 +78,8 @@ namespace Nada.UI.View.Reports
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.DoWork += worker_DoWork;
                 worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-                worker.RunWorkerAsync(new ExportParams { FileName = saveFileDialog1.FileName, Year = year });
+                questions.FileName =   saveFileDialog1.FileName;
+                worker.RunWorkerAsync(questions);
                 OnSwitchStep(new WorkingStep(Translations.ExportingData));
             }
         }
@@ -94,7 +89,7 @@ namespace Nada.UI.View.Reports
             try
             {
                 ExportParams payload = (ExportParams)e.Argument;
-                e.Result = exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Year);
+                e.Result = exporter.ExportData(payload.FileName, ApplicationData.Instance.GetUserId(), payload.Year.Value, payload.AdminLevelType);
             }
             catch (Exception ex)
             {

@@ -20,6 +20,7 @@ namespace Nada.UI.View.Reports
 {
     public partial class JrfExportStep : BaseControl, IWizardStep
     {
+        SettingsRepository settings = new SettingsRepository();
         ExportRepository repo = new ExportRepository();
         ExportJrfQuestions questions = null;
         PcJrfExporter exporter = null;
@@ -70,6 +71,11 @@ namespace Nada.UI.View.Reports
                 //ClearErrors();
                 this.saveFileDialog1.DefaultExt = "xlsx";
                 this.saveFileDialog1.Filter = "Excel (.xlsx)|*.xlsx";
+
+                var allLevelTypes = settings.GetAllAdminLevels();
+                var reportingType = allLevelTypes.First();
+                questions.AdminLevelType = reportingType;
+                bindingSource2.DataSource = allLevelTypes;
             }
         }
 

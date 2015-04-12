@@ -36,7 +36,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.hr1 = new Nada.UI.Controls.HR();
             this.h3Label1 = new Nada.UI.Controls.H3Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.h3Label2 = new Nada.UI.Controls.H3Label();
             this.tb1 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -98,7 +97,7 @@
             this.hr1.Dock = System.Windows.Forms.DockStyle.Top;
             this.hr1.ForeColor = System.Drawing.Color.Gray;
             this.hr1.Location = new System.Drawing.Point(0, 0);
-            this.hr1.Margin = new System.Windows.Forms.Padding(6);
+            this.hr1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.hr1.Name = "hr1";
             this.hr1.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
             this.hr1.Size = new System.Drawing.Size(320, 6);
@@ -117,20 +116,6 @@
             this.h3Label1.Tag = "Name";
             this.h3Label1.Text = "Name";
             this.h3Label1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsAdminLevel, "IsDistrict", true));
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox2.Location = new System.Drawing.Point(37, 157);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(138, 20);
-            this.checkBox2.TabIndex = 47;
-            this.checkBox2.Tag = "DistrictAdminLevel";
-            this.checkBox2.Text = "DistrictAdminLevel";
-            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // h3Label2
             // 
@@ -152,7 +137,7 @@
             this.tb1.Enabled = false;
             this.tb1.Location = new System.Drawing.Point(34, 127);
             this.tb1.Name = "tb1";
-            this.tb1.Size = new System.Drawing.Size(241, 21);
+            this.tb1.Size = new System.Drawing.Size(247, 21);
             this.tb1.TabIndex = 45;
             // 
             // checkBox1
@@ -161,7 +146,7 @@
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsAdminLevel, "IsAggregatingLevel", true));
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox1.Location = new System.Drawing.Point(37, 187);
+            this.checkBox1.Location = new System.Drawing.Point(34, 163);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(123, 20);
             this.checkBox1.TabIndex = 48;
@@ -177,18 +162,16 @@
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel2.Controls.Add(this.c1Button1, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.c1Button2, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(37, 233);
+            this.tableLayoutPanel2.Controls.Add(this.c1Button2, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.c1Button1, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(77, 221);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -199,7 +182,7 @@
             // 
             this.c1Button1.AutoSize = true;
             this.c1Button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button1.Location = new System.Drawing.Point(111, 3);
+            this.c1Button1.Location = new System.Drawing.Point(3, 3);
             this.c1Button1.MinimumSize = new System.Drawing.Size(90, 27);
             this.c1Button1.Name = "c1Button1";
             this.c1Button1.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
@@ -216,7 +199,7 @@
             // 
             this.c1Button2.AutoSize = true;
             this.c1Button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.c1Button2.Location = new System.Drawing.Point(3, 3);
+            this.c1Button2.Location = new System.Drawing.Point(111, 3);
             this.c1Button2.MinimumSize = new System.Drawing.Size(90, 27);
             this.c1Button2.Name = "c1Button2";
             this.c1Button2.Padding = new System.Windows.Forms.Padding(8, 1, 8, 1);
@@ -237,7 +220,6 @@
             this.ClientSize = new System.Drawing.Size(320, 312);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.h3Label2);
             this.Controls.Add(this.tb1);
             this.Controls.Add(this.h3Label1);
@@ -269,7 +251,6 @@
         private System.Windows.Forms.Label label3;
         private Controls.HR hr1;
         private Controls.H3Label h3Label1;
-        private System.Windows.Forms.CheckBox checkBox2;
         private Controls.H3Label h3Label2;
         private System.Windows.Forms.TextBox tb1;
         private System.Windows.Forms.CheckBox checkBox1;

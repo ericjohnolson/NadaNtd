@@ -10,6 +10,7 @@ using Nada.Model.Intervention;
 using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using excel = Microsoft.Office.Interop.Excel;
+using Nada.Model.Base;
 
 namespace Nada.Model
 {
@@ -22,12 +23,36 @@ namespace Nada.Model
 
     }
 
-    public class ExportParams
+    public class ExportParams : NadaClass
     {
         public ExportJrfQuestions Questions { get; set; }
         public ExportCmJrfQuestions CmQuestions { get; set; }
-        public int Year { get; set; }
+        public int? Year { get; set; }
+        public AdminLevelType AdminLevelType { get; set; }
         public string FileName { get; set; }
+        
+        #region IDataErrorInfo Members
+        public override string this[string columnName]
+        {
+            get
+            {
+                string error = "";
+                switch (columnName)
+                {
+                    case "Year":
+                        if (!Year.HasValue)
+                            error = Translations.Required;
+                        else if (Year.Value > 2100 || Year.Value < 1900)
+                            error = Translations.ValidYear;
+                        break;
+                    default: error = "";
+                        break;
+                }
+                return error;
+            }
+        }
+
+        #endregion
     }
     
     public class ExportResult

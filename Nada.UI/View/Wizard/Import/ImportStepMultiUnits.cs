@@ -24,8 +24,8 @@ namespace Nada.UI.View.Wizard
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public bool ShowNext { get { return false; } }
         public bool EnableNext { get { return false; } }
-        public bool ShowPrev { get { return false; } }
-        public bool EnablePrev { get { return false; } }
+        public bool ShowPrev { get { return true; } }
+        public bool EnablePrev { get { return true; } }
         public bool ShowFinish { get { return false; } }
         public bool EnableFinish { get { return false; } }
         public string StepTitle { get { return Translations.ImportMultiSurveysQuestion; } }
@@ -45,6 +45,7 @@ namespace Nada.UI.View.Wizard
         
         public void DoPrev()
         {
+            OnSwitchStep(new ImportStepType(options));
         }
         public void DoNext()
         {

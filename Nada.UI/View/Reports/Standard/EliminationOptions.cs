@@ -112,9 +112,8 @@ namespace Nada.UI.View.Reports.Standard
                     cbMonths.SelectedIndex = 0;
 
                 SettingsRepository settings = new SettingsRepository();
-                options.DistrictType = settings.GetDistrictAdminLevel();
                 cbEliminationType.Items.Add(Translations.Persons);
-                cbEliminationType.Items.Add(options.DistrictType.DisplayName);
+                cbEliminationType.Items.Add(Translations.RtiReportingLevel);
                 if (options.IsPersons)
                     cbEliminationType.SelectedItem = Translations.Persons;
                 else
@@ -122,6 +121,12 @@ namespace Nada.UI.View.Reports.Standard
 
                 rbAggCountry.Checked = report.ReportOptions.IsCountryAggregation;
                 rbAggLevel.Checked = report.ReportOptions.IsByLevelAggregation;
+
+                var allLevelTypes = settings.GetAllAdminLevels();
+                var reportingType = allLevelTypes.First();
+                options.DistrictType = reportingType;
+                bindingSource2.DataSource = allLevelTypes;
+                bindingSource3.DataSource = options;
             }
         }
 

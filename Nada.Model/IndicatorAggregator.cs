@@ -32,7 +32,6 @@ namespace Nada.Model
         public AdminLevelIndicators Parent { get; set; }
         public List<AdminLevelIndicators> Children { get; set; }
         public int LevelNumber { get; set; }
-        public bool IsDistrict { get; set; }
         public Dictionary<string, AggregateIndicator> Indicators { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

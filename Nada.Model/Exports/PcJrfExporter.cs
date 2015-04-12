@@ -49,7 +49,7 @@ namespace Nada.Model.Exports
                     missing, missing, missing, missing, missing, missing, missing,
                     missing, missing, missing, missing, missing, missing, missing);
 
-                var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
+                var districtLevel = questions.AdminLevelType;
                 CountryDemography countryStats = demo.GetCountryLevelStatsRecent();
                 Country country = demo.GetCountry();
                 List<AdminLevel> demography = new List<AdminLevel>();

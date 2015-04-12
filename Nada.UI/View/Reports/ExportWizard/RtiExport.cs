@@ -52,7 +52,7 @@ namespace Nada.UI.View.Reports
                 exporter.StartDate = DateTime.Now.AddYears(-1);
                 exporter.EndDate = DateTime.Now;
                 var allLevelTypes = repo.GetAllAdminLevels();
-                var reportingType = allLevelTypes.First(t => t.IsDistrict);
+                var reportingType = allLevelTypes.First();
                 exporter.AdminLevelType = reportingType;
                 bindingSource1.DataSource = allLevelTypes;
                 cbTypes.SelectedIndex = allLevelTypes.IndexOf(reportingType);

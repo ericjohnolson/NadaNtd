@@ -35,7 +35,7 @@ namespace Nada.Model.Exports
             throw new NotImplementedException();
         }
 
-        public ExportResult ExportData(string filePath, int userId, int year)
+        public ExportResult ExportData(string filePath, int userId, int year, AdminLevelType districtLevel)
         {
             try
             {
@@ -70,9 +70,7 @@ namespace Nada.Model.Exports
                 xlsWorkbooks = xlsApp.Workbooks;
                 xlsWorkbook = xlsWorkbooks.Add(true);
                 xlsWorksheets = xlsWorkbook.Worksheets;
-
-                var districtLevel = settings.GetAllAdminLevels().First(a => a.IsDistrict);
-
+                
                 CountryDemography countryDemo = demo.GetCountryDemoByYear(yearReporting);
                 List<AdminLevel> demography = new List<AdminLevel>();
 

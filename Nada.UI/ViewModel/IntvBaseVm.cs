@@ -62,9 +62,15 @@ namespace Nada.UI.ViewModel
 
         public void DoSave(List<IndicatorValue> indicatorValues, string notes)
         {
+            DoSave(indicatorValues, notes, true);
+        }
+
+        public void DoSave(List<IndicatorValue> indicatorValues, string notes, bool persist)
+        {
             model.Notes = notes;
-            model.IndicatorValues = ReconcileIndicators(model.IndicatorValues, indicatorValues); 
-            r.SaveBase(model, ApplicationData.Instance.GetUserId());
+            model.IndicatorValues = ReconcileIndicators(model.IndicatorValues, indicatorValues);
+            if (persist)
+                r.SaveBase(model, ApplicationData.Instance.GetUserId());
         }
 
         public void DoSaveType(string name)

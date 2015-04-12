@@ -29,6 +29,7 @@ namespace Nada.UI.ViewModel
         bool IsValid();
         void AddSpecialControls(IndicatorControl cntrl);
         void DoSave(List<IndicatorValue> indicatorValues, string notes);
+        void DoSave(List<IndicatorValue> indicatorValues, string notes, bool persist);
 
         void DoSaveType(string p);
     }

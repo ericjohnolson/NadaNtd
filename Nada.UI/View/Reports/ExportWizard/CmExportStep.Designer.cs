@@ -121,6 +121,9 @@
             this.h3bLabel14 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel2 = new Nada.UI.Controls.H3bLabel();
             this.h3bLabel13 = new Nada.UI.Controls.H3bLabel();
+            this.h3Required2 = new Nada.UI.Controls.H3Required();
+            this.cbTypes = new System.Windows.Forms.ComboBox();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -139,6 +142,7 @@
             this.tableLayoutPanel11.SuspendLayout();
             this.tblContainer.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // h3bLabel1
@@ -175,7 +179,7 @@
             this.cmContactTeleDataGridViewTextBoxColumn,
             this.cmContactEmailDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.exportContactBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 114);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 149);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(700, 162);
             this.dataGridView1.TabIndex = 2;
@@ -222,7 +226,7 @@
             this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHaveMasterPlan", true));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox1.Location = new System.Drawing.Point(3, 305);
+            this.checkBox1.Location = new System.Drawing.Point(3, 340);
             this.checkBox1.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(136, 19);
@@ -237,7 +241,7 @@
             this.checkBox2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHaveAnnualOpPlan", true));
             this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox2.Location = new System.Drawing.Point(3, 429);
+            this.checkBox2.Location = new System.Drawing.Point(3, 464);
             this.checkBox2.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(153, 19);
@@ -274,7 +278,7 @@
             this.checkBox3.AutoSize = true;
             this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmBuHasPlan", true));
             this.checkBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox3.Location = new System.Drawing.Point(18, 514);
+            this.checkBox3.Location = new System.Drawing.Point(18, 549);
             this.checkBox3.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox3.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox3.Name = "checkBox3";
@@ -289,7 +293,7 @@
             this.checkBox4.AutoSize = true;
             this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmGwHasPlan", true));
             this.checkBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox4.Location = new System.Drawing.Point(18, 539);
+            this.checkBox4.Location = new System.Drawing.Point(18, 574);
             this.checkBox4.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox4.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox4.Name = "checkBox4";
@@ -304,7 +308,7 @@
             this.checkBox5.AutoSize = true;
             this.checkBox5.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHatHasPlan", true));
             this.checkBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox5.Location = new System.Drawing.Point(18, 564);
+            this.checkBox5.Location = new System.Drawing.Point(18, 599);
             this.checkBox5.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox5.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox5.Name = "checkBox5";
@@ -319,7 +323,7 @@
             this.checkBox6.AutoSize = true;
             this.checkBox6.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmLeishHasPlan", true));
             this.checkBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox6.Location = new System.Drawing.Point(18, 589);
+            this.checkBox6.Location = new System.Drawing.Point(18, 624);
             this.checkBox6.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox6.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox6.Name = "checkBox6";
@@ -334,7 +338,7 @@
             this.checkBox7.AutoSize = true;
             this.checkBox7.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmLeprosyHasPlan", true));
             this.checkBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox7.Location = new System.Drawing.Point(18, 614);
+            this.checkBox7.Location = new System.Drawing.Point(18, 649);
             this.checkBox7.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox7.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox7.Name = "checkBox7";
@@ -349,7 +353,7 @@
             this.checkBox8.AutoSize = true;
             this.checkBox8.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmYawsHasPlan", true));
             this.checkBox8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox8.Location = new System.Drawing.Point(18, 639);
+            this.checkBox8.Location = new System.Drawing.Point(18, 674);
             this.checkBox8.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox8.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox8.Name = "checkBox8";
@@ -365,7 +369,7 @@
             this.checkBox9.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox9.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmAnySupplyFunds", true));
             this.checkBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox9.Location = new System.Drawing.Point(3, 687);
+            this.checkBox9.Location = new System.Drawing.Point(3, 722);
             this.checkBox9.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox9.Name = "checkBox9";
             this.checkBox9.Size = new System.Drawing.Size(137, 19);
@@ -380,7 +384,7 @@
             this.checkBox10.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox10.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasStorage", true));
             this.checkBox10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox10.Location = new System.Drawing.Point(3, 712);
+            this.checkBox10.Location = new System.Drawing.Point(3, 747);
             this.checkBox10.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox10.Name = "checkBox10";
             this.checkBox10.Size = new System.Drawing.Size(112, 19);
@@ -398,7 +402,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.h3bLabel6, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBox4, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 454);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 489);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -415,7 +419,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.h3bLabel3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 330);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 365);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -455,7 +459,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.Controls.Add(this.h3bLabel4, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.textBox2, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 363);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 398);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -495,7 +499,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.Controls.Add(this.h3bLabel5, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.textBox3, 1, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 396);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 431);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -534,17 +538,19 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel5.Controls.Add(this.h3bLabel1, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.textBox5, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.h3Required1, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.cbLanguages, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.h3Required2, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.textBox5, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.cbTypes, 1, 2);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowCount = 4;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(397, 82);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(397, 117);
             this.tableLayoutPanel5.TabIndex = 27;
             // 
             // textBox5
@@ -598,7 +604,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel6.Controls.Add(this.h3bLabel7, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.textBox6, 1, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(18, 896);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(18, 931);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
@@ -638,7 +644,7 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel7.Controls.Add(this.h3bLabel8, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.textBox7, 1, 0);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(18, 863);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(18, 898);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
@@ -679,7 +685,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel8.Controls.Add(this.h3bLabel9, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.textBox8, 1, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(18, 830);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(18, 865);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
@@ -720,7 +726,7 @@
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel9.Controls.Add(this.h3bLabel10, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.textBox9, 1, 0);
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(18, 797);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(18, 832);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
@@ -761,7 +767,7 @@
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel10.Controls.Add(this.h3bLabel11, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.textBox10, 1, 0);
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 737);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 772);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -797,7 +803,7 @@
             this.checkBox11.AutoSize = true;
             this.checkBox11.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasNgo", true));
             this.checkBox11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox11.Location = new System.Drawing.Point(18, 1154);
+            this.checkBox11.Location = new System.Drawing.Point(18, 1189);
             this.checkBox11.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox11.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox11.Name = "checkBox11";
@@ -812,7 +818,7 @@
             this.checkBox12.AutoSize = true;
             this.checkBox12.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasUni", true));
             this.checkBox12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox12.Location = new System.Drawing.Point(18, 1129);
+            this.checkBox12.Location = new System.Drawing.Point(18, 1164);
             this.checkBox12.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox12.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox12.Name = "checkBox12";
@@ -827,7 +833,7 @@
             this.checkBox13.AutoSize = true;
             this.checkBox13.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasMoc", true));
             this.checkBox13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox13.Location = new System.Drawing.Point(18, 1104);
+            this.checkBox13.Location = new System.Drawing.Point(18, 1139);
             this.checkBox13.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox13.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox13.Name = "checkBox13";
@@ -842,7 +848,7 @@
             this.checkBox14.AutoSize = true;
             this.checkBox14.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasMoe", true));
             this.checkBox14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox14.Location = new System.Drawing.Point(18, 1079);
+            this.checkBox14.Location = new System.Drawing.Point(18, 1114);
             this.checkBox14.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox14.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox14.Name = "checkBox14";
@@ -857,7 +863,7 @@
             this.checkBox15.AutoSize = true;
             this.checkBox15.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasMot", true));
             this.checkBox15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox15.Location = new System.Drawing.Point(18, 1054);
+            this.checkBox15.Location = new System.Drawing.Point(18, 1089);
             this.checkBox15.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox15.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox15.Name = "checkBox15";
@@ -872,7 +878,7 @@
             this.checkBox16.AutoSize = true;
             this.checkBox16.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasMosw", true));
             this.checkBox16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox16.Location = new System.Drawing.Point(18, 1029);
+            this.checkBox16.Location = new System.Drawing.Point(18, 1064);
             this.checkBox16.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox16.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox16.Name = "checkBox16";
@@ -887,7 +893,7 @@
             this.checkBox17.AutoSize = true;
             this.checkBox17.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasMoh", true));
             this.checkBox17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox17.Location = new System.Drawing.Point(18, 1004);
+            this.checkBox17.Location = new System.Drawing.Point(18, 1039);
             this.checkBox17.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox17.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox17.Name = "checkBox17";
@@ -903,7 +909,7 @@
             this.checkBox18.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox18.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasTaskForce", true));
             this.checkBox18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox18.Location = new System.Drawing.Point(3, 952);
+            this.checkBox18.Location = new System.Drawing.Point(3, 987);
             this.checkBox18.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox18.Name = "checkBox18";
             this.checkBox18.Size = new System.Drawing.Size(126, 19);
@@ -917,7 +923,7 @@
             this.checkBox19.AutoSize = true;
             this.checkBox19.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasHatMeeting", true));
             this.checkBox19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox19.Location = new System.Drawing.Point(18, 1386);
+            this.checkBox19.Location = new System.Drawing.Point(18, 1421);
             this.checkBox19.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox19.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox19.Name = "checkBox19";
@@ -932,7 +938,7 @@
             this.checkBox20.AutoSize = true;
             this.checkBox20.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasLeprosyMeeting", true));
             this.checkBox20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox20.Location = new System.Drawing.Point(18, 1361);
+            this.checkBox20.Location = new System.Drawing.Point(18, 1396);
             this.checkBox20.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox20.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox20.Name = "checkBox20";
@@ -947,7 +953,7 @@
             this.checkBox21.AutoSize = true;
             this.checkBox21.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasGwMeeting", true));
             this.checkBox21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox21.Location = new System.Drawing.Point(18, 1336);
+            this.checkBox21.Location = new System.Drawing.Point(18, 1371);
             this.checkBox21.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox21.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox21.Name = "checkBox21";
@@ -963,7 +969,7 @@
             this.checkBox22.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox22.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasDiseaseSpecMeetings", true));
             this.checkBox22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox22.Location = new System.Drawing.Point(3, 1284);
+            this.checkBox22.Location = new System.Drawing.Point(3, 1319);
             this.checkBox22.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox22.Name = "checkBox22";
             this.checkBox22.Size = new System.Drawing.Size(194, 19);
@@ -978,7 +984,7 @@
             this.checkBox23.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox23.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasNtdReviewMeetings", true));
             this.checkBox23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox23.Location = new System.Drawing.Point(3, 1259);
+            this.checkBox23.Location = new System.Drawing.Point(3, 1294);
             this.checkBox23.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox23.Name = "checkBox23";
             this.checkBox23.Size = new System.Drawing.Size(178, 19);
@@ -993,7 +999,7 @@
             this.checkBox24.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox24.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmForumHasTaskForce", true));
             this.checkBox24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox24.Location = new System.Drawing.Point(3, 1234);
+            this.checkBox24.Location = new System.Drawing.Point(3, 1269);
             this.checkBox24.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox24.Name = "checkBox24";
             this.checkBox24.Size = new System.Drawing.Size(162, 19);
@@ -1008,7 +1014,7 @@
             this.checkBox25.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox25.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmForumHasRegions", true));
             this.checkBox25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox25.Location = new System.Drawing.Point(3, 1209);
+            this.checkBox25.Location = new System.Drawing.Point(3, 1244);
             this.checkBox25.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox25.Name = "checkBox25";
             this.checkBox25.Size = new System.Drawing.Size(152, 19);
@@ -1023,7 +1029,7 @@
             this.checkBox26.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox26.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasAnnualForum", true));
             this.checkBox26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox26.Location = new System.Drawing.Point(3, 1184);
+            this.checkBox26.Location = new System.Drawing.Point(3, 1219);
             this.checkBox26.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
             this.checkBox26.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox26.Name = "checkBox26";
@@ -1038,7 +1044,7 @@
             this.checkBox28.AutoSize = true;
             this.checkBox28.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasSemesterMech", true));
             this.checkBox28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox28.Location = new System.Drawing.Point(18, 1588);
+            this.checkBox28.Location = new System.Drawing.Point(18, 1623);
             this.checkBox28.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox28.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox28.Name = "checkBox28";
@@ -1053,7 +1059,7 @@
             this.checkBox29.AutoSize = true;
             this.checkBox29.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasQuarterlyMech", true));
             this.checkBox29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox29.Location = new System.Drawing.Point(18, 1563);
+            this.checkBox29.Location = new System.Drawing.Point(18, 1598);
             this.checkBox29.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox29.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox29.Name = "checkBox29";
@@ -1068,7 +1074,7 @@
             this.checkBox30.AutoSize = true;
             this.checkBox30.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasMonthlyMech", true));
             this.checkBox30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox30.Location = new System.Drawing.Point(18, 1538);
+            this.checkBox30.Location = new System.Drawing.Point(18, 1573);
             this.checkBox30.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox30.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox30.Name = "checkBox30";
@@ -1083,7 +1089,7 @@
             this.checkBox31.AutoSize = true;
             this.checkBox31.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasWeeklyMech", true));
             this.checkBox31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox31.Location = new System.Drawing.Point(18, 1513);
+            this.checkBox31.Location = new System.Drawing.Point(18, 1548);
             this.checkBox31.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox31.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox31.Name = "checkBox31";
@@ -1098,7 +1104,7 @@
             this.checkBox32.AutoSize = true;
             this.checkBox32.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasYawsMeeting", true));
             this.checkBox32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox32.Location = new System.Drawing.Point(18, 1461);
+            this.checkBox32.Location = new System.Drawing.Point(18, 1496);
             this.checkBox32.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox32.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox32.Name = "checkBox32";
@@ -1113,7 +1119,7 @@
             this.checkBox33.AutoSize = true;
             this.checkBox33.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasBuMeeting", true));
             this.checkBox33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox33.Location = new System.Drawing.Point(18, 1436);
+            this.checkBox33.Location = new System.Drawing.Point(18, 1471);
             this.checkBox33.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox33.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox33.Name = "checkBox33";
@@ -1128,7 +1134,7 @@
             this.checkBox34.AutoSize = true;
             this.checkBox34.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSource1, "CmHasLeishMeeting", true));
             this.checkBox34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox34.Location = new System.Drawing.Point(18, 1411);
+            this.checkBox34.Location = new System.Drawing.Point(18, 1446);
             this.checkBox34.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.checkBox34.MaximumSize = new System.Drawing.Size(400, 0);
             this.checkBox34.Name = "checkBox34";
@@ -1147,7 +1153,7 @@
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel11.Controls.Add(this.h3bLabel12, 0, 0);
             this.tableLayoutPanel11.Controls.Add(this.textBox11, 1, 0);
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(18, 1613);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(18, 1648);
             this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(18, 3, 3, 3);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
@@ -1301,7 +1307,8 @@
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblContainer.Size = new System.Drawing.Size(706, 1699);
+            this.tblContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblContainer.Size = new System.Drawing.Size(706, 1734);
             this.tblContainer.TabIndex = 58;
             // 
             // tableLayoutPanel12
@@ -1313,7 +1320,7 @@
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel12.Controls.Add(this.h3bLabel17, 0, 0);
             this.tableLayoutPanel12.Controls.Add(this.textBox12, 1, 0);
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 1669);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 1704);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 1;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -1350,7 +1357,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.label5.Location = new System.Drawing.Point(0, 1643);
+            this.label5.Location = new System.Drawing.Point(0, 1678);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 23);
@@ -1364,7 +1371,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.label4.Location = new System.Drawing.Point(0, 926);
+            this.label4.Location = new System.Drawing.Point(0, 961);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 23);
@@ -1378,7 +1385,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.label3.Location = new System.Drawing.Point(0, 661);
+            this.label3.Location = new System.Drawing.Point(0, 696);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 23);
@@ -1392,7 +1399,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.label2.Location = new System.Drawing.Point(0, 279);
+            this.label2.Location = new System.Drawing.Point(0, 314);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 23);
@@ -1406,7 +1413,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(55)))), ((int)(((byte)(93)))));
-            this.label1.Location = new System.Drawing.Point(0, 88);
+            this.label1.Location = new System.Drawing.Point(0, 123);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 23);
@@ -1419,7 +1426,7 @@
             this.h3bLabel15.AutoSize = true;
             this.h3bLabel15.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3bLabel15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel15.Location = new System.Drawing.Point(5, 1491);
+            this.h3bLabel15.Location = new System.Drawing.Point(5, 1526);
             this.h3bLabel15.Margin = new System.Windows.Forms.Padding(5, 8, 3, 3);
             this.h3bLabel15.Name = "h3bLabel15";
             this.h3bLabel15.Size = new System.Drawing.Size(90, 16);
@@ -1433,7 +1440,7 @@
             this.h3bLabel16.AutoSize = true;
             this.h3bLabel16.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3bLabel16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel16.Location = new System.Drawing.Point(5, 1314);
+            this.h3bLabel16.Location = new System.Drawing.Point(5, 1349);
             this.h3bLabel16.Margin = new System.Windows.Forms.Padding(5, 8, 3, 3);
             this.h3bLabel16.Name = "h3bLabel16";
             this.h3bLabel16.Size = new System.Drawing.Size(138, 16);
@@ -1447,7 +1454,7 @@
             this.h3bLabel14.AutoSize = true;
             this.h3bLabel14.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3bLabel14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel14.Location = new System.Drawing.Point(5, 982);
+            this.h3bLabel14.Location = new System.Drawing.Point(5, 1017);
             this.h3bLabel14.Margin = new System.Windows.Forms.Padding(5, 8, 3, 3);
             this.h3bLabel14.Name = "h3bLabel14";
             this.h3bLabel14.Size = new System.Drawing.Size(114, 16);
@@ -1461,7 +1468,7 @@
             this.h3bLabel2.AutoSize = true;
             this.h3bLabel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3bLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel2.Location = new System.Drawing.Point(5, 775);
+            this.h3bLabel2.Location = new System.Drawing.Point(5, 810);
             this.h3bLabel2.Margin = new System.Windows.Forms.Padding(5, 8, 3, 3);
             this.h3bLabel2.Name = "h3bLabel2";
             this.h3bLabel2.Size = new System.Drawing.Size(142, 16);
@@ -1475,7 +1482,7 @@
             this.h3bLabel13.AutoSize = true;
             this.h3bLabel13.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.h3bLabel13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.h3bLabel13.Location = new System.Drawing.Point(5, 492);
+            this.h3bLabel13.Location = new System.Drawing.Point(5, 527);
             this.h3bLabel13.Margin = new System.Windows.Forms.Padding(5, 8, 3, 3);
             this.h3bLabel13.Name = "h3bLabel13";
             this.h3bLabel13.Size = new System.Drawing.Size(139, 16);
@@ -1483,6 +1490,39 @@
             this.h3bLabel13.Tag = "CmIfSpecWhichNtdPlan";
             this.h3bLabel13.Text = "CmIfSpecWhichNtdPlan";
             this.h3bLabel13.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3Required2
+            // 
+            this.h3Required2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.h3Required2.AutoSize = true;
+            this.h3Required2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Required2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3Required2.Location = new System.Drawing.Point(0, 72);
+            this.h3Required2.Margin = new System.Windows.Forms.Padding(0);
+            this.h3Required2.Name = "h3Required2";
+            this.h3Required2.Size = new System.Drawing.Size(117, 15);
+            this.h3Required2.TabIndex = 74;
+            this.h3Required2.TabStop = false;
+            this.h3Required2.Tag = "RtiReportingLevel";
+            this.h3Required2.Text = "RtiReportingLevel";
+            this.h3Required2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // cbTypes
+            // 
+            this.cbTypes.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bindingSource1, "AdminLevelType", true));
+            this.cbTypes.DataSource = this.bindingSource2;
+            this.cbTypes.DisplayMember = "DisplayName";
+            this.cbTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTypes.FormattingEnabled = true;
+            this.cbTypes.Location = new System.Drawing.Point(121, 68);
+            this.cbTypes.Margin = new System.Windows.Forms.Padding(3, 6, 25, 6);
+            this.cbTypes.Name = "cbTypes";
+            this.cbTypes.Size = new System.Drawing.Size(251, 23);
+            this.cbTypes.TabIndex = 75;
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(Nada.Model.AdminLevelType);
             // 
             // ExportStep
             // 
@@ -1493,7 +1533,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tblContainer);
             this.Name = "ExportStep";
-            this.Size = new System.Drawing.Size(712, 1705);
+            this.Size = new System.Drawing.Size(712, 1740);
             this.Load += new System.EventHandler(this.ExportWorkingStep_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -1526,6 +1566,7 @@
             this.tblContainer.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1625,6 +1666,9 @@
         private Controls.H3Required h3Required1;
         private System.Windows.Forms.ComboBox cbLanguages;
         private System.Windows.Forms.BindingSource bsLanguages;
+        private Controls.H3Required h3Required2;
+        private System.Windows.Forms.ComboBox cbTypes;
+        private System.Windows.Forms.BindingSource bindingSource2;
 
 
     }

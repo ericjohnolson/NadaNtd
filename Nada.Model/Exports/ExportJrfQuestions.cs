@@ -14,6 +14,7 @@ namespace Nada.Model.Exports
         public string JrfEndemicOncho { get; set; }
         public string JrfEndemicSth { get; set; }
         public string JrfEndemicSch { get; set; }
+        public AdminLevelType AdminLevelType { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

@@ -21,6 +21,7 @@ namespace Nada.UI.View.Reports
 {
     public partial class ExportStep : BaseControl, IWizardStep
     {
+        SettingsRepository settings = new SettingsRepository();
         ExportRepository repo = new ExportRepository();
         ExportCmJrfQuestions questions = null;
         CmJrfExporter exporter = null;
@@ -70,6 +71,11 @@ namespace Nada.UI.View.Reports
                     cbLanguages.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;
                 else
                     cbLanguages.SelectedValue = "en-US";
+
+                var allLevelTypes = settings.GetAllAdminLevels();
+                var reportingType = allLevelTypes.First();
+                questions.AdminLevelType = reportingType;
+                bindingSource2.DataSource = allLevelTypes;
             }
         }
 

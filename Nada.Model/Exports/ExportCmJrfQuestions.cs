@@ -17,6 +17,7 @@ namespace Nada.Model.Exports
         }
         public CultureInfo ExportCulture { get; set; }
         public Nullable<int> YearReporting { get; set; }
+        public AdminLevelType AdminLevelType { get; set; }
         public bool CmHaveMasterPlan { get; set; }
         public string CmYearsMasterPlan { get; set; }
         public Nullable<int> CmBuget { get; set; }

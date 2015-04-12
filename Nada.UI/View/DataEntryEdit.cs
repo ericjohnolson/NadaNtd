@@ -169,6 +169,7 @@ namespace Nada.UI.View
 
         void customIndicatorControl1_OnAddRemove()
         {
+            viewModel.DoSave(indicatorControl1.GetValues(), tbNotes.Text, false);
             IndicatorTypeEdit editor = new IndicatorTypeEdit(viewModel);
             editor.OnSave += editType_OnSave;
             ViewForm form = new ViewForm(editor);
@@ -177,7 +178,7 @@ namespace Nada.UI.View
 
         void editType_OnSave()
         {
-            indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorDropdownValues, viewModel.EntityType);
+            indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorValues, viewModel.IndicatorDropdownValues, viewModel.EntityType);
         }
 
         private void cancel_Click(object sender, EventArgs e)

@@ -65,7 +65,7 @@ namespace Nada.UI
                 }
             }
         }
-        
+
         private void DoTranslate()
         {
             this.Text = Localizer.GetValue("ApplicationTitle");
@@ -152,8 +152,12 @@ namespace Nada.UI
         private void SetPermissions()
         {
             menuEditSettingsToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
+            menuEditSettingsToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
+            menuSplitDistrictToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
+            menuMergeDistrictToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
+            //menuSplitCombineDistrictToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
             menuIndicatorManagementToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDbAdmin");
-            
+
             if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
             {
@@ -161,6 +165,7 @@ namespace Nada.UI
                 menuDeleteAdminLevelToolStripMenuItem.Visible = false;
                 menuSettingsToolStripMenuItem.Visible = false;
                 menuImportToolStripMenuItem.Visible = false;
+                menuReorderAdminLevelToolStripMenuItem.Visible = false;
             }
             else
             {
@@ -168,6 +173,7 @@ namespace Nada.UI
                 menuDeleteAdminLevelToolStripMenuItem.Visible = true;
                 menuSettingsToolStripMenuItem.Visible = true;
                 menuImportToolStripMenuItem.Visible = true;
+                menuReorderAdminLevelToolStripMenuItem.Visible = true;
             }
         }
 
@@ -409,7 +415,7 @@ namespace Nada.UI
             auOrder.ShowDialog();
         }
         #endregion
-        
+
 
         private void LoadForm(IView v)
         {
