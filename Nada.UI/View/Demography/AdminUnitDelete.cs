@@ -21,8 +21,6 @@ namespace Nada.UI.View
         private AdminLevel model = new AdminLevel();
         private DemoRepository repo = new DemoRepository();
         private SettingsRepository settings = new SettingsRepository();
-        private AdminLevelType parentType;
-        private int childLevel = 0;
         private DemoRepository demo = new DemoRepository();
 
         public AdminUnitDelete()

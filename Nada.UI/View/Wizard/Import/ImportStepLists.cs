@@ -89,6 +89,9 @@ namespace Nada.UI.View.Wizard
             int columnCount = 0;
             foreach (var indicator in indicators)
             {
+                if (indicator.DataTypeId == (int)IndicatorDataType.SentinelSite && options.SurveyNames.Count > 0)
+                    continue;
+
                 var cntrl = CreateIndicatorControl(indicator, options.Importer.EntityType, options.Importer.DropDownValues);
                 if (cntrl == null)
                     continue;

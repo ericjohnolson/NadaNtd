@@ -626,6 +626,12 @@
     <Compile Include="View\Wizard\DistrictSplitting\SplittingSaes.Designer.cs">
       <DependentUpon>SplittingSaes.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\Import\ImportStepSurveyNameToSentinel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Import\ImportStepSurveyNameToSentinel.Designer.cs">
+      <DependentUpon>ImportStepSurveyNameToSentinel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\Import\ImportStepMultiAuLabels.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1158,6 +1164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplittingSaes.resx">
       <DependentUpon>SplittingSaes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Import\ImportStepSurveyNameToSentinel.resx">
+      <DependentUpon>ImportStepSurveyNameToSentinel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\Import\ImportStepMultiAuLabels.resx">
       <DependentUpon>ImportStepMultiAuLabels.cs</DependentUpon>

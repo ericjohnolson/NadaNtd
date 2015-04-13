@@ -17,7 +17,6 @@ namespace Nada.UI.View
     public partial class AdminUnitMatcher : BaseControl
     {
         private AdminLevel existing = null;
-        private int levelNumber = 0;
         public List<TaskForceAdminUnit> taskForceUnits = null;
 
         public AdminUnitMatcher()

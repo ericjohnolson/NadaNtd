@@ -74,9 +74,13 @@ namespace Nada.Model.Imports
             if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null)
                 return startIndex;
 
-            startIndex++;
-            xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSentinelSiteName");
-            siteColumnIndex = startIndex;
+            if (options.SurveyNames.Count == 0)
+            {
+                startIndex++;
+                xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSentinelSiteName");
+                siteColumnIndex = startIndex;
+            }
+
             startIndex++;
             xlsWorksheet.Cells[1, startIndex] = TranslationLookup.GetValue("IndSpotCheckName");
             spotColumnIndex = startIndex;
@@ -92,7 +96,7 @@ namespace Nada.Model.Imports
         protected override void AddTypeSpecificLists(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, Microsoft.Office.Interop.Excel.Worksheet xlsValidation,
             int adminLevelId, int r, CultureInfo currentCulture, int colCount)
         {
-            if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null || adminLevelId == 0)
+            if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) == null || adminLevelId == 0 || options.SurveyNames.Count > 0)
                 return;
             var sites = repo.GetSitesForAdminLevel(new List<string> { adminLevelId.ToString() });
             if (sites.Count > 0)
@@ -168,7 +172,7 @@ namespace Nada.Model.Imports
                 string objerrors = "";
                 var obj = repo.CreateSurvey(sType.Id);
 
-                if (NamesToAdminUnits == null)
+                if (!HasMultipleAdminUnits())
                 {
                     if (row["* " + TranslationLookup.GetValue("ID")] == null || row["* " + TranslationLookup.GetValue("ID")].ToString().Length == 0)
                         continue;
@@ -181,14 +185,14 @@ namespace Nada.Model.Imports
                     rowId = row["* " + TranslationLookup.GetValue("SurveyName")].ToString();
                     if (!NamesToAdminUnits.ContainsKey(rowId))
                         continue;
-                    obj.AdminLevels = NamesToAdminUnits[rowId];
+                    obj.AdminLevels = NamesToAdminUnits[rowId].Units;
                 }
 
                 // CHECK FOR SENTINEL SITES/SPOTCHECK
                 if (Indicators.Values.FirstOrDefault(i => i.DataTypeId == (int)IndicatorDataType.SentinelSite) != null)
                 {
                     obj.HasSentinelSite = true;
-                    if (string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSentinelSiteName")].ToString()))
+                    if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckName")].ToString()))
                     {
                         obj.SiteType = TranslationLookup.GetValue("SpotCheck");
                         obj.SpotCheckName = row[TranslationLookup.GetValue("IndSpotCheckName")].ToString();
@@ -208,8 +212,9 @@ namespace Nada.Model.Imports
                     else
                     {
                         obj.SiteType = TranslationLookup.GetValue("Sentinel");
-                        var sites = repo.GetSitesForAdminLevel(new List<string> { obj.AdminLevelId.Value.ToString() });
-                        var site = sites.FirstOrDefault(s => s.SiteName == row[TranslationLookup.GetValue("IndSentinelSiteName")].ToString());
+                        var sites = repo.GetSitesForAdminLevel(obj.AdminLevels.Select(a => a.Id.ToString()).ToList());
+                        string siteName = !HasMultipleAdminUnits() ? row[TranslationLookup.GetValue("IndSentinelSiteName")].ToString() : NamesToAdminUnits[rowId].SentinelSiteName;
+                        var site = sites.FirstOrDefault(s => s.SiteName == siteName);
                         if (site != null)
                             obj.SentinelSiteId = site.Id;
                         else
@@ -237,6 +242,11 @@ namespace Nada.Model.Imports
                 Count = objs.Count,
                 Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), objs.Count)
             };
+        }
+
+        private bool HasMultipleAdminUnits()
+        {
+            return NamesToAdminUnits != null;
         }
     
     }

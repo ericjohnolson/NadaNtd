@@ -6307,4 +6307,7 @@ Fixed / Mobile</value>
   <data name="Adequate" xml:space="preserve">
     <value>Adequate</value>
   </data>
+  <data name="ImportAssignSentinelSites" xml:space="preserve">
+    <value>Assign Sentinel Sites to surveys</value>
+  </data>
 </root>

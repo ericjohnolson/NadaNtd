@@ -16,8 +16,6 @@ namespace Nada.UI.View
 {
     public partial class TaskForceNoInternet : BaseForm
     {
-        private string title = "";
-        private string message = "";
         public TaskForceNoInternet()
             : base()
         {

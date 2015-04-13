@@ -96,6 +96,7 @@
     <Compile Include="Exports\RtiWorkbooksExporter.cs" />
     <Compile Include="Exports\PcEpiExporter.cs" />
     <Compile Include="Exports\ExportType.cs" />
+    <Compile Include="Imports\SurveyUnitsAndSentinelSite.cs" />
     <Compile Include="IndicatorManager.cs" />
     <Compile Include="Process\CalcProcess.cs" />
     <Compile Include="Reports\RedistrictingReportGenerator.cs" />

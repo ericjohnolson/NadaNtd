@@ -35,12 +35,12 @@ namespace Nada.Model
         public virtual string ImportName { get { return ""; } }
         public virtual List<TypeListItem> GetAllTypes() { return new List<TypeListItem>(); }
         protected virtual void SetSpecificType(int id) { }
-        private ImportOptions options = new ImportOptions();
+        protected ImportOptions options = new ImportOptions();
         protected int validationRow = 1;
         protected string validationSheetName = "ValidationLists";
         protected Dictionary<string, string> validationRanges = new Dictionary<string,string>();
         protected IndicatorParser valueParser = new IndicatorParser();
-        protected Dictionary<string, List<AdminLevel>> NamesToAdminUnits;
+        protected Dictionary<string, SurveyUnitsAndSentinelSite> NamesToAdminUnits;
 
         #region Public methods
         public virtual void CreateImportFile(string filename, List<AdminLevel> adminLevels, AdminLevelType adminLevelType, ImportOptions opts)
@@ -181,7 +181,7 @@ namespace Nada.Model
             }
         }
 
-        public virtual ImportResult ImportWithMulitpleAdminUnits(string filePath, int userId, Dictionary<string, List<AdminLevel>> namesToAdminUnits)
+        public virtual ImportResult ImportWithMulitpleAdminUnits(string filePath, int userId, Dictionary<string, SurveyUnitsAndSentinelSite> namesToAdminUnits)
         {
             NamesToAdminUnits = namesToAdminUnits;
             return ImportData(filePath, userId);

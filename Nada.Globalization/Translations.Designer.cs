@@ -4151,6 +4151,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assign Sentinel Sites to surveys.
+        /// </summary>
+        public static string ImportAssignSentinelSites {
+            get {
+                return ResourceManager.GetString("ImportAssignSentinelSites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Complete.
         /// </summary>
         public static string ImportComplete {

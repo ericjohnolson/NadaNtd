@@ -78,7 +78,6 @@ namespace Nada.UI.View.Wizard
                 OnSwitchStep(new ImportStepOptions(options, OnFinish));
         }
 
-
         private void lnkUpload_ClickOverride()
         {
             if (!IsValid())
@@ -88,10 +87,15 @@ namespace Nada.UI.View.Wizard
                 DataSet ds = ImporterBase.LoadDataFromFile(openFileDialog1.FileName);
                 if (options.Importer is SurveyImporter && ds.Tables[0].Columns.Contains("* " + Translations.SurveyName))
                 {
-                    Dictionary<string, List<AdminLevel>> surveyNameDict = new Dictionary<string, List<AdminLevel>>();
+                    Dictionary<string, SurveyUnitsAndSentinelSite> surveyNameDict = new Dictionary<string, SurveyUnitsAndSentinelSite>();
                     foreach (DataRow row in ds.Tables[0].Rows)
                         if (row["* " + Translations.SurveyName] != null && row["* " + Translations.SurveyName].ToString().Length > 0)
-                            surveyNameDict.Add(row["* " + Translations.SurveyName].ToString(), new List<AdminLevel>());
+                        {
+                            var vm = new SurveyUnitsAndSentinelSite();
+                            if (row[Translations.IndSpotCheckName] == null || row[Translations.IndSpotCheckName].ToString().Length == 0)
+                                vm.NeedsSentinelSite = true;
+                            surveyNameDict.Add(row["* " + Translations.SurveyName].ToString(), vm);
+                        }
 
                     if (surveyNameDict.Keys.Count <= 0)
                         OnSwitchStep(new ImportStepResult(new ImportResult(Translations.ImportNoDataError), this));

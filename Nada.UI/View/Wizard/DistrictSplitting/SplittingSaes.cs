@@ -32,7 +32,6 @@ namespace Nada.UI.View.Reports
         public bool EnableFinish { get { return false; } }
         public string StepTitle { get { return Translations.SplittingSaes; } }
         private DemoRepository demo = new DemoRepository();
-        private int typeIndex = 0;
         private List<SaeMatcher> matchers = new List<SaeMatcher>();
         IWizardStep prev;
         RedistrictingOptions options;
