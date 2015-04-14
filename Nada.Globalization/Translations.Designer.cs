@@ -4052,7 +4052,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /View/Help/EN/help.chm.
+        ///   Looks up a localized string similar to /Help/EN/help.chm.
         /// </summary>
         public static string HelpFile {
             get {
@@ -17777,7 +17777,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /View/Help/TrainingPPT_061614_en.pptx.
+        ///   Looks up a localized string similar to /Help/TrainingPPT_061614_en.pptx.
         /// </summary>
         public static string TutorialFile {
             get {

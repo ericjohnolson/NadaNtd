@@ -1421,7 +1421,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
     <value>Bantuan</value>
   </data>
   <data name="HelpFile" xml:space="preserve">
-    <value>/View/Help/ID/help.chm</value>
+    <value>/Help/ID/help.chm</value>
   </data>
   <data name="High" xml:space="preserve">
     <value>Tinggi</value>
@@ -5861,7 +5861,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
     <value>2020 Tujuan intervensi tahunan</value>
   </data>
   <data name="TutorialFile" xml:space="preserve">
-    <value>/View/Help/TrainingPPT_070614_id.pptx</value>
+    <value>/Help/TrainingPPT_070614_id.pptx</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Jenis</value>

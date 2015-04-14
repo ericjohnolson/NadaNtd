@@ -1421,7 +1421,7 @@ Fixo / móvel </value>
     <value>Ajuda</value>
   </data>
   <data name="HelpFile" xml:space="preserve">
-    <value>/View/Help/PT/help.chm</value>
+    <value>/Help/PT/help.chm</value>
   </data>
   <data name="High" xml:space="preserve">
     <value>Alto</value>
@@ -5861,7 +5861,7 @@ Fixo / móvel </value>
     <value>Objectivo de Intervenção Anual de 2020</value>
   </data>
   <data name="TutorialFile" xml:space="preserve">
-    <value>/View/Help/TrainingPPT_0601614_pt.pptx</value>
+    <value>/Help/TrainingPPT_0601614_pt.pptx</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>tipo</value>

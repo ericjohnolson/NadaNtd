@@ -6118,10 +6118,10 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Oui-Site sentinelle</value>
   </data>
   <data name="TutorialFile" xml:space="preserve">
-    <value>/View/Help/TrainingPPT_080814_French.pptx</value>
+    <value>/Help/TrainingPPT_080814_French.pptx</value>
   </data>
   <data name="HelpFile" xml:space="preserve">
-    <value>/View/Help/FR/help.chm</value>
+    <value>/Help/FR/help.chm</value>
   </data>
   <data name="UtilSplitAnd" xml:space="preserve">
     <value>et</value>
