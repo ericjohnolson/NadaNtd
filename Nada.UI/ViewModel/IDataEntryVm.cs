@@ -27,10 +27,10 @@ namespace Nada.UI.ViewModel
         IndicatorEntityType EntityType { get; }
 
         bool IsValid();
+        bool IsValid(List<IndicatorValue> values);
         void AddSpecialControls(IndicatorControl cntrl);
         void DoSave(List<IndicatorValue> indicatorValues, string notes);
         void DoSave(List<IndicatorValue> indicatorValues, string notes, bool persist);
-
         void DoSaveType(string p);
     }
 
@@ -54,6 +54,11 @@ namespace Nada.UI.ViewModel
 
             newValues.AddRange(indsToAdd);
             return newValues;
+        }
+
+        public bool IsValid(List<IndicatorValue> values)
+        {
+            return false;
         }
     }
 

@@ -685,6 +685,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Test an error message.
+        /// </summary>
+        public static string BrettTestErrorMessage {
+            get {
+                return ResourceManager.GetString("BrettTestErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Browse for a file....
         /// </summary>
         public static string BrowseForFile {

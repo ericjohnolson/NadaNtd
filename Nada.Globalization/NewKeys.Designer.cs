@@ -61,479 +61,65 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculating statistics....
+        ///   Looks up a localized string similar to Add new survey name &gt;.
         /// </summary>
-        public static string CalculatingStatistics {
+        public static string AddSurveyLink {
             get {
-                return ResourceManager.GetString("CalculatingStatistics", resourceCulture);
+                return ResourceManager.GetString("AddSurveyLink", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
+        ///   Looks up a localized string similar to Test an error message.
         /// </summary>
-        public static string Category {
+        public static string BrettTestErrorMessage {
             get {
-                return ResourceManager.GetString("Category", resourceCulture);
+                return ResourceManager.GetString("BrettTestErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create new form.
+        ///   Looks up a localized string similar to Assign Sentinel Sites to surveys.
         /// </summary>
-        public static string CreateNewForm {
+        public static string ImportAssignSentinelSites {
             get {
-                return ResourceManager.GetString("CreateNewForm", resourceCulture);
+                return ResourceManager.GetString("ImportAssignSentinelSites", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Creating update files.
+        ///   Looks up a localized string similar to Multiple administrative units per survey.
         /// </summary>
-        public static string CreatingUpdateFiles {
+        public static string ImportMultiAuPerSurvey {
             get {
-                return ResourceManager.GetString("CreatingUpdateFiles", resourceCulture);
+                return ResourceManager.GetString("ImportMultiAuPerSurvey", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is this area under PTS (post treatment surveillance)?.
+        ///   Looks up a localized string similar to Would you like to import surveys that took place in:.
         /// </summary>
-        public static string DDPTS {
+        public static string ImportMultiSurveysQuestion {
             get {
-                return ResourceManager.GetString("DDPTS", resourceCulture);
+                return ResourceManager.GetString("ImportMultiSurveysQuestion", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drag and drop administrative units to reorder.
+        ///   Looks up a localized string similar to Please add a temporary name for each survey that will be in your import.
         /// </summary>
-        public static string DragToReorder {
+        public static string ImportMultiUnits {
             get {
-                return ResourceManager.GetString("DragToReorder", resourceCulture);
+                return ResourceManager.GetString("ImportMultiUnits", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit administrative unit &gt;.
+        ///   Looks up a localized string similar to One administrative unit per survey.
         /// </summary>
-        public static string EditAdministrativeUnit {
+        public static string ImportOneAuPerSurvey {
             get {
-                return ResourceManager.GetString("EditAdministrativeUnit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Successfully updated {0} forms!.
-        /// </summary>
-        public static string ImportUpdateSuccess {
-            get {
-                return ResourceManager.GetString("ImportUpdateSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Form type.
-        /// </summary>
-        public static string IndFormType {
-            get {
-                return ResourceManager.GetString("IndFormType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Changes have been validated, please make sure there are no errors..
-        /// </summary>
-        public static string IndicatorUpdatesValidated {
-            get {
-                return ResourceManager.GetString("IndicatorUpdatesValidated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to # female SAC treated.
-        /// </summary>
-        public static string IntvFemaleSac {
-            get {
-                return ResourceManager.GetString("IntvFemaleSac", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to # male SAC treated.
-        /// </summary>
-        public static string IntvMaleSac {
-            get {
-                return ResourceManager.GetString("IntvMaleSac", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Indicator management.
-        /// </summary>
-        public static string MenuIndicatorManagement {
-            get {
-                return ResourceManager.GetString("MenuIndicatorManagement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Order administrative units.
-        /// </summary>
-        public static string MenuReorderAdminLevel {
-            get {
-                return ResourceManager.GetString("MenuReorderAdminLevel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Loading meta data....
-        /// </summary>
-        public static string MetaDataLoading {
-            get {
-                return ResourceManager.GetString("MetaDataLoading", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Number of individuals who refused to be examined.
-        /// </summary>
-        public static string OnchoSurNumRefused {
-            get {
-                return ResourceManager.GetString("OnchoSurNumRefused", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Batch reference number (drug and batch numbers).
-        /// </summary>
-        public static string PcIntvBatchRefNum {
-            get {
-                return ResourceManager.GetString("PcIntvBatchRefNum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mode of distribution.
-        /// </summary>
-        public static string PcIntvModeDistribution {
-            get {
-                return ResourceManager.GetString("PcIntvModeDistribution", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Community-based.
-        /// </summary>
-        public static string PcIntvModeDistributionCommunity {
-            get {
-                return ResourceManager.GetString("PcIntvModeDistributionCommunity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fixed point.
-        /// </summary>
-        public static string PcIntvModeDistributionFixed {
-            get {
-                return ResourceManager.GetString("PcIntvModeDistributionFixed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to School-based.
-        /// </summary>
-        public static string PcIntvModeDistributionSchool {
-            get {
-                return ResourceManager.GetString("PcIntvModeDistributionSchool", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date redistricting documented in database.
-        /// </summary>
-        public static string RedistEventDate {
-            get {
-                return ResourceManager.GetString("RedistEventDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date redistricting occurred.
-        /// </summary>
-        public static string RedistrictDate {
-            get {
-                return ResourceManager.GetString("RedistrictDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set redistricting rules for custom indicators.
-        /// </summary>
-        public static string RedistrictingRulesSplit {
-            get {
-                return ResourceManager.GetString("RedistrictingRulesSplit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Average.
-        /// </summary>
-        public static string RedistrictRuleAverage {
-            get {
-                return ResourceManager.GetString("RedistrictRuleAverage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Leave blank.
-        /// </summary>
-        public static string RedistrictRuleDefaultBlank {
-            get {
-                return ResourceManager.GetString("RedistrictRuleDefaultBlank", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Duplicate.
-        /// </summary>
-        public static string RedistrictRuleDuplicate {
-            get {
-                return ResourceManager.GetString("RedistrictRuleDuplicate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Combine.
-        /// </summary>
-        public static string RedistrictRuleListAll {
-            get {
-                return ResourceManager.GetString("RedistrictRuleListAll", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Max.
-        /// </summary>
-        public static string RedistrictRuleMax {
-            get {
-                return ResourceManager.GetString("RedistrictRuleMax", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Merging rule.
-        /// </summary>
-        public static string RedistrictRuleMerge {
-            get {
-                return ResourceManager.GetString("RedistrictRuleMerge", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Min.
-        /// </summary>
-        public static string RedistrictRuleMin {
-            get {
-                return ResourceManager.GetString("RedistrictRuleMin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Splitting rule.
-        /// </summary>
-        public static string RedistrictRuleSplit {
-            get {
-                return ResourceManager.GetString("RedistrictRuleSplit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Split by percentage of population.
-        /// </summary>
-        public static string RedistrictRuleSplitByPercent {
-            get {
-                return ResourceManager.GetString("RedistrictRuleSplitByPercent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Split/combine rule.
-        /// </summary>
-        public static string RedistrictRuleSplitCombine {
-            get {
-                return ResourceManager.GetString("RedistrictRuleSplitCombine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sum.
-        /// </summary>
-        public static string RedistrictRuleSum {
-            get {
-                return ResourceManager.GetString("RedistrictRuleSum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to *** Redistricted, original administrative units survey occured in: {0}.
-        /// </summary>
-        public static string RedistrictSurveyNote {
-            get {
-                return ResourceManager.GetString("RedistrictSurveyNote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Database Administrator.
-        /// </summary>
-        public static string RoleDbAdmin {
-            get {
-                return ResourceManager.GetString("RoleDbAdmin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Must assign each location only one time.
-        /// </summary>
-        public static string RtiErrorMustBeUnique {
-            get {
-                return ResourceManager.GetString("RtiErrorMustBeUnique", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Language to generate Disease Workbook for USAID Reporting.
-        /// </summary>
-        public static string RtiExportLanguage {
-            get {
-                return ResourceManager.GetString("RtiExportLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Prevalence of any parasite eggs in urine.
-        /// </summary>
-        public static string SchMappingPrevalenceEggsInUrine {
-            get {
-                return ResourceManager.GetString("SchMappingPrevalenceEggsInUrine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Type of site.
-        /// </summary>
-        public static string SchMappingTypeOfSite {
-            get {
-                return ResourceManager.GetString("SchMappingTypeOfSite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date of most recent PC.
-        /// </summary>
-        public static string SchSentinelDatePc {
-            get {
-                return ResourceManager.GetString("SchSentinelDatePc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Prevalence of any parasite eggs in urine.
-        /// </summary>
-        public static string SchSentinelPrevalenceEggsInUrine {
-            get {
-                return ResourceManager.GetString("SchSentinelPrevalenceEggsInUrine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Type of site.
-        /// </summary>
-        public static string SchSentinelTypeSite {
-            get {
-                return ResourceManager.GetString("SchSentinelTypeSite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Is this survey a part of cohort study?.
-        /// </summary>
-        public static string SchSentinenlIsPartOfCohort {
-            get {
-                return ResourceManager.GetString("SchSentinenlIsPartOfCohort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Must assign all rules before continuing..
-        /// </summary>
-        public static string SplittingMustAllocateRules {
-            get {
-                return ResourceManager.GetString("SplittingMustAllocateRules", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Type of site.
-        /// </summary>
-        public static string SthMappingTypeSite {
-            get {
-                return ResourceManager.GetString("SthMappingTypeSite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Is this survey a part of cohort study?.
-        /// </summary>
-        public static string SthSentinelIsPartOfCohort {
-            get {
-                return ResourceManager.GetString("SthSentinelIsPartOfCohort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date of most recent PC.
-        /// </summary>
-        public static string SthSpotCheckDatePc {
-            get {
-                return ResourceManager.GetString("SthSpotCheckDatePc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Type of site.
-        /// </summary>
-        public static string SthSpotCheckTypeSite {
-            get {
-                return ResourceManager.GetString("SthSpotCheckTypeSite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Actual non-response rate - total (%).
-        /// </summary>
-        public static string TasActualNonResponse {
-            get {
-                return ResourceManager.GetString("TasActualNonResponse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Number of LF endemic districts surrounding this Evaluation Unit that haven&apos;t started treatment.
-        /// </summary>
-        public static string TasNumNoTreatment {
-            get {
-                return ResourceManager.GetString("TasNumNoTreatment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name must not contain special characters: &amp;&amp;.
-        /// </summary>
-        public static string ValidNameSpecialChars {
-            get {
-                return ResourceManager.GetString("ValidNameSpecialChars", resourceCulture);
+                return ResourceManager.GetString("ImportOneAuPerSurvey", resourceCulture);
             }
         }
     }

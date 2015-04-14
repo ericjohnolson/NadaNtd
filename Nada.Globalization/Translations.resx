@@ -6310,4 +6310,7 @@ Fixed / Mobile</value>
   <data name="ImportAssignSentinelSites" xml:space="preserve">
     <value>Assign Sentinel Sites to surveys</value>
   </data>
+  <data name="BrettTestErrorMessage" xml:space="preserve">
+    <value>Test an error message</value>
+  </data>
 </root>

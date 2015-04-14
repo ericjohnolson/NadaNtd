@@ -58,6 +58,12 @@ namespace Nada.UI.ViewModel
             return model.IsValid();
         }
 
+        public bool IsValid(List<IndicatorValue> values)
+        {
+            DiseaseDistributionCustomValidator customValidator = new DiseaseDistributionCustomValidator();
+            return customValidator.IsValid(values);
+        }
+
         public void DoSave(List<IndicatorValue> indicatorValues, string notes)
         {
             DoSave(indicatorValues, notes, true);
