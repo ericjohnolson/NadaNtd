@@ -230,7 +230,7 @@ namespace Nada.Model
                             }
                             catch (Exception ex)
                             {
-                                errorMessage += Environment.NewLine + "SQL Exception Row # " + rowCount + Environment.NewLine + "--------" + Environment.NewLine + ex.Message;
+                                errorMessage += Environment.NewLine + "An error occured with Row # " + (rowCount + 1) + Environment.NewLine + "--------" + Environment.NewLine + ex.Message;
                             }
                         }
 
@@ -284,11 +284,11 @@ namespace Nada.Model
                         ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.FormId, ind.SplitRuleId, ind.MergeRuleId);
                     break;
                 case IndicatorEntityType.Intervention:
-                    insertSql = string.Format("insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId) values ({0}, {1}, {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, 0, {5}, {6}, {7});;",
+                    insertSql = string.Format("insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId) values ({0}, {1}, {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, 0, {5}, {6});;",
                         ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.SplitRuleId, ind.MergeRuleId);
                     break;
                 case IndicatorEntityType.Survey:
-                    insertSql = string.Format("insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values ({0}, {1}, {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, 0, {5}, {6}, {7});;",
+                    insertSql = string.Format("insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, SurveyTypeId, RedistrictRuleId, MergeRuleId) values ({0}, {1}, {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, 0, {5}, {6}, {7});;",
                         ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.FormId, ind.SplitRuleId, ind.MergeRuleId);
                     break;
                 case IndicatorEntityType.Process:
@@ -362,7 +362,7 @@ namespace Nada.Model
             }
 
             if (string.IsNullOrEmpty(translationKey))
-                throw new Exception("Error could not find translation key for indicator ID " + indicator.Id);
+                throw new Exception("Error could not find indicator with ID " + indicator.Id);
 
             return translationKey;
         }
