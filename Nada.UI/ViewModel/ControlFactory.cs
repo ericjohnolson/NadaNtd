@@ -20,6 +20,7 @@ namespace Nada.UI.ViewModel
         public GetValueDelegate GetValue { get; set; }
         public delegate bool IsValidDelegate();
         public IsValidDelegate IsValid { get; set; }
+        public Control Control { get; set; }
     }
 
     public class ControlFactory
@@ -69,6 +70,8 @@ namespace Nada.UI.ViewModel
                 ShowClear = !indicator.IsRequired,
                 Value = DateTime.Now
             };
+            // Add the Control to the DynamicContainer for reference
+            container.Control = cntrl;
             container.IsValid = () =>
             {
                 if (indicator.IsRequired && cntrl.GetValue() == DateTime.MinValue)
@@ -128,6 +131,8 @@ namespace Nada.UI.ViewModel
                 indicatorErrors.SetError(cntrl, "");
                 return true;
             };
+            // Add the Control to the DynamicContainer for reference
+            container.Control = cntrl;
             cntrl.Validating += (s, e) => { container.IsValid(); };
             container.GetValue = () => { return cntrl.Text; };
             controlList.Add(container);
@@ -139,8 +144,11 @@ namespace Nada.UI.ViewModel
             var container = new DynamicContainer { Indicator = indicator };
             var cntrl = new CheckBox { Name = "dynamicChk" + indicator.Id.ToString() };
             container.IsValid = () => { return true; };
-            cntrl.Checked = val == "1"; 
-            
+            cntrl.Checked = val == "1";
+
+            // Add the Control to the DynamicContainer for reference
+            container.Control = cntrl;
+
             container.GetValue = () => { return Convert.ToInt32(cntrl.Checked).ToString(); };
             controlList.Add(container);
             return cntrl;
@@ -153,6 +161,9 @@ namespace Nada.UI.ViewModel
             var container = new DynamicContainer { Indicator = indicator };
             var cntrl = new ComboBox { Name = "dynamicCombo" + indicator.Id.ToString(), Width = 220, Margin = new Padding(0, 5, 10, bottomPadding), DropDownStyle = ComboBoxStyle.DropDownList };
             cntrl.MouseWheel += (s, e) => { ((HandledMouseEventArgs)e).Handled = true; };
+
+            // Add the Control to the DynamicContainer for reference
+            container.Control = cntrl;
 
             if (!indicator.IsRequired)
                 cntrl.Items.Add(new IndicatorDropdownValue { DisplayName = "", Id = -1 });
@@ -208,6 +219,10 @@ namespace Nada.UI.ViewModel
             List<IndicatorDropdownValue> availableValues = new List<IndicatorDropdownValue>();
             var container = new DynamicContainer { Indicator = indicator };
             var cntrl = new ListBox { Name = "dynamicMulti" + indicator.Id.ToString(), Width = 220, Height = 100, Margin = new Padding(0, 5, 20, bottomPadding), SelectionMode = SelectionMode.MultiExtended };
+
+            // Add the Control to the DynamicContainer for reference
+            container.Control = cntrl;
+            
             foreach (var v in dropdownKeys.Where(k => k.IndicatorId == indicator.Id).OrderBy(i => i.SortOrder))
             {
                 cntrl.Items.Add(v);
@@ -382,6 +397,10 @@ namespace Nada.UI.ViewModel
         {
             var container = new DynamicContainer { Indicator = indicator };
             var cntrl = new TextBox { Name = "dynamicTxt" + indicator.Id.ToString(), Text = val, Width = 220, Height = height, Multiline = isMultiLine, Margin = new Padding(0, 5, 10, bottomPadding) };
+
+            // Add the Control to the DynamicContainer for reference
+            container.Control = cntrl;
+            
             container.IsValid = () =>
             {
                 if (indicator.IsRequired)

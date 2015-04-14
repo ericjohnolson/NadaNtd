@@ -42,6 +42,7 @@ namespace Nada.UI.ViewModel
         public string Notes { get { return model.Notes; } }
         public string CalculatorTypeId { get { return model.Disease.Id.ToString(); } }
         public ICalcIndicators Calculator { get { return calc; } }
+        public ICustomValidator Validator { get { return new DiseaseDistroCustomValidator(); } }
         public AdminLevel Location { get { return adminLevel; } }
         public IndicatorEntityType EntityType { get { return IndicatorEntityType.DiseaseDistribution; } }
         public List<KeyValuePair<string, string>> MetaData { get; set; }
@@ -56,12 +57,6 @@ namespace Nada.UI.ViewModel
         public bool IsValid()
         {
             return model.IsValid();
-        }
-
-        public bool IsValid(List<IndicatorValue> values)
-        {
-            DiseaseDistributionCustomValidator customValidator = new DiseaseDistributionCustomValidator();
-            return customValidator.IsValid(values);
         }
 
         public void DoSave(List<IndicatorValue> indicatorValues, string notes)
