@@ -3269,7 +3269,7 @@ Fixo / móvel </value>
     <value>Ano Comercial</value>
   </data>
   <data name="HelpFile" xml:space="preserve">
-    <value>/View/Help/PT/help.chm</value>
+    <value>/Help/PT/help.chm</value>
   </data>
   <data name="PC" xml:space="preserve">
     <value>PC</value>
@@ -5867,7 +5867,7 @@ Fixo / móvel </value>
     <value>filtragem de urina</value>
   </data>
   <data name="TutorialFile" xml:space="preserve">
-    <value>/View/Help/TrainingPPT_0601614_pt.pptx</value>
+    <value>/Help/TrainingPPT_0601614_pt.pptx</value>
   </data>
   <data name="PcIntvFemalesTreatedProportion" xml:space="preserve">
     <value>Proporção mulheres tratadas</value>

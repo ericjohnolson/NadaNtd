@@ -3281,7 +3281,7 @@ Fixed / Mobile</value>
     <value>Custom year</value>
   </data>
   <data name="HelpFile" xml:space="preserve">
-    <value>/View/Help/EN/help.chm</value>
+    <value>/Help/EN/help.chm</value>
   </data>
   <data name="PC" xml:space="preserve">
     <value>PC</value>
@@ -5885,7 +5885,7 @@ Fixed / Mobile</value>
     <value>Urine filtration</value>
   </data>
   <data name="TutorialFile" xml:space="preserve">
-    <value>/View/Help/TrainingPPT_061614_en.pptx</value>
+    <value>/Help/TrainingPPT_061614_en.pptx</value>
   </data>
   <data name="PcIntvFemalesTreatedProportion" xml:space="preserve">
     <value>Females treated proportion</value>

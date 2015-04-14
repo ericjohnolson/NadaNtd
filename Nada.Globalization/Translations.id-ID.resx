@@ -3269,7 +3269,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
     <value>Tahun yang disesuaikan</value>
   </data>
   <data name="HelpFile" xml:space="preserve">
-    <value>/View/Help/ID/help.chm</value>
+    <value>/Help/ID/help.chm</value>
   </data>
   <data name="PC" xml:space="preserve">
     <value>Obat/Pengobatan</value>
@@ -5867,7 +5867,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
     <value>Filtrasi urin</value>
   </data>
   <data name="TutorialFile" xml:space="preserve">
-    <value>/View/Help/TrainingPPT_070614_id.pptx</value>
+    <value>/Help/TrainingPPT_070614_id.pptx</value>
   </data>
   <data name="PcIntvFemalesTreatedProportion" xml:space="preserve">
     <value>Proporsi perempuan yang diobati</value>
