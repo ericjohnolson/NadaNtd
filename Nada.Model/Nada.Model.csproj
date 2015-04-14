@@ -92,14 +92,17 @@
     <Compile Include="Base\NadaListItem.cs" />
     <Compile Include="Demography\RedistrictingExpert.cs" />
     <Compile Include="Demography\RedistrictingOptions.cs" />
-    <Compile Include="Diseases\DiseaseDistributionCustomValidator.cs" />
+    <Compile Include="Diseases\DiseaseDistroCustomValidator.cs" />
     <Compile Include="Exports\ApocExporter.cs" />
     <Compile Include="Exports\RtiWorkbooksExporter.cs" />
     <Compile Include="Exports\PcEpiExporter.cs" />
     <Compile Include="Exports\ExportType.cs" />
+    <Compile Include="ICustomValidator.cs" />
     <Compile Include="Imports\SurveyUnitsAndSentinelSite.cs" />
     <Compile Include="IndicatorManager.cs" />
+    <Compile Include="Intervention\IntvCustomValidator.cs" />
     <Compile Include="Process\CalcProcess.cs" />
+    <Compile Include="Process\ProcessCustomValidator.cs" />
     <Compile Include="Reports\RedistrictingReportGenerator.cs" />
     <Compile Include="Reports\IStandardOptions.cs" />
     <Compile Include="Reports\SavedReport.cs" />
@@ -136,6 +139,7 @@
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\TaskForceApi.cs" />
     <Compile Include="Survey\CalcSurvey.cs" />
+    <Compile Include="Survey\SurveyCustomValidator.cs" />
     <Compile Include="Survey\SurveyDetails.cs" />
     <Compile Include="Demography\AdminLevel.cs" />
     <Compile Include="Demography\AdminLevelType.cs" />

@@ -161,6 +161,19 @@ namespace Nada.UI.View
             return isValid;
         }
 
+        public bool IsValid(ICustomValidator validator, List<IndicatorValue> values)
+        {
+            bool isValid = true;
+            foreach (DynamicContainer cnt in controlList)
+            {
+                string message = validator.Valid(cnt.Indicator, values);
+                indicatorErrors.SetError(cnt.Control, message);
+                if (!string.IsNullOrEmpty(message))
+                    isValid = false;
+            }
+            return isValid;
+        }
+
         public List<IndicatorValue> GetValues()
         {
             var valList = new List<IndicatorValue>();

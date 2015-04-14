@@ -51,6 +51,7 @@ namespace Nada.UI.ViewModel
         public string Notes { get { return model.Notes; } }
         public string CalculatorTypeId { get { return model.ProcessType.Id.ToString(); } }
         public ICalcIndicators Calculator { get { return calc; } }
+        public ICustomValidator Validator { get { return new ProcessCustomValidator(); } }
         public AdminLevel Location { get { return adminLevel; } }
         public IndicatorEntityType EntityType { get { return IndicatorEntityType.Process; } }
         public List<KeyValuePair<string, string>> MetaData { get; set; }

@@ -25,9 +25,9 @@ namespace Nada.UI.ViewModel
         List<IndicatorValue> IndicatorValues { get; }
         List<IndicatorDropdownValue> IndicatorDropdownValues { get; }
         IndicatorEntityType EntityType { get; }
+        ICustomValidator Validator { get; }
 
         bool IsValid();
-        bool IsValid(List<IndicatorValue> values);
         void AddSpecialControls(IndicatorControl cntrl);
         void DoSave(List<IndicatorValue> indicatorValues, string notes);
         void DoSave(List<IndicatorValue> indicatorValues, string notes, bool persist);
@@ -56,10 +56,7 @@ namespace Nada.UI.ViewModel
             return newValues;
         }
 
-        public bool IsValid(List<IndicatorValue> values)
-        {
-            return false;
-        }
+
     }
 
 }

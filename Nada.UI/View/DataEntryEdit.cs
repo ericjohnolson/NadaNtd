@@ -157,7 +157,7 @@ namespace Nada.UI.View
         /// <param name="e"></param>
         private void save_Click(object sender, EventArgs e)
         {
-            if (!viewModel.IsValid() || !indicatorControl1.IsValid())
+            if (!viewModel.IsValid() || !indicatorControl1.IsValid() || !indicatorControl1.IsValid(viewModel.Validator, indicatorControl1.GetValues()))
             {
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
