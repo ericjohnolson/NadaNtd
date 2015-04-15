@@ -89,6 +89,7 @@ namespace Nada.UI.View
                 if (confirm.ShowDialog() == DialogResult.OK)
                 {
                     members.Delete((Member)e.Model);
+                    lvUsers.SetObjects(members.GetAllUsers());
                 }
             }
         }
@@ -134,7 +135,7 @@ namespace Nada.UI.View
             }
             countryDemographyView1.DoValidate();
             countryStats = countryDemographyView1.GetDemo();
-            if (!countryStats.IsValid() || !countryDemographyView1.IsValid())
+            if (countryStats != null && (!countryStats.IsValid() || !countryDemographyView1.IsValid()))
             {
                 MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
                 return;
@@ -152,7 +153,8 @@ namespace Nada.UI.View
 
             int userId = ApplicationData.Instance.GetUserId();
             demo.UpdateCountry(country, userId);
-            demo.Save(countryStats, userId);
+            if (countryStats != null)
+                demo.Save(countryStats, userId);
             var selected = diseasePickerControl1.GetSelectedItems();
             var available = diseasePickerControl1.GetUnselectedItems();
             diseases.SaveSelectedDiseases(selected, true, userId);

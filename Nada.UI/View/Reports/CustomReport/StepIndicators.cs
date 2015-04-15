@@ -37,7 +37,8 @@ namespace Nada.UI.View.Reports.CustomReport
             {
                 Localizer.TranslateControl(this);
                 foreach (var selected in report.ReportOptions.SelectedIndicators)
-                    SelectedDict.Add(selected.UniqueId, selected);
+                    if (!SelectedDict.ContainsKey(selected.UniqueId))
+                        SelectedDict.Add(selected.UniqueId, selected);
                 LoadTree(triStateTreeView1.Nodes, report.ReportOptions.AvailableIndicators);
                 LoadSelectedIndicators(triStateTreeView1.Nodes);
 
