@@ -1978,7 +1978,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Nombre d’individus positifs pour l’hydrocèle</value>
   </data>
   <data name="LFSurPositive" xml:space="preserve">
-    <value>Nombre d’individus positifs pour le lymphœdème</value>
+    <value>% d’individus positifs pour le lymphœdème</value>
   </data>
   <data name="LFSurPosLympho" xml:space="preserve">
     <value>Nombre d’individus positifs pour le lymphœdème</value>
@@ -3133,7 +3133,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Du total, nombre d'hommes ciblés pour l'onchocercose</value>
   </data>
   <data name="PcIntvOfTotalTargetedForOncho" xml:space="preserve">
-    <value>Du total, nombre traités pour l'onchocercose</value>
+    <value>Du total, nombre ciblés pour l'onchocercose</value>
   </data>
   <data name="PcIntvOfTotalTreatedForOncho" xml:space="preserve">
     <value>Du total, nombre traités pour l'onchocercose</value>
@@ -3208,7 +3208,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>EAS à risque de géohelminthiases</value>
   </data>
   <data name="PcIntvSthSacEpiCoverage" xml:space="preserve">
-    <value>GeoH: Couverture épidémiologique des EAP</value>
+    <value>GeoH: Couverture épidémiologique des EAS</value>
   </data>
   <data name="PcIntvStockOutDrug" xml:space="preserve">
     <value>Médicament en rupture de stock</value>

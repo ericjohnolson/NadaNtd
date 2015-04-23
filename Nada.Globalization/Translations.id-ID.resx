@@ -941,7 +941,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
     <value>Apakah pengawasan TF dilakukan di seluruh atau sebagian wilayah saja?</value>
   </data>
   <data name="DDTraAllTt" xml:space="preserve">
-    <value>Apakah pengawasan TF dilakukan di seluruh atau sebagian wilayah saja?</value>
+    <value>Apakah pengawasan TT dilakukan di seluruh atau sebagian wilayah saja?</value>
   </data>
   <data name="DDTraDiseaseDistributionPcInterventions" xml:space="preserve">
     <value>Distribusi Penyakit: intervensi Pengobatan</value>
@@ -2441,7 +2441,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
     <value>Jumlah desa endemis yang diberi saringan air</value>
   </data>
   <data name="NumFacilitiesProvidingAntibiotics" xml:space="preserve">
-    <value>Jumlah fasilitas kesehatan terdepan yang menyediakan pengobatan framboesia</value>
+    <value>Jumlah fasilitas kesehatan terdepan yang menyediakan pengobatan framboesia (Antibiotik)</value>
   </data>
   <data name="NumFacilitiesProvidingBu" xml:space="preserve">
     <value>Jumlah fasilitas kesehatan terdepan yang menyediakan pengobatan antibiotik BU yang direkomendasikan WHO</value>
