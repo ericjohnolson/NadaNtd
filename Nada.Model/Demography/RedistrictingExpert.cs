@@ -606,7 +606,14 @@ namespace Nada.Model.Demography
             newForm.AdminLevels.RemoveAll(a => a.Id == source.Id);
             newForm.AdminLevels.AddRange(dests.Select(a => a.Unit));
             if (oldSurvey.SentinelSiteId.HasValue && oldSurvey.SentinelSiteId > 0)
+            {
+                if (!newSites.ContainsKey(oldSurvey.SentinelSiteId.Value))
+                {  
+                    var oldSite = surveyRepo.GetSiteById(oldSurvey.SentinelSiteId.Value);
+                    CloneSite(source, dests, command, connection, newSites, oldSite);
+                }
                 newForm.SentinelSiteId = newSites[oldSurvey.SentinelSiteId.Value].Id;
+            }
 
             surveyRepo.SaveSurveyBase(command, connection, newForm, userId);
             demoRepo.InsertRedistrictForm(command, connection, userId, redistrictId, oldSurvey.Id, newForm.Id, IndicatorEntityType.Survey);
@@ -620,17 +627,22 @@ namespace Nada.Model.Demography
             var sites = surveyRepo.GetSitesForAdminLevel(new List<string> { source.Id.ToString() });
             foreach (var site in sites)
             {
-                var newSite = Util.DeepClone(site);
-                // remove other admin levels
-                site.AdminLevels = new List<AdminLevel> { source };
-                surveyRepo.Update(site, userId, connection, command);
-                // update admin levels to new dests
-                newSite.Id = 0;
-                newSite.AdminLevels.RemoveAll(a => a.Id == source.Id);
-                newSite.AdminLevels.AddRange(dests.Select(a => a.Unit));
-                newSites.Add(site.Id, surveyRepo.Insert(newSite, userId, connection, command));
+                CloneSite(source, dests, command, connection, newSites, site);
             }
             return newSites;
+        }
+
+        private void CloneSite(AdminLevel source, List<AdminLevelAllocation> dests, OleDbCommand command, OleDbConnection connection, Dictionary<int, SentinelSite> newSites, SentinelSite site)
+        {
+            var newSite = Util.DeepClone(site);
+            // remove other admin levels
+            site.AdminLevels = new List<AdminLevel> { source };
+            surveyRepo.Update(site, userId, connection, command);
+            // update admin levels to new dests
+            newSite.Id = 0;
+            newSite.AdminLevels.RemoveAll(a => a.Id == source.Id);
+            newSite.AdminLevels.AddRange(dests.Select(a => a.Unit));
+            newSites.Add(site.Id, surveyRepo.Insert(newSite, userId, connection, command));
         }
 
         private DiseaseDistroPc SplitDdPc(List<DiseaseDistroPc> toMerge, DiseaseDistroDetails details, AdminLevel dest, double multiplier, int redistrictId, OleDbCommand command, OleDbConnection connection)
