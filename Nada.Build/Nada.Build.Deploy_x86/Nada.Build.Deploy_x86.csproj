@@ -96,6 +96,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.02.00.0002.sql">
+      <Link>DatabaseScripts\Differentials\sc.02.00.0002.sql</Link>
+    </Content>
     <Content Include="..\..\Nada.UI\Exports\AFRO_CM_JRF.xls">
       <Link>Exports\AFRO_CM_JRF.xls</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

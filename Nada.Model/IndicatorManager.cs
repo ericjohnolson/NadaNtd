@@ -288,7 +288,7 @@ namespace Nada.Model
                         ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.SplitRuleId, ind.MergeRuleId);
                     break;
                 case IndicatorEntityType.Survey:
-                    insertSql = string.Format("insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, SurveyTypeId, RedistrictRuleId, MergeRuleId) values ({0}, '{1}', {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, 0, {5}, {6}, {7});",
+                    insertSql = string.Format("insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values ({0}, '{1}', {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, {5}, {6}, {7});",
                         ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.FormId, ind.SplitRuleId, ind.MergeRuleId);
                     break;
                 case IndicatorEntityType.Process:

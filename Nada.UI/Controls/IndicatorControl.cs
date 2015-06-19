@@ -166,6 +166,8 @@ namespace Nada.UI.View
             bool isValid = true;
             foreach (DynamicContainer cnt in controlList)
             {
+                if (cnt.Control == null)
+                    continue;
                 string message = validator.Valid(cnt.Indicator, values);
                 indicatorErrors.SetError(cnt.Control, message);
                 if (!string.IsNullOrEmpty(message))
