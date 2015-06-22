@@ -11,6 +11,6 @@ INSERT INTO [SchemaChangeLog]
 VALUES
        ('02'
        ,'00'
-       ,'0001'
+       ,'0002'
        ,'sc.02.00.0002.sql'
        ,Now());
