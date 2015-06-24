@@ -105,6 +105,10 @@ namespace Nada.Model.Exports
             IntvReportGenerator gen = new IntvReportGenerator();
             IntvRepository repo = new IntvRepository();
             SurveyRepository surveys = new SurveyRepository();
+            // Indicator parser
+            IndicatorParser indicatorParser = new IndicatorParser();
+            indicatorParser.LoadRelatedLists();
+
             int rowCount = 0;
             IntvType type = repo.GetIntvType((int)StaticIntvType.LfMorbidityManagement);
             foreach (var indicator in type.Indicators)
@@ -194,7 +198,7 @@ namespace Nada.Model.Exports
                     }
                     else if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.LfTas)
                     {
-                        //xlsWorksheet.Cells[rowNumber, 1] = survey.IndicatorValues
+                        // No static indicators
                     }
  
 
@@ -203,7 +207,7 @@ namespace Nada.Model.Exports
                     {
                         // Eval name
                         if (val.Indicator.DisplayName == "EuName")
-                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.A] = val.DynamicValue;
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.A] = indicatorParser.Parse(val.Indicator.DataTypeId, val.IndicatorId, val.DynamicValue);
                         // Name of survey site
                         else if (val.Indicator.DisplayName == "LFMapSurSiteNames")
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.C] = val.DynamicValue;
@@ -216,7 +220,7 @@ namespace Nada.Model.Exports
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.G] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
                         else if (val.Indicator.DisplayName == "LFSurDateOfTheFirstRoundOfPc")
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.H] = val.DynamicValue;
-                        else if (val.Indicator.DisplayName == "LFSurNumberOfRoundsOfPcCompletedPriorToS")
+                        else if (val.Indicator.DisplayName == "LFSurNumberOfRoundsOfPcCompletedPriorToS" || val.Indicator.DisplayName == "4190984d-f272-4359-8414-6e7ef06fc4bc")
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.I] = val.DynamicValue;
                         //else if (val.Indicator.DisplayName == "LFMapSurTestType" || val.Indicator.DisplayName == "LFSurTestType")
                         //    xlsWorksheet.Cells[rowNumber, 9] = TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue);
@@ -245,7 +249,7 @@ namespace Nada.Model.Exports
                         // community load
                         //else if (val.Indicator.DisplayName == "LFMapSurCommunityMfLoad" || val.Indicator.DisplayName == "LFSurCommunityMfLoad")
                         //    xlsWorksheet.Cells[rowNumber, 15] = val.DynamicValue;
-                        // ly peeps examined
+
                         // MF: % Positive
                         else if (val.Indicator.DisplayName == "LFMapSurPositive" || val.Indicator.DisplayName == "LFSurPositive")
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.L] = val.DynamicValue;
