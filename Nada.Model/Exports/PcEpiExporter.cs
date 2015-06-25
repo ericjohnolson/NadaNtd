@@ -105,6 +105,10 @@ namespace Nada.Model.Exports
             IntvReportGenerator gen = new IntvReportGenerator();
             IntvRepository repo = new IntvRepository();
             SurveyRepository surveys = new SurveyRepository();
+            // Indicator parser
+            IndicatorParser indicatorParser = new IndicatorParser();
+            indicatorParser.LoadRelatedLists();
+
             int rowCount = 0;
             IntvType type = repo.GetIntvType((int)StaticIntvType.LfMorbidityManagement);
             foreach (var indicator in type.Indicators)
@@ -112,6 +116,7 @@ namespace Nada.Model.Exports
                     options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(type.Id, indicator));
             ReportResult result = gen.Run(new SavedReport { ReportOptions = options });
 
+            // Top horizontal columns
             foreach (DataRow dr in result.DataTableResults.Rows)
             {
                 foreach (DataColumn col in result.DataTableResults.Columns)
@@ -127,6 +132,7 @@ namespace Nada.Model.Exports
                 }
             }
 
+            // Last half of year (J6)
             options.StartDate = start.AddMonths(6);
             result = gen.Run(new SavedReport { ReportOptions = options });
             foreach (DataRow dr in result.DataTableResults.Rows)
@@ -138,81 +144,186 @@ namespace Nada.Model.Exports
                 }
             }
 
-            var lfSurveys = surveys.GetByTypeForDistrictsInDateRange(new List<int> { (int)StaticSurveyType.LfMapping, (int)StaticSurveyType.LfSentinel }, start, end);
+            // Get surveys for rows
+            var lfSurveys = surveys.GetByTypeForDistrictsInDateRange(new List<int> { (int)StaticSurveyType.LfMapping, (int)StaticSurveyType.LfSentinel, (int)StaticSurveyType.LfTas }, start, end);
             int rowNumber = 15;
             foreach (SurveyBase survey in lfSurveys.OrderBy(s => s.SortOrder))
             {
-                var adminLevel = survey.AdminLevels.First();
-                xlsWorksheet.Cells[rowNumber, 1] = adminLevel.Name;
-                xlsWorksheet.Cells[rowNumber, 4] = survey.DateReported.ToString("MMMM");
-                if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
-                    xlsWorksheet.Cells[rowNumber, 3] = TranslationLookup.GetValue("Mapping", "Mapping");
-                else if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
+                foreach (var adminLevel in survey.AdminLevels)
                 {
-                    xlsWorksheet.Cells[rowNumber, 3] = survey.SiteType;
-                    if (survey.HasSentinelSite && survey.SentinelSiteId.HasValue)
+                    bool isMfTestType = false;
+                    
+                    // Static indicators
+                    xlsWorksheet.Cells[rowNumber, (int)ExcelCol.B] = adminLevel.Name;
+                    xlsWorksheet.Cells[rowNumber, (int)ExcelCol.E] = survey.DateReported.ToString("MMMM");
+                    if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
                     {
-                        var site = surveys.GetSiteById(survey.SentinelSiteId.Value);
-                        if (site.Lat.HasValue)
-                            xlsWorksheet.Cells[rowNumber, 5] = Math.Round(site.Lat.Value, 2);
-                        if (site.Lng.HasValue)
-                            xlsWorksheet.Cells[rowNumber, 6] = Math.Round(site.Lng.Value, 2);
-                        xlsWorksheet.Cells[rowNumber, 2] = site.SiteName;
+                        var testTypeVal = survey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapTestType");
+                        if (testTypeVal != null && testTypeVal.DynamicValue == "Mf")
+                            isMfTestType = true; 
+
+                        xlsWorksheet.Cells[rowNumber, (int)ExcelCol.D] = TranslationLookup.GetValue("Mapping", "Mapping");
                     }
-                    else
+                    else if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
                     {
-                        if (survey.Lat.HasValue)
-                            xlsWorksheet.Cells[rowNumber, 5] = Math.Round(survey.Lat.Value, 2);
-                        if (survey.Lng.HasValue)
-                            xlsWorksheet.Cells[rowNumber, 6] = Math.Round(survey.Lng.Value, 2);
-                        xlsWorksheet.Cells[rowNumber, 2] = survey.SpotCheckName;
+                        var testTypeVal = survey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFSurTestType");
+                        if (testTypeVal != null && testTypeVal.DynamicValue == "Mf")
+                            isMfTestType = true;
+
+                        xlsWorksheet.Cells[rowNumber, (int)ExcelCol.D] = survey.SiteType;
+                        if (survey.SentinelSiteId.HasValue)
+                        {
+                            var site = surveys.GetSiteById(survey.SentinelSiteId.Value);
+                            if (site.Lat.HasValue)
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.F] = Math.Round(site.Lat.Value, 2);
+                            if (site.Lng.HasValue)
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.G] = Math.Round(site.Lng.Value, 2);
+                            // Name of survey site
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.C] = site.SiteName;
+                            // Survey site
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.O] = site.SiteName;
+                        }
+                        else
+                        {
+                            if (survey.Lat.HasValue)
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.F] = Math.Round(survey.Lat.Value, 2);
+                            if (survey.Lng.HasValue)
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.G] = Math.Round(survey.Lng.Value, 2);
+                            // Name of survey site
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.C] = survey.SpotCheckName;
+                            // Survey site
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.O] = survey.SpotCheckName;
+
+                        }
                     }
+                    else if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.LfTas)
+                    {
+                        // No static indicators
+                    }
+ 
+
+                    // Dynamic indicators
+                    foreach (IndicatorValue val in survey.IndicatorValues)
+                    {
+                        // Eval name
+                        if (val.Indicator.DisplayName == "EuName")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.A] = indicatorParser.Parse(val.Indicator.DataTypeId, val.IndicatorId, val.DynamicValue);
+                        // Name of survey site
+                        else if (val.Indicator.DisplayName == "LFMapSurSiteNames")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.C] = val.DynamicValue;
+                        // TAS objective
+                        else if (val.Indicator.DisplayName == "TASTasObjective")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.D] = val.DynamicValue;
+                        else if (val.Indicator.DisplayName == "LFMapSurLatitude" && !string.IsNullOrEmpty(val.DynamicValue))
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.F] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
+                        else if (val.Indicator.DisplayName == "LFMapSurLongitude" && !string.IsNullOrEmpty(val.DynamicValue))
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.G] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
+                        else if (val.Indicator.DisplayName == "LFSurDateOfTheFirstRoundOfPc")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.H] = val.DynamicValue;
+                        else if (val.Indicator.DisplayName == "LFSurNumberOfRoundsOfPcCompletedPriorToS" || val.Indicator.DisplayName == "4190984d-f272-4359-8414-6e7ef06fc4bc")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.I] = val.DynamicValue;
+                        //else if (val.Indicator.DisplayName == "LFMapSurTestType" || val.Indicator.DisplayName == "LFSurTestType")
+                        //    xlsWorksheet.Cells[rowNumber, 9] = TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue);
+                        // MF: Number of people examined
+                        else if (val.Indicator.DisplayName == "LFMapSurNumberOfIndividualsExamined" || val.Indicator.DisplayName == "LFSurNumberOfIndividualsExamined")
+                        {
+                            if (isMfTestType)
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.J] = val.DynamicValue;
+                            else
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.S] = val.DynamicValue;
+                        }
+                        // MF: Number of people positive
+                        else if (val.Indicator.DisplayName == "LFSurNumberOfIndividualsPositive" || val.Indicator.DisplayName == "LFMapSurNumberOfIndividualsPositive")
+                        {
+                            if (isMfTestType)
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.K] = val.DynamicValue;
+                            else
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.T] = val.DynamicValue;
+                        }
+                        // mean dens
+                        //else if (val.Indicator.DisplayName == "LFMapSurMeanDensity" || val.Indicator.DisplayName == "LFSurMeanDensity")
+                        //    xlsWorksheet.Cells[rowNumber, 13] = val.DynamicValue;
+                        // count
+                        //else if (val.Indicator.DisplayName == "LFSurCount" || val.Indicator.DisplayName == "LFMapSurCount")
+                        //    xlsWorksheet.Cells[rowNumber, 14] = val.DynamicValue;
+                        // community load
+                        //else if (val.Indicator.DisplayName == "LFMapSurCommunityMfLoad" || val.Indicator.DisplayName == "LFSurCommunityMfLoad")
+                        //    xlsWorksheet.Cells[rowNumber, 15] = val.DynamicValue;
+
+                        // MF: % Positive
+                        else if (val.Indicator.DisplayName == "LFMapSurPositive" || val.Indicator.DisplayName == "LFSurPositive")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.L] = val.DynamicValue;
+                        // Test Type
+                        else if (val.Indicator.DisplayName == "LFMapTestType" || val.Indicator.DisplayName == "LFSurTestType")
+                        {
+                            if (!isMfTestType)
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.M] = val.DynamicValue;
+                        }
+                        // Age range
+                        else if (val.Indicator.DisplayName == "LFSurAgeRange" || val.Indicator.DisplayName == "LFMapSurAgeRange" || val.Indicator.DisplayName == "TASAgeRange")
+                        {
+                            if (val.Indicator.DisplayName == "TASAgeRange")
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.N] = val.DynamicValue;
+                            else
+                            {
+                                if (!isMfTestType)
+                                    xlsWorksheet.Cells[rowNumber, (int)ExcelCol.N] = val.DynamicValue;
+                            }
+                        }
+                        // Survey site
+                        else if (val.Indicator.DisplayName == "LFMapSurMappingSiteLocation" || val.Indicator.DisplayName == "TASLocationType")
+                        {
+                            if (val.Indicator.DisplayName == "LFMapSurMappingSiteLocation")
+                            {
+                                if (!isMfTestType)
+                                    xlsWorksheet.Cells[rowNumber, (int)ExcelCol.O] = val.DynamicValue;
+                            }
+                            else
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.O] = val.DynamicValue;
+                        }
+                        // Ag/Ab: Survey type
+                        else if (val.Indicator.DisplayName == "TASSurveyType")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.P] = val.DynamicValue;
+                        // Ag/Ab: # schools or EA targeted
+                        else if (val.Indicator.DisplayName == "TASTargetNumberOfSchoolsOrEas")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.Q] = val.DynamicValue;
+                        // Ag/Ab: Target sample size
+                        else if (val.Indicator.DisplayName == "LFMapSurTargetSampleSize" || val.Indicator.DisplayName == "LFSurTargetSampleSize" || val.Indicator.DisplayName == "TASTargetSampleSize")
+                        {
+                            if (val.Indicator.DisplayName == "TASTargetSampleSize")
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.R] = val.DynamicValue;
+                            else
+                            {
+                                if (!isMfTestType)
+                                    xlsWorksheet.Cells[rowNumber, (int)ExcelCol.R] = val.DynamicValue;
+                            }
+                        }
+                        // Ag/Ab: Number of people positive
+                        else if (val.Indicator.DisplayName == "TASActualSampleSizePositive")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.T] = val.DynamicValue;
+                        // Ag/Ab: Critical cut-off
+                        else if (val.Indicator.DisplayName == "TASCriticalCutoffValue")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.V] = val.DynamicValue;
+                        // Ag/Ab: Decision
+                        else if (val.Indicator.DisplayName == "TASCriticalCutoff")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.W] = val.DynamicValue;
+                        // Lymphoedema: Number of people examined
+                        else if (val.Indicator.DisplayName == "LFSurExaminedLympho" || val.Indicator.DisplayName == "LFMapSurExaminedLympho")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.X] = val.DynamicValue;
+                        // Lymphoedema: Number of people positive
+                        else if (val.Indicator.DisplayName == "LFMapSurNumberOfCasesOfLymphoedema" || val.Indicator.DisplayName == "LFSurPosLympho")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.Y] = val.DynamicValue;
+                        // Hydrocele: Number of people examined
+                        else if (val.Indicator.DisplayName == "LFSurExaminedHydro" || val.Indicator.DisplayName == "LFMapSurExaminedHydro1")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.AA] = val.DynamicValue;
+                        // Hydrocele: Number of people positive
+                        else if (val.Indicator.DisplayName == "LFMapSurNumberOfCasesOfHydrocele" || val.Indicator.DisplayName == "LFSurPosHydro")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.AB] = val.DynamicValue;
+
+                    }
+                    rowNumber++;
+                    rowCount++;
                 }
-
-                foreach (IndicatorValue val in survey.IndicatorValues)
-                {
-                    if (val.Indicator.DisplayName == "LFMapSurSiteNames")
-                        xlsWorksheet.Cells[rowNumber, 2] = val.DynamicValue;
-                    else if (val.Indicator.DisplayName == "LFMapSurLatitude" && !string.IsNullOrEmpty(val.DynamicValue))
-                        xlsWorksheet.Cells[rowNumber, 5] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
-                    else if (val.Indicator.DisplayName == "LFMapSurLongitude" && !string.IsNullOrEmpty(val.DynamicValue))
-                        xlsWorksheet.Cells[rowNumber, 6] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
-                    else if (val.Indicator.DisplayName == "LFSurDateOfTheFirstRoundOfPc")
-                        xlsWorksheet.Cells[rowNumber, 7] = val.DynamicValue;
-                    else if (val.Indicator.DisplayName == "LFSurNumberOfRoundsOfPcCompletedPriorToS")
-                        xlsWorksheet.Cells[rowNumber, 8] = val.DynamicValue;
-                    else if (val.Indicator.DisplayName == "LFMapSurTestType" || val.Indicator.DisplayName == "LFSurTestType")
-                        xlsWorksheet.Cells[rowNumber, 9] = TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue);
-                    else if (val.Indicator.DisplayName == "LFMapSurNumberOfIndividualsExamined" || val.Indicator.DisplayName == "LFSurNumberOfIndividualsExamined")
-                        xlsWorksheet.Cells[rowNumber, 10] = val.DynamicValue;
-                    else if (val.Indicator.DisplayName == "LFSurNumberOfIndividualsPositive" || val.Indicator.DisplayName == "LFMapSurNumberOfIndividualsPositive")
-                        xlsWorksheet.Cells[rowNumber, 11] = val.DynamicValue;
-                    // mean dens
-                    else if (val.Indicator.DisplayName == "LFMapSurMeanDensity" || val.Indicator.DisplayName == "LFSurMeanDensity")
-                        xlsWorksheet.Cells[rowNumber, 13] = val.DynamicValue;
-                    // count
-                    else if (val.Indicator.DisplayName == "LFSurCount" || val.Indicator.DisplayName == "LFMapSurCount")
-                        xlsWorksheet.Cells[rowNumber, 14] = val.DynamicValue;
-                    // community load
-                    else if (val.Indicator.DisplayName == "LFMapSurCommunityMfLoad" || val.Indicator.DisplayName == "LFSurCommunityMfLoad")
-                        xlsWorksheet.Cells[rowNumber, 15] = val.DynamicValue;
-                    // ly peeps examined
-                    else if (val.Indicator.DisplayName == "LFSurExaminedLympho" || val.Indicator.DisplayName == "LFMapSurExaminedLympho")
-                        xlsWorksheet.Cells[rowNumber, 16] = val.DynamicValue;
-                    // ly peeps pos
-                    else if (val.Indicator.DisplayName == "LFMapSurNumberOfCasesOfLymphoedema" || val.Indicator.DisplayName == "LFSurPosLympho")
-                        xlsWorksheet.Cells[rowNumber, 17] = val.DynamicValue;
-                    // hy peeps examined
-                    else if (val.Indicator.DisplayName == "LFSurExaminedHydro" || val.Indicator.DisplayName == "LFMapSurExaminedHydro1")
-                        xlsWorksheet.Cells[rowNumber, 19] = val.DynamicValue;
-                    // hy peeps pos
-                    else if (val.Indicator.DisplayName == "LFMapSurNumberOfCasesOfHydrocele" || val.Indicator.DisplayName == "LFSurPosHydro")
-                        xlsWorksheet.Cells[rowNumber, 20] = val.DynamicValue;
-
-
-                }
-                rowNumber++;
-                rowCount++;
             }
 
             // run formula
