@@ -16,6 +16,11 @@ INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, Dropdow
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES (106, 3, 13, 'FTS', 'FTS', 0, 26, NOW, 26, NOW());
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES (279, 3, 14, 'FTS', 'FTS', 0, 26, NOW, 26, NOW());
 
+-- Story #189
+UPDATE IndicatorDropdownValues SET SortOrder = 100 WHERE ID = 327;
+UPDATE IndicatorDropdownValues SET SortOrder = 300 WHERE ID = 328;
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES (245, 3, 200, 'FTS', 'FTS', 0, 26, NOW, 26, NOW());
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]
