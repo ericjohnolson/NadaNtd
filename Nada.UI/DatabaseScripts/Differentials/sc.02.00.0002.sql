@@ -12,6 +12,10 @@ INSERT INTO SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, Upd
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES (594, 3, 1, 'LFSurSurveySiteCommunity', 'Community', 0, 26, NOW, 26, NOW());
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES (594, 3, 2, 'LFSurSurveySiteSchool', 'School', 0, 26, NOW, 26, NOW());
 
+-- Story #190
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES (106, 3, 13, 'FTS', 'FTS', 0, 26, NOW, 26, NOW());
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES (279, 3, 14, 'FTS', 'FTS', 0, 26, NOW, 26, NOW());
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]
