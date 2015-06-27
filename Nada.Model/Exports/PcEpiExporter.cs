@@ -407,7 +407,7 @@ namespace Nada.Model.Exports
             {
                 if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
                 {
-                    if (survey.HasSentinelSite && survey.SentinelSiteId.HasValue)
+                    if (survey.SentinelSiteId.HasValue)
                     {
                         var site = repo.GetSiteById(survey.SentinelSiteId.Value);
                         if (site.Lat.HasValue)
@@ -494,7 +494,7 @@ namespace Nada.Model.Exports
             {
                 if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
                 {
-                    if (survey.HasSentinelSite && survey.SentinelSiteId.HasValue)
+                    if (survey.SentinelSiteId.HasValue)
                     {
                         var site = repo.GetSiteById(survey.SentinelSiteId.Value);
                         if (site.Lat.HasValue)
