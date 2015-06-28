@@ -1882,7 +1882,7 @@
     <value>Schistosomiasis</value>
   </data>
   <data name="LfStopMdaTas" xml:space="preserve">
-    <value>Stop MDA</value>
+    <value>TAS 1</value>
   </data>
   <data name="SAEIspatientpregnant" xml:space="preserve">
     <value>Is patient pregnant?</value>
@@ -2909,7 +2909,7 @@ Fixed / Mobile</value>
     <value>Survey site</value>
   </data>
   <data name="PostMdaTasII" xml:space="preserve">
-    <value>Post-MDA surveillance 2</value>
+    <value>TAS 3</value>
   </data>
   <data name="SaeOngoingillness" xml:space="preserve">
     <value>Ongoing illness</value>
@@ -3359,7 +3359,7 @@ Fixed / Mobile</value>
     <value>Onchocerciasis (River blindness) Mapping</value>
   </data>
   <data name="PostMdaTasI" xml:space="preserve">
-    <value>Post-MDA surveillance 1</value>
+    <value>TAS 2</value>
   </data>
   <data name="UnexpectedException" xml:space="preserve">
     <value>An unexpected exception occurred, please contact support.  Exception details: </value>

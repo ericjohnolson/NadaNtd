@@ -1882,7 +1882,7 @@
     <value>Schistosomiasis</value>
   </data>
   <data name="LfStopMdaTas" xml:space="preserve">
-    <value>Hentikan POMP</value>
+    <value>TAS 1</value>
   </data>
   <data name="SAEIspatientpregnant" xml:space="preserve">
     <value>Apakah pasien hamil?</value>
@@ -2897,7 +2897,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
     <value>Survey site</value>
   </data>
   <data name="PostMdaTasII" xml:space="preserve">
-    <value>Pengawasan pasca POMP 2</value>
+    <value>TAS 3</value>
   </data>
   <data name="SaeOngoingillness" xml:space="preserve">
     <value>Penyakit yang sedang berlangsung</value>
@@ -3347,7 +3347,7 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
     <value>Pemetaan Onchocerciasis (Kebutaan sungai)</value>
   </data>
   <data name="PostMdaTasI" xml:space="preserve">
-    <value>Pengawasan pasca POMP 1</value>
+    <value>TAS 2</value>
   </data>
   <data name="UnexpectedException" xml:space="preserve">
     <value>Sebuah pengecualian tak terduga terjadi, silakan hubungi petugas. Rincian pengecualian:</value>

@@ -1883,7 +1883,7 @@
     <value>Schistosomiase</value>
   </data>
   <data name="LfStopMdaTas" xml:space="preserve">
-    <value>Arrêt du TMM</value>
+    <value>TAS 1</value>
   </data>
   <data name="SAEIspatientpregnant" xml:space="preserve">
     <value>La patiente est-elle enceinte ?</value>
@@ -2902,7 +2902,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Survey site</value>
   </data>
   <data name="PostMdaTasII" xml:space="preserve">
-    <value>Surveillance post-TMM 2</value>
+    <value>TAS 3</value>
   </data>
   <data name="SaeOngoingillness" xml:space="preserve">
     <value>Maladie en cours</value>
@@ -3352,7 +3352,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Cartographie de l'onchocercose (cécité des rivières)</value>
   </data>
   <data name="PostMdaTasI" xml:space="preserve">
-    <value>Surveillance post-TMM 1</value>
+    <value>TAS 2</value>
   </data>
   <data name="UnexpectedException" xml:space="preserve">
     <value>Une exception inattendue s'est produite, veuillez contacter le service d'assistance.  Détails relatifs à l'exception : </value>

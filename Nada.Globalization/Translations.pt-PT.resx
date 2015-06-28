@@ -1882,7 +1882,7 @@
     <value>Esquistossomose</value>
   </data>
   <data name="LfStopMdaTas" xml:space="preserve">
-    <value>Impedir MDA</value>
+    <value>TAS 1</value>
   </data>
   <data name="SAEIspatientpregnant" xml:space="preserve">
     <value>É paciente grávida?</value>
@@ -2897,7 +2897,7 @@ Fixo / móvel </value>
     <value>Survey site</value>
   </data>
   <data name="PostMdaTasII" xml:space="preserve">
-    <value>vigilância Pós- MDA  2</value>
+    <value>TAS 3</value>
   </data>
   <data name="SaeOngoingillness" xml:space="preserve">
     <value>doença continua</value>
@@ -3347,7 +3347,7 @@ Fixo / móvel </value>
     <value>Mapeamento Oncocercose ( cegueira ) </value>
   </data>
   <data name="PostMdaTasI" xml:space="preserve">
-    <value>vigilância Pós- MDA  1</value>
+    <value>TAS 2</value>
   </data>
   <data name="UnexpectedException" xml:space="preserve">
     <value>Ocorreu uma expceção inesperada , por favor, entre em contacto com o suporte . Detalhes da Expceção:</value>
