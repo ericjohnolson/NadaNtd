@@ -21,6 +21,9 @@ UPDATE IndicatorDropdownValues SET SortOrder = 100 WHERE ID = 327;
 UPDATE IndicatorDropdownValues SET SortOrder = 300 WHERE ID = 328;
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES (245, 3, 200, 'FTS', 'FTS', 0, 26, NOW, 26, NOW());
 
+-- Story #188
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (2, 'd807913f-b3a1-4948-a2b3-54eb0800a3bc', 5, 2190, 26, NOW(), 0, 0, -1, 0, 0, 0, 15, 49, 53);
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]
