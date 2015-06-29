@@ -197,7 +197,24 @@ namespace Nada.Model.Exports
                     }
                     else if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.LfTas)
                     {
-                        // No static indicators
+                        // Year of Start date of MDA of earliest Intervention
+                        List<IntvBase> interventions = repo.GetAll(new List<int>
+                        {
+                            (int)StaticIntvType.Alb, (int)StaticIntvType.Alb2, (int)StaticIntvType.DecAlb, (int)StaticIntvType.Ivm, (int)StaticIntvType.IvmAlb,
+                            (int)StaticIntvType.IvmPzq, (int)StaticIntvType.IvmPzqAlb, (int)StaticIntvType.Mbd, (int)StaticIntvType.Pzq, (int)StaticIntvType.PzqAlb,
+                            (int)StaticIntvType.PzqMbd, (int)StaticIntvType.ZithroTeo
+                        }, new List<int> {adminLevel.Id});
+                        if (interventions.Count > 0) {
+                            // Get all the MDA Start date indicators
+                            List<string> mdaStarts = interventions.SelectMany(x => x.IndicatorValues).Where(v => v.Indicator.DisplayName == "PcIntvStartDateOfMda")
+                                .Select(x => x.DynamicValue).ToList();
+                            if (mdaStarts.Count > 0) {
+                                // Get the earliest one
+                                DateTime earliestMda = Convert.ToDateTime(mdaStarts.OrderBy(x => Convert.ToDateTime(x)).FirstOrDefault());
+                                // Add it to the worksheet
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.H] = earliestMda.Year;
+                            }
+                        }
                     }
  
 
