@@ -155,7 +155,6 @@ namespace Nada.Model.Exports
                     
                     // Static indicators
                     xlsWorksheet.Cells[rowNumber, (int)ExcelCol.B] = adminLevel.Name;
-                    xlsWorksheet.Cells[rowNumber, (int)ExcelCol.E] = survey.DateReported.ToString("MMMM");
                     if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
                     {
                         var testTypeVal = survey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapTestType");
@@ -214,6 +213,12 @@ namespace Nada.Model.Exports
                         // TAS objective
                         else if (val.Indicator.DisplayName == "TASTasObjective")
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.D] = TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue);
+                        else if (val.Indicator.DisplayName == "LFMapSurStartDateOfSurvey" || val.Indicator.DisplayName == "LFSurStartDateOfSurvey" || val.Indicator.DisplayName == "TASStartDateOfSurvey")
+                        {
+                            DateTime date;
+                            if (DateTime.TryParse(val.DynamicValue, out date))
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.E] = date.ToString("MMMM");
+                        }
                         else if (val.Indicator.DisplayName == "LFMapSurLatitude" && !string.IsNullOrEmpty(val.DynamicValue))
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.F] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
                         else if (val.Indicator.DisplayName == "LFMapSurLongitude" && !string.IsNullOrEmpty(val.DynamicValue))
@@ -371,11 +376,16 @@ namespace Nada.Model.Exports
                 foreach (AdminLevel unit in survey.AdminLevels)
                 {
                     xlsWorksheet.Cells[rowNumber, 1] = unit.Name;
-                    xlsWorksheet.Cells[rowNumber, 3] = survey.DateReported.ToString("MMMM");
                     foreach (IndicatorValue val in survey.IndicatorValues)
                     {
                         if (val.Indicator.DisplayName == "OnchoSurSiteName" || val.Indicator.DisplayName == "OnchoMapSiteName")
                             xlsWorksheet.Cells[rowNumber, 2] = val.DynamicValue;
+                        else if (val.Indicator.DisplayName == "OnchoSurStartDateOfSurvey" || val.Indicator.DisplayName == "OnchoMapSurStartDateOfSurvey")
+                        {
+                            DateTime date;
+                            if (DateTime.TryParse(val.DynamicValue, out date))
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.C] = date.ToString("MMMM");
+                        }
                         else if ((val.Indicator.DisplayName == "OnchoSurLatitude" || val.Indicator.DisplayName == "OnchoMapSurLatitude") && !string.IsNullOrEmpty(val.DynamicValue))
                             xlsWorksheet.Cells[rowNumber, 4] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
                         else if ((val.Indicator.DisplayName == "OnchoSurLongitude" || val.Indicator.DisplayName == "OnchoMapSurLongitude") && !string.IsNullOrEmpty(val.DynamicValue))
@@ -438,11 +448,16 @@ namespace Nada.Model.Exports
                 foreach (AdminLevel unit in survey.AdminLevels)
                 {
                     xlsWorksheet.Cells[rowNumber, 1] = unit.Name;
-                    xlsWorksheet.Cells[rowNumber, 3] = survey.DateReported.ToString("MMMM");
                     foreach (IndicatorValue val in survey.IndicatorValues)
                     {
                         if (val.Indicator.DisplayName == "STHMapSurSurSiteNames")
                             xlsWorksheet.Cells[rowNumber, 2] = val.DynamicValue;
+                        else if (val.Indicator.DisplayName == "STHMapSurSurStartDateOfSurvey" || val.Indicator.DisplayName == "STHSurStartDateOfSurvey")
+                        {
+                            DateTime date;
+                            if (DateTime.TryParse(val.DynamicValue, out date))
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.C] = date.ToString("MMMM");
+                        }
                         else if (val.Indicator.DisplayName == "STHMapSurSurLatitude" && !string.IsNullOrEmpty(val.DynamicValue))
                             xlsWorksheet.Cells[rowNumber, 4] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
                         else if (val.Indicator.DisplayName == "STHMapSurSurLongitude" && !string.IsNullOrEmpty(val.DynamicValue))
@@ -525,11 +540,16 @@ namespace Nada.Model.Exports
                 foreach (AdminLevel unit in survey.AdminLevels)
                 {
                     xlsWorksheet.Cells[rowNumber, 1] = unit.Name;
-                    xlsWorksheet.Cells[rowNumber, 3] = survey.DateReported.ToString("MMMM");
                     foreach (IndicatorValue val in survey.IndicatorValues)
                     {
                         if (val.Indicator.DisplayName == "SCHMapSurSiteNames")
                             xlsWorksheet.Cells[rowNumber, 2] = val.DynamicValue;
+                        else if (val.Indicator.DisplayName == "SCHSurStartDateOfSurvey" || val.Indicator.DisplayName == "SCHMapSurStartDateOfSurvey")
+                        {
+                            DateTime date;
+                            if (DateTime.TryParse(val.DynamicValue, out date))
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.C] = date.ToString("MMMM");
+                        }
                         else if (val.Indicator.DisplayName == "SCHMapSurLatitude" && !string.IsNullOrEmpty(val.DynamicValue))
                             xlsWorksheet.Cells[rowNumber, 4] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
                         else if (val.Indicator.DisplayName == "SCHMapSurLongitude" && !string.IsNullOrEmpty(val.DynamicValue))
