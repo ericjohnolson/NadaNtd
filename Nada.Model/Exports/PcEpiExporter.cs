@@ -213,7 +213,7 @@ namespace Nada.Model.Exports
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.C] = val.DynamicValue;
                         // TAS objective
                         else if (val.Indicator.DisplayName == "TASTasObjective")
-                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.D] = val.DynamicValue;
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.D] = TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue);
                         else if (val.Indicator.DisplayName == "LFMapSurLatitude" && !string.IsNullOrEmpty(val.DynamicValue))
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.F] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
                         else if (val.Indicator.DisplayName == "LFMapSurLongitude" && !string.IsNullOrEmpty(val.DynamicValue))
@@ -227,17 +227,17 @@ namespace Nada.Model.Exports
                         // MF: Number of people examined
                         else if (val.Indicator.DisplayName == "LFMapSurNumberOfIndividualsExamined" || val.Indicator.DisplayName == "LFSurNumberOfIndividualsExamined")
                         {
-                            if (isMfTestType)
+                            if (isMfTestType) // MF: Number of people examined
                                 xlsWorksheet.Cells[rowNumber, (int)ExcelCol.J] = val.DynamicValue;
-                            else
+                            else // Ag/Ab: Number of people examined
                                 xlsWorksheet.Cells[rowNumber, (int)ExcelCol.S] = val.DynamicValue;
                         }
                         // MF: Number of people positive
                         else if (val.Indicator.DisplayName == "LFSurNumberOfIndividualsPositive" || val.Indicator.DisplayName == "LFMapSurNumberOfIndividualsPositive")
                         {
-                            if (isMfTestType)
+                            if (isMfTestType) // MF: Number of people positive
                                 xlsWorksheet.Cells[rowNumber, (int)ExcelCol.K] = val.DynamicValue;
-                            else
+                            else // Ag/Ab: Number of people positive
                                 xlsWorksheet.Cells[rowNumber, (int)ExcelCol.T] = val.DynamicValue;
                         }
                         // mean dens
@@ -254,10 +254,15 @@ namespace Nada.Model.Exports
                         else if (val.Indicator.DisplayName == "LFMapSurPositive" || val.Indicator.DisplayName == "LFSurPositive")
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.L] = val.DynamicValue;
                         // Test Type
-                        else if (val.Indicator.DisplayName == "LFMapTestType" || val.Indicator.DisplayName == "LFSurTestType")
+                        else if (val.Indicator.DisplayName == "LFMapTestType" || val.Indicator.DisplayName == "LFSurTestType" || val.Indicator.DisplayName == "TASDiagnosticTest")
                         {
-                            if (!isMfTestType)
+                            if (val.Indicator.DisplayName == "TASDiagnosticTest")
                                 xlsWorksheet.Cells[rowNumber, (int)ExcelCol.M] = val.DynamicValue;
+                            else
+                            {
+                                if (!isMfTestType)
+                                    xlsWorksheet.Cells[rowNumber, (int)ExcelCol.M] = val.DynamicValue;
+                            }
                         }
                         // Age range
                         else if (val.Indicator.DisplayName == "LFSurAgeRange" || val.Indicator.DisplayName == "LFMapSurAgeRange" || val.Indicator.DisplayName == "TASAgeRange")
@@ -298,6 +303,9 @@ namespace Nada.Model.Exports
                                     xlsWorksheet.Cells[rowNumber, (int)ExcelCol.R] = val.DynamicValue;
                             }
                         }
+                        // Ag/Ab: Number of people examined
+                        else if (val.Indicator.DisplayName == "d807913f-b3a1-4948-a2b3-54eb0800a3bc")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.S] = val.DynamicValue;
                         // Ag/Ab: Number of people positive
                         else if (val.Indicator.DisplayName == "TASActualSampleSizePositive")
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.T] = val.DynamicValue;
@@ -306,7 +314,7 @@ namespace Nada.Model.Exports
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.V] = val.DynamicValue;
                         // Ag/Ab: Decision
                         else if (val.Indicator.DisplayName == "TASCriticalCutoff")
-                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.W] = val.DynamicValue;
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.W] = TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue);
                         // Lymphoedema: Number of people examined
                         else if (val.Indicator.DisplayName == "LFSurExaminedLympho" || val.Indicator.DisplayName == "LFMapSurExaminedLympho")
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.X] = val.DynamicValue;
