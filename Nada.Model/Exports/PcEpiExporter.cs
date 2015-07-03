@@ -480,7 +480,7 @@ namespace Nada.Model.Exports
                         else if (val.Indicator.DisplayName == "STHMapSurSurLongitude" && !string.IsNullOrEmpty(val.DynamicValue))
                             xlsWorksheet.Cells[rowNumber, 5] = Math.Round(Convert.ToDouble(val.DynamicValue), 2);
                         else if (val.Indicator.DisplayName == "STHMapSurSurTestType" || val.Indicator.DisplayName == "STHSurTestType")
-                            xlsWorksheet.Cells[rowNumber, 6] = val.DynamicValue;
+                            xlsWorksheet.Cells[rowNumber, 6] = TranslationLookup.GetValue(val.DynamicValue, val.DynamicValue);
                         else if (val.Indicator.DisplayName == "STHMapSurSurAgeGroupSurveyed" || val.Indicator.DisplayName == "STHSurAgeGroupSurveyed")
                             xlsWorksheet.Cells[rowNumber, 7] = val.DynamicValue;
 
