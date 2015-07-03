@@ -153,18 +153,18 @@ namespace Nada.Model.Exports
                     if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDSchistoDiseaseDistributionPcIntervent") + " - " + TranslationLookup.GetValue("Schisto")))
                         AddValueToRange(xlsWorksheet, rng, "K" + rowId, TranslateEndemicity(DiseaseType.Schisto, ddDict[district.Id][TranslationLookup.GetValue("DDSchistoDiseaseDistributionPcIntervent") + " - " + TranslationLookup.GetValue("Schisto")].ToString()));
 
-                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDLFNumPcRoundsYearRecommendedByWhoGuid") + " - " + TranslationLookup.GetValue("LF")))
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDLFNumPcRoundsYearCurrentlyImplemented") + " - " + TranslationLookup.GetValue("LF")))
                         AddValueToRange(xlsWorksheet, rng, "P" + rowId,
-                        ddDict[district.Id][TranslationLookup.GetValue("DDLFNumPcRoundsYearRecommendedByWhoGuid") + " - " + TranslationLookup.GetValue("LF")]);
-                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDOnchoNumPcRoundsYearRecommendedByWhoG") + " - " + TranslationLookup.GetValue("Oncho")))
+                        ddDict[district.Id][TranslationLookup.GetValue("DDLFNumPcRoundsYearCurrentlyImplemented") + " - " + TranslationLookup.GetValue("LF")]);
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDOnchoNumPcRoundsYearCurrentlyImplemen") + " - " + TranslationLookup.GetValue("Oncho")))
                         AddValueToRange(xlsWorksheet, rng, "Q" + rowId,
-                        ddDict[district.Id][TranslationLookup.GetValue("DDOnchoNumPcRoundsYearRecommendedByWhoG") + " - " + TranslationLookup.GetValue("Oncho")]);
-                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDSTHNumPcRoundsYearRecommendedByWhoGui") + " - " + TranslationLookup.GetValue("STH")))
+                        ddDict[district.Id][TranslationLookup.GetValue("DDOnchoNumPcRoundsYearCurrentlyImplemen") + " - " + TranslationLookup.GetValue("Oncho")]);
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDSTHNumPcRoundsYearCurrentlyImplemente") + " - " + TranslationLookup.GetValue("STH")))
                         AddValueToRange(xlsWorksheet, rng, "R" + rowId,
-                       ddDict[district.Id][TranslationLookup.GetValue("DDSTHNumPcRoundsYearRecommendedByWhoGui") + " - " + TranslationLookup.GetValue("STH")]);
-                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDSchistoNumPcRoundsYearRecommendedByWh") + " - " + TranslationLookup.GetValue("Schisto")))
+                       ddDict[district.Id][TranslationLookup.GetValue("DDSTHNumPcRoundsYearCurrentlyImplemente") + " - " + TranslationLookup.GetValue("STH")]);
+                    if (ddDict[district.Id].Table.Columns.Contains(TranslationLookup.GetValue("DDSchistoNumPcRoundsYearCurrentlyImplem") + " - " + TranslationLookup.GetValue("Schisto")))
                         AddValueToRange(xlsWorksheet, rng, "S" + rowId,
-                       ddDict[district.Id][TranslationLookup.GetValue("DDSchistoNumPcRoundsYearRecommendedByWh") + " - " + TranslationLookup.GetValue("Schisto")]);
+                       ddDict[district.Id][TranslationLookup.GetValue("DDSchistoNumPcRoundsYearCurrentlyImplem") + " - " + TranslationLookup.GetValue("Schisto")]);
                 }
                 rowId++;
             }
@@ -533,16 +533,16 @@ namespace Nada.Model.Exports
             DistributionReportGenerator gen = new DistributionReportGenerator();
             var lf = diseaseRepo.Create(DiseaseType.Lf);
             options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lf.Id, lf.Indicators["DDLFDiseaseDistributionPcInterventions"]));
-            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lf.Id, lf.Indicators["DDLFNumPcRoundsYearRecommendedByWhoGuid"]));
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lf.Id, lf.Indicators["DDLFNumPcRoundsYearCurrentlyImplemented"]));
             var oncho = diseaseRepo.Create(DiseaseType.Oncho);
             options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(oncho.Id, oncho.Indicators["DDOnchoDiseaseDistributionPcInterventio"]));
-            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(oncho.Id, oncho.Indicators["DDOnchoNumPcRoundsYearRecommendedByWhoG"]));
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(oncho.Id, oncho.Indicators["DDOnchoNumPcRoundsYearCurrentlyImplemen"]));
             var sth = diseaseRepo.Create(DiseaseType.STH);
             options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(sth.Id, sth.Indicators["DDSTHDiseaseDistributionPcInterventions"]));
-            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(sth.Id, sth.Indicators["DDSTHNumPcRoundsYearRecommendedByWhoGui"]));
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(sth.Id, sth.Indicators["DDSTHNumPcRoundsYearCurrentlyImplemente"]));
             var schisto = diseaseRepo.Create(DiseaseType.Schisto);
             options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(schisto.Id, schisto.Indicators["DDSchistoDiseaseDistributionPcIntervent"]));
-            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(schisto.Id, schisto.Indicators["DDSchistoNumPcRoundsYearRecommendedByWh"]));
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(schisto.Id, schisto.Indicators["DDSchistoNumPcRoundsYearCurrentlyImplem"]));
 
             ReportResult ddResult = gen.Run(new SavedReport { ReportOptions = options });
             dd = new Dictionary<int, DataRow>();
