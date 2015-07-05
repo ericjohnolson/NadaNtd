@@ -19,6 +19,7 @@ namespace Nada.Model.Imports
         public ImportOptions()
         {
             IndicatorValuesSublist = new Dictionary<string, List<string>>();
+            SurveyNames = new List<IndicatorDropdownValue>();
         }
         public IImporter Importer { get; set; }
         public IndicatorEntityType EntityType { get; set; }
