@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Nada.Model.Diseases;
+using Nada.Model.Intervention;
 
 namespace Nada.Model.Reports
 {
@@ -20,5 +21,20 @@ namespace Nada.Model.Reports
         public AdminLevelType DistrictType { get; set; }
         public List<Disease> Diseases { get; set; }
         public bool IsPersons { get; set; }
+    }
+
+    public class PersonsTreatedCoverageReportOptions : IStandardOptions
+    {
+        public PersonsTreatedCoverageReportOptions()
+        {
+            Diseases = new List<Disease>();
+            DrugPackages = new List<IntvType>();
+            Years = new List<int>();
+        }
+        public AdminLevelType DistrictType { get; set; }
+        public List<Disease> Diseases { get; set; }
+        public List<IntvType> DrugPackages { get; set; }
+        public List<int> Years { get; set; }
+        public bool isReportTypeDisease { get; set; }
     }
 }

@@ -65,6 +65,9 @@
             this.h3Link6 = new Nada.UI.Controls.H3Link();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.h3bLabel3 = new Nada.UI.Controls.H3bLabel();
+            this.h3Link3 = new Nada.UI.Controls.H3Link();
             this.tblCmJrf.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -77,6 +80,7 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // label21
@@ -279,7 +283,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(905, 410);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(905, 430);
             this.tableLayoutPanel2.TabIndex = 72;
             // 
             // tableLayoutPanel11
@@ -292,7 +296,7 @@
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel11.Controls.Add(this.c1Button1, 2, 1);
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(794, 308);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(794, 328);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 3;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -325,16 +329,17 @@
             this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel7, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel8, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 251);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(268, 46);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(268, 66);
             this.tableLayoutPanel4.TabIndex = 76;
             // 
             // tableLayoutPanel3
@@ -674,6 +679,53 @@
             this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Blue;
             this.c1Button2.Click += new System.EventHandler(this.c1Button2_Click);
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.AutoSize = true;
+            this.tableLayoutPanel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel7.Controls.Add(this.h3bLabel3, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.h3Link3, 1, 0);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 49);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(262, 14);
+            this.tableLayoutPanel7.TabIndex = 76;
+            // 
+            // h3bLabel3
+            // 
+            this.h3bLabel3.AutoSize = true;
+            this.h3bLabel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel3.Location = new System.Drawing.Point(0, 0);
+            this.h3bLabel3.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel3.Name = "h3bLabel3";
+            this.h3bLabel3.Size = new System.Drawing.Size(207, 16);
+            this.h3bLabel3.TabIndex = 74;
+            this.h3bLabel3.Tag = "PersonsTreatedAndCoverageReport";
+            this.h3bLabel3.Text = "PersonsTreatedAndCoverageReport";
+            this.h3bLabel3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3Link3
+            // 
+            this.h3Link3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3Link3.AutoSize = true;
+            this.h3Link3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3Link3.BackColor = System.Drawing.Color.Transparent;
+            this.h3Link3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.h3Link3.Location = new System.Drawing.Point(207, 2);
+            this.h3Link3.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.h3Link3.Name = "h3Link3";
+            this.h3Link3.Size = new System.Drawing.Size(55, 15);
+            this.h3Link3.TabIndex = 72;
+            this.h3Link3.Tag = "NewLink";
+            this.h3Link3.Text = "NewLink";
+            this.h3Link3.TextColor = System.Drawing.Color.RoyalBlue;
+            this.h3Link3.ClickOverride += new System.Action(this.personsTreatedAndCoverageReport_ClickOverride);
+            // 
             // ReportsDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -710,6 +762,8 @@
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -754,5 +808,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private Controls.H3bLabel h3bLabel7;
         private Controls.H3Link h3Link7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private Controls.H3bLabel h3bLabel3;
+        private Controls.H3Link h3Link3;
     }
 }

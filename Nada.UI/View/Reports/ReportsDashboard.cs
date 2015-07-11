@@ -228,5 +228,19 @@ namespace Nada.UI.View.Reports
             report.Show();
         }
 
+        private void personsTreatedAndCoverageReport_ClickOverride()
+        {
+            SavedReport sr = new SavedReport { StandardReportOptions = new PersonsTreatedCoverageReportOptions() };
+            sr.ReportOptions.IsAllLocations = true;
+            sr.ReportOptions.IsCountryAggregation = true;
+            sr.ReportOptions.IsByLevelAggregation = false;
+            sr.ReportOptions.IsNoAggregation = false;
+            WizardForm wiz = new WizardForm(new PersonsTreatedCoverageOptions(sr), "Persons Treated and Coverage Report"); // TODO Replace with Translations
+            wiz.OnFinish = () => { };
+            wiz.Height = 685;
+            wiz.OnRunReport = RunEliminationReport;
+            wiz.Show();
+        }
+
     }
 }

@@ -156,9 +156,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -426,6 +429,12 @@
     </Compile>
     <Compile Include="View\Reports\Standard\EliminationOptions.Designer.cs">
       <DependentUpon>EliminationOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\Standard\PersonsTreatedCoverageOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\Standard\PersonsTreatedCoverageOptions.Designer.cs">
+      <DependentUpon>PersonsTreatedCoverageOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="View\UserPasswordChange.cs">
       <SubType>Form</SubType>
@@ -1077,6 +1086,9 @@
     <EmbeddedResource Include="View\Reports\Standard\EliminationOptions.resx">
       <DependentUpon>EliminationOptions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\Standard\PersonsTreatedCoverageOptions.resx">
+      <DependentUpon>PersonsTreatedCoverageOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\UserPasswordChange.resx">
       <DependentUpon>UserPasswordChange.cs</DependentUpon>
     </EmbeddedResource>
@@ -1298,6 +1310,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDashboard.resx">
       <DependentUpon>DiseaseDashboard.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DiseaseDistribution\DiseaseAdd.resx">
       <DependentUpon>DiseaseAdd.cs</DependentUpon>
@@ -1462,6 +1475,7 @@
     <None Include="Properties\DataSources\Nada.Model.PopGroup.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Process.ProcessType.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.EliminationReportOptions.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Reports.PersonsTreatedCoverageReportOptions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicator.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportIndicators.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Reports.ReportOptions.datasource" />
