@@ -112,7 +112,6 @@ namespace Nada.Model
         GuineaWormIntervention = 4,
         LeprosyIntervention = 5,
         HatIntervention = 6,
-        LeishIntervention = 7,
         BuruliUlcerIntv = 8,
         YawsIntervention = 9,
         Ivm = 12,

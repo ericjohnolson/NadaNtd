@@ -71,9 +71,6 @@ namespace Nada.Model.Exports
                 //// hat
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[7];
                 AddIndicators(DiseaseType.Hat, StaticIntvType.HatIntervention, yearReporting, xlsWorksheet, AddHatInds, AggHatInd, districtLevel.LevelNumber);
-                //// leish
-                xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[8];
-                AddIndicators(DiseaseType.Leish, StaticIntvType.LeishIntervention, yearReporting, xlsWorksheet, AddLeishInds, AggLeishInd, districtLevel.LevelNumber);
                 //// buruli
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[9];
                 AddIndicators(DiseaseType.Buruli, StaticIntvType.BuruliUlcerIntv, yearReporting, xlsWorksheet, AddBuInds, AggBuInd, districtLevel.LevelNumber);
