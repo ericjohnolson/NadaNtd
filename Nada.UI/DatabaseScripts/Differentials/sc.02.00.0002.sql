@@ -55,6 +55,9 @@ DELETE FROM InterventionIndicators WHERE InterventionTypeId = (SELECT ID FROM In
 DELETE FROM Interventions WHERE InterventionTypeId = (SELECT ID FROM InterventionTypes WHERE InterventionTypeName = 'LeishIntervention');
 DELETE FROM InterventionTypes WHERE InterventionTypeName = 'LeishIntervention';
 
+-- Story #216 SQL from Nick story 216
+UPDATE ProcessIndicators set AggTypeId=5, RedistrictRuleId=1, MergeRuleId=1, IsRequired=0, SortOrder=25 where displayname = 'LeishTrainPercentageOfHealthFacilitiesHa' and ProcessTypeId=4;
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]
