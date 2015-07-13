@@ -6,6 +6,7 @@ using Nada.Model.Reports;
 using Nada.Model.Repositories;
 using Nada.UI.AppLogic;
 using Nada.UI.Base;
+using Nada.UI.View.Reports.CustomReport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,17 +71,22 @@ namespace Nada.UI.View.Reports.Standard
                 options.isReportTypeDisease = true;
                 // Selected diseases
                 options.Diseases = lbDiseases.SelectedItems.Cast<Disease>().ToList();
+                report.ReportOptions.ReportGenerator = new PersonsTreatedCoverageDiseaseReportGenerator();
             }
             else
             {
                 options.isReportTypeDisease = false;
                 // Selected drug packages
                 options.DrugPackages = lbDrugPackages.SelectedItems.Cast<IntvType>().ToList();
+                report.ReportOptions.ReportGenerator = new PersonsTreatedCoverageDrugPackageReportGenerator();
             }
             // Admin level type
             options.DistrictType = (AdminLevelType)cbAggregateBy.SelectedItem;
             //  Selected years
             options.Years = lbYears.SelectedItems.Cast<int>().ToList();
+
+            // Next step
+            OnSwitchStep(new StepLocations(report, this));
         }
 
         private void StepOptions_Load(object sender, EventArgs e)

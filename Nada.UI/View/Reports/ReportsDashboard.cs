@@ -238,9 +238,25 @@ namespace Nada.UI.View.Reports
             WizardForm wiz = new WizardForm(new PersonsTreatedCoverageOptions(sr), "Persons Treated and Coverage Report"); // TODO Replace with Translations
             wiz.OnFinish = () => { };
             wiz.Height = 685;
+            wiz.OnRunReport = RunPersonsTreatedAndCoverageReport;
+            wiz.Show();
+        }
+
+        private void RunPersonsTreatedAndCoverageReport(SavedReport r)
+        {
+            CustomReportView report = new CustomReportView(r);
+            report.OnEditReport = EditPersonsTreatedAndCoverageReport;
+            report.Show();
+        }
+
+        private void EditPersonsTreatedAndCoverageReport(SavedReport r)
+        {
+            WizardForm wiz = new WizardForm(new PersonsTreatedCoverageOptions(r), "Persons Treated and Coverage Report"); // TODO Replace with Translations
+            wiz.Height = 685;
             wiz.OnRunReport = RunEliminationReport;
             wiz.Show();
         }
+
 
     }
 }

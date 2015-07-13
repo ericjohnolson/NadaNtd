@@ -103,6 +103,7 @@
     <Compile Include="Intervention\IntvCustomValidator.cs" />
     <Compile Include="Process\CalcProcess.cs" />
     <Compile Include="Process\ProcessCustomValidator.cs" />
+    <Compile Include="Reports\PersonsTreatedCoverageReportGenerator.cs" />
     <Compile Include="Reports\RedistrictingReportGenerator.cs" />
     <Compile Include="Reports\IStandardOptions.cs" />
     <Compile Include="Reports\SavedReport.cs" />
