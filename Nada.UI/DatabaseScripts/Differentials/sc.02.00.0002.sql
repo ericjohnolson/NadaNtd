@@ -58,6 +58,45 @@ DELETE FROM InterventionTypes WHERE InterventionTypeName = 'LeishIntervention';
 -- Story #216 SQL from Nick story 216
 UPDATE ProcessIndicators set AggTypeId=5, RedistrictRuleId=1, MergeRuleId=1, IsRequired=0, SortOrder=25 where displayname = 'LeishTrainPercentageOfHealthFacilitiesHa' and ProcessTypeId=4;
 
+-- Story #214, warning multi-nested queries, but trying to be safe and hard-code as little as possible
+DELETE FROM SurveyIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM SurveyIndicators
+		WHERE DisplayName = 'NumPopSurveyedCm' AND SurveyTypeId = (SELECT ID FROM SurveyTypes WHERE SurveyTypeName = 'SurLeishSurvey')
+);
+DELETE FROM SurveyIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM SurveyIndicators
+		WHERE DisplayName = 'NumPopScreenedCm' AND SurveyTypeId = (SELECT ID FROM SurveyTypes WHERE SurveyTypeName = 'SurLeishSurvey')
+);
+DELETE FROM SurveyIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM SurveyIndicators
+		WHERE DisplayName = 'NumCasesDiagnosedCm' AND SurveyTypeId = (SELECT ID FROM SurveyTypes WHERE SurveyTypeName = 'SurLeishSurvey')
+);
+
+DELETE FROM SurveyIndicators
+	WHERE DisplayName = 'NumPopSurveyedCm' AND SurveyTypeId = (SELECT ID FROM SurveyTypes WHERE SurveyTypeName = 'SurLeishSurvey');
+DELETE FROM SurveyIndicators
+	WHERE DisplayName = 'NumPopScreenedCm' AND SurveyTypeId = (SELECT ID FROM SurveyTypes WHERE SurveyTypeName = 'SurLeishSurvey');
+DELETE FROM SurveyIndicators
+	WHERE DisplayName = 'NumCasesDiagnosedCm' AND SurveyTypeId = (SELECT ID FROM SurveyTypes WHERE SurveyTypeName = 'SurLeishSurvey');
+
+-- Story #214 sql from Nick
+UPDATE SurveyIndicators set AggTypeId=5, RedistrictRuleId=49, MergeRuleId=53, IsRequired=0, SortOrder=100000 where displayname = 'Notes' and SurveyTypeId=7;
+UPDATE SurveyIndicators set AggTypeId=5, RedistrictRuleId=49, MergeRuleId=53, IsRequired=-1, SortOrder=1 where displayname = 'DateReported' and SurveyTypeId=7;
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (2, 'e4ece583-91ce-4f0a-baf7-de45831c1135', 5, 2, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (2, '5f5b7326-b505-4321-90d8-ea69d6464801', 5, 3, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (2, '08bde675-17ca-4ed4-8dea-af284e15ba3d', 5, 4, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (2, 'a47f1af8-7399-4915-a541-ded4c2c9d739', 5, 5, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (2, 'd61a5efa-4b2c-4f72-bf56-edab9025b6f2', 5, 6, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (2, '0d21bea5-9f29-4973-aa51-d3503bb284ac', 5, 7, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (13, '6aff65b1-ca6f-4bd8-9982-4f0527dd8a99', 5, 8, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (13, '9dd22c4f-8130-4fbc-8251-607f65d3a7b2', 5, 9, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (13, '9ed458a6-2495-4ffb-adc0-1dfd5a2b6397', 5, 10, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
+insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (13, '71bec938-836c-467e-8e58-5fab966b71ea', 5, 11, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
+
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]
