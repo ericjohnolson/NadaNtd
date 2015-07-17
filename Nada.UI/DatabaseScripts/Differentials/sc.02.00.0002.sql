@@ -96,6 +96,28 @@ insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, Upd
 insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (13, '9ed458a6-2495-4ffb-adc0-1dfd5a2b6397', 5, 10, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
 insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (13, '71bec938-836c-467e-8e58-5fab966b71ea', 5, 11, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
 
+-- Story #214 calculations
+UPDATE SurveyIndicators SET IsCalculated = 1
+	WHERE DisplayName IN ('6aff65b1-ca6f-4bd8-9982-4f0527dd8a99', '9dd22c4f-8130-4fbc-8251-607f65d3a7b2', '9ed458a6-2495-4ffb-adc0-1dfd5a2b6397', '71bec938-836c-467e-8e58-5fab966b71ea');
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName ='6aff65b1-ca6f-4bd8-9982-4f0527dd8a99'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName ='5f5b7326-b505-4321-90d8-ea69d6464801'"), 3);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName ='6aff65b1-ca6f-4bd8-9982-4f0527dd8a99'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName ='e4ece583-91ce-4f0a-baf7-de45831c1135'"), 3);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName ='9dd22c4f-8130-4fbc-8251-607f65d3a7b2'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName ='08bde675-17ca-4ed4-8dea-af284e15ba3d'"), 3);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName ='9dd22c4f-8130-4fbc-8251-607f65d3a7b2'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName ='5f5b7326-b505-4321-90d8-ea69d6464801'"), 3);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName ='9ed458a6-2495-4ffb-adc0-1dfd5a2b6397'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName ='d61a5efa-4b2c-4f72-bf56-edab9025b6f2'"), 3);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName ='9ed458a6-2495-4ffb-adc0-1dfd5a2b6397'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName ='a47f1af8-7399-4915-a541-ded4c2c9d739'"), 3);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName ='71bec938-836c-467e-8e58-5fab966b71ea'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName ='0d21bea5-9f29-4973-aa51-d3503bb284ac'"), 3);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName ='71bec938-836c-467e-8e58-5fab966b71ea'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName ='d61a5efa-4b2c-4f72-bf56-edab9025b6f2'"), 3);
 
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
