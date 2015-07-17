@@ -235,7 +235,7 @@ namespace Nada.UI.View.Reports
             sr.ReportOptions.IsCountryAggregation = true;
             sr.ReportOptions.IsByLevelAggregation = false;
             sr.ReportOptions.IsNoAggregation = false;
-            WizardForm wiz = new WizardForm(new PersonsTreatedCoverageOptions(sr), "Persons Treated and Coverage Report"); // TODO Replace with Translations
+            WizardForm wiz = new WizardForm(new PersonsTreatedCoverageOptions(sr), Translations.PersonsTreatedAndCoverageReport);
             wiz.OnFinish = () => { };
             wiz.Height = 685;
             wiz.OnRunReport = RunPersonsTreatedAndCoverageReport;
@@ -251,7 +251,7 @@ namespace Nada.UI.View.Reports
 
         private void EditPersonsTreatedAndCoverageReport(SavedReport r)
         {
-            WizardForm wiz = new WizardForm(new PersonsTreatedCoverageOptions(r), "Persons Treated and Coverage Report"); // TODO Replace with Translations
+            WizardForm wiz = new WizardForm(new PersonsTreatedCoverageOptions(r), Translations.PersonsTreatedAndCoverageReport);
             wiz.Height = 685;
             wiz.OnRunReport = RunEliminationReport;
             wiz.Show();

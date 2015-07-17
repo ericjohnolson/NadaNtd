@@ -61,11 +61,83 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to VL: Number of diagnosed cases (adults and children, male and female).
+        /// </summary>
+        public static string _08bde675_17ca_4ed4_8dea_af284e15ba3d {
+            get {
+                return ResourceManager.GetString("08bde675-17ca-4ed4-8dea-af284e15ba3d", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CL: Number of diagnosed cases (adults and children, male and female).
+        /// </summary>
+        public static string _0d21bea5_9f29_4973_aa51_d3503bb284ac {
+            get {
+                return ResourceManager.GetString("0d21bea5-9f29-4973-aa51-d3503bb284ac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of rounds of PC completed prior to survey implementation.
         /// </summary>
         public static string _4190984d_f272_4359_8414_6e7ef06fc4bc {
             get {
                 return ResourceManager.GetString("4190984d-f272-4359-8414-6e7ef06fc4bc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VL: Number of persons screened (clinical examination and specimen taking for lab) - adults and children, male and female.
+        /// </summary>
+        public static string _5f5b7326_b505_4321_90d8_ea69d6464801 {
+            get {
+                return ResourceManager.GetString("5f5b7326-b505-4321-90d8-ea69d6464801", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VL survey coverage.
+        /// </summary>
+        public static string _6aff65b1_ca6f_4bd8_9982_4f0527dd8a99 {
+            get {
+                return ResourceManager.GetString("6aff65b1-ca6f-4bd8-9982-4f0527dd8a99", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CL survey prevalence.
+        /// </summary>
+        public static string _71bec938_836c_467e_8e58_5fab966b71ea {
+            get {
+                return ResourceManager.GetString("71bec938-836c-467e-8e58-5fab966b71ea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VL survey prevalence.
+        /// </summary>
+        public static string _9dd22c4f_8130_4fbc_8251_607f65d3a7b2 {
+            get {
+                return ResourceManager.GetString("9dd22c4f-8130-4fbc-8251-607f65d3a7b2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CL survey coverage.
+        /// </summary>
+        public static string _9ed458a6_2495_4ffb_adc0_1dfd5a2b6397 {
+            get {
+                return ResourceManager.GetString("9ed458a6-2495-4ffb-adc0-1dfd5a2b6397", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CL: Number of population in surveyed villages or communities - Adult and children (&lt;15 years), male and female.
+        /// </summary>
+        public static string a47f1af8_7399_4915_a541_ded4c2c9d739 {
+            get {
+                return ResourceManager.GetString("a47f1af8-7399-4915-a541-ded4c2c9d739", resourceCulture);
             }
         }
         
@@ -1901,6 +1973,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CL: Number of persons screened (clinical examination and specimen taking for lab) - adults and children, male and female.
+        /// </summary>
+        public static string d61a5efa_4b2c_4f72_bf56_edab9025b6f2 {
+            get {
+                return ResourceManager.GetString("d61a5efa-4b2c-4f72-bf56-edab9025b6f2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actual sample size tested.
+        /// </summary>
+        public static string d807913f_b3a1_4948_a2b3_54eb0800a3bc {
+            get {
+                return ResourceManager.GetString("d807913f-b3a1-4948-a2b3-54eb0800a3bc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard/Getting Stared Placeholder.
         /// </summary>
         public static string DashboardPlaceholder {
@@ -3247,6 +3337,15 @@ namespace Nada.Globalization {
         public static string DrugZithro {
             get {
                 return ResourceManager.GetString("DrugZithro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VL: Number of population in surveyed villages or communities - Adult and children (&lt;15 years), male and female.
+        /// </summary>
+        public static string e4ece583_91ce_4f0a_baf7_de45831c1135 {
+            get {
+                return ResourceManager.GetString("e4ece583-91ce-4f0a-baf7-de45831c1135", resourceCulture);
             }
         }
         
@@ -5024,6 +5123,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leishmaniasis Annual Intervention.
+        /// </summary>
+        public static string LeishAnnualIntervention {
+            get {
+                return ResourceManager.GetString("LeishAnnualIntervention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leishmaniasis Intervention.
         /// </summary>
         public static string LeishIntervention {
@@ -5078,7 +5186,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Percentage of health facilities having at least one trained staff for Leishmaniasis elimination programme.
+        ///   Looks up a localized string similar to Percentage of health facilities having at least one trained staff for Leishmaniasis programme.
         /// </summary>
         public static string LeishTrainPercentageOfHealthFacilitiesHa {
             get {
@@ -10370,6 +10478,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Persons Treated and Coverage Report.
+        /// </summary>
+        public static string PersonsTreatedAndCoverageReport {
+            get {
+                return ResourceManager.GetString("PersonsTreatedAndCoverageReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phase 1a evaluation.
         /// </summary>
         public static string Phase1aEval {
@@ -15464,6 +15581,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Survey integrated with LF – TAS.
+        /// </summary>
+        public static string SurIntegrateLf {
+            get {
+                return ResourceManager.GetString("SurIntegrateLf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leishmaniasis Survey.
         /// </summary>
         public static string SurLeishSurvey {
@@ -15496,6 +15622,15 @@ namespace Nada.Globalization {
         public static string SurLfSentinelSpotCheckSurvey {
             get {
                 return ResourceManager.GetString("SurLfSentinelSpotCheckSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Survey not integrated with LF – TAS.
+        /// </summary>
+        public static string SurNotIntegrateLf {
+            get {
+                return ResourceManager.GetString("SurNotIntegrateLf", resourceCulture);
             }
         }
         

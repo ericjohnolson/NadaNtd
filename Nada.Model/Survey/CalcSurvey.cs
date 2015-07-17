@@ -24,14 +24,14 @@ namespace Nada.Model.Survey
             {
                 switch (field)
                 {
-                    case "76aff65b1-ca6f-4bd8-9982-4f0527dd8a99":// TODO Add translation
-                        return new KeyValuePair<string, string>("VL survey coverage", GetPercentage(GetValueOrDefault("75f5b7326-b505-4321-90d8-ea69d6464801", relatedValues), GetValueOrDefault("7e4ece583-91ce-4f0a-baf7-de45831c1135", relatedValues)));
-                    case "79dd22c4f-8130-4fbc-8251-607f65d3a7b2":// TODO Add translation
-                        return new KeyValuePair<string, string>("VL survey prevalence", GetPercentage(GetValueOrDefault("708bde675-17ca-4ed4-8dea-af284e15ba3d", relatedValues), GetValueOrDefault("75f5b7326-b505-4321-90d8-ea69d6464801", relatedValues)));
-                    case "79ed458a6-2495-4ffb-adc0-1dfd5a2b6397":// TODO Add translation
-                        return new KeyValuePair<string, string>("CL survey prevalence", GetPercentage(GetValueOrDefault("7d61a5efa-4b2c-4f72-bf56-edab9025b6f2", relatedValues), GetValueOrDefault("7a47f1af8-7399-4915-a541-ded4c2c9d739", relatedValues)));
-                    case "771bec938-836c-467e-8e58-5fab966b71ea":// TODO Add translation
-                        return new KeyValuePair<string, string>("CL survey prevalence", GetPercentage(GetValueOrDefault("70d21bea5-9f29-4973-aa51-d3503bb284ac", relatedValues), GetValueOrDefault("7d61a5efa-4b2c-4f72-bf56-edab9025b6f2", relatedValues)));
+                    case "76aff65b1-ca6f-4bd8-9982-4f0527dd8a99":
+                        return new KeyValuePair<string, string>(Translations._6aff65b1_ca6f_4bd8_9982_4f0527dd8a99, GetPercentage(GetValueOrDefault("75f5b7326-b505-4321-90d8-ea69d6464801", relatedValues), GetValueOrDefault("7e4ece583-91ce-4f0a-baf7-de45831c1135", relatedValues)));
+                    case "79dd22c4f-8130-4fbc-8251-607f65d3a7b2":
+                        return new KeyValuePair<string, string>(Translations._9dd22c4f_8130_4fbc_8251_607f65d3a7b2, GetPercentage(GetValueOrDefault("708bde675-17ca-4ed4-8dea-af284e15ba3d", relatedValues), GetValueOrDefault("75f5b7326-b505-4321-90d8-ea69d6464801", relatedValues)));
+                    case "79ed458a6-2495-4ffb-adc0-1dfd5a2b6397":
+                        return new KeyValuePair<string, string>(Translations._9ed458a6_2495_4ffb_adc0_1dfd5a2b6397, GetPercentage(GetValueOrDefault("7d61a5efa-4b2c-4f72-bf56-edab9025b6f2", relatedValues), GetValueOrDefault("7a47f1af8-7399-4915-a541-ded4c2c9d739", relatedValues)));
+                    case "771bec938-836c-467e-8e58-5fab966b71ea":
+                        return new KeyValuePair<string, string>(Translations._71bec938_836c_467e_8e58_5fab966b71ea, GetPercentage(GetValueOrDefault("70d21bea5-9f29-4973-aa51-d3503bb284ac", relatedValues), GetValueOrDefault("7d61a5efa-4b2c-4f72-bf56-edab9025b6f2", relatedValues)));
                     case "10LFSurPositive":
                         return new KeyValuePair<string, string>(Translations.LFSurPositive, GetPercentage(GetValueOrDefault("10LFSurNumberOfIndividualsPositive", relatedValues), GetValueOrDefault("10LFSurNumberOfIndividualsExamined", relatedValues)));
                     case "8PercentNewCasesPcrCm":
