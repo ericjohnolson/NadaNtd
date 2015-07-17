@@ -119,6 +119,12 @@ INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
 	(DLookup("ID", "SurveyIndicators", "DisplayName ='71bec938-836c-467e-8e58-5fab966b71ea'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName ='d61a5efa-4b2c-4f72-bf56-edab9025b6f2'"), 3);
 
+-- Story #211 Leish Annual Intervention
+INSERT INTO InterventionTypes (InterventionTypeName, DiseaseType, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
+	('LeishAnnualIntervention', 'CM', 26, NOW(), 26, NOW());
+INSERT INTO InterventionTypes_to_Diseases (InterventionTypeId, DiseaseId) VALUES
+	(DLookup("ID", "InterventionTypes", "InterventionTypeName ='LeishAnnualIntervention'"), DLookup("ID", "Diseases", "DisplayName ='Leishmaniasis'"));
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]
