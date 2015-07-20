@@ -87,6 +87,13 @@ namespace Nada.Model
             return Translations.NA;
         }
 
+        public static string GetPercentageWithRatio(string numerator, string denominator)
+        {
+            StringBuilder builder = new StringBuilder(GetPercentage(numerator, denominator));
+            builder.AppendFormat(" ({0}/{1})", numerator, denominator);
+            return builder.ToString();
+        }
+
         public string GetTotal(params string[] itemsToSum)
         {
             double total = 0;

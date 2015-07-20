@@ -5321,6 +5321,879 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CL incidence rate / 10,000 people / year.
+        /// </summary>
+        public static string LeishMontIntvCLIncidenceRate10000PeopleYear {
+            get {
+                return ResourceManager.GetString("LeishMontIntvCLIncidenceRate10000PeopleYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detection rate per 100,000.
+        /// </summary>
+        public static string LeishMontIntvDetectionRatePer100000 {
+            get {
+                return ResourceManager.GetString("LeishMontIntvDetectionRatePer100000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly consumption rate 1st line treatment (units).
+        /// </summary>
+        public static string LeishMontIntvMonthlyConsumptionRate1StLineTreatmentUnits {
+            get {
+                return ResourceManager.GetString("LeishMontIntvMonthlyConsumptionRate1StLineTreatmentUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of cases diagnosed clinically for VL.
+        /// </summary>
+        public static string LeishMontIntvNumberOfCasesDiagnosedClinicallyForVL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfCasesDiagnosedClinicallyForVL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of cases found actively.
+        /// </summary>
+        public static string LeishMontIntvNumberOfCasesFoundActively {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfCasesFoundActively", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of cases treated in reference centres.
+        /// </summary>
+        public static string LeishMontIntvNumberOfCasesTreatedInReferenceCentres {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfCasesTreatedInReferenceCentres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of CL cases diagnosed by direct exam (parasitology).
+        /// </summary>
+        public static string LeishMontIntvNumberOfCLCasesDiagnosedByDirectExamParasitology {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfCLCasesDiagnosedByDirectExamParasitology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of CL cases tested by direct exam (parasitology).
+        /// </summary>
+        public static string LeishMontIntvNumberOfCLCasesTestedByDirectExamParasitology {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfCLCasesTestedByDirectExamParasitology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of CL cases with serious adverse events.
+        /// </summary>
+        public static string LeishMontIntvNumberOfCLCasesWithSeriousAdverseEvents {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfCLCasesWithSeriousAdverseEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of clinical Cutaneous Leishmaniasis (CL) cases.
+        /// </summary>
+        public static string LeishMontIntvNumberOfClinicalCutaneousLeishmaniasisCLCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfClinicalCutaneousLeishmaniasisCLCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of CL patients undergoing systemic treatment.
+        /// </summary>
+        public static string LeishMontIntvNumberOfCLPatientsUndergoingSystemicTreatment {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfCLPatientsUndergoingSystemicTreatment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of CL patients with &gt; or = 4 lesions.
+        /// </summary>
+        public static string LeishMontIntvNumberOfCLPatientsWithGrtrThnOrEqlTo4Lesions {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfCLPatientsWithGrtrThnOrEqlTo4Lesions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of CL patients with lesions &gt; or = 4 cm.
+        /// </summary>
+        public static string LeishMontIntvNumberOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of CL patients with lesions on face or ears.
+        /// </summary>
+        public static string LeishMontIntvNumberOfCLPatientsWithLesionsOnFaceOrEars {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfCLPatientsWithLesionsOnFaceOrEars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of deaths for new CL cases.
+        /// </summary>
+        public static string LeishMontIntvNumberOfDeathsForNewCLCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfDeathsForNewCLCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of deaths for new VL cases.
+        /// </summary>
+        public static string LeishMontIntvNumberOfDeathsForNewVLCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfDeathsForNewVLCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of failure cases CL .
+        /// </summary>
+        public static string LeishMontIntvNumberOfFailureCasesCL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfFailureCasesCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of failure cases VL .
+        /// </summary>
+        public static string LeishMontIntvNumberOfFailureCasesVL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfFailureCasesVL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of lab confirmed CL cases.
+        /// </summary>
+        public static string LeishMontIntvNumberOfLabConfirmedCLCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfLabConfirmedCLCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of lab confirmed  Visceral Leishmaniasis (VL) cases.
+        /// </summary>
+        public static string LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new CL cases in adults &gt; 14 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewCLCasesInAdultsGrtrThn14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewCLCasesInAdultsGrtrThn14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new CL cases in children 5-14 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewCLCasesInChildren5To14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewCLCasesInChildren5To14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new CL cases in children &lt; 5 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewCLCasesInChildrenLssThn5Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewCLCasesInChildrenLssThn5Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new CL cases treated.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewCLCasesTreated {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewCLCasesTreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new CL cases with initial cure.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewCLCasesWithInitialCure {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewCLCasesWithInitialCure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new CL female cases.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewCLFemaleCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewCLFemaleCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new MCL cases in adults &gt; 14 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewMCLCasesInAdultsGrtrThn14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewMCLCasesInAdultsGrtrThn14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new MCL cases in children 5-14 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewMCLCasesInChildren5To14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewMCLCasesInChildren5To14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new MCL cases in children &lt; 5 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewMCLCasesInChildrenLssThn5Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewMCLCasesInChildrenLssThn5Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new MCL female cases.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewMCLFemaleCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewMCLFemaleCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new PKDL cases/HIV co-infection.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewPKDLCasesHIVCoInfection {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewPKDLCasesHIVCoInfection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new PKDL cases in adults &gt; 14 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewPKDLCasesInAdultsGrtrThn14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewPKDLCasesInAdultsGrtrThn14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new PKDL cases in children 5-14 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewPKDLCasesInChildren5To14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewPKDLCasesInChildren5To14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new PKDL cases in children &lt; 5 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewPKDLCasesInChildrenLssThn5Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewPKDLCasesInChildrenLssThn5Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new PKDL female cases.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewPKDLFemaleCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewPKDLFemaleCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new VL cases in adults &gt; 14 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewVLCasesInAdultsGrtrThn14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewVLCasesInAdultsGrtrThn14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new VL cases in children 5-14 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewVLCasesInChildren5To14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewVLCasesInChildren5To14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new VL cases in children &lt; 5 years.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewVLCasesInChildrenLssThn5Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewVLCasesInChildrenLssThn5Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new VL cases treated.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewVLCasesTreated {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewVLCasesTreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new VL cases with initial cure.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewVLCasesWithInitialCure {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewVLCasesWithInitialCure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new VL female cases.
+        /// </summary>
+        public static string LeishMontIntvNumberOfNewVLFemaleCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfNewVLFemaleCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of people screened actively for CL.
+        /// </summary>
+        public static string LeishMontIntvNumberOfPeopleScreenedActivelyForCL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfPeopleScreenedActivelyForCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of people screened actively for PKDL.
+        /// </summary>
+        public static string LeishMontIntvNumberOfPeopleScreenedActivelyForPKDL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfPeopleScreenedActivelyForPKDL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of people screened actively for VL.
+        /// </summary>
+        public static string LeishMontIntvNumberOfPeopleScreenedActivelyForVL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfPeopleScreenedActivelyForVL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of people screened passively for CL.
+        /// </summary>
+        public static string LeishMontIntvNumberOfPeopleScreenedPassivelyForCL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfPeopleScreenedPassivelyForCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of people screened passively for PKDL.
+        /// </summary>
+        public static string LeishMontIntvNumberOfPeopleScreenedPassivelyForPKDL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfPeopleScreenedPassivelyForPKDL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of people screened passively for VL.
+        /// </summary>
+        public static string LeishMontIntvNumberOfPeopleScreenedPassivelyForVL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfPeopleScreenedPassivelyForVL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of units (vials) for 1st line treatment at the beginning of the month.
+        /// </summary>
+        public static string LeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheBeginningOfTheMonth {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheBeginningOfTheMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of units (vials) for 1st line treatment at the end of the month.
+        /// </summary>
+        public static string LeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheEndOfTheMonth {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheEndOfTheMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of visceral leishmaniasis/HIV co-infection.
+        /// </summary>
+        public static string LeishMontIntvNumberOfVisceralLeishmaniasisHIVCoInfection {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfVisceralLeishmaniasisHIVCoInfection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of VL cases diagnosed by a positive Rapid Diagnostic Tests (RDT).
+        /// </summary>
+        public static string LeishMontIntvNumberOfVLCasesDiagnosedByAPositiveRapidDiagnosticTestsRDT {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfVLCasesDiagnosedByAPositiveRapidDiagnosticTestsRDT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of VL cases diagnosed by direct exam (parasitology).
+        /// </summary>
+        public static string LeishMontIntvNumberOfVLCasesDiagnosedByDirectExamParasitology {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfVLCasesDiagnosedByDirectExamParasitology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of VL cases tested by direct exam (parasitology).
+        /// </summary>
+        public static string LeishMontIntvNumberOfVLCasesTestedByDirectExamParasitology {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfVLCasesTestedByDirectExamParasitology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of VL cases with serious adverse events.
+        /// </summary>
+        public static string LeishMontIntvNumberOfVLCasesWithSeriousAdverseEvents {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfVLCasesWithSeriousAdverseEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of VL suspects tested with Rapid Diagnostic Tests.
+        /// </summary>
+        public static string LeishMontIntvNumberOfVLSuspectsTestedWithRapidDiagnosticTests {
+            get {
+                return ResourceManager.GetString("LeishMontIntvNumberOfVLSuspectsTestedWithRapidDiagnosticTests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % case fatality rate for CL.
+        /// </summary>
+        public static string LeishMontIntvPrcntCaseFatalityRateForCL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntCaseFatalityRateForCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % case fatality rate for VL .
+        /// </summary>
+        public static string LeishMontIntvPrcntCaseFatalityRateForVL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntCaseFatalityRateForVL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % cases actively found.
+        /// </summary>
+        public static string LeishMontIntvPrcntCasesActivelyFound {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntCasesActivelyFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % female CL.
+        /// </summary>
+        public static string LeishMontIntvPrcntFemaleCL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntFemaleCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % female MCL.
+        /// </summary>
+        public static string LeishMontIntvPrcntFemaleMCL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntFemaleMCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % female PKDL.
+        /// </summary>
+        public static string LeishMontIntvPrcntFemalePKDL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntFemalePKDL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % female VL.
+        /// </summary>
+        public static string LeishMontIntvPrcntFemaleVL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntFemaleVL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of CL parasitologically confirmed cases.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfCLParasitologicallyConfirmedCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfCLParasitologicallyConfirmedCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of CL patients undergoing systemic treatment .
+        /// </summary>
+        public static string LeishMontIntvPrcntOfCLPatientsUndergoingSystemicTreatment {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfCLPatientsUndergoingSystemicTreatment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of CL patients with &gt; or = 4 lesions.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfCLPatientsWithGrtrThnOrEqlTo4Lesions {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfCLPatientsWithGrtrThnOrEqlTo4Lesions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of CL patients with lesions &gt; or = 4 cm.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of CL patients with lesions on face/ears.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfCLPatientsWithLesionsOnFaceEars {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfCLPatientsWithLesionsOnFaceEars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of failure cases out of total new cases treated for CL.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForCL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of failure cases out of total new cases treated for VL.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForVL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForVL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of initial cured cases out of total new cases treated for CL.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForCL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of initial cured cases out of total new cases treated for VL.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForVL {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForVL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of lab confirmed cases.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfLabConfirmedCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfLabConfirmedCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new CL cases in adults &gt; 14 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewCLCasesInAdultsGrtrThn14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewCLCasesInAdultsGrtrThn14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new CL cases in children 5-14 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewCLCasesInChildren5To14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewCLCasesInChildren5To14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new CL cases in children &lt; 5 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewCLCasesInChildrenLssThn5Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewCLCasesInChildrenLssThn5Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new MCL cases in adults &gt; 14 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewMCLCasesInAdultsGrtrThn14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewMCLCasesInAdultsGrtrThn14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new MCL cases in children 5-14 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewMCLCasesInChildren5To14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewMCLCasesInChildren5To14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new MCL cases in children &lt; 5 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewMCLCasesInChildrenLssThn5Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewMCLCasesInChildrenLssThn5Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new PKDL cases in adults &gt; 14 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewPKDLCasesInAdultsGrtrThn14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewPKDLCasesInAdultsGrtrThn14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new PKDL cases in children 5-14 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewPKDLCasesInChildren5To14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewPKDLCasesInChildren5To14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new PKDL cases in children &lt; 5 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewPKDLCasesInChildrenLssThn5Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewPKDLCasesInChildrenLssThn5Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new VL cases in adults &gt; 14 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new VL cases in children 5-14 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewVLCasesInChildren5To14Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewVLCasesInChildren5To14Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new VL cases in children &lt; 5 years.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfNewVLCasesInChildrenLssThn5Years {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfNewVLCasesInChildrenLssThn5Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of parasitologically confirmed CL samples.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfParasitologicallyConfirmedCLSamples {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfParasitologicallyConfirmedCLSamples", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of parasitologically confirmed VL samples.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfParasitologicallyConfirmedVLSamples {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfParasitologicallyConfirmedVLSamples", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of PKDL/HIV co-infected cases of the total new PKDL cases.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of postitive RDT.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfPostitiveRDT {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfPostitiveRDT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of VL cases diagnosed by RDT.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfVLCasesDiagnosedByRDT {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfVLCasesDiagnosedByRDT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of VL/HIV co-infected cases of the total new VL cases.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of VL parasitologically confirmed cases.
+        /// </summary>
+        public static string LeishMontIntvPrcntOfVLParasitologicallyConfirmedCases {
+            get {
+                return ResourceManager.GetString("LeishMontIntvPrcntOfVLParasitologicallyConfirmedCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total number of cases treated.
+        /// </summary>
+        public static string LeishMontIntvTotalNumberOfCasesTreated {
+            get {
+                return ResourceManager.GetString("LeishMontIntvTotalNumberOfCasesTreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total number of new CL cases diagnosed (lab and clinical).
+        /// </summary>
+        public static string LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical {
+            get {
+                return ResourceManager.GetString("LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total number of new MCL cases diagnosed.
+        /// </summary>
+        public static string LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed {
+            get {
+                return ResourceManager.GetString("LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total number of new PKDL cases diagnosed.
+        /// </summary>
+        public static string LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed {
+            get {
+                return ResourceManager.GetString("LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total number of new VL cases diagnosed (lab and clinical).
+        /// </summary>
+        public static string LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical {
+            get {
+                return ResourceManager.GetString("LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VL incidence rate / 10,000 people / year.
+        /// </summary>
+        public static string LeishMontIntvVLIncidenceRate10000PeopleYear {
+            get {
+                return ResourceManager.GetString("LeishMontIntvVLIncidenceRate10000PeopleYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leishmaniasis training.
         /// </summary>
         public static string LeishTraining {

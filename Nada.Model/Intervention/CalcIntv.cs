@@ -134,6 +134,244 @@ namespace Nada.Model.Intervention
                                 demo.TotalPopulation.ToString(), 100000));
                         }
                         break;
+                    case "27LeishMontIntvDetectionRatePer100000":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvDetectionRatePer100000, "--");
+                    case "27LeishMontIntvPrcntOfLabConfirmedCases":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfLabConfirmedCases, "--");
+                    case "27LeishMontIntvPrcntCasesActivelyFound":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntCasesActivelyFound, "--");
+                    case "27LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewPKDLCasesHIVCoInfection", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfVLCasesDiagnosedByRDT":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfVLCasesDiagnosedByRDT,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfVLCasesDiagnosedByAPositiveRapidDiagnosticTestsRDT", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfPostitiveRDT":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfPostitiveRDT,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfVLCasesDiagnosedByAPositiveRapidDiagnosticTestsRDT", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfVLSuspectsTestedWithRapidDiagnosticTests", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfVLParasitologicallyConfirmedCases":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfVLParasitologicallyConfirmedCases,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfCLParasitologicallyConfirmedCases":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfCLParasitologicallyConfirmedCases,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfLabConfirmedCLCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfParasitologicallyConfirmedVLSamples":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfParasitologicallyConfirmedVLSamples,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfVLCasesTestedByDirectExamParasitology", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfParasitologicallyConfirmedCLSamples":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfParasitologicallyConfirmedCLSamples,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfLabConfirmedCLCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfCLCasesTestedByDirectExamParasitology", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForVL":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForVL,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewVLCasesWithInitialCure", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewVLCasesTreated", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForCL":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForCL,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewCLCasesWithInitialCure", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewCLCasesTreated", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForVL":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForVL,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfFailureCasesVL", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewVLCasesTreated", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForCL":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForCL,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfFailureCasesCL", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewCLCasesTreated", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntCaseFatalityRateForVL":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntCaseFatalityRateForVL,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfDeathsForNewVLCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewVLCasesTreated", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntCaseFatalityRateForCL":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntCaseFatalityRateForCL,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfDeathsForNewCLCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewCLCasesTreated", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfCLPatientsWithGrtrThnOrEqlTo4Lesions":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfCLPatientsWithGrtrThnOrEqlTo4Lesions,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfCLPatientsWithGrtrThnOrEqlTo4Lesions", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfCLPatientsWithLesionsOnFaceEars":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfCLPatientsWithLesionsOnFaceEars,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfCLPatientsWithLesionsOnFaceOrEars", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfCLPatientsUndergoingSystemicTreatment":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfCLPatientsUndergoingSystemicTreatment,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfCLPatientsUndergoingSystemicTreatment", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewCLCasesTreated", relatedValues)
+                            ));
+                    case "27LeishMontIntvVLIncidenceRate10000PeopleYear":
+                        if (demo != null)
+                        {
+                            return new KeyValuePair<string, string>(Translations.LeishMontIntvVLIncidenceRate10000PeopleYear,
+                                GetPercentage(
+                                    GetValueOrDefault("27LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues),
+                                    demo.TotalPopulation.ToString(),
+                                    10000
+                                ));
+                        }
+                        break;
+                    case "27LeishMontIntvCLIncidenceRate10000PeopleYear":
+                        if (demo != null)
+                        {
+                            return new KeyValuePair<string, string>(Translations.LeishMontIntvCLIncidenceRate10000PeopleYear,
+                                GetPercentage(
+                                    GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues),
+                                    demo.TotalPopulation.ToString(),
+                                    10000
+                                ));
+                        }
+                        break;
+                    case "27LeishMontIntvPrcntFemaleVL":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntFemaleVL,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewVLFemaleCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntFemaleCL":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntFemaleCL,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewCLFemaleCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntFemalePKDL":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntFemalePKDL,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewPKDLFemaleCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntFemaleMCL":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntFemaleMCL,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewMCLFemaleCases", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewVLCasesInChildrenLssThn5Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewVLCasesInChildrenLssThn5Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewVLCasesInChildrenLssThn5Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewVLCasesInChildren5To14Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewVLCasesInChildren5To14Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewVLCasesInChildren5To14Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewVLCasesInAdultsGrtrThn14Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewCLCasesInChildrenLssThn5Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewCLCasesInChildrenLssThn5Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewCLCasesInChildrenLssThn5Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewCLCasesInChildren5To14Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewCLCasesInChildren5To14Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewCLCasesInChildren5To14Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewCLCasesInAdultsGrtrThn14Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewCLCasesInAdultsGrtrThn14Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewCLCasesInAdultsGrtrThn14Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewPKDLCasesInChildrenLssThn5Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewPKDLCasesInChildrenLssThn5Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewPKDLCasesInChildrenLssThn5Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewPKDLCasesInChildren5To14Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewPKDLCasesInChildren5To14Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewPKDLCasesInChildren5To14Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewPKDLCasesInAdultsGrtrThn14Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewPKDLCasesInAdultsGrtrThn14Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewPKDLCasesInAdultsGrtrThn14Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewMCLCasesInChildrenLssThn5Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewMCLCasesInChildrenLssThn5Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewMCLCasesInChildrenLssThn5Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewMCLCasesInChildren5To14Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewMCLCasesInChildren5To14Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewMCLCasesInChildren5To14Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed", relatedValues)
+                            ));
+                    case "27LeishMontIntvPrcntOfNewMCLCasesInAdultsGrtrThn14Years":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfNewMCLCasesInAdultsGrtrThn14Years,
+                            GetPercentageWithRatio(
+                                GetValueOrDefault("27LeishMontIntvNumberOfNewMCLCasesInAdultsGrtrThn14Years", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed", relatedValues)
+                            ));
+                    case "27LeishMontIntvMonthlyConsumptionRate1StLineTreatmentUnits":
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvMonthlyConsumptionRate1StLineTreatmentUnits,
+                            GetDifference(
+                                GetValueOrDefault("27LeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheBeginningOfTheMonth", relatedValues),
+                                GetValueOrDefault("27LeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheEndOfTheMonth", relatedValues)
+                            ));
                     default:
                         return CheckEachIntvType(relatedValues, field, demo.AdminLevelId, start, end, ref errors);
                 }
