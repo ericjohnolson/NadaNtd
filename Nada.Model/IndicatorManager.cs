@@ -306,7 +306,7 @@ namespace Nada.Model
 
             if(ind.EntityType == IndicatorEntityType.Intervention)
             {
-                string joinToForm = string.Format("insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT {0}, ID FROM interventionindicators where displayname = '{1}';", ind.FormId, ind.Key);
+                string joinToForm = string.Format("insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT {0}, ID FROM interventionindicators where displayname = '{1}' AND InterventionTypeId = {0};", ind.FormId, ind.Key);
                 OleDbCommand joinCmd = new OleDbCommand(joinToForm, connection);
                 updateCmd.ExecuteNonQuery();
                 sqlStatements.Add(joinToForm);
