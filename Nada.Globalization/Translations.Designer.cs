@@ -5123,6 +5123,168 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detection rate per 100,000.
+        /// </summary>
+        public static string LeishAnnIntvDetectionRatePer100000 {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvDetectionRatePer100000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Months elapsed between onset of symptoms and diagnosis (median) for CL.
+        /// </summary>
+        public static string LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForCL {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Months elapsed between onset of symptoms and diagnosis (median) for VL.
+        /// </summary>
+        public static string LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForVL {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForVL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of CL relapse cases.
+        /// </summary>
+        public static string LeishAnnIntvNumberOfCLRelapseCases {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvNumberOfCLRelapseCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of imported CL cases.
+        /// </summary>
+        public static string LeishAnnIntvNumberOfImportedCLCases {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvNumberOfImportedCLCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of imported VL cases.
+        /// </summary>
+        public static string LeishAnnIntvNumberOfImportedVLCases {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvNumberOfImportedVLCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of Insecticide-treated bednets (ITNs) distributed.
+        /// </summary>
+        public static string LeishAnnIntvNumberOfInsecticideTreatedBednetsItnsDistributed {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvNumberOfInsecticideTreatedBednetsItnsDistributed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new CL cases cured (after follow-up of at least 6 months).
+        /// </summary>
+        public static string LeishAnnIntvNumberOfNewCLCasesCuredAfterFollowUpOfAtLeast6Months {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvNumberOfNewCLCasesCuredAfterFollowUpOfAtLeast6Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new CL cases followed up at least 6 months.
+        /// </summary>
+        public static string LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new VL cases cured (after follow-up of at least 6 months).
+        /// </summary>
+        public static string LeishAnnIntvNumberOfNewVLCasesCuredAfterFollowUpOfAtLeast6Months {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvNumberOfNewVLCasesCuredAfterFollowUpOfAtLeast6Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new VL cases followed up at least 6 months.
+        /// </summary>
+        public static string LeishAnnIntvNumberOfNewVLCasesFollowedUpAtLeast6Months {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvNumberOfNewVLCasesFollowedUpAtLeast6Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of VL relapse cases.
+        /// </summary>
+        public static string LeishAnnIntvNumberOfVLRelapseCases {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvNumberOfVLRelapseCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of CL relapse cases out of total new cases followed up.
+        /// </summary>
+        public static string LeishAnnIntvOfCLRelapseCasesOutOfTotalNewCasesFollowedUp {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvOfCLRelapseCasesOutOfTotalNewCasesFollowedUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new CL cases cured out of new cases followed up.
+        /// </summary>
+        public static string LeishAnnIntvOfNewCLCasesCuredOutOfNewCasesFollowedUp {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvOfNewCLCasesCuredOutOfNewCasesFollowedUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of new VL cases cured out of new cases followed up.
+        /// </summary>
+        public static string LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of VL relapse cases out of total new cases followed up.
+        /// </summary>
+        public static string LeishAnnIntvOfVLRelapseCasesOutOfTotalNewCasesFollowedUp {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvOfVLRelapseCasesOutOfTotalNewCasesFollowedUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total population for the 2nd administrative level.
+        /// </summary>
+        public static string LeishAnnIntvTotalPopulationForThe2NdAdministrativeLevel {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvTotalPopulationForThe2NdAdministrativeLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of insecticide used for Indoor Residual Spryaing.
+        /// </summary>
+        public static string LeishAnnIntvTypeOfInsecticideUsedForIndoorResidualSpryaing {
+            get {
+                return ResourceManager.GetString("LeishAnnIntvTypeOfInsecticideUsedForIndoorResidualSpryaing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leishmaniasis Annual Intervention.
         /// </summary>
         public static string LeishAnnualIntervention {

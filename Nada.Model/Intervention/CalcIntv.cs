@@ -98,6 +98,42 @@ namespace Nada.Model.Intervention
                     case "9PercentTreatedYw":
                         return new KeyValuePair<string, string>(Translations.PercentTreatedYw, GetPercentage(GetValueOrDefault("9NumContactsTreatedYw", relatedValues),
                             GetTotal(GetValueOrDefault("9NumContactsTreatedYw", relatedValues), GetValueOrDefault("9NumCasesTreatedYaws", relatedValues))));
+                    case "26LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp":
+                        return new KeyValuePair<string, string>(
+                            Translations.LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp,
+                            GetPercentage(
+                                GetValueOrDefault("26LeishAnnIntvNumberOfNewVLCasesCuredAfterFollowUpOfAtLeast6Months", relatedValues),
+                                GetValueOrDefault("26LeishAnnIntvNumberOfNewVLCasesFollowedUpAtLeast6Months", relatedValues)
+                            ));
+                    case "26LeishAnnIntvOfNewCLCasesCuredOutOfNewCasesFollowedUp":
+                        return new KeyValuePair<string, string>(
+                            Translations.LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp,
+                            GetPercentage(
+                                GetValueOrDefault("26LeishAnnIntvNumberOfNewCLCasesCuredAfterFollowUpOfAtLeast6Months", relatedValues),
+                                GetValueOrDefault("26LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months", relatedValues)
+                            ));
+                    case "26LeishAnnIntvOfVLRelapseCasesOutOfTotalNewCasesFollowedUp":
+                        return new KeyValuePair<string, string>(
+                            Translations.LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp,
+                            GetPercentage(
+                                GetValueOrDefault("26LeishAnnIntvNumberOfVLRelapseCases", relatedValues),
+                                GetValueOrDefault("26LeishAnnIntvNumberOfNewVLCasesFollowedUpAtLeast6Months", relatedValues)
+                            ));
+                    case "26LeishAnnIntvOfCLRelapseCasesOutOfTotalNewCasesFollowedUp":
+                        return new KeyValuePair<string, string>(
+                            Translations.LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp,
+                            GetPercentage(
+                                GetValueOrDefault("26LeishAnnIntvNumberOfCLRelapseCases", relatedValues),
+                                GetValueOrDefault("26LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months", relatedValues)
+                            ));
+                    case "26LeishAnnIntvDetectionRatePer100000":
+                        if (demo != null)
+                        {
+                            return new KeyValuePair<string, string>(Translations.LeishAnnIntvDetectionRatePer100000, GetPercentage(
+                                GetValueOrDefault("26LeishAnnIntvNumberOfImportedCLCases", relatedValues),
+                                demo.TotalPopulation.ToString(), 100000));
+                        }
+                        break;
                     default:
                         return CheckEachIntvType(relatedValues, field, demo.AdminLevelId, start, end, ref errors);
                 }
