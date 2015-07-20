@@ -280,20 +280,20 @@ namespace Nada.Model
             switch (ind.EntityType)
             {
                 case IndicatorEntityType.DiseaseDistribution:
-                    insertSql = string.Format("insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values ({0}, '{1}', {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, 0, {5}, {6}, {7});",
-                        ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.FormId, ind.SplitRuleId, ind.MergeRuleId);
+                    insertSql = string.Format("insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values ({0}, '{1}', {2}, {3}, 26, NOW(), 0, 0, {4}, 0, {5}, 0, 0, {6}, {7}, {8});",
+                        ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.IsCalculated ? -1 : 0, ind.FormId, ind.SplitRuleId, ind.MergeRuleId);
                     break;
                 case IndicatorEntityType.Intervention:
-                    insertSql = string.Format("insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId, InterventionTypeId) values ({0}, '{1}', {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, 0, {5}, {6}, {7});",
-                        ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.SplitRuleId, ind.MergeRuleId, ind.FormId);
+                    insertSql = string.Format("insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId, InterventionTypeId) values ({0}, '{1}', {2}, {3}, 26, NOW(), 0, 0, {4}, 0, {5}, 0, 0, {6}, {7}, {8});",
+                        ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.IsCalculated ? -1 : 0, ind.SplitRuleId, ind.MergeRuleId, ind.FormId);
                     break;
                 case IndicatorEntityType.Survey:
-                    insertSql = string.Format("insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values ({0}, '{1}', {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, {5}, {6}, {7});",
-                        ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.FormId, ind.SplitRuleId, ind.MergeRuleId);
+                    insertSql = string.Format("insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values ({0}, '{1}', {2}, {3}, 26, NOW(), 0, 0, {4}, 0, {5}, 0, {6}, {7}, {8});",
+                        ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.IsCalculated ? -1 : 0, ind.FormId, ind.SplitRuleId, ind.MergeRuleId);
                     break;
                 case IndicatorEntityType.Process:
-                    insertSql = string.Format("insert into ProcessIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, ProcessTypeId, RedistrictRuleId, MergeRuleId) values ({0}, '{1}', {2}, {3}, 26, NOW(), 0, 0, {4}, 0, 0, 0, 0, {5}, {6}, {7});",
-                        ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.FormId, ind.SplitRuleId, ind.MergeRuleId);
+                    insertSql = string.Format("insert into ProcessIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, ProcessTypeId, RedistrictRuleId, MergeRuleId) values ({0}, '{1}', {2}, {3}, 26, NOW(), 0, 0, {4}, 0, {5}, 0, 0, {6}, {7}, {8});",
+                        ind.DataTypeId, ind.Key, ind.AggTypeId, ind.SortOrder, ind.IsRequired ? -1 : 0, ind.IsCalculated ? -1 : 0, ind.FormId, ind.SplitRuleId, ind.MergeRuleId);
                     break;
             }
 
@@ -459,6 +459,16 @@ namespace Nada.Model
                 error += "Indicator Type: " + TranslationLookup.GetValue("IsRequired") + Environment.NewLine;
             else
                 indicator.DataTypeId = (int)Enum.Parse(typeof(IndicatorDataType), dr["Indicator Type"].ToString());
+            
+            // Is calculated
+            if (indicator.DataTypeId != null && indicator.DataTypeId == (int)IndicatorDataType.Calculated)
+            {
+                indicator.IsCalculated = true;
+            }
+            else
+            {
+                indicator.IsCalculated = false;
+            }
 
             // TRANSLATIONS
             if (string.IsNullOrEmpty(dr["Indicator Name English"].ToString()))
