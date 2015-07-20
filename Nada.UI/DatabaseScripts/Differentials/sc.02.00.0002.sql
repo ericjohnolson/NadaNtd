@@ -148,6 +148,12 @@ insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SE
 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 26, ID FROM interventionindicators where displayname = 'Notes';
 
+-- Story #213 Leish Monthly Interv
+INSERT INTO InterventionTypes (InterventionTypeName, DiseaseType, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
+	('LeishMonthlyIntervention', 'CM', 26, NOW(), 26, NOW());
+INSERT INTO InterventionTypes_to_Diseases (InterventionTypeId, DiseaseId) VALUES
+	(DLookup("ID", "InterventionTypes", "InterventionTypeName ='LeishMonthlyIntervention'"), DLookup("ID", "Diseases", "DisplayName ='Leishmaniasis'"));
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]
