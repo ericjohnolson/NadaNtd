@@ -553,6 +553,7 @@ namespace Nada.Model
         public int FormId { get; set; }
         public int DataTypeId { get; set; }
         public bool IsRequired { get; set; }
+        public bool IsCalculated { get; set; }
         public int AggTypeId { get; set; }
         public int MergeRuleId { get; set; }
         public int SplitRuleId { get; set; }
