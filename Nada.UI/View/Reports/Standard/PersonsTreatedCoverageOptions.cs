@@ -64,6 +64,12 @@ namespace Nada.UI.View.Reports.Standard
 
         public void DoFinish()
         {
+            // Initial report options
+            report.ReportOptions.IsByLevelAggregation = false;
+            report.ReportOptions.IsCountryAggregation = false;
+            report.ReportOptions.IsNoAggregation = true;
+            report.ReportOptions.Years = lbYears.SelectedItems.Cast<int>().ToList(); // Need to set this now since this report options does not use a date range selector, uses year selector
+            report.ReportOptions.MonthYearStarts = 1;
             // Save the report options
             // Report type
             if (cbReportTypes.SelectedItem.ToString() == ReportTypeDisease)
@@ -83,7 +89,7 @@ namespace Nada.UI.View.Reports.Standard
             // Admin level type
             options.DistrictType = (AdminLevelType)cbAggregateBy.SelectedItem;
             //  Selected years
-            options.Years = lbYears.SelectedItems.Cast<int>().ToList();
+            options.Years = report.ReportOptions.Years;
 
             // Next step
             OnSwitchStep(new StepLocations(report, this));

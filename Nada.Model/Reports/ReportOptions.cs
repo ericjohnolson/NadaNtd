@@ -19,6 +19,7 @@ namespace Nada.Model.Reports
             IsAllLocations = true;
             StartDate = DateTime.MinValue;
             EndDate = DateTime.MinValue;
+            Years = new List<int>();
         }
         public bool ShowDiseasesOption { get; set; }
         public List<ReportIndicator> AvailableIndicators { get; set; }
@@ -28,6 +29,7 @@ namespace Nada.Model.Reports
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int MonthYearStarts { get; set; }
+        public List<int> Years { get; set; }
         [NonSerialized]
         private BaseReportGenerator reportGen = null;
         public BaseReportGenerator ReportGenerator { get { return reportGen; } set { reportGen = value; } }

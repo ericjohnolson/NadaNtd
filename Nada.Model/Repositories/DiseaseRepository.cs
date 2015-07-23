@@ -727,6 +727,7 @@ namespace Nada.Model.Repositories
         {
             var d = new Disease
             {
+                DisplayNameKey = reader.GetValueOrDefault<string>("DisplayName"),
                 DisplayName = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DisplayName"),
                         reader.GetValueOrDefault<string>("DisplayName")),
                 UserDefinedName = reader.GetValueOrDefault<string>("UserDefinedName"),

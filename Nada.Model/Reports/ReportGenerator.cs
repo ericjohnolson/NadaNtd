@@ -537,6 +537,9 @@ namespace Nada.Model.Reports
 
         protected static List<int> GetSelectedYears(ReportOptions options)
         {
+            if (options.Years != null && options.Years.Count > 0)
+                return options.Years;
+
             List<int> years = new List<int>();
             if (options.MonthYearStarts > options.StartDate.Month)
                 years.Add(options.StartDate.Year - 1);
