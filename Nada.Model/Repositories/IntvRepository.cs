@@ -257,6 +257,51 @@ namespace Nada.Model.Repositories
             return intv;
         }
 
+        public List<IntvType> GetAllTypesByDiseases(List<int> diseaseIds)
+        {
+            List<IntvType> intv = new List<IntvType>();
+
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    // Get a csv of the disease IDs (will only be ints, so no risk of sql injection)
+                    String diseaseIdsCsv = String.Join(",", diseaseIds.Select(x => x.ToString()).ToArray());
+                    OleDbCommand command = new OleDbCommand(string.Format(@"Select InterventionTypes.ID, InterventionTypes.InterventionTypeName, Diseases.DiseaseType
+                        FROM ((InterventionTypes INNER JOIN InterventionTypes_to_Diseases ON InterventionTypes.ID = InterventionTypes_to_Diseases.InterventionTypeId)
+                            INNER JOIN Diseases ON Diseases.ID = InterventionTypes_to_Diseases.DiseaseId) 
+                        WHERE Diseases.IsSelected = yes AND Diseases.ID in ({0})
+                        GROUP BY InterventionTypes.ID, InterventionTypes.InterventionTypeName, Diseases.DiseaseType", diseaseIdsCsv), connection);
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var name = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("InterventionTypeName"),
+                                    reader.GetValueOrDefault<string>("InterventionTypeName"));
+                            if (reader.GetValueOrDefault<string>("DiseaseType") == "Custom")
+                                name = reader.GetValueOrDefault<string>("InterventionTypeName");
+
+                            intv.Add(new IntvType
+                            {
+                                Id = reader.GetValueOrDefault<int>("ID"),
+                                IntvTypeName = name,
+                                DiseaseType = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseType"),
+                                    reader.GetValueOrDefault<string>("DiseaseType"))
+                            });
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return intv;
+        }
+
         public IntvType GetIntvType(int id)
         {
             IntvType intv = new IntvType();

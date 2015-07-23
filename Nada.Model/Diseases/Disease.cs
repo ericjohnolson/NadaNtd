@@ -19,6 +19,7 @@ namespace Nada.Model.Diseases
         }
 
         public string DisplayName { get; set; }
+        public string DisplayNameKey { get; set; }
         public string UserDefinedName { get; set; }
         public string DiseaseType { get; set; }
         public bool IsSelected { get; set; }
