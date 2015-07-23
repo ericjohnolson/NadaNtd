@@ -6194,6 +6194,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leishmaniasis report.
+        /// </summary>
+        public static string LeishReport {
+            get {
+                return ResourceManager.GetString("LeishReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leishmaniasis training.
         /// </summary>
         public static string LeishTraining {

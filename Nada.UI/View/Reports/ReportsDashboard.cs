@@ -19,6 +19,7 @@ using System.Configuration;
 using Nada.Model.Repositories;
 using Nada.UI.Controls;
 using Nada.UI.View.Reports.Standard;
+using Nada.UI.View.Reports.ExportWizard;
 
 namespace Nada.UI.View.Reports
 {
@@ -255,6 +256,13 @@ namespace Nada.UI.View.Reports
             wiz.Height = 685;
             wiz.OnRunReport = RunEliminationReport;
             wiz.Show();
+        }
+
+        private void leishReport_ClickOverride()
+        {
+            WizardForm wiz = new WizardForm(new LeishReportStep(), Translations.LeishReport);
+            wiz.OnFinish = () => { };
+            wiz.ShowDialog();
         }
 
 

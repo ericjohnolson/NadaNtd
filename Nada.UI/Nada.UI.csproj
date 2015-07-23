@@ -370,6 +370,12 @@
     <Compile Include="View\Demography\AdminUnitDelete.Designer.cs">
       <DependentUpon>AdminUnitDelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Reports\ExportWizard\LeishReportStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reports\ExportWizard\LeishReportStep.Designer.cs">
+      <DependentUpon>LeishReportStep.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Reports\ExportWizard\RtiExport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1055,6 +1061,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Demography\AdminUnitDelete.resx">
       <DependentUpon>AdminUnitDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\ExportWizard\LeishReportStep.resx">
+      <DependentUpon>LeishReportStep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\ExportWizard\RtiExport.resx">
       <DependentUpon>RtiExport.cs</DependentUpon>
