@@ -46,15 +46,24 @@ namespace Nada.UI.View.Wizard.IndicatorManagement
 
         private void lnkUpload_ClickOverride()
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-                worker.DoWork += worker_DoWork;
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    BackgroundWorker worker = new BackgroundWorker();
+                    worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+                    worker.DoWork += worker_DoWork;
 
-                worker.RunWorkerAsync(new WorkerPayload { FileName = openFileDialog1.FileName });
+                    worker.RunWorkerAsync(new WorkerPayload { FileName = openFileDialog1.FileName });
 
-                OnSwitchStep(new WorkingStep(Translations.ImportingFile));
+                    OnSwitchStep(new WorkingStep(Translations.ImportingFile));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error uploading file in IndStepType: ", ex);
+                throw;
             }
         }
 
