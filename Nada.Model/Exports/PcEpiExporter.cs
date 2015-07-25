@@ -157,7 +157,7 @@ namespace Nada.Model.Exports
                     xlsWorksheet.Cells[rowNumber, (int)ExcelCol.B] = adminLevel.Name;
                     if (survey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
                     {
-                        var testTypeVal = survey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapTestType");
+                        var testTypeVal = survey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurTestType");
                         if (testTypeVal != null && testTypeVal.DynamicValue == "Mf")
                             isMfTestType = true; 
 
@@ -179,8 +179,6 @@ namespace Nada.Model.Exports
                                 xlsWorksheet.Cells[rowNumber, (int)ExcelCol.G] = Math.Round(site.Lng.Value, 2);
                             // Name of survey site
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.C] = site.SiteName;
-                            // Survey site
-                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.O] = site.SiteName;
                         }
                         else
                         {
@@ -190,8 +188,6 @@ namespace Nada.Model.Exports
                                 xlsWorksheet.Cells[rowNumber, (int)ExcelCol.G] = Math.Round(survey.Lng.Value, 2);
                             // Name of survey site
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.C] = survey.SpotCheckName;
-                            // Survey site
-                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.O] = survey.SpotCheckName;
 
                         }
                     }
@@ -276,7 +272,7 @@ namespace Nada.Model.Exports
                         else if (val.Indicator.DisplayName == "LFMapSurPositive" || val.Indicator.DisplayName == "LFSurPositive")
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.L] = val.DynamicValue;
                         // Test Type
-                        else if (val.Indicator.DisplayName == "LFMapTestType" || val.Indicator.DisplayName == "LFSurTestType" || val.Indicator.DisplayName == "TASDiagnosticTest")
+                        else if (val.Indicator.DisplayName == "LFMapSurTestType" || val.Indicator.DisplayName == "LFSurTestType" || val.Indicator.DisplayName == "TASDiagnosticTest")
                         {
                             if (val.Indicator.DisplayName == "TASDiagnosticTest")
                                 xlsWorksheet.Cells[rowNumber, (int)ExcelCol.M] = val.DynamicValue;
@@ -298,15 +294,15 @@ namespace Nada.Model.Exports
                             }
                         }
                         // Survey site
-                        else if (val.Indicator.DisplayName == "LFMapSurMappingSiteLocation" || val.Indicator.DisplayName == "TASLocationType")
+                        else if (val.Indicator.DisplayName == "LFMapSurMappingSiteLocation" || val.Indicator.DisplayName == "eab663f6-1eb8-4efc-85da-2844ee720020" || val.Indicator.DisplayName == "TASLocationType")
                         {
-                            if (val.Indicator.DisplayName == "LFMapSurMappingSiteLocation")
+                            if (val.Indicator.DisplayName == "TASLocationType")
+                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.O] = val.DynamicValue;
+                            else
                             {
                                 if (!isMfTestType)
                                     xlsWorksheet.Cells[rowNumber, (int)ExcelCol.O] = val.DynamicValue;
                             }
-                            else
-                                xlsWorksheet.Cells[rowNumber, (int)ExcelCol.O] = val.DynamicValue;
                         }
                         // Ag/Ab: Survey type
                         else if (val.Indicator.DisplayName == "TASSurveyType")
@@ -349,6 +345,9 @@ namespace Nada.Model.Exports
                         // Hydrocele: Number of people positive
                         else if (val.Indicator.DisplayName == "LFMapSurNumberOfCasesOfHydrocele" || val.Indicator.DisplayName == "LFSurPosHydro")
                             xlsWorksheet.Cells[rowNumber, (int)ExcelCol.AB] = val.DynamicValue;
+                        // Notes
+                        else if (val.Indicator.DisplayName == "Notes")
+                            xlsWorksheet.Cells[rowNumber, (int)ExcelCol.AD] = val.DynamicValue;
 
                     }
                     rowNumber++;
