@@ -43,6 +43,11 @@ namespace Nada.UI.View.Reports.Standard
         {
             report = o;
             options = (PersonsTreatedCoverageReportOptions)o.StandardReportOptions;
+
+            // Clear previous report results
+            report.ReportOptions.Columns = new Dictionary<string, AggregateIndicator>();
+            report.ReportOptions.SelectedIndicators = new List<ReportIndicator>();
+
             InitializeComponent();
         }
 
