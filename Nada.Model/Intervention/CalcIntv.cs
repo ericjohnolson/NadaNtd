@@ -127,7 +127,20 @@ namespace Nada.Model.Intervention
                                 GetValueOrDefault("26LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months", relatedValues)
                             ));
                     case "27LeishMontIntvDetectionRatePer100000":
-                        return new KeyValuePair<string, string>(Translations.LeishMontIntvDetectionRatePer100000, "--");
+                        if (demo != null)
+                        {
+                            return new KeyValuePair<string, string>(Translations.LeishMontIntvDetectionRatePer100000,
+                                GetPercentage(
+                                    GetTotal(new string[2]
+                                    {
+                                        GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues),
+                                        GetValueOrDefault("27LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues)
+                                    }),
+                                    demo.TotalPopulation.ToString(),
+                                    10000
+                                    ));
+                        }
+                        break;
                     case "27LeishMontIntvPrcntOfLabConfirmedCases":
                         return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfLabConfirmedCases,
                             GetPercentage(

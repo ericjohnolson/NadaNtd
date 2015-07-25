@@ -5321,7 +5321,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detection rate per 100,000.
+        ///   Looks up a localized string similar to Total incidence rate / 10,000 people / year.
         /// </summary>
         public static string LeishMontIntvDetectionRatePer100000 {
             get {
