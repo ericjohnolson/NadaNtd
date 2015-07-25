@@ -172,6 +172,10 @@
       <Link>Help\TrainingPPT_080814_French.pptx</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\..\Nada.UI\Exports\Leishmaniasis_Report_Card.xlsx">
+      <Link>Exports\Leishmaniasis_Report_Card.xlsx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>

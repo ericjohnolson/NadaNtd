@@ -513,7 +513,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(876, 1200);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(750, 1200);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // errorProvider1
@@ -526,7 +526,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "LeishReportStep";
-            this.Size = new System.Drawing.Size(876, 1200);
+            this.Size = new System.Drawing.Size(750, 1200);
             this.Load += new System.EventHandler(this.LeishReportStep_Load);
             ((System.ComponentModel.ISupportInitialize)(this.questionDataSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);

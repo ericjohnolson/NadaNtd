@@ -1432,6 +1432,9 @@
     <None Include="App - Copy.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Exports\Leishmaniasis_Report_Card.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Images\logosplaceholder.gif" />
     <None Include="Images\afro.gif" />
     <None Include="Images\apoc.jpg" />
