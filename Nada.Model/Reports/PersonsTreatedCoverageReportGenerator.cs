@@ -305,7 +305,11 @@ namespace Nada.Model.Reports
             // Run the distribution report for the disease dist related data
             ReportResult distReportResult = RunDistributionReport(report, options, standardOpts);
             // Aggregate the dist data
-            AggregateDistData(distReportResult);
+            if (this.GetType() == typeof(PersonsTreatedCoverageDiseaseReportGenerator)
+                || (Diseases.Count <= 1 && this.GetType() == typeof(PersonsTreatedCoverageDrugPackageReportGenerator)))
+            {
+                AggregateDistData(distReportResult);
+            }
 
             // Run the intervention report
             ReportResult intvReportResult = RunIntvReport(report, options, standardOpts);
@@ -369,7 +373,7 @@ namespace Nada.Model.Reports
                     // See if any of the available diseases are selected
                     foreach (Disease disease in standardOpts.AvailableDiseases)
                     {
-                        if (indicatorVal.DynamicValue.Contains(disease.DisplayNameKey) && !diseases.Contains(disease))
+                        if (indicatorVal.DynamicValue != null && indicatorVal.DynamicValue.Contains(disease.DisplayNameKey) && !diseases.Contains(disease))
                             diseases.Add(disease);
                     }
 
