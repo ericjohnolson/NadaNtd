@@ -253,7 +253,7 @@ namespace Nada.UI.View.Reports
         {
             WizardForm wiz = new WizardForm(new PersonsTreatedCoverageOptions(r), "Persons Treated and Coverage Report"); // TODO Replace with Translations
             wiz.Height = 685;
-            wiz.OnRunReport = RunEliminationReport;
+            wiz.OnRunReport = RunPersonsTreatedAndCoverageReport;
             wiz.Show();
         }
 
