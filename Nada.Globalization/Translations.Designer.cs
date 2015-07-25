@@ -6194,11 +6194,155 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Antileishmanial medicines included in the National Medicine List.
+        /// </summary>
+        public static string LeishRepAntiMedInNml {
+            get {
+                return ResourceManager.GetString("LeishRepAntiMedInNml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total number of ENDEMIC Admin-2 level in the country for CL.
+        /// </summary>
+        public static string LeishRepEndemicAdmin2Cl {
+            get {
+                return ResourceManager.GetString("LeishRepEndemicAdmin2Cl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total number of ENDEMIC Admin-2 level in the country for VL.
+        /// </summary>
+        public static string LeishRepEndemicAdmin2Vl {
+            get {
+                return ResourceManager.GetString("LeishRepEndemicAdmin2Vl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define what a leishmaniasis treatment &quot;failure&quot; is in this country for CL.
+        /// </summary>
+        public static string LeishRepFailureDefCl {
+            get {
+                return ResourceManager.GetString("LeishRepFailureDefCl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define what a leishmaniasis treatment &quot;failure&quot; is in this country for  VL.
+        /// </summary>
+        public static string LeishRepFailureDefVl {
+            get {
+                return ResourceManager.GetString("LeishRepFailureDefVl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is there a leishmaniasis reservoir host control programme?.
+        /// </summary>
+        public static string LeishRepIsHostProg {
+            get {
+                return ResourceManager.GetString("LeishRepIsHostProg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is leishmaniasis notifiable (mandatory report)?.
+        /// </summary>
+        public static string LeishRepIsNotifiable {
+            get {
+                return ResourceManager.GetString("LeishRepIsNotifiable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is leishmaniasis treatment provided for free in the public sector?.
+        /// </summary>
+        public static string LeishRepIsTreatFree {
+            get {
+                return ResourceManager.GetString("LeishRepIsTreatFree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is there a leishmaniasis vector control programme?.
+        /// </summary>
+        public static string LeishRepIsVectProg {
+            get {
+                return ResourceManager.GetString("LeishRepIsVectProg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of leishmaniasis health facilities.
+        /// </summary>
+        public static string LeishRepNumHealthFac {
+            get {
+                return ResourceManager.GetString("LeishRepNumHealthFac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leishmaniasis report.
         /// </summary>
         public static string LeishReport {
             get {
                 return ResourceManager.GetString("LeishReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define what a leishmaniasis &quot;relapse&quot; is in this country for CL.
+        /// </summary>
+        public static string LeishRepRelapseDefCl {
+            get {
+                return ResourceManager.GetString("LeishRepRelapseDefCl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define what a leishmaniasis &quot;relapse&quot; is in this country for VL.
+        /// </summary>
+        public static string LeishRepRelapseDefVl {
+            get {
+                return ResourceManager.GetString("LeishRepRelapseDefVl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL of the Leishmaniasis National Control Programme.
+        /// </summary>
+        public static string LeishRepUrlLncp {
+            get {
+                return ResourceManager.GetString("LeishRepUrlLncp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year latest national guidelines.
+        /// </summary>
+        public static string LeishRepYearLatestGuide {
+            get {
+                return ResourceManager.GetString("LeishRepYearLatestGuide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year Leishmaniasis National Control Programme was established.
+        /// </summary>
+        public static string LeishRepYearLncpEstablished {
+            get {
+                return ResourceManager.GetString("LeishRepYearLncpEstablished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        public static string LeishRepYearReporting {
+            get {
+                return ResourceManager.GetString("LeishRepYearReporting", resourceCulture);
             }
         }
         

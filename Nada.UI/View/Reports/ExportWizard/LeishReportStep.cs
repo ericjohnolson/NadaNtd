@@ -11,6 +11,8 @@ using Nada.UI.Base;
 using Nada.UI.AppLogic;
 using Nada.Model.Reports;
 using Nada.Globalization;
+using Nada.UI.View.Wizard;
+using Nada.Model;
 
 namespace Nada.UI.View.Reports.ExportWizard
 {
@@ -18,9 +20,9 @@ namespace Nada.UI.View.Reports.ExportWizard
     {
         //SettingsRepository settings = new SettingsRepository();
         //ExportRepository repo = new ExportRepository();
-        LeishReportQuestions questions = null;
-        LeishReportExporter exporter = null;
-        string title = "";
+        LeishReportQuestions Questions = null;
+        LeishReportExporter Exporter = null;
+        string Title = "";
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
         public Action OnFinish { get; set; }
@@ -41,8 +43,8 @@ namespace Nada.UI.View.Reports.ExportWizard
         public LeishReportStep(LeishReportExporter e, string t)
             : base()
         {
-            exporter = e;
-            title = t;
+            Exporter = e;
+            Title = t;
             InitializeComponent();
         }
 
@@ -56,7 +58,69 @@ namespace Nada.UI.View.Reports.ExportWizard
         }
         public void DoFinish()
         {
-            throw new NotImplementedException();
+            // Validate
+            if (!Questions.IsValid())
+            {
+                errorProvider1.DataSource = questionDataSource;
+                MessageBox.Show(Translations.ValidationError, Translations.ValidationErrorTitle);
+                return;
+            }
+            questionDataSource.EndEdit();
+
+            saveFileDialog1.FileName = Title + " " + Questions.LeishRepYearReporting.Value;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += worker_DoWork;
+                worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+                worker.RunWorkerAsync(new ExportParams { FileName = saveFileDialog1.FileName, LeishRepQuestions = Questions });
+
+                OnSwitchStep(new WorkingStep(Translations.ExportingData));
+            }
+        }
+
+        private void LeishReportStep_Load(object sender, EventArgs e)
+        {
+            if (!DesignMode)
+            {
+                // Translate
+                Localizer.TranslateControl(this);
+                // Setup the options
+                SetupOptions();
+                // Set the datasource
+                questionDataSource.DataSource = Questions;
+                // Set the save dialog extension
+                this.saveFileDialog1.DefaultExt = "xlsx";
+                this.saveFileDialog1.Filter = "Excel (.xlsx)|*.xlsx";
+            }
+        }
+
+        private void SetupOptions()
+        {
+            Questions = new LeishReportQuestions();
+        }
+
+        void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                ExportParams payload = (ExportParams)e.Argument;
+                e.Result = Exporter.DoExport(payload.FileName, ApplicationData.Instance.GetUserId(), payload.LeishRepQuestions);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error creating Leish Report (worker_DoWork). ", ex);
+                e.Result = new ExportResult(Translations.UnexpectedException + " " + ex.Message);
+            }
+        }
+
+        void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ExportResult result = (ExportResult)e.Result;
+            if (!result.WasSuccess)
+                MessageBox.Show(result.ErrorMessage, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            OnFinish();
         }
 
     }

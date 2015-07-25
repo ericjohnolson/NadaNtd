@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbYear = new Nada.UI.Controls.H3Required();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.questionDataSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbTotalAdmin2Vl = new Nada.UI.Controls.H3Required();
             this.lbTotalAdmin2Cl = new Nada.UI.Controls.H3Required();
             this.lbYearLncpEstablished = new Nada.UI.Controls.H3Required();
@@ -61,7 +63,11 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.questionDataSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lbYear
@@ -72,27 +78,34 @@
             this.lbYear.Location = new System.Drawing.Point(0, 0);
             this.lbYear.Margin = new System.Windows.Forms.Padding(0);
             this.lbYear.Name = "lbYear";
-            this.lbYear.Size = new System.Drawing.Size(43, 15);
+            this.lbYear.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbYear.Size = new System.Drawing.Size(43, 45);
             this.lbYear.TabIndex = 0;
             this.lbYear.Text = "Year";
             this.lbYear.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(378, 3);
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepYearReporting", true));
+            this.textBox1.Location = new System.Drawing.Point(179, 3);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(224, 20);
+            this.textBox1.Size = new System.Drawing.Size(213, 21);
             this.textBox1.TabIndex = 1;
+            // 
+            // questionDataSource
+            // 
+            this.questionDataSource.DataSource = typeof(Nada.Model.Exports.LeishReportQuestions);
             // 
             // lbTotalAdmin2Vl
             // 
             this.lbTotalAdmin2Vl.AutoSize = true;
             this.lbTotalAdmin2Vl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbTotalAdmin2Vl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbTotalAdmin2Vl.Location = new System.Drawing.Point(0, 30);
+            this.lbTotalAdmin2Vl.Location = new System.Drawing.Point(0, 45);
             this.lbTotalAdmin2Vl.Margin = new System.Windows.Forms.Padding(0);
             this.lbTotalAdmin2Vl.Name = "lbTotalAdmin2Vl";
-            this.lbTotalAdmin2Vl.Size = new System.Drawing.Size(174, 15);
+            this.lbTotalAdmin2Vl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbTotalAdmin2Vl.Size = new System.Drawing.Size(174, 45);
             this.lbTotalAdmin2Vl.TabIndex = 2;
             this.lbTotalAdmin2Vl.Tag = "LeishRepEndemicAdmin2Vl";
             this.lbTotalAdmin2Vl.Text = "LeishRepEndemicAdmin2Vl";
@@ -103,10 +116,11 @@
             this.lbTotalAdmin2Cl.AutoSize = true;
             this.lbTotalAdmin2Cl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbTotalAdmin2Cl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbTotalAdmin2Cl.Location = new System.Drawing.Point(0, 60);
+            this.lbTotalAdmin2Cl.Location = new System.Drawing.Point(0, 90);
             this.lbTotalAdmin2Cl.Margin = new System.Windows.Forms.Padding(0);
             this.lbTotalAdmin2Cl.Name = "lbTotalAdmin2Cl";
-            this.lbTotalAdmin2Cl.Size = new System.Drawing.Size(176, 15);
+            this.lbTotalAdmin2Cl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbTotalAdmin2Cl.Size = new System.Drawing.Size(176, 45);
             this.lbTotalAdmin2Cl.TabIndex = 3;
             this.lbTotalAdmin2Cl.Tag = "LeishRepEndemicAdmin2Cl";
             this.lbTotalAdmin2Cl.Text = "LeishRepEndemicAdmin2Cl";
@@ -117,10 +131,11 @@
             this.lbYearLncpEstablished.AutoSize = true;
             this.lbYearLncpEstablished.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbYearLncpEstablished.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbYearLncpEstablished.Location = new System.Drawing.Point(0, 90);
+            this.lbYearLncpEstablished.Location = new System.Drawing.Point(0, 135);
             this.lbYearLncpEstablished.Margin = new System.Windows.Forms.Padding(0);
             this.lbYearLncpEstablished.Name = "lbYearLncpEstablished";
-            this.lbYearLncpEstablished.Size = new System.Drawing.Size(176, 30);
+            this.lbYearLncpEstablished.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbYearLncpEstablished.Size = new System.Drawing.Size(176, 60);
             this.lbYearLncpEstablished.TabIndex = 4;
             this.lbYearLncpEstablished.Tag = "LeishRepYearLncpEstablished";
             this.lbYearLncpEstablished.Text = "LeishRepYearLncpEstablished";
@@ -131,10 +146,11 @@
             this.lbRepUrlLncp.AutoSize = true;
             this.lbRepUrlLncp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbRepUrlLncp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbRepUrlLncp.Location = new System.Drawing.Point(0, 120);
+            this.lbRepUrlLncp.Location = new System.Drawing.Point(0, 195);
             this.lbRepUrlLncp.Margin = new System.Windows.Forms.Padding(0);
             this.lbRepUrlLncp.Name = "lbRepUrlLncp";
-            this.lbRepUrlLncp.Size = new System.Drawing.Size(116, 15);
+            this.lbRepUrlLncp.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbRepUrlLncp.Size = new System.Drawing.Size(116, 45);
             this.lbRepUrlLncp.TabIndex = 5;
             this.lbRepUrlLncp.Tag = "LeishRepUrlLncp";
             this.lbRepUrlLncp.Text = "LeishRepUrlLncp";
@@ -145,10 +161,11 @@
             this.lbYearLatestGuide.AutoSize = true;
             this.lbYearLatestGuide.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbYearLatestGuide.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbYearLatestGuide.Location = new System.Drawing.Point(0, 150);
+            this.lbYearLatestGuide.Location = new System.Drawing.Point(0, 240);
             this.lbYearLatestGuide.Margin = new System.Windows.Forms.Padding(0);
             this.lbYearLatestGuide.Name = "lbYearLatestGuide";
-            this.lbYearLatestGuide.Size = new System.Drawing.Size(164, 15);
+            this.lbYearLatestGuide.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbYearLatestGuide.Size = new System.Drawing.Size(164, 45);
             this.lbYearLatestGuide.TabIndex = 6;
             this.lbYearLatestGuide.Tag = "LeishRepYearLatestGuide";
             this.lbYearLatestGuide.Text = "LeishRepYearLatestGuide";
@@ -159,10 +176,11 @@
             this.lbIsNotifiable.AutoSize = true;
             this.lbIsNotifiable.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbIsNotifiable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbIsNotifiable.Location = new System.Drawing.Point(0, 180);
+            this.lbIsNotifiable.Location = new System.Drawing.Point(0, 285);
             this.lbIsNotifiable.Margin = new System.Windows.Forms.Padding(0);
             this.lbIsNotifiable.Name = "lbIsNotifiable";
-            this.lbIsNotifiable.Size = new System.Drawing.Size(135, 15);
+            this.lbIsNotifiable.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbIsNotifiable.Size = new System.Drawing.Size(135, 45);
             this.lbIsNotifiable.TabIndex = 7;
             this.lbIsNotifiable.Tag = "LeishRepIsNotifiable";
             this.lbIsNotifiable.Text = "LeishRepIsNotifiable";
@@ -173,10 +191,11 @@
             this.lbIsVectProg.AutoSize = true;
             this.lbIsVectProg.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbIsVectProg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbIsVectProg.Location = new System.Drawing.Point(0, 210);
+            this.lbIsVectProg.Location = new System.Drawing.Point(0, 340);
             this.lbIsVectProg.Margin = new System.Windows.Forms.Padding(0);
             this.lbIsVectProg.Name = "lbIsVectProg";
-            this.lbIsVectProg.Size = new System.Drawing.Size(131, 15);
+            this.lbIsVectProg.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbIsVectProg.Size = new System.Drawing.Size(131, 45);
             this.lbIsVectProg.TabIndex = 8;
             this.lbIsVectProg.Tag = "LeishRepIsVectProg";
             this.lbIsVectProg.Text = "LeishRepIsVectProg";
@@ -187,10 +206,11 @@
             this.lbIsHostProg.AutoSize = true;
             this.lbIsHostProg.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbIsHostProg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbIsHostProg.Location = new System.Drawing.Point(0, 240);
+            this.lbIsHostProg.Location = new System.Drawing.Point(0, 395);
             this.lbIsHostProg.Margin = new System.Windows.Forms.Padding(0);
             this.lbIsHostProg.Name = "lbIsHostProg";
-            this.lbIsHostProg.Size = new System.Drawing.Size(135, 15);
+            this.lbIsHostProg.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbIsHostProg.Size = new System.Drawing.Size(135, 45);
             this.lbIsHostProg.TabIndex = 9;
             this.lbIsHostProg.Tag = "LeishRepIsHostProg";
             this.lbIsHostProg.Text = "LeishRepIsHostProg";
@@ -201,10 +221,11 @@
             this.lbNumHealthFac.AutoSize = true;
             this.lbNumHealthFac.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbNumHealthFac.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbNumHealthFac.Location = new System.Drawing.Point(0, 270);
+            this.lbNumHealthFac.Location = new System.Drawing.Point(0, 450);
             this.lbNumHealthFac.Margin = new System.Windows.Forms.Padding(0);
             this.lbNumHealthFac.Name = "lbNumHealthFac";
-            this.lbNumHealthFac.Size = new System.Drawing.Size(156, 15);
+            this.lbNumHealthFac.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbNumHealthFac.Size = new System.Drawing.Size(156, 45);
             this.lbNumHealthFac.TabIndex = 10;
             this.lbNumHealthFac.Tag = "LeishRepNumHealthFac";
             this.lbNumHealthFac.Text = "LeishRepNumHealthFac";
@@ -215,10 +236,11 @@
             this.lbIsTreatFree.AutoSize = true;
             this.lbIsTreatFree.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbIsTreatFree.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbIsTreatFree.Location = new System.Drawing.Point(0, 300);
+            this.lbIsTreatFree.Location = new System.Drawing.Point(0, 495);
             this.lbIsTreatFree.Margin = new System.Windows.Forms.Padding(0);
             this.lbIsTreatFree.Name = "lbIsTreatFree";
-            this.lbIsTreatFree.Size = new System.Drawing.Size(136, 15);
+            this.lbIsTreatFree.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbIsTreatFree.Size = new System.Drawing.Size(136, 45);
             this.lbIsTreatFree.TabIndex = 11;
             this.lbIsTreatFree.Tag = "LeishRepIsTreatFree";
             this.lbIsTreatFree.Text = "LeishRepIsTreatFree";
@@ -229,10 +251,11 @@
             this.lbAntiMedInNml.AutoSize = true;
             this.lbAntiMedInNml.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbAntiMedInNml.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbAntiMedInNml.Location = new System.Drawing.Point(0, 330);
+            this.lbAntiMedInNml.Location = new System.Drawing.Point(0, 550);
             this.lbAntiMedInNml.Margin = new System.Windows.Forms.Padding(0);
             this.lbAntiMedInNml.Name = "lbAntiMedInNml";
-            this.lbAntiMedInNml.Size = new System.Drawing.Size(149, 15);
+            this.lbAntiMedInNml.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbAntiMedInNml.Size = new System.Drawing.Size(149, 45);
             this.lbAntiMedInNml.TabIndex = 12;
             this.lbAntiMedInNml.Tag = "LeishRepAntiMedInNml";
             this.lbAntiMedInNml.Text = "LeishRepAntiMedInNml";
@@ -243,10 +266,11 @@
             this.lbRelapseDefVl.AutoSize = true;
             this.lbRelapseDefVl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbRelapseDefVl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbRelapseDefVl.Location = new System.Drawing.Point(0, 360);
+            this.lbRelapseDefVl.Location = new System.Drawing.Point(0, 595);
             this.lbRelapseDefVl.Margin = new System.Windows.Forms.Padding(0);
             this.lbRelapseDefVl.Name = "lbRelapseDefVl";
-            this.lbRelapseDefVl.Size = new System.Drawing.Size(149, 15);
+            this.lbRelapseDefVl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbRelapseDefVl.Size = new System.Drawing.Size(149, 45);
             this.lbRelapseDefVl.TabIndex = 13;
             this.lbRelapseDefVl.Tag = "LeishRepRelapseDefVl";
             this.lbRelapseDefVl.Text = "LeishRepRelapseDefVl";
@@ -257,10 +281,11 @@
             this.lbRelapseDefCl.AutoSize = true;
             this.lbRelapseDefCl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbRelapseDefCl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbRelapseDefCl.Location = new System.Drawing.Point(0, 390);
+            this.lbRelapseDefCl.Location = new System.Drawing.Point(0, 640);
             this.lbRelapseDefCl.Margin = new System.Windows.Forms.Padding(0);
             this.lbRelapseDefCl.Name = "lbRelapseDefCl";
-            this.lbRelapseDefCl.Size = new System.Drawing.Size(151, 15);
+            this.lbRelapseDefCl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbRelapseDefCl.Size = new System.Drawing.Size(151, 45);
             this.lbRelapseDefCl.TabIndex = 14;
             this.lbRelapseDefCl.Tag = "LeishRepRelapseDefCl";
             this.lbRelapseDefCl.Text = "LeishRepRelapseDefCl";
@@ -271,10 +296,11 @@
             this.lbFailureDefVl.AutoSize = true;
             this.lbFailureDefVl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbFailureDefVl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbFailureDefVl.Location = new System.Drawing.Point(0, 420);
+            this.lbFailureDefVl.Location = new System.Drawing.Point(0, 685);
             this.lbFailureDefVl.Margin = new System.Windows.Forms.Padding(0);
             this.lbFailureDefVl.Name = "lbFailureDefVl";
-            this.lbFailureDefVl.Size = new System.Drawing.Size(140, 15);
+            this.lbFailureDefVl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbFailureDefVl.Size = new System.Drawing.Size(140, 45);
             this.lbFailureDefVl.TabIndex = 15;
             this.lbFailureDefVl.Tag = "LeishRepFailureDefVl";
             this.lbFailureDefVl.Text = "LeishRepFailureDefVl";
@@ -285,10 +311,11 @@
             this.lbFailureDefCl.AutoSize = true;
             this.lbFailureDefCl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbFailureDefCl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbFailureDefCl.Location = new System.Drawing.Point(0, 450);
+            this.lbFailureDefCl.Location = new System.Drawing.Point(0, 730);
             this.lbFailureDefCl.Margin = new System.Windows.Forms.Padding(0);
             this.lbFailureDefCl.Name = "lbFailureDefCl";
-            this.lbFailureDefCl.Size = new System.Drawing.Size(142, 15);
+            this.lbFailureDefCl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.lbFailureDefCl.Size = new System.Drawing.Size(142, 45);
             this.lbFailureDefCl.TabIndex = 16;
             this.lbFailureDefCl.Tag = "LeishRepFailureDefCl";
             this.lbFailureDefCl.Text = "LeishRepFailureDefCl";
@@ -296,45 +323,52 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(378, 33);
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepEndemicAdmin2Vl", true));
+            this.textBox2.Location = new System.Drawing.Point(179, 48);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(224, 20);
+            this.textBox2.Size = new System.Drawing.Size(213, 21);
             this.textBox2.TabIndex = 17;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(378, 63);
+            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepEndemicAdmin2Cl", true));
+            this.textBox3.Location = new System.Drawing.Point(179, 93);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(224, 20);
+            this.textBox3.Size = new System.Drawing.Size(213, 21);
             this.textBox3.TabIndex = 18;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(378, 93);
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepYearLncpEstablished", true));
+            this.textBox4.Location = new System.Drawing.Point(179, 138);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(224, 20);
+            this.textBox4.Size = new System.Drawing.Size(213, 21);
             this.textBox4.TabIndex = 19;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(378, 123);
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepUrlLncp", true));
+            this.textBox5.Location = new System.Drawing.Point(179, 198);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(224, 20);
+            this.textBox5.Size = new System.Drawing.Size(213, 21);
             this.textBox5.TabIndex = 20;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(378, 153);
+            this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepYearLatestGuide", true));
+            this.textBox6.Location = new System.Drawing.Point(179, 243);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(224, 20);
+            this.textBox6.Size = new System.Drawing.Size(213, 21);
             this.textBox6.TabIndex = 21;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(378, 183);
+            this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.questionDataSource, "LeishRepIsNotifiable", true));
+            this.checkBox1.Location = new System.Drawing.Point(179, 288);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.checkBox1.Size = new System.Drawing.Size(85, 49);
             this.checkBox1.TabIndex = 22;
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -342,9 +376,11 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(378, 213);
+            this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.questionDataSource, "LeishRepIsVectProg", true));
+            this.checkBox2.Location = new System.Drawing.Point(179, 343);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(80, 17);
+            this.checkBox2.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.checkBox2.Size = new System.Drawing.Size(85, 49);
             this.checkBox2.TabIndex = 23;
             this.checkBox2.Text = "checkBox2";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -352,70 +388,80 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(378, 243);
+            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.questionDataSource, "LeishRepIsHostProg", true));
+            this.checkBox3.Location = new System.Drawing.Point(179, 398);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(80, 17);
+            this.checkBox3.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.checkBox3.Size = new System.Drawing.Size(85, 49);
             this.checkBox3.TabIndex = 24;
             this.checkBox3.Text = "checkBox3";
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(378, 273);
+            this.textBox7.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepNumHealthFac", true));
+            this.textBox7.Location = new System.Drawing.Point(179, 453);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(224, 20);
+            this.textBox7.Size = new System.Drawing.Size(213, 21);
             this.textBox7.TabIndex = 25;
             // 
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(378, 303);
+            this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.questionDataSource, "LeishRepIsTreatFree", true));
+            this.checkBox4.Location = new System.Drawing.Point(179, 498);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(80, 17);
+            this.checkBox4.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            this.checkBox4.Size = new System.Drawing.Size(85, 49);
             this.checkBox4.TabIndex = 26;
             this.checkBox4.Text = "checkBox4";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(378, 333);
+            this.textBox8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepAntiMedInNml", true));
+            this.textBox8.Location = new System.Drawing.Point(179, 553);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(224, 20);
+            this.textBox8.Size = new System.Drawing.Size(213, 21);
             this.textBox8.TabIndex = 27;
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(378, 363);
+            this.textBox9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepRelapseDefVl", true));
+            this.textBox9.Location = new System.Drawing.Point(179, 598);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(224, 20);
+            this.textBox9.Size = new System.Drawing.Size(213, 21);
             this.textBox9.TabIndex = 28;
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(378, 393);
+            this.textBox10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepRelapseDefCl", true));
+            this.textBox10.Location = new System.Drawing.Point(179, 643);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(224, 20);
+            this.textBox10.Size = new System.Drawing.Size(213, 21);
             this.textBox10.TabIndex = 29;
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(378, 423);
+            this.textBox11.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepFailureDefVl", true));
+            this.textBox11.Location = new System.Drawing.Point(179, 688);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(224, 20);
+            this.textBox11.Size = new System.Drawing.Size(213, 21);
             this.textBox11.TabIndex = 30;
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(378, 453);
+            this.textBox12.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepFailureDefCl", true));
+            this.textBox12.Location = new System.Drawing.Point(179, 733);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(224, 20);
+            this.textBox12.Size = new System.Drawing.Size(213, 21);
             this.textBox12.TabIndex = 31;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.lbYear, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbTotalAdmin2Vl, 0, 1);
@@ -451,34 +497,41 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 16;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(751, 555);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(876, 1200);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // LeishReportStep1
+            // errorProvider1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // LeishReportStep
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "LeishReportStep1";
-            this.Size = new System.Drawing.Size(751, 555);
+            this.Name = "LeishReportStep";
+            this.Size = new System.Drawing.Size(876, 1200);
+            this.Load += new System.EventHandler(this.LeishReportStep_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.questionDataSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -518,6 +571,9 @@
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.BindingSource questionDataSource;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 
     }
 }

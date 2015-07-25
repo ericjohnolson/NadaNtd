@@ -1468,6 +1468,7 @@
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportCmJrfQuestions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportContact.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Exports.ExportQuestions.datasource" />
+    <None Include="Properties\DataSources\Nada.Model.Exports.LeishReportQuestions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Exports.RtiWorkbooksExporter.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Imports.ImportOptions.datasource" />
     <None Include="Properties\DataSources\Nada.Model.Imports.TypeListItem.datasource" />

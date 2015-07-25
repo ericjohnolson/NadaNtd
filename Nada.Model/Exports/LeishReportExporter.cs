@@ -18,5 +18,12 @@ namespace Nada.Model.Exports
             throw new NotImplementedException();
         }
 
+        public ExportResult DoExport(string fileName, int userId, LeishReportQuestions questions)
+        {
+            LeishReportQuestions q = questions;
+            System.Diagnostics.Debug.WriteLine("test");
+            return null;
+        }
+
     }
 }

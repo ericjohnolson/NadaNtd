@@ -27,6 +27,7 @@ namespace Nada.Model
     {
         public ExportJrfQuestions Questions { get; set; }
         public ExportCmJrfQuestions CmQuestions { get; set; }
+        public LeishReportQuestions LeishRepQuestions { get; set; }
         public int? Year { get; set; }
         public AdminLevelType AdminLevelType { get; set; }
         public string FileName { get; set; }

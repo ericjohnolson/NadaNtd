@@ -260,7 +260,8 @@ namespace Nada.UI.View.Reports
 
         private void leishReport_ClickOverride()
         {
-            WizardForm wiz = new WizardForm(new LeishReportStep(), Translations.LeishReport);
+            LeishReportExporter exporter = new LeishReportExporter();
+            WizardForm wiz = new WizardForm(new LeishReportStep(exporter, exporter.ExportName), Translations.LeishReport);
             wiz.OnFinish = () => { };
             wiz.ShowDialog();
         }
