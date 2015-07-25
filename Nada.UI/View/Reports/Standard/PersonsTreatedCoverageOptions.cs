@@ -43,6 +43,11 @@ namespace Nada.UI.View.Reports.Standard
         {
             report = o;
             options = (PersonsTreatedCoverageReportOptions)o.StandardReportOptions;
+
+            // Clear previous report results
+            report.ReportOptions.Columns = new Dictionary<string, AggregateIndicator>();
+            report.ReportOptions.SelectedIndicators = new List<ReportIndicator>();
+
             InitializeComponent();
         }
 
@@ -107,18 +112,22 @@ namespace Nada.UI.View.Reports.Standard
                 DiseaseRepository diseaseRepo = new DiseaseRepository();
                 var diseases = diseaseRepo.GetSelectedDiseases().Where(d => d.DiseaseType == Translations.PC).ToList();
                 diseaseBindingSource.DataSource = diseases;
+                // Add the diseases to the collection of available ones
+                options.AvailableDiseases = diseases;
 
                 // Interventions
                 IntvRepository intvRepo = new IntvRepository();
                 // The interventions we want to use to popualte the list
-                List<int> interventionTypes = new List<int>
+                List<int> interventionTypeIds = new List<int>
                 {
                     (int)StaticIntvType.Alb, (int)StaticIntvType.Alb2, (int)StaticIntvType.DecAlb, (int)StaticIntvType.Ivm, (int)StaticIntvType.IvmAlb,
                     (int)StaticIntvType.IvmPzq, (int)StaticIntvType.IvmPzqAlb, (int)StaticIntvType.Mbd, (int)StaticIntvType.Pzq, (int)StaticIntvType.PzqAlb,
                     (int)StaticIntvType.PzqMbd, (int)StaticIntvType.ZithroTeo
                 };
-                List<IntvType> interventions = intvRepo.GetAllTypes().Where(i => interventionTypes.Contains(i.Id)).OrderBy(i => i.IntvTypeName).ToList();
-                intvTypeBindingSource.DataSource = interventions;
+                List<IntvType> intvTypes = intvRepo.GetAllTypes().Where(i => interventionTypeIds.Contains(i.Id)).OrderBy(i => i.IntvTypeName).ToList();
+                intvTypeBindingSource.DataSource = intvTypes;
+                // Add the interventions to the collection of available ones
+                options.AvailableDrugPackages = intvTypes;
 
                 // Admin level types
                 SettingsRepository settingsRepo = new SettingsRepository();

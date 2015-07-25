@@ -29,11 +29,15 @@ namespace Nada.Model.Reports
         {
             Diseases = new List<Disease>();
             DrugPackages = new List<IntvType>();
+            AvailableDiseases = new List<Disease>();
+            AvailableDrugPackages = new List<IntvType>();
             Years = new List<int>();
         }
         public AdminLevelType DistrictType { get; set; }
         public List<Disease> Diseases { get; set; }
         public List<IntvType> DrugPackages { get; set; }
+        public List<Disease> AvailableDiseases { get; set; }
+        public List<IntvType> AvailableDrugPackages { get; set; }
         public List<int> Years { get; set; }
         public bool isReportTypeDisease { get; set; }
     }
