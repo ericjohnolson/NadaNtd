@@ -129,9 +129,34 @@ namespace Nada.Model.Intervention
                     case "27LeishMontIntvDetectionRatePer100000":
                         return new KeyValuePair<string, string>(Translations.LeishMontIntvDetectionRatePer100000, "--");
                     case "27LeishMontIntvPrcntOfLabConfirmedCases":
-                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfLabConfirmedCases, "--");
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfLabConfirmedCases,
+                            GetPercentage(
+                                GetTotal(new string[3]
+                                {
+                                    GetValueOrDefault("27LeishMontIntvNumberOfLabConfirmedCLCases", relatedValues),
+                                    GetValueOrDefault("27LeishMontIntvNumberOfVLCasesDiagnosedByAPositiveRapidDiagnosticTestsRDT", relatedValues),
+                                    GetValueOrDefault("27LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases", relatedValues)
+                                }),
+                                GetTotal(new string[2]
+                                {
+                                    GetValueOrDefault("27LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical", relatedValues),
+                                    GetValueOrDefault("27LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues)
+                                }
+                            )));
                     case "27LeishMontIntvPrcntCasesActivelyFound":
-                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntCasesActivelyFound, "--");
+                        return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntCasesActivelyFound,
+                            GetPercentage(
+                                GetValueOrDefault("27LeishMontIntvNumberOfCasesFoundActively", relatedValues),
+                                GetTotal(new string[6]
+                                {
+                                    GetValueOrDefault("27LeishMontIntvNumberOfPeopleScreenedActivelyForVL", relatedValues),
+                                    GetValueOrDefault("27LeishMontIntvNumberOfPeopleScreenedPassivelyForVL", relatedValues),
+                                    GetValueOrDefault("27LeishMontIntvNumberOfPeopleScreenedActivelyForCL", relatedValues),
+                                    GetValueOrDefault("27LeishMontIntvNumberOfPeopleScreenedPassivelyForCL", relatedValues),
+                                    GetValueOrDefault("27LeishMontIntvNumberOfPeopleScreenedActivelyForPKDL", relatedValues),
+                                    GetValueOrDefault("27LeishMontIntvNumberOfPeopleScreenedPassivelyForPKDL", relatedValues)
+                                }
+                            )));
                     case "27LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases":
                         return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases,
                             GetPercentageWithRatio(
