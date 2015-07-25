@@ -6697,9 +6697,6 @@ Fixed / Mobile</value>
   <data name="TraSurNumberOfIndividualsWithCSTS" xml:space="preserve">
     <value>Number of individuals with clinical sign - TS</value>
   </data>
-  <data name="LeishAnnIntvDetectionRatePer100000" xml:space="preserve">
-    <value>Detection rate per 100,000</value>
-  </data>
   <data name="DDSTHAdultPopulation" xml:space="preserve">
     <value>Adult population</value>
   </data>

@@ -5123,15 +5123,6 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detection rate per 100,000.
-        /// </summary>
-        public static string LeishAnnIntvDetectionRatePer100000 {
-            get {
-                return ResourceManager.GetString("LeishAnnIntvDetectionRatePer100000", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Months elapsed between onset of symptoms and diagnosis (median) for CL.
         /// </summary>
         public static string LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForCL {

@@ -6673,9 +6673,6 @@ Fixo / móvel </value>
   <data name="TraSurNumberOfIndividualsWithCSTS" xml:space="preserve">
     <value>Número de indivíduos com sinais clínicos - TS</value>
   </data>
-  <data name="LeishAnnIntvDetectionRatePer100000" xml:space="preserve">
-    <value>Taxa de detecção por 100.000</value>
-  </data>
   <data name="DDSTHAdultPopulation" xml:space="preserve">
     <value>População adulta</value>
   </data>

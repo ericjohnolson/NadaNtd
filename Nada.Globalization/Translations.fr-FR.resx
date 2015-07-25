@@ -6678,9 +6678,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="TraSurNumberOfIndividualsWithCSTS" xml:space="preserve">
     <value>Nombre de personnes présentant un signe clinique - TS</value>
   </data>
-  <data name="LeishAnnIntvDetectionRatePer100000" xml:space="preserve">
-    <value>Taux de détection par 100 000</value>
-  </data>
   <data name="DDSTHAdultPopulation" xml:space="preserve">
     <value>Population adulte</value>
   </data>

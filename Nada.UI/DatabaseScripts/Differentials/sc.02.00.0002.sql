@@ -107,8 +107,6 @@ INSERT INTO InterventionTypes_to_Diseases (InterventionTypeId, DiseaseId) VALUES
 	(DLookup("ID", "InterventionTypes", "InterventionTypeName ='LeishAnnualIntervention'"), DLookup("ID", "Diseases", "DisplayName ='Leishmaniasis'"));
 
 -- Story #211 Leish Annual Intervention indicators
-insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId, InterventionTypeId) values (13, 'LeishAnnIntvDetectionRatePer100000', 1, 0, 26, NOW(), 0, 0, 0, 0, -1, 0, 0, 1, 1, 26);
-insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 26, ID FROM interventionindicators where displayname = 'LeishAnnIntvDetectionRatePer100000' AND InterventionTypeId = 26;
 insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId, InterventionTypeId) values (4, 'DateReported', 3, 0, 26, NOW(), 0, 0, -1, 0, 0, 0, 0, 2, 55, 26);
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 26, ID FROM interventionindicators where displayname = 'DateReported' AND InterventionTypeId = 26;
 insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId, InterventionTypeId) values (2, 'LeishAnnIntvTotalPopulationForThe2NdAdministrativeLevel', 1, 1, 26, NOW(), 0, 0, 0, 0, 0, 0, 0, 2, 57, 26);

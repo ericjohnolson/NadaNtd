@@ -6673,9 +6673,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TraSurNumberOfIndividualsWithCSTS" xml:space="preserve">
     <value>Jumlah individu dengan tanda klinis - TS</value>
   </data>
-  <data name="LeishAnnIntvDetectionRatePer100000" xml:space="preserve">
-    <value>Angka deteksi per 100.000</value>
-  </data>
   <data name="DDSTHAdultPopulation" xml:space="preserve">
     <value>Populasi orang dewasa</value>
   </data>
