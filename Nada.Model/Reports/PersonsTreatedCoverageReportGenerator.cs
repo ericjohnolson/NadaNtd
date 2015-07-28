@@ -302,6 +302,14 @@ namespace Nada.Model.Reports
             // Determine intervention types
             IntvTypes = DetermineIntvTypes(report, standardOpts);
 
+            // There was no data at this reporting level
+            if (Diseases == null || IntvTypes == null || Diseases.Count < 1 || IntvTypes.Count < 1)
+            {
+                ReportResult result = new ReportResult();
+                result.DataTableResults = new DataTable();
+                return result;
+            }
+
             // Run the distribution report for the disease dist related data
             ReportResult distReportResult = RunDistributionReport(report, options, standardOpts);
             // Aggregate the dist data
