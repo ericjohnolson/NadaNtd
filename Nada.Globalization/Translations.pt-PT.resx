@@ -135,9 +135,6 @@
   <data name="CmBuget" xml:space="preserve">
     <value>Qual é o orçamento global do Plano estratégico DTN?</value>
   </data>
-  <data name="NumCasesTreatedRef" xml:space="preserve">
-    <value>Número de casos tratados em centros de referência</value>
-  </data>
   <data name="CmPercentFunded" xml:space="preserve">
     <value>Que percentagem é financiada pelo Governo do seu país</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="LFSurTestType" xml:space="preserve">
     <value>Tipo de teste</value>
-  </data>
-  <data name="NumSchoolsScreenedCm" xml:space="preserve">
-    <value>Número de escolas selecionados durante o ano</value>
   </data>
   <data name="NumCasesTreatedYaws" xml:space="preserve">
     <value>Número de casos tratados durante o ano</value>
@@ -186,6 +180,9 @@
   <data name="TraMapSurDistLevelMda" xml:space="preserve">
     <value>CTM a nível distrital</value>
   </data>
+  <data name="SCHMapSurNumberOfIndividualsExaminedForU" xml:space="preserve">
+    <value>Número de indivíduos examinados por schistosomes urinário</value>
+  </data>
   <data name="SaeHeight" xml:space="preserve">
     <value>Altura ( cm)</value>
   </data>
@@ -203,9 +200,6 @@
   </data>
   <data name="SaeOncho" xml:space="preserve">
     <value>Oncho</value>
-  </data>
-  <data name="NumImported" xml:space="preserve">
-    <value>Número de casos importados</value>
   </data>
   <data name="LeishMontIntvNumberOfNewPKDLCasesInChildren5To14Years" xml:space="preserve">
     <value>Number of new PKDL cases in children 5-14 years</value>
@@ -269,6 +263,9 @@
   </data>
   <data name="SentinelSitePicker" xml:space="preserve">
     <value>postos sentinela</value>
+  </data>
+  <data name="DDTraPopulationLivingInAreasDistrict" xml:space="preserve">
+    <value>População que vive em áreas que alcançaram os critérios para impedir  PC para o tracoma a nível distrital</value>
   </data>
   <data name="PopMale" xml:space="preserve">
     <value>população masculina</value>
@@ -423,9 +420,6 @@
   <data name="LFSurCausalAgent" xml:space="preserve">
     <value>Agente causal</value>
   </data>
-  <data name="TotalNumHatChild" xml:space="preserve">
-    <value>Número total de crianças entre os casos de HAT</value>
-  </data>
   <data name="LeishMontIntvPrcntOfCLPatientsWithGrtrThnOrEqlTo4Lesions" xml:space="preserve">
     <value>% of CL patients with &gt; or = 4 lesions</value>
   </data>
@@ -447,8 +441,8 @@
   <data name="LFMapSurPositive" xml:space="preserve">
     <value>% positiva</value>
   </data>
-  <data name="IntvIvm" xml:space="preserve">
-    <value>Intervenção IVM</value>
+  <data name="MustBeGreaterThanZero" xml:space="preserve">
+    <value>Deve ser maior que zero</value>
   </data>
   <data name="NumIdsr" xml:space="preserve">
     <value>Número de IDSR/ Instalações de saúde</value>
@@ -480,11 +474,8 @@
   <data name="Destination" xml:space="preserve">
     <value>Destino</value>
   </data>
-  <data name="SCMNumRemainingOpenedBottles" xml:space="preserve">
-    <value>Número de frascos abertos restantes</value>
-  </data>
-  <data name="Echino" xml:space="preserve">
-    <value>Equinococose</value>
+  <data name="LinkSelect" xml:space="preserve">
+    <value>Selecionar ...</value>
   </data>
   <data name="PriceRecoverySystem" xml:space="preserve">
     <value>Sistema de recuperação de preço</value>
@@ -554,6 +545,9 @@
   </data>
   <data name="CalendarYear" xml:space="preserve">
     <value>Ano Civil</value>
+  </data>
+  <data name="TotalUlcerativeCases" xml:space="preserve">
+    <value>Número total de novos casos ulcerativos</value>
   </data>
   <data name="CmHasYawsMeeting" xml:space="preserve">
     <value>bouba</value>
@@ -708,8 +702,8 @@
   <data name="PcIntvNumFemalesTreated" xml:space="preserve">
     <value>Número de mulheres tratadas</value>
   </data>
-  <data name="RoundNumber" xml:space="preserve">
-    <value>Número de voltas</value>
+  <data name="OnchoSaeLikely" xml:space="preserve">
+    <value>SAE provável</value>
   </data>
   <data name="ImportSurveyWarning" xml:space="preserve">
     <value>Nota importante: As importações de pesquisa apenas funcionam para pesquisas que tenham lugar numa única unidade administrativa de cada vez. Se qualquer das pesquisas tiver lugar em mais do que uma unidade administrativa de cada vez (por exemplo, zona ecológica compreendendo muitos distritos) tais pesquisas necessitam de ser introduzidas directamente nos formulários. Não serão registados como deve ser se forem lançados aqui nas importações.</value>
@@ -732,8 +726,8 @@
   <data name="RtiErrorMustMatchAll" xml:space="preserve">
     <value>Deve condizer com todas as unidades antes de continuar </value>
   </data>
-  <data name="LeishMontIntvNumberOfVLCasesDiagnosedByDirectExamParasitology" xml:space="preserve">
-    <value>Number of VL cases diagnosed by direct exam (parasitology)</value>
+  <data name="Wbancrofti" xml:space="preserve">
+    <value>W. bancrofti</value>
   </data>
   <data name="OnchoSurCmfl" xml:space="preserve">
     <value>CMFL</value>
@@ -753,8 +747,8 @@
   <data name="IntvFemaleSac" xml:space="preserve">
     <value># female SAC treated</value>
   </data>
-  <data name="DDLFPopulationAtRisk" xml:space="preserve">
-    <value>População em risco</value>
+  <data name="LeishMontIntvNumberOfVLCasesDiagnosedByDirectExamParasitology" xml:space="preserve">
+    <value>Number of VL cases diagnosed by direct exam (parasitology)</value>
   </data>
   <data name="CmHasAnnualForum" xml:space="preserve">
     <value>Existe um fórum anual ou encontro de  revisão para o programa geral DTN</value>
@@ -774,8 +768,8 @@
   <data name="PcJrfForm" xml:space="preserve">
     <value>Formulário de união de Relatórios de PC</value>
   </data>
-  <data name="TotalUlcerativeCases" xml:space="preserve">
-    <value>Número total de novos casos ulcerativos</value>
+  <data name="IndicatorUpdatesValidated" xml:space="preserve">
+    <value>Changes have been validated, please make sure there are no errors.</value>
   </data>
   <data name="PercentTGambTRhod" xml:space="preserve">
     <value>% De ambos os casos gambiense T  &amp; rhodesiense T </value>
@@ -921,8 +915,8 @@
   <data name="MenuViewHelp" xml:space="preserve">
     <value>Ver Ajuda ...</value>
   </data>
-  <data name="ProcessIndicators" xml:space="preserve">
-    <value>Indicadores de Processo</value>
+  <data name="TraSurAgeGroupSurveyed" xml:space="preserve">
+    <value>Faixa etária pesquisada</value>
   </data>
   <data name="SchNs" xml:space="preserve">
     <value>NS Não mapeado , mas não suspeito</value>
@@ -1134,6 +1128,9 @@
   <data name="CureRateBu" xml:space="preserve">
     <value>A taxa de cura dos casos de úlcera de Buruli durante o ano</value>
   </data>
+  <data name="Oncho3Parasite" xml:space="preserve">
+    <value>parasitológico</value>
+  </data>
   <data name="SCHMapSurProportionOfModerateIntensityIn" xml:space="preserve">
     <value>Número de infecções chistosómicas intestinais de intensidade moderada</value>
   </data>
@@ -1149,6 +1146,9 @@
   <data name="LFSurPosLympho" xml:space="preserve">
     <value>Número de indivíduos Linfoedema positivos </value>
   </data>
+  <data name="TotalNumMbCases" xml:space="preserve">
+    <value>Número total de casos novos MB</value>
+  </data>
   <data name="NoDataFound" xml:space="preserve">
     <value>Nenhum dado foi encontrado no arquivo</value>
   </data>
@@ -1161,8 +1161,8 @@
   <data name="NumGoodRifampicin" xml:space="preserve">
     <value>Número de comprimidos de boa qualidade de Rifampicina disponíveis</value>
   </data>
-  <data name="SCHMapSurNumberOfIndividualsExaminedForU" xml:space="preserve">
-    <value>Número de indivíduos examinados por schistosomes urinário</value>
+  <data name="CalculatingStatistics" xml:space="preserve">
+    <value>Calculating statistics...</value>
   </data>
   <data name="TraMapSurPerWithClinicalSignTf" xml:space="preserve">
     <value>% Com sinal clínico - TF</value>
@@ -1254,6 +1254,9 @@
   <data name="Running" xml:space="preserve">
     <value>Funcionamento</value>
   </data>
+  <data name="PercentCl" xml:space="preserve">
+    <value>% Apenas casos CL</value>
+  </data>
   <data name="RtiSchNs" xml:space="preserve">
     <value>NS</value>
   </data>
@@ -1262,6 +1265,9 @@
   </data>
   <data name="SAEIfhospitalizationrequireddateofadmission" xml:space="preserve">
     <value>Se necessitaram de internação hospitalar , data de admissão</value>
+  </data>
+  <data name="PercentCatIICases" xml:space="preserve">
+    <value>% Dos novos casos de lesões daecategoria III</value>
   </data>
   <data name="NumAdultsTargeted" xml:space="preserve">
     <value>N˚ de adultos visados</value>
@@ -1329,8 +1335,8 @@
   <data name="LeishMontIntvNumberOfNewCLCasesInChildrenLssThn5Years" xml:space="preserve">
     <value>Number of new CL cases in children &lt; 5 years</value>
   </data>
-  <data name="OnchoSurEntTaxoForestSav" xml:space="preserve">
-    <value>Floresta e Savana</value>
+  <data name="PbAdultEnd" xml:space="preserve">
+    <value>Adultos de PB  no final do ano das crianças</value>
   </data>
   <data name="DatabaseScriptSuccess" xml:space="preserve">
     <value>Script de banco de dados foi executada com sucesso .</value>
@@ -1370,9 +1376,6 @@
   </data>
   <data name="PcIntvLfEpiCoverage" xml:space="preserve">
     <value>Cobertura LF Epi</value>
-  </data>
-  <data name="DDSTHNumPcRoundsYearCurrentlyImplemente" xml:space="preserve">
-    <value>N˚ de voltas/ano de PC implementadas actualmente</value>
   </data>
   <data name="PcIntvNumEligibleMalesTargeted" xml:space="preserve">
     <value>N˚ de homens elegíveis visadas</value>
@@ -1421,6 +1424,9 @@
   </data>
   <data name="OnchoSurTypeOfMapping" xml:space="preserve">
     <value>Tipo de mapeamento</value>
+  </data>
+  <data name="TASTasActualTimelineAndResourcesNuOfSurve" xml:space="preserve">
+    <value>Cronograma e Recursos TAS - Números de dias de pesquisa necessário</value>
   </data>
   <data name="SCMExpiryDatesForOpenedBottles" xml:space="preserve">
     <value>Datas de validade para garrafas abertas</value>
@@ -1473,9 +1479,6 @@
   <data name="OnchoSurInfectiveLarvae" xml:space="preserve">
     <value>Número de larvas infectantes</value>
   </data>
-  <data name="DrugAlbIvm" xml:space="preserve">
-    <value>ALB e IVM</value>
-  </data>
   <data name="LFMapSurSiteNames" xml:space="preserve">
     <value>Nome do local (s)</value>
   </data>
@@ -1500,6 +1503,9 @@
   <data name="DDOnchoTotalPopulation" xml:space="preserve">
     <value>População total</value>
   </data>
+  <data name="NumPatientsType1" xml:space="preserve">
+    <value>Número de pacientes com reação do tipo 1</value>
+  </data>
   <data name="NumVas" xml:space="preserve">
     <value>Número de aldeias sob vigilância activa (VAS)</value>
   </data>
@@ -1520,6 +1526,9 @@
   </data>
   <data name="IntvDrpNotResolved" xml:space="preserve">
     <value>Ainda não resolvido</value>
+  </data>
+  <data name="CreateImportFor" xml:space="preserve">
+    <value>Criar importação para</value>
   </data>
   <data name="DrpDecAlb" xml:space="preserve">
     <value>DEC + ALB</value>
@@ -1899,6 +1908,9 @@
   <data name="ValidationError" xml:space="preserve">
     <value>Por favor, corrija os erros antes de continuar.</value>
   </data>
+  <data name="LifeExpectBirthFemale" xml:space="preserve">
+    <value>Life expectancy at birth for female</value>
+  </data>
   <data name="TASYearOfMostRecentEffectiveMda" xml:space="preserve">
     <value>Ano da mais recente eficaz  MDA </value>
   </data>
@@ -1950,6 +1962,9 @@
   <data name="SurSchSentinelSpotCheckSurvey" xml:space="preserve">
     <value>Esquistossomose pesquisa do local de observação/ Sentinela  </value>
   </data>
+  <data name="LeishRepYearLatestGuide" xml:space="preserve">
+    <value>Year latest national guidelines</value>
+  </data>
   <data name="TSAnnualInterventionObjectiveSurgery" xml:space="preserve">
     <value>Objectivo da Intervenção anual: Cirurgia</value>
   </data>
@@ -1961,6 +1976,9 @@
   </data>
   <data name="STHMapSurSurOverallProportionOfHeavyIntensity" xml:space="preserve">
     <value>Proporção geral de infecção " intensidade forte " com qualquer STH</value>
+  </data>
+  <data name="Anopheles" xml:space="preserve">
+    <value>Anófele</value>
   </data>
   <data name="LFSurNumberOfIndividualsSampled" xml:space="preserve">
     <value>Número de indivíduos amostrados</value>
@@ -2007,6 +2025,9 @@
   <data name="TraMapSurFemale40yo" xml:space="preserve">
     <value>Mulheres + 40 anos </value>
   </data>
+  <data name="GrossDomesticProduct" xml:space="preserve">
+    <value>GDP (Gross Domestic Product)</value>
+  </data>
   <data name="LeishMontIntvPrcntOfLabConfirmedCases" xml:space="preserve">
     <value>% Do laboratório de casos confirmados</value>
   </data>
@@ -2019,17 +2040,17 @@
   <data name="OnchoSurStandardizedPrevelance" xml:space="preserve">
     <value>Prevalencia padronizada</value>
   </data>
+  <data name="SCMAvailableUsableStock" xml:space="preserve">
+    <value>Estoque disponível utilizável </value>
+  </data>
   <data name="LeishMontIntvPrcntOfParasitologicallyConfirmedVLSamples" xml:space="preserve">
     <value>% of parasitologically confirmed VL samples</value>
-  </data>
-  <data name="OnchoSurIfTestTypeIsNpPerWri" xml:space="preserve">
-    <value>Se o tipo de teste é a palpação de nódulos, morbidade dermatológico -% de indivíduos com rugas ( inelasticidade )</value>
   </data>
   <data name="OnchoSurIfTestTypeIsNpNumDep" xml:space="preserve">
     <value>Se o tipo de teste é a palpação de nódulos, morbidade dermatológico - número de indivíduos com despigmentação</value>
   </data>
-  <data name="CreateImportFor" xml:space="preserve">
-    <value>Criar importação para</value>
+  <data name="BUTrainPercentageOfHealthFacilitiesHavin" xml:space="preserve">
+    <value>Percentagem de unidades de saúde com pelo menos uma individuo formada para o programa de controle da úlcera de Buruli</value>
   </data>
   <data name="DrpIvm" xml:space="preserve">
     <value>IVM</value>
@@ -2166,9 +2187,6 @@
   <data name="ScmPhysicalCount" xml:space="preserve">
     <value>Contagem física</value>
   </data>
-  <data name="SaeDate" xml:space="preserve">
-    <value>Data do relatório</value>
-  </data>
   <data name="RtiSch3a" xml:space="preserve">
     <value>3A</value>
   </data>
@@ -2219,9 +2237,6 @@
   </data>
   <data name="OnchoSurReportedPopulation" xml:space="preserve">
     <value>População relatada</value>
-  </data>
-  <data name="DiseasesRequired" xml:space="preserve">
-    <value>Por favor seleccione doenças visadas.</value>
   </data>
   <data name="UpdateFound" xml:space="preserve">
     <value>Não é uma nova versão deste aplicativo , você gostaria de actualizar ?</value>
@@ -2343,14 +2358,14 @@
   <data name="DiseaseDistribution" xml:space="preserve">
     <value>Distribuição da Doença</value>
   </data>
-  <data name="DrpAlb" xml:space="preserve">
-    <value>ALB</value>
-  </data>
   <data name="RtiSsAg" xml:space="preserve">
     <value>SS (Ag)</value>
   </data>
   <data name="LeishMontIntvNumberOfNewPKDLCasesInAdultsGrtrThn14Years" xml:space="preserve">
     <value>Number of new PKDL cases in adults &gt; 14 years</value>
+  </data>
+  <data name="RedistrictRuleSplitCombine" xml:space="preserve">
+    <value>Split/combine rule</value>
   </data>
   <data name="RtiTaskForceNoInternet" xml:space="preserve">
     <value>Não se encontrou ligação a internet. Queira conectar na internet e tente outra vez ou reverifique a caixa para saltar a reconciliação das suas unidades administrativas</value>
@@ -2415,11 +2430,11 @@
   <data name="ImportNoDataError" xml:space="preserve">
     <value>O arquivo era um formato incorreto ou não tinha dados</value>
   </data>
-  <data name="NumPopSurveyedCm" xml:space="preserve">
-    <value>Número de população em aldeias ou comunidades pesquisadas - adultos e crianças ( menores de 15 anos) , homens e mulheres</value>
+  <data name="NumImported" xml:space="preserve">
+    <value>Número de casos importados</value>
   </data>
-  <data name="SettingsReportingLevelDesc" xml:space="preserve">
-    <value>Nível de reporte: os relatórios da OMS e dos parceiros serão automaticamente gerados para as unidades administrativas neste nível e tipicamente este é o "Distrito" do segundo nível administrativo </value>
+  <data name="SuperDistrict" xml:space="preserve">
+    <value>Super Distrito</value>
   </data>
   <data name="SCMDrug" xml:space="preserve">
     <value>medicamentos</value>
@@ -2463,8 +2478,8 @@
   <data name="SurImpactSurvey" xml:space="preserve">
     <value>Pesquisa de Impacto do Tracoma</value>
   </data>
-  <data name="LeishAnnIntvTypeOfInsecticideUsedForIndoorResidualSpryaing" xml:space="preserve">
-    <value>Type of insecticide used for Indoor Residual Spryaing</value>
+  <data name="TriTrainingTrainerName" xml:space="preserve">
+    <value>Nome do formador cirurgião TT</value>
   </data>
   <data name="SplitMergeConfirmReview" xml:space="preserve">
     <value>Todas as demografias, distribuições de doenças, pesquisas, intervenções, indicadores de processo e dados PEA foram combinados para a nova unidade administrativa . Por favor, clique em " Próximo" para revisar e fazer alterações ou "Concluído" se feito .</value>
@@ -2475,8 +2490,8 @@
   <data name="TraSurNumberOfIndividualsExaminedTi" xml:space="preserve">
     <value>Número de indivíduos examinados - TI</value>
   </data>
-  <data name="TasNumNoTreatment" xml:space="preserve">
-    <value>Number of LF endemic districts surrounding this Evaluation Unit that haven't started treatment</value>
+  <data name="NumPopSurveyedCm" xml:space="preserve">
+    <value>Número de população em aldeias ou comunidades pesquisadas - adultos e crianças ( menores de 15 anos) , homens e mulheres</value>
   </data>
   <data name="PcIntvNumberOfTreatmentRoundsPlannedForTheYear" xml:space="preserve">
     <value>Número de voltas de tratamento previstas para o ano</value>
@@ -2510,12 +2525,6 @@
   </data>
   <data name="DDTraLevelRecWho" xml:space="preserve">
     <value>Nível de implementação recomendado com base em normas da OMS (distritais ou sub-distritais)</value>
-  </data>
-  <data name="RtiSch20" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="MenuDemography" xml:space="preserve">
-    <value>Demografia ...</value>
   </data>
   <data name="MbCasesRegisteredMdtEnd" xml:space="preserve">
     <value>Prevalência (casos registados para MDT) no final do ano</value>
@@ -2565,9 +2574,6 @@
   <data name="SAEWashospitalizationrequired" xml:space="preserve">
     <value>Foi necessária internação hospitalar ?</value>
   </data>
-  <data name="LFMapSurMappingType" xml:space="preserve">
-    <value>Tipo de mapeamento</value>
-  </data>
   <data name="RtiErrorMustBeUnique" xml:space="preserve">
     <value>Must assign each location only one time</value>
   </data>
@@ -2601,6 +2607,9 @@
   <data name="a47f1af8-7399-4915-a541-ded4c2c9d739" xml:space="preserve">
     <value>CL: Number of population in surveyed villages or communities - Adult and children (&lt;15 years), male and female</value>
   </data>
+  <data name="DDOnchoPopulationAtRisk" xml:space="preserve">
+    <value>População em risco</value>
+  </data>
   <data name="STHMapSurSurNumberOfIndividualsExaminedTrichur" xml:space="preserve">
     <value>Número de indivíduos examinados - Trichuris</value>
   </data>
@@ -2612,9 +2621,6 @@
   </data>
   <data name="Sth0" xml:space="preserve">
     <value>0 não endêmica</value>
-  </data>
-  <data name="IndicatorUpdatesValidated" xml:space="preserve">
-    <value>Changes have been validated, please make sure there are no errors.</value>
   </data>
   <data name="SAENormalRangeHigh" xml:space="preserve">
     <value>Faixa normal ( alta )</value>
@@ -2631,8 +2637,8 @@
   <data name="PopSac" xml:space="preserve">
     <value>população SAC</value>
   </data>
-  <data name="TotalCat2Cases" xml:space="preserve">
-    <value>Número total de casos novos com lesões da categoria II</value>
+  <data name="ReviewAndConfirm" xml:space="preserve">
+    <value>Reveja e confirme</value>
   </data>
   <data name="NumTreatedTeo" xml:space="preserve">
     <value>Número de pessoas tratadas com TEO</value>
@@ -2652,8 +2658,8 @@
   <data name="PcIntvNumSeriousAdverseEventsReported" xml:space="preserve">
     <value>Número de eventos graves adversos relatados</value>
   </data>
-  <data name="DDTraPopulationLivingInAreasDistrict" xml:space="preserve">
-    <value>População que vive em áreas que alcançaram os critérios para impedir  PC para o tracoma a nível distrital</value>
+  <data name="Combined" xml:space="preserve">
+    <value>Combinado</value>
   </data>
   <data name="Sguineesis" xml:space="preserve">
     <value>S. guineensis</value>
@@ -2664,8 +2670,8 @@
   <data name="TraMapSurActiveTrachomaIndicator" xml:space="preserve">
     <value>Indiccador activo do tracoma</value>
   </data>
-  <data name="PostMDAII" xml:space="preserve">
-    <value>vigilância Pós- MDA  2</value>
+  <data name="LeishAnnIntvTypeOfInsecticideUsedForIndoorResidualSpryaing" xml:space="preserve">
+    <value>Type of insecticide used for Indoor Residual Spryaing</value>
   </data>
   <data name="PatientsCompletedTreatment" xml:space="preserve">
     <value>Pacientes tendo completado o tratamento durante o ano</value>
@@ -2687,6 +2693,9 @@
   </data>
   <data name="SAEDoseadministered" xml:space="preserve">
     <value>Dose administrada</value>
+  </data>
+  <data name="ImportListsSelect" xml:space="preserve">
+    <value>Selecione os valores necessários para esta importação</value>
   </data>
   <data name="PcIntvRoundNumber" xml:space="preserve">
     <value>Número de voltas</value>
@@ -2730,9 +2739,6 @@
   <data name="District" xml:space="preserve">
     <value>Distrito</value>
   </data>
-  <data name="SuperDistrict" xml:space="preserve">
-    <value>Super Distrito</value>
-  </data>
   <data name="CmHasNtdReviewMeetings" xml:space="preserve">
     <value>Existem reuniões de avaliação periódicas sobre DTNs</value>
   </data>
@@ -2759,6 +2765,9 @@
   </data>
   <data name="HATTrainNumberOfParticipantsToHatTrainin" xml:space="preserve">
     <value>Número de pessoas formadas</value>
+  </data>
+  <data name="SettingsReportingLevelDesc" xml:space="preserve">
+    <value>Nível de reporte: os relatórios da OMS e dos parceiros serão automaticamente gerados para as unidades administrativas neste nível e tipicamente este é o "Distrito" do segundo nível administrativo </value>
   </data>
   <data name="Entomological" xml:space="preserve">
     <value>Entomológico</value>
@@ -2802,9 +2811,8 @@
   <data name="LFSurPosHydro" xml:space="preserve">
     <value>Número de indivíduos Hidrocelo positivos </value>
   </data>
-  <data name="CmContactTele" xml:space="preserve">
-    <value>Números de telefone
-Fixo / móvel </value>
+  <data name="RoundNumber" xml:space="preserve">
+    <value>Número de voltas</value>
   </data>
   <data name="OnchoMapSurIfEntomologicalAssessmentRiver" xml:space="preserve">
     <value>Se a avaliação entomológica foi realizada, nome da Bacia do Rio</value>
@@ -2820,6 +2828,9 @@ Fixo / móvel </value>
   </data>
   <data name="AdministrativeLevels" xml:space="preserve">
     <value>Níveis administrativos</value>
+  </data>
+  <data name="TraMapSurNoAReq" xml:space="preserve">
+    <value>Nenhum A necessário, considerar F&amp;E</value>
   </data>
   <data name="SplitConfirmReviewTitle" xml:space="preserve">
     <value>redistribuição concluída</value>
@@ -2959,9 +2970,6 @@ Fixo / móvel </value>
   <data name="ImportErrors" xml:space="preserve">
     <value>{0} não é válido, por favor corrija os seguintes erros:</value>
   </data>
-  <data name="LeishRepAntiMedInNml" xml:space="preserve">
-    <value>Antileishmanial medicines included in the National Medicine List</value>
-  </data>
   <data name="SupplyChainMng" xml:space="preserve">
     <value>Gestão da cadeia de suprimentos</value>
   </data>
@@ -2992,8 +3000,8 @@ Fixo / móvel </value>
   <data name="RtiLfDd1" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="PercentCatIICases" xml:space="preserve">
-    <value>% Dos novos casos de lesões daecategoria III</value>
+  <data name="PostMDAII" xml:space="preserve">
+    <value>vigilância Pós- MDA  2</value>
   </data>
   <data name="LeishMontIntvNumberOfPeopleScreenedPassivelyForVL" xml:space="preserve">
     <value>Number of people screened passively for VL</value>
@@ -3085,14 +3093,14 @@ Fixo / móvel </value>
   <data name="Region" xml:space="preserve">
     <value>Região</value>
   </data>
-  <data name="9dd22c4f-8130-4fbc-8251-607f65d3a7b2" xml:space="preserve">
-    <value>VL survey prevalence</value>
+  <data name="DDSchistoSacAtRisk" xml:space="preserve">
+    <value>SAC em risco</value>
   </data>
   <data name="ImportingFile" xml:space="preserve">
     <value>Importação de arquivo ...</value>
   </data>
-  <data name="TriTrainingTrainerName" xml:space="preserve">
-    <value>Nome do formador cirurgião TT</value>
+  <data name="OnchoSurIfTestTypeIsNpPerWri" xml:space="preserve">
+    <value>Se o tipo de teste é a palpação de nódulos, morbidade dermatológico -% de indivíduos com rugas ( inelasticidade )</value>
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Função</value>
@@ -3145,9 +3153,6 @@ Fixo / móvel </value>
   <data name="NumVillagesSafeWater" xml:space="preserve">
     <value>Número de aldeias afectadas com acesso à água potável</value>
   </data>
-  <data name="TrainingYear" xml:space="preserve">
-    <value>Ano que Informações da Formação aplica-se </value>
-  </data>
   <data name="TransAssessSurvey" xml:space="preserve">
     <value>Pesquisa de Avaliação de Transmissão</value>
   </data>
@@ -3160,8 +3165,9 @@ Fixo / móvel </value>
   <data name="TraMapSurPrevalenceActive" xml:space="preserve">
     <value>Prevalencia de tracoma activo (%TF)</value>
   </data>
-  <data name="ExportTasSources" xml:space="preserve">
-    <value>Fonte (s) de financiamento</value>
+  <data name="CmContactTele" xml:space="preserve">
+    <value>Números de telefone
+Fixo / móvel </value>
   </data>
   <data name="OnchoMapSurTestType" xml:space="preserve">
     <value>Tipo de teste</value>
@@ -3183,6 +3189,9 @@ Fixo / móvel </value>
   </data>
   <data name="SCHSurNumberOfIndividualsPositiveForHaem" xml:space="preserve">
     <value>Número de indivíduos positivos por hemuaturia na urina</value>
+  </data>
+  <data name="Middle" xml:space="preserve">
+    <value>Middle</value>
   </data>
   <data name="SAEIfdeathcauseofdeath" xml:space="preserve">
     <value>Se morte , a causa da morte</value>
@@ -3253,6 +3262,9 @@ Fixo / móvel </value>
   <data name="RtiDrpEndAsia" xml:space="preserve">
     <value>END in Asia </value>
   </data>
+  <data name="PcIntvTraDrugZith" xml:space="preserve">
+    <value>Comprimidos Zithromax </value>
+  </data>
   <data name="HatIntervention" xml:space="preserve">
     <value>Intervenção de HAT</value>
   </data>
@@ -3301,6 +3313,9 @@ Fixo / móvel </value>
   <data name="DDSchistoDiseaseDistributionPcIntervent" xml:space="preserve">
     <value>Distribuição da doença : intervenções da PC</value>
   </data>
+  <data name="CountryIncomeStatus" xml:space="preserve">
+    <value>Country Income Status</value>
+  </data>
   <data name="Leprosy" xml:space="preserve">
     <value>Lepra</value>
   </data>
@@ -3321,9 +3336,6 @@ Fixo / móvel </value>
   </data>
   <data name="PercentCureRateMb" xml:space="preserve">
     <value>A taxa de cura do ano anterior de casos MB</value>
-  </data>
-  <data name="LinkSelect" xml:space="preserve">
-    <value>Selecionar ...</value>
   </data>
   <data name="SCHSurTargetSampleSize" xml:space="preserve">
     <value>Tamanho da amostra alvo</value>
@@ -3475,8 +3487,8 @@ Fixo / móvel </value>
   <data name="RtiDrpWorkPlanning" xml:space="preserve">
     <value>Planeamento de trabalho</value>
   </data>
-  <data name="TotalNumVlCases" xml:space="preserve">
-    <value>Número total de novos casos de LV</value>
+  <data name="TotalNumHatChild" xml:space="preserve">
+    <value>Número total de crianças entre os casos de HAT</value>
   </data>
   <data name="TrachomaGoal" xml:space="preserve">
     <value>Meta de intervenção final para o tracoma activo</value>
@@ -3502,8 +3514,8 @@ Fixo / móvel </value>
   <data name="DDOnchoSaeRiskFromLoaLoa" xml:space="preserve">
     <value>Risco dos SAE por causa de loa loa</value>
   </data>
-  <data name="LeishIntervention" xml:space="preserve">
-    <value>Intervenção de Leishmaniose</value>
+  <data name="SchoolCases14" xml:space="preserve">
+    <value>Casos em idade escolar (6 a 14 anos )</value>
   </data>
   <data name="TSNumberOfTrichiasisSurgeriesInYearPeop" xml:space="preserve">
     <value>Número de Cirurgias de Triquíase  por ano ( de pessoas)</value>
@@ -3640,8 +3652,8 @@ Fixo / móvel </value>
   <data name="OnchoMapSurNumberOfIndividualsPositive" xml:space="preserve">
     <value>número de indivíduos positivos</value>
   </data>
-  <data name="PbAdultEnd" xml:space="preserve">
-    <value>Adultos de PB  no final do ano das crianças</value>
+  <data name="STHSurNumberOfIndividualsPositiveAscaris" xml:space="preserve">
+    <value>Número de indivíduos positivos - Ascaris</value>
   </data>
   <data name="IndSpotCheckLng" xml:space="preserve">
     <value>Longitude do local de Observação</value>
@@ -3673,6 +3685,9 @@ Fixo / móvel </value>
   <data name="EpiCoverage" xml:space="preserve">
     <value>Cobertura epidemiológica</value>
   </data>
+  <data name="TotalNumVlCases" xml:space="preserve">
+    <value>Número total de novos casos de LV</value>
+  </data>
   <data name="PercentToRedistribute" xml:space="preserve">
     <value>Percentagem para redistribuir</value>
   </data>
@@ -3681,9 +3696,6 @@ Fixo / móvel </value>
   </data>
   <data name="DatabaseScriptBackup" xml:space="preserve">
     <value>Reverter ao mais recente backup da sua base de dados</value>
-  </data>
-  <data name="Combined" xml:space="preserve">
-    <value>Combinado</value>
   </data>
   <data name="PcIntvOnchoPopReqPc" xml:space="preserve">
     <value>População Oncho necessitando PC</value>
@@ -3781,8 +3793,8 @@ Fixo / móvel </value>
   <data name="IntvAlb" xml:space="preserve">
     <value> Intervenção de ALB</value>
   </data>
-  <data name="DrugAlb" xml:space="preserve">
-    <value>ALB</value>
+  <data name="ProcessIndicators" xml:space="preserve">
+    <value>Indicadores de Processo</value>
   </data>
   <data name="Sjaponicum" xml:space="preserve">
     <value>S. japonicum</value>
@@ -3814,6 +3826,9 @@ Fixo / móvel </value>
   <data name="RtiTaskForceNoResults" xml:space="preserve">
     <value>Nenhum resultado encontrado ao questionar o sistema RTI, contacte equipa de apoio.</value>
   </data>
+  <data name="OnchoMapSurEntomologicalAssessmentConduc" xml:space="preserve">
+    <value>Avaliação entomológica conduzida?</value>
+  </data>
   <data name="DDTraUltimateInterventionGoalForActiveTr" xml:space="preserve">
     <value>Meta de intervenção final para o tracoma activo</value>
   </data>
@@ -3822,6 +3837,9 @@ Fixo / móvel </value>
   </data>
   <data name="LFMapSurTestType" xml:space="preserve">
     <value>Tipo de teste</value>
+  </data>
+  <data name="TASActualNonResponseRateAbsent" xml:space="preserve">
+    <value>Taxa real de não resposta - Ausente %</value>
   </data>
   <data name="STHMapSurSurAgeGroupSurveyed" xml:space="preserve">
     <value>Faixa etária pesquisada</value>
@@ -3841,14 +3859,14 @@ Fixo / móvel </value>
   <data name="xyear1every2" xml:space="preserve">
     <value>1 vez em cada dois anos</value>
   </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Calcular &gt;</value>
+  </data>
   <data name="SAEIfhospitalizationrequiredreasonforadmission" xml:space="preserve">
     <value>Se necessitaram de internação hospitalar , motivo da internação</value>
   </data>
   <data name="NumEndemicVillages" xml:space="preserve">
     <value>Número de aldeias endêmicas</value>
-  </data>
-  <data name="PcIntvSthPopReqPc" xml:space="preserve">
-    <value>População STH necessitando PC</value>
   </data>
   <data name="TASNumOfEffectiveMdasCompleted" xml:space="preserve">
     <value>Número de MDA eficazes concluídas (ou seja, ≥ 65% de cobertura )</value>
@@ -3934,6 +3952,9 @@ Fixo / móvel </value>
   <data name="ValidRoundsMda" xml:space="preserve">
     <value>Deve estar entre 0 e 20</value>
   </data>
+  <data name="SentinelSpotSurvey" xml:space="preserve">
+    <value>Pesquisa do local de observação/Sentinela</value>
+  </data>
   <data name="SCHSurCausalAgent" xml:space="preserve">
     <value>agente causal</value>
   </data>
@@ -3987,6 +4008,9 @@ Fixo / móvel </value>
   </data>
   <data name="OnchoSurEvaluationSite" xml:space="preserve">
     <value>Avaliação do local</value>
+  </data>
+  <data name="LeishRepRelapseDefCl" xml:space="preserve">
+    <value>Define what a leishmaniasis "relapse" is in this country for CL</value>
   </data>
   <data name="Brugiaspp" xml:space="preserve">
     <value>Brugia spp .</value>
@@ -4069,8 +4093,8 @@ Fixo / móvel </value>
   <data name="Finish" xml:space="preserve">
     <value>Acabamento</value>
   </data>
-  <data name="PercentCl" xml:space="preserve">
-    <value>% Apenas casos CL</value>
+  <data name="DDLFPopulationAtRisk" xml:space="preserve">
+    <value>População em risco</value>
   </data>
   <data name="MustMakeAggregatingLevel" xml:space="preserve">
     <value>Deve designar um de seus níveis administrativos como o "Nível Agregado"</value>
@@ -4090,8 +4114,8 @@ Fixo / móvel </value>
   <data name="TraMapSurPerOfNationalBlindness" xml:space="preserve">
     <value>% Da cegueira Nacional</value>
   </data>
-  <data name="RedistrictRuleSplitCombine" xml:space="preserve">
-    <value>Split/combine rule</value>
+  <data name="SaeDate" xml:space="preserve">
+    <value>Data do relatório</value>
   </data>
   <data name="PbChildEnd" xml:space="preserve">
     <value>PB Crianças no final do ano das crianças</value>
@@ -4125,6 +4149,9 @@ Fixo / móvel </value>
   </data>
   <data name="IntvPzqMbd" xml:space="preserve">
     <value>Intervenção PZQ + MBD </value>
+  </data>
+  <data name="TraPending" xml:space="preserve">
+    <value>Pendente  aguardando  implementação/resultados do impacto da pesquisa</value>
   </data>
   <data name="OnchoSurEntInfectionRateDissection" xml:space="preserve">
     <value>Taxa de infecção (Desinfecção) - por cada 1000 moscas</value>
@@ -4165,8 +4192,8 @@ Fixo / móvel </value>
   <data name="ItemsToSplit" xml:space="preserve">
     <value>Os itens a redistribuição</value>
   </data>
-  <data name="SentinelSpotSurvey" xml:space="preserve">
-    <value>Pesquisa do local de observação/Sentinela</value>
+  <data name="SCMNumRemainingOpenedBottles" xml:space="preserve">
+    <value>Número de frascos abertos restantes</value>
   </data>
   <data name="PersonsTreatedAndCoverageReport" xml:space="preserve">
     <value>Persons Treated and Coverage Report</value>
@@ -4243,9 +4270,6 @@ Fixo / móvel </value>
   <data name="PcIntvPsacCoverage" xml:space="preserve">
     <value>Cobertura das PSAC</value>
   </data>
-  <data name="DDSchistoSacAtRisk" xml:space="preserve">
-    <value>SAC em risco</value>
-  </data>
   <data name="MfLoad" xml:space="preserve">
     <value>Carga de MF na comunidade</value>
   </data>
@@ -4255,8 +4279,8 @@ Fixo / móvel </value>
   <data name="Culex" xml:space="preserve">
     <value>Culex</value>
   </data>
-  <data name="TraMapSurNoAReq" xml:space="preserve">
-    <value>Nenhum A necessário, considerar F&amp;E</value>
+  <data name="IndicatorValue" xml:space="preserve">
+    <value>valor do indicador</value>
   </data>
   <data name="YawsTrainNumberOfTrainingSessionsHold" xml:space="preserve">
     <value>Número de sessões de formação tidas</value>
@@ -4369,6 +4393,9 @@ Fixo / móvel </value>
   <data name="CmHasLeishMeeting" xml:space="preserve">
     <value>Leishmaniose</value>
   </data>
+  <data name="DrugAlb" xml:space="preserve">
+    <value>ALB</value>
+  </data>
   <data name="OnchoSurSiteName" xml:space="preserve">
     <value>Nome do site</value>
   </data>
@@ -4393,8 +4420,11 @@ Fixo / móvel </value>
   <data name="SAEClinicalsignsandsymptoms" xml:space="preserve">
     <value>Sinais e sintomas clínicos</value>
   </data>
-  <data name="NumPbChild" xml:space="preserve">
-    <value>Pacotes de PB  para Criança </value>
+  <data name="DrugAlbIvm" xml:space="preserve">
+    <value>ALB e IVM</value>
+  </data>
+  <data name="TotalCat2Cases" xml:space="preserve">
+    <value>Número total de casos novos com lesões da categoria II</value>
   </data>
   <data name="DDSchistoAdultPopulation" xml:space="preserve">
     <value>População adulta</value>
@@ -4432,9 +4462,6 @@ Fixo / móvel </value>
   <data name="Scho0" xml:space="preserve">
     <value>0 Não endêmica acima do limiar de tratamento</value>
   </data>
-  <data name="PcIntvTsNumKits" xml:space="preserve">
-    <value>Número de kits completos disponíveis</value>
-  </data>
   <data name="LFSurStartDateOfSurvey" xml:space="preserve">
     <value>Data de início da pesquisa</value>
   </data>
@@ -4471,8 +4498,8 @@ Fixo / móvel </value>
   <data name="OnchoMapSurRegistrationPopulation" xml:space="preserve">
     <value>Registro de população </value>
   </data>
-  <data name="TotalWithdrawalTreatment" xml:space="preserve">
-    <value>Retirada total do tratamento</value>
+  <data name="PcIntvSthPopReqPc" xml:space="preserve">
+    <value>População STH necessitando PC</value>
   </data>
   <data name="LeishMontIntvNumberOfNewCLCasesTreated" xml:space="preserve">
     <value>Number of new CL cases treated</value>
@@ -4491,6 +4518,9 @@ Fixo / móvel </value>
   </data>
   <data name="SCHMapSurNumberOfIndividualsPositiveForI" xml:space="preserve">
     <value>Número de indivíduos positivos para a infecção pelo esquistossomo intestinal</value>
+  </data>
+  <data name="LeishRepIsTreatFree" xml:space="preserve">
+    <value>Is leishmaniasis treatment provided for free in the public sector?</value>
   </data>
   <data name="OnchoSurEntTaxoCyto" xml:space="preserve">
     <value>Identificação Taxonomica - Citotaxonomia Cromosómica</value>
@@ -4615,11 +4645,11 @@ Fixo / móvel </value>
   <data name="LfMorbidityManagment" xml:space="preserve">
     <value>  Gestão de Morbidade de LF</value>
   </data>
-  <data name="RtiWorkbookQuestions" xml:space="preserve">
-    <value>Perguntas do diário de trabalho</value>
-  </data>
   <data name="RedistrictingRulesSplit" xml:space="preserve">
     <value>Set redistricting rules for custom indicators</value>
+  </data>
+  <data name="SCHSurNumberOfIndividualsExaminedForInte" xml:space="preserve">
+    <value>Número de indivíduos examinados por schistosomes intestinais</value>
   </data>
   <data name="LeishMontIntvNumberOfDeathsForNewCLCases" xml:space="preserve">
     <value>Number of deaths for new CL cases</value>
@@ -4675,8 +4705,8 @@ Fixo / móvel </value>
   <data name="UNICEF" xml:space="preserve">
     <value>UNICEF</value>
   </data>
-  <data name="TASTasActualTimelineAndResourcesNuOfSurve" xml:space="preserve">
-    <value>Cronograma e Recursos TAS - Números de dias de pesquisa necessário</value>
+  <data name="SCHMapSurLongitude" xml:space="preserve">
+    <value>longitude</value>
   </data>
   <data name="SAEExtenuatingorcomplicatingcircumstances" xml:space="preserve">
     <value>Circunstâncias atenuantes ou complicadas</value>
@@ -4684,14 +4714,11 @@ Fixo / móvel </value>
   <data name="OnchoSurEntMtp" xml:space="preserve">
     <value>Possível Transmissão Mensal</value>
   </data>
-  <data name="Melarsoprol" xml:space="preserve">
-    <value>Melarsoprol</value>
-  </data>
   <data name="PcIntvTsNumMales" xml:space="preserve">
     <value>Número de homens operados</value>
   </data>
-  <data name="RtiSchMdaNone" xml:space="preserve">
-    <value>Nenhum(a)</value>
+  <data name="CountrySettings" xml:space="preserve">
+    <value>Configurações do País</value>
   </data>
   <data name="CmHaveAnnualOpPlan" xml:space="preserve">
     <value>Verificar se existe um Plano Operacional Annual desenvolvido</value>
@@ -4807,8 +4834,8 @@ Fixo / móvel </value>
   <data name="HAT" xml:space="preserve">
     <value>Tripanossomíase humana Africano ( doença do sono )</value>
   </data>
-  <data name="TotalNumMbCases" xml:space="preserve">
-    <value>Número total de casos novos MB</value>
+  <data name="MenuDemography" xml:space="preserve">
+    <value>Demografia ...</value>
   </data>
   <data name="LFSurNumberOfRoundsOfPcCompletedPriorToS" xml:space="preserve">
     <value>Número de voltas de PC concluídas antes da implementação da pesquisa </value>
@@ -4870,9 +4897,6 @@ Fixo / móvel </value>
   <data name="GWTrainPercentageOfTrainedHealthWorkersAmongTot" xml:space="preserve">
     <value>Percentagem de trabalhadores de saúde formados entre número total de trabalhadores da saúde em unidades de saúde</value>
   </data>
-  <data name="NumEligibleTreated" xml:space="preserve">
-    <value>Número de Indivíduos elegíveis tratados</value>
-  </data>
   <data name="Trachoma" xml:space="preserve">
     <value>Tracoma</value>
   </data>
@@ -4881,9 +4905,6 @@ Fixo / móvel </value>
   </data>
   <data name="OnchoSurEntomologicalAssessmentConducted" xml:space="preserve">
     <value>Avaliação entomológica conduzida?</value>
-  </data>
-  <data name="SAEBrandandmanufacturername" xml:space="preserve">
-    <value>Marca e nome do fabricante</value>
   </data>
   <data name="LngOther" xml:space="preserve">
     <value>Outro código geo - longitude</value>
@@ -4915,8 +4936,8 @@ Fixo / móvel </value>
   <data name="Notes" xml:space="preserve">
     <value>Notas</value>
   </data>
-  <data name="BUTrainPercentageOfHealthFacilitiesHavin" xml:space="preserve">
-    <value>Percentagem de unidades de saúde com pelo menos uma individuo formada para o programa de controle da úlcera de Buruli</value>
+  <data name="RtiSch20" xml:space="preserve">
+    <value>20</value>
   </data>
   <data name="DDTraNumPcRoundsYearCurrentlyImplemente" xml:space="preserve">
     <value>N˚ de voltas/ano de PC implementadas actualmente</value>
@@ -5011,8 +5032,8 @@ Fixo / móvel </value>
   <data name="TotalNumHat" xml:space="preserve">
     <value>Número total de casos de HAT</value>
   </data>
-  <data name="Oncho3Parasite" xml:space="preserve">
-    <value>parasitológico</value>
+  <data name="TraMapSurMaleFemale15yo" xml:space="preserve">
+    <value>Homens &amp; Mulheres +15 anos</value>
   </data>
   <data name="ScmDrpIvm" xml:space="preserve">
     <value>IVM</value>
@@ -5044,9 +5065,6 @@ Fixo / móvel </value>
   <data name="NumDeaths" xml:space="preserve">
     <value>Número de mortes</value>
   </data>
-  <data name="Questionnaire" xml:space="preserve">
-    <value>Questionário</value>
-  </data>
   <data name="RtiTabLf" xml:space="preserve">
     <value>FL</value>
   </data>
@@ -5077,14 +5095,14 @@ Fixo / móvel </value>
   <data name="SurLeprosySurvey" xml:space="preserve">
     <value>Pesquisa de Lepra </value>
   </data>
-  <data name="Anopheles" xml:space="preserve">
-    <value>Anófele</value>
+  <data name="RtiWorkbookQuestions" xml:space="preserve">
+    <value>Perguntas do diário de trabalho</value>
   </data>
   <data name="STHSurStartDateOfSurvey" xml:space="preserve">
     <value>Data de início da pesquisa</value>
   </data>
-  <data name="TSPerSurgeonsInRuralAreas" xml:space="preserve">
-    <value> % Cirurgiões em áreas rurais</value>
+  <data name="NumCasesTreatedRef" xml:space="preserve">
+    <value>Número de casos tratados em centros de referência</value>
   </data>
   <data name="Tra2Ns" xml:space="preserve">
     <value>NS Não mapeado , mas não suspeitou</value>
@@ -5158,9 +5176,6 @@ Fixo / móvel </value>
   <data name="RtiLfDdPending" xml:space="preserve">
     <value>Pendente</value>
   </data>
-  <data name="STHSurPositiveOverall" xml:space="preserve">
-    <value>% Positivo - geral</value>
-  </data>
   <data name="LeishAnnIntvOfCLRelapseCasesOutOfTotalNewCasesFollowedUp" xml:space="preserve">
     <value>% of CL relapse cases out of total new cases followed up</value>
   </data>
@@ -5173,8 +5188,8 @@ Fixo / móvel </value>
   <data name="OnchoMapEvaluationSite" xml:space="preserve">
     <value>Avaliação do local</value>
   </data>
-  <data name="OnchoSaeLikely" xml:space="preserve">
-    <value>SAE provável</value>
+  <data name="PcIntvTraDrugTeo" xml:space="preserve">
+    <value>TEO</value>
   </data>
   <data name="LeishMontIntvNumberOfCLCasesWithSeriousAdverseEvents" xml:space="preserve">
     <value>Number of CL cases with serious adverse events</value>
@@ -5187,6 +5202,9 @@ Fixo / móvel </value>
   </data>
   <data name="TtAios2017" xml:space="preserve">
     <value>Objectivo de Intervenção Anual de 2017</value>
+  </data>
+  <data name="LifeExpectBirthMale" xml:space="preserve">
+    <value>Life expectancy at birth for male</value>
   </data>
   <data name="NumGoodClarithromycin" xml:space="preserve">
     <value>Número de comprimidos de boa qualidade de claritromicina disponível</value>
@@ -5269,8 +5287,8 @@ Fixo / móvel </value>
   <data name="SaeAlbendazole" xml:space="preserve">
     <value>Albendazol</value>
   </data>
-  <data name="PcIntvModeDistribution" xml:space="preserve">
-    <value>Mode of distribution</value>
+  <data name="DiseasesRequired" xml:space="preserve">
+    <value>Por favor seleccione doenças visadas.</value>
   </data>
   <data name="LeishMontIntvNumberOfNewVLFemaleCases" xml:space="preserve">
     <value>Number of new VL female cases</value>
@@ -5311,11 +5329,11 @@ Fixo / móvel </value>
   <data name="PercentNewGrade2" xml:space="preserve">
     <value>% Da novos casos de nivel II</value>
   </data>
+  <data name="SchMappingPrevalenceEggsInUrine" xml:space="preserve">
+    <value>Prevalence of any parasite eggs in urine</value>
+  </data>
   <data name="NumClVlCases" xml:space="preserve">
     <value>Número de ambos os casos CL &amp; VL </value>
-  </data>
-  <data name="Oncho0" xml:space="preserve">
-    <value>0 -  Não endêmico acima do limiar de tratamento</value>
   </data>
   <data name="SCHSurPrevalenceOfIntestinalSchistosomeI" xml:space="preserve">
     <value>Prevalência de infecções intestinais esquistossoma</value>
@@ -5374,6 +5392,9 @@ Fixo / móvel </value>
   <data name="DrpIvmAlb" xml:space="preserve">
     <value>IVM + ALB</value>
   </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Próximo</value>
   </data>
@@ -5404,8 +5425,8 @@ Fixo / móvel </value>
   <data name="TraMapSurPerWithClinicalSignTt" xml:space="preserve">
     <value>% Com sinal clínico - TT</value>
   </data>
-  <data name="LeishRepYearLatestGuide" xml:space="preserve">
-    <value>Year latest national guidelines</value>
+  <data name="RtiTra1" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="OnchoSurInfectiveFlies" xml:space="preserve">
     <value>Número de moscas infecciosos</value>
@@ -5434,8 +5455,8 @@ Fixo / móvel </value>
   <data name="NumVillagesWithVolunteers" xml:space="preserve">
     <value>Número de aldeias com voluntários comunitários ( voluntários )</value>
   </data>
-  <data name="TrainingDiseases" xml:space="preserve">
-    <value>Doença (s) incluída na formação</value>
+  <data name="LeishMontIntvNumberOfNewPKDLCasesHIVCoInfection" xml:space="preserve">
+    <value>Number of new PKDL cases/HIV co-infection</value>
   </data>
   <data name="TASEuNetPrimarySchoolEnrolmentRate" xml:space="preserve">
     <value>Taxa líquida de escolarização primária  da UE</value>
@@ -5479,9 +5500,6 @@ Fixo / móvel </value>
   <data name="PercentCasesActiveLeish" xml:space="preserve">
     <value>% Casos activamente encontrados</value>
   </data>
-  <data name="UpdateNoInternet" xml:space="preserve">
-    <value>Por favor, verifique sua conexão com a internet se está funcionando e tente novamente.</value>
-  </data>
   <data name="OnchoSurNumberOfRoundsOfPcCompletedPrior" xml:space="preserve">
     <value>Número de rodadas de PC concluídas antes da implemencação da avaliação</value>
   </data>
@@ -5494,8 +5512,8 @@ Fixo / móvel </value>
   <data name="LFMapSurCommunityMfLoad" xml:space="preserve">
     <value>Comunidade de Carga de MF</value>
   </data>
-  <data name="CountrySettings" xml:space="preserve">
-    <value>Configurações do País</value>
+  <data name="LFMapSurMappingType" xml:space="preserve">
+    <value>Tipo de mapeamento</value>
   </data>
   <data name="PCTrainNumIndividualsTrainedFemales" xml:space="preserve">
     <value>Número Indivíduos formados - mulheres</value>
@@ -5506,8 +5524,8 @@ Fixo / móvel </value>
   <data name="DDSTHPsacPopulation" xml:space="preserve">
     <value>População da PSAC</value>
   </data>
-  <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
-    <value>Cadastro Nacional de Doenças</value>
+  <data name="Evaluation" xml:space="preserve">
+    <value>Avaliação</value>
   </data>
   <data name="LFMapSurExaminedHydro1" xml:space="preserve">
     <value>Número de indivíduos examinados por Hidrocelo</value>
@@ -5539,8 +5557,8 @@ Fixo / móvel </value>
   <data name="SAEWastheSAErelatedtothedrugs" xml:space="preserve">
     <value>Estava o SAE relacionado com os medicamentos ?</value>
   </data>
-  <data name="RtiTra1" xml:space="preserve">
-    <value>1</value>
+  <data name="LeishRepAntiMedInNml" xml:space="preserve">
+    <value>Antileishmanial medicines included in the National Medicine List</value>
   </data>
   <data name="ScmDrpMdb" xml:space="preserve">
     <value>MBD</value>
@@ -5674,6 +5692,9 @@ Fixo / móvel </value>
   <data name="DDSTHYearDeterminedThatAchievedCriteriaF" xml:space="preserve">
     <value>Ano determinado que alcançou critérios para parar com PC</value>
   </data>
+  <data name="DDTraTrichiasisSurgeryBacklog" xml:space="preserve">
+    <value>Acumulação de cirurgias em espera de triquíase</value>
+  </data>
   <data name="MetaDataLoading" xml:space="preserve">
     <value>Loading meta data...</value>
   </data>
@@ -5710,6 +5731,9 @@ Fixo / móvel </value>
   <data name="SAEIfdeathcircumstancesatthetimeofdeath" xml:space="preserve">
     <value>Se morte , as circunstâncias no momento da morte</value>
   </data>
+  <data name="NumPbChild" xml:space="preserve">
+    <value>Pacotes de PB  para Criança </value>
+  </data>
   <data name="SaeFemale" xml:space="preserve">
     <value>Mulher</value>
   </data>
@@ -5725,8 +5749,8 @@ Fixo / móvel </value>
   <data name="TraMapSurPerWithClinicalSignTi" xml:space="preserve">
     <value>% Com sinal clínico - TI</value>
   </data>
-  <data name="SCMAvailableUsableStock" xml:space="preserve">
-    <value>Estoque disponível utilizável </value>
+  <data name="ExportTasSources" xml:space="preserve">
+    <value>Fonte (s) de financiamento</value>
   </data>
   <data name="LeishMontIntvPrcntOfNewPKDLCasesInChildren5To14Years" xml:space="preserve">
     <value>% of new PKDL cases in children 5-14 years</value>
@@ -5734,8 +5758,8 @@ Fixo / móvel </value>
   <data name="IntvIvmPzqAlb" xml:space="preserve">
     <value>Intervenção IVM + PZQ + ALB </value>
   </data>
-  <data name="OnchoSurEntTestTechTrap" xml:space="preserve">
-    <value>Captação </value>
+  <data name="DDSTHNumPcRoundsYearCurrentlyImplemente" xml:space="preserve">
+    <value>N˚ de voltas/ano de PC implementadas actualmente</value>
   </data>
   <data name="STHMapSurSurTestType" xml:space="preserve">
     <value>tipo de teste</value>
@@ -5779,8 +5803,11 @@ Fixo / móvel </value>
   <data name="xyear3" xml:space="preserve">
     <value>3 vezes por ano</value>
   </data>
-  <data name="TraSurAgeGroupSurveyed" xml:space="preserve">
-    <value>Faixa etária pesquisada</value>
+  <data name="9dd22c4f-8130-4fbc-8251-607f65d3a7b2" xml:space="preserve">
+    <value>VL survey prevalence</value>
+  </data>
+  <data name="UpdateNoInternet" xml:space="preserve">
+    <value>Por favor, verifique sua conexão com a internet se está funcionando e tente novamente.</value>
   </data>
   <data name="OnchoSurEndDateOfSurvey" xml:space="preserve">
     <value>A data de término da pesquisa</value>
@@ -5800,8 +5827,8 @@ Fixo / móvel </value>
   <data name="Version" xml:space="preserve">
     <value>versão</value>
   </data>
-  <data name="DDOnchoPopulationAtRisk" xml:space="preserve">
-    <value>População em risco</value>
+  <data name="FENpbpPartnersCurrentForFComponents" xml:space="preserve">
+    <value>Parceiros NPBP ( actuais ) para componentes F</value>
   </data>
   <data name="LfPostMdaTas2" xml:space="preserve">
     <value>Vigilância pós- MDA 2</value>
@@ -5839,6 +5866,9 @@ Fixo / móvel </value>
   <data name="RedistrictSurveyNote" xml:space="preserve">
     <value>*** Redistricted, original administrative units survey occured in: {0}</value>
   </data>
+  <data name="TrainingDiseases" xml:space="preserve">
+    <value>Doença (s) incluída na formação</value>
+  </data>
   <data name="SCMTransferredFromAnotherDisrict" xml:space="preserve">
     <value>Transferido do outro disricto</value>
   </data>
@@ -5850,9 +5880,6 @@ Fixo / móvel </value>
   </data>
   <data name="LeishMontIntvNumberOfNewCLCasesInAdultsGrtrThn14Years" xml:space="preserve">
     <value>Number of new CL cases in adults &gt; 14 years</value>
-  </data>
-  <data name="CalculatingStatistics" xml:space="preserve">
-    <value>Calculating statistics...</value>
   </data>
   <data name="BUTrainNumberOfTrainingSessionsHold" xml:space="preserve">
     <value>Número de sessões de formação tidas</value>
@@ -5935,14 +5962,14 @@ Fixo / móvel </value>
   <data name="NumFirstLine" xml:space="preserve">
     <value>Número de instalações de primeira linha de saúde que prestam MDT</value>
   </data>
-  <data name="SchMappingPrevalenceEggsInUrine" xml:space="preserve">
-    <value>Prevalence of any parasite eggs in urine</value>
+  <data name="NumSchoolsScreenedCm" xml:space="preserve">
+    <value>Número de escolas selecionados durante o ano</value>
   </data>
-  <data name="IndicatorValue" xml:space="preserve">
-    <value>valor do indicador</value>
+  <data name="STHSurPositiveOverall" xml:space="preserve">
+    <value>% Positivo - geral</value>
   </data>
-  <data name="MustBeGreaterThanZero" xml:space="preserve">
-    <value>Deve ser maior que zero</value>
+  <data name="NumEligibleTreated" xml:space="preserve">
+    <value>Número de Indivíduos elegíveis tratados</value>
   </data>
   <data name="LFSurTypeOfSite" xml:space="preserve">
     <value>Tipo de local</value>
@@ -5965,11 +5992,11 @@ Fixo / móvel </value>
   <data name="SAEStatusknown" xml:space="preserve">
     <value> Estado de infecções parasitárias / bacterianas ( confirmados, suspeitos , negativo , desconhecido)</value>
   </data>
-  <data name="Calculate" xml:space="preserve">
-    <value>Calcular &gt;</value>
+  <data name="LeishIntervention" xml:space="preserve">
+    <value>Intervenção de Leishmaniose</value>
   </data>
-  <data name="DDTraTrichiasisSurgeryBacklog" xml:space="preserve">
-    <value>Acumulação de cirurgias em espera de triquíase</value>
+  <data name="Melarsoprol" xml:space="preserve">
+    <value>Melarsoprol</value>
   </data>
   <data name="TraSurWithClinicalSignTf" xml:space="preserve">
     <value>% Com sinal clínico - TF</value>
@@ -6004,8 +6031,8 @@ Fixo / móvel </value>
   <data name="RtiPostMda2" xml:space="preserve">
     <value>TAS de vigilância pós-AMM II</value>
   </data>
-  <data name="OnchoMapSurEntomologicalAssessmentConduc" xml:space="preserve">
-    <value>Avaliação entomológica conduzida?</value>
+  <data name="TraMapSur1to9yo" xml:space="preserve">
+    <value>#1-9 crianças pesquisados</value>
   </data>
   <data name="Sth30" xml:space="preserve">
     <value>30 prevalência alta ( ≥ 20 e &lt;50%) mediante avaliação</value>
@@ -6016,8 +6043,8 @@ Fixo / móvel </value>
   <data name="LeishMontIntvPrcntFemaleMCL" xml:space="preserve">
     <value>% female MCL</value>
   </data>
-  <data name="TASActualNonResponseRateAbsent" xml:space="preserve">
-    <value>Taxa real de não resposta - Ausente %</value>
+  <data name="Echino" xml:space="preserve">
+    <value>Equinococose</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Base de Dados Integrada das DTN</value>
@@ -6028,8 +6055,8 @@ Fixo / móvel </value>
   <data name="RtiTra5" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="SCHSurNumberOfIndividualsExaminedForInte" xml:space="preserve">
-    <value>Número de indivíduos examinados por schistosomes intestinais</value>
+  <data name="PcIntvModeDistribution" xml:space="preserve">
+    <value>Mode of distribution</value>
   </data>
   <data name="UpdateDdAfterSavingSurvey" xml:space="preserve">
     <value>Certifique-se de ter actualizado a distribuição da doença e a incorporação adequada dos resultados desta pesquisa</value>
@@ -6040,14 +6067,8 @@ Fixo / móvel </value>
   <data name="Sth2" xml:space="preserve">
     <value>2 prevalência moderada ( ≥ 20 e &lt;50%) mediante o mapeamento inicial</value>
   </data>
-  <data name="Wbancrofti" xml:space="preserve">
-    <value>W. bancrofti</value>
-  </data>
   <data name="LastUpdate" xml:space="preserve">
     <value>Última actualização</value>
-  </data>
-  <data name="PercentScreenedYw" xml:space="preserve">
-    <value>% Dos casos entre as populações selecionados ( por 10.000 )</value>
   </data>
   <data name="SchMappingTypeOfSite" xml:space="preserve">
     <value>Type of site</value>
@@ -6109,9 +6130,6 @@ Fixo / móvel </value>
   <data name="YawsTrainNumberOfParticipantsToTrainingS" xml:space="preserve">
     <value>Número de participantes para as sessões de Formação</value>
   </data>
-  <data name="SchoolCases14" xml:space="preserve">
-    <value>Casos em idade escolar (6 a 14 anos )</value>
-  </data>
   <data name="Cca" xml:space="preserve">
     <value>CCA</value>
   </data>
@@ -6133,8 +6151,8 @@ Fixo / móvel </value>
   <data name="PcIntvNumEligibleFemalesTargeted" xml:space="preserve">
     <value>N˚ de mulheres elegíveis visadas</value>
   </data>
-  <data name="SCHMapSurLongitude" xml:space="preserve">
-    <value>longitude</value>
+  <data name="Oncho0" xml:space="preserve">
+    <value>0 -  Não endêmico acima do limiar de tratamento</value>
   </data>
   <data name="OnchoSurEntTestTechPcr" xml:space="preserve">
     <value>Escrutínio da Reserva de PCR</value>
@@ -6169,8 +6187,8 @@ Fixo / móvel </value>
   <data name="NumCasesReadmitted" xml:space="preserve">
     <value>Número de outros casos readmitido ao tratamento</value>
   </data>
-  <data name="PcIntvTraDrugZith" xml:space="preserve">
-    <value>Comprimidos Zithromax </value>
+  <data name="OnchoSurEntTaxoForestSav" xml:space="preserve">
+    <value>Floresta e Savana</value>
   </data>
   <data name="RtiDrpUsaid" xml:space="preserve">
     <value>APOC apoiado pela USAID</value>
@@ -6226,8 +6244,8 @@ Fixo / móvel </value>
   <data name="ReportYear" xml:space="preserve">
     <value>Ano que as Informações do relatório aplicam-se</value>
   </data>
-  <data name="ImportListsSelect" xml:space="preserve">
-    <value>Selecione os valores necessários para esta importação</value>
+  <data name="IntvIvm" xml:space="preserve">
+    <value>Intervenção IVM</value>
   </data>
   <data name="SchPending" xml:space="preserve">
     <value>pendente aguardando avaliação de implementação / resultados</value>
@@ -6238,8 +6256,8 @@ Fixo / móvel </value>
   <data name="Sch1" xml:space="preserve">
     <value>Uma baixa prevalência ( &gt; 0 e &lt; 10 % ) mediante o mapeamento inicial por exame parasitológico</value>
   </data>
-  <data name="TraMapSurMaleFemale15yo" xml:space="preserve">
-    <value>Homens &amp; Mulheres +15 anos</value>
+  <data name="PercentScreenedYw" xml:space="preserve">
+    <value>% Dos casos entre as populações selecionados ( por 10.000 )</value>
   </data>
   <data name="TraSurLevelOfAntibioticTreatmentRequired" xml:space="preserve">
     <value>Nível de tratamento de antibiótico necessário</value>
@@ -6343,8 +6361,8 @@ Fixo / móvel </value>
   <data name="DatabaseUpdate" xml:space="preserve">
     <value>Actualização do banco de dados</value>
   </data>
-  <data name="PcIntvTraDrugTeo" xml:space="preserve">
-    <value>TEO</value>
+  <data name="TotalWithdrawalTreatment" xml:space="preserve">
+    <value>Retirada total do tratamento</value>
   </data>
   <data name="LeishRepEndemicAdmin2Vl" xml:space="preserve">
     <value>Total number of ENDEMIC Admin-2 level in the country for VL</value>
@@ -6409,8 +6427,8 @@ Fixo / móvel </value>
   <data name="Checkbox" xml:space="preserve">
     <value>caixa de seleção</value>
   </data>
-  <data name="TASCutoffStopMDA" xml:space="preserve">
-    <value>Stop MDA</value>
+  <data name="TasNumNoTreatment" xml:space="preserve">
+    <value>Number of LF endemic districts surrounding this Evaluation Unit that haven't started treatment</value>
   </data>
   <data name="TriTrainingRefresher" xml:space="preserve">
     <value>Reciclagem</value>
@@ -6448,8 +6466,8 @@ Fixo / móvel </value>
   <data name="DDOnchoNumPcRoundsYearCurrentlyImplemen" xml:space="preserve">
     <value>N˚ de voltas/ano de PC implementadas actualmente</value>
   </data>
-  <data name="TraMapSur1to9yo" xml:space="preserve">
-    <value>#1-9 crianças pesquisados</value>
+  <data name="DrpAlb" xml:space="preserve">
+    <value>ALB</value>
   </data>
   <data name="TasTotalAreasInCommunities" xml:space="preserve">
     <value>Se implementar TAS em comunidades , o número total de áreas de enumeração na UE</value>
@@ -6469,8 +6487,8 @@ Fixo / móvel </value>
   <data name="IntvPkgALB" xml:space="preserve">
     <value>ALB</value>
   </data>
-  <data name="ReviewAndConfirm" xml:space="preserve">
-    <value>Reveja e confirme</value>
+  <data name="TSPerSurgeonsInRuralAreas" xml:space="preserve">
+    <value> % Cirurgiões em áreas rurais</value>
   </data>
   <data name="LeishTrainNumberOfSupervisionVisitsSched" xml:space="preserve">
     <value>Número de visitas de supervisão programadas por ano</value>
@@ -6481,8 +6499,8 @@ Fixo / móvel </value>
   <data name="LFSurSiteName" xml:space="preserve">
     <value>Nome do local</value>
   </data>
-  <data name="LeishRepIsTreatFree" xml:space="preserve">
-    <value>Is leishmaniasis treatment provided for free in the public sector?</value>
+  <data name="OnchoSurEntTestTechTrap" xml:space="preserve">
+    <value>Captação </value>
   </data>
   <data name="LeishMontIntvNumberOfNewMCLCasesInChildrenLssThn5Years" xml:space="preserve">
     <value>Number of new MCL cases in children &lt; 5 years</value>
@@ -6520,8 +6538,8 @@ Fixo / móvel </value>
   <data name="Country" xml:space="preserve">
     <value>País</value>
   </data>
-  <data name="TraPending" xml:space="preserve">
-    <value>Pendente  aguardando  implementação/resultados do impacto da pesquisa</value>
+  <data name="TrainingYear" xml:space="preserve">
+    <value>Ano que Informações da Formação aplica-se </value>
   </data>
   <data name="JrfEndemicOncho" xml:space="preserve">
     <value>O país é endêmico de oncocercose (ONCHO)?</value>
@@ -6538,8 +6556,8 @@ Fixo / móvel </value>
   <data name="LeishMontIntvPrcntCaseFatalityRateForCL" xml:space="preserve">
     <value>% case fatality rate for CL</value>
   </data>
-  <data name="STHSurNumberOfIndividualsPositiveAscaris" xml:space="preserve">
-    <value>Número de indivíduos positivos - Ascaris</value>
+  <data name="SAEBrandandmanufacturername" xml:space="preserve">
+    <value>Marca e nome do fabricante</value>
   </data>
   <data name="TASTargetNumberOfSchoolsOrEas" xml:space="preserve">
     <value> Número de escolas alvo ou EAs</value>
@@ -6547,8 +6565,8 @@ Fixo / móvel </value>
   <data name="PatientsCuredPb" xml:space="preserve">
     <value>Pacientes curados ( conclusão do tratamento ) entre os novos casos PB do 1 º semestre e casos PB no início do ano</value>
   </data>
-  <data name="Evaluation" xml:space="preserve">
-    <value>Avaliação</value>
+  <data name="Questionnaire" xml:space="preserve">
+    <value>Questionário</value>
   </data>
   <data name="PrevalenceBeginningYear" xml:space="preserve">
     <value>Prevalência ( casos registrados para MDT ) no início do ano</value>
@@ -6577,8 +6595,8 @@ Fixo / móvel </value>
   <data name="SthSentinelIsPartOfCohort" xml:space="preserve">
     <value>Is this survey a part of cohort study?</value>
   </data>
-  <data name="FENpbpPartnersCurrentForFComponents" xml:space="preserve">
-    <value>Parceiros NPBP ( actuais ) para componentes F</value>
+  <data name="TASCutoffStopMDA" xml:space="preserve">
+    <value>Stop MDA</value>
   </data>
   <data name="HATTrainPercentageOfHealthFacilityStaffS" xml:space="preserve">
     <value>Percentagem de pessoal de saúde supervisionados como programado</value>
@@ -6604,8 +6622,8 @@ Fixo / móvel </value>
   <data name="TraNs" xml:space="preserve">
     <value>NS Não mapeado , mas não suspeitou</value>
   </data>
-  <data name="LeishMontIntvNumberOfNewPKDLCasesHIVCoInfection" xml:space="preserve">
-    <value>Number of new PKDL cases/HIV co-infection</value>
+  <data name="PcIntvTsNumKits" xml:space="preserve">
+    <value>Número de kits completos disponíveis</value>
   </data>
   <data name="RtiDrpFy13" xml:space="preserve">
     <value>Ano Fiscal (FY) 2013 (Outubro de 2012 - Setembro de 2013)</value>
@@ -6616,8 +6634,8 @@ Fixo / móvel </value>
   <data name="TSNationalPolicyDoPhcWorkersReferTtForS" xml:space="preserve">
     <value>Política nacional: Os trabalhadores da APS referem cirurgia de TT para os centros de saúde?</value>
   </data>
-  <data name="LeishRepRelapseDefCl" xml:space="preserve">
-    <value>Define what a leishmaniasis "relapse" is in this country for CL</value>
+  <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
+    <value>Cadastro Nacional de Doenças</value>
   </data>
   <data name="TraMapSurNumberOfIndividualsExaminedTf" xml:space="preserve">
     <value>Número de indivíduos examinados - TF</value>
@@ -6715,8 +6733,8 @@ Fixo / móvel </value>
   <data name="LFLymphedemaMorbidity" xml:space="preserve">
     <value> Linfedema Morbidade LF</value>
   </data>
-  <data name="NumPatientsType1" xml:space="preserve">
-    <value>Número de pacientes com reação do tipo 1</value>
+  <data name="RtiSchMdaNone" xml:space="preserve">
+    <value>Nenhum(a)</value>
   </data>
   <data name="MfSkinSnip" xml:space="preserve">
     <value>Incisão da pele para Mf</value>

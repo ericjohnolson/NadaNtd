@@ -32,6 +32,7 @@ namespace Nada.UI.View.Demography
 
                 DemoRepository demo = new DemoRepository();
                 model = demo.GetCountryLevelStatsRecent();
+                CreateIncomeStatusDropdown(comboBox1);
                 bsCountryDemo.DataSource = model;
             }
         }
@@ -61,6 +62,18 @@ namespace Nada.UI.View.Demography
                     return false;
             }
             return true;
+        }
+
+        private void CreateIncomeStatusDropdown(ComboBox comboBox)
+        {
+            List<IndicatorDropdownValue> vals = new List<IndicatorDropdownValue>();
+            vals.Add(new IndicatorDropdownValue { DisplayName = "", TranslationKey = "" });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Low, TranslationKey = "Low" });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Middle, TranslationKey = "Middle" });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.High, TranslationKey = "High" });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Unknown, TranslationKey = "Unknown" });
+            comboBox.DataSource = vals;
+            comboBox.DropDownWidth = BaseForm.GetDropdownWidth(vals.Select(a => a.DisplayName));
         }
     }
 }

@@ -18,6 +18,10 @@ namespace Nada.Model
         public Nullable<double> PercentFemale { get; set; }
         public Nullable<double> PercentMale { get; set; }
         public Nullable<double> PercentAdult { get; set; }
+        public Nullable<double> GrossDomesticProduct { get; set; }
+        public string CountryIncomeStatus { get; set; }
+        public Nullable<double> LifeExpectBirthFemale { get; set; }
+        public Nullable<double> LifeExpectBirthMale { get; set; }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

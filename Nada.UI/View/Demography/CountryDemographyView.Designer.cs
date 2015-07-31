@@ -57,6 +57,14 @@
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.h3bLabel17 = new Nada.UI.Controls.H3bLabel();
             this.textBox18 = new System.Windows.Forms.TextBox();
+            this.h3bLabel1 = new Nada.UI.Controls.H3bLabel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.h3bLabel4 = new Nada.UI.Controls.H3bLabel();
+            this.h3bLabel5 = new Nada.UI.Controls.H3bLabel();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.h3bLabel6 = new Nada.UI.Controls.H3bLabel();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.countryDemoErrors = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountryDemo)).BeginInit();
@@ -97,9 +105,17 @@
             this.tableLayoutPanel14.Controls.Add(this.textBox19, 2, 9);
             this.tableLayoutPanel14.Controls.Add(this.h3bLabel17, 0, 12);
             this.tableLayoutPanel14.Controls.Add(this.textBox18, 0, 13);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel1, 2, 12);
+            this.tableLayoutPanel14.Controls.Add(this.textBox2, 2, 13);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel4, 0, 22);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel5, 2, 22);
+            this.tableLayoutPanel14.Controls.Add(this.textBox5, 2, 23);
+            this.tableLayoutPanel14.Controls.Add(this.h3bLabel6, 0, 24);
+            this.tableLayoutPanel14.Controls.Add(this.textBox6, 0, 25);
+            this.tableLayoutPanel14.Controls.Add(this.comboBox1, 0, 23);
             this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
-            this.tableLayoutPanel14.RowCount = 22;
+            this.tableLayoutPanel14.RowCount = 26;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -122,7 +138,11 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(569, 342);
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(569, 430);
             this.tableLayoutPanel14.TabIndex = 2;
             // 
             // textBox20
@@ -454,6 +474,101 @@
             this.textBox18.Size = new System.Drawing.Size(256, 21);
             this.textBox18.TabIndex = 12;
             // 
+            // h3bLabel1
+            // 
+            this.h3bLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.h3bLabel1.AutoSize = true;
+            this.h3bLabel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel1.Location = new System.Drawing.Point(296, 293);
+            this.h3bLabel1.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel1.Name = "h3bLabel1";
+            this.h3bLabel1.Size = new System.Drawing.Size(136, 16);
+            this.h3bLabel1.TabIndex = 66;
+            this.h3bLabel1.TabStop = false;
+            this.h3bLabel1.Tag = "GrossDomesticProduct";
+            this.h3bLabel1.Text = "GrossDomesticProduct";
+            this.h3bLabel1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox2
+            // 
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "GrossDomesticProduct", true));
+            this.textBox2.Location = new System.Drawing.Point(296, 315);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(0, 6, 17, 6);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(253, 21);
+            this.textBox2.TabIndex = 67;
+            // 
+            // h3bLabel4
+            // 
+            this.h3bLabel4.AutoSize = true;
+            this.h3bLabel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel4.Location = new System.Drawing.Point(0, 342);
+            this.h3bLabel4.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel4.Name = "h3bLabel4";
+            this.h3bLabel4.Size = new System.Drawing.Size(125, 16);
+            this.h3bLabel4.TabIndex = 68;
+            this.h3bLabel4.Tag = "CountryIncomeStatus";
+            this.h3bLabel4.Text = "CountryIncomeStatus";
+            this.h3bLabel4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // h3bLabel5
+            // 
+            this.h3bLabel5.AutoSize = true;
+            this.h3bLabel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel5.Location = new System.Drawing.Point(296, 342);
+            this.h3bLabel5.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel5.Name = "h3bLabel5";
+            this.h3bLabel5.Size = new System.Drawing.Size(130, 16);
+            this.h3bLabel5.TabIndex = 70;
+            this.h3bLabel5.Tag = "LifeExpectBirthFemale";
+            this.h3bLabel5.Text = "LifeExpectBirthFemale";
+            this.h3bLabel5.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox5
+            // 
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "LifeExpectBirthFemale", true));
+            this.textBox5.Location = new System.Drawing.Point(299, 361);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(250, 21);
+            this.textBox5.TabIndex = 71;
+            // 
+            // h3bLabel6
+            // 
+            this.h3bLabel6.AutoSize = true;
+            this.h3bLabel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.h3bLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.h3bLabel6.Location = new System.Drawing.Point(0, 387);
+            this.h3bLabel6.Margin = new System.Windows.Forms.Padding(0);
+            this.h3bLabel6.Name = "h3bLabel6";
+            this.h3bLabel6.Size = new System.Drawing.Size(114, 16);
+            this.h3bLabel6.TabIndex = 72;
+            this.h3bLabel6.Tag = "LifeExpectBirthMale";
+            this.h3bLabel6.Text = "LifeExpectBirthMale";
+            this.h3bLabel6.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // textBox6
+            // 
+            this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountryDemo, "LifeExpectBirthMale", true));
+            this.textBox6.Location = new System.Drawing.Point(3, 406);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(253, 21);
+            this.textBox6.TabIndex = 73;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCountryDemo, "CountryIncomeStatus", true));
+            this.comboBox1.DisplayMember = "DisplayName";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(3, 361);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(253, 23);
+            this.comboBox1.TabIndex = 74;
+            this.comboBox1.ValueMember = "TranslationKey";
+            // 
             // countryDemoErrors
             // 
             this.countryDemoErrors.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
@@ -470,7 +585,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel14);
             this.Name = "CountryDemographyView";
-            this.Size = new System.Drawing.Size(575, 348);
+            this.Size = new System.Drawing.Size(575, 436);
             this.Load += new System.EventHandler(this.CountryView_Load);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
@@ -512,5 +627,13 @@
         private Controls.H3bLabel h3bLabel2;
         private System.Windows.Forms.ErrorProvider countryDemoErrors;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private Controls.H3bLabel h3bLabel1;
+        private System.Windows.Forms.TextBox textBox2;
+        private Controls.H3bLabel h3bLabel4;
+        private Controls.H3bLabel h3bLabel5;
+        private System.Windows.Forms.TextBox textBox5;
+        private Controls.H3bLabel h3bLabel6;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

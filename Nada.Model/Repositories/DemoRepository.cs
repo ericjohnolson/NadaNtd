@@ -199,7 +199,8 @@ namespace Nada.Model.Repositories
             GetDemoById(demo, demoId, connection, command);
 
             command = new OleDbCommand(@"Select AgeRangePsac, AgeRangeSac, Percent6mos, PercentPsac, PercentSac,  Percent5yo,  
-                        PercentFemale, PercentMale, PercentAdult
+                        PercentFemale, PercentMale, PercentAdult, GrossDomesticProduct, CountryIncomeStatus,
+                        LifeExpectBirthFemale, LifeExpectBirthMale
                         FROM CountryDemography WHERE AdminLevelDemographyId=@AdminLevelDemographyId", connection);
             command.Parameters.Add(new OleDbParameter("@AdminLevelDemographyId", demo.Id));
 
@@ -217,6 +218,10 @@ namespace Nada.Model.Repositories
                     demo.PercentFemale = reader.GetValueOrDefault<Nullable<double>>("PercentFemale");
                     demo.PercentMale = reader.GetValueOrDefault<Nullable<double>>("PercentMale");
                     demo.PercentAdult = reader.GetValueOrDefault<Nullable<double>>("PercentAdult");
+                    demo.GrossDomesticProduct = reader.GetValueOrDefault<Nullable<double>>("GrossDomesticProduct");
+                    demo.CountryIncomeStatus = reader.GetValueOrDefault<string>("CountryIncomeStatus");
+                    demo.LifeExpectBirthFemale = reader.GetValueOrDefault<Nullable<double>>("LifeExpectBirthFemale");
+                    demo.LifeExpectBirthMale = reader.GetValueOrDefault<Nullable<double>>("LifeExpectBirthMale");
                 }
                 reader.Close();
             }
@@ -269,10 +274,12 @@ namespace Nada.Model.Repositories
             command.ExecuteNonQuery();
 
             command = new OleDbCommand(@"INSERT INTO CountryDemography (AdminLevelDemographyId, AgeRangePsac,
-                        AgeRangeSac, Percent6mos, PercentPsac, PercentSac,  Percent5yo,  PercentFemale,PercentMale, PercentAdult) 
+                        AgeRangeSac, Percent6mos, PercentPsac, PercentSac,  Percent5yo,  PercentFemale,PercentMale, PercentAdult,
+                        GrossDomesticProduct, CountryIncomeStatus, LifeExpectBirthFemale, LifeExpectBirthMale)
                             values (@AdminLevelDemographyId, @AgeRangePsac,
                         @AgeRangeSac, @Percent6mos, @PercentPsac, @PercentSac, @Percent5yo, @PercentFemale, @PercentMale, 
-                        @PercentAdult)", connection);
+                        @PercentAdult, @GrossDomesticProduct, @CountryIncomeStatus, @LifeExpectBirthFemale,
+                        @LifeExpectBirthMale)", connection);
             command.Parameters.Add(new OleDbParameter("@AdminLevelDemographyId", demo.Id));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@AgeRangePsac", demo.AgeRangePsac));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@AgeRangeSac", demo.AgeRangeSac));
@@ -283,6 +290,10 @@ namespace Nada.Model.Repositories
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@PercentFemale", demo.PercentFemale));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@PercentMale", demo.PercentMale));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@PercentAdult", demo.PercentAdult));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@GrossDomesticProduct", demo.GrossDomesticProduct));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@CountryIncomeStatus", demo.CountryIncomeStatus));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@LifeExpectBirthFemale", demo.LifeExpectBirthFemale));
+            command.Parameters.Add(OleDbUtil.CreateNullableParam("@LifeExpectBirthMale", demo.LifeExpectBirthMale));
             command.ExecuteNonQuery();
         }
         #endregion

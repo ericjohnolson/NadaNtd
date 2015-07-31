@@ -354,6 +354,12 @@ insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SE
 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 27, ID FROM interventionindicators where displayname = 'Notes';
 
+-- Story 223
+ALTER TABLE CountryDemography ADD GrossDomesticProduct NUMBER;
+ALTER TABLE CountryDemography ADD CountryIncomeStatus TEXT(64);
+ALTER TABLE CountryDemography ADD LifeExpectBirthFemale NUMBER;
+ALTER TABLE CountryDemography ADD LifeExpectBirthMale NUMBER;
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]

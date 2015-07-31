@@ -1775,6 +1775,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Country Income Status.
+        /// </summary>
+        public static string CountryIncomeStatus {
+            get {
+                return ResourceManager.GetString("CountryIncomeStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country name.
         /// </summary>
         public static string CountryName {
@@ -3985,6 +3994,15 @@ namespace Nada.Globalization {
         public static string GreaterThanMonth {
             get {
                 return ResourceManager.GetString("GreaterThanMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GDP (Gross Domestic Product).
+        /// </summary>
+        public static string GrossDomesticProduct {
+            get {
+                return ResourceManager.GetString("GrossDomesticProduct", resourceCulture);
             }
         }
         
@@ -7238,6 +7256,24 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Life expectancy at birth for female.
+        /// </summary>
+        public static string LifeExpectBirthFemale {
+            get {
+                return ResourceManager.GetString("LifeExpectBirthFemale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Life expectancy at birth for male.
+        /// </summary>
+        public static string LifeExpectBirthMale {
+            get {
+                return ResourceManager.GetString("LifeExpectBirthMale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select....
         /// </summary>
         public static string LinkSelect {
@@ -7765,6 +7801,15 @@ namespace Nada.Globalization {
         public static string MfSkinSnip {
             get {
                 return ResourceManager.GetString("MfSkinSnip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Middle.
+        /// </summary>
+        public static string Middle {
+            get {
+                return ResourceManager.GetString("Middle", resourceCulture);
             }
         }
         
@@ -19249,6 +19294,15 @@ namespace Nada.Globalization {
         public static string UNICEF {
             get {
                 return ResourceManager.GetString("UNICEF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
         
