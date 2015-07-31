@@ -107,21 +107,21 @@ namespace Nada.Model.Intervention
                             ));
                     case "26LeishAnnIntvOfNewCLCasesCuredOutOfNewCasesFollowedUp":
                         return new KeyValuePair<string, string>(
-                            Translations.LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp,
+                            Translations.LeishAnnIntvOfNewCLCasesCuredOutOfNewCasesFollowedUp,
                             GetPercentage(
                                 GetValueOrDefault("26LeishAnnIntvNumberOfNewCLCasesCuredAfterFollowUpOfAtLeast6Months", relatedValues),
                                 GetValueOrDefault("26LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months", relatedValues)
                             ));
                     case "26LeishAnnIntvOfVLRelapseCasesOutOfTotalNewCasesFollowedUp":
                         return new KeyValuePair<string, string>(
-                            Translations.LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp,
+                            Translations.LeishAnnIntvOfVLRelapseCasesOutOfTotalNewCasesFollowedUp,
                             GetPercentage(
                                 GetValueOrDefault("26LeishAnnIntvNumberOfVLRelapseCases", relatedValues),
                                 GetValueOrDefault("26LeishAnnIntvNumberOfNewVLCasesFollowedUpAtLeast6Months", relatedValues)
                             ));
                     case "26LeishAnnIntvOfCLRelapseCasesOutOfTotalNewCasesFollowedUp":
                         return new KeyValuePair<string, string>(
-                            Translations.LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp,
+                            Translations.LeishAnnIntvOfCLRelapseCasesOutOfTotalNewCasesFollowedUp,
                             GetPercentage(
                                 GetValueOrDefault("26LeishAnnIntvNumberOfCLRelapseCases", relatedValues),
                                 GetValueOrDefault("26LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months", relatedValues)
