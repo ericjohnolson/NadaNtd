@@ -127,7 +127,11 @@ namespace Nada.Model
 	    Alb2      = 18, 
 	    Zithro    = 21, 
 	    Teo       = 22, 
-	    ZithroTeo = 23 
+	    ZithroTeo = 23,
+        TsSurgeries = 24,
+        TrachomaFaceClean = 25,
+        LeishAnnual = 26,
+        LeishMonthly = 27
     }
 
     public enum StaticProcessType
