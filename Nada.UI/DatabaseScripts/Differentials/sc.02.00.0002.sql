@@ -146,6 +146,27 @@ insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SE
 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 26, ID FROM interventionindicators where displayname = 'Notes';
 
+-- Story #211 Leish Annual Interv calculations
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvNumberOfNewVLCasesCuredAfterFollowUpOfAtLeast6Months'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvNumberOfNewVLCasesFollowedUpAtLeast6Months'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvOfNewCLCasesCuredOutOfNewCasesFollowedUp'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvNumberOfNewCLCasesCuredAfterFollowUpOfAtLeast6Months'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvOfNewCLCasesCuredOutOfNewCasesFollowedUp'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvOfVLRelapseCasesOutOfTotalNewCasesFollowedUp'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvNumberOfVLRelapseCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvOfVLRelapseCasesOutOfTotalNewCasesFollowedUp'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvNumberOfNewVLCasesFollowedUpAtLeast6Months'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvOfCLRelapseCasesOutOfTotalNewCasesFollowedUp'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvNumberOfCLRelapseCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvOfCLRelapseCasesOutOfTotalNewCasesFollowedUp'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months'"), 2);
+
 -- Story #213 Leish Monthly Interv
 INSERT INTO InterventionTypes (InterventionTypeName, DiseaseType, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
 	('LeishMonthlyIntervention', 'CM', 26, NOW(), 26, NOW());
@@ -353,6 +374,219 @@ insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrde
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 27, ID FROM interventionindicators where displayname = 'LeishMontIntvMonthlyConsumptionRate1StLineTreatmentUnits' AND InterventionTypeId = 27;
 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 27, ID FROM interventionindicators where displayname = 'Notes';
+
+-- Story 213 Leish Monthly interv calcs
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvDetectionRatePer100000'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvDetectionRatePer100000'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfLabConfirmedCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfLabConfirmedCLCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfLabConfirmedCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfVLCasesDiagnosedByAPositiveRapidDiagnosticTestsRDT'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfLabConfirmedCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfLabConfirmedCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfLabConfirmedCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCasesActivelyFound'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfCasesFoundActively'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCasesActivelyFound'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfPeopleScreenedActivelyForVL'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCasesActivelyFound'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfPeopleScreenedPassivelyForVL'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCasesActivelyFound'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfPeopleScreenedActivelyForCL'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCasesActivelyFound'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfPeopleScreenedPassivelyForCL'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCasesActivelyFound'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfPeopleScreenedActivelyForPKDL'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCasesActivelyFound'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfPeopleScreenedPassivelyForPKDL'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewPKDLCasesHIVCoInfection'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfVLCasesDiagnosedByRDT'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfVLCasesDiagnosedByAPositiveRapidDiagnosticTestsRDT'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfVLCasesDiagnosedByRDT'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfPostitiveRDT'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfVLCasesDiagnosedByAPositiveRapidDiagnosticTestsRDT'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfPostitiveRDT'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfVLSuspectsTestedWithRapidDiagnosticTests'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfVLParasitologicallyConfirmedCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfVLParasitologicallyConfirmedCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfCLParasitologicallyConfirmedCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfLabConfirmedCLCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfCLParasitologicallyConfirmedCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfParasitologicallyConfirmedVLSamples'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfParasitologicallyConfirmedVLSamples'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfVLCasesTestedByDirectExamParasitology'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfParasitologicallyConfirmedCLSamples'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfLabConfirmedCLCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfParasitologicallyConfirmedCLSamples'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfCLCasesTestedByDirectExamParasitology'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForVL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewVLCasesWithInitialCure'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForVL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewVLCasesTreated'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForCL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewCLCasesWithInitialCure'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForCL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewCLCasesTreated'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForVL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfFailureCasesVL'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForVL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewVLCasesTreated'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForCL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfFailureCasesCL'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForCL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewCLCasesTreated'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCaseFatalityRateForVL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfDeathsForNewVLCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCaseFatalityRateForVL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewVLCasesTreated'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCaseFatalityRateForCL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfDeathsForNewCLCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCaseFatalityRateForCL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewCLCasesTreated'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfCLPatientsWithGrtrThnOrEqlTo4Lesions'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfCLPatientsWithGrtrThnOrEqlTo4Lesions'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfCLPatientsWithGrtrThnOrEqlTo4Lesions'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfCLPatientsWithLesionsOnFaceEars'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfCLPatientsWithLesionsOnFaceOrEars'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfCLPatientsWithLesionsOnFaceEars'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfCLPatientsUndergoingSystemicTreatment'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfCLPatientsUndergoingSystemicTreatment'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfCLPatientsUndergoingSystemicTreatment'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewCLCasesTreated'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvVLIncidenceRate10000PeopleYear'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvCLIncidenceRate10000PeopleYear'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntFemaleVL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewVLFemaleCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntFemaleVL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntFemaleCL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewCLFemaleCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntFemaleCL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntFemalePKDL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewPKDLFemaleCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntFemalePKDL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntFemaleMCL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewMCLFemaleCases'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntFemaleMCL'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewVLCasesInChildrenLssThn5Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewVLCasesInChildrenLssThn5Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewVLCasesInChildrenLssThn5Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewVLCasesInChildren5To14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewVLCasesInChildren5To14Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewVLCasesInChildren5To14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewVLCasesInAdultsGrtrThn14Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewCLCasesInChildrenLssThn5Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewCLCasesInChildrenLssThn5Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewCLCasesInChildrenLssThn5Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewCLCasesInChildren5To14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewCLCasesInChildren5To14Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewCLCasesInChildren5To14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewCLCasesInAdultsGrtrThn14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewCLCasesInAdultsGrtrThn14Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewCLCasesInAdultsGrtrThn14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewPKDLCasesInChildrenLssThn5Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewPKDLCasesInChildrenLssThn5Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewPKDLCasesInChildrenLssThn5Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewPKDLCasesInChildren5To14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewPKDLCasesInChildren5To14Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewPKDLCasesInChildren5To14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewPKDLCasesInAdultsGrtrThn14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewPKDLCasesInAdultsGrtrThn14Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewPKDLCasesInAdultsGrtrThn14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewMCLCasesInChildrenLssThn5Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewMCLCasesInChildrenLssThn5Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewMCLCasesInChildrenLssThn5Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewMCLCasesInChildren5To14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewMCLCasesInChildren5To14Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewMCLCasesInChildren5To14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewMCLCasesInAdultsGrtrThn14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfNewMCLCasesInAdultsGrtrThn14Years'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfNewMCLCasesInAdultsGrtrThn14Years'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed'"), 2);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvMonthlyConsumptionRate1StLineTreatmentUnits'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheBeginningOfTheMonth'"), 2);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvMonthlyConsumptionRate1StLineTreatmentUnits'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheEndOfTheMonth'"), 2);
 
 -- Story 223
 ALTER TABLE CountryDemography ADD GrossDomesticProduct NUMBER;
