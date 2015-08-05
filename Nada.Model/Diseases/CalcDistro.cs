@@ -62,10 +62,6 @@ namespace Nada.Model.Diseases
                         if (demo != null)
                             return new KeyValuePair<string, string>(Translations.DetectionRate100k, GetPercentage(GetValueOrDefault("7TotalNumNewCases", relatedValues), demo.TotalPopulation.ToString(), 100000));
                         break;
-                    case "9PercentNewChildren":
-                        return new KeyValuePair<string, string>(Translations.PercentNewChildren, GetPercentage(GetValueOrDefault("9TotalNumChildNewCases", relatedValues), GetValueOrDefault("9TotalNumNewCases", relatedValues)));
-                    case "9PercentNewFemales":
-                        return new KeyValuePair<string, string>(Translations.PercentNewFemales, GetPercentage(GetValueOrDefault("9TotalNumFemaleNewCases", relatedValues), GetValueOrDefault("9TotalNumNewCases", relatedValues)));
                     case "8PercentCasesHat2":
                         return new KeyValuePair<string, string>(Translations.PercentCasesHat2, GetPercentage(GetValueOrDefault("8TotalNumHat2", relatedValues), GetValueOrDefault("8TotalNumHat", relatedValues)));
                     case "8PercentNewChildren":

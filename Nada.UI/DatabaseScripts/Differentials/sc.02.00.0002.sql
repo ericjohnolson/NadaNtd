@@ -613,6 +613,134 @@ ALTER TABLE CountryDemography ADD CountryIncomeStatus TEXT(64);
 ALTER TABLE CountryDemography ADD LifeExpectBirthFemale NUMBER;
 ALTER TABLE CountryDemography ADD LifeExpectBirthMale NUMBER;
 
+-- Story 215 Remove previous indicators - warning multi-nested queries, but trying to be safe and hard-code as little as possible
+DELETE FROM DiseaseDistributionIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM DiseaseDistributionIndicators
+		WHERE DisplayName = 'EndemicityStatus' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis')
+);
+DELETE FROM DiseaseDistributionIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM DiseaseDistributionIndicators
+		WHERE DisplayName = 'TotalNumNewCases' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis')
+);
+DELETE FROM DiseaseDistributionIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM DiseaseDistributionIndicators
+		WHERE DisplayName = 'TotalNumVlCases' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis')
+);
+DELETE FROM DiseaseDistributionIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM DiseaseDistributionIndicators
+		WHERE DisplayName = 'TotalNumClCases' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis')
+);
+DELETE FROM DiseaseDistributionIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM DiseaseDistributionIndicators
+		WHERE DisplayName = 'TotalNumChildNewCases' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis')
+);
+DELETE FROM DiseaseDistributionIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM DiseaseDistributionIndicators
+		WHERE DisplayName = 'TotalNumFemaleNewCases' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis')
+);
+DELETE FROM DiseaseDistributionIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM DiseaseDistributionIndicators
+		WHERE DisplayName = 'PercentNewChildren' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis')
+);
+DELETE FROM DiseaseDistributionIndicatorValues
+	WHERE IndicatorId = (
+		SELECT ID FROM DiseaseDistributionIndicators
+		WHERE DisplayName = 'PercentNewFemales' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis')
+);
+
+DELETE FROM IndicatorCalculations WHERE
+	EntityTypeId = 1 AND
+	(
+		IndicatorId IN (
+			SELECT ID FROM DiseaseDistributionIndicators WHERE DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis')
+			AND DisplayName IN ('EndemicityStatus', 'TotalNumNewCases', 'TotalNumVlCases', 'TotalNumClCases', 'TotalNumChildNewCases',
+			'TotalNumFemaleNewCases', 'PercentNewChildren', 'PercentNewFemales'
+			)
+		)
+		OR RelatedIndicatorId IN (
+			SELECT ID FROM DiseaseDistributionIndicators WHERE DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis')
+			AND DisplayName IN ('EndemicityStatus', 'TotalNumNewCases', 'TotalNumVlCases', 'TotalNumClCases', 'TotalNumChildNewCases',
+			'TotalNumFemaleNewCases', 'PercentNewChildren', 'PercentNewFemales'
+			)
+		)
+	);
+
+DELETE FROM DiseaseDistributionIndicators
+	WHERE DisplayName = 'EndemicityStatus' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis');
+DELETE FROM DiseaseDistributionIndicators
+	WHERE DisplayName = 'TotalNumNewCases' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis');
+DELETE FROM DiseaseDistributionIndicators
+	WHERE DisplayName = 'TotalNumVlCases' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis');
+DELETE FROM DiseaseDistributionIndicators
+	WHERE DisplayName = 'TotalNumClCases' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis');
+DELETE FROM DiseaseDistributionIndicators
+	WHERE DisplayName = 'TotalNumChildNewCases' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis');
+DELETE FROM DiseaseDistributionIndicators
+	WHERE DisplayName = 'TotalNumFemaleNewCases' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis');
+DELETE FROM DiseaseDistributionIndicators
+	WHERE DisplayName = 'PercentNewChildren' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis');
+DELETE FROM DiseaseDistributionIndicators
+	WHERE DisplayName = 'PercentNewFemales' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis');
+
+-- Story 215 Add new indicators
+insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (5, 'LeishDiseaseDistEndemicityStatusVL', 3, 1, 26, NOW(), 0, 0, -1, 0, 0, 0, 0, 9, 2, 58);
+insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (5, 'LeishDiseaseDistEndemicityStatusCL', 3, 2, 26, NOW(), 0, 0, -1, 0, 0, 0, 0, 9, 2, 58);
+insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (5, 'LeishDiseaseDistEndemicityStatusPKDL', 3, 3, 26, NOW(), 0, 0, 0, 0, 0, 0, 0, 9, 2, 58);
+insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (5, 'LeishDiseaseDistEndemicityStatusMCL', 3, 4, 26, NOW(), 0, 0, 0, 0, 0, 0, 0, 9, 2, 58);
+insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (5, 'LeishDiseaseDistWasThereAnyVLOutbreakThisYear', 3, 5, 26, NOW(), 0, 0, -1, 0, 0, 0, 0, 9, 49, 58);
+insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (5, 'LeishDiseaseDistWasThereAnyCLOutbreakThisYear', 3, 6, 26, NOW(), 0, 0, -1, 0, 0, 0, 0, 9, 49, 58);
+insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (2, 'LeishDiseaseDistNumberOfNewVLFociThisYearAreasReportingCasesForTheFirstTime', 1, 9, 26, NOW(), 0, 0, -1, 0, 0, 0, 0, 9, 49, 58);
+insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (2, 'LeishDiseaseDistNumberOfNewCLFociThisYearAreasReportingCasesForTheFirstTime', 1, 10, 26, NOW(), 0, 0, -1, 0, 0, 0, 0, 9, 49, 58);
+
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 1, 'Endemic', 'Endemic', 20, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusVL';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 2, 'NotEndemic', 'NotEndemic', 0, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusVL';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 3, 'UnknownEndemicity', 'UnknownEndemicity', 10, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusVL';
+
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 1, 'Endemic', 'Endemic', 20, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusCL';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 2, 'NotEndemic', 'NotEndemic', 0, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusCL';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 3, 'UnknownEndemicity', 'UnknownEndemicity', 10, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusCL';
+
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 1, 'Endemic', 'Endemic', 20, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusPKDL';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 2, 'NotEndemic', 'NotEndemic', 0, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusPKDL';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 3, 'UnknownEndemicity', 'UnknownEndemicity', 10, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusPKDL';
+
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 1, 'Endemic', 'Endemic', 20, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusMCL';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 2, 'NotEndemic', 'NotEndemic', 0, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusMCL';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 3, 'UnknownEndemicity', 'UnknownEndemicity', 10, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistEndemicityStatusMCL';
+
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 1, 'Yes', 'Yes', 20, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistWasThereAnyVLOutbreakThisYear';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 2, 'No', 'No', 0, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistWasThereAnyVLOutbreakThisYear';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 3, 'Unknown', 'Unknown', 10, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistWasThereAnyVLOutbreakThisYear';
+
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 1, 'Yes', 'Yes', 20, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistWasThereAnyCLOutbreakThisYear';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 2, 'No', 'No', 0, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistWasThereAnyCLOutbreakThisYear';
+INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
+	SELECT ID, 1, 3, 'Unknown', 'Unknown', 10, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistWasThereAnyCLOutbreakThisYear';
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]

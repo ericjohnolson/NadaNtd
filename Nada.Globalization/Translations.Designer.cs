@@ -5303,6 +5303,78 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Endemicity status CL.
+        /// </summary>
+        public static string LeishDiseaseDistEndemicityStatusCL {
+            get {
+                return ResourceManager.GetString("LeishDiseaseDistEndemicityStatusCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endemicity status MCL.
+        /// </summary>
+        public static string LeishDiseaseDistEndemicityStatusMCL {
+            get {
+                return ResourceManager.GetString("LeishDiseaseDistEndemicityStatusMCL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endemicity status PKDL.
+        /// </summary>
+        public static string LeishDiseaseDistEndemicityStatusPKDL {
+            get {
+                return ResourceManager.GetString("LeishDiseaseDistEndemicityStatusPKDL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endemicity status VL.
+        /// </summary>
+        public static string LeishDiseaseDistEndemicityStatusVL {
+            get {
+                return ResourceManager.GetString("LeishDiseaseDistEndemicityStatusVL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new CL foci this year (areas reporting cases for the first time).
+        /// </summary>
+        public static string LeishDiseaseDistNumberOfNewCLFociThisYearAreasReportingCasesForTheFirstTime {
+            get {
+                return ResourceManager.GetString("LeishDiseaseDistNumberOfNewCLFociThisYearAreasReportingCasesForTheFirstTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of new VL foci this year (areas reporting cases for the first time).
+        /// </summary>
+        public static string LeishDiseaseDistNumberOfNewVLFociThisYearAreasReportingCasesForTheFirstTime {
+            get {
+                return ResourceManager.GetString("LeishDiseaseDistNumberOfNewVLFociThisYearAreasReportingCasesForTheFirstTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Was there any CL outbreak this year? .
+        /// </summary>
+        public static string LeishDiseaseDistWasThereAnyCLOutbreakThisYear {
+            get {
+                return ResourceManager.GetString("LeishDiseaseDistWasThereAnyCLOutbreakThisYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Was there any VL outbreak this year? .
+        /// </summary>
+        public static string LeishDiseaseDistWasThereAnyVLOutbreakThisYear {
+            get {
+                return ResourceManager.GetString("LeishDiseaseDistWasThereAnyVLOutbreakThisYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leishmaniasis Intervention.
         /// </summary>
         public static string LeishIntervention {
