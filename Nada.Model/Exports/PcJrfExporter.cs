@@ -137,18 +137,8 @@ namespace Nada.Model.Exports
             foreach (var district in districts)
             {
                 AdminLevel parent = demography.First(d => d.Id == district.ParentId);
-                // If the parent doesn't have a parent, then it is a country
-                if (parent.Parent == null)
-                {
-                    // The parent is a country
-                    AddValueToRange(xlsWorksheet, rng, "B" + rowId, district.Name);
-                }
-                else
-                {
-                    // The parent is not a country
-                    AddValueToRange(xlsWorksheet, rng, "B" + rowId, parent.Name);
-                    AddValueToRange(xlsWorksheet, rng, "C" + rowId, district.Name);
-                }
+                AddValueToRange(xlsWorksheet, rng, "B" + rowId, parent.Name);
+                AddValueToRange(xlsWorksheet, rng, "C" + rowId, district.Name);
                 AddValueToRange(xlsWorksheet, rng, "D" + rowId, district.CurrentDemography.TotalPopulation);
 
                 // DISEASE DISTRO
