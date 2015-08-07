@@ -29,8 +29,9 @@ namespace Nada.Model.Exports
 
         IntvType LeishMonthlyIntvType;
         IntvType LeishAnnualIntvType;
-        ReportResult LeishMonthlyIntvReport;
-        ReportResult LeishAnnualIntvReport;
+        ReportResult LeishMonthlyIntvCountryAggReport;
+        ReportResult LeishAnnualIntvCountryAggReport;
+        ReportResult LeishMonthlyIntvNoAggReport;
 
         DiseaseDistroPc LeishDd;
         ReportResult LeishCountryAggDdReport;
@@ -69,17 +70,23 @@ namespace Nada.Model.Exports
                 // Add country data
                 AddCountryInfo(questions);
 
-                // Run Leish monthly intervention report data
-                RunLeishMonthlyIntvReport();
+                // Run Leish monthly intervention with country agg report data
+                RunLeishMonthlyIntvCountryAggReport();
 
-                // Run Leish annual intervention report data
-                RunLeishAnnualIntvReport();
+                // Run Leish annual intervention with country agg report data
+                RunLeishAnnualIntvCountryAggReport();
+
+                // Run Leish monthly intervention report with no agg
+                RunLeishMonthlyIntvNoAggReport();
 
                 // Run the Leish disease distribution report for the country
                 RunLeishCountryAggDdReport();
 
                 // Add epi
                 AddEpi(questions);
+
+                // Add monthly dist
+                AddMonthlyDist();
 
                 // Control
                 AddControl(questions);
@@ -159,7 +166,7 @@ namespace Nada.Model.Exports
             CountryDemo = DemoRepo.GetCountryLevelStatsRecent();
         }
 
-        private void RunLeishMonthlyIntvReport()
+        private void RunLeishMonthlyIntvCountryAggReport()
         {
             // Get the intervention type
             LeishMonthlyIntvType = IntvRepo.GetIntvType((int)StaticIntvType.LeishMonthly);
@@ -172,10 +179,10 @@ namespace Nada.Model.Exports
             foreach (var indicator in LeishMonthlyIntvType.Indicators)
                 reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishMonthlyIntvType.Id, indicator));
             // Run the report
-            LeishMonthlyIntvReport = IntvReportGen.Run(new SavedReport { ReportOptions = reportOptions });
+            LeishMonthlyIntvCountryAggReport = IntvReportGen.Run(new SavedReport { ReportOptions = reportOptions });
         }
 
-        private void RunLeishAnnualIntvReport()
+        private void RunLeishAnnualIntvCountryAggReport()
         {
             // Get the intervention type
             LeishAnnualIntvType = IntvRepo.GetIntvType((int)StaticIntvType.LeishAnnual);
@@ -188,7 +195,27 @@ namespace Nada.Model.Exports
             foreach (var indicator in LeishAnnualIntvType.Indicators)
                 reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishAnnualIntvType.Id, indicator));
             // Run the report
-            LeishAnnualIntvReport = IntvReportGen.Run(new SavedReport { ReportOptions = reportOptions });
+            LeishAnnualIntvCountryAggReport = IntvReportGen.Run(new SavedReport { ReportOptions = reportOptions });
+        }
+
+        private void RunLeishMonthlyIntvNoAggReport()
+        {
+            // Report options
+            ReportOptions reportOptions = new ReportOptions
+            {
+                MonthYearStarts = 1,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                IsCountryAggregation = false,
+                IsByLevelAggregation = false,
+                IsAllLocations = true,
+                IsNoAggregation = true
+            };
+            // Add the indicators from the intervention type
+            foreach (var indicator in LeishMonthlyIntvType.Indicators)
+                reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishMonthlyIntvType.Id, indicator));
+            // Run the report
+            LeishMonthlyIntvNoAggReport = IntvReportGen.Run(new SavedReport { ReportOptions = reportOptions });
         }
 
         private void RunLeishCountryAggDdReport()
@@ -250,45 +277,45 @@ namespace Nada.Model.Exports
                 Translations.LeishDiseaseDistEndemicityStatusMCL, LeishCountryAggDdReport);
             // Number of new cases (incidence)
             AddReportValueToExport(XlsWorksheet, XlsRange, "G14", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I14", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "K14", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvTotalNumberOfNewPKDLCasesDiagnosed, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "M14", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvTotalNumberOfNewMCLCasesDiagnosed, LeishMonthlyIntvCountryAggReport);
             // Number of imported new cases
             AddReportValueToExport(XlsWorksheet, XlsRange, "G15", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvNumberOfImportedVLCases, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvNumberOfImportedVLCases, LeishAnnualIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I15", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvNumberOfImportedCLCases, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvNumberOfImportedCLCases, LeishAnnualIntvCountryAggReport);
             // Incidence rate (calc)
             AddReportValueToExport(XlsWorksheet, XlsRange, "G16", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvVLIncidenceRate10000PeopleYear, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvVLIncidenceRate10000PeopleYear, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I16", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvCLIncidenceRate10000PeopleYear, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvCLIncidenceRate10000PeopleYear, LeishMonthlyIntvCountryAggReport);
             // Gender distribution (%)
             AddReportValueToExport(XlsWorksheet, XlsRange, "G17", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntFemaleVL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntFemaleVL, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I17", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntFemaleCL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntFemaleCL, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "K17", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntFemalePKDL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntFemalePKDL, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "M17", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntFemaleMCL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntFemaleMCL, LeishMonthlyIntvCountryAggReport);
             // Age group Distribution
             AddAgeGroupDistToExport(XlsWorksheet, XlsRange, "G18", LeishMonthlyIntvType.IntvTypeName,
                 Translations.LeishMontIntvPrcntOfNewVLCasesInChildrenLssThn5Years, Translations.LeishMontIntvPrcntOfNewVLCasesInChildren5To14Years,
-                Translations.LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years, LeishMonthlyIntvCountryAggReport);
             AddAgeGroupDistToExport(XlsWorksheet, XlsRange, "I18", LeishMonthlyIntvType.IntvTypeName,
                 Translations.LeishMontIntvPrcntOfNewCLCasesInChildrenLssThn5Years, Translations.LeishMontIntvPrcntOfNewCLCasesInChildren5To14Years,
-                Translations.LeishMontIntvPrcntOfNewCLCasesInAdultsGrtrThn14Years, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfNewCLCasesInAdultsGrtrThn14Years, LeishMonthlyIntvCountryAggReport);
             AddAgeGroupDistToExport(XlsWorksheet, XlsRange, "K18", LeishMonthlyIntvType.IntvTypeName,
                 Translations.LeishMontIntvPrcntOfNewPKDLCasesInChildrenLssThn5Years, Translations.LeishMontIntvPrcntOfNewPKDLCasesInChildren5To14Years,
-                Translations.LeishMontIntvPrcntOfNewPKDLCasesInAdultsGrtrThn14Years, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfNewPKDLCasesInAdultsGrtrThn14Years, LeishMonthlyIntvCountryAggReport);
             AddAgeGroupDistToExport(XlsWorksheet, XlsRange, "M18", LeishMonthlyIntvType.IntvTypeName,
                 Translations.LeishMontIntvPrcntOfNewMCLCasesInChildrenLssThn5Years, Translations.LeishMontIntvPrcntOfNewMCLCasesInChildren5To14Years,
-                Translations.LeishMontIntvPrcntOfNewMCLCasesInAdultsGrtrThn14Years, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfNewMCLCasesInAdultsGrtrThn14Years, LeishMonthlyIntvCountryAggReport);
             // 2nd level admin endemic
             AddValueToRange(XlsWorksheet, XlsRange, "G19", questions.LeishRepEndemicAdmin2Vl.HasValue ? questions.LeishRepEndemicAdmin2Vl.Value.ToString() : "");
             AddValueToRange(XlsWorksheet, XlsRange, "I19", questions.LeishRepEndemicAdmin2Cl.HasValue ? questions.LeishRepEndemicAdmin2Cl.Value.ToString() : "");
@@ -303,6 +330,59 @@ namespace Nada.Model.Exports
                 Translations.LeishDiseaseDistNumberOfNewVLFociThisYearAreasReportingCasesForTheFirstTime, LeishCountryAggDdReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I22", LeishDd.Disease.DisplayName,
                 Translations.LeishDiseaseDistNumberOfNewCLFociThisYearAreasReportingCasesForTheFirstTime, LeishCountryAggDdReport);
+        }
+
+        public void AddMonthlyDist()
+        {
+            // Will hold the Total number of new VL/CL cases diagnosed (lab and clinical) where the key is the month and the value is the case count
+            Dictionary<int, double> vlCases = new Dictionary<int, double>();
+            Dictionary<int, double> clCases = new Dictionary<int, double>();
+            // Set up the initial values
+            for (int i = 1; i < 13; i++)
+            {
+                vlCases.Add(i, 0);
+                clCases.Add(i, 0);
+            }
+            // Iterate through the intervention report data
+            foreach (DataRow row in LeishMonthlyIntvNoAggReport.DataTableResults.Rows)
+            {
+                // Get the date reported
+                string dateString = row[string.Format("{0} - {1}", Translations.DateReported, LeishMonthlyIntvType.IntvTypeName)].ToString();
+                DateTime date;
+                if (string.IsNullOrEmpty(dateString) || !DateTime.TryParse(dateString, out date))
+                    continue;
+
+                // Determine the month
+                int month = date.Month;
+
+                // Get the number of VL/CL cases
+                double vlCaseCount = GetColumnDouble(string.Format("{0} - {1}", Translations.LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical,
+                    LeishMonthlyIntvType.IntvTypeName), LeishMonthlyIntvNoAggReport.DataTableResults, row);
+                double clCaseCount = GetColumnDouble(string.Format("{0} - {1}", Translations.LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical,
+                    LeishMonthlyIntvType.IntvTypeName), LeishMonthlyIntvNoAggReport.DataTableResults, row);
+
+                // Add to the collection
+                vlCases[month] = vlCases[month] + vlCaseCount;
+                clCases[month] = clCases[month] + clCaseCount;
+            }
+
+            // Map out the monthly case count to their cells
+            Dictionary<int, string> vlCaseMap = new Dictionary<int, string>()
+            {
+                {1, "C26"}, {2, "D26"}, {3, "E26"}, {4, "F26"}, {5, "G26"}, {6, "H26"},
+                {7, "I26"}, {8, "J26"}, {9, "K26"}, {10, "L26"}, {11, "M26"}, {12, "N26"}
+            };
+            Dictionary<int, string> clCaseMap = new Dictionary<int, string>()
+            {
+                {1, "C27"}, {2, "D27"}, {3, "E27"}, {4, "F27"}, {5, "G27"}, {6, "H27"},
+                {7, "I27"}, {8, "J27"}, {9, "K27"}, {10, "L27"}, {11, "M27"}, {12, "N27"}
+            };
+            // Add the values to the report
+            for (int i = 1; i < 13; i++)
+            {
+                AddValueToRange(XlsWorksheet, XlsRange, vlCaseMap[i], vlCases[i]);
+                AddValueToRange(XlsWorksheet, XlsRange, clCaseMap[i], clCases[i]);
+            }
         }
 
         public void AddControl(LeishReportQuestions questions)
@@ -321,7 +401,7 @@ namespace Nada.Model.Exports
             AddValueToRange(XlsWorksheet, XlsRange, "M62", questions.LeishRepIsHostProg ? "Yes" : "No");
             // Type of insesticide IRS
             AddReportValueToExport(XlsWorksheet, XlsRange, "F63", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvTypeOfInsecticideUsedForIndoorResidualSpryaing, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvTypeOfInsecticideUsedForIndoorResidualSpryaing, LeishAnnualIntvCountryAggReport);
             // Number of facilities
             AddValueToRange(XlsWorksheet, XlsRange, "M63", questions.LeishRepNumHealthFac.HasValue ? questions.LeishRepNumHealthFac.Value.ToString() : "");
         }
@@ -330,55 +410,55 @@ namespace Nada.Model.Exports
         {
             // Number screened actively
             AddReportValueToExport(XlsWorksheet, XlsRange, "G67", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvNumberOfPeopleScreenedActivelyForVL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvNumberOfPeopleScreenedActivelyForVL, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I67", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvNumberOfPeopleScreenedActivelyForCL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvNumberOfPeopleScreenedActivelyForCL, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "K67", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvNumberOfPeopleScreenedActivelyForPKDL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvNumberOfPeopleScreenedActivelyForPKDL, LeishMonthlyIntvCountryAggReport);
             // Number screened passively
             AddReportValueToExport(XlsWorksheet, XlsRange, "G68", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvNumberOfPeopleScreenedPassivelyForVL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvNumberOfPeopleScreenedPassivelyForVL, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I68", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvNumberOfPeopleScreenedPassivelyForCL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvNumberOfPeopleScreenedPassivelyForCL, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "K68", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvNumberOfPeopleScreenedPassivelyForPKDL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvNumberOfPeopleScreenedPassivelyForPKDL, LeishMonthlyIntvCountryAggReport);
             // VL Cases diagnosed by RDT
             AddReportValueToExport(XlsWorksheet, XlsRange, "G69", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfVLCasesDiagnosedByRDT, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfVLCasesDiagnosedByRDT, LeishMonthlyIntvCountryAggReport);
             // Proportion of positive RDT
             AddReportValueToExport(XlsWorksheet, XlsRange, "G70", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfPostitiveRDT, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfPostitiveRDT, LeishMonthlyIntvCountryAggReport);
             // Cases diagnosed by direct exam
             AddReportValueToExport(XlsWorksheet, XlsRange, "G71", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfVLParasitologicallyConfirmedCases, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfVLParasitologicallyConfirmedCases, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I71", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfCLParasitologicallyConfirmedCases, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfCLParasitologicallyConfirmedCases, LeishMonthlyIntvCountryAggReport);
             // Proportion of positive slides
             AddReportValueToExport(XlsWorksheet, XlsRange, "G72", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfParasitologicallyConfirmedVLSamples, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfParasitologicallyConfirmedVLSamples, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I72", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfParasitologicallyConfirmedCLSamples, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfParasitologicallyConfirmedCLSamples, LeishMonthlyIntvCountryAggReport);
             // Cases diangosed clinically
             string clinicalVl = CalcBase.GetPercentageWithRatio(
-                GetValueFromCountryAggReport(LeishMonthlyIntvType.IntvTypeName, Translations.LeishMontIntvNumberOfCasesDiagnosedClinicallyForVL, LeishMonthlyIntvReport),
-                GetValueFromCountryAggReport(LeishMonthlyIntvType.IntvTypeName, Translations.LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical, LeishMonthlyIntvReport)
+                GetValueFromCountryAggReport(LeishMonthlyIntvType.IntvTypeName, Translations.LeishMontIntvNumberOfCasesDiagnosedClinicallyForVL, LeishMonthlyIntvCountryAggReport),
+                GetValueFromCountryAggReport(LeishMonthlyIntvType.IntvTypeName, Translations.LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical, LeishMonthlyIntvCountryAggReport)
                 );
             AddValueToRange(XlsWorksheet, XlsRange, "G73", clinicalVl);
             string clinicalCl = CalcBase.GetPercentageWithRatio(
-                GetValueFromCountryAggReport(LeishMonthlyIntvType.IntvTypeName, Translations.LeishMontIntvNumberOfClinicalCutaneousLeishmaniasisCLCases, LeishMonthlyIntvReport),
-                GetValueFromCountryAggReport(LeishMonthlyIntvType.IntvTypeName, Translations.LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical, LeishMonthlyIntvReport)
+                GetValueFromCountryAggReport(LeishMonthlyIntvType.IntvTypeName, Translations.LeishMontIntvNumberOfClinicalCutaneousLeishmaniasisCLCases, LeishMonthlyIntvCountryAggReport),
+                GetValueFromCountryAggReport(LeishMonthlyIntvType.IntvTypeName, Translations.LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical, LeishMonthlyIntvCountryAggReport)
                 );
             AddValueToRange(XlsWorksheet, XlsRange, "I73", clinicalCl);
             // Months elased
             AddReportValueToExport(XlsWorksheet, XlsRange, "G74", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForVL, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForVL, LeishAnnualIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I74", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForCL, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForCL, LeishAnnualIntvCountryAggReport);
             // Percentage of cases with HIV co-infection
             AddReportValueToExport(XlsWorksheet, XlsRange, "G75", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "K75", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases, LeishMonthlyIntvCountryAggReport);
         }
 
         public void AddTreatment(LeishReportQuestions questions)
@@ -389,39 +469,39 @@ namespace Nada.Model.Exports
             AddValueToRange(XlsWorksheet, XlsRange, "I79", !string.IsNullOrEmpty(questions.LeishRepAntiMedInNml) ? questions.LeishRepAntiMedInNml : "");
             // Number of relapses
             AddReportValueToExport(XlsWorksheet, XlsRange, "G82", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvNumberOfVLRelapseCases, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvNumberOfVLRelapseCases, LeishAnnualIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I82", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvNumberOfCLRelapseCases, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvNumberOfCLRelapseCases, LeishAnnualIntvCountryAggReport);
             // Number of cases treated
             AddReportValueToExport(XlsWorksheet, XlsRange, "G83", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvNumberOfNewVLCasesTreated, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvNumberOfNewVLCasesTreated, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I83", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvNumberOfNewCLCasesTreated, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvNumberOfNewCLCasesTreated, LeishMonthlyIntvCountryAggReport);
             // Initial cure rate
             AddReportValueToExport(XlsWorksheet, XlsRange, "G84", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForVL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForVL, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I84", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForCL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForCL, LeishMonthlyIntvCountryAggReport);
             // Failure rate
             AddReportValueToExport(XlsWorksheet, XlsRange, "G85", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForVL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForVL, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I85", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForCL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForCL, LeishMonthlyIntvCountryAggReport);
             // Case fatality rate
             AddReportValueToExport(XlsWorksheet, XlsRange, "G86", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntCaseFatalityRateForVL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntCaseFatalityRateForVL, LeishMonthlyIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I86", LeishMonthlyIntvType.IntvTypeName,
-                Translations.LeishMontIntvPrcntCaseFatalityRateForCL, LeishMonthlyIntvReport);
+                Translations.LeishMontIntvPrcntCaseFatalityRateForCL, LeishMonthlyIntvCountryAggReport);
             // Number of cases followed up at least 6 months
             AddReportValueToExport(XlsWorksheet, XlsRange, "G87", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvNumberOfNewVLCasesFollowedUpAtLeast6Months, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvNumberOfNewVLCasesFollowedUpAtLeast6Months, LeishAnnualIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I87", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months, LeishAnnualIntvCountryAggReport);
             // Cure rate 6 months
             AddReportValueToExport(XlsWorksheet, XlsRange, "G88", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp, LeishAnnualIntvCountryAggReport);
             AddReportValueToExport(XlsWorksheet, XlsRange, "I88", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvOfNewCLCasesCuredOutOfNewCasesFollowedUp, LeishAnnualIntvReport);
+                Translations.LeishAnnIntvOfNewCLCasesCuredOutOfNewCasesFollowedUp, LeishAnnualIntvCountryAggReport);
             // Relapse definition
             AddValueToRange(XlsWorksheet, XlsRange, "F89", !string.IsNullOrEmpty(questions.LeishRepRelapseDefVl) ? questions.LeishRepRelapseDefVl : "");
             AddValueToRange(XlsWorksheet, XlsRange, "F90", !string.IsNullOrEmpty(questions.LeishRepRelapseDefCl) ? questions.LeishRepRelapseDefCl : "");
@@ -472,6 +552,15 @@ namespace Nada.Model.Exports
             string final = string.Format("{0}% / {1}% / {2}%", val1, val2, val3);
             // Add to the export
             AddValueToRange(xlsWorksheet, rng, cell, final);
+        }
+
+        protected double GetColumnDouble(string col, DataTable dataTable, DataRow row)
+        {
+            double d = 0;
+            if (dataTable.Columns.Contains(col))
+                if (double.TryParse(row[col].ToString(), out d))
+                    return d;
+            return 0;
         }
 
         private static string CalculatePercent(double? n, double? d)
