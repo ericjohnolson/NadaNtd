@@ -15,34 +15,40 @@ namespace Nada.Model.Exports
 {
     public class LeishReportExporter : ExporterBase, IExporter
     {
-        excel.Application XlsApp;
-        excel.Workbook XlsWorkbook;
-        excel.Worksheet XlsWorksheet;
-        excel.Range XlsRange;
-        System.Globalization.CultureInfo OldCultureInfo;
+        private static int Admin2LevelNumber = 2;
 
-        DateTime StartDate;
-        DateTime EndDate;
+        private excel.Application XlsApp;
+        private excel.Workbook XlsWorkbook;
+        private excel.Worksheet XlsWorksheet;
+        private excel.Range XlsRange;
+        private System.Globalization.CultureInfo OldCultureInfo;
 
-        Country CountryData;
-        CountryDemography CountryDemo;
+        private DateTime StartDate;
+        private DateTime EndDate;
 
-        IntvType LeishMonthlyIntvType;
-        IntvType LeishAnnualIntvType;
-        ReportResult LeishMonthlyIntvCountryAggReport;
-        ReportResult LeishAnnualIntvCountryAggReport;
-        ReportResult LeishMonthlyIntvNoAggReport;
+        private Country CountryData;
+        private CountryDemography CountryDemo;
 
-        DiseaseDistroPc LeishDd;
-        ReportResult LeishCountryAggDdReport;
+        private AdminLevelType AdminLevel2Type;
+        private List<AdminLevel> Admin2ndLevels = new List<AdminLevel>();
 
-        DemoRepository DemoRepo = new DemoRepository();
-        SettingsRepository SettingsRepo = new SettingsRepository();
-        IntvRepository IntvRepo = new IntvRepository();
-        DiseaseRepository DiseaseRepo = new DiseaseRepository();
+        private IntvType LeishMonthlyIntvType;
+        private IntvType LeishAnnualIntvType;
+        private ReportResult LeishMonthlyIntvCountryAggReport;
+        private ReportResult LeishAnnualIntvCountryAggReport;
+        private ReportResult LeishMonthlyIntvNoAggReport;
 
-        IntvReportGenerator IntvReportGen = new IntvReportGenerator();
-        DistributionReportGenerator DdReportGen = new DistributionReportGenerator();
+        private DiseaseDistroPc LeishDd;
+        private ReportResult LeishCountryAggDdReport;
+        private ReportResult Leish2ndLvlAggDdreport;
+
+        private DemoRepository DemoRepo = new DemoRepository();
+        private SettingsRepository SettingsRepo = new SettingsRepository();
+        private IntvRepository IntvRepo = new IntvRepository();
+        private DiseaseRepository DiseaseRepo = new DiseaseRepository();
+
+        private IntvReportGenerator IntvReportGen = new IntvReportGenerator();
+        private DistributionReportGenerator DdReportGen = new DistributionReportGenerator();
 
         public string ExportName
         {
@@ -64,8 +70,17 @@ namespace Nada.Model.Exports
                 // Determine the start and end of the year
                 DetermineStartDate(questions);
 
+                // Get the 2nd admin levelt ype
+                GetAdmin2ndLvlData();
+
                 // Get country data
                 GetCountryData();
+
+                // Get intervention type data
+                GetIntvTypes();
+
+                // Get disease dist data
+                GetDiseases();
 
                 // Add country data
                 AddCountryInfo(questions);
@@ -84,6 +99,10 @@ namespace Nada.Model.Exports
 
                 // Add epi
                 AddEpi(questions);
+
+                // Add Pop at risk (if there is a country total population)
+                if (CountryDemo != null && CountryDemo.TotalPopulation.HasValue && CountryDemo.TotalPopulation.Value > 0)
+                    AddPopAtRisk();
 
                 // Add monthly dist
                 AddMonthlyDist();
@@ -160,20 +179,48 @@ namespace Nada.Model.Exports
             EndDate = new DateTime(year, 12, 31);
         }
 
+        private void GetAdmin2ndLvlData()
+        {
+            // Get the admin level 2 type
+            AdminLevel2Type = SettingsRepo.GetAdminLevelTypeByLevel(Admin2LevelNumber);
+            // Get the Admin Levels (as well as the current demography)
+            DemoRepo.GetAdminLevelTreeForDemography(Admin2LevelNumber, StartDate, EndDate, ref Admin2ndLevels);
+            // Filter the 2nd levels out
+            Admin2ndLevels = Admin2ndLevels.Where(a => a.LevelNumber == Admin2LevelNumber).ToList();
+        }
+
         private void GetCountryData()
         {
             CountryData = DemoRepo.GetCountry();
             CountryDemo = DemoRepo.GetCountryLevelStatsRecent();
         }
 
+        private void GetIntvTypes()
+        {
+            // Get the monthly intervention type
+            LeishMonthlyIntvType = IntvRepo.GetIntvType((int)StaticIntvType.LeishMonthly);
+            // Get the admin intervention type
+            LeishAnnualIntvType = IntvRepo.GetIntvType((int)StaticIntvType.LeishAnnual);
+        }
+
+        private void GetDiseases()
+        {
+            // Get the Leissh distro
+            LeishDd = DiseaseRepo.Create(DiseaseType.Leish);
+        }
+
         private void RunLeishMonthlyIntvCountryAggReport()
         {
-            // Get the intervention type
-            LeishMonthlyIntvType = IntvRepo.GetIntvType((int)StaticIntvType.LeishMonthly);
             // Report options
-            ReportOptions reportOptions = new ReportOptions {
-                MonthYearStarts = 1, StartDate = StartDate, EndDate = EndDate, IsCountryAggregation = true, 
-                IsByLevelAggregation = false, IsAllLocations = false, IsNoAggregation = false
+            ReportOptions reportOptions = new ReportOptions
+            {
+                MonthYearStarts = 1,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                IsCountryAggregation = true,
+                IsByLevelAggregation = false,
+                IsAllLocations = false,
+                IsNoAggregation = false
             };
             // Add the indicators from the intervention type
             foreach (var indicator in LeishMonthlyIntvType.Indicators)
@@ -184,12 +231,16 @@ namespace Nada.Model.Exports
 
         private void RunLeishAnnualIntvCountryAggReport()
         {
-            // Get the intervention type
-            LeishAnnualIntvType = IntvRepo.GetIntvType((int)StaticIntvType.LeishAnnual);
             // Report options
-            ReportOptions reportOptions = new ReportOptions {
-                MonthYearStarts = 1, StartDate = StartDate, EndDate = EndDate, IsCountryAggregation = true,
-                IsByLevelAggregation = false, IsAllLocations = false, IsNoAggregation = false
+            ReportOptions reportOptions = new ReportOptions
+            {
+                MonthYearStarts = 1,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                IsCountryAggregation = true,
+                IsByLevelAggregation = false,
+                IsAllLocations = false,
+                IsNoAggregation = false
             };
             // Add the indicators from the intervention type
             foreach (var indicator in LeishAnnualIntvType.Indicators)
@@ -220,12 +271,16 @@ namespace Nada.Model.Exports
 
         private void RunLeishCountryAggDdReport()
         {
-            // Get the distro
-            LeishDd = DiseaseRepo.Create(DiseaseType.Leish);
             // Report options
-            ReportOptions reportOptions = new ReportOptions {
-                MonthYearStarts = 1, StartDate = StartDate, EndDate = EndDate, IsCountryAggregation = true,
-                IsByLevelAggregation = false, IsAllLocations = false, IsNoAggregation = false
+            ReportOptions reportOptions = new ReportOptions
+            {
+                MonthYearStarts = 1,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                IsCountryAggregation = true,
+                IsByLevelAggregation = false,
+                IsAllLocations = false,
+                IsNoAggregation = false
             };
             // Add the indicators from the distro
             foreach (var indicator in LeishDd.Indicators)
@@ -234,7 +289,7 @@ namespace Nada.Model.Exports
             LeishCountryAggDdReport = DdReportGen.Run(new SavedReport { ReportOptions = reportOptions });
         }
 
-        public void AddCountryInfo(LeishReportQuestions questions)
+        private void AddCountryInfo(LeishReportQuestions questions)
         {
             AddValueToRange(XlsWorksheet, XlsRange, "B3", CountryData.Name);
             AddValueToRange(XlsWorksheet, XlsRange, "M3", questions.LeishRepYearReporting);
@@ -254,17 +309,15 @@ namespace Nada.Model.Exports
             // Life expectancy
             string lifeExpectancy = string.Format("female: {0}, male: {1}", CountryDemo.LifeExpectBirthFemale, CountryDemo.LifeExpectBirthMale);
             AddValueToRange(XlsWorksheet, XlsRange, "J7", lifeExpectancy);
-            // Name of admin 2 level
-            AdminLevelType adminLevel2 = SettingsRepo.GetAdminLevelTypeByLevel(2);
-            if (adminLevel2 != null)
-                AddValueToRange(XlsWorksheet, XlsRange, "M8", adminLevel2.DisplayName);
-            // Number of admin level 2
-            List<AdminLevel> admin2Levels = DemoRepo.GetAdminLevelByLevel(2);
-            if (admin2Levels != null)
-                AddValueToRange(XlsWorksheet, XlsRange, "K8", admin2Levels.Count);
+            // Name of admin level 2 type
+            if (AdminLevel2Type != null)
+                AddValueToRange(XlsWorksheet, XlsRange, "M8", AdminLevel2Type.DisplayName);
+            // Number of admin level 2 types
+            if (Admin2ndLevels != null)
+                AddValueToRange(XlsWorksheet, XlsRange, "K8", Admin2ndLevels.Count);
         }
 
-        public void AddEpi(LeishReportQuestions questions)
+        private void AddEpi(LeishReportQuestions questions)
         {
             // Endemicity
             AddReportValueToExport(XlsWorksheet, XlsRange, "G13", LeishDd.Disease.DisplayName,
@@ -319,7 +372,6 @@ namespace Nada.Model.Exports
             // 2nd level admin endemic
             AddValueToRange(XlsWorksheet, XlsRange, "G19", questions.LeishRepEndemicAdmin2Vl.HasValue ? questions.LeishRepEndemicAdmin2Vl.Value.ToString() : "");
             AddValueToRange(XlsWorksheet, XlsRange, "I19", questions.LeishRepEndemicAdmin2Cl.HasValue ? questions.LeishRepEndemicAdmin2Cl.Value.ToString() : "");
-            // TODO Pop at risk
             // Outbreak
             AddReportValueToExport(XlsWorksheet, XlsRange, "G21", LeishDd.Disease.DisplayName,
                 Translations.LeishDiseaseDistWasThereAnyVLOutbreakThisYear, LeishCountryAggDdReport);
@@ -332,7 +384,60 @@ namespace Nada.Model.Exports
                 Translations.LeishDiseaseDistNumberOfNewCLFociThisYearAreasReportingCasesForTheFirstTime, LeishCountryAggDdReport);
         }
 
-        public void AddMonthlyDist()
+        private void AddPopAtRisk()
+        {
+            // Will hold the population counts for all endemic admin levels for VL/CL
+            double vlPopAtRisk = 0;
+            double clPopAtRisk = 0;
+            // Iterate through each admin level and determine the most recent endemic status for the specified report year
+            foreach (AdminLevel adminLevel in Admin2ndLevels)
+            {
+                // Skip if there is no demo data
+                if (adminLevel.CurrentDemography == null)
+                    continue;
+                // Get all disease distro details
+                List<DiseaseDistroDetails> allDistroDetails = DiseaseRepo.GetAllForAdminLevel(adminLevel.Id);
+                // Filter out only the Leish details and the ones within the report year, and get the most recent one
+                DiseaseDistroDetails leishDistroDetails = allDistroDetails.Where(
+                    d => d.TypeId == (int)DiseaseType.Leish && d.DateReported > StartDate && d.DateReported < EndDate
+                    ).OrderByDescending(d => d.DateReported).FirstOrDefault();
+                // Check that a recent disease detail was found
+                if (leishDistroDetails != null)
+                {
+                    // Get the disease distro object with the indicator values
+                    DiseaseDistroCm leishDistro = DiseaseRepo.GetDiseaseDistributionCm(leishDistroDetails.Id, leishDistroDetails.TypeId);
+                    // Get the VL endemic status
+                    IndicatorValue vlIndi = leishDistro.IndicatorValues.FirstOrDefault(i => i.Indicator.DisplayName == "LeishDiseaseDistEndemicityStatusVL");
+                    string vlEndemicStatus = null;
+                    if (vlIndi != null)
+                        vlEndemicStatus = vlIndi.DynamicValue;
+                    // Get the CL endemic status
+                    IndicatorValue clIndi = leishDistro.IndicatorValues.FirstOrDefault(i => i.Indicator.DisplayName == "LeishDiseaseDistEndemicityStatusCL");
+                    string clEndemicStatus = null;
+                    if (clIndi != null)
+                        clEndemicStatus = clIndi.DynamicValue;
+                    // If the admin levels are endemic for VL or CL, add the total population to their respective counts
+                    if (!string.IsNullOrEmpty(vlEndemicStatus) && vlEndemicStatus == Translations.Endemic)
+                    {
+                        vlPopAtRisk += adminLevel.CurrentDemography.TotalPopulation.HasValue ? adminLevel.CurrentDemography.TotalPopulation.Value : 0;
+                    }
+                    if (!string.IsNullOrEmpty(clEndemicStatus) && clEndemicStatus == Translations.Endemic)
+                    {
+                        clPopAtRisk += adminLevel.CurrentDemography.TotalPopulation.HasValue ? adminLevel.CurrentDemography.TotalPopulation.Value : 0;
+                    }
+                }
+            }
+            // Calculate the pop at risk ratios
+            if (CountryDemo != null && CountryDemo.TotalPopulation.HasValue && CountryDemo.TotalPopulation.Value > 0)
+            {
+                string vlPopAtRiskRatio = CalcBase.GetPercentageWithRatio(vlPopAtRisk.ToString(), CountryDemo.TotalPopulation.Value.ToString());
+                string clPopAtRiskRatio = CalcBase.GetPercentageWithRatio(clPopAtRisk.ToString(), CountryDemo.TotalPopulation.Value.ToString());
+                AddValueToRange(XlsWorksheet, XlsRange, "G20", vlPopAtRiskRatio);
+                AddValueToRange(XlsWorksheet, XlsRange, "I20", clPopAtRiskRatio);
+            }
+        }
+
+        private void AddMonthlyDist()
         {
             // Will hold the Total number of new VL/CL cases diagnosed (lab and clinical) where the key is the month and the value is the case count
             Dictionary<int, double> vlCases = new Dictionary<int, double>();
@@ -385,7 +490,7 @@ namespace Nada.Model.Exports
             }
         }
 
-        public void AddControl(LeishReportQuestions questions)
+        private void AddControl(LeishReportQuestions questions)
         {
             // Year established
             AddValueToRange(XlsWorksheet, XlsRange, "F60", questions.LeishRepYearLncpEstablished.HasValue ? questions.LeishRepYearLncpEstablished.Value.ToString() : "");
@@ -406,7 +511,7 @@ namespace Nada.Model.Exports
             AddValueToRange(XlsWorksheet, XlsRange, "M63", questions.LeishRepNumHealthFac.HasValue ? questions.LeishRepNumHealthFac.Value.ToString() : "");
         }
 
-        public void AddDiagnosis()
+        private void AddDiagnosis()
         {
             // Number screened actively
             AddReportValueToExport(XlsWorksheet, XlsRange, "G67", LeishMonthlyIntvType.IntvTypeName,
@@ -461,7 +566,7 @@ namespace Nada.Model.Exports
                 Translations.LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases, LeishMonthlyIntvCountryAggReport);
         }
 
-        public void AddTreatment(LeishReportQuestions questions)
+        private void AddTreatment(LeishReportQuestions questions)
         {
             // Treatment free in public sector
             AddValueToRange(XlsWorksheet, XlsRange, "I78", questions.LeishRepIsTreatFree ? "Yes" : "No");
@@ -549,7 +654,7 @@ namespace Nada.Model.Exports
             if (string.IsNullOrEmpty(val3))
                 val3 = "--";
             // Concat all the values
-            string final = string.Format("{0}% / {1}% / {2}%", val1, val2, val3);
+            string final = string.Format("{0} / {1} / {2}", val1, val2, val3);
             // Add to the export
             AddValueToRange(xlsWorksheet, rng, cell, final);
         }
