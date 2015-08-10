@@ -571,6 +571,7 @@ namespace Nada.Model.Repositories
                             types.Add(new SurveyType
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
+                                DisplayNameKey = reader.GetValueOrDefault<string>("SurveyTypeName"),
                                 SurveyTypeName = name,
                                 DiseaseType = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseType"),
                                     reader.GetValueOrDefault<string>("DiseaseType"))
@@ -620,6 +621,7 @@ namespace Nada.Model.Repositories
                             survey = new SurveyType
                             {
                                 Id = id,
+                                DisplayNameKey = reader.GetValueOrDefault<string>("SurveyTypeName"),
                                 SurveyTypeName = name,
                                 DiseaseId = reader.GetValueOrDefault<int>("DiseaseId"),
                                 DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),

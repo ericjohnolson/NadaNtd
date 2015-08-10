@@ -16,6 +16,7 @@ namespace Nada.Model.Survey
             Indicators = new Dictionary<string, Indicator>();
             IndicatorDropdownValues = new List<IndicatorDropdownValue>();
         }
+        public string DisplayNameKey { get; set; }
         public string SurveyTypeName { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }

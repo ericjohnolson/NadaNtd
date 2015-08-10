@@ -51,6 +51,7 @@ namespace Nada.UI.ViewModel
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get { return model.IndicatorDropdownValues; } }
         public string Title { get { return model.Disease.DisplayName + " " + Translations.DiseaseDistribution; } }
         public string TypeTitle { get { return model.Disease.DiseaseType; } }
+        public string FormTranslationKey { get { return model.Disease.DisplayNameKey; } }
         public Color FormColor { get { return Color.FromArgb(52, 100, 160); } }
         public void AddSpecialControls(IndicatorControl cntrl) { }
 

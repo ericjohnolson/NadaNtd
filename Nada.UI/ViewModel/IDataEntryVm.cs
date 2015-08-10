@@ -14,6 +14,7 @@ namespace Nada.UI.ViewModel
         string StatusMessage { get; }
         string Title { get; }
         string TypeTitle { get; }
+        string FormTranslationKey { get; }
         string Notes { get; }
         string LocationName { get; }
         string CalculatorTypeId { get; }

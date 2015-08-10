@@ -29,16 +29,16 @@ namespace Nada.Model.Process
             {
                 switch (field)
                 {
-                    case "8SCMRemaining":
+                    case "SCMSCMRemaining":
 
                         return new KeyValuePair<string, string>(Translations.SCMRemaining,
                             GetTotal(
-                                GetValueOrDefault("8SCMReceived", relatedValues), 
-                                GetValueOrDefault("8SCMTransferredFromAnotherDisrict", relatedValues),
-                                GetDifferences(GetValueOrDefault("8SCMUsedDistributed", relatedValues), GetValueOrDefault("8SCMExpiredDrugs", relatedValues),
-                                GetValueOrDefault("8SCMWasted", relatedValues), GetValueOrDefault("8SCMUnusable", relatedValues),
-                                GetValueOrDefault("8SCMLosses", relatedValues), GetValueOrDefault("8SCMStolen", relatedValues),
-                                GetValueOrDefault("8SCMTransferredToAnotherDistrict", relatedValues), GetValueOrDefault("8SCMAdjustments", relatedValues))));
+                                GetValueOrDefault("SCMSCMReceived", relatedValues), 
+                                GetValueOrDefault("SCMSCMTransferredFromAnotherDisrict", relatedValues),
+                                GetDifferences(GetValueOrDefault("SCMSCMUsedDistributed", relatedValues), GetValueOrDefault("SCMSCMExpiredDrugs", relatedValues),
+                                GetValueOrDefault("SCMSCMWasted", relatedValues), GetValueOrDefault("SCMSCMUnusable", relatedValues),
+                                GetValueOrDefault("SCMSCMLosses", relatedValues), GetValueOrDefault("SCMSCMStolen", relatedValues),
+                                GetValueOrDefault("SCMSCMTransferredToAnotherDistrict", relatedValues), GetValueOrDefault("SCMSCMAdjustments", relatedValues))));
                      
                     default:
                         return new KeyValuePair<string,string>(field,  Translations.NA);

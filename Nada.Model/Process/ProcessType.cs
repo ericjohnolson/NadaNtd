@@ -16,6 +16,7 @@ namespace Nada.Model.Process
             Indicators = new Dictionary<string, Indicator>();
             IndicatorDropdownValues = new List<IndicatorDropdownValue>();
         }
+        public string DisplayNameKey { get; set; }
         public string TypeName { get; set; }
         public string DiseaseType { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }

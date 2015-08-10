@@ -269,7 +269,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
                 var instance = repo.CreateIntv(t.Id);
                 foreach (var i in instance.IntvType.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.IntvTypeName));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.IntvTypeName, t.DisplayNameKey));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -278,7 +278,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
                 var instance = repo.CreateIntv(t.Id);
                 foreach (var i in instance.IntvType.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.IntvTypeName));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.IntvTypeName, t.DisplayNameKey));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -317,7 +317,7 @@ namespace Nada.Model.Repositories
 
                 foreach (var i in instance.TypeOfSurvey.Indicators)
                     if (i.Value.DataTypeId != (int)IndicatorDataType.SentinelSite)
-                        cat.Children.Add(CreateReportIndicator(t.Id, i, t.SurveyTypeName));
+                        cat.Children.Add(CreateReportIndicator(t.Id, i, t.SurveyTypeName, t.DisplayNameKey));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -326,7 +326,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true };
                 var instance = repo.CreateSurvey(t.Id);
                 foreach (var i in instance.TypeOfSurvey.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.SurveyTypeName));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.SurveyTypeName, t.DisplayNameKey));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -348,7 +348,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
                 var instance = repo.Create(t.Id);
                 foreach (var i in instance.ProcessType.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.TypeName));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.TypeName, t.DisplayNameKey));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -357,7 +357,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
                 var instance = repo.Create(t.Id);
                 foreach (var i in instance.ProcessType.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.TypeName));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.TypeName, t.DisplayNameKey));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -366,7 +366,7 @@ namespace Nada.Model.Repositories
             ProcessBase saes = repo.Create(9);
             var saeCat = new ReportIndicator { Name = saes.ProcessType.TypeName, IsCategory = true };
             foreach (var i in saes.ProcessType.Indicators)
-                saeCat.Children.Add(CreateReportIndicator(saes.ProcessType.Id, i, saes.ProcessType.TypeName));
+                saeCat.Children.Add(CreateReportIndicator(saes.ProcessType.Id, i, saes.ProcessType.TypeName, saes.ProcessType.DisplayNameKey));
             saeCat.Children = saeCat.Children.OrderBy(c => c.Name).ToList();
             indicators.Add(saeCat);
 
@@ -387,7 +387,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
                 DiseaseDistroPc dd = repo.Create((DiseaseType)t.Id);
                 foreach (var i in dd.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.DisplayName));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.DisplayName, t.DisplayNameKey));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
@@ -396,7 +396,7 @@ namespace Nada.Model.Repositories
                 var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
                 DiseaseDistroCm dd = repo.CreateCm((DiseaseType)t.Id);
                 foreach (var i in dd.Indicators)
-                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.DisplayName));
+                    cat.Children.Add(CreateReportIndicator(t.Id, i, t.DisplayName, t.DisplayNameKey));
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 cm.Children.Add(cat);
             }
@@ -427,20 +427,25 @@ namespace Nada.Model.Repositories
 
         public static ReportIndicator CreateReportIndicator(int typeId, KeyValuePair<string, Indicator> i)
         {
-            return CreateReportIndicator(typeId, i.Value, "");
+            return CreateReportIndicator(typeId, i.Value, "", "");
         }
         
         public static ReportIndicator CreateReportIndicator(int typeId, Indicator i)
         {
-            return CreateReportIndicator(typeId, i, "");
+            return CreateReportIndicator(typeId, i, "", "");
         }
 
         public static ReportIndicator CreateReportIndicator(int typeId, KeyValuePair<string, Indicator> i, string formName)
         {
-            return CreateReportIndicator(typeId, i.Value, formName);
+            return CreateReportIndicator(typeId, i.Value, formName, "");
         }
 
-        public static ReportIndicator CreateReportIndicator(int typeId, Indicator i, string formName)
+        public static ReportIndicator CreateReportIndicator(int typeId, KeyValuePair<string, Indicator> i, string formName, string formNameKey)
+        {
+            return CreateReportIndicator(typeId, i.Value, formName, formNameKey);
+        }
+
+        public static ReportIndicator CreateReportIndicator(int typeId, Indicator i, string formName, string formNameKey)
         {
             string name = i.DisplayName;
             if (!i.IsEditable)
@@ -461,6 +466,7 @@ namespace Nada.Model.Repositories
                 IsDisabled = i.IsDisabled,
                 IsRequired = i.IsRequired,
                 FormName = formName,
+                FormNameKey = formNameKey,
                 SortOrder = i.SortOrder
             };
         }

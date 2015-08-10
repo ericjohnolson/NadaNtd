@@ -53,6 +53,7 @@ namespace Nada.UI.ViewModel
         public IndicatorEntityType EntityType { get { return IndicatorEntityType.Survey; } }
         public string Title { get { return model.TypeOfSurvey.SurveyTypeName; } }
         public string TypeTitle { get { return model.TypeOfSurvey.DiseaseType; } }
+        public string FormTranslationKey { get { return model.TypeOfSurvey.DisplayNameKey; } }
         public Color FormColor { get { return Color.FromArgb(52, 100, 160); } }
 
         public void AddSpecialControls(IndicatorControl cntrl)

@@ -37,8 +37,8 @@ namespace Nada.UI.Controls
             fieldLink1.Focus();
         }
 
-        public void DoCalc(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, int adminLevel, string typeId, DateTime start, 
-            DateTime end, Action doFocus)
+        public void DoCalc(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, int adminLevel, string typeId, string formTranslationKey,
+            DateTime start, DateTime end, Action doFocus)
         {
             OnFocus = doFocus;
             lblCalculating.Visible = true;
@@ -52,6 +52,7 @@ namespace Nada.UI.Controls
                 Indicators = indicators,
                 Start = start,
                 TypeId = typeId,
+                FormTranslationKey = formTranslationKey,
                 Values = values
             });
         }
@@ -61,7 +62,8 @@ namespace Nada.UI.Controls
             try
             {
                 CalcWorkerPayload payload = (CalcWorkerPayload)e.Argument;
-                e.Result = Calc.PerformCalculations(payload.Indicators, payload.Values, payload.AdminLevel, payload.TypeId, payload.Start, payload.End);
+                e.Result = Calc.PerformCalculations(payload.Indicators, payload.Values, payload.AdminLevel, payload.TypeId,
+                    payload.FormTranslationKey, payload.Start, payload.End);
             }
             catch (Exception ex)
             {
@@ -137,6 +139,7 @@ namespace Nada.UI.Controls
         public List<IndicatorValue> Values { get; set; }
         public int AdminLevel { get; set; }
         public string TypeId { get; set; }
+        public string FormTranslationKey { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
     }

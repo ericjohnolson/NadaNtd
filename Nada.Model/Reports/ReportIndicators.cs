@@ -44,6 +44,7 @@ namespace Nada.Model.Reports
         public int MergeRule { get; set; }
         public int SplitRule { get; set; }
         public string FormName { get; set; }
+        public string FormNameKey { get; set; }
         public int SortOrder { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace Nada.Model.Intervention
             Indicators = new Dictionary<string, Indicator>();
             IndicatorDropdownValues = new List<IndicatorDropdownValue>();
         }
+        public string DisplayNameKey { get; set; }
         public string IntvTypeName { get; set; }
         public string DiseaseType { get; set; }
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get; set; }

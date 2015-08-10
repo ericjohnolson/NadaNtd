@@ -60,6 +60,7 @@ namespace Nada.UI.ViewModel
         public List<IndicatorDropdownValue> IndicatorDropdownValues { get { return model.ProcessType.IndicatorDropdownValues; } }
         public string Title { get { return model.ProcessType.TypeName; } }
         public string TypeTitle { get { return "";  } } //model.ProcessType.CategoryName;
+        public string FormTranslationKey { get { return model.ProcessType.DisplayNameKey; } }
         public Color FormColor { get { return Color.FromArgb(52, 100, 160); } }
         public void AddSpecialControls(IndicatorControl cntrl) { }
 

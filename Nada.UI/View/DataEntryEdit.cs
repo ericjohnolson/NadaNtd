@@ -147,7 +147,7 @@ namespace Nada.UI.View
         {
             setFocusBottomOnCalc = setFocusBottom;
             statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id,
-                viewModel.CalculatorTypeId, indicatorControl1.start, indicatorControl1.end, DoFocusAfterCalc);
+                viewModel.CalculatorTypeId, viewModel.FormTranslationKey, indicatorControl1.start, indicatorControl1.end, DoFocusAfterCalc);
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace Nada.UI.View
         {
             LoadMetaData();
             statCalculator1.DoCalc(viewModel.Indicators, indicatorControl1.GetValues(), viewModel.Location.Id, viewModel.CalculatorTypeId,
-                indicatorControl1.start, indicatorControl1.end, DoFocusAfterCalc);
+                viewModel.FormTranslationKey, indicatorControl1.start, indicatorControl1.end, DoFocusAfterCalc);
         }
 
         public void DoFocusAfterCalc()

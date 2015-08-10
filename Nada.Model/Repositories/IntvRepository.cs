@@ -241,6 +241,7 @@ namespace Nada.Model.Repositories
                             intv.Add(new IntvType
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
+                                DisplayNameKey = reader.GetValueOrDefault<string>("InterventionTypeName"),
                                 IntvTypeName = name,
                                 DiseaseType = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseType"),
                                     reader.GetValueOrDefault<string>("DiseaseType"))
@@ -336,6 +337,7 @@ namespace Nada.Model.Repositories
                             intv = new IntvType
                             {
                                 Id = id,
+                                DisplayNameKey = reader.GetValueOrDefault<string>("InterventionTypeName"),
                                 IntvTypeName = name,
                                 DiseaseType = reader.GetValueOrDefault<string>("DiseaseType"),
                                 UpdatedBy = GetAuditInfo(reader)

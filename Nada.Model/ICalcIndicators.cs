@@ -13,7 +13,7 @@ namespace Nada.Model
     {
         List<KeyValuePair<string, string>> GetMetaData(IEnumerable<string> fields, int adminLevel, DateTime start, DateTime end);
         List<KeyValuePair<string, string>> PerformCalculations(Dictionary<string, Indicator> indicators, List<IndicatorValue> indicatorValues,
-            int adminLevel, string typeId, DateTime start, DateTime end);
+            int adminLevel, string typeId, string formTranslationKey, DateTime start, DateTime end);
         List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end);
         KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors);
         AdminLevelDemography GetAdminLevelDemo(int adminLevelId, DateTime start, DateTime end);
@@ -34,7 +34,7 @@ namespace Nada.Model
         }
 
         public virtual List<KeyValuePair<string, string>> PerformCalculations(Dictionary<string, Indicator> indicators, List<IndicatorValue> indicatorValues,
-            int adminLevel, string typeId, DateTime start, DateTime end)
+            int adminLevel, string typeId, string formTranslationKey,  DateTime start, DateTime end)
         {
             var calculations = indicators.Values.Where(i => i.IsCalculated);
             if (calculations.Count() == 0)
@@ -42,10 +42,10 @@ namespace Nada.Model
 
             Dictionary<string, string> values = new Dictionary<string, string>();
             foreach (var val in indicatorValues)
-                values.Add(typeId + val.Indicator.DisplayName, val.DynamicValue);
+                values.Add(formTranslationKey + val.Indicator.DisplayName, val.DynamicValue);
 
             return GetCalculatedValues(
-                calculations.Select(i => typeId + i.DisplayName).ToList(),
+                calculations.Select(i => formTranslationKey + i.DisplayName).ToList(),
                 values,
                 adminLevel, start, end);
         }

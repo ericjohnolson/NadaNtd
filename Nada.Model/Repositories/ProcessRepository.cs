@@ -262,6 +262,7 @@ namespace Nada.Model.Repositories
                             types.Add(new ProcessType
                             {
                                 Id = reader.GetValueOrDefault<int>("ID"),
+                                DisplayNameKey = reader.GetValueOrDefault<string>("TypeName"),
                                 TypeName = name,
                                 DiseaseType = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("DiseaseType"),
                                     reader.GetValueOrDefault<string>("DiseaseType"))
@@ -311,6 +312,7 @@ namespace Nada.Model.Repositories
                             process = new ProcessType
                             {
                                 Id = id,
+                                DisplayNameKey = reader.GetValueOrDefault<string>("TypeName"),
                                 TypeName = name,
                                 UpdatedBy = GetAuditInfo(reader)
                             };
