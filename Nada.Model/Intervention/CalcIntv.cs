@@ -66,11 +66,11 @@ namespace Nada.Model.Intervention
 
         private KeyValuePair<string, string> CalculateBuruliUlcerIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
+            // Combine the form translation key and field name
+            string formNameFieldComposite = formTranslationKey + field;
+
             try
             {
-                // Combine the form translation key and field name
-                string formNameFieldComposite = formTranslationKey + field;
-
                 switch (formNameFieldComposite)
                 {
                     case "BuruliUlcerIntvPercentCoverageBu":
@@ -78,23 +78,22 @@ namespace Nada.Model.Intervention
                             return new KeyValuePair<string, string>(Translations.PercentCoverageBu, GetPercentage(GetValueOrDefault("BuruliUlcerIntvNumFacilitiesProvidingBu", relatedValues), demo.PopAdult.ToString()));
                         break;
                     default:
-                        return new KeyValuePair<string, string>(field, Translations.NA);
+                        return new KeyValuePair<string, string>(formNameFieldComposite, Translations.NA);
                 }
             }
             catch (Exception)
             {
             }
 
-            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+            return new KeyValuePair<string, string>(formNameFieldComposite, Translations.CalculationError);
         }
 
         private KeyValuePair<string, string> CalculateGuineaWormIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
+            // Combine the form translation key and field name
+            string formNameFieldComposite = formTranslationKey + field;
             try
             {
-                // Combine the form translation key and field name
-                string formNameFieldComposite = formTranslationKey + field;
-
                 switch (formNameFieldComposite)
                 {
                     case "GuineaWormInterventionNumImported":
@@ -110,23 +109,23 @@ namespace Nada.Model.Intervention
                     case "GuineaWormInterventionPercentEndemicReporting":
                         return new KeyValuePair<string, string>(Translations.PercentEndemicReporting, GetPercentage(GetValueOrDefault("GuineaWormInterventionNumEndemicVillagesReporting", relatedValues), GetValueOrDefault("GuineaWormInterventionNumEndemicVillages", relatedValues)));
                     default:
-                        return new KeyValuePair<string, string>(field, Translations.NA);
+                        return new KeyValuePair<string, string>(formNameFieldComposite, Translations.NA);
                 }
             }
             catch (Exception)
             {
             }
 
-            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+            return new KeyValuePair<string, string>(formNameFieldComposite, Translations.CalculationError);
         }
 
         private KeyValuePair<string, string> CalculateHatIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
+            // Combine the form translation key and field name
+            string formNameFieldComposite = formTranslationKey + field;
+
             try
             {
-                // Combine the form translation key and field name
-                string formNameFieldComposite = formTranslationKey + field;
-
                 switch (formNameFieldComposite)
                 {
                     case "HatInterventionPercentLabConfirmed":
@@ -152,46 +151,46 @@ namespace Nada.Model.Intervention
                             return new KeyValuePair<string, string>(Translations.DetectionRatePer100k, GetPercentage(GetValueOrDefault("HatInterventionNumClinicalCasesHat", relatedValues), demo.TotalPopulation.ToString(), 100000));
                         break;
                     default:
-                        return new KeyValuePair<string, string>(field, Translations.NA);
+                        return new KeyValuePair<string, string>(formNameFieldComposite, Translations.NA);
                 }
             }
             catch (Exception)
             {
             }
 
-            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+            return new KeyValuePair<string, string>(formNameFieldComposite, Translations.CalculationError);
         }
 
         private KeyValuePair<string, string> CalculateYawsIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
+            // Combine the form translation key and field name
+            string formNameFieldComposite = formTranslationKey + field;
+
             try
             {
-                // Combine the form translation key and field name
-                string formNameFieldComposite = formTranslationKey + field;
-
                 switch (formNameFieldComposite)
                 {
                     case "YawsInterventionPercentTreatedYw":
                         return new KeyValuePair<string, string>(Translations.PercentTreatedYw, GetPercentage(GetValueOrDefault("YawsInterventionNumContactsTreatedYw", relatedValues),
                             GetTotal(GetValueOrDefault("YawsInterventionNumContactsTreatedYw", relatedValues), GetValueOrDefault("YawsInterventionNumCasesTreatedYaws", relatedValues))));
                     default:
-                        return new KeyValuePair<string, string>(field, Translations.NA);
+                        return new KeyValuePair<string, string>(formNameFieldComposite, Translations.NA);
                 }
             }
             catch (Exception)
             {
             }
 
-            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+            return new KeyValuePair<string, string>(formNameFieldComposite, Translations.CalculationError);
         }
 
         private KeyValuePair<string, string> CalculateLeishAnnualIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
+            // Combine the form translation key and field name
+            string formNameFieldComposite = formTranslationKey + field;
+
             try
             {
-                // Combine the form translation key and field name
-                string formNameFieldComposite = formTranslationKey + field;
-
                 switch (formNameFieldComposite)
                 {
                     case "LeishAnnualInterventionLeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp":
@@ -223,23 +222,23 @@ namespace Nada.Model.Intervention
                                 GetValueOrDefault("LeishAnnualInterventionLeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months", relatedValues)
                             ));
                     default:
-                        return new KeyValuePair<string, string>(field, Translations.NA);
+                        return new KeyValuePair<string, string>(formNameFieldComposite, Translations.NA);
                 }
             }
             catch (Exception)
             {
             }
 
-            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+            return new KeyValuePair<string, string>(formNameFieldComposite, Translations.CalculationError);
         }
 
         private KeyValuePair<string, string> CalculateLeishMonthlyIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
+            // Combine the form translation key and field name
+            string formNameFieldComposite = formTranslationKey + field;
+
             try
             {
-                // Combine the form translation key and field name
-                string formNameFieldComposite = formTranslationKey + field;
-
                 switch (formNameFieldComposite)
                 {
                     case "LeishMonthlyInterventionLeishMontIntvDetectionRatePer100000":
@@ -519,14 +518,14 @@ namespace Nada.Model.Intervention
                                 GetValueOrDefault("LeishMonthlyInterventionLeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheEndOfTheMonth", relatedValues)
                             ));
                     default:
-                        return new KeyValuePair<string, string>(field, Translations.NA);
+                        return new KeyValuePair<string, string>(formNameFieldComposite, Translations.NA);
                 }
             }
             catch (Exception)
             {
             }
 
-            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+            return new KeyValuePair<string, string>(formNameFieldComposite, Translations.CalculationError);
         }
 
         private KeyValuePair<string, string> CheckPcIntvCalculations(Dictionary<string, string> relatedValues, string field, string formTranslationKey, int adminLevelId, DateTime start, DateTime end, ref string errors)

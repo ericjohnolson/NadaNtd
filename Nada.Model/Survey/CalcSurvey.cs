@@ -20,9 +20,12 @@ namespace Nada.Model.Survey
 
         public override KeyValuePair<string, string> GetCalculatedValue(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
+            // Combine the form translation key and field name
+            string formNameFieldComposite = formTranslationKey + field;
+
             try
             {
-                switch (field)
+                switch (formNameFieldComposite)
                 {
                     case "SurLeishSurvey6aff65b1-ca6f-4bd8-9982-4f0527dd8a99":
                         return new KeyValuePair<string, string>(Translations._6aff65b1_ca6f_4bd8_9982_4f0527dd8a99, GetPercentage(GetValueOrDefault("SurLeishSurvey5f5b7326-b505-4321-90d8-ea69d6464801", relatedValues), GetValueOrDefault("SurLeishSurveye4ece583-91ce-4f0a-baf7-de45831c1135", relatedValues)));
@@ -115,12 +118,12 @@ namespace Nada.Model.Survey
                     case "SurSchMappingSchMappingPrevalenceEggsInUrine":
                         return new KeyValuePair<string, string>(Translations.SchMappingPrevalenceEggsInUrine, GetPercentage(GetValueOrDefault("SurSchMappingSCHMapSurNumPosSchParasite", relatedValues), GetValueOrDefault("SurSchMappingSCHMapSurNumberOfIndividualsExaminedForU", relatedValues)));
                     default:
-                        return new KeyValuePair<string,string>(field, Translations.NA);
+                        return new KeyValuePair<string, string>(formNameFieldComposite, Translations.NA);
                 }
             }
             catch (Exception)
             {
-                return new KeyValuePair<string,string>(field, Translations.CalculationError);
+                return new KeyValuePair<string, string>(formNameFieldComposite, Translations.CalculationError);
             }
         }
 

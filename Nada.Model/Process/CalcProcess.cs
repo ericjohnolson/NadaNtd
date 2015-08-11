@@ -25,9 +25,11 @@ namespace Nada.Model.Process
 
         public override KeyValuePair<string, string> GetCalculatedValue(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
+            // Combine the form translation key and field name
+            string formNameFieldComposite = formTranslationKey + field;
             try
             {
-                switch (field)
+                switch (formNameFieldComposite)
                 {
                     case "SCMSCMRemaining":
 
@@ -41,13 +43,13 @@ namespace Nada.Model.Process
                                 GetValueOrDefault("SCMSCMTransferredToAnotherDistrict", relatedValues), GetValueOrDefault("SCMSCMAdjustments", relatedValues))));
                      
                     default:
-                        return new KeyValuePair<string,string>(field,  Translations.NA);
+                        return new KeyValuePair<string, string>(formNameFieldComposite, Translations.NA);
                 }
             }
             catch (Exception)
             {
             }
-            return new KeyValuePair<string,string>(field,  Translations.CalculationError);
+            return new KeyValuePair<string, string>(formNameFieldComposite, Translations.CalculationError);
         }
 
     }

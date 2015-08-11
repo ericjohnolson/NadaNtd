@@ -32,9 +32,11 @@ namespace Nada.Model.Diseases
 
         public override KeyValuePair<string, string> GetCalculatedValue(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
+            // Combine the form translation key and field name
+            string formNameFieldComposite = formTranslationKey + field;
             try
             {
-                switch (field)
+                switch (formNameFieldComposite)
                 {
                     case "YAWSPercentNewChildren":
                         return new KeyValuePair<string, string>(Translations.PercentNewChildren,
@@ -115,13 +117,13 @@ namespace Nada.Model.Diseases
                     case "TrachomaDDTraAdultPopulation":
                         return new KeyValuePair<string, string>(Translations.DDTraAdultPopulation, demo.PopAdult.ToString());
                     default:
-                        return new KeyValuePair<string,string>(field,  Translations.NA);
+                        return new KeyValuePair<string, string>(formNameFieldComposite, Translations.NA);
                 }
             }
             catch (Exception)
             {
             }
-            return new KeyValuePair<string,string>(field,  Translations.CalculationError);
+            return new KeyValuePair<string, string>(formNameFieldComposite, Translations.CalculationError);
         }
 
     }
