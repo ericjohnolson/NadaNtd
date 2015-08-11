@@ -909,7 +909,7 @@ namespace Nada.Model.Reports
             var vals = Util.DeepClone(level.Indicators);
             level.Indicators.Clear();
             foreach (var val in vals.Values)
-                if(!level.Indicators.ContainsKey(val.Key))
+                if(val.Key != null && !level.Indicators.ContainsKey(val.Key))
                    level.Indicators.Add(val.Key, val);
             return level;
         }
