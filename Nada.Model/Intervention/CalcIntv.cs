@@ -415,75 +415,87 @@ namespace Nada.Model.Intervention
 
         private KeyValuePair<string, string> CheckEachIntvType(Dictionary<string, string> relatedValues, string field, int adminLevelId, DateTime start, DateTime end, ref string errors)
         {
-            for (int i = 10; i < 24; i++)
+            // Build a collection of the intervention IDs we want to check
+            List<int> interventionTypeIds = new List<int>
+                {
+                    (int)StaticIntvType.Alb, (int)StaticIntvType.Alb2, (int)StaticIntvType.DecAlb, (int)StaticIntvType.Ivm, (int)StaticIntvType.IvmAlb,
+                    (int)StaticIntvType.IvmPzq, (int)StaticIntvType.IvmPzqAlb, (int)StaticIntvType.Mbd, (int)StaticIntvType.Pzq, (int)StaticIntvType.PzqAlb,
+                    (int)StaticIntvType.PzqMbd, (int)StaticIntvType.ZithroTeo
+                };
+            // Get the intervention type objects
+            IntvRepository intvRepo = new IntvRepository();
+            List<IntvType> intvTypes = intvRepo.GetAllTypes().Where(i => interventionTypeIds.Contains(i.Id)).OrderBy(i => i.IntvTypeName).ToList();
+            // Iterate through each time and check see if there is a calculation corresponding to the current field
+            foreach (IntvType intvType in intvTypes)
             {
-                KeyValuePair<string, string> result = CheckPcIntvCalculations(relatedValues, field, i, adminLevelId, start, end, ref errors);
+                KeyValuePair<string, string> result = CheckPcIntvCalculations(relatedValues, field, intvType.DisplayNameKey, adminLevelId, start, end, ref errors);
                 if (result.Key != null)
                     return result;
             }
+
             return new KeyValuePair<string, string>(field, Translations.NA);
         }
 
-        private KeyValuePair<string, string> CheckPcIntvCalculations(Dictionary<string, string> relatedValues, string field, int intvTypeId, int adminLevelId, DateTime start, DateTime end, ref string errors)
+        private KeyValuePair<string, string> CheckPcIntvCalculations(Dictionary<string, string> relatedValues, string field, string formTranslationKey, int adminLevelId, DateTime start, DateTime end, ref string errors)
         {
-            if (field == intvTypeId + "PcIntvProgramCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvProgramCoverage, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumEligibleIndividualsTargeted", relatedValues)));
-            if (field == intvTypeId + "PcIntvFemalesTreatedProportion")
-                return new KeyValuePair<string, string>(Translations.PcIntvFemalesTreatedProportion, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumFemalesTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues)));
-            if (field == intvTypeId + "PcIntvMalesTreatedProportion")
-                return new KeyValuePair<string, string>(Translations.PcIntvMalesTreatedProportion, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumMalesTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues)));
-            if (field == intvTypeId + "PcIntvPsacCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvPsacCoverage, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvPsacTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumPsacTargeted", relatedValues)));
-            if (field == intvTypeId + "PcIntvSacCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvSacCoverage, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumSacTreated", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvNumSacTargeted", relatedValues)));
+            if (field == formTranslationKey + "PcIntvProgramCoverage")
+                return new KeyValuePair<string, string>(Translations.PcIntvProgramCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvNumEligibleIndividualsTargeted", relatedValues)));
+            if (field == formTranslationKey + "PcIntvFemalesTreatedProportion")
+                return new KeyValuePair<string, string>(Translations.PcIntvFemalesTreatedProportion, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumFemalesTreated", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues)));
+            if (field == formTranslationKey + "PcIntvMalesTreatedProportion")
+                return new KeyValuePair<string, string>(Translations.PcIntvMalesTreatedProportion, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumMalesTreated", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues)));
+            if (field == formTranslationKey + "PcIntvPsacCoverage")
+                return new KeyValuePair<string, string>(Translations.PcIntvPsacCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvPsacTreated", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvNumPsacTargeted", relatedValues)));
+            if (field == formTranslationKey + "PcIntvSacCoverage")
+                return new KeyValuePair<string, string>(Translations.PcIntvSacCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumSacTreated", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvNumSacTargeted", relatedValues)));
             // EPI Meta data
-            if (field == intvTypeId + "PcIntvSthPopReqPc")
+            if (field == formTranslationKey + "PcIntvSthPopReqPc")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthPopReqPc, GetRecentDistroIndicator(adminLevelId, "DDSTHPopulationRequiringPc", DiseaseType.STH, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvSthPsacAtRisk")
+            if (field == formTranslationKey + "PcIntvSthPsacAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthPsacAtRisk, GetRecentDistroIndicator(adminLevelId, "DDSTHPsacAtRisk", DiseaseType.STH, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvSthSacAtRisk")
+            if (field == formTranslationKey + "PcIntvSthSacAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthSacAtRisk, GetRecentDistroIndicator(adminLevelId, "DDSTHSacAtRisk", DiseaseType.STH, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvSthAtRisk")
+            if (field == formTranslationKey + "PcIntvSthAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthAtRisk, GetRecentDistroIndicator(adminLevelId, "DDSTHPopulationAtRisk", DiseaseType.STH, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvLfAtRisk")
+            if (field == formTranslationKey + "PcIntvLfAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvLfAtRisk, GetRecentDistroIndicator(adminLevelId, "DDLFPopulationAtRisk", DiseaseType.Lf, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvLfPopRecPc")
+            if (field == formTranslationKey + "PcIntvLfPopRecPc")
                 return new KeyValuePair<string, string>(Translations.PcIntvLfPopRecPc, GetRecentDistroIndicator(adminLevelId, "DDLFPopulationRequiringPc", DiseaseType.Lf, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvOnchoAtRisk")
+            if (field == formTranslationKey + "PcIntvOnchoAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvOnchoAtRisk, GetRecentDistroIndicator(adminLevelId, "DDOnchoPopulationAtRisk", DiseaseType.Oncho, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvOnchoPopReqPc")
+            if (field == formTranslationKey + "PcIntvOnchoPopReqPc")
                 return new KeyValuePair<string, string>(Translations.PcIntvOnchoPopReqPc, GetRecentDistroIndicator(adminLevelId, "DDOnchoPopulationRequiringPc", DiseaseType.Oncho, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvSchAtRisk")
+            if (field == formTranslationKey + "PcIntvSchAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvSchAtRisk, GetRecentDistroIndicator(adminLevelId, "DDSchistoPopulationAtRisk", DiseaseType.Schisto, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvSchPopReqPc")
+            if (field == formTranslationKey + "PcIntvSchPopReqPc")
                 return new KeyValuePair<string, string>(Translations.PcIntvSchPopReqPc, GetRecentDistroIndicator(adminLevelId, "DDSchistoPopulationRequiringPc", DiseaseType.Schisto, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvSchSacAtRisk")
+            if (field == formTranslationKey + "PcIntvSchSacAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvSchSacAtRisk, GetRecentDistroIndicator(adminLevelId, "DDSchistoSacAtRisk", DiseaseType.Schisto, start, end, ref errors));
-            if (field == intvTypeId + "PcIntvTraAtRisk")
+            if (field == formTranslationKey + "PcIntvTraAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvTraAtRisk, GetRecentDistroIndicator(adminLevelId, "DDTraPopulationAtRisk", DiseaseType.Trachoma, start, end, ref errors));
 
             // epi calcs
-            if (field == intvTypeId + "PcIntvSthPsacEpiCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvSthPsacEpiCoverage, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvPsacTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSTHPsacAtRisk", DiseaseType.STH, start, end, ref errors)));
-            if (field == intvTypeId + "PcIntvSthSacEpiCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvSthSacEpiCoverage, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumSacTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSTHSacAtRisk", DiseaseType.STH, start, end, ref errors)));
-            if (field == intvTypeId + "PcIntvSthEpiCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvSthEpiCoverage, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSTHPopulationAtRisk", DiseaseType.STH, start, end, ref errors)));
-            if (field == intvTypeId + "PcIntvLfEpiCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvLfEpiCoverage, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDLFPopulationAtRisk", DiseaseType.Lf, start, end, ref errors)));
-            if (field == intvTypeId + "PcIntvOnchoEpiCoverageOfOncho")
-                return new KeyValuePair<string, string>(Translations.PcIntvOnchoEpiCoverageOfOncho, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvOfTotalTreatedForOncho", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDOnchoPopulationAtRisk", DiseaseType.Oncho, start, end, ref errors)));
-            if (field == intvTypeId + "PcIntvOnchoEpiCoverage")
-                return new KeyValuePair<string, string>(Translations.PcIntvOnchoEpiCoverage, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDOnchoPopulationAtRisk", DiseaseType.Oncho, start, end, ref errors)));
-            if (field == intvTypeId + "PcIntvOnchoProgramCov")
-                return new KeyValuePair<string, string>(Translations.PcIntvOnchoProgramCov, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvOfTotalTreatedForOncho", relatedValues), GetValueOrDefault(intvTypeId + "PcIntvOfTotalTargetedForOncho", relatedValues)));
-            if (field == intvTypeId + "PcIntvSchSacEpi")
-                return new KeyValuePair<string, string>(Translations.PcIntvSchSacEpi, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumSacTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSchistoSacAtRisk", DiseaseType.Schisto, start, end, ref errors)));
-            if (field == intvTypeId + "PcIntvSchEpi")
-                return new KeyValuePair<string, string>(Translations.PcIntvSchEpi, GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSchistoPopulationAtRisk", DiseaseType.Schisto, start, end, ref errors)));
-            if (field == intvTypeId + "PcIntvTraEpi")
+            if (field == formTranslationKey + "PcIntvSthPsacEpiCoverage")
+                return new KeyValuePair<string, string>(Translations.PcIntvSthPsacEpiCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvPsacTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSTHPsacAtRisk", DiseaseType.STH, start, end, ref errors)));
+            if (field == formTranslationKey + "PcIntvSthSacEpiCoverage")
+                return new KeyValuePair<string, string>(Translations.PcIntvSthSacEpiCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumSacTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSTHSacAtRisk", DiseaseType.STH, start, end, ref errors)));
+            if (field == formTranslationKey + "PcIntvSthEpiCoverage")
+                return new KeyValuePair<string, string>(Translations.PcIntvSthEpiCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSTHPopulationAtRisk", DiseaseType.STH, start, end, ref errors)));
+            if (field == formTranslationKey + "PcIntvLfEpiCoverage")
+                return new KeyValuePair<string, string>(Translations.PcIntvLfEpiCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDLFPopulationAtRisk", DiseaseType.Lf, start, end, ref errors)));
+            if (field == formTranslationKey + "PcIntvOnchoEpiCoverageOfOncho")
+                return new KeyValuePair<string, string>(Translations.PcIntvOnchoEpiCoverageOfOncho, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvOfTotalTreatedForOncho", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDOnchoPopulationAtRisk", DiseaseType.Oncho, start, end, ref errors)));
+            if (field == formTranslationKey + "PcIntvOnchoEpiCoverage")
+                return new KeyValuePair<string, string>(Translations.PcIntvOnchoEpiCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDOnchoPopulationAtRisk", DiseaseType.Oncho, start, end, ref errors)));
+            if (field == formTranslationKey + "PcIntvOnchoProgramCov")
+                return new KeyValuePair<string, string>(Translations.PcIntvOnchoProgramCov, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvOfTotalTreatedForOncho", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvOfTotalTargetedForOncho", relatedValues)));
+            if (field == formTranslationKey + "PcIntvSchSacEpi")
+                return new KeyValuePair<string, string>(Translations.PcIntvSchSacEpi, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumSacTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSchistoSacAtRisk", DiseaseType.Schisto, start, end, ref errors)));
+            if (field == formTranslationKey + "PcIntvSchEpi")
+                return new KeyValuePair<string, string>(Translations.PcIntvSchEpi, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSchistoPopulationAtRisk", DiseaseType.Schisto, start, end, ref errors)));
+            if (field == formTranslationKey + "PcIntvTraEpi")
                 return new KeyValuePair<string, string>(Translations.PcIntvTraEpi,
-                    GetPercentage(GetValueOrDefault(intvTypeId + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDTraPopulationAtRisk", DiseaseType.Trachoma, start, end, ref errors)));
+                    GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDTraPopulationAtRisk", DiseaseType.Trachoma, start, end, ref errors)));
 
             return new KeyValuePair<string, string>(null, null);
         }
