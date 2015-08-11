@@ -168,14 +168,14 @@ namespace Nada.Model.Reports
                         if (relatedByType.Count > 0)
                             foreach (var related in relatedByType)
                             {
-                                var calcResult = calc.GetCalculatedValue(field.FormNameKey + field.Key, related.Value, adminLevelDemo, startDate, yearEndDate, ref errors);
+                                var calcResult = calc.GetCalculatedValue(field.FormNameKey, field.Key, related.Value, adminLevelDemo, startDate, yearEndDate, ref errors);
                                 if (!result.Columns.Contains(calcResult.Key + related.Key))
                                     result.Columns.Add(new DataColumn(calcResult.Key + related.Key));
                                 row.Row[calcResult.Key + related.Key] = calcResult.Value;
                             }
                         else // no related values for the calculation, this is for metadata values.
                         {
-                            var calcResult = calc.GetCalculatedValue(field.FormNameKey + field.Key, null, adminLevelDemo, startDate, yearEndDate, ref errors);
+                            var calcResult = calc.GetCalculatedValue(field.FormNameKey, field.Key, null, adminLevelDemo, startDate, yearEndDate, ref errors);
                             if (!result.Columns.Contains(calcResult.Key))
                                 result.Columns.Add(new DataColumn(calcResult.Key));
                             row.Row[calcResult.Key] = calcResult.Value;

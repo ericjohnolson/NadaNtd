@@ -10,37 +10,93 @@ namespace Nada.Model.Intervention
 {
     public class CalcIntv : CalcBase, ICalcIndicators
     {
-        public override List<KeyValuePair<string, string>> GetMetaData(IEnumerable<string> fields, int adminLevel, DateTime start, DateTime end)
+        public override List<KeyValuePair<string, string>> GetMetaData(List<KeyValuePair<string, string>> fields, int adminLevel, DateTime start, DateTime end)
         {
             string errors = "";
             var relatedValues = new Dictionary<string, string>();
             AdminLevelDemography recentDemo = GetDemography(adminLevel, start, end);
             List<KeyValuePair<string, string>> results = new List<KeyValuePair<string, string>>();
-            foreach (string field in fields)
-                results.Add(GetCalculatedValue(field, relatedValues, recentDemo, start, end, ref errors));
+            foreach (KeyValuePair<string, string> field in fields) // Key is form translation key, value is indicator name
+                results.Add(GetCalculatedValue(field.Key, field.Value, relatedValues, recentDemo, start, end, ref errors));
             return results;
         }
 
-        public override List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end)
+        public override List<KeyValuePair<string, string>> GetCalculatedValues(List<KeyValuePair<string, string>> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end)
         {
             string errors = "";
             AdminLevelDemography recentDemo = GetDemography(adminLevel, start, end);
             List<KeyValuePair<string, string>> results = new List<KeyValuePair<string, string>>();
-            foreach (string field in fields)
-                results.Add(GetCalculatedValue(field, relatedValues, recentDemo, start, end, ref errors));
+            foreach (KeyValuePair<string, string> field in fields) // Key is form translation key, value is indicator name
+                results.Add(GetCalculatedValue(field.Key, field.Value, relatedValues, recentDemo, start, end, ref errors));
             return results;
         }
 
-        public override KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
+        public override KeyValuePair<string, string> GetCalculatedValue(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
             try
             {
-                switch (field)
+                // First check shared intervention calculations
+                KeyValuePair<string, string> sharedIntvCalc = CheckPcIntvCalculations(relatedValues, field, formTranslationKey, demo.AdminLevelId, start, end, ref errors);
+                if (sharedIntvCalc.Key != null && sharedIntvCalc.Value != null)
+                    return sharedIntvCalc;
+
+                // Determine the form name to avoid traversing the whole case statement
+                if (formTranslationKey == "BuruliUlcerIntv")
+                    return CalculateBuruliUlcerIntv(formTranslationKey, field, relatedValues, demo, start, end, ref errors);
+                else if (formTranslationKey == "GuineaWormIntervention")
+                    return CalculateGuineaWormIntv(formTranslationKey, field, relatedValues, demo, start, end, ref errors);
+                else if (formTranslationKey == "HatIntervention")
+                    return CalculateHatIntv(formTranslationKey, field, relatedValues, demo, start, end, ref errors);
+                else if (formTranslationKey == "YawsIntervention")
+                    return CalculateYawsIntv(formTranslationKey, field, relatedValues, demo, start, end, ref errors);
+                else if (formTranslationKey == "LeishAnnualIntervention")
+                    return CalculateLeishAnnualIntv(formTranslationKey, field, relatedValues, demo, start, end, ref errors);
+                else if (formTranslationKey == "LeishMonthlyIntervention")
+                    return CalculateLeishMonthlyIntv(formTranslationKey, field, relatedValues, demo, start, end, ref errors);
+                else
+                    return new KeyValuePair<string, string>(field, Translations.NA);
+
+            }
+            catch (Exception)
+            {
+            }
+
+            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+        }
+
+        private KeyValuePair<string, string> CalculateBuruliUlcerIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
+        {
+            try
+            {
+                // Combine the form translation key and field name
+                string formNameFieldComposite = formTranslationKey + field;
+
+                switch (formNameFieldComposite)
                 {
                     case "BuruliUlcerIntvPercentCoverageBu":
                         if (demo != null)
                             return new KeyValuePair<string, string>(Translations.PercentCoverageBu, GetPercentage(GetValueOrDefault("BuruliUlcerIntvNumFacilitiesProvidingBu", relatedValues), demo.PopAdult.ToString()));
                         break;
+                    default:
+                        return new KeyValuePair<string, string>(field, Translations.NA);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+        }
+
+        private KeyValuePair<string, string> CalculateGuineaWormIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
+        {
+            try
+            {
+                // Combine the form translation key and field name
+                string formNameFieldComposite = formTranslationKey + field;
+
+                switch (formNameFieldComposite)
+                {
                     case "GuineaWormInterventionNumImported":
                         return new KeyValuePair<string, string>(Translations.NumImported, GetDifference(GetValueOrDefault("GuineaWormInterventionNumClinical", relatedValues), GetValueOrDefault("GuineaWormInterventionNumIndigenous", relatedValues)));
                     case "GuineaWormInterventionPercentVas":
@@ -53,26 +109,26 @@ namespace Nada.Model.Intervention
                         return new KeyValuePair<string, string>(Translations.PercentCasesContained, GetPercentage(GetValueOrDefault("GuineaWormInterventionNumCasesContained", relatedValues), GetValueOrDefault("GuineaWormInterventionNumClinical", relatedValues)));
                     case "GuineaWormInterventionPercentEndemicReporting":
                         return new KeyValuePair<string, string>(Translations.PercentEndemicReporting, GetPercentage(GetValueOrDefault("GuineaWormInterventionNumEndemicVillagesReporting", relatedValues), GetValueOrDefault("GuineaWormInterventionNumEndemicVillages", relatedValues)));
-                    case "7DetectRate100kLeish":
-                        if (demo != null)
-                            return new KeyValuePair<string, string>(Translations.DetectRate100kLeish, GetPercentage(GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues)),
-                                demo.TotalPopulation.ToString(), 100000));
-                        break;
-                    case "7PercentLabConfirm":
-                        return new KeyValuePair<string, string>(Translations.PercentLabConfirm, GetPercentage(GetTotal(GetValueOrDefault("7NumLabClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues)),
-                            GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues))));
-                    case "7PercentCl":
-                        return new KeyValuePair<string, string>(Translations.PercentCl, GetPercentage(GetValueOrDefault("7NumClCases", relatedValues),
-                            GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues))));
-                    case "7PercentVl":
-                        return new KeyValuePair<string, string>(Translations.PercentVl, GetPercentage(GetValueOrDefault("7NumLabVlCases", relatedValues),
-                            GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues))));
-                    case "7PercentClVl":
-                        return new KeyValuePair<string, string>(Translations.PercentClVl, GetPercentage(GetValueOrDefault("7NumClVlCases", relatedValues),
-                            GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues))));
-                    case "7PercentCasesActiveLeish":
-                        return new KeyValuePair<string, string>(Translations.PercentCasesActiveLeish, GetPercentage(GetValueOrDefault("7NumCasesFoundActively", relatedValues),
-                            GetTotal(GetValueOrDefault("7NumClCases", relatedValues), GetValueOrDefault("7NumLabVlCases", relatedValues), GetValueOrDefault("7NumClVlCases", relatedValues))));
+                    default:
+                        return new KeyValuePair<string, string>(field, Translations.NA);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+        }
+
+        private KeyValuePair<string, string> CalculateHatIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
+        {
+            try
+            {
+                // Combine the form translation key and field name
+                string formNameFieldComposite = formTranslationKey + field;
+
+                switch (formNameFieldComposite)
+                {
                     case "HatInterventionPercentLabConfirmed":
                         return new KeyValuePair<string, string>(Translations.PercentLabConfirmed, GetPercentage(GetValueOrDefault("HatInterventionNumLabCases", relatedValues), GetValueOrDefault("HatInterventionNumClinicalCasesHat", relatedValues)));
                     case "HatInterventionPercentTGamb":
@@ -95,9 +151,49 @@ namespace Nada.Model.Intervention
                         if (demo != null)
                             return new KeyValuePair<string, string>(Translations.DetectionRatePer100k, GetPercentage(GetValueOrDefault("HatInterventionNumClinicalCasesHat", relatedValues), demo.TotalPopulation.ToString(), 100000));
                         break;
+                    default:
+                        return new KeyValuePair<string, string>(field, Translations.NA);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+        }
+
+        private KeyValuePair<string, string> CalculateYawsIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
+        {
+            try
+            {
+                // Combine the form translation key and field name
+                string formNameFieldComposite = formTranslationKey + field;
+
+                switch (formNameFieldComposite)
+                {
                     case "YawsInterventionPercentTreatedYw":
                         return new KeyValuePair<string, string>(Translations.PercentTreatedYw, GetPercentage(GetValueOrDefault("YawsInterventionNumContactsTreatedYw", relatedValues),
                             GetTotal(GetValueOrDefault("YawsInterventionNumContactsTreatedYw", relatedValues), GetValueOrDefault("YawsInterventionNumCasesTreatedYaws", relatedValues))));
+                    default:
+                        return new KeyValuePair<string, string>(field, Translations.NA);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+        }
+
+        private KeyValuePair<string, string> CalculateLeishAnnualIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
+        {
+            try
+            {
+                // Combine the form translation key and field name
+                string formNameFieldComposite = formTranslationKey + field;
+
+                switch (formNameFieldComposite)
+                {
                     case "LeishAnnualInterventionLeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp":
                         return new KeyValuePair<string, string>(
                             Translations.LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp,
@@ -126,6 +222,26 @@ namespace Nada.Model.Intervention
                                 GetValueOrDefault("LeishAnnualInterventionLeishAnnIntvNumberOfCLRelapseCases", relatedValues),
                                 GetValueOrDefault("LeishAnnualInterventionLeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months", relatedValues)
                             ));
+                    default:
+                        return new KeyValuePair<string, string>(field, Translations.NA);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return new KeyValuePair<string, string>(field, Translations.CalculationError);
+        }
+
+        private KeyValuePair<string, string> CalculateLeishMonthlyIntv(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
+        {
+            try
+            {
+                // Combine the form translation key and field name
+                string formNameFieldComposite = formTranslationKey + field;
+
+                switch (formNameFieldComposite)
+                {
                     case "LeishMonthlyInterventionLeishMontIntvDetectionRatePer100000":
                         if (demo != null)
                         {
@@ -403,7 +519,7 @@ namespace Nada.Model.Intervention
                                 GetValueOrDefault("LeishMonthlyInterventionLeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheEndOfTheMonth", relatedValues)
                             ));
                     default:
-                        return CheckEachIntvType(relatedValues, field, demo.AdminLevelId, start, end, ref errors);
+                        return new KeyValuePair<string, string>(field, Translations.NA);
                 }
             }
             catch (Exception)
@@ -413,87 +529,67 @@ namespace Nada.Model.Intervention
             return new KeyValuePair<string, string>(field, Translations.CalculationError);
         }
 
-        private KeyValuePair<string, string> CheckEachIntvType(Dictionary<string, string> relatedValues, string field, int adminLevelId, DateTime start, DateTime end, ref string errors)
-        {
-            // Build a collection of the intervention IDs we want to check
-            List<int> interventionTypeIds = new List<int>
-                {
-                    (int)StaticIntvType.Alb, (int)StaticIntvType.Alb2, (int)StaticIntvType.DecAlb, (int)StaticIntvType.Ivm, (int)StaticIntvType.IvmAlb,
-                    (int)StaticIntvType.IvmPzq, (int)StaticIntvType.IvmPzqAlb, (int)StaticIntvType.Mbd, (int)StaticIntvType.Pzq, (int)StaticIntvType.PzqAlb,
-                    (int)StaticIntvType.PzqMbd, (int)StaticIntvType.ZithroTeo
-                };
-            // Get the intervention type objects
-            IntvRepository intvRepo = new IntvRepository();
-            List<IntvType> intvTypes = intvRepo.GetAllTypes().Where(i => interventionTypeIds.Contains(i.Id)).OrderBy(i => i.IntvTypeName).ToList();
-            // Iterate through each time and check see if there is a calculation corresponding to the current field
-            foreach (IntvType intvType in intvTypes)
-            {
-                KeyValuePair<string, string> result = CheckPcIntvCalculations(relatedValues, field, intvType.DisplayNameKey, adminLevelId, start, end, ref errors);
-                if (result.Key != null)
-                    return result;
-            }
-
-            return new KeyValuePair<string, string>(field, Translations.NA);
-        }
-
         private KeyValuePair<string, string> CheckPcIntvCalculations(Dictionary<string, string> relatedValues, string field, string formTranslationKey, int adminLevelId, DateTime start, DateTime end, ref string errors)
         {
-            if (field == formTranslationKey + "PcIntvProgramCoverage")
+            // Combine the form translation key and field name
+            string formNameFieldComposite = formTranslationKey + field;
+
+            if (formNameFieldComposite == formTranslationKey + "PcIntvProgramCoverage")
                 return new KeyValuePair<string, string>(Translations.PcIntvProgramCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvNumEligibleIndividualsTargeted", relatedValues)));
-            if (field == formTranslationKey + "PcIntvFemalesTreatedProportion")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvFemalesTreatedProportion")
                 return new KeyValuePair<string, string>(Translations.PcIntvFemalesTreatedProportion, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumFemalesTreated", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues)));
-            if (field == formTranslationKey + "PcIntvMalesTreatedProportion")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvMalesTreatedProportion")
                 return new KeyValuePair<string, string>(Translations.PcIntvMalesTreatedProportion, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumMalesTreated", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues)));
-            if (field == formTranslationKey + "PcIntvPsacCoverage")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvPsacCoverage")
                 return new KeyValuePair<string, string>(Translations.PcIntvPsacCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvPsacTreated", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvNumPsacTargeted", relatedValues)));
-            if (field == formTranslationKey + "PcIntvSacCoverage")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSacCoverage")
                 return new KeyValuePair<string, string>(Translations.PcIntvSacCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumSacTreated", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvNumSacTargeted", relatedValues)));
             // EPI Meta data
-            if (field == formTranslationKey + "PcIntvSthPopReqPc")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSthPopReqPc")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthPopReqPc, GetRecentDistroIndicator(adminLevelId, "DDSTHPopulationRequiringPc", DiseaseType.STH, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvSthPsacAtRisk")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSthPsacAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthPsacAtRisk, GetRecentDistroIndicator(adminLevelId, "DDSTHPsacAtRisk", DiseaseType.STH, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvSthSacAtRisk")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSthSacAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthSacAtRisk, GetRecentDistroIndicator(adminLevelId, "DDSTHSacAtRisk", DiseaseType.STH, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvSthAtRisk")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSthAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthAtRisk, GetRecentDistroIndicator(adminLevelId, "DDSTHPopulationAtRisk", DiseaseType.STH, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvLfAtRisk")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvLfAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvLfAtRisk, GetRecentDistroIndicator(adminLevelId, "DDLFPopulationAtRisk", DiseaseType.Lf, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvLfPopRecPc")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvLfPopRecPc")
                 return new KeyValuePair<string, string>(Translations.PcIntvLfPopRecPc, GetRecentDistroIndicator(adminLevelId, "DDLFPopulationRequiringPc", DiseaseType.Lf, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvOnchoAtRisk")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvOnchoAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvOnchoAtRisk, GetRecentDistroIndicator(adminLevelId, "DDOnchoPopulationAtRisk", DiseaseType.Oncho, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvOnchoPopReqPc")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvOnchoPopReqPc")
                 return new KeyValuePair<string, string>(Translations.PcIntvOnchoPopReqPc, GetRecentDistroIndicator(adminLevelId, "DDOnchoPopulationRequiringPc", DiseaseType.Oncho, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvSchAtRisk")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSchAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvSchAtRisk, GetRecentDistroIndicator(adminLevelId, "DDSchistoPopulationAtRisk", DiseaseType.Schisto, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvSchPopReqPc")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSchPopReqPc")
                 return new KeyValuePair<string, string>(Translations.PcIntvSchPopReqPc, GetRecentDistroIndicator(adminLevelId, "DDSchistoPopulationRequiringPc", DiseaseType.Schisto, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvSchSacAtRisk")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSchSacAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvSchSacAtRisk, GetRecentDistroIndicator(adminLevelId, "DDSchistoSacAtRisk", DiseaseType.Schisto, start, end, ref errors));
-            if (field == formTranslationKey + "PcIntvTraAtRisk")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvTraAtRisk")
                 return new KeyValuePair<string, string>(Translations.PcIntvTraAtRisk, GetRecentDistroIndicator(adminLevelId, "DDTraPopulationAtRisk", DiseaseType.Trachoma, start, end, ref errors));
 
             // epi calcs
-            if (field == formTranslationKey + "PcIntvSthPsacEpiCoverage")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSthPsacEpiCoverage")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthPsacEpiCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvPsacTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSTHPsacAtRisk", DiseaseType.STH, start, end, ref errors)));
-            if (field == formTranslationKey + "PcIntvSthSacEpiCoverage")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSthSacEpiCoverage")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthSacEpiCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumSacTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSTHSacAtRisk", DiseaseType.STH, start, end, ref errors)));
-            if (field == formTranslationKey + "PcIntvSthEpiCoverage")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSthEpiCoverage")
                 return new KeyValuePair<string, string>(Translations.PcIntvSthEpiCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSTHPopulationAtRisk", DiseaseType.STH, start, end, ref errors)));
-            if (field == formTranslationKey + "PcIntvLfEpiCoverage")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvLfEpiCoverage")
                 return new KeyValuePair<string, string>(Translations.PcIntvLfEpiCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDLFPopulationAtRisk", DiseaseType.Lf, start, end, ref errors)));
-            if (field == formTranslationKey + "PcIntvOnchoEpiCoverageOfOncho")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvOnchoEpiCoverageOfOncho")
                 return new KeyValuePair<string, string>(Translations.PcIntvOnchoEpiCoverageOfOncho, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvOfTotalTreatedForOncho", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDOnchoPopulationAtRisk", DiseaseType.Oncho, start, end, ref errors)));
-            if (field == formTranslationKey + "PcIntvOnchoEpiCoverage")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvOnchoEpiCoverage")
                 return new KeyValuePair<string, string>(Translations.PcIntvOnchoEpiCoverage, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDOnchoPopulationAtRisk", DiseaseType.Oncho, start, end, ref errors)));
-            if (field == formTranslationKey + "PcIntvOnchoProgramCov")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvOnchoProgramCov")
                 return new KeyValuePair<string, string>(Translations.PcIntvOnchoProgramCov, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvOfTotalTreatedForOncho", relatedValues), GetValueOrDefault(formTranslationKey + "PcIntvOfTotalTargetedForOncho", relatedValues)));
-            if (field == formTranslationKey + "PcIntvSchSacEpi")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSchSacEpi")
                 return new KeyValuePair<string, string>(Translations.PcIntvSchSacEpi, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumSacTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSchistoSacAtRisk", DiseaseType.Schisto, start, end, ref errors)));
-            if (field == formTranslationKey + "PcIntvSchEpi")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvSchEpi")
                 return new KeyValuePair<string, string>(Translations.PcIntvSchEpi, GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDSchistoPopulationAtRisk", DiseaseType.Schisto, start, end, ref errors)));
-            if (field == formTranslationKey + "PcIntvTraEpi")
+            if (formNameFieldComposite == formTranslationKey + "PcIntvTraEpi")
                 return new KeyValuePair<string, string>(Translations.PcIntvTraEpi,
                     GetPercentage(GetValueOrDefault(formTranslationKey + "PcIntvNumIndividualsTreated", relatedValues), GetRecentDistroIndicator(adminLevelId, "DDTraPopulationAtRisk", DiseaseType.Trachoma, start, end, ref errors)));
 

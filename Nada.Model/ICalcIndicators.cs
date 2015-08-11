@@ -11,11 +11,11 @@ namespace Nada.Model
 {
     public interface ICalcIndicators
     {
-        List<KeyValuePair<string, string>> GetMetaData(IEnumerable<string> fields, int adminLevel, DateTime start, DateTime end);
+        List<KeyValuePair<string, string>> GetMetaData(List<KeyValuePair<string, string>> fields, int adminLevel, DateTime start, DateTime end);
         List<KeyValuePair<string, string>> PerformCalculations(Dictionary<string, Indicator> indicators, List<IndicatorValue> indicatorValues,
             int adminLevel, string typeId, string formTranslationKey, DateTime start, DateTime end);
-        List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end);
-        KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors);
+        List<KeyValuePair<string, string>> GetCalculatedValues(List<KeyValuePair<string, string>> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end);
+        KeyValuePair<string, string> GetCalculatedValue(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors);
         AdminLevelDemography GetAdminLevelDemo(int adminLevelId, DateTime start, DateTime end);
     }
 
@@ -28,7 +28,7 @@ namespace Nada.Model
             return GetDemography(adminLevelId, start, end);
         }
 
-        public virtual List<KeyValuePair<string, string>> GetMetaData(IEnumerable<string> fields, int adminLevel, DateTime start, DateTime end)
+        public virtual List<KeyValuePair<string, string>> GetMetaData(List<KeyValuePair<string, string>> fields, int adminLevel, DateTime start, DateTime end)
         {
             return new List<KeyValuePair<string, string>>();
         }
@@ -45,17 +45,17 @@ namespace Nada.Model
                 values.Add(formTranslationKey + val.Indicator.DisplayName, val.DynamicValue);
 
             return GetCalculatedValues(
-                calculations.Select(i => formTranslationKey + i.DisplayName).ToList(),
+                calculations.Select(i => new KeyValuePair<string, string>(formTranslationKey, i.DisplayName)).ToList(),
                 values,
                 adminLevel, start, end);
         }
 
-        public virtual List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end)
+        public virtual List<KeyValuePair<string, string>> GetCalculatedValues(List<KeyValuePair<string, string>> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end)
         {
             return new List<KeyValuePair<string, string>>();
         }
 
-        public virtual KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
+        public virtual KeyValuePair<string, string> GetCalculatedValue(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
             return new KeyValuePair<string, string>();
         }

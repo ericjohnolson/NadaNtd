@@ -112,7 +112,7 @@ namespace Nada.UI.View
                 List<KeyValuePair<string, string>> metaData = new List<KeyValuePair<string, string>>();
                 if (viewModel.Calculator != null)
                     metaData = viewModel.Calculator.GetMetaData(
-                    viewModel.Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => viewModel.FormTranslationKey + i.Value.DisplayName),
+                    viewModel.Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => new KeyValuePair<string, string>(viewModel.FormTranslationKey, i.Value.DisplayName)).ToList(),
                     viewModel.Location.Id, indicatorControl1.start, indicatorControl1.end);
                 e.Result = metaData;
             }

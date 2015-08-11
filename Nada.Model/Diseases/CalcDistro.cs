@@ -9,28 +9,28 @@ namespace Nada.Model.Diseases
 {
     public class CalcDistro : CalcBase, ICalcIndicators
     {
-        public override List<KeyValuePair<string, string>> GetMetaData(IEnumerable<string> fields, int adminLevel, DateTime start, DateTime end)
+        public override List<KeyValuePair<string, string>> GetMetaData(List<KeyValuePair<string, string>> fields, int adminLevel, DateTime start, DateTime end)
         {
             string errors = "";
             var relatedValues = new Dictionary<string, string>();
             AdminLevelDemography recentDemo = GetDemography(adminLevel, start, end);
             List<KeyValuePair<string, string>> results = new List<KeyValuePair<string, string>>();
-            foreach (string field in fields)
-                results.Add(GetCalculatedValue(field, relatedValues, recentDemo, start, end, ref errors));
+            foreach (KeyValuePair<string, string> field in fields) // Key is form translation key, value is indicator name
+                results.Add(GetCalculatedValue(field.Key, field.Value, relatedValues, recentDemo, start, end, ref errors));
             return results;
         }
 
-        public override List<KeyValuePair<string, string>> GetCalculatedValues(List<string> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end)
+        public override List<KeyValuePair<string, string>> GetCalculatedValues(List<KeyValuePair<string, string>> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end)
         {
             string errors = "";
             AdminLevelDemography recentDemo = GetDemography(adminLevel, start, end);
             List<KeyValuePair<string, string>> results = new List<KeyValuePair<string, string>>();
-            foreach (string field in fields)
-                results.Add(GetCalculatedValue(field, relatedValues, recentDemo, start, end, ref errors));
+            foreach (KeyValuePair<string, string> field in fields) // Key is form translation key, value is indicator name
+                results.Add(GetCalculatedValue(field.Key, field.Value, relatedValues, recentDemo, start, end, ref errors));
             return results;
         }
 
-        public override KeyValuePair<string, string> GetCalculatedValue(string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
+        public override KeyValuePair<string, string> GetCalculatedValue(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors)
         {
             try
             {
