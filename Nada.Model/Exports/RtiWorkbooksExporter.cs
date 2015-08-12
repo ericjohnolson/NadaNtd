@@ -475,26 +475,70 @@ namespace Nada.Model.Exports
                 var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
                 if (mostRecentSurvey != null)
                 {
-                    string testType = null;
-                    string prevIntestinal = null;
-                    string proportionHeavy = "";
+                    // Get the most recent survey year
+                    int mostRecentSurveyYear = mostRecentSurvey.DateReported.Year;
+                    // Filter surveys by the type of the most recent and the year of the most recent
+                    List<SurveyBase> recentYearSurveys = surveys.Where(
+                        s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)
+                            && mostRecentSurveyYear == s.DateReported.Year
+                            && mostRecentSurvey.TypeOfSurvey.Id == s.TypeOfSurvey.Id).ToList();
+                    // Get the survey with the highest values for prevalence and proportion of infections
+                    SurveyBase surveyWithHighestPrevalence = null;
+                    double prevalenceInfections = 0;
+                    double proportionInfections = 0;
                     int year = 0;
-                    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
+                    foreach (SurveyBase recentYearSurvey in recentYearSurveys)
                     {
-                        var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "SCHSurTestType");
-                        if (ind != null)
-                            testType = ind.DynamicValue;
-                        prevIntestinal = GetPercentPositive(mostRecentSurvey, "SCHSurNumberOfIndividualsPositiveForInte", "SCHSurNumberOfIndividualsExaminedForInte", out year);
+                        string currentPrevalenceStr = null;
+                        string currentProportionStr = null;
+                        if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
+                        {
+                            // Calculate Prevalence
+                            currentPrevalenceStr = GetPercentPositive(recentYearSurvey, "SCHSurNumberOfIndividualsPositiveForInte", "SCHSurNumberOfIndividualsExaminedForInte", out year);
+                            // Calculate Proportion
+                            currentProportionStr = GetPercentPositive(recentYearSurvey, "SCHSurProportionOfHeavyIntensityIntestin", "SCHSurNumberOfIndividualsExaminedForInte", out year);
+                        }
+                        else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
+                        {
+                            // Calculate Prevalence
+                            currentPrevalenceStr = GetPercentPositive(recentYearSurvey, "SCHMapSurNumberOfIndividualsPositiveForI", "SCHMapSurNumberOfIndividualsExaminedForI", out year);
+                            // Calculate Proportion
+                            currentProportionStr = GetPercentPositive(recentYearSurvey, "SCHMapSurProportionOfHeavyIntensityIntes", "SCHMapSurNumberOfIndividualsExaminedForI", out year);
+                        }
+
+                        // See if the calculated prevalence is higher than the last
+                        double currentPrevalence = 0;
+                        if (currentPrevalenceStr != null && double.TryParse(currentPrevalenceStr, out currentPrevalence) && currentPrevalence > prevalenceInfections)
+                        {
+                            prevalenceInfections = currentPrevalence;
+                            // Keep track of the survey with the highest prevalence to be used to determine the test type
+                            surveyWithHighestPrevalence = recentYearSurvey;
+                        }
+                        // See if the calculated proportion is higher than the last
+                        double currentProportion = 0;
+                        if (currentProportionStr != null && double.TryParse(currentProportionStr, out currentProportion) && currentProportion > proportionInfections)
+                            proportionInfections = currentProportion;
                     }
-                    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
+                    // Test type
+                    string testType = "";
+                    if (surveyWithHighestPrevalence != null)
                     {
-                        var ind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "SCHMapSurTestType");
-                        if (ind != null)
-                            testType = ind.DynamicValue;
-                        prevIntestinal = GetPercentPositive(mostRecentSurvey, "SCHMapSurNumberOfIndividualsPositiveForI", "SCHMapSurNumberOfIndividualsExaminedForI", out year);
+                        if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
+                        {
+                            var ind = surveyWithHighestPrevalence.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "SCHSurTestType");
+                            if (ind != null && ind.DynamicValue != null)
+                                testType = ind.DynamicValue;
+                        }
+                        else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
+                        {
+                            var ind = surveyWithHighestPrevalence.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "SCHMapSurTestType");
+                            if (ind != null && ind.DynamicValue != null)
+                                testType = ind.DynamicValue;
+                        }
                     }
-                    AddValueToRange(xlsWorksheet, rng, "I" + rowCount, prevIntestinal);
-                    AddValueToRange(xlsWorksheet, rng, "J" + rowCount, proportionHeavy);
+
+                    AddValueToRange(xlsWorksheet, rng, "I" + rowCount, prevalenceInfections);
+                    AddValueToRange(xlsWorksheet, rng, "J" + rowCount, proportionInfections);
                     AddValueToRange(xlsWorksheet, rng, "K" + rowCount, mostRecentSurvey.DateReported.Year);
                     AddValueToRange(xlsWorksheet, rng, "L" + rowCount, testType);
                 }
@@ -585,32 +629,74 @@ namespace Nada.Model.Exports
                 var mostRecentSurvey = surveys.Where(s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)).OrderByDescending(s => s.DateReported).FirstOrDefault();
                 if (mostRecentSurvey != null)
                 {
-                    string testType = null;
-                    string percent = null;
-                    string proportionHeavy = "";
+                    // Get the most recent survey year
+                    int mostRecentSurveyYear = mostRecentSurvey.DateReported.Year;
+                    // Filter surveys by the type of the most recent and the year of the most recent
+                    List<SurveyBase> recentYearSurveys = surveys.Where(
+                        s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)
+                            && mostRecentSurveyYear == s.DateReported.Year
+                            && mostRecentSurvey.TypeOfSurvey.Id == s.TypeOfSurvey.Id).ToList();
+                    // Get the survey with the highest values for prevalence and proportion of infections
+                    SurveyBase surveyWithHighestPrevalence = null;
+                    double prevalenceInfections = 0;
+                    double proportionInfections = 0;
                     int year = 0;
-                    if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
+                    foreach (SurveyBase recentYearSurvey in recentYearSurveys)
                     {
-                        var testind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHSurTestType");
-                        if (testind != null)
-                            testType = testind.DynamicValue;
-                        var propInd = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHSurOverallProportionOfHeavyIntensity");
-                        if (propInd != null)
-                            proportionHeavy = propInd.DynamicValue;
-                        percent = GetPercentPositive(mostRecentSurvey, "STHSurNumberOfIndividualsPositiveOverall", "STHSurNumberOfIndividualsExaminedOverall", out year);
+                        string currentPrevalenceStr = null;
+                        string currentProportionStr = null;
+                        if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
+                        {
+                            // Get the prevalence
+                            currentPrevalenceStr = GetPercentPositive(recentYearSurvey, "STHSurNumberOfIndividualsPositiveOverall", "STHSurNumberOfIndividualsExaminedOverall", out year);
+                            // Get the proportion
+                            var propInd = recentYearSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHSurOverallProportionOfHeavyIntensity");
+                            if (propInd != null)
+                                currentProportionStr = propInd.DynamicValue;
+                        }
+                        else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
+                        {
+                            // Get the prevalence
+                            currentPrevalenceStr = GetPercentPositive(recentYearSurvey, "STHMapSurSurNumberOfIndividualsPositiveOverall", "STHMapSurSurNumberOfIndividualsExaminedOverall", out year);
+                            // Get the proportion
+                            var propInd = recentYearSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHMapSurSurOverallProportionOfHeavyIntensity");
+                            if (propInd != null)
+                                currentProportionStr = propInd.DynamicValue;
+                        }
+
+                        // See if the calculated prevalence is higher than the last
+                        double currentPrevalence = 0;
+                        if (currentPrevalenceStr != null && double.TryParse(currentPrevalenceStr, out currentPrevalence) && currentPrevalence > prevalenceInfections)
+                        {
+                            prevalenceInfections = currentPrevalence;
+                            // Keep track of the survey with the highest prevalence to be used to determine the test type
+                            surveyWithHighestPrevalence = recentYearSurvey;
+                        }
+                        // See if the calculated proportion is higher than the last
+                        double currentProportion = 0;
+                        if (currentProportionStr != null && double.TryParse(currentProportionStr, out currentProportion) && currentProportion > proportionInfections)
+                            proportionInfections = currentProportion;
                     }
-                    else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
+                    // Test type
+                    string testType = "";
+                    if (surveyWithHighestPrevalence != null)
                     {
-                        var testind = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHMapSurSurTestType");
-                        if (testind != null)
-                            testType = testind.DynamicValue;
-                        var propInd = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHMapSurSurOverallProportionOfHeavyIntensity");
-                        if (propInd != null)
-                            proportionHeavy = propInd.DynamicValue;
-                        percent = GetPercentPositive(mostRecentSurvey, "STHMapSurSurNumberOfIndividualsPositiveOverall", "STHMapSurSurNumberOfIndividualsExaminedOverall", out year);
+                        if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
+                        {
+                            var ind = surveyWithHighestPrevalence.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHSurTestType");
+                            if (ind != null && ind.DynamicValue != null)
+                                testType = ind.DynamicValue;
+                        }
+                        else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
+                        {
+                            var ind = surveyWithHighestPrevalence.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHMapSurSurTestType");
+                            if (ind != null && ind.DynamicValue != null)
+                                testType = ind.DynamicValue;
+                        }
                     }
-                    AddValueToRange(xlsWorksheet, rng, "I" + rowCount, percent);
-                    AddValueToRange(xlsWorksheet, rng, "J" + rowCount, proportionHeavy);
+
+                    AddValueToRange(xlsWorksheet, rng, "I" + rowCount, prevalenceInfections);
+                    AddValueToRange(xlsWorksheet, rng, "J" + rowCount, proportionInfections);
                     AddValueToRange(xlsWorksheet, rng, "K" + rowCount, mostRecentSurvey.DateReported.Year);
                     AddValueToRange(xlsWorksheet, rng, "L" + rowCount, testType);
                 }
