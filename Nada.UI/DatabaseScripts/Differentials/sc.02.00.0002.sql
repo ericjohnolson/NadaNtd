@@ -741,6 +741,9 @@ INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, Dropdow
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
 	SELECT ID, 1, 3, 'Unknown', 'Unknown', 10, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistWasThereAnyCLOutbreakThisYear';
 
+-- Story 130
+ALTER TABLE SentinelSites ADD IsDeleted YesNo;
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]

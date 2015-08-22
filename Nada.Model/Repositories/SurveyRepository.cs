@@ -827,7 +827,7 @@ namespace Nada.Model.Repositories
                 {
                     OleDbCommand command = new OleDbCommand(@"Select SentinelSites.ID
                         FROM (SentinelSites INNER JOIN SentinelSites_to_AdminLevels ON SentinelSites_to_AdminLevels.SentinelSiteId = SentinelSites.ID)
-                        WHERE SentinelSites_to_AdminLevels.AdminLevelId in (" + String.Join(", ", adminLevelIds.ToArray()) + @")
+                        WHERE SentinelSites.IsDeleted = 0 AND SentinelSites_to_AdminLevels.AdminLevelId in (" + String.Join(", ", adminLevelIds.ToArray()) + @")
                         GROUP BY SentinelSites.ID", connection);
                     using (OleDbDataReader reader = command.ExecuteReader())
                     {
@@ -1035,11 +1035,13 @@ namespace Nada.Model.Repositories
                 connection.Open();
                 try
                 {
-                    OleDbCommand command = new OleDbCommand(@"DELETE FROM SentinelSites WHERE ID=@id", connection);
+                    OleDbCommand command = new OleDbCommand(@"UPDATE SentinelSites
+                        SET IsDeleted = @IsDeleted, UpdatedById = @UpdatedById, UpdatedAt = @UpdatedAt
+                        WHERE ID = @id", connection);
 
-                    //command.Parameters.Add(new OleDbParameter("@IsDeleted", true));
-                    //command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
-                    //command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    command.Parameters.Add(new OleDbParameter("@IsDeleted", true));
+                    command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                    command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
                     command.Parameters.Add(new OleDbParameter("@id", site.Id));
                     command.ExecuteNonQuery();
                 }
