@@ -20,6 +20,8 @@ namespace Nada.Model.Survey
         public Nullable<double> Lat { get; set; }
         public Nullable<double> Lng { get; set; }
         public string SelectText { get { return "Select"; } }
+        public string EditText { get { return Translations.ViewEdit; } }
+        public string DeleteText { get { return Translations.Delete; } }
 
         #region IDataErrorInfo Members
         public override string this[string columnName]

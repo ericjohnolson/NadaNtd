@@ -220,10 +220,11 @@
             this.fieldLink1.Location = new System.Drawing.Point(8, 27);
             this.fieldLink1.Margin = new System.Windows.Forms.Padding(0);
             this.fieldLink1.Name = "fieldLink1";
-            this.fieldLink1.Size = new System.Drawing.Size(94, 16);
+            this.fieldLink1.Size = new System.Drawing.Size(119, 16);
             this.fieldLink1.TabIndex = 23;
             this.fieldLink1.TabStop = false;
-            this.fieldLink1.Text = "Add new site >";
+            this.fieldLink1.Tag = "AddEditDeleteSite";
+            this.fieldLink1.Text = "AddEditDeleteSite";
             this.fieldLink1.OnClick += new System.Action(this.fieldLink1_OnClick);
             // 
             // cbSites

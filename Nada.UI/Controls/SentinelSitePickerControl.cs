@@ -12,6 +12,7 @@ using Nada.Globalization;
 using Nada.UI.AppLogic;
 using Nada.Model.Repositories;
 using Nada.UI.View;
+using Nada.UI.View.Survey;
 
 namespace Nada.UI.Controls
 {
@@ -37,8 +38,7 @@ namespace Nada.UI.Controls
         {
             model = m;
             Localizer.TranslateControl(this);
-            sites = r.GetSitesForAdminLevel(model.AdminLevels.Select(a => a.Id.ToString()));
-            sentinelSiteBindingSource.DataSource = sites;
+            GetAndUpdateSites();
             bsSurvey.DataSource = model;
         }
 
@@ -73,25 +73,25 @@ namespace Nada.UI.Controls
             tblContainer.Visible = true;
         }
 
-        void sites_OnAdd(SentinelSite obj)
-        {
-            sites.Add(obj);
-            sites = sites.OrderBy(s => s.SiteName).ToList();
-            sentinelSiteBindingSource.DataSource = sites;
-            model.SentinelSiteId = obj.Id;
-            bsSurvey.ResetBindings(false);
-        }
-
         private void fieldLink1_OnClick()
         {
-            SentinelSiteAdd modal = new SentinelSiteAdd(model.AdminLevels);
-            modal.OnSave += sites_OnAdd;
-            modal.ShowDialog();
+            if (model.AdminLevelId.HasValue)
+            {
+                SentinelSiteList list = new SentinelSiteList(model);
+                list.OnSave += () => { GetAndUpdateSites(); };
+                list.ShowDialog();
+            }
         }
 
         public void EndEdit()
         {
             bsSurvey.EndEdit();
+        }
+
+        private void GetAndUpdateSites()
+        {
+            sites = r.GetSitesForAdminLevel(model.AdminLevels.Select(a => a.Id.ToString()));
+            sentinelSiteBindingSource.DataSource = sites;
         }
     }
 }

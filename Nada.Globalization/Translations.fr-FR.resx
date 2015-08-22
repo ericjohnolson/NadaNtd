@@ -138,6 +138,9 @@
   <data name="CmBuget" xml:space="preserve">
     <value>Quel est le budget d'ensemble du Plan directeur sur les MTN ?</value>
   </data>
+  <data name="NumCasesTreatedRef" xml:space="preserve">
+    <value>Nombre de cas traités dans des centres de référence</value>
+  </data>
   <data name="CmPercentFunded" xml:space="preserve">
     <value>Quel est le pourcentage du financement fourni par le gouvernement de votre pays ?</value>
   </data>
@@ -149,9 +152,6 @@
   </data>
   <data name="LFSurTestType" xml:space="preserve">
     <value>Type de test</value>
-  </data>
-  <data name="NumSchoolsScreenedCm" xml:space="preserve">
-    <value>Nombre d'écoles visitées au cours de l'année</value>
   </data>
   <data name="NumCasesTreatedYaws" xml:space="preserve">
     <value>Nombre de cas traités au cours de l'année</value>
@@ -179,9 +179,6 @@
   </data>
   <data name="OnchoSurStartDateOfSurvey" xml:space="preserve">
     <value>Date de début de l'enquête</value>
-  </data>
-  <data name="PcIntvModeDistribution" xml:space="preserve">
-    <value>Mode of distribution</value>
   </data>
   <data name="SCHMapSurNumberOfIndividualsExaminedForU" xml:space="preserve">
     <value>Nombre de personnes examinées pour des schistosomes urinaires</value>
@@ -219,12 +216,6 @@
   <data name="SplittingMustAllocateRules" xml:space="preserve">
     <value>Must assign all rules before continuing.</value>
   </data>
-  <data name="MenuDemography" xml:space="preserve">
-    <value>Démographie...</value>
-  </data>
-  <data name="OnchoSurEntTestTechTrap" xml:space="preserve">
-    <value>Piégeage</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Aide</value>
   </data>
@@ -245,6 +236,9 @@
   </data>
   <data name="DDOnchoMethodOfLoaLoaMapping" xml:space="preserve">
     <value>Méthodologie utilisée pour la cartographie de Loa Loa </value>
+  </data>
+  <data name="TraMapSur1to9yo" xml:space="preserve">
+    <value># d'enfants âgées de 1-9 ans enquêtées</value>
   </data>
   <data name="Mf" xml:space="preserve">
     <value>Mf</value>
@@ -284,9 +278,6 @@
   </data>
   <data name="DDTraNumPcRoundsYearRecommendedByWhoGui" xml:space="preserve">
     <value>Nombre de tournées/d'années de TDM recommandées par l’OMS</value>
-  </data>
-  <data name="NumEndemicVillagesReporting" xml:space="preserve">
-    <value>Nombre de villages endémiques communiquant des rapports</value>
   </data>
   <data name="Males" xml:space="preserve">
     <value>Hommes</value>
@@ -411,8 +402,8 @@
   <data name="Confirm" xml:space="preserve">
     <value>Confirmer</value>
   </data>
-  <data name="TraSurSurveyPower" xml:space="preserve">
-    <value>Financement de l'enquête</value>
+  <data name="CannotDeleteSite" xml:space="preserve">
+    <value>Cannot Delete the Site</value>
   </data>
   <data name="SCHMapSurLevelOfEndemicity" xml:space="preserve">
     <value>Niveau d'endémicité</value>
@@ -426,8 +417,8 @@
   <data name="LFSurCausalAgent" xml:space="preserve">
     <value>Agent causal</value>
   </data>
-  <data name="TotalNumHatChild" xml:space="preserve">
-    <value>Nombre total d'enfants parmi les cas de HAT</value>
+  <data name="STHMapSurSurLongitude" xml:space="preserve">
+    <value>Longitude</value>
   </data>
   <data name="LeishMontIntvPrcntOfCLPatientsWithGrtrThnOrEqlTo4Lesions" xml:space="preserve">
     <value>% of CL patients with &gt; or = 4 lesions</value>
@@ -486,9 +477,6 @@
   <data name="SCMNumRemainingOpenedBottles" xml:space="preserve">
     <value>Nombre de flacons ouverts restants </value>
   </data>
-  <data name="PcIntvLfPopRecPc" xml:space="preserve">
-    <value>Population nécessitant un TMM  pour la Filariose Lymphatique</value>
-  </data>
   <data name="PriceRecoverySystem" xml:space="preserve">
     <value>Système de recouvrement des coûts</value>
   </data>
@@ -518,9 +506,6 @@
   </data>
   <data name="LocationRequired" xml:space="preserve">
     <value>Veuillez sélectionner un emplacement.</value>
-  </data>
-  <data name="SacCoverage" xml:space="preserve">
-    <value>Couverture des EAS</value>
   </data>
   <data name="PcIntvModeDistributionFixed" xml:space="preserve">
     <value>Fixed point</value>
@@ -751,8 +736,8 @@
   <data name="RtiErrorMustMatchAll" xml:space="preserve">
     <value>Il faut correspondre toutes les unités avant de continuer</value>
   </data>
-  <data name="LeishMontIntvNumberOfVLCasesDiagnosedByDirectExamParasitology" xml:space="preserve">
-    <value>Number of VL cases diagnosed by direct exam (parasitology)</value>
+  <data name="Wbancrofti" xml:space="preserve">
+    <value>W. bancrofti</value>
   </data>
   <data name="OnchoSurCmfl" xml:space="preserve">
     <value>CMFC</value>
@@ -766,8 +751,8 @@
   <data name="MenuCheckForUpdates" xml:space="preserve">
     <value>Rechercher les mises à jour …</value>
   </data>
-  <data name="DDLFPopulationAtRisk" xml:space="preserve">
-    <value>Population à risque</value>
+  <data name="LeishMontIntvNumberOfVLCasesDiagnosedByDirectExamParasitology" xml:space="preserve">
+    <value>Number of VL cases diagnosed by direct exam (parasitology)</value>
   </data>
   <data name="CmHasAnnualForum" xml:space="preserve">
     <value>Organisez-vous un forum annuel ou une revue de l'ensemble des activités  de lutte contre les MTN ?</value>
@@ -834,6 +819,9 @@
   </data>
   <data name="RedistrictingMergeDesc" xml:space="preserve">
     <value>Fusionné de {0} sur {1}</value>
+  </data>
+  <data name="PcIntvTraDrugTeo" xml:space="preserve">
+    <value>TEO</value>
   </data>
   <data name="SCMExpiredDrugs" xml:space="preserve">
     <value>Médicaments périmés</value>
@@ -907,9 +895,6 @@
   <data name="SCMDateOfInventory" xml:space="preserve">
     <value>Date de l'inventaire</value>
   </data>
-  <data name="LatOther" xml:space="preserve">
-    <value>Autre code géo - latitude</value>
-  </data>
   <data name="TasEstimatedNonResponseRate" xml:space="preserve">
     <value>Taux de non réponse estimé</value>
   </data>
@@ -933,6 +918,9 @@
   </data>
   <data name="MenuViewHelp" xml:space="preserve">
     <value>Afficher l'aide...</value>
+  </data>
+  <data name="TraSurAgeGroupSurveyed" xml:space="preserve">
+    <value>Tranche d'âge interrogée</value>
   </data>
   <data name="SchNs" xml:space="preserve">
     <value>NS - Non cartographié, mais non suspecté</value>
@@ -1081,9 +1069,6 @@
   <data name="NA" xml:space="preserve">
     <value>N/D</value>
   </data>
-  <data name="STHMapSurSurLongitude" xml:space="preserve">
-    <value>Longitude</value>
-  </data>
   <data name="OnchoSurLongitude" xml:space="preserve">
     <value>Longitude</value>
   </data>
@@ -1155,6 +1140,9 @@
   </data>
   <data name="LFSurPosLympho" xml:space="preserve">
     <value>Nombre d’individus positifs pour le lymphœdème</value>
+  </data>
+  <data name="TotalNumMbCases" xml:space="preserve">
+    <value>Nombre total de MB parmi les nouveaux cas</value>
   </data>
   <data name="NoDataFound" xml:space="preserve">
     <value>Données introuvables dans le fichier</value>
@@ -1282,6 +1270,9 @@
   <data name="NumAdultsTargeted" xml:space="preserve">
     <value>Nombre d'adultes ciblés</value>
   </data>
+  <data name="LeishMontIntvPrcntFemaleVL" xml:space="preserve">
+    <value>% female VL</value>
+  </data>
   <data name="ExportTasStartYear" xml:space="preserve">
     <value>Mois et année de démarrage prévus</value>
   </data>
@@ -1345,8 +1336,8 @@
   <data name="LeishMontIntvNumberOfNewCLCasesInChildrenLssThn5Years" xml:space="preserve">
     <value>Number of new CL cases in children &lt; 5 years</value>
   </data>
-  <data name="OnchoSurEntTaxoForestSav" xml:space="preserve">
-    <value>Forêt et savane</value>
+  <data name="PbAdultEnd" xml:space="preserve">
+    <value>Adultes PB dans la prévalence de fin d'année</value>
   </data>
   <data name="DatabaseScriptSuccess" xml:space="preserve">
     <value>Script de la base de données correctement exécuté.</value>
@@ -1435,6 +1426,9 @@
   <data name="OnchoSurTypeOfMapping" xml:space="preserve">
     <value>Type de cartographie</value>
   </data>
+  <data name="TASTasActualTimelineAndResourcesNuOfSurve" xml:space="preserve">
+    <value>Échéancier et ressources de l'EET - Nombre de journées nécessaires pour l'enquête</value>
+  </data>
   <data name="SCMExpiryDatesForOpenedBottles" xml:space="preserve">
     <value>Dates de péremption pour les flacons ouverts</value>
   </data>
@@ -1497,9 +1491,6 @@
   </data>
   <data name="Surveys" xml:space="preserve">
     <value>Enquêtes</value>
-  </data>
-  <data name="TotalWithdrawalTreatment" xml:space="preserve">
-    <value>Nombre total de retraits du traitement</value>
   </data>
   <data name="EndPending" xml:space="preserve">
     <value>En suspens - En attente de la mise en œuvre/des résultats de l'enquête d'évaluation de la transmission</value>
@@ -1729,6 +1720,9 @@
   <data name="AvailOfStrep" xml:space="preserve">
     <value>Flacons  sous emballage-coque de streptomycinMB Adultes de bonne qualité disponibles</value>
   </data>
+  <data name="HighRiskComm" xml:space="preserve">
+    <value>Communauté à risque élevé</value>
+  </data>
   <data name="ValidSentinelSite" xml:space="preserve">
     <value>Impossibilité de trouver le site sentinelle sur la liste de sites disponibles pour l'emplacement </value>
   </data>
@@ -1861,8 +1855,8 @@
   <data name="Targeted" xml:space="preserve">
     <value>Ciblé(e)</value>
   </data>
-  <data name="FatalityRate" xml:space="preserve">
-    <value>Taux de mortalité</value>
+  <data name="LatOther" xml:space="preserve">
+    <value>Autre code géo - latitude</value>
   </data>
   <data name="NumTRhod" xml:space="preserve">
     <value>Nombre de cas T rhodesiense uniquement</value>
@@ -1884,6 +1878,9 @@
   </data>
   <data name="STHSurPositiveAscaris" xml:space="preserve">
     <value>% positifs - ascaris</value>
+  </data>
+  <data name="YawsIntervention" xml:space="preserve">
+    <value>Intervention contre le pian</value>
   </data>
   <data name="NumCasesContained" xml:space="preserve">
     <value>Nombre de cas  localisés avec succès</value>
@@ -1978,9 +1975,6 @@
   <data name="TraSurWithClinicalSignCo" xml:space="preserve">
     <value>% présentant un signe clinique - OC</value>
   </data>
-  <data name="RtiSchMdaNone" xml:space="preserve">
-    <value>Aucun</value>
-  </data>
   <data name="Percent6mos" xml:space="preserve">
     <value>% &lt;0-6 mois dans population totale</value>
   </data>
@@ -2008,8 +2002,8 @@
   <data name="STHMapSurSurOverallProportionOfHeavyIntensity" xml:space="preserve">
     <value>Proportion d'ensemble d'une infection « à forte intensité » aux géohelminthiases</value>
   </data>
-  <data name="PleaseSelect" xml:space="preserve">
-    <value>Veuillez sélectionner...</value>
+  <data name="Anopheles" xml:space="preserve">
+    <value>Anophèles</value>
   </data>
   <data name="LFSurNumberOfIndividualsSampled" xml:space="preserve">
     <value>Nombre de personnes testées</value>
@@ -2019,9 +2013,6 @@
   </data>
   <data name="OnchoSurNumberOfIndividualsPositive" xml:space="preserve">
     <value>Nombre de personnes positives</value>
-  </data>
-  <data name="IntvIvm" xml:space="preserve">
-    <value>Intervention à l'IVM</value>
   </data>
   <data name="Smekongi" xml:space="preserve">
     <value>S. mekongi</value>
@@ -2221,9 +2212,6 @@
   <data name="ScmPhysicalCount" xml:space="preserve">
     <value>Dénombrement</value>
   </data>
-  <data name="SaeDate" xml:space="preserve">
-    <value>Date du rapport</value>
-  </data>
   <data name="RtiSch3a" xml:space="preserve">
     <value>3A</value>
   </data>
@@ -2241,6 +2229,9 @@
   </data>
   <data name="MbAdultsEnd" xml:space="preserve">
     <value>Adultes MB dans la prévalence de fin d'année</value>
+  </data>
+  <data name="TotalNumHatFemale" xml:space="preserve">
+    <value>Nombre total de femmes parmi les nouveaux cas de HAT</value>
   </data>
   <data name="ChooseAdminLevels" xml:space="preserve">
     <value>Choisir les niveaux admin</value>
@@ -2262,6 +2253,9 @@
   </data>
   <data name="CureRate" xml:space="preserve">
     <value>Taux de guérison</value>
+  </data>
+  <data name="CountrySettings" xml:space="preserve">
+    <value>Paramètres du pays</value>
   </data>
   <data name="LFSurPositive" xml:space="preserve">
     <value>Nombre d’individus positifs pour le lymphœdème</value>
@@ -2383,6 +2377,9 @@
   <data name="LeishMontIntvPrcntOfNewVLCasesInChildren5To14Years" xml:space="preserve">
     <value>% of new VL cases in children 5-14 years</value>
   </data>
+  <data name="RtiTra1" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="Active" xml:space="preserve">
     <value>Actif</value>
   </data>
@@ -2400,6 +2397,9 @@
   </data>
   <data name="RtiSsAg" xml:space="preserve">
     <value>SS (Ag)</value>
+  </data>
+  <data name="SchMappingPrevalenceEggsInUrine" xml:space="preserve">
+    <value>Prevalence of any parasite eggs in urine</value>
   </data>
   <data name="RedistrictRuleSplitCombine" xml:space="preserve">
     <value>Split/combine rule</value>
@@ -2476,9 +2476,6 @@
   <data name="LeishRepIsHostProg" xml:space="preserve">
     <value>Is there a leishmaniasis reservoir host control programme?</value>
   </data>
-  <data name="TASActualNumberOfSchoolsOrEasSurveyed" xml:space="preserve">
-    <value>Nombre actuel d'écoles ou d'AE ayant fait l'objet d'une enquête</value>
-  </data>
   <data name="TriTrainingSurgeonName" xml:space="preserve">
     <value>Nom de chirurgien (les 2 indicateurs ci-dessous doivent être associés avec le nom du chirurgien)</value>
   </data>
@@ -2505,6 +2502,9 @@
   </data>
   <data name="PcIntvModeDistributionSchool" xml:space="preserve">
     <value>School-based</value>
+  </data>
+  <data name="SaeMale" xml:space="preserve">
+    <value>Masculin</value>
   </data>
   <data name="RtiMatchLevel" xml:space="preserve">
     <value>Correspondez vos unités aux celles du système de RTI</value>
@@ -2554,8 +2554,8 @@
   <data name="CmContactPost" xml:space="preserve">
     <value>Poste</value>
   </data>
-  <data name="DDTraPopulationLivingInAreasSubDistrict" xml:space="preserve">
-    <value>Population vivant dans des régions ayant atteint les OUI-A</value>
+  <data name="TrainingDrugPackages" xml:space="preserve">
+    <value>Ensemble(s) de médicaments compris dans la formation</value>
   </data>
   <data name="SCMTimePeriodForInventory" xml:space="preserve">
     <value>Période de l'inventaire</value>
@@ -2648,6 +2648,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="a47f1af8-7399-4915-a541-ded4c2c9d739" xml:space="preserve">
     <value>CL: Number of population in surveyed villages or communities - Adult and children (&lt;15 years), male and female</value>
   </data>
+  <data name="DDOnchoPopulationAtRisk" xml:space="preserve">
+    <value>Population à risque</value>
+  </data>
   <data name="STHMapSurSurNumberOfIndividualsExaminedTrichur" xml:space="preserve">
     <value>Nombre de personnes examinées - trichuris</value>
   </data>
@@ -2726,8 +2729,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="SAEDoseadministered" xml:space="preserve">
     <value>Dose administrée</value>
   </data>
-  <data name="TotalNumHatFemale" xml:space="preserve">
-    <value>Nombre total de femmes parmi les nouveaux cas de HAT</value>
+  <data name="ImportListsSelect" xml:space="preserve">
+    <value>Veuillez sélectionner les valeurs nécessaires pour cette importation</value>
   </data>
   <data name="PcIntvRoundNumber" xml:space="preserve">
     <value>Numéro de la tournée</value>
@@ -2825,6 +2828,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="STHSurNumberOfIndividualsSampled" xml:space="preserve">
     <value>Nombre de personnes testées</value>
   </data>
+  <data name="FatalityRate" xml:space="preserve">
+    <value>Taux de mortalité</value>
+  </data>
   <data name="AddNewDemoLink" xml:space="preserve">
     <value>Ajouter des données démographiques pour une nouvelle année &gt;</value>
   </data>
@@ -2912,17 +2918,14 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="IndSpotCheckLat" xml:space="preserve">
     <value>Latitude du site de vérification ponctuelle</value>
   </data>
-  <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
-    <value>Cahier de travail des maladies de RTI</value>
-  </data>
   <data name="NumTreatmentFailures" xml:space="preserve">
     <value>Nombre de traitements ayant échoué</value>
   </data>
   <data name="OnchoSurIfTestTypeIsNpPerDep" xml:space="preserve">
     <value>Si le test est une palpation des nodules, morbidité dermatologique - % de personnes souffrant de dépigmentation</value>
   </data>
-  <data name="MustBeGreaterThanZero" xml:space="preserve">
-    <value>Doit être supérieur à zéro</value>
+  <data name="LeishTrainPercentageOfHealthFacilityStaf" xml:space="preserve">
+    <value>Pourcentage de membres du personnel d'établissements sanitaires supervisés comme prévu</value>
   </data>
   <data name="LeishMontIntvNumberOfNewMCLCasesInChildren5To14Years" xml:space="preserve">
     <value>Number of new MCL cases in children 5-14 years</value>
@@ -3056,6 +3059,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="NumGoodStreptomycin" xml:space="preserve">
     <value>Nombre de comprimés de streptomycine de bonne qualité disponibles</value>
   </data>
+  <data name="TraMapSurTfAlone" xml:space="preserve">
+    <value>TF-Seul</value>
+  </data>
   <data name="IntvPkgDECALB" xml:space="preserve">
     <value>DEC + ALB</value>
   </data>
@@ -3117,9 +3123,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="NadaIntro" xml:space="preserve">
     <value>La modèle pour la base de données intégrée des données MTN a été développée par RTI International sous le projet d’ENVISION, avec le financement de l’USAID, en coopération avec l’OMS et ses bureaux régionaux, le programme africain pour le contrôle de l’onchocercose (APOC), et le centre pour les maladies tropicale négligées.</value>
   </data>
-  <data name="NumProspection" xml:space="preserve">
-    <value>Nombre de cas détectés de façon active (prospection)</value>
-  </data>
   <data name="LeishDiseaseDistEndemicityStatusPKDL" xml:space="preserve">
     <value>Endemicity status PKDL</value>
   </data>
@@ -3176,6 +3179,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="NumVillagesSafeWater" xml:space="preserve">
     <value>Nombre de villages affectés ayant accès à de l'eau potable</value>
+  </data>
+  <data name="TrainingYear" xml:space="preserve">
+    <value>Année pour laquelle s'appliquent les informations relatives à la formation</value>
   </data>
   <data name="TransAssessSurvey" xml:space="preserve">
     <value>Enquête d'évaluation de la transmission</value>
@@ -3279,6 +3285,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="Reports" xml:space="preserve">
     <value>Rapports</value>
   </data>
+  <data name="SAEClinicalcourse" xml:space="preserve">
+    <value>Tableau clinique</value>
+  </data>
   <data name="SaeOther" xml:space="preserve">
     <value>Autre</value>
   </data>
@@ -3287,6 +3296,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="RtiDrpEndAsia" xml:space="preserve">
     <value>END in Asia</value>
+  </data>
+  <data name="PcIntvTraDrugZith" xml:space="preserve">
+    <value>Comprimés Zithromax</value>
   </data>
   <data name="LeishDiseaseDistNumberOfNewCLFociThisYearAreasReportingCasesForTheFirstTime" xml:space="preserve">
     <value>Number of new CL foci this year (areas reporting cases for the first time)</value>
@@ -3324,8 +3336,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="BrowseForFile" xml:space="preserve">
     <value>Rechercher un fichier...</value>
   </data>
-  <data name="TraMapSurTfAlone" xml:space="preserve">
-    <value>TF-Seul</value>
+  <data name="LeprosyTrainNumberOfSupervisionVisitsSch" xml:space="preserve">
+    <value>Nombre de visites de supervision prévues par année</value>
   </data>
   <data name="Training" xml:space="preserve">
     <value>Formation</value>
@@ -3420,9 +3432,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="RedistributionSettings" xml:space="preserve">
     <value>Paramètres de redistribution </value>
   </data>
-  <data name="LastUpdate" xml:space="preserve">
-    <value>Dernière mise à jour</value>
-  </data>
   <data name="PcIntvOfTotalFemalesOncho" xml:space="preserve">
     <value>Du total, nombre de femmes traitées pour l'onchocercose</value>
   </data>
@@ -3513,8 +3522,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="RtiDrpWorkPlanning" xml:space="preserve">
     <value>Calendrier du travail</value>
   </data>
-  <data name="TotalNumVlCases" xml:space="preserve">
-    <value>Nombre total de LV parmi les nouveaux cas</value>
+  <data name="TotalNumHatChild" xml:space="preserve">
+    <value>Nombre total d'enfants parmi les cas de HAT</value>
   </data>
   <data name="TrachomaGoal" xml:space="preserve">
     <value>Objectif ultime d'intervention pour le trachome actif</value>
@@ -3536,9 +3545,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="DDOnchoSaeRiskFromLoaLoa" xml:space="preserve">
     <value>Risque d' effets indésirables graves (EIG) liés à la loase</value>
-  </data>
-  <data name="LeishIntervention" xml:space="preserve">
-    <value>Intervention contre la leishmaniose</value>
   </data>
   <data name="TSNumberOfTrichiasisSurgeriesInYearPeop" xml:space="preserve">
     <value>Nombre d'opérations chirurgicales du trichiasis dans l'année (nombre de personnes)</value>
@@ -3675,8 +3681,11 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="OnchoMapSurNumberOfIndividualsPositive" xml:space="preserve">
     <value>Nombre de personnes positives</value>
   </data>
-  <data name="PbAdultEnd" xml:space="preserve">
-    <value>Adultes PB dans la prévalence de fin d'année</value>
+  <data name="STHSurNumberOfIndividualsPositiveAscaris" xml:space="preserve">
+    <value>Nombre de personnes positives - ascaris</value>
+  </data>
+  <data name="Evaluation" xml:space="preserve">
+    <value>Évaluation</value>
   </data>
   <data name="SAESourceoftreatmentPCClinicorphysiciantreatmentsOther" xml:space="preserve">
     <value>Origine du traitement (CP, traitements en clinique ou prescrits par un médecin, autre)</value>
@@ -3713,6 +3722,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="EpiCoverage" xml:space="preserve">
     <value>Couverture épidémiologique</value>
+  </data>
+  <data name="TotalNumVlCases" xml:space="preserve">
+    <value>Nombre total de LV parmi les nouveaux cas</value>
   </data>
   <data name="PercentToRedistribute" xml:space="preserve">
     <value>Pourcentage à répartir de nouveau</value>
@@ -3831,9 +3843,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="ExportApocReport" xml:space="preserve">
     <value>Rapport de l'APOC</value>
   </data>
-  <data name="ExitWarning" xml:space="preserve">
-    <value>Êtes-vous sûr de vouloir quitter la base de données ?</value>
-  </data>
   <data name="Trachoma" xml:space="preserve">
     <value>Trachome</value>
   </data>
@@ -3890,6 +3899,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="xyear1every2" xml:space="preserve">
     <value>1 fois tous les 2 ans</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Calculer &gt;</value>
   </data>
   <data name="SAEIfhospitalizationrequiredreasonforadmission" xml:space="preserve">
     <value>En cas d'hospitalisation, raison pour l'admission</value>
@@ -4080,6 +4092,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="weeks4" xml:space="preserve">
     <value>2-4 semaines</value>
   </data>
+  <data name="Cca" xml:space="preserve">
+    <value>ACC</value>
+  </data>
   <data name="TraSurStartDateOfSurvey" xml:space="preserve">
     <value>Date de début de l'enquête</value>
   </data>
@@ -4107,8 +4122,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="Finish" xml:space="preserve">
     <value>Terminer</value>
   </data>
-  <data name="PercentCl" xml:space="preserve">
-    <value>% de cas de LC uniquement</value>
+  <data name="DDLFPopulationAtRisk" xml:space="preserve">
+    <value>Population à risque</value>
   </data>
   <data name="MustMakeAggregatingLevel" xml:space="preserve">
     <value>Vous devez désigner l'un de vos niveaux administratifs comme un « Niveau de cumul des données »</value>
@@ -4122,9 +4137,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="LeishMontIntvNumberOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm" xml:space="preserve">
     <value>Number of CL patients with lesions &gt; or = 4 cm</value>
   </data>
-  <data name="TraMapSurMaleFemale15yo" xml:space="preserve">
-    <value>Hommes &amp; femmes âgés de 15+ ans</value>
-  </data>
   <data name="LfEnd0" xml:space="preserve">
     <value>0 - Non endémique au-dessus du seuil de traitement</value>
   </data>
@@ -4134,8 +4146,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="TraMapSurPerOfNationalBlindness" xml:space="preserve">
     <value>% de la cécité au niveau national</value>
   </data>
-  <data name="SAEClinicalcourse" xml:space="preserve">
-    <value>Tableau clinique</value>
+  <data name="SaeDate" xml:space="preserve">
+    <value>Date du rapport</value>
   </data>
   <data name="PbChildEnd" xml:space="preserve">
     <value>Enfants PB dans la prévalence de fin d'année</value>
@@ -4239,9 +4251,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="LFMapSurCount" xml:space="preserve">
     <value>Nombre</value>
   </data>
-  <data name="TraMapSurTiAlone" xml:space="preserve">
-    <value>TF-Seul</value>
-  </data>
   <data name="TraMapSurTargetedMda" xml:space="preserve">
     <value>TDM ciblé</value>
   </data>
@@ -4278,8 +4287,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="NumFullyHealed" xml:space="preserve">
     <value>Nombre de cas complètement guéris dans les deux semaines</value>
   </data>
-  <data name="PcTrainRefresher" xml:space="preserve">
-    <value>Recyclage</value>
+  <data name="CannotDeleteSentinelSiteHasData" xml:space="preserve">
+    <value>Cannot delete because data is associated with that sentinel site</value>
   </data>
   <data name="PcIntvPsacCoverage" xml:space="preserve">
     <value>Couverture des EAP</value>
@@ -4292,6 +4301,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="NumAdultsTreated" xml:space="preserve">
     <value>Nombre d'adultes traités</value>
+  </data>
+  <data name="OnchoMapSurStandardizedPrevelance" xml:space="preserve">
+    <value>Prévalence standardisée</value>
   </data>
   <data name="Culex" xml:space="preserve">
     <value>Culex</value>
@@ -4485,8 +4497,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="LFSurStartDateOfSurvey" xml:space="preserve">
     <value>Date de début de l'enquête</value>
   </data>
-  <data name="OnchoMapSurStandardizedPrevelance" xml:space="preserve">
-    <value>Prévalence standardisée</value>
+  <data name="AddNewSite" xml:space="preserve">
+    <value>Add new site</value>
   </data>
   <data name="LevelNumber" xml:space="preserve">
     <value>Numéro du niveau</value>
@@ -4500,8 +4512,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="Year" xml:space="preserve">
     <value>Année</value>
   </data>
-  <data name="TASActualNonResponseRateAbsent" xml:space="preserve">
-    <value>Taux de non-réponse actuel - % absents</value>
+  <data name="YearReported" xml:space="preserve">
+    <value>Année de déclaration</value>
   </data>
   <data name="RtiReports" xml:space="preserve">
     <value>Cahier de travail des maladies pour le rapportage de l'USAID</value>
@@ -4578,8 +4590,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="SentinelSiteId" xml:space="preserve">
     <value>site sentinelle</value>
   </data>
-  <data name="LeishTrainPercentageOfHealthFacilityStaf" xml:space="preserve">
-    <value>Pourcentage de membres du personnel d'établissements sanitaires supervisés comme prévu</value>
+  <data name="NumTGamb" xml:space="preserve">
+    <value>Nombre de cas T gambiense uniquement</value>
   </data>
   <data name="JrfEndemicSth" xml:space="preserve">
     <value>Les géohelminthiases (STH) sont-elles endémique dans le pays ?</value>
@@ -4665,8 +4677,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="UpdateChecking" xml:space="preserve">
     <value>Recherche des mises à jour</value>
   </data>
-  <data name="RtiWorkbookQuestions" xml:space="preserve">
-    <value>Questions sur les cahiers de travail</value>
+  <data name="RedistrictingRulesSplit" xml:space="preserve">
+    <value>Set redistricting rules for custom indicators</value>
   </data>
   <data name="LeishMontIntvNumberOfDeathsForNewCLCases" xml:space="preserve">
     <value>Number of deaths for new CL cases</value>
@@ -4722,8 +4734,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="UNICEF" xml:space="preserve">
     <value>UNICEF</value>
   </data>
-  <data name="TASTasActualTimelineAndResourcesNuOfSurve" xml:space="preserve">
-    <value>Échéancier et ressources de l'EET - Nombre de journées nécessaires pour l'enquête</value>
+  <data name="SCHMapSurLongitude" xml:space="preserve">
+    <value>Longitude</value>
   </data>
   <data name="SAEExtenuatingorcomplicatingcircumstances" xml:space="preserve">
     <value>Circonstances atténuantes ou complications</value>
@@ -4734,11 +4746,14 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="Melarsoprol" xml:space="preserve">
     <value>Melarsoprol</value>
   </data>
+  <data name="TtAios" xml:space="preserve">
+    <value>TT AIOs</value>
+  </data>
   <data name="PcIntvTsNumMales" xml:space="preserve">
     <value>Nombre d'hommes opérés</value>
   </data>
-  <data name="CountrySettings" xml:space="preserve">
-    <value>Paramètres du pays</value>
+  <data name="RtiSchMdaNone" xml:space="preserve">
+    <value>Aucun</value>
   </data>
   <data name="CmHaveAnnualOpPlan" xml:space="preserve">
     <value>Cocher si vous avez mis au point un plan opérationnel annuel</value>
@@ -4812,8 +4827,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="DDTraUltimateInterventionGoalForTrichias" xml:space="preserve">
     <value>Objectif ultime d'intervention pour la chirurgie du trichiasis</value>
   </data>
-  <data name="YearReported" xml:space="preserve">
-    <value>Année de déclaration</value>
+  <data name="PrevalenceBeginningYear" xml:space="preserve">
+    <value>Prévalence (cas inscrits pour une PCT) au début de l'année</value>
   </data>
   <data name="ValidationMustBeUnique" xml:space="preserve">
     <value>{0} doit être unique</value>
@@ -4836,8 +4851,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="SaeDrugs" xml:space="preserve">
     <value>Quels médicaments ont-ils été administrés ?</value>
   </data>
-  <data name="TotalNumMbCases" xml:space="preserve">
-    <value>Nombre total de MB parmi les nouveaux cas</value>
+  <data name="MenuDemography" xml:space="preserve">
+    <value>Démographie...</value>
   </data>
   <data name="LFSurNumberOfRoundsOfPcCompletedPriorToS" xml:space="preserve">
     <value>Nombre de tours de CP terminés avant la mise en œuvre de l'enquête</value>
@@ -4851,8 +4866,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="LeprosyTrainPercentageOfHealthFacilities" xml:space="preserve">
     <value>Pourcentage d'établissements sanitaires ayant au moins un membre du personnel formé dans le domaine des programmes d'élimination de la lèpre</value>
   </data>
-  <data name="NumTGamb" xml:space="preserve">
-    <value>Nombre de cas T gambiense uniquement</value>
+  <data name="TASActualNumberOfSchoolsOrEasSurveyed" xml:space="preserve">
+    <value>Nombre actuel d'écoles ou d'AE ayant fait l'objet d'une enquête</value>
   </data>
   <data name="SurLfSentinelSpotCheckSurvey" xml:space="preserve">
     <value>Enquête du site sentinelle/Enquête ponctuelle du site de filariose lymphatique</value>
@@ -4863,20 +4878,20 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="Tra20" xml:space="preserve">
     <value>0 Non endémique suite à une cartographie initiale</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Veuillez sélectionner...</value>
+  </data>
   <data name="CmHasStorage" xml:space="preserve">
     <value>Existe-t-il un magasin de stockage de médicaments pour  les MTN ?</value>
   </data>
   <data name="SentinelSite" xml:space="preserve">
     <value>Site sentinelle</value>
   </data>
-  <data name="HighRiskComm" xml:space="preserve">
-    <value>Communauté à risque élevé</value>
+  <data name="DiseasesRequired" xml:space="preserve">
+    <value>Veuillez sélectionner les maladies ciblées.</value>
   </data>
   <data name="SCM" xml:space="preserve">
     <value>Gestion de la chaîne d'approvisionnement - Inventaire des médicaments</value>
-  </data>
-  <data name="OnchoSurNumRefused" xml:space="preserve">
-    <value>Number of individuals who refused to be examined</value>
   </data>
   <data name="STHMapSurSurTargetSampleSize" xml:space="preserve">
     <value>Taille de l'échantillon cible</value>
@@ -4889,6 +4904,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="LfEnd100" xml:space="preserve">
     <value>100 - A atteint les critères d'arrêt du TDM</value>
+  </data>
+  <data name="TraSurSurveyPower" xml:space="preserve">
+    <value>Financement de l'enquête</value>
   </data>
   <data name="CmHasMoe" xml:space="preserve">
     <value>Ministère de l'Environnement</value>
@@ -4916,9 +4934,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="OnchoSurEntomologicalAssessmentConducted" xml:space="preserve">
     <value>Une évaluation entomologique a-t-elle été menée ?</value>
-  </data>
-  <data name="SAEBrandandmanufacturername" xml:space="preserve">
-    <value>Nom de la marque et du fabricant</value>
   </data>
   <data name="LngOther" xml:space="preserve">
     <value>Autre code géo - longitude</value>
@@ -4956,8 +4971,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="DDTraNumPcRoundsYearCurrentlyImplemente" xml:space="preserve">
     <value>Nombre de tournées/d'années  de TDM actuellement mises en œuvre </value>
   </data>
-  <data name="LeprosyTrainNumberOfSupervisionVisitsSch" xml:space="preserve">
-    <value>Nombre de visites de supervision prévues par année</value>
+  <data name="Echino" xml:space="preserve">
+    <value>Échinococcoses</value>
   </data>
   <data name="9ed458a6-2495-4ffb-adc0-1dfd5a2b6397" xml:space="preserve">
     <value>CL survey coverage</value>
@@ -5019,8 +5034,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="StartUpFinishedAllUnits" xml:space="preserve">
     <value>Avez-vous finis la saisie de toutes les unités administratives à ce niveau ?</value>
   </data>
-  <data name="TrainingDrugPackages" xml:space="preserve">
-    <value>Ensemble(s) de médicaments compris dans la formation</value>
+  <data name="ChooseLocations" xml:space="preserve">
+    <value>Choisir les localités pour :</value>
   </data>
   <data name="CmStorageNtdOrCombined" xml:space="preserve">
     <value>S'agit-il d'un dépôt de stockage des médicaments spécifiques aux MTN ou bien d'un dépôt de stockage national pour tous les  médicaments ?</value>
@@ -5094,8 +5109,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="MenuNew" xml:space="preserve">
     <value>Nouveau...</value>
   </data>
-  <data name="OnchoMapSurEntomologicalAssessmentConduc" xml:space="preserve">
-    <value>Une évaluation entomologique a-t-elle été menée ?</value>
+  <data name="PcIntvLfPopRecPc" xml:space="preserve">
+    <value>Population nécessitant un TMM  pour la Filariose Lymphatique</value>
   </data>
   <data name="NumLabCases" xml:space="preserve">
     <value>Nombre de cas confirmés par des examens de laboratoire</value>
@@ -5118,14 +5133,14 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="SurLeprosySurvey" xml:space="preserve">
     <value>Enquête sur la lèpre</value>
   </data>
-  <data name="Anopheles" xml:space="preserve">
-    <value>Anophèles</value>
+  <data name="RtiWorkbookQuestions" xml:space="preserve">
+    <value>Questions sur les cahiers de travail</value>
   </data>
   <data name="OnchoMapSurTestType" xml:space="preserve">
     <value>Type de test</value>
   </data>
-  <data name="NumCasesTreatedRef" xml:space="preserve">
-    <value>Nombre de cas traités dans des centres de référence</value>
+  <data name="IndSentinelSiteLat" xml:space="preserve">
+    <value>Latitude du site sentinelle</value>
   </data>
   <data name="Tra2Ns" xml:space="preserve">
     <value>NS - Non cartographié, mais non suspecté</value>
@@ -5138,6 +5153,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="ExportTasDays" xml:space="preserve">
     <value>Nombre estimé de journées requises pour effectuer l'enquête</value>
+  </data>
+  <data name="AddEditDeleteSite" xml:space="preserve">
+    <value>Add/edit/delete sentinel sites &gt;</value>
   </data>
   <data name="CmHasTaskForce" xml:space="preserve">
     <value>Existe t-il un comité national de pilotage /un groupe de travail pour le programme de lutte contre les MTN ?</value>
@@ -5178,8 +5196,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases" xml:space="preserve">
     <value>% of VL/HIV co-infected cases of the total new VL cases</value>
   </data>
-  <data name="SCMAvailableUsableStock" xml:space="preserve">
-    <value>Stock disponible utilisable </value>
+  <data name="NumEndemicVillagesReporting" xml:space="preserve">
+    <value>Nombre de villages endémiques communiquant des rapports</value>
   </data>
   <data name="IntvPkgPZQALB" xml:space="preserve">
     <value>PZQ + ALB</value>
@@ -5265,8 +5283,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="ImportSelectionOption" xml:space="preserve">
     <value>| Sélection</value>
   </data>
-  <data name="YawsIntervention" xml:space="preserve">
-    <value>Intervention contre le pian</value>
+  <data name="SacCoverage" xml:space="preserve">
+    <value>Couverture des EAS</value>
   </data>
   <data name="NumLeprosySelfCare" xml:space="preserve">
     <value>Nombre de personnes souffrant de la lèpre appartenant à un groupe d'auto-prise en charge</value>
@@ -5301,8 +5319,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="SAEDetails1" xml:space="preserve">
     <value>Détails relatifs au traitement</value>
   </data>
-  <data name="DiseasesRequired" xml:space="preserve">
-    <value>Veuillez sélectionner les maladies ciblées.</value>
+  <data name="PcIntvModeDistribution" xml:space="preserve">
+    <value>Mode of distribution</value>
   </data>
   <data name="LeishMontIntvNumberOfNewVLFemaleCases" xml:space="preserve">
     <value>Number of new VL female cases</value>
@@ -5346,11 +5364,11 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="NumClVlCases" xml:space="preserve">
     <value>Nombres de cas de LC et LV</value>
   </data>
-  <data name="Oncho0" xml:space="preserve">
-    <value>0 - Non endémique au-dessus du seuil de traitement</value>
-  </data>
   <data name="SCHSurPrevalenceOfIntestinalSchistosomeI" xml:space="preserve">
     <value>Prévalence de la schistosomiase intestinale</value>
+  </data>
+  <data name="SentinelSiteList" xml:space="preserve">
+    <value>Sentinel Site List</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Modifier le mot de passe &gt;</value>
@@ -5433,8 +5451,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="RoundsRecommendedByWho" xml:space="preserve">
     <value>Nombre de tours de Traitement de Masse (TDM)/année recommandés par l’OMS</value>
   </data>
-  <data name="TtAios" xml:space="preserve">
-    <value>TT AIOs</value>
+  <data name="HatIntervention" xml:space="preserve">
+    <value>Intervention contre l'HAT</value>
   </data>
   <data name="STHSurOverallProportionOfModerateIntens" xml:space="preserve">
     <value>Proportion d'ensemble d'une infection « à intensité moyenne » aux géohelminthiases</value>
@@ -5490,8 +5508,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="Sth40" xml:space="preserve">
     <value>40 Très forte prévalence (≥50%) suite à l'évaluation</value>
   </data>
-  <data name="RtiTra1" xml:space="preserve">
-    <value>1</value>
+  <data name="TraMapSurTiAlone" xml:space="preserve">
+    <value>TF-Seul</value>
   </data>
   <data name="PopFemale" xml:space="preserve">
     <value>Population féminine</value>
@@ -5523,8 +5541,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="PercentCasesActiveLeish" xml:space="preserve">
     <value>% cas détectés activement</value>
   </data>
-  <data name="UpdateNoInternet" xml:space="preserve">
-    <value>Veuillez vérifier que votre connexion Internet fonctionne, puis essayez de nouveau.</value>
+  <data name="OnchoSurNumRefused" xml:space="preserve">
+    <value>Number of individuals who refused to be examined</value>
   </data>
   <data name="OnchoSurNumberOfRoundsOfPcCompletedPrior" xml:space="preserve">
     <value>Nombre de tournées de CP terminées avant la mise en œuvre de l'enquête</value>
@@ -5550,8 +5568,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="DDSTHPsacPopulation" xml:space="preserve">
     <value>Nombre d'EAPS</value>
   </data>
-  <data name="Evaluation" xml:space="preserve">
-    <value>Évaluation</value>
+  <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
+    <value>Cahier de travail des maladies de RTI</value>
   </data>
   <data name="LFMapSurExaminedHydro1" xml:space="preserve">
     <value>Nombre d’individus examinés pour l’hydrocèle</value>
@@ -5661,11 +5679,14 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="EliminationEndemicDistricts" xml:space="preserve">
     <value>Nombre de {0} endémiques nécessitant une CP</value>
   </data>
-  <data name="TraPending" xml:space="preserve">
-    <value>Dans l’attente de la mise en œuvre/des résultats de l’enquête d’impact</value>
+  <data name="ExitWarning" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir quitter la base de données ?</value>
   </data>
   <data name="LeishMontIntvPrcntOfNewMCLCasesInChildren5To14Years" xml:space="preserve">
     <value>% of new MCL cases in children 5-14 years</value>
+  </data>
+  <data name="SplittingSaes" xml:space="preserve">
+    <value>Diviser EIG</value>
   </data>
   <data name="OnchoMapSurCmfl" xml:space="preserve">
     <value>CMFC</value>
@@ -5799,6 +5820,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="STHSurNumberOfIndividualsPositiveHookwor" xml:space="preserve">
     <value>Nombre de personnes positives - ankylostome</value>
   </data>
+  <data name="PcTrainRefresher" xml:space="preserve">
+    <value>Recyclage</value>
+  </data>
   <data name="PcIntvSchAtRisk" xml:space="preserve">
     <value>Population totale à risque de schistosomiase</value>
   </data>
@@ -5823,8 +5847,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="9dd22c4f-8130-4fbc-8251-607f65d3a7b2" xml:space="preserve">
     <value>VL survey prevalence</value>
   </data>
-  <data name="TraSurAgeGroupSurveyed" xml:space="preserve">
-    <value>Tranche d'âge interrogée</value>
+  <data name="UpdateNoInternet" xml:space="preserve">
+    <value>Veuillez vérifier que votre connexion Internet fonctionne, puis essayez de nouveau.</value>
   </data>
   <data name="OnchoSurEndDateOfSurvey" xml:space="preserve">
     <value>Date de fin de l'enquête</value>
@@ -5844,8 +5868,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years" xml:space="preserve">
     <value>% of new VL cases in adults &gt; 14 years</value>
   </data>
-  <data name="DDOnchoPopulationAtRisk" xml:space="preserve">
-    <value>Population à risque</value>
+  <data name="FENpbpPartnersCurrentForFComponents" xml:space="preserve">
+    <value>Partenaires NPBP (actuels) pour les volets N</value>
   </data>
   <data name="LfPostMdaTas2" xml:space="preserve">
     <value>Surveillance post-TMM 2</value>
@@ -5976,8 +6000,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="NumFirstLine" xml:space="preserve">
     <value>Nombre d'établissements de soins de santé primaire fournissant une PCT</value>
   </data>
-  <data name="SchMappingPrevalenceEggsInUrine" xml:space="preserve">
-    <value>Prevalence of any parasite eggs in urine</value>
+  <data name="NumSchoolsScreenedCm" xml:space="preserve">
+    <value>Nombre d'écoles visitées au cours de l'année</value>
   </data>
   <data name="LeishMontIntvNumberOfPeopleScreenedActivelyForVL" xml:space="preserve">
     <value>Number of people screened actively for VL</value>
@@ -6006,11 +6030,11 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="FEMethodSchoolEducationCommunityEducat" xml:space="preserve">
     <value>Méthode (éducation scolaire, éducation communautaire, etc.)</value>
   </data>
-  <data name="Calculate" xml:space="preserve">
-    <value>Calculer &gt;</value>
+  <data name="LeishIntervention" xml:space="preserve">
+    <value>Intervention contre la leishmaniose</value>
   </data>
-  <data name="ChooseLocations" xml:space="preserve">
-    <value>Choisir les localités pour :</value>
+  <data name="PercentCl" xml:space="preserve">
+    <value>% de cas de LC uniquement</value>
   </data>
   <data name="TraSurWithClinicalSignTf" xml:space="preserve">
     <value>% présentant un signe clinique - TF</value>
@@ -6045,8 +6069,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="RtiPostMda2" xml:space="preserve">
     <value>Enquête d’évaluation de transmission II : surveillance post-TDM</value>
   </data>
-  <data name="TraMapSur1to9yo" xml:space="preserve">
-    <value># d'enfants âgées de 1-9 ans enquêtées</value>
+  <data name="OnchoMapSurEntomologicalAssessmentConduc" xml:space="preserve">
+    <value>Une évaluation entomologique a-t-elle été menée ?</value>
   </data>
   <data name="PercentLabConfirmed" xml:space="preserve">
     <value>% de cas confirmés par des examens de laboratoire</value>
@@ -6057,8 +6081,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="LeishMontIntvPrcntFemaleMCL" xml:space="preserve">
     <value>% female MCL</value>
   </data>
-  <data name="Echino" xml:space="preserve">
-    <value>Échinococcoses</value>
+  <data name="TASActualNonResponseRateAbsent" xml:space="preserve">
+    <value>Taux de non-réponse actuel - % absents</value>
   </data>
   <data name="SCHMapSurProportionOfHeavyIntensityIntes" xml:space="preserve">
     <value>Nombre d’infections schistosome intestinal de haute intensité</value>
@@ -6081,11 +6105,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="Sth2" xml:space="preserve">
     <value>2A Prévalence modérée (&gt;20 et &lt;50%) suite à une cartographie initiale</value>
   </data>
-  <data name="Wbancrofti" xml:space="preserve">
-    <value>W. bancrofti</value>
-  </data>
-  <data name="IndSentinelSiteLat" xml:space="preserve">
-    <value>Latitude du site sentinelle</value>
+  <data name="LastUpdate" xml:space="preserve">
+    <value>Dernière mise à jour</value>
   </data>
   <data name="PercentScreenedYw" xml:space="preserve">
     <value>% cas parmi les populations dépistées (par 10 000)</value>
@@ -6150,14 +6171,14 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="YawsTrainNumberOfParticipantsToTrainingS" xml:space="preserve">
     <value>Nombre de participants lors des séances de formation</value>
   </data>
-  <data name="Cca" xml:space="preserve">
-    <value>ACC</value>
+  <data name="DDTraPopulationLivingInAreasSubDistrict" xml:space="preserve">
+    <value>Population vivant dans des régions ayant atteint les OUI-A</value>
   </data>
   <data name="AddNewSurveyTypeLink" xml:space="preserve">
     <value>Ajouter un nouveau type d'enquête...</value>
   </data>
-  <data name="LeishMontIntvPrcntFemaleVL" xml:space="preserve">
-    <value>% female VL</value>
+  <data name="OnchoSurEntTestTechTrap" xml:space="preserve">
+    <value>Piégeage</value>
   </data>
   <data name="NumRelapsesCases" xml:space="preserve">
     <value>Nombre de récidives ou de cas récurrents</value>
@@ -6174,8 +6195,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="RtiTitle" xml:space="preserve">
     <value>Titre</value>
   </data>
-  <data name="SCHMapSurLongitude" xml:space="preserve">
-    <value>Longitude</value>
+  <data name="Oncho0" xml:space="preserve">
+    <value>0 - Non endémique au-dessus du seuil de traitement</value>
   </data>
   <data name="OnchoSurEntTestTechPcr" xml:space="preserve">
     <value>Dépistage de pool PCR</value>
@@ -6216,8 +6237,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="NumCasesReadmitted" xml:space="preserve">
     <value>Nombre de cas admis de nouveau pour un traitement</value>
   </data>
-  <data name="PcIntvTraDrugZith" xml:space="preserve">
-    <value>Comprimés Zithromax</value>
+  <data name="OnchoSurEntTaxoForestSav" xml:space="preserve">
+    <value>Forêt et savane</value>
   </data>
   <data name="RtiDrpUsaid" xml:space="preserve">
     <value>Programme APOC appuyé par l’USAID</value>
@@ -6276,8 +6297,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="SchoolCases14" xml:space="preserve">
     <value>Cas d'âge scolaire (6 à 14 ans)</value>
   </data>
-  <data name="ImportListsSelect" xml:space="preserve">
-    <value>Veuillez sélectionner les valeurs nécessaires pour cette importation</value>
+  <data name="IntvIvm" xml:space="preserve">
+    <value>Intervention à l'IVM</value>
   </data>
   <data name="HATTrainPercentageOfHealthFacilitiesHavi" xml:space="preserve">
     <value>Pourcentage d'établissements sanitaires ayant au moins un membre du personnel formé dans le domaine des programmes d'élimination de la lèpre</value>
@@ -6288,8 +6309,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="Sch1" xml:space="preserve">
     <value>1 Faible prévalence (&gt;0 et &lt;10 %) suite à une cartographie initiale selon une méthode parasitologique </value>
   </data>
-  <data name="HatIntervention" xml:space="preserve">
-    <value>Intervention contre l'HAT</value>
+  <data name="TraMapSurMaleFemale15yo" xml:space="preserve">
+    <value>Hommes &amp; femmes âgés de 15+ ans</value>
   </data>
   <data name="TraSurLevelOfAntibioticTreatmentRequired" xml:space="preserve">
     <value>Niveau antibiothérapie requise</value>
@@ -6324,8 +6345,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="TraMapSurDistLevelMda" xml:space="preserve">
     <value>TDM au niveau de district</value>
   </data>
-  <data name="RedistrictingRulesSplit" xml:space="preserve">
-    <value>Set redistricting rules for custom indicators</value>
+  <data name="NumProspection" xml:space="preserve">
+    <value>Nombre de cas détectés de façon active (prospection)</value>
   </data>
   <data name="ScmDrpPzq" xml:space="preserve">
     <value>PZQ</value>
@@ -6387,8 +6408,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="MoE" xml:space="preserve">
     <value>Ministère de l'Éducation</value>
   </data>
-  <data name="PcIntvTraDrugTeo" xml:space="preserve">
-    <value>TEO</value>
+  <data name="TotalWithdrawalTreatment" xml:space="preserve">
+    <value>Nombre total de retraits du traitement</value>
   </data>
   <data name="LeishRepEndemicAdmin2Vl" xml:space="preserve">
     <value>Total number of ENDEMIC Admin-2 level in the country for VL</value>
@@ -6417,6 +6438,9 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="DatabaseUpdate" xml:space="preserve">
     <value>Mise à jour de la base de données</value>
   </data>
+  <data name="SentinelSitesForAdminUnit" xml:space="preserve">
+    <value>Sentinel Sites for Admin Unit</value>
+  </data>
   <data name="DDLFYearDeterminedThatAchievedCriteriaFo" xml:space="preserve">
     <value>Année déterminée où les critères d’arrêt du CP ont été atteints</value>
   </data>
@@ -6426,8 +6450,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="Data" xml:space="preserve">
     <value>Données</value>
   </data>
-  <data name="SplittingSaes" xml:space="preserve">
-    <value>Diviser EIG</value>
+  <data name="SCMAvailableUsableStock" xml:space="preserve">
+    <value>Stock disponible utilisable </value>
   </data>
   <data name="ParentLevelMustBeSame" xml:space="preserve">
     <value>Vous devez sélectionner un parent pour le nouveau niveau administratif qui est du type: {0}</value>
@@ -6452,9 +6476,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="Checkbox" xml:space="preserve">
     <value>Cocher la case</value>
-  </data>
-  <data name="TASCutoffStopMDA" xml:space="preserve">
-    <value>Stop MDA</value>
   </data>
   <data name="TriTrainingRefresher" xml:space="preserve">
     <value>Stage de perfectionnement</value>
@@ -6549,8 +6570,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="OnchoMapSiteName" xml:space="preserve">
     <value>Nom du site</value>
   </data>
-  <data name="SaeMale" xml:space="preserve">
-    <value>Masculin</value>
+  <data name="MustBeGreaterThanZero" xml:space="preserve">
+    <value>Doit être supérieur à zéro</value>
   </data>
   <data name="TraMapSurSurveyPower" xml:space="preserve">
     <value>Financement de l'enquête</value>
@@ -6567,8 +6588,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="PcIntvEndDateOfMda" xml:space="preserve">
     <value>Date de fin du TDM</value>
   </data>
-  <data name="TrainingYear" xml:space="preserve">
-    <value>Année pour laquelle s'appliquent les informations relatives à la formation</value>
+  <data name="TraPending" xml:space="preserve">
+    <value>Dans l’attente de la mise en œuvre/des résultats de l’enquête d’impact</value>
   </data>
   <data name="Oncho2NotMapped" xml:space="preserve">
     <value>Non cartographié</value>
@@ -6585,8 +6606,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="LeishMontIntvPrcntCaseFatalityRateForCL" xml:space="preserve">
     <value>% case fatality rate for CL</value>
   </data>
-  <data name="STHSurNumberOfIndividualsPositiveAscaris" xml:space="preserve">
-    <value>Nombre de personnes positives - ascaris</value>
+  <data name="SAEBrandandmanufacturername" xml:space="preserve">
+    <value>Nom de la marque et du fabricant</value>
   </data>
   <data name="TASTargetNumberOfSchoolsOrEas" xml:space="preserve">
     <value>Nombre actuel d'écoles ou d'AE ciblées</value>
@@ -6596,9 +6617,6 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   </data>
   <data name="Questionnaire" xml:space="preserve">
     <value>Questionnaire</value>
-  </data>
-  <data name="PrevalenceBeginningYear" xml:space="preserve">
-    <value>Prévalence (cas inscrits pour une PCT) au début de l'année</value>
   </data>
   <data name="AccessFiles" xml:space="preserve">
     <value>Accéder aux fichiers</value>
@@ -6624,8 +6642,8 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
   <data name="PcIntvOnchoAtRisk" xml:space="preserve">
     <value>Population à risque de l'onchocercose</value>
   </data>
-  <data name="FENpbpPartnersCurrentForFComponents" xml:space="preserve">
-    <value>Partenaires NPBP (actuels) pour les volets N</value>
+  <data name="TASCutoffStopMDA" xml:space="preserve">
+    <value>Stop MDA</value>
   </data>
   <data name="HATTrainPercentageOfHealthFacilityStaffS" xml:space="preserve">
     <value>Pourcentage de membres du personnel d'établissements sanitaires supervisés comme prévu</value>

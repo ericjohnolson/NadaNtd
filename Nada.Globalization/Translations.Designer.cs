@@ -217,6 +217,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add/edit/delete sentinel sites &gt;.
+        /// </summary>
+        public static string AddEditDeleteSite {
+            get {
+                return ResourceManager.GetString("AddEditDeleteSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add/remove indicators &gt;.
         /// </summary>
         public static string AddIndicatorLink {
@@ -276,6 +285,15 @@ namespace Nada.Globalization {
         public static string AddNewLocation {
             get {
                 return ResourceManager.GetString("AddNewLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new site &gt;.
+        /// </summary>
+        public static string AddNewSite {
+            get {
+                return ResourceManager.GetString("AddNewSite", resourceCulture);
             }
         }
         
@@ -942,6 +960,24 @@ namespace Nada.Globalization {
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot delete because data is associated with that sentinel site.
+        /// </summary>
+        public static string CannotDeleteSentinelSiteHasData {
+            get {
+                return ResourceManager.GetString("CannotDeleteSentinelSiteHasData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot Delete the Site.
+        /// </summary>
+        public static string CannotDeleteSite {
+            get {
+                return ResourceManager.GetString("CannotDeleteSite", resourceCulture);
             }
         }
         
@@ -15473,6 +15509,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sentinel Site List.
+        /// </summary>
+        public static string SentinelSiteList {
+            get {
+                return ResourceManager.GetString("SentinelSiteList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sentinel sites.
         /// </summary>
         public static string SentinelSitePicker {
@@ -15487,6 +15532,15 @@ namespace Nada.Globalization {
         public static string SentinelSites {
             get {
                 return ResourceManager.GetString("SentinelSites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sentinel Sites for Admin Unit.
+        /// </summary>
+        public static string SentinelSitesForAdminUnit {
+            get {
+                return ResourceManager.GetString("SentinelSitesForAdminUnit", resourceCulture);
             }
         }
         

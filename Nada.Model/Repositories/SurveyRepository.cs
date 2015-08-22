@@ -904,6 +904,39 @@ namespace Nada.Model.Repositories
             return site;
         }
 
+        public int GetSiteSurveyCount(SentinelSite site)
+        {
+            int surveyCount = 0;
+
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"SELECT COUNT(1) AS SurveyCount
+                            FROM Surveys
+                            WHERE IsDeleted = 0 AND SentinelSiteId = @id;", connection);
+                    command.Parameters.Add(new OleDbParameter("@id", site.Id));
+
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows && reader.Read())
+                        {
+                            surveyCount = reader.GetValueOrDefault<int>("SurveyCount");
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            return surveyCount;
+        }
+
         public SentinelSite Insert(SentinelSite site, int updatedById)
         {
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
@@ -992,6 +1025,29 @@ namespace Nada.Model.Repositories
                 command.ExecuteNonQuery();
             }
             return site;
+        }
+
+        public void DeleteSite(SentinelSite site, int userId)
+        {
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"DELETE FROM SentinelSites WHERE ID=@id", connection);
+
+                    //command.Parameters.Add(new OleDbParameter("@IsDeleted", true));
+                    //command.Parameters.Add(new OleDbParameter("@UpdatedById", userId));
+                    //command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@UpdatedAt", DateTime.Now));
+                    command.Parameters.Add(new OleDbParameter("@id", site.Id));
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
         }
 
         #endregion

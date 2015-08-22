@@ -442,6 +442,12 @@
     <Compile Include="View\Reports\Standard\PersonsTreatedCoverageOptions.Designer.cs">
       <DependentUpon>PersonsTreatedCoverageOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Survey\SentinelSiteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Survey\SentinelSiteList.Designer.cs">
+      <DependentUpon>SentinelSiteList.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserPasswordChange.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1097,6 +1103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Reports\Standard\PersonsTreatedCoverageOptions.resx">
       <DependentUpon>PersonsTreatedCoverageOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Survey\SentinelSiteList.resx">
+      <DependentUpon>SentinelSiteList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserPasswordChange.resx">
       <DependentUpon>UserPasswordChange.cs</DependentUpon>
