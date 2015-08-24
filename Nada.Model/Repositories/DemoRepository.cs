@@ -177,6 +177,11 @@ namespace Nada.Model.Repositories
                     }
                     reader.Close();
                 }
+
+                // Make sure the Country level is set
+                if (demo.AdminLevelId <= 0)
+                    demo.AdminLevelId = (int)CommonAdminLevelTypesKeys.Country;
+
                 return demo;
             }
         }

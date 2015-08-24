@@ -205,4 +205,9 @@ namespace Nada.Model
         AD = 30
     }
 
+    public enum CommonAdminLevelTypesKeys
+    {
+        Country = 1
+    }
+
 }
