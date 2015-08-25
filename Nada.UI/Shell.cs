@@ -157,20 +157,18 @@ namespace Nada.UI
             menuMergeDistrictToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
             //menuSplitCombineDistrictToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
             menuIndicatorManagementToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDbAdmin");
+            menuNewAdminLevelToolStripMenuItem1.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
+            menuDeleteAdminLevelToolStripMenuItem.Visible = Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin");
 
             if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
                !Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleAdmin"))
             {
-                menuNewAdminLevelToolStripMenuItem1.Visible = false;
-                menuDeleteAdminLevelToolStripMenuItem.Visible = false;
                 menuSettingsToolStripMenuItem.Visible = false;
                 menuImportToolStripMenuItem.Visible = false;
                 menuReorderAdminLevelToolStripMenuItem.Visible = false;
             }
             else
             {
-                menuNewAdminLevelToolStripMenuItem1.Visible = true;
-                menuDeleteAdminLevelToolStripMenuItem.Visible = true;
                 menuSettingsToolStripMenuItem.Visible = true;
                 menuImportToolStripMenuItem.Visible = true;
                 menuReorderAdminLevelToolStripMenuItem.Visible = true;
