@@ -1155,14 +1155,14 @@ namespace Nada.Model.Repositories
                         d.Id = 0;
                         d.DateDemographyData = dateReported;
                         d.GrowthRate = growthRatePercent;
-                        if (d.Pop0Month.HasValue) d.Pop0Month = d.Pop0Month * growthRateDemonminator + d.Pop0Month;
-                        if (d.Pop5yo.HasValue) d.Pop5yo = d.Pop5yo * growthRateDemonminator + d.Pop5yo;
-                        if (d.PopAdult.HasValue) d.PopAdult = d.PopAdult * growthRateDemonminator + d.PopAdult;
-                        if (d.PopFemale.HasValue) d.PopFemale = d.PopFemale * growthRateDemonminator + d.PopFemale;
-                        if (d.PopMale.HasValue) d.PopMale = d.PopMale * growthRateDemonminator + d.PopMale;
-                        if (d.PopPsac.HasValue) d.PopPsac = d.PopPsac * growthRateDemonminator + d.PopPsac;
-                        if (d.PopPsac.HasValue) d.PopSac = d.PopSac * growthRateDemonminator + d.PopSac;
-                        if (d.PopPsac.HasValue) d.TotalPopulation = d.TotalPopulation * growthRateDemonminator + d.TotalPopulation;
+                        if (d.Pop0Month.HasValue) d.Pop0Month = (int)Math.Round((double)d.Pop0Month * growthRateDemonminator) + d.Pop0Month;
+                        if (d.Pop5yo.HasValue) d.Pop5yo = (int)Math.Round((double)d.Pop5yo * growthRateDemonminator) + d.Pop5yo;
+                        if (d.PopAdult.HasValue) d.PopAdult = (int)Math.Round((double)d.PopAdult * growthRateDemonminator) + d.PopAdult;
+                        if (d.PopFemale.HasValue) d.PopFemale = (int)Math.Round((double)d.PopFemale * growthRateDemonminator) + d.PopFemale;
+                        if (d.PopMale.HasValue) d.PopMale = (int)Math.Round((double)d.PopMale * growthRateDemonminator) + d.PopMale;
+                        if (d.PopPsac.HasValue) d.PopPsac = (int)Math.Round((double)d.PopPsac * growthRateDemonminator) + d.PopPsac;
+                        if (d.PopPsac.HasValue) d.PopSac = (int)Math.Round((double)d.PopSac * growthRateDemonminator) + d.PopSac;
+                        if (d.PopPsac.HasValue) d.TotalPopulation = (int)Math.Round((double)d.TotalPopulation * growthRateDemonminator) + d.TotalPopulation;
                         SaveAdminDemography(command, connection, d, userId);
                     }
 
@@ -1255,7 +1255,7 @@ namespace Nada.Model.Repositories
                             Id = reader.GetValueOrDefault<int>("ID"),
                             DateReported = reader.GetValueOrDefault<DateTime>("DateDemographyData"),
                             GrowthRate = reader.GetValueOrDefault<double>("GrowthRate"),
-                            TotalPopulation = reader.GetValueOrDefault<double>("TotalPopulation"),
+                            TotalPopulation = reader.GetValueOrDefault<int>("TotalPopulation"),
                             UpdatedBy = GetAuditInfoUpdate(reader)
                         });
                     }
@@ -1503,14 +1503,14 @@ namespace Nada.Model.Repositories
                     demo.YearCensus = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
                     demo.GrowthRate = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
                     demo.PercentRural = reader.GetValueOrDefault<Nullable<double>>("PercentRural");
-                    demo.TotalPopulation = reader.GetValueOrDefault<Nullable<double>>("TotalPopulation");
-                    demo.Pop0Month = reader.GetValueOrDefault<Nullable<double>>("Pop0Month");
-                    demo.PopPsac = reader.GetValueOrDefault<Nullable<double>>("PopPsac");
-                    demo.PopSac = reader.GetValueOrDefault<Nullable<double>>("PopSac");
-                    demo.Pop5yo = reader.GetValueOrDefault<Nullable<double>>("Pop5yo");
-                    demo.PopAdult = reader.GetValueOrDefault<Nullable<double>>("PopAdult");
-                    demo.PopFemale = reader.GetValueOrDefault<Nullable<double>>("PopFemale");
-                    demo.PopMale = reader.GetValueOrDefault<Nullable<double>>("PopMale");
+                    demo.TotalPopulation = reader.GetValueOrDefault<Nullable<int>>("TotalPopulation");
+                    demo.Pop0Month = reader.GetValueOrDefault<Nullable<int>>("Pop0Month");
+                    demo.PopPsac = reader.GetValueOrDefault<Nullable<int>>("PopPsac");
+                    demo.PopSac = reader.GetValueOrDefault<Nullable<int>>("PopSac");
+                    demo.Pop5yo = reader.GetValueOrDefault<Nullable<int>>("Pop5yo");
+                    demo.PopAdult = reader.GetValueOrDefault<Nullable<int>>("PopAdult");
+                    demo.PopFemale = reader.GetValueOrDefault<Nullable<int>>("PopFemale");
+                    demo.PopMale = reader.GetValueOrDefault<Nullable<int>>("PopMale");
                     demo.Notes = reader.GetValueOrDefault<string>("Notes");
                     demo.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
                     demo.UpdatedBy = GetAuditInfo(reader);
@@ -1544,14 +1544,14 @@ namespace Nada.Model.Repositories
                     demo.YearCensus = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
                     demo.GrowthRate = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
                     demo.PercentRural = reader.GetValueOrDefault<Nullable<double>>("PercentRural");
-                    demo.TotalPopulation = reader.GetValueOrDefault<Nullable<double>>("TotalPopulation");
-                    demo.Pop0Month = reader.GetValueOrDefault<Nullable<double>>("Pop0Month");
-                    demo.PopPsac = reader.GetValueOrDefault<Nullable<double>>("PopPsac");
-                    demo.PopSac = reader.GetValueOrDefault<Nullable<double>>("PopSac");
-                    demo.Pop5yo = reader.GetValueOrDefault<Nullable<double>>("Pop5yo");
-                    demo.PopAdult = reader.GetValueOrDefault<Nullable<double>>("PopAdult");
-                    demo.PopFemale = reader.GetValueOrDefault<Nullable<double>>("PopFemale");
-                    demo.PopMale = reader.GetValueOrDefault<Nullable<double>>("PopMale");
+                    demo.TotalPopulation = reader.GetValueOrDefault<Nullable<int>>("TotalPopulation");
+                    demo.Pop0Month = reader.GetValueOrDefault<Nullable<int>>("Pop0Month");
+                    demo.PopPsac = reader.GetValueOrDefault<Nullable<int>>("PopPsac");
+                    demo.PopSac = reader.GetValueOrDefault<Nullable<int>>("PopSac");
+                    demo.Pop5yo = reader.GetValueOrDefault<Nullable<int>>("Pop5yo");
+                    demo.PopAdult = reader.GetValueOrDefault<Nullable<int>>("PopAdult");
+                    demo.PopFemale = reader.GetValueOrDefault<Nullable<int>>("PopFemale");
+                    demo.PopMale = reader.GetValueOrDefault<Nullable<int>>("PopMale");
                     demo.Notes = reader.GetValueOrDefault<string>("Notes");
                     demo.UpdatedAt = reader.GetValueOrDefault<DateTime>("UpdatedAt");
                     demo.UpdatedBy = GetAuditInfo(reader);

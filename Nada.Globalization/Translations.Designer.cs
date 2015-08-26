@@ -289,7 +289,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new site &gt;.
+        ///   Looks up a localized string similar to Add new site.
         /// </summary>
         public static string AddNewSite {
             get {
@@ -8017,6 +8017,15 @@ namespace Nada.Globalization {
         public static string MustBeNumber {
             get {
                 return ResourceManager.GetString("MustBeNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must be a whole number.
+        /// </summary>
+        public static string MustBeWholeNumber {
+            get {
+                return ResourceManager.GetString("MustBeWholeNumber", resourceCulture);
             }
         }
         

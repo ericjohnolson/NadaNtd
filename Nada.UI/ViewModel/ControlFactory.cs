@@ -127,6 +127,11 @@ namespace Nada.UI.ViewModel
                     indicatorErrors.SetError(cntrl, Translations.ValidYear);
                     return false;
                 }
+                else if (!string.IsNullOrEmpty(cntrl.Text) && type == IndicatorDataType.Integer && (!int.TryParse(cntrl.Text, out i)))
+                {
+                    indicatorErrors.SetError(cntrl, Translations.MustBeWholeNumber);
+                    return false;
+                }
 
                 indicatorErrors.SetError(cntrl, "");
                 return true;

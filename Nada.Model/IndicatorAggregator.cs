@@ -100,7 +100,7 @@ namespace Nada.Model
             else if (ind.AggType == (int)IndicatorAggType.Combine && (ind.DataType == (int)IndicatorDataType.Multiselect || ind.DataType == (int)IndicatorDataType.DiseaseMultiselect ||
                 ind.DataType == (int)IndicatorDataType.Partners))
                 result.Value = AggregateMultiselect(ind, existingValue);
-            else if (ind.DataType == (int)IndicatorDataType.Number || ind.DataType == (int)IndicatorDataType.Month || ind.DataType == (int)IndicatorDataType.Year)
+            else if (ind.DataType == (int)IndicatorDataType.Number || ind.DataType == (int)IndicatorDataType.Month || ind.DataType == (int)IndicatorDataType.Year || ind.DataType == (int)IndicatorDataType.Integer)
                 result.Value = AggregateNumber(ind, existingValue);
             else if (ind.DataType == (int)IndicatorDataType.Date)
                 result.Value = AggregateDate(ind, existingValue);

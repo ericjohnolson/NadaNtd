@@ -24,7 +24,8 @@ namespace Nada.Model
         LargeText = 15, // text
         EvaluationSite = 16, // no merge/agg
         DiseaseMultiselect = 17, // combine
-        DrugPackageMulitselect = 18
+        DrugPackageMulitselect = 18,
+        Integer = 19 //number
     }
 
     public enum IndicatorAggType

@@ -744,6 +744,17 @@ INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, Dropdow
 -- Story 130
 ALTER TABLE SentinelSites ADD IsDeleted YesNo;
 
+-- Story 100
+ALTER TABLE AdminLevelDemography ALTER COLUMN TotalPopulation INTEGER;
+ALTER TABLE AdminLevelDemography ALTER COLUMN AdultPopulation INTEGER;
+ALTER TABLE AdminLevelDemography ALTER COLUMN Pop0Month INTEGER;
+ALTER TABLE AdminLevelDemography ALTER COLUMN PopPsac INTEGER;
+ALTER TABLE AdminLevelDemography ALTER COLUMN PopSac INTEGER;
+ALTER TABLE AdminLevelDemography ALTER COLUMN Pop5yo INTEGER;
+ALTER TABLE AdminLevelDemography ALTER COLUMN PopAdult INTEGER;
+ALTER TABLE AdminLevelDemography ALTER COLUMN PopFemale INTEGER;
+ALTER TABLE AdminLevelDemography ALTER COLUMN PopMale INTEGER;
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]

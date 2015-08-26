@@ -687,6 +687,10 @@ namespace Nada.Model
                     if (val.Length > 0 && (!int.TryParse(val, out i) || (i > 2100 || i < 1900)))
                         return name + ": " + TranslationLookup.GetValue("ValidYear") + Environment.NewLine;
                     break;
+                case (int)IndicatorDataType.Integer:
+                    if (val.Length > 0 && (!int.TryParse(val, out i)))
+                        return name + ": " + TranslationLookup.GetValue("MustBeWholeNumber") + Environment.NewLine;
+                    break;
                 case (int)IndicatorDataType.YesNo:
                     bool isChecked = false;
                     if (val.ToLower() == "no")

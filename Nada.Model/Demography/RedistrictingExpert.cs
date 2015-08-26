@@ -567,14 +567,14 @@ namespace Nada.Model.Demography
                 newDemography.Id = 0;
                 newDemography.AdminLevelId = destId;
             }
-            newDemography.Pop0Month = demography.Pop0Month * multiplier;
-            newDemography.PopPsac = demography.PopPsac * multiplier;
-            newDemography.Pop5yo = demography.Pop5yo * multiplier;
-            newDemography.PopAdult = demography.PopAdult * multiplier;
-            newDemography.PopFemale = demography.PopFemale * multiplier;
-            newDemography.PopMale = demography.PopMale * multiplier;
-            newDemography.TotalPopulation = demography.TotalPopulation * multiplier;
-            newDemography.PopSac = demography.PopSac * multiplier;
+            newDemography.Pop0Month = (int)Math.Round((double)demography.Pop0Month * multiplier);
+            newDemography.PopPsac = (int)Math.Round((double)demography.PopPsac * multiplier);
+            newDemography.Pop5yo = (int)Math.Round((double)demography.Pop5yo * multiplier);
+            newDemography.PopAdult = (int)Math.Round((double)demography.PopAdult * multiplier);
+            newDemography.PopFemale = (int)Math.Round((double)demography.PopFemale * multiplier);
+            newDemography.PopMale = (int)Math.Round((double)demography.PopMale * multiplier);
+            newDemography.TotalPopulation = (int)Math.Round((double)demography.TotalPopulation * multiplier);
+            newDemography.PopSac = (int)Math.Round((double)demography.PopSac * multiplier);
 
             // save
             if (toMerge == null)
@@ -792,7 +792,7 @@ namespace Nada.Model.Demography
             newInd.IndicatorId = existingInd.IndicatorId;
             if (existingInd.Indicator.MergeRuleId == (int)MergingRule.CaseFindingStrategy)
                 newInd.DynamicValue = MergeCaseFindingStrategy(existingInd, newInd);
-            else if ((existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Number || existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Year || existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Month)
+            else if ((existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Number || existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Year || existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Month || existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Integer)
                 && (existingInd.Indicator.MergeRuleId == (int)MergingRule.Average || existingInd.Indicator.MergeRuleId == (int)MergingRule.Min ||
                 existingInd.Indicator.MergeRuleId == (int)MergingRule.Max || existingInd.Indicator.MergeRuleId == (int)MergingRule.Sum))
                 newInd.DynamicValue = MergeNumber(existingInd, newInd, existingInd.Indicator.MergeRuleId);

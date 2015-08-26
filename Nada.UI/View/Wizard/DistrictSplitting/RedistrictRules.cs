@@ -95,11 +95,11 @@ namespace Nada.UI.View.Wizard
             }
             else if (options.SplitType == SplittingType.Merge)
             {
-                if (dataTypeId == (int)IndicatorDataType.Number || dataTypeId == (int)IndicatorDataType.Year)
+                if (dataTypeId == (int)IndicatorDataType.Number || dataTypeId == (int)IndicatorDataType.Year || dataTypeId == (int)IndicatorDataType.Integer)
                 {
                     vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleMin, WeightedValue = (int)MergingRule.Min });
                     vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleMax, WeightedValue = (int)MergingRule.Max });
-                    if (dataTypeId == (int)IndicatorDataType.Number)
+                    if (dataTypeId == (int)IndicatorDataType.Number || dataTypeId == (int)IndicatorDataType.Integer)
                     {
                         vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleAverage, WeightedValue = (int)MergingRule.Average });
                         vals.Add(new IndicatorDropdownValue { DisplayName = Translations.RedistrictRuleSum, WeightedValue = (int)MergingRule.Sum });

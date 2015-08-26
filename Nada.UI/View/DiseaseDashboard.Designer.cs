@@ -73,7 +73,6 @@
             this.loadingDemos = new Nada.UI.Controls.Loading();
             this.pnlDemoDetails = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.lnkAddDemo = new Nada.UI.Controls.H3Link();
             this.lvDemo = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn7 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -81,6 +80,8 @@
             this.olvColumn15 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn19 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn20 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lnkAddDemo = new Nada.UI.Controls.H3Link();
+            this.lnkEditUnit = new Nada.UI.Controls.H3Link();
             this.tblHeader = new System.Windows.Forms.TableLayoutPanel();
             this.btnOverview = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
@@ -122,7 +123,6 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnIntervention = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.lnkEditUnit = new Nada.UI.Controls.H3Link();
             this.tableLayoutPanel1.SuspendLayout();
             this.tbProcess.SuspendLayout();
             this.pnlProcess.SuspendLayout();
@@ -764,22 +764,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(766, 203);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
-            // lnkAddDemo
-            // 
-            this.lnkAddDemo.AutoSize = true;
-            this.lnkAddDemo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnkAddDemo.BackColor = System.Drawing.Color.Transparent;
-            this.lnkAddDemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkAddDemo.Location = new System.Drawing.Point(0, 15);
-            this.lnkAddDemo.Margin = new System.Windows.Forms.Padding(0);
-            this.lnkAddDemo.Name = "lnkAddDemo";
-            this.lnkAddDemo.Size = new System.Drawing.Size(110, 15);
-            this.lnkAddDemo.TabIndex = 2;
-            this.lnkAddDemo.Tag = "AddNewDemoLink";
-            this.lnkAddDemo.Text = "AddNewDemoLink";
-            this.lnkAddDemo.TextColor = System.Drawing.Color.RoyalBlue;
-            this.lnkAddDemo.ClickOverride += new System.Action(this.h3Link1_ClickOverride);
-            // 
             // lvDemo
             // 
             this.lvDemo.AllColumns.Add(this.olvColumn7);
@@ -819,7 +803,7 @@
             // olvColumn4
             // 
             this.olvColumn4.AspectName = "TotalPopulation";
-            this.olvColumn4.AspectToStringFormat = "{0:n}";
+            this.olvColumn4.AspectToStringFormat = "{0:n0}";
             this.olvColumn4.CellPadding = null;
             this.olvColumn4.IsEditable = false;
             this.olvColumn4.Tag = "TotalPopulation";
@@ -861,6 +845,38 @@
             this.olvColumn20.Hyperlink = true;
             this.olvColumn20.Tag = "Delete";
             this.olvColumn20.Text = "Delete";
+            // 
+            // lnkAddDemo
+            // 
+            this.lnkAddDemo.AutoSize = true;
+            this.lnkAddDemo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnkAddDemo.BackColor = System.Drawing.Color.Transparent;
+            this.lnkAddDemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkAddDemo.Location = new System.Drawing.Point(0, 15);
+            this.lnkAddDemo.Margin = new System.Windows.Forms.Padding(0);
+            this.lnkAddDemo.Name = "lnkAddDemo";
+            this.lnkAddDemo.Size = new System.Drawing.Size(110, 15);
+            this.lnkAddDemo.TabIndex = 2;
+            this.lnkAddDemo.Tag = "AddNewDemoLink";
+            this.lnkAddDemo.Text = "AddNewDemoLink";
+            this.lnkAddDemo.TextColor = System.Drawing.Color.RoyalBlue;
+            this.lnkAddDemo.ClickOverride += new System.Action(this.h3Link1_ClickOverride);
+            // 
+            // lnkEditUnit
+            // 
+            this.lnkEditUnit.AutoSize = true;
+            this.lnkEditUnit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lnkEditUnit.BackColor = System.Drawing.Color.Transparent;
+            this.lnkEditUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkEditUnit.Location = new System.Drawing.Point(0, 0);
+            this.lnkEditUnit.Margin = new System.Windows.Forms.Padding(0);
+            this.lnkEditUnit.Name = "lnkEditUnit";
+            this.lnkEditUnit.Size = new System.Drawing.Size(127, 15);
+            this.lnkEditUnit.TabIndex = 3;
+            this.lnkEditUnit.Tag = "EditAdministrativeUnit";
+            this.lnkEditUnit.Text = "EditAdministrativeUnit";
+            this.lnkEditUnit.TextColor = System.Drawing.Color.RoyalBlue;
+            this.lnkEditUnit.ClickOverride += new System.Action(this.lnkEditUnit_ClickOverride);
             // 
             // tblHeader
             // 
@@ -1408,22 +1424,6 @@
             this.label2.TabIndex = 17;
             this.label2.Tag = "Interventions";
             this.label2.Text = "Interventions";
-            // 
-            // lnkEditUnit
-            // 
-            this.lnkEditUnit.AutoSize = true;
-            this.lnkEditUnit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.lnkEditUnit.BackColor = System.Drawing.Color.Transparent;
-            this.lnkEditUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkEditUnit.Location = new System.Drawing.Point(0, 0);
-            this.lnkEditUnit.Margin = new System.Windows.Forms.Padding(0);
-            this.lnkEditUnit.Name = "lnkEditUnit";
-            this.lnkEditUnit.Size = new System.Drawing.Size(127, 15);
-            this.lnkEditUnit.TabIndex = 3;
-            this.lnkEditUnit.Tag = "EditAdministrativeUnit";
-            this.lnkEditUnit.Text = "EditAdministrativeUnit";
-            this.lnkEditUnit.TextColor = System.Drawing.Color.RoyalBlue;
-            this.lnkEditUnit.ClickOverride += new System.Action(this.lnkEditUnit_ClickOverride);
             // 
             // DiseaseDashboard
             // 

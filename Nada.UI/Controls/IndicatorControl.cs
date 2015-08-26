@@ -274,6 +274,8 @@ namespace Nada.UI.View
                 return ControlFactory.CreateNumber(indicator, val, indicatorErrors, controlList, IndicatorDataType.Number);
             if (indicator.DataTypeId == (int)IndicatorDataType.Year)
                 return ControlFactory.CreateNumber(indicator, val, indicatorErrors, controlList, IndicatorDataType.Year);
+            if (indicator.DataTypeId == (int)IndicatorDataType.Integer)
+                return ControlFactory.CreateNumber(indicator, val, indicatorErrors, controlList, IndicatorDataType.Integer);
             if (indicator.DataTypeId == (int)IndicatorDataType.YesNo)
                 return ControlFactory.CreateYesNo(indicator, val, indicatorErrors, controlList);
             if (indicator.DataTypeId == (int)IndicatorDataType.Dropdown)
