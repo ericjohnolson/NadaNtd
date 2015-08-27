@@ -16,6 +16,7 @@ using C1.Win.C1Chart;
 using System.Collections;
 using Nada.Model.Repositories;
 using System.Globalization;
+using Nada.Model;
 
 namespace Nada.UI.View.Reports.CustomReport
 {
@@ -58,15 +59,52 @@ namespace Nada.UI.View.Reports.CustomReport
 
         private void CreateReport()
         {
-            currentResult = report.ReportOptions.ReportGenerator.Run(report);
-            if(currentResult.DataTableResults.Columns.Contains(Translations.Location))
-                currentResult.DataTableResults.Columns.Remove(Translations.Location);
-            if (currentResult.DataTableResults.Columns.Contains("ID"))
-                currentResult.DataTableResults.Columns.Remove("ID");
-            grdReport.DataSource = currentResult.DataTableResults;
-            LoadChart(currentResult);
-            if (!string.IsNullOrEmpty(currentResult.MetaDataWarning))
-                MessageBox.Show(currentResult.MetaDataWarning, Translations.ValidationErrorTitle);
+            // Hide the UI until the result is loaded
+            ShowIsLoading(true);
+
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            worker.RunWorkerAsync(report);
+        }
+
+        void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                SavedReport payload = (SavedReport)e.Argument;
+                e.Result = payload.ReportOptions.ReportGenerator.Run(payload);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error building the custom report. ", ex);
+                MessageBox.Show("There was an error building the custom report: " + ex.Message, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                currentResult = (ReportResult)e.Result;
+                if (currentResult.DataTableResults.Columns.Contains(Translations.Location))
+                    currentResult.DataTableResults.Columns.Remove(Translations.Location);
+                if (currentResult.DataTableResults.Columns.Contains("ID"))
+                    currentResult.DataTableResults.Columns.Remove("ID");
+                grdReport.DataSource = currentResult.DataTableResults;
+                LoadChart(currentResult);
+                if (!string.IsNullOrEmpty(currentResult.MetaDataWarning))
+                    MessageBox.Show(currentResult.MetaDataWarning, Translations.ValidationErrorTitle);
+                // The results are ready, so show the UI
+                ShowIsLoading(false);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error running the custom report. ", ex);
+                MessageBox.Show("There was an error running the custom report: " + ex.Message, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void editReportLink_ClickOverride()
@@ -178,6 +216,24 @@ namespace Nada.UI.View.Reports.CustomReport
                 var redist = dataTable.NewRow();
                 redist[0] = Translations.RedistrictedAdminUnits;
                 dataTable.Rows.Add(redist);
+            }
+        }
+
+        private void ShowIsLoading(bool isLoading)
+        {
+            if (isLoading)
+            {
+                loading1.Show();
+                loading2.Show();
+                tableLayoutPanel4.Hide();
+                tableLayoutPanel3.Hide();
+            }
+            else
+            {
+                loading1.Hide();
+                loading2.Hide();
+                tableLayoutPanel4.Show();
+                tableLayoutPanel3.Show();
             }
         }
 

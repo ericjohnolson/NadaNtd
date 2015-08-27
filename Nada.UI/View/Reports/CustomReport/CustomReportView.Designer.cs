@@ -39,9 +39,11 @@
             this.hrTop = new Nada.UI.Controls.HR();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.loading1 = new Nada.UI.Controls.Loading();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.lnkExport = new Nada.UI.Controls.H3Link();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.loading2 = new Nada.UI.Controls.Loading();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.c1Chart1 = new C1.Win.C1Chart.C1Chart();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -196,6 +198,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.loading1);
             this.tabPage1.Controls.Add(this.tableLayoutPanel4);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
@@ -204,6 +207,18 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Table";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // loading1
+            // 
+            this.loading1.AutoSize = true;
+            this.loading1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.loading1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loading1.Location = new System.Drawing.Point(45, 50);
+            this.loading1.Name = "loading1";
+            this.loading1.Size = new System.Drawing.Size(53, 67);
+            this.loading1.StatusMessage = "";
+            this.loading1.TabIndex = 2;
+            this.loading1.Visible = false;
             // 
             // tableLayoutPanel4
             // 
@@ -241,6 +256,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.loading2);
             this.tabPage2.Controls.Add(this.tableLayoutPanel3);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
@@ -249,6 +265,18 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Chart";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // loading2
+            // 
+            this.loading2.AutoSize = true;
+            this.loading2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.loading2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loading2.Location = new System.Drawing.Point(46, 50);
+            this.loading2.Name = "loading2";
+            this.loading2.Size = new System.Drawing.Size(53, 67);
+            this.loading2.StatusMessage = "";
+            this.loading2.TabIndex = 2;
+            this.loading2.Visible = false;
             // 
             // tableLayoutPanel3
             // 
@@ -359,6 +387,7 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.c1Chart1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -392,5 +421,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox cbChartType;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private Controls.Loading loading1;
+        private Controls.Loading loading2;
     }
 }
