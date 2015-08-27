@@ -224,7 +224,8 @@ namespace Nada.Model.Exports
             };
             // Add the indicators from the intervention type
             foreach (var indicator in LeishMonthlyIntvType.Indicators)
-                reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishMonthlyIntvType.Id, indicator));
+                reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishMonthlyIntvType.Id, indicator,
+                    LeishMonthlyIntvType.IntvTypeName, LeishMonthlyIntvType.DisplayNameKey));
             // Run the report
             LeishMonthlyIntvCountryAggReport = IntvReportGen.Run(new SavedReport { ReportOptions = reportOptions });
         }
@@ -244,7 +245,8 @@ namespace Nada.Model.Exports
             };
             // Add the indicators from the intervention type
             foreach (var indicator in LeishAnnualIntvType.Indicators)
-                reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishAnnualIntvType.Id, indicator));
+                reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishAnnualIntvType.Id, indicator,
+                    LeishAnnualIntvType.IntvTypeName, LeishAnnualIntvType.DisplayNameKey));
             // Run the report
             LeishAnnualIntvCountryAggReport = IntvReportGen.Run(new SavedReport { ReportOptions = reportOptions });
         }
@@ -264,7 +266,8 @@ namespace Nada.Model.Exports
             };
             // Add the indicators from the intervention type
             foreach (var indicator in LeishMonthlyIntvType.Indicators)
-                reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishMonthlyIntvType.Id, indicator));
+                reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishMonthlyIntvType.Id, indicator,
+                    LeishMonthlyIntvType.IntvTypeName, LeishMonthlyIntvType.DisplayNameKey));
             // Run the report
             LeishMonthlyIntvNoAggReport = IntvReportGen.Run(new SavedReport { ReportOptions = reportOptions });
         }
@@ -284,7 +287,8 @@ namespace Nada.Model.Exports
             };
             // Add the indicators from the distro
             foreach (var indicator in LeishDd.Indicators)
-                reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishDd.Id, indicator));
+                reportOptions.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(LeishDd.Id, indicator,
+                    LeishDd.Disease.DisplayName, LeishDd.Disease.DisplayNameKey));
             // Run the report
             LeishCountryAggDdReport = DdReportGen.Run(new SavedReport { ReportOptions = reportOptions });
         }
