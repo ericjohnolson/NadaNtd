@@ -18,6 +18,7 @@ namespace Nada.Model.Reports
         public IntvRepository IntvRepo = new IntvRepository();
         public List<IntvType> IntvTypes { get; set; }
         public List<Disease> Diseases { get; set; }
+        public List<string> AddedIndicators = new List<string>();
 
         public abstract List<IntvType> DetermineIntvTypes(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts);
         public abstract List<Disease> DetermineDiseases(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts);
@@ -34,10 +35,11 @@ namespace Nada.Model.Reports
         protected void AddIndicators(int id, string name, IHaveDynamicIndicators dd, string formName, string formTranslationKey,
             ReportOptions options)
         {
-            if (dd.Indicators.ContainsKey(name))
+            if (dd.Indicators.ContainsKey(name) && !AddedIndicators.Contains(name))
             {
                 options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(id,
                     new KeyValuePair<string, Indicator>(name, dd.Indicators[name]), formName, formTranslationKey));
+                AddedIndicators.Add(name);
             }
         }
 
@@ -272,9 +274,14 @@ namespace Nada.Model.Reports
                 //AddIndicators(intvType.Id, "PcIntvEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
             }
 
-            // Run the report
+            // Report gen
             IntvReportGenerator gen = new IntvReportGenerator();
+            // Recent distro static classs
+            RecentDistro recentDistro = RecentDistro.GetInstance(true /* instantiate */);
+            // Run the report
             ReportResult result = gen.Run(report);
+            // Clear the RecentDistro from memory
+            RecentDistro.ClearInstance();
 
             return result;
         }
