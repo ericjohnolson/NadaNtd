@@ -154,7 +154,7 @@ namespace Nada.Globalization {
         ///   Looks up a localized string similar to The Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices (AFR, SEAR, WPR), the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.
         ///The Integrated NTD Database was developed by Iota Ink:
         ///Jennifer Einberg, Project Manager; Eric Olson, Developer; 
-        ///Jennifer Fox, Graphic Designer; Ni [rest of string was truncated]&quot;;.
+        ///Jennifer Fox, Graphic Designer; Nick  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string AboutDisclaimer {
             get {
@@ -4250,7 +4250,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /Help/EN/help.chm.
+        ///   Looks up a localized string similar to /View/Help/EN/help.chm.
         /// </summary>
         public static string HelpFile {
             get {
@@ -6500,7 +6500,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Percentage of health facilities having at least one trained staff for Leishmaniasis programme.
+        ///   Looks up a localized string similar to Percentage of health facilities having at least one trained staff for Leishmaniasis elimination programme.
         /// </summary>
         public static string LeishTrainPercentageOfHealthFacilitiesHa {
             get {
@@ -7121,7 +7121,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TAS 1.
+        ///   Looks up a localized string similar to Stop MDA.
         /// </summary>
         public static string LfStopMdaTas {
             get {
@@ -11990,7 +11990,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TAS 2.
+        ///   Looks up a localized string similar to Post-MDA surveillance 1.
         /// </summary>
         public static string PostMdaTasI {
             get {
@@ -11999,7 +11999,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TAS 3.
+        ///   Looks up a localized string similar to Post-MDA surveillance 2.
         /// </summary>
         public static string PostMdaTasII {
             get {
@@ -19397,7 +19397,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /Help/TrainingPPT_061614_en.pptx.
+        ///   Looks up a localized string similar to /View/Help/TrainingPPT_061614_en.pptx.
         /// </summary>
         public static string TutorialFile {
             get {
