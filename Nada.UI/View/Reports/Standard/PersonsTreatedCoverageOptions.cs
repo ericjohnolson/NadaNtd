@@ -20,12 +20,12 @@ namespace Nada.UI.View.Reports.Standard
         public Action<IWizardStep> OnSwitchStep { get; set; }
         public Action<SavedReport> OnRunReport { get; set; }
         public Action OnFinish { get; set; }
-        public bool ShowNext { get { return false; } }
-        public bool EnableNext { get { return false; } }
+        public bool ShowNext { get { return true; } }
+        public bool EnableNext { get { return true; } }
         public bool ShowPrev { get { return false; } }
         public bool EnablePrev { get { return false; } }
-        public bool ShowFinish { get { return true; } }
-        public bool EnableFinish { get { return true; } }
+        public bool ShowFinish { get { return false; } }
+        public bool EnableFinish { get { return false; } }
         public string StepTitle { get { return Translations.ReportOptions; } }
 
         // TODO Replace with Translations
@@ -59,16 +59,6 @@ namespace Nada.UI.View.Reports.Standard
 
         public void DoNext()
         {
-            throw new NotImplementedException();
-        }
-
-        public void DoPrev()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DoFinish()
-        {
             // Initial report options
             report.ReportOptions.IsByLevelAggregation = false;
             report.ReportOptions.IsCountryAggregation = false;
@@ -98,6 +88,16 @@ namespace Nada.UI.View.Reports.Standard
 
             // Next step
             OnSwitchStep(new StepLocations(report, this));
+        }
+
+        public void DoPrev()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DoFinish()
+        {
+            throw new NotImplementedException();
         }
 
         private void StepOptions_Load(object sender, EventArgs e)
