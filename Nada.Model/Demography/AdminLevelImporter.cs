@@ -348,6 +348,8 @@ namespace Nada.Model
                                 xlsWorksheet.Cells[r, i] = string.Format("={2}{1}*{0}/100", recentCountryDemo.PercentFemale, r, totalPopColumn);
                             if (data.Columns[i - 1].ColumnName == TranslationLookup.GetValue("PopMale") && recentCountryDemo.PercentMale.HasValue)
                                 xlsWorksheet.Cells[r, i] = string.Format("={2}{1}*{0}/100", recentCountryDemo.PercentMale, r, totalPopColumn);
+                            if (data.Columns[i - 1].ColumnName == TranslationLookup.GetValue("PercentRural") && recentCountryDemo.PercentRural.HasValue)
+                                xlsWorksheet.Cells[r, i] = string.Format("={2}{1}*{0}/100", recentCountryDemo.PercentRural, r, totalPopColumn);
                         }
                     }
                 }
