@@ -427,7 +427,7 @@ INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId
 	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntCasesActivelyFound'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfPeopleScreenedPassivelyForPKDL'"), 2);
 
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
-	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases'"), 2);
+	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfVisceralLeishmaniasisHIVCoInfection'"), 2);
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
 	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical'"), 2);
 

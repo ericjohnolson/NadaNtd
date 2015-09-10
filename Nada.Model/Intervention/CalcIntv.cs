@@ -288,7 +288,7 @@ namespace Nada.Model.Intervention
                     case "LeishMonthlyInterventionLeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases":
                         return new KeyValuePair<string, string>(Translations.LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases,
                             GetPercentageWithRatio(
-                                GetValueOrDefault("LeishMonthlyInterventionLeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases", relatedValues),
+                                GetValueOrDefault("LeishMonthlyInterventionLeishMontIntvNumberOfVisceralLeishmaniasisHIVCoInfection", relatedValues),
                                 GetValueOrDefault("LeishMonthlyInterventionLeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical", relatedValues)
                             ));
                     case "LeishMonthlyInterventionLeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases":
