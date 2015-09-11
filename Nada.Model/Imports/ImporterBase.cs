@@ -689,7 +689,16 @@ namespace Nada.Model
                     break;
                 case (int)IndicatorDataType.Integer:
                     if (val.Length > 0 && (!int.TryParse(val, out i)))
-                        return name + ": " + TranslationLookup.GetValue("MustBeWholeNumber") + Environment.NewLine;
+                    {
+                        if (Double.TryParse(val, out d))
+                        {
+                            val = Math.Round(d).ToString();
+                        }
+                        else
+                        {
+                            return name + ": " + TranslationLookup.GetValue("MustBeWholeNumber") + Environment.NewLine;
+                        }
+                    }
                     break;
                 case (int)IndicatorDataType.YesNo:
                     bool isChecked = false;
