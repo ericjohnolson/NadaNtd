@@ -2,7 +2,7 @@
 insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId)
 	values (2, '4190984d-f272-4359-8414-6e7ef06fc4bc', 5, 250, 26, NOW(), 0, 0, 0, 0, 0, 0, 15, 2, 54);
 
--- Story #199 Critical decision dropdowns
+-- Story #199 Critical decision dropdowns;
 DELETE FROM IndicatorDropdownValues
 	WHERE DropdownValue IN ('TASCutoffFail', 'TASCutoffPass'); --ID IN (616, 617);
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
@@ -12,7 +12,7 @@ INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, Dropdow
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
 	SELECT ID, 3, 3, 'TASCutoffContinueSurveillance', 'TASCutoffContinueSurveillance', 0, 26, NOW, 26, NOW() FROM SurveyIndicators WHERE DisplayName = 'TASCriticalCutoff';
 
--- Story #191
+-- Story #191;
 INSERT INTO SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId)
 	values (5, 'eab663f6-1eb8-4efc-85da-2844ee720020', 5, 610, 26, NOW(), 0, 0, 0, 0, 0, 1, 10, 49, 53);
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
@@ -20,13 +20,13 @@ INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, Dropdow
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
 	SELECT ID, 3, 2, 'LFSurSurveySiteSchool', 'School', 0, 26, NOW, 26, NOW() FROM SurveyIndicators WHERE DisplayName = 'eab663f6-1eb8-4efc-85da-2844ee720020';
 
--- Story #190
+-- Story #190;
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
 	SELECT ID, 3, 13, 'FTS', 'FTS', 0, 26, NOW, 26, NOW() FROM SurveyIndicators WHERE DisplayName = 'LFSurTestType';
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
 	SELECT ID, 3, 14, 'FTS', 'FTS', 0, 26, NOW, 26, NOW() FROM SurveyIndicators WHERE DisplayName = 'LFMapSurTestType';
 
--- Story #189
+-- Story #189;
 UPDATE IndicatorDropdownValues SET SortOrder = 100
 	WHERE DropdownValue = 'ICT' AND IndicatorId = (SELECT ID FROM SurveyIndicators WHERE DisplayName = 'TASDiagnosticTest');
 UPDATE IndicatorDropdownValues SET SortOrder = 300
@@ -34,11 +34,11 @@ UPDATE IndicatorDropdownValues SET SortOrder = 300
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
 	SELECT ID, 3, 200, 'FTS', 'FTS', 0, 26, NOW, 26, NOW() FROM SurveyIndicators WHERE DisplayName = 'TASDiagnosticTest';
 
--- Story #188
+-- Story #188;
 insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId)
 	values (2, 'd807913f-b3a1-4948-a2b3-54eb0800a3bc', 5, 2190, 26, NOW(), 0, 0, -1, 0, 0, 0, 15, 49, 53);
 
--- Story #200
+-- Story #200;
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
 	SELECT ID, 3, 200, 'SurIntegrateLf', 'SurIntegrateLf', 0, 26, NOW, 26, NOW() FROM SurveyIndicators WHERE DisplayName = 'STHSurTestType';
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
@@ -48,17 +48,17 @@ INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, Dropdow
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
 	SELECT ID, 3, 300, 'SurNotIntegrateLf', 'SurNotIntegrateLf', 0, 26, NOW, 26, NOW() FROM SurveyIndicators WHERE DisplayName = 'STHMapSurSurTestType';
 
--- Story #217
+-- Story #217;
 DELETE FROM InterventionTypes_to_Diseases WHERE InterventionTypeId = (SELECT ID FROM InterventionTypes WHERE InterventionTypeName = 'LeishIntervention');
 DELETE FROM InterventionTypes_to_Indicators WHERE InterventionTypeId = (SELECT ID FROM InterventionTypes WHERE InterventionTypeName = 'LeishIntervention');
 DELETE FROM InterventionIndicators WHERE InterventionTypeId = (SELECT ID FROM InterventionTypes WHERE InterventionTypeName = 'LeishIntervention');
 DELETE FROM Interventions WHERE InterventionTypeId = (SELECT ID FROM InterventionTypes WHERE InterventionTypeName = 'LeishIntervention');
 DELETE FROM InterventionTypes WHERE InterventionTypeName = 'LeishIntervention';
 
--- Story #216 SQL from Nick story 216
+-- Story #216 SQL from Nick story 216;
 UPDATE ProcessIndicators set AggTypeId=5, RedistrictRuleId=1, MergeRuleId=1, IsRequired=0, SortOrder=25 where displayname = 'LeishTrainPercentageOfHealthFacilitiesHa' and ProcessTypeId=4;
 
--- Story #214, warning multi-nested queries, but trying to be safe and hard-code as little as possible
+-- Story #214, warning multi-nested queries, but trying to be safe and hard-code as little as possible;
 DELETE FROM SurveyIndicatorValues
 	WHERE IndicatorId = (
 		SELECT ID FROM SurveyIndicators
@@ -82,7 +82,7 @@ DELETE FROM SurveyIndicators
 DELETE FROM SurveyIndicators
 	WHERE DisplayName = 'NumCasesDiagnosedCm' AND SurveyTypeId = (SELECT ID FROM SurveyTypes WHERE SurveyTypeName = 'SurLeishSurvey');
 
--- Story #214 sql from Nick
+-- Story #214 sql from Nick;
 UPDATE SurveyIndicators set AggTypeId=5, RedistrictRuleId=49, MergeRuleId=53, IsRequired=0, SortOrder=100000 where displayname = 'Notes' and SurveyTypeId=7;
 UPDATE SurveyIndicators set AggTypeId=5, RedistrictRuleId=49, MergeRuleId=53, IsRequired=-1, SortOrder=1 where displayname = 'DateReported' and SurveyTypeId=7;
 insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (2, 'e4ece583-91ce-4f0a-baf7-de45831c1135', 5, 2, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
@@ -96,7 +96,7 @@ insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, Upd
 insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (13, '9ed458a6-2495-4ffb-adc0-1dfd5a2b6397', 5, 10, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
 insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId) values (13, '71bec938-836c-467e-8e58-5fab966b71ea', 5, 11, 26, NOW(), 0, 0, 0, 0, 0, 0, 7, 49, 53);
 
--- Story #214 calculations
+-- Story #214 calculations;
 UPDATE SurveyIndicators SET IsCalculated = 1
 	WHERE DisplayName IN ('6aff65b1-ca6f-4bd8-9982-4f0527dd8a99', '9dd22c4f-8130-4fbc-8251-607f65d3a7b2', '9ed458a6-2495-4ffb-adc0-1dfd5a2b6397', '71bec938-836c-467e-8e58-5fab966b71ea');
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
@@ -119,13 +119,13 @@ INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
 	(DLookup("ID", "SurveyIndicators", "DisplayName ='71bec938-836c-467e-8e58-5fab966b71ea'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName ='d61a5efa-4b2c-4f72-bf56-edab9025b6f2'"), 3);
 
--- Story #211 Leish Annual Intervention
+-- Story #211 Leish Annual Intervention;
 INSERT INTO InterventionTypes (InterventionTypeName, DiseaseType, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
 	('LeishAnnualIntervention', 'CM', 26, NOW(), 26, NOW());
 INSERT INTO InterventionTypes_to_Diseases (InterventionTypeId, DiseaseId) VALUES
 	(DLookup("ID", "InterventionTypes", "InterventionTypeName ='LeishAnnualIntervention'"), DLookup("ID", "Diseases", "DisplayName ='Leishmaniasis'"));
 
--- Story #211 Leish Annual Intervention indicators
+-- Story #211 Leish Annual Intervention indicators;
 insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId, InterventionTypeId) values (4, 'DateReported', 3, 0, 26, NOW(), 0, 0, -1, 0, 0, 0, 0, 2, 55, 26);
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 26, ID FROM interventionindicators where displayname = 'DateReported' AND InterventionTypeId = 26;
 insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId, InterventionTypeId) values (2, 'LeishAnnIntvTotalPopulationForThe2NdAdministrativeLevel', 1, 1, 26, NOW(), 0, 0, 0, 0, 0, 0, 0, 2, 57, 26);
@@ -165,7 +165,7 @@ insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SE
 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 26, ID FROM interventionindicators where displayname = 'Notes';
 
--- Story #211 Leish Annual Interv calculations
+-- Story #211 Leish Annual Interv calculations;
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
 	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvNumberOfNewVLCasesCuredAfterFollowUpOfAtLeast6Months'"), 2);
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
@@ -186,13 +186,13 @@ INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
 	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvOfCLRelapseCasesOutOfTotalNewCasesFollowedUp'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months'"), 2);
 
--- Story #213 Leish Monthly Interv
+-- Story #213 Leish Monthly Interv;
 INSERT INTO InterventionTypes (InterventionTypeName, DiseaseType, UpdatedById, UpdatedAt, CreatedById, CreatedAt) VALUES
 	('LeishMonthlyIntervention', 'CM', 26, NOW(), 26, NOW());
 INSERT INTO InterventionTypes_to_Diseases (InterventionTypeId, DiseaseId) VALUES
 	(DLookup("ID", "InterventionTypes", "InterventionTypeName ='LeishMonthlyIntervention'"), DLookup("ID", "Diseases", "DisplayName ='Leishmaniasis'"));
 
--- Story #213 Leish Monthly Interv indicators
+-- Story #213 Leish Monthly Interv indicators;
 insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId, InterventionTypeId) values (13, 'LeishMontIntvPrcntCasesActivelyFound', 1, 0, 26, NOW(), 0, 0, 0, 0, -1, 0, 0, 1, 1, 27);
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 27, ID FROM interventionindicators where displayname = 'LeishMontIntvPrcntCasesActivelyFound' AND InterventionTypeId = 27;
 insert into InterventionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, RedistrictRuleId, MergeRuleId, InterventionTypeId) values (13, 'LeishMontIntvPrcntOfLabConfirmedCases', 1, 0, 26, NOW(), 0, 0, 0, 0, -1, 0, 0, 1, 1, 27);
@@ -394,7 +394,7 @@ insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SE
 
 insert into interventiontypes_to_indicators (InterventionTypeId, IndicatorId) SELECT 27, ID FROM interventionindicators where displayname = 'Notes';
 
--- Story 213 Leish Monthly interv calcs
+-- Story 213 Leish Monthly interv calcs;
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
 	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvDetectionRatePer100000'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical'"), 2);
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
@@ -607,13 +607,13 @@ INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId
 INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
 	(DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvMonthlyConsumptionRate1StLineTreatmentUnits'"), 2, DLookup("ID", "InterventionIndicators", "DisplayName = 'LeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheEndOfTheMonth'"), 2);
 
--- Story 223
+-- Story 223;
 ALTER TABLE CountryDemography ADD GrossDomesticProduct NUMBER;
 ALTER TABLE CountryDemography ADD CountryIncomeStatus TEXT(64);
 ALTER TABLE CountryDemography ADD LifeExpectBirthFemale NUMBER;
 ALTER TABLE CountryDemography ADD LifeExpectBirthMale NUMBER;
 
--- Story 215 Remove previous indicators - warning multi-nested queries, but trying to be safe and hard-code as little as possible
+-- Story 215 Remove previous indicators - warning multi-nested queries, but trying to be safe and hard-code as little as possible;
 DELETE FROM DiseaseDistributionIndicatorValues
 	WHERE IndicatorId = (
 		SELECT ID FROM DiseaseDistributionIndicators
@@ -689,7 +689,7 @@ DELETE FROM DiseaseDistributionIndicators
 DELETE FROM DiseaseDistributionIndicators
 	WHERE DisplayName = 'PercentNewFemales' AND DiseaseId = (SELECT ID FROM Diseases WHERE DisplayName = 'Leishmaniasis');
 
--- Story 215 Add new indicators
+-- Story 215 Add new indicators;
 insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (5, 'LeishDiseaseDistEndemicityStatusVL', 3, 1, 26, NOW(), 0, 0, -1, 0, 0, 0, 0, 9, 2, 58);
 insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (5, 'LeishDiseaseDistEndemicityStatusCL', 3, 2, 26, NOW(), 0, 0, -1, 0, 0, 0, 0, 9, 2, 58);
 insert into DiseaseDistributionIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, IsMetaData, DiseaseId, RedistrictRuleId, MergeRuleId) values (5, 'LeishDiseaseDistEndemicityStatusPKDL', 3, 3, 26, NOW(), 0, 0, 0, 0, 0, 0, 0, 9, 2, 58);
@@ -741,10 +741,10 @@ INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, Dropdow
 INSERT INTO IndicatorDropdownValues (IndicatorId, EntityType, SortOrder, DropdownValue, TranslationKey, WeightedValue, UpdatedById, UpdatedAt, CreatedById, CreatedAt)
 	SELECT ID, 1, 3, 'Unknown', 'Unknown', 10, 26, NOW, 26, NOW() FROM DiseaseDistributionIndicators WHERE DisplayName = 'LeishDiseaseDistWasThereAnyCLOutbreakThisYear';
 
--- Story 130
+-- Story 130;
 ALTER TABLE SentinelSites ADD IsDeleted YesNo;
 
--- Story 100
+-- Story 100;
 ALTER TABLE AdminLevelDemography ALTER COLUMN TotalPopulation INTEGER;
 ALTER TABLE AdminLevelDemography ALTER COLUMN AdultPopulation INTEGER;
 ALTER TABLE AdminLevelDemography ALTER COLUMN Pop0Month INTEGER;
