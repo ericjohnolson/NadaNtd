@@ -239,8 +239,9 @@ namespace Nada.Model.Exports
             options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(gw.Id, gw.Indicators["EndemicityStatus"]));
             var lep = diseaseRepo.CreateCm(DiseaseType.Leprosy);
             options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lep.Id, lep.Indicators["EndemicityStatus"]));
-            var lei = diseaseRepo.CreateCm(DiseaseType.Leish);
-            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lei.Id, lei.Indicators["EndemicityStatus"]));
+            // Commenting out since Leish dd changed, see story 267 and 215
+            //var lei = diseaseRepo.CreateCm(DiseaseType.Leish);
+            //options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lei.Id, lei.Indicators["EndemicityStatus"]));
             var hat = diseaseRepo.CreateCm(DiseaseType.Hat);
             options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(hat.Id, hat.Indicators["EndemicityStatus"]));
             var b = diseaseRepo.CreateCm(DiseaseType.Buruli);
