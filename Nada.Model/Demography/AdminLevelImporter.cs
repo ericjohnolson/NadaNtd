@@ -193,21 +193,21 @@ namespace Nada.Model
                         demography.GrowthRate = d;
                     if (double.TryParse(row[TranslationLookup.GetValue("PercentRural")].ToString(), NumberStyles.Any, cultureEn, out d))
                         demography.PercentRural = d;
-                    if (int.TryParse(row["* " + TranslationLookup.GetValue("TotalPopulation")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                    if (TryParseAsIntThenDouble(row["* " + TranslationLookup.GetValue("TotalPopulation")].ToString(), NumberStyles.Any, cultureEn, out integer))
                         demography.TotalPopulation = integer;
-                    if (int.TryParse(row[TranslationLookup.GetValue("Pop0Month")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                    if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("Pop0Month")].ToString(), NumberStyles.Any, cultureEn, out integer))
                         demography.Pop0Month = integer;
-                    if (int.TryParse(row[TranslationLookup.GetValue("PopPsac")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                    if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("PopPsac")].ToString(), NumberStyles.Any, cultureEn, out integer))
                         demography.PopPsac = integer;
-                    if (int.TryParse(row["* " + TranslationLookup.GetValue("PopSac")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                    if (TryParseAsIntThenDouble(row["* " + TranslationLookup.GetValue("PopSac")].ToString(), NumberStyles.Any, cultureEn, out integer))
                         demography.PopSac = integer;
-                    if (int.TryParse(row[TranslationLookup.GetValue("Pop5yo")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                    if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("Pop5yo")].ToString(), NumberStyles.Any, cultureEn, out integer))
                         demography.Pop5yo = integer;
-                    if (int.TryParse(row[TranslationLookup.GetValue("PopAdult")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                    if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("PopAdult")].ToString(), NumberStyles.Any, cultureEn, out integer))
                         demography.PopAdult = integer;
-                    if (int.TryParse(row[TranslationLookup.GetValue("PopFemale")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                    if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("PopFemale")].ToString(), NumberStyles.Any, cultureEn, out integer))
                         demography.PopFemale = integer;
-                    if (int.TryParse(row[TranslationLookup.GetValue("PopMale")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                    if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("PopMale")].ToString(), NumberStyles.Any, cultureEn, out integer))
                         demography.PopMale = integer;
 
 
@@ -464,21 +464,21 @@ namespace Nada.Model
                             demography.GrowthRate = d;
                         if (double.TryParse(row[TranslationLookup.GetValue("PercentRural")].ToString(), NumberStyles.Any, cultureEn, out d))
                             demography.PercentRural = d;
-                        if (int.TryParse(row["* " + TranslationLookup.GetValue("TotalPopulation")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                        if (TryParseAsIntThenDouble(row["* " + TranslationLookup.GetValue("TotalPopulation")].ToString(), NumberStyles.Any, cultureEn, out integer))
                             demography.TotalPopulation = integer;
-                        if (int.TryParse(row[TranslationLookup.GetValue("Pop0Month")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                        if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("Pop0Month")].ToString(), NumberStyles.Any, cultureEn, out integer))
                             demography.Pop0Month = integer;
-                        if (int.TryParse(row[TranslationLookup.GetValue("PopPsac")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                        if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("PopPsac")].ToString(), NumberStyles.Any, cultureEn, out integer))
                             demography.PopPsac = integer;
-                        if (int.TryParse(row["* " + TranslationLookup.GetValue("PopSac")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                        if (TryParseAsIntThenDouble(row["* " + TranslationLookup.GetValue("PopSac")].ToString(), NumberStyles.Any, cultureEn, out integer))
                             demography.PopSac = integer;
-                        if (int.TryParse(row[TranslationLookup.GetValue("Pop5yo")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                        if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("Pop5yo")].ToString(), NumberStyles.Any, cultureEn, out integer))
                             demography.Pop5yo = integer;
-                        if (int.TryParse(row[TranslationLookup.GetValue("PopAdult")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                        if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("PopAdult")].ToString(), NumberStyles.Any, cultureEn, out integer))
                             demography.PopAdult = integer;
-                        if (int.TryParse(row[TranslationLookup.GetValue("PopFemale")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                        if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("PopFemale")].ToString(), NumberStyles.Any, cultureEn, out integer))
                             demography.PopFemale = integer;
-                        if (int.TryParse(row[TranslationLookup.GetValue("PopMale")].ToString(), NumberStyles.Any, cultureEn, out integer))
+                        if (TryParseAsIntThenDouble(row[TranslationLookup.GetValue("PopMale")].ToString(), NumberStyles.Any, cultureEn, out integer))
                             demography.PopMale = integer;
 
 

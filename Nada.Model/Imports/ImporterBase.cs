@@ -812,6 +812,29 @@ namespace Nada.Model
                 dataTable.Columns.Add(col);
             }
         }
+
+        protected bool TryParseAsIntThenDouble(string s, NumberStyles style, IFormatProvider provider, out int result)
+        {
+            int? value = null;
+
+            int i = 0;
+            double d = 0;
+
+            if (int.TryParse(s, style, provider, out i))
+                value = i;
+            else
+            {
+                if (double.TryParse(s, style, provider, out d))
+                    value = (int) Math.Round(d);
+            }
+
+            if (value.HasValue)
+                result = value.Value;
+            else
+                result = 0;
+
+            return value.HasValue;
+        }
         
         protected string CreateErrorMessage(string errorMessage)
         {
