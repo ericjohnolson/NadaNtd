@@ -16,6 +16,11 @@ namespace Nada.Model.Repositories
 
     public class MemberRepository
     {
+        /// <summary>
+        /// Backup username for admin requested by story 262
+        /// </summary>
+        private static string BackupUser = "NaDa";
+
         public bool Authenticate(string uid, string pwd)
         {
             if (Membership.ValidateUser(uid, pwd))
@@ -31,7 +36,7 @@ namespace Nada.Model.Repositories
             List<Member> users = new List<Member>();
             foreach (MembershipUser user in Membership.GetAllUsers())
             {
-                if (user.IsApproved)
+                if (user.IsApproved && user.UserName != BackupUser)
                     users.Add(new Member
                         {
                             Id = 9999,

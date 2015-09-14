@@ -1287,6 +1287,20 @@ UPDATE SurveyIndicators set DataTypeId = 19 where DisplayName = 'NumSchoolsScree
 UPDATE SurveyIndicators set DataTypeId = 19 where DisplayName = 'NumVillagesScreenedCm' and SurveyTypeId = 9;
 UPDATE SurveyIndicators set DataTypeId = 19 where DisplayName = 'TotalNumPeopleScreenedCm' and SurveyTypeId = 9;
 
+-- Story 262;
+INSERT INTO aspnet_Users (ApplicationId, UserName) VALUES
+	(DLookup("ApplicationId", "aspnet_Applications", "ApplicationName = 'NadaNtd'"), 'NaDa');
+INSERT INTO aspnet_Membership (UserId, [Password], IsApproved, CreateDate, PasswordSalt) VALUES
+	(DLookup("UserId", "aspnet_Users", "UserName = 'NaDa'"), 'Jo0A9JerxMD7fNor8Sv/kbp8g9E=', -1, NOW(), 'eJm9dmoLSt8pkLJ+lnXTqw==');
+INSERT INTO aspnet_UsersInRoles (UserId, RoleId) VALUES
+	(DLookup("UserId", "aspnet_Users", "UserName = 'NaDa'"), DLookup("RoleId", "aspnet_Roles", "RoleName = 'RoleAdmin'"));
+INSERT INTO aspnet_UsersInRoles (UserId, RoleId) VALUES
+	(DLookup("UserId", "aspnet_Users", "UserName = 'NaDa'"), DLookup("RoleId", "aspnet_Roles", "RoleName = 'RoleDataViewer'"));
+INSERT INTO aspnet_UsersInRoles (UserId, RoleId) VALUES
+	(DLookup("UserId", "aspnet_Users", "UserName = 'NaDa'"), DLookup("RoleId", "aspnet_Roles", "RoleName = 'RoleDataEnterer'"));
+INSERT INTO aspnet_UsersInRoles (UserId, RoleId) VALUES
+	(DLookup("UserId", "aspnet_Users", "UserName = 'NaDa'"), DLookup("RoleId", "aspnet_Roles", "RoleName = 'RoleDbAdmin'"));
+
 
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
