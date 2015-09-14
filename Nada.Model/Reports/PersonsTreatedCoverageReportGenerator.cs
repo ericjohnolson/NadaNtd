@@ -278,6 +278,7 @@ namespace Nada.Model.Reports
             IntvReportGenerator gen = new IntvReportGenerator();
             // Recent distro static classs
             RecentDistro recentDistro = RecentDistro.GetInstance(true /* instantiate */);
+            recentDistro.Run(report.ReportOptions);
             // Run the report
             ReportResult result = gen.Run(report);
             // Clear the RecentDistro from memory

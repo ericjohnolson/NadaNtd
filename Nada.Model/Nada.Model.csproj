@@ -96,6 +96,7 @@
     <Compile Include="Demography\RedistrictingExpert.cs" />
     <Compile Include="Demography\RedistrictingOptions.cs" />
     <Compile Include="Diseases\DiseaseDistroCustomValidator.cs" />
+    <Compile Include="Diseases\RecentDistro.cs" />
     <Compile Include="Exports\ApocExporter.cs" />
     <Compile Include="Exports\LeishReportExporter.cs" />
     <Compile Include="Exports\LeishReportQuestions.cs" />

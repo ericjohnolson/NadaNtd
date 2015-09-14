@@ -142,10 +142,11 @@ namespace Nada.Model
 
         protected string GetRecentDistroIndicator(int adminLevelId, string indicatorName, DiseaseType diseaseType, DateTime start, DateTime end, ref string errors)
         {
+            // If there is a RecentDistro instance, look for the value there
             RecentDistro recentDistro = RecentDistro.GetInstance(false /* don't instantiate */);
             if (recentDistro != null)
             {
-                string storedVal = recentDistro.GetRecentDistroIndicator(adminLevelId, indicatorName, diseaseType, start, end);
+                string storedVal = recentDistro.GetRecentDistroIndicator(adminLevelId, indicatorName, diseaseType, start, end, ref errors);
                 if (storedVal != null)
                 {
                     return storedVal;
@@ -218,31 +219,14 @@ namespace Nada.Model
             }
             if (levelInds.Indicators.ContainsKey(indicatorName) )
             {
-                if (!string.IsNullOrEmpty(levelInds.Indicators[indicatorName].Value))
-                {
-                    string val = levelInds.Indicators[indicatorName].Value.ToString();
-                    // Store the value
-                    if (recentDistro != null)
-                        recentDistro.AddRecentDistroIndicator(adminLevelId, indicatorName, diseaseType, start, end, val);
-
+                if(!string.IsNullOrEmpty(levelInds.Indicators[indicatorName].Value))
                     return levelInds.Indicators[indicatorName].Value.ToString();
-                }
                 else
-                {
-                    // Store the value
-                    if (recentDistro != null)
-                        recentDistro.AddRecentDistroIndicator(adminLevelId, indicatorName, diseaseType, start, end, "");
-
                     return "";
-                }
             }
             string error = string.Format(Translations.ReportsNoDdInDateRange, levelInds.Name, start.ToShortDateString(), end.ToShortDateString(), levelInds.DiseaseName) + Environment.NewLine;
             if (!errors.Contains(error))
                 errors += error;
-
-            // Store the value
-            recentDistro.AddRecentDistroIndicator(adminLevelId, indicatorName, diseaseType, start, end, Translations.NA);
-
             return Translations.NA;
         }
 
@@ -284,53 +268,5 @@ namespace Nada.Model
         #endregion
     }
 
-    public class RecentDistro
-    {
-        private Dictionary<string, string> RecentDistroIndicators;
-
-        private static RecentDistro Instance;
-
-        private RecentDistro()
-        {
-            RecentDistroIndicators = new Dictionary<string, string>();
-        }
-
-        public static RecentDistro GetInstance(bool instantiate)
-        {
-            if (Instance == null && instantiate)
-            {
-                Instance = new RecentDistro();
-            }
-            return Instance;
-        }
-
-        public static void ClearInstance()
-        {
-            Instance = null;
-        }
-
-        public void AddRecentDistroIndicator(int adminLevelId, string indicatorName, DiseaseType diseaseType, DateTime start, DateTime end, string value)
-        {
-            RecentDistroIndicators.Add(BuildRecentDistroKey(adminLevelId, indicatorName, diseaseType, start, end), value);
-        }
-
-        public string GetRecentDistroIndicator(int adminLevelId, string indicatorName, DiseaseType diseaseType, DateTime start, DateTime end)
-        {
-            string key = BuildRecentDistroKey(adminLevelId, indicatorName, diseaseType, start, end);
-            if (RecentDistroIndicators.ContainsKey(key))
-            {
-                return RecentDistroIndicators[key];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        private string BuildRecentDistroKey(int adminLevelId, string indicatorName, DiseaseType diseaseType, DateTime start, DateTime end)
-        {
-            return string.Format("{0}{1}{2}{3}{4}", adminLevelId, indicatorName, diseaseType.ToString(), start.Millisecond, end.Millisecond);
-        }
-    }
 
 }
