@@ -58,6 +58,9 @@ namespace Nada.UI.View
                 tblTitle.Focus();
                 lblAdminLevel.Text = viewModel.LocationName;
                 tbNotes.Text = viewModel.Notes;
+                // Set the meta data date range based on the value of the DateReported indicator if there is one
+                if (viewModel.Indicators != null && viewModel.Indicators.Count() > 0)
+                    indicatorControl1.LoadDateRangeFromDateReported(viewModel.Indicators, viewModel.IndicatorValues);
                 LoadMetaData();
                 if (viewModel.Indicators != null && viewModel.Indicators.Count() > 0)
                     indicatorControl1.LoadIndicators(viewModel.Indicators, viewModel.IndicatorValues, viewModel.IndicatorDropdownValues, viewModel.EntityType);

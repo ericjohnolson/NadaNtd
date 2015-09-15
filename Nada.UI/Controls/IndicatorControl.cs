@@ -323,5 +323,33 @@ namespace Nada.UI.View
         {
             dtEnd.Value = dtStart.Value.AddYears(1);
         }
+
+        /// <summary>
+        /// Looks for the DateReported indicator and if found, sets the Meta date start and end dates using the value.
+        ///
+        /// For speed increase, work can be done in LoadIndicators but work needs to be done before meta data is loaded
+        /// (eg, DataEntryEdit's LoadMetaData())
+        /// </summary>
+        public void LoadDateRangeFromDateReported(Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
+        {
+            Indicator dateReportedIndicator = indicators.Values.Where(i => i.DisplayName == "DateReported"
+                && !i.IsEditable && !i.IsDisplayed && !i.IsCalculated && !i.IsMetaData).FirstOrDefault();
+            if (dateReportedIndicator == null)
+                return;
+
+            IndicatorValue dateReportedIndicatorValue = values.FirstOrDefault(i => i.IndicatorId == dateReportedIndicator.Id);
+            if (dateReportedIndicatorValue == null)
+                return;
+
+            string dateReportedStr = dateReportedIndicatorValue.DynamicValue;
+            DateTime dateReported;
+            if (DateTime.TryParse(dateReportedStr, out dateReported))
+            {
+                start = dateReported;
+                end = dateReported.AddYears(1);
+                dtStart.Value = start;
+                dtEnd.Value = end;
+            }
+        }
     }
 }
