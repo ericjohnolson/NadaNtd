@@ -199,6 +199,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have not added admin units for the new administrative level. Either go to Demography under the Import menu to add administrative units or else you will be asked to add the admin units next time you open the database..
+        /// </summary>
+        public static string AddAdminLevelNoAdminUnits {
+            get {
+                return ResourceManager.GetString("AddAdminLevelNoAdminUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add administrative level &gt;.
         /// </summary>
         public static string AddAdminLevelTypeLink {

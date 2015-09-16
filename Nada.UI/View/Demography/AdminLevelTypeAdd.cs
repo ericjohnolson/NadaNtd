@@ -61,6 +61,7 @@ namespace Nada.UI.View
             bsAdminLevel.EndEdit();
             int userid = ApplicationData.Instance.GetUserId();
             r.Save(model, userid);
+            MessageBox.Show(Translations.AddAdminLevelNoAdminUnits, Translations.AdminLevelType);
             OnSave();
             this.Close();
         }
