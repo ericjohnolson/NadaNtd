@@ -38,6 +38,8 @@ namespace Nada.Model.Exports
         private ReportResult LeishAnnualIntvCountryAggReport;
         private ReportResult LeishMonthlyIntvNoAggReport;
 
+        private List<IntvBase> LeishAnnualIntvs;
+
         private DiseaseDistroPc LeishDd;
         private ReportResult LeishCountryAggDdReport;
         private ReportResult Leish2ndLvlAggDdreport;
@@ -78,6 +80,9 @@ namespace Nada.Model.Exports
 
                 // Get intervention type data
                 GetIntvTypes();
+
+                // Get all the Leish Annual interventions
+                GetAllLeishAnnualIntvs();
 
                 // Get disease dist data
                 GetDiseases();
@@ -201,6 +206,12 @@ namespace Nada.Model.Exports
             LeishMonthlyIntvType = IntvRepo.GetIntvType((int)StaticIntvType.LeishMonthly);
             // Get the admin intervention type
             LeishAnnualIntvType = IntvRepo.GetIntvType((int)StaticIntvType.LeishAnnual);
+        }
+
+        private void GetAllLeishAnnualIntvs()
+        {
+            // Get all the Leish annual interventions
+            LeishAnnualIntvs = IntvRepo.GetAllIntvInRange(new List<int>() { (int)StaticIntvType.LeishAnnual }, StartDate, EndDate);
         }
 
         private void GetDiseases()
@@ -558,11 +569,8 @@ namespace Nada.Model.Exports
                 GetValueFromCountryAggReport(LeishMonthlyIntvType.IntvTypeName, Translations.LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical, LeishMonthlyIntvCountryAggReport)
                 );
             AddValueToRange(XlsWorksheet, XlsRange, "I73", clinicalCl);
-            // Months elased
-            AddReportValueToExport(XlsWorksheet, XlsRange, "G74", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForVL, LeishAnnualIntvCountryAggReport);
-            AddReportValueToExport(XlsWorksheet, XlsRange, "I74", LeishAnnualIntvType.IntvTypeName,
-                Translations.LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForCL, LeishAnnualIntvCountryAggReport);
+            // Months elapsed
+            AddMonthsElapsed();
             // Percentage of cases with HIV co-infection
             AddReportValueToExport(XlsWorksheet, XlsRange, "G75", LeishMonthlyIntvType.IntvTypeName,
                 Translations.LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases, LeishMonthlyIntvCountryAggReport);
@@ -617,6 +625,52 @@ namespace Nada.Model.Exports
             // Failure definition
             AddValueToRange(XlsWorksheet, XlsRange, "F91", !string.IsNullOrEmpty(questions.LeishRepFailureDefVl) ? questions.LeishRepFailureDefVl : "");
             AddValueToRange(XlsWorksheet, XlsRange, "F92", !string.IsNullOrEmpty(questions.LeishRepFailureDefCl) ? questions.LeishRepFailureDefCl : "");
+        }
+
+        private void AddMonthsElapsed()
+        {
+            if (LeishAnnualIntvs == null)
+                return;
+
+            // Will hold the most recent values for the "Months elapsed between onset of symptoms and diagnosis (median)" indicators
+            string monthsElapsedVl = "";
+            string monthsElapsedCl = "";
+
+            // Order the annual interventions by most recent
+            List<IntvBase> intvs = LeishAnnualIntvs.OrderByDescending(i => i.DateReported).ToList();
+            // Look for the most recent values for the "Months elapsed between onset of symptoms and diagnosis (median)" indicators
+            foreach (IntvBase intv in intvs)
+            {
+                // If no recent value for the VL indicator has been found, see if this intervention has a value for the indicator
+                if (string.IsNullOrEmpty(monthsElapsedVl))
+                {
+                    // Get the indiactor
+                    IndicatorValue vlIndicator = intv.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForVL");
+                    // If there is a value, keep track of it
+                    if (vlIndicator != null && vlIndicator.DynamicValue != null)
+                        monthsElapsedVl = vlIndicator.DynamicValue;
+                }
+
+                // If no recent value for the CL indicator has been found, see if this intervention has a value for the indicator
+                if (string.IsNullOrEmpty(monthsElapsedCl))
+                {
+                    // Get the indiactor
+                    IndicatorValue clIndicator = intv.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForCL");
+                    // If there is a value, keep track of it
+                    if (clIndicator != null && clIndicator.DynamicValue != null)
+                        monthsElapsedCl = clIndicator.DynamicValue;
+                }
+
+                // If values for both the VL and CL have been found, no need to continue to look
+                if (!string.IsNullOrEmpty(monthsElapsedVl) && !string.IsNullOrEmpty(monthsElapsedCl))
+                    break;
+            }
+
+            // Set the values on the report
+            if (!string.IsNullOrEmpty(monthsElapsedVl))
+                AddValueToRange(XlsWorksheet, XlsRange, "G74", monthsElapsedVl);
+            if (!string.IsNullOrEmpty(monthsElapsedCl))
+                AddValueToRange(XlsWorksheet, XlsRange, "I74", monthsElapsedCl);
         }
 
         private string GetValueFromCountryAggReport(string formName, string fieldName, ReportResult report)
