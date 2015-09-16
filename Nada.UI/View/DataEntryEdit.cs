@@ -87,6 +87,8 @@ namespace Nada.UI.View
                 }
                 else
                     statCalculator1.Visible = false;
+                // Validation control
+                validationControl.OnValidate += validationControl_OnValidate;
                 // special controls
                 viewModel.AddSpecialControls(indicatorControl1);
                 if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&
@@ -223,6 +225,11 @@ namespace Nada.UI.View
                 container = control as ContainerControl;
             }
             return control;
+        }
+
+        private void validationControl_OnValidate()
+        {
+            validationControl.DoValidate(viewModel.Indicators, viewModel.IndicatorValues);
         }
     }
 }

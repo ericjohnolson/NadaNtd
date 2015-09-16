@@ -271,6 +271,12 @@
     <Compile Include="Controls\TriStateTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\ValidationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ValidationControl.Designer.cs">
+      <DependentUpon>ValidationControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\ControlFactory.cs" />
     <Compile Include="ViewModel\DdUpdateViewModel.cs" />
     <Compile Include="ViewModel\ProcessBaseVm.cs" />
@@ -1020,6 +1026,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\StatCalculator.resx">
       <DependentUpon>StatCalculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ValidationControl.resx">
+      <DependentUpon>ValidationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\About.resx">
       <DependentUpon>About.cs</DependentUpon>

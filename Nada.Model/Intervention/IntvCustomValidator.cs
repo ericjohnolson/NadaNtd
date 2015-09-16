@@ -11,5 +11,10 @@ namespace Nada.Model.Intervention
         {
             return "";
         }
+
+        public List<KeyValuePair<string, string>> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

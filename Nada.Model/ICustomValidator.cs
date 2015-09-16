@@ -7,6 +7,7 @@ namespace Nada.Model
 {
     public interface ICustomValidator
     {
+        List<KeyValuePair<string, string>> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values);
         string Valid(Indicator indicator, List<IndicatorValue> values);
     }
 }
