@@ -1126,6 +1126,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for validation errors &gt;.
+        /// </summary>
+        public static string CheckForValidationErrorsLnk {
+            get {
+                return ResourceManager.GetString("CheckForValidationErrorsLnk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for updates.
         /// </summary>
         public static string CheckUpdates {
@@ -19726,6 +19735,15 @@ namespace Nada.Globalization {
         public static string ValidationErrorTitle {
             get {
                 return ResourceManager.GetString("ValidationErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation:.
+        /// </summary>
+        public static string ValidationHeader {
+            get {
+                return ResourceManager.GetString("ValidationHeader", resourceCulture);
             }
         }
         

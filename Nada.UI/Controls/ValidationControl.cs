@@ -106,6 +106,18 @@ namespace Nada.UI.Controls
             if (OnValidate != null)
                 OnValidate();
         }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Color TextColor
+        {
+            get { return lblValidationHeader.ForeColor; }
+            set
+            {
+                lblValidationHeader.ForeColor = value;
+                hr1.BackColor = value;
+            }
+        }
     }
 
     public class ValidationPayload

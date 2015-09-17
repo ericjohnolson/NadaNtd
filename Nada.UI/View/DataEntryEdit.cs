@@ -74,6 +74,7 @@ namespace Nada.UI.View
                 lblTitle.ForeColor = Color.FromArgb(52, 100, 160);
                 lblDiseaseType.ForeColor = Color.FromArgb(52, 100, 160);
                 statCalculator1.TextColor = Color.FromArgb(52, 100, 160);
+                validationControl.TextColor = Color.FromArgb(52, 100, 160);
                 indicatorControl1.TextColor = Color.FromArgb(52, 100, 160);
                 hrTop.RuleColor = Color.FromArgb(52, 100, 160);
                 hr4.RuleColor = Color.FromArgb(52, 100, 160);

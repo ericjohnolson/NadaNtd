@@ -44,7 +44,6 @@
             this.tlpContainer.AutoSize = true;
             this.tlpContainer.ColumnCount = 1;
             this.tlpContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpContainer.Controls.Add(this.hr1, 0, 0);
             this.tlpContainer.Controls.Add(this.tlpHeaderContainer, 0, 1);
             this.tlpContainer.Controls.Add(this.tlpValidationResults, 0, 2);
@@ -52,11 +51,11 @@
             this.tlpContainer.Location = new System.Drawing.Point(0, 0);
             this.tlpContainer.Name = "tlpContainer";
             this.tlpContainer.RowCount = 4;
-            this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpContainer.Size = new System.Drawing.Size(929, 424);
+            this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpContainer.Size = new System.Drawing.Size(929, 132);
             this.tlpContainer.TabIndex = 0;
             // 
             // hr1
@@ -73,14 +72,13 @@
             // tlpHeaderContainer
             // 
             this.tlpHeaderContainer.ColumnCount = 2;
-            this.tlpHeaderContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.34783F));
-            this.tlpHeaderContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.65218F));
+            this.tlpHeaderContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpHeaderContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpHeaderContainer.Controls.Add(this.lblValidationHeader, 0, 0);
             this.tlpHeaderContainer.Controls.Add(this.lnkValidateLink, 1, 0);
-            this.tlpHeaderContainer.Location = new System.Drawing.Point(3, 109);
+            this.tlpHeaderContainer.Location = new System.Drawing.Point(3, 23);
             this.tlpHeaderContainer.Name = "tlpHeaderContainer";
             this.tlpHeaderContainer.RowCount = 1;
-            this.tlpHeaderContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tlpHeaderContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tlpHeaderContainer.Size = new System.Drawing.Size(460, 27);
             this.tlpHeaderContainer.TabIndex = 1;
@@ -93,21 +91,22 @@
             this.lblValidationHeader.Location = new System.Drawing.Point(0, 0);
             this.lblValidationHeader.Margin = new System.Windows.Forms.Padding(0);
             this.lblValidationHeader.Name = "lblValidationHeader";
-            this.lblValidationHeader.Size = new System.Drawing.Size(83, 21);
+            this.lblValidationHeader.Size = new System.Drawing.Size(137, 21);
             this.lblValidationHeader.TabIndex = 20;
-            this.lblValidationHeader.Tag = "Validation";
-            this.lblValidationHeader.Text = "Validation";
+            this.lblValidationHeader.Tag = "ValidationHeader";
+            this.lblValidationHeader.Text = "ValidationHeader";
             // 
             // lnkValidateLink
             // 
+            this.lnkValidateLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkValidateLink.AutoSize = true;
             this.lnkValidateLink.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lnkValidateLink.BackColor = System.Drawing.Color.Transparent;
             this.lnkValidateLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkValidateLink.Location = new System.Drawing.Point(112, 0);
+            this.lnkValidateLink.Location = new System.Drawing.Point(137, 5);
             this.lnkValidateLink.Margin = new System.Windows.Forms.Padding(0);
             this.lnkValidateLink.Name = "lnkValidateLink";
-            this.lnkValidateLink.Size = new System.Drawing.Size(183, 16);
+            this.lnkValidateLink.Size = new System.Drawing.Size(323, 16);
             this.lnkValidateLink.TabIndex = 21;
             this.lnkValidateLink.Tag = "CheckForValidationErrorsLnk";
             this.lnkValidateLink.Text = "CheckForValidationErrorsLnk";
@@ -115,15 +114,17 @@
             // 
             // tlpValidationResults
             // 
+            this.tlpValidationResults.AutoSize = true;
+            this.tlpValidationResults.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tlpValidationResults.ColumnCount = 1;
             this.tlpValidationResults.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpValidationResults.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpValidationResults.Location = new System.Drawing.Point(3, 215);
+            this.tlpValidationResults.Location = new System.Drawing.Point(3, 56);
             this.tlpValidationResults.Name = "tlpValidationResults";
             this.tlpValidationResults.RowCount = 1;
             this.tlpValidationResults.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpValidationResults.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tlpValidationResults.Size = new System.Drawing.Size(919, 27);
+            this.tlpValidationResults.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.tlpValidationResults.Size = new System.Drawing.Size(0, 0);
             this.tlpValidationResults.TabIndex = 2;
             // 
             // loadingIndicator
@@ -131,7 +132,7 @@
             this.loadingIndicator.AutoSize = true;
             this.loadingIndicator.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.loadingIndicator.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadingIndicator.Location = new System.Drawing.Point(3, 321);
+            this.loadingIndicator.Location = new System.Drawing.Point(3, 62);
             this.loadingIndicator.Name = "loadingIndicator";
             this.loadingIndicator.Size = new System.Drawing.Size(53, 67);
             this.loadingIndicator.StatusMessage = "";
@@ -146,7 +147,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tlpContainer);
             this.Name = "ValidationControl";
-            this.Size = new System.Drawing.Size(932, 427);
+            this.Size = new System.Drawing.Size(932, 135);
             this.tlpContainer.ResumeLayout(false);
             this.tlpContainer.PerformLayout();
             this.tlpHeaderContainer.ResumeLayout(false);
