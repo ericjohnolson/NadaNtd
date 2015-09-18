@@ -55,7 +55,7 @@
             this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpContainer.Size = new System.Drawing.Size(929, 132);
+            this.tlpContainer.Size = new System.Drawing.Size(929, 156);
             this.tlpContainer.TabIndex = 0;
             // 
             // hr1
@@ -115,16 +115,13 @@
             // tlpValidationResults
             // 
             this.tlpValidationResults.AutoSize = true;
-            this.tlpValidationResults.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tlpValidationResults.ColumnCount = 1;
-            this.tlpValidationResults.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpValidationResults.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpValidationResults.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 920F));
             this.tlpValidationResults.Location = new System.Drawing.Point(3, 56);
             this.tlpValidationResults.Name = "tlpValidationResults";
             this.tlpValidationResults.RowCount = 1;
             this.tlpValidationResults.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpValidationResults.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tlpValidationResults.Size = new System.Drawing.Size(0, 0);
+            this.tlpValidationResults.Size = new System.Drawing.Size(920, 0);
             this.tlpValidationResults.TabIndex = 2;
             // 
             // loadingIndicator
@@ -147,7 +144,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tlpContainer);
             this.Name = "ValidationControl";
-            this.Size = new System.Drawing.Size(932, 135);
+            this.Size = new System.Drawing.Size(932, 159);
             this.tlpContainer.ResumeLayout(false);
             this.tlpContainer.PerformLayout();
             this.tlpHeaderContainer.ResumeLayout(false);

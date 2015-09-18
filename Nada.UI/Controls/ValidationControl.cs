@@ -62,7 +62,7 @@ namespace Nada.UI.Controls
                 return;
 
             // Get the validation results
-            List<KeyValuePair<string, string>> validationResults = (List<KeyValuePair<string, string>>)e.Result;
+            List<ValidationResult> validationResults = (List<ValidationResult>)e.Result;
 
             // Hide and clear the validation results container while it is being populated
             tlpValidationResults.Visible = false;
@@ -70,7 +70,7 @@ namespace Nada.UI.Controls
             tlpValidationResults.Controls.Clear();
 
             // Display each result
-            foreach (KeyValuePair<string, string> result in validationResults)
+            foreach (ValidationResult result in validationResults)
             {
                 // Add a new row
                 int labelRowIndex = tlpValidationResults.RowStyles.Add(new RowStyle { SizeType = SizeType.AutoSize });
@@ -78,11 +78,21 @@ namespace Nada.UI.Controls
 
                 // Add label
                 tlpValidationResults.Controls.Add(
-                    new H3bLabel { Text = TranslationLookup.GetValue(result.Key, result.Key), Name = "ciLabel_" + result.Key, AutoSize = true, },
+                    new H3bLabel {
+                        Text = TranslationLookup.GetValue(result.ValidationRule.Indicator.DisplayName,
+                        result.ValidationRule.Indicator.DisplayName),
+                        Name = "ciLabel_" + result.ValidationRule.Indicator.DisplayName,
+                        AutoSize = true
+                    },
                     0, labelRowIndex);
 
                 // Add val
-                var label = new H3bLabel { Text = result.Value, Name = "ciLabel_Val" + result.Key, AutoSize = true, };
+                var label = new H3bLabel { 
+                    Text = result.Message,
+                    Name = "ciLabel_Val" + result.ValidationRule.Indicator.DisplayName,
+                    AutoSize = true,
+                    TextColor = result.IsSuccess ? Color.FromArgb(0, 160, 0) : Color.FromArgb(160, 0, 0)
+                };
                 label.MakeBold();
                 tlpValidationResults.Controls.Add(label, 0, controlRowIndex);
             }

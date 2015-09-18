@@ -8,13 +8,13 @@ namespace Nada.Model
 {
     public interface ICustomValidator
     {
-        List<KeyValuePair<string, string>> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData);
+        List<ValidationResult> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData);
         string Valid(Indicator indicator, List<IndicatorValue> values);
     }
 
     public class BaseValidator : ICustomValidator
     {
-        public List<KeyValuePair<string, string>> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
+        public List<ValidationResult> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
         {
             List<ValidationResult> results = new List<ValidationResult>();
 
@@ -31,7 +31,7 @@ namespace Nada.Model
                 }
             }
 
-            return new List<KeyValuePair<string, string>>();
+            return results;
         }
 
         public string Valid(Indicator indicator, List<IndicatorValue> values)
@@ -85,40 +85,44 @@ namespace Nada.Model
 
     public class ValidationResult
     {
+        public ValidationRule ValidationRule { get; set; }
         public bool IsSuccess { get; set; }
-        public bool HadMissingValues { get; set; }
+        //public bool HadMissingValues { get; set; }
         //public Indicator Indicator { get; set; }
         public string Message { get; set; }
 
-        public static ValidationResult CreateMissingValuesInstance(/*Indicator indicator*/string comparisonString)
+        public static ValidationResult CreateMissingValuesInstance(ValidationRule rule, string comparisonString)
         {
             return new ValidationResult()
             {
                 IsSuccess = false,
-                HadMissingValues = true,
+                //HadMissingValues = true,
                 //Indicator = indicator,
+                ValidationRule = rule,
                 Message = string.Format("{0}: {1}", comparisonString, Translations.NA)
             };
         }
 
-        public static ValidationResult CreateOkInstance(/*Indicator indicator, */string comparisonString)
+        public static ValidationResult CreateOkInstance(ValidationRule rule, string comparisonString)
         {
             return new ValidationResult()
             {
                 IsSuccess = true,
-                HadMissingValues = false,
+                //HadMissingValues = false,
                 //Indicator = indicator,
+                ValidationRule = rule,
                 Message = string.Format("{0}: {1}", comparisonString, "OK") // TODO Add translation
             };
         }
 
-        public static ValidationResult CreateErrorInstance(/*Indicator indicator, */string comparisonString)
+        public static ValidationResult CreateErrorInstance(ValidationRule rule, string comparisonString)
         {
             return new ValidationResult()
             {
-                IsSuccess = true,
-                HadMissingValues = false,
+                IsSuccess = false,
+                //HadMissingValues = false,
                 //Indicator = indicator,
+                ValidationRule = rule,
                 Message = string.Format("{0}: {1}", comparisonString, "VALIDATION ERROR") // TODO Add translation
             };
         }
@@ -126,14 +130,18 @@ namespace Nada.Model
 
     public enum ValidationRuleType
     {
-        GreaterThanSum = 1
+        GreaterThanSum = 1,
+        GreaterThanEqualToSum = 2,
+        LessThanSum = 3,
+        LessThanEqualToSum = 4,
+        EqualToSum = 5
     }
 
     public abstract class ValidationRule
     {
-        protected Indicator Indicator { get; set; }
-        protected List<IndicatorValue> RelatedValues { get; set; }
-        protected List<string> IndicatorNames { get; set; }
+        public Indicator Indicator { get; set; }
+        public List<IndicatorValue> RelatedValues { get; set; }
+        public List<string> IndicatorNames { get; set; }
 
         public ValidationRule()
         {
@@ -153,15 +161,34 @@ namespace Nada.Model
         }
 
         public abstract ValidationResult IsValid();
+
+        protected string[] TranslateIndicatorsNames(List<string> names)
+        {
+            List<string> translatedStrings = new List<string>();
+            foreach (string name in names)
+            {
+                translatedStrings.Add(TranslationLookup.GetValue(name, name));
+            }
+
+            return translatedStrings.ToArray();
+        }
     }
 
-    public class GreaterThanSumRule : ValidationRule
+    public abstract class NumberValidationRule : ValidationRule
     {
-        public GreaterThanSumRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
-            : base(indicator, values, indicatorNames)
+        protected abstract string ComparisonStringFormat { get; }
+
+        public NumberValidationRule()
         {
 
         }
+
+        public NumberValidationRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
+        {
+            Initialize(indicator, values, indicatorNames);
+        }
+
+        protected abstract bool IsNumberValid(double valueToValidate, double valueToValidateAgainst);
 
         public override ValidationResult IsValid()
         {
@@ -173,7 +200,7 @@ namespace Nada.Model
             return CreateResult(valueToValidate, valueToCompareAgainst);
         }
 
-        private double? GetValidationValue()
+        protected double? GetValidationValue()
         {
             // Find the indicator value that is being validated
             IndicatorValue indicatorValueToValidate = RelatedValues.FirstOrDefault(v => v.Indicator.DisplayName == Indicator.DisplayName);
@@ -187,7 +214,7 @@ namespace Nada.Model
             return d;
         }
 
-        private double? GetValueToCompareAgainst()
+        protected double? GetValueToCompareAgainst()
         {
             // Will hold the sum of the values being compared against
             double summedValueToCompareAgainst = 0;
@@ -212,34 +239,143 @@ namespace Nada.Model
             return summedValueToCompareAgainst;
         }
 
-        private ValidationResult CreateResult(double? valueToValidate, double? valueToValidateAgainst)
+        protected string BuildComparisonString(double? valueToValidate, double? valueToValidateAgainst)
+        {
+            // Translate the indicator name
+            string validatedIndicatorName = TranslationLookup.GetValue(Indicator.DisplayName, Indicator.DisplayName);
+            // If the value is an integer, round it to an int
+            string valueToValidateStr;
+            if (Indicator.DataTypeId == (int)IndicatorDataType.Integer)
+                valueToValidateStr = valueToValidate.HasValue ? Math.Round(valueToValidate.Value).ToString() : "Missing value"; // TODO Translation
+            else
+                valueToValidateStr = valueToValidate.HasValue ? valueToValidate.Value.ToString() : "Missing value"; // TODO Translation
+
+            // Translate the related indicator names
+            string indicatorsToValidateAgainst = string.Join(" + ", TranslateIndicatorsNames(IndicatorNames));
+            // If the value is an integer, round it to an int
+            string valueToValidateAgainstStr;
+            if (Indicator.DataTypeId == (int)IndicatorDataType.Integer)
+                valueToValidateAgainstStr = valueToValidateAgainst.HasValue ? Math.Round(valueToValidateAgainst.Value).ToString() : "Missing value"; // TODO translation
+            else
+                valueToValidateAgainstStr = valueToValidateAgainst.HasValue ? valueToValidateAgainst.Value.ToString() : "Missing value"; // TODO translation
+
+            return string.Format(ComparisonStringFormat,
+                validatedIndicatorName, valueToValidateStr, indicatorsToValidateAgainst, valueToValidateAgainstStr);
+        }
+
+        protected ValidationResult CreateResult(double? valueToValidate, double? valueToValidateAgainst)
         {
             string comparisonString = BuildComparisonString(valueToValidate, valueToValidateAgainst);
             if (!valueToValidate.HasValue || !valueToValidateAgainst.HasValue)
             {
-                return ValidationResult.CreateMissingValuesInstance(comparisonString);
+                return ValidationResult.CreateMissingValuesInstance(this, comparisonString);
             }
             else
             {
-                if (valueToValidate > valueToValidateAgainst)
+                if (IsNumberValid(valueToValidate.Value, valueToValidateAgainst.Value))
                 {
-                    return ValidationResult.CreateOkInstance(comparisonString);
+                    return ValidationResult.CreateOkInstance(this, comparisonString);
                 }
                 else
                 {
-                    return ValidationResult.CreateErrorInstance(comparisonString);
+                    return ValidationResult.CreateErrorInstance(this, comparisonString);
                 }
             }
         }
+    }
 
-        private string BuildComparisonString(double? valueToValidate, double? valueToValidateAgainst)
+    public class GreaterThanSumRule : NumberValidationRule
+    {
+        protected override string ComparisonStringFormat
         {
-            string validatedIndicatorName = Indicator.DisplayName;
-            string valueToValidateStr = valueToValidate.HasValue ? valueToValidate.Value.ToString() : "Missing value"; // TODO Translation
-            string indicatorsToValidateAgainst = string.Join(" + ", IndicatorNames.ToArray());
-            string valueToValidateAgainstStr = valueToValidateAgainst.HasValue ? valueToValidateAgainst.Value.ToString() : "Missing value"; // TODO translation
-            return string.Format("{0} ({1}) > {2} ({3})",
-                validatedIndicatorName, valueToValidateStr, indicatorsToValidateAgainst, valueToValidateAgainstStr);
+            get { return "{0} ({1}) > {2} ({3})"; }
+        }
+
+        public GreaterThanSumRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
+            : base(indicator, values, indicatorNames)
+        {
+
+        }
+
+        protected override bool IsNumberValid(double valueToValidate, double valueToValidateAgainst)
+        {
+            return valueToValidate > valueToValidateAgainst;
+        }
+    }
+
+    public class GreaterThanEqualToSumRule : NumberValidationRule
+    {
+        protected override string ComparisonStringFormat
+        {
+            get { return "{0} ({1}) >= {2} ({3})"; }
+        }
+
+        public GreaterThanEqualToSumRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
+            : base(indicator, values, indicatorNames)
+        {
+
+        }
+
+        protected override bool IsNumberValid(double valueToValidate, double valueToValidateAgainst)
+        {
+            return valueToValidate >= valueToValidateAgainst;
+        }
+    }
+
+    public class LessThanSumRule : NumberValidationRule
+    {
+        protected override string ComparisonStringFormat
+        {
+            get { return "{0} ({1}) < {2} ({3})"; }
+        }
+
+        public LessThanSumRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
+            : base(indicator, values, indicatorNames)
+        {
+
+        }
+
+        protected override bool IsNumberValid(double valueToValidate, double valueToValidateAgainst)
+        {
+            return valueToValidate < valueToValidateAgainst;
+        }
+    }
+
+    public class LessThanEqualToSumRule : NumberValidationRule
+    {
+        protected override string ComparisonStringFormat
+        {
+            get { return "{0} ({1}) <= {2} ({3})"; }
+        }
+
+        public LessThanEqualToSumRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
+            : base(indicator, values, indicatorNames)
+        {
+
+        }
+
+        protected override bool IsNumberValid(double valueToValidate, double valueToValidateAgainst)
+        {
+            return valueToValidate <= valueToValidateAgainst;
+        }
+    }
+
+    public class EqualToSumRule : NumberValidationRule
+    {
+        protected override string ComparisonStringFormat
+        {
+            get { return "{0} ({1}) = {2} ({3})"; }
+        }
+
+        public EqualToSumRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
+            : base(indicator, values, indicatorNames)
+        {
+
+        }
+
+        protected override bool IsNumberValid(double valueToValidate, double valueToValidateAgainst)
+        {
+            return valueToValidate == valueToValidateAgainst;
         }
     }
 
@@ -251,8 +387,25 @@ namespace Nada.Model
                 "PcIntvNumEligibleIndividualsTargeted",
                 new List<ValidationMapping>
                 {
-                    new ValidationMapping(ValidationRuleType.GreaterThanSum, "PcIntvNumEligibleFemalesTargeted", "PcIntvNumEligibleMalesTargeted"),
-                    new ValidationMapping(ValidationRuleType.GreaterThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk")
+                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk"),
+                    new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumEligibleFemalesTargeted", "PcIntvNumEligibleMalesTargeted"),
+                    
+                }
+            },
+            { 
+                "PcIntvNumEligibleFemalesTargeted",
+                new List<ValidationMapping>
+                {
+                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted"),
+                    
+                }
+            },
+            { 
+                "PcIntvNumEligibleMalesTargeted",
+                new List<ValidationMapping>
+                {
+                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted"),
+                    
                 }
             }
         };
@@ -280,6 +433,14 @@ namespace Nada.Model
             {
                 case ValidationRuleType.GreaterThanSum:
                     return new GreaterThanSumRule(indicator, values, mapping.IndicatorsToCompareAgainst.ToList());
+                case ValidationRuleType.GreaterThanEqualToSum:
+                    return new GreaterThanEqualToSumRule(indicator, values, mapping.IndicatorsToCompareAgainst.ToList());
+                case ValidationRuleType.LessThanSum:
+                    return new LessThanSumRule(indicator, values, mapping.IndicatorsToCompareAgainst.ToList());
+                case ValidationRuleType.LessThanEqualToSum:
+                    return new LessThanEqualToSumRule(indicator, values, mapping.IndicatorsToCompareAgainst.ToList());
+                case ValidationRuleType.EqualToSum:
+                    return new EqualToSumRule(indicator, values, mapping.IndicatorsToCompareAgainst.ToList());
                 default:
                     return null;
             }
