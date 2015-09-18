@@ -24,7 +24,7 @@ namespace Nada.UI.Controls
             InitializeComponent();
         }
 
-        public void DoValidate(Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
+        public void DoValidate(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
         {
             // Show the loading indicator
             loadingIndicator.Visible = true;
@@ -35,7 +35,8 @@ namespace Nada.UI.Controls
             validationWorker.RunWorkerAsync(new ValidationPayload
             {
                 Indicators = indicators,
-                Values = values
+                Values = values,
+                MetaData = metaData
             });
         }
 
@@ -45,17 +46,7 @@ namespace Nada.UI.Controls
             {
                 ValidationPayload payload = (ValidationPayload)e.Argument;
 
-                // Test data
-                List<KeyValuePair<string, string>> results =
-                    new List<KeyValuePair<string, string>>();
-                for (int i = 0; i < 50; i++)
-                {
-                    string key = "dot key " + i.ToString();
-                    string value = "dot value " + i.ToString();
-                    results.Add(new KeyValuePair<string, string>(key, value));
-                }
-
-                e.Result = results;// Validator.ValidateIndicators(payload.Indicators, payload.Values);
+                e.Result = Validator.ValidateIndicators(payload.Indicators, payload.Values, payload.MetaData);
             }
             catch (Exception ex)
             {
@@ -124,5 +115,6 @@ namespace Nada.UI.Controls
     {
         public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorValue> Values { get; set; }
+        public List<KeyValuePair<string, string>> MetaData { get; set; }
     }
 }

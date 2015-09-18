@@ -31,6 +31,7 @@ namespace Nada.UI.View
         public Action OnClose { get; set; }
         public Action<string> StatusChanged { get; set; }
         public string Title { get { return viewModel.Title; } }
+        private List<KeyValuePair<string, string>> MetaData { get; set; }
 
         public void SetFocus()
         {
@@ -89,6 +90,7 @@ namespace Nada.UI.View
                 else
                     statCalculator1.Visible = false;
                 // Validation control
+                validationControl.Validator = new BaseValidator();
                 validationControl.OnValidate += validationControl_OnValidate;
                 // special controls
                 viewModel.AddSpecialControls(indicatorControl1);
@@ -138,6 +140,7 @@ namespace Nada.UI.View
             List<KeyValuePair<string, string>> metaData = (List<KeyValuePair<string, string>>)e.Result;
             if (metaData != null && metaData.Count > 0)
             {
+                MetaData = metaData;
                 //Point scrollPosition = ((Panel)this.Parent).AutoScrollPosition;
                 indicatorControl1.LoadMetaData(metaData);
                 //((Panel)this.Parent).AutoScrollPosition = scrollPosition;
@@ -230,7 +233,7 @@ namespace Nada.UI.View
 
         private void validationControl_OnValidate()
         {
-            validationControl.DoValidate(viewModel.Indicators, viewModel.IndicatorValues);
+            validationControl.DoValidate(viewModel.Indicators, indicatorControl1.GetValues(), MetaData);
         }
     }
 }

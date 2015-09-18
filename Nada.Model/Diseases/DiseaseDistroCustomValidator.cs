@@ -35,7 +35,7 @@ namespace Nada.Model.Diseases
             return "";
         }
 
-        public List<KeyValuePair<string, string>> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
+        public List<KeyValuePair<string, string>> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
         {
             throw new NotImplementedException();
         }
