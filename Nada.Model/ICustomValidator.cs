@@ -134,7 +134,10 @@ namespace Nada.Model
         GreaterThanEqualToSum = 2,
         LessThanSum = 3,
         LessThanEqualToSum = 4,
-        EqualToSum = 5
+        EqualToSum = 5,
+        DateEarlierThan = 6,
+        DateLaterThan = 7,
+        DateHasSameYear = 8
     }
 
     public abstract class ValidationRule
@@ -379,33 +382,199 @@ namespace Nada.Model
         }
     }
 
+    public abstract class DateTimeRule : ValidationRule
+    {
+        protected abstract string ComparisonStringFormat { get; }
+
+        public DateTimeRule()
+        {
+
+        }
+
+        public DateTimeRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
+        {
+            Initialize(indicator, values, indicatorNames);
+        }
+
+        protected abstract bool IsDateValid(DateTime valueToValidate, DateTime valueToValidateAgainst);
+
+        public override ValidationResult IsValid()
+        {
+            // Get the value to validate
+            DateTime? valueToValidate = GetValidationValue();
+            // Get the value to validate against
+            DateTime? valueToCompareAgainst = GetValueToCompareAgainst();
+
+            return CreateResult(valueToValidate, valueToCompareAgainst);
+        }
+
+        protected DateTime? GetValidationValue()
+        {
+            // Find the indicator value that is being validated
+            IndicatorValue indicatorValueToValidate = RelatedValues.FirstOrDefault(v => v.Indicator.DisplayName == Indicator.DisplayName);
+            if (indicatorValueToValidate == null)
+                return null;
+            // Make sure the value is a DateTime
+            DateTime dateTime;
+            if (!DateTime.TryParse(indicatorValueToValidate.DynamicValue, out dateTime))
+                return null;
+
+            return dateTime;
+        }
+
+        protected DateTime? GetValueToCompareAgainst()
+        {
+            // Only one indicator is expected to be compared against, so make sure the indicator name exists
+            string indicatorNameToCompareAgainst = IndicatorNames.ElementAtOrDefault(0);
+            if (indicatorNameToCompareAgainst == null)
+                return null;
+
+            // See if there is a matching indicator value
+            IndicatorValue indicatorValueToCompareAgainst = RelatedValues.FirstOrDefault(v => v.Indicator.DisplayName == indicatorNameToCompareAgainst);
+            // If there is no matching indicator value, the indicator cannot be validated
+            if (indicatorValueToCompareAgainst == null)
+                return null;
+
+            // Make sure the value is a number
+            DateTime valueToCompareAgainst;
+            if (!DateTime.TryParse(indicatorValueToCompareAgainst.DynamicValue, out valueToCompareAgainst))
+                return null;
+
+            return valueToCompareAgainst;
+        }
+
+        protected string BuildComparisonString(DateTime? valueToValidate, DateTime? valueToValidateAgainst)
+        {
+            // Translate the indicator name
+            string validatedIndicatorName = TranslationLookup.GetValue(Indicator.DisplayName, Indicator.DisplayName);
+            // If the value is an integer, round it to an int
+            string valueToValidateStr = valueToValidate.HasValue ? valueToValidate.Value.ToString() : "Missing value";// TODO Translation
+
+            // Translate the related indicator names
+            string indicatorsToValidateAgainst = string.Join(" + ", TranslateIndicatorsNames(IndicatorNames));
+            // If the value is an integer, round it to an int
+            string valueToValidateAgainstStr = valueToValidateAgainst.HasValue ? valueToValidateAgainst.Value.ToString() : "Missing value"; // TODO translation;
+
+            return string.Format(ComparisonStringFormat,
+                validatedIndicatorName, valueToValidateStr, indicatorsToValidateAgainst, valueToValidateAgainstStr);
+        }
+
+        protected ValidationResult CreateResult(DateTime? valueToValidate, DateTime? valueToValidateAgainst)
+        {
+            string comparisonString = BuildComparisonString(valueToValidate, valueToValidateAgainst);
+            if (!valueToValidate.HasValue || !valueToValidateAgainst.HasValue)
+            {
+                return ValidationResult.CreateMissingValuesInstance(this, comparisonString);
+            }
+            else
+            {
+                if (IsDateValid(valueToValidate.Value, valueToValidateAgainst.Value))
+                {
+                    return ValidationResult.CreateOkInstance(this, comparisonString);
+                }
+                else
+                {
+                    return ValidationResult.CreateErrorInstance(this, comparisonString);
+                }
+            }
+        }
+    }
+
+    public class DateEarlierThanRule : DateTimeRule
+    {
+        protected override string ComparisonStringFormat
+        {
+            get { return "{0} ({1}) earlier than {2} ({3})"; }
+        }
+
+        public DateEarlierThanRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
+            : base(indicator, values, indicatorNames)
+        {
+
+        }
+
+        protected override bool IsDateValid(DateTime valueToValidate, DateTime valueToValidateAgainst)
+        {
+            return valueToValidate < valueToValidateAgainst;
+        }
+    }
+
+    public class DateLaterThanRule : DateTimeRule
+    {
+        protected override string ComparisonStringFormat
+        {
+            get { return "{0} ({1}) later than {2} ({3})"; }
+        }
+
+        public DateLaterThanRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
+            : base(indicator, values, indicatorNames)
+        {
+
+        }
+
+        protected override bool IsDateValid(DateTime valueToValidate, DateTime valueToValidateAgainst)
+        {
+            return valueToValidate > valueToValidateAgainst;
+        }
+    }
+
+    public class DateHasSameYearRule : DateTimeRule
+    {
+        protected override string ComparisonStringFormat
+        {
+            get { return "{0} ({1}) has same year {2} ({3})"; }
+        }
+
+        public DateHasSameYearRule(Indicator indicator, List<IndicatorValue> values, List<string> indicatorNames)
+            : base(indicator, values, indicatorNames)
+        {
+
+        }
+
+        protected override bool IsDateValid(DateTime valueToValidate, DateTime valueToValidateAgainst)
+        {
+            return valueToValidate.Year == valueToValidateAgainst.Year;
+        }
+    }
+
     public class ValidationMap
     {
         public static Dictionary<string, List<ValidationMapping>> Map = new Dictionary<string, List<ValidationMapping>>()
         {
-            { 
+            {
                 "PcIntvNumEligibleIndividualsTargeted",
                 new List<ValidationMapping>
                 {
                     new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk"),
-                    new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumEligibleFemalesTargeted", "PcIntvNumEligibleMalesTargeted"),
-                    
+                    new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumEligibleFemalesTargeted", "PcIntvNumEligibleMalesTargeted")
                 }
             },
-            { 
+            {
                 "PcIntvNumEligibleFemalesTargeted",
                 new List<ValidationMapping>
                 {
-                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted"),
-                    
+                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted")
                 }
             },
-            { 
+            {
                 "PcIntvNumEligibleMalesTargeted",
                 new List<ValidationMapping>
                 {
-                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted"),
-                    
+                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted")
+                }
+            },
+            {
+                "DateReported",
+                new List<ValidationMapping>
+                {
+                    new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda")
+                }
+            },
+            {
+                "PcIntvEndDateOfMda",
+                new List<ValidationMapping>
+                {
+                    new ValidationMapping(ValidationRuleType.DateLaterThan, "PcIntvStartDateOfMda")
                 }
             }
         };
@@ -441,6 +610,12 @@ namespace Nada.Model
                     return new LessThanEqualToSumRule(indicator, values, mapping.IndicatorsToCompareAgainst.ToList());
                 case ValidationRuleType.EqualToSum:
                     return new EqualToSumRule(indicator, values, mapping.IndicatorsToCompareAgainst.ToList());
+                case ValidationRuleType.DateEarlierThan:
+                    return new DateEarlierThanRule(indicator, values, mapping.IndicatorsToCompareAgainst.ToList());
+                case ValidationRuleType.DateLaterThan:
+                    return new DateLaterThanRule(indicator, values, mapping.IndicatorsToCompareAgainst.ToList());
+                case ValidationRuleType.DateHasSameYear:
+                    return new DateHasSameYearRule(indicator, values, mapping.IndicatorsToCompareAgainst.ToList());
                 default:
                     return null;
             }
