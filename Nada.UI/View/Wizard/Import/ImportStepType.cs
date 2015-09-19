@@ -58,6 +58,13 @@ namespace Nada.UI.View.Wizard
             if (!DesignMode)
             {
                 Localizer.TranslateControl(this);
+
+                // If this importer allows validation, show the importer link
+                if (options.Importer is IntvImporter || options.Importer is SurveyImporter || options.Importer is DistroImporter || options.Importer is ProcessImporter)
+                    lnkValidate.Visible = true;
+                else
+                    lnkValidate.Visible = false;
+
                 openFileDialog1.Filter = "Excel files|*.xlsx;*.xls";
                 var types = options.Importer.GetAllTypes();
                 typeListItemBindingSource.DataSource = types.OrderBy(t => t.Name);
@@ -161,6 +168,50 @@ namespace Nada.UI.View.Wizard
             }
             options.Importer.SetType(options.TypeId.Value);
             return true;
+        }
+
+        private void lnkValidate_ClickOverride()
+        {
+            try
+            {
+                if (!IsValid())
+                    return;
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    BackgroundWorker worker = new BackgroundWorker();
+                    worker.RunWorkerCompleted += workerValidation_RunWorkerCompleted;
+                    worker.DoWork += workerValidation_DoWork;
+                    worker.RunWorkerAsync(new WorkerPayload { FileName = openFileDialog1.FileName, UserId = 0 });
+                    OnSwitchStep(new WorkingStep(Translations.ImportingFile));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error uploading file in ImportStepType: ", ex);
+                throw;
+            }
+        }
+
+        private void workerValidation_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                WorkerPayload payload = (WorkerPayload)e.Argument;
+                ImportResult result = options.Importer.ValidateData(payload.FileName);
+                e.Result = result;
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error uploading import file. ImportStepType:workerValidation_DoWork. ", ex);
+                e.Result = new ImportResult(Translations.UnexpectedException + " " + ex.Message);
+            }
+        }
+
+        private void workerValidation_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            OnSwitchStep(new ImportStepResult((ImportResult)e.Result, this));
         }
 
     }

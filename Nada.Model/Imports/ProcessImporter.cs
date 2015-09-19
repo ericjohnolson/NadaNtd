@@ -38,6 +38,7 @@ namespace Nada.Model
             type = repo.GetProcessType(id);
             Indicators = type.Indicators;
             DropDownValues = type.IndicatorDropdownValues;
+            Calculator = new CalcProcess();
         }
 
         protected override void ReloadDropdownValues()

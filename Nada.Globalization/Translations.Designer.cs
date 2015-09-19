@@ -1144,6 +1144,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check upload file for validation errors.
+        /// </summary>
+        public static string CheckUploadValidationErrors {
+            get {
+                return ResourceManager.GetString("CheckUploadValidationErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Child administrative units.
         /// </summary>
         public static string ChildAdminUnits {

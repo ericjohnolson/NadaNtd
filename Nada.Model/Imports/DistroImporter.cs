@@ -48,6 +48,7 @@ namespace Nada.Model
                 Indicators = type.Indicators;
                 DropDownValues = type.IndicatorDropdownValues;
             }
+            Calculator = new CalcDistro();
         }
 
         protected override void ReloadDropdownValues()

@@ -43,6 +43,7 @@ namespace Nada.Model.Imports
             iType = repo.GetIntvType(id);
             Indicators = iType.Indicators;
             DropDownValues = iType.IndicatorDropdownValues;
+            Calculator = new CalcIntv();
         }
 
         protected override void ReloadDropdownValues()
@@ -80,6 +81,67 @@ namespace Nada.Model.Imports
                 WasSuccess = true,
                 Count = objs.Count,
                 Message = string.Format(TranslationLookup.GetValue("ImportSuccess"), objs.Count)
+            };
+        }
+
+        protected override ImportResult MapAndValidateObjects(DataSet ds)
+        {
+            // Will hold the validation result string
+            string validationResultStr = "";
+            // Will determine if there was any error
+            bool valid = true;
+
+            List<IntvBase> objs = new List<IntvBase>();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                // Build an object and get its indicators
+                if (row["* " + TranslationLookup.GetValue("ID")] == null || row["* " + TranslationLookup.GetValue("ID")].ToString().Length == 0)
+                    continue;
+                string objerrors = "";
+                IntvBase obj = repo.CreateIntv(iType.Id);
+                obj.AdminLevelId = Convert.ToInt32(row["* " + TranslationLookup.GetValue("ID")]);
+                obj.Notes = row[TranslationLookup.GetValue("Notes")].ToString();
+                obj.IndicatorValues = GetDynamicIndicatorValues(ds, row, ref objerrors);
+
+                // Need to get the meta data
+                List<KeyValuePair<string, string>> metaData = new List<KeyValuePair<string,string>>();
+                // First get the DateReported indicator value
+                IndicatorValue indicatorValueToCompareAgainst = obj.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "DateReported");
+                // Use the DateReported value to determine the meta data as described in Mingle story 169
+                if (indicatorValueToCompareAgainst != null && obj.AdminLevelId.HasValue)
+                {
+                    DateTime start;
+                    if (DateTime.TryParse(indicatorValueToCompareAgainst.DynamicValue, out start))
+                    {
+                        // Determine the end date
+                        DateTime end = start.AddYears(1);
+                        // Get the meta data
+                        metaData = Calculator.GetMetaData(Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => new KeyValuePair<string, string>(iType.DisplayNameKey, i.Value.DisplayName)).ToList(),
+                            obj.AdminLevelId.Value, start, end);
+                    }
+                }
+
+                // Validate the object
+                List<ValidationResult> validationResults = Validator.ValidateIndicators(translatedIndicators, obj.IndicatorValues, metaData);
+
+                // Add the validation messages to the string
+                foreach (ValidationResult validationResult in validationResults)
+                {
+                    // Add the validation results to the string
+                    validationResultStr += string.Format("ID {0}: {1}{2}{3}{4}", row["* " + TranslationLookup.GetValue("ID")].ToString(), validationResult.Message, Environment.NewLine, "--------", Environment.NewLine);
+                    // See if this set of data has already been marked as invalid
+                    if (valid && !validationResult.IsSuccess)
+                        valid = false;
+                }
+
+                objs.Add(obj);
+            }
+
+            return new ImportResult
+            {
+                WasSuccess = valid,
+                Count = objs.Count,
+                Message = validationResultStr
             };
         }
 

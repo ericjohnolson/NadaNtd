@@ -41,6 +41,8 @@ namespace Nada.Model
         protected Dictionary<string, string> validationRanges = new Dictionary<string,string>();
         protected IndicatorParser valueParser = new IndicatorParser();
         protected Dictionary<string, SurveyUnitsAndSentinelSite> NamesToAdminUnits;
+        protected BaseValidator Validator = new BaseValidator();
+        protected ICalcIndicators Calculator { get; set; }
 
         #region Public methods
         public virtual void CreateImportFile(string filename, List<AdminLevel> adminLevels, AdminLevelType adminLevelType, ImportOptions opts)
@@ -185,6 +187,23 @@ namespace Nada.Model
         {
             NamesToAdminUnits = namesToAdminUnits;
             return ImportData(filePath, userId);
+        }
+
+        public virtual ImportResult ValidateData(string filePath)
+        {
+            LoadRelatedLists();
+            try
+            {
+                DataSet ds = LoadDataFromFile(filePath);
+
+                if (ds.Tables.Count == 0)
+                    return new ImportResult(TranslationLookup.GetValue("NoDataFound"));
+                return MapAndValidateObjects(ds);
+            }
+            catch (Exception ex)
+            {
+                return new ImportResult(TranslationLookup.GetValue("UnexpectedException") + ex.Message);
+            }
         }
 
         public void CreateUpdateFile(string filename, List<IHaveDynamicIndicatorValues> forms)
@@ -515,6 +534,11 @@ namespace Nada.Model
         }
         
         protected virtual ImportResult MapAndSaveObjects(DataSet ds, int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual ImportResult MapAndValidateObjects(DataSet ds)
         {
             throw new NotImplementedException();
         }

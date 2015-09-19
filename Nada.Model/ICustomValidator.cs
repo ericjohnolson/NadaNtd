@@ -64,6 +64,9 @@ namespace Nada.Model
         {
             List<IndicatorValue> indicatorValues = new List<IndicatorValue>();
 
+            if (metaData == null)
+                return indicatorValues;
+
             foreach (KeyValuePair<string, Indicator> indicator in indicators)
             {
                 string translatedIndicatorName = TranslationLookup.GetValue(indicator.Key, indicator.Key);
