@@ -1287,6 +1287,27 @@ UPDATE SurveyIndicators set DataTypeId = 19 where DisplayName = 'NumSchoolsScree
 UPDATE SurveyIndicators set DataTypeId = 19 where DisplayName = 'NumVillagesScreenedCm' and SurveyTypeId = 9;
 UPDATE SurveyIndicators set DataTypeId = 19 where DisplayName = 'TotalNumPeopleScreenedCm' and SurveyTypeId = 9;
 
+-- Story 280 (rounding decimals to integers - must be executed after the indicators are changed to the integer types);
+UPDATE [DiseaseDistributionIndicatorValues]
+INNER JOIN [DiseaseDistributionIndicators] ON [DiseaseDistributionIndicatorValues].[IndicatorId] = [DiseaseDistributionIndicators].[ID]
+SET DiseaseDistributionIndicatorValues.DynamicValue = Round(DiseaseDistributionIndicatorValues.DynamicValue)
+WHERE [DiseaseDistributionIndicators].[DataTypeId] = 19;
+
+UPDATE [InterventionIndicatorValues]
+INNER JOIN [InterventionIndicators] ON [InterventionIndicatorValues].[IndicatorId] = [InterventionIndicators].[ID]
+SET InterventionIndicatorValues.DynamicValue = Round(InterventionIndicatorValues.DynamicValue)
+WHERE [InterventionIndicators].[DataTypeId] = 19;
+
+UPDATE [ProcessIndicatorValues]
+INNER JOIN [ProcessIndicators] ON [ProcessIndicatorValues].[IndicatorId] = [ProcessIndicators].[ID]
+SET ProcessIndicatorValues.DynamicValue = Round(ProcessIndicatorValues.DynamicValue)
+WHERE [ProcessIndicators].[DataTypeId] = 19;
+
+UPDATE [SurveyIndicatorValues]
+INNER JOIN [SurveyIndicators] ON [SurveyIndicatorValues].[IndicatorId] = [SurveyIndicators].[ID]
+SET SurveyIndicatorValues.DynamicValue = Round(SurveyIndicatorValues.DynamicValue)
+WHERE [SurveyIndicators].[DataTypeId] = 19;
+
 -- Story 262;
 INSERT INTO aspnet_Users (ApplicationId, UserName) VALUES
 	(DLookup("ApplicationId", "aspnet_Applications", "ApplicationName = 'NadaNtd'"), 'NaDa');
