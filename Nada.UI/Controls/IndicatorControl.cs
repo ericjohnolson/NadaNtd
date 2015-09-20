@@ -345,8 +345,8 @@ namespace Nada.UI.View
             DateTime dateReported;
             if (DateTime.TryParse(dateReportedStr, out dateReported))
             {
-                start = dateReported;
-                end = dateReported.AddYears(1);
+                start = new DateTime(dateReported.Year, 1, 1, 0, 0, 0, dateReported.Kind);
+                end = start.AddYears(1);
                 dtStart.Value = start;
                 dtEnd.Value = end;
             }
