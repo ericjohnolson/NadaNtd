@@ -154,7 +154,7 @@ namespace Nada.Globalization {
         ///   Looks up a localized string similar to The Integrated NTD Database was developed by RTI International under the ENVISION project with funding from the United States Agency for International Development in collaboration with the World Health Organization (WHO) and its regional offices (AFR, SEAR, WPR), the African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.
         ///The Integrated NTD Database was developed by Iota Ink:
         ///Jennifer Einberg, Project Manager; Eric Olson, Developer; 
-        ///Jennifer Fox, Graphic Designer; Nick  [rest of string was truncated]&quot;;.
+        ///Jennifer Fox, Graphic Designer; Ni [rest of string was truncated]&quot;;.
         /// </summary>
         public static string AboutDisclaimer {
             get {
@@ -9331,6 +9331,15 @@ namespace Nada.Globalization {
         public static string NumVolunteersYw {
             get {
                 return ResourceManager.GetString("NumVolunteersYw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
             }
         }
         
@@ -19771,6 +19780,24 @@ namespace Nada.Globalization {
         public static string ValidationNoIllegalChars {
             get {
                 return ResourceManager.GetString("ValidationNoIllegalChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation Error.
+        /// </summary>
+        public static string ValidationResultError {
+            get {
+                return ResourceManager.GetString("ValidationResultError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing value.
+        /// </summary>
+        public static string ValidationResultMissingValue {
+            get {
+                return ResourceManager.GetString("ValidationResultMissingValue", resourceCulture);
             }
         }
         

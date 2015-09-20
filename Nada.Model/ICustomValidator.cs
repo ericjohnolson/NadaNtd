@@ -114,7 +114,7 @@ namespace Nada.Model
                 //HadMissingValues = false,
                 //Indicator = indicator,
                 ValidationRule = rule,
-                Message = string.Format("{0}: {1}", comparisonString, "OK") // TODO Add translation
+                Message = string.Format("{0}: {1}", comparisonString, Translations.OK.ToUpper())
             };
         }
 
@@ -126,7 +126,7 @@ namespace Nada.Model
                 //HadMissingValues = false,
                 //Indicator = indicator,
                 ValidationRule = rule,
-                Message = string.Format("{0}: {1}", comparisonString, "VALIDATION ERROR") // TODO Add translation
+                Message = string.Format("{0}: {1}", comparisonString, Translations.ValidationResultError.ToUpper())
             };
         }
     }
@@ -252,18 +252,18 @@ namespace Nada.Model
             // If the value is an integer, round it to an int
             string valueToValidateStr;
             if (Indicator.DataTypeId == (int)IndicatorDataType.Integer)
-                valueToValidateStr = valueToValidate.HasValue ? Math.Round(valueToValidate.Value).ToString() : "Missing value"; // TODO Translation
+                valueToValidateStr = valueToValidate.HasValue ? Math.Round(valueToValidate.Value).ToString() : Translations.ValidationResultMissingValue;
             else
-                valueToValidateStr = valueToValidate.HasValue ? valueToValidate.Value.ToString() : "Missing value"; // TODO Translation
+                valueToValidateStr = valueToValidate.HasValue ? valueToValidate.Value.ToString() : Translations.ValidationResultMissingValue;
 
             // Translate the related indicator names
             string indicatorsToValidateAgainst = string.Join(" + ", TranslateIndicatorsNames(IndicatorNames));
             // If the value is an integer, round it to an int
             string valueToValidateAgainstStr;
             if (Indicator.DataTypeId == (int)IndicatorDataType.Integer)
-                valueToValidateAgainstStr = valueToValidateAgainst.HasValue ? Math.Round(valueToValidateAgainst.Value).ToString() : "Missing value"; // TODO translation
+                valueToValidateAgainstStr = valueToValidateAgainst.HasValue ? Math.Round(valueToValidateAgainst.Value).ToString() : Translations.ValidationResultMissingValue;
             else
-                valueToValidateAgainstStr = valueToValidateAgainst.HasValue ? valueToValidateAgainst.Value.ToString() : "Missing value"; // TODO translation
+                valueToValidateAgainstStr = valueToValidateAgainst.HasValue ? valueToValidateAgainst.Value.ToString() : Translations.ValidationResultMissingValue;
 
             return string.Format(ComparisonStringFormat,
                 validatedIndicatorName, valueToValidateStr, indicatorsToValidateAgainst, valueToValidateAgainstStr);
@@ -451,12 +451,12 @@ namespace Nada.Model
             // Translate the indicator name
             string validatedIndicatorName = TranslationLookup.GetValue(Indicator.DisplayName, Indicator.DisplayName);
             // If the value is an integer, round it to an int
-            string valueToValidateStr = valueToValidate.HasValue ? valueToValidate.Value.ToString() : "Missing value";// TODO Translation
+            string valueToValidateStr = valueToValidate.HasValue ? valueToValidate.Value.ToString() : Translations.ValidationResultMissingValue;
 
             // Translate the related indicator names
             string indicatorsToValidateAgainst = string.Join(" + ", TranslateIndicatorsNames(IndicatorNames));
             // If the value is an integer, round it to an int
-            string valueToValidateAgainstStr = valueToValidateAgainst.HasValue ? valueToValidateAgainst.Value.ToString() : "Missing value"; // TODO translation;
+            string valueToValidateAgainstStr = valueToValidateAgainst.HasValue ? valueToValidateAgainst.Value.ToString() : Translations.ValidationResultMissingValue;
 
             return string.Format(ComparisonStringFormat,
                 validatedIndicatorName, valueToValidateStr, indicatorsToValidateAgainst, valueToValidateAgainstStr);
