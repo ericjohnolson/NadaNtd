@@ -28,6 +28,8 @@ namespace Nada.UI.Controls
         {
             // Show the loading indicator
             loadingIndicator.Visible = true;
+            // Disable the link so validate cannot be clicked again until the current validation has finished
+            lnkValidateLink.Enabled = false;
             // Run the validation on a background thread
             BackgroundWorker validationWorker = new BackgroundWorker();
             validationWorker.RunWorkerCompleted += validationWorker_RunWorkerCompleted;
@@ -100,6 +102,7 @@ namespace Nada.UI.Controls
             this.ResumeLayout();
             tlpValidationResults.Visible = true;
             loadingIndicator.Visible = false;
+            lnkValidateLink.Enabled = true;
         }
 
         private void lnkValidateLink_OnClick()

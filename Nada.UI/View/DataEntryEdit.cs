@@ -90,7 +90,7 @@ namespace Nada.UI.View
                 else
                     statCalculator1.Visible = false;
                 // Validation control
-                validationControl.Validator = new BaseValidator();
+                validationControl.Validator = viewModel.Validator;
                 validationControl.OnValidate += validationControl_OnValidate;
                 // special controls
                 viewModel.AddSpecialControls(indicatorControl1);

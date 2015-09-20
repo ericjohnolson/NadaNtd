@@ -38,7 +38,6 @@
             this.hrTop = new Nada.UI.Controls.HR();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tblEditBottom = new System.Windows.Forms.TableLayoutPanel();
-            this.hr5 = new Nada.UI.Controls.HR();
             this.hr4 = new Nada.UI.Controls.HR();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tbNotes = new System.Windows.Forms.TextBox();
@@ -48,6 +47,8 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnBottomSave = new C1.Win.C1Input.C1Button();
             this.c1Button2 = new C1.Win.C1Input.C1Button();
+            this.hr5 = new Nada.UI.Controls.HR();
+            this.validationControl = new Nada.UI.Controls.ValidationControl();
             this.nadaLabel2 = new Nada.UI.Controls.H3Label();
             this.nadaLabel1 = new Nada.UI.Controls.H3Label();
             this.adminLevelPickerControl2 = new Nada.UI.View.AdminLevelPickerControl();
@@ -56,7 +57,6 @@
             this.btnTopSave = new C1.Win.C1Input.C1Button();
             this.btnHelp = new System.Windows.Forms.Button();
             this.tblReq = new System.Windows.Forms.TableLayoutPanel();
-            this.validationControl = new Nada.UI.Controls.ValidationControl();
             this.tableLayoutPanel2.SuspendLayout();
             this.tblTitle.SuspendLayout();
             this.tblEditBottom.SuspendLayout();
@@ -225,20 +225,8 @@
             this.tblEditBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tblEditBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
             this.tblEditBottom.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblEditBottom.Size = new System.Drawing.Size(938, 906);
+            this.tblEditBottom.Size = new System.Drawing.Size(938, 638);
             this.tblEditBottom.TabIndex = 0;
-            // 
-            // hr5
-            // 
-            this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
-            this.hr5.ForeColor = System.Drawing.Color.Gray;
-            this.hr5.Location = new System.Drawing.Point(3, 809);
-            this.hr5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.hr5.Name = "hr5";
-            this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
-            this.hr5.Size = new System.Drawing.Size(920, 1);
-            this.hr5.TabIndex = 57;
-            this.hr5.TabStop = false;
             // 
             // hr4
             // 
@@ -336,7 +324,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.btnBottomSave, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.c1Button2, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(731, 824);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(731, 556);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -379,6 +367,31 @@
             this.c1Button2.VisualStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
             this.c1Button2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Silver;
             this.c1Button2.Click += new System.EventHandler(this.cancel_Click);
+            // 
+            // hr5
+            // 
+            this.hr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
+            this.hr5.ForeColor = System.Drawing.Color.Gray;
+            this.hr5.Location = new System.Drawing.Point(3, 541);
+            this.hr5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.hr5.Name = "hr5";
+            this.hr5.RuleColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(100)))), ((int)(((byte)(160)))));
+            this.hr5.Size = new System.Drawing.Size(920, 1);
+            this.hr5.TabIndex = 57;
+            this.hr5.TabStop = false;
+            // 
+            // validationControl
+            // 
+            this.validationControl.AutoSize = true;
+            this.validationControl.BackColor = System.Drawing.Color.White;
+            this.validationControl.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.validationControl.Location = new System.Drawing.Point(3, 369);
+            this.validationControl.Name = "validationControl";
+            this.validationControl.OnFocus = null;
+            this.validationControl.Size = new System.Drawing.Size(932, 159);
+            this.validationControl.TabIndex = 60;
+            this.validationControl.TextColor = System.Drawing.SystemColors.ControlText;
+            this.validationControl.Validator = null;
             // 
             // nadaLabel2
             // 
@@ -513,19 +526,6 @@
             this.tblReq.Size = new System.Drawing.Size(70, 20);
             this.tblReq.TabIndex = 63;
             // 
-            // validationControl
-            // 
-            this.validationControl.AutoSize = true;
-            this.validationControl.BackColor = System.Drawing.Color.White;
-            this.validationControl.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.validationControl.Location = new System.Drawing.Point(3, 369);
-            this.validationControl.Name = "validationControl";
-            this.validationControl.OnFocus = null;
-            this.validationControl.Size = new System.Drawing.Size(932, 427);
-            this.validationControl.TabIndex = 60;
-            this.validationControl.Validator = null;
-            this.validationControl.OnValidate += new System.Action(this.validationControl_OnValidate);
-            // 
             // DataEntryEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -543,7 +543,7 @@
             this.Controls.Add(this.tblEditBottom);
             this.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Name = "DataEntryEdit";
-            this.Size = new System.Drawing.Size(953, 1010);
+            this.Size = new System.Drawing.Size(953, 742);
             this.Load += new System.EventHandler(this.DataEntryEdit_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

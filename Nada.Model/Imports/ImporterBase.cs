@@ -41,7 +41,7 @@ namespace Nada.Model
         protected Dictionary<string, string> validationRanges = new Dictionary<string,string>();
         protected IndicatorParser valueParser = new IndicatorParser();
         protected Dictionary<string, SurveyUnitsAndSentinelSite> NamesToAdminUnits;
-        protected BaseValidator Validator = new BaseValidator();
+        protected ICustomValidator Validator { get; set; }
         protected ICalcIndicators Calculator { get; set; }
 
         #region Public methods

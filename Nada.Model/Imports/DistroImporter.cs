@@ -49,6 +49,7 @@ namespace Nada.Model
                 DropDownValues = type.IndicatorDropdownValues;
             }
             Calculator = new CalcDistro();
+            Validator = new DiseaseDistroCustomValidator();
         }
 
         protected override void ReloadDropdownValues()

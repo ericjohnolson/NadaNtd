@@ -44,6 +44,7 @@ namespace Nada.Model.Imports
             Indicators = iType.Indicators;
             DropDownValues = iType.IndicatorDropdownValues;
             Calculator = new CalcIntv();
+            Validator = new IntvCustomValidator();
         }
 
         protected override void ReloadDropdownValues()
@@ -110,10 +111,11 @@ namespace Nada.Model.Imports
                 // Use the DateReported value to determine the meta data as described in Mingle story 169
                 if (indicatorValueToCompareAgainst != null && obj.AdminLevelId.HasValue)
                 {
-                    DateTime start;
-                    if (DateTime.TryParse(indicatorValueToCompareAgainst.DynamicValue, out start))
+                    DateTime dateReported;
+                    if (DateTime.TryParse(indicatorValueToCompareAgainst.DynamicValue, out dateReported))
                     {
-                        // Determine the end date
+                        // Determine the start and end date for the same year as the DateReported
+                        DateTime start = new DateTime(dateReported.Year, 1, 1, 0, 0, 0, dateReported.Kind);
                         DateTime end = start.AddYears(1);
                         // Get the meta data
                         metaData = Calculator.GetMetaData(Indicators.Where(i => !i.Value.IsCalculated && i.Value.DataTypeId == (int)IndicatorDataType.Calculated).Select(i => new KeyValuePair<string, string>(iType.DisplayNameKey, i.Value.DisplayName)).ToList(),

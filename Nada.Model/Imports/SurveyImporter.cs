@@ -53,6 +53,7 @@ namespace Nada.Model.Imports
             Indicators = sType.Indicators;
             DropDownValues = sType.IndicatorDropdownValues;
             Calculator = new CalcSurvey();
+            Validator = new SurveyCustomValidator();
         }
 
         protected override void ReloadDropdownValues()

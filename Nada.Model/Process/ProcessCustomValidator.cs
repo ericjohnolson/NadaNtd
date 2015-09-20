@@ -5,16 +5,11 @@ using System.Text;
 
 namespace Nada.Model.Process
 {
-    public class ProcessCustomValidator : ICustomValidator
+    public class ProcessCustomValidator : BaseValidator
     {
-        public string Valid(Indicator indicator, List<IndicatorValue> values)
+        public override string Valid(Indicator indicator, List<IndicatorValue> values)
         {
             return "";
-        }
-
-        public List<ValidationResult> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
-        {
-            throw new NotImplementedException();
         }
     }
 }

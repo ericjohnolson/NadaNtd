@@ -10,12 +10,33 @@ namespace Nada.Model
     {
         List<ValidationResult> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData);
         string Valid(Indicator indicator, List<IndicatorValue> values);
+        Dictionary<string, List<ValidationMapping>> GetMapInstance(bool instantiate);
+        void ClearMap();
     }
 
     public class BaseValidator : ICustomValidator
     {
+        protected Dictionary<string, List<ValidationMapping>> ValidationMap { get; set; }
+
+        public virtual Dictionary<string, List<ValidationMapping>> GetMapInstance(bool instantiate)
+        {
+            if (ValidationMap == null && instantiate)
+            {
+                ValidationMap = new Dictionary<string, List<ValidationMapping>>();
+            }
+            return ValidationMap;
+        }
+
+        public void ClearMap()
+        {
+            ValidationMap = null;
+        }
+
         public List<ValidationResult> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
         {
+            // Get the validation map
+            GetMapInstance(true);
+
             List<ValidationResult> results = new List<ValidationResult>();
 
             // Convert the meta data to IndicatorValues
@@ -31,26 +52,24 @@ namespace Nada.Model
                 }
             }
 
+            // Clear the validation map
+            ClearMap();
+
             return results;
         }
 
-        public string Valid(Indicator indicator, List<IndicatorValue> values)
+        public virtual string Valid(Indicator indicator, List<IndicatorValue> values)
         {
             throw new NotImplementedException();
-        }
-
-        public List<ValidationResult> Validate(Indicator indicator, List<IndicatorValue> values)
-        {
-            return new List<ValidationResult>();
         }
 
         private List<ValidationRule> GetRules(Indicator indicator, List<IndicatorValue> values)
         {
             List<ValidationRule> rules = new List<ValidationRule>();
 
-            if (ValidationMap.Map.ContainsKey(indicator.DisplayName))
+            if (ValidationMap.ContainsKey(indicator.DisplayName))
             {
-                List<ValidationMapping> mappings = ValidationMap.Map[indicator.DisplayName];
+                List<ValidationMapping> mappings = ValidationMap[indicator.DisplayName];
                 foreach (ValidationMapping mapping in mappings)
                 {
                     rules.Add(ValidationMapping.BuildRule(mapping, indicator, values));
@@ -538,49 +557,6 @@ namespace Nada.Model
         {
             return valueToValidate.Year == valueToValidateAgainst.Year;
         }
-    }
-
-    public class ValidationMap
-    {
-        public static Dictionary<string, List<ValidationMapping>> Map = new Dictionary<string, List<ValidationMapping>>()
-        {
-            {
-                "PcIntvNumEligibleIndividualsTargeted",
-                new List<ValidationMapping>
-                {
-                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk"),
-                    new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumEligibleFemalesTargeted", "PcIntvNumEligibleMalesTargeted")
-                }
-            },
-            {
-                "PcIntvNumEligibleFemalesTargeted",
-                new List<ValidationMapping>
-                {
-                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted")
-                }
-            },
-            {
-                "PcIntvNumEligibleMalesTargeted",
-                new List<ValidationMapping>
-                {
-                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted")
-                }
-            },
-            {
-                "DateReported",
-                new List<ValidationMapping>
-                {
-                    new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda")
-                }
-            },
-            {
-                "PcIntvEndDateOfMda",
-                new List<ValidationMapping>
-                {
-                    new ValidationMapping(ValidationRuleType.DateLaterThan, "PcIntvStartDateOfMda")
-                }
-            }
-        };
     }
 
     public class ValidationMapping
