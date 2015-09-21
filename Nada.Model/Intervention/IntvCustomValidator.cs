@@ -19,10 +19,24 @@ namespace Nada.Model.Intervention
                 ValidationMap = new Dictionary<string, List<ValidationMapping>>()
                 {
                     {
+                        "DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda")
+                        }
+                    },
+                    {
+                        "PcIntvEndDateOfMda",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateLaterThan, "PcIntvStartDateOfMda")
+                        }
+                    },
+                    {
                         "PcIntvNumEligibleIndividualsTargeted",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk"),
+                            new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk", "PcIntvSchAtRisk", "PcIntvTraAtRisk"),
                             new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumEligibleFemalesTargeted", "PcIntvNumEligibleMalesTargeted")
                         }
                     },
@@ -41,18 +55,139 @@ namespace Nada.Model.Intervention
                         }
                     },
                     {
-                        "DateReported",
+                        "PcIntvNumSacTargeted",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda")
+                            new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted"),
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk")
                         }
                     },
                     {
-                        "PcIntvEndDateOfMda",
+	                    "PcIntvNumPsacTargeted",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSthPsacAtRisk"),
+                            new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted")
+	                    }
+                    },
+                    {
+	                    "PcIntvNumAdultsTargeted",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted")
+	                    }
+                    },
+                    {
+                        "PcIntvOfTotalTargetedForOncho",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.DateLaterThan, "PcIntvStartDateOfMda")
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumEligibleIndividualsTargeted"),
+                            new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvOfTotalFemalesTargetedOncho", "PcIntvOfTotalMalesTargetedOncho")
                         }
+                    },
+                    {
+                        "PcIntvNumIndividualsTreated",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumEligibleIndividualsTargeted"),
+                            new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumFemalesTreated", "PcIntvNumMalesTreated"),
+                            new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumTreatedZx", "PcIntvNumTreatedTeo", "PcIntvNumTreatedZxPos")
+                        }
+                    },
+                    {
+	                    "PcIntvNumSacTreated",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumIndividualsTreated"),
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumSacTargeted"),
+                            new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac")
+	                    }
+                    },
+                    {
+	                    "PcIntvPsacTreated",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumIndividualsTreated"),
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumPsacTargeted")
+	                    }
+                    },
+                    {
+	                    "PcIntvNumAdultsTreated",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumIndividualsTreated")
+	                    }
+                    },
+                    {
+	                    "PcIntvOfTotalFemalesOncho",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvOfTotalTreatedForOncho")
+	                    }
+                    },
+                    {
+	                    "PcIntvOfTotalMalesOncho",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvOfTotalTreatedForOncho")
+	                    }
+                    },
+                    {
+	                    "PcIntvOfTotalTreatedForOncho",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumIndividualsTreated"),
+                            new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvOfTotalFemalesOncho", "PcIntvOfTotalMalesOncho")
+	                    }
+                    },
+                    {
+	                    "PcIntvNumSeriousAdverseEventsReported",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumIndividualsTreated")
+	                    }
+                    },
+                    {
+	                    "PcIntvNumTreatedZx",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumIndividualsTreated")
+	                    }
+                    },
+                    {
+	                    "PcIntvNumTreatedTeo",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumIndividualsTreated")
+	                    }
+                    },
+                    {
+	                    "PcIntvNumTreatedZxPos",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumIndividualsTreated")
+	                    }
+                    },
+                    {
+	                    "LFMMDPNumLymphoedemaPatientsTreated",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMMDPNumLymphoedemaPatients")
+	                    }
+                    },
+                    {
+	                    "LFMMDPNumHydroceleCasesTreated",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMMDPNumHydroceleCases")
+	                    }
+                    },
+                    {
+	                    "PcIntvTsNumOperated",
+	                    new List<ValidationMapping>
+	                    {
+		                    new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvTsNumFemales", "PcIntvTsNumMales")
+	                    }
                     }
                 };
             }
