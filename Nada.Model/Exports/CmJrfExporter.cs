@@ -61,7 +61,7 @@ namespace Nada.Model.Exports
                 xlsWorksheet = (excel.Worksheet)xlsWorkbook.Worksheets[11];
                 AddPlanningPage(xlsWorksheet, rng, questions);
 
-                
+
                 // sheet 4 GW (start row 9)
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[5];
                 AddIndicators(DiseaseType.GuineaWorm, StaticIntvType.GuineaWormIntervention, yearReporting, xlsWorksheet, AddGwInds, AggGwInd, districtLevel.LevelNumber);
@@ -71,6 +71,12 @@ namespace Nada.Model.Exports
                 //// hat
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[7];
                 AddIndicators(DiseaseType.Hat, StaticIntvType.HatIntervention, yearReporting, xlsWorksheet, AddHatInds, AggHatInd, districtLevel.LevelNumber);
+                //// leish monthly
+                xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[8];
+                AddIndicators(DiseaseType.Leish, StaticIntvType.LeishMonthly, yearReporting, xlsWorksheet, AddLeishMonthlyInds, AggLeishInd, districtLevel.LevelNumber);
+                //// leish annual
+                xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[8];
+                AddIndicators(DiseaseType.Leish, StaticIntvType.LeishAnnual, yearReporting, xlsWorksheet, AddLeishAnnualInds, AggLeishInd, districtLevel.LevelNumber);
                 //// buruli
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[9];
                 AddIndicators(DiseaseType.Buruli, StaticIntvType.BuruliUlcerIntv, yearReporting, xlsWorksheet, AddBuInds, AggBuInd, districtLevel.LevelNumber);
@@ -239,9 +245,9 @@ namespace Nada.Model.Exports
             options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(gw.Id, gw.Indicators["EndemicityStatus"]));
             var lep = diseaseRepo.CreateCm(DiseaseType.Leprosy);
             options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lep.Id, lep.Indicators["EndemicityStatus"]));
-            // Commenting out since Leish dd changed, see story 267 and 215
-            //var lei = diseaseRepo.CreateCm(DiseaseType.Leish);
-            //options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lei.Id, lei.Indicators["EndemicityStatus"]));
+            var lei = diseaseRepo.CreateCm(DiseaseType.Leish);
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lei.Id, lei.Indicators["LeishDiseaseDistEndemicityStatusVL"]));
+            options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(lei.Id, lei.Indicators["LeishDiseaseDistEndemicityStatusCL"]));
             var hat = diseaseRepo.CreateCm(DiseaseType.Hat);
             options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(hat.Id, hat.Indicators["EndemicityStatus"]));
             var b = diseaseRepo.CreateCm(DiseaseType.Buruli);
@@ -476,7 +482,7 @@ namespace Nada.Model.Exports
             return ind1.Value;
         }
 
-        private void AddLeishInds(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, List<AdminLevelIndicators> districtIndicators)
+        private void AddLeishMonthlyInds(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, List<AdminLevelIndicators> districtIndicators)
         {
             Microsoft.Office.Interop.Excel.Range rng;
             object missing = System.Reflection.Missing.Value;
@@ -487,20 +493,47 @@ namespace Nada.Model.Exports
                 rng.Value = district.Parent.Name;
                 rng = xlsWorksheet.get_Range("B" + rowId, missing);
                 rng.Value = district.Name;
-                AddIndValue(district, "C" + rowId, "EndemicityStatus50", rng, xlsWorksheet, missing, AggLeishInd, true);
+                AddIndValue(district, "C" + rowId, "LeishDiseaseDistEndemicityStatusVL234", rng, xlsWorksheet, missing, AggLeishInd, true);
+                AddIndValue(district, "D" + rowId, "LeishDiseaseDistEndemicityStatusCL235", rng, xlsWorksheet, missing, AggLeishInd, true);
 
-                AddIndValue(district, "D" + rowId, "NumClCases126", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "E" + rowId, "NumLabClCases127", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "F" + rowId, "NumLabVlCases128", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "G" + rowId, "NumClVlCases129", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "H" + rowId, "NumCasesFoundActively130", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "I" + rowId, "NumCasesTreatedLeish131", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "J" + rowId, "NumCasesTreatedRef132", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "K" + rowId, "NumCasesNewMeds133", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "L" + rowId, "NumCasesCuredLeish134", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "M" + rowId, "NumTreatmentFail135", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "N" + rowId, "NumCasesSaesLeish136", rng, xlsWorksheet, missing, AggLeishInd, false);
-                AddIndValue(district, "O" + rowId, "NumDeathsLeish137", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "E" + rowId, "LeishMontIntvNumberOfClinicalCutaneousLeishmaniasisCLCases437", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "F" + rowId, "LeishMontIntvNumberOfLabConfirmedCLCases439", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "G" + rowId, "LeishMontIntvNumberOfLabConfirmedVisceralLeishmaniasisVLCases438", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "H" + rowId, "LeishMontIntvNumberOfVisceralLeishmaniasisHIVCoInfection450", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "I" + rowId, "LeishMontIntvTotalNumberOfNewCLCasesDiagnosedLabAndClinical455", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "J" + rowId, "LeishMontIntvTotalNumberOfNewVLCasesDiagnosedLabAndClinical442", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "K" + rowId, "LeishMontIntvNumberOfCasesFoundActively435", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "L" + rowId, "LeishMontIntvNumberOfNewVLCasesTreated481", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "M" + rowId, "LeishMontIntvNumberOfNewCLCasesTreated486", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "R" + rowId, "LeishMontIntvNumberOfFailureCasesVL483", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "S" + rowId, "LeishMontIntvNumberOfFailureCasesCL488", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "T" + rowId, "LeishMontIntvNumberOfCLCasesWithSeriousAdverseEvents490", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "U" + rowId, "LeishMontIntvNumberOfVLCasesWithSeriousAdverseEvents485", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "V" + rowId, "LeishMontIntvNumberOfDeathsForNewVLCases484", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "W" + rowId, "LeishMontIntvNumberOfDeathsForNewCLCases489", rng, xlsWorksheet, missing, AggLeishInd, false);
+
+                rowId++;
+            }
+
+            rng = null;
+        }
+
+        private void AddLeishAnnualInds(Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet, List<AdminLevelIndicators> districtIndicators)
+        {
+            Microsoft.Office.Interop.Excel.Range rng;
+            object missing = System.Reflection.Missing.Value;
+            int rowId = 9;
+            foreach (var district in districtIndicators)
+            {
+                rng = xlsWorksheet.get_Range("A" + rowId, missing);
+                rng.Value = district.Parent.Name;
+                rng = xlsWorksheet.get_Range("B" + rowId, missing);
+                rng.Value = district.Name;
+
+                AddIndValue(district, "N" + rowId, "LeishAnnIntvNumberOfNewVLCasesCuredAfterFollowUpOfAtLeast6Months423", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "O" + rowId, "LeishAnnIntvNumberOfNewCLCasesCuredAfterFollowUpOfAtLeast6Months425", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "P" + rowId, "LeishAnnIntvNumberOfVLRelapseCases416", rng, xlsWorksheet, missing, AggLeishInd, false);
+                AddIndValue(district, "Q" + rowId, "LeishAnnIntvNumberOfCLRelapseCases418", rng, xlsWorksheet, missing, AggLeishInd, false);
 
                 rowId++;
             }
@@ -510,7 +543,7 @@ namespace Nada.Model.Exports
 
         private object AggLeishInd(AggregateIndicator ind1, object existingValue)
         {
-            if (ind1.IndicatorId == 50)
+            if (ind1.IndicatorId == 234 || ind1.IndicatorId == 235)
             {
                 if (ind1.Value == "Endemic" || existingValue.ToString() == "Endemic")
                     return "Endemic";
