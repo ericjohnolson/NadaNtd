@@ -217,7 +217,8 @@ namespace Nada.Model.Exports
                 if (endemicity == TranslationLookup.GetValue(keyEndemic))
                 {
                     end++;
-                    endPop += district.CurrentDemography.TotalPopulation.Value;
+                    if (district.CurrentDemography.TotalPopulation.HasValue)
+                        endPop += district.CurrentDemography.TotalPopulation.Value;
                 }
                 else if (endemicity == TranslationLookup.GetValue(keyNotEndemic) || 
                     (!string.IsNullOrEmpty(keyNotEndemic2) && endemicity == TranslationLookup.GetValue(keyNotEndemic2)))
