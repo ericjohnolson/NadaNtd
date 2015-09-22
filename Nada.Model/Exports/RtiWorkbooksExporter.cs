@@ -929,32 +929,21 @@ namespace Nada.Model.Exports
             if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfSentinel)
             {
                 var testType = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFSurTestType");
-                if (testType != null)
+                if (testType != null && testType.DynamicValue != null)
                 {
-                    if (mostRecentSurvey.SentinelSiteId.HasValue && testType.DynamicValue == "MF")
-                        typeName = transLookup.GetValue("RtiSsMf", "RtiSsMf");
-                    else if (mostRecentSurvey.SentinelSiteId.HasValue)
-                        typeName = transLookup.GetValue("RtiSsAg", "RtiSsAg");
-                    else if (testType.DynamicValue == "MF")
-                        typeName = transLookup.GetValue("RtiScMf", "RtiScMf");
+                    // Determine if it is a spot check or sentinel site
+                    if (mostRecentSurvey.SentinelSiteId.HasValue)
+                        typeName = string.Format("{0} ({1})", "SS", testType.DynamicValue);
                     else
-                        typeName = transLookup.GetValue("RtiScAg", "RtiScAg");
+                        typeName = string.Format("{0} ({1})", "SC", testType.DynamicValue);
                 }
             }
             else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.LfMapping)
             {
                 var testType = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurTestType");
-                var isSentinel = mostRecentSurvey.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "LFMapSurWillTheSitesAlsoServeAsASentin");
-                if (testType != null && isSentinel != null)
+                if (testType != null && testType.DynamicValue != null)
                 {
-                    if (isSentinel.DynamicValue == "YesSentinelSite" && testType.DynamicValue == "MF")
-                        typeName = transLookup.GetValue("RtiSsMf", "RtiSsMf");
-                    else if (isSentinel.DynamicValue == "YesSentinelSite")
-                        typeName = transLookup.GetValue("RtiSsAg", "RtiSsAg");
-                    else if (testType.DynamicValue == "MF")
-                        typeName = transLookup.GetValue("RtiScMf", "RtiScMf");
-                    else
-                        typeName = transLookup.GetValue("RtiScAg", "RtiScAg");
+                    typeName = string.Format("{0} ({1})", "MAP", testType.DynamicValue);
                 }
             }
             else
