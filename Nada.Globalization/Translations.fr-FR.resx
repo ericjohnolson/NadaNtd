@@ -1312,7 +1312,7 @@
     <value>Mauvais</value>
   </data>
   <data name="DDOnchoDiseaseDistributionPcInterventio" xml:space="preserve">
-    <value>Distribution de la maladie : traitements medicamentaux de masse (TMM)</value>
+    <value>Distribution de la maladie : traitements médicamenteux de masse (TMM)</value>
   </data>
   <data name="DiseaseEndemicity" xml:space="preserve">
     <value>Distribution de la maladie : Interventions de CP</value>
@@ -2407,7 +2407,7 @@
     <value>Number of new PKDL cases in adults &gt; 14 years</value>
   </data>
   <data name="RtiTaskForceNoInternet" xml:space="preserve">
-    <value>Une connexion Internet n'a pas été trouvée. Veuillez vous connecter à l’Internet et essayez de nouveau, ou cocher la case pour sauter la réconciliation des unités.administratives.</value>
+    <value>Une connexion Internet n'a pas été trouvée. Veuillez vous connecter à l’Internet et essayez de nouveau, ou cocher la case pour sauter la réconciliation des unités administratives.</value>
   </data>
   <data name="NumTreatedOncho" xml:space="preserve">
     <value>Du total, nombre traités pour l'onchocercose</value>
@@ -2582,7 +2582,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Catégorie</value>
   </data>
   <data name="STHSurProportionOfHeavyIntensityOfAsc" xml:space="preserve">
-    <value>Nombre d’infections de haute intensité – Acaris</value>
+    <value>Nombre d’infections de haute intensité – Ascaris</value>
   </data>
   <data name="RedistLevel" xml:space="preserve">
     <value>Niveau administratif</value>
@@ -3017,7 +3017,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Volés</value>
   </data>
   <data name="TraMapSurNoClusters" xml:space="preserve">
-    <value>Nombre de grappes échantillonées</value>
+    <value>Nombre de grappes échantillonnées</value>
   </data>
   <data name="LFSurVector" xml:space="preserve">
     <value>Vecteur</value>
@@ -3471,7 +3471,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Période de l'enquête</value>
   </data>
   <data name="CustomYear" xml:space="preserve">
-    <value>Année personalisée</value>
+    <value>Année personnalisée</value>
   </data>
   <data name="HelpFile" xml:space="preserve">
     <value>/View/Help/FR/help.chm</value>
@@ -4782,7 +4782,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Circonstances atténuantes ou complications</value>
   </data>
   <data name="OnchoSurEntMtp" xml:space="preserve">
-    <value>Potential mensuel de transmission</value>
+    <value>Potentiel mensuel de transmission</value>
   </data>
   <data name="Melarsoprol" xml:space="preserve">
     <value>Melarsoprol</value>
@@ -6054,7 +6054,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Date de la restructuration du district</value>
   </data>
   <data name="Ancylostoma" xml:space="preserve">
-    <value>Ancylostoma duodenale (ankylostome)</value>
+    <value>Ancylostoma duodénale (ankylostome)</value>
   </data>
   <data name="Calculate" xml:space="preserve">
     <value>Calculer &gt;</value>
@@ -6777,7 +6777,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Albendazole</value>
   </data>
   <data name="ReviewErrors" xml:space="preserve">
-    <value>Veuillez révoir les erreurs et les corriger avant de continuer</value>
+    <value>Veuillez revoir les erreurs et les corriger avant de continuer</value>
   </data>
   <data name="LeishAnnIntvOfVLRelapseCasesOutOfTotalNewCasesFollowedUp" xml:space="preserve">
     <value>% of VL relapse cases out of total new cases followed up</value>
