@@ -859,7 +859,7 @@
     <value>Niveau admin I</value>
   </data>
   <data name="DownloadImportFile" xml:space="preserve">
-    <value>Télécharger le fichier d'importation</value>
+    <value>Créer le fichier d’importation</value>
   </data>
   <data name="STHMapSurSurPerPositiveTrichuris" xml:space="preserve">
     <value>% positifs - trichuris</value>
