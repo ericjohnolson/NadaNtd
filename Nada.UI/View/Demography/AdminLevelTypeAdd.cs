@@ -19,6 +19,7 @@ namespace Nada.UI.View
     {
         public event Action OnSave = () => { };
         private AdminLevelType model = new AdminLevelType();
+        public bool IsStartUp { get; set; }
 
         public AdminLevelTypeAdd()
             : base()
@@ -61,7 +62,9 @@ namespace Nada.UI.View
             bsAdminLevel.EndEdit();
             int userid = ApplicationData.Instance.GetUserId();
             r.Save(model, userid);
-            MessageBox.Show(Translations.AddAdminLevelNoAdminUnits, Translations.AdminLevelType);
+            // Show the warning message if this is not the start up wizard
+            if (!IsStartUp)
+                MessageBox.Show(Translations.AddAdminLevelNoAdminUnits, Translations.AdminLevelType);
             OnSave();
             this.Close();
         }

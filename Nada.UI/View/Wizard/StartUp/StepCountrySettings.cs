@@ -51,6 +51,8 @@ namespace Nada.UI.View.Wizard
             {
                 Localizer.TranslateControl(this);
                 countryView1.LoadCountry(model, false);
+                // Tell the AdminLevelTypesControl that it is being launched from the StartUp wizard
+                adminLevelTypesControl1.IsStartUp = true;
             }
         }
 

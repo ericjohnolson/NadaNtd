@@ -50,6 +50,8 @@ namespace Nada.UI.View
                 country = demo.GetCountry();
                 countryView1.LoadCountry(country, true);
                 diseasePickerControl1.LoadLists(true);
+                // Tell the AdminLevelTypesControl that it is not being launched from the StartUp wizard
+                adminLevelTypesControl1.IsStartUp = false;
             }
         }
 

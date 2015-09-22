@@ -22,6 +22,7 @@ namespace Nada.UI.Controls
         private int maxLevelsAllowed = 0;
         private List<AdminLevelType> types = null;
         private SettingsRepository r = null;
+        public bool IsStartUp { get; set; }
         public AdminLevelTypesControl()
             : base()
         {
@@ -45,6 +46,8 @@ namespace Nada.UI.Controls
             int max = types.Max(t => t.LevelNumber);
             AdminLevelType type = new AdminLevelType { LevelNumber = max + 1 };
             AdminLevelTypeAdd add = new AdminLevelTypeAdd(type);
+            // Tell the control if is being launched from StartUp
+            add.IsStartUp = IsStartUp;
             add.OnSave += () => { RefreshList(); };
             add.ShowDialog();
         }
@@ -55,6 +58,8 @@ namespace Nada.UI.Controls
             if (e.Column.AspectName == "EditText")
             {
                 AdminLevelTypeAdd add = new AdminLevelTypeAdd((AdminLevelType)e.Model);
+                // Tell the control if is being launched from StartUp
+                add.IsStartUp = IsStartUp;
                 add.OnSave += () => { RefreshList(); };
                 add.ShowDialog();
             }
