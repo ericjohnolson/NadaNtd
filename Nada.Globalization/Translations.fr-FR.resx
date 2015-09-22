@@ -607,7 +607,7 @@
     <value>20 Faible prévalence (≥1 et &lt;10 %) suite à l'évaluation selon une méthode parasitologique</value>
   </data>
   <data name="PcIntvOfTotalTargetedForOncho" xml:space="preserve">
-    <value>Du total, nombre traités pour l'onchocercose</value>
+    <value>Du total, nombre ciblées pour l'onchocercose</value>
   </data>
   <data name="SaeSTH" xml:space="preserve">
     <value>Géohelminthiases</value>
@@ -6825,7 +6825,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Pian</value>
   </data>
   <data name="PcIntvSthSacEpiCoverage" xml:space="preserve">
-    <value>GeoH: Couverture épidémiologique des EAP</value>
+    <value>GeoH: Couverture épidémiologique des EAS</value>
   </data>
   <data name="DDSchistoPopulationRequiringPc" xml:space="preserve">
     <value>Population nécessitant une CP</value>
