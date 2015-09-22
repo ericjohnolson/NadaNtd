@@ -90,8 +90,14 @@ namespace Nada.UI.View
                 else
                     statCalculator1.Visible = false;
                 // Validation control
-                validationControl.Validator = viewModel.Validator;
-                validationControl.OnValidate += validationControl_OnValidate;
+                if (viewModel.Validator != null && viewModel.Indicators != null && viewModel.Indicators.Count() > 0 && viewModel.IndicatorValues != null)
+                {
+                    validationControl.Validator = viewModel.Validator;
+                    validationControl.OnValidate += validationControl_OnValidate;
+                    validationControl.CheckForIndicatorsToValidate(viewModel.Indicators, viewModel.IndicatorValues);
+                }
+                else
+                    validationControl.Visible = false;
                 // special controls
                 viewModel.AddSpecialControls(indicatorControl1);
                 if (!Roles.IsUserInRole(ApplicationData.Instance.CurrentUser.UserName, "RoleDataEnterer") &&

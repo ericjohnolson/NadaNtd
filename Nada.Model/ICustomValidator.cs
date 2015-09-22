@@ -9,6 +9,7 @@ namespace Nada.Model
     public interface ICustomValidator
     {
         List<ValidationResult> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData);
+        bool HasIndicatorsToValidate(Dictionary<string, Indicator> indicators, List<IndicatorValue> values);
         string Valid(Indicator indicator, List<IndicatorValue> values);
         Dictionary<string, List<ValidationMapping>> GetMapInstance(bool instantiate);
         void ClearMap();
@@ -56,6 +57,24 @@ namespace Nada.Model
             ClearMap();
 
             return results;
+        }
+
+        public virtual bool HasIndicatorsToValidate(Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
+        {
+            // Get the validation map
+            GetMapInstance(true);
+
+            List<ValidationRule> rules = new List<ValidationRule>();
+
+            foreach (KeyValuePair<string, Indicator> indicator in indicators)
+            {
+                rules.AddRange(GetRules(indicator.Value, values));
+            }
+
+            // Clear the validation map
+            ClearMap();
+
+            return rules.Count > 0;
         }
 
         public virtual string Valid(Indicator indicator, List<IndicatorValue> values)

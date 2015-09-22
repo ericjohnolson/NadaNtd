@@ -42,6 +42,24 @@ namespace Nada.UI.Controls
             });
         }
 
+        public void CheckForIndicatorsToValidate(Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
+        {
+            // Show the loading indicator
+            loadingIndicator.Visible = true;
+            // Disable the link so validate cannot be clicked again until the current validation has finished
+            lnkValidateLink.Enabled = false;
+            // Run the validation on a background thread
+            BackgroundWorker validationWorker = new BackgroundWorker();
+            validationWorker.RunWorkerCompleted += validationCheck_RunWorkerCompleted;
+            validationWorker.DoWork += validationCheck_DoWork;
+            validationWorker.RunWorkerAsync(new ValidationPayload
+            {
+                Indicators = indicators,
+                Values = values,
+                MetaData = null
+            });
+        }
+
         private void validationWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -101,6 +119,33 @@ namespace Nada.UI.Controls
 
             this.ResumeLayout();
             tlpValidationResults.Visible = true;
+            loadingIndicator.Visible = false;
+            lnkValidateLink.Enabled = true;
+        }
+
+        private void validationCheck_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                ValidationPayload payload = (ValidationPayload)e.Argument;
+
+                e.Result = Validator.HasIndicatorsToValidate(payload.Indicators, payload.Values);
+            }
+            catch (Exception ex)
+            {
+                Logger log = new Logger();
+                log.Error("Error validationWorker_DoWork. ", ex);
+                throw;
+            }
+        }
+
+        private void validationCheck_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            bool hasIndicatorsToValidate = (bool)e.Result;
+
+            if (!hasIndicatorsToValidate)
+                this.Visible = false;
+
             loadingIndicator.Visible = false;
             lnkValidateLink.Enabled = true;
         }
