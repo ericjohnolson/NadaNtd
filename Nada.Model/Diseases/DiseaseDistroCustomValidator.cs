@@ -34,5 +34,121 @@ namespace Nada.Model.Diseases
 
             return "";
         }
+
+        public override Dictionary<string, List<ValidationMapping>> GetMapInstance(bool instantiate)
+        {
+            if (ValidationMap == null && instantiate)
+            {
+                ValidationMap = new Dictionary<string, List<ValidationMapping>>()
+                {
+                    {
+                        "DDLFPopulationAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDLFTotalPopulation")
+                        }
+                    },
+                    {
+                        "DDLFPopulationRequiringPc",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDLFPopulationAtRisk")
+                        }
+                    },
+                    {
+                        "DDLFHighRiskAdultsAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDLFPopulationAtRisk")
+                        }
+                    },
+                    {
+                        "DDOnchoPopulationAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDOnchoTotalPopulation")
+                        }
+                    },
+                    {
+                        "DDOnchoPopulationRequiringPc",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDOnchoPopulationAtRisk")
+                        }
+                    },
+                    {
+                        "DDSchistoPopulationAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSchistoTotalPopulation")
+                        }
+                    },
+                    {
+                        "DDSchistoPopulationRequiringPc",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSchistoPopulationAtRisk")
+                        }
+                    },
+                    {
+                        "DDSchistoSacAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSchistoPopulationAtRisk")
+                        }
+                    },
+                    {
+                        "DDSchistoHighRiskAdultsAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSchistoPopulationAtRisk")
+                        }
+                    },
+                    {
+                        "DDSTHPopulationAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHTotalPopulation")
+                        }
+                    },
+                    {
+                        "DDSTHPopulationRequiringPc",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
+                        }
+                    },
+                    {
+                        "DDSTHPsacAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
+                        }
+                    },
+                    {
+                        "DDSTHSacAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
+                        }
+                    },
+                    {
+                        "DDSTHHighRiskAdultsAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
+                        }
+                    },
+                    {
+                        "DDTraPopulationAtRisk",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDTraTotalPopulation")
+                        }
+                    }
+                };
+            }
+            return ValidationMap;
+        }
     }
 }
