@@ -35,118 +35,103 @@ namespace Nada.Model.Diseases
             return "";
         }
 
-        public override Dictionary<string, List<ValidationMapping>> GetMapInstance(bool instantiate)
+        public override Dictionary<string, List<ValidationMapping>> GetMapInstance(string formTranslationKey, bool instantiate)
         {
             if (ValidationMap == null && instantiate)
             {
-                ValidationMap = new Dictionary<string, List<ValidationMapping>>()
+                ValidationMap = new Dictionary<string, List<ValidationMapping>>();
+
+                if (formTranslationKey == "LF")
                 {
-                    {
-                        "DDLFPopulationAtRisk",
+                    ValidationMap.Add("DDLFPopulationAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDLFTotalPopulation")
-                        }
-                    },
-                    {
-                        "DDLFPopulationRequiringPc",
+                        });
+                    ValidationMap.Add("DDLFPopulationRequiringPc",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDLFPopulationAtRisk")
-                        }
-                    },
-                    {
-                        "DDLFHighRiskAdultsAtRisk",
+                        });
+                    ValidationMap.Add("DDLFHighRiskAdultsAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDLFPopulationAtRisk")
-                        }
-                    },
-                    {
-                        "DDOnchoPopulationAtRisk",
+                        });
+                }
+                else if (formTranslationKey == "Oncho")
+                {
+                    ValidationMap.Add("DDOnchoPopulationAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDOnchoTotalPopulation")
-                        }
-                    },
-                    {
-                        "DDOnchoPopulationRequiringPc",
+                        });
+                    ValidationMap.Add("DDOnchoPopulationRequiringPc",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDOnchoPopulationAtRisk")
-                        }
-                    },
-                    {
-                        "DDSchistoPopulationAtRisk",
+                        });
+                }
+                else if (formTranslationKey == "Schisto")
+                {
+                    ValidationMap.Add("DDSchistoPopulationAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSchistoTotalPopulation")
-                        }
-                    },
-                    {
-                        "DDSchistoPopulationRequiringPc",
+                        });
+                    ValidationMap.Add("DDSchistoPopulationRequiringPc",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSchistoPopulationAtRisk")
-                        }
-                    },
-                    {
-                        "DDSchistoSacAtRisk",
+                        });
+                    ValidationMap.Add("DDSchistoSacAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSchistoPopulationAtRisk")
-                        }
-                    },
-                    {
-                        "DDSchistoHighRiskAdultsAtRisk",
+                        });
+                    ValidationMap.Add("DDSchistoHighRiskAdultsAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSchistoPopulationAtRisk")
-                        }
-                    },
-                    {
-                        "DDSTHPopulationAtRisk",
+                        });
+                }
+                else if (formTranslationKey == "STH")
+                {
+                    ValidationMap.Add("DDSTHPopulationAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHTotalPopulation")
-                        }
-                    },
-                    {
-                        "DDSTHPopulationRequiringPc",
+                        });
+                    ValidationMap.Add("DDSTHPopulationRequiringPc",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
-                        }
-                    },
-                    {
-                        "DDSTHPsacAtRisk",
+                        });
+                    ValidationMap.Add("DDSTHPsacAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
-                        }
-                    },
-                    {
-                        "DDSTHSacAtRisk",
+                        });
+                    ValidationMap.Add("DDSTHSacAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
-                        }
-                    },
-                    {
-                        "DDSTHHighRiskAdultsAtRisk",
+                        });
+                    ValidationMap.Add("DDSTHHighRiskAdultsAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
-                        }
-                    },
-                    {
-                        "DDTraPopulationAtRisk",
+                        });
+                }
+                else if (formTranslationKey == "Trachoma")
+                {
+                    ValidationMap.Add("DDTraPopulationAtRisk",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDTraTotalPopulation")
-                        }
-                    }
-                };
+                        });
+                }
+
             }
             return ValidationMap;
         }

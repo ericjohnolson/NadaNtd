@@ -8,10 +8,10 @@ namespace Nada.Model
 {
     public interface ICustomValidator
     {
-        List<ValidationResult> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData);
-        bool HasIndicatorsToValidate(Dictionary<string, Indicator> indicators, List<IndicatorValue> values);
+        List<ValidationResult> ValidateIndicators(string formTranslationKey, Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData);
+        bool HasIndicatorsToValidate(string formTranslationKey, Dictionary<string, Indicator> indicators, List<IndicatorValue> values);
         string Valid(Indicator indicator, List<IndicatorValue> values);
-        Dictionary<string, List<ValidationMapping>> GetMapInstance(bool instantiate);
+        Dictionary<string, List<ValidationMapping>> GetMapInstance(string formTranslationKey, bool instantiate);
         void ClearMap();
     }
 
@@ -19,7 +19,7 @@ namespace Nada.Model
     {
         protected Dictionary<string, List<ValidationMapping>> ValidationMap { get; set; }
 
-        public virtual Dictionary<string, List<ValidationMapping>> GetMapInstance(bool instantiate)
+        public virtual Dictionary<string, List<ValidationMapping>> GetMapInstance(string formTranslationKey, bool instantiate)
         {
             if (ValidationMap == null && instantiate)
             {
@@ -33,10 +33,10 @@ namespace Nada.Model
             ValidationMap = null;
         }
 
-        public List<ValidationResult> ValidateIndicators(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
+        public List<ValidationResult> ValidateIndicators(string formTranslationKey, Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
         {
             // Get the validation map
-            GetMapInstance(true);
+            GetMapInstance(formTranslationKey, true);
 
             List<ValidationResult> results = new List<ValidationResult>();
 
@@ -59,10 +59,10 @@ namespace Nada.Model
             return results;
         }
 
-        public virtual bool HasIndicatorsToValidate(Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
+        public virtual bool HasIndicatorsToValidate(string formTranslationKey, Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
         {
             // Get the validation map
-            GetMapInstance(true);
+            GetMapInstance(formTranslationKey, true);
 
             List<ValidationRule> rules = new List<ValidationRule>();
 
@@ -91,17 +91,7 @@ namespace Nada.Model
                 List<ValidationMapping> mappings = ValidationMap[indicator.DisplayName];
                 foreach (ValidationMapping mapping in mappings)
                 {
-                    // Make sure the form being validated has the indicators to compare against
-                    bool hasAllIndicatorsToCompareAgainst = true;
-                    foreach (string indicatorToCompareAgainst in mapping.IndicatorsToCompareAgainst)
-                    {
-                        int count = values.Count(i => i.Indicator.DisplayName == indicatorToCompareAgainst);
-                        if (count <= 0)
-                            hasAllIndicatorsToCompareAgainst = false;
-                    }
-
-                    if (hasAllIndicatorsToCompareAgainst)
-                        rules.Add(ValidationMapping.BuildRule(mapping, indicator, values));
+                    rules.Add(ValidationMapping.BuildRule(mapping, indicator, values));
                 }
             }
 

@@ -94,7 +94,7 @@ namespace Nada.UI.View
                 {
                     validationControl.Validator = viewModel.Validator;
                     validationControl.OnValidate += validationControl_OnValidate;
-                    validationControl.CheckForIndicatorsToValidate(viewModel.Indicators, viewModel.IndicatorValues);
+                    validationControl.CheckForIndicatorsToValidate(viewModel.FormTranslationKey, viewModel.Indicators, viewModel.IndicatorValues);
                 }
                 else
                     validationControl.Visible = false;
@@ -239,7 +239,7 @@ namespace Nada.UI.View
 
         private void validationControl_OnValidate()
         {
-            validationControl.DoValidate(viewModel.Indicators, indicatorControl1.GetValues(), MetaData);
+            validationControl.DoValidate(viewModel.FormTranslationKey, viewModel.Indicators, indicatorControl1.GetValues(), MetaData);
         }
     }
 }

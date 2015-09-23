@@ -124,7 +124,7 @@ namespace Nada.Model.Imports
                 }
 
                 // Validate the object
-                List<ValidationResult> validationResults = Validator.ValidateIndicators(translatedIndicators, obj.IndicatorValues, metaData);
+                List<ValidationResult> validationResults = Validator.ValidateIndicators(iType.DisplayNameKey, translatedIndicators, obj.IndicatorValues, metaData);
 
                 // Add the validation messages to the string
                 foreach (ValidationResult validationResult in validationResults)

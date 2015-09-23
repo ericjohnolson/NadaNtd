@@ -12,450 +12,403 @@ namespace Nada.Model.Survey
             return "";
         }
 
-        public override Dictionary<string, List<ValidationMapping>> GetMapInstance(bool instantiate)
+        public override Dictionary<string, List<ValidationMapping>> GetMapInstance(string formTranslationKey, bool instantiate)
         {
             if (ValidationMap == null && instantiate)
             {
-                ValidationMap = new Dictionary<string, List<ValidationMapping>>()
+                ValidationMap = new Dictionary<string, List<ValidationMapping>>();
+                if (formTranslationKey == "SurLfMapping")
                 {
-                    {
-                        "DateReported",
+                    ValidationMap.Add("DateReported",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "LFMapSurStartDateOfSurvey"),
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "LFSurStartDateOfSurvey"),
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "TASStartDateOfSurvey"),
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "OnchoMapSurStartDateOfSurvey"),
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "OnchoSurStartDateOfSurvey"),
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "SCHMapSurStartDateOfSurvey"),
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "SCHSurStartDateOfSurvey"),
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "STHMapSurSurStartDateOfSurvey"),
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "STHSurStartDateOfSurvey"),
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "TraMapSurStartDateOfSurvey"),
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "TraSurStartDateOfSurvey")
-                        }
-                    },
-                    {
-                        "LFMapSurTargetSampleSize",
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "LFMapSurStartDateOfSurvey")
+                        });
+                    ValidationMap.Add("LFMapSurTargetSampleSize",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurPopulationLivingInMappingSites")
-                        }
-                    },
-                    {
-                        "LFMapSurNumberOfIndividualsExamined",
+                        });
+                    ValidationMap.Add("LFMapSurNumberOfIndividualsExamined",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurPopulationLivingInMappingSites")
-                        }
-                    },
-                    {
-                        "LFMapSurNumberOfFemalesExamined",
+                        });
+                    ValidationMap.Add("LFMapSurNumberOfFemalesExamined",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurNumberOfIndividualsExamined")
-                        }
-                    },
-                    {
-                        "LFMapSurNumberOfMalesExamined",
+                        });
+                    ValidationMap.Add("LFMapSurNumberOfMalesExamined",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurNumberOfIndividualsExamined")
-                        }
-                    },
-                    {
-                        "LFMapSurExaminedLympho",
+                        });
+                    ValidationMap.Add("LFMapSurExaminedLympho",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurNumberOfIndividualsExamined")
-                        }
-                    },
-                    {
-                        "LFMapSurExaminedHydro1",
+                        });
+                    ValidationMap.Add("LFMapSurExaminedHydro1",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurNumberOfIndividualsExamined")
-                        }
-                    },
-                    {
-                        "LFMapSurNumberOfIndividualsPositive",
+                        });
+                    ValidationMap.Add("LFMapSurNumberOfIndividualsPositive",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurNumberOfIndividualsExamined")
-                        }
-                    },
-                    {
-                        "LFMapSurNumberOfFemalesPositive",
+                        });
+                    ValidationMap.Add("LFMapSurNumberOfFemalesPositive",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurNumberOfIndividualsPositive")
-                        }
-                    },
-                    {
-                        "LFMapSurNumberOfMalesPositive",
+                        });
+                    ValidationMap.Add("LFMapSurNumberOfMalesPositive",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurNumberOfIndividualsPositive")
-                        }
-                    },
-                    {
-                        "LFMapSurNumberOfCasesOfLymphoedema",
+                        });
+                    ValidationMap.Add("LFMapSurNumberOfCasesOfLymphoedema",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurExaminedLympho")
-                        }
-                    },
-                    {
-                        "LFMapSurNumberOfCasesOfHydrocele",
+                        });
+                    ValidationMap.Add("LFMapSurNumberOfCasesOfHydrocele",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFMapSurExaminedHydro1")
-                        }
-                    },
-                    {
-                        "LFSurNumberOfIndividualsPositive",
+                        });
+                }
+                else if (formTranslationKey == "SurLfSentinelSpotCheckSurvey")
+                {
+                    ValidationMap.Add("DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "LFSurStartDateOfSurvey")
+                        });
+                    ValidationMap.Add("LFSurNumberOfIndividualsPositive",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFSurNumberOfIndividualsExamined")
-                        }
-                    },
-                    {
-                        "LFSurPosLympho",
+                        });
+                    ValidationMap.Add("LFSurPosLympho",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFSurExaminedLympho")
-                        }
-                    },
-                    {
-                        "LFSurPosHydro",
+                        });
+                    ValidationMap.Add("LFSurPosHydro",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFSurPosHydro")
-                        }
-                    },
-                    {
-                        "TASActualSampleSizePositive",
+                        });
+                }
+                else if (formTranslationKey == "SurTransAssessSurvey")
+                {
+                    ValidationMap.Add("DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "TASStartDateOfSurvey")
+                        });
+                    ValidationMap.Add("TASActualSampleSizePositive",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "d807913f-b3a1-4948-a2b3-54eb0800a3bc")
-                        }
-                    },
-                    {
-                        "TASActualSampleSizeNegative",
+                        });
+                    ValidationMap.Add("TASActualSampleSizeNegative",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "d807913f-b3a1-4948-a2b3-54eb0800a3bc")
-                        }
-                    },
-                    {
-                        "TASActualNonResponseRateAbsent",
+                        });
+                    ValidationMap.Add("TASActualNonResponseRateAbsent",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "d807913f-b3a1-4948-a2b3-54eb0800a3bc")
-                        }
-                    },
-                    {
-                        "TASActualNonResponseRateRefusalOrNoConse",
+                        });
+                    ValidationMap.Add("TASActualNonResponseRateRefusalOrNoConse",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "d807913f-b3a1-4948-a2b3-54eb0800a3bc")
-                        }
-                    },
-                    {
-                        "TASActualNonResponseRateInabilityToPerfo",
+                        });
+                    ValidationMap.Add("TASActualNonResponseRateInabilityToPerfo",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "d807913f-b3a1-4948-a2b3-54eb0800a3bc")
-                        }
-                    },
-                    {
-                        "TASActualNonResponseRateTotal",
+                        });
+                    ValidationMap.Add("TASActualNonResponseRateTotal",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.EqualToSum, "TASActualSampleSizePositive", "TASActualSampleSizeNegative", "TASActualNonResponseRateAbsent", "TASActualNonResponseRateRefusalOrNoConse", "TASActualNonResponseRateInabilityToPerfo")
-                        }
-                    },
-                    {
-                        "OnchoMapSurNumberOfIndividualsPositive",
+                        });
+                }
+                else if (formTranslationKey == "SurOnchoMapping")
+                {
+                    ValidationMap.Add("DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "OnchoMapSurStartDateOfSurvey")
+                        });
+                    ValidationMap.Add("OnchoMapSurNumberOfIndividualsPositive",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "OnchoMapSurNumberOfIndividualsExamined")
-                        }
-                    },
-                    {
-                        "OnchoSurNumberOfIndividualsExamined",
+                        });
+                }
+                else if (formTranslationKey == "SurOnchoAssesments")
+                {
+                    ValidationMap.Add("DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "OnchoSurStartDateOfSurvey")
+                        });
+                    ValidationMap.Add("OnchoSurNumberOfIndividualsExamined",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "OnchoSurRegistrationPopulation")
-                        }
-                    },
-                    {
-                        "OnchoSurNumRefused",
+                        });
+                    ValidationMap.Add("OnchoSurNumRefused",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "OnchoSurRegistrationPopulation")
-                        }
-                    },
-                    {
-                        "OnchoSurNumberOfIndividualsPositive",
+                        });
+                    ValidationMap.Add("OnchoSurNumberOfIndividualsPositive",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "OnchoSurNumberOfIndividualsExamined")
-                        }
-                    },
-                    {
-                        "OnchoSurFliesDissected",
+                        });
+                }
+                else if (formTranslationKey == "OnchoSurEntomological")
+                {
+                    ValidationMap.Add("OnchoSurFliesDissected",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "OnchoSurNoFlies")
-                        }
-                    },
-                    {
-                        "OnchoSurParousFliesDisected",
+                        });
+                    ValidationMap.Add("OnchoSurParousFliesDisected",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "OnchoSurParousFlies")
-                        }
-                    },
-                    {
-                        "SCHMapSurNumberOfIndividualsPositiveForH",
+                        });
+                }
+                else if (formTranslationKey == "SurSchMapping")
+                {
+                    ValidationMap.Add("DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "SCHMapSurStartDateOfSurvey")
+                        });
+                    ValidationMap.Add("SCHMapSurNumberOfIndividualsPositiveForH",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHMapSurNumberOfIndividualsExaminedForU")
-                        }
-                    },
-                    {
-                        "SCHMapSurNumPosSchParasite",
+                        });
+                    ValidationMap.Add("SCHMapSurNumPosSchParasite",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHMapSurNumberOfIndividualsExaminedForU")
-                        }
-                    },
-                    {
-                        "SCHMapSurProportionOfHeavyIntensityUrina",
+                        });
+                    ValidationMap.Add("SCHMapSurProportionOfHeavyIntensityUrina",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHMapSurNumberOfIndividualsExaminedForU")
-                        }
-                    },
-                    {
-                        "SCHMapSurProportionOfModerateIntensityUr",
+                        });
+                    ValidationMap.Add("SCHMapSurProportionOfModerateIntensityUr",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHMapSurNumberOfIndividualsExaminedForU")
-                        }
-                    },
-                    {
-                        "SCHMapSurNumberOfIndividualsPositiveForI",
+                        });
+                    ValidationMap.Add("SCHMapSurNumberOfIndividualsPositiveForI",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHMapSurNumberOfIndividualsExaminedForI")
-                        }
-                    },
-                    {
-                        "SCHMapSurProportionOfHeavyIntensityIntes",
+                        });
+                    ValidationMap.Add("SCHMapSurProportionOfHeavyIntensityIntes",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHMapSurNumberOfIndividualsExaminedForI")
-                        }
-                    },
-                    {
-                        "SCHMapSurProportionOfModerateIntensityIn",
+                        });
+                    ValidationMap.Add("SCHMapSurProportionOfModerateIntensityIn",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHMapSurNumberOfIndividualsExaminedForI")
-                        }
-                    },
-                    {
-                        "SCHSurNumberOfIndividualsPositiveForHaem",
+                        });
+                }
+                else if (formTranslationKey == "SurSchSentinelSpotCheckSurvey")
+                {
+                    ValidationMap.Add("DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "SCHSurStartDateOfSurvey")
+                        });
+                    ValidationMap.Add("SCHSurNumberOfIndividualsPositiveForHaem",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHSurNumberOfIndividualsExaminedForUrin")
-                        }
-                    },
-                    {
-                        "SCHSurNumPosSchParasite",
+                        });
+                    ValidationMap.Add("SCHSurNumPosSchParasite",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHSurNumberOfIndividualsExaminedForUrin")
-                        }
-                    },
-                    {
-                        "SCHSurProportionOfHeavyIntensityUrinaryS",
+                        });
+                    ValidationMap.Add("SCHSurProportionOfHeavyIntensityUrinaryS",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHSurNumberOfIndividualsExaminedForUrin")
-                        }
-                    },
-                    {
-                        "SCHSurProportionOfModerateIntensityUrina",
+                        });
+                    ValidationMap.Add("SCHSurProportionOfModerateIntensityUrina",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHSurNumberOfIndividualsExaminedForUrin")
-                        }
-                    },
-                    {
-                        "SCHSurNumberOfIndividualsPositiveForInte",
+                        });
+                    ValidationMap.Add("SCHSurNumberOfIndividualsPositiveForInte",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHSurNumberOfIndividualsExaminedForInte")
-                        }
-                    },
-                    {
-                        "SCHSurProportionOfHeavyIntensityIntestin",
+                        });
+                    ValidationMap.Add("SCHSurProportionOfHeavyIntensityIntestin",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHSurNumberOfIndividualsExaminedForInte")
-                        }
-                    },
-                    {
-                        "SCHSurProportionOfModerateIntensityIntes",
+                        });
+                    ValidationMap.Add("SCHSurProportionOfModerateIntensityIntes",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "SCHSurNumberOfIndividualsExaminedForInte")
-                        }
-                    },
-                    {
-                        "STHMapSurSurNumberOfIndividualsPositiveAscaris",
+                        });
+                }
+                else if (formTranslationKey == "SurSthMapping")
+                {
+                    ValidationMap.Add("DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "STHMapSurSurStartDateOfSurvey")
+                        });
+                    ValidationMap.Add("STHMapSurSurNumberOfIndividualsPositiveAscaris",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHMapSurSurNumberOfIndividualsExaminedAscaris")
-                        }
-                    },
-                    {
-                        "STHMapSurSurProportionOfHeavyIntensityOfInAS",
+                        });
+                    ValidationMap.Add("STHMapSurSurProportionOfHeavyIntensityOfInAS",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHMapSurSurNumberOfIndividualsExaminedAscaris")
-                        }
-                    },
-                    {
-                        "STHMapSurSurProportionOfModerateIntensityOfInAS",
+                        });
+                    ValidationMap.Add("STHMapSurSurProportionOfModerateIntensityOfInAS",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHMapSurSurNumberOfIndividualsExaminedAscaris")
-                        }
-                    },
-                    {
-                        "STHMapSurSurNumberOfIndividualsPositiveHookwor",
+                        });
+                    ValidationMap.Add("STHMapSurSurNumberOfIndividualsPositiveHookwor",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHMapSurSurNumberOfIndividualsExaminedHookwor")
-                        }
-                    },
-                    {
-                        "STHMapSurSurProportionOfHeavyIntensityOfInHook",
+                        });
+                    ValidationMap.Add("STHMapSurSurProportionOfHeavyIntensityOfInHook",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHMapSurSurNumberOfIndividualsExaminedHookwor")
-                        }
-                    },
-                    {
-                        "STHMapSurSurProportionOfModerateIntensityOfInHook",
+                        });
+                    ValidationMap.Add("STHMapSurSurProportionOfModerateIntensityOfInHook",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHMapSurSurNumberOfIndividualsExaminedHookwor")
-                        }
-                    },
-                    {
-                        "STHMapSurSurNumberOfIndividualsPositiveTrichur",
+                        });
+                    ValidationMap.Add("STHMapSurSurNumberOfIndividualsPositiveTrichur",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHMapSurSurNumberOfIndividualsExaminedTrichur")
-                        }
-                    },
-                    {
-                        "STHMapSurSurProportionOfHeavyIntensityOfInfecti",
+                        });
+                    ValidationMap.Add("STHMapSurSurProportionOfHeavyIntensityOfInfecti",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHMapSurSurNumberOfIndividualsExaminedTrichur")
-                        }
-                    },
-                    {
-                        "STHMapSurSurProportionOfModerateIntensityOfInfe",
+                        });
+                    ValidationMap.Add("STHMapSurSurProportionOfModerateIntensityOfInfe",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHMapSurSurNumberOfIndividualsExaminedTrichur")
-                        }
-                    },
-                    {
-                        "STHMapSurSurNumberOfIndividualsPositiveOverall",
+                        });
+                    ValidationMap.Add("STHMapSurSurNumberOfIndividualsPositiveOverall",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHMapSurSurNumberOfIndividualsExaminedOverall")
-                        }
-                    },
-                    {
-                        "STHSurNumberOfIndividualsPositiveAscaris",
+                        });
+                }
+                else if (formTranslationKey == "SurSthSentinelSpotCheckSurvey")
+                {
+                    ValidationMap.Add("DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "STHSurStartDateOfSurvey")
+                        });
+                    ValidationMap.Add("STHSurNumberOfIndividualsPositiveAscaris",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHSurNumberOfIndividualsExaminedAscaris")
-                        }
-                    },
-                    {
-                        "STHSurProportionOfHeavyIntensityOfAsc",
+                        });
+                    ValidationMap.Add("STHSurProportionOfHeavyIntensityOfAsc",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHSurNumberOfIndividualsExaminedAscaris")
-                        }
-                    },
-                    {
-                        "STHSurProportionOfModerateIntensityAsc",
+                        });
+                    ValidationMap.Add("STHSurProportionOfModerateIntensityAsc",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHSurNumberOfIndividualsExaminedAscaris")
-                        }
-                    },
-                    {
-                        "STHSurNumberOfIndividualsPositiveHookwor",
+                        });
+                    ValidationMap.Add("STHSurNumberOfIndividualsPositiveHookwor",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHSurNumberOfIndividualsExaminedHookwor")
-                        }
-                    },
-                    {
-                        "STHSurProportionOfHeavyIntensityHook",
+                        });
+                    ValidationMap.Add("STHSurProportionOfHeavyIntensityHook",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHSurNumberOfIndividualsExaminedHookwor")
-                        }
-                    },
-                    {
-                        "STHSurProportionOfModerateIntensityHook",
+                        });
+                    ValidationMap.Add("STHSurProportionOfModerateIntensityHook",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHSurNumberOfIndividualsExaminedHookwor")
-                        }
-                    },
-                    {
-                        "STHSurNumberOfIndividualsPositiveTrichur",
+                        });
+                    ValidationMap.Add("STHSurNumberOfIndividualsPositiveTrichur",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHSurNumberOfIndividualsExaminedTrichur")
-                        }
-                    },
-                    {
-                        "STHSurProportionOfHeavyIntensityOfTri",
+                        });
+                    ValidationMap.Add("STHSurProportionOfHeavyIntensityOfTri",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHSurNumberOfIndividualsExaminedTrichur")
-                        }
-                    },
-                    {
-                        "STHSurProportionOfModerateIntensityTri",
+                        });
+                    ValidationMap.Add("STHSurProportionOfModerateIntensityTri",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHSurNumberOfIndividualsExaminedTrichur")
-                        }
-                    },
-                    {
-                        "STHSurNumberOfIndividualsPositiveOverall",
+                        });
+                    ValidationMap.Add("STHSurNumberOfIndividualsPositiveOverall",
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "STHSurNumberOfIndividualsExaminedOverall")
-                        }
-                    }
-                };
+                        });
+                }
+                else if (formTranslationKey == "SurTrachomaMapping")
+                {
+                    ValidationMap.Add("DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "TraMapSurStartDateOfSurvey")
+                        });
+                }
+                else if (formTranslationKey == "SurImpactSurvey")
+                {
+                    ValidationMap.Add("DateReported",
+                        new List<ValidationMapping>
+                        {
+                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "TraSurStartDateOfSurvey")
+                        });
+                }
+
             }
             return ValidationMap;
         }

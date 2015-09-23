@@ -24,7 +24,7 @@ namespace Nada.UI.Controls
             InitializeComponent();
         }
 
-        public void DoValidate(Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
+        public void DoValidate(string formTranslationKey, Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
         {
             // Show the loading indicator
             loadingIndicator.Visible = true;
@@ -36,13 +36,14 @@ namespace Nada.UI.Controls
             validationWorker.DoWork += validationWorker_DoWork;
             validationWorker.RunWorkerAsync(new ValidationPayload
             {
+                FormTranslationKey = formTranslationKey,
                 Indicators = indicators,
                 Values = values,
                 MetaData = metaData
             });
         }
 
-        public void CheckForIndicatorsToValidate(Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
+        public void CheckForIndicatorsToValidate(string formTranslationKey, Dictionary<string, Indicator> indicators, List<IndicatorValue> values)
         {
             // Show the loading indicator
             loadingIndicator.Visible = true;
@@ -54,6 +55,7 @@ namespace Nada.UI.Controls
             validationWorker.DoWork += validationCheck_DoWork;
             validationWorker.RunWorkerAsync(new ValidationPayload
             {
+                FormTranslationKey = formTranslationKey,
                 Indicators = indicators,
                 Values = values,
                 MetaData = null
@@ -66,7 +68,7 @@ namespace Nada.UI.Controls
             {
                 ValidationPayload payload = (ValidationPayload)e.Argument;
 
-                e.Result = Validator.ValidateIndicators(payload.Indicators, payload.Values, payload.MetaData);
+                e.Result = Validator.ValidateIndicators(payload.FormTranslationKey, payload.Indicators, payload.Values, payload.MetaData);
             }
             catch (Exception ex)
             {
@@ -129,7 +131,7 @@ namespace Nada.UI.Controls
             {
                 ValidationPayload payload = (ValidationPayload)e.Argument;
 
-                e.Result = Validator.HasIndicatorsToValidate(payload.Indicators, payload.Values);
+                e.Result = Validator.HasIndicatorsToValidate(payload.FormTranslationKey, payload.Indicators, payload.Values);
             }
             catch (Exception ex)
             {
@@ -171,6 +173,7 @@ namespace Nada.UI.Controls
 
     public class ValidationPayload
     {
+        public string FormTranslationKey { get; set; }
         public Dictionary<string, Indicator> Indicators { get; set; }
         public List<IndicatorValue> Values { get; set; }
         public List<KeyValuePair<string, string>> MetaData { get; set; }

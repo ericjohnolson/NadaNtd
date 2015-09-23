@@ -12,7 +12,7 @@ namespace Nada.Model.Intervention
             return "";
         }
 
-        public override Dictionary<string, List<ValidationMapping>> GetMapInstance(bool instantiate)
+        public override Dictionary<string, List<ValidationMapping>> GetMapInstance(string formTranslationKey, bool instantiate)
         {
             if (ValidationMap == null && instantiate)
             {
@@ -36,7 +36,6 @@ namespace Nada.Model.Intervention
                         "PcIntvNumEligibleIndividualsTargeted",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk", "PcIntvSchAtRisk", "PcIntvTraAtRisk"),
                             new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumEligibleFemalesTargeted", "PcIntvNumEligibleMalesTargeted")
                         }
                     },
@@ -58,15 +57,13 @@ namespace Nada.Model.Intervention
                         "PcIntvNumSacTargeted",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted"),
-                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk")
+                            new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted")
                         }
                     },
                     {
 	                    "PcIntvNumPsacTargeted",
 	                    new List<ValidationMapping>
 	                    {
-		                    new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSthPsacAtRisk"),
                             new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted")
 	                    }
                     },
@@ -90,8 +87,7 @@ namespace Nada.Model.Intervention
                         new List<ValidationMapping>
                         {
                             new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumEligibleIndividualsTargeted"),
-                            new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumFemalesTreated", "PcIntvNumMalesTreated"),
-                            new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumTreatedZx", "PcIntvNumTreatedTeo", "PcIntvNumTreatedZxPos")
+                            new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumFemalesTreated", "PcIntvNumMalesTreated")
                         }
                     },
                     {
@@ -141,13 +137,6 @@ namespace Nada.Model.Intervention
 	                    }
                     },
                     {
-	                    "PcIntvNumSeriousAdverseEventsReported",
-	                    new List<ValidationMapping>
-	                    {
-		                    new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumIndividualsTreated")
-	                    }
-                    },
-                    {
 	                    "PcIntvNumTreatedZx",
 	                    new List<ValidationMapping>
 	                    {
@@ -190,6 +179,70 @@ namespace Nada.Model.Intervention
 	                    }
                     }
                 };
+
+                if (formTranslationKey == "IntvIvmPzqAlb")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk", "PcIntvSchAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                }
+                else if (formTranslationKey == "IntvIvmAlb")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                }
+                else if (formTranslationKey == "IntvIvmPzq")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvOnchoAtRisk", "PcIntvSchAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                }
+                else if (formTranslationKey == "IntvIvm")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvOnchoAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                }
+                else if (formTranslationKey == "IntvDecAlb")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                }
+                else if (formTranslationKey == "IntvPzqAlb")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvSchAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                }
+                else if (formTranslationKey == "IntvAlb2")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvLfAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                }
+                else if (formTranslationKey == "IntvAlb")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSthSacAtRisk"));
+                }
+                else if (formTranslationKey == "IntvMbd")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSthSacAtRisk"));
+                }
+                else if (formTranslationKey == "IntvPzq")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSchAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk"));
+                }
+                else if (formTranslationKey == "IntvZithroTeo")
+                {
+                    ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvTraAtRisk"));
+                    ValidationMap["PcIntvNumIndividualsTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumTreatedZx", "PcIntvNumTreatedTeo", "PcIntvNumTreatedZxPos"));
+                }
+                else if (formTranslationKey == "LfMorbidityManagment")
+                {
+
+                }
+                else if (formTranslationKey == "TsSurgeries")
+                {
+
+                }
             }
             return ValidationMap;
         }

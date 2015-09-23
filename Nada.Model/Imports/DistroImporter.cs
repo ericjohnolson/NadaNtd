@@ -192,7 +192,7 @@ namespace Nada.Model
                 }
 
                 // Validate the object
-                List<ValidationResult> validationResults = Validator.ValidateIndicators(translatedIndicators, obj.IndicatorValues, metaData);
+                List<ValidationResult> validationResults = Validator.ValidateIndicators(type.Disease.DisplayNameKey, translatedIndicators, obj.IndicatorValues, metaData);
 
                 // Add the validation messages to the string
                 foreach (ValidationResult validationResult in validationResults)
@@ -254,7 +254,7 @@ namespace Nada.Model
                 }
 
                 // Validate the object
-                List<ValidationResult> validationResults = Validator.ValidateIndicators(translatedIndicators, obj.IndicatorValues, metaData);
+                List<ValidationResult> validationResults = Validator.ValidateIndicators(cmType.Disease.DisplayNameKey, translatedIndicators, obj.IndicatorValues, metaData);
 
                 // Add the validation messages to the string
                 foreach (ValidationResult validationResult in validationResults)
