@@ -86,6 +86,9 @@ namespace Nada.UI.View.Reports.Standard
             //  Selected years
             options.Years = report.ReportOptions.Years;
 
+            // Set the title
+            report.TypeName = Translations.PersonsTreatedAndCoverageReport;
+
             // Next step
             OnSwitchStep(new StepLocations(report, this));
         }
