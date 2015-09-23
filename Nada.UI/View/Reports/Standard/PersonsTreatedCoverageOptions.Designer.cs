@@ -78,7 +78,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(528, 413);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(528, 750);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // cbReportTypeLabel
@@ -110,8 +110,8 @@
             this.lbDiseasesLabel.AutoSize = true;
             this.lbDiseasesLabel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbDiseasesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbDiseasesLabel.Location = new System.Drawing.Point(0, 44);
-            this.lbDiseasesLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.lbDiseasesLabel.Location = new System.Drawing.Point(0, 51);
+            this.lbDiseasesLabel.Margin = new System.Windows.Forms.Padding(0, 7, 0, 0);
             this.lbDiseasesLabel.Name = "lbDiseasesLabel";
             this.lbDiseasesLabel.Size = new System.Drawing.Size(54, 16);
             this.lbDiseasesLabel.TabIndex = 2;
@@ -125,10 +125,10 @@
             this.lbDiseases.DisplayMember = "DisplayName";
             this.lbDiseases.FormattingEnabled = true;
             this.lbDiseases.ItemHeight = 15;
-            this.lbDiseases.Location = new System.Drawing.Point(3, 63);
+            this.lbDiseases.Location = new System.Drawing.Point(3, 70);
             this.lbDiseases.Name = "lbDiseases";
             this.lbDiseases.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lbDiseases.Size = new System.Drawing.Size(120, 94);
+            this.lbDiseases.Size = new System.Drawing.Size(300, 169);
             this.lbDiseases.TabIndex = 3;
             this.lbDiseases.Tag = "";
             // 
@@ -141,8 +141,8 @@
             this.lbDrugPackageLabel.AutoSize = true;
             this.lbDrugPackageLabel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbDrugPackageLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbDrugPackageLabel.Location = new System.Drawing.Point(0, 160);
-            this.lbDrugPackageLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.lbDrugPackageLabel.Location = new System.Drawing.Point(0, 249);
+            this.lbDrugPackageLabel.Margin = new System.Windows.Forms.Padding(0, 7, 0, 0);
             this.lbDrugPackageLabel.Name = "lbDrugPackageLabel";
             this.lbDrugPackageLabel.Size = new System.Drawing.Size(85, 16);
             this.lbDrugPackageLabel.TabIndex = 4;
@@ -156,10 +156,10 @@
             this.lbDrugPackages.DisplayMember = "IntvTypeName";
             this.lbDrugPackages.FormattingEnabled = true;
             this.lbDrugPackages.ItemHeight = 15;
-            this.lbDrugPackages.Location = new System.Drawing.Point(3, 179);
+            this.lbDrugPackages.Location = new System.Drawing.Point(3, 268);
             this.lbDrugPackages.Name = "lbDrugPackages";
             this.lbDrugPackages.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lbDrugPackages.Size = new System.Drawing.Size(120, 94);
+            this.lbDrugPackages.Size = new System.Drawing.Size(300, 169);
             this.lbDrugPackages.TabIndex = 5;
             this.lbDrugPackages.Tag = "";
             // 
@@ -172,8 +172,8 @@
             this.cbAggreateByLabel.AutoSize = true;
             this.cbAggreateByLabel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.cbAggreateByLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbAggreateByLabel.Location = new System.Drawing.Point(0, 276);
-            this.cbAggreateByLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.cbAggreateByLabel.Location = new System.Drawing.Point(0, 447);
+            this.cbAggreateByLabel.Margin = new System.Windows.Forms.Padding(0, 7, 0, 0);
             this.cbAggreateByLabel.Name = "cbAggreateByLabel";
             this.cbAggreateByLabel.Size = new System.Drawing.Size(91, 15);
             this.cbAggreateByLabel.TabIndex = 6;
@@ -188,7 +188,7 @@
             this.cbAggregateBy.DisplayMember = "DisplayName";
             this.cbAggregateBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAggregateBy.FormattingEnabled = true;
-            this.cbAggregateBy.Location = new System.Drawing.Point(3, 294);
+            this.cbAggregateBy.Location = new System.Drawing.Point(3, 465);
             this.cbAggregateBy.Name = "cbAggregateBy";
             this.cbAggregateBy.Size = new System.Drawing.Size(121, 23);
             this.cbAggregateBy.TabIndex = 7;
@@ -206,8 +206,8 @@
             this.lbYear.AutoSize = true;
             this.lbYear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lbYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbYear.Location = new System.Drawing.Point(0, 320);
-            this.lbYear.Margin = new System.Windows.Forms.Padding(0);
+            this.lbYear.Location = new System.Drawing.Point(0, 498);
+            this.lbYear.Margin = new System.Windows.Forms.Padding(0, 7, 0, 0);
             this.lbYear.Name = "lbYear";
             this.lbYear.Size = new System.Drawing.Size(43, 15);
             this.lbYear.TabIndex = 8;
@@ -219,10 +219,10 @@
             // 
             this.lbYears.FormattingEnabled = true;
             this.lbYears.ItemHeight = 15;
-            this.lbYears.Location = new System.Drawing.Point(3, 338);
+            this.lbYears.Location = new System.Drawing.Point(3, 516);
             this.lbYears.Name = "lbYears";
             this.lbYears.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lbYears.Size = new System.Drawing.Size(120, 64);
+            this.lbYears.Size = new System.Drawing.Size(120, 169);
             this.lbYears.TabIndex = 9;
             // 
             // PersonsTreatedCoverageOptions
@@ -231,7 +231,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PersonsTreatedCoverageOptions";
-            this.Size = new System.Drawing.Size(528, 413);
+            this.Size = new System.Drawing.Size(528, 750);
             this.Load += new System.EventHandler(this.StepOptions_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
