@@ -91,7 +91,17 @@ namespace Nada.Model
                 List<ValidationMapping> mappings = ValidationMap[indicator.DisplayName];
                 foreach (ValidationMapping mapping in mappings)
                 {
-                    rules.Add(ValidationMapping.BuildRule(mapping, indicator, values));
+                    // Make sure the form being validated has the indicators to compare against
+                    bool hasAllIndicatorsToCompareAgainst = true;
+                    foreach (string indicatorToCompareAgainst in mapping.IndicatorsToCompareAgainst)
+                    {
+                        int count = values.Count(i => i.Indicator.DisplayName == indicatorToCompareAgainst);
+                        if (count <= 0)
+                            hasAllIndicatorsToCompareAgainst = false;
+                    }
+
+                    if (hasAllIndicatorsToCompareAgainst)
+                        rules.Add(ValidationMapping.BuildRule(mapping, indicator, values));
                 }
             }
 
