@@ -59,7 +59,7 @@ namespace Nada.Model.Diseases
             Report.ReportOptions.IsNoAggregation = false;
 
             // Determine the name of the reporting admin level
-            if (mainReportOptions.SelectedAdminLevels.Count > 1)
+            if (mainReportOptions.SelectedAdminLevels.Count > 0)
             {
                 int levelNum = mainReportOptions.SelectedAdminLevels[0].LevelNumber;
                 AdminLevelType adminLevelType = settingsRepo.GetAdminLevelTypeByLevel(levelNum);
