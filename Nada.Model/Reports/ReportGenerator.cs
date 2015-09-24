@@ -194,9 +194,14 @@ namespace Nada.Model.Reports
         }
 
         #region Shared Methods
-        private void AddToTable(DataTable result, Dictionary<string, ReportRow> resultDic, AdminLevelIndicators level, int year, AggregateIndicator indicator,
+        private void AddToTable(DataTable result, Dictionary<string, ReportRow> resultDic, AdminLevelIndicators level, int year, AggregateIndicator originalIndicator,
             string rowKey, AggregateIndicator indValue, string typeName, ReportOptions options)
         {
+            // The AggregateIndicator originalIndicator passed in is a reference to the AggregateIndicator in the ReportOptions.Columns.
+            // In some cases, the AggregateIndicator is modified below. To prevent it from modifying the original reference, the AggregateIndicator
+            // is cloned
+            AggregateIndicator indicator = Util.DeepClone(originalIndicator);
+
             object value = indicatorParser.Parse(indicator.DataType, indicator.IndicatorId, indValue.Value);
 
             // Add row if it doesn't exist
