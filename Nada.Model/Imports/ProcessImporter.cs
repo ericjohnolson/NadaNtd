@@ -143,12 +143,7 @@ namespace Nada.Model
                 objs.Add(obj);
             }
 
-            return new ImportResult
-            {
-                WasSuccess = valid,
-                Count = objs.Count,
-                Message = validationResultStr
-            };
+            return BuildValidationResult(validationResultStr, valid, objs.Count);
         }
 
     }

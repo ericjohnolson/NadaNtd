@@ -207,12 +207,7 @@ namespace Nada.Model
                 objs.Add(obj);
             }
 
-            return new ImportResult
-            {
-                WasSuccess = valid,
-                Count = objs.Count,
-                Message = validationResultStr
-            };
+            return BuildValidationResult(validationResultStr, valid, objs.Count);
         }
 
         private ImportResult MapAndValidateObjectsCm(DataSet ds)
@@ -269,12 +264,7 @@ namespace Nada.Model
                 objs.Add(obj);
             }
 
-            return new ImportResult
-            {
-                WasSuccess = valid,
-                Count = objs.Count,
-                Message = validationResultStr
-            };
+            return BuildValidationResult(validationResultStr, valid, objs.Count);
         }
         
     }

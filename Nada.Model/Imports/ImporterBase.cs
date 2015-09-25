@@ -872,6 +872,25 @@ namespace Nada.Model
                     Environment.NewLine + "--------" + Environment.NewLine + objerrors;
             return "";
         }
+
+        protected ImportResult BuildValidationResult(string validationResultStr, bool wasSuccess, int count)
+        {
+            if (string.IsNullOrEmpty(validationResultStr))
+            {
+                return new ImportResult
+                {
+                    WasSuccess = true, // Don't show the import error
+                    Message = Translations.NoValidationRulesForImport
+                };
+            }
+
+            return new ImportResult
+            {
+                WasSuccess = wasSuccess,
+                Count = count,
+                Message = validationResultStr
+            };
+        }
         #endregion
 
     }

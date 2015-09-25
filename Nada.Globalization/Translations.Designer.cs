@@ -8381,6 +8381,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no validation rules for this import.
+        /// </summary>
+        public static string NoValidationRulesForImport {
+            get {
+                return ResourceManager.GetString("NoValidationRulesForImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NTD.
         /// </summary>
         public static string NTD {
