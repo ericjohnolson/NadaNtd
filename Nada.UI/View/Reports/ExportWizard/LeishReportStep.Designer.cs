@@ -81,6 +81,7 @@
             this.lbYear.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbYear.Size = new System.Drawing.Size(43, 45);
             this.lbYear.TabIndex = 0;
+            this.lbYear.TabStop = false;
             this.lbYear.Text = "Year";
             this.lbYear.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
@@ -107,6 +108,7 @@
             this.lbTotalAdmin2Vl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbTotalAdmin2Vl.Size = new System.Drawing.Size(174, 45);
             this.lbTotalAdmin2Vl.TabIndex = 2;
+            this.lbTotalAdmin2Vl.TabStop = false;
             this.lbTotalAdmin2Vl.Tag = "LeishRepEndemicAdmin2Vl";
             this.lbTotalAdmin2Vl.Text = "LeishRepEndemicAdmin2Vl";
             this.lbTotalAdmin2Vl.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -122,6 +124,7 @@
             this.lbTotalAdmin2Cl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbTotalAdmin2Cl.Size = new System.Drawing.Size(176, 45);
             this.lbTotalAdmin2Cl.TabIndex = 3;
+            this.lbTotalAdmin2Cl.TabStop = false;
             this.lbTotalAdmin2Cl.Tag = "LeishRepEndemicAdmin2Cl";
             this.lbTotalAdmin2Cl.Text = "LeishRepEndemicAdmin2Cl";
             this.lbTotalAdmin2Cl.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -137,6 +140,7 @@
             this.lbYearLncpEstablished.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbYearLncpEstablished.Size = new System.Drawing.Size(176, 60);
             this.lbYearLncpEstablished.TabIndex = 4;
+            this.lbYearLncpEstablished.TabStop = false;
             this.lbYearLncpEstablished.Tag = "LeishRepYearLncpEstablished";
             this.lbYearLncpEstablished.Text = "LeishRepYearLncpEstablished";
             this.lbYearLncpEstablished.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -152,6 +156,7 @@
             this.lbRepUrlLncp.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbRepUrlLncp.Size = new System.Drawing.Size(116, 45);
             this.lbRepUrlLncp.TabIndex = 5;
+            this.lbRepUrlLncp.TabStop = false;
             this.lbRepUrlLncp.Tag = "LeishRepUrlLncp";
             this.lbRepUrlLncp.Text = "LeishRepUrlLncp";
             this.lbRepUrlLncp.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -167,6 +172,7 @@
             this.lbYearLatestGuide.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbYearLatestGuide.Size = new System.Drawing.Size(164, 45);
             this.lbYearLatestGuide.TabIndex = 6;
+            this.lbYearLatestGuide.TabStop = false;
             this.lbYearLatestGuide.Tag = "LeishRepYearLatestGuide";
             this.lbYearLatestGuide.Text = "LeishRepYearLatestGuide";
             this.lbYearLatestGuide.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -182,6 +188,7 @@
             this.lbIsNotifiable.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbIsNotifiable.Size = new System.Drawing.Size(135, 45);
             this.lbIsNotifiable.TabIndex = 7;
+            this.lbIsNotifiable.TabStop = false;
             this.lbIsNotifiable.Tag = "LeishRepIsNotifiable";
             this.lbIsNotifiable.Text = "LeishRepIsNotifiable";
             this.lbIsNotifiable.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -197,6 +204,7 @@
             this.lbIsVectProg.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbIsVectProg.Size = new System.Drawing.Size(131, 45);
             this.lbIsVectProg.TabIndex = 8;
+            this.lbIsVectProg.TabStop = false;
             this.lbIsVectProg.Tag = "LeishRepIsVectProg";
             this.lbIsVectProg.Text = "LeishRepIsVectProg";
             this.lbIsVectProg.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -212,6 +220,7 @@
             this.lbIsHostProg.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbIsHostProg.Size = new System.Drawing.Size(135, 45);
             this.lbIsHostProg.TabIndex = 9;
+            this.lbIsHostProg.TabStop = false;
             this.lbIsHostProg.Tag = "LeishRepIsHostProg";
             this.lbIsHostProg.Text = "LeishRepIsHostProg";
             this.lbIsHostProg.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -227,6 +236,7 @@
             this.lbNumHealthFac.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbNumHealthFac.Size = new System.Drawing.Size(156, 45);
             this.lbNumHealthFac.TabIndex = 10;
+            this.lbNumHealthFac.TabStop = false;
             this.lbNumHealthFac.Tag = "LeishRepNumHealthFac";
             this.lbNumHealthFac.Text = "LeishRepNumHealthFac";
             this.lbNumHealthFac.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -242,6 +252,7 @@
             this.lbIsTreatFree.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbIsTreatFree.Size = new System.Drawing.Size(136, 45);
             this.lbIsTreatFree.TabIndex = 11;
+            this.lbIsTreatFree.TabStop = false;
             this.lbIsTreatFree.Tag = "LeishRepIsTreatFree";
             this.lbIsTreatFree.Text = "LeishRepIsTreatFree";
             this.lbIsTreatFree.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -257,6 +268,7 @@
             this.lbAntiMedInNml.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbAntiMedInNml.Size = new System.Drawing.Size(149, 45);
             this.lbAntiMedInNml.TabIndex = 12;
+            this.lbAntiMedInNml.TabStop = false;
             this.lbAntiMedInNml.Tag = "LeishRepAntiMedInNml";
             this.lbAntiMedInNml.Text = "LeishRepAntiMedInNml";
             this.lbAntiMedInNml.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -272,6 +284,7 @@
             this.lbRelapseDefVl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbRelapseDefVl.Size = new System.Drawing.Size(149, 45);
             this.lbRelapseDefVl.TabIndex = 13;
+            this.lbRelapseDefVl.TabStop = false;
             this.lbRelapseDefVl.Tag = "LeishRepRelapseDefVl";
             this.lbRelapseDefVl.Text = "LeishRepRelapseDefVl";
             this.lbRelapseDefVl.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -287,6 +300,7 @@
             this.lbRelapseDefCl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbRelapseDefCl.Size = new System.Drawing.Size(151, 45);
             this.lbRelapseDefCl.TabIndex = 14;
+            this.lbRelapseDefCl.TabStop = false;
             this.lbRelapseDefCl.Tag = "LeishRepRelapseDefCl";
             this.lbRelapseDefCl.Text = "LeishRepRelapseDefCl";
             this.lbRelapseDefCl.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -302,6 +316,7 @@
             this.lbFailureDefVl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbFailureDefVl.Size = new System.Drawing.Size(140, 45);
             this.lbFailureDefVl.TabIndex = 15;
+            this.lbFailureDefVl.TabStop = false;
             this.lbFailureDefVl.Tag = "LeishRepFailureDefVl";
             this.lbFailureDefVl.Text = "LeishRepFailureDefVl";
             this.lbFailureDefVl.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -317,6 +332,7 @@
             this.lbFailureDefCl.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.lbFailureDefCl.Size = new System.Drawing.Size(142, 45);
             this.lbFailureDefCl.TabIndex = 16;
+            this.lbFailureDefCl.TabStop = false;
             this.lbFailureDefCl.Tag = "LeishRepFailureDefCl";
             this.lbFailureDefCl.Text = "LeishRepFailureDefCl";
             this.lbFailureDefCl.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -327,7 +343,7 @@
             this.textBox2.Location = new System.Drawing.Point(378, 48);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(213, 21);
-            this.textBox2.TabIndex = 17;
+            this.textBox2.TabIndex = 2;
             // 
             // textBox3
             // 
@@ -335,7 +351,7 @@
             this.textBox3.Location = new System.Drawing.Point(378, 93);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(213, 21);
-            this.textBox3.TabIndex = 18;
+            this.textBox3.TabIndex = 3;
             // 
             // textBox4
             // 
@@ -343,7 +359,7 @@
             this.textBox4.Location = new System.Drawing.Point(378, 138);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(213, 21);
-            this.textBox4.TabIndex = 19;
+            this.textBox4.TabIndex = 4;
             // 
             // textBox5
             // 
@@ -351,7 +367,7 @@
             this.textBox5.Location = new System.Drawing.Point(378, 198);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(213, 21);
-            this.textBox5.TabIndex = 20;
+            this.textBox5.TabIndex = 5;
             // 
             // textBox6
             // 
@@ -359,7 +375,7 @@
             this.textBox6.Location = new System.Drawing.Point(378, 243);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(213, 21);
-            this.textBox6.TabIndex = 21;
+            this.textBox6.TabIndex = 6;
             // 
             // checkBox1
             // 
@@ -369,7 +385,7 @@
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.checkBox1.Size = new System.Drawing.Size(15, 44);
-            this.checkBox1.TabIndex = 22;
+            this.checkBox1.TabIndex = 7;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // checkBox2
@@ -380,7 +396,7 @@
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.checkBox2.Size = new System.Drawing.Size(15, 44);
-            this.checkBox2.TabIndex = 23;
+            this.checkBox2.TabIndex = 8;
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // checkBox3
@@ -391,7 +407,7 @@
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.checkBox3.Size = new System.Drawing.Size(15, 44);
-            this.checkBox3.TabIndex = 24;
+            this.checkBox3.TabIndex = 9;
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // textBox7
@@ -400,7 +416,7 @@
             this.textBox7.Location = new System.Drawing.Point(378, 438);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(213, 21);
-            this.textBox7.TabIndex = 25;
+            this.textBox7.TabIndex = 10;
             // 
             // checkBox4
             // 
@@ -410,7 +426,7 @@
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
             this.checkBox4.Size = new System.Drawing.Size(15, 44);
-            this.checkBox4.TabIndex = 26;
+            this.checkBox4.TabIndex = 11;
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // textBox9
@@ -419,7 +435,7 @@
             this.textBox9.Location = new System.Drawing.Point(378, 578);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(213, 21);
-            this.textBox9.TabIndex = 28;
+            this.textBox9.TabIndex = 13;
             // 
             // textBox10
             // 
@@ -427,7 +443,7 @@
             this.textBox10.Location = new System.Drawing.Point(378, 623);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(213, 21);
-            this.textBox10.TabIndex = 29;
+            this.textBox10.TabIndex = 14;
             // 
             // textBox11
             // 
@@ -435,7 +451,7 @@
             this.textBox11.Location = new System.Drawing.Point(378, 668);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(213, 21);
-            this.textBox11.TabIndex = 30;
+            this.textBox11.TabIndex = 15;
             // 
             // textBox12
             // 
@@ -443,7 +459,7 @@
             this.textBox12.Location = new System.Drawing.Point(378, 713);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(213, 21);
-            this.textBox12.TabIndex = 31;
+            this.textBox12.TabIndex = 16;
             // 
             // tableLayoutPanel1
             // 
@@ -513,7 +529,7 @@
             this.antiLeishMedCb.Location = new System.Drawing.Point(378, 533);
             this.antiLeishMedCb.Name = "antiLeishMedCb";
             this.antiLeishMedCb.Size = new System.Drawing.Size(213, 23);
-            this.antiLeishMedCb.TabIndex = 32;
+            this.antiLeishMedCb.TabIndex = 12;
             this.antiLeishMedCb.ValueMember = "DisplayName";
             // 
             // errorProvider1
