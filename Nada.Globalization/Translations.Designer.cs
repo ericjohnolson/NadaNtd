@@ -613,6 +613,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amphotericin B deoxycholate.
+        /// </summary>
+        public static string AmpBDeox {
+            get {
+                return ResourceManager.GetString("AmpBDeox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ancylostoma duodenale (hookworm).
         /// </summary>
         public static string Ancylostoma {
@@ -7418,6 +7427,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Liposomal amphotericin B.
+        /// </summary>
+        public static string LipoAmpB {
+            get {
+                return ResourceManager.GetString("LipoAmpB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other geo code - longitude.
         /// </summary>
         public static string LngOther {
@@ -7621,6 +7639,15 @@ namespace Nada.Globalization {
         public static string MeanDensity {
             get {
                 return ResourceManager.GetString("MeanDensity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meglumine antimoniate.
+        /// </summary>
+        public static string MegluAnti {
+            get {
+                return ResourceManager.GetString("MegluAnti", resourceCulture);
             }
         }
         
@@ -7954,6 +7981,15 @@ namespace Nada.Globalization {
         public static string Midterm {
             get {
                 return ResourceManager.GetString("Midterm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Miltefosine.
+        /// </summary>
+        public static string Miltefosine {
+            get {
+                return ResourceManager.GetString("Miltefosine", resourceCulture);
             }
         }
         
@@ -10469,6 +10505,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paromomycin.
+        /// </summary>
+        public static string Paromomycin {
+            get {
+                return ResourceManager.GetString("Paromomycin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Partner.
         /// </summary>
         public static string Partner {
@@ -11419,6 +11464,15 @@ namespace Nada.Globalization {
         public static string PcTrainUnknown {
             get {
                 return ResourceManager.GetString("PcTrainUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pentamidine.
+        /// </summary>
+        public static string Pentamidine {
+            get {
+                return ResourceManager.GetString("Pentamidine", resourceCulture);
             }
         }
         
@@ -15730,6 +15784,15 @@ namespace Nada.Globalization {
         public static string Smekongi {
             get {
                 return ResourceManager.GetString("Smekongi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sodium stibogluconate (SSG).
+        /// </summary>
+        public static string SodiumStib {
+            get {
+                return ResourceManager.GetString("SodiumStib", resourceCulture);
             }
         }
         

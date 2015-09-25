@@ -89,6 +89,8 @@ namespace Nada.UI.View.Reports.ExportWizard
                 SetupOptions();
                 // Set the datasource
                 questionDataSource.DataSource = Questions;
+                // Set the dropdown options for the anti leish med combobox
+                CreateAntiLeishMedDropdown(antiLeishMedCb);
                 // Set the save dialog extension
                 this.saveFileDialog1.DefaultExt = "xlsx";
                 this.saveFileDialog1.Filter = "Excel (.xlsx)|*.xlsx";
@@ -121,6 +123,20 @@ namespace Nada.UI.View.Reports.ExportWizard
             if (!result.WasSuccess)
                 MessageBox.Show(result.ErrorMessage, Translations.ErrorOccured, MessageBoxButtons.OK, MessageBoxIcon.Error);
             OnFinish();
+        }
+
+        private void CreateAntiLeishMedDropdown(ComboBox comboBox)
+        {
+            List<IndicatorDropdownValue> vals = new List<IndicatorDropdownValue>();
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.AmpBDeox, TranslationKey = "AmpBDeox" });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.LipoAmpB, TranslationKey = "LipoAmpB" });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.MegluAnti, TranslationKey = "MegluAnti" });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Miltefosine, TranslationKey = "Miltefosine" });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Paromomycin, TranslationKey = "Paromomycin" });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.Pentamidine, TranslationKey = "Pentamidine" });
+            vals.Add(new IndicatorDropdownValue { DisplayName = Translations.SodiumStib, TranslationKey = "SodiumStib" });
+            comboBox.DataSource = vals;
+            comboBox.DropDownWidth = BaseForm.GetDropdownWidth(vals.Select(a => a.DisplayName));
         }
 
     }

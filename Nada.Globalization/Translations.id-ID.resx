@@ -132,6 +132,9 @@
   <data name="ScmTypeOfInventory" xml:space="preserve">
     <value>Jenis persediaan</value>
   </data>
+  <data name="EditAdministrativeUnit" xml:space="preserve">
+    <value />
+  </data>
   <data name="CmBuget" xml:space="preserve">
     <value>Apa anggaran total dari Rencana Master NTD?</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="AddDiseaseLink" xml:space="preserve">
     <value>Tambah penyakit baru&gt;</value>
   </data>
+  <data name="ICT" xml:space="preserve">
+    <value>ICT</value>
+  </data>
   <data name="PercentRural" xml:space="preserve">
     <value>% populasi masyarakat desa dari total populasi</value>
   </data>
@@ -177,14 +183,8 @@
   <data name="OnchoSurStartDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei dimulai</value>
   </data>
-  <data name="PcIntvModeDistribution" xml:space="preserve">
-    <value>Mode of distribution</value>
-  </data>
-  <data name="Disabled" xml:space="preserve">
-    <value>Dinonaktifkan</value>
-  </data>
-  <data name="SaeHeight" xml:space="preserve">
-    <value>Tinggi (cm)</value>
+  <data name="SaeNo" xml:space="preserve">
+    <value>Tidak</value>
   </data>
   <data name="Shaematobium" xml:space="preserve">
     <value>S. haematobium</value>
@@ -201,11 +201,11 @@
   <data name="AddNewIntvType" xml:space="preserve">
     <value>Tambah jenis intervensi baru…</value>
   </data>
+  <data name="NumImported" xml:space="preserve">
+    <value>Jumlah kasus-kasus impor</value>
+  </data>
   <data name="LeishMontIntvNumberOfNewPKDLCasesInChildren5To14Years" xml:space="preserve">
     <value>Number of new PKDL cases in children 5-14 years</value>
-  </data>
-  <data name="FemalesCoverage" xml:space="preserve">
-    <value>Proporsi perempuan yang diobati</value>
   </data>
   <data name="CmYearsMasterPlan" xml:space="preserve">
     <value>Jika Ya, mana tahun-tahun yang tercakup oleh Rencana master NTD</value>
@@ -215,6 +215,9 @@
   </data>
   <data name="STHMapSurSurProportionOfModerateIntensityOfInfe" xml:space="preserve">
     <value>Jumlah dari infeksi intensitas sedang - Trichuris</value>
+  </data>
+  <data name="OnchoSurEntTestTechTrap" xml:space="preserve">
+    <value>Penangkapan</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Bantuan</value>
@@ -237,11 +240,8 @@
   <data name="DDOnchoMethodOfLoaLoaMapping" xml:space="preserve">
     <value>Metode pemetaan Loa Loa</value>
   </data>
-  <data name="TraMapSur1to9yo" xml:space="preserve">
-    <value># anak usia 1-9 tahun yang disurvei</value>
-  </data>
-  <data name="NoEz" xml:space="preserve">
-    <value>Tidak Ada Zona Ekologis</value>
+  <data name="LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases" xml:space="preserve">
+    <value>% of PKDL/HIV co-infected cases of the total new PKDL cases</value>
   </data>
   <data name="Mf" xml:space="preserve">
     <value>Mf</value>
@@ -285,8 +285,8 @@
   <data name="DDTraNumPcRoundsYearRecommendedByWhoGui" xml:space="preserve">
     <value># putaran/tahun pengobatan yang  direkomendasikan oleh pedoman WHO</value>
   </data>
-  <data name="NumEndemicVillagesReporting" xml:space="preserve">
-    <value>Jumlah desa endemis yang memberikan laporan</value>
+  <data name="RedistrictRuleDuplicate" xml:space="preserve">
+    <value>Duplicate</value>
   </data>
   <data name="SAEOutcomeattimeoflastobservation" xml:space="preserve">
     <value>Hasil pada saat pengamatan terakhir</value>
@@ -339,6 +339,9 @@
   <data name="days14" xml:space="preserve">
     <value>3-14 hari</value>
   </data>
+  <data name="Years" xml:space="preserve">
+    <value>Tahun-tahun</value>
+  </data>
   <data name="RtiNoData" xml:space="preserve">
     <value>Sistem RTI tidak memiliki data mengenai negara tersebut, mohon untuk memeriksa ulang pilihan anda sebelum melanjutkan</value>
   </data>
@@ -354,8 +357,8 @@
   <data name="LeishMontIntvNumberOfNewVLCasesWithInitialCure" xml:space="preserve">
     <value>Number of new VL cases with initial cure</value>
   </data>
-  <data name="TraSurTargetSampleSize" xml:space="preserve">
-    <value>Besaran sampel sasaran</value>
+  <data name="ChooseLocations" xml:space="preserve">
+    <value>Pilih lokasi untuk:</value>
   </data>
   <data name="Interventions" xml:space="preserve">
     <value>Intervensi</value>
@@ -420,6 +423,9 @@
   <data name="RtiSkipReconcile" xml:space="preserve">
     <value>Lewati proses rekonsiliasi unit administratif</value>
   </data>
+  <data name="PercentNewMb" xml:space="preserve">
+    <value>% MB baru</value>
+  </data>
   <data name="LFSurCausalAgent" xml:space="preserve">
     <value>Agen penyebab</value>
   </data>
@@ -447,8 +453,8 @@
   <data name="LFMapSurPositive" xml:space="preserve">
     <value>% positif</value>
   </data>
-  <data name="IntvIvm" xml:space="preserve">
-    <value>Intervensi IVM</value>
+  <data name="UpdateDdAfterSavingSurvey" xml:space="preserve">
+    <value>Pastikan untuk memperbaharui distribusi penyakit sebagaimana mestinya yang nantinya akan mempengaruhi hasil dari survei ini</value>
   </data>
   <data name="NumIdsr" xml:space="preserve">
     <value>Jumlah IDSR/Fasilitas kesehatan</value>
@@ -480,8 +486,8 @@
   <data name="Destination" xml:space="preserve">
     <value>Tempat tujuan</value>
   </data>
-  <data name="LinkSelect" xml:space="preserve">
-    <value>Pilih...</value>
+  <data name="SCMNumRemainingOpenedBottles" xml:space="preserve">
+    <value># sisa botol terbuka </value>
   </data>
   <data name="PriceRecoverySystem" xml:space="preserve">
     <value>Sistem pemulihan harga</value>
@@ -528,8 +534,8 @@
   <data name="LFMapSurTargetSampleSize" xml:space="preserve">
     <value>Besaran sampel sasaran</value>
   </data>
-  <data name="OnchoMapSurIfTestTypeIsNpNumNod" xml:space="preserve">
-    <value>Jika jenis tes adalah palpasi nodul, morbiditas dermatologis - jumlah individu dengan nodul (onchocercomas)</value>
+  <data name="DrugZithro" xml:space="preserve">
+    <value>Zithro</value>
   </data>
   <data name="Option" xml:space="preserve">
     <value>Opsi</value>
@@ -696,9 +702,6 @@
   <data name="Leishmaniasis" xml:space="preserve">
     <value>Leishmaniasis</value>
   </data>
-  <data name="IntvDrp3days" xml:space="preserve">
-    <value>3-14 hari</value>
-  </data>
   <data name="FESourceOfDataForPeopleWithAccessToClean" xml:space="preserve">
     <value>Sumber dari data masyarakat yang memiliki akses ke air bersih</value>
   </data>
@@ -732,8 +735,8 @@
   <data name="Sch2a" xml:space="preserve">
     <value>2A Prevalensi sedang (&gt;1 dan &lt;30%) pada saat pemetaan dengan kuesioner</value>
   </data>
-  <data name="PcIntvPartner" xml:space="preserve">
-    <value>Mitra</value>
+  <data name="AddNewLocation" xml:space="preserve">
+    <value>Tambah lokasi baru&gt;</value>
   </data>
   <data name="Sch2b" xml:space="preserve">
     <value>2B Prevalensi sedang (≥10 dan &lt;50%) pada pemetaan awal dengan metode parasitologi</value>
@@ -747,9 +750,6 @@
   <data name="OnchoSurCmfl" xml:space="preserve">
     <value>CMFL</value>
   </data>
-  <data name="LFSurSurveyTiming" xml:space="preserve">
-    <value>Waktu survei</value>
-  </data>
   <data name="OnchoSurInfectivityRate" xml:space="preserve">
     <value>Angka infektivitas</value>
   </data>
@@ -758,9 +758,6 @@
   </data>
   <data name="MenuCheckForUpdates" xml:space="preserve">
     <value>Periksa untuk pemutakhiran...</value>
-  </data>
-  <data name="IntvFemaleSac" xml:space="preserve">
-    <value># female SAC treated</value>
   </data>
   <data name="DDLFPopulationAtRisk" xml:space="preserve">
     <value>Populasi berisiko</value>
@@ -828,8 +825,17 @@
   <data name="DDOnchoPopulationLivingInTheDistrictsTha" xml:space="preserve">
     <value>Populasi yang tinggal di kabupaten/kota yang mencapai kriteria untuk menghentikan pengobatan</value>
   </data>
+  <data name="DDTraYearDeterminedThatAchievedCriteriaF" xml:space="preserve">
+    <value>Tahun yang ditentapkan untuk mencapai kriteria untuk menghentikan pengobatan (tingkat kabupaten/kota)</value>
+  </data>
   <data name="RedistrictingMergeDesc" xml:space="preserve">
     <value>Disatukan dari {0} menjadi {1}</value>
+  </data>
+  <data name="PcIntvTraDrugTeo" xml:space="preserve">
+    <value>TEO</value>
+  </data>
+  <data name="LeprosyTrainPercentageOfTrainedHealthWor" xml:space="preserve">
+    <value>Persentase petugas kesehatan terlatih di antara jumlah total petugas kesehatan di fasilitas kesehatan</value>
   </data>
   <data name="SCMExpiredDrugs" xml:space="preserve">
     <value>Obat-obatan kedaluarsa</value>
@@ -849,11 +855,8 @@
   <data name="NotSaved" xml:space="preserve">
     <value>Tidak Tersimpan</value>
   </data>
-  <data name="AddNewLocation" xml:space="preserve">
-    <value>Tambah lokasi baru&gt;</value>
-  </data>
-  <data name="DDOnchoYearPcStarted" xml:space="preserve">
-    <value>Tahun Pengobatan dimulai</value>
+  <data name="Import" xml:space="preserve">
+    <value>Impor</value>
   </data>
   <data name="AdminLevel1" xml:space="preserve">
     <value>Daerah tingkat I</value>
@@ -864,8 +867,8 @@
   <data name="STHMapSurSurPerPositiveTrichuris" xml:space="preserve">
     <value>% positif - Trichuris </value>
   </data>
-  <data name="HATTrainNumberOfParticipantsToHatTrainin" xml:space="preserve">
-    <value>Jumlah orang dilatih HAT</value>
+  <data name="STHMapSurSurStartDateOfSurvey" xml:space="preserve">
+    <value>Tanggal survei dimulai</value>
   </data>
   <data name="LeprosyIntervention" xml:space="preserve">
     <value>Intervensi Kusta</value>
@@ -906,9 +909,6 @@
   <data name="LatOther" xml:space="preserve">
     <value>Kode geo lainnya - lintang</value>
   </data>
-  <data name="TasEstimatedNonResponseRate" xml:space="preserve">
-    <value>Perkiraan tingkat non-respon</value>
-  </data>
   <data name="NumEligibleMalesTreated" xml:space="preserve">
     <value># Sasaran Laki-laki yang diobati</value>
   </data>
@@ -920,9 +920,6 @@
   </data>
   <data name="MenuSplitCombineDistrict" xml:space="preserve">
     <value>Pisahkan &amp; gabungkan unit administatif</value>
-  </data>
-  <data name="STHMapSurSurProportionOfHeavyIntensityOfInHook" xml:space="preserve">
-    <value>Jumlah dari infeksi intensitas tinggi - cacing tambang</value>
   </data>
   <data name="DDLFNumPcRoundsYearRecommendedByWhoGuid" xml:space="preserve">
     <value># putaran/tahun pengobatan yang  direkomendasikan oleh pedoman WHO</value>
@@ -939,6 +936,9 @@
   <data name="View" xml:space="preserve">
     <value>Lihat</value>
   </data>
+  <data name="SCHMapSurLongitude" xml:space="preserve">
+    <value>Bujur</value>
+  </data>
   <data name="LeishAnnIntvNumberOfNewVLCasesFollowedUpAtLeast6Months" xml:space="preserve">
     <value>Number of new VL cases followed up at least 6 months</value>
   </data>
@@ -950,6 +950,9 @@
   </data>
   <data name="STHMapSurSurNumberOfIndividualsPositiveAscaris" xml:space="preserve">
     <value>Jumlah individu yang positif - Ascaris</value>
+  </data>
+  <data name="TriTrainingRefresher" xml:space="preserve">
+    <value>Penyegaran </value>
   </data>
   <data name="IntvPkgTEO" xml:space="preserve">
     <value>TEO</value>
@@ -969,11 +972,11 @@
   <data name="Tra2M" xml:space="preserve">
     <value>M Belum dipetakan</value>
   </data>
-  <data name="DetectionRatePer100k" xml:space="preserve">
-    <value>Angka deteksi per 100.000</value>
-  </data>
   <data name="SCHSurDateOfTheFirstRoundOfPcYear" xml:space="preserve">
     <value>Tanggal putaran pertama pengobatan (tahun)</value>
+  </data>
+  <data name="AvailOfAzithro" xml:space="preserve">
+    <value>Ketersediaan tablet azitromisin berkualitas</value>
   </data>
   <data name="LeishMontIntvNumberOfVLCasesDiagnosedByAPositiveRapidDiagnosticTestsRDT" xml:space="preserve">
     <value>Number of VL cases diagnosed by a positive Rapid Diagnostic Tests (RDT)</value>
@@ -987,17 +990,11 @@
   <data name="STHMapSurSurProportionOfHeavyIntensityOfInAS" xml:space="preserve">
     <value>Jumlah dari infeksi intensitas tinggi - Ascaris</value>
   </data>
-  <data name="CustomIndicator" xml:space="preserve">
-    <value>Ubahsuai Indikator</value>
-  </data>
   <data name="STHMapSurSurProportionOfModerateIntensityOfInHook" xml:space="preserve">
     <value>Jumlah dari infeksi intensitas sedang - cacing tambang</value>
   </data>
   <data name="CmHasMosw" xml:space="preserve">
     <value>Kementerian Kesejahteraan Sosial</value>
-  </data>
-  <data name="IndicatorValue" xml:space="preserve">
-    <value>Nilai indikator</value>
   </data>
   <data name="SaeOngoingillness" xml:space="preserve">
     <value>Penyakit yang sedang berlangsung</value>
@@ -1044,8 +1041,11 @@
   <data name="TASTasActualTimelineAndResourcesTeams" xml:space="preserve">
     <value>TAS Rencana Waktu Pelaksanaan aktual dan Sumberdaya - # tim lapangan yang dilibatkan</value>
   </data>
-  <data name="PercentFemale" xml:space="preserve">
-    <value>% Populasi perempuan dari total populasi</value>
+  <data name="PcIntvPartner" xml:space="preserve">
+    <value>Mitra</value>
+  </data>
+  <data name="STHMapSurSurEndemity" xml:space="preserve">
+    <value>Endemitas</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Buka</value>
@@ -1058,9 +1058,6 @@
   </data>
   <data name="ImportNoDataError" xml:space="preserve">
     <value>Berkas dalam format yang salah atau tidak memiliki data</value>
-  </data>
-  <data name="LfSentinelImport" xml:space="preserve">
-    <value>LF Impor survei sentinel/spot check</value>
   </data>
   <data name="NumEligibleFemalesTreated" xml:space="preserve">
     <value># Sasaran Perempuan yang diobati</value>
@@ -1083,8 +1080,14 @@
   <data name="CmMeds" xml:space="preserve">
     <value>Penyimpanan dan pasokan obat-obatan</value>
   </data>
+  <data name="TSRecurrentTrichiasisNumber" xml:space="preserve">
+    <value>Trichiasis Berulang (Jumlah)</value>
+  </data>
   <data name="NA" xml:space="preserve">
     <value>N/A</value>
+  </data>
+  <data name="STHMapSurSurLongitude" xml:space="preserve">
+    <value>Bujur</value>
   </data>
   <data name="OnchoSurLongitude" xml:space="preserve">
     <value>Bujur</value>
@@ -1092,8 +1095,8 @@
   <data name="PatientsFullyScared" xml:space="preserve">
     <value>Pasien yang memiliki bekas luka yang menyeluruh pada lesi mereka dalam setahun</value>
   </data>
-  <data name="LastUpdate" xml:space="preserve">
-    <value>Pemutakhiran terakhir</value>
+  <data name="STHMapSurSurProportionOfHeavyIntensityOfInHook" xml:space="preserve">
+    <value>Jumlah dari infeksi intensitas tinggi - cacing tambang</value>
   </data>
   <data name="STHSurNumberOfIndividualsExaminedTrichur" xml:space="preserve">
     <value>Jumlah individu yang diperiksa - Trichuris</value>
@@ -1119,6 +1122,9 @@
   <data name="StartDateMda" xml:space="preserve">
     <value>Tanggal POMP mulai</value>
   </data>
+  <data name="Dracun" xml:space="preserve">
+    <value>Dracunculiasis (penyakit cacing guinea)</value>
+  </data>
   <data name="DDOnchoTotalNumEndemicVillagesCommuniti" xml:space="preserve">
     <value>Total # desa/masyarakat endemis di kabupaten/kota</value>
   </data>
@@ -1131,9 +1137,6 @@
   <data name="SCHSurNumberOfIndividualsPositiveForInte" xml:space="preserve">
     <value>Jumlah individu yang positif untuk infeksi schistosoma usus</value>
   </data>
-  <data name="Population" xml:space="preserve">
-    <value>Populasi</value>
-  </data>
   <data name="Necator" xml:space="preserve">
     <value>Necator americanus (cacing tambang)</value>
   </data>
@@ -1142,9 +1145,6 @@
   </data>
   <data name="CureRateBu" xml:space="preserve">
     <value>Angka kesembuhan kasus ulkus Buruli selama setahun</value>
-  </data>
-  <data name="Oncho3Parasite" xml:space="preserve">
-    <value>Parasitologi</value>
   </data>
   <data name="SCHMapSurProportionOfModerateIntensityIn" xml:space="preserve">
     <value>Jumlah infeksi schistosoma usus dengan intensitas sedang</value>
@@ -1161,17 +1161,20 @@
   <data name="LFSurPosLympho" xml:space="preserve">
     <value>Jumlah individu yang positif menderita Limfedema</value>
   </data>
-  <data name="TotalNumMbCases" xml:space="preserve">
-    <value>Jumlah total kasus baru MB</value>
-  </data>
   <data name="NoDataFound" xml:space="preserve">
     <value>Data tidak ditemukan dalam berkas</value>
+  </data>
+  <data name="LeishMontIntvNumberOfVLCasesWithSeriousAdverseEvents" xml:space="preserve">
+    <value>Number of VL cases with serious adverse events</value>
   </data>
   <data name="TraMapSurFandE" xml:space="preserve">
     <value>F&amp;E: persentase anak-anak dengan wajah bersih</value>
   </data>
   <data name="NumGoodRifampicin" xml:space="preserve">
     <value>Jumlah tablet Rifampicin berkualitas baik yang tersedia </value>
+  </data>
+  <data name="SCHMapSurNumberOfIndividualsWithNonRespo" xml:space="preserve">
+    <value>Jumlah individu dengan non-respon</value>
   </data>
   <data name="SCHMapSurNumberOfIndividualsExaminedForU" xml:space="preserve">
     <value>Jumlah individu yang diperiksa untuk schistosoma kemih</value>
@@ -1181,9 +1184,6 @@
   </data>
   <data name="TraMapSurEndDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei berakhir</value>
-  </data>
-  <data name="NumVillageWithImported" xml:space="preserve">
-    <value>Jumlah desa dengan kasus impor</value>
   </data>
   <data name="SplittingMustAllocateSaes" xml:space="preserve">
     <value>Pengalokasian seluruh kejadian ikutan serius ke tujuan baru sebelum dilanjutkan.</value>
@@ -1221,8 +1221,8 @@
   <data name="RtiDrpFy14" xml:space="preserve">
     <value>FY14 (Oktober 2013 - September 2014)</value>
   </data>
-  <data name="ApplicationUpdate" xml:space="preserve">
-    <value>Pemutakhiran aplikasi</value>
+  <data name="FemalesAndMales" xml:space="preserve">
+    <value>Perempuan + Laki-laki</value>
   </data>
   <data name="TraMapSurNumberOfIndividualsExaminedTi" xml:space="preserve">
     <value>Jumlah individu yang diperiksa - TI</value>
@@ -1239,14 +1239,11 @@
   <data name="LFSurNumberOfIndividualsPositive" xml:space="preserve">
     <value>Jumlah individu positif</value>
   </data>
-  <data name="TSNumberOfSurgeonsCertifiedForGoodQualit" xml:space="preserve">
-    <value>Jumlah Dokter Bedah yang bersertifikat untuk bedah berkualitas tinggi</value>
-  </data>
   <data name="YAWS" xml:space="preserve">
     <value>Framboesia (Treponematosis endemik)</value>
   </data>
-  <data name="TriTrainingCertification" xml:space="preserve">
-    <value>Sertifikasi</value>
+  <data name="SCHSurNumberOfRoundsOfPcCompletedPriorTo" xml:space="preserve">
+    <value>Jumlah putaran pengobatan yang selesai sebelum implementasi survei</value>
   </data>
   <data name="GuineaWormTraining" xml:space="preserve">
     <value>Pelatihan Cacing Guinea</value>
@@ -1256,9 +1253,6 @@
   </data>
   <data name="PcIntvSchSacEpi" xml:space="preserve">
     <value>SCH cakupan Epi anak usia sekolah</value>
-  </data>
-  <data name="STHSurNumberOfIndividualsPositiveTrichur" xml:space="preserve">
-    <value>Jumlah individu yang positif - Trichuris</value>
   </data>
   <data name="TraSurDateOfTheFirstRoundOfDistributionO" xml:space="preserve">
     <value>Tahun putaran pertama distribusi Antibiotik</value>
@@ -1287,8 +1281,8 @@
   <data name="ExportTasStartYear" xml:space="preserve">
     <value>Bulan dan tahun mulai yang direncanakan</value>
   </data>
-  <data name="ICT" xml:space="preserve">
-    <value>ICT</value>
+  <data name="PercentTGamb" xml:space="preserve">
+    <value>% kasus hanya  T gambiense</value>
   </data>
   <data name="STHMapSurSurNumberOfIndividualsWithNonResponse" xml:space="preserve">
     <value>Jumlah individu dengan non-respon</value>
@@ -1298,9 +1292,6 @@
   </data>
   <data name="STHMapSurSurCausalAgent" xml:space="preserve">
     <value>Agen penyebab</value>
-  </data>
-  <data name="RedistrictingSplitCombineDesc" xml:space="preserve">
-    <value>Dipisahkan dan digabungkan dari {0} menjadi {1}</value>
   </data>
   <data name="SaePatientName" xml:space="preserve">
     <value>Nama pasien</value>
@@ -1344,14 +1335,20 @@
   <data name="SAEWhichparasitichave" xml:space="preserve">
     <value>Infeksi parasit/bakteri apa yang diderita pasien?</value>
   </data>
+  <data name="NumTreatmentFail" xml:space="preserve">
+    <value>Jumlah kegagalan pengobatan</value>
+  </data>
   <data name="SaeMale" xml:space="preserve">
     <value>Laki-laki</value>
   </data>
-  <data name="PbAdultEnd" xml:space="preserve">
-    <value>Jumlah prevalensi PB dewasa di akhir tahun</value>
+  <data name="OnchoSurEntTaxoForestSav" xml:space="preserve">
+    <value>Hutan dan Padang rumput</value>
   </data>
   <data name="DatabaseScriptSuccess" xml:space="preserve">
     <value>Naskah data dasar berhasil dijalankan.</value>
+  </data>
+  <data name="LipoAmpB" xml:space="preserve">
+    <value>Liposomal amphotericin B</value>
   </data>
   <data name="ValidationErrorTitle" xml:space="preserve">
     <value>Validasi kesalahan</value>
@@ -1401,14 +1398,14 @@
   <data name="CustomReportBuilder" xml:space="preserve">
     <value>Ubahsuai Pembuat Laporan </value>
   </data>
-  <data name="LfMorbidityManagment" xml:space="preserve">
-    <value>Penatalaksanaan morbiditras filariasis</value>
-  </data>
   <data name="OnchoMapSurStartDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei dimulai </value>
   </data>
   <data name="LevelImplementation" xml:space="preserve">
     <value>Tingkat implementasi</value>
+  </data>
+  <data name="DDLFAdultPopulation" xml:space="preserve">
+    <value>Populasi orang dewasa</value>
   </data>
   <data name="ApplyingGrowthRate" xml:space="preserve">
     <value>Menerapkan angka pertumbuhan penduduk</value>
@@ -1485,9 +1482,6 @@
   <data name="SaeSchisto" xml:space="preserve">
     <value>Schisto</value>
   </data>
-  <data name="AdminUnitPeriRural" xml:space="preserve">
-    <value>Peri-rural</value>
-  </data>
   <data name="OnchoSurInfectiveLarvae" xml:space="preserve">
     <value>Jumlah larva yang infektif</value>
   </data>
@@ -1509,14 +1503,14 @@
   <data name="PcIntvPsacTreated" xml:space="preserve">
     <value># anak usia pra-sekolah yang diobati</value>
   </data>
-  <data name="PercentAdult" xml:space="preserve">
-    <value>% Populasi orang dewasa dari total populasi</value>
+  <data name="StartUpFinishedAllUnits" xml:space="preserve">
+    <value>Apakah anda telah selesai memasukkan semua unit daerah administratif untuk tingkat ini?</value>
   </data>
   <data name="DDOnchoTotalPopulation" xml:space="preserve">
     <value>Total populasi</value>
   </data>
-  <data name="DDOnchoYearDiseaseDistributionInformatio" xml:space="preserve">
-    <value>Tahun informasi distribusi penyakit berlaku untuk</value>
+  <data name="PcIntvNumEligibleFemalesTargeted" xml:space="preserve">
+    <value>#  sasaran perempuan</value>
   </data>
   <data name="NumVas" xml:space="preserve">
     <value>Jumlah desa yang berada di bawah pengawasan aktif (VAS)</value>
@@ -1541,6 +1535,9 @@
   </data>
   <data name="CreateImportFor" xml:space="preserve">
     <value>Buat impor untuk</value>
+  </data>
+  <data name="AmpBDeox" xml:space="preserve">
+    <value>Amphotericin B deoxycholate</value>
   </data>
   <data name="DrpDecAlb" xml:space="preserve">
     <value>DEC+ALB</value>
@@ -1581,14 +1578,14 @@
   <data name="ReportsNoDdInDateRange" xml:space="preserve">
     <value>Tidak ada {3} distribusi penyakit yang dapat ditemukan untuk {0} dalam rentang tanggal {1} - {2}.</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>Tentang</value>
+  </data>
   <data name="MenuNewYearDemo" xml:space="preserve">
     <value>Tambahkan demografi untuk tahun yang baru...</value>
   </data>
   <data name="SplittingBackupMessage" xml:space="preserve">
     <value>Silahkan tekan "Lanjut" untuk membuat cadangan data dasar sebelum melanjutkan ke proses selanjutnya</value>
-  </data>
-  <data name="STHMapSurSurNumberOfIndividualsPositiveOverall" xml:space="preserve">
-    <value>Jumlah individu yang positif - total</value>
   </data>
   <data name="DDLFSacPopulation" xml:space="preserve">
     <value>Populasi anak usia sekolah</value>
@@ -1604,6 +1601,9 @@
   </data>
   <data name="LFMapSurEndemity" xml:space="preserve">
     <value>Endemitas</value>
+  </data>
+  <data name="LFHydroceleMorbidity" xml:space="preserve">
+    <value>LF Morbiditas Hidrokel</value>
   </data>
   <data name="OtherWithdrawl" xml:space="preserve">
     <value>Penarikan lain dari pengobatan antibiotik</value>
@@ -1638,11 +1638,11 @@
   <data name="ValidationErrorAddIndicator" xml:space="preserve">
     <value>Minimal dibutuhkan satu indikator</value>
   </data>
+  <data name="RedistrictTypeMerge" xml:space="preserve">
+    <value>Disatukan</value>
+  </data>
   <data name="CmHasSemesterMech" xml:space="preserve">
     <value>Pertemuan koordinasi semester</value>
-  </data>
-  <data name="PcIntvNumAdultsTreated" xml:space="preserve">
-    <value># Orang Dewasa yang diobati</value>
   </data>
   <data name="DemographyImportOptions" xml:space="preserve">
     <value>Opsi impor demografi</value>
@@ -1671,11 +1671,11 @@
   <data name="CountryName" xml:space="preserve">
     <value>Nama negara</value>
   </data>
+  <data name="CmStorageSponsor2" xml:space="preserve">
+    <value>Sponsor 2</value>
+  </data>
   <data name="OnchoNotSuspect" xml:space="preserve">
     <value>Tidak dipetakan tetapi tidak dicurigai</value>
-  </data>
-  <data name="UpdateDemographyForYear" xml:space="preserve">
-    <value>Memutakhirkan demografi untuk tahun baru</value>
   </data>
   <data name="AdminLevel3" xml:space="preserve">
     <value>Daerah tingkat III</value>
@@ -1683,14 +1683,17 @@
   <data name="SurBuSurvey" xml:space="preserve">
     <value>Survei Ulkus Buruli (infeksi ulkus Mikobakteria)</value>
   </data>
+  <data name="OnchoMapSurDateOfTheLastTreatment" xml:space="preserve">
+    <value>Tanggal pengobatan terakhir</value>
+  </data>
   <data name="RtiTabDemo" xml:space="preserve">
     <value>Demografi</value>
   </data>
   <data name="NumPatientsComplementedBu" xml:space="preserve">
     <value>Jumlah total pasien yang pengobatan antibiotiknya dilengkapi dengan operasi</value>
   </data>
-  <data name="AvailableReports" xml:space="preserve">
-    <value>Laporan tersedia</value>
+  <data name="EnterNew" xml:space="preserve">
+    <value>Masukkan baru</value>
   </data>
   <data name="Percent5yo" xml:space="preserve">
     <value>% usia &lt;5 tahun dari total populasi</value>
@@ -1704,9 +1707,6 @@
   <data name="End1" xml:space="preserve">
     <value>1 - Endemis di atas ambang batas pengobatan </value>
   </data>
-  <data name="SCMNumRemainingSealedBottles" xml:space="preserve">
-    <value># sisa botol tersegel</value>
-  </data>
   <data name="NewAdminLevel" xml:space="preserve">
     <value>Tingkat daerah administatif baru &gt;</value>
   </data>
@@ -1718,6 +1718,9 @@
   </data>
   <data name="xyear1" xml:space="preserve">
     <value>1x/tahun</value>
+  </data>
+  <data name="UrineFiltration" xml:space="preserve">
+    <value>Filtrasi urin</value>
   </data>
   <data name="TSNumberOfTtSurgeonsInTraining" xml:space="preserve">
     <value>Jumlah Dokter Bedah yang sedang dalam pelatihan</value>
@@ -1731,14 +1734,14 @@
   <data name="ValidSentinelSite" xml:space="preserve">
     <value>Desa Sentinel tidak ditemukan dalam daftar desa yang tersedia sebagai lokasi</value>
   </data>
-  <data name="RtiStopMda" xml:space="preserve">
-    <value>TAS untuk menghentikan POMP</value>
-  </data>
   <data name="TSSurgicalInstruments" xml:space="preserve">
     <value>Instrumen Bedah</value>
   </data>
   <data name="RedistrictingNotes" xml:space="preserve">
     <value>Catatan mengenai pemekaran</value>
+  </data>
+  <data name="DrugDec" xml:space="preserve">
+    <value>DEC</value>
   </data>
   <data name="LeishMontIntvPrcntOfParasitologicallyConfirmedCLSamples" xml:space="preserve">
     <value>% of parasitologically confirmed CL samples</value>
@@ -1788,17 +1791,11 @@
   <data name="NumVolunteersBu" xml:space="preserve">
     <value>Jumlah kader masyarakat yang berkontribusi mencari pasien yang dicurigai dan merujuknya untuk diagnosis</value>
   </data>
-  <data name="STHMapSurSurStartDateOfSurvey" xml:space="preserve">
-    <value>Tanggal survei dimulai</value>
-  </data>
   <data name="CmIfSpecWhichMeeting" xml:space="preserve">
     <value>Jika Penyakit Spesifik, sebutkan penatalaksanaan kasus NTD yang mengadakan pertemuan review berkala sesuai jadwal</value>
   </data>
   <data name="MenuHelp" xml:space="preserve">
     <value>Bantuan</value>
-  </data>
-  <data name="ExportTasSources" xml:space="preserve">
-    <value>Sumber pendanaan</value>
   </data>
   <data name="LeishMontIntvPrcntOfPostitiveRDT" xml:space="preserve">
     <value>% of postitive RDT</value>
@@ -1811,6 +1808,9 @@
   </data>
   <data name="AddPartnerLink" xml:space="preserve">
     <value>Tambah pendonor/mitra baru</value>
+  </data>
+  <data name="LeishMontIntvNumberOfNewCLCasesInAdultsGrtrThn14Years" xml:space="preserve">
+    <value>Number of new CL cases in adults &gt; 14 years</value>
   </data>
   <data name="ReportProgressTowardsEliminiation" xml:space="preserve">
     <value>Kemajuan menuju Eliminasi</value>
@@ -1827,6 +1827,9 @@
   <data name="SubDistrictName" xml:space="preserve">
     <value>Nama kecamatan</value>
   </data>
+  <data name="SubDistrictLevel" xml:space="preserve">
+    <value>Tingkat kecamatan</value>
+  </data>
   <data name="SpotCheck" xml:space="preserve">
     <value>Spot check</value>
   </data>
@@ -1841,9 +1844,6 @@
   </data>
   <data name="EndemicButPcNotReq" xml:space="preserve">
     <value>Endemis tapi tidak memerlukan pengobatan</value>
-  </data>
-  <data name="CmStorageSponsor3" xml:space="preserve">
-    <value>Sponsor 3</value>
   </data>
   <data name="AvailableExports" xml:space="preserve">
     <value>Ekspor tersedia</value>
@@ -1869,9 +1869,6 @@
   <data name="NumTRhod" xml:space="preserve">
     <value>Jumlah kasus hanya  T rhodensiense</value>
   </data>
-  <data name="PercentTGamb" xml:space="preserve">
-    <value>% kasus hanya  T gambiense</value>
-  </data>
   <data name="RetrieveLogFile" xml:space="preserve">
     <value>Ambil berkas log</value>
   </data>
@@ -1881,20 +1878,20 @@
   <data name="OnchoSurAgeRange" xml:space="preserve">
     <value>Rentang usia</value>
   </data>
-  <data name="Custom" xml:space="preserve">
-    <value>Ubahsuai</value>
+  <data name="DDLFPsacPopulation" xml:space="preserve">
+    <value>Populasi anak usia pra-sekolah</value>
   </data>
   <data name="STHSurPositiveAscaris" xml:space="preserve">
     <value>% positif - Ascaris</value>
+  </data>
+  <data name="YawsIntervention" xml:space="preserve">
+    <value>Intervensi Framboesia</value>
   </data>
   <data name="NumCasesContained" xml:space="preserve">
     <value>Jumlah kasus yang berhasil ditangani</value>
   </data>
   <data name="STHSurProportionOfHeavyIntensityOfTri" xml:space="preserve">
     <value>Jumlah dari infeksi intensitas tinggi - Trichuris</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Versi</value>
   </data>
   <data name="Table" xml:space="preserve">
     <value>Tabel</value>
@@ -1908,14 +1905,14 @@
   <data name="LeishRepFailureDefCl" xml:space="preserve">
     <value>Define what a leishmaniasis treatment "failure" is in this country for CL</value>
   </data>
+  <data name="CmHasDiseaseSpecMeetings" xml:space="preserve">
+    <value>Apakah ada pertemuan-pertemuan untuk review penyakit secara spesifik?</value>
+  </data>
   <data name="LeishMontIntvPrcntOfVLParasitologicallyConfirmedCases" xml:space="preserve">
     <value>% of VL parasitologically confirmed cases</value>
   </data>
   <data name="PCTrainNumIndividualsTargeted" xml:space="preserve">
     <value># Jumlah sasaran individu</value>
-  </data>
-  <data name="LFMMDPNumHydroceleCases" xml:space="preserve">
-    <value># kasus hidrokel</value>
   </data>
   <data name="NumRelapses" xml:space="preserve">
     <value>Jumlah kekambuhan</value>
@@ -1923,8 +1920,8 @@
   <data name="SurSchMapping" xml:space="preserve">
     <value>Pemetaan Schistosomiasis </value>
   </data>
-  <data name="OnchoMapSurIfTestTypeIsNpPerWri" xml:space="preserve">
-    <value>Jika jenis tes adalah palpasi nodul, morbiditas dermatologis - % individu dengan kerutan (tidak elastis)</value>
+  <data name="STHMapSurSurPerPositiveAscaris" xml:space="preserve">
+    <value>% positif - Ascaris</value>
   </data>
   <data name="GWTrainPercentageOfHealthFacilitiesHavingAtLeas" xml:space="preserve">
     <value>Persentase fasilitas kesehatan yang memiliki setidaknya satu staf terlatih untuk program pembasmian Cacing Guinea</value>
@@ -1934,6 +1931,9 @@
   </data>
   <data name="TriTrainingBltr" xml:space="preserve">
     <value>BLTR </value>
+  </data>
+  <data name="DDSTHDiseaseDistributionPcInterventions" xml:space="preserve">
+    <value>Distribusi Penyakit: intervensi Pengobatan</value>
   </data>
   <data name="Tra4" xml:space="preserve">
     <value>4 Prevalensi Sedang (TF 10-29%)</value>
@@ -1977,8 +1977,14 @@
   <data name="TraSurWithClinicalSignCo" xml:space="preserve">
     <value>% dengan tanda klinis - CO</value>
   </data>
-  <data name="PcIntvLengthOfStockOut" xml:space="preserve">
-    <value>Lamanya stok habis</value>
+  <data name="PcIntvTraEpi" xml:space="preserve">
+    <value>Trachoma cakupan Epidemiologis</value>
+  </data>
+  <data name="Lomidine" xml:space="preserve">
+    <value>Lomidine</value>
+  </data>
+  <data name="RedistrictingMergeInto" xml:space="preserve">
+    <value>Disatukan menjadi {0} dari {1}</value>
   </data>
   <data name="Percent6mos" xml:space="preserve">
     <value>%  usia 0-6 bulan dari total populasi</value>
@@ -2006,9 +2012,6 @@
   </data>
   <data name="STHMapSurSurOverallProportionOfHeavyIntensity" xml:space="preserve">
     <value>Proporsi total dari infeksi "intensitas berat" dengan STH</value>
-  </data>
-  <data name="PleaseSelect" xml:space="preserve">
-    <value>Silakan pilih...</value>
   </data>
   <data name="TSNationalPolicyForTtSurgery" xml:space="preserve">
     <value>Kebijakan nasional untuk Bedah TT</value>
@@ -2091,12 +2094,6 @@
   <data name="STHSurProportionOfModerateIntensityTri" xml:space="preserve">
     <value>Jumlah dari infeksi intensitas sedang - Trichuris</value>
   </data>
-  <data name="RtiDrpEndAfrica" xml:space="preserve">
-    <value>END di Africa</value>
-  </data>
-  <data name="RtiSch2a" xml:space="preserve">
-    <value>2A</value>
-  </data>
   <data name="NumTreatedZx" xml:space="preserve">
     <value># Orang yang diobati dengan tablet Zx</value>
   </data>
@@ -2106,35 +2103,29 @@
   <data name="RtiDrp1stSar" xml:space="preserve">
     <value>SAR pertama (Oktober-Maret)</value>
   </data>
-  <data name="MfSkinSnip" xml:space="preserve">
-    <value>Mf potongan kecil kulit</value>
-  </data>
   <data name="LeishMontIntvNumberOfCLPatientsWithLesionsOnFaceOrEars" xml:space="preserve">
     <value>Number of CL patients with lesions on face or ears</value>
   </data>
   <data name="DrugDistrib" xml:space="preserve">
     <value>Petugas yang membagikan obat</value>
   </data>
-  <data name="LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForCL" xml:space="preserve">
-    <value>% of initial cured cases out of total new cases treated for CL</value>
+  <data name="OnchoMapSurEntomologicalAssessmentConduc" xml:space="preserve">
+    <value>Dilakukan penilaian entomologi?</value>
   </data>
   <data name="RedistrictRuleMerge" xml:space="preserve">
     <value>Merging rule</value>
   </data>
-  <data name="PcIntvUpperConfidence" xml:space="preserve">
-    <value>Interval kepercayaan yang lebih tinggi dari cakupan yang disurvei</value>
-  </data>
   <data name="TriTrainingNewSurgeon" xml:space="preserve">
     <value>Ahli bedah baru</value>
-  </data>
-  <data name="AddNewDiseaseLink" xml:space="preserve">
-    <value>Tambah penyakit baru&gt;</value>
   </data>
   <data name="DataType" xml:space="preserve">
     <value>Jenis data</value>
   </data>
   <data name="TraMapSurNumberOfIndividualsWithNonResp" xml:space="preserve">
     <value>Jumlah individu dengan non-respon</value>
+  </data>
+  <data name="RedistrictingInfo" xml:space="preserve">
+    <value>Informasi daerah pemekaran</value>
   </data>
   <data name="OnchoMapSurSurveyType" xml:space="preserve">
     <value>Jenis survei</value>
@@ -2160,11 +2151,17 @@
   <data name="TraMapSurNumberOfIndividualsWithClTF" xml:space="preserve">
     <value>Jumlah individu dengan tanda klinis - TF</value>
   </data>
+  <data name="HATTrainPercentageOfTrainedHealthWorkers" xml:space="preserve">
+    <value>Persentase petugas kesehatan terlatih dari jumlah total petugas kesehatan di fasilitas kesehatan</value>
+  </data>
   <data name="RtiName" xml:space="preserve">
     <value>Nama</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Hapus</value>
+  </data>
+  <data name="PercentLabConfirmed" xml:space="preserve">
+    <value>% kasus yang dikonfirmasi lab</value>
   </data>
   <data name="LFMapSurExaminedLympho" xml:space="preserve">
     <value>Jumlah individu yang diperiksa untuk Limfedema</value>
@@ -2184,9 +2181,6 @@
   <data name="Sch10" xml:space="preserve">
     <value>10 Prevalensi sangat rendah (&lt;1%) pada evaluasi dengan metode parasitologi</value>
   </data>
-  <data name="MenuFile2" xml:space="preserve">
-    <value>Berkas</value>
-  </data>
   <data name="TraMapSurNumberOfIndividualsWithClTT" xml:space="preserve">
     <value>Jumlah individu dengan tanda klinis - TT</value>
   </data>
@@ -2195,9 +2189,6 @@
   </data>
   <data name="ValidNameSpecialChars" xml:space="preserve">
     <value>Name must not contain special characters: &amp;&amp;</value>
-  </data>
-  <data name="TASSurveyType" xml:space="preserve">
-    <value>Jenis survei</value>
   </data>
   <data name="PsacCoverage" xml:space="preserve">
     <value>Cakupan anak usia pra-sekolah</value>
@@ -2220,26 +2211,17 @@
   <data name="ScmPhysicalCount" xml:space="preserve">
     <value>Hitungan secara fisik</value>
   </data>
-  <data name="SaeDate" xml:space="preserve">
-    <value>Tanggal laporan</value>
-  </data>
   <data name="RtiSch3a" xml:space="preserve">
     <value>3A</value>
   </data>
   <data name="CmIfSpecWhichNtdPlan" xml:space="preserve">
     <value>Jika Spesifik, penatalaksanaan kasus NTD mana yang memiliki rencana tahunan operasional</value>
   </data>
-  <data name="Tra" xml:space="preserve">
-    <value>TRA</value>
-  </data>
   <data name="EndemicityStatus" xml:space="preserve">
     <value>Status endemisitas</value>
   </data>
   <data name="PercentSae" xml:space="preserve">
     <value>% kejadian ikutan serius</value>
-  </data>
-  <data name="MbAdultsEnd" xml:space="preserve">
-    <value>MB Orang Dewasa di akhir tahun prevalensi</value>
   </data>
   <data name="GWTrainNumberOfTrainingSessionsHold" xml:space="preserve">
     <value>Jumlah pelatihan yang sudah diadakan</value>
@@ -2265,9 +2247,6 @@
   <data name="LFSurPositive" xml:space="preserve">
     <value>% positif</value>
   </data>
-  <data name="FreeOfCharge" xml:space="preserve">
-    <value>Tidak bayar</value>
-  </data>
   <data name="LeishMontIntvPrcntOfCLPatientsWithLesionsOnFaceEars" xml:space="preserve">
     <value>% of CL patients with lesions on face/ears</value>
   </data>
@@ -2279,6 +2258,9 @@
   </data>
   <data name="OnchoSurReportedPopulation" xml:space="preserve">
     <value>Populasi yang dilaporkan</value>
+  </data>
+  <data name="DiseasesRequired" xml:space="preserve">
+    <value>Silakan pilih penyakit sasaran. </value>
   </data>
   <data name="UpdateFound" xml:space="preserve">
     <value>Ada versi baru dari aplikasi ini, apakah Anda ingin memutakhirkan?</value>
@@ -2355,6 +2337,9 @@
   <data name="SCMDropBottle" xml:space="preserve">
     <value>Botol</value>
   </data>
+  <data name="PercentClVl" xml:space="preserve">
+    <value>% kedua kasus CL&amp;VL</value>
+  </data>
   <data name="DiseaseTrichiasis" xml:space="preserve">
     <value>Distribusi Penyakit: Bedah Trichiasis</value>
   </data>
@@ -2403,11 +2388,20 @@
   <data name="RtiSsAg" xml:space="preserve">
     <value>SS (Ag)</value>
   </data>
-  <data name="LeishMontIntvNumberOfNewPKDLCasesInAdultsGrtrThn14Years" xml:space="preserve">
-    <value>Number of new PKDL cases in adults &gt; 14 years</value>
+  <data name="SchMappingPrevalenceEggsInUrine" xml:space="preserve">
+    <value>Prevalence of any parasite eggs in urine</value>
+  </data>
+  <data name="RedistrictRuleSplitCombine" xml:space="preserve">
+    <value>Split/combine rule</value>
   </data>
   <data name="RtiTaskForceNoInternet" xml:space="preserve">
     <value>Hubungan internet tidak ada. Silahkan mengaktifkan internet dan coba lagi, atau beri tanda pada kotak untuk melewatkan proses rekonsiliasi unit daerah administratif</value>
+  </data>
+  <data name="LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years" xml:space="preserve">
+    <value>% of new VL cases in adults &gt; 14 years</value>
+  </data>
+  <data name="DDLFYearPcStarted" xml:space="preserve">
+    <value>Tahun Pengobatan dimulai</value>
   </data>
   <data name="NumTreatedOncho" xml:space="preserve">
     <value>Dari total, diobati untuk oncho</value>
@@ -2421,8 +2415,8 @@
   <data name="AuditCreated" xml:space="preserve">
     <value>Dibuat</value>
   </data>
-  <data name="RtiScAg" xml:space="preserve">
-    <value>SC (Ag)</value>
+  <data name="LeishMontIntvNumberOfCLPatientsUndergoingSystemicTreatment" xml:space="preserve">
+    <value>Number of CL patients undergoing systemic treatment</value>
   </data>
   <data name="IntvPkgIVMALB" xml:space="preserve">
     <value>IVM + ALB</value>
@@ -2442,6 +2436,9 @@
   <data name="MenuSettings2" xml:space="preserve">
     <value>Pengaturan   </value>
   </data>
+  <data name="Dengue" xml:space="preserve">
+    <value>Dengue/dengue berat</value>
+  </data>
   <data name="MenuReports" xml:space="preserve">
     <value>Laporan</value>
   </data>
@@ -2451,23 +2448,20 @@
   <data name="MonitoringTraining" xml:space="preserve">
     <value>Pengawasan dan Pelatihan</value>
   </data>
-  <data name="MetaDataLoading" xml:space="preserve">
-    <value>Loading meta data...</value>
-  </data>
   <data name="OnchoSurFliesDissected" xml:space="preserve">
     <value>Jumlah lalat yang dibedah</value>
   </data>
   <data name="TraSurNumberOfIndividualsExaminedCo" xml:space="preserve">
     <value>Jumlah individu yang diperiksa - CO</value>
   </data>
-  <data name="NumImported" xml:space="preserve">
-    <value>Jumlah kasus-kasus impor</value>
+  <data name="NumPopSurveyedCm" xml:space="preserve">
+    <value>Jumlah populasi di desa atau masyarakat yang disurvei - Orang dewasa dan anak-anak (di bawah usia 15 tahun),  laki-laki dan perempuan</value>
   </data>
   <data name="SuperDistrict" xml:space="preserve">
     <value>Distrik Super</value>
   </data>
-  <data name="SCMDrug" xml:space="preserve">
-    <value>Obat</value>
+  <data name="RtiSch2a" xml:space="preserve">
+    <value>2A</value>
   </data>
   <data name="PcTrainNewOrRefresh" xml:space="preserve">
     <value>Baru atau Penyegaran</value>
@@ -2490,20 +2484,26 @@
   <data name="LFMapSurLatitude" xml:space="preserve">
     <value>Lintang</value>
   </data>
+  <data name="EliminationStoppedDistricts" xml:space="preserve">
+    <value>Jumlah {0} yang telah mencapai kriteria untuk menghentikan Pengobatan</value>
+  </data>
   <data name="DDOnchoNumPcRoundsYearRecommendedByWhoG" xml:space="preserve">
     <value># putaran/tahun pengobatan yang  direkomendasikan oleh pedoman WHO</value>
   </data>
-  <data name="DecPatch" xml:space="preserve">
-    <value>Patch DEC</value>
+  <data name="SurveyName" xml:space="preserve">
+    <value>Nama survei</value>
   </data>
   <data name="EditLink" xml:space="preserve">
     <value>Edit...</value>
   </data>
-  <data name="PcIntvModeDistributionSchool" xml:space="preserve">
-    <value>School-based</value>
+  <data name="LeishDiseaseDistNumberOfNewVLFociThisYearAreasReportingCasesForTheFirstTime" xml:space="preserve">
+    <value>Number of new VL foci this year (areas reporting cases for the first time)</value>
   </data>
   <data name="CmGwHasPlan" xml:space="preserve">
     <value>Cacing Guinea</value>
+  </data>
+  <data name="LeishMontIntvPrcntOfNewPKDLCasesInChildren5To14Years" xml:space="preserve">
+    <value>% of new PKDL cases in children 5-14 years</value>
   </data>
   <data name="TSNationalPolicyArePrimaryHealthCarPh" xml:space="preserve">
     <value>Kebijakan nasional: Apakah pekerja Petugas Kesehatan Dasar (PHC) dilatih untuk mengidentifikasi TT?</value>
@@ -2523,8 +2523,8 @@
   <data name="TraSurNumberOfIndividualsExaminedTi" xml:space="preserve">
     <value>Jumlah individu yang diperiksa - TI</value>
   </data>
-  <data name="NumPopSurveyedCm" xml:space="preserve">
-    <value>Jumlah populasi di desa atau masyarakat yang disurvei - Orang dewasa dan anak-anak (di bawah usia 15 tahun),  laki-laki dan perempuan</value>
+  <data name="TasNumNoTreatment" xml:space="preserve">
+    <value>Number of LF endemic districts surrounding this Evaluation Unit that haven't started treatment</value>
   </data>
   <data name="PcIntvNumberOfTreatmentRoundsPlannedForTheYear" xml:space="preserve">
     <value>Jumlah putaran pengobatan yang direncanakan selama setahun</value>
@@ -2535,14 +2535,14 @@
   <data name="STHMapSurSurSiteNames" xml:space="preserve">
     <value>Nama(-nama) desa</value>
   </data>
-  <data name="TraMapSurDistLevelMda" xml:space="preserve">
-    <value>POMP tingkat Kabupaten</value>
-  </data>
   <data name="NumLabClCases" xml:space="preserve">
     <value>Jumlah kasus CL yang dikonfirmasi lab</value>
   </data>
   <data name="SCHMapSurLatitude" xml:space="preserve">
     <value>Lintang</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Memeriksa pemutakhiran...</value>
   </data>
   <data name="EzName" xml:space="preserve">
     <value>Nama Zona Ekologi</value>
@@ -2553,8 +2553,8 @@
   <data name="CmContactPost" xml:space="preserve">
     <value>Jabatan</value>
   </data>
-  <data name="TrainingDrugPackages" xml:space="preserve">
-    <value>Paket obat-obatan yang diberikan pada saat pelatihan</value>
+  <data name="DDTraPopulationLivingInAreasSubDistrict" xml:space="preserve">
+    <value>Populasi yang tinggal di daerah yang telah mencapai UIG-A di tingkat kecamatan POMP untuk trachoma</value>
   </data>
   <data name="SCMTimePeriodForInventory" xml:space="preserve">
     <value>Jangka waktu untuk inventaris</value>
@@ -2562,8 +2562,8 @@
   <data name="DDTraLevelRecWho" xml:space="preserve">
     <value>Tingkat penerapan yang di rekomendasikan berdasar panduan WHO (Kabupaten atau Kecamatan)</value>
   </data>
-  <data name="RtiSch20" xml:space="preserve">
-    <value>20</value>
+  <data name="AdminLevelType" xml:space="preserve">
+    <value>Jenis tingkat daerah administratif</value>
   </data>
   <data name="MbCasesRegisteredMdtEnd" xml:space="preserve">
     <value>Prevalensi (kasus terdaftar untuk MDT) di akhir tahun</value>
@@ -2574,9 +2574,6 @@
   <data name="AboutDisclaimer" xml:space="preserve">
     <value>Data Dasar NTD Terpadu dikembangkan oleh RTI Internasional melalui proyek ENVISION dengan dukungan dana dari Lembaga Amerika Serikat untuk pembangunan International (the United States Agency for International Development) bekerjasama dengan Badan Kesehatan Dunia (WHO) dan kantor-kantor regional nya (AFR, SEAR, WPR), Program Pengendalian Onchocerciasis Afrika, dan lembaga Pusat untuk Penyakit Tropis yang Terabaikan. 
 Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpinan Proyek: Eric Olson, Pengembang: Jennifer Fox, Desain Grafis; Nick Cherf, Spesialis Penjamin Kualitas; Michelle Fellows, Penulis Teknis;</value>
-  </data>
-  <data name="BUTrainNumberOfSupervisionVisitsSchedule" xml:space="preserve">
-    <value>Jumlah kunjungan supervisi yang dijadwalkan per tahun</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value />
@@ -2647,9 +2644,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="a47f1af8-7399-4915-a541-ded4c2c9d739" xml:space="preserve">
     <value>CL: Number of population in surveyed villages or communities - Adult and children (&lt;15 years), male and female</value>
   </data>
-  <data name="DDOnchoPopulationAtRisk" xml:space="preserve">
-    <value>Populasi beresiko</value>
-  </data>
   <data name="STHMapSurSurNumberOfIndividualsExaminedTrichur" xml:space="preserve">
     <value>Jumlah individu yang diperiksa - Trichuris</value>
   </data>
@@ -2665,6 +2659,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SAENormalRangeHigh" xml:space="preserve">
     <value>Rentang Normal (Tinggi)</value>
   </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
   <data name="OnchoSurIfTestTypeIsNpPerNod" xml:space="preserve">
     <value>Jika jenis tes adalah palpasi nodul, morbiditas dermatologis - % individu dengan nodul (onchocercomas)</value>
   </data>
@@ -2674,11 +2671,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="PopSac" xml:space="preserve">
     <value>Populasi anak usia sekolah</value>
   </data>
-  <data name="TotalCat2Cases" xml:space="preserve">
-    <value>Jumlah total kasus baru dengan Lesi kategori II</value>
-  </data>
-  <data name="NumTreatedTeo" xml:space="preserve">
-    <value># Orang yang diobati dengan TEO</value>
+  <data name="SodiumStib" xml:space="preserve">
+    <value>Sodium stibogluconate (SSG)</value>
   </data>
   <data name="TASTasActualTimelineAndResourcesActualCo" xml:space="preserve">
     <value>TAS Rencana Waktu Pelaksanaan aktual dan Sumberdaya -  biaya aktual</value>
@@ -2737,9 +2731,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="PcIntvRoundNumber" xml:space="preserve">
     <value>Jumlah putaran</value>
   </data>
-  <data name="LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForCL" xml:space="preserve">
-    <value>% of failure cases out of total new cases treated for CL</value>
-  </data>
   <data name="TotalNumHat2" xml:space="preserve">
     <value>Jumlah total kasus HAT pada tahap 2</value>
   </data>
@@ -2751,9 +2742,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="Other" xml:space="preserve">
     <value>Lainnya</value>
-  </data>
-  <data name="SCHSurNumberOfRoundsOfPcCompletedPriorTo" xml:space="preserve">
-    <value>Jumlah putaran pengobatan yang selesai sebelum implementasi survei</value>
   </data>
   <data name="SevereAdverseEffects" xml:space="preserve">
     <value>Kejadian ikutan serius</value>
@@ -2767,8 +2755,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TrichiasisSurgeryGoal" xml:space="preserve">
     <value>Tujuan intervensi akhir untuk bedah trichiasis</value>
   </data>
+  <data name="OnchoSaeLikely" xml:space="preserve">
+    <value>Kemungkinan SAE</value>
+  </data>
   <data name="RedistrictRuleListAll" xml:space="preserve">
     <value>Combine</value>
+  </data>
+  <data name="NonEndComm" xml:space="preserve">
+    <value>Masyarakat non-endemis</value>
   </data>
   <data name="EndemicityTbv" xml:space="preserve">
     <value>Endemisitas untuk diverifikasi</value>
@@ -2791,14 +2785,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SCHSurProportionOfHeavyIntensityUrinaryS" xml:space="preserve">
     <value>Jumlah dari infeksi saluran kemih schistosomal intensitas tinggi</value>
   </data>
-  <data name="SthSentinelIsPartOfCohort" xml:space="preserve">
-    <value>Is this survey a part of cohort study?</value>
-  </data>
   <data name="0d21bea5-9f29-4973-aa51-d3503bb284ac" xml:space="preserve">
     <value>CL: Number of diagnosed cases (adults and children, male and female)</value>
   </data>
   <data name="DDSTHHighRiskAdultsAtRisk" xml:space="preserve">
     <value>Orang dewasa beresiko tinggi</value>
+  </data>
+  <data name="RtiTotalDistrictsTreatedWithUsaid" xml:space="preserve">
+    <value>Total kabupaten yang mendapat pengobatan dengan dukungan USAID</value>
+  </data>
+  <data name="HATTrainNumberOfParticipantsToHatTrainin" xml:space="preserve">
+    <value>Jumlah orang dilatih HAT</value>
   </data>
   <data name="SettingsReportingLevelDesc" xml:space="preserve">
     <value>Tingkat Laporan: Laporan WHO dan mitra akan secara otomatis dibuat untuk unit-unit daerah administratif ditingkat ini. Umumnya ini adalah bagian kabupaten atau daerah administrasi tingkat dua. </value>
@@ -2839,6 +2836,12 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TASEndDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei berakhir</value>
   </data>
+  <data name="DDSchistoPopulationRequiringPc" xml:space="preserve">
+    <value>Populasi yang membutuhkan pengobatan</value>
+  </data>
+  <data name="TotalNumNewCases" xml:space="preserve">
+    <value>Jumlah total kasus baru</value>
+  </data>
   <data name="User" xml:space="preserve">
     <value>Pengguna </value>
   </data>
@@ -2854,9 +2857,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="EliminationLiving" xml:space="preserve">
     <value>Jumlah orang yang tinggal di daerah yang telah mencapai kriteria untuk menghentikan POMP</value>
   </data>
-  <data name="RtiProjectName" xml:space="preserve">
-    <value>Nama proyek</value>
-  </data>
   <data name="OnchoMapSurNumberOfRoundsOfPcCompletedPr" xml:space="preserve">
     <value>Jumlah putaran pengobatan yang selesai sebelum implementasi survei</value>
   </data>
@@ -2866,8 +2866,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="AdministrativeLevels" xml:space="preserve">
     <value>Tingkat daerah administratif</value>
   </data>
-  <data name="SplitConfirmReviewTitle" xml:space="preserve">
-    <value>Redistribusi selesai</value>
+  <data name="TraMapSurNoAReq" xml:space="preserve">
+    <value>A tidak dibutuhkan, mempertimbangkan F&amp;E</value>
   </data>
   <data name="LeishMontIntvNumberOfPeopleScreenedActivelyForPKDL" xml:space="preserve">
     <value>Number of people screened actively for PKDL</value>
@@ -2884,8 +2884,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Trichuris" xml:space="preserve">
     <value>Trichuris trichiura (cacing cambuk)</value>
   </data>
-  <data name="TotalNumCasesCat3" xml:space="preserve">
-    <value>Jumlah total kasus yang sedang dalam pengobatan dengan lesi kategori III</value>
+  <data name="SAENormalRangeLow" xml:space="preserve">
+    <value>Rentang Normal (Rendah)</value>
   </data>
   <data name="SaeGood" xml:space="preserve">
     <value>Baik</value>
@@ -2902,6 +2902,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NoAneeded" xml:space="preserve">
     <value>A tidak diperlukan; pertimbangkan F &amp; E</value>
   </data>
+  <data name="SAEHealthstatusbeforetreatment" xml:space="preserve">
+    <value>Status kesehatan sebelum pengobatan</value>
+  </data>
   <data name="UrbanOrRural" xml:space="preserve">
     <value>Perkotaan atau pedesaan</value>
   </data>
@@ -2917,17 +2920,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="IndSpotCheckLat" xml:space="preserve">
     <value>Pemeriksaan acak lintang desa</value>
   </data>
-  <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
-    <value>Lembar Kerja Penyakit RTI tingkat negara</value>
-  </data>
   <data name="NumTreatmentFailures" xml:space="preserve">
     <value>Jumlah kegagalan pengobatan</value>
   </data>
+  <data name="OnchoSurIfTestTypeIsNpPerDep" xml:space="preserve">
+    <value>Jika jenis tes adalah palpasi nodul, morbiditas dermatologis - % individu dengan depigmentasi</value>
+  </data>
   <data name="LeishTrainPercentageOfHealthFacilityStaf" xml:space="preserve">
     <value>Persentase staf fasilitas kesehatan yang disupervisi sesuai jadwal</value>
-  </data>
-  <data name="SaeLifethreatening" xml:space="preserve">
-    <value>Mengancam jiwa</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
     <value>Ekspor ke excel</value>
@@ -2940,12 +2940,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="SaeAzithromycin" xml:space="preserve">
     <value>Azitromisin</value>
-  </data>
-  <data name="OnchoSaeHigh" xml:space="preserve">
-    <value>Resiko tinggi SAE</value>
-  </data>
-  <data name="Oncho2NotMapped" xml:space="preserve">
-    <value>Tidak dipetakan</value>
   </data>
   <data name="StartDateSurvey" xml:space="preserve">
     <value>Tanggal survei mulai</value>
@@ -2974,6 +2968,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TraMapSurPrevTt" xml:space="preserve">
     <value>Prevalensi kasus Trachoma Trichiasis (%TT)</value>
   </data>
+  <data name="LeishTraining" xml:space="preserve">
+    <value>Pelatihan Leishmaniasis</value>
+  </data>
   <data name="FEHealthPromotionActivitiesYN" xml:space="preserve">
     <value>Kegiatan Promosi Kesehatan</value>
   </data>
@@ -2995,17 +2992,20 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LeprosyTrainNumberOfParticipantsToTraini" xml:space="preserve">
     <value>Jumlah orang dilatih</value>
   </data>
-  <data name="AdminLevelNameUnique" xml:space="preserve">
-    <value>Nama tingkat daerah administratif harus unik</value>
-  </data>
   <data name="Viewreports" xml:space="preserve">
     <value>Lihat laporan</value>
   </data>
-  <data name="TraSurWithClinicalSignTt" xml:space="preserve">
-    <value>% dengan tanda klinis - TT</value>
+  <data name="NumCasesLost" xml:space="preserve">
+    <value>Jumlah kasus yang tidak dapat ditindaklanjuti</value>
+  </data>
+  <data name="SCHMapSurProportionOfHeavyIntensityIntes" xml:space="preserve">
+    <value>Jumlah infeksi schistosoma usus dengan intensitas tinggi</value>
   </data>
   <data name="ImportErrors" xml:space="preserve">
     <value>{0} tidak valid, harap perbaiki kesalahan berikut:</value>
+  </data>
+  <data name="LeishRepAntiMedInNml" xml:space="preserve">
+    <value>Antileishmanial medicines included in the National Medicine List</value>
   </data>
   <data name="SupplyChainMng" xml:space="preserve">
     <value>Manajemen rantai suplai</value>
@@ -3022,8 +3022,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LFSurVector" xml:space="preserve">
     <value>Vektor</value>
   </data>
+  <data name="DatabaseScriptsExecuting" xml:space="preserve">
+    <value>Menjalankan naskah data dasar...</value>
+  </data>
+  <data name="Foodborne" xml:space="preserve">
+    <value>Trematodiasis ditularkan melalui makanan </value>
+  </data>
   <data name="IvmAlbIntervention" xml:space="preserve">
     <value>Intervensi IVM + ALB</value>
+  </data>
+  <data name="PcIntvOnchoAtRisk" xml:space="preserve">
+    <value>Oncho populasi beresiko</value>
   </data>
   <data name="PercentIdsr" xml:space="preserve">
     <value>% IDSR/HF yang melaporkan GWD</value>
@@ -3057,9 +3066,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="NumGoodStreptomycin" xml:space="preserve">
     <value>Jumlah botol kecil streptomisin berkualitas baik yang tersedia </value>
-  </data>
-  <data name="TraMapSurTfAlone" xml:space="preserve">
-    <value>TF-tunggal</value>
   </data>
   <data name="IntvPkgDECALB" xml:space="preserve">
     <value>DEC + ALB</value>
@@ -3121,14 +3127,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NadaIntro" xml:space="preserve">
     <value>Pola acu untuk Database  NTD Nasional dikembangkan oleh RTI International di bawah proyek ENVISION dengan pendanaan dari United States Agency for International Development bekerjasama dengan World Health Organization (WHO) dan kantor regionalnya, African Programme for Onchocerciasis Control and the Centre for Neglected Tropical Diseases.</value>
   </data>
-  <data name="NumProspection" xml:space="preserve">
-    <value>Jumlah kasus yang ditemukan secara aktif (prospeksi)</value>
-  </data>
   <data name="LeishDiseaseDistEndemicityStatusPKDL" xml:space="preserve">
     <value>Endemicity status PKDL</value>
   </data>
   <data name="NumDistributionPoints" xml:space="preserve">
     <value>Jumlah pos-pos distribusi MDT oleh kader masyarakat</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Wilayah</value>
   </data>
   <data name="DDSchistoSacAtRisk" xml:space="preserve">
     <value>Anak usia sekolah berisiko</value>
@@ -3138,6 +3144,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="TriTrainingTrainerName" xml:space="preserve">
     <value>Nama dari pelatih ahli bedah TT</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Peran</value>
   </data>
   <data name="DrugPzqAlb" xml:space="preserve">
     <value>ALB dan PZQ</value>
@@ -3160,17 +3169,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="OnchoSurIfEcologicalAssessmentSite" xml:space="preserve">
     <value>Jika penilaian entomologi dilakukan, situs/fokus</value>
   </data>
-  <data name="ParentLevelMustBeSame" xml:space="preserve">
-    <value>Anda harus memilih daerah induk untuk tingkat daerah administratif baru dengan jenis {0}</value>
-  </data>
   <data name="IntvMbd" xml:space="preserve">
     <value>Intervensi MBD</value>
   </data>
-  <data name="RtiTabLf" xml:space="preserve">
-    <value>LF</value>
-  </data>
-  <data name="TraSurNumberOfIndividualsWithBlindnessDu" xml:space="preserve">
-    <value>Jumlah individu dengan kebutaan karena trachoma</value>
+  <data name="LFMapSurAgeRange" xml:space="preserve">
+    <value>Rentang usia</value>
   </data>
   <data name="BUTrainPercentageOfHealthFacilityStaffSu" xml:space="preserve">
     <value>Cakupan jumlah petugas kesehatan yang disupervisi sesuai jadwal</value>
@@ -3205,17 +3208,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TrainingYear" xml:space="preserve">
     <value>Tahun informasi pelatihan berlaku untuk</value>
   </data>
-  <data name="OnchoMapSurTestType" xml:space="preserve">
-    <value>Jenis tes</value>
-  </data>
   <data name="LfEndM" xml:space="preserve">
     <value>M - Tidak dipetakan</value>
   </data>
   <data name="NewAdminUnitName" xml:space="preserve">
     <value>Nama unit daerah administatif</value>
   </data>
-  <data name="ValidationUserName" xml:space="preserve">
-    <value>Nama pengguna harus unik</value>
+  <data name="PcIntvSchAtRisk" xml:space="preserve">
+    <value>SCH total populasi berisiko</value>
+  </data>
+  <data name="Community" xml:space="preserve">
+    <value>Masyarakat  </value>
   </data>
   <data name="LeishDiseaseDistEndemicityStatusVL" xml:space="preserve">
     <value>Endemicity status VL</value>
@@ -3231,9 +3234,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="Middle" xml:space="preserve">
     <value>Middle</value>
-  </data>
-  <data name="SaeNo" xml:space="preserve">
-    <value>Tidak</value>
   </data>
   <data name="SAEIfdeathcauseofdeath" xml:space="preserve">
     <value>Jika meninggal, penyebab kematian</value>
@@ -3256,17 +3256,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="IndSentinelSiteName" xml:space="preserve">
     <value>Nama desa sentinel</value>
   </data>
-  <data name="TriTrainingWasCertified" xml:space="preserve">
-    <value>Apakah ahli bedah itu tersertifikasi berdasarkan panduan WHO?</value>
-  </data>
   <data name="SthSpotCheckTypeSite" xml:space="preserve">
     <value>Type of site</value>
   </data>
   <data name="PcIntvTsNumOperated" xml:space="preserve">
     <value>Jumlah total orang yang dioperasi semasa periode pelaporan</value>
-  </data>
-  <data name="OtherAntibiotics" xml:space="preserve">
-    <value>Antibiotik lainnya (Azitromisin)</value>
   </data>
   <data name="RevertToEmergencyBackup" xml:space="preserve">
     <value>Pulihkan database untuk menyimpan salinan yang disimpan di log masuk terakhir.</value>
@@ -3276,6 +3270,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="SaeLF" xml:space="preserve">
     <value>LF</value>
+  </data>
+  <data name="IntvPkgTEOZithro" xml:space="preserve">
+    <value>TEO + Zithro</value>
   </data>
   <data name="TtAios2020" xml:space="preserve">
     <value>2020 Tujuan intervensi tahunan</value>
@@ -3298,17 +3295,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Reports" xml:space="preserve">
     <value>Laporan </value>
   </data>
-  <data name="SaeOther" xml:space="preserve">
-    <value>Lainnya</value>
-  </data>
   <data name="SplitHowMany" xml:space="preserve">
     <value>Berapa banyak unit?</value>
   </data>
   <data name="RtiDrpEndAsia" xml:space="preserve">
     <value>END di Asia</value>
-  </data>
-  <data name="PcIntvTraDrugZith" xml:space="preserve">
-    <value>Tablet Zithromax</value>
   </data>
   <data name="HatIntervention" xml:space="preserve">
     <value>Intervensi HAT</value>
@@ -3319,8 +3310,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TraMapSurPerWithClinicalSignCo" xml:space="preserve">
     <value>% dengan tanda klinis - CO</value>
   </data>
+  <data name="STHMapSurSurLatitude" xml:space="preserve">
+    <value>Lintang</value>
+  </data>
   <data name="Ts" xml:space="preserve">
     <value>TS</value>
+  </data>
+  <data name="CmHasMoe" xml:space="preserve">
+    <value>Kementerian Lingkungan Hidup</value>
   </data>
   <data name="SplittingRedistributing" xml:space="preserve">
     <value>Melakukan redistribusi distrik…</value>
@@ -3364,6 +3361,12 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Leprosy" xml:space="preserve">
     <value>Kusta</value>
   </data>
+  <data name="StartUpTasks" xml:space="preserve">
+    <value>Memulai tugas</value>
+  </data>
+  <data name="IndSentinelSiteLat" xml:space="preserve">
+    <value>Lintang desa sentinel</value>
+  </data>
   <data name="EnterNewLink" xml:space="preserve">
     <value>Masukkan baru...</value>
   </data>
@@ -3379,6 +3382,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="PercentCureRateMb" xml:space="preserve">
     <value>Angka kesembuhan kasus-kasus MB tahun sebelumnya</value>
   </data>
+  <data name="LinkSelect" xml:space="preserve">
+    <value>Pilih...</value>
+  </data>
   <data name="SCHSurTargetSampleSize" xml:space="preserve">
     <value>Besaran sampel sasaran</value>
   </data>
@@ -3387,6 +3393,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="NumRumorsInvestigated" xml:space="preserve">
     <value>Jumlah rumor yang diinvestigasi dalam waktu 24 jam</value>
+  </data>
+  <data name="RedistrictingSplitInto" xml:space="preserve">
+    <value>Dipisahkan menjadi {0} dari {1}</value>
   </data>
   <data name="StartExport" xml:space="preserve">
     <value>Mulai ekspor</value>
@@ -3400,8 +3409,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="RedistrictRuleMin" xml:space="preserve">
     <value>Min</value>
   </data>
-  <data name="PcIntvTraEpi" xml:space="preserve">
-    <value>Trachoma cakupan Epidemiologis</value>
+  <data name="SCMDrug" xml:space="preserve">
+    <value>Obat</value>
   </data>
   <data name="CmMechs" xml:space="preserve">
     <value>Mekanisme/platform koordinasi</value>
@@ -3418,9 +3427,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SCHMapSurNumberOfIndividualsExaminedForI" xml:space="preserve">
     <value>Jumlah individu yang diperiksa untuk schistosoma usus </value>
   </data>
-  <data name="LFMapSurPopulationLivingInMappingSites" xml:space="preserve">
-    <value>Populasi yang tinggal di desa-desa pemetaan</value>
-  </data>
   <data name="OnchoSurEntTaxonomic" xml:space="preserve">
     <value>Identifikasi taksonomi -Morfologi</value>
   </data>
@@ -3430,8 +3436,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="DrugZirthroTeo" xml:space="preserve">
     <value>TEO dan Zithro</value>
   </data>
+  <data name="YawsTrainPercentageOfSupervisionVisitsCa" xml:space="preserve">
+    <value>Persentase kunjungan supervisi yang dilaksanakan selama setahun</value>
+  </data>
   <data name="RedistributionSettings" xml:space="preserve">
     <value>Pengaturan redistribusi</value>
+  </data>
+  <data name="Rabies" xml:space="preserve">
+    <value>Rabies</value>
   </data>
   <data name="PcIntvOfTotalFemalesOncho" xml:space="preserve">
     <value>Dari total, # perempuan yang diobati untuk oncho</value>
@@ -3456,9 +3468,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="LoadingMessage" xml:space="preserve">
     <value>Memuat...</value>
-  </data>
-  <data name="SAEUnits" xml:space="preserve">
-    <value>Unit</value>
   </data>
   <data name="DistrictLevel" xml:space="preserve">
     <value>Tingkat kabupaten/kota</value>
@@ -3517,14 +3526,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TSDrugsForSurgery" xml:space="preserve">
     <value>Obat-obatan untuk tindakan bedah</value>
   </data>
+  <data name="Demography" xml:space="preserve">
+    <value>Demografi</value>
+  </data>
   <data name="TraSurNumberOfYearsOfSafePriorToSurveyIm" xml:space="preserve">
     <value>Jumlah tahun SAFE sebelum implementasi survei</value>
   </data>
+  <data name="LFSurTargetSampleSize" xml:space="preserve">
+    <value>Besaran sampel sasaran</value>
+  </data>
   <data name="RtiDrpWorkPlanning" xml:space="preserve">
     <value>Rencana kerja</value>
-  </data>
-  <data name="IntvIvmAlb" xml:space="preserve">
-    <value>Intervensi IVM+ALB</value>
   </data>
   <data name="TotalNumVlCases" xml:space="preserve">
     <value>Jumlah total kasus baru VL</value>
@@ -3538,6 +3550,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="RtiSchM" xml:space="preserve">
     <value>M</value>
   </data>
+  <data name="DDSTHAdultPopulation" xml:space="preserve">
+    <value>Populasi orang dewasa</value>
+  </data>
   <data name="SAEResultoftest" xml:space="preserve">
     <value>Hasil tes</value>
   </data>
@@ -3550,9 +3565,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="DDOnchoSaeRiskFromLoaLoa" xml:space="preserve">
     <value>Resiko SAE dari Loa Loa</value>
   </data>
-  <data name="LeishIntervention" xml:space="preserve">
-    <value>Intervensi Leishmaniasis </value>
-  </data>
   <data name="TSNumberOfTrichiasisSurgeriesInYearPeop" xml:space="preserve">
     <value>Jumlah Bedah Trichiasis dalam tahun (orang)</value>
   </data>
@@ -3562,6 +3574,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LeishAnnIntvOfNewVLCasesCuredOutOfNewCasesFollowedUp" xml:space="preserve">
     <value>% of new VL cases cured out of new cases followed up</value>
   </data>
+  <data name="MalesCoverage" xml:space="preserve">
+    <value>Proporsi laki-laki yang diobati</value>
+  </data>
   <data name="SurOnchoMapping" xml:space="preserve">
     <value>Pemetaan Onchocerciasis (Kebutaan sungai)</value>
   </data>
@@ -3570,15 +3585,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="UnexpectedException" xml:space="preserve">
     <value>Sebuah pengecualian tak terduga terjadi, silakan hubungi petugas. Rincian pengecualian:</value>
-  </data>
-  <data name="Round" xml:space="preserve">
-    <value>Putaran</value>
-  </data>
-  <data name="TriTraining" xml:space="preserve">
-    <value>Pelatihan Operasi trikiasis</value>
-  </data>
-  <data name="TraNs" xml:space="preserve">
-    <value>NS Tidak dipetakan tetapi tidak dicurigai</value>
   </data>
   <data name="ReportsNoDemographyInDateRange" xml:space="preserve">
     <value>Tidak ada data demografi yang dapat ditemukan untuk {0} dalam rentang tanggal {1} - {2}.</value>
@@ -3597,9 +3603,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="DDTraAdultPopulation" xml:space="preserve">
     <value>Populasi orang dewasa</value>
-  </data>
-  <data name="HowManyAdminUnits" xml:space="preserve">
-    <value>Berapa banyak unit daerah administratif yang  Anda inginkan dari pemekaran {0}?</value>
   </data>
   <data name="ImportUpdateSuccess" xml:space="preserve">
     <value>Successfully updated {0} forms!</value>
@@ -3631,6 +3634,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="AltSpellingNames" xml:space="preserve">
     <value>Pilihan ejaan nama</value>
   </data>
+  <data name="DDTraSacPopulation" xml:space="preserve">
+    <value>Populasi anak usia sekolah</value>
+  </data>
   <data name="LFMapSurNumberOfCasesOfHydrocele" xml:space="preserve">
     <value>Jumlah kasus hidrokel</value>
   </data>
@@ -3639,9 +3645,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="NumSacTreated" xml:space="preserve">
     <value># anak usia sekolah yang diobati</value>
-  </data>
-  <data name="TraMapSurAgeGroupSurveyed" xml:space="preserve">
-    <value>Kelompok usia disurvei</value>
   </data>
   <data name="OtherNtds" xml:space="preserve">
     <value>NTD Lainnya</value>
@@ -3667,9 +3670,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="IntvPkgPZQMBD" xml:space="preserve">
     <value>PZQ + MBD</value>
   </data>
-  <data name="LeishMontIntvNumberOfCLPatientsUndergoingSystemicTreatment" xml:space="preserve">
-    <value>Number of CL patients undergoing systemic treatment</value>
-  </data>
   <data name="LFSurExaminedHydro" xml:space="preserve">
     <value>Jumlah individu yang diperiksa untuk Hidrokel</value>
   </data>
@@ -3691,14 +3691,23 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LfEndPending" xml:space="preserve">
     <value>Ditunda - Menunggu implementasi/hasil TAS</value>
   </data>
+  <data name="ReportYear" xml:space="preserve">
+    <value>Tahun informasi laporan berlaku untuk</value>
+  </data>
+  <data name="SaeHeight" xml:space="preserve">
+    <value>Tinggi (cm)</value>
+  </data>
   <data name="TraSurEndDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei berakhir</value>
   </data>
   <data name="OnchoMapSurNumberOfIndividualsPositive" xml:space="preserve">
     <value>Jumlah individu positif</value>
   </data>
-  <data name="STHSurNumberOfIndividualsPositiveAscaris" xml:space="preserve">
-    <value>Jumlah individu yang positif - Ascaris</value>
+  <data name="PbAdultEnd" xml:space="preserve">
+    <value>Jumlah prevalensi PB dewasa di akhir tahun</value>
+  </data>
+  <data name="IndSpotCheckLng" xml:space="preserve">
+    <value>Pemeriksaan acak bujur desa</value>
   </data>
   <data name="SAESourceoftreatmentPCClinicorphysiciantreatmentsOther" xml:space="preserve">
     <value>Sumber pengobatan (Obat, penanganan  klinis atau medis, Lainnya)</value>
@@ -3706,11 +3715,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TotalCasesContacted" xml:space="preserve">
     <value>Jumlah total kasus dan kontak untuk diobati</value>
   </data>
+  <data name="StockOutDrug" xml:space="preserve">
+    <value>Stok obat habis</value>
+  </data>
   <data name="Pop5yo" xml:space="preserve">
     <value>Populasi usia &lt;5 tahun</value>
-  </data>
-  <data name="IntvDrp1month" xml:space="preserve">
-    <value>Lebih dari 1 bulan</value>
   </data>
   <data name="SCHMapSurStartDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei dimulai</value>
@@ -3739,11 +3748,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="DatabaseScriptBackup" xml:space="preserve">
     <value>Mohon untuk kembali ke back-up terakhir data dasar</value>
   </data>
+  <data name="PcIntvOnchoPopReqPc" xml:space="preserve">
+    <value>Oncho populasi yang membutuhkan pengobatan</value>
+  </data>
   <data name="NumLab" xml:space="preserve">
     <value>Jumlah kasus yang dikonfirmasi lab</value>
-  </data>
-  <data name="RtiTitle" xml:space="preserve">
-    <value>Judul</value>
   </data>
   <data name="TraSurSurveyType" xml:space="preserve">
     <value>Jenis survei</value>
@@ -3778,17 +3787,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="PatientsCuredMb" xml:space="preserve">
     <value>Pasien sembuh (pengobatan selesai) dari kasus-kasus MB di  awal tahun</value>
   </data>
-  <data name="STHMapSurSurLevelOfEndemicity" xml:space="preserve">
-    <value>Tingkat endemisitas</value>
-  </data>
   <data name="SCHMapSurEndDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei berakhir</value>
-  </data>
-  <data name="LeishTrainPercentageOfHealthFacilitiesHa" xml:space="preserve">
-    <value>Persentase fasilitas kesehatan yang memiliki setidaknya satu staf terlatih untuk program pemberantasan Leishmaniasis</value>
-  </data>
-  <data name="SAENormalRangeLow" xml:space="preserve">
-    <value>Rentang Normal (Rendah)</value>
   </data>
   <data name="RtiCantReconcile" xml:space="preserve">
     <value>Tidak dapat melakukan rekonsiliasi</value>
@@ -3820,17 +3820,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SCMDropTablet" xml:space="preserve">
     <value>Tablet</value>
   </data>
-  <data name="LFSurNumberOfIndividualsWithNon" xml:space="preserve">
-    <value>Jumlah individu non-respon</value>
-  </data>
   <data name="GettingStarted" xml:space="preserve">
     <value>Memulai</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Kosongkan</value>
-  </data>
-  <data name="NumberOfLocations" xml:space="preserve">
-    <value>Nomor untuk impor</value>
   </data>
   <data name="SCM" xml:space="preserve">
     <value>Manajemen rantai suplai - inventarisasi obat</value>
@@ -3859,12 +3853,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="ExportApocReport" xml:space="preserve">
     <value>Laporan APOC</value>
   </data>
-  <data name="Trachoma" xml:space="preserve">
-    <value>Trachoma</value>
-  </data>
-  <data name="DDTraYearOfPlannedTrachomaImpactSurvey" xml:space="preserve">
-    <value>Bulan direncanakan survei dampak trachoma </value>
-  </data>
   <data name="Diseases" xml:space="preserve">
     <value>Penyakit</value>
   </data>
@@ -3876,9 +3864,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="SthSpotCheckDatePc" xml:space="preserve">
     <value>Date of most recent PC</value>
-  </data>
-  <data name="Import" xml:space="preserve">
-    <value>Impor</value>
   </data>
   <data name="RtiTaskForceNoResults" xml:space="preserve">
     <value>Tidak ada hasil yang ditemukan pada saat merujuk ke sistem RTI, silahkan hubungi bagian dukungan</value>
@@ -3892,8 +3877,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LFMapSurTestType" xml:space="preserve">
     <value>Jenis tes</value>
   </data>
-  <data name="BUTrainNumberOfTrainingSessionsHold" xml:space="preserve">
-    <value>Jumlah pelatihan yang diadakan</value>
+  <data name="TASActualNonResponseRateAbsent" xml:space="preserve">
+    <value>Angka non-respon aktual - Absen %</value>
   </data>
   <data name="STHMapSurSurAgeGroupSurveyed" xml:space="preserve">
     <value>Kelompok usia disurvei</value>
@@ -3907,8 +3892,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="IntvPkgPZQIVMALB" xml:space="preserve">
     <value>PZQ + IVM + ALB</value>
   </data>
-  <data name="ValidationResultMissingValue" xml:space="preserve">
-    <value>Missing value</value>
+  <data name="Country" xml:space="preserve">
+    <value>Negara</value>
   </data>
   <data name="SAEWasthiscaseinvestigated" xml:space="preserve">
     <value>Apakah kasus ini diinvestigasi?</value>
@@ -3922,14 +3907,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumEndemicVillages" xml:space="preserve">
     <value>Jumlah desa endemis</value>
   </data>
-  <data name="PcIntvSthPopReqPc" xml:space="preserve">
-    <value>STH populasi yang membutuhkan pengobatan</value>
-  </data>
   <data name="TASNumOfEffectiveMdasCompleted" xml:space="preserve">
     <value># POMP efektif yang sudah dilakukan (yaitu cakupan ≥ 65%)</value>
   </data>
   <data name="SplitChildrenAllocatedError" xml:space="preserve">
     <value>Semua unit daerah administatif pemekaran harus dialokasikan</value>
+  </data>
+  <data name="MenuNew" xml:space="preserve">
+    <value>Baru...</value>
   </data>
   <data name="AggLevel" xml:space="preserve">
     <value>Data digabungkan ke tingkat daerah administratif</value>
@@ -3961,6 +3946,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SaeSae" xml:space="preserve">
     <value>SAE</value>
   </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Pilih kategori laporan</value>
+  </data>
   <data name="AdminLevel" xml:space="preserve">
     <value>Unit daerah administratif</value>
   </data>
@@ -3970,8 +3958,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SCHSurNumberOfIndividualsSampled" xml:space="preserve">
     <value>Jumlah individu yang disampel </value>
   </data>
-  <data name="Aedes" xml:space="preserve">
-    <value>Aedes</value>
+  <data name="IntvDrp1day" xml:space="preserve">
+    <value>1-2 hari</value>
+  </data>
+  <data name="OnchoMapSurTypeOfMapping" xml:space="preserve">
+    <value>Jenis pemetaan </value>
+  </data>
+  <data name="TotalNumCasesCat3" xml:space="preserve">
+    <value>Jumlah total kasus yang sedang dalam pengobatan dengan lesi kategori III</value>
   </data>
   <data name="Tra2" xml:space="preserve">
     <value>2 Prevalensi sangat rendah (TF &gt;0-4.9%) di tingkat kabupaten/kota - prevalensi kecamatan tidak diketahui</value>
@@ -3994,17 +3988,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="PercentNewCasesPcrCm" xml:space="preserve">
     <value>% kasus baru yang dikonfirmasi oleh tes PCR selama survei penilaian atau temuan kasus aktif</value>
   </data>
-  <data name="LeprosyTrainNumberOfTrainingSessionsHold" xml:space="preserve">
-    <value>Jumlah pelatihan yang sudah diadakan</value>
-  </data>
   <data name="NumPersonsBenza" xml:space="preserve">
     <value>Jumlah total orang yang diobati dengan Penisilin Benzatin</value>
   </data>
   <data name="ValidRoundsMda" xml:space="preserve">
     <value>Harus di antara 0 dan 20</value>
-  </data>
-  <data name="SentinelSpotSurvey" xml:space="preserve">
-    <value>Survei Desa Sentinel/Spot Check</value>
   </data>
   <data name="SCHSurCausalAgent" xml:space="preserve">
     <value>Agen penyebab</value>
@@ -4036,6 +4024,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SCHSurEndDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei berakhir</value>
   </data>
+  <data name="RtiScAg" xml:space="preserve">
+    <value>SC (Ag)</value>
+  </data>
   <data name="SAEIfhospitalizationrequireddateofdischarge" xml:space="preserve">
     <value>Jika harus rawat inap, tanggal keluar</value>
   </data>
@@ -4045,8 +4036,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="JrfEndemic" xml:space="preserve">
     <value>Endemis</value>
   </data>
-  <data name="DDTraAchievedCriteria" xml:space="preserve">
-    <value>Tercapainya kriteria untuk menghentikan POMP Trakhoma di tingkat Kabupaten. </value>
+  <data name="TraMapSurFemale15yo" xml:space="preserve">
+    <value>Perempuan usia diatas 15 tahun</value>
   </data>
   <data name="YearCensus" xml:space="preserve">
     <value>Tahun sensus</value>
@@ -4081,14 +4072,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="AddNewItemLink" xml:space="preserve">
     <value>Tambah item baru&gt;</value>
   </data>
+  <data name="RtiPostMda1" xml:space="preserve">
+    <value>Pasca-Pengawasan MDA TAS I</value>
+  </data>
   <data name="GrowthRateHasBeenAppliedDd" xml:space="preserve">
     <value>Angka pertumbuhan telah diterapkan, silakan klik selanjutnya untuk mengkaji dan membuat perubahan atau klik selesai jika Anda selesai memutakhirkan distribusi penyakit tahun yang dimasukkan.</value>
   </data>
   <data name="RtiDataCompleteness" xml:space="preserve">
     <value>Kelengkapan data (%)</value>
   </data>
-  <data name="LFSurTargetSampleSize" xml:space="preserve">
-    <value>Besaran sampel sasaran</value>
+  <data name="DDTraAchievedCriteria" xml:space="preserve">
+    <value>Tercapainya kriteria untuk menghentikan POMP Trakhoma di tingkat Kabupaten. </value>
   </data>
   <data name="SCHMapSurPrevalenceOfIntestinalSchistoso" xml:space="preserve">
     <value>Prevalensi infeksi schistosoma usus</value>
@@ -4099,6 +4093,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SaeMebendazole" xml:space="preserve">
     <value>Mebendazol</value>
   </data>
+  <data name="LeishMontIntvNumberOfPeopleScreenedActivelyForVL" xml:space="preserve">
+    <value>Number of people screened actively for VL</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Tambah</value>
   </data>
@@ -4107,9 +4104,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="weeks4" xml:space="preserve">
     <value>2-4 minggu</value>
-  </data>
-  <data name="Cca" xml:space="preserve">
-    <value>CCA</value>
   </data>
   <data name="TraSurStartDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei dimulai</value>
@@ -4141,14 +4135,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="MustMakeAggregatingLevel" xml:space="preserve">
     <value>Anda harus menetapkan salah satu dari tingkat daerah administatif sebagai "Tingkat yang Mengumpulkan"</value>
   </data>
-  <data name="OnchoSurCatchingPoint" xml:space="preserve">
-    <value>Nama titik penangkapan</value>
-  </data>
   <data name="TriTrainingTrabut" xml:space="preserve">
     <value>Trabut</value>
   </data>
+  <data name="LeishMontIntvNumberOfCasesFoundActively" xml:space="preserve">
+    <value>Jumlah kasus yang ditemukan secara aktif</value>
+  </data>
   <data name="LeishMontIntvNumberOfCLPatientsWithLesionsGrtrThnOrEqlTo4Cm" xml:space="preserve">
     <value>Number of CL patients with lesions &gt; or = 4 cm</value>
+  </data>
+  <data name="LfEnd0" xml:space="preserve">
+    <value>0 - Tidak endemis di atas ambang batas pengobatan  </value>
   </data>
   <data name="LFMapSurWillTheSitesAlsoServeAsASentin" xml:space="preserve">
     <value>Apakah desa-(desa) ini juga berfungsi sebagai sentinel?</value>
@@ -4156,8 +4153,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TraMapSurPerOfNationalBlindness" xml:space="preserve">
     <value>% Kebutaan nasional</value>
   </data>
-  <data name="RedistrictRuleSplitCombine" xml:space="preserve">
-    <value>Split/combine rule</value>
+  <data name="SaeDate" xml:space="preserve">
+    <value>Tanggal laporan</value>
   </data>
   <data name="PbChildEnd" xml:space="preserve">
     <value>Jumlah prevalensi PB anak di akhir tahun</value>
@@ -4173,6 +4170,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="STHSurPositiveHookworm" xml:space="preserve">
     <value>% positif - Cacing tambang</value>
+  </data>
+  <data name="SaePraziquantel" xml:space="preserve">
+    <value>Praziquantel</value>
   </data>
   <data name="DDOnchoTotalNumOfVillagesCommunitiesInT" xml:space="preserve">
     <value>Total # desa/masyarakat di kabupaten/kota</value>
@@ -4228,8 +4228,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="ItemsToSplit" xml:space="preserve">
     <value>Butir untuk redistribusi</value>
   </data>
-  <data name="SCMNumRemainingOpenedBottles" xml:space="preserve">
-    <value># sisa botol terbuka </value>
+  <data name="SentinelSpotSurvey" xml:space="preserve">
+    <value>Survei Desa Sentinel/Spot Check</value>
   </data>
   <data name="PersonsTreatedAndCoverageReport" xml:space="preserve">
     <value>Persons Treated and Coverage Report</value>
@@ -4237,14 +4237,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SentinelSite" xml:space="preserve">
     <value>Desa sentinel</value>
   </data>
-  <data name="PcIntvNumSacTreated" xml:space="preserve">
-    <value># anak usia sekolah yang diobati</value>
-  </data>
   <data name="RedistrictRuleSum" xml:space="preserve">
     <value>Sum</value>
-  </data>
-  <data name="TraMapSurFemale15yo" xml:space="preserve">
-    <value>Perempuan usia diatas 15 tahun</value>
   </data>
   <data name="LFMMDPNumLymphoedemaPatientsTreated" xml:space="preserve">
     <value># pasien limfodema yang diobati</value>
@@ -4252,8 +4246,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="OnchoMapSurIfTestTypeIsNpNumWri" xml:space="preserve">
     <value>Jika jenis tes adalah palpasi nodul, morbiditas dermatologis - jumlah individu dengan kerutan (tidak elastis)</value>
   </data>
-  <data name="OnchoSaeUnlikely" xml:space="preserve">
-    <value>Kemungkinan tidak SAE</value>
+  <data name="LowRiskComm" xml:space="preserve">
+    <value>Masyarakat beresiko rendah</value>
   </data>
   <data name="SAELaboratorytestsperformed" xml:space="preserve">
     <value>Tes laboratorium dilakukan</value>
@@ -4269,9 +4263,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="LFMapSurCount" xml:space="preserve">
     <value>Hitung</value>
-  </data>
-  <data name="TraMapSurTiAlone" xml:space="preserve">
-    <value>TI-tunggal</value>
   </data>
   <data name="TraMapSurTargetedMda" xml:space="preserve">
     <value>Sasaran POMP</value>
@@ -4300,6 +4291,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TraMapSurNumberOfIndividualsExaminedTt" xml:space="preserve">
     <value>Jumlah individu yang diperiksa - TT</value>
   </data>
+  <data name="BUTrainPercentageOfHealthFacilitiesHavin" xml:space="preserve">
+    <value>Persentase fasilitas kesehatan yang memiliki setidaknya satu staf terlatih untuk program pengendalian ulkus Buruli</value>
+  </data>
   <data name="NumLeprosyRehab" xml:space="preserve">
     <value>Jumlah orang-orang yang terdampak oleh kusta yang menerima rehabilitasi sosial-ekonomi</value>
   </data>
@@ -4324,14 +4318,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumAdultsTreated" xml:space="preserve">
     <value># Orang Dewasa yang diobati</value>
   </data>
-  <data name="OnchoMapSurStandardizedPrevelance" xml:space="preserve">
-    <value>Prevalensi standar</value>
-  </data>
   <data name="Culex" xml:space="preserve">
     <value>Culex</value>
   </data>
-  <data name="TraMapSurNoAReq" xml:space="preserve">
-    <value>A tidak dibutuhkan, mempertimbangkan F&amp;E</value>
+  <data name="IndicatorValue" xml:space="preserve">
+    <value>Nilai indikator</value>
   </data>
   <data name="YawsTrainNumberOfTrainingSessionsHold" xml:space="preserve">
     <value>Jumlah pelatihan yang diadakan</value>
@@ -4342,8 +4333,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="ValidDropdown" xml:space="preserve">
     <value>Nilai tidak valid, silakan pilih butir dari daftar opsi.</value>
   </data>
-  <data name="OnchoSurIfTestTypeIsNpPerDep" xml:space="preserve">
-    <value>Jika jenis tes adalah palpasi nodul, morbiditas dermatologis - % individu dengan depigmentasi</value>
+  <data name="NumTreatedTeo" xml:space="preserve">
+    <value># Orang yang diobati dengan TEO</value>
   </data>
   <data name="LeishMontIntvPrcntOfNewPKDLCasesInChildrenLssThn5Years" xml:space="preserve">
     <value>% of new PKDL cases in children &lt; 5 years</value>
@@ -4351,26 +4342,26 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TraSurDistLevel" xml:space="preserve">
     <value>POMP tingkat Kabupaten</value>
   </data>
-  <data name="Sth40" xml:space="preserve">
-    <value>40 Prevalensi sangat tinggi (≥50%) pada saat evaluasi </value>
-  </data>
   <data name="DDLFYearOfPlannedTas" xml:space="preserve">
     <value>Tahun TAS yang direncanakan</value>
   </data>
   <data name="ErrorOccured" xml:space="preserve">
     <value>Terjadi kesalahan</value>
   </data>
-  <data name="CmStorageSponsor2" xml:space="preserve">
-    <value>Sponsor 2</value>
+  <data name="PercentFemale" xml:space="preserve">
+    <value>% Populasi perempuan dari total populasi</value>
   </data>
-  <data name="DDLFPsacPopulation" xml:space="preserve">
-    <value>Populasi anak usia pra-sekolah</value>
+  <data name="CmStorageSponsor3" xml:space="preserve">
+    <value>Sponsor 3</value>
   </data>
   <data name="Mapping" xml:space="preserve">
     <value>Pemetaan</value>
   </data>
   <data name="CmStorageSponsor1" xml:space="preserve">
     <value>Sponsor 1</value>
+  </data>
+  <data name="RoundsRecommendedByWho" xml:space="preserve">
+    <value># putaran pengobatan/tahun yang direkomendasikan oleh pedoman WHO</value>
   </data>
   <data name="SCHSurProportionOfHeavyIntensityIntestin" xml:space="preserve">
     <value>Jumlah dari infeksi usus schistosomal intensitas tinggi</value>
@@ -4399,8 +4390,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Midterm" xml:space="preserve">
     <value>Jangka menengah</value>
   </data>
-  <data name="DDLFAdultPopulation" xml:space="preserve">
-    <value>Populasi orang dewasa</value>
+  <data name="IntvDrp1month" xml:space="preserve">
+    <value>Lebih dari 1 bulan</value>
   </data>
   <data name="UpdateDdAfterSavingSurveyTitle" xml:space="preserve">
     <value>Pemutakhiran distribusi penyakit</value>
@@ -4477,8 +4468,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="DrugAlbIvm" xml:space="preserve">
     <value>ALB dan IVM</value>
   </data>
-  <data name="SCMAvailableUsableStock" xml:space="preserve">
-    <value>Stok obat yang digunakan yang tersedia</value>
+  <data name="TotalCat2Cases" xml:space="preserve">
+    <value>Jumlah total kasus baru dengan Lesi kategori II</value>
   </data>
   <data name="DDSchistoAdultPopulation" xml:space="preserve">
     <value>Populasi orang dewasa</value>
@@ -4504,8 +4495,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="OnchoSurTypeRemo" xml:space="preserve">
     <value>REMO</value>
   </data>
-  <data name="LFMDA" xml:space="preserve">
-    <value>POMP Filariasis</value>
+  <data name="NumberOfLocations" xml:space="preserve">
+    <value>Nomor untuk impor</value>
   </data>
   <data name="LFMapSurNumberOfIndividualsExamined" xml:space="preserve">
     <value>Jumlah individu yang diperiksa</value>
@@ -4537,6 +4528,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="YearReported" xml:space="preserve">
     <value>Tahun dilaporkan</value>
   </data>
+  <data name="RedistNewParent" xml:space="preserve">
+    <value>Nama baru unit daerah administratif di tingkat diatasnya</value>
+  </data>
   <data name="RtiReports" xml:space="preserve">
     <value>Lembar Kerja Penyakit untuk pelaporan USAID</value>
   </data>
@@ -4552,8 +4546,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="OnchoMapSurRegistrationPopulation" xml:space="preserve">
     <value>Pendataan penduduk</value>
   </data>
-  <data name="TotalWithdrawalTreatment" xml:space="preserve">
-    <value>Total penarikan dari pengobatan</value>
+  <data name="PcIntvSthPopReqPc" xml:space="preserve">
+    <value>STH populasi yang membutuhkan pengobatan</value>
   </data>
   <data name="LeishMontIntvNumberOfNewCLCasesTreated" xml:space="preserve">
     <value>Number of new CL cases treated</value>
@@ -4572,9 +4566,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="SCHMapSurNumberOfIndividualsPositiveForI" xml:space="preserve">
     <value>Jumlah individu yang positif untuk infeksi schistosoma usus</value>
-  </data>
-  <data name="LeishRepIsTreatFree" xml:space="preserve">
-    <value>Is leishmaniasis treatment provided for free in the public sector?</value>
   </data>
   <data name="OnchoSurEntTaxoCyto" xml:space="preserve">
     <value>Identifikasi taksonomi Cytotaxonomy (Chromosomal)</value>
@@ -4621,9 +4612,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumTGamb" xml:space="preserve">
     <value>Jumlah kasus hanya T gambiense</value>
   </data>
-  <data name="JrfEndemicSth" xml:space="preserve">
-    <value>Apakah negara endemis untuk kecacingan yang ditularkan melalui tanah (STH)?</value>
-  </data>
   <data name="CmIfYesWhichBody" xml:space="preserve">
     <value>Jika ya, apakah keanggotaannya mencakup perwakilan dari badan-badan berikut</value>
   </data>
@@ -4654,8 +4642,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Ascaris" xml:space="preserve">
     <value>Ascaris lumbricoides (cacing gelang)</value>
   </data>
-  <data name="PcIntvOnchoPopReqPc" xml:space="preserve">
-    <value>Oncho populasi yang membutuhkan pengobatan</value>
+  <data name="OnchoMapSurIfTestTypeIsNpNumNod" xml:space="preserve">
+    <value>Jika jenis tes adalah palpasi nodul, morbiditas dermatologis - jumlah individu dengan nodul (onchocercomas)</value>
   </data>
   <data name="LeishMontIntvNumberOfNewCLCasesInChildrenLssThn5Years" xml:space="preserve">
     <value>Number of new CL cases in children &lt; 5 years</value>
@@ -4669,14 +4657,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="BuruliUlcerTraining" xml:space="preserve">
     <value>Pelatihan ulkus buruli</value>
   </data>
-  <data name="FemalesAndMales" xml:space="preserve">
-    <value>Perempuan + Laki-laki</value>
+  <data name="LFMMDPNumHydroceleCases" xml:space="preserve">
+    <value># kasus hidrokel</value>
   </data>
   <data name="LeishAnnIntvNumberOfCLRelapseCases" xml:space="preserve">
     <value>Number of CL relapse cases</value>
   </data>
-  <data name="DatabaseScriptsExecuting" xml:space="preserve">
-    <value>Menjalankan naskah data dasar...</value>
+  <data name="OnchoSurCatchingPoint" xml:space="preserve">
+    <value>Nama titik penangkapan</value>
   </data>
   <data name="OnchoSurParousFliesInfected" xml:space="preserve">
     <value>Jumlah lalat parous yang terinfeksi</value>
@@ -4684,11 +4672,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SCMUnusable" xml:space="preserve">
     <value>Tidak dapat digunakan</value>
   </data>
-  <data name="AdminLevelType" xml:space="preserve">
-    <value>Jenis tingkat daerah administratif</value>
+  <data name="LeishMontIntvNumberOfNewPKDLCasesInAdultsGrtrThn14Years" xml:space="preserve">
+    <value>Number of new PKDL cases in adults &gt; 14 years</value>
   </data>
-  <data name="TotalNumNewCases" xml:space="preserve">
-    <value>Jumlah total kasus baru</value>
+  <data name="TraSurWithClinicalSignTt" xml:space="preserve">
+    <value>% dengan tanda klinis - TT</value>
   </data>
   <data name="TotalCasesConfirmedLab" xml:space="preserve">
     <value>Kasus baru yang dikonfirmasi oleh tes lab</value>
@@ -4702,17 +4690,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="RtiLfDd100" xml:space="preserve">
     <value>100</value>
   </data>
-  <data name="DeleteConfirmMessage" xml:space="preserve">
-    <value>Apakah Anda yakin ingin menghapus?</value>
-  </data>
   <data name="TotalNumClCases" xml:space="preserve">
     <value>Jumlah total kasus baru CL</value>
   </data>
-  <data name="UpdateChecking" xml:space="preserve">
-    <value>Memeriksa pemutakhiran...</value>
-  </data>
-  <data name="RtiWorkbookQuestions" xml:space="preserve">
-    <value>Pertanyaan-pertanyaan dari Lembar kerja</value>
+  <data name="LfMorbidityManagment" xml:space="preserve">
+    <value>Penatalaksanaan morbiditras filariasis</value>
   </data>
   <data name="LeishMontIntvNumberOfDeathsForNewCLCases" xml:space="preserve">
     <value>Number of deaths for new CL cases</value>
@@ -4723,8 +4705,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SAEDidpatienttakealcoholwithin24hoursoftreatment" xml:space="preserve">
     <value>Apakah pasien mengonsumsi alkohol dalam waktu 24 jam setelah pengobatan?</value>
   </data>
-  <data name="NonEndComm" xml:space="preserve">
-    <value>Masyarakat non-endemis</value>
+  <data name="OnchoMapSurStandardizedPrevelance" xml:space="preserve">
+    <value>Prevalensi standar</value>
+  </data>
+  <data name="LeishMontIntvNumberOfNewPKDLCasesInChildrenLssThn5Years" xml:space="preserve">
+    <value>Number of new PKDL cases in children &lt; 5 years</value>
   </data>
   <data name="RedistrictRuleDefaultBlank" xml:space="preserve">
     <value>Leave blank</value>
@@ -4738,8 +4723,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TraSurTargetedMda" xml:space="preserve">
     <value>Sasaran POMP</value>
   </data>
-  <data name="EliminationStoppedDistricts" xml:space="preserve">
-    <value>Jumlah {0} yang telah mencapai kriteria untuk menghentikan Pengobatan</value>
+  <data name="OtherAntibiotics" xml:space="preserve">
+    <value>Antibiotik lainnya (Azitromisin)</value>
   </data>
   <data name="AllLocations" xml:space="preserve">
     <value>Semua Lokasi</value>
@@ -4750,17 +4735,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LngWho" xml:space="preserve">
     <value>Bujur (jika ada)</value>
   </data>
-  <data name="ID" xml:space="preserve">
-    <value>ID</value>
+  <data name="TraMapSurTfAlone" xml:space="preserve">
+    <value>TF-tunggal</value>
   </data>
   <data name="MenuNewAdminLevel" xml:space="preserve">
     <value>Tambahkan unit administasi baru...</value>
   </data>
   <data name="LeishMontIntvTotalNumberOfCasesTreated" xml:space="preserve">
     <value>Jumlah total kasus yang diobati</value>
-  </data>
-  <data name="NumBuSurgery" xml:space="preserve">
-    <value>Jumlah orang-orang yang terdampak Ulkus Buruli yang membutuhkan operasi</value>
   </data>
   <data name="CmLeishHasPlan" xml:space="preserve">
     <value>Leishmaniasis</value>
@@ -4774,17 +4756,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="UNICEF" xml:space="preserve">
     <value>UNICEF</value>
   </data>
-  <data name="TASTasActualTimelineAndResourcesNuOfSurve" xml:space="preserve">
-    <value>TAS Rencana Waktu Pelaksanaan aktual dan Sumberdaya -  # hari survey yang dibutuhkan</value>
+  <data name="LeprosyTrainNumberOfTrainingSessionsHold" xml:space="preserve">
+    <value>Jumlah pelatihan yang sudah diadakan</value>
   </data>
   <data name="SAEExtenuatingorcomplicatingcircumstances" xml:space="preserve">
     <value>Keadaan khusus atau rumit</value>
   </data>
   <data name="OnchoSurEntMtp" xml:space="preserve">
     <value>Potensi transmisi bulanan</value>
-  </data>
-  <data name="Melarsoprol" xml:space="preserve">
-    <value>Melarsoprol</value>
   </data>
   <data name="CheckForValidationErrorsLnk" xml:space="preserve">
     <value>Check for validation errors &gt;</value>
@@ -4798,6 +4777,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="CmHaveAnnualOpPlan" xml:space="preserve">
     <value>Centang jika Anda telah mengembangkan Rencana Operasional Tahunan</value>
   </data>
+  <data name="PercentUlcerativeCases" xml:space="preserve">
+    <value>% kasus ulseratif</value>
+  </data>
   <data name="OnchoPending" xml:space="preserve">
     <value>Ditunda Menunggu berhenti-penilaian implementasi/hasil  POMP</value>
   </data>
@@ -4807,8 +4789,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="AggCountry" xml:space="preserve">
     <value>Data digabungkan ke tingkat negara</value>
   </data>
-  <data name="EndDateSurvey" xml:space="preserve">
-    <value>Tanggal Survei berakhir</value>
+  <data name="DDTraPopulationAtRisk" xml:space="preserve">
+    <value>Populasi beresiko</value>
   </data>
   <data name="Sampled" xml:space="preserve">
     <value>Jumlah yang disampel</value>
@@ -4825,11 +4807,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TSNumberOfTrichiasisSurgeons" xml:space="preserve">
     <value>Jumlah Dokter Bedah Trichiasis </value>
   </data>
-  <data name="LeishDiseaseDistNumberOfNewVLFociThisYearAreasReportingCasesForTheFirstTime" xml:space="preserve">
-    <value>Number of new VL foci this year (areas reporting cases for the first time)</value>
+  <data name="MbAdultsEnd" xml:space="preserve">
+    <value>MB Orang Dewasa di akhir tahun prevalensi</value>
   </data>
   <data name="Sentinel" xml:space="preserve">
     <value>Sentinel</value>
+  </data>
+  <data name="TASTasActualTimelineAndResourcesStaff" xml:space="preserve">
+    <value>TAS Rencana Waktu Pelaksanaan aktual dan Sumberdaya - # staf lapangan yang dilibatkan</value>
   </data>
   <data name="DrugIvm" xml:space="preserve">
     <value>IVM</value>
@@ -4837,14 +4822,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NTD" xml:space="preserve">
     <value>NTD</value>
   </data>
-  <data name="TASTasActualTimelineAndResourcesStaff" xml:space="preserve">
-    <value>TAS Rencana Waktu Pelaksanaan aktual dan Sumberdaya - # staf lapangan yang dilibatkan</value>
-  </data>
-  <data name="HATTrainPercentageOfHealthFacilitiesHavi" xml:space="preserve">
-    <value>Persentase fasilitas kesehatan yang memiliki setidaknya satu staf terlatih untuk program pemberantasan kusta</value>
-  </data>
-  <data name="Data" xml:space="preserve">
-    <value>Data</value>
+  <data name="Paromomycin" xml:space="preserve">
+    <value>Paromomycin</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>Tidak</value>
@@ -4876,8 +4855,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="MenuOpen" xml:space="preserve">
     <value>Buka...</value>
   </data>
+  <data name="MoE" xml:space="preserve">
+    <value>Kementerian Pendidikan</value>
+  </data>
   <data name="PrevalenceBeginningYear" xml:space="preserve">
     <value>Prevalensi (kasus terdaftar untuk MDT) di awal tahun</value>
+  </data>
+  <data name="ValidationMustBeUnique" xml:space="preserve">
+    <value>{0} harus unik</value>
   </data>
   <data name="TraMapSur15yo" xml:space="preserve">
     <value># dewasa diatas usia 15 tahun yang disurvei</value>
@@ -4897,8 +4882,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SaeDrugs" xml:space="preserve">
     <value>Obat apa yang diberikan?</value>
   </data>
-  <data name="MenuDemography" xml:space="preserve">
-    <value>Demografi...</value>
+  <data name="HAT" xml:space="preserve">
+    <value>Trypanosomiasis Afrika pada manusia (Penyakit Tidur)</value>
+  </data>
+  <data name="TotalNumMbCases" xml:space="preserve">
+    <value>Jumlah total kasus baru MB</value>
+  </data>
+  <data name="TraSurSiteNames" xml:space="preserve">
+    <value>Nama(-nama) desa</value>
   </data>
   <data name="LFSurNumberOfRoundsOfPcCompletedPriorToS" xml:space="preserve">
     <value>Jumlah putaran pengobatan yang selesai sebelum implementasi survei</value>
@@ -4933,20 +4924,23 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="HighRiskComm" xml:space="preserve">
     <value>Masyarakat berisiko tinggi</value>
   </data>
-  <data name="OnchoSurNumRefused" xml:space="preserve">
-    <value>Number of individuals who refused to be examined</value>
-  </data>
   <data name="STHMapSurSurTargetSampleSize" xml:space="preserve">
     <value>Besaran sampel sasaran</value>
   </data>
-  <data name="SAEHealthstatusbeforetreatment" xml:space="preserve">
-    <value>Status kesehatan sebelum pengobatan</value>
+  <data name="STHMapSurSurNumberOfIndividualsExaminedOverall" xml:space="preserve">
+    <value>Jumlah individu yang diperiksa - total</value>
+  </data>
+  <data name="Round" xml:space="preserve">
+    <value>Putaran</value>
   </data>
   <data name="LfEnd100" xml:space="preserve">
     <value>100 - Mencapai  kriteria menghentikan POMP</value>
   </data>
-  <data name="CmHasMoe" xml:space="preserve">
-    <value>Kementerian Lingkungan Hidup</value>
+  <data name="RedistrictedAdminUnits" xml:space="preserve">
+    <value>hanya menunjukkan unit-unit daerah administratif sebelum pemekaran</value>
+  </data>
+  <data name="NumBuSurgery" xml:space="preserve">
+    <value>Jumlah orang-orang yang terdampak Ulkus Buruli yang membutuhkan operasi</value>
   </data>
   <data name="Publisher" xml:space="preserve">
     <value>Penerbit</value>
@@ -4960,14 +4954,20 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="GWTrainPercentageOfTrainedHealthWorkersAmongTot" xml:space="preserve">
     <value>Persentase petugas kesehatan terlatih dari jumlah total petugas kesehatan di fasilitas kesehatan</value>
   </data>
-  <data name="EnterNew" xml:space="preserve">
-    <value>Masukkan baru</value>
+  <data name="NumEligibleTreated" xml:space="preserve">
+    <value># Sasaran yang diobati</value>
   </data>
-  <data name="PercentClVl" xml:space="preserve">
-    <value>% kedua kasus CL&amp;VL</value>
+  <data name="Trachoma" xml:space="preserve">
+    <value>Trachoma</value>
+  </data>
+  <data name="LfSentinelImport" xml:space="preserve">
+    <value>LF Impor survei sentinel/spot check</value>
   </data>
   <data name="OnchoSurEntomologicalAssessmentConducted" xml:space="preserve">
     <value>Penilaian entomologi dilakukan?</value>
+  </data>
+  <data name="SAEBrandandmanufacturername" xml:space="preserve">
+    <value>Merek dan nama produsen</value>
   </data>
   <data name="LngOther" xml:space="preserve">
     <value>Kode geo lainnya - bujur</value>
@@ -4999,14 +4999,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Notes" xml:space="preserve">
     <value>Catatan</value>
   </data>
-  <data name="BUTrainPercentageOfHealthFacilitiesHavin" xml:space="preserve">
-    <value>Persentase fasilitas kesehatan yang memiliki setidaknya satu staf terlatih untuk program pengendalian ulkus Buruli</value>
+  <data name="RtiSch20" xml:space="preserve">
+    <value>20</value>
   </data>
   <data name="DDTraNumPcRoundsYearCurrentlyImplemente" xml:space="preserve">
     <value># putaran/tahun pengobatan yang sudah dilakukan saat ini</value>
   </data>
-  <data name="Echino" xml:space="preserve">
-    <value>Echinococcosis</value>
+  <data name="LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForCL" xml:space="preserve">
+    <value>% of failure cases out of total new cases treated for CL</value>
   </data>
   <data name="9ed458a6-2495-4ffb-adc0-1dfd5a2b6397" xml:space="preserve">
     <value>CL survey coverage</value>
@@ -5014,11 +5014,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="RedistrictingSplitDesc" xml:space="preserve">
     <value>Dipisahkan dari {0} menjadi {1}</value>
   </data>
-  <data name="LFMapSurNumberOfMalesExamined" xml:space="preserve">
-    <value>Jumlah laki-laki yang diperiksa</value>
-  </data>
-  <data name="DDLFYearPcStarted" xml:space="preserve">
-    <value>Tahun Pengobatan dimulai</value>
+  <data name="PcIntvNumAdultsTreated" xml:space="preserve">
+    <value># Orang Dewasa yang diobati</value>
   </data>
   <data name="TraMapSurPerWithClinicalSignTs" xml:space="preserve">
     <value>% dengan tanda klinis - TS</value>
@@ -5026,17 +5023,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SAEComments" xml:space="preserve">
     <value>Komentar</value>
   </data>
-  <data name="RtiTra2" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="PercentMale" xml:space="preserve">
     <value>% Populasi laki-laki dari total populasi</value>
   </data>
   <data name="LeishMontIntvPrcntOfFailureCasesOutOfTotalNewCasesTreatedForVL" xml:space="preserve">
     <value>% of failure cases out of total new cases treated for VL</value>
   </data>
-  <data name="STHMapSurSurNumberOfIndividualsExaminedOverall" xml:space="preserve">
-    <value>Jumlah individu yang diperiksa - total</value>
+  <data name="SAEUnits" xml:space="preserve">
+    <value>Unit</value>
   </data>
   <data name="SaeOncho" xml:space="preserve">
     <value>Oncho</value>
@@ -5056,26 +5050,26 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="PcIntvEpiCoverage" xml:space="preserve">
     <value>Cakupan epidemiologis</value>
   </data>
+  <data name="STHSurStartDateOfSurvey" xml:space="preserve">
+    <value>Tanggal survei dimulai</value>
+  </data>
   <data name="TraMapSurSurgery01pop" xml:space="preserve">
     <value>Operasi: 0.01% dari populasi (tahun survei) </value>
   </data>
-  <data name="SubDistrictLevel" xml:space="preserve">
-    <value>Tingkat kecamatan</value>
+  <data name="Tra" xml:space="preserve">
+    <value>TRA</value>
   </data>
   <data name="LeishRepYearReporting" xml:space="preserve">
     <value>Year</value>
   </data>
-  <data name="StartUpFinishedAllUnits" xml:space="preserve">
-    <value>Apakah anda telah selesai memasukkan semua unit daerah administratif untuk tingkat ini?</value>
+  <data name="ValidationResultMissingValue" xml:space="preserve">
+    <value>Missing value</value>
   </data>
   <data name="LFMapSurNumberOfFemalesExamined" xml:space="preserve">
     <value>Jumlah perempuan yang diperiksa</value>
   </data>
-  <data name="ChooseLocations" xml:space="preserve">
-    <value>Pilih lokasi untuk:</value>
-  </data>
-  <data name="CmStorageNtdOrCombined" xml:space="preserve">
-    <value>Apakah tempat penyimpanan itu spesifik untuk obat-obatan NTD atau digabung dengan fasilitas penyimpanan dan pasokan Obat-Obatan Nasional lain?</value>
+  <data name="TrainingDrugPackages" xml:space="preserve">
+    <value>Paket obat-obatan yang diberikan pada saat pelatihan</value>
   </data>
   <data name="SAENumberoftabletsadministered" xml:space="preserve">
     <value>Jumlah tablet yang diberikan</value>
@@ -5086,8 +5080,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="CmHasAnnualForum" xml:space="preserve">
     <value>Apakah Anda mengadakan satu forum atau pertemuan review tahunan untuk  program NTD keseluruhan</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Peran</value>
+  <data name="TASSurveyType" xml:space="preserve">
+    <value>Jenis survei</value>
   </data>
   <data name="PcIntvTraDrugPos" xml:space="preserve">
     <value>Zithromax POS</value>
@@ -5098,14 +5092,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="RedistOrigPop" xml:space="preserve">
     <value>Populasi disaat pemekaran terjadi</value>
   </data>
+  <data name="ScmDrpMdb" xml:space="preserve">
+    <value>MBD</value>
+  </data>
   <data name="TraMapSurSubDistMda" xml:space="preserve">
     <value>POMP tingkat kecamatan</value>
   </data>
   <data name="e4ece583-91ce-4f0a-baf7-de45831c1135" xml:space="preserve">
     <value>VL: Number of population in surveyed villages or communities - Adult and children (&lt;15 years), male and female</value>
   </data>
-  <data name="SaePraziquantel" xml:space="preserve">
-    <value>Praziquantel</value>
+  <data name="RtiTra2" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="CmJrfLanguage" xml:space="preserve">
     <value>Bahasa laporan</value>
@@ -5113,8 +5110,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TotalNumHat" xml:space="preserve">
     <value>Jumlah total kasus HAT</value>
   </data>
-  <data name="TraMapSurMaleFemale15yo" xml:space="preserve">
-    <value>Laki-laki &amp; Peremupuan usia 15 tahun keatas</value>
+  <data name="Oncho3Parasite" xml:space="preserve">
+    <value>Parasitologi</value>
   </data>
   <data name="ScmDrpIvm" xml:space="preserve">
     <value>IVM</value>
@@ -5140,8 +5137,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumDeaths" xml:space="preserve">
     <value>Jumlah kematian</value>
   </data>
-  <data name="MenuNew" xml:space="preserve">
-    <value>Baru...</value>
+  <data name="Questionnaire" xml:space="preserve">
+    <value>Kuesioner</value>
+  </data>
+  <data name="RtiTabLf" xml:space="preserve">
+    <value>LF</value>
   </data>
   <data name="PcIntvLfPopRecPc" xml:space="preserve">
     <value>LF populasi yang membutuhkan pengobatan</value>
@@ -5155,6 +5155,9 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="EndM" xml:space="preserve">
     <value>M - Tidak dipetakan</value>
   </data>
+  <data name="DateReported" xml:space="preserve">
+    <value>Tanggal mulai data berlaku untuk</value>
+  </data>
   <data name="SCHSurNumberOfIndividualsExaminedForUrin" xml:space="preserve">
     <value>Jumlah individu yang diperiksa untuk schistosoma kemih</value>
   </data>
@@ -5167,11 +5170,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SurLeprosySurvey" xml:space="preserve">
     <value>Survei Kusta</value>
   </data>
-  <data name="Anopheles" xml:space="preserve">
-    <value>Anopheles</value>
+  <data name="RtiWorkbookQuestions" xml:space="preserve">
+    <value>Pertanyaan-pertanyaan dari Lembar kerja</value>
   </data>
-  <data name="STHSurStartDateOfSurvey" xml:space="preserve">
-    <value>Tanggal survei dimulai</value>
+  <data name="OnchoMapSurTestType" xml:space="preserve">
+    <value>Jenis tes</value>
   </data>
   <data name="NumCasesTreatedRef" xml:space="preserve">
     <value>Jumlah kasus yang diobati di pusat rujukan</value>
@@ -5179,8 +5182,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Tra2Ns" xml:space="preserve">
     <value>NS Tidak dipetakan tetapi tidak dicurigai</value>
   </data>
-  <data name="LowRiskComm" xml:space="preserve">
-    <value>Masyarakat beresiko rendah</value>
+  <data name="OnchoSaeHigh" xml:space="preserve">
+    <value>Resiko tinggi SAE</value>
   </data>
   <data name="Overview" xml:space="preserve">
     <value>Ikhtisar</value>
@@ -5194,8 +5197,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SplittingSelectSource" xml:space="preserve">
     <value>Pilih unit administratif yang Anda pisahkan </value>
   </data>
-  <data name="NumSchoolsScreenedCm" xml:space="preserve">
-    <value>Jumlah sekolah yang mendapat penapisan selama setahun</value>
+  <data name="IntvIvmAlb" xml:space="preserve">
+    <value>Intervensi IVM+ALB</value>
   </data>
   <data name="STHSurEndDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei berakhir</value>
@@ -5215,9 +5218,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SCMRequested" xml:space="preserve">
     <value>Diminta</value>
   </data>
-  <data name="NumCasesTreatedYaws" xml:space="preserve">
-    <value>Jumlah kasus yang diobati selama setahun</value>
-  </data>
   <data name="TraSurOfNationalBlindness" xml:space="preserve">
     <value>% Kebutaan nasional</value>
   </data>
@@ -5230,8 +5230,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LeishMontIntvPrcntOfVLHIVCoInfectedCasesOfTheTotalNewVLCases" xml:space="preserve">
     <value>% of VL/HIV co-infected cases of the total new VL cases</value>
   </data>
-  <data name="NumCasesLost" xml:space="preserve">
-    <value>Jumlah kasus yang tidak dapat ditindaklanjuti</value>
+  <data name="NumEndemicVillagesReporting" xml:space="preserve">
+    <value>Jumlah desa endemis yang memberikan laporan</value>
   </data>
   <data name="IntvPkgPZQALB" xml:space="preserve">
     <value>PZQ + ALB</value>
@@ -5245,23 +5245,23 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="DistrictLevelSup" xml:space="preserve">
     <value>Supervisor di tingkat kabupaten/kota</value>
   </data>
+  <data name="TASSiteName" xml:space="preserve">
+    <value>Nama desa</value>
+  </data>
   <data name="RtiLfDdPending" xml:space="preserve">
     <value>Ditunda</value>
-  </data>
-  <data name="STHSurPositiveOverall" xml:space="preserve">
-    <value>% positif - total</value>
   </data>
   <data name="LeishAnnIntvOfCLRelapseCasesOutOfTotalNewCasesFollowedUp" xml:space="preserve">
     <value>% of CL relapse cases out of total new cases followed up</value>
   </data>
-  <data name="NumCasesSaesLeish" xml:space="preserve">
-    <value>Jumlah kasus-kasus kejadian ikutan yang serius</value>
-  </data>
   <data name="ValidationNoIllegalChars" xml:space="preserve">
     <value>Nilai tidak dapat berisi karakter khusus - ampersand</value>
   </data>
-  <data name="OnchoSaeLikely" xml:space="preserve">
-    <value>Kemungkinan SAE</value>
+  <data name="OnchoMapEvaluationSite" xml:space="preserve">
+    <value>Desa evaluasi</value>
+  </data>
+  <data name="Anopheles" xml:space="preserve">
+    <value>Anopheles</value>
   </data>
   <data name="LeishMontIntvNumberOfCLCasesWithSeriousAdverseEvents" xml:space="preserve">
     <value>Number of CL cases with serious adverse events</value>
@@ -5277,9 +5277,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   </data>
   <data name="TtAios2017" xml:space="preserve">
     <value>2017 Tujuan intervensi tahunan</value>
-  </data>
-  <data name="LifeExpectBirthMale" xml:space="preserve">
-    <value>Life expectancy at birth for male</value>
   </data>
   <data name="NumGoodClarithromycin" xml:space="preserve">
     <value>Jumlah tablet klaritromisin berkualitas baik yang tersedia </value>
@@ -5326,8 +5323,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="ImportSelectionOption" xml:space="preserve">
     <value> | Seleksi</value>
   </data>
-  <data name="YawsIntervention" xml:space="preserve">
-    <value>Intervensi Framboesia</value>
+  <data name="NumProspection" xml:space="preserve">
+    <value>Jumlah kasus yang ditemukan secara aktif (prospeksi)</value>
   </data>
   <data name="DDSTHPopulationRequiringPc" xml:space="preserve">
     <value>Populasi yang membutuhkan pengobatan</value>
@@ -5338,8 +5335,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumCasesCuredYaws" xml:space="preserve">
     <value>Jumlah kasus yang disembuhkan selama setahun</value>
   </data>
-  <data name="Demography" xml:space="preserve">
-    <value>Demografi</value>
+  <data name="Disabled" xml:space="preserve">
+    <value>Dinonaktifkan</value>
   </data>
   <data name="TasEligibility" xml:space="preserve">
     <value>Kelayakan TAS (pra-TAS)</value>
@@ -5356,14 +5353,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="xyear2" xml:space="preserve">
     <value>2x/tahun</value>
   </data>
-  <data name="OnchoMapSurTypeOfMapping" xml:space="preserve">
-    <value>Jenis pemetaan </value>
+  <data name="Custom" xml:space="preserve">
+    <value>Ubahsuai</value>
   </data>
   <data name="CheckUpdates" xml:space="preserve">
     <value>Periksa pemutakhiran</value>
   </data>
-  <data name="DiseasesRequired" xml:space="preserve">
-    <value>Silakan pilih penyakit sasaran. </value>
+  <data name="SaeAlbendazole" xml:space="preserve">
+    <value>Albendazole</value>
+  </data>
+  <data name="PcIntvModeDistribution" xml:space="preserve">
+    <value>Mode of distribution</value>
   </data>
   <data name="LeishMontIntvNumberOfNewVLFemaleCases" xml:space="preserve">
     <value>Number of new VL female cases</value>
@@ -5371,8 +5371,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="OnchoMapSurAgeRange" xml:space="preserve">
     <value>Rentang usia</value>
   </data>
-  <data name="RtiDrpFy16" xml:space="preserve">
-    <value>FY16 (Oktober 2015 - September 2016)</value>
+  <data name="MegluAnti" xml:space="preserve">
+    <value>Meglumine antimoniate</value>
   </data>
   <data name="DDTraDiseaseDistributionPcInterventions" xml:space="preserve">
     <value>Distribusi Penyakit: intervensi Pengobatan</value>
@@ -5383,8 +5383,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LFSurNumberOfIndividualsSampled" xml:space="preserve">
     <value>Jumlah sampel individu</value>
   </data>
-  <data name="StockOutDrug" xml:space="preserve">
-    <value>Stok obat habis</value>
+  <data name="DetectionRatePer100k" xml:space="preserve">
+    <value>Angka deteksi per 100.000</value>
   </data>
   <data name="MenuDeleteAdminLevel" xml:space="preserve">
     <value>Menghapus unit-unit daerah administratif</value>
@@ -5404,9 +5404,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumClVlCases" xml:space="preserve">
     <value>Jumlah kedua kasus CL &amp; VL</value>
   </data>
-  <data name="Oncho0" xml:space="preserve">
-    <value>0 Tidak endemis di atas ambang batas pengobatan</value>
-  </data>
   <data name="SCHSurPrevalenceOfIntestinalSchistosomeI" xml:space="preserve">
     <value>Prevalensi infeksi schistosoma usus</value>
   </data>
@@ -5416,8 +5413,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="ChangePassword" xml:space="preserve">
     <value>Ubah kata sandi &gt;</value>
   </data>
-  <data name="HAT" xml:space="preserve">
-    <value>Trypanosomiasis Afrika pada manusia (Penyakit Tidur)</value>
+  <data name="RtiProjectName" xml:space="preserve">
+    <value>Nama proyek</value>
   </data>
   <data name="IntvIvmPzq" xml:space="preserve">
     <value>Intervensi IVM+PZQ</value>
@@ -5428,8 +5425,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LeishMontIntvPrcntOfNewPKDLCasesInAdultsGrtrThn14Years" xml:space="preserve">
     <value>% of new PKDL cases in adults &gt; 14 years</value>
   </data>
-  <data name="StartUpTasks" xml:space="preserve">
-    <value>Memulai tugas</value>
+  <data name="LeishIntervention" xml:space="preserve">
+    <value>Intervensi Leishmaniasis </value>
   </data>
   <data name="PercentNewFemales" xml:space="preserve">
     <value>% perempuan baru</value>
@@ -5446,17 +5443,20 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="YearFirstRoundPc" xml:space="preserve">
     <value>Tanggal putaran pertama POMP (Tahun)</value>
   </data>
-  <data name="STHSurTestType" xml:space="preserve">
-    <value>Jenis tes</value>
+  <data name="IntvIvm" xml:space="preserve">
+    <value>Intervensi IVM</value>
   </data>
-  <data name="Community" xml:space="preserve">
-    <value>Masyarakat  </value>
+  <data name="Pentamidine" xml:space="preserve">
+    <value>Pentamidine</value>
   </data>
   <data name="ValidationHeader" xml:space="preserve">
     <value>Validation:</value>
   </data>
   <data name="ScmDrpTeo" xml:space="preserve">
     <value>TEO</value>
+  </data>
+  <data name="StockOutLength" xml:space="preserve">
+    <value>Lama stok habis</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Teks</value>
@@ -5491,8 +5491,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TotalCasesTargeted" xml:space="preserve">
     <value>Jumlah total kontak dari kasus yang menjadi sasaran pengobatan</value>
   </data>
-  <data name="RoundsRecommendedByWho" xml:space="preserve">
-    <value># putaran pengobatan/tahun yang direkomendasikan oleh pedoman WHO</value>
+  <data name="SaeOther" xml:space="preserve">
+    <value>Lainnya</value>
+  </data>
+  <data name="TtAios" xml:space="preserve">
+    <value>TT AIOs</value>
   </data>
   <data name="STHSurOverallProportionOfModerateIntens" xml:space="preserve">
     <value>Proporsi total dari infeksi "intensitas sedang" dengan STH</value>
@@ -5512,17 +5515,23 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="OnchoSurInfectiveFlies" xml:space="preserve">
     <value>Jumlah lalat yang infektif</value>
   </data>
-  <data name="STHMapSurSurLatitude" xml:space="preserve">
-    <value>Lintang</value>
+  <data name="Aedes" xml:space="preserve">
+    <value>Aedes</value>
   </data>
-  <data name="DDTraYearDeterminedThatAchievedCriteriaF" xml:space="preserve">
-    <value>Tahun yang ditentapkan untuk mencapai kriteria untuk menghentikan pengobatan (tingkat kabupaten/kota)</value>
+  <data name="RtiStopMda" xml:space="preserve">
+    <value>TAS untuk menghentikan POMP</value>
+  </data>
+  <data name="LeishMontIntvPrcntCaseFatalityRateForCL" xml:space="preserve">
+    <value>% case fatality rate for CL</value>
   </data>
   <data name="SAEOthermedicationsbeingtakencurrentlyorrecently" xml:space="preserve">
     <value>Pengobatan lainnya yang diambil (saat ini atau baru-baru ini)</value>
   </data>
   <data name="TASCutoffContinueMDA" xml:space="preserve">
     <value>Continue MDA</value>
+  </data>
+  <data name="LFMapSurNumberOfIndividualsPositive" xml:space="preserve">
+    <value>Jumlah individu positif</value>
   </data>
   <data name="TasTotalNumPrimarySchools" xml:space="preserve">
     <value>Jika menerapkan TAS di sekolah, total jumlah sekolah di EU</value>
@@ -5539,14 +5548,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TASEuNetPrimarySchoolEnrolmentRate" xml:space="preserve">
     <value>Angka partisipasi masuk sekolah murni di EU</value>
   </data>
+  <data name="PcIntvSthSacAtRisk" xml:space="preserve">
+    <value>STH total populasi berisiko anak usia sekolah</value>
+  </data>
   <data name="ChartLine" xml:space="preserve">
     <value>Garis</value>
   </data>
-  <data name="MenuIntv" xml:space="preserve">
-    <value>Intervensi...</value>
+  <data name="Sth40" xml:space="preserve">
+    <value>40 Prevalensi sangat tinggi (≥50%) pada saat evaluasi </value>
   </data>
-  <data name="RtiTra1" xml:space="preserve">
-    <value>1</value>
+  <data name="TraMapSurTiAlone" xml:space="preserve">
+    <value>TI-tunggal</value>
   </data>
   <data name="PopFemale" xml:space="preserve">
     <value>Populasi perempuan</value>
@@ -5569,14 +5581,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SAEDateoftest" xml:space="preserve">
     <value>Tanggal pengujian</value>
   </data>
-  <data name="LFMapSurAgeRange" xml:space="preserve">
-    <value>Rentang usia</value>
+  <data name="DDOnchoYearPcStarted" xml:space="preserve">
+    <value>Tahun Pengobatan dimulai</value>
   </data>
   <data name="PercentCasesActiveLeish" xml:space="preserve">
     <value>% kasus yang ditemukan secara aktif</value>
-  </data>
-  <data name="UpdateNoInternet" xml:space="preserve">
-    <value>Silakan verifikasi apakah sambungan internet Anda bekerja dan coba lagi. </value>
   </data>
   <data name="Tra1" xml:space="preserve">
     <value>1 Prevalensi kecamatan yang menjamin POMP di tingkat kecamatan atau pencapaian POMP yang diharapkan (TF tingkat distrik &gt;0 dan &lt;10%)</value>
@@ -5596,23 +5605,23 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SurveyCopiedTitle" xml:space="preserve">
     <value>Survei Disalin</value>
   </data>
-  <data name="DrugDec" xml:space="preserve">
-    <value>DEC</value>
+  <data name="NumVillageWithImported" xml:space="preserve">
+    <value>Jumlah desa dengan kasus impor</value>
   </data>
   <data name="DDSTHPsacPopulation" xml:space="preserve">
     <value>Populasi anak usia pra-sekolah</value>
   </data>
-  <data name="71bec938-836c-467e-8e58-5fab966b71ea" xml:space="preserve">
-    <value>CL survey prevalence</value>
-  </data>
-  <data name="Evaluation" xml:space="preserve">
-    <value>Evaluasi</value>
+  <data name="RtiCountryDiseaseWorkbook" xml:space="preserve">
+    <value>Lembar Kerja Penyakit RTI tingkat negara</value>
   </data>
   <data name="LFMapSurExaminedHydro1" xml:space="preserve">
     <value>Jumlah individu yang diperiksa untuk Hidrokel</value>
   </data>
   <data name="PCTrainFunders" xml:space="preserve">
     <value>Pedonor</value>
+  </data>
+  <data name="UpdateDemoByAdminLevel" xml:space="preserve">
+    <value>Memutakhirkan demografi berdasarkan tingkat daerah administratif</value>
   </data>
   <data name="LeishMontIntvNumberOfNewCLFemaleCases" xml:space="preserve">
     <value>Number of new CL female cases</value>
@@ -5626,8 +5635,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="EndNS" xml:space="preserve">
     <value>NS - Tidak dipetakan tetapi tidak dicurigai</value>
   </data>
-  <data name="LFMapSurNumberOfIndividualsPositive" xml:space="preserve">
-    <value>Jumlah individu positif</value>
+  <data name="TriTrainingCertification" xml:space="preserve">
+    <value>Sertifikasi</value>
   </data>
   <data name="ExportTasCost" xml:space="preserve">
     <value>Biaya yang dianggarkan</value>
@@ -5635,11 +5644,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SAEWastheSAErelatedtothedrugs" xml:space="preserve">
     <value>Apakah SAE terkait dengan obat-obatan?</value>
   </data>
-  <data name="LeishRepAntiMedInNml" xml:space="preserve">
-    <value>Antileishmanial medicines included in the National Medicine List</value>
+  <data name="RtiTra1" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="ScmDrpMdb" xml:space="preserve">
-    <value>MBD</value>
+  <data name="LFSurSurveyTiming" xml:space="preserve">
+    <value>Waktu survei</value>
   </data>
   <data name="SCHMapSurSiteNames" xml:space="preserve">
     <value>Nama(-nama) desa</value>
@@ -5647,14 +5656,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Trainers" xml:space="preserve">
     <value>Pelatih</value>
   </data>
-  <data name="STHMapSurSurPerPositiveAscaris" xml:space="preserve">
-    <value>% positif - Ascaris</value>
+  <data name="AdminUnitPeriRural" xml:space="preserve">
+    <value>Peri-rural</value>
   </data>
   <data name="ModRiskComm" xml:space="preserve">
     <value>Masyarakat beresiko sedang</value>
   </data>
-  <data name="DrugZithro" xml:space="preserve">
-    <value>Zithro</value>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Silakan pilih...</value>
   </data>
   <data name="LFMapSurEndDateOfSurvey" xml:space="preserve">
     <value>Tanggal Survei berakhir</value>
@@ -5665,8 +5674,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="VasReporting" xml:space="preserve">
     <value>Jumlah desa di bawah pelaporan pengawasan aktif</value>
   </data>
-  <data name="LeishMontIntvNumberOfNewPKDLCasesInChildrenLssThn5Years" xml:space="preserve">
-    <value>Number of new PKDL cases in children &lt; 5 years</value>
+  <data name="DeleteConfirmMessage" xml:space="preserve">
+    <value>Apakah Anda yakin ingin menghapus?</value>
   </data>
   <data name="DDPTS" xml:space="preserve">
     <value>Is this area under PTS (post treatment surveillance)?</value>
@@ -5680,8 +5689,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TraSurNumberOfIndividualsSampled" xml:space="preserve">
     <value>Jumlah individu yang disampel</value>
   </data>
-  <data name="LFHydroceleMorbidity" xml:space="preserve">
-    <value>LF Morbiditas Hidrokel</value>
+  <data name="MenuIntv" xml:space="preserve">
+    <value>Intervensi...</value>
   </data>
   <data name="MfCount" xml:space="preserve">
     <value>Hitung</value>
@@ -5695,8 +5704,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="DDLFPopulationLivingInTheDistrictsThatAc" xml:space="preserve">
     <value>Populasi yang tinggal di kabupaten/kota yang mencapai kriteria untuk menghentikan pengobatan</value>
   </data>
-  <data name="PcIntvEndDateOfMda" xml:space="preserve">
-    <value>Tanggal POMP berakhir</value>
+  <data name="SchPending" xml:space="preserve">
+    <value>Ditunda Menunggu implementasi/hasil evaluasi</value>
   </data>
   <data name="RoleDbAdmin" xml:space="preserve">
     <value />
@@ -5722,8 +5731,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LeishMontIntvNumberOfUnitsVialsFor1StLineTreatmentAtTheEndOfTheMonth" xml:space="preserve">
     <value>Number of units (vials) for 1st line treatment at the end of the month</value>
   </data>
-  <data name="SplitPercentsValid" xml:space="preserve">
-    <value>Persentase harus di antara 0 dan 100</value>
+  <data name="SplittingSaes" xml:space="preserve">
+    <value>Pembagian kejadian-kejadian ikutan serius. </value>
   </data>
   <data name="OnchoMapSurCmfl" xml:space="preserve">
     <value>Penatalaksanaan Kasusu FL</value>
@@ -5764,8 +5773,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="DDSTHYearDeterminedThatAchievedCriteriaF" xml:space="preserve">
     <value>Tahun yang ditentukan sebagai saat terpenuhinya kriteria untuk menghentikan POMP</value>
   </data>
-  <data name="Years" xml:space="preserve">
-    <value>Tahun-tahun</value>
+  <data name="DDTraTrichiasisSurgeryBacklog" xml:space="preserve">
+    <value>Daftar tunggu bedah trichiasis</value>
+  </data>
+  <data name="MetaDataLoading" xml:space="preserve">
+    <value>Loading meta data...</value>
   </data>
   <data name="ImportSuccess" xml:space="preserve">
     <value>Berhasil menambahkan {0} catatan baru!</value>
@@ -5785,8 +5797,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="PcIntvStockOutDuringMda" xml:space="preserve">
     <value>Stok habis saat POMP?</value>
   </data>
-  <data name="Sth30" xml:space="preserve">
-    <value>30 Prevalensi tinggi (≥20 dan &lt;50%) pada saat evaluasi</value>
+  <data name="TraSurSurveyPower" xml:space="preserve">
+    <value>Kekuatan survei</value>
   </data>
   <data name="CalculatedStatistics" xml:space="preserve">
     <value>Penghitungan statistik</value>
@@ -5818,8 +5830,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TraMapSurPerWithClinicalSignTi" xml:space="preserve">
     <value>% dengan tanda klinis - TI</value>
   </data>
-  <data name="PercentUlcerativeCases" xml:space="preserve">
-    <value>% kasus ulseratif</value>
+  <data name="ExportTasSources" xml:space="preserve">
+    <value>Sumber pendanaan</value>
   </data>
   <data name="SAEClinicalcourse" xml:space="preserve">
     <value>Pelatihan klinis</value>
@@ -5842,11 +5854,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TriTrainingQualifications" xml:space="preserve">
     <value>Kualifikasi ahli bedah TT</value>
   </data>
-  <data name="LeishMontIntvPrcntOfNewPKDLCasesInChildren5To14Years" xml:space="preserve">
-    <value>% of new PKDL cases in children 5-14 years</value>
+  <data name="BUTrainNumberOfSupervisionVisitsSchedule" xml:space="preserve">
+    <value>Jumlah kunjungan supervisi yang dijadwalkan per tahun</value>
   </data>
-  <data name="LeishTraining" xml:space="preserve">
-    <value>Pelatihan Leishmaniasis</value>
+  <data name="STHMapSurSurLevelOfEndemicity" xml:space="preserve">
+    <value>Tingkat endemisitas</value>
   </data>
   <data name="STHSurNumberOfIndividualsPositiveHookwor" xml:space="preserve">
     <value>Jumlah individu yang positif - Cacing tambang</value>
@@ -5854,8 +5866,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LeishMontIntvPrcntOfNewMCLCasesInChildren5To14Years" xml:space="preserve">
     <value>% of new MCL cases in children 5-14 years</value>
   </data>
-  <data name="PcIntvSchAtRisk" xml:space="preserve">
-    <value>SCH total populasi berisiko</value>
+  <data name="STHSurTestType" xml:space="preserve">
+    <value>Jenis tes</value>
   </data>
   <data name="STHSurNumberOfRoundsOfPcCompletedPriorTo" xml:space="preserve">
     <value>Jumlah putaran pengobatan yang selesai sebelum implementasi survei</value>
@@ -5863,8 +5875,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumRumors" xml:space="preserve">
     <value>Jumlah rumor yang dilaporkan</value>
   </data>
-  <data name="UpdateDemoByAdminLevel" xml:space="preserve">
-    <value>Memutakhirkan demografi berdasarkan tingkat daerah administratif</value>
+  <data name="JrfEndemicSth" xml:space="preserve">
+    <value>Apakah negara endemis untuk kecacingan yang ditularkan melalui tanah (STH)?</value>
   </data>
   <data name="RtiSch2" xml:space="preserve">
     <value>2</value>
@@ -5878,14 +5890,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="9dd22c4f-8130-4fbc-8251-607f65d3a7b2" xml:space="preserve">
     <value>VL survey prevalence</value>
   </data>
-  <data name="TraSurAgeGroupSurveyed" xml:space="preserve">
-    <value>Kelompok usia disurvei</value>
+  <data name="UpdateNoInternet" xml:space="preserve">
+    <value>Silakan verifikasi apakah sambungan internet Anda bekerja dan coba lagi. </value>
   </data>
   <data name="OnchoSurEndDateOfSurvey" xml:space="preserve">
     <value>Tanggal survei berakhir</value>
   </data>
-  <data name="RedistrictingMergeInto" xml:space="preserve">
-    <value>Disatukan menjadi {0} dari {1}</value>
+  <data name="TSNumberOfSurgeonsCertifiedForGoodQualit" xml:space="preserve">
+    <value>Jumlah Dokter Bedah yang bersertifikat untuk bedah berkualitas tinggi</value>
   </data>
   <data name="TASActualSampleSizeNegative" xml:space="preserve">
     <value>Besaran aktual sampel yang diperiksa - Negatif</value>
@@ -5893,14 +5905,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Partner" xml:space="preserve">
     <value>Mitra</value>
   </data>
-  <data name="EditAdministrativeUnit" xml:space="preserve">
-    <value />
+  <data name="OnchoMapSurIfTestTypeIsNpPerWri" xml:space="preserve">
+    <value>Jika jenis tes adalah palpasi nodul, morbiditas dermatologis - % individu dengan kerutan (tidak elastis)</value>
   </data>
-  <data name="LeishMontIntvPrcntOfNewVLCasesInAdultsGrtrThn14Years" xml:space="preserve">
-    <value>% of new VL cases in adults &gt; 14 years</value>
+  <data name="Version" xml:space="preserve">
+    <value>Versi</value>
   </data>
-  <data name="FENpbpPartnersCurrentForFComponents" xml:space="preserve">
-    <value>Mitra NPBP (saat ini) untuk komponen F</value>
+  <data name="DDOnchoPopulationAtRisk" xml:space="preserve">
+    <value>Populasi beresiko</value>
   </data>
   <data name="LfPostMdaTas2" xml:space="preserve">
     <value>Supervisi pasca POMP 2</value>
@@ -5923,11 +5935,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="CmPlanning" xml:space="preserve">
     <value>Perencanaan </value>
   </data>
-  <data name="YawsTrainPercentageOfSupervisionVisitsCa" xml:space="preserve">
-    <value>Persentase kunjungan supervisi yang dilaksanakan selama setahun</value>
+  <data name="RedistrictingSplitCombineDesc" xml:space="preserve">
+    <value>Dipisahkan dan digabungkan dari {0} menjadi {1}</value>
   </data>
-  <data name="DDOnchoNumPcRoundsYearCurrentlyImplemen" xml:space="preserve">
-    <value># putaran/tahun pengobatan yang sudah dilakukan saat ini</value>
+  <data name="PcIntvNumSacTreated" xml:space="preserve">
+    <value># anak usia sekolah yang diobati</value>
   </data>
   <data name="AdministrativeUnits" xml:space="preserve">
     <value>Unit daerah administratif</value>
@@ -5947,20 +5959,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="RedistrictRuleMax" xml:space="preserve">
     <value>Max</value>
   </data>
-  <data name="LeishMontIntvNumberOfNewCLCasesInAdultsGrtrThn14Years" xml:space="preserve">
-    <value>Number of new CL cases in adults &gt; 14 years</value>
+  <data name="LifeExpectBirthMale" xml:space="preserve">
+    <value>Life expectancy at birth for male</value>
   </data>
   <data name="CalculatingStatistics" xml:space="preserve">
     <value>Calculating statistics...</value>
   </data>
-  <data name="RtiPostMda1" xml:space="preserve">
-    <value>Pasca-Pengawasan MDA TAS I</value>
+  <data name="BUTrainNumberOfTrainingSessionsHold" xml:space="preserve">
+    <value>Jumlah pelatihan yang diadakan</value>
   </data>
   <data name="EligibleMalesTargeted" xml:space="preserve">
     <value># sasaran laki-laki </value>
-  </data>
-  <data name="MenuViewTutorial" xml:space="preserve">
-    <value>Lihat tutorial PowerPoint...</value>
   </data>
   <data name="MustBeNumber" xml:space="preserve">
     <value>Harus berupa angka</value>
@@ -5995,9 +6004,6 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SchSentinelDatePc" xml:space="preserve">
     <value>Date of most recent PC</value>
   </data>
-  <data name="DDSchistoYearDeterminedThatAchievedCrite" xml:space="preserve">
-    <value>Tahun yang ditentukan sebagai saat terpenuhinya kriteria untuk menghentikan POMP</value>
-  </data>
   <data name="SthMappingTypeSite" xml:space="preserve">
     <value>Type of site</value>
   </data>
@@ -6007,11 +6013,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumPatientsFootwear" xml:space="preserve">
     <value>Jumlah pasien yang memulai program alas kaki</value>
   </data>
-  <data name="LeprosyTrainPercentageOfTrainedHealthWor" xml:space="preserve">
-    <value>Persentase petugas kesehatan terlatih di antara jumlah total petugas kesehatan di fasilitas kesehatan</value>
+  <data name="LeishTrainPercentageOfHealthFacilitiesHa" xml:space="preserve">
+    <value>Persentase fasilitas kesehatan yang memiliki setidaknya satu staf terlatih untuk program pemberantasan Leishmaniasis</value>
   </data>
-  <data name="PcIntvSthSacAtRisk" xml:space="preserve">
-    <value>STH total populasi berisiko anak usia sekolah</value>
+  <data name="SplitConfirmReviewTitle" xml:space="preserve">
+    <value>Redistribusi selesai</value>
   </data>
   <data name="NumClinical" xml:space="preserve">
     <value>Jumlah kasus klinis</value>
@@ -6019,14 +6025,20 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="CreateNewFile" xml:space="preserve">
     <value>Buat berkas baru...</value>
   </data>
-  <data name="IndSpotCheckLng" xml:space="preserve">
-    <value>Pemeriksaan acak bujur desa</value>
+  <data name="AvailableReports" xml:space="preserve">
+    <value>Laporan tersedia</value>
+  </data>
+  <data name="RtiDrpFy16" xml:space="preserve">
+    <value>FY16 (Oktober 2015 - September 2016)</value>
   </data>
   <data name="SAEIfdeathdateofdeath" xml:space="preserve">
     <value>Jika meninggal, tanggal kematian</value>
   </data>
-  <data name="ValidationMustBeUnique" xml:space="preserve">
-    <value>{0} harus unik</value>
+  <data name="TriTraining" xml:space="preserve">
+    <value>Pelatihan Operasi trikiasis</value>
+  </data>
+  <data name="NumDeathsLeish" xml:space="preserve">
+    <value>Jumlah kematian</value>
   </data>
   <data name="MustMakeDistrict" xml:space="preserve">
     <value>Anda harus menetapkan salah satu dari tingkat daerah administatif sebagai "Tingkat yang Melaporkan"</value>
@@ -6034,20 +6046,20 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumFirstLine" xml:space="preserve">
     <value>Jumlah fasilitas kesehatan terdepan yang menyediakan MDT</value>
   </data>
-  <data name="SchMappingPrevalenceEggsInUrine" xml:space="preserve">
-    <value>Prevalence of any parasite eggs in urine</value>
+  <data name="NumSchoolsScreenedCm" xml:space="preserve">
+    <value>Jumlah sekolah yang mendapat penapisan selama setahun</value>
   </data>
-  <data name="LeishMontIntvNumberOfPeopleScreenedActivelyForVL" xml:space="preserve">
-    <value>Number of people screened actively for VL</value>
+  <data name="STHSurPositiveOverall" xml:space="preserve">
+    <value>% positif - total</value>
   </data>
-  <data name="NumEligibleTreated" xml:space="preserve">
-    <value># Sasaran yang diobati</value>
+  <data name="PercentAdult" xml:space="preserve">
+    <value>% Populasi orang dewasa dari total populasi</value>
   </data>
   <data name="LFSurTypeOfSite" xml:space="preserve">
     <value>Jenis desa</value>
   </data>
-  <data name="DDTraSacPopulation" xml:space="preserve">
-    <value>Populasi anak usia sekolah</value>
+  <data name="Miltefosine" xml:space="preserve">
+    <value>Miltefosine</value>
   </data>
   <data name="RedistrictDate" xml:space="preserve">
     <value>Date redistricting occurred</value>
@@ -6055,11 +6067,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Ancylostoma" xml:space="preserve">
     <value>Ancylostoma duodenale (cacing tambang)</value>
   </data>
+  <data name="FEMethodSchoolEducationCommunityEducat" xml:space="preserve">
+    <value>Metode (peyuluhan di sekolah, penyuluhan di masyarakat, dll)</value>
+  </data>
   <data name="Calculate" xml:space="preserve">
     <value>Hitung &gt;</value>
   </data>
-  <data name="DDTraTrichiasisSurgeryBacklog" xml:space="preserve">
-    <value>Daftar tunggu bedah trichiasis</value>
+  <data name="Melarsoprol" xml:space="preserve">
+    <value>Melarsoprol</value>
   </data>
   <data name="TraSurWithClinicalSignTf" xml:space="preserve">
     <value>% dengan tanda klinis - TF</value>
@@ -6082,8 +6097,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LFSurExaminedLympho" xml:space="preserve">
     <value>Jumlah individu yang diperiksa untuk Limfedema</value>
   </data>
-  <data name="Rabies" xml:space="preserve">
-    <value>Rabies</value>
+  <data name="RtiDrpEndAfrica" xml:space="preserve">
+    <value>END di Africa</value>
   </data>
   <data name="RedistType" xml:space="preserve">
     <value>Jenis pemekaran</value>
@@ -6094,14 +6109,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="RtiPostMda2" xml:space="preserve">
     <value>Pasca-Pengawasan MDA TAS II</value>
   </data>
-  <data name="OnchoMapSurEntomologicalAssessmentConduc" xml:space="preserve">
-    <value>Dilakukan penilaian entomologi?</value>
+  <data name="TraMapSur1to9yo" xml:space="preserve">
+    <value># anak usia 1-9 tahun yang disurvei</value>
   </data>
   <data name="ValidationResultError" xml:space="preserve">
     <value>Validation Error</value>
   </data>
-  <data name="PercentLabConfirmed" xml:space="preserve">
-    <value>% kasus yang dikonfirmasi lab</value>
+  <data name="Sth30" xml:space="preserve">
+    <value>30 Prevalensi tinggi (≥20 dan &lt;50%) pada saat evaluasi</value>
   </data>
   <data name="UploadFile" xml:space="preserve">
     <value>Unggah Berkas</value>
@@ -6109,14 +6124,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LeishMontIntvPrcntFemaleMCL" xml:space="preserve">
     <value>% female MCL</value>
   </data>
-  <data name="TASActualNonResponseRateAbsent" xml:space="preserve">
-    <value>Angka non-respon aktual - Absen %</value>
+  <data name="Echino" xml:space="preserve">
+    <value>Echinococcosis</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Data Dasar NTD Nasional</value>
   </data>
-  <data name="Dracun" xml:space="preserve">
-    <value>Dracunculiasis (penyakit cacing guinea)</value>
+  <data name="TraSurNumberOfIndividualsWithBlindnessDu" xml:space="preserve">
+    <value>Jumlah individu dengan kebutaan karena trachoma</value>
   </data>
   <data name="RtiTra5" xml:space="preserve">
     <value>5</value>
@@ -6124,11 +6139,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="SCHSurNumberOfIndividualsExaminedForInte" xml:space="preserve">
     <value>Jumlah individu yang diperiksa untuk schistosoma usus </value>
   </data>
-  <data name="UpdateDdAfterSavingSurvey" xml:space="preserve">
-    <value>Pastikan untuk memperbaharui distribusi penyakit sebagaimana mestinya yang nantinya akan mempengaruhi hasil dari survei ini</value>
+  <data name="TraMapSurAgeGroupSurveyed" xml:space="preserve">
+    <value>Kelompok usia disurvei</value>
   </data>
-  <data name="RedistNewParent" xml:space="preserve">
-    <value>Nama baru unit daerah administratif di tingkat diatasnya</value>
+  <data name="SCMNumRemainingSealedBottles" xml:space="preserve">
+    <value># sisa botol tersegel</value>
   </data>
   <data name="Sth2" xml:space="preserve">
     <value>2 Prevalensi sedang</value>
@@ -6136,8 +6151,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Wbancrofti" xml:space="preserve">
     <value>W. bancrofti</value>
   </data>
-  <data name="IndSentinelSiteLat" xml:space="preserve">
-    <value>Lintang desa sentinel</value>
+  <data name="LastUpdate" xml:space="preserve">
+    <value>Pemutakhiran terakhir</value>
+  </data>
+  <data name="PercentScreenedYw" xml:space="preserve">
+    <value>% kasus di antara populasi yang ditapis (per 10.000)</value>
+  </data>
+  <data name="LeishRepIsNotifiable" xml:space="preserve">
+    <value>Is leishmaniasis notifiable (mandatory report)?</value>
   </data>
   <data name="SchMappingTypeOfSite" xml:space="preserve">
     <value>Type of site</value>
@@ -6154,11 +6175,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="ExportsPcEpiDataForm" xml:space="preserve">
     <value>Formulir pelaporan data epidemiologis pengobatan</value>
   </data>
-  <data name="RedistrictingSplitInto" xml:space="preserve">
-    <value>Dipisahkan menjadi {0} dari {1}</value>
+  <data name="IntvDrp3days" xml:space="preserve">
+    <value>3-14 hari</value>
   </data>
-  <data name="RtiTotalDistrictsTreatedWithUsaid" xml:space="preserve">
-    <value>Total kabupaten yang mendapat pengobatan dengan dukungan USAID</value>
+  <data name="DDTraYearOfPlannedTrachomaImpactSurvey" xml:space="preserve">
+    <value>Bulan direncanakan survei dampak trachoma </value>
   </data>
   <data name="Sch3b" xml:space="preserve">
     <value>3B Prevalensi tinggi (≥50%) pada pemetaan awal dengan metode parasitologi</value>
@@ -6169,8 +6190,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="AdminUnitParent" xml:space="preserve">
     <value>Daerah unit daerah administrasi setingkat di atas unit daerah administrasi yang sebelumnya Anda tambahkan</value>
   </data>
-  <data name="TASSiteName" xml:space="preserve">
-    <value>Nama desa</value>
+  <data name="OnchoSaeUnlikely" xml:space="preserve">
+    <value>Kemungkinan tidak SAE</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Log Masuk</value>
@@ -6196,8 +6217,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="YawsTrainNumberOfParticipantsToTrainingS" xml:space="preserve">
     <value>Jumlah orang dilatih</value>
   </data>
-  <data name="DDTraPopulationLivingInAreasSubDistrict" xml:space="preserve">
-    <value>Populasi yang tinggal di daerah yang telah mencapai UIG-A di tingkat kecamatan POMP untuk trachoma</value>
+  <data name="Cca" xml:space="preserve">
+    <value>CCA</value>
   </data>
   <data name="AddNewSurveyTypeLink" xml:space="preserve">
     <value>Tambah jenis survei baru</value>
@@ -6208,17 +6229,20 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumRelapsesCases" xml:space="preserve">
     <value>Jumlah kekambuhan atau kasus berulang</value>
   </data>
+  <data name="DDLFTotalPopulation" xml:space="preserve">
+    <value>Total populasi</value>
+  </data>
   <data name="ExportingData" xml:space="preserve">
     <value>Mengekspor data</value>
   </data>
   <data name="EditReportOptions" xml:space="preserve">
     <value>Edit opsi laporan</value>
   </data>
-  <data name="PcIntvNumEligibleFemalesTargeted" xml:space="preserve">
-    <value>#  sasaran perempuan</value>
+  <data name="RtiTitle" xml:space="preserve">
+    <value>Judul</value>
   </data>
-  <data name="SCHMapSurLongitude" xml:space="preserve">
-    <value>Bujur</value>
+  <data name="Oncho0" xml:space="preserve">
+    <value>0 Tidak endemis di atas ambang batas pengobatan</value>
   </data>
   <data name="OnchoSurEntTestTechPcr" xml:space="preserve">
     <value>PCR Penyaringan informasi terkumpul</value>
@@ -6238,8 +6262,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="DrugTeo" xml:space="preserve">
     <value>TEO</value>
   </data>
-  <data name="IntvDrp1day" xml:space="preserve">
-    <value>1-2 hari</value>
+  <data name="NoEz" xml:space="preserve">
+    <value>Tidak Ada Zona Ekologis</value>
   </data>
   <data name="CmForumHasRegions" xml:space="preserve">
     <value>Jika ya, apakah itu mencakup Perwakilan dari tingkat Provinsi/Regional?</value>
@@ -6256,8 +6280,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumCasesReadmitted" xml:space="preserve">
     <value>Jumlah kasus lainnya yang dirawat kembali untuk pengobatan</value>
   </data>
-  <data name="OnchoSurEntTaxoForestSav" xml:space="preserve">
-    <value>Hutan dan Padang rumput</value>
+  <data name="PcIntvTraDrugZith" xml:space="preserve">
+    <value>Tablet Zithromax</value>
   </data>
   <data name="RtiDrpUsaid" xml:space="preserve">
     <value>APOC yang didukung USAID</value>
@@ -6268,8 +6292,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TrichiasisSurgeryBacklog" xml:space="preserve">
     <value>Daftar tunggu bedah trichiasis</value>
   </data>
-  <data name="STHMapSurSurEndemity" xml:space="preserve">
-    <value>Endemitas</value>
+  <data name="STHMapSurSurNumberOfIndividualsPositiveOverall" xml:space="preserve">
+    <value>Jumlah individu yang positif - total</value>
   </data>
   <data name="TSWhereAreTtSurgeonsBeingTrained" xml:space="preserve">
     <value>Di mana Dokter Bedah TT dilatih?</value>
@@ -6280,11 +6304,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="PcIntvStockOutDrug" xml:space="preserve">
     <value>Stok obat habis</value>
   </data>
-  <data name="TtAios" xml:space="preserve">
-    <value>TT AIOs</value>
+  <data name="SplitPercentsValid" xml:space="preserve">
+    <value>Persentase harus di antara 0 dan 100</value>
   </data>
-  <data name="DateReported" xml:space="preserve">
-    <value>Tanggal mulai data berlaku untuk</value>
+  <data name="TasEstimatedNonResponseRate" xml:space="preserve">
+    <value>Perkiraan tingkat non-respon</value>
   </data>
   <data name="CountryStatistics" xml:space="preserve">
     <value>Statistik Negara</value>
@@ -6295,11 +6319,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LeishAnnIntvNumberOfNewCLCasesFollowedUpAtLeast6Months" xml:space="preserve">
     <value>Number of new CL cases followed up at least 6 months</value>
   </data>
-  <data name="SelectCategory" xml:space="preserve">
-    <value>Pilih kategori laporan</value>
+  <data name="EndDateSurvey" xml:space="preserve">
+    <value>Tanggal Survei berakhir</value>
   </data>
-  <data name="MalesCoverage" xml:space="preserve">
-    <value>Proporsi laki-laki yang diobati</value>
+  <data name="MenuFile2" xml:space="preserve">
+    <value>Berkas</value>
   </data>
   <data name="GWTrainNumberOfParticipantsToTrainingSessions" xml:space="preserve">
     <value>Jumlah orang dilatih</value>
@@ -6307,17 +6331,20 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumCasesLeprosyCm" xml:space="preserve">
     <value>Jumlah kasus yang dihapus dari daftar kusta untuk mangkir pengobatan, mangkir tindak lanjut, kasus salah diagnosa, pasien lama dirawat kembali untuk pengobatan medis (terapi banyak obat) karena cacat kelas II (jari cakar, amputasi, lagophtalmos, dll)</value>
   </data>
+  <data name="JrfEndemicOncho" xml:space="preserve">
+    <value>Apakah negara endemis untuk onchocerciasis (ONCHO)?</value>
+  </data>
   <data name="UploadImportFile" xml:space="preserve">
     <value>Unggah berkas impor</value>
   </data>
-  <data name="ReportYear" xml:space="preserve">
-    <value>Tahun informasi laporan berlaku untuk</value>
+  <data name="NumCasesTreatedYaws" xml:space="preserve">
+    <value>Jumlah kasus yang diobati selama setahun</value>
   </data>
   <data name="ImportListsSelect" xml:space="preserve">
     <value>Silakan pilih verifikasi yang penting untuk impor ini</value>
   </data>
-  <data name="SchPending" xml:space="preserve">
-    <value>Ditunda Menunggu implementasi/hasil evaluasi</value>
+  <data name="HATTrainPercentageOfHealthFacilitiesHavi" xml:space="preserve">
+    <value>Persentase fasilitas kesehatan yang memiliki setidaknya satu staf terlatih untuk program pemberantasan kusta</value>
   </data>
   <data name="SplitAdminUnitsRequired" xml:space="preserve">
     <value>Semua unit administratif diperlukan</value>
@@ -6325,8 +6352,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Sch1" xml:space="preserve">
     <value>1 Prevalensi rendah (&gt;0 dan &lt;10%) pada pemetaan awal dengan metode parasitologi</value>
   </data>
-  <data name="PercentScreenedYw" xml:space="preserve">
-    <value>% kasus di antara populasi yang ditapis (per 10.000)</value>
+  <data name="TraMapSurMaleFemale15yo" xml:space="preserve">
+    <value>Laki-laki &amp; Peremupuan usia 15 tahun keatas</value>
   </data>
   <data name="TraSurLevelOfAntibioticTreatmentRequired" xml:space="preserve">
     <value>Tingkatan pengobatan antibiotik yang diperlukan</value>
@@ -6334,14 +6361,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="RtiSch1" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="OnchoMapEvaluationSite" xml:space="preserve">
-    <value>Desa evaluasi</value>
+  <data name="LFMapSurNumberOfMalesExamined" xml:space="preserve">
+    <value>Jumlah laki-laki yang diperiksa</value>
   </data>
   <data name="TotalPopulation" xml:space="preserve">
     <value>Total populasi  </value>
   </data>
-  <data name="UrineFiltration" xml:space="preserve">
-    <value>Filtrasi urin</value>
+  <data name="CustomIndicator" xml:space="preserve">
+    <value>Ubahsuai Indikator</value>
   </data>
   <data name="TutorialFile" xml:space="preserve">
     <value>/View/Help/TrainingPPT_070614_id.pptx</value>
@@ -6358,8 +6385,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TotalNumCasesRegistered" xml:space="preserve">
     <value>Jumlah total kasus terdaftar</value>
   </data>
-  <data name="RedistrictRuleDuplicate" xml:space="preserve">
-    <value>Duplicate</value>
+  <data name="TraMapSurDistLevelMda" xml:space="preserve">
+    <value>POMP tingkat Kabupaten</value>
   </data>
   <data name="RedistrictingRulesSplit" xml:space="preserve">
     <value>Set redistricting rules for custom indicators</value>
@@ -6376,26 +6403,29 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="OnchoMapSurReportedPopulation" xml:space="preserve">
     <value>Populasi yang dilaporkan</value>
   </data>
+  <data name="d807913f-b3a1-4948-a2b3-54eb0800a3bc" xml:space="preserve">
+    <value>Actual sample size tested</value>
+  </data>
   <data name="EliminationAtRisk" xml:space="preserve">
     <value>Jumlah orang beresiko</value>
   </data>
-  <data name="PercentNewMb" xml:space="preserve">
-    <value>% MB baru</value>
+  <data name="FemalesCoverage" xml:space="preserve">
+    <value>Proporsi perempuan yang diobati</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="NumDeathsLeish" xml:space="preserve">
-    <value>Jumlah kematian</value>
+  <data name="CmStorageNtdOrCombined" xml:space="preserve">
+    <value>Apakah tempat penyimpanan itu spesifik untuk obat-obatan NTD atau digabung dengan fasilitas penyimpanan dan pasokan Obat-Obatan Nasional lain?</value>
   </data>
   <data name="RedistrictingSplitCombineInto" xml:space="preserve">
     <value>Dipisahkan dan digabungan menjadi {0} dari {1}</value>
   </data>
-  <data name="AvailOfAzithro" xml:space="preserve">
-    <value>Ketersediaan tablet azitromisin berkualitas</value>
+  <data name="ApplicationUpdate" xml:space="preserve">
+    <value>Pemutakhiran aplikasi</value>
   </data>
-  <data name="LeishMontIntvNumberOfVLCasesWithSeriousAdverseEvents" xml:space="preserve">
-    <value>Number of VL cases with serious adverse events</value>
+  <data name="DDOnchoYearDiseaseDistributionInformatio" xml:space="preserve">
+    <value>Tahun informasi distribusi penyakit berlaku untuk</value>
   </data>
   <data name="ScmDrpAzPos" xml:space="preserve">
     <value>Azithro-POS</value>
@@ -6403,8 +6433,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="CreatingImportFileStatus" xml:space="preserve">
     <value>Membuat Berkas Impor...</value>
   </data>
-  <data name="LeishMontIntvNumberOfCasesFoundActively" xml:space="preserve">
-    <value>Jumlah kasus yang ditemukan secara aktif</value>
+  <data name="DDSchistoYearDeterminedThatAchievedCrite" xml:space="preserve">
+    <value>Tahun yang ditentukan sebagai saat terpenuhinya kriteria untuk menghentikan POMP</value>
   </data>
   <data name="RtiLfDdNs" xml:space="preserve">
     <value>NS</value>
@@ -6412,8 +6442,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="OnchoSurSurveyType" xml:space="preserve">
     <value>Jenis survei</value>
   </data>
-  <data name="STHMapSurSurLongitude" xml:space="preserve">
-    <value>Bujur</value>
+  <data name="NumCasesSaesLeish" xml:space="preserve">
+    <value>Jumlah kasus-kasus kejadian ikutan yang serius</value>
   </data>
   <data name="OnchoSurEntTestTechDiss" xml:space="preserve">
     <value>Pembedahan</value>
@@ -6421,14 +6451,11 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="WbancroftiBrugiaspp" xml:space="preserve">
     <value>W. bancrofti &amp; Brugia spp.</value>
   </data>
-  <data name="MoE" xml:space="preserve">
-    <value>Kementerian Pendidikan</value>
+  <data name="Population" xml:space="preserve">
+    <value>Populasi</value>
   </data>
-  <data name="DatabaseUpdate" xml:space="preserve">
-    <value>Pemutakhiran database</value>
-  </data>
-  <data name="PcIntvTraDrugTeo" xml:space="preserve">
-    <value>TEO</value>
+  <data name="TotalWithdrawalTreatment" xml:space="preserve">
+    <value>Total penarikan dari pengobatan</value>
   </data>
   <data name="LeishRepEndemicAdmin2Vl" xml:space="preserve">
     <value>Total number of ENDEMIC Admin-2 level in the country for VL</value>
@@ -6439,23 +6466,23 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumSurgeryPerformed" xml:space="preserve">
     <value>Jumlah dan jenis bedah (nodulektomi, pencangkokan kulit, reseksi lesi, pelepasan kontraktur, amputasi) yang dilakukan</value>
   </data>
-  <data name="LfEnd0" xml:space="preserve">
-    <value>0 - Tidak endemis di atas ambang batas pengobatan  </value>
+  <data name="LeishMontIntvPrcntOfInitialCuredCasesOutOfTotalNewCasesTreatedForCL" xml:space="preserve">
+    <value>% of initial cured cases out of total new cases treated for CL</value>
   </data>
   <data name="SCHMapSurTargetSampleSize" xml:space="preserve">
     <value>Besaran sampel sasaran</value>
   </data>
-  <data name="RedistrictTypeMerge" xml:space="preserve">
-    <value>Disatukan</value>
+  <data name="STHSurNumberOfIndividualsPositiveTrichur" xml:space="preserve">
+    <value>Jumlah individu yang positif - Trichuris</value>
   </data>
-  <data name="LeishRepIsNotifiable" xml:space="preserve">
-    <value>Is leishmaniasis notifiable (mandatory report)?</value>
+  <data name="MenuDemography" xml:space="preserve">
+    <value>Demografi...</value>
   </data>
   <data name="SAEDateofonset" xml:space="preserve">
     <value>Tanggal onset</value>
   </data>
-  <data name="StockOutLength" xml:space="preserve">
-    <value>Lama stok habis</value>
+  <data name="DatabaseUpdate" xml:space="preserve">
+    <value>Pemutakhiran database</value>
   </data>
   <data name="SentinelSitesForAdminUnit" xml:space="preserve">
     <value>Sentinel Sites for Admin Unit</value>
@@ -6466,14 +6493,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumTreatedAzithro" xml:space="preserve">
     <value>Jumlah kasus yang diobati dengan antibiotik lainnya (Azitromisin)</value>
   </data>
-  <data name="NumTreatmentFail" xml:space="preserve">
-    <value>Jumlah kegagalan pengobatan</value>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
   </data>
-  <data name="SplittingSaes" xml:space="preserve">
-    <value>Pembagian kejadian-kejadian ikutan serius. </value>
+  <data name="SCMAvailableUsableStock" xml:space="preserve">
+    <value>Stok obat yang digunakan yang tersedia</value>
   </data>
-  <data name="DDLFTotalPopulation" xml:space="preserve">
-    <value>Total populasi</value>
+  <data name="ParentLevelMustBeSame" xml:space="preserve">
+    <value>Anda harus memilih daerah induk untuk tingkat daerah administratif baru dengan jenis {0}</value>
   </data>
   <data name="Partners" xml:space="preserve">
     <value>Pendonor/mitra</value>
@@ -6496,17 +6523,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Checkbox" xml:space="preserve">
     <value>Kotak centang</value>
   </data>
-  <data name="TasNumNoTreatment" xml:space="preserve">
-    <value>Number of LF endemic districts surrounding this Evaluation Unit that haven't started treatment</value>
+  <data name="TASCutoffStopMDA" xml:space="preserve">
+    <value>Stop MDA</value>
   </data>
-  <data name="TriTrainingRefresher" xml:space="preserve">
-    <value>Penyegaran </value>
+  <data name="TASTasActualTimelineAndResourcesNuOfSurve" xml:space="preserve">
+    <value>TAS Rencana Waktu Pelaksanaan aktual dan Sumberdaya -  # hari survey yang dibutuhkan</value>
   </data>
   <data name="ImportAction" xml:space="preserve">
     <value>Silakan pilih jenis impor</value>
   </data>
-  <data name="Dengue" xml:space="preserve">
-    <value>Dengue/dengue berat</value>
+  <data name="AdminLevelNameUnique" xml:space="preserve">
+    <value>Nama tingkat daerah administratif harus unik</value>
   </data>
   <data name="LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForCL" xml:space="preserve">
     <value>Months elapsed between onset of symptoms and diagnosis (median) for CL</value>
@@ -6514,8 +6541,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="HatTraining" xml:space="preserve">
     <value>Pelatihan HAT</value>
   </data>
-  <data name="HATTrainPercentageOfTrainedHealthWorkers" xml:space="preserve">
-    <value>Persentase petugas kesehatan terlatih dari jumlah total petugas kesehatan di fasilitas kesehatan</value>
+  <data name="LFSurNumberOfIndividualsWithNon" xml:space="preserve">
+    <value>Jumlah individu non-respon</value>
   </data>
   <data name="STHSurNumberOfIndividualsWithNonResponse" xml:space="preserve">
     <value>Jumlah individu dengan non-respon</value>
@@ -6535,8 +6562,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LeishAnnIntvMonthsElapsedBetweenOnsetOfSymptomsAndDiagnosisMedianForVL" xml:space="preserve">
     <value>Months elapsed between onset of symptoms and diagnosis (median) for VL</value>
   </data>
-  <data name="DDSTHDiseaseDistributionPcInterventions" xml:space="preserve">
-    <value>Distribusi Penyakit: intervensi Pengobatan</value>
+  <data name="DDOnchoNumPcRoundsYearCurrentlyImplemen" xml:space="preserve">
+    <value># putaran/tahun pengobatan yang sudah dilakukan saat ini</value>
   </data>
   <data name="DrpAlb" xml:space="preserve">
     <value>ALB</value>
@@ -6565,20 +6592,17 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="LeishTrainNumberOfSupervisionVisitsSched" xml:space="preserve">
     <value>Jumlah kunjungan supervisi yang dijadwalkan per tahun</value>
   </data>
-  <data name="LeishMontIntvPrcntOfPKDLHIVCoInfectedCasesOfTheTotalNewPKDLCases" xml:space="preserve">
-    <value>% of PKDL/HIV co-infected cases of the total new PKDL cases</value>
+  <data name="HowManyAdminUnits" xml:space="preserve">
+    <value>Berapa banyak unit daerah administratif yang  Anda inginkan dari pemekaran {0}?</value>
   </data>
   <data name="LFSurSiteName" xml:space="preserve">
     <value>Nama desa</value>
   </data>
-  <data name="TraMapSurSiteNames" xml:space="preserve">
-    <value>Nama(-nama) desa</value>
-  </data>
   <data name="LeishRepYearLncpEstablished" xml:space="preserve">
     <value>Year Leishmaniasis National Control Programme was established</value>
   </data>
-  <data name="OnchoSurEntTestTechTrap" xml:space="preserve">
-    <value>Penangkapan</value>
+  <data name="LeishRepIsTreatFree" xml:space="preserve">
+    <value>Is leishmaniasis treatment provided for free in the public sector?</value>
   </data>
   <data name="LeishMontIntvNumberOfNewMCLCasesInChildrenLssThn5Years" xml:space="preserve">
     <value>Number of new MCL cases in children &lt; 5 years</value>
@@ -6589,8 +6613,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="CmAnySupplyFunds" xml:space="preserve">
     <value>Apakah tersedia anggaran untuk biaya penyimpanan, dan pengiriman obat-obatan dari tingkat Nasional ke tingkat Kabupaten/Kota?</value>
   </data>
-  <data name="CmHasDiseaseSpecMeetings" xml:space="preserve">
-    <value>Apakah ada pertemuan-pertemuan untuk review penyakit secara spesifik?</value>
+  <data name="TraMapSurSiteNames" xml:space="preserve">
+    <value>Nama(-nama) desa</value>
   </data>
   <data name="OtherMedsLeprosy" xml:space="preserve">
     <value>Obat-obatan lainnya untuk pasien kusta****</value>
@@ -6610,20 +6634,20 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TotalCat1Cases" xml:space="preserve">
     <value>Jumlah total kasus baru dengan Lesi kategori I</value>
   </data>
-  <data name="TSRecurrentTrichiasisNumber" xml:space="preserve">
-    <value>Trichiasis Berulang (Jumlah)</value>
+  <data name="DecPatch" xml:space="preserve">
+    <value>Patch DEC</value>
   </data>
   <data name="SurYawsSurvey" xml:space="preserve">
     <value>Survei (Treponematosis endemik) Framboesia</value>
   </data>
-  <data name="Country" xml:space="preserve">
-    <value>Negara</value>
+  <data name="PcIntvEndDateOfMda" xml:space="preserve">
+    <value>Tanggal POMP berakhir</value>
   </data>
   <data name="TraPending" xml:space="preserve">
     <value>Ditunda menunggu implementasi/hasil survei impak</value>
   </data>
-  <data name="JrfEndemicOncho" xml:space="preserve">
-    <value>Apakah negara endemis untuk onchocerciasis (ONCHO)?</value>
+  <data name="Oncho2NotMapped" xml:space="preserve">
+    <value>Tidak dipetakan</value>
   </data>
   <data name="STHSurProportionOfModerateIntensityHook" xml:space="preserve">
     <value>Jumlah dari infeksi intensitas sedang - cacing tambang</value>
@@ -6631,14 +6655,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="RoleAdmin" xml:space="preserve">
     <value>Administrator</value>
   </data>
-  <data name="About" xml:space="preserve">
-    <value>Tentang</value>
+  <data name="UpdateDemographyForYear" xml:space="preserve">
+    <value>Memutakhirkan demografi untuk tahun baru</value>
   </data>
-  <data name="LeishMontIntvPrcntCaseFatalityRateForCL" xml:space="preserve">
-    <value>% case fatality rate for CL</value>
+  <data name="71bec938-836c-467e-8e58-5fab966b71ea" xml:space="preserve">
+    <value>CL survey prevalence</value>
   </data>
-  <data name="SAEBrandandmanufacturername" xml:space="preserve">
-    <value>Merek dan nama produsen</value>
+  <data name="STHSurNumberOfIndividualsPositiveAscaris" xml:space="preserve">
+    <value>Jumlah individu yang positif - Ascaris</value>
   </data>
   <data name="TASTargetNumberOfSchoolsOrEas" xml:space="preserve">
     <value>Target jumlah sekolah atau EA</value>
@@ -6646,8 +6670,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="PatientsCuredPb" xml:space="preserve">
     <value>Pasien sembuh (pengobatan selesai)dari kasus-kasus baru PB di semester pertama dan kasus-kasus PB di awal tahun</value>
   </data>
-  <data name="Questionnaire" xml:space="preserve">
-    <value>Kuesioner</value>
+  <data name="Evaluation" xml:space="preserve">
+    <value>Evaluasi</value>
   </data>
   <data name="AccessFiles" xml:space="preserve">
     <value>Akses berkas</value>
@@ -6655,35 +6679,32 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NotEndemic" xml:space="preserve">
     <value>Tidak endemis</value>
   </data>
-  <data name="RedistrictedAdminUnits" xml:space="preserve">
-    <value>hanya menunjukkan unit-unit daerah administratif sebelum pemekaran</value>
+  <data name="LFMDA" xml:space="preserve">
+    <value>POMP Filariasis</value>
   </data>
   <data name="NumTreatedNect" xml:space="preserve">
     <value>Jumlah kasus yang diobati dengan obat-obatan baru (NECT)</value>
   </data>
-  <data name="Lomidine" xml:space="preserve">
-    <value>Lomidine</value>
+  <data name="TriTrainingWasCertified" xml:space="preserve">
+    <value>Apakah ahli bedah itu tersertifikasi berdasarkan panduan WHO?</value>
   </data>
-  <data name="Region" xml:space="preserve">
-    <value>Wilayah</value>
+  <data name="PcIntvModeDistributionSchool" xml:space="preserve">
+    <value>School-based</value>
   </data>
-  <data name="FEMethodSchoolEducationCommunityEducat" xml:space="preserve">
-    <value>Metode (peyuluhan di sekolah, penyuluhan di masyarakat, dll)</value>
+  <data name="MenuViewTutorial" xml:space="preserve">
+    <value>Lihat tutorial PowerPoint...</value>
   </data>
-  <data name="PcIntvOnchoAtRisk" xml:space="preserve">
-    <value>Oncho populasi beresiko</value>
+  <data name="SthSentinelIsPartOfCohort" xml:space="preserve">
+    <value>Is this survey a part of cohort study?</value>
   </data>
-  <data name="TASCutoffStopMDA" xml:space="preserve">
-    <value>Stop MDA</value>
+  <data name="FENpbpPartnersCurrentForFComponents" xml:space="preserve">
+    <value>Mitra NPBP (saat ini) untuk komponen F</value>
   </data>
   <data name="HATTrainPercentageOfHealthFacilityStaffS" xml:space="preserve">
     <value>Persentase petugas kesehatan yang disupervisi sesuai jadwal</value>
   </data>
   <data name="NumFacilitiesProvidingBu" xml:space="preserve">
     <value>Jumlah fasilitas kesehatan terdepan yang menyediakan pengobatan antibiotik BU yang direkomendasikan WHO</value>
-  </data>
-  <data name="SCHMapSurProportionOfHeavyIntensityIntes" xml:space="preserve">
-    <value>Jumlah infeksi schistosoma usus dengan intensitas tinggi</value>
   </data>
   <data name="TASLocationType" xml:space="preserve">
     <value>Jenis lokasi</value>
@@ -6694,14 +6715,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="DrugPzq" xml:space="preserve">
     <value>PZQ</value>
   </data>
-  <data name="TraSurSurveyPower" xml:space="preserve">
-    <value>Kekuatan survei</value>
+  <data name="TraSurTargetSampleSize" xml:space="preserve">
+    <value>Besaran sampel sasaran</value>
   </data>
   <data name="RtiReportingPeriod" xml:space="preserve">
     <value>Periode laporan</value>
   </data>
-  <data name="DDTraPopulationAtRisk" xml:space="preserve">
-    <value>Populasi beresiko</value>
+  <data name="TraNs" xml:space="preserve">
+    <value>NS Tidak dipetakan tetapi tidak dicurigai</value>
   </data>
   <data name="PcIntvTsNumKits" xml:space="preserve">
     <value>Jumlah peralatan lengkap yang tersedia</value>
@@ -6733,14 +6754,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="IsAggLevel" xml:space="preserve">
     <value>*** Demografi tingkat ini dijumlahkan ke semua tingkat yang lebih tinggi</value>
   </data>
-  <data name="Foodborne" xml:space="preserve">
-    <value>Trematodiasis ditularkan melalui makanan </value>
+  <data name="SaeLifethreatening" xml:space="preserve">
+    <value>Mengancam jiwa</value>
   </data>
-  <data name="SurveyName" xml:space="preserve">
-    <value>Nama survei</value>
+  <data name="AddNewDiseaseLink" xml:space="preserve">
+    <value>Tambah penyakit baru&gt;</value>
   </data>
-  <data name="d807913f-b3a1-4948-a2b3-54eb0800a3bc" xml:space="preserve">
-    <value>Actual sample size tested</value>
+  <data name="PcIntvUpperConfidence" xml:space="preserve">
+    <value>Interval kepercayaan yang lebih tinggi dari cakupan yang disurvei</value>
   </data>
   <data name="SplittingMergeYear" xml:space="preserve">
     <value>Disaat menyatukan unit daerah administratif, data akan digabungkan dalam tahun yang sama. Bagaimana anda ingin mendefinisikan tahun nya?</value>
@@ -6757,23 +6778,23 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="TtAios2016" xml:space="preserve">
     <value>2016 Tujuan intervensi tahunan</value>
   </data>
-  <data name="OnchoMapSurDateOfTheLastTreatment" xml:space="preserve">
-    <value>Tanggal pengobatan terakhir</value>
+  <data name="PcIntvLengthOfStockOut" xml:space="preserve">
+    <value>Lamanya stok habis</value>
   </data>
   <data name="TraSurNumberOfIndividualsWithCSTS" xml:space="preserve">
     <value>Jumlah individu dengan tanda klinis - TS</value>
   </data>
-  <data name="DDSTHAdultPopulation" xml:space="preserve">
-    <value>Populasi orang dewasa</value>
+  <data name="ValidationUserName" xml:space="preserve">
+    <value>Nama pengguna harus unik</value>
   </data>
   <data name="HATTrainNumberOfTrainingSessionsForHatHo" xml:space="preserve">
     <value>Jumlah pelatihan  HAT yang sudah diadakan</value>
   </data>
-  <data name="SCHMapSurNumberOfIndividualsWithNonRespo" xml:space="preserve">
-    <value>Jumlah individu dengan non-respon</value>
+  <data name="IntvFemaleSac" xml:space="preserve">
+    <value># female SAC treated</value>
   </data>
-  <data name="SaeAlbendazole" xml:space="preserve">
-    <value>Albendazole</value>
+  <data name="OnchoSurNumRefused" xml:space="preserve">
+    <value>Number of individuals who refused to be examined</value>
   </data>
   <data name="ReviewErrors" xml:space="preserve">
     <value>Mohon agar kesalahan ditinjau ulang dan diperbaiki sebelum dilanjutkan</value>
@@ -6802,8 +6823,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="Nonresponsive" xml:space="preserve">
     <value>Jumlah  non-respon</value>
   </data>
-  <data name="IntvPkgTEOZithro" xml:space="preserve">
-    <value>TEO + Zithro</value>
+  <data name="FreeOfCharge" xml:space="preserve">
+    <value>Tidak bayar</value>
   </data>
   <data name="LFLymphedemaMorbidity" xml:space="preserve">
     <value>LF Morbiditas Limfedema</value>
@@ -6811,14 +6832,14 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="NumPatientsType1" xml:space="preserve">
     <value>Jumlah pasien dengan reaksi jenis 1</value>
   </data>
-  <data name="RedistrictingInfo" xml:space="preserve">
-    <value>Informasi daerah pemekaran</value>
+  <data name="MfSkinSnip" xml:space="preserve">
+    <value>Mf potongan kecil kulit</value>
   </data>
   <data name="TtAios2018" xml:space="preserve">
     <value>2018 Tujuan intervensi tahunan</value>
   </data>
-  <data name="TraSurSiteNames" xml:space="preserve">
-    <value>Nama(-nama) desa</value>
+  <data name="TraSurAgeGroupSurveyed" xml:space="preserve">
+    <value>Kelompok usia disurvei</value>
   </data>
   <data name="CmYawsHasPlan" xml:space="preserve">
     <value>Framboesia</value>
@@ -6826,8 +6847,8 @@ Data Dasar NTD Terpadu ini dikembangkan oleh Iota Ink: Jennifer Einberg, Pimpina
   <data name="PcIntvSthSacEpiCoverage" xml:space="preserve">
     <value>STH total cakupan Epidemiologis anak usia sekolah</value>
   </data>
-  <data name="DDSchistoPopulationRequiringPc" xml:space="preserve">
-    <value>Populasi yang membutuhkan pengobatan</value>
+  <data name="LFMapSurPopulationLivingInMappingSites" xml:space="preserve">
+    <value>Populasi yang tinggal di desa-desa pemetaan</value>
   </data>
   <data name="SplitCombineSource" xml:space="preserve">
     <value>Pilih unit daerah administratif yang Anda pisahkan untuk membuat unit daerah administratif baru</value>

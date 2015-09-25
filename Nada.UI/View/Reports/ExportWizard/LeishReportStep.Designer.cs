@@ -57,12 +57,12 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.antiLeishMedCb = new System.Windows.Forms.ComboBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.questionDataSource)).BeginInit();
@@ -413,14 +413,6 @@
             this.checkBox4.TabIndex = 26;
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
-            // textBox8
-            // 
-            this.textBox8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepAntiMedInNml", true));
-            this.textBox8.Location = new System.Drawing.Point(378, 533);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(213, 21);
-            this.textBox8.TabIndex = 27;
-            // 
             // textBox9
             // 
             this.textBox9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.questionDataSource, "LeishRepRelapseDefVl", true));
@@ -485,11 +477,11 @@
             this.tableLayoutPanel1.Controls.Add(this.checkBox3, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.textBox7, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.checkBox4, 1, 10);
-            this.tableLayoutPanel1.Controls.Add(this.textBox8, 1, 11);
             this.tableLayoutPanel1.Controls.Add(this.textBox9, 1, 12);
             this.tableLayoutPanel1.Controls.Add(this.textBox10, 1, 13);
             this.tableLayoutPanel1.Controls.Add(this.textBox11, 1, 14);
             this.tableLayoutPanel1.Controls.Add(this.textBox12, 1, 15);
+            this.tableLayoutPanel1.Controls.Add(this.antiLeishMedCb, 1, 11);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 16;
@@ -511,6 +503,18 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(750, 1200);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // antiLeishMedCb
+            // 
+            this.antiLeishMedCb.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.questionDataSource, "LeishRepAntiMedInNml", true));
+            this.antiLeishMedCb.DisplayMember = "DisplayName";
+            this.antiLeishMedCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.antiLeishMedCb.FormattingEnabled = true;
+            this.antiLeishMedCb.Location = new System.Drawing.Point(378, 533);
+            this.antiLeishMedCb.Name = "antiLeishMedCb";
+            this.antiLeishMedCb.Size = new System.Drawing.Size(213, 23);
+            this.antiLeishMedCb.TabIndex = 32;
+            this.antiLeishMedCb.ValueMember = "DisplayName";
             // 
             // errorProvider1
             // 
@@ -561,7 +565,6 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox11;
@@ -570,6 +573,7 @@
         private System.Windows.Forms.BindingSource questionDataSource;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ComboBox antiLeishMedCb;
 
     }
 }
