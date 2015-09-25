@@ -19802,6 +19802,15 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Validating file….
+        /// </summary>
+        public static string ValidatingFile {
+            get {
+                return ResourceManager.GetString("ValidatingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please fix the errors before continuing..
         /// </summary>
         public static string ValidationError {
@@ -19834,6 +19843,24 @@ namespace Nada.Globalization {
         public static string ValidationHeader {
             get {
                 return ResourceManager.GetString("ValidationHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation complete, there were no errors.
+        /// </summary>
+        public static string ValidationImportNoErrors {
+            get {
+                return ResourceManager.GetString("ValidationImportNoErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There were validation errors, please review them below.
+        /// </summary>
+        public static string ValidationImportReviewErrorsBelow {
+            get {
+                return ResourceManager.GetString("ValidationImportReviewErrorsBelow", resourceCulture);
             }
         }
         

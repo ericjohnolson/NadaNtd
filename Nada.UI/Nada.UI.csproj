@@ -676,6 +676,12 @@
     <Compile Include="View\Wizard\DistrictSplitting\SplittingSaes.Designer.cs">
       <DependentUpon>SplittingSaes.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard\Import\ValidationStepResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Wizard\Import\ValidationStepResult.Designer.cs">
+      <DependentUpon>ValidationStepResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Wizard\Import\ImportStepSurveyNameToSentinel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1226,6 +1232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\DistrictSplitting\SplittingSaes.resx">
       <DependentUpon>SplittingSaes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Wizard\Import\ValidationStepResult.resx">
+      <DependentUpon>ValidationStepResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Wizard\Import\ImportStepSurveyNameToSentinel.resx">
       <DependentUpon>ImportStepSurveyNameToSentinel.cs</DependentUpon>

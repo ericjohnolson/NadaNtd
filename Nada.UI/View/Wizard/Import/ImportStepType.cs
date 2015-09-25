@@ -182,7 +182,7 @@ namespace Nada.UI.View.Wizard
                     worker.RunWorkerCompleted += workerValidation_RunWorkerCompleted;
                     worker.DoWork += workerValidation_DoWork;
                     worker.RunWorkerAsync(new WorkerPayload { FileName = openFileDialog1.FileName, UserId = 0 });
-                    OnSwitchStep(new WorkingStep(Translations.ImportingFile));
+                    OnSwitchStep(new WorkingStep(Translations.ValidatingFile));
                 }
             }
             catch (Exception ex)
@@ -211,7 +211,7 @@ namespace Nada.UI.View.Wizard
 
         private void workerValidation_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            OnSwitchStep(new ImportStepResult((ImportResult)e.Result, this));
+            OnSwitchStep(new ValidationStepResult((ImportResult)e.Result, this));
         }
 
     }
