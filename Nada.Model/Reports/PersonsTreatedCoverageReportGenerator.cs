@@ -18,7 +18,6 @@ namespace Nada.Model.Reports
         public IntvRepository IntvRepo = new IntvRepository();
         public List<IntvType> IntvTypes { get; set; }
         public List<Disease> Diseases { get; set; }
-        public List<string> AddedIndicators = new List<string>();
 
         public abstract List<IntvType> DetermineIntvTypes(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts);
         public abstract List<Disease> DetermineDiseases(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts);
@@ -35,11 +34,10 @@ namespace Nada.Model.Reports
         protected void AddIndicators(int id, string name, IHaveDynamicIndicators dd, string formName, string formTranslationKey,
             ReportOptions options)
         {
-            if (dd.Indicators.ContainsKey(name) && !AddedIndicators.Contains(name))
+            if (dd.Indicators.ContainsKey(name) && options.SelectedIndicators.Count(i => i.Name == name && i.FormNameKey == formTranslationKey) < 1)
             {
                 options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(id,
                     new KeyValuePair<string, Indicator>(name, dd.Indicators[name]), formName, formTranslationKey));
-                AddedIndicators.Add(name);
             }
         }
 
@@ -115,7 +113,22 @@ namespace Nada.Model.Reports
             }
         }
 
-        public ReportResult RunDistributionReport(SavedReport report, ReportOptions options, PersonsTreatedCoverageReportOptions standardOpts)
+        /// <summary>
+        /// Clones a saved report so the report options can be re-used for another report.
+        /// 
+        /// Clears out the selected indicators since that is the only report option that needs to be changed for this report
+        /// </summary>
+        /// <param name="report"></param>
+        /// <returns></returns>
+        protected SavedReport CloneReport(SavedReport report)
+        {
+            SavedReport newReport = new SavedReport();
+            newReport.ReportOptions = Util.DeepClone(report.ReportOptions);
+            newReport.ReportOptions.SelectedIndicators = new List<ReportIndicator>();
+            return newReport;
+        }
+
+        public ReportResult RunDistributionReport(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts)
         {
             // Add the disease indicators to the report
             foreach (var disease in Diseases)
@@ -126,19 +139,19 @@ namespace Nada.Model.Reports
                 {
 
                     case (int)DiseaseType.Lf:
-                        AddIndicators(disease.Id, "DDLFPopulationAtRisk", dd, dd.Disease.DisplayName, dd.Disease.DisplayNameKey, options);
+                        AddIndicators(disease.Id, "DDLFPopulationAtRisk", dd, dd.Disease.DisplayName, dd.Disease.DisplayNameKey, report.ReportOptions);
                         break;
                     case (int)DiseaseType.Trachoma:
-                        AddIndicators(disease.Id, "DDTraPopulationAtRisk", dd, dd.Disease.DisplayName, dd.Disease.DisplayNameKey, options);
+                        AddIndicators(disease.Id, "DDTraPopulationAtRisk", dd, dd.Disease.DisplayName, dd.Disease.DisplayNameKey, report.ReportOptions);
                         break;
                     case (int)DiseaseType.Oncho:
-                        AddIndicators(disease.Id, "DDOnchoPopulationAtRisk", dd, dd.Disease.DisplayName, dd.Disease.DisplayNameKey, options);
+                        AddIndicators(disease.Id, "DDOnchoPopulationAtRisk", dd, dd.Disease.DisplayName, dd.Disease.DisplayNameKey, report.ReportOptions);
                         break;
                     case (int)DiseaseType.STH:
-                        AddIndicators(disease.Id, "DDSTHPopulationAtRisk", dd, dd.Disease.DisplayName, dd.Disease.DisplayNameKey, options);
+                        AddIndicators(disease.Id, "DDSTHPopulationAtRisk", dd, dd.Disease.DisplayName, dd.Disease.DisplayNameKey, report.ReportOptions);
                         break;
                     case (int)DiseaseType.Schisto:
-                        AddIndicators(disease.Id, "DDSchistoPopulationAtRisk", dd, dd.Disease.DisplayName, dd.Disease.DisplayNameKey, options);
+                        AddIndicators(disease.Id, "DDSchistoPopulationAtRisk", dd, dd.Disease.DisplayName, dd.Disease.DisplayNameKey, report.ReportOptions);
                         break;
                     default:
                         break;
@@ -152,7 +165,7 @@ namespace Nada.Model.Reports
             return result;
         }
 
-        public ReportResult RunIntvReport(SavedReport report, ReportOptions options, PersonsTreatedCoverageReportOptions standardOpts)
+        public ReportResult RunIntvReport(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts)
         {
             /*List<IntvBase> intvs = IntvRepo.GetAll(intvTypes.Select(i => i.Id).ToList(),
                 report.ReportOptions.SelectedAdminLevels.Select(l => l.Id).ToList());
@@ -181,86 +194,86 @@ namespace Nada.Model.Reports
             // Add all the relevant intervention indicators
             foreach (IntvType intvType in IntvTypes)
             {
-                AddIndicators(intvType.Id, "PcIntvNumEligibleIndividualsTargeted", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                AddIndicators(intvType.Id, "PcIntvNumIndividualsTreated", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                AddIndicators(intvType.Id, "PcIntvPsacTreated", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                AddIndicators(intvType.Id, "PcIntvNumSacTreated", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                AddIndicators(intvType.Id, "PcIntvProgramCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                AddIndicators(intvType.Id, "PcIntvNumEligibleIndividualsTargeted", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                AddIndicators(intvType.Id, "PcIntvNumIndividualsTreated", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                AddIndicators(intvType.Id, "PcIntvPsacTreated", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                AddIndicators(intvType.Id, "PcIntvNumSacTreated", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                AddIndicators(intvType.Id, "PcIntvProgramCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 if (intvType.Id == (int)StaticIntvType.IvmAlb)
                 {
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.DecAlb)
                 {
-                    AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.Ivm)
                 {
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.PzqAlb)
                 {
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.PzqMbd)
                 {
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.Pzq)
                 {
-                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.Alb)
                 {
-                    AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.Mbd)
                 {
-                    AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.Alb2)
                 {
-                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.IvmPzq)
                 {
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.IvmPzqAlb)
                 {
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
+                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 else if (intvType.Id == (int)StaticIntvType.ZithroTeo)
                 {
-                    AddIndicators(intvType.Id, "PcIntvTraEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
+                    AddIndicators(intvType.Id, "PcIntvTraEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 }
                 //AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
                 //AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
@@ -334,7 +347,7 @@ namespace Nada.Model.Reports
                     AggregateRounds(data, row, col, Translations.PcIntvSchSacEpi);
                     AggregateRounds(data, row, col, Translations.PcIntvSchEpi);
                     AggregateRounds(data, row, col, Translations.PcIntvTraEpi);
-                    AggregateRounds(data, row, col, Translations.PcIntvOnchoEpiCoverageOfOncho);
+                    //AggregateRounds(data, row, col, Translations.PcIntvOnchoEpiCoverageOfOncho);
                     AggregateRounds(data, row, col, Translations.PcIntvEpiCoverage);
                 }
 
@@ -372,7 +385,6 @@ namespace Nada.Model.Reports
         public override ReportResult Run(SavedReport report)
         {
             PersonsTreatedCoverageReportOptions standardOpts = (PersonsTreatedCoverageReportOptions)report.StandardReportOptions;
-            ReportOptions options = report.ReportOptions;
 
             // Options
             report.ReportOptions.IsByLevelAggregation = true;
@@ -396,7 +408,7 @@ namespace Nada.Model.Reports
             }
 
             // Run the distribution report for the disease dist related data
-            ReportResult distReportResult = RunDistributionReport(report, options, standardOpts);
+            ReportResult distReportResult = RunDistributionReport(CloneReport(report), standardOpts);
             // Aggregate the dist data
             if (this.GetType() == typeof(PersonsTreatedCoverageDiseaseReportGenerator)
                 || (Diseases.Count <= 1 && this.GetType() == typeof(PersonsTreatedCoverageDrugPackageReportGenerator)))
@@ -405,7 +417,7 @@ namespace Nada.Model.Reports
             }
 
             // Run the intervention report
-            ReportResult intvReportResult = RunIntvReport(report, options, standardOpts);
+            ReportResult intvReportResult = RunIntvReport(CloneReport(report), standardOpts);
             // Remove the district and year columns from the intervention report result
             RemovePastColumn(intvReportResult.DataTableResults, Translations.Year);
             // Aggregate the Report data
