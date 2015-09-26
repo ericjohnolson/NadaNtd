@@ -392,7 +392,8 @@ namespace Nada.Model.Reports
             report.ReportOptions.IsNoAggregation = false;
 
             // Get all admin levels
-            report.ReportOptions.SelectedAdminLevels = DemoRepo.GetAdminLevelByLevel(standardOpts.DistrictType.LevelNumber).Where(a => a.LevelNumber == standardOpts.DistrictType.LevelNumber).ToList();
+            if (report.ReportOptions.IsAllLocations)
+                report.ReportOptions.SelectedAdminLevels = DemoRepo.GetAdminLevelByLevel(standardOpts.DistrictType.LevelNumber).Where(a => a.LevelNumber == standardOpts.DistrictType.LevelNumber).ToList();
 
             // Determine the diseases
             Diseases = DetermineDiseases(report, standardOpts);
