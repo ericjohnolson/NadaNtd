@@ -1326,6 +1326,11 @@ INSERT INTO aspnet_UsersInRoles (UserId, RoleId) VALUES
 INSERT INTO InterventionTypes_to_Diseases (InterventionTypeId, DiseaseId) VALUES
 	(DLookup("ID", "InterventionTypes", "InterventionTypeName ='IntvIvmPzqAlb'"), DLookup("ID", "Diseases", "DisplayName ='Schisto'"));
 
+-- Story 309;
+UPDATE InterventionTypes_to_Indicators
+	SET IndicatorId = DLookup("ID", "InterventionIndicators", "DisplayName ='PcIntvOnchoEpiCoverageOfOncho'")
+	WHERE InterventionTypeId = DLookup("ID", "InterventionTypes", "InterventionTypeName ='IntvIvmPzqAlb'")
+		AND IndicatorId = DLookup("ID", "InterventionIndicators", "DisplayName ='PcIntvOnchoEpiCoverage'");
 
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
