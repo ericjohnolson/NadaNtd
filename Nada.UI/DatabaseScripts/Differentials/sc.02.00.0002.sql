@@ -1322,6 +1322,10 @@ INSERT INTO aspnet_UsersInRoles (UserId, RoleId) VALUES
 INSERT INTO aspnet_UsersInRoles (UserId, RoleId) VALUES
 	(DLookup("UserId", "aspnet_Users", "UserName = 'NaDa'"), DLookup("RoleId", "aspnet_Roles", "RoleName = 'RoleDbAdmin'"));
 
+-- Story 300;
+INSERT INTO InterventionTypes_to_Diseases (InterventionTypeId, DiseaseId) VALUES
+	(DLookup("ID", "InterventionTypes", "InterventionTypeName ='IntvIvmPzqAlb'"), DLookup("ID", "Diseases", "DisplayName ='Schisto'"));
+
 
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
