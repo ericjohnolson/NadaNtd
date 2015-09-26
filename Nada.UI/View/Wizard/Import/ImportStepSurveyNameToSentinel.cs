@@ -184,7 +184,8 @@ namespace Nada.UI.View.Wizard
                 cntrl.Items.Add(v);
             cntrl.ValueMember = "Id";
             cntrl.DisplayMember = "SiteName";
-            cntrl.SelectedIndex = 0;
+            if (sites.Count > 0)
+                cntrl.SelectedIndex = 0;
             cntrl.Tag = survey;
             cntrl.Margin = new Padding(0, 5, 20, 0);
             TableLayoutPanel tblContainer = new TableLayoutPanel { AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, AutoScroll = true };
