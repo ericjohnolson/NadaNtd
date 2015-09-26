@@ -480,8 +480,7 @@ namespace Nada.Model.Exports
                     // Filter surveys by the type of the most recent and the year of the most recent
                     List<SurveyBase> recentYearSurveys = surveys.Where(
                         s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)
-                            && mostRecentSurveyYear == s.DateReported.Year
-                            && mostRecentSurvey.TypeOfSurvey.Id == s.TypeOfSurvey.Id).ToList();
+                            && mostRecentSurveyYear == s.DateReported.Year).ToList();
                     // Get the survey with the highest values for prevalence and proportion of infections
                     SurveyBase surveyWithHighestPrevalence = null;
                     double prevalenceInfections = 0;
@@ -491,14 +490,14 @@ namespace Nada.Model.Exports
                     {
                         string currentPrevalenceStr = null;
                         string currentProportionStr = null;
-                        if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
+                        if (recentYearSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
                         {
                             // Calculate Prevalence
                             currentPrevalenceStr = GetPercentPositive(recentYearSurvey, "SCHSurNumberOfIndividualsPositiveForInte", "SCHSurNumberOfIndividualsExaminedForInte", out year);
                             // Calculate Proportion
                             currentProportionStr = GetPercentPositive(recentYearSurvey, "SCHSurProportionOfHeavyIntensityIntestin", "SCHSurNumberOfIndividualsExaminedForInte", out year);
                         }
-                        else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
+                        else if (recentYearSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
                         {
                             // Calculate Prevalence
                             currentPrevalenceStr = GetPercentPositive(recentYearSurvey, "SCHMapSurNumberOfIndividualsPositiveForI", "SCHMapSurNumberOfIndividualsExaminedForI", out year);
@@ -523,13 +522,13 @@ namespace Nada.Model.Exports
                     string testType = "";
                     if (surveyWithHighestPrevalence != null)
                     {
-                        if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
+                        if (surveyWithHighestPrevalence.TypeOfSurvey.Id == (int)StaticSurveyType.SchistoSentinel)
                         {
                             var ind = surveyWithHighestPrevalence.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "SCHSurTestType");
                             if (ind != null && ind.DynamicValue != null)
                                 testType = ind.DynamicValue;
                         }
-                        else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
+                        else if (surveyWithHighestPrevalence.TypeOfSurvey.Id == (int)StaticSurveyType.SchMapping)
                         {
                             var ind = surveyWithHighestPrevalence.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "SCHMapSurTestType");
                             if (ind != null && ind.DynamicValue != null)
@@ -634,8 +633,7 @@ namespace Nada.Model.Exports
                     // Filter surveys by the type of the most recent and the year of the most recent
                     List<SurveyBase> recentYearSurveys = surveys.Where(
                         s => s.AdminLevels.Select(a => a.Id).Contains(unit.Id)
-                            && mostRecentSurveyYear == s.DateReported.Year
-                            && mostRecentSurvey.TypeOfSurvey.Id == s.TypeOfSurvey.Id).ToList();
+                            && mostRecentSurveyYear == s.DateReported.Year).ToList();
                     // Get the survey with the highest values for prevalence and proportion of infections
                     SurveyBase surveyWithHighestPrevalence = null;
                     double prevalenceInfections = 0;
@@ -645,7 +643,7 @@ namespace Nada.Model.Exports
                     {
                         string currentPrevalenceStr = null;
                         string currentProportionStr = null;
-                        if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
+                        if (recentYearSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
                         {
                             // Get the prevalence
                             currentPrevalenceStr = GetPercentPositive(recentYearSurvey, "STHSurNumberOfIndividualsPositiveOverall", "STHSurNumberOfIndividualsExaminedOverall", out year);
@@ -654,7 +652,7 @@ namespace Nada.Model.Exports
                             if (propInd != null)
                                 currentProportionStr = propInd.DynamicValue;
                         }
-                        else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
+                        else if (recentYearSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
                         {
                             // Get the prevalence
                             currentPrevalenceStr = GetPercentPositive(recentYearSurvey, "STHMapSurSurNumberOfIndividualsPositiveOverall", "STHMapSurSurNumberOfIndividualsExaminedOverall", out year);
@@ -681,13 +679,13 @@ namespace Nada.Model.Exports
                     string testType = "";
                     if (surveyWithHighestPrevalence != null)
                     {
-                        if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
+                        if (surveyWithHighestPrevalence.TypeOfSurvey.Id == (int)StaticSurveyType.SthSentinel)
                         {
                             var ind = surveyWithHighestPrevalence.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHSurTestType");
                             if (ind != null && ind.DynamicValue != null)
                                 testType = ind.DynamicValue;
                         }
-                        else if (mostRecentSurvey.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
+                        else if (surveyWithHighestPrevalence.TypeOfSurvey.Id == (int)StaticSurveyType.SthMapping)
                         {
                             var ind = surveyWithHighestPrevalence.IndicatorValues.FirstOrDefault(v => v.Indicator.DisplayName == "STHMapSurSurTestType");
                             if (ind != null && ind.DynamicValue != null)
