@@ -2269,7 +2269,7 @@
     <value>Taux de guérison</value>
   </data>
   <data name="LFSurPositive" xml:space="preserve">
-    <value>Nombre d’individus positifs pour le lymphœdème</value>
+    <value>% de cas positifs</value>
   </data>
   <data name="LeishMontIntvPrcntOfCLPatientsWithLesionsOnFaceEars" xml:space="preserve">
     <value>% of CL patients with lesions on face/ears</value>
