@@ -1332,6 +1332,17 @@ UPDATE InterventionTypes_to_Indicators
 	WHERE InterventionTypeId = DLookup("ID", "InterventionTypes", "InterventionTypeName ='IntvIvmPzqAlb'")
 		AND IndicatorId = DLookup("ID", "InterventionIndicators", "DisplayName ='PcIntvOnchoEpiCoverage'");
 
+-- Story 310;
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName = 'SchMappingPrevalenceEggsInUrine'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName = 'SCHMapSurNumPosSchParasite'"), 3);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName = 'SchMappingPrevalenceEggsInUrine'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName = 'SCHMapSurNumberOfIndividualsExaminedForU'"), 3);
+
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName = 'SchSentinelPrevalenceEggsInUrine'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName = 'SCHSurNumPosSchParasite'"), 3);
+INSERT INTO IndicatorCalculations (IndicatorId, EntityTypeId, RelatedIndicatorId, RelatedEntityTypeId) VALUES
+	(DLookup("ID", "SurveyIndicators", "DisplayName = 'SchSentinelPrevalenceEggsInUrine'"), 3, DLookup("ID", "SurveyIndicators", "DisplayName = 'SCHSurNumberOfIndividualsExaminedForUrin'"), 3);
+
 INSERT INTO [SchemaChangeLog]
        ([MajorReleaseNumber]
        ,[MinorReleaseNumber]
