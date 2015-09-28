@@ -197,7 +197,6 @@ namespace Nada.Model.Intervention
                 {
                     ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvOnchoAtRisk"));
-                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
                 }
                 else if (formTranslationKey == "IntvDecAlb")
                 {
