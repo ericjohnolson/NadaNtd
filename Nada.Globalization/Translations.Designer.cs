@@ -6392,7 +6392,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is there a leishmaniasis reservoir host control programme?.
+        ///   Looks up a localized string similar to Check box if there is a leishmaniasis reservoir host control programme.
         /// </summary>
         public static string LeishRepIsHostProg {
             get {
@@ -6401,7 +6401,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is leishmaniasis notifiable (mandatory report)?.
+        ///   Looks up a localized string similar to Check box if leishmaniasis is notifiable (mandatory report).
         /// </summary>
         public static string LeishRepIsNotifiable {
             get {
@@ -6410,7 +6410,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is leishmaniasis treatment provided for free in the public sector?.
+        ///   Looks up a localized string similar to Check box if leishmaniasis treatment is provided for free in the public sector.
         /// </summary>
         public static string LeishRepIsTreatFree {
             get {
@@ -6419,7 +6419,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is there a leishmaniasis vector control programme?.
+        ///   Looks up a localized string similar to Check box if there is a leishmaniasis vector control programme.
         /// </summary>
         public static string LeishRepIsVectProg {
             get {
