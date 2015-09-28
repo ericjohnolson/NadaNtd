@@ -87,12 +87,12 @@ namespace Nada.Model.Diseases
                     ValidationMap.Add("DDSchistoSacAtRisk",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSchistoPopulationAtRisk")
+                            new ValidationMapping(ValidationRuleType.LessThanSum, "DDSchistoPopulationAtRisk")
                         });
                     ValidationMap.Add("DDSchistoHighRiskAdultsAtRisk",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSchistoPopulationAtRisk")
+                            new ValidationMapping(ValidationRuleType.LessThanSum, "DDSchistoPopulationAtRisk")
                         });
                 }
                 else if (formTranslationKey == "STH")
@@ -110,17 +110,17 @@ namespace Nada.Model.Diseases
                     ValidationMap.Add("DDSTHPsacAtRisk",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
+                            new ValidationMapping(ValidationRuleType.LessThanSum, "DDSTHPopulationAtRisk")
                         });
                     ValidationMap.Add("DDSTHSacAtRisk",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
+                            new ValidationMapping(ValidationRuleType.LessThanSum, "DDSTHPopulationAtRisk")
                         });
                     ValidationMap.Add("DDSTHHighRiskAdultsAtRisk",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "DDSTHPopulationAtRisk")
+                            new ValidationMapping(ValidationRuleType.LessThanSum, "DDSTHPopulationAtRisk")
                         });
                 }
                 else if (formTranslationKey == "Trachoma")
