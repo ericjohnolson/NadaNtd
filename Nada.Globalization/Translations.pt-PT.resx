@@ -3494,7 +3494,7 @@ Fixo / móvel </value>
     <value>Ano Comercial</value>
   </data>
   <data name="HelpFile" xml:space="preserve">
-    <value>/View/Help/PT/help.chm</value>
+    <value>/Help/PT/help.chm</value>
   </data>
   <data name="PercentCatICases" xml:space="preserve">
     <value>% Dos novos casos com lesões de categoria I</value>
@@ -6380,7 +6380,7 @@ Fixo / móvel </value>
     <value>Indicador Personalizado</value>
   </data>
   <data name="TutorialFile" xml:space="preserve">
-    <value>/View/Help/TrainingPPT_0601614_pt.pptx</value>
+    <value>/Help/TrainingPPT_0601614_pt.pptx</value>
   </data>
   <data name="PcIntvFemalesTreatedProportion" xml:space="preserve">
     <value>Proporção mulheres tratadas</value>

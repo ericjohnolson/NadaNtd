@@ -3500,7 +3500,7 @@ Fixed / Mobile</value>
     <value>Custom year</value>
   </data>
   <data name="HelpFile" xml:space="preserve">
-    <value>/View/Help/EN/help.chm</value>
+    <value>/Help/EN/help.chm</value>
   </data>
   <data name="PercentCatICases" xml:space="preserve">
     <value>% of new cases with category I lesions</value>
@@ -6401,7 +6401,7 @@ Fixed / Mobile</value>
     <value>Custom Indicator</value>
   </data>
   <data name="TutorialFile" xml:space="preserve">
-    <value>/View/Help/TrainingPPT_061614_en.pptx</value>
+    <value>/Help/TrainingPPT_061614_en.pptx</value>
   </data>
   <data name="PcIntvFemalesTreatedProportion" xml:space="preserve">
     <value>Females treated proportion</value>
