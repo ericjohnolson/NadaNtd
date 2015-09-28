@@ -165,7 +165,7 @@ namespace Nada.Model.Reports
             return result;
         }
 
-        public ReportResult RunIntvReport(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts)
+        public ReportResult RunIntvReport(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts, List<int> filteredIntvIds)
         {
             /*List<IntvBase> intvs = IntvRepo.GetAll(intvTypes.Select(i => i.Id).ToList(),
                 report.ReportOptions.SelectedAdminLevels.Select(l => l.Id).ToList());
@@ -289,6 +289,8 @@ namespace Nada.Model.Reports
 
             // Report gen
             IntvReportGenerator gen = new IntvReportGenerator();
+            // Set the IDs of the filtererd interventions
+            gen.CmdTextOverride = DetermineInterventionSql(filteredIntvIds, report.ReportOptions);
             // Recent distro static classs
             RecentDistro recentDistro = RecentDistro.GetInstance(true /* instantiate */);
             recentDistro.Run(report.ReportOptions);
@@ -366,7 +368,12 @@ namespace Nada.Model.Reports
                     foreach (KeyValuePair<int, double> roundEntry in dataEntry.Value.RoundValues)
                     {
                         // Determine the col name + round number string
-                        string roundColName = string.Format("{0} - {1} {2}", dataEntry.Value.ColumnName, Translations.Round, roundEntry.Key);
+                        string roundColName;
+                        if (roundEntry.Key == -1)
+                            roundColName = dataEntry.Value.ColumnName;
+                        else
+                            roundColName = string.Format("{0} - {1} {2}", dataEntry.Value.ColumnName, Translations.Round, roundEntry.Key);
+
                         // Add the column
                         if (!intvDataTable.Columns.Contains(roundColName))
                             intvDataTable.Columns.Add(new DataColumn(roundColName));
@@ -380,6 +387,59 @@ namespace Nada.Model.Reports
             }
 
             return intvDataTable;
+        }
+
+        public List<int> DetermineInterventionsByDiseasesTargeted(List<IntvType> intvTypes, ReportOptions reportOptions)
+        {
+            // Build a collection of ids for the intervention types
+            List<int> intvTypeIds = new List<int>();
+            foreach (IntvType type in intvTypes)
+            {
+                intvTypeIds.Add(type.Id);
+            }
+
+            // Build a collection of ids for the admin units
+            List<int> adminUnitIds = new List<int>();
+            foreach (AdminLevel level in reportOptions.SelectedAdminLevels)
+            {
+                adminUnitIds.Add(level.Id);
+            }
+
+            // Get all interventions that match the report options
+            List<IntvBase> interventions = new List<IntvBase>();
+            foreach (int year in reportOptions.Years)
+            {
+                DateTime startDate = new DateTime(year, 1, 1);
+                DateTime yearEndDate = new DateTime(year, 1, 1).AddYears(1).AddDays(-1);
+                List<IntvBase> interventionsForYear = IntvRepo.GetAllIntvInRangeByAdminUnit(intvTypeIds, startDate, yearEndDate, adminUnitIds);
+                // Add them to the main collection
+                interventions.AddRange(interventionsForYear);
+            }
+
+            // Filter the interventions based on whether or not they have the correct diseases targeted
+            List<int> filteredIntvIds = new List<int>();
+            foreach (IntvBase intv in interventions)
+            {
+                // Get the diseases targeted indicator
+                IndicatorValue indVal = intv.IndicatorValues.Where(i => i.Indicator.DisplayName == "PcIntvDiseases").FirstOrDefault();
+                if (indVal == null)
+                    continue;
+
+                // Get the value of the diseases targeted indicator
+                string selectedDiseasesStr = indVal.DynamicValue;
+
+                // Make sure the current intervention has one of the diseases targeted selected
+                foreach (Disease disease in Diseases)
+                {
+                    if (selectedDiseasesStr.Contains(disease.DisplayNameKey))
+                    {
+                        filteredIntvIds.Add(intv.Id);
+                        break;
+                    }
+                }
+            }
+
+            return filteredIntvIds;
         }
 
         public override ReportResult Run(SavedReport report)
@@ -417,8 +477,11 @@ namespace Nada.Model.Reports
                 AggregateDistData(distReportResult);
             }
 
+            // Determine which interventions should be used in the report
+            List<int> filteredIntvIds = DetermineInterventionsByDiseasesTargeted(IntvTypes, report.ReportOptions);
+
             // Run the intervention report
-            ReportResult intvReportResult = RunIntvReport(CloneReport(report), standardOpts);
+            ReportResult intvReportResult = RunIntvReport(CloneReport(report), standardOpts, filteredIntvIds);
             // Remove the district and year columns from the intervention report result
             RemovePastColumn(intvReportResult.DataTableResults, Translations.Year);
             // Aggregate the Report data
@@ -430,6 +493,35 @@ namespace Nada.Model.Reports
             distReportResult.ChartData = distReportResult.DataTableResults.Copy();
             distReportResult.DataTableResults.Columns.Remove(Translations.Type);
             return distReportResult;
+        }
+
+        protected string DetermineInterventionSql(List<int> filteredIntvIds, ReportOptions reportOptions)
+        {
+            return @"Select 
+                        AdminLevels.ID as AID, 
+                        AdminLevels.DisplayName,
+                        Interventions.ID, 
+                        [DateReported], 
+                        Interventions.PcIntvRoundNumber, 
+                        InterventionTypes.InterventionTypeName as TName, 
+                        InterventionTypes.ID as Tid,      
+                        InterventionIndicators.ID as IndicatorId, 
+                        InterventionIndicators.DisplayName as IndicatorName, 
+                        InterventionIndicators.IsEditable, 
+                        InterventionIndicators.DataTypeId, 
+                        InterventionIndicators.AggTypeId, 
+                        InterventionIndicatorValues.DynamicValue, 
+                        InterventionIndicatorValues.MemoValue
+                        FROM ((((Interventions INNER JOIN InterventionTypes on Interventions.InterventionTypeId = InterventionTypes.ID)
+                            INNER JOIN InterventionIndicatorValues on Interventions.Id = InterventionIndicatorValues.InterventionId)
+                            INNER JOIN AdminLevels on Interventions.AdminLevelId = AdminLevels.ID) 
+                            INNER JOIN InterventionIndicators on InterventionIndicators.ID = InterventionIndicatorValues.IndicatorId)
+                        WHERE Interventions.IsDeleted = 0"
+            + " AND Interventions.ID IN (" + String.Join(", ", filteredIntvIds.Select(i => i.ToString()).ToArray()) + ") "
+            + " AND InterventionIndicators.Id in (" + String.Join(", ", reportOptions.SelectedIndicators.Select(s => s.ID.ToString()).ToArray())
+            + ") AND InterventionTypes.ID in (" + String.Join(", ", reportOptions.SelectedIndicators.Select(i => i.TypeId.ToString()).Distinct().ToArray()) + ") "
+            + ReportRepository.CreateYearFilter(reportOptions, "DateReported") + ReportRepository.CreateAdminFilter(reportOptions)
+            + " ORDER BY IsEditable DESC, InterventionIndicators.SortOrder";
         }
     }
 
@@ -544,6 +636,16 @@ namespace Nada.Model.Reports
                 double.TryParse(value, out appendVal);
 
                 RoundValues[roundNumber] = RoundValues[roundNumber] + appendVal;
+            }
+            else if (lastIndex == -1) // There is no round number
+            {
+                double appendVal = 0;
+                double.TryParse(value, out appendVal);
+
+                if (!RoundValues.ContainsKey(-1))
+                    RoundValues.Add(-1, 0);
+
+                RoundValues[-1] = RoundValues[-1] + appendVal;
             }
         }
     }

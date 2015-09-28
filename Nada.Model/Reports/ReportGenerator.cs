@@ -42,6 +42,8 @@ namespace Nada.Model.Reports
         protected virtual int EntityTypeId { get { return 0; } }
         protected virtual bool IsDemoOrDistro { get { return false; } }
 
+        public string CmdTextOverride { get; set; }
+
         public BaseReportGenerator() { }
 
         public virtual ReportResult Run(SavedReport report)
@@ -614,6 +616,9 @@ namespace Nada.Model.Reports
 
         protected override string CmdText()
         {
+            if (CmdTextOverride != null)
+                return CmdTextOverride;
+
             return @"Select 
                         AdminLevels.ID as AID, 
                         AdminLevels.DisplayName,
