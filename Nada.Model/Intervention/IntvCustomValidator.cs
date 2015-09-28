@@ -19,13 +19,6 @@ namespace Nada.Model.Intervention
                 ValidationMap = new Dictionary<string, List<ValidationMapping>>()
                 {
                     {
-                        "DateReported",
-                        new List<ValidationMapping>
-                        {
-                            new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda")
-                        }
-                    },
-                    {
                         "PcIntvEndDateOfMda",
                         new List<ValidationMapping>
                         {
@@ -64,7 +57,7 @@ namespace Nada.Model.Intervention
 	                    "PcIntvNumPsacTargeted",
 	                    new List<ValidationMapping>
 	                    {
-                            new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvNumEligibleIndividualsTargeted")
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumEligibleIndividualsTargeted")
 	                    }
                     },
                     {
@@ -95,8 +88,7 @@ namespace Nada.Model.Intervention
 	                    new List<ValidationMapping>
 	                    {
 		                    new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumIndividualsTreated"),
-                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumSacTargeted"),
-                            new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac")
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvNumSacTargeted")
 	                    }
                     },
                     {
@@ -182,56 +174,75 @@ namespace Nada.Model.Intervention
 
                 if (formTranslationKey == "IntvIvmPzqAlb")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk", "PcIntvSchAtRisk"));
                     ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac"));
                 }
                 else if (formTranslationKey == "IntvIvmAlb")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk", "PcIntvOnchoAtRisk"));
-                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSthSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac"));
                 }
                 else if (formTranslationKey == "IntvIvmPzq")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvOnchoAtRisk", "PcIntvSchAtRisk"));
-                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac"));
                 }
                 else if (formTranslationKey == "IntvIvm")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvOnchoAtRisk"));
                     ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
                 }
                 else if (formTranslationKey == "IntvDecAlb")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvLfAtRisk"));
-                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSthSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac"));
                 }
                 else if (formTranslationKey == "IntvPzqAlb")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk", "PcIntvSchAtRisk"));
                     ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac"));
                 }
                 else if (formTranslationKey == "IntvAlb2")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvLfAtRisk"));
-                    ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk", "PcIntvSthSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac"));
                 }
                 else if (formTranslationKey == "IntvAlb")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk"));
                     ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSthSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac"));
                 }
                 else if (formTranslationKey == "IntvMbd")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSthAtRisk"));
                     ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSthSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac"));
                 }
                 else if (formTranslationKey == "IntvPzq")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvSchAtRisk"));
                     ValidationMap["PcIntvNumSacTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "PcIntvSchSacAtRisk"));
+                    ValidationMap["PcIntvNumSacTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "IntvFemaleSac", "IntvMaleSac"));
                 }
                 else if (formTranslationKey == "IntvZithroTeo")
                 {
+                    ValidationMap["DateReported"].Add(new ValidationMapping(ValidationRuleType.DateHasSameYear, "PcIntvStartDateOfMda"));
                     ValidationMap["PcIntvNumEligibleIndividualsTargeted"].Add(new ValidationMapping(ValidationRuleType.LessThanSum, "PcIntvTraAtRisk"));
                     ValidationMap["PcIntvNumIndividualsTreated"].Add(new ValidationMapping(ValidationRuleType.EqualToSum, "PcIntvNumTreatedZx", "PcIntvNumTreatedTeo", "PcIntvNumTreatedZxPos"));
                 }

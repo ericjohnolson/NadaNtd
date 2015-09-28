@@ -100,7 +100,7 @@ namespace Nada.Model.Survey
                     ValidationMap.Add("LFSurPosHydro",
                         new List<ValidationMapping>
                         {
-                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFSurPosHydro")
+                            new ValidationMapping(ValidationRuleType.LessThanEqualToSum, "LFSurExaminedHydro")
                         });
                 }
                 else if (formTranslationKey == "SurTransAssessSurvey")
