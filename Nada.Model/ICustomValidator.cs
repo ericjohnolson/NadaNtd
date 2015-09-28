@@ -33,6 +33,19 @@ namespace Nada.Model
             ValidationMap = null;
         }
 
+        public void AddToMap(string indicatorName, ValidationMapping mapping)
+        {
+            if (ValidationMap != null)
+            {
+                if (!ValidationMap.ContainsKey(indicatorName))
+                {
+                    ValidationMap.Add(indicatorName, new List<ValidationMapping>());
+                }
+                // Add the new mapping
+                ValidationMap[indicatorName].Add(mapping);
+            }
+        }
+
         public List<ValidationResult> ValidateIndicators(string formTranslationKey, Dictionary<string, Indicator> indicators, List<IndicatorValue> values, List<KeyValuePair<string, string>> metaData)
         {
             // Get the validation map
