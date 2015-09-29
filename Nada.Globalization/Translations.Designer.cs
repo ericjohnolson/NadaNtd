@@ -19505,7 +19505,7 @@ namespace Nada.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /Help/TrainingPPT_061614_en.pptx.
+        ///   Looks up a localized string similar to /Help/TrainingPPT_081915_English.pptx.
         /// </summary>
         public static string TutorialFile {
             get {

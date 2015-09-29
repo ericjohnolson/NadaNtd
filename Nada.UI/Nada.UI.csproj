@@ -1732,7 +1732,7 @@
     <Content Include="View\Help\TrainingPPT_0601614_pt.pptx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="View\Help\TrainingPPT_061614_en.pptx">
+    <Content Include="View\Help\TrainingPPT_081915_English.pptx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="View\Help\TrainingPPT_070614_id.pptx">
@@ -1750,7 +1750,7 @@
     <Content Include="View\Help\PT\help.chm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="View\Help\TrainingPPT_080814_French.pptx">
+    <Content Include="View\Help\TrainingPPT_082715_French.pptx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
