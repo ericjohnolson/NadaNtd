@@ -141,7 +141,7 @@ namespace Nada.Model
     {
         public ValidationRule ValidationRule { get; set; }
         public bool IsSuccess { get; set; }
-        //public bool HadMissingValues { get; set; }
+        public bool HadMissingValues { get; set; }
         //public Indicator Indicator { get; set; }
         public string Message { get; set; }
 
@@ -150,7 +150,7 @@ namespace Nada.Model
             return new ValidationResult()
             {
                 IsSuccess = false,
-                //HadMissingValues = true,
+                HadMissingValues = true,
                 //Indicator = indicator,
                 ValidationRule = rule,
                 Message = string.Format("{0}: {1}", comparisonString, Translations.NA)
@@ -162,7 +162,7 @@ namespace Nada.Model
             return new ValidationResult()
             {
                 IsSuccess = true,
-                //HadMissingValues = false,
+                HadMissingValues = false,
                 //Indicator = indicator,
                 ValidationRule = rule,
                 Message = string.Format("{0}: {1}", comparisonString, Translations.OK.ToUpper())
@@ -174,7 +174,7 @@ namespace Nada.Model
             return new ValidationResult()
             {
                 IsSuccess = false,
-                //HadMissingValues = false,
+                HadMissingValues = false,
                 //Indicator = indicator,
                 ValidationRule = rule,
                 Message = string.Format("{0}: {1}", comparisonString, Translations.ValidationResultError.ToUpper())

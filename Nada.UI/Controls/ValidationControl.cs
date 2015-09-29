@@ -112,9 +112,18 @@ namespace Nada.UI.Controls
                 var label = new H3bLabel { 
                     Text = result.Message,
                     Name = "ciLabel_Val" + result.ValidationRule.Indicator.DisplayName,
-                    AutoSize = true,
-                    TextColor = result.IsSuccess ? Color.FromArgb(0, 160, 0) : Color.FromArgb(160, 0, 0)
+                    AutoSize = true
                 };
+                // Set the validation message text color
+                if (result.IsSuccess)
+                    label.TextColor = Color.FromArgb(0, 160, 0);
+                else
+                {
+                    if (result.HadMissingValues)
+                        label.TextColor = Color.FromArgb(0, 0, 160);
+                    else
+                        label.TextColor = Color.FromArgb(160, 0, 0);
+                }
                 label.MakeBold();
                 tlpValidationResults.Controls.Add(label, 0, controlRowIndex);
             }
