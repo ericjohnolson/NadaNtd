@@ -181,7 +181,7 @@ namespace Nada.Model.Exports
                 year = DateTime.Now.Year;
             }
             StartDate = new DateTime(year, 1, 1);
-            EndDate = new DateTime(year, 12, 31);
+            EndDate = new DateTime(year, 1, 1).AddYears(1).AddDays(-1);
         }
 
         private void GetAdmin2ndLvlData()
