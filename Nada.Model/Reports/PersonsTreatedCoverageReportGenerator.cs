@@ -18,6 +18,7 @@ namespace Nada.Model.Reports
         public IntvRepository IntvRepo = new IntvRepository();
         public List<IntvType> IntvTypes { get; set; }
         public List<Disease> Diseases { get; set; }
+        public Dictionary<int, double> RowToPopAtRisk = new Dictionary<int, double>();
 
         public abstract List<IntvType> DetermineIntvTypes(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts);
         public abstract List<Disease> DetermineDiseases(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts);
@@ -167,30 +168,6 @@ namespace Nada.Model.Reports
 
         public ReportResult RunIntvReport(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts, List<int> filteredIntvIds)
         {
-            /*List<IntvBase> intvs = IntvRepo.GetAll(intvTypes.Select(i => i.Id).ToList(),
-                report.ReportOptions.SelectedAdminLevels.Select(l => l.Id).ToList());
-
-            // Get the disease DisplayName keys so that the values can be filtered
-            List<string> diseaseKeys = DiseaseRepo.GetSelectedDiseases().Where(d => diseaseIds.Contains(d.Id)).Select(d => d.DisplayNameKey).ToList();
-
-            // Get all interventions that have the PcIntvDiseases (diseases targeted) indicator and have the selected diseases selected in that indicator
-            List<IntvBase> filteredIntvs = new List<IntvBase>();
-            foreach (IntvBase intv in intvs)
-            {
-                if (intv.IndicatorValues.Where(ind => ind.Indicator.DisplayName == "PcIntvDiseases").ToList().Count > 0)
-                {
-                    IndicatorValue indicatorVal = intv.IndicatorValues.Where(ind => ind.Indicator.DisplayName == "PcIntvDiseases").FirstOrDefault();
-                    if (diseaseKeys.Any(indicatorVal.DynamicValue.Contains))
-                        filteredIntvs.Add(intv);
-                }
-            }
-
-            // Generate a report with the intervention data
-            foreach (IntvBase intv in filteredIntvs)
-            {
-
-            }*/
-
             // Add all the relevant intervention indicators
             foreach (IntvType intvType in IntvTypes)
             {
@@ -198,93 +175,6 @@ namespace Nada.Model.Reports
                 AddIndicators(intvType.Id, "PcIntvNumIndividualsTreated", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 AddIndicators(intvType.Id, "PcIntvPsacTreated", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
                 AddIndicators(intvType.Id, "PcIntvNumSacTreated", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                AddIndicators(intvType.Id, "PcIntvProgramCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                if (intvType.Id == (int)StaticIntvType.IvmAlb)
-                {
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.DecAlb)
-                {
-                    AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.Ivm)
-                {
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.PzqAlb)
-                {
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.PzqMbd)
-                {
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.Pzq)
-                {
-                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.Alb)
-                {
-                    AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.Mbd)
-                {
-                    AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.Alb2)
-                {
-                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.IvmPzq)
-                {
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.IvmPzqAlb)
-                {
-                    AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                    AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                else if (intvType.Id == (int)StaticIntvType.ZithroTeo)
-                {
-                    AddIndicators(intvType.Id, "PcIntvTraEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, report.ReportOptions);
-                }
-                //AddIndicators(intvType.Id, "PcIntvSthPsacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                //AddIndicators(intvType.Id, "PcIntvSthSacEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                //AddIndicators(intvType.Id, "PcIntvSthEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                //AddIndicators(intvType.Id, "PcIntvLfEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                //AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                //AddIndicators(intvType.Id, "PcIntvSchSacEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                //AddIndicators(intvType.Id, "PcIntvSchEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                //AddIndicators(intvType.Id, "PcIntvTraEpi", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                //AddIndicators(intvType.Id, "PcIntvOnchoEpiCoverageOfOncho", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
-                //AddIndicators(intvType.Id, "PcIntvEpiCoverage", intvType, intvType.IntvTypeName, intvType.DisplayNameKey, options);
             }
 
             // Report gen
@@ -304,25 +194,43 @@ namespace Nada.Model.Reports
 
         public void AggregateDistData(ReportResult result)
         {
-            // loop table, make sure column exists (with 0), sum other columns to good column and delete other columns if they have em.
-            result.DataTableResults.Columns.Add(new DataColumn(Translations.EliminationAtRisk));
-            foreach (DataRow row in result.DataTableResults.Rows)
+            // See if the pop at risk columns should be combined
+            bool CombineAtRiskCols = this.GetType() == typeof(PersonsTreatedCoverageDiseaseReportGenerator)
+                || (Diseases.Count <= 1 && this.GetType() == typeof(PersonsTreatedCoverageDrugPackageReportGenerator));
+
+            // Add the combined pop at risk column if necesssarsy
+            if (CombineAtRiskCols)
+                result.DataTableResults.Columns.Add(new DataColumn(Translations.EliminationAtRisk));
+
+            // Aggregate each distribution row
+            for (int i = 0; i < result.DataTableResults.Rows.Count; i++)
             {
+                DataRow row = result.DataTableResults.Rows[i];
+
                 double totalAtRisk = 0;
                 totalAtRisk += GetColumnDouble(Translations.DDLFPopulationAtRisk + " - " + Translations.LF, result.DataTableResults, row);
                 totalAtRisk += GetColumnDouble(Translations.DDTraPopulationAtRisk + " - " + Translations.Trachoma, result.DataTableResults, row);
                 totalAtRisk += GetColumnDouble(Translations.DDOnchoPopulationAtRisk + " - " + Translations.Oncho, result.DataTableResults, row);
                 totalAtRisk += GetColumnDouble(Translations.DDSTHPopulationAtRisk + " - " + Translations.STH, result.DataTableResults, row);
                 totalAtRisk += GetColumnDouble(Translations.DDSchistoPopulationAtRisk + " - " + Translations.Schisto, result.DataTableResults, row);
-                row[Translations.EliminationAtRisk] = totalAtRisk;
+
+                // Add the total pop at risk to the map
+                RowToPopAtRisk.Add(i, totalAtRisk);
+
+                // Add the total to the pop at risk column if necessary
+                if (CombineAtRiskCols)
+                    row[Translations.EliminationAtRisk] = totalAtRisk;
             }
 
             // Remove original columns that were just used for aggregation
-            TryRemoveColumn(Translations.DDLFPopulationAtRisk + " - " + Translations.LF, result.DataTableResults);
-            TryRemoveColumn(Translations.DDTraPopulationAtRisk + " - " + Translations.Trachoma, result.DataTableResults);
-            TryRemoveColumn(Translations.DDOnchoPopulationAtRisk + " - " + Translations.Oncho, result.DataTableResults);
-            TryRemoveColumn(Translations.DDSTHPopulationAtRisk + " - " + Translations.STH, result.DataTableResults);
-            TryRemoveColumn(Translations.DDSchistoPopulationAtRisk + " - " + Translations.Schisto, result.DataTableResults);
+            if (CombineAtRiskCols)
+            {
+                TryRemoveColumn(Translations.DDLFPopulationAtRisk + " - " + Translations.LF, result.DataTableResults);
+                TryRemoveColumn(Translations.DDTraPopulationAtRisk + " - " + Translations.Trachoma, result.DataTableResults);
+                TryRemoveColumn(Translations.DDOnchoPopulationAtRisk + " - " + Translations.Oncho, result.DataTableResults);
+                TryRemoveColumn(Translations.DDSTHPopulationAtRisk + " - " + Translations.STH, result.DataTableResults);
+                TryRemoveColumn(Translations.DDSchistoPopulationAtRisk + " - " + Translations.Schisto, result.DataTableResults);
+            }
         }
 
         public DataTable AggregateIntvData(ReportResult result)
@@ -339,18 +247,6 @@ namespace Nada.Model.Reports
                     AggregateRounds(data, row, col, Translations.PcIntvNumIndividualsTreated);
                     AggregateRounds(data, row, col, Translations.PcIntvPsacTreated);
                     AggregateRounds(data, row, col, Translations.PcIntvNumSacTreated);
-                    AggregateRounds(data, row, col, Translations.PcIntvProgramCoverage);
-
-                    AggregateRounds(data, row, col, Translations.PcIntvSthPsacEpiCoverage);
-                    AggregateRounds(data, row, col, Translations.PcIntvSthSacEpiCoverage);
-                    AggregateRounds(data, row, col, Translations.PcIntvSthEpiCoverage);
-                    AggregateRounds(data, row, col, Translations.PcIntvLfEpiCoverage);
-                    AggregateRounds(data, row, col, Translations.PcIntvOnchoEpiCoverage);
-                    AggregateRounds(data, row, col, Translations.PcIntvSchSacEpi);
-                    AggregateRounds(data, row, col, Translations.PcIntvSchEpi);
-                    AggregateRounds(data, row, col, Translations.PcIntvTraEpi);
-                    //AggregateRounds(data, row, col, Translations.PcIntvOnchoEpiCoverageOfOncho);
-                    AggregateRounds(data, row, col, Translations.PcIntvEpiCoverage);
                 }
 
                 intvDataDict.Add(i, data);
@@ -379,6 +275,13 @@ namespace Nada.Model.Reports
                             intvDataTable.Columns.Add(new DataColumn(roundColName));
                         // Add the value
                         row[roundColName] = roundEntry.Value;
+
+                        // Calculate epi and program coverage
+                        if (dataEntry.Value.ColumnName == Translations.PcIntvNumIndividualsTreated)
+                        {
+                            CalculateEpi(row, entry.Key, roundEntry.Key, roundEntry.Value);
+                            CalculateProgramCoverage(row, entry.Key, roundEntry.Key, roundEntry.Value, entry.Value);
+                        }
                     }
                 }
 
@@ -387,6 +290,64 @@ namespace Nada.Model.Reports
             }
 
             return intvDataTable;
+        }
+
+        protected void CalculateEpi(DataRow row, int rowNumber, int round, double individualsTreated)
+        {
+            // Get the corresponding population at risk value
+            if (RowToPopAtRisk != null && RowToPopAtRisk.ContainsKey(rowNumber))
+            {
+                double popAtRisk = RowToPopAtRisk[rowNumber];
+                // Calculate the epi coverage
+                double epiCoverage;
+                if (individualsTreated > 0 && popAtRisk > 0)
+                    epiCoverage = individualsTreated / popAtRisk;
+                else
+                    epiCoverage = 0;
+                // Deteremine the column name
+                string roundColName;
+                if (round == -1)
+                    roundColName = Translations.EpiCoverage;
+                else
+                    roundColName = string.Format("{0} - {1} {2}", Translations.EpiCoverage, Translations.Round, round);
+                // Add the column if it does not exist
+                if (!row.Table.Columns.Contains(roundColName))
+                    row.Table.Columns.Add(new DataColumn(roundColName));
+                // Add the epi coverage value
+                row[roundColName] = epiCoverage;
+            }
+        }
+
+        protected void CalculateProgramCoverage(DataRow row, int rowNumber, int round, double individualsTreated, Dictionary<string, ReportColumn> rowData)
+        {
+            if (rowData.ContainsKey(Translations.PcIntvNumEligibleIndividualsTargeted))
+            {
+                // Get all the round data
+                ReportColumn individualsTargetedRoundData = rowData[Translations.PcIntvNumEligibleIndividualsTargeted];
+                // Look for data with the corresponding round
+                if (individualsTargetedRoundData.RoundValues.ContainsKey(round))
+                {
+                    // Get the individuals targeted for the corresponding round
+                    double individualsTargeted = individualsTargetedRoundData.RoundValues[round];
+                    // Calculate the program coverage
+                    double programCoverage;
+                    if (individualsTreated > 0 && individualsTargeted > 0)
+                        programCoverage = individualsTreated / individualsTargeted;
+                    else
+                        programCoverage = 0;
+                    // Deteremine the column name
+                    string roundColName;
+                    if (round == -1)
+                        roundColName = Translations.ProgramCoverage;
+                    else
+                        roundColName = string.Format("{0} - {1} {2}", Translations.ProgramCoverage, Translations.Round, round);
+                    // Add the column if it does not exist
+                    if (!row.Table.Columns.Contains(roundColName))
+                        row.Table.Columns.Add(new DataColumn(roundColName));
+                    // Add the program coverage value
+                    row[roundColName] = programCoverage;
+                }
+            }
         }
 
         public List<int> DetermineInterventionsByDiseasesTargeted(List<IntvType> intvTypes, ReportOptions reportOptions)
@@ -471,11 +432,7 @@ namespace Nada.Model.Reports
             // Run the distribution report for the disease dist related data
             ReportResult distReportResult = RunDistributionReport(CloneReport(report), standardOpts);
             // Aggregate the dist data
-            if (this.GetType() == typeof(PersonsTreatedCoverageDiseaseReportGenerator)
-                || (Diseases.Count <= 1 && this.GetType() == typeof(PersonsTreatedCoverageDrugPackageReportGenerator)))
-            {
-                AggregateDistData(distReportResult);
-            }
+            AggregateDistData(distReportResult);
 
             // Determine which interventions should be used in the report
             List<int> filteredIntvIds = DetermineInterventionsByDiseasesTargeted(IntvTypes, report.ReportOptions);
