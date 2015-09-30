@@ -101,7 +101,8 @@ namespace Nada.UI.View.Wizard
                             if (row["* " + Translations.SurveyName] != null && row["* " + Translations.SurveyName].ToString().Length > 0)
                             {
                                 var vm = new SurveyUnitsAndSentinelSite();
-                                if (!row.Table.Columns.Contains(Translations.IndSpotCheckName) || row[Translations.IndSpotCheckName].ToString().Length == 0)
+                                if ((options.TypeId == (int)StaticSurveyType.SchistoSentinel || options.TypeId == (int)StaticSurveyType.SthSentinel)
+                                    && (!row.Table.Columns.Contains(Translations.IndSpotCheckName) || row[Translations.IndSpotCheckName].ToString().Length == 0))
                                     vm.NeedsSentinelSite = true;
                                 surveyNameDict.Add(row["* " + Translations.SurveyName].ToString(), vm);
                             }
