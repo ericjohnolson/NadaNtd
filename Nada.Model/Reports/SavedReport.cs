@@ -16,7 +16,7 @@ namespace Nada.Model.Reports
         public SavedReport()
         {
             ReportOptions = new ReportOptions();
-            TypeName = Translations.CustomReport;
+            TypeName = TranslationLookup.GetValue("CustomReport");
         }
         public string DisplayName { get; set; }
         public string TypeName { get; set; }

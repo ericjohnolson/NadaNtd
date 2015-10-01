@@ -188,27 +188,27 @@ namespace Nada.Model.Repositories
                         {
                             DataRow dr = dt.NewRow();
                             dr["ID"] = reader.GetValueOrDefault<int>("aID");
-                            dr[Translations.Location] = reader.GetValueOrDefault<string>("DisplayName");
-                            dr[Translations.Type] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"), reader.GetValueOrDefault<string>("TName"));
+                            dr[TranslationLookup.GetValue("Location")] = reader.GetValueOrDefault<string>("DisplayName");
+                            dr[TranslationLookup.GetValue("Type")] = TranslationLookup.GetValue(reader.GetValueOrDefault<string>("TName"), reader.GetValueOrDefault<string>("TName"));
                             int year = Util.GetYearReported(options.MonthYearStarts, reader.GetValueOrDefault<DateTime>("DateReported")); 
                             DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
                             dr["YearNumber"] = year;
                             dr["DaughterId"] = reader.GetValueOrDefault<int>("RedistrictIdForDaughter");
                             dr["MotherId"] = reader.GetValueOrDefault<int>("RedistrictIdForMother");
-                            dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
-                            if (keys.ContainsKey("YearCensus")) dr[Translations.YearCensus] = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
-                            if (keys.ContainsKey("YearProjections")) dr[Translations.YearProjections] = reader.GetValueOrDefault<Nullable<int>>("YearProjections");
-                            if (keys.ContainsKey("GrowthRate")) dr[Translations.GrowthRate] = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
-                            if (keys.ContainsKey("PercentRural")) dr[Translations.PercentRural] = reader.GetValueOrDefault<Nullable<double>>("PercentRural");
-                            if (keys.ContainsKey("TotalPopulation")) dr[Translations.TotalPopulation] = reader.GetValueOrDefault<Nullable<int>>("TotalPopulation");
-                            if (keys.ContainsKey("Pop0Month")) dr[Translations.Pop0Month] = reader.GetValueOrDefault<Nullable<int>>("Pop0Month");
-                            if (keys.ContainsKey("PopPsac")) dr[Translations.PopPsac] = reader.GetValueOrDefault<Nullable<int>>("PopPsac");
-                            if (keys.ContainsKey("PopSac")) dr[Translations.PopSac] = reader.GetValueOrDefault<Nullable<int>>("PopSac");
-                            if (keys.ContainsKey("Pop5yo")) dr[Translations.Pop5yo] = reader.GetValueOrDefault<Nullable<int>>("Pop5yo");
-                            if (keys.ContainsKey("PopAdult")) dr[Translations.PopAdult] = reader.GetValueOrDefault<Nullable<int>>("PopAdult");
-                            if (keys.ContainsKey("PopFemale")) dr[Translations.PopFemale] = reader.GetValueOrDefault<Nullable<int>>("PopFemale");
-                            if (keys.ContainsKey("PopMale")) dr[Translations.PopMale] = reader.GetValueOrDefault<Nullable<int>>("PopMale");
-                            if (keys.ContainsKey("Notes")) dr[Translations.Notes] = reader.GetValueOrDefault<string>("Notes");
+                            dr[TranslationLookup.GetValue("Year")] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
+                            if (keys.ContainsKey("YearCensus")) dr[TranslationLookup.GetValue("YearCensus")] = reader.GetValueOrDefault<Nullable<int>>("YearCensus");
+                            if (keys.ContainsKey("YearProjections")) dr[TranslationLookup.GetValue("YearProjections")] = reader.GetValueOrDefault<Nullable<int>>("YearProjections");
+                            if (keys.ContainsKey("GrowthRate")) dr[TranslationLookup.GetValue("GrowthRate")] = reader.GetValueOrDefault<Nullable<double>>("GrowthRate");
+                            if (keys.ContainsKey("PercentRural")) dr[TranslationLookup.GetValue("PercentRural")] = reader.GetValueOrDefault<Nullable<double>>("PercentRural");
+                            if (keys.ContainsKey("TotalPopulation")) dr[TranslationLookup.GetValue("TotalPopulation")] = reader.GetValueOrDefault<Nullable<int>>("TotalPopulation");
+                            if (keys.ContainsKey("Pop0Month")) dr[TranslationLookup.GetValue("Pop0Month")] = reader.GetValueOrDefault<Nullable<int>>("Pop0Month");
+                            if (keys.ContainsKey("PopPsac")) dr[TranslationLookup.GetValue("PopPsac")] = reader.GetValueOrDefault<Nullable<int>>("PopPsac");
+                            if (keys.ContainsKey("PopSac")) dr[TranslationLookup.GetValue("PopSac")] = reader.GetValueOrDefault<Nullable<int>>("PopSac");
+                            if (keys.ContainsKey("Pop5yo")) dr[TranslationLookup.GetValue("Pop5yo")] = reader.GetValueOrDefault<Nullable<int>>("Pop5yo");
+                            if (keys.ContainsKey("PopAdult")) dr[TranslationLookup.GetValue("PopAdult")] = reader.GetValueOrDefault<Nullable<int>>("PopAdult");
+                            if (keys.ContainsKey("PopFemale")) dr[TranslationLookup.GetValue("PopFemale")] = reader.GetValueOrDefault<Nullable<int>>("PopFemale");
+                            if (keys.ContainsKey("PopMale")) dr[TranslationLookup.GetValue("PopMale")] = reader.GetValueOrDefault<Nullable<int>>("PopMale");
+                            if (keys.ContainsKey("Notes")) dr[TranslationLookup.GetValue("Notes")] = reader.GetValueOrDefault<string>("Notes");
                             dt.Rows.Add(dr);
                         }
                         reader.Close();
@@ -260,11 +260,11 @@ namespace Nada.Model.Repositories
             List<ReportIndicator> indicators = new List<ReportIndicator>();
             IntvRepository repo = new IntvRepository();
             var types = repo.GetAllTypes();
-            var pc = new ReportIndicator { Name = Translations.PcNtds, IsCategory = true };
-            var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
+            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PcNtds"), IsCategory = true };
+            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("OtherNtds"), IsCategory = true };
             indicators.Add(pc);
             indicators.Add(cm);
-            foreach (var t in types.Where(i => i.DiseaseType == Translations.PC).OrderBy(t => t.IntvTypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == TranslationLookup.GetValue("PC")).OrderBy(t => t.IntvTypeName))
             {
                 var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
                 var instance = repo.CreateIntv(t.Id);
@@ -273,7 +273,7 @@ namespace Nada.Model.Repositories
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
-            foreach (var t in types.Where(i => i.DiseaseType == Translations.CM).OrderBy(t => t.IntvTypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == TranslationLookup.GetValue("CM")).OrderBy(t => t.IntvTypeName))
             {
                 var cat = new ReportIndicator { Name = t.IntvTypeName, IsCategory = true };
                 var instance = repo.CreateIntv(t.Id);
@@ -296,23 +296,23 @@ namespace Nada.Model.Repositories
             List<ReportIndicator> indicators = new List<ReportIndicator>();
             SurveyRepository repo = new SurveyRepository();
             var types = repo.GetSurveyTypes();
-            var pc = new ReportIndicator { Name = Translations.PcNtds, IsCategory = true };
-            var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
+            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PcNtds"), IsCategory = true };
+            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("OtherNtds"), IsCategory = true };
             indicators.Add(pc);
             indicators.Add(cm);
-            foreach (var t in types.Where(i => i.DiseaseType == Translations.PC).OrderBy(t => t.SurveyTypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == TranslationLookup.GetValue("PC")).OrderBy(t => t.SurveyTypeName))
             {
                 var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true, ID = t.Id };
                 var instance = repo.CreateSurvey(t.Id);
                 if (addStaticFields && (t.Id == (int)StaticSurveyType.LfSentinel || t.Id == (int)StaticSurveyType.SchistoSentinel || t.Id == (int)StaticSurveyType.SthSentinel))
                 {
-                    cat.Children.Add(new ReportIndicator { Name = Translations.IndSentinelSiteName });
-                    cat.Children.Add(new ReportIndicator { Name = Translations.IndSentinelSiteLat });
-                    cat.Children.Add(new ReportIndicator { Name = Translations.IndSentinelSiteLng });
-                    cat.Children.Add(new ReportIndicator { Name = Translations.IndSpotCheckName });
-                    cat.Children.Add(new ReportIndicator { Name = Translations.IndSpotCheckLat });
-                    cat.Children.Add(new ReportIndicator { Name = Translations.IndSpotCheckLng });
-                    cat.Children.Add(new ReportIndicator { Name = Translations.SiteType });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSentinelSiteName") });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSentinelSiteLat") });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSentinelSiteLng") });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSpotCheckName") });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSpotCheckLat") });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSpotCheckLng") });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("SiteType") });
                 }
 
                 foreach (var i in instance.TypeOfSurvey.Indicators)
@@ -321,7 +321,7 @@ namespace Nada.Model.Repositories
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
-            foreach (var t in types.Where(i => i.DiseaseType == Translations.CM).OrderBy(t => t.SurveyTypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == TranslationLookup.GetValue("CM")).OrderBy(t => t.SurveyTypeName))
             {
                 var cat = new ReportIndicator { Name = t.SurveyTypeName, IsCategory = true };
                 var instance = repo.CreateSurvey(t.Id);
@@ -338,12 +338,12 @@ namespace Nada.Model.Repositories
             List<ReportIndicator> indicators = new List<ReportIndicator>();
             ProcessRepository repo = new ProcessRepository();
             var types = repo.GetProcessTypes();
-            var pc = new ReportIndicator { Name = Translations.PcNtds, IsCategory = true };
-            var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
-            types.RemoveAll(t => t.TypeName == Translations.SAEs);
+            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PcNtds"), IsCategory = true };
+            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("OtherNtds"), IsCategory = true };
+            types.RemoveAll(t => t.TypeName == TranslationLookup.GetValue("SAEs"));
             indicators.Add(pc);
             indicators.Add(cm);
-            foreach (var t in types.Where(i => i.DiseaseType == Translations.PC).OrderBy(t => t.TypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == TranslationLookup.GetValue("PC")).OrderBy(t => t.TypeName))
             {
                 var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
                 var instance = repo.Create(t.Id);
@@ -352,7 +352,7 @@ namespace Nada.Model.Repositories
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
-            foreach (var t in types.Where(i => i.DiseaseType == Translations.CM).OrderBy(t => t.TypeName))
+            foreach (var t in types.Where(i => i.DiseaseType == TranslationLookup.GetValue("CM")).OrderBy(t => t.TypeName))
             {
                 var cat = new ReportIndicator { Name = t.TypeName, IsCategory = true };
                 var instance = repo.Create(t.Id);
@@ -378,11 +378,11 @@ namespace Nada.Model.Repositories
             List<ReportIndicator> indicators = new List<ReportIndicator>();
             DiseaseRepository repo = new DiseaseRepository();
             var types = repo.GetSelectedDiseases();
-            var pc = new ReportIndicator { Name = Translations.PcNtds, IsCategory = true };
-            var cm = new ReportIndicator { Name = Translations.OtherNtds, IsCategory = true };
+            var pc = new ReportIndicator { Name = TranslationLookup.GetValue("PcNtds"), IsCategory = true };
+            var cm = new ReportIndicator { Name = TranslationLookup.GetValue("OtherNtds"), IsCategory = true };
             indicators.Add(pc);
             indicators.Add(cm);
-            foreach (var t in types.Where(i => i.DiseaseType == Translations.PC).OrderBy(t => t.DisplayName))
+            foreach (var t in types.Where(i => i.DiseaseType == TranslationLookup.GetValue("PC")).OrderBy(t => t.DisplayName))
             {
                 var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
                 DiseaseDistroPc dd = repo.Create((DiseaseType)t.Id);
@@ -391,7 +391,7 @@ namespace Nada.Model.Repositories
                 cat.Children = cat.Children.OrderBy(c => c.Name).ToList();
                 pc.Children.Add(cat);
             }
-            foreach (var t in types.Where(i => i.DiseaseType == Translations.CM).OrderBy(t => t.DisplayName))
+            foreach (var t in types.Where(i => i.DiseaseType == TranslationLookup.GetValue("CM")).OrderBy(t => t.DisplayName))
             {
                 var cat = new ReportIndicator { Name = t.DisplayName, IsCategory = true };
                 DiseaseDistroCm dd = repo.CreateCm((DiseaseType)t.Id);
@@ -612,17 +612,17 @@ namespace Nada.Model.Repositories
         {
             DemoRepository demo = new DemoRepository();
             DataTable dataTable = new DataTable();
-            dataTable.Columns.Add(new DataColumn(Translations.RedistrictDate));
-            dataTable.Columns.Add(new DataColumn(Translations.RedistOrigName));
-            dataTable.Columns.Add(new DataColumn(Translations.RedistOrigPop));
-            dataTable.Columns.Add(new DataColumn(Translations.RedistLevel));
-            dataTable.Columns.Add(new DataColumn(Translations.RedistOrigParent));
-            dataTable.Columns.Add(new DataColumn(Translations.RedistNewName));
-            dataTable.Columns.Add(new DataColumn(Translations.RedistNewPop));
-            dataTable.Columns.Add(new DataColumn(Translations.RedistNewParent));
-            dataTable.Columns.Add(new DataColumn(Translations.RedistType));
-            dataTable.Columns.Add(new DataColumn(Translations.RedistEventDate));
-            dataTable.Columns.Add(new DataColumn(Translations.ID));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistrictDate")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistOrigName")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistOrigPop")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistLevel")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistOrigParent")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistNewName")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistNewPop")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistNewParent")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistType")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistEventDate")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("ID")));
             OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
             using (connection)
             {
@@ -669,7 +669,7 @@ namespace Nada.Model.Repositories
                                 foreach (var dest in daughters)
                                 {
                                     dest.Pop = GetRecentPopulation(dest.Id, redistrictDate, connection, demo);
-                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeSplit, date, typeName, id, redistrictDate);
+                                    AddRedistrictingReportRow(dataTable, source, dest, TranslationLookup.GetValue("RedistrictTypeSplit"), date, typeName, id, redistrictDate);
                                 }
                             }
                             else if (t == SplittingType.Merge)
@@ -679,7 +679,7 @@ namespace Nada.Model.Repositories
                                 foreach (var source in mothers)
                                 {
                                     source.Pop = GetRecentPopulation(source.Id, redistrictDate, connection, demo);
-                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeMerge, date, typeName, id, redistrictDate);
+                                    AddRedistrictingReportRow(dataTable, source, dest, TranslationLookup.GetValue("RedistrictTypeMerge"), date, typeName, id, redistrictDate);
                                 }
                             }
                             else // splitcomb
@@ -689,7 +689,7 @@ namespace Nada.Model.Repositories
                                 foreach (var source in mothers)
                                 {
                                     source.Pop = GetRecentPopulation(source.Id, redistrictDate, connection, demo);
-                                    AddRedistrictingReportRow(dataTable, source, dest, Translations.RedistrictTypeSplitCombine, date, typeName, id, redistrictDate);
+                                    AddRedistrictingReportRow(dataTable, source, dest, TranslationLookup.GetValue("RedistrictTypeSplitCombine"), date, typeName, id, redistrictDate);
                                 }
                             }
                         }
@@ -728,17 +728,17 @@ namespace Nada.Model.Repositories
         {
             DataRow dr = report.NewRow();
             if(redistrictDate.HasValue)
-                dr[Translations.RedistrictDate] = redistrictDate.Value.ToShortDateString();
-            dr[Translations.RedistOrigName] = oldUnit.Name;
-            dr[Translations.RedistOrigPop] = oldUnit.Pop;
-            dr[Translations.RedistLevel] = levelName;
-            dr[Translations.RedistOrigParent] = oldUnit.Parent;
-            dr[Translations.RedistNewName] = newUnit.Name;
-            dr[Translations.RedistNewPop] = newUnit.Pop;
-            dr[Translations.RedistNewParent] = newUnit.Parent;
-            dr[Translations.RedistType] = typeName;
-            dr[Translations.RedistEventDate] = date.ToShortDateString();
-            dr[Translations.ID] = id;
+                dr[TranslationLookup.GetValue("RedistrictDate")] = redistrictDate.Value.ToShortDateString();
+            dr[TranslationLookup.GetValue("RedistOrigName")] = oldUnit.Name;
+            dr[TranslationLookup.GetValue("RedistOrigPop")] = oldUnit.Pop;
+            dr[TranslationLookup.GetValue("RedistLevel")] = levelName;
+            dr[TranslationLookup.GetValue("RedistOrigParent")] = oldUnit.Parent;
+            dr[TranslationLookup.GetValue("RedistNewName")] = newUnit.Name;
+            dr[TranslationLookup.GetValue("RedistNewPop")] = newUnit.Pop;
+            dr[TranslationLookup.GetValue("RedistNewParent")] = newUnit.Parent;
+            dr[TranslationLookup.GetValue("RedistType")] = typeName;
+            dr[TranslationLookup.GetValue("RedistEventDate")] = date.ToShortDateString();
+            dr[TranslationLookup.GetValue("ID")] = id;
 
             report.Rows.Add(dr);
         }

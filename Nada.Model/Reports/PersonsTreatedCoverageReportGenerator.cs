@@ -203,7 +203,7 @@ namespace Nada.Model.Reports
 
             // Add the combined pop at risk column if necesssarsy
             if (CombineAtRiskCols)
-                result.DataTableResults.Columns.Add(new DataColumn(Translations.EliminationAtRisk));
+                result.DataTableResults.Columns.Add(new DataColumn(TranslationLookup.GetValue("EliminationAtRisk")));
 
             // Aggregate each distribution row
             for (int i = 0; i < result.DataTableResults.Rows.Count; i++)
@@ -211,28 +211,28 @@ namespace Nada.Model.Reports
                 DataRow row = result.DataTableResults.Rows[i];
 
                 double totalAtRisk = 0;
-                totalAtRisk += GetColumnDouble(Translations.DDLFPopulationAtRisk + " - " + Translations.LF, result.DataTableResults, row);
-                totalAtRisk += GetColumnDouble(Translations.DDTraPopulationAtRisk + " - " + Translations.Trachoma, result.DataTableResults, row);
-                totalAtRisk += GetColumnDouble(Translations.DDOnchoPopulationAtRisk + " - " + Translations.Oncho, result.DataTableResults, row);
-                totalAtRisk += GetColumnDouble(Translations.DDSTHPopulationAtRisk + " - " + Translations.STH, result.DataTableResults, row);
-                totalAtRisk += GetColumnDouble(Translations.DDSchistoPopulationAtRisk + " - " + Translations.Schisto, result.DataTableResults, row);
+                totalAtRisk += GetColumnDouble(TranslationLookup.GetValue("DDLFPopulationAtRisk") + " - " + TranslationLookup.GetValue("LF"), result.DataTableResults, row);
+                totalAtRisk += GetColumnDouble(TranslationLookup.GetValue("DDTraPopulationAtRisk") + " - " + TranslationLookup.GetValue("Trachoma"), result.DataTableResults, row);
+                totalAtRisk += GetColumnDouble(TranslationLookup.GetValue("DDOnchoPopulationAtRisk") + " - " + TranslationLookup.GetValue("Oncho"), result.DataTableResults, row);
+                totalAtRisk += GetColumnDouble(TranslationLookup.GetValue("DDSTHPopulationAtRisk") + " - " + TranslationLookup.GetValue("STH"), result.DataTableResults, row);
+                totalAtRisk += GetColumnDouble(TranslationLookup.GetValue("DDSchistoPopulationAtRisk") + " - " + TranslationLookup.GetValue("Schisto"), result.DataTableResults, row);
 
                 // Add the total pop at risk to the map
                 RowToPopAtRisk.Add(i, totalAtRisk);
 
                 // Add the total to the pop at risk column if necessary
                 if (CombineAtRiskCols)
-                    row[Translations.EliminationAtRisk] = totalAtRisk;
+                    row[TranslationLookup.GetValue("EliminationAtRisk")] = totalAtRisk;
             }
 
             // Remove original columns that were just used for aggregation
             if (CombineAtRiskCols)
             {
-                TryRemoveColumn(Translations.DDLFPopulationAtRisk + " - " + Translations.LF, result.DataTableResults);
-                TryRemoveColumn(Translations.DDTraPopulationAtRisk + " - " + Translations.Trachoma, result.DataTableResults);
-                TryRemoveColumn(Translations.DDOnchoPopulationAtRisk + " - " + Translations.Oncho, result.DataTableResults);
-                TryRemoveColumn(Translations.DDSTHPopulationAtRisk + " - " + Translations.STH, result.DataTableResults);
-                TryRemoveColumn(Translations.DDSchistoPopulationAtRisk + " - " + Translations.Schisto, result.DataTableResults);
+                TryRemoveColumn(TranslationLookup.GetValue("DDLFPopulationAtRisk") + " - " + TranslationLookup.GetValue("LF"), result.DataTableResults);
+                TryRemoveColumn(TranslationLookup.GetValue("DDTraPopulationAtRisk") + " - " + TranslationLookup.GetValue("Trachoma"), result.DataTableResults);
+                TryRemoveColumn(TranslationLookup.GetValue("DDOnchoPopulationAtRisk") + " - " + TranslationLookup.GetValue("Oncho"), result.DataTableResults);
+                TryRemoveColumn(TranslationLookup.GetValue("DDSTHPopulationAtRisk") + " - " + TranslationLookup.GetValue("STH"), result.DataTableResults);
+                TryRemoveColumn(TranslationLookup.GetValue("DDSchistoPopulationAtRisk") + " - " + TranslationLookup.GetValue("Schisto"), result.DataTableResults);
             }
         }
 
@@ -246,10 +246,10 @@ namespace Nada.Model.Reports
                 DataRow row = result.DataTableResults.Rows[i];
                 foreach (DataColumn col in result.DataTableResults.Columns)
                 {
-                    AggregateRounds(data, row, col, Translations.PcIntvNumEligibleIndividualsTargeted);
-                    AggregateRounds(data, row, col, Translations.PcIntvNumIndividualsTreated);
-                    AggregateRounds(data, row, col, Translations.PcIntvPsacTreated);
-                    AggregateRounds(data, row, col, Translations.PcIntvNumSacTreated);
+                    AggregateRounds(data, row, col, TranslationLookup.GetValue("PcIntvNumEligibleIndividualsTargeted"));
+                    AggregateRounds(data, row, col, TranslationLookup.GetValue("PcIntvNumIndividualsTreated"));
+                    AggregateRounds(data, row, col, TranslationLookup.GetValue("PcIntvPsacTreated"));
+                    AggregateRounds(data, row, col, TranslationLookup.GetValue("PcIntvNumSacTreated"));
                 }
 
                 intvDataDict.Add(i, data);
@@ -271,7 +271,7 @@ namespace Nada.Model.Reports
                         if (roundEntry.Key == -1)
                             roundColName = dataEntry.Value.ColumnName;
                         else
-                            roundColName = string.Format("{0} - {1} {2}", dataEntry.Value.ColumnName, Translations.Round, roundEntry.Key);
+                            roundColName = string.Format("{0} - {1} {2}", dataEntry.Value.ColumnName, TranslationLookup.GetValue("Round"), roundEntry.Key);
 
                         // Add the column
                         if (!intvDataTable.Columns.Contains(roundColName))
@@ -280,7 +280,7 @@ namespace Nada.Model.Reports
                         row[roundColName] = roundEntry.Value;
 
                         // Calculate epi and program coverage
-                        if (dataEntry.Value.ColumnName == Translations.PcIntvNumIndividualsTreated)
+                        if (dataEntry.Value.ColumnName == TranslationLookup.GetValue("PcIntvNumIndividualsTreated"))
                         {
                             CalculateEpi(row, entry.Key, roundEntry.Key, roundEntry.Value);
                             CalculateProgramCoverage(row, entry.Key, roundEntry.Key, roundEntry.Value, entry.Value);
@@ -310,9 +310,9 @@ namespace Nada.Model.Reports
                 // Deteremine the column name
                 string roundColName;
                 if (round == -1)
-                    roundColName = Translations.EpiCoverage;
+                    roundColName = TranslationLookup.GetValue("EpiCoverage");
                 else
-                    roundColName = string.Format("{0} - {1} {2}", Translations.EpiCoverage, Translations.Round, round);
+                    roundColName = string.Format("{0} - {1} {2}", TranslationLookup.GetValue("EpiCoverage"), TranslationLookup.GetValue("Round"), round);
                 // Add the column if it does not exist
                 if (!row.Table.Columns.Contains(roundColName))
                     row.Table.Columns.Add(new DataColumn(roundColName));
@@ -323,10 +323,10 @@ namespace Nada.Model.Reports
 
         protected void CalculateProgramCoverage(DataRow row, int rowNumber, int round, double individualsTreated, Dictionary<string, ReportColumn> rowData)
         {
-            if (rowData.ContainsKey(Translations.PcIntvNumEligibleIndividualsTargeted))
+            if (rowData.ContainsKey(TranslationLookup.GetValue("PcIntvNumEligibleIndividualsTargeted")))
             {
                 // Get all the round data
-                ReportColumn individualsTargetedRoundData = rowData[Translations.PcIntvNumEligibleIndividualsTargeted];
+                ReportColumn individualsTargetedRoundData = rowData[TranslationLookup.GetValue("PcIntvNumEligibleIndividualsTargeted")];
                 // Look for data with the corresponding round
                 if (individualsTargetedRoundData.RoundValues.ContainsKey(round))
                 {
@@ -341,9 +341,9 @@ namespace Nada.Model.Reports
                     // Deteremine the column name
                     string roundColName;
                     if (round == -1)
-                        roundColName = Translations.ProgramCoverage;
+                        roundColName = TranslationLookup.GetValue("ProgramCoverage");
                     else
-                        roundColName = string.Format("{0} - {1} {2}", Translations.ProgramCoverage, Translations.Round, round);
+                        roundColName = string.Format("{0} - {1} {2}", TranslationLookup.GetValue("ProgramCoverage"), TranslationLookup.GetValue("Round"), round);
                     // Add the column if it does not exist
                     if (!row.Table.Columns.Contains(roundColName))
                         row.Table.Columns.Add(new DataColumn(roundColName));
@@ -464,7 +464,7 @@ namespace Nada.Model.Reports
             // Run the intervention report
             ReportResult intvReportResult = RunIntvReport(CloneReport(report), standardOpts, filteredIntvIds);
             // Remove the district and year columns from the intervention report result
-            RemovePastColumn(intvReportResult.DataTableResults, Translations.Year);
+            RemovePastColumn(intvReportResult.DataTableResults, TranslationLookup.GetValue("Year"));
             // Aggregate the Report data
             DataTable intvDataTable = AggregateIntvData(intvReportResult);
 
@@ -472,7 +472,7 @@ namespace Nada.Model.Reports
             CopyDataTableToSameRows(intvDataTable, distReportResult.DataTableResults);
 
             distReportResult.ChartData = distReportResult.DataTableResults.Copy();
-            distReportResult.DataTableResults.Columns.Remove(Translations.Type);
+            distReportResult.DataTableResults.Columns.Remove(TranslationLookup.GetValue("Type"));
             return distReportResult;
         }
 
@@ -620,7 +620,7 @@ namespace Nada.Model.Reports
         /// <param name="value">The value</param>
         public void AddValue(string roundColName, string value)
         {
-            int lastIndex = roundColName.LastIndexOf(Translations.Round);
+            int lastIndex = roundColName.LastIndexOf(TranslationLookup.GetValue("Round"));
             if (lastIndex >= 0)
             {
                 string roundString = roundColName.Substring(lastIndex);

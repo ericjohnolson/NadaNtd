@@ -76,38 +76,38 @@ namespace Nada.Model.Reports
             ReportResult result = gen.Run(report);
 
             // loop table, make sure column exists (with 0), sum other columns to good column and delete other columns if they have em.
-            result.DataTableResults.Columns.Add(new DataColumn(Translations.EliminationAtRisk));
-            result.DataTableResults.Columns.Add(new DataColumn(Translations.EliminationLiving));
+            result.DataTableResults.Columns.Add(new DataColumn(TranslationLookup.GetValue("EliminationAtRisk")));
+            result.DataTableResults.Columns.Add(new DataColumn(TranslationLookup.GetValue("EliminationLiving")));
             foreach (DataRow row in result.DataTableResults.Rows)
             {
                 double totalAtRisk = 0, totalLiving = 0;
-                totalAtRisk += GetColumnDouble(Translations.DDLFPopulationAtRisk + " - " + Translations.LF, result.DataTableResults, row);
-                totalAtRisk += GetColumnDouble(Translations.DDTraPopulationAtRisk + " - " + Translations.Trachoma, result.DataTableResults, row);
-                totalAtRisk += GetColumnDouble(Translations.DDOnchoPopulationAtRisk + " - " + Translations.Oncho, result.DataTableResults, row);
-                totalAtRisk += GetColumnDouble(Translations.DDSTHPopulationAtRisk + " - " + Translations.STH, result.DataTableResults, row);
-                totalAtRisk += GetColumnDouble(Translations.DDSchistoPopulationAtRisk + " - " + Translations.Schisto, result.DataTableResults, row);
-                totalLiving += GetColumnDouble(Translations.DDLFPopulationLivingInTheDistrictsThatAc + " - " + Translations.LF, result.DataTableResults, row);
-                totalLiving += GetColumnDouble(Translations.DDTraPopulationLivingInAreasDistrict + " - " + Translations.Trachoma, result.DataTableResults, row);
-                totalLiving += GetColumnDouble(Translations.DDSTHPopulationLivingInTheDistrictsThatA + " - " + Translations.STH, result.DataTableResults, row);
-                totalLiving += GetColumnDouble(Translations.DDOnchoPopulationLivingInTheDistrictsTha + " - " + Translations.Oncho, result.DataTableResults, row);
-                totalLiving += GetColumnDouble(Translations.DDSchistoPopulationLivingInTheDistrictsT + " - " + Translations.Schisto, result.DataTableResults, row);
-                row[Translations.EliminationAtRisk] = totalAtRisk;
-                row[Translations.EliminationLiving] = totalLiving;
+                totalAtRisk += GetColumnDouble(TranslationLookup.GetValue("DDLFPopulationAtRisk") + " - " + TranslationLookup.GetValue("LF"), result.DataTableResults, row);
+                totalAtRisk += GetColumnDouble(TranslationLookup.GetValue("DDTraPopulationAtRisk") + " - " + TranslationLookup.GetValue("Trachoma"), result.DataTableResults, row);
+                totalAtRisk += GetColumnDouble(TranslationLookup.GetValue("DDOnchoPopulationAtRisk") + " - " + TranslationLookup.GetValue("Oncho"), result.DataTableResults, row);
+                totalAtRisk += GetColumnDouble(TranslationLookup.GetValue("DDSTHPopulationAtRisk") + " - " + TranslationLookup.GetValue("STH"), result.DataTableResults, row);
+                totalAtRisk += GetColumnDouble(TranslationLookup.GetValue("DDSchistoPopulationAtRisk") + " - " + TranslationLookup.GetValue("Schisto"), result.DataTableResults, row);
+                totalLiving += GetColumnDouble(TranslationLookup.GetValue("DDLFPopulationLivingInTheDistrictsThatAc") + " - " + TranslationLookup.GetValue("LF"), result.DataTableResults, row);
+                totalLiving += GetColumnDouble(TranslationLookup.GetValue("DDTraPopulationLivingInAreasDistrict") + " - " + TranslationLookup.GetValue("Trachoma"), result.DataTableResults, row);
+                totalLiving += GetColumnDouble(TranslationLookup.GetValue("DDSTHPopulationLivingInTheDistrictsThatA") + " - " + TranslationLookup.GetValue("STH"), result.DataTableResults, row);
+                totalLiving += GetColumnDouble(TranslationLookup.GetValue("DDOnchoPopulationLivingInTheDistrictsTha") + " - " + TranslationLookup.GetValue("Oncho"), result.DataTableResults, row);
+                totalLiving += GetColumnDouble(TranslationLookup.GetValue("DDSchistoPopulationLivingInTheDistrictsT") + " - " + TranslationLookup.GetValue("Schisto"), result.DataTableResults, row);
+                row[TranslationLookup.GetValue("EliminationAtRisk")] = totalAtRisk;
+                row[TranslationLookup.GetValue("EliminationLiving")] = totalLiving;
             }
 
-            TryRemoveColumn(Translations.DDLFPopulationAtRisk + " - " + Translations.LF, result.DataTableResults);
-            TryRemoveColumn(Translations.DDLFPopulationLivingInTheDistrictsThatAc + " - " + Translations.LF, result.DataTableResults);
-            TryRemoveColumn(Translations.DDTraPopulationAtRisk + " - " + Translations.Trachoma, result.DataTableResults);
-            TryRemoveColumn(Translations.DDOnchoPopulationAtRisk + " - " + Translations.Oncho, result.DataTableResults);
-            TryRemoveColumn(Translations.DDSTHPopulationAtRisk + " - " + Translations.STH, result.DataTableResults);
-            TryRemoveColumn(Translations.DDSchistoPopulationAtRisk + " - " + Translations.Schisto, result.DataTableResults);
-            TryRemoveColumn(Translations.DDTraPopulationLivingInAreasDistrict + " - " + Translations.Trachoma, result.DataTableResults);
-            TryRemoveColumn(Translations.DDSTHPopulationLivingInTheDistrictsThatA + " - " + Translations.STH, result.DataTableResults);
-            TryRemoveColumn(Translations.DDOnchoPopulationLivingInTheDistrictsTha + " - " + Translations.Oncho, result.DataTableResults);
-            TryRemoveColumn(Translations.DDSchistoPopulationLivingInTheDistrictsT + " - " + Translations.Schisto, result.DataTableResults);
+            TryRemoveColumn(TranslationLookup.GetValue("DDLFPopulationAtRisk") + " - " + TranslationLookup.GetValue("LF"), result.DataTableResults);
+            TryRemoveColumn(TranslationLookup.GetValue("DDLFPopulationLivingInTheDistrictsThatAc") + " - " + TranslationLookup.GetValue("LF"), result.DataTableResults);
+            TryRemoveColumn(TranslationLookup.GetValue("DDTraPopulationAtRisk") + " - " + TranslationLookup.GetValue("Trachoma"), result.DataTableResults);
+            TryRemoveColumn(TranslationLookup.GetValue("DDOnchoPopulationAtRisk") + " - " + TranslationLookup.GetValue("Oncho"), result.DataTableResults);
+            TryRemoveColumn(TranslationLookup.GetValue("DDSTHPopulationAtRisk") + " - " + TranslationLookup.GetValue("STH"), result.DataTableResults);
+            TryRemoveColumn(TranslationLookup.GetValue("DDSchistoPopulationAtRisk") + " - " + TranslationLookup.GetValue("Schisto"), result.DataTableResults);
+            TryRemoveColumn(TranslationLookup.GetValue("DDTraPopulationLivingInAreasDistrict") + " - " + TranslationLookup.GetValue("Trachoma"), result.DataTableResults);
+            TryRemoveColumn(TranslationLookup.GetValue("DDSTHPopulationLivingInTheDistrictsThatA") + " - " + TranslationLookup.GetValue("STH"), result.DataTableResults);
+            TryRemoveColumn(TranslationLookup.GetValue("DDOnchoPopulationLivingInTheDistrictsTha") + " - " + TranslationLookup.GetValue("Oncho"), result.DataTableResults);
+            TryRemoveColumn(TranslationLookup.GetValue("DDSchistoPopulationLivingInTheDistrictsT") + " - " + TranslationLookup.GetValue("Schisto"), result.DataTableResults);
 
             result.ChartData = result.DataTableResults.Copy();
-            result.DataTableResults.Columns.Remove(Translations.Type);
+            result.DataTableResults.Columns.Remove(TranslationLookup.GetValue("Type"));
             if (options.IsCountryAggregation)
                 result.DataTableResults.Columns.RemoveAt(0);
             return result;
@@ -161,76 +161,76 @@ namespace Nada.Model.Reports
 
             Dictionary<string, DataRow> years = new Dictionary<string,DataRow>();
             DataTable summed = new DataTable();
-            summed.Columns.Add(new DataColumn(Translations.Location));
-            summed.Columns.Add(new DataColumn(Translations.Year, typeof(string)));
-            summed.Columns.Add(new DataColumn(string.Format(Translations.EliminationEndemicDistricts, standardOpts.DistrictType.DisplayName), typeof(int)));
-            summed.Columns.Add(new DataColumn(string.Format(Translations.EliminationStoppedDistricts, standardOpts.DistrictType.DisplayName), typeof(int)));
+            summed.Columns.Add(new DataColumn(TranslationLookup.GetValue("Location")));
+            summed.Columns.Add(new DataColumn(TranslationLookup.GetValue("Year"), typeof(string)));
+            summed.Columns.Add(new DataColumn(string.Format(TranslationLookup.GetValue("EliminationEndemicDistricts"), standardOpts.DistrictType.DisplayName), typeof(int)));
+            summed.Columns.Add(new DataColumn(string.Format(TranslationLookup.GetValue("EliminationStoppedDistricts"), standardOpts.DistrictType.DisplayName), typeof(int)));
             
             foreach (DataRow row in result.DataTableResults.Rows)
             {
                 string endemicty = "";
                 int totalEndemic = 0, totalStopped = 0;
-                if (result.DataTableResults.Columns.Contains(Translations.DDLFDiseaseDistributionPcInterventions + " - " + Translations.LF))
+                if (result.DataTableResults.Columns.Contains(TranslationLookup.GetValue("DDLFDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("LF")))
                 {
-                    endemicty = row[Translations.DDLFDiseaseDistributionPcInterventions + " - " + Translations.LF].ToString();
-                    if (endemicty == Translations.LfEnd1 || endemicty == Translations.LfEndPending)
+                    endemicty = row[TranslationLookup.GetValue("DDLFDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("LF")].ToString();
+                    if (endemicty == TranslationLookup.GetValue("LfEnd1") || endemicty == TranslationLookup.GetValue("LfEndPending"))
                         totalEndemic++;
-                    else if (endemicty == Translations.LfEnd100)
+                    else if (endemicty == TranslationLookup.GetValue("LfEnd100"))
                         totalStopped++;
                 }
-                if (result.DataTableResults.Columns.Contains(Translations.DDOnchoDiseaseDistributionPcInterventio + " - " + Translations.Oncho))
+                if (result.DataTableResults.Columns.Contains(TranslationLookup.GetValue("DDOnchoDiseaseDistributionPcInterventio") + " - " + TranslationLookup.GetValue("Oncho")))
                 {
-                    endemicty = row[Translations.DDOnchoDiseaseDistributionPcInterventio + " - " + Translations.Oncho].ToString();
-                    if (endemicty == Translations.Oncho1 || endemicty == Translations.OnchoPending)
+                    endemicty = row[TranslationLookup.GetValue("DDOnchoDiseaseDistributionPcInterventio") + " - " + TranslationLookup.GetValue("Oncho")].ToString();
+                    if (endemicty == TranslationLookup.GetValue("Oncho1") || endemicty == TranslationLookup.GetValue("OnchoPending"))
                         totalEndemic++;
-                    else if (endemicty == Translations.Oncho100)
+                    else if (endemicty == TranslationLookup.GetValue("Oncho100"))
                         totalStopped++;
                 }
-                if (result.DataTableResults.Columns.Contains(Translations.DDSchistoDiseaseDistributionPcIntervent + " - " + Translations.Schisto))
+                if (result.DataTableResults.Columns.Contains(TranslationLookup.GetValue("DDSchistoDiseaseDistributionPcIntervent") + " - " + TranslationLookup.GetValue("Schisto")))
                 {
-                    endemicty = row[Translations.DDSchistoDiseaseDistributionPcIntervent + " - " + Translations.Schisto].ToString();
-                    if (endemicty == Translations.Sch1 || endemicty == Translations.Sch2 || endemicty == Translations.Sch2a || endemicty == Translations.Sch3 || endemicty == Translations.Sch3a
-                        || endemicty == Translations.Sch3b || endemicty == Translations.Sch20 || endemicty == Translations.Sch30 || endemicty == Translations.Sch40
-                        || endemicty == Translations.SchPending)
+                    endemicty = row[TranslationLookup.GetValue("DDSchistoDiseaseDistributionPcIntervent") + " - " + TranslationLookup.GetValue("Schisto")].ToString();
+                    if (endemicty == TranslationLookup.GetValue("Sch1") || endemicty == TranslationLookup.GetValue("Sch2") || endemicty == TranslationLookup.GetValue("Sch2a") || endemicty == TranslationLookup.GetValue("Sch3") || endemicty == TranslationLookup.GetValue("Sch3a")
+                        || endemicty == TranslationLookup.GetValue("Sch3b") || endemicty == TranslationLookup.GetValue("Sch20") || endemicty == TranslationLookup.GetValue("Sch30") || endemicty == TranslationLookup.GetValue("Sch40")
+                        || endemicty == TranslationLookup.GetValue("SchPending"))
                         totalEndemic++;
-                    else if (endemicty == Translations.Sch100)
-                        totalStopped++;
-                }
-
-                if (result.DataTableResults.Columns.Contains(Translations.DDSTHDiseaseDistributionPcInterventions + " - " + Translations.STH))
-                {
-                    endemicty = row[Translations.DDSTHDiseaseDistributionPcInterventions + " - " + Translations.STH].ToString();
-                    if (endemicty == Translations.Sth2 || endemicty == Translations.Sth3 || endemicty == Translations.Sth10 || endemicty == Translations.Sth20
-                        || endemicty == Translations.Sth30 || endemicty == Translations.Sth40 || endemicty == Translations.SthPending)
-                        totalEndemic++;
-                    else if (endemicty == Translations.Sth100)
-                        totalStopped++;
-                }
-                if (result.DataTableResults.Columns.Contains(Translations.DDTraDiseaseDistributionPcInterventions + " - " + Translations.Trachoma))
-                {
-                    endemicty = row[Translations.DDTraDiseaseDistributionPcInterventions + " - " + Translations.Trachoma].ToString();
-                    if (endemicty == Translations.Tra1 || endemicty == Translations.Tra4 || endemicty == Translations.Tra5
-                        || endemicty == Translations.TraPending)
-                        totalEndemic++;
-                    else if (endemicty == Translations.Tra100)
+                    else if (endemicty == TranslationLookup.GetValue("Sch100"))
                         totalStopped++;
                 }
 
-                if (!years.ContainsKey(row[Translations.Year].ToString()))
+                if (result.DataTableResults.Columns.Contains(TranslationLookup.GetValue("DDSTHDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("STH")))
+                {
+                    endemicty = row[TranslationLookup.GetValue("DDSTHDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("STH")].ToString();
+                    if (endemicty == TranslationLookup.GetValue("Sth2") || endemicty == TranslationLookup.GetValue("Sth3") || endemicty == TranslationLookup.GetValue("Sth10") || endemicty == TranslationLookup.GetValue("Sth20")
+                        || endemicty == TranslationLookup.GetValue("Sth30") || endemicty == TranslationLookup.GetValue("Sth40") || endemicty == TranslationLookup.GetValue("SthPending"))
+                        totalEndemic++;
+                    else if (endemicty == TranslationLookup.GetValue("Sth100"))
+                        totalStopped++;
+                }
+                if (result.DataTableResults.Columns.Contains(TranslationLookup.GetValue("DDTraDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("Trachoma")))
+                {
+                    endemicty = row[TranslationLookup.GetValue("DDTraDiseaseDistributionPcInterventions") + " - " + TranslationLookup.GetValue("Trachoma")].ToString();
+                    if (endemicty == TranslationLookup.GetValue("Tra1") || endemicty == TranslationLookup.GetValue("Tra4") || endemicty == TranslationLookup.GetValue("Tra5")
+                        || endemicty == TranslationLookup.GetValue("TraPending"))
+                        totalEndemic++;
+                    else if (endemicty == TranslationLookup.GetValue("Tra100"))
+                        totalStopped++;
+                }
+
+                if (!years.ContainsKey(row[TranslationLookup.GetValue("Year")].ToString()))
                 {
                     DataRow dr = summed.NewRow();
-                    dr[Translations.Year] = row[Translations.Year];
-                    dr[string.Format(Translations.EliminationEndemicDistricts, standardOpts.DistrictType.DisplayName)] = totalEndemic;
-                    dr[string.Format(Translations.EliminationStoppedDistricts, standardOpts.DistrictType.DisplayName)] = totalStopped;
-                    years.Add(row[Translations.Year].ToString(), dr);
+                    dr[TranslationLookup.GetValue("Year")] = row[TranslationLookup.GetValue("Year")];
+                    dr[string.Format(TranslationLookup.GetValue("EliminationEndemicDistricts"), standardOpts.DistrictType.DisplayName)] = totalEndemic;
+                    dr[string.Format(TranslationLookup.GetValue("EliminationStoppedDistricts"), standardOpts.DistrictType.DisplayName)] = totalStopped;
+                    years.Add(row[TranslationLookup.GetValue("Year")].ToString(), dr);
                     summed.Rows.Add(dr);
                 }
                 else
                 {
-                    years[row[Translations.Year].ToString()][string.Format(Translations.EliminationEndemicDistricts, standardOpts.DistrictType.DisplayName)] =
-                        totalEndemic + (int)years[row[Translations.Year].ToString()][string.Format(Translations.EliminationEndemicDistricts, standardOpts.DistrictType.DisplayName)];
-                    years[row[Translations.Year].ToString()][string.Format(Translations.EliminationStoppedDistricts, standardOpts.DistrictType.DisplayName)] =
-                        totalStopped + (int)years[row[Translations.Year].ToString()][string.Format(Translations.EliminationStoppedDistricts, standardOpts.DistrictType.DisplayName)];
+                    years[row[TranslationLookup.GetValue("Year")].ToString()][string.Format(TranslationLookup.GetValue("EliminationEndemicDistricts"), standardOpts.DistrictType.DisplayName)] =
+                        totalEndemic + (int)years[row[TranslationLookup.GetValue("Year")].ToString()][string.Format(TranslationLookup.GetValue("EliminationEndemicDistricts"), standardOpts.DistrictType.DisplayName)];
+                    years[row[TranslationLookup.GetValue("Year")].ToString()][string.Format(TranslationLookup.GetValue("EliminationStoppedDistricts"), standardOpts.DistrictType.DisplayName)] =
+                        totalStopped + (int)years[row[TranslationLookup.GetValue("Year")].ToString()][string.Format(TranslationLookup.GetValue("EliminationStoppedDistricts"), standardOpts.DistrictType.DisplayName)];
                 }
             }
 

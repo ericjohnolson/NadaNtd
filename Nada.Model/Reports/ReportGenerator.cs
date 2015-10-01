@@ -99,9 +99,9 @@ namespace Nada.Model.Reports
             ReportResult reportResult = new ReportResult();
             DataTable result = new DataTable();
             result.Columns.Add(new DataColumn("ID"));
-            result.Columns.Add(new DataColumn(Translations.Location));
-            result.Columns.Add(new DataColumn(Translations.Type));
-            result.Columns.Add(new DataColumn(Translations.Year));
+            result.Columns.Add(new DataColumn(TranslationLookup.GetValue("Location")));
+            result.Columns.Add(new DataColumn(TranslationLookup.GetValue("Type")));
+            result.Columns.Add(new DataColumn(TranslationLookup.GetValue("Year")));
             result.Columns.Add(new DataColumn("YearNumber"));
             Dictionary<string, ReportRow> resultDic = new Dictionary<string, ReportRow>();
             if (options.IsNoAggregation)
@@ -145,7 +145,7 @@ namespace Nada.Model.Reports
                             if (aggInd == null)
                                 continue;
 
-                            AddToTable(result, resultDic, level, year, columnDef.Value, levelAndYear, aggInd, Translations.NA, options);
+                            AddToTable(result, resultDic, level, year, columnDef.Value, levelAndYear, aggInd, TranslationLookup.GetValue("NA"), options);
                         }
                     }
                 }
@@ -162,7 +162,7 @@ namespace Nada.Model.Reports
                     DateTime yearEndDate = options.IsGroupByRange ? options.EndDate : new DateTime(row.Year, options.MonthYearStarts, 1).AddYears(1).AddDays(-1);
                     var adminLevelDemo = calc.GetAdminLevelDemo(row.AdminLevelId, startDate, yearEndDate);
                     if (adminLevelDemo.Id <= 0)
-                        errors += string.Format(Translations.ReportsNoDemographyInDateRange, row.AdminLevelName, startDate.ToShortDateString(), yearEndDate.ToShortDateString()) + Environment.NewLine;
+                        errors += string.Format(TranslationLookup.GetValue("ReportsNoDemographyInDateRange"), row.AdminLevelName, startDate.ToShortDateString(), yearEndDate.ToShortDateString()) + Environment.NewLine;
                     foreach (var field in selectedCalcFields)
                     {
                         Dictionary<string, Dictionary<string, string>> relatedByType = CreateCalcRelatedValueDic(row.CalcRelated.Where(i => i.TypeId == field.TypeId));
@@ -222,13 +222,13 @@ namespace Nada.Model.Reports
                     dr[parents[i].LevelName] = parents[i].Name;
                 }
                 dr["ID"] = level.Id;
-                dr[Translations.Location] = level.Name;
-                dr[Translations.Type] = typeName;
+                dr[TranslationLookup.GetValue("Location")] = level.Name;
+                dr[TranslationLookup.GetValue("Type")] = typeName;
                 dr["YearNumber"] = year;
                 if (year > 0)
                 {
                     DateTime startMonth = new DateTime(year, options.MonthYearStarts, 1);
-                    dr[Translations.Year] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
+                    dr[TranslationLookup.GetValue("Year")] = startMonth.ToString("MMM yyyy") + "-" + startMonth.AddYears(1).AddMonths(-1).ToString("MMM yyyy");
                 }
 
                 AddRedistrictingColumn(result, level, options, dr);
@@ -284,12 +284,12 @@ namespace Nada.Model.Reports
         {
             if (options.ShowRedistrictEvents)
             {
-                if (!result.Columns.Contains(Translations.RedistrictingNotes))
-                    result.Columns.Add(new DataColumn(Translations.RedistrictingNotes));
+                if (!result.Columns.Contains(TranslationLookup.GetValue("RedistrictingNotes")))
+                    result.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistrictingNotes")));
                 if (level.RedistrictIdForDaughter > 0)
-                    dr[Translations.RedistrictingNotes] = demo.GetRedistrictingDaughterNote(level.RedistrictIdForDaughter);
+                    dr[TranslationLookup.GetValue("RedistrictingNotes")] = demo.GetRedistrictingDaughterNote(level.RedistrictIdForDaughter);
                 else if (level.RedistrictIdForMother > 0)
-                    dr[Translations.RedistrictingNotes] = demo.GetRedistrictingMotherNote(level.RedistrictIdForMother);
+                    dr[TranslationLookup.GetValue("RedistrictingNotes")] = demo.GetRedistrictingMotherNote(level.RedistrictIdForMother);
             }
         }
 
@@ -308,7 +308,7 @@ namespace Nada.Model.Reports
             object IsEditable = reader["IsEditable"];
             if (!Convert.ToBoolean(IsEditable))
                 name = TranslationLookup.GetValue(name);
-            if (name == Translations.NoTranslationFound || name.Length == 0)
+            if (name == TranslationLookup.GetValue("NoTranslationFound") || name.Length == 0)
                 return null;
 
             return name + " - " + GetTypeName(reader);
@@ -577,11 +577,11 @@ namespace Nada.Model.Reports
             {
                 DateTime start = new DateTime(missingUnit.Key, opts.MonthYearStarts, 1);
                 DateTime end = start.AddYears(1).AddDays(-1);
-                string unitName = string.IsNullOrEmpty(missingUnit.Value.Name) ? Translations.Country : missingUnit.Value.Name;
+                string unitName = string.IsNullOrEmpty(missingUnit.Value.Name) ? TranslationLookup.GetValue("Country") : missingUnit.Value.Name;
                 if(isDemo)
-                    warnings += string.Format(Translations.ReportsNoDemographyInDateRange, unitName, start.ToShortDateString(), end.ToShortDateString()) + Environment.NewLine;
+                    warnings += string.Format(TranslationLookup.GetValue("ReportsNoDemographyInDateRange"), unitName, start.ToShortDateString(), end.ToShortDateString()) + Environment.NewLine;
                 else
-                    warnings += string.Format(Translations.ReportsNoDdInDateRange, unitName, start.ToShortDateString(), end.ToShortDateString(), Translations.ReportChoosenDd) + Environment.NewLine;
+                    warnings += string.Format(TranslationLookup.GetValue("ReportsNoDdInDateRange"), unitName, start.ToShortDateString(), end.ToShortDateString(), TranslationLookup.GetValue("ReportChoosenDd")) + Environment.NewLine;
             }
             return warnings;
         }
@@ -664,13 +664,13 @@ namespace Nada.Model.Reports
 
             return name + " - " +
                 GetTypeName(reader) +
-                GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", Translations.Round));
+                GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", TranslationLookup.GetValue("Round")));
         }
 
         protected override string GetColTypeName(OleDbDataReader reader)
         {
             return " - " + GetTypeName(reader) +
-                GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", Translations.Round));
+                GetValueOrBlank(reader.GetValueOrDefault<Nullable<int>>("PcIntvRoundNumber"), string.Format(" - {0} ", TranslationLookup.GetValue("Round")));
         }
     }
 
@@ -695,17 +695,17 @@ namespace Nada.Model.Reports
         protected override string CmdText()
         {
             string staticConditional = "";
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckName) != null)
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSpotCheckName")) != null)
                 staticConditional += "OR Surveys.SpotCheckName IS NOT NULL ";
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLat) != null)
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSpotCheckLat")) != null)
                 staticConditional += "OR Surveys.SpotCheckLat IS NOT NULL ";
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLng) != null)
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSpotCheckLng")) != null)
                 staticConditional += "OR Surveys.SpotCheckLng IS NOT NULL ";
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteName) != null)
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSentinelSiteName")) != null)
                 staticConditional += "OR SentinelSites.SiteName IS NOT NULL ";
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLat) != null)
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSentinelSiteLat")) != null)
                 staticConditional += "OR SentinelSites.Lat IS NOT NULL ";
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLng) != null)
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSentinelSiteLng")) != null)
                 staticConditional += "OR SentinelSites.Lng IS NOT NULL ";
             if (staticConditional.Length > 0)
                 staticConditional = " AND ( " + staticConditional.Remove(0, 2) + " ) ";
@@ -777,20 +777,20 @@ namespace Nada.Model.Reports
 
         protected override void AddStaticAggInd(CreateAggParams param)
         {
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckName) != null)
-                AddStaticIndicatorAndColumn<string>("IndSpotCheckName", Translations.IndSpotCheckName, param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLat) != null)
-                AddStaticIndicatorAndColumn<Nullable<double>>("IndSpotCheckLat", Translations.IndSpotCheckLat, param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSpotCheckLng) != null)
-                AddStaticIndicatorAndColumn<Nullable<double>>("IndSpotCheckLng", Translations.IndSpotCheckLng, param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteName) != null)
-                AddStaticIndicatorAndColumn<string>("IndSentinelSiteName", Translations.IndSentinelSiteName, param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLat) != null)
-                AddStaticIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLat", Translations.IndSentinelSiteLat, param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.IndSentinelSiteLng) != null)
-                AddStaticIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLng", Translations.IndSentinelSiteLng, param);
-            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == Translations.SiteType) != null)
-                AddStaticIndicatorAndColumn<string>("SiteType", Translations.SiteType, param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSpotCheckName")) != null)
+                AddStaticIndicatorAndColumn<string>("IndSpotCheckName", TranslationLookup.GetValue("IndSpotCheckName"), param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSpotCheckLat")) != null)
+                AddStaticIndicatorAndColumn<Nullable<double>>("IndSpotCheckLat", TranslationLookup.GetValue("IndSpotCheckLat"), param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSpotCheckLng")) != null)
+                AddStaticIndicatorAndColumn<Nullable<double>>("IndSpotCheckLng", TranslationLookup.GetValue("IndSpotCheckLng"), param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSentinelSiteName")) != null)
+                AddStaticIndicatorAndColumn<string>("IndSentinelSiteName", TranslationLookup.GetValue("IndSentinelSiteName"), param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSentinelSiteLat")) != null)
+                AddStaticIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLat", TranslationLookup.GetValue("IndSentinelSiteLat"), param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("IndSentinelSiteLng")) != null)
+                AddStaticIndicatorAndColumn<Nullable<double>>("IndSentinelSiteLng", TranslationLookup.GetValue("IndSentinelSiteLng"), param);
+            if (opts.SelectedIndicators.FirstOrDefault(i => i.Name == TranslationLookup.GetValue("SiteType")) != null)
+                AddStaticIndicatorAndColumn<string>("SiteType", TranslationLookup.GetValue("SiteType"), param);
         }
 
         private void AddStaticIndicatorAndColumn<T>(string columnName, string transName, CreateAggParams param)
@@ -826,9 +826,9 @@ namespace Nada.Model.Reports
             var s = surveyRepo.GetById(indValue.FormId);
             if (s.AdminLevels.Count > 1)
             {
-                if (!result.Columns.Contains(Translations.AdminUnitsSurveyed))
-                    result.Columns.Add(new DataColumn(Translations.AdminUnitsSurveyed));
-                dr[Translations.AdminUnitsSurveyed] = string.Join(", ", s.AdminLevels.Select(a => a.Name).ToArray());
+                if (!result.Columns.Contains(TranslationLookup.GetValue("AdminUnitsSurveyed")))
+                    result.Columns.Add(new DataColumn(TranslationLookup.GetValue("AdminUnitsSurveyed")));
+                dr[TranslationLookup.GetValue("AdminUnitsSurveyed")] = string.Join(", ", s.AdminLevels.Select(a => a.Name).ToArray());
             }
         }
     }
@@ -1030,9 +1030,9 @@ namespace Nada.Model.Reports
             ReportResult result = new ReportResult();
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn("ID"));
-            dataTable.Columns.Add(new DataColumn(Translations.Location));
-            dataTable.Columns.Add(new DataColumn(Translations.Type));
-            dataTable.Columns.Add(new DataColumn(Translations.Year));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("Location")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("Type")));
+            dataTable.Columns.Add(new DataColumn(TranslationLookup.GetValue("Year")));
             dataTable.Columns.Add(new DataColumn("YearNumber"));
             dataTable.Columns.Add(new DataColumn("DaughterId"));
             dataTable.Columns.Add(new DataColumn("MotherId"));
@@ -1059,14 +1059,14 @@ namespace Nada.Model.Reports
                 // add redistricting notes
                 if (options.ShowRedistrictEvents)
                 {
-                    if(!result.DataTableResults.Columns.Contains(Translations.RedistrictingNotes))
-                        result.DataTableResults.Columns.Add(new DataColumn(Translations.RedistrictingNotes));
+                    if(!result.DataTableResults.Columns.Contains(TranslationLookup.GetValue("RedistrictingNotes")))
+                        result.DataTableResults.Columns.Add(new DataColumn(TranslationLookup.GetValue("RedistrictingNotes")));
                     int daughterId = Convert.ToInt32(dr["DaughterId"]);
                     int motherId = Convert.ToInt32(dr["MotherId"]);
                     if (daughterId > 0)
-                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingDaughterNote(daughterId);
+                        dr[TranslationLookup.GetValue("RedistrictingNotes")] = demo.GetRedistrictingDaughterNote(daughterId);
                     else if (motherId > 0)
-                        dr[Translations.RedistrictingNotes] = demo.GetRedistrictingMotherNote(motherId);
+                        dr[TranslationLookup.GetValue("RedistrictingNotes")] = demo.GetRedistrictingMotherNote(motherId);
                 }
             }
 
@@ -1076,7 +1076,7 @@ namespace Nada.Model.Reports
             result.DataTableResults.Columns.Remove("DaughterId");
             result.DataTableResults.Columns.Remove("MotherId");
             result.ChartData = result.DataTableResults.Copy();
-            result.DataTableResults.Columns.Remove(Translations.Location);
+            result.DataTableResults.Columns.Remove(TranslationLookup.GetValue("Location"));
             return result;
         }
     }
