@@ -13,15 +13,17 @@ namespace Nada.Model.Reports
 {
     public abstract class PersonsTreatedCoverageBaseReportGenerator : BaseReportGenerator
     {
-        public DiseaseRepository DiseaseRepo = new DiseaseRepository();
-        public DemoRepository DemoRepo = new DemoRepository();
-        public IntvRepository IntvRepo = new IntvRepository();
-        public List<IntvType> IntvTypes { get; set; }
-        public List<Disease> Diseases { get; set; }
-        public Dictionary<int, double> RowToPopAtRisk = new Dictionary<int, double>();
+        protected DiseaseRepository DiseaseRepo = new DiseaseRepository();
+        protected DemoRepository DemoRepo = new DemoRepository();
+        protected IntvRepository IntvRepo = new IntvRepository();
+        protected List<IntvType> IntvTypes { get; set; }
+        protected List<Disease> Diseases { get; set; }
+        protected Dictionary<int, double> RowToPopAtRisk = new Dictionary<int, double>();
 
-        public abstract List<IntvType> DetermineIntvTypes(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts);
-        public abstract List<Disease> DetermineDiseases(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts);
+        protected abstract List<IntvType> DetermineIntvTypes(PersonsTreatedCoverageReportOptions standardOpts);
+        protected abstract List<IntvType> DetermineIntvTypes(List<Disease> diseases);
+        protected abstract List<Disease> DetermineDiseases(PersonsTreatedCoverageReportOptions standardOpts);
+        protected abstract List<Disease> DetermineDiseases(PersonsTreatedCoverageReportOptions standardOpts, List<IntvBase> interventions);
 
         protected void HydrateIntvTypes(List<IntvType> intvTypes)
         {
@@ -129,7 +131,7 @@ namespace Nada.Model.Reports
             return newReport;
         }
 
-        public ReportResult RunDistributionReport(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts)
+        protected ReportResult RunDistributionReport(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts)
         {
             // Add the disease indicators to the report
             foreach (var disease in Diseases)
@@ -166,7 +168,7 @@ namespace Nada.Model.Reports
             return result;
         }
 
-        public ReportResult RunIntvReport(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts, List<int> filteredIntvIds)
+        protected ReportResult RunIntvReport(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts, List<int> filteredIntvIds)
         {
             // Add all the relevant intervention indicators
             foreach (IntvType intvType in IntvTypes)
@@ -180,7 +182,8 @@ namespace Nada.Model.Reports
             // Report gen
             IntvReportGenerator gen = new IntvReportGenerator();
             // Set the IDs of the filtererd interventions
-            gen.CmdTextOverride = DetermineInterventionSql(filteredIntvIds, report.ReportOptions);
+            if (filteredIntvIds != null && filteredIntvIds.Count > 0)
+                gen.CmdTextOverride = DetermineInterventionSql(filteredIntvIds, report.ReportOptions);
             // Recent distro static classs
             RecentDistro recentDistro = RecentDistro.GetInstance(true /* instantiate */);
             recentDistro.Run(report.ReportOptions);
@@ -192,7 +195,7 @@ namespace Nada.Model.Reports
             return result;
         }
 
-        public void AggregateDistData(ReportResult result)
+        protected void AggregateDistData(ReportResult result)
         {
             // See if the pop at risk columns should be combined
             bool CombineAtRiskCols = this.GetType() == typeof(PersonsTreatedCoverageDiseaseReportGenerator)
@@ -233,7 +236,7 @@ namespace Nada.Model.Reports
             }
         }
 
-        public DataTable AggregateIntvData(ReportResult result)
+        protected DataTable AggregateIntvData(ReportResult result)
         {
             // Aggregate data into objects
             Dictionary<int, Dictionary<string, ReportColumn>> intvDataDict = new Dictionary<int, Dictionary<string, ReportColumn>>();
@@ -350,7 +353,37 @@ namespace Nada.Model.Reports
             }
         }
 
-        public List<int> DetermineInterventionsByDiseasesTargeted(List<IntvType> intvTypes, ReportOptions reportOptions)
+        protected List<int> DetermineInterventionsByDiseasesTargeted(List<IntvType> intvTypes, ReportOptions reportOptions, List<Disease> diseasesToFilterBy)
+        {
+            List<IntvBase> interventions = GetIntvsByReportOptions(intvTypes, reportOptions);
+
+            // Filter the interventions based on whether or not they have the correct diseases targeted
+            List<int> filteredIntvIds = new List<int>();
+            foreach (IntvBase intv in interventions)
+            {
+                // Get the diseases targeted indicator
+                IndicatorValue indVal = intv.IndicatorValues.Where(i => i.Indicator.DisplayName == "PcIntvDiseases").FirstOrDefault();
+                if (indVal == null)
+                    continue;
+
+                // Get the value of the diseases targeted indicator
+                string selectedDiseasesStr = indVal.DynamicValue;
+
+                // Make sure the current intervention has one of the diseases targeted selected
+                foreach (Disease disease in diseasesToFilterBy)
+                {
+                    if (selectedDiseasesStr.Contains(disease.DisplayNameKey))
+                    {
+                        filteredIntvIds.Add(intv.Id);
+                        break;
+                    }
+                }
+            }
+
+            return filteredIntvIds;
+        }
+
+        protected List<IntvBase> GetIntvsByReportOptions(List<IntvType> intvTypes, ReportOptions reportOptions)
         {
             // Build a collection of ids for the intervention types
             List<int> intvTypeIds = new List<int>();
@@ -377,30 +410,7 @@ namespace Nada.Model.Reports
                 interventions.AddRange(interventionsForYear);
             }
 
-            // Filter the interventions based on whether or not they have the correct diseases targeted
-            List<int> filteredIntvIds = new List<int>();
-            foreach (IntvBase intv in interventions)
-            {
-                // Get the diseases targeted indicator
-                IndicatorValue indVal = intv.IndicatorValues.Where(i => i.Indicator.DisplayName == "PcIntvDiseases").FirstOrDefault();
-                if (indVal == null)
-                    continue;
-
-                // Get the value of the diseases targeted indicator
-                string selectedDiseasesStr = indVal.DynamicValue;
-
-                // Make sure the current intervention has one of the diseases targeted selected
-                foreach (Disease disease in Diseases)
-                {
-                    if (selectedDiseasesStr.Contains(disease.DisplayNameKey))
-                    {
-                        filteredIntvIds.Add(intv.Id);
-                        break;
-                    }
-                }
-            }
-
-            return filteredIntvIds;
+            return interventions;
         }
 
         public override ReportResult Run(SavedReport report)
@@ -416,10 +426,27 @@ namespace Nada.Model.Reports
             if (report.ReportOptions.IsAllLocations)
                 report.ReportOptions.SelectedAdminLevels = DemoRepo.GetAdminLevelByLevel(standardOpts.DistrictType.LevelNumber).Where(a => a.LevelNumber == standardOpts.DistrictType.LevelNumber).ToList();
 
-            // Determine the diseases
-            Diseases = DetermineDiseases(report, standardOpts);
-            // Determine intervention types
-            IntvTypes = DetermineIntvTypes(report, standardOpts);
+            List<int> filteredIntvIds;
+            if (this.GetType() == typeof(PersonsTreatedCoverageDrugPackageReportGenerator))
+            {
+                // Determine intervention types
+                IntvTypes = DetermineIntvTypes(standardOpts);
+                // Get all the matching interventions based on the report options
+                List<IntvBase> intvs = GetIntvsByReportOptions(IntvTypes, report.ReportOptions);
+                // Determine the diseases
+                Diseases = DetermineDiseases(standardOpts, intvs);
+                // Drug package report does not need to be filtered
+                filteredIntvIds = null;
+            }
+            else
+            {
+                // It is a disease report, so first set the diseases thats were selected
+                Diseases = DetermineDiseases(standardOpts);
+                // Deterine the interventions associated to the diseases
+                IntvTypes = DetermineIntvTypes(Diseases);
+                // Determine which interventions should be used in the report
+                filteredIntvIds = DetermineInterventionsByDiseasesTargeted(standardOpts.AvailableDrugPackages, report.ReportOptions, Diseases);
+            }
 
             // There was no data at this reporting level
             if (Diseases == null || IntvTypes == null || Diseases.Count < 1 || IntvTypes.Count < 1)
@@ -433,9 +460,6 @@ namespace Nada.Model.Reports
             ReportResult distReportResult = RunDistributionReport(CloneReport(report), standardOpts);
             // Aggregate the dist data
             AggregateDistData(distReportResult);
-
-            // Determine which interventions should be used in the report
-            List<int> filteredIntvIds = DetermineInterventionsByDiseasesTargeted(IntvTypes, report.ReportOptions);
 
             // Run the intervention report
             ReportResult intvReportResult = RunIntvReport(CloneReport(report), standardOpts, filteredIntvIds);
@@ -484,10 +508,10 @@ namespace Nada.Model.Reports
 
     public class PersonsTreatedCoverageDiseaseReportGenerator : PersonsTreatedCoverageBaseReportGenerator
     {
-        public override List<IntvType> DetermineIntvTypes(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts)
+        protected override List<IntvType> DetermineIntvTypes(List<Disease> diseases)
         {
             // Selected disease IDs
-            List<int> diseaseIds = standardOpts.Diseases.Select(d => d.Id).ToList();
+            List<int> diseaseIds = diseases.Select(d => d.Id).ToList();
 
             // Get all intervention typess that are associated to the selected diseases
             List<IntvType> intvTypes = IntvRepo.GetAllTypesByDiseases(diseaseIds);
@@ -497,50 +521,67 @@ namespace Nada.Model.Reports
             return intvTypes;
         }
 
-        public override List<Disease> DetermineDiseases(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts)
+        protected override List<Disease> DetermineDiseases(PersonsTreatedCoverageReportOptions standardOpts)
         {
             return standardOpts.Diseases;
+        }
+
+        protected override List<IntvType> DetermineIntvTypes(PersonsTreatedCoverageReportOptions standardOpts)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<Disease> DetermineDiseases(PersonsTreatedCoverageReportOptions standardOpts, List<IntvBase> interventions)
+        {
+            throw new NotImplementedException();
         }
     }
 
     public class PersonsTreatedCoverageDrugPackageReportGenerator : PersonsTreatedCoverageBaseReportGenerator
     {
-        public override List<IntvType> DetermineIntvTypes(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts)
+        protected override List<IntvType> DetermineIntvTypes(PersonsTreatedCoverageReportOptions standardOpts)
         {
             List<IntvType> intvTypes = standardOpts.DrugPackages;
             HydrateIntvTypes(intvTypes);
             return intvTypes;
         }
 
-        public override List<Disease> DetermineDiseases(SavedReport report, PersonsTreatedCoverageReportOptions standardOpts)
+        protected override List<Disease> DetermineDiseases(PersonsTreatedCoverageReportOptions standardOpts, List<IntvBase> interventions)
         {
             // Will hold the diseases
             List<Disease> diseases = new List<Disease>();
-            // Get the interventions
-            List<IntvBase> intvs = IntvRepo.GetAll(standardOpts.AvailableDrugPackages.Select(i => i.Id).ToList(),
-                report.ReportOptions.SelectedAdminLevels.Select(l => l.Id).ToList());
             // Iterate through the interventions and add the targeted diseases to the collection if they are selected
-            foreach (IntvBase intv in intvs)
+            foreach (IntvBase intv in interventions)
             {
                 IndicatorValue indicatorVal = intv.IndicatorValues.Where(ind => ind.Indicator.DisplayName == "PcIntvDiseases").FirstOrDefault();
-                if (indicatorVal != null)
-                {
-                    // See if any of the available diseases are selected
-                    foreach (Disease disease in standardOpts.AvailableDiseases)
-                    {
-                        if (indicatorVal.DynamicValue != null && indicatorVal.DynamicValue.Contains(disease.DisplayNameKey) && !diseases.Contains(disease))
-                            diseases.Add(disease);
-                    }
+                if (indicatorVal == null)
+                    continue;
 
-                    // No need to check any more interventions if all the diseases have been targeted
-                    if (diseases.Count >= standardOpts.AvailableDiseases.Count)
-                    {
-                        return diseases;
-                    }
+                // See if any of the available diseases are selected
+                foreach (Disease disease in standardOpts.AvailableDiseases)
+                {
+                    if (indicatorVal.DynamicValue != null && indicatorVal.DynamicValue.Contains(disease.DisplayNameKey) && !diseases.Contains(disease))
+                        diseases.Add(disease);
+                }
+
+                // No need to check any more interventions if all the diseases have been targeted
+                if (diseases.Count >= standardOpts.AvailableDiseases.Count)
+                {
+                    return diseases;
                 }
             }
 
             return diseases;
+        }
+
+        protected override List<IntvType> DetermineIntvTypes(List<Disease> diseases)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<Disease> DetermineDiseases(PersonsTreatedCoverageReportOptions standardOpts)
+        {
+            throw new NotImplementedException();
         }
     }
 
