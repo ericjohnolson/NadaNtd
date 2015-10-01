@@ -1801,7 +1801,7 @@
     <value>Démarrer...</value>
   </data>
   <data name="DDLFDiseaseDistributionPcInterventions" xml:space="preserve">
-    <value>Distribution de la maladie : Interventions de CP</value>
+    <value>Distribution de la maladie : traitements médicamenteux de masse (TMM)</value>
   </data>
   <data name="NumVolunteersBu" xml:space="preserve">
     <value>Nombre de bénévoles communautaires aidant les patients suspectés et les orientant pour un diagnostic</value>
@@ -3375,7 +3375,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Diviser</value>
   </data>
   <data name="DDSchistoDiseaseDistributionPcIntervent" xml:space="preserve">
-    <value>Distribution de la maladie : interventions de CP</value>
+    <value>Distribution de la maladie : traitements médicamenteux de masse (TMM)</value>
   </data>
   <data name="CountryIncomeStatus" xml:space="preserve">
     <value>Country Income Status</value>
@@ -4104,7 +4104,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Le taux de croissance a été pris en compte, veuillez cliquer sur Suivant pour vérifier et effectuer toute modification ou bien cliquez sur Fini si vous avez terminé de mettre à jour les données de distribution de la maladie de cette année.</value>
   </data>
   <data name="RtiDataCompleteness" xml:space="preserve">
-    <value>Completude des données (%)</value>
+    <value>Complétude des données (%)</value>
   </data>
   <data name="LFSurTargetSampleSize" xml:space="preserve">
     <value>Taille de l'échantillon cible</value>
@@ -4305,7 +4305,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>L'azithromycin a été donnée après l'opération dans quelle proportion d’opérations de TT ? </value>
   </data>
   <data name="DDSTHDiseaseDistributionPcInterventions" xml:space="preserve">
-    <value>Distribution de la maladie : interventions de CP</value>
+    <value>Distribution de la maladie : traitements médicamenteux de masse (TMM)</value>
   </data>
   <data name="RtiSchMdaD" xml:space="preserve">
     <value>D</value>
@@ -5397,7 +5397,7 @@ La base de données intégrée a été développé par Iota Ink : Jennifer Einbe
     <value>Meglumine antimoniate</value>
   </data>
   <data name="DDTraDiseaseDistributionPcInterventions" xml:space="preserve">
-    <value>Distribution de la maladie : Interventions de CP</value>
+    <value>Distribution de la maladie : traitements médicamenteux de masse (TMM)</value>
   </data>
   <data name="OnchoSurPercentPositive" xml:space="preserve">
     <value>Pourcentage positifs</value>
