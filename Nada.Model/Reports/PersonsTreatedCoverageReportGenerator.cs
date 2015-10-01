@@ -317,7 +317,7 @@ namespace Nada.Model.Reports
                 if (!row.Table.Columns.Contains(roundColName))
                     row.Table.Columns.Add(new DataColumn(roundColName));
                 // Add the epi coverage value
-                row[roundColName] = epiCoverage;
+                row[roundColName] = string.Format("{0:0.00}", epiCoverage * 100);
             }
         }
 
@@ -348,7 +348,7 @@ namespace Nada.Model.Reports
                     if (!row.Table.Columns.Contains(roundColName))
                         row.Table.Columns.Add(new DataColumn(roundColName));
                     // Add the program coverage value
-                    row[roundColName] = programCoverage;
+                    row[roundColName] = string.Format("{0:0.00}", programCoverage * 100);
                 }
             }
         }
