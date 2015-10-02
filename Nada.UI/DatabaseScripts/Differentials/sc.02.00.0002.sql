@@ -1,3 +1,11 @@
+-- Update IVM + PZQ + ALB intv key;
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+UPDATE InterventionTypes SET InterventionTypeName = 'IntvIvmPzqAlb'
+	WHERE InterventionTypeName = 'IVM+PZQ+ALB Intervention';
+COMMIT TRANSACTION;
+BEGIN TRANSACTION;
+
 -- Add indicator num rounds of pc... story # 198;
 insert into SurveyIndicators (DataTypeId, DisplayName, AggTypeId, SortOrder, UpdatedById, UpdatedAt, IsDisabled, IsEditable, IsRequired, IsDisplayed, IsCalculated, CanAddValues, SurveyTypeId, RedistrictRuleId, MergeRuleId)
 	values (2, '4190984d-f272-4359-8414-6e7ef06fc4bc', 5, 250, 26, NOW(), 0, 0, 0, 0, 0, 0, 15, 2, 54);
