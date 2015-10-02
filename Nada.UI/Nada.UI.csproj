@@ -1429,6 +1429,9 @@
     <Content Include="DatabaseScripts\Differentials\sc.02.00.0002.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DatabaseScripts\Differentials\sc.02.00.0003.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DatabaseScripts\Differentials\sc.02.00.0001.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
