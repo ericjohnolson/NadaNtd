@@ -16,6 +16,7 @@ namespace Nada.Model.Exports
         SettingsRepository settings = new SettingsRepository();
         DemoRepository demo = new DemoRepository();
         ExportRepository repo = new ExportRepository();
+        IntvRepository intvRepo = new IntvRepository();
         TranslationLookupInstance exportLangLookup = null;
 
         public string ExportName
@@ -64,25 +65,25 @@ namespace Nada.Model.Exports
 
                 // sheet 4 GW (start row 9)
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[5];
-                AddIndicators(DiseaseType.GuineaWorm, StaticIntvType.GuineaWormIntervention, yearReporting, xlsWorksheet, AddGwInds, AggGwInd, districtLevel.LevelNumber);
+                AddIndicators(DiseaseType.GuineaWorm, (int)StaticIntvType.GuineaWormIntervention, yearReporting, xlsWorksheet, AddGwInds, AggGwInd, districtLevel.LevelNumber);
                 //// leprosy
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[6];
-                AddIndicators(DiseaseType.Leprosy, StaticIntvType.LeprosyIntervention, yearReporting, xlsWorksheet, AddLeprosyInds, AggLeprosyInd, districtLevel.LevelNumber);
+                AddIndicators(DiseaseType.Leprosy, (int)StaticIntvType.LeprosyIntervention, yearReporting, xlsWorksheet, AddLeprosyInds, AggLeprosyInd, districtLevel.LevelNumber);
                 //// hat
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[7];
-                AddIndicators(DiseaseType.Hat, StaticIntvType.HatIntervention, yearReporting, xlsWorksheet, AddHatInds, AggHatInd, districtLevel.LevelNumber);
+                AddIndicators(DiseaseType.Hat, (int)StaticIntvType.HatIntervention, yearReporting, xlsWorksheet, AddHatInds, AggHatInd, districtLevel.LevelNumber);
                 //// leish monthly
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[8];
-                AddIndicators(DiseaseType.Leish, StaticIntvType.LeishMonthly, yearReporting, xlsWorksheet, AddLeishMonthlyInds, AggLeishInd, districtLevel.LevelNumber);
+                AddIndicators(DiseaseType.Leish, intvRepo.GetIntvTypeIdByNameKey("LeishMonthlyIntervention"), yearReporting, xlsWorksheet, AddLeishMonthlyInds, AggLeishInd, districtLevel.LevelNumber);
                 //// leish annual
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[8];
-                AddIndicators(DiseaseType.Leish, StaticIntvType.LeishAnnual, yearReporting, xlsWorksheet, AddLeishAnnualInds, AggLeishInd, districtLevel.LevelNumber);
+                AddIndicators(DiseaseType.Leish, intvRepo.GetIntvTypeIdByNameKey("LeishAnnualIntervention"), yearReporting, xlsWorksheet, AddLeishAnnualInds, AggLeishInd, districtLevel.LevelNumber);
                 //// buruli
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[9];
-                AddIndicators(DiseaseType.Buruli, StaticIntvType.BuruliUlcerIntv, yearReporting, xlsWorksheet, AddBuInds, AggBuInd, districtLevel.LevelNumber);
+                AddIndicators(DiseaseType.Buruli, (int)StaticIntvType.BuruliUlcerIntv, yearReporting, xlsWorksheet, AddBuInds, AggBuInd, districtLevel.LevelNumber);
                 //// yaws
                 xlsWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorkbook.Worksheets[10];
-                AddIndicators(DiseaseType.Yaws, StaticIntvType.YawsIntervention, yearReporting, xlsWorksheet, AddYawsInds, AggYawsInd, districtLevel.LevelNumber);
+                AddIndicators(DiseaseType.Yaws, (int)StaticIntvType.YawsIntervention, yearReporting, xlsWorksheet, AddYawsInds, AggYawsInd, districtLevel.LevelNumber);
 
                 xlsApp.DisplayAlerts = false;
                 xlsWorkbook.SaveAs(filePath, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, missing,
@@ -103,12 +104,12 @@ namespace Nada.Model.Exports
             }
         }
 
-        private void AddIndicators(DiseaseType diseaseType, StaticIntvType intvType, int year, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet,
+        private void AddIndicators(DiseaseType diseaseType, int intvTypeId, int year, Microsoft.Office.Interop.Excel.Worksheet xlsWorksheet,
             Action<Microsoft.Office.Interop.Excel.Worksheet, List<AdminLevelIndicators>> AddToWorksheet,
             Func<AggregateIndicator, object, object> customAggRule, int reportingLevelNumber)
         {
             ExportRepository repo = new ExportRepository();
-            var indicators = repo.GetDistrictIndicatorTrees((int)intvType, year, (int)diseaseType, customAggRule, reportingLevelNumber);
+            var indicators = repo.GetDistrictIndicatorTrees(intvTypeId, year, (int)diseaseType, customAggRule, reportingLevelNumber);
             AddToWorksheet(xlsWorksheet, indicators);
         }
 

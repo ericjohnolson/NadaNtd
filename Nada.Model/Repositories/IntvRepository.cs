@@ -394,6 +394,37 @@ namespace Nada.Model.Repositories
             return intv;
         }
 
+        public int GetIntvTypeIdByNameKey(string interventionNameKey)
+        {
+            int typeId = 0;
+
+            OleDbConnection connection = new OleDbConnection(DatabaseData.Instance.AccessConnectionString);
+            using (connection)
+            {
+                connection.Open();
+                try
+                {
+                    OleDbCommand command = new OleDbCommand(@"Select InterventionTypes.ID FROM InterventionTypes WHERE InterventionTypeName = @nameKey;", connection);
+                    command.Parameters.Add(new OleDbParameter("@nameKey", interventionNameKey));
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            typeId = reader.GetValueOrDefault<int>("ID");
+                        }
+                        reader.Close();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            return typeId;
+        }
+
         public IntvType GetIntvType(int id)
         {
             IntvType intv = new IntvType();

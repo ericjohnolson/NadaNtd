@@ -131,8 +131,8 @@ namespace Nada.Model
 	    ZithroTeo = 23,
         TsSurgeries = 24,
         TrachomaFaceClean = 25,
-        LeishAnnual = 26,
-        LeishMonthly = 27
+        //LeishAnnual = 26, // Since these were added after initial release, there is no guarantee other databases match up
+        //LeishMonthly = 27 // Since these were added after initial release, there is no guarantee other databases match up
     }
 
     public enum StaticProcessType

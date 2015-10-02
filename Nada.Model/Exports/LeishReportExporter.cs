@@ -203,15 +203,15 @@ namespace Nada.Model.Exports
         private void GetIntvTypes()
         {
             // Get the monthly intervention type
-            LeishMonthlyIntvType = IntvRepo.GetIntvType((int)StaticIntvType.LeishMonthly);
+            LeishMonthlyIntvType = IntvRepo.GetIntvType(IntvRepo.GetIntvTypeIdByNameKey("LeishMonthlyIntervention"));
             // Get the admin intervention type
-            LeishAnnualIntvType = IntvRepo.GetIntvType((int)StaticIntvType.LeishAnnual);
+            LeishAnnualIntvType = IntvRepo.GetIntvType(IntvRepo.GetIntvTypeIdByNameKey("LeishAnnualIntervention"));
         }
 
         private void GetAllLeishAnnualIntvs()
         {
             // Get all the Leish annual interventions
-            LeishAnnualIntvs = IntvRepo.GetAllIntvInRange(new List<int>() { (int)StaticIntvType.LeishAnnual }, StartDate, EndDate);
+            LeishAnnualIntvs = IntvRepo.GetAllIntvInRange(new List<int>() { IntvRepo.GetIntvTypeIdByNameKey("LeishAnnualIntervention") }, StartDate, EndDate);
         }
 
         private void GetDiseases()
