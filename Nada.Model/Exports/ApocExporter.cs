@@ -90,7 +90,7 @@ namespace Nada.Model.Exports
                 xls3.Name = TranslationLookup.GetValue("DiseaseDistribution");
                 AddDdPage(xls3, rng, demography, start, end, 1, dd);
                 xls4 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xls3, missing, missing);
-                xls4.Name = TranslationLookup.GetValue("SurOnchoMapping").Replace(TranslationLookup.GetValue("Oncho") + " ", "");
+                xls4.Name = TranslationLookup.GetValue("SurOnchoMapping").Replace(TranslationLookup.GetValue("Oncho") + " ", "").Substring(0, 31); // Name exceeds 31 char (max for Excel sheet name) in French
                 Add4(xls4, rng, demography, start, end, 1);
                 xls5 = (Microsoft.Office.Interop.Excel.Worksheet)xlsWorksheets.Add(missing, xls4, missing, missing);
                 xls5.Name = TranslationLookup.GetValue("SurOnchoAssesments").Replace(TranslationLookup.GetValue("Oncho") + " ", "");
@@ -386,9 +386,9 @@ namespace Nada.Model.Exports
                 options.SelectedIndicators.Add(ReportRepository.CreateReportIndicator(typeId, indicator));
 
             ReportResult result = gen.Run(new SavedReport { ReportOptions = options });
-            result.DataTableResults.Columns.Remove(Translations.Location);
-            result.DataTableResults.Columns.Remove(Translations.Type);
-            result.DataTableResults.Columns.Remove(Translations.Year);
+            result.DataTableResults.Columns.Remove(TranslationLookup.GetValue("Location"));
+            result.DataTableResults.Columns.Remove(TranslationLookup.GetValue("Type"));
+            result.DataTableResults.Columns.Remove(TranslationLookup.GetValue("Year"));
             return result;
         }
 
