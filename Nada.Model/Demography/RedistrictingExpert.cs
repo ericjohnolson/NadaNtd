@@ -567,14 +567,14 @@ namespace Nada.Model.Demography
                 newDemography.Id = 0;
                 newDemography.AdminLevelId = destId;
             }
-            newDemography.Pop0Month = (int)Math.Round((double)demography.Pop0Month * multiplier);
-            newDemography.PopPsac = (int)Math.Round((double)demography.PopPsac * multiplier);
-            newDemography.Pop5yo = (int)Math.Round((double)demography.Pop5yo * multiplier);
-            newDemography.PopAdult = (int)Math.Round((double)demography.PopAdult * multiplier);
-            newDemography.PopFemale = (int)Math.Round((double)demography.PopFemale * multiplier);
-            newDemography.PopMale = (int)Math.Round((double)demography.PopMale * multiplier);
-            newDemography.TotalPopulation = (int)Math.Round((double)demography.TotalPopulation * multiplier);
-            newDemography.PopSac = (int)Math.Round((double)demography.PopSac * multiplier);
+            if (newDemography.Pop0Month.HasValue) newDemography.Pop0Month = (int)Math.Round((double)demography.Pop0Month * multiplier);
+            if (newDemography.PopPsac.HasValue) newDemography.PopPsac = (int)Math.Round((double)demography.PopPsac * multiplier);
+            if (newDemography.Pop5yo.HasValue) newDemography.Pop5yo = (int)Math.Round((double)demography.Pop5yo * multiplier);
+            if (newDemography.PopAdult.HasValue) newDemography.PopAdult = (int)Math.Round((double)demography.PopAdult * multiplier);
+            if (newDemography.PopFemale.HasValue) newDemography.PopFemale = (int)Math.Round((double)demography.PopFemale * multiplier);
+            if (newDemography.PopMale.HasValue) newDemography.PopMale = (int)Math.Round((double)demography.PopMale * multiplier);
+            if (newDemography.TotalPopulation.HasValue) newDemography.TotalPopulation = (int)Math.Round((double)demography.TotalPopulation * multiplier);
+            if (newDemography.PopSac.HasValue) newDemography.PopSac = (int)Math.Round((double)demography.PopSac * multiplier);
 
             // save
             if (toMerge == null)
