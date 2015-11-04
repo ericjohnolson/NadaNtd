@@ -764,6 +764,8 @@ namespace Nada.Model.Demography
                 result.DynamicValue = existingInd.DynamicValue;
             else if (existingInd.Indicator.RedistrictRuleId == (int)RedistrictingRule.SplitByPercent && existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Number)
                 result.DynamicValue = SplitByPercent(existingInd, percentage);
+            else if (existingInd.Indicator.RedistrictRuleId == (int)RedistrictingRule.SplitByPercent && existingInd.Indicator.DataTypeId == (int)IndicatorDataType.Integer)
+                result.DynamicValue = SplitByPercentAndRoundToNearestInt(existingInd, percentage);
             else // defaultblank/TBD
                 result.DynamicValue = "";
 
@@ -777,6 +779,15 @@ namespace Nada.Model.Demography
                 return "";
 
             return (i1 * percentage).ToString();
+        }
+
+        private static string SplitByPercentAndRoundToNearestInt(IndicatorValue existingValue, double percentage)
+        {
+            double i1 = 0;
+            if (!Double.TryParse(existingValue.DynamicValue, out i1))
+                return "";
+
+            return ((int)Math.Round(i1 * percentage)).ToString();
         }
     }
 
