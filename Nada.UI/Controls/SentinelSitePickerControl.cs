@@ -13,6 +13,7 @@ using Nada.UI.AppLogic;
 using Nada.Model.Repositories;
 using Nada.UI.View;
 using Nada.UI.View.Survey;
+using Nada.Model;
 
 namespace Nada.UI.Controls
 {
@@ -31,7 +32,13 @@ namespace Nada.UI.Controls
 
         private void SentinelSitePickerControl_Load(object sender, EventArgs e)
         {
-
+            // First hide all site type related controls
+            pnlSentinel.Visible = false;
+            pnlSpotCheckName.Visible = false;
+            lblLat.Visible = false;
+            lblLng.Visible = false;
+            tbLat.Visible = false;
+            tbLng.Visible = false;
         }
 
         public void LoadModel(SurveyBase m)
@@ -40,34 +47,14 @@ namespace Nada.UI.Controls
             Localizer.TranslateControl(this);
             GetAndUpdateSites();
             bsSurvey.DataSource = model;
+            SetupSiteTypeComboBox(m);
         }
 
         private void cbSiteType_SelectedIndexChanged(object sender, EventArgs e)
         {
             tblContainer.Visible = false;
             this.SuspendLayout();
-            if (cbSiteType.SelectedIndex == 0)
-            {
-                pnlSentinel.Visible = true;
-                pnlSpotCheckName.Visible = false;
-                lblLat.Visible = false;
-                lblLng.Visible = false;
-                tbLat.Visible = false;
-                tbLng.Visible = false;
-                model.SpotCheckName = null;
-                model.Lat = null;
-                model.Lng = null;
-            }
-            else if (cbSiteType.SelectedIndex == 1)
-            {
-                pnlSentinel.Visible = false;
-                pnlSpotCheckName.Visible = true;
-                lblLat.Visible = true;
-                lblLng.Visible = true;
-                tbLat.Visible = true;
-                tbLng.Visible = true;
-                model.SentinelSiteId = null;
-            }
+            SwitchSiteType((SiteTypeId)cbSiteType.SelectedValue);
 
             this.ResumeLayout();
             tblContainer.Visible = true;
@@ -92,6 +79,45 @@ namespace Nada.UI.Controls
         {
             sites = r.GetSitesForAdminLevel(model.AdminLevels.Select(a => a.Id.ToString()));
             sentinelSiteBindingSource.DataSource = sites;
+        }
+
+        private void SwitchSiteType(SiteTypeId siteTypeId)
+        {
+            if (siteTypeId == SiteTypeId.Sentinel)
+            {
+                pnlSentinel.Visible = true;
+                pnlSpotCheckName.Visible = false;
+                lblLat.Visible = false;
+                lblLng.Visible = false;
+                tbLat.Visible = false;
+                tbLng.Visible = false;
+                model.SpotCheckName = null;
+                model.Lat = null;
+                model.Lng = null;
+            }
+            else if (siteTypeId == SiteTypeId.SpotCheck)
+            {
+                pnlSentinel.Visible = false;
+                pnlSpotCheckName.Visible = true;
+                lblLat.Visible = true;
+                lblLng.Visible = true;
+                tbLat.Visible = true;
+                tbLng.Visible = true;
+                model.SentinelSiteId = null;
+            }
+        }
+
+        private void SetupSiteTypeComboBox(SurveyBase m)
+        {
+            siteTypeBindingSource.DataSource = new Dictionary<SiteTypeId, string>()
+            {
+                {SiteTypeId.Sentinel, TranslationLookup.GetValue("Sentinel", "Sentinel")},
+                {SiteTypeId.SpotCheck, TranslationLookup.GetValue("SpotCheck", "SpotCheck")}
+            };
+            cbSiteType.DisplayMember = "Value";
+            cbSiteType.ValueMember = "Key";
+            cbSiteType.SelectedValue = m.SiteTypeId;
+            SwitchSiteType(m.SiteTypeId);
         }
     }
 }

@@ -107,6 +107,12 @@ namespace Nada.Model
         TrachomaImpact = 14
     }
 
+    public enum SiteTypeId
+    {
+        Sentinel = 1,
+        SpotCheck = 2
+    }
+
     public enum StaticIntvType
     {
         LfMorbidityManagement = 2,

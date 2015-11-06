@@ -99,9 +99,15 @@
     </Compile>
     <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.02.00.0002.sql">
       <Link>DatabaseScripts\Differentials\sc.02.00.0002.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.02.00.0003.sql">
       <Link>DatabaseScripts\Differentials\sc.02.00.0003.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.02.00.0004.sql">
+      <Link>DatabaseScripts\Differentials\sc.02.00.0004.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Nada.UI\Exports\AFRO_CM_JRF.xls">
       <Link>Exports\AFRO_CM_JRF.xls</Link>

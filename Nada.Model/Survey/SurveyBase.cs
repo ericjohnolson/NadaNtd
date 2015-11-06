@@ -20,6 +20,7 @@ namespace Nada.Model.Base
             IndicatorValues = new List<IndicatorValue>();
             AdminLevels = new List<AdminLevel>();
             SiteType = "Sentinel";
+            SiteTypeId = SiteTypeId.Sentinel;
         }
         public Nullable<int> AdminLevelId
         {
@@ -43,6 +44,26 @@ namespace Nada.Model.Base
         public DateTime DateReported { get; set; }
         public SurveyType TypeOfSurvey { get; set; }
         public string SiteType { get; set; }
+        private SiteTypeId siteTypeId;
+        public SiteTypeId SiteTypeId
+        {
+            get
+            {
+                return siteTypeId;
+            }
+            set
+            {
+                siteTypeId = value;
+                if (SiteTypeId == SiteTypeId.Sentinel)
+                {
+                    SiteType = TranslationLookup.GetValue("Sentinel", "Sentinel");
+                }
+                else if (SiteTypeId == SiteTypeId.SpotCheck)
+                {
+                    SiteType = TranslationLookup.GetValue("SpotCheck", "SpotCheck");
+                }
+            }
+        }
         public string SpotCheckName { get; set; }
         public Nullable<double> Lat { get; set; }
         public Nullable<double> Lng { get; set; }
@@ -59,6 +80,7 @@ namespace Nada.Model.Base
             copy.StartDate = StartDate;
             copy.EndDate = EndDate;
             copy.SiteType = Translations.Sentinel;
+            copy.SiteTypeId = SiteTypeId.Sentinel;
             copy.Notes = Notes;
             copy.HasSentinelSite = true;
             copy.IndicatorValues.Add(new IndicatorValue { DynamicValue = "0", IndicatorId = roundsId, Indicator = copy.TypeOfSurvey.Indicators[roundsName] });
@@ -88,11 +110,11 @@ namespace Nada.Model.Base
                             error = Translations.Required;
                         break;
                     case "SpotCheckName":
-                        if (HasSentinelSite && SiteType != "Sentinel" && String.IsNullOrEmpty(SpotCheckName))
+                        if (HasSentinelSite && SiteTypeId != SiteTypeId.Sentinel && String.IsNullOrEmpty(SpotCheckName))
                             error = Translations.Required;
                         break;
                     case "SentinelSiteId":
-                        if (HasSentinelSite && SiteType == "Sentinel" && (!SentinelSiteId.HasValue || SentinelSiteId.Value < 1))
+                        if (HasSentinelSite && SiteTypeId == SiteTypeId.Sentinel && (!SentinelSiteId.HasValue || SentinelSiteId.Value < 1))
                             error = Translations.Required;
                         break;
                     case "Lat":

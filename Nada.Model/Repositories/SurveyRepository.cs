@@ -246,7 +246,7 @@ namespace Nada.Model.Repositories
             try
             {
                 command = new OleDbCommand(@"Select Surveys.StartDate, Surveys.EndDate, Surveys.DateReported, 
-                        SiteType, SpotCheckName, SpotCheckLat, SpotCheckLng, SentinelSiteId,
+                        SiteType, SiteTypeId, SpotCheckName, SpotCheckLat, SpotCheckLng, SentinelSiteId,
                         Surveys.Notes, Surveys.UpdatedById, Surveys.UpdatedAt, aspnet_Users.UserName, 
                         Surveys.SurveyTypeId, created.UserName as CreatedBy, Surveys.CreatedAt
                         FROM ((Surveys INNER JOIN aspnet_Users on Surveys.UpdatedById = aspnet_Users.UserId)
@@ -263,6 +263,7 @@ namespace Nada.Model.Repositories
                         survey.EndDate = reader.GetValueOrDefault<DateTime>("EndDate");
                         survey.DateReported = reader.GetValueOrDefault<DateTime>("DateReported");
                         survey.SiteType = reader.GetValueOrDefault<string>("SiteType");
+                        survey.SiteTypeId = (SiteTypeId)Convert.ToInt32(reader["SiteTypeId"]);
                         survey.SpotCheckName = reader.GetValueOrDefault<string>("SpotCheckName");
                         survey.Lat = reader.GetValueOrDefault<Nullable<double>>("SpotCheckLat");
                         survey.Lng = reader.GetValueOrDefault<Nullable<double>>("SpotCheckLng");
@@ -1062,19 +1063,20 @@ namespace Nada.Model.Repositories
 
             if (survey.Id > 0)
                 command = new OleDbCommand(@"UPDATE Surveys SET SurveyTypeId=@SurveyTypeId, DateReported=@DateReported, StartDate=@StartDate,
-                           EndDate=@EndDate, SiteType=@SiteType, SpotCheckName=@SpotCheckName, SpotCheckLat=@SpotCheckLat, SpotCheckLng=@SpotCheckLng,
+                           EndDate=@EndDate, SiteType=@SiteType, SiteTypeId=@SiteTypeId, SpotCheckName=@SpotCheckName, SpotCheckLat=@SpotCheckLat, SpotCheckLng=@SpotCheckLng,
                            SentinelSiteId=@SentinelSiteId, Notes=@Notes, UpdatedById=@UpdatedById, UpdatedAt=@UpdatedAt WHERE ID=@id", connection);
             else
                 command = new OleDbCommand(@"INSERT INTO Surveys (SurveyTypeId, DateReported, StartDate, EndDate, 
-                            SiteType, SpotCheckName, SpotCheckLat, SpotCheckLng, SentinelSiteId, Notes, UpdatedById, 
+                            SiteType, SiteTypeId, SpotCheckName, SpotCheckLat, SpotCheckLng, SentinelSiteId, Notes, UpdatedById, 
                             UpdatedAt, CreatedById, CreatedAt) values (@SurveyTypeId, @DateReported, @StartDate, @EndDate, 
-                            @SiteType, @SpotCheckName, @SpotCheckLat, @SpotCheckLng, @SentinelSiteId, @Notes, 
+                            @SiteType, @SiteTypeId, @SpotCheckName, @SpotCheckLat, @SpotCheckLng, @SentinelSiteId, @Notes, 
                             @UpdatedById, @UpdatedAt, @CreatedById, @CreatedAt)", connection);
             command.Parameters.Add(new OleDbParameter("@SurveyTypeId", survey.TypeOfSurvey.Id));
             command.Parameters.Add(new OleDbParameter("@DateReported", survey.DateReported));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@StartDate", survey.StartDate));
             command.Parameters.Add(OleDbUtil.CreateDateTimeOleDbParameter("@EndDate", survey.EndDate));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@SiteType", survey.SiteType));
+            command.Parameters.Add(new OleDbParameter("@SiteTypeId", (int)survey.SiteTypeId));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@SpotCheckName", survey.SpotCheckName));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@SpotCheckLat", survey.Lat));
             command.Parameters.Add(OleDbUtil.CreateNullableParam("@SpotCheckLng", survey.Lng));

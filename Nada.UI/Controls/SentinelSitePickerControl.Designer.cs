@@ -38,6 +38,7 @@
             this.lblLng = new Nada.UI.Controls.H3Label();
             this.tbLat = new System.Windows.Forms.TextBox();
             this.cbSiteType = new System.Windows.Forms.ComboBox();
+            this.siteTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblSiteName = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSentinel = new System.Windows.Forms.Panel();
             this.fieldLink1 = new Nada.UI.Controls.FieldLink();
@@ -48,6 +49,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tblContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurvey)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.siteTypeBindingSource)).BeginInit();
             this.tblSiteName.SuspendLayout();
             this.pnlSentinel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sentinelSiteBindingSource)).BeginInit();
@@ -171,17 +173,16 @@
             // 
             // cbSiteType
             // 
-            this.cbSiteType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSurvey, "SiteType", true));
+            this.cbSiteType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsSurvey, "SiteTypeId", true));
+            this.cbSiteType.DataSource = this.siteTypeBindingSource;
+            this.cbSiteType.DisplayMember = "Key";
             this.cbSiteType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSiteType.FormattingEnabled = true;
-            this.cbSiteType.Items.AddRange(new object[] {
-            "Sentinel",
-            "SpotCheck"});
             this.cbSiteType.Location = new System.Drawing.Point(3, 21);
             this.cbSiteType.Name = "cbSiteType";
             this.cbSiteType.Size = new System.Drawing.Size(193, 21);
             this.cbSiteType.TabIndex = 0;
-            this.cbSiteType.SelectedValueChanged += new System.EventHandler(this.cbSiteType_SelectedIndexChanged);
+            this.cbSiteType.SelectionChangeCommitted += new System.EventHandler(this.cbSiteType_SelectedIndexChanged);
             // 
             // tblSiteName
             // 
@@ -281,6 +282,7 @@
             this.tblContainer.ResumeLayout(false);
             this.tblContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsSurvey)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.siteTypeBindingSource)).EndInit();
             this.tblSiteName.ResumeLayout(false);
             this.pnlSentinel.ResumeLayout(false);
             this.pnlSentinel.PerformLayout();
@@ -312,5 +314,6 @@
         private System.Windows.Forms.BindingSource sentinelSiteBindingSource;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.BindingSource bsSurvey;
+        private System.Windows.Forms.BindingSource siteTypeBindingSource;
     }
 }
