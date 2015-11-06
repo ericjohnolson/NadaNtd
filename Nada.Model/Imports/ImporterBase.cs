@@ -327,7 +327,7 @@ namespace Nada.Model
                     foreach (var val in values)
                     {
                         var existingVal = form.IndicatorValues.FirstOrDefault(v => v.IndicatorId == val.IndicatorId);
-                        if (existingVal.DynamicValue != val.DynamicValue)
+                        if (existingVal != null && existingVal.DynamicValue != val.DynamicValue)
                         {
                             existingVal.CalcByRedistrict = false;
                             existingVal.DynamicValue = val.DynamicValue;
