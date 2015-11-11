@@ -79,6 +79,11 @@ namespace Samples.AccessProviders
             }
         }
 
+        public void SetDatabaseConnectionString(string connectionString)
+        {
+            _DatabaseFileName = connectionString;
+        }
+
         private bool _EnablePasswordRetrieval;
         private bool _EnablePasswordReset;
         private bool _RequiresQuestionAndAnswer;

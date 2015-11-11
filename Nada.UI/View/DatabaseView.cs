@@ -17,6 +17,7 @@ using System.Configuration;
 using Nada.Model;
 using System.Runtime.Serialization.Formatters.Binary;
 using Nada.Globalization;
+using Samples.AccessProviders;
 
 
 namespace Nada.UI.View
@@ -195,6 +196,12 @@ namespace Nada.UI.View
             string connection = ConfigurationManager.ConnectionStrings["AccessFileName"].ConnectionString;
             DatabaseData.Instance.AccessConnectionString = connection.Replace("Source=NewNationalDatabaseTemplate.accdb", "Source=" + filePath);
             DatabaseData.Instance.FilePath = filePath;
+
+            // Switch the connection string on the MembershipProvider
+            AccessMembershipProvider membershipProvider = (AccessMembershipProvider)Membership.Provider;
+            if (membershipProvider != null)
+                membershipProvider.SetDatabaseConnectionString(DatabaseData.Instance.AccessConnectionString);
+
             string backupFile = Path.Combine(UserFilesPath, "DatabaseBackup.accdb");
             File.Copy(filePath, backupFile, true);
         }
