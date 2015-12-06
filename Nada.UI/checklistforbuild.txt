@@ -42,4 +42,9 @@ Releasing the application with MageUI.exe
 
 1. open mageui.exe: C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\mageui.exe
 
-
+Current Certificate:
+File: nadasha15yr.pfx
+Issuer: CN=Integrated NTD Database 5yr
+NotBefore: 3/17/2015 4:59 PM
+NotAfter: 3/17/2020 4:59 PM
+Subject: CN=Integrated NTD Database 5yr
