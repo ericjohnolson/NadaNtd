@@ -26,6 +26,12 @@ namespace Nada.Model.Base
         {
             get
             {
+                // AdminLevels property not always being populated in every case this is used
+                // Need to make sure it is always populated, but to save time/budget, for now just
+                // add this check to return null if admin level id can't be determined from AdminLevels
+                if (AdminLevels == null || AdminLevels.Count < 1)
+                    return null;
+
                 return AdminLevels.FirstOrDefault().Id;
             }
         }
