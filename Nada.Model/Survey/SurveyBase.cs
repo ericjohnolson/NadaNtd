@@ -34,6 +34,12 @@ namespace Nada.Model.Base
         {
             get
             {
+                // AdminLevels property not always being populated in every case this is used
+                // Need to make sure it is always populated, but to save time/budget, for now just
+                // add this check to return 0 if sort order can't be determined from AdminLevels
+                if (AdminLevels == null || AdminLevels.Count < 1)
+                    return 0;
+
                 return AdminLevels.OrderBy(a => a.SortOrder).First().SortOrder;
             }
         }
