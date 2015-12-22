@@ -29,6 +29,7 @@
     <ErrorReportUrl>http://www.who.int/neglected_diseases/preventive_chemotherapy/databank/en/</ErrorReportUrl>
     <ProductName>Integrated NTD Database</ProductName>
     <PublisherName>Integrated NTD Database</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>default.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
