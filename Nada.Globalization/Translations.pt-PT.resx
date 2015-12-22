@@ -1591,7 +1591,7 @@
     <value>Número de voltas de tratamento previstas para o ano</value>
   </data>
   <data name="ReportsNoDdInDateRange" xml:space="preserve">
-    <value>Nenhuma { 3} distribuição da doença poderia ser encontrado para {0} no intervalo de datas {1} - {2}.</value>
+    <value>Nenhuma {3} distribuição da doença poderia ser encontrado para {0} no intervalo de datas {1} - {2}.</value>
   </data>
   <data name="TraMapSurNumberOfIndividualsExaminedTs" xml:space="preserve">
     <value>Número de indivíduos examinados - TS</value>
@@ -5786,7 +5786,7 @@ Fixo / móvel </value>
     <value>S. mansoni</value>
   </data>
   <data name="ImportRecordsDontMatch" xml:space="preserve">
-    <value>Registos de importação não confere com a contagem esperada. Esperado { 0 } , real { 1 } .</value>
+    <value>Registos de importação não confere com a contagem esperada. Esperado {0} , real {1} .</value>
   </data>
   <data name="EliminationEndemicDistricts" xml:space="preserve">
     <value>Número de {0} endêmicos/as que necessitam de PC</value>
