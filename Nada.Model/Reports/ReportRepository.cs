@@ -306,13 +306,13 @@ namespace Nada.Model.Repositories
                 var instance = repo.CreateSurvey(t.Id);
                 if (addStaticFields && (t.Id == (int)StaticSurveyType.LfSentinel || t.Id == (int)StaticSurveyType.SchistoSentinel || t.Id == (int)StaticSurveyType.SthSentinel))
                 {
-                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSentinelSiteName") });
-                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSentinelSiteLat") });
-                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSentinelSiteLng") });
-                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSpotCheckName") });
-                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSpotCheckLat") });
-                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSpotCheckLng") });
-                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("SiteType") });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSentinelSiteName"), TypeId = t.Id, Key = "IndSentinelSiteName" });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSentinelSiteLat"), TypeId = t.Id, Key = "IndSentinelSiteLat" });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSentinelSiteLng"), TypeId = t.Id, Key = "IndSentinelSiteLng" });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSpotCheckName"), TypeId = t.Id, Key = "IndSpotCheckName" });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSpotCheckLat"), TypeId = t.Id, Key = "IndSpotCheckLat" });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("IndSpotCheckLng"), TypeId = t.Id, Key = "IndSpotCheckLng" });
+                    cat.Children.Add(new ReportIndicator { Name = TranslationLookup.GetValue("SiteType"), TypeId = t.Id, Key = "SiteType" });
                 }
 
                 foreach (var i in instance.TypeOfSurvey.Indicators)
