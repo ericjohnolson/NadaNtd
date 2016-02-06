@@ -197,6 +197,7 @@ namespace Nada.Model.Imports
                     if (!string.IsNullOrEmpty(row[TranslationLookup.GetValue("IndSpotCheckName")].ToString()))
                     {
                         obj.SiteType = TranslationLookup.GetValue("SpotCheck");
+                        obj.SiteTypeId = SiteTypeId.SpotCheck;
                         obj.SpotCheckName = row[TranslationLookup.GetValue("IndSpotCheckName")].ToString();
 
                         double d;
@@ -214,6 +215,7 @@ namespace Nada.Model.Imports
                     else
                     {
                         obj.SiteType = TranslationLookup.GetValue("Sentinel");
+                        obj.SiteTypeId = SiteTypeId.Sentinel;
                         var sites = repo.GetSitesForAdminLevel(obj.AdminLevels.Select(a => a.Id.ToString()).ToList());
                         string siteName = !HasMultipleAdminUnits() ? row[TranslationLookup.GetValue("IndSentinelSiteName")].ToString() : NamesToAdminUnits[rowId].SentinelSiteName;
                         var site = sites.FirstOrDefault(s => s.SiteName == siteName);
