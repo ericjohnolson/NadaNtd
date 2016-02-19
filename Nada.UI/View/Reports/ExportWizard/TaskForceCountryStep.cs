@@ -81,7 +81,12 @@ namespace Nada.UI.View.Reports
 
         private void DoNextStep()
         {
-            if (Util.HasInternetConnection())
+            // Nada "V3" story 14, Turn off admin unit matching until issues resolved with Geoconnect API
+            if (TrySkip())
+                return;
+            OnFinish();
+
+            /*if (Util.HasInternetConnection())
             {
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.DoWork += worker_DoWork;
@@ -94,7 +99,7 @@ namespace Nada.UI.View.Reports
                 if (TrySkip())
                     return;
                 OnFinish();
-            }
+            }*/
         }
 
 
