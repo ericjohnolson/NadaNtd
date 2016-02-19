@@ -263,7 +263,7 @@ namespace Nada.Model.Repositories
                         survey.EndDate = reader.GetValueOrDefault<DateTime>("EndDate");
                         survey.DateReported = reader.GetValueOrDefault<DateTime>("DateReported");
                         survey.SiteType = reader.GetValueOrDefault<string>("SiteType");
-                        survey.SiteTypeId = (SiteTypeId)Convert.ToInt32(reader["SiteTypeId"]);
+                        survey.SiteTypeId = reader.GetValueOrDefault<SiteTypeId>("SiteTypeId");
                         survey.SpotCheckName = reader.GetValueOrDefault<string>("SpotCheckName");
                         survey.Lat = reader.GetValueOrDefault<Nullable<double>>("SpotCheckLat");
                         survey.Lng = reader.GetValueOrDefault<Nullable<double>>("SpotCheckLng");

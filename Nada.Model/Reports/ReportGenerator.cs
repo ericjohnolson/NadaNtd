@@ -824,7 +824,7 @@ namespace Nada.Model.Reports
         protected override void AddTypeSpecificColumns(DataTable result, AdminLevelIndicators level, ReportOptions options, DataRow dr, AggregateIndicator indValue)
         {
             var s = surveyRepo.GetById(indValue.FormId);
-            if (s.AdminLevels.Count > 1)
+            if (s != null && s.AdminLevels.Count > 1)
             {
                 if (!result.Columns.Contains(TranslationLookup.GetValue("AdminUnitsSurveyed")))
                     result.Columns.Add(new DataColumn(TranslationLookup.GetValue("AdminUnitsSurveyed")));
