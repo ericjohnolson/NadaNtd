@@ -128,6 +128,10 @@
       <Link>DatabaseScripts\Differentials\sc.02.00.0004.sql</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\..\Nada.UI\DatabaseScripts\Differentials\sc.02.00.0005.sql">
+      <Link>DatabaseScripts\Differentials\sc.02.00.0005.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\..\Nada.UI\Exports\AFRO_CM_JRF.xls">
       <Link>Exports\AFRO_CM_JRF.xls</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
