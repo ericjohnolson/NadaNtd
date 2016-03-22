@@ -9,16 +9,43 @@ using System.Text;
 
 namespace Nada.Model.Diseases
 {
+    /// <summary>
+    /// This class was created in order to prevent unnecessary computations when running reports.  Originally,
+    /// reports would perform calculations on disease distributions many times when runnning a report.
+    /// 
+    /// In order to reduce the number of the calculations, this class keeps a singleton of disease distribution calculations
+    /// in a report format so that they may be retrieved later.
+    /// </summary>
     public class RecentDistro
     {
+        /// <summary>
+        /// The report options for the current report
+        /// </summary>
         private SavedReport Report;
+
+        /// <summary>
+        /// The result of the report, which contains all the calculations for the disease distributions
+        /// </summary>
         private ReportResult Result;
+
+        /// <summary>
+        /// Diseases related to the calculations
+        /// </summary>
         private Dictionary<int, Disease> Diseases;
 
+        /// <summary>
+        /// Disease repository
+        /// </summary>
         private DiseaseRepository DiseaseRepo;
 
+        /// <summary>
+        /// The name of the admin level that is being reported on
+        /// </summary>
         private string NameOfReportingAdminLevel;
 
+        /// <summary>
+        /// Singleton instance of RecentDistro
+        /// </summary>
         private static RecentDistro Instance;
 
         private RecentDistro()
@@ -27,6 +54,11 @@ namespace Nada.Model.Diseases
             Diseases = new Dictionary<int, Disease>();
         }
 
+        /// <summary>
+        /// Creates a singleton of RecentDistro
+        /// </summary>
+        /// <param name="instantiate">Whether or not to instantiate</param>
+        /// <returns>The RecentDistro instance</returns>
         public static RecentDistro GetInstance(bool instantiate)
         {
             if (Instance == null && instantiate)
@@ -36,11 +68,18 @@ namespace Nada.Model.Diseases
             return Instance;
         }
 
+        /// <summary>
+        /// Clears the singleton instance
+        /// </summary>
         public static void ClearInstance()
         {
             Instance = null;
         }
 
+        /// <summary>
+        /// Runs the report with the report options and collects all the disease distribution calculation
+        /// </summary>
+        /// <param name="mainReportOptions">The report options</param>
         public void Run(ReportOptions mainReportOptions)
         {
             SettingsRepository settingsRepo = new SettingsRepository();
@@ -102,6 +141,16 @@ namespace Nada.Model.Diseases
             Result = gen.Run(Report);
         }
 
+        /// <summary>
+        /// Given a set of parameters, can find previously calculated disease distriubtion values
+        /// </summary>
+        /// <param name="adminLevelId">The ID of the admin unnit</param>
+        /// <param name="indicatorName">The name of the indicator to retrieve a value for</param>
+        /// <param name="diseaseType">The disease type</param>
+        /// <param name="start">The start date of the original report that ran the disease distro calculations</param>
+        /// <param name="end">The end date of the original report that ran the disease distro calculations</param>
+        /// <param name="errors">Reference to a string of report errors that is managed by the ReportGenerator</param>
+        /// <returns>Previously calculated disease distro value</returns>
         public string GetRecentDistroIndicator(int adminLevelId, string indicatorName, DiseaseType diseaseType, DateTime start, DateTime end, ref string errors)
         {
             // Get the corresponding disease

@@ -17,6 +17,9 @@ using excel = Microsoft.Office.Interop.Excel;
 
 namespace Nada.Model.Exports
 {
+    /// <summary>
+    /// Runs the APOC Report export
+    /// </summary>
     public class ApocExporter : ExporterBase, IExporter
     {
         SettingsRepository settings = new SettingsRepository();

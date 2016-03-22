@@ -6,6 +6,9 @@ using Nada.Model.Diseases;
 
 namespace Nada.Model.Reports
 {
+    /// <summary>
+    /// Models a the report options that determine what the report displays
+    /// </summary>
     [Serializable]
     public class ReportOptions
     {

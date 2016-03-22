@@ -10,6 +10,9 @@ using Nada.Model.Survey;
 
 namespace Nada.Model.Base
 {
+    /// <summary>
+    /// Models a saved survey form
+    /// </summary>
     [Serializable]
     public class SurveyBase : NadaClass, IHaveDynamicIndicatorValues
     {

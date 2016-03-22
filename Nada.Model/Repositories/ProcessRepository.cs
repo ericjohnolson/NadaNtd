@@ -11,6 +11,9 @@ using Nada.Model.Process;
 
 namespace Nada.Model.Repositories
 {
+    /// <summary>
+    /// Performs database queries for Process entities
+    /// </summary>
     public class ProcessRepository : RepositoryBase
     {
         #region processes

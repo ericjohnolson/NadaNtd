@@ -15,6 +15,9 @@ using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
+    /// <summary>
+    /// Base importer that all importers extend
+    /// </summary>
     public class ImporterBase : IImporter
     {
         public ImporterBase()

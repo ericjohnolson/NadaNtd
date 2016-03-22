@@ -7,6 +7,9 @@ using System.Text;
 
 namespace Nada.Model.Exports
 {
+    /// <summary>
+    /// Models the Lesihmaniasis report options
+    /// </summary>
     public class LeishReportQuestions : NadaClass
     {
         public Nullable<int> LeishRepYearReporting { get; set; }

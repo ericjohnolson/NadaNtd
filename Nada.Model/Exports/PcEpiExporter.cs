@@ -14,6 +14,9 @@ using excel = Microsoft.Office.Interop.Excel;
 
 namespace Nada.Model.Exports
 {
+    /// <summary>
+    /// Runs the PC epidemiological data reporting form export
+    /// </summary>
     public class PcEpiExporter : ExporterBase, IExporter
     {
         SettingsRepository settings = new SettingsRepository();
@@ -99,6 +102,12 @@ namespace Nada.Model.Exports
             }
         }
 
+        /// <summary>
+        /// Adds the LF sheet
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         private void AddLfMm(excel.Worksheet xlsWorksheet, DateTime start, DateTime end)
         {
             ReportOptions options = new ReportOptions { MonthYearStarts = 1, StartDate = start, EndDate = end, IsCountryAggregation = true, IsByLevelAggregation = false, IsAllLocations = false, IsNoAggregation = false };
@@ -360,6 +369,14 @@ namespace Nada.Model.Exports
 
         }
 
+        /// <summary>
+        /// Adds the info to the main sheet
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="rng"></param>
+        /// <param name="country"></param>
+        /// <param name="exportType"></param>
+        /// <param name="year"></param>
         private void AddInfo(excel.Worksheet xlsWorksheet, excel.Range rng, Country country, ExportType exportType, ref int year)
         {
             AddValueToRange(xlsWorksheet, rng, "E32", country.Name);
@@ -381,6 +398,12 @@ namespace Nada.Model.Exports
             }
         }
 
+        /// <summary>
+        /// Adds data for the Oncho sheet
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         private void AddOncho(excel.Worksheet xlsWorksheet, DateTime start, DateTime end)
         {
             SurveyRepository repo = new SurveyRepository();
@@ -430,6 +453,12 @@ namespace Nada.Model.Exports
             xlsWorksheet.Cells[3, 5] = rowCount;
         }
 
+        /// <summary>
+        /// Adds data for the STH sheet
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         private void AddSth(excel.Worksheet xlsWorksheet, DateTime start, DateTime end)
         {
             SurveyRepository repo = new SurveyRepository();
@@ -522,6 +551,12 @@ namespace Nada.Model.Exports
             xlsWorksheet.Cells[3, 5] = rowCount;
         }
 
+        /// <summary>
+        /// Adds data for the SCH sheet
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         private void AddSch(excel.Worksheet xlsWorksheet, DateTime start, DateTime end)
         {
             SurveyRepository repo = new SurveyRepository();

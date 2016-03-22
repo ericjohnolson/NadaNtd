@@ -9,6 +9,9 @@ using Nada.Model.Repositories;
 
 namespace Nada.Model.Reports
 {
+    /// <summary>
+    /// Base report generator for the Progress towards Elimination standard report
+    /// </summary>
     public class BaseEliminationReport : BaseReportGenerator
     {
         protected void AddIndicators(int id, string name, DiseaseDistroPc dd, ReportOptions options)
@@ -33,6 +36,9 @@ namespace Nada.Model.Reports
         }
     }
 
+    /// <summary>
+    /// Base report generator for the Progress towards Elimination standard report of TYPE: Persons
+    /// </summary>
     public class EliminationPersonsReportGenerator : BaseEliminationReport
     {
         public override ReportResult Run(SavedReport report)
@@ -115,6 +121,9 @@ namespace Nada.Model.Reports
 
     }
 
+    /// <summary>
+    /// Base report generator for the Progress towards Elimination standard report of TYPE: Reporting level
+    /// </summary>
     public class EliminationDistrictsReportGenerator : BaseEliminationReport
     {
         public override ReportResult Run(SavedReport report)

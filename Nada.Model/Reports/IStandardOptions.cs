@@ -11,6 +11,9 @@ namespace Nada.Model.Reports
     {
     }
 
+    /// <summary>
+    /// Report options for the standard report: Progress towards Elimination
+    /// </summary>
     public class EliminationReportOptions : IStandardOptions
     {
         public EliminationReportOptions()
@@ -23,6 +26,9 @@ namespace Nada.Model.Reports
         public bool IsPersons { get; set; }
     }
 
+    /// <summary>
+    /// Report options for the standard report: Persons Treated and Coverage Report
+    /// </summary>
     public class PersonsTreatedCoverageReportOptions : IStandardOptions
     {
         public PersonsTreatedCoverageReportOptions()

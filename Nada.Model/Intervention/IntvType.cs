@@ -8,6 +8,9 @@ using Nada.Model.Base;
 
 namespace Nada.Model.Intervention
 {
+    /// <summary>
+    /// Models a type of intervention and contains any indicators that would show up in its corresponding form
+    /// </summary>
     [Serializable]
     public class IntvType : NadaClass, IHaveDynamicIndicators, IDataErrorInfo
     {

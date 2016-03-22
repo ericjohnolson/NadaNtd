@@ -16,7 +16,9 @@ namespace Nada.Model.Reports
     //    public List<ReportIndicator> InterventionIndicators { get; set; }
     //}
 
-
+    /// <summary>
+    /// Models an indicator that is displayed in a report
+    /// </summary>
     [Serializable]
     public class ReportIndicator
     {

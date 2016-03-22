@@ -71,6 +71,9 @@ namespace Nada.Model
         public string ErrorMessage { get; set; }
     }
 
+    /// <summary>
+    /// Serves as the basis for all Report Exporters
+    /// </summary>
     public class ExporterBase
     {
         protected List<IndicatorDropdownValue> dropdownValues = new List<IndicatorDropdownValue>();

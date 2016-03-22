@@ -8,6 +8,9 @@ using Nada.Model.Base;
 
 namespace Nada.Model.Survey
 {
+    /// <summary>
+    /// Models a sentinel site for surveys
+    /// </summary>
     [Serializable]
     public class SentinelSite : NadaClass, IDataErrorInfo
     {

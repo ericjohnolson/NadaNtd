@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Nada.Model.Diseases
 {
+    /// <summary>
+    /// Handles validation on Disease entities
+    /// </summary>
     public class DiseaseDistroCustomValidator : BaseValidator
     {
         public override string Valid(Indicator indicator, List<IndicatorValue> values)
@@ -35,6 +38,12 @@ namespace Nada.Model.Diseases
             return "";
         }
 
+        /// <summary>
+        /// Establishes the validation rules for any Disease Distribution indicators that need validation
+        /// </summary>
+        /// <param name="formTranslationKey">The translation key of the form that the indicators belong to</param>
+        /// <param name="instantiate">Whether or not to instantiate the collection</param>
+        /// <returns>Collection of validation rules</returns>
         public override Dictionary<string, List<ValidationMapping>> GetMapInstance(string formTranslationKey, bool instantiate)
         {
             if (ValidationMap == null && instantiate)

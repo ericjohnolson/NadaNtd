@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Nada.Model.Intervention
 {
+    /// <summary>
+    /// Handles validation for Intervention entities
+    /// </summary>
     public class IntvCustomValidator : BaseValidator
     {
         public override string Valid(Indicator indicator, List<IndicatorValue> values)
@@ -12,6 +15,12 @@ namespace Nada.Model.Intervention
             return "";
         }
 
+        /// <summary>
+        /// Establishes the validation rules for any Intervention indicators that need validation
+        /// </summary>
+        /// <param name="formTranslationKey">The translation key of the form that the indicators belong to</param>
+        /// <param name="instantiate">Whether or not to instantiate the collection</param>
+        /// <returns>Collection of validation rules</returns>
         public override Dictionary<string, List<ValidationMapping>> GetMapInstance(string formTranslationKey, bool instantiate)
         {
             if (ValidationMap == null && instantiate)

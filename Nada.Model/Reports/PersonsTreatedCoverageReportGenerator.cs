@@ -11,18 +11,53 @@ using System.Text.RegularExpressions;
 
 namespace Nada.Model.Reports
 {
+    /// <summary>
+    /// Abstraction of the standard report Persons Treated and Coverge report
+    /// </summary>
     public abstract class PersonsTreatedCoverageBaseReportGenerator : BaseReportGenerator
     {
         protected DiseaseRepository DiseaseRepo = new DiseaseRepository();
         protected DemoRepository DemoRepo = new DemoRepository();
         protected IntvRepository IntvRepo = new IntvRepository();
+
+        /// <summary>
+        /// Types of interventions included in the report
+        /// </summary>
         protected List<IntvType> IntvTypes { get; set; }
+
+        /// <summary>
+        /// Diseases to report on
+        /// </summary>
         protected List<Disease> Diseases { get; set; }
         protected Dictionary<int, double> RowToPopAtRisk = new Dictionary<int, double>();
 
+        /// <summary>
+        /// Determines the intervention types given report options
+        /// </summary>
+        /// <param name="standardOpts"></param>
+        /// <returns></returns>
         protected abstract List<IntvType> DetermineIntvTypes(PersonsTreatedCoverageReportOptions standardOpts);
+
+        /// <summary>
+        /// Determines the intervention types given a collection of diseases (uses the mapping between interventions and diseases)
+        /// </summary>
+        /// <param name="diseases"></param>
+        /// <returns></returns>
         protected abstract List<IntvType> DetermineIntvTypes(List<Disease> diseases);
+
+        /// <summary>
+        /// Determines the diseases to report on given report options
+        /// </summary>
+        /// <param name="standardOpts"></param>
+        /// <returns></returns>
         protected abstract List<Disease> DetermineDiseases(PersonsTreatedCoverageReportOptions standardOpts);
+
+        /// <summary>
+        /// Determines the diseases to report on given report options and a collection of intnerventions (uses the mapping between interventions and diseases)
+        /// </summary>
+        /// <param name="standardOpts"></param>
+        /// <param name="interventions"></param>
+        /// <returns></returns>
         protected abstract List<Disease> DetermineDiseases(PersonsTreatedCoverageReportOptions standardOpts, List<IntvBase> interventions);
 
         protected void HydrateIntvTypes(List<IntvType> intvTypes)
@@ -506,6 +541,9 @@ namespace Nada.Model.Reports
         }
     }
 
+    /// <summary>
+    /// Runs the report for a Persons Treated and Coverage report of TYPE: Diseases
+    /// </summary>
     public class PersonsTreatedCoverageDiseaseReportGenerator : PersonsTreatedCoverageBaseReportGenerator
     {
         protected override List<IntvType> DetermineIntvTypes(List<Disease> diseases)
@@ -537,6 +575,9 @@ namespace Nada.Model.Reports
         }
     }
 
+    /// <summary>
+    /// Runs the report for a Persons Treated and Coverage report of TYPE: Drug package
+    /// </summary>
     public class PersonsTreatedCoverageDrugPackageReportGenerator : PersonsTreatedCoverageBaseReportGenerator
     {
         protected override List<IntvType> DetermineIntvTypes(PersonsTreatedCoverageReportOptions standardOpts)

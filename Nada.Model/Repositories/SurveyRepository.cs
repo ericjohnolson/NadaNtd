@@ -11,6 +11,9 @@ using Nada.Model.Survey;
 
 namespace Nada.Model.Repositories
 {
+    /// <summary>
+    /// Performs database queries for survey entities
+    /// </summary>
     public class SurveyRepository : RepositoryBase
     {
         #region Surveys

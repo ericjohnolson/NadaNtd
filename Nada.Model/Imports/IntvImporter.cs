@@ -12,6 +12,9 @@ using Nada.Model.Repositories;
 
 namespace Nada.Model.Imports
 {
+    /// <summary>
+    /// Handles importing data for the Intervention entities
+    /// </summary>
     public class IntvImporter : ImporterBase, IImporter
     {
         public override IndicatorEntityType EntityType { get { return IndicatorEntityType.Intervention; } }

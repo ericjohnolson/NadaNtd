@@ -7,6 +7,9 @@ using Nada.Model.Base;
 
 namespace Nada.Model
 {
+    /// <summary>
+    /// Models the country's demography
+    /// </summary>
     public class CountryDemography : AdminLevelDemography
     {
         public string AgeRangePsac { get; set; }

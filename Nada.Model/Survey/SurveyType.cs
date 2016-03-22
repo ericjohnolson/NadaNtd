@@ -8,6 +8,9 @@ using Nada.Model.Base;
 
 namespace Nada.Model.Survey
 {
+    /// <summary>
+    /// Models a type of survey which contains any indicators that belong to the corresponding form
+    /// </summary>
     [Serializable]
     public class SurveyType : NadaClass, IHaveDynamicIndicators, IDataErrorInfo
     {

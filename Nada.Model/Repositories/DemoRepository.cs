@@ -12,6 +12,9 @@ using Nada.Model.Demography;
 
 namespace Nada.Model.Repositories
 {
+    /// <summary>
+    /// Performs database queries for Demography
+    /// </summary>
     public class DemoRepository : RepositoryBase
     {
         #region Country

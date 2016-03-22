@@ -13,6 +13,9 @@ using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
+    /// <summary>
+    /// Handles importing data for the Process entities
+    /// </summary>
     public class ProcessImporter : ImporterBase, IImporter
     {
         public override IndicatorEntityType EntityType { get { return IndicatorEntityType.Process; } }

@@ -14,6 +14,10 @@ using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
+
+    /// <summary>
+    /// Handles creating an import file for AdminLevelDemography and then importing the data
+    /// </summary>
     public class AdminLevelDemoUpdater : ImporterBase
     {
         AdminLevelType locationType = null;
@@ -242,6 +246,9 @@ namespace Nada.Model
 
     }
 
+    /// <summary>
+    /// Handles creating an import file for AdminLevels and then importing the data
+    /// </summary>
     public class AdminLevelDemoImporter : ImporterBase
     {
         DemoRepository demo = new DemoRepository();

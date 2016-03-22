@@ -9,6 +9,12 @@ using Nada.Model.Base;
 
 namespace Nada.Model
 {
+
+    /// <summary>
+    /// Models an admistrative unit
+    /// 
+    /// NOTE: Not to be confused with the admin level of an admin unit (country, region, etc).  AdminLevelType represents a the admin level
+    /// </summary>
     [Serializable]
     public class AdminLevel : NadaClass, ICloneable
     {

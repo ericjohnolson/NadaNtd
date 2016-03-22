@@ -14,11 +14,17 @@ using Nada.Model.Survey;
 
 namespace Nada.Model.Reports
 {
+    /// <summary>
+    /// Report generator interface
+    /// </summary>
     public interface IReportGenerator
     {
         ReportResult Run(SavedReport report);
     }
 
+    /// <summary>
+    /// ReportGenerator that all generators extend
+    /// </summary>
     [Serializable]
     public class BaseReportGenerator : IReportGenerator
     {

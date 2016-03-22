@@ -9,12 +9,57 @@ using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
+    /// <summary>
+    /// Interface defining contract for calculation classes
+    /// </summary>
     public interface ICalcIndicators
     {
+        /// <summary>
+        /// Calculates any indicators that belong in the meta data
+        /// </summary>
+        /// <param name="fields">The meta data collection of fields</param>
+        /// <param name="adminLevel">The admin unit to calculate for</param>
+        /// <param name="start">The starting point used to determine demography information</param>
+        /// <param name="end">The ending point used to determine demography information</param>
+        /// <returns>Collection of meta data calculations</returns>
         List<KeyValuePair<string, string>> GetMetaData(List<KeyValuePair<string, string>> fields, int adminLevel, DateTime start, DateTime end);
+
+        /// <summary>
+        /// Main method that begins the calculation process
+        /// </summary>
+        /// <param name="indicators">Indicators</param>
+        /// <param name="indicatorValues">Values for the indicators</param>
+        /// <param name="adminLevel">The admin unit to calculate for</param>
+        /// <param name="typeId"></param>
+        /// <param name="formTranslationKey">The form translation key</param>
+        /// <param name="start">The starting point used to determine demography information</param>
+        /// <param name="end">The ending point used to determine demography information</param>
+        /// <returns>Collection of calculation results</returns>
         List<KeyValuePair<string, string>> PerformCalculations(Dictionary<string, Indicator> indicators, List<IndicatorValue> indicatorValues,
             int adminLevel, string typeId, string formTranslationKey, DateTime start, DateTime end);
+
+        /// <summary>
+        /// Calculates each of the specified indicators
+        /// </summary>
+        /// <param name="fields">Indicators to calculate</param>
+        /// <param name="relatedValues">Related indicator values used in the calculation</param>
+        /// <param name="adminLevel">Admin unit to calculate for</param>
+        /// <param name="start">The starting point used to determine demography information</param>
+        /// <param name="end">The ending point used to determine demography information</param>
+        /// <returns>Collection of calculation results</returns>
         List<KeyValuePair<string, string>> GetCalculatedValues(List<KeyValuePair<string, string>> fields, Dictionary<string, string> relatedValues, int adminLevel, DateTime start, DateTime end);
+
+        /// <summary>
+        /// Calculates a single indicator
+        /// </summary>
+        /// <param name="formTranslationKey">The form translation key</param>
+        /// <param name="field">Indicator being calculated</param>
+        /// <param name="relatedValues">Related indicator values used in the calculation</param>
+        /// <param name="demo">Demography data for the admin unit</param>
+        /// <param name="start">The starting point used to determine demography information</param>
+        /// <param name="end">The ending point used to determine demography information</param>
+        /// <param name="errors">Errors to be displayed and managed by the ReportGenerator</param>
+        /// <returns>The indicator name and the calculated value</returns>
         KeyValuePair<string, string> GetCalculatedValue(string formTranslationKey, string field, Dictionary<string, string> relatedValues, AdminLevelDemography demo, DateTime start, DateTime end, ref string errors);
         AdminLevelDemography GetAdminLevelDemo(int adminLevelId, DateTime start, DateTime end);
     }
@@ -23,6 +68,13 @@ namespace Nada.Model
     {
         protected DemoRepository demoRepo = new DemoRepository();
 
+        /// <summary>
+        /// Gets admin unit demography information for the specified admin unit between the two dates
+        /// </summary>
+        /// <param name="adminLevelId"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
         public AdminLevelDemography GetAdminLevelDemo(int adminLevelId, DateTime start, DateTime end)
         {
             return GetDemography(adminLevelId, start, end);
@@ -33,6 +85,17 @@ namespace Nada.Model
             return new List<KeyValuePair<string, string>>();
         }
 
+        /// <summary>
+        /// Main method that begins the calculation process
+        /// </summary>
+        /// <param name="indicators">Indicators</param>
+        /// <param name="indicatorValues">Values for the indicators</param>
+        /// <param name="adminLevel">The admin unit to calculate for</param>
+        /// <param name="typeId"></param>
+        /// <param name="formTranslationKey">The form translation key</param>
+        /// <param name="start">The starting point used to determine demography information</param>
+        /// <param name="end">The ending point used to determine demography information</param>
+        /// <returns>Collection of calculation results</returns>
         public virtual List<KeyValuePair<string, string>> PerformCalculations(Dictionary<string, Indicator> indicators, List<IndicatorValue> indicatorValues,
             int adminLevel, string typeId, string formTranslationKey,  DateTime start, DateTime end)
         {

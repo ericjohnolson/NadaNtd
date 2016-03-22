@@ -10,6 +10,9 @@ using Nada.Model.Diseases;
 
 namespace Nada.Model.Repositories
 {
+    /// <summary>
+    /// Performs database queries for Disease distribution entities
+    /// </summary>
     public class DiseaseRepository : RepositoryBase
     {
         #region Disease Distribution

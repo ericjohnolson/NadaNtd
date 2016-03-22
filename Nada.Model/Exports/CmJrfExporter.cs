@@ -11,6 +11,9 @@ using excel = Microsoft.Office.Interop.Excel;
 
 namespace Nada.Model.Exports
 {
+    /// <summary>
+    /// Runs the CM Joint Reporting Form export
+    /// </summary>
     public class CmJrfExporter : ExporterBase, IExporter
     {
         SettingsRepository settings = new SettingsRepository();

@@ -14,6 +14,9 @@ namespace Nada.Model.Repositories
         public string DisplayName { get; set; }
     }
 
+    /// <summary>
+    /// Performs database queries for Users
+    /// </summary>
     public class MemberRepository
     {
         /// <summary>

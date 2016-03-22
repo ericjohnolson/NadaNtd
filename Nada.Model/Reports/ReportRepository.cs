@@ -37,6 +37,9 @@ namespace Nada.Model.Repositories
         public int Year { get; set; }
     }
 
+    /// <summary>
+    /// ReportRepository that allows data to be fetched for the report
+    /// </summary>
     public class ReportRepository : RepositoryBase
     {
         private List<Partner> partners = new List<Partner>();

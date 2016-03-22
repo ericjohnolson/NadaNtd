@@ -12,6 +12,9 @@ using Nada.Model.Intervention;
 
 namespace Nada.Model.Repositories
 {
+    /// <summary>
+    /// Peforms database queries for intervention entities
+    /// </summary>
     public class IntvRepository : RepositoryBase
     {
         #region interventions

@@ -16,6 +16,9 @@ using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
+    /// <summary>
+    /// Handles the Indicator Management system
+    /// </summary>
     public class IndicatorManager
     {
         protected int validationRow = 1;

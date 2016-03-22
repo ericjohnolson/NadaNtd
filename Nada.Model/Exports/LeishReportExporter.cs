@@ -13,6 +13,9 @@ using excel = Microsoft.Office.Interop.Excel;
 
 namespace Nada.Model.Exports
 {
+    /// <summary>
+    /// Runs the Leishmaniasis Report export
+    /// </summary>
     public class LeishReportExporter : ExporterBase, IExporter
     {
         private static int Admin2LevelNumber = 2;

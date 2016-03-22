@@ -7,6 +7,9 @@ using Nada.Model.Base;
 
 namespace Nada.Model
 {
+    /// <summary>
+    /// Models a type of admin unit (region, district, etc.)
+    /// </summary>
     public class AdminLevelType : NadaClass
     {
         public AdminLevelType()

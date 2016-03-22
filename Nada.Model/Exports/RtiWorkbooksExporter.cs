@@ -16,6 +16,9 @@ using excel = Microsoft.Office.Interop.Excel;
 
 namespace Nada.Model.Exports
 {
+    /// <summary>
+    /// Runs the Disease Workbook for USAID reporting export
+    /// </summary>
     public class RtiWorkbooksExporter : ExporterBase, IExporter
     {
         public DateTime StartDate { get; set; }
@@ -118,6 +121,15 @@ namespace Nada.Model.Exports
             }
         }
 
+        /// <summary>
+        /// Adds general information
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="rng"></param>
+        /// <param name="country"></param>
+        /// <param name="exportType"></param>
+        /// <param name="districtCount"></param>
+        /// <param name="intvs"></param>
         private void AddInfo(excel.Worksheet xlsWorksheet, excel.Range rng, Country country, ExportType exportType, int districtCount,
             List<IntvDetails> intvs)
         {
@@ -160,6 +172,13 @@ namespace Nada.Model.Exports
             }
         }
 
+        /// <summary>
+        /// Adds demography information
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="rng"></param>
+        /// <param name="demography"></param>
+        /// <param name="countryDemo"></param>
         private void AddDemo(excel.Worksheet xlsWorksheet, excel.Range rng, List<AdminLevel> demography, CountryDemography countryDemo)
         {
             if (countryDemo.YearCensus.HasValue)
@@ -195,6 +214,15 @@ namespace Nada.Model.Exports
             }
         }
 
+        /// <summary>
+        /// Adds LF information
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="rng"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="demography"></param>
+        /// <param name="aggIntvs"></param>
         private void AddLf(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvAlb2", "IntvIvmAlb", "IntvDecAlb", "IntvIvmPzqAlb" };
@@ -302,6 +330,15 @@ namespace Nada.Model.Exports
             }
         }
         
+        /// <summary>
+        /// Adds Oncho information
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="rng"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="demography"></param>
+        /// <param name="aggIntvs"></param>
         private void AddOncho(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvIvmPzqAlb", "IntvIvmPzq", "IntvIvmAlb", "IntvIvm" };
@@ -445,6 +482,15 @@ namespace Nada.Model.Exports
             }
         }
 
+        /// <summary>
+        /// Adds SCH information
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="rng"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="demography"></param>
+        /// <param name="aggIntvs"></param>
         private void AddSchisto(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvIvmPzqAlb", "IntvIvmPzq", "IntvPzq", "IntvPzqAlb", "IntvPzqMbd" };
@@ -608,6 +654,15 @@ namespace Nada.Model.Exports
             }
         }
 
+        /// <summary>
+        /// Adds STH information
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="rng"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="demography"></param>
+        /// <param name="aggIntvs"></param>
         private void AddSth(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvIvmPzqAlb", "IntvIvmAlb", "IntvDecAlb", "IntvPzqAlb", "IntvPzqMbd", "IntvAlb", "IntvMbd" };
@@ -793,6 +848,15 @@ namespace Nada.Model.Exports
             }
         }
 
+        /// <summary>
+        /// Adds Trachoma information
+        /// </summary>
+        /// <param name="xlsWorksheet"></param>
+        /// <param name="rng"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="demography"></param>
+        /// <param name="aggIntvs"></param>
         private void AddTrachoma(excel.Worksheet xlsWorksheet, excel.Range rng, DateTime start, DateTime end, List<AdminLevel> demography, Dictionary<int, DataRow> aggIntvs)
         {
             List<string> typeNames = new List<string> { "IntvZithroTeo" };

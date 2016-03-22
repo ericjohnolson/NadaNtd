@@ -12,6 +12,9 @@ using excel = Microsoft.Office.Interop.Excel;
 
 namespace Nada.Model.Exports
 {
+    /// <summary>
+    /// Runs the PC Joint Reporting Form export
+    /// </summary>
     public class PcJrfExporter : ExporterBase, IExporter
     {
         SettingsRepository settings = new SettingsRepository();

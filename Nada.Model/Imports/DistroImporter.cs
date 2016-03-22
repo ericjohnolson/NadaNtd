@@ -13,6 +13,9 @@ using Nada.Model.Repositories;
 
 namespace Nada.Model
 {
+    /// <summary>
+    /// Handles importing data for a Disease Distribution entity
+    /// </summary>
     public class DistroImporter : ImporterBase, IImporter
     {
         public override IndicatorEntityType EntityType { get { return IndicatorEntityType.DiseaseDistribution; } }

@@ -13,6 +13,9 @@ using Nada.Model.Survey;
 
 namespace Nada.Model.Imports
 {
+    /// <summary>
+    /// Handles importing data for the Survey import data
+    /// </summary>
     public class SurveyImporter : ImporterBase, IImporter
     {
         public override IndicatorEntityType EntityType { get { return IndicatorEntityType.Survey; } }

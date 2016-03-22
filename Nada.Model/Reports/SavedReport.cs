@@ -10,6 +10,9 @@ using Nada.Model.Base;
 
 namespace Nada.Model.Reports
 {
+    /// <summary>
+    /// Models a saved custom report
+    /// </summary>
     public class SavedReport : NadaClass
     {
         private Logger log = new Logger();
